@@ -1,9 +1,8 @@
-﻿// ReSharper disable RedundantEmptyObjectOrCollectionInitializer
-
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Globalization;
 using static System.Globalization.CultureInfo;
 
+// ReSharper disable RedundantEmptyObjectOrCollectionInitializer
 // ReSharper disable CollectionNeverUpdated.Local
 
 namespace JJ.Framework.Existence.Core.Tests;
@@ -16,330 +15,519 @@ public class FilledInTests
     // - [x] int?
     // - [x] string
     // - [x] string?
+    // - [x] Reference Types (StringBuilder)
+    // - [x] Nullable reference types (StringBuilder?)
+    // - [x] ~ Coalescing from collection to collection
+    // - [x] Collection types
+    // - [x] Trim tolerance
+    // - [x] Static variant
+    // - [x] Extension variant
     // - [ ] Enum
     // - [ ] Enum?
     // - [ ] double
     // - [ ] bool
-    // - [ ] Reference Types (StringBuilder)
-    // - [ ] Nullable reference types (StringBuilder?)
-    // - [ ] Coalescing from collection to collection
-    // - [x] Collection types
-    // - [x] Trim tolerance
-    // - [ ] Coalesce arities
-    // - [x] Static variant
-    // - [x] Extension variant
+    // - [ ] .. Coalesce arities
     
-    string? _nullText         = null;
-    string? _nullableEmpty    = "";
-    string? _nullableSpace    = " ";
-    string? _nullableWithText = "Hi";
-    string  _nonNullEmpty     = "";
-    string  _nonNullSpace     = " ";
-    string  _nonNullText      = "Hello";
-    
+    string?        NullText       = null;
+    string?        NullyEmpty     = "";
+    string?        NullySpace     = " ";
+    string?        NullyWithText  = "Hi";
+    string         NonNullEmpty   = "";
+    string         NonNullSpace   = " ";
+    string         NonNullText    = "Hello";
+    int?           NullNum        = null;
+    int?           Nully0         = 0;
+    int?           Nully1         = 1;
+    int?           Nully2         = 2;
+    int?           Nully3         = 3;
+    int?           Nully4         = 4;
+    int            NonNull0       = 0;
+    int            NonNull1       = 1;
+    int            NonNull2       = 2;
+    int            NonNull3       = 3;
+    int            NonNull4       = 4;
+    StringBuilder? NullObject     = null;
+    StringBuilder  NonNullObject  = new();
+    StringBuilder? NullableFilled = new();
+
     [TestMethod]
     public void FilledIn_Text_True()
     {
-        IsTrue(Has(_nullableWithText));
-        IsTrue(Has(_nonNullText));
-        IsTrue(FilledIn(_nullableWithText));
-        IsTrue(FilledIn(_nonNullText));
-        IsTrue(_nullableWithText.FilledIn());
-        IsTrue(_nonNullText.FilledIn());
+        IsTrue(Has(NullyWithText));
+        IsTrue(Has(NonNullText));
+        IsTrue(FilledIn(NullyWithText));
+        IsTrue(FilledIn(NonNullText));
+        IsTrue(NullyWithText.FilledIn());
+        IsTrue(NonNullText.FilledIn());
     }
 
     [TestMethod]
     public void FilledIn_Text_False()
     {
-        IsFalse(Has(_nullText));
-        IsFalse(Has(_nullableEmpty));
-        IsFalse(Has(_nullableSpace));
-        IsFalse(Has(_nonNullEmpty));
-        IsFalse(Has(_nonNullSpace));
-        IsFalse(FilledIn(_nullText));
-        IsFalse(FilledIn(_nullableEmpty));
-        IsFalse(FilledIn(_nullableSpace));
-        IsFalse(FilledIn(_nonNullEmpty));
-        IsFalse(FilledIn(_nonNullSpace));
-        IsFalse(_nullText.FilledIn());
-        IsFalse(_nullableEmpty.FilledIn());
-        IsFalse(_nullableSpace.FilledIn());
-        IsFalse(_nonNullEmpty.FilledIn());
-        IsFalse(_nonNullSpace.FilledIn());
+        IsFalse(Has(NullText));
+        IsFalse(Has(NullyEmpty));
+        IsFalse(Has(NullySpace));
+        IsFalse(Has(NonNullEmpty));
+        IsFalse(Has(NonNullSpace));
+        IsFalse(FilledIn(NullText));
+        IsFalse(FilledIn(NullyEmpty));
+        IsFalse(FilledIn(NullySpace));
+        IsFalse(FilledIn(NonNullEmpty));
+        IsFalse(FilledIn(NonNullSpace));
+        IsFalse(NullText.FilledIn());
+        IsFalse(NullyEmpty.FilledIn());
+        IsFalse(NullySpace.FilledIn());
+        IsFalse(NonNullEmpty.FilledIn());
+        IsFalse(NonNullSpace.FilledIn());
     }
     
     [TestMethod]
     public void IsNully_Text_False()
     {
-        IsFalse(IsNully(_nullableWithText));
-        IsFalse(IsNully(_nonNullText));
-        IsFalse(_nullableWithText.IsNully());
-        IsFalse(_nonNullText.IsNully());
+        IsFalse(IsNully(NullyWithText));
+        IsFalse(IsNully(NonNullText));
+        IsFalse(NullyWithText.IsNully());
+        IsFalse(NonNullText.IsNully());
     }
 
     [TestMethod] 
     public void IsNully_Text_True()
     {
-        IsTrue(IsNully(_nullText));
-        IsTrue(IsNully(_nullableEmpty));
-        IsTrue(IsNully(_nullableSpace));
-        IsTrue(IsNully(_nonNullEmpty));
-        IsTrue(IsNully(_nonNullSpace));
-        IsTrue(_nullText.IsNully());
-        IsTrue(_nullableEmpty.IsNully());
-        IsTrue(_nullableSpace.IsNully());
-        IsTrue(_nonNullEmpty.IsNully());
-        IsTrue(_nonNullSpace.IsNully());
+        IsTrue(IsNully(NullText));
+        IsTrue(IsNully(NullyEmpty));
+        IsTrue(IsNully(NullySpace));
+        IsTrue(IsNully(NonNullEmpty));
+        IsTrue(IsNully(NonNullSpace));
+        IsTrue(NullText.IsNully());
+        IsTrue(NullyEmpty.IsNully());
+        IsTrue(NullySpace.IsNully());
+        IsTrue(NonNullEmpty.IsNully());
+        IsTrue(NonNullSpace.IsNully());
     }
     
     [TestMethod]
     public void IsNully_Text_TrimSpace()
     {
-        IsFalse(_nullableSpace.IsNully(trimSpace: false));
-        IsFalse(_nullableSpace.IsNully(false));
-        IsFalse(_nonNullSpace.IsNully(trimSpace: false));
-        IsFalse(_nonNullSpace.IsNully(false));
-        IsFalse(IsNully(_nullableSpace, trimSpace: false));
-        IsFalse(IsNully(_nullableSpace, false));
-        IsFalse(IsNully(_nonNullSpace, trimSpace: false));
-        IsFalse(IsNully(_nonNullSpace, false));
+        IsFalse(NullySpace.IsNully(trimSpace: false));
+        IsFalse(NullySpace.IsNully(false));
+        IsFalse(NonNullSpace.IsNully(trimSpace: false));
+        IsFalse(NonNullSpace.IsNully(false));
+        IsFalse(IsNully(NullySpace, trimSpace: false));
+        IsFalse(IsNully(NullySpace, false));
+        IsFalse(IsNully(NonNullSpace, trimSpace: false));
+        IsFalse(IsNully(NonNullSpace, false));
     }
         
     [TestMethod]
     public void FilledIn_Text_TrimSpace()
     {
-        IsTrue(Has(_nullableSpace, trimSpace: false));
-        IsTrue(Has(_nullableSpace, false));
-        IsTrue(Has(_nonNullSpace, trimSpace: false));
-        IsTrue(Has(_nonNullSpace, false));
-        IsTrue(_nullableSpace.FilledIn(trimSpace: false));
-        IsTrue(_nullableSpace.FilledIn(false));
-        IsTrue(_nonNullSpace.FilledIn(trimSpace: false));
-        IsTrue(_nonNullSpace.FilledIn(false));
-        IsTrue(FilledIn(_nullableSpace, trimSpace: false));
-        IsTrue(FilledIn(_nullableSpace, false));
-        IsTrue(FilledIn(_nonNullSpace, trimSpace: false));
-        IsTrue(FilledIn(_nonNullSpace, false));
+        IsTrue(Has(NullySpace, trimSpace: false));
+        IsTrue(Has(NullySpace, false));
+        IsTrue(Has(NonNullSpace, trimSpace: false));
+        IsTrue(Has(NonNullSpace, false));
+        IsTrue(NullySpace.FilledIn(trimSpace: false));
+        IsTrue(NullySpace.FilledIn(false));
+        IsTrue(NonNullSpace.FilledIn(trimSpace: false));
+        IsTrue(NonNullSpace.FilledIn(false));
+        IsTrue(FilledIn(NullySpace, trimSpace: false));
+        IsTrue(FilledIn(NullySpace, false));
+        IsTrue(FilledIn(NonNullSpace, trimSpace: false));
+        IsTrue(FilledIn(NonNullSpace, false));
     }
-
-    int? _nullInt  = null;
-    int  _nonNull0 = 0;
-    int  _nonNull1 = 1;
-    int? _nully0   = 0;
-    int? _nully1   = 1;
     
     [TestMethod]
     public void FilledIn_Int_True()
     {
-        IsTrue(Has(_nonNull1));
-        IsTrue(Has(_nully1));
-        IsTrue(_nonNull1.FilledIn());
-        IsTrue(_nully1.FilledIn());
-        IsTrue(FilledIn(_nonNull1));
-        IsTrue(FilledIn(_nully1));
+        IsTrue(Has(NonNull1));
+        IsTrue(Has(Nully1));
+        IsTrue(NonNull1.FilledIn());
+        IsTrue(Nully1.FilledIn());
+        IsTrue(FilledIn(NonNull1));
+        IsTrue(FilledIn(Nully1));
     }
     
     [TestMethod]
     public void FilledIn_Int_False()
     {
-        IsFalse(Has(_nullInt));
-        IsFalse(Has(_nonNull0));
-        IsFalse(Has(_nully0));
-        IsFalse(_nullInt.FilledIn());
-        IsFalse(_nonNull0.FilledIn());
-        IsFalse(_nully0.FilledIn());
-        IsFalse(FilledIn(_nullInt));
-        IsFalse(FilledIn(_nonNull0));
-        IsFalse(FilledIn(_nully0));
+        IsFalse(Has(NullNum));
+        IsFalse(Has(NonNull0));
+        IsFalse(Has(Nully0));
+        IsFalse(NullNum.FilledIn());
+        IsFalse(NonNull0.FilledIn());
+        IsFalse(Nully0.FilledIn());
+        IsFalse(FilledIn(NullNum));
+        IsFalse(FilledIn(NonNull0));
+        IsFalse(FilledIn(Nully0));
     }
         
     [TestMethod]
     public void IsNully_Int_False()
     {
-        IsFalse(_nonNull1.IsNully());
-        IsFalse(_nully1.IsNully());
-        IsFalse(IsNully(_nonNull1));
-        IsFalse(IsNully(_nully1));
+        IsFalse(NonNull1.IsNully());
+        IsFalse(Nully1.IsNully());
+        IsFalse(IsNully(NonNull1));
+        IsFalse(IsNully(Nully1));
     }
     
     [TestMethod]
     public void IsNully_Int_True()
     {
-        IsTrue(_nullInt.IsNully());
-        IsTrue(_nonNull0.IsNully());
-        IsTrue(_nully0.IsNully());
-        IsTrue(IsNully(_nullInt));
-        IsTrue(IsNully(_nonNull0));
-        IsTrue(IsNully(_nully0));
+        IsTrue(NullNum.IsNully());
+        IsTrue(NonNull0.IsNully());
+        IsTrue(Nully0.IsNully());
+        IsTrue(IsNully(NullNum));
+        IsTrue(IsNully(NonNull0));
+        IsTrue(IsNully(Nully0));
     }
-
-    StringBuilder? _nullObject     = null;
-    StringBuilder  _nonNullObject  = new();
-    StringBuilder? _nullableFilled = new();
     
     [TestMethod]
     public void FilledIn_Object_True()
     {
-        IsTrue(Has(_nonNullObject));
-        IsTrue(Has(_nullableFilled));
-        IsTrue(FilledIn(_nonNullObject));
-        IsTrue(FilledIn(_nullableFilled));
-        IsTrue(_nonNullObject.FilledIn());
-        IsTrue(_nullableFilled.FilledIn());
+        IsTrue(Has(NonNullObject));
+        IsTrue(Has(NullableFilled));
+        IsTrue(FilledIn(NonNullObject));
+        IsTrue(FilledIn(NullableFilled));
+        IsTrue(NonNullObject.FilledIn());
+        IsTrue(NullableFilled.FilledIn());
     }
     
     [TestMethod]
     public void FilledIn_Object_False()
     {
-        IsFalse(Has(_nullObject));
-        IsFalse(FilledIn(_nullObject));
-        IsFalse(_nullObject.FilledIn());
+        IsFalse(Has(NullObject));
+        IsFalse(FilledIn(NullObject));
+        IsFalse(NullObject.FilledIn());
     }
     
     [TestMethod]
     public void IsNully_Object_False()
     {
-        IsFalse(IsNully(_nonNullObject));
-        IsFalse(IsNully(_nullableFilled));
-        IsFalse(_nonNullObject.IsNully());
-        IsFalse(_nullableFilled.IsNully());
+        IsFalse(IsNully(NonNullObject));
+        IsFalse(IsNully(NullableFilled));
+        IsFalse(NonNullObject.IsNully());
+        IsFalse(NullableFilled.IsNully());
     }
     
     [TestMethod]
     public void IsNully_Object_True()
     {
-        IsTrue(IsNully(_nullObject));
-        IsTrue(_nullObject.IsNully());
+        IsTrue(IsNully(NullObject));
+        IsTrue(NullObject.IsNully());
     }
     
-    private int[]?                    _emptyArray                 = [ ];
-    private List               <int>? _emptyList                  = [ ];
-    private HashSet            <int>? _emptyHashSet               = [ ];
-    private IList              <int>? _emptyIList                 = [ ];
-    private ISet               <int>? _emptyISet = new HashSet<int> { };
-    private ICollection        <int>? _emptyICollection           = [ ];
-    private IReadOnlyList      <int>? _emptyIReadOnlyList         = [ ];
-    private IReadOnlyCollection<int>? _emptyIReadOnlyCollection   = [ ];
-    private IEnumerable        <int>? _emptyIEnumerable           = [ ];
+    private int[]?                    FilledArray                      = [ 1, 2, 3 ];
+    private List               <int>  FilledList                       = [ 1, 2, 3 ];
+    private HashSet            <int>  FilledHashSet                    = [ 1, 2, 3 ];
+    private IList              <int>  FilledIList                      = [ 1, 2, 3 ];
+    private ISet               <int>  FilledISet      = new HashSet<int> { 1, 2, 3 };
+    private ICollection        <int>  FilledICollection                = [ 1, 2, 3 ];
+    private IReadOnlyList      <int>  FilledIReadOnlyList              = [ 1, 2, 3 ];
+    private IReadOnlyCollection<int>  FilledIReadOnlyCollection        = [ 1, 2, 3 ];
+    private IEnumerable        <int>  FilledIEnumerable                = [ 1, 2, 3 ];
     
-    private int[]?                    _array                 = [ 1, 2, 3 ];
-    private List               <int>? _list                  = [ 1, 2, 3 ];
-    private HashSet            <int>? _hashSet               = [ 1, 2, 3 ];
-    private IList              <int>? _iList                 = [ 1, 2, 3 ];
-    private ISet               <int>? _iSet = new HashSet<int> { 1, 2, 3 };
-    private ICollection        <int>? _iCollection           = [ 1, 2, 3 ];
-    private IReadOnlyList      <int>? _iReadOnlyList         = [ 1, 2, 3 ];
-    private IReadOnlyCollection<int>? _iReadOnlyCollection   = [ 1, 2, 3 ];
-    private IEnumerable        <int>? _iEnumerable           = [ 1, 2, 3 ];
+    private int[]?                    NullyFilledArray                 = [ 1, 2, 3 ];
+    private List               <int>? NullyFilledList                  = [ 1, 2, 3 ];
+    private HashSet            <int>? NullyFilledHashSet               = [ 1, 2, 3 ];
+    private IList              <int>? NullyFilledIList                 = [ 1, 2, 3 ];
+    private ISet               <int>? NullyFilledISet = new HashSet<int> { 1, 2, 3 };
+    private ICollection        <int>? NullyFilledICollection           = [ 1, 2, 3 ];
+    private IReadOnlyList      <int>? NullyFilledIReadOnlyList         = [ 1, 2, 3 ];
+    private IReadOnlyCollection<int>? NullyFilledIReadOnlyCollection   = [ 1, 2, 3 ];
+    private IEnumerable        <int>? NullyFilledIEnumerable           = [ 1, 2, 3 ];
+    
+    private int[]                     EmptyArray                       = [ ];
+    private List               <int>  EmptyList                        = [ ];
+    private HashSet            <int>  EmptyHashSet                     = [ ];
+    private IList              <int>  EmptyIList                       = [ ];
+    private ISet               <int>  EmptyISet       = new HashSet<int> { };
+    private ICollection        <int>  EmptyICollection                 = [ ];
+    private IReadOnlyList      <int>  EmptyIReadOnlyList               = [ ];
+    private IReadOnlyCollection<int>  EmptyIReadOnlyCollection         = [ ];
+    private IEnumerable        <int>  EmptyIEnumerable                 = [ ];
+    
+    private int[]?                    NullableEmptyArray                  = [ ];
+    private List               <int>? NullableEmptyList                   = [ ];
+    private HashSet            <int>? NullableEmptyHashSet                = [ ];
+    private IList              <int>? NullableEmptyIList                  = [ ];
+    private ISet               <int>? NullableEmptyISet  = new HashSet<int> { };
+    private ICollection        <int>? NullableEmptyICollection            = [ ];
+    private IReadOnlyList      <int>? NullableEmptyIReadOnlyList          = [ ];
+    private IReadOnlyCollection<int>? NullableEmptyIReadOnlyCollection    = [ ];
+    private IEnumerable        <int>? NullableEmptyIEnumerable            = [ ];
+    
+    private int[]?                    NullArray                        = null;
+    private List               <int>? NullList                         = null;
+    private HashSet            <int>? NullHashSet                      = null;
+    private IList              <int>? NullIList                        = null;
+    private ISet               <int>? NullISet                         = null;
+    private ICollection        <int>? NullICollection                  = null;
+    private IReadOnlyList      <int>? NullIReadOnlyList                = null;
+    private IReadOnlyCollection<int>? NullIReadOnlyCollection          = null;
+    private IEnumerable        <int>? NullIEnumerable                  = null;
     
     [TestMethod]
     public void FilledIn_Collections_True()
     {
-        IsTrue(Has(_array));
-        IsTrue(Has(_list));
-        IsTrue(Has(_hashSet));
-        IsTrue(Has(_iList));
-        IsTrue(Has(_iSet));
-        IsTrue(Has(_iCollection));
-        IsTrue(Has(_iReadOnlyList));
-        IsTrue(Has(_iReadOnlyCollection));
-        IsTrue(Has(_iEnumerable));
-        IsTrue(_array.FilledIn());
-        IsTrue(_list.FilledIn());
-        IsTrue(_hashSet.FilledIn());
-        IsTrue(_iList.FilledIn());
-        IsTrue(_iSet.FilledIn());
-        IsTrue(_iCollection.FilledIn());
-        IsTrue(_iReadOnlyList.FilledIn());
-        IsTrue(_iReadOnlyCollection.FilledIn());
-        IsTrue(_iEnumerable.FilledIn());
-        IsTrue(FilledIn(_array));
-        IsTrue(FilledIn(_list));
-        IsTrue(FilledIn(_hashSet));
-        IsTrue(FilledIn(_iList));
-        IsTrue(FilledIn(_iSet));
-        IsTrue(FilledIn(_iCollection));
-        IsTrue(FilledIn(_iReadOnlyList));
-        IsTrue(FilledIn(_iReadOnlyCollection));
-        IsTrue(FilledIn(_iEnumerable));
+        {
+            IsTrue(Has(FilledArray));
+            IsTrue(Has(FilledList));
+            IsTrue(Has(FilledHashSet));
+            IsTrue(Has(FilledIList));
+            IsTrue(Has(FilledISet));
+            IsTrue(Has(FilledICollection));
+            IsTrue(Has(FilledIReadOnlyList));
+            IsTrue(Has(FilledIReadOnlyCollection));
+            IsTrue(Has(FilledIEnumerable));
+            IsTrue(FilledArray.FilledIn());
+            IsTrue(FilledList.FilledIn());
+            IsTrue(FilledHashSet.FilledIn());
+            IsTrue(FilledIList.FilledIn());
+            IsTrue(FilledISet.FilledIn());
+            IsTrue(FilledICollection.FilledIn());
+            IsTrue(FilledIReadOnlyList.FilledIn());
+            IsTrue(FilledIReadOnlyCollection.FilledIn());
+            IsTrue(FilledIEnumerable.FilledIn());
+            IsTrue(FilledIn(FilledArray));
+            IsTrue(FilledIn(FilledList));
+            IsTrue(FilledIn(FilledHashSet));
+            IsTrue(FilledIn(FilledIList));
+            IsTrue(FilledIn(FilledISet));
+            IsTrue(FilledIn(FilledICollection));
+            IsTrue(FilledIn(FilledIReadOnlyList));
+            IsTrue(FilledIn(FilledIReadOnlyCollection));
+            IsTrue(FilledIn(FilledIEnumerable));
+        }
+        {
+            IsTrue(Has(NullyFilledArray));
+            IsTrue(Has(NullyFilledList));
+            IsTrue(Has(NullyFilledHashSet));
+            IsTrue(Has(NullyFilledIList));
+            IsTrue(Has(NullyFilledISet));
+            IsTrue(Has(NullyFilledICollection));
+            IsTrue(Has(NullyFilledIReadOnlyList));
+            IsTrue(Has(NullyFilledIReadOnlyCollection));
+            IsTrue(Has(NullyFilledIEnumerable));
+            IsTrue(NullyFilledArray.FilledIn());
+            IsTrue(NullyFilledList.FilledIn());
+            IsTrue(NullyFilledHashSet.FilledIn());
+            IsTrue(NullyFilledIList.FilledIn());
+            IsTrue(NullyFilledISet.FilledIn());
+            IsTrue(NullyFilledICollection.FilledIn());
+            IsTrue(NullyFilledIReadOnlyList.FilledIn());
+            IsTrue(NullyFilledIReadOnlyCollection.FilledIn());
+            IsTrue(NullyFilledIEnumerable.FilledIn());
+            IsTrue(FilledIn(NullyFilledArray));
+            IsTrue(FilledIn(NullyFilledList));
+            IsTrue(FilledIn(NullyFilledHashSet));
+            IsTrue(FilledIn(NullyFilledIList));
+            IsTrue(FilledIn(NullyFilledISet));
+            IsTrue(FilledIn(NullyFilledICollection));
+            IsTrue(FilledIn(NullyFilledIReadOnlyList));
+            IsTrue(FilledIn(NullyFilledIReadOnlyCollection));
+            IsTrue(FilledIn(NullyFilledIEnumerable));
+        }
     }
         
     [TestMethod]
     public void FilledIn_Collections_False()
     {
-        IsFalse(Has(_emptyArray));
-        IsFalse(Has(_emptyList));
-        IsFalse(Has(_emptyHashSet));
-        IsFalse(Has(_emptyIList));
-        IsFalse(Has(_emptyISet));
-        IsFalse(Has(_emptyICollection));
-        IsFalse(Has(_emptyIReadOnlyList));
-        IsFalse(Has(_emptyIReadOnlyCollection));
-        IsFalse(Has(_emptyIEnumerable));
-        IsFalse(_emptyArray.FilledIn());
-        IsFalse(_emptyList.FilledIn());
-        IsFalse(_emptyHashSet.FilledIn());
-        IsFalse(_emptyIList.FilledIn());
-        IsFalse(_emptyISet.FilledIn());
-        IsFalse(_emptyICollection.FilledIn());
-        IsFalse(_emptyIReadOnlyList.FilledIn());
-        IsFalse(_emptyIReadOnlyCollection.FilledIn());
-        IsFalse(_emptyIEnumerable.FilledIn());
-        IsFalse(FilledIn(_emptyArray));
-        IsFalse(FilledIn(_emptyList));
-        IsFalse(FilledIn(_emptyHashSet));
-        IsFalse(FilledIn(_emptyIList));
-        IsFalse(FilledIn(_emptyISet));
-        IsFalse(FilledIn(_emptyICollection));
-        IsFalse(FilledIn(_emptyIReadOnlyList));
-        IsFalse(FilledIn(_emptyIReadOnlyCollection));
-        IsFalse(FilledIn(_emptyIEnumerable));
+        {
+            IsFalse(Has(EmptyArray));
+            IsFalse(Has(EmptyList));
+            IsFalse(Has(EmptyHashSet));
+            IsFalse(Has(EmptyIList));
+            IsFalse(Has(EmptyISet));
+            IsFalse(Has(EmptyICollection));
+            IsFalse(Has(EmptyIReadOnlyList));
+            IsFalse(Has(EmptyIReadOnlyCollection));
+            IsFalse(Has(EmptyIEnumerable));
+            IsFalse(EmptyArray.FilledIn());
+            IsFalse(EmptyList.FilledIn());
+            IsFalse(EmptyHashSet.FilledIn());
+            IsFalse(EmptyIList.FilledIn());
+            IsFalse(EmptyISet.FilledIn());
+            IsFalse(EmptyICollection.FilledIn());
+            IsFalse(EmptyIReadOnlyList.FilledIn());
+            IsFalse(EmptyIReadOnlyCollection.FilledIn());
+            IsFalse(EmptyIEnumerable.FilledIn());
+            IsFalse(FilledIn(EmptyArray));
+            IsFalse(FilledIn(EmptyList));
+            IsFalse(FilledIn(EmptyHashSet));
+            IsFalse(FilledIn(EmptyIList));
+            IsFalse(FilledIn(EmptyISet));
+            IsFalse(FilledIn(EmptyICollection));
+            IsFalse(FilledIn(EmptyIReadOnlyList));
+            IsFalse(FilledIn(EmptyIReadOnlyCollection));
+            IsFalse(FilledIn(EmptyIEnumerable));
+        }
+        {
+            IsFalse(Has(NullableEmptyArray));
+            IsFalse(Has(NullableEmptyList));
+            IsFalse(Has(NullableEmptyHashSet));
+            IsFalse(Has(NullableEmptyIList));
+            IsFalse(Has(NullableEmptyISet));
+            IsFalse(Has(NullableEmptyICollection));
+            IsFalse(Has(NullableEmptyIReadOnlyList));
+            IsFalse(Has(NullableEmptyIReadOnlyCollection));
+            IsFalse(Has(NullableEmptyIEnumerable));
+            IsFalse(NullableEmptyArray.FilledIn());
+            IsFalse(NullableEmptyList.FilledIn());
+            IsFalse(NullableEmptyHashSet.FilledIn());
+            IsFalse(NullableEmptyIList.FilledIn());
+            IsFalse(NullableEmptyISet.FilledIn());
+            IsFalse(NullableEmptyICollection.FilledIn());
+            IsFalse(NullableEmptyIReadOnlyList.FilledIn());
+            IsFalse(NullableEmptyIReadOnlyCollection.FilledIn());
+            IsFalse(NullableEmptyIEnumerable.FilledIn());
+            IsFalse(FilledIn(NullableEmptyArray));
+            IsFalse(FilledIn(NullableEmptyList));
+            IsFalse(FilledIn(NullableEmptyHashSet));
+            IsFalse(FilledIn(NullableEmptyIList));
+            IsFalse(FilledIn(NullableEmptyISet));
+            IsFalse(FilledIn(NullableEmptyICollection));
+            IsFalse(FilledIn(NullableEmptyIReadOnlyList));
+            IsFalse(FilledIn(NullableEmptyIReadOnlyCollection));
+            IsFalse(FilledIn(NullableEmptyIEnumerable));
+        }
+        {
+            IsFalse(Has(NullArray));
+            IsFalse(Has(NullList));
+            IsFalse(Has(NullHashSet));
+            IsFalse(Has(NullIList));
+            IsFalse(Has(NullISet));
+            IsFalse(Has(NullICollection));
+            IsFalse(Has(NullIReadOnlyList));
+            IsFalse(Has(NullIReadOnlyCollection));
+            IsFalse(Has(NullIEnumerable));
+            IsFalse(NullArray.FilledIn());
+            IsFalse(NullList.FilledIn());
+            IsFalse(NullHashSet.FilledIn());
+            IsFalse(NullIList.FilledIn());
+            IsFalse(NullISet.FilledIn());
+            IsFalse(NullICollection.FilledIn());
+            IsFalse(NullIReadOnlyList.FilledIn());
+            IsFalse(NullIReadOnlyCollection.FilledIn());
+            IsFalse(NullIEnumerable.FilledIn());
+            IsFalse(FilledIn(NullArray));
+            IsFalse(FilledIn(NullList));
+            IsFalse(FilledIn(NullHashSet));
+            IsFalse(FilledIn(NullIList));
+            IsFalse(FilledIn(NullISet));
+            IsFalse(FilledIn(NullICollection));
+            IsFalse(FilledIn(NullIReadOnlyList));
+            IsFalse(FilledIn(NullIReadOnlyCollection));
+            IsFalse(FilledIn(NullIEnumerable));
+        }
     }
     
     [TestMethod]
     public void IsNully_Collections_False()
     {
-        IsFalse(_array.IsNully());
-        IsFalse(_list.IsNully());
-        IsFalse(_hashSet.IsNully());
-        IsFalse(_iList.IsNully());
-        IsFalse(_iSet.IsNully());
-        IsFalse(_iCollection.IsNully());
-        IsFalse(_iReadOnlyList.IsNully());
-        IsFalse(_iReadOnlyCollection.IsNully());
-        IsFalse(_iEnumerable.IsNully());
-        IsFalse(IsNully(_array));
-        IsFalse(IsNully(_list));
-        IsFalse(IsNully(_hashSet));
-        IsFalse(IsNully(_iList));
-        IsFalse(IsNully(_iSet));
-        IsFalse(IsNully(_iCollection));
-        IsFalse(IsNully(_iReadOnlyList));
-        IsFalse(IsNully(_iReadOnlyCollection));
-        IsFalse(IsNully(_iEnumerable));
+        {
+            IsFalse(FilledArray.IsNully());
+            IsFalse(FilledList.IsNully());
+            IsFalse(FilledHashSet.IsNully());
+            IsFalse(FilledIList.IsNully());
+            IsFalse(FilledISet.IsNully());
+            IsFalse(FilledICollection.IsNully());
+            IsFalse(FilledIReadOnlyList.IsNully());
+            IsFalse(FilledIReadOnlyCollection.IsNully());
+            IsFalse(FilledIEnumerable.IsNully());
+            IsFalse(IsNully(FilledArray));
+            IsFalse(IsNully(FilledList));
+            IsFalse(IsNully(FilledHashSet));
+            IsFalse(IsNully(FilledIList));
+            IsFalse(IsNully(FilledISet));
+            IsFalse(IsNully(FilledICollection));
+            IsFalse(IsNully(FilledIReadOnlyList));
+            IsFalse(IsNully(FilledIReadOnlyCollection));
+            IsFalse(IsNully(FilledIEnumerable));
+        }
+        {
+            IsFalse(NullyFilledArray.IsNully());
+            IsFalse(NullyFilledList.IsNully());
+            IsFalse(NullyFilledHashSet.IsNully());
+            IsFalse(NullyFilledIList.IsNully());
+            IsFalse(NullyFilledISet.IsNully());
+            IsFalse(NullyFilledICollection.IsNully());
+            IsFalse(NullyFilledIReadOnlyList.IsNully());
+            IsFalse(NullyFilledIReadOnlyCollection.IsNully());
+            IsFalse(NullyFilledIEnumerable.IsNully());
+            IsFalse(IsNully(NullyFilledArray));
+            IsFalse(IsNully(NullyFilledList));
+            IsFalse(IsNully(NullyFilledHashSet));
+            IsFalse(IsNully(NullyFilledIList));
+            IsFalse(IsNully(NullyFilledISet));
+            IsFalse(IsNully(NullyFilledICollection));
+            IsFalse(IsNully(NullyFilledIReadOnlyList));
+            IsFalse(IsNully(NullyFilledIReadOnlyCollection));
+            IsFalse(IsNully(NullyFilledIEnumerable));
+        }
     }
     
     [TestMethod]
     public void IsNully_Collections_True()
     {
-        IsTrue(_emptyArray.IsNully());
-        IsTrue(_emptyList.IsNully());
-        IsTrue(_emptyHashSet.IsNully());
-        IsTrue(_emptyIList.IsNully());
-        IsTrue(_emptyISet.IsNully());
-        IsTrue(_emptyICollection.IsNully());
-        IsTrue(_emptyIReadOnlyList.IsNully());
-        IsTrue(_emptyIReadOnlyCollection.IsNully());
-        IsTrue(_emptyIEnumerable.IsNully());
-        IsTrue(IsNully(_emptyArray));
-        IsTrue(IsNully(_emptyList));
-        IsTrue(IsNully(_emptyHashSet));
-        IsTrue(IsNully(_emptyIList));
-        IsTrue(IsNully(_emptyISet));
-        IsTrue(IsNully(_emptyICollection));
-        IsTrue(IsNully(_emptyIReadOnlyList));
-        IsTrue(IsNully(_emptyIReadOnlyCollection));
-        IsTrue(IsNully(_emptyIEnumerable));
+        {
+            IsTrue(EmptyArray.IsNully());
+            IsTrue(EmptyList.IsNully());
+            IsTrue(EmptyHashSet.IsNully());
+            IsTrue(EmptyIList.IsNully());
+            IsTrue(EmptyISet.IsNully());
+            IsTrue(EmptyICollection.IsNully());
+            IsTrue(EmptyIReadOnlyList.IsNully());
+            IsTrue(EmptyIReadOnlyCollection.IsNully());
+            IsTrue(EmptyIEnumerable.IsNully());
+            IsTrue(IsNully(EmptyArray));
+            IsTrue(IsNully(EmptyList));
+            IsTrue(IsNully(EmptyHashSet));
+            IsTrue(IsNully(EmptyIList));
+            IsTrue(IsNully(EmptyISet));
+            IsTrue(IsNully(EmptyICollection));
+            IsTrue(IsNully(EmptyIReadOnlyList));
+            IsTrue(IsNully(EmptyIReadOnlyCollection));
+            IsTrue(IsNully(EmptyIEnumerable));
+        }
+        {
+            IsTrue(NullableEmptyArray.IsNully());
+            IsTrue(NullableEmptyList.IsNully());
+            IsTrue(NullableEmptyHashSet.IsNully());
+            IsTrue(NullableEmptyIList.IsNully());
+            IsTrue(NullableEmptyISet.IsNully());
+            IsTrue(NullableEmptyICollection.IsNully());
+            IsTrue(NullableEmptyIReadOnlyList.IsNully());
+            IsTrue(NullableEmptyIReadOnlyCollection.IsNully());
+            IsTrue(NullableEmptyIEnumerable.IsNully());
+            IsTrue(IsNully(NullableEmptyArray));
+            IsTrue(IsNully(NullableEmptyList));
+            IsTrue(IsNully(NullableEmptyHashSet));
+            IsTrue(IsNully(NullableEmptyIList));
+            IsTrue(IsNully(NullableEmptyISet));
+            IsTrue(IsNully(NullableEmptyICollection));
+            IsTrue(IsNully(NullableEmptyIReadOnlyList));
+            IsTrue(IsNully(NullableEmptyIReadOnlyCollection));
+            IsTrue(IsNully(NullableEmptyIEnumerable));
+        }
+        {
+            IsTrue(NullArray.IsNully());
+            IsTrue(NullList.IsNully());
+            IsTrue(NullHashSet.IsNully());
+            IsTrue(NullIList.IsNully());
+            IsTrue(NullISet.IsNully());
+            IsTrue(NullICollection.IsNully());
+            IsTrue(NullIReadOnlyList.IsNully());
+            IsTrue(NullIReadOnlyCollection.IsNully());
+            IsTrue(NullIEnumerable.IsNully());
+            IsTrue(IsNully(NullArray));
+            IsTrue(IsNully(NullList));
+            IsTrue(IsNully(NullHashSet));
+            IsTrue(IsNully(NullIList));
+            IsTrue(IsNully(NullISet));
+            IsTrue(IsNully(NullICollection));
+            IsTrue(IsNully(NullIReadOnlyList));
+            IsTrue(IsNully(NullIReadOnlyCollection));
+            IsTrue(IsNully(NullIEnumerable));
+        }
     }
     
     [TestMethod]
@@ -376,7 +564,7 @@ public class FilledInTests
     }
     
     [TestMethod]
-    public void Test_Is()
+    public void Test_String_Is()
     {
         // NullOrWhiteSpace
         IsTrue(Is(null,   null  ));
@@ -533,92 +721,87 @@ public class FilledInTests
             IsFalse(_null.In(a, b       ));
         }
         {
-            int? @null  = null;
-            int? nully1 = 1;
-            int? nully2 = 2;
-            int? nully3 = 3;
-            int? nully4 = 4;
             int?[]? nullColl = null;
             int?[] emptyColl = [ ];
             
-            IsTrue (        1.In(     1,      2,      3, @null));
-            IsTrue (        2.In(     1,      2,      3, @null));
-            IsTrue (        3.In(     1,      2,      3, @null));
-            IsTrue (   nully1.In(     1,      2,      3       ));
-            IsTrue (   nully2.In(     1,      2,      3       ));
-            IsTrue (   nully3.In(     1,      2,      3       ));
-            IsTrue (   nully1.In(     1,      2, nully3       ));
-            IsTrue (   nully2.In(     1,      2, nully3       ));
-            IsTrue (   nully3.In(     1,      2, nully3       ));
-            IsTrue (        1.In(     1,      2, nully3       ));
-            IsTrue (        2.In(     1,      2, nully3       ));
-            IsTrue (        3.In(     1,      2, nully3       ));
-            IsTrue (        1.In(nully1, nully2, nully3       ));
-            IsTrue (        2.In(nully1, nully2, nully3       ));
-            IsTrue (        3.In(nully1, nully2, nully3       ));
-            IsTrue (   nully1.In(nully1, nully2, nully3       ));
-            IsTrue (   nully2.In(nully1, nully2, nully3       ));
-            IsTrue (   nully3.In(nully1, nully2, nully3       ));
-            IsTrue (    @null.In(     1,      2,      3, @null));
-            IsTrue (    @null.In(     1,      2, nully3, @null));
-            IsTrue (    @null.In(nully1, nully2, nully3, @null));
-            IsTrue (In(     1,        1,      2,      3, @null));
-            IsTrue (In(     2,        1,      2,      3, @null));
-            IsTrue (In(     3,        1,      2,      3, @null));
-            IsTrue (In(nully1,        1,      2,      3       ));
-            IsTrue (In(nully2,        1,      2,      3       ));
-            IsTrue (In(nully3,        1,      2,      3       ));
-            IsTrue (In(nully1,        1,      2, nully3       ));
-            IsTrue (In(nully2,        1,      2, nully3       ));
-            IsTrue (In(nully3,        1,      2, nully3       ));
-            IsTrue (In(     1,        1,      2, nully3       ));
-            IsTrue (In(     2,        1,      2, nully3       ));
-            IsTrue (In(     3,        1,      2, nully3       ));
-            IsTrue (In(     1,   nully1, nully2, nully3       ));
-            IsTrue (In(     2,   nully1, nully2, nully3       ));
-            IsTrue (In(     3,   nully1, nully2, nully3       ));
-            IsTrue (In(nully1,   nully1, nully2, nully3       ));
-            IsTrue (In(nully2,   nully1, nully2, nully3       ));
-            IsTrue (In(nully3,   nully1, nully2, nully3       ));
-            IsTrue (In( @null,        1,      2,      3, @null));
-            IsTrue (In( @null,        1,      2, nully3, @null));
-            IsTrue (In( @null,   nully1, nully2, nully3, @null));
+            IsTrue (      1.In(      1,      2,      3, NullNum));
+            IsTrue (      2.In(      1,      2,      3, NullNum));
+            IsTrue (      3.In(      1,      2,      3, NullNum));
+            IsTrue ( Nully1.In(      1,      2,      3         ));
+            IsTrue ( Nully2.In(      1,      2,      3         ));
+            IsTrue ( Nully3.In(      1,      2,      3         ));
+            IsTrue ( Nully1.In(      1,      2, Nully3         ));
+            IsTrue ( Nully2.In(      1,      2, Nully3         ));
+            IsTrue ( Nully3.In(      1,      2, Nully3         ));
+            IsTrue (      1.In(      1,      2, Nully3         ));
+            IsTrue (      2.In(      1,      2, Nully3         ));
+            IsTrue (      3.In(      1,      2, Nully3         ));
+            IsTrue (      1.In( Nully1, Nully2, Nully3         ));
+            IsTrue (      2.In( Nully1, Nully2, Nully3         ));
+            IsTrue (      3.In( Nully1, Nully2, Nully3         ));
+            IsTrue ( Nully1.In( Nully1, Nully2, Nully3         ));
+            IsTrue ( Nully2.In( Nully1, Nully2, Nully3         ));
+            IsTrue ( Nully3.In( Nully1, Nully2, Nully3         ));
+            IsTrue (NullNum.In(      1,      2,      3, NullNum));
+            IsTrue (NullNum.In(      1,      2, Nully3, NullNum));
+            IsTrue (NullNum.In( Nully1, Nully2, Nully3, NullNum));
+            IsTrue (In(      1,      1,      2,      3, NullNum));
+            IsTrue (In(      2,      1,      2,      3, NullNum));
+            IsTrue (In(      3,      1,      2,      3, NullNum));
+            IsTrue (In( Nully1,      1,      2,      3         ));
+            IsTrue (In( Nully2,      1,      2,      3         ));
+            IsTrue (In( Nully3,      1,      2,      3         ));
+            IsTrue (In( Nully1,      1,      2, Nully3         ));
+            IsTrue (In( Nully2,      1,      2, Nully3         ));
+            IsTrue (In( Nully3,      1,      2, Nully3         ));
+            IsTrue (In(      1,      1,      2, Nully3         ));
+            IsTrue (In(      2,      1,      2, Nully3         ));
+            IsTrue (In(      3,      1,      2, Nully3         ));
+            IsTrue (In(      1, Nully1, Nully2, Nully3         ));
+            IsTrue (In(      2, Nully1, Nully2, Nully3         ));
+            IsTrue (In(      3, Nully1, Nully2, Nully3         ));
+            IsTrue (In( Nully1, Nully1, Nully2, Nully3         ));
+            IsTrue (In( Nully2, Nully1, Nully2, Nully3         ));
+            IsTrue (In( Nully3, Nully1, Nully2, Nully3         ));
+            IsTrue (In(NullNum,      1,      2,      3, NullNum));
+            IsTrue (In(NullNum,      1,      2, Nully3, NullNum));
+            IsTrue (In(NullNum, Nully1, Nully2, Nully3, NullNum));
             
             // Negative matches
-            IsFalse(        4.In(     1,      2,      3, @null));
-            IsFalse(        4.In(     1,      2, nully3       ));
-            IsFalse(        4.In(nully1, nully2, nully3       ));
-            IsFalse(   nully4.In(     1,      2,      3       ));
-            IsFalse(   nully4.In(     1,      2, nully3       ));
-            IsFalse(   nully4.In(nully1, nully2, nully3       ));
-            IsFalse(    @null.In(     1,      2,      3       ));
-            IsFalse(    @null.In(     1,      2, nully3       ));
-            IsFalse(    @null.In(nully1, nully2, nully3       ));
-            IsFalse(In(     4,        1,      2,      3, @null));
-            IsFalse(In(nully4,        1,      2,      3       ));
-            IsFalse(In(nully4,        1,      2, nully3       ));
-            IsFalse(In(     4,        1,      2, nully3       ));
-            IsFalse(In(     4,   nully1, nully2, nully3       ));
-            IsFalse(In(nully4,   nully1, nully2, nully3       ));
-            IsFalse(In( @null,        1,      2,      3       ));
-            IsFalse(In( @null,        1,      2, nully3       ));
-            IsFalse(In( @null,   nully1, nully2, nully3       ));
+            IsFalse(      4.In(      1,      2,      3, NullNum));
+            IsFalse(      4.In(      1,      2, Nully3         ));
+            IsFalse(      4.In( Nully1, Nully2, Nully3         ));
+            IsFalse( Nully4.In(      1,      2,      3         ));
+            IsFalse( Nully4.In(      1,      2, Nully3         ));
+            IsFalse( Nully4.In( Nully1, Nully2, Nully3         ));
+            IsFalse(NullNum.In(      1,      2,      3         ));
+            IsFalse(NullNum.In(      1,      2, Nully3         ));
+            IsFalse(NullNum.In( Nully1, Nully2, Nully3         ));
+            IsFalse(In(     4,       1,      2,      3, NullNum));
+            IsFalse(In(Nully4,       1,      2,      3         ));
+            IsFalse(In(Nully4,       1,      2, Nully3         ));
+            IsFalse(In(     4,       1,      2, Nully3         ));
+            IsFalse(In(     4,  Nully1, Nully2, Nully3         ));
+            IsFalse(In(Nully4,  Nully1, Nully2, Nully3         ));
+            IsFalse(In(NullNum,      1,      2,      3         ));
+            IsFalse(In(NullNum,      1,      2, Nully3         ));
+            IsFalse(In(NullNum, Nully1, Nully2, Nully3         ));
             
             // Staring into the abyss
-            IsFalse(   nully1.In(nullColl));
-            IsFalse(        1.In(@null   ));
+            IsFalse(   Nully1.In(nullColl));
+            IsFalse(        1.In(NullNum  ));
             IsFalse(        1.In(nullColl));
-            IsFalse(In(nully1,   nullColl));
-            IsFalse(In(     1,   @null   ));
+            IsFalse(In(Nully1,   nullColl));
+            IsFalse(In(     1,   NullNum  ));
             IsFalse(In(     1,   nullColl));
             
             // Very much null and empty
-            IsTrue (   @null.In(@null    ));
-            IsTrue (In(@null,   @null    ));
-            IsFalse(   @null.In(emptyColl));
-            IsFalse(In(@null,   emptyColl));
-            IsFalse(   @null.In(nullColl ));
-            IsFalse(In(@null,   nullColl ));
+            IsTrue (   NullNum.In(NullNum   ));
+            IsTrue (In(NullNum,   NullNum   ));
+            IsFalse(   NullNum.In(emptyColl));
+            IsFalse(In(NullNum,   emptyColl));
+            IsFalse(   NullNum.In(nullColl ));
+            IsFalse(In(NullNum,   nullColl ));
         }
     }
     
@@ -644,37 +827,36 @@ public class FilledInTests
     public void Plain_Coalesce()
     {
         {
-            string? @null = null;
             
-            AreEqual(""   , @null.Coalesce());
-            AreEqual(""   , ""   .Coalesce());
-            AreEqual("   ", "   ".Coalesce());
-            AreEqual("Hi" , "Hi" .Coalesce());
-            AreEqual(""   , Coalesce(@null));
-            AreEqual(""   , Coalesce(""   ));
-            AreEqual("   ", Coalesce("   "));
-            AreEqual("Hi" , Coalesce("Hi" ));
+            AreEqual(""   , NullText.Coalesce());
+            AreEqual(""   , ""      .Coalesce());
+            AreEqual("   ", "   "   .Coalesce());
+            AreEqual("Hi" , "Hi"    .Coalesce());
+            AreEqual(""   , Coalesce(NullText ));
+            AreEqual(""   , Coalesce(""       ));
+            AreEqual("   ", Coalesce("   "    ));
+            AreEqual("Hi" , Coalesce("Hi"     ));
         }
         {
-            int? @null = null;
-            AreEqual(0, @null.Coalesce());
-            AreEqual(0, Coalesce(@null));
+            AreEqual(0,            NullNum.Coalesce());
+            AreEqual(0,            Coalesce(NullNum));
+            AreEqual(typeof(int?), CompileTimeType(NullNum));
+            AreEqual(typeof(int),  CompileTimeType(NullNum.Coalesce()));
+            AreEqual(typeof(int),  CompileTimeType(Coalesce(NullNum)));
             
-            int? nully0 = 0;
-            AreEqual(0,            nully0);
-            AreEqual(0,            nully0.Coalesce());
-            AreEqual(0,            Coalesce(nully0));
-            AreEqual(typeof(int?), CompileTimeType(nully0));
-            AreEqual(typeof(int),  CompileTimeType(nully0.Coalesce()));
-            AreEqual(typeof(int),  CompileTimeType(Coalesce(nully0)));
+            AreEqual(0,            Nully0);
+            AreEqual(0,            Nully0.Coalesce());
+            AreEqual(0,            Coalesce(Nully0));
+            AreEqual(typeof(int?), CompileTimeType(Nully0));
+            AreEqual(typeof(int),  CompileTimeType(Nully0.Coalesce()));
+            AreEqual(typeof(int),  CompileTimeType(Coalesce(Nully0)));
             
-            int? nully1 = 1;
-            AreEqual(1,            nully1);
-            AreEqual(1,            nully1.Coalesce());
-            AreEqual(1,            Coalesce(nully1));
-            AreEqual(typeof(int?), CompileTimeType(nully1));
-            AreEqual(typeof(int),  CompileTimeType(nully1.Coalesce()));
-            AreEqual(typeof(int),  CompileTimeType(Coalesce(nully1)));
+            AreEqual(1,            Nully1);
+            AreEqual(1,            Nully1.Coalesce());
+            AreEqual(1,            Coalesce(Nully1));
+            AreEqual(typeof(int?), CompileTimeType(Nully1));
+            AreEqual(typeof(int),  CompileTimeType(Nully1.Coalesce()));
+            AreEqual(typeof(int),  CompileTimeType(Coalesce(Nully1)));
         }
         {
             int nonNull = 1;
@@ -686,13 +868,13 @@ public class FilledInTests
             AreEqual(typeof(int), CompileTimeType(Coalesce(nonNull)));
         }
         {
-            StringBuilder nonNullObject = new();
-            NotNull(nonNullObject);
-            NotNull(Coalesce(nonNullObject));
-
-            StringBuilder? nullObject = null;
-            IsNull(nullObject);
-            NotNull(Coalesce(nullObject));
+            NotNull(NonNullObject);
+            NotNull(Coalesce(NonNullObject));
+            NotNull(NonNullObject.Coalesce());
+            
+            IsNull (NullObject);
+            NotNull(Coalesce(NullObject));
+            NotNull(NullObject.Coalesce());
         }
         {
             List<string>? coll = null;
@@ -705,31 +887,31 @@ public class FilledInTests
     [TestMethod]
     public void Coalesce_SingleFallback()
     {
+        // Single Fallback String to String
         {
-            string? @null = null;
+            AreEqual("",         Coalesce(NullText,  NullText ));
+            AreEqual("Fallback", Coalesce(NullText, "Fallback"));
+            AreEqual("Fallback", Coalesce("",       "Fallback"));
+            AreEqual("Fallback", Coalesce("   ",    "Fallback"));
+            AreEqual("Fallback", Coalesce(NullText, "Fallback", trimSpace: true ));
+            AreEqual("Fallback", Coalesce("",       "Fallback", trimSpace: true ));
+            AreEqual("Fallback", Coalesce("   ",    "Fallback", trimSpace: true ));
+            AreEqual("Fallback", Coalesce(NullText, "Fallback", trimSpace: false));
+            AreEqual("Fallback", Coalesce("",       "Fallback", trimSpace: false));
+            AreEqual("   ",      Coalesce("   ",    "Fallback", trimSpace: false));
             
-            AreEqual("",         Coalesce(@null, @null));
-            AreEqual("Fallback", Coalesce(@null, "Fallback"));
-            AreEqual("Fallback", Coalesce("",    "Fallback"));
-            AreEqual("Fallback", Coalesce("   ", "Fallback"));
-            AreEqual("Fallback", Coalesce(@null, "Fallback", trimSpace: true));
-            AreEqual("Fallback", Coalesce("",    "Fallback", trimSpace: true));
-            AreEqual("Fallback", Coalesce("   ", "Fallback", trimSpace: true));
-            AreEqual("Fallback", Coalesce(@null, "Fallback", trimSpace: false));
-            AreEqual("Fallback", Coalesce("",    "Fallback", trimSpace: false));
-            AreEqual("   ",      Coalesce("   ", "Fallback", trimSpace: false));
-            
-            AreEqual("",         @null.Coalesce(@null));
-            AreEqual("Fallback", @null.Coalesce("Fallback"));
-            AreEqual("Fallback", ""   .Coalesce("Fallback"));
-            AreEqual("Fallback", "   ".Coalesce("Fallback"));
-            AreEqual("Fallback", @null.Coalesce("Fallback", trimSpace: true));
-            AreEqual("Fallback", ""   .Coalesce("Fallback", trimSpace: true));
-            AreEqual("Fallback", "   ".Coalesce("Fallback", trimSpace: true));
-            AreEqual("Fallback", @null.Coalesce("Fallback", trimSpace: false));
-            AreEqual("Fallback", ""   .Coalesce("Fallback", trimSpace: false));
-            AreEqual("   ",      "   ".Coalesce("Fallback", trimSpace: false));
+            AreEqual("",         NullText.Coalesce( NullText ));
+            AreEqual("Fallback", NullText.Coalesce("Fallback"));
+            AreEqual("Fallback", ""      .Coalesce("Fallback"));
+            AreEqual("Fallback", "   "   .Coalesce("Fallback"));
+            AreEqual("Fallback", NullText.Coalesce("Fallback", trimSpace: true ));
+            AreEqual("Fallback", ""      .Coalesce("Fallback", trimSpace: true ));
+            AreEqual("Fallback", "   "   .Coalesce("Fallback", trimSpace: true ));
+            AreEqual("Fallback", NullText.Coalesce("Fallback", trimSpace: false));
+            AreEqual("Fallback", ""      .Coalesce("Fallback", trimSpace: false));
+            AreEqual("   ",      "   "   .Coalesce("Fallback", trimSpace: false));
         }
+        // Single Fallback Object to String
         {
             CultureInfo? nullCulture = null;
             CultureInfo  culture = GetCultureInfo("nl-NL");
@@ -740,30 +922,210 @@ public class FilledInTests
             AreEqual("None" , nullCulture.Coalesce( "None"));
             AreEqual(""     , nullCulture.Coalesce(  null ));
         }
+        // Single Fallback Structs to String
+        // With T
         {
-            AreEqual("",           Coalesce(0, _nullText ));
+            AreEqual("",           Coalesce(0,  NullText ));
+            AreEqual("",           Coalesce(0,  NullText ));
             AreEqual("peekaboo",   Coalesce(0, "peekaboo"));
-            AreEqual("",         0.Coalesce(   _nullText ));
+            AreEqual("",         0.Coalesce(    NullText ));
             AreEqual("peekaboo", 0.Coalesce(   "peekaboo"));
+            AreEqual("1",        1.Coalesce(    NullText ));
+            AreEqual("1",        1.Coalesce(   "peekaboo"));
         }
+        // With T?
         {
-            int? nullNum = null;
-            int? nully0 = 0;
-            int? nully1 = 1;
-            AreEqual("",    Coalesce(nullNum, _nullText));
-            AreEqual("boo", Coalesce(nullNum, "boo"    ));
-            AreEqual("",    Coalesce(nully0,  _nullText));
-            AreEqual("boo", Coalesce(nully0,  "boo"    ));
-            AreEqual("1",   Coalesce(nully1,  _nullText));
-            AreEqual("1",   Coalesce(nully1,  "boo"    ));
-            AreEqual("",    nullNum.Coalesce( _nullText));
-            AreEqual("boo", nullNum.Coalesce( "boo"    ));
-            AreEqual("",    nully0 .Coalesce( _nullText));
-            AreEqual("boo", nully0 .Coalesce( "boo"    ));
-            AreEqual("1",   nully1 .Coalesce( _nullText));
-            AreEqual("1",   nully1 .Coalesce( "boo"    ));
+            AreEqual("",    Coalesce(NullNum,  NullText));
+            AreEqual("boo", Coalesce(NullNum, "boo"    ));
+            AreEqual("",    Coalesce(Nully0,   NullText));
+            AreEqual("boo", Coalesce(Nully0,  "boo"    ));
+            AreEqual("1",   Coalesce(Nully1,   NullText));
+            AreEqual("1",   Coalesce(Nully1,  "boo"    ));
+            AreEqual("",    NullNum.Coalesce(  NullText));
+            AreEqual("boo", NullNum.Coalesce( "boo"    ));
+            AreEqual("",    Nully0 .Coalesce(  NullText));
+            AreEqual("boo", Nully0 .Coalesce( "boo"    ));
+            AreEqual("1",   Nully1 .Coalesce(  NullText));
+            AreEqual("1",   Nully1 .Coalesce( "boo"    ));
+        }
+        // Single Fallback for Structs
+        {
+            // TODO: Does not compile
+            //AreEqual(0, Coalesce( NullNum, null   ));
+            //AreEqual(0, Coalesce(  Nully0, null   ));
+            //AreEqual(1, Coalesce(  Nully1, null   ));
+            //int? Nully2 = 2;
+            // TODO: Doesn't compile without casting null.
+            //AreEqual(2, Coalesce(  Nully2, null   ));
+            //AreEqual(0, Coalesce(    null, null   ));
+            //AreEqual(0, Coalesce(       0, null   ));
+            //AreEqual(1, Coalesce(       1, null   ));
+            //AreEqual(2, Coalesce(       2, null   ));
+            AreEqual(0, Coalesce(    null, NullNum));
+            AreEqual(0, Coalesce( NullNum, NullNum));
+            AreEqual(0, Coalesce(  Nully0, NullNum));
+            AreEqual(1, Coalesce(  Nully1, NullNum));
+            AreEqual(2, Coalesce(  Nully2, NullNum));
+            AreEqual(0, Coalesce(       0, NullNum));
+            AreEqual(1, Coalesce(       1, NullNum));
+            AreEqual(2, Coalesce(       2, NullNum));
+            AreEqual(0, Coalesce(    null,  Nully0));
+            AreEqual(0, Coalesce( NullNum,  Nully0));
+            AreEqual(0, Coalesce(  Nully0,  Nully0));
+            AreEqual(1, Coalesce(  Nully1,  Nully0));
+            AreEqual(2, Coalesce(  Nully2,  Nully0));
+            AreEqual(0, Coalesce(       0,  Nully0));
+            AreEqual(1, Coalesce(       1,  Nully0));
+            AreEqual(2, Coalesce(       2,  Nully0));
+            AreEqual(1, Coalesce(    null,  Nully1));
+            AreEqual(1, Coalesce( NullNum,  Nully1));
+            AreEqual(1, Coalesce(  Nully0,  Nully1));
+            AreEqual(1, Coalesce(  Nully1,  Nully1));
+            AreEqual(2, Coalesce(  Nully2,  Nully1));
+            AreEqual(1, Coalesce(       0,  Nully1));
+            AreEqual(1, Coalesce(       1,  Nully1));
+            AreEqual(2, Coalesce(       2,  Nully1));
+            AreEqual(2, Coalesce(    null,  Nully2));
+            AreEqual(2, Coalesce( NullNum,  Nully2));
+            AreEqual(2, Coalesce(  Nully0,  Nully2));
+            AreEqual(1, Coalesce(  Nully1,  Nully2));
+            AreEqual(2, Coalesce(  Nully2,  Nully2));
+            AreEqual(2, Coalesce(       0,  Nully2));
+            AreEqual(1, Coalesce(       1,  Nully2));
+            AreEqual(2, Coalesce(       2,  Nully2));
+            AreEqual(0, Coalesce(    null,       0));
+            AreEqual(0, Coalesce( NullNum,       0));
+            AreEqual(0, Coalesce(  Nully0,       0));
+            AreEqual(1, Coalesce(  Nully1,       0));
+            AreEqual(2, Coalesce(  Nully2,       0));
+            AreEqual(0, Coalesce(       0,       0));
+            AreEqual(1, Coalesce(       1,       0));
+            AreEqual(2, Coalesce(       2,       0));
+            AreEqual(1, Coalesce(    null,       1));
+            AreEqual(1, Coalesce( NullNum,       1));
+            AreEqual(1, Coalesce(  Nully0,       1));
+            AreEqual(1, Coalesce(  Nully1,       1));
+            AreEqual(2, Coalesce(  Nully2,       1));
+            AreEqual(1, Coalesce(       0,       1));
+            AreEqual(1, Coalesce(       1,       1));
+            AreEqual(2, Coalesce(       2,       1));
+            AreEqual(2, Coalesce(    null,       2));
+            AreEqual(2, Coalesce( NullNum,       2));
+            AreEqual(2, Coalesce(  Nully0,       2));
+            AreEqual(1, Coalesce(  Nully1,       2));
+            AreEqual(2, Coalesce(  Nully2,       2));
+            AreEqual(2, Coalesce(       0,       2));
+            AreEqual(1, Coalesce(       1,       2));
+            AreEqual(2, Coalesce(       2,       2));
+            // TODO: Does not Compile
+            //AreEqual(0,  NullNum.Coalesce( null   ));
+            //AreEqual(0,   Nully0.Coalesce( null   ));
+            //AreEqual(1,   Nully1.Coalesce( null   ));
+            //AreEqual(2,   Nully2.Coalesce( null   ));
+            //AreEqual(0,        0.Coalesce( null   ));
+            //AreEqual(1,        1.Coalesce( null   ));
+            //AreEqual(2,        2.Coalesce( null   ));
+            //AreEqual(0,     null.Coalesce( NullNum)); // TODO: Does not Compile
+            AreEqual(0,  NullNum.Coalesce( NullNum));
+            AreEqual(0,   Nully0.Coalesce( NullNum));
+            AreEqual(1,   Nully1.Coalesce( NullNum));
+            AreEqual(2,   Nully2.Coalesce( NullNum));
+            AreEqual(0,        0.Coalesce( NullNum));
+            AreEqual(1,        1.Coalesce( NullNum));
+            AreEqual(2,        2.Coalesce( NullNum));
+            //AreEqual(0,     null.Coalesce(  Nully0)); // TODO: Does not Compile
+            AreEqual(0,  NullNum.Coalesce(  Nully0));
+            AreEqual(0,   Nully0.Coalesce(  Nully0));
+            AreEqual(1,   Nully1.Coalesce(  Nully0));
+            AreEqual(2,   Nully2.Coalesce(  Nully0));
+            AreEqual(0,        0.Coalesce(  Nully0));
+            AreEqual(1,        1.Coalesce(  Nully0));
+            AreEqual(2,        2.Coalesce(  Nully0));
+            //AreEqual(1,     null.Coalesce(  Nully1)); // TODO: Does not Compile
+            AreEqual(1,  NullNum.Coalesce(  Nully1));
+            AreEqual(1,   Nully0.Coalesce(  Nully1));
+            AreEqual(1,   Nully1.Coalesce(  Nully1));
+            AreEqual(2,   Nully2.Coalesce(  Nully1));
+            AreEqual(1,        0.Coalesce(  Nully1));
+            AreEqual(1,        1.Coalesce(  Nully1));
+            AreEqual(2,        2.Coalesce(  Nully1));
+            //AreEqual(2,     null.Coalesce(  Nully2)); // TODO: Does not Compile
+            AreEqual(2,  NullNum.Coalesce(  Nully2));
+            AreEqual(2,   Nully0.Coalesce(  Nully2));
+            AreEqual(1,   Nully1.Coalesce(  Nully2));
+            AreEqual(2,   Nully2.Coalesce(  Nully2));
+            AreEqual(2,        0.Coalesce(  Nully2));
+            AreEqual(1,        1.Coalesce(  Nully2));
+            AreEqual(2,        2.Coalesce(  Nully2));
+            //AreEqual(0,     null.Coalesce(       0)); // TODO: Does not Compile
+            AreEqual(0,  NullNum.Coalesce(       0));
+            AreEqual(0,   Nully0.Coalesce(       0));
+            AreEqual(1,   Nully1.Coalesce(       0));
+            AreEqual(2,   Nully2.Coalesce(       0));
+            AreEqual(0,        0.Coalesce(       0));
+            AreEqual(1,        1.Coalesce(       0));
+            AreEqual(2,        2.Coalesce(       0));
+            //AreEqual(1,     null.Coalesce(       1)); // TODO: Does not Compile
+            AreEqual(1,  NullNum.Coalesce(       1));
+            AreEqual(1,   Nully0.Coalesce(       1));
+            AreEqual(1,   Nully1.Coalesce(       1));
+            AreEqual(2,   Nully2.Coalesce(       1));
+            AreEqual(1,        0.Coalesce(       1));
+            AreEqual(1,        1.Coalesce(       1));
+            AreEqual(2,        2.Coalesce(       1));
+            //AreEqual(2,     null.Coalesce(       2)); // TODO: Does not Compile
+            AreEqual(2,  NullNum.Coalesce(       2));
+            AreEqual(2,   Nully0.Coalesce(       2));
+            AreEqual(1,   Nully1.Coalesce(       2));
+            AreEqual(2,   Nully2.Coalesce(       2));
+            AreEqual(2,        0.Coalesce(       2));
+            AreEqual(1,        1.Coalesce(       2));
+            AreEqual(2,        2.Coalesce(       2));
+            
+        }
+        // Single Fallback for Objects.
+        {
+            NotNull (                Coalesce(null,           null      ));
+            NotNull (                Coalesce(NullObject,     null      ));
+            AreEqual(NonNullObject,  Coalesce(NonNullObject,  null      ));
+            AreEqual(NullableFilled, Coalesce(NullableFilled, null      ));
+            NotNull (                Coalesce(null,           NullObject));
+            NotNull (                Coalesce(NullObject,     NullObject));
+            AreEqual(NonNullObject,  Coalesce(NonNullObject,  NullObject));
+            AreEqual(NullableFilled, Coalesce(NullableFilled, NullObject));
+            AreEqual(NonNullObject,  Coalesce(null,           NonNullObject));
+            AreEqual(NonNullObject,  Coalesce(NullObject,     NonNullObject));
+            AreEqual(NonNullObject,  Coalesce(NonNullObject,  NonNullObject));
+            AreEqual(NullableFilled, Coalesce(NullableFilled, NonNullObject));
+            AreEqual(NullableFilled, Coalesce(null,           NullableFilled));
+            AreEqual(NullableFilled, Coalesce(NullObject,     NullableFilled));
+            AreEqual(NonNullObject,  Coalesce(NonNullObject,  NullableFilled));
+            AreEqual(NullableFilled, Coalesce(NullableFilled, NullableFilled));
+
+            //NotNull (                null          .Coalesce(null      ));
+            NotNull (                NullObject    .Coalesce(null      ));
+            AreEqual(NonNullObject,  NonNullObject .Coalesce(null      ));
+            AreEqual(NullableFilled, NullableFilled.Coalesce(null      ));
+            //NotNull (                null          .Coalesce(NullObject));
+            NotNull (                NullObject    .Coalesce(NullObject));
+            AreEqual(NonNullObject,  NonNullObject .Coalesce(NullObject));
+            AreEqual(NullableFilled, NullableFilled.Coalesce(NullObject));
+            //AreEqual(NonNullObject,  null          .Coalesce(NonNullObject));
+            AreEqual(NonNullObject,  NullObject    .Coalesce(NonNullObject));
+            AreEqual(NonNullObject,  NonNullObject .Coalesce(NonNullObject));
+            AreEqual(NullableFilled, NullableFilled.Coalesce(NonNullObject));
+            //AreEqual(NullableFilled, null          .Coalesce(NullableFilled));
+            AreEqual(NullableFilled, NullObject    .Coalesce(NullableFilled));
+            AreEqual(NonNullObject,  NonNullObject .Coalesce(NullableFilled));
+            AreEqual(NullableFilled, NullableFilled.Coalesce(NullableFilled));
+            
+            // TODO: Check return types. After extending Testing.Core's helpers.
+            //IsOfType<StringBuilder>(() => Coalesce(null,           NullObject));
         }
         
+        // TODO: Add more tests that use the literal null. > Not a disaster if it doesn't work / compile.
+        // TODO: Check for non-null return type. Also in the other tests.
+        // TODO: Use more fields instead of local variables for better overview.
         // TODO: More tests
     }
 }

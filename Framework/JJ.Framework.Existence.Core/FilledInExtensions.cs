@@ -47,21 +47,22 @@ public static class FilledInExtensions
     
     // Single Fallback
 
-    public static string Coalesce   (this string? value, string? defaultValue                )  => Has(value           ) ? value       : defaultValue ?? ""     ;
-    public static string Coalesce   (this string? value, string? defaultValue, bool trimSpace)  => Has(value, trimSpace) ? value       : defaultValue ?? ""     ;
-    public static T      Coalesce<T>(this T       value, T       defaultValue)                  => Has(value           ) ? value       : defaultValue ?? default;
-    public static T      Coalesce<T>(this T?      value, T?      defaultValue) where T : struct => Has(value           ) ? value.Value : defaultValue ?? default(T);
-    public static string Coalesce<T>(this T?      value, string? defaultValue)                  => Has(value           ) ? $"{value}"  : defaultValue ?? ""     ;
-    public static string Coalesce<T>(this T?      value, string? defaultValue) where T : struct => Has(value           ) ? $"{value}"  : defaultValue ?? ""     ;
-    public static                    T[] Coalesce<T>(this                    T[]? coll,                     T[]? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    public static List               <T> Coalesce<T>(this List               <T>? coll,  List               <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    public static HashSet            <T> Coalesce<T>(this HashSet            <T>? coll,  HashSet            <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    public static IList              <T> Coalesce<T>(this IList              <T>? coll,  IList              <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    public static ISet               <T> Coalesce<T>(this ISet               <T>? coll,  ISet               <T>? fallback) => Has(coll) ? coll : fallback ?? new HashSet<T>();
-    public static ICollection        <T> Coalesce<T>(this ICollection        <T>? coll,  ICollection        <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    public static IReadOnlyList      <T> Coalesce<T>(this IReadOnlyList      <T>? coll,  IReadOnlyList      <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    public static IReadOnlyCollection<T> Coalesce<T>(this IReadOnlyCollection<T>? coll,  IReadOnlyCollection<T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    public static IEnumerable        <T> Coalesce<T>(this IEnumerable        <T>? coll,  IEnumerable        <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    public static string Coalesce   (this string? value, string? fallback)                  => FilledInHelper.Coalesce(value, fallback           );
+    public static string Coalesce   (this string? value, string? fallback, bool trimSpace)  => FilledInHelper.Coalesce(value, fallback, trimSpace);
+    public static string Coalesce   (this object? value, string? fallback)                  => FilledInHelper.Coalesce(value, fallback           );
+    public static string Coalesce<T>(this T       value, string? fallback) where T : struct => FilledInHelper.Coalesce(value, fallback           );
+    public static string Coalesce<T>(this T?      value, string? fallback) where T : struct => FilledInHelper.Coalesce(value, fallback           );
+    public static T      Coalesce<T>(this T       value, T       fallback) where T : struct => FilledInHelper.Coalesce(value, fallback           );
+    public static T      Coalesce<T>(this T       value, T?      fallback) where T : struct => FilledInHelper.Coalesce(value, fallback           );
+    public static T      Coalesce<T>(this T?      value, T       fallback) where T : struct => FilledInHelper.Coalesce(value, fallback           );
+    public static T      Coalesce<T>(this T?      value, T?      fallback) where T : struct => FilledInHelper.Coalesce(value, fallback           );
+    // These didn't help
+    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
 
     // 2-Stage Fallback (for some)
     
