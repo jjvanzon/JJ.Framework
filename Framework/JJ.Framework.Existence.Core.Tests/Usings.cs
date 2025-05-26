@@ -6,6 +6,7 @@ global using System.Reflection;
 global using System.Text;
 global using System.Globalization;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Core;
 global using static System.String;
 global using static System.Globalization.CultureInfo;
@@ -13,3 +14,5 @@ global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Existence.Core.Tests.TestHelper;
+global using static JJ.Framework.Reflection.Core.Reflect;
+

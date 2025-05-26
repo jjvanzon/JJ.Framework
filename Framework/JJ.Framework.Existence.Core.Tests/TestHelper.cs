@@ -2,24 +2,6 @@
 
 internal static class TestHelper
 {
-    /// <summary>
-    /// <para>
-    /// Gives you the <c>Type</c> the compiler thought this <c>value</c> was,
-    /// before any automatic conversions or boxing.
-    /// This allows us to differentiate between <c>int?</c> and <c>int</c>.
-    /// </para>
-    /// <para>
-    /// For: <c>int? x = 1</c><br/>
-    /// This: <c>x.GetType()</c> gives back <c>typeof(int)</c><br/>
-    /// This: <c>CompileTimeType(x)</c> still gives back <c>typeof(int?)</c>
-    /// </para>
-    /// <para>
-    /// That way we can inspect the nullability of our returned type,
-    /// while the runtime was already so kind to remove the nullable wrapper for us.
-    /// </para>
-    /// </summary>
-    public static Type CompileTimeType<T>(T value) => typeof(T);
-
     public static readonly string? NullText      = null;
     public static readonly string? NullyEmpty    = "";
     public static readonly string? NullySpace    = " ";
@@ -41,9 +23,8 @@ internal static class TestHelper
     public static readonly int  NonNull4 = 4;
     
     public static readonly StringBuilder? NullObject     = null;
-    public static readonly StringBuilder  NonNullObject  = new();
-    public static readonly StringBuilder? NullableFilled = new();
-
+    public static readonly StringBuilder  NonNullObject  = new("NonNull");
+    public static readonly StringBuilder? NullableFilled = new("Filled");
     
     public static readonly int[]?                    FilledArray                      = [ 1, 2, 3 ];
     public static readonly List               <int>  FilledList                       = [ 1, 2, 3 ];
