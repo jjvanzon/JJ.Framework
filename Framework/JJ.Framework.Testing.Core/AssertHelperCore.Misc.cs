@@ -18,20 +18,6 @@ public static partial class AssertHelperCore
     
     public static void IsFalse(bool value, [ArgExpress(nameof(value))] string message = null) 
         => Check(value == false, message: message);
-
-    public static void IsType<T>(object? x, [ArgExpress(nameof(x))] string message = null)
-    {
-        Type expected = typeof(T);
-        Type actual = CompileTimeType(x);
-        Check(expected, message, () => expected == actual);
-    }
-
-    public static void IsType<T>(T x, [ArgExpress(nameof(x))] string message = null)
-    {
-        Type expected = typeof(T);
-        Type actual = CompileTimeType(x);
-        Check(expected, message, () => expected == actual);
-    }
     
     public static void Fail() 
         => throw new Exception(GetFailureMessageLegacy("", ""));
