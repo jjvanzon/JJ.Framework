@@ -68,80 +68,11 @@ public static class FilledInExtensions
 
     // Variadic Fallbacks
     
-    public static string Coalesce   (this                    string?[]? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this                    T[]      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this                    T?[]     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
-    public static string Coalesce   (this List               <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this List               <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this List               <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
-    public static string Coalesce   (this HashSet            <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this HashSet            <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this HashSet            <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
-    public static string Coalesce   (this IList              <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this IList              <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this IList              <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
-    public static string Coalesce   (this ISet               <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this ISet               <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this ISet               <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
-    public static string Coalesce   (this ICollection        <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this ICollection        <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this ICollection        <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
-    public static string Coalesce   (this IReadOnlyList      <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this IReadOnlyList      <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this IReadOnlyList      <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
-    public static string Coalesce   (this IReadOnlyCollection<string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
-    public static T      Coalesce<T>(this IReadOnlyCollection<T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
-    public static T      Coalesce<T>(this IReadOnlyCollection<T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    public static string Coalesce   (this                       IEnumerable<string?>? fallbacks)                 => FilledInHelper.Coalesce(fallbacks);
+    public static T      Coalesce<T>(this                       IEnumerable<T> ?      fallbacks) where T : new() => FilledInHelper.Coalesce(fallbacks);
+    public static T      Coalesce<T>(this                       IEnumerable<T?>?      fallbacks) where T: struct => FilledInHelper.Coalesce(fallbacks);
     
-    public static string Coalesce(this IEnumerable<string?>? fallbacks)
-    {
-        if (fallbacks == null) return "";
-        
-        string? last = "";
-        
-        foreach (var fallback in fallbacks)
-        {
-            if (Has(fallback)) return fallback;
-            last = fallback;
-        }
-        
-        return last ?? "";
-    }
-
-    public static T Coalesce<T>(this IEnumerable<T>? fallbacks)
-    {
-        if (fallbacks == null) return default;
-        
-        T last = default;
-        
-        foreach (var fallback in fallbacks)
-        {
-            if (Has(fallback)) return fallback;
-            last = fallback;
-        }
-        
-        return last;
-    }
-    
-    public static T Coalesce<T>(this IEnumerable<T?>? fallbacks) where T: struct 
-    {
-        if (fallbacks == null) return default;
-        
-        T? last = default;
-        
-        foreach (var fallback in fallbacks)
-        {
-            if (Has(fallback))
-            {
-                if (fallback is T ret)
-                {
-                    return ret;
-                }
-            }
-            
-            last = fallback;
-        }
-        
-        return last ?? default;
-    }
+    public static string Coalesce   (this string? first, params IEnumerable<string?>? fallbacks)                 => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
+    public static T      Coalesce<T>(this T       first, params IEnumerable<T>?       fallbacks) where T : new() => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
+    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T: struct => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
 }
