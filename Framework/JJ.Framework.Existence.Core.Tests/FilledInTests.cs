@@ -255,15 +255,15 @@ public class FilledInTests
     private IReadOnlyCollection<int>? NullableEmptyIReadOnlyCollection    = [ ];
     private IEnumerable        <int>? NullableEmptyIEnumerable            = [ ];
     
-    private int[]?                    NullArray                        = null;
-    private List               <int>? NullList                         = null;
-    private HashSet            <int>? NullHashSet                      = null;
-    private IList              <int>? NullIList                        = null;
-    private ISet               <int>? NullISet                         = null;
-    private ICollection        <int>? NullICollection                  = null;
-    private IReadOnlyList      <int>? NullIReadOnlyList                = null;
-    private IReadOnlyCollection<int>? NullIReadOnlyCollection          = null;
-    private IEnumerable        <int>? NullIEnumerable                  = null;
+    private int[]?                    NullArray                           = null;
+    private List               <int>? NullList                            = null;
+    private HashSet            <int>? NullHashSet                         = null;
+    private IList              <int>? NullIList                           = null;
+    private ISet               <int>? NullISet                            = null;
+    private ICollection        <int>? NullICollection                     = null;
+    private IReadOnlyList      <int>? NullIReadOnlyList                   = null;
+    private IReadOnlyCollection<int>? NullIReadOnlyCollection             = null;
+    private IEnumerable        <int>? NullIEnumerable                     = null;
     
     [TestMethod]
     public void FilledIn_Collections_True()
@@ -567,13 +567,13 @@ public class FilledInTests
     public void Test_String_Is()
     {
         // NullOrWhiteSpace
-        IsTrue(Is(null,   null  ));
-        IsTrue(Is(" " ,   null  ));
-        IsTrue(   " " .Is(null  ));
-        IsTrue(Is(""  ,   " "   ));
-        IsTrue(   ""  .Is(" "   ));
-        IsTrue(Is(""  ,   "  \t"));
-        IsTrue(   ""  .Is("  \t"));
+        IsTrue(Is(NullText,   NullText));
+        IsTrue(Is(" "     ,   NullText));
+        IsTrue(   " "     .Is(NullText));
+        IsTrue(Is(""      ,   " "     ));
+        IsTrue(   ""      .Is(" "     ));
+        IsTrue(Is(""      ,   "  \t"  ));
+        IsTrue(   ""      .Is("  \t"  ));
         
         // Ignore Case
         IsTrue(Is("test",   "test"));
@@ -917,10 +917,8 @@ public class FilledInTests
             CultureInfo  culture = GetCultureInfo("nl-NL");
             AreEqual("nl-NL", Coalesce(culture,     "None"));
             AreEqual("None" , Coalesce(nullCulture, "None"));
-            AreEqual(""     , Coalesce(nullCulture,  null ));
             AreEqual("nl-NL", culture    .Coalesce( "None"));
             AreEqual("None" , nullCulture.Coalesce( "None"));
-            AreEqual(""     , nullCulture.Coalesce(  null ));
         }
         // Single Fallback Structs to String
         // With T
@@ -950,18 +948,6 @@ public class FilledInTests
         }
         // Single Fallback for Structs
         {
-            // TODO: Does not compile
-            //AreEqual(0, Coalesce( NullNum, null   ));
-            //AreEqual(0, Coalesce(  Nully0, null   ));
-            //AreEqual(1, Coalesce(  Nully1, null   ));
-            //int? Nully2 = 2;
-            // TODO: Doesn't compile without casting null.
-            //AreEqual(2, Coalesce(  Nully2, null   ));
-            //AreEqual(0, Coalesce(    null, null   ));
-            //AreEqual(0, Coalesce(       0, null   ));
-            //AreEqual(1, Coalesce(       1, null   ));
-            //AreEqual(2, Coalesce(       2, null   ));
-            AreEqual(0, Coalesce(    null, NullNum));
             AreEqual(0, Coalesce( NullNum, NullNum));
             AreEqual(0, Coalesce(  Nully0, NullNum));
             AreEqual(1, Coalesce(  Nully1, NullNum));
@@ -969,7 +955,6 @@ public class FilledInTests
             AreEqual(0, Coalesce(       0, NullNum));
             AreEqual(1, Coalesce(       1, NullNum));
             AreEqual(2, Coalesce(       2, NullNum));
-            AreEqual(0, Coalesce(    null,  Nully0));
             AreEqual(0, Coalesce( NullNum,  Nully0));
             AreEqual(0, Coalesce(  Nully0,  Nully0));
             AreEqual(1, Coalesce(  Nully1,  Nully0));
@@ -977,7 +962,6 @@ public class FilledInTests
             AreEqual(0, Coalesce(       0,  Nully0));
             AreEqual(1, Coalesce(       1,  Nully0));
             AreEqual(2, Coalesce(       2,  Nully0));
-            AreEqual(1, Coalesce(    null,  Nully1));
             AreEqual(1, Coalesce( NullNum,  Nully1));
             AreEqual(1, Coalesce(  Nully0,  Nully1));
             AreEqual(1, Coalesce(  Nully1,  Nully1));
@@ -985,7 +969,6 @@ public class FilledInTests
             AreEqual(1, Coalesce(       0,  Nully1));
             AreEqual(1, Coalesce(       1,  Nully1));
             AreEqual(2, Coalesce(       2,  Nully1));
-            AreEqual(2, Coalesce(    null,  Nully2));
             AreEqual(2, Coalesce( NullNum,  Nully2));
             AreEqual(2, Coalesce(  Nully0,  Nully2));
             AreEqual(1, Coalesce(  Nully1,  Nully2));
@@ -993,7 +976,6 @@ public class FilledInTests
             AreEqual(2, Coalesce(       0,  Nully2));
             AreEqual(1, Coalesce(       1,  Nully2));
             AreEqual(2, Coalesce(       2,  Nully2));
-            AreEqual(0, Coalesce(    null,       0));
             AreEqual(0, Coalesce( NullNum,       0));
             AreEqual(0, Coalesce(  Nully0,       0));
             AreEqual(1, Coalesce(  Nully1,       0));
@@ -1001,7 +983,6 @@ public class FilledInTests
             AreEqual(0, Coalesce(       0,       0));
             AreEqual(1, Coalesce(       1,       0));
             AreEqual(2, Coalesce(       2,       0));
-            AreEqual(1, Coalesce(    null,       1));
             AreEqual(1, Coalesce( NullNum,       1));
             AreEqual(1, Coalesce(  Nully0,       1));
             AreEqual(1, Coalesce(  Nully1,       1));
@@ -1009,7 +990,6 @@ public class FilledInTests
             AreEqual(1, Coalesce(       0,       1));
             AreEqual(1, Coalesce(       1,       1));
             AreEqual(2, Coalesce(       2,       1));
-            AreEqual(2, Coalesce(    null,       2));
             AreEqual(2, Coalesce( NullNum,       2));
             AreEqual(2, Coalesce(  Nully0,       2));
             AreEqual(1, Coalesce(  Nully1,       2));
@@ -1017,15 +997,6 @@ public class FilledInTests
             AreEqual(2, Coalesce(       0,       2));
             AreEqual(1, Coalesce(       1,       2));
             AreEqual(2, Coalesce(       2,       2));
-            // TODO: Does not Compile
-            //AreEqual(0,  NullNum.Coalesce( null   ));
-            //AreEqual(0,   Nully0.Coalesce( null   ));
-            //AreEqual(1,   Nully1.Coalesce( null   ));
-            //AreEqual(2,   Nully2.Coalesce( null   ));
-            //AreEqual(0,        0.Coalesce( null   ));
-            //AreEqual(1,        1.Coalesce( null   ));
-            //AreEqual(2,        2.Coalesce( null   ));
-            //AreEqual(0,     null.Coalesce( NullNum)); // TODO: Does not Compile
             AreEqual(0,  NullNum.Coalesce( NullNum));
             AreEqual(0,   Nully0.Coalesce( NullNum));
             AreEqual(1,   Nully1.Coalesce( NullNum));
@@ -1033,7 +1004,6 @@ public class FilledInTests
             AreEqual(0,        0.Coalesce( NullNum));
             AreEqual(1,        1.Coalesce( NullNum));
             AreEqual(2,        2.Coalesce( NullNum));
-            //AreEqual(0,     null.Coalesce(  Nully0)); // TODO: Does not Compile
             AreEqual(0,  NullNum.Coalesce(  Nully0));
             AreEqual(0,   Nully0.Coalesce(  Nully0));
             AreEqual(1,   Nully1.Coalesce(  Nully0));
@@ -1041,7 +1011,6 @@ public class FilledInTests
             AreEqual(0,        0.Coalesce(  Nully0));
             AreEqual(1,        1.Coalesce(  Nully0));
             AreEqual(2,        2.Coalesce(  Nully0));
-            //AreEqual(1,     null.Coalesce(  Nully1)); // TODO: Does not Compile
             AreEqual(1,  NullNum.Coalesce(  Nully1));
             AreEqual(1,   Nully0.Coalesce(  Nully1));
             AreEqual(1,   Nully1.Coalesce(  Nully1));
@@ -1049,7 +1018,6 @@ public class FilledInTests
             AreEqual(1,        0.Coalesce(  Nully1));
             AreEqual(1,        1.Coalesce(  Nully1));
             AreEqual(2,        2.Coalesce(  Nully1));
-            //AreEqual(2,     null.Coalesce(  Nully2)); // TODO: Does not Compile
             AreEqual(2,  NullNum.Coalesce(  Nully2));
             AreEqual(2,   Nully0.Coalesce(  Nully2));
             AreEqual(1,   Nully1.Coalesce(  Nully2));
@@ -1057,7 +1025,6 @@ public class FilledInTests
             AreEqual(2,        0.Coalesce(  Nully2));
             AreEqual(1,        1.Coalesce(  Nully2));
             AreEqual(2,        2.Coalesce(  Nully2));
-            //AreEqual(0,     null.Coalesce(       0)); // TODO: Does not Compile
             AreEqual(0,  NullNum.Coalesce(       0));
             AreEqual(0,   Nully0.Coalesce(       0));
             AreEqual(1,   Nully1.Coalesce(       0));
@@ -1065,7 +1032,6 @@ public class FilledInTests
             AreEqual(0,        0.Coalesce(       0));
             AreEqual(1,        1.Coalesce(       0));
             AreEqual(2,        2.Coalesce(       0));
-            //AreEqual(1,     null.Coalesce(       1)); // TODO: Does not Compile
             AreEqual(1,  NullNum.Coalesce(       1));
             AreEqual(1,   Nully0.Coalesce(       1));
             AreEqual(1,   Nully1.Coalesce(       1));
@@ -1073,7 +1039,6 @@ public class FilledInTests
             AreEqual(1,        0.Coalesce(       1));
             AreEqual(1,        1.Coalesce(       1));
             AreEqual(2,        2.Coalesce(       1));
-            //AreEqual(2,     null.Coalesce(       2)); // TODO: Does not Compile
             AreEqual(2,  NullNum.Coalesce(       2));
             AreEqual(2,   Nully0.Coalesce(       2));
             AreEqual(1,   Nully1.Coalesce(       2));
@@ -1085,45 +1050,30 @@ public class FilledInTests
         }
         // Single Fallback for Objects.
         {
-            NotNull (                Coalesce(null,           null      ));
-            NotNull (                Coalesce(NullObject,     null      ));
-            AreEqual(NonNullObject,  Coalesce(NonNullObject,  null      ));
-            AreEqual(NullableFilled, Coalesce(NullableFilled, null      ));
-            NotNull (                Coalesce(null,           NullObject));
             NotNull (                Coalesce(NullObject,     NullObject));
             AreEqual(NonNullObject,  Coalesce(NonNullObject,  NullObject));
             AreEqual(NullableFilled, Coalesce(NullableFilled, NullObject));
-            AreEqual(NonNullObject,  Coalesce(null,           NonNullObject));
             AreEqual(NonNullObject,  Coalesce(NullObject,     NonNullObject));
             AreEqual(NonNullObject,  Coalesce(NonNullObject,  NonNullObject));
             AreEqual(NullableFilled, Coalesce(NullableFilled, NonNullObject));
-            AreEqual(NullableFilled, Coalesce(null,           NullableFilled));
             AreEqual(NullableFilled, Coalesce(NullObject,     NullableFilled));
             AreEqual(NonNullObject,  Coalesce(NonNullObject,  NullableFilled));
             AreEqual(NullableFilled, Coalesce(NullableFilled, NullableFilled));
 
-            //NotNull (                null          .Coalesce(null      ));
-            NotNull (                NullObject    .Coalesce(null      ));
-            AreEqual(NonNullObject,  NonNullObject .Coalesce(null      ));
-            AreEqual(NullableFilled, NullableFilled.Coalesce(null      ));
-            //NotNull (                null          .Coalesce(NullObject));
             NotNull (                NullObject    .Coalesce(NullObject));
             AreEqual(NonNullObject,  NonNullObject .Coalesce(NullObject));
             AreEqual(NullableFilled, NullableFilled.Coalesce(NullObject));
-            //AreEqual(NonNullObject,  null          .Coalesce(NonNullObject));
             AreEqual(NonNullObject,  NullObject    .Coalesce(NonNullObject));
             AreEqual(NonNullObject,  NonNullObject .Coalesce(NonNullObject));
             AreEqual(NullableFilled, NullableFilled.Coalesce(NonNullObject));
-            //AreEqual(NullableFilled, null          .Coalesce(NullableFilled));
             AreEqual(NullableFilled, NullObject    .Coalesce(NullableFilled));
             AreEqual(NonNullObject,  NonNullObject .Coalesce(NullableFilled));
             AreEqual(NullableFilled, NullableFilled.Coalesce(NullableFilled));
             
             // TODO: Check return types. After extending Testing.Core's helpers.
-            //IsOfType<StringBuilder>(() => Coalesce(null,           NullObject));
+            //IsOfType<StringBuilder>(() => Coalesce(NullObject,           NullObject));
         }
         
-        // TODO: Add more tests that use the literal null. > Not a disaster if it doesn't work / compile.
         // TODO: Check for non-null return type. Also in the other tests.
         // TODO: Use more fields instead of local variables for better overview.
         // TODO: More tests

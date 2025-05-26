@@ -455,3 +455,75 @@ Plain variadic coalesce method took over the job.
 
     public static IEnumerable<T> Coalesce<T>(this IEnumerable<T>? coll, IEnumerable<T>? fallback) => FilledInHelper.Coalesce(coll, fallback);
 ```
+
+### FilledIn Tests: Avoid Tests with `null` Literals 
+
+```cs
+            //AreEqual(""     , Coalesce(nullCulture,  null ));
+            //AreEqual(""     , nullCulture.Coalesce(  null ));
+
+            // TODO: Does not compile
+            //AreEqual(0, Coalesce( NullNum, null   ));
+            //AreEqual(0, Coalesce(  Nully0, null   ));
+            //AreEqual(1, Coalesce(  Nully1, null   ));
+            //int? Nully2 = 2;
+            // TODO: Doesn't compile without casting null.
+            //AreEqual(2, Coalesce(  Nully2, null   ));
+            //AreEqual(0, Coalesce(    null, null   ));
+            //AreEqual(0, Coalesce(       0, null   ));
+            //AreEqual(1, Coalesce(       1, null   ));
+            //AreEqual(2, Coalesce(       2, null   ));
+            //AreEqual(0, Coalesce(    null, NullNum));
+            //AreEqual(0, Coalesce(    null,  Nully0));
+            //AreEqual(1, Coalesce(    null,  Nully1));
+            //AreEqual(0, Coalesce(    null,  Nully0));
+            //AreEqual(1, Coalesce(    null,  Nully1));
+            //AreEqual(2, Coalesce(    null,  Nully2));
+            //AreEqual(0, Coalesce(    null,       0));
+            //AreEqual(1, Coalesce(    null,       1));
+            //AreEqual(2, Coalesce(    null,       2));
+            // TODO: Does not Compile
+            //AreEqual(0,  NullNum.Coalesce( null   ));
+            //AreEqual(0,   Nully0.Coalesce( null   ));
+            //AreEqual(1,   Nully1.Coalesce( null   ));
+            //AreEqual(2,   Nully2.Coalesce( null   ));
+            //AreEqual(0,        0.Coalesce( null   ));
+            //AreEqual(1,        1.Coalesce( null   ));
+            //AreEqual(2,        2.Coalesce( null   ));
+            //AreEqual(0,     null.Coalesce( NullNum)); // TODO: Does not Compile
+            //AreEqual(0,     null.Coalesce(  Nully0)); // TODO: Does not Compile
+            //AreEqual(1,     null.Coalesce(  Nully1)); // TODO: Does not Compile
+            //AreEqual(2,     null.Coalesce(  Nully2)); // TODO: Does not Compile
+            //AreEqual(0,     null.Coalesce(       0)); // TODO: Does not Compile
+            //AreEqual(1,     null.Coalesce(       1)); // TODO: Does not Compile
+            //AreEqual(2,     null.Coalesce(       2)); // TODO: Does not Compile
+            NotNull (                Coalesce(null,           null      ));
+            NotNull (                Coalesce(NullObject,     null      ));
+            AreEqual(NonNullObject,  Coalesce(NonNullObject,  null      ));
+            AreEqual(NullableFilled, Coalesce(NullableFilled, null      ));
+            NotNull (                Coalesce(null,           NullObject));
+            AreEqual(NonNullObject,  Coalesce(null,           NonNullObject));
+            AreEqual(NullableFilled, Coalesce(null,           NullableFilled));
+            NotNull (                null          .Coalesce(null      ));
+            NotNull (                NullObject    .Coalesce(null      ));
+            AreEqual(NonNullObject,  NonNullObject .Coalesce(null      ));
+            AreEqual(NullableFilled, NullableFilled.Coalesce(null      ));
+            NotNull (                null          .Coalesce(NullObject));
+            //AreEqual(NonNullObject,  null          .Coalesce(NonNullObject));
+            //AreEqual(NullableFilled, null          .Coalesce(NullableFilled));
+
+    // These didn't help
+    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    // These didn't help
+    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+    //public static T      Coalesce<T>(     object? value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
+```

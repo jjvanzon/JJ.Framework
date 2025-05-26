@@ -77,13 +77,6 @@ public static class FilledInHelper
     public static T      Coalesce<T>(     T       value, T?      fallback) where T : struct => Has(value           ) ? value       : Coalesce(fallback)    ;
     public static T      Coalesce<T>(     T?      value, T       fallback) where T : struct => Has(value           ) ? value.Value : Coalesce(fallback)    ;
     public static T      Coalesce<T>(     T?      value, T?      fallback) where T : struct => Has(value           ) ? value.Value : Coalesce(fallback)    ;
-    // These didn't help
-    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
-    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
-    //public static T      Coalesce<T>(     object? value, object? fallback) where T : new()   => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
-    //public static T      Coalesce<T>(     object? value, T?      fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
-    //public static T      Coalesce<T>(     T?      value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
-    //public static T      Coalesce<T>(     object? value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
 
     // 2-Stage Fallback (for some)
     
