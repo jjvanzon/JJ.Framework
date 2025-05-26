@@ -2,7 +2,7 @@
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Regression_FilledIn_Tests
+public class RegressionTests
 {
     [TestMethod]
     public void FilledIn_MethodResolution_Object_Over_GenericInterface_Regression()

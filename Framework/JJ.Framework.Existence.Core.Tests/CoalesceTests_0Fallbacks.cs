@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_0Fallbacks_Tests
+public class CoalesceTests_0Fallbacks
 {
     [TestMethod]
     public void Plain_Coalesce()
