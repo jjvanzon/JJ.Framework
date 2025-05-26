@@ -19,4 +19,6 @@ global using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 global using static JJ.Framework.Testing.Core.TestHelperCore;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.ExpressionHelper;
+global using static JJ.Framework.Reflection.Core.Reflect;
 global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+

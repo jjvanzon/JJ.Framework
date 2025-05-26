@@ -49,6 +49,18 @@ public static partial class AssertHelperCore
         => Check(expected, actual, "", () => condition(), methodName);
 
     private static void Check<T>(
+        T expected, string message,
+        Func<bool> condition, [CallerMemberName] string methodName = null)
+    {
+        if (!condition())
+        {
+            message = FormatTestedExpressionMessage(message);
+            string fullMessage = GetExpectedMessage(methodName, expected, message);
+            throw new Exception(fullMessage);
+        }
+    }
+
+    private static void Check<T>(
         T expected, T actual, string message,
         Func<bool> condition, [CallerMemberName] string methodName = null)
     {
@@ -75,4 +87,7 @@ public static partial class AssertHelperCore
             throw new Exception(fullMessage);
         }
     }
+    
+    private static string GetExpectedMessage<T>(string methodName, T expected, string message)
+        => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>.{(!IsNullOrEmpty(message) ? " " : "")}{message}";
 }
