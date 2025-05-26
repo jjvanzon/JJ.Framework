@@ -8,6 +8,7 @@ global using System.Globalization;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Core;
+global using JJ.Framework.Existence.Core.Tests.docs;
 global using static System.String;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Testing.AssertHelper;

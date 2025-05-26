@@ -534,4 +534,187 @@ Plain variadic coalesce method took over the job.
         AreEqual(typeof(int?), CompileTimeType(NullNum));
         AreEqual(typeof(int),  CompileTimeType(NullNum.Coalesce()));
         AreEqual(typeof(int),  CompileTimeType(Coalesce(NullNum)));
+
+        
+        NotType(typeof(int?), NullNum.Coalesce()); // Fails
+        NotType(typeof(int?), NullNum.Coalesce()); // Succeeds
+        NotEqual(typeof(int?), CompileTimeType(NullNum.Coalesce())); // Succeeds
+        
+        int res = NullNum.Coalesce();
+        NotType(typeof(int?), res); // Succeeds
+        NotEqual(typeof(int?), CompileTimeType(res)); // Succeeds
+
+
+
+
+        AreEqual(0,            Coalesce( NullNum, NullNum));
+        IsType  (typeof(int),  Coalesce( NullNum, NullNum));
+        NotType (typeof(int?), Coalesce( NullNum, NullNum));
+        AreEqual(0,            Coalesce(  Nully0, NullNum));
+        IsType  (typeof(int),  Coalesce(  Nully0, NullNum));
+        NotType (typeof(int?), Coalesce(  Nully0, NullNum));
+        AreEqual(1,            Coalesce(  Nully1, NullNum));
+        IsType  (typeof(int),  Coalesce(  Nully1, NullNum));
+        NotType (typeof(int?), Coalesce(  Nully1, NullNum));
+        AreEqual(2,            Coalesce(  Nully2, NullNum));
+        IsType  (typeof(int),  Coalesce(  Nully2, NullNum));
+        NotType (typeof(int?), Coalesce(  Nully2, NullNum));
+        AreEqual(0,            Coalesce(       0, NullNum));
+        IsType  (typeof(int),  Coalesce(       0, NullNum));
+        NotType (typeof(int?), Coalesce(       0, NullNum));
+        AreEqual(1,            Coalesce(       1, NullNum));
+        IsType  (typeof(int),  Coalesce(       1, NullNum));
+        NotType (typeof(int?), Coalesce(       1, NullNum));
+        AreEqual(2,            Coalesce(       2, NullNum));
+        IsType  (typeof(int),  Coalesce(       2, NullNum));
+        NotType (typeof(int?), Coalesce(       2, NullNum));
+        AreEqual(0,            Coalesce( NullNum,  Nully0));
+        IsType  (typeof(int),  Coalesce( NullNum,  Nully0));
+        NotType (typeof(int?), Coalesce( NullNum,  Nully0));
+        AreEqual(0,            Coalesce(  Nully0,  Nully0));
+        IsType  (typeof(int),  Coalesce(  Nully0,  Nully0));
+        NotType (typeof(int?), Coalesce(  Nully0,  Nully0));
+        AreEqual(1,            Coalesce(  Nully1,  Nully0));
+        IsType  (typeof(int),  Coalesce(  Nully1,  Nully0));
+        NotType (typeof(int?), Coalesce(  Nully1,  Nully0));
+        AreEqual(2,            Coalesce(  Nully2,  Nully0));
+        IsType  (typeof(int),  Coalesce(  Nully2,  Nully0));
+        NotType (typeof(int?), Coalesce(  Nully2,  Nully0));
+        AreEqual(0,            Coalesce(       0,  Nully0));
+        IsType  (typeof(int),  Coalesce(       0,  Nully0));
+        NotType (typeof(int?), Coalesce(       0,  Nully0));
+        AreEqual(1,            Coalesce(       1,  Nully0));
+        IsType  (typeof(int),  Coalesce(       1,  Nully0));
+        NotType (typeof(int?), Coalesce(       1,  Nully0));
+        AreEqual(2,            Coalesce(       2,  Nully0));
+        IsType  (typeof(int),  Coalesce(       2,  Nully0));
+        NotType (typeof(int?), Coalesce(       2,  Nully0));
+        AreEqual(1,            Coalesce( NullNum,  Nully1));
+        IsType  (typeof(int),  Coalesce( NullNum,  Nully1));
+        NotType (typeof(int?), Coalesce( NullNum,  Nully1));
+        AreEqual(1,            Coalesce(  Nully0,  Nully1));
+        IsType  (typeof(int),  Coalesce(  Nully0,  Nully1));
+        NotType (typeof(int?), Coalesce(  Nully0,  Nully1));
+        AreEqual(1,            Coalesce(  Nully1,  Nully1));
+        IsType  (typeof(int),  Coalesce(  Nully1,  Nully1));
+        NotType (typeof(int?), Coalesce(  Nully1,  Nully1));
+        AreEqual(2,            Coalesce(  Nully2,  Nully1));
+        IsType  (typeof(int),  Coalesce(  Nully2,  Nully1));
+        NotType (typeof(int?), Coalesce(  Nully2,  Nully1));
+        AreEqual(1,            Coalesce(       0,  Nully1));
+        IsType  (typeof(int),  Coalesce(       0,  Nully1));
+        NotType (typeof(int?), Coalesce(       0,  Nully1));
+        AreEqual(1,            Coalesce(       1,  Nully1));
+        IsType  (typeof(int),  Coalesce(       1,  Nully1));
+        NotType (typeof(int?), Coalesce(       1,  Nully1));
+        AreEqual(2,            Coalesce(       2,  Nully1));
+        IsType  (typeof(int),  Coalesce(       2,  Nully1));
+        NotType (typeof(int?), Coalesce(       2,  Nully1));
+        AreEqual(2,            Coalesce( NullNum,  Nully2));
+        IsType  (typeof(int),  Coalesce( NullNum,  Nully2));
+        NotType (typeof(int?), Coalesce( NullNum,  Nully2));
+        AreEqual(2,            Coalesce(  Nully0,  Nully2));
+        IsType  (typeof(int),  Coalesce(  Nully0,  Nully2));
+        NotType (typeof(int?), Coalesce(  Nully0,  Nully2));
+        AreEqual(1,            Coalesce(  Nully1,  Nully2));
+        IsType  (typeof(int),  Coalesce(  Nully1,  Nully2));
+        NotType (typeof(int?), Coalesce(  Nully1,  Nully2));
+        AreEqual(2,            Coalesce(  Nully2,  Nully2));
+        IsType  (typeof(int),  Coalesce(  Nully2,  Nully2));
+        NotType (typeof(int?), Coalesce(  Nully2,  Nully2));
+        AreEqual(2,            Coalesce(       0,  Nully2));
+        IsType  (typeof(int),  Coalesce(       0,  Nully2));
+        NotType (typeof(int?), Coalesce(       0,  Nully2));
+        AreEqual(1,            Coalesce(       1,  Nully2));
+        IsType  (typeof(int),  Coalesce(       1,  Nully2));
+        NotType (typeof(int?), Coalesce(       1,  Nully2));
+        AreEqual(2,            Coalesce(       2,  Nully2));
+        IsType  (typeof(int),  Coalesce(       2,  Nully2));
+        NotType (typeof(int?), Coalesce(       2,  Nully2));
+        AreEqual(0,            Coalesce( NullNum,       0));
+        IsType  (typeof(int),  Coalesce( NullNum,       0));
+        NotType (typeof(int?), Coalesce( NullNum,       0));
+        AreEqual(0,            Coalesce(  Nully0,       0));
+        IsType  (typeof(int),  Coalesce(  Nully0,       0));
+        NotType (typeof(int?), Coalesce(  Nully0,       0));
+        AreEqual(1,            Coalesce(  Nully1,       0));
+        IsType  (typeof(int),  Coalesce(  Nully1,       0));
+        NotType (typeof(int?), Coalesce(  Nully1,       0));
+        AreEqual(2,            Coalesce(  Nully2,       0));
+        IsType  (typeof(int),  Coalesce(  Nully2,       0));
+        NotType (typeof(int?), Coalesce(  Nully2,       0));
+        AreEqual(0,            Coalesce(       0,       0));
+        IsType  (typeof(int),  Coalesce(       0,       0));
+        NotType (typeof(int?), Coalesce(       0,       0));
+        AreEqual(1,            Coalesce(       1,       0));
+        IsType  (typeof(int),  Coalesce(       1,       0));
+        NotType (typeof(int?), Coalesce(       1,       0));
+        AreEqual(2,            Coalesce(       2,       0));
+        IsType  (typeof(int),  Coalesce(       2,       0));
+        NotType (typeof(int?), Coalesce(       2,       0));
+        AreEqual(1,            Coalesce( NullNum,       1));
+        IsType  (typeof(int),  Coalesce( NullNum,       1));
+        NotType (typeof(int?), Coalesce( NullNum,       1));
+        AreEqual(1,            Coalesce(  Nully0,       1));
+        IsType  (typeof(int),  Coalesce(  Nully0,       1));
+        NotType (typeof(int?), Coalesce(  Nully0,       1));
+        AreEqual(1,            Coalesce(  Nully1,       1));
+        IsType  (typeof(int),  Coalesce(  Nully1,       1));
+        NotType (typeof(int?), Coalesce(  Nully1,       1));
+        AreEqual(2,            Coalesce(  Nully2,       1));
+        IsType  (typeof(int),  Coalesce(  Nully2,       1));
+        NotType (typeof(int?), Coalesce(  Nully2,       1));
+        AreEqual(1,            Coalesce(       0,       1));
+        IsType  (typeof(int),  Coalesce(       0,       1));
+        NotType (typeof(int?), Coalesce(       0,       1));
+        AreEqual(1,            Coalesce(       1,       1));
+        IsType  (typeof(int),  Coalesce(       1,       1));
+        NotType (typeof(int?), Coalesce(       1,       1));
+        AreEqual(2,            Coalesce(       2,       1));
+        IsType  (typeof(int),  Coalesce(       2,       1));
+        NotType (typeof(int?), Coalesce(       2,       1));
+        AreEqual(2,            Coalesce( NullNum,       2));
+        IsType  (typeof(int),  Coalesce( NullNum,       2));
+        NotType (typeof(int?), Coalesce( NullNum,       2));
+        AreEqual(2,            Coalesce(  Nully0,       2));
+        IsType  (typeof(int),  Coalesce(  Nully0,       2));
+        NotType (typeof(int?), Coalesce(  Nully0,       2));
+        AreEqual(1,            Coalesce(  Nully1,       2));
+        IsType  (typeof(int),  Coalesce(  Nully1,       2));
+        NotType (typeof(int?), Coalesce(  Nully1,       2));
+        AreEqual(2,            Coalesce(  Nully2,       2));
+        IsType  (typeof(int),  Coalesce(  Nully2,       2));
+        NotType (typeof(int?), Coalesce(  Nully2,       2));
+        AreEqual(2,            Coalesce(       0,       2));
+        IsType  (typeof(int),  Coalesce(       0,       2));
+        NotType (typeof(int?), Coalesce(       0,       2));
+        AreEqual(1,            Coalesce(       1,       2));
+        IsType  (typeof(int),  Coalesce(       1,       2));
+        NotType (typeof(int?), Coalesce(       1,       2));
+        AreEqual(2,            Coalesce(       2,       2));
+        IsType  (typeof(int),  Coalesce(       2,       2));
+        NotType (typeof(int?), Coalesce(       2,       2));
+
+    //private static void AssertIntCoalesce<TExpected, TActual>(TExpected expected, TActual actual)
+    //{
+    //    AreEqual(expected,     actual);
+    //    IsType  (typeof(int),  actual);
+    //    NotType (typeof(int?), actual);
+    //}
+```
+
+### Testing.Core IsType
+
+```cs    
+    [Obsolete] public static void IsType<TType, TObject>(TObject obj, [ArgExpress(nameof(obj))] string message = "") => throw new NotSupportedException();
+    //{
+    //    var expected = typeof(TType);
+    //    var actual = CompileTimeType(obj);
+    //    IsType(expected, actual, message);
+    //}
+
+        //Check(expected, actual, message, () => expected == actual);
+    //    => Check(typeof(T), message, () => CompileTimeType(val) == typeof(T));
+    //    => Check(typeof(T), message, () => CompileTimeType(obj) != typeof(T));
+    //    => Check(typeof(T), message, () => CompileTimeType(obj) != typeof(T));
 ```

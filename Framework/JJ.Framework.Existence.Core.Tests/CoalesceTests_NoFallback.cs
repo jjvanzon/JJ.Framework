@@ -19,36 +19,28 @@ public class CoalesceTests_NoFallback
     [TestMethod]
     public void Coalesce_Structs_Nullable_NoFallback()
     {
-        IsNull      (   NullNum           );
-        IsType<int?>(   NullNum           );
-        AreEqual    (0, NullNum.Coalesce());
-        IsType<int> (   NullNum.Coalesce());
-        AreEqual    (0, Coalesce(NullNum) );
-        IsType<int> (   Coalesce(NullNum) );
-        AreEqual    (0, Nully0            );
-        IsType<int?>(   Nully0            );
-        AreEqual    (0, Nully0 .Coalesce());
-        IsType<int> (   Nully0 .Coalesce());
-        AreEqual    (0, Coalesce(Nully0)  );
-        IsType<int> (   Coalesce(Nully0)  );
-        AreEqual    (1, Nully1            );
-        IsType<int?>(   Nully1            );
-        AreEqual    (1, Nully1 .Coalesce());
-        IsType<int> (   Nully1 .Coalesce());
-        AreEqual    (1, Coalesce(Nully1)  );
-        IsType<int> (   Coalesce(Nully1)  );
+        IsNull   (   NullNum           );
+        NullRet  (   NullNum           );
+        NoNullRet(0, NullNum.Coalesce());
+        NoNullRet(0, Coalesce(NullNum) );
+        NullRet  (0, Nully0            );
+        NoNullRet(0, Nully0.Coalesce() );
+        NoNullRet(0, Coalesce(Nully0)  );
+        NullRet  (1, Nully1            );
+        NoNullRet(1, Nully1.Coalesce() );
+        NoNullRet(1, Coalesce(Nully1)  );
+        NullRet  (2, Nully2            );
+        NoNullRet(2, Nully2.Coalesce() );
+        NoNullRet(2, Coalesce(Nully2)  );
     }
     
     [TestMethod]
     public void Coalesce_Structs_NotNullable_NoFallback()
     {
-        int nonNull = 1;
-        AreEqual   (1, nonNull           );
-        IsType<int>(   nonNull           );
-        AreEqual   (1, nonNull.Coalesce());
-        IsType<int>(   nonNull.Coalesce());
-        AreEqual   (1, Coalesce(nonNull) );
-        IsType<int>(   Coalesce(nonNull) );
+        int nonNull = 3;
+        NoNullRet(3, nonNull);
+        NoNullRet(3, nonNull.Coalesce());
+        NoNullRet(3, Coalesce(nonNull) );
     }
     
     [TestMethod]

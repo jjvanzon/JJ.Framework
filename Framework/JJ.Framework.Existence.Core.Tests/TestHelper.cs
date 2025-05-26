@@ -2,6 +2,44 @@
 
 internal static class TestHelper
 {
+    /// <inheritdoc cref="_nonullret" />
+    public static void NoNullRet<TRet>(int expected, TRet ret)
+    {
+        AreEqual(expected, ret);
+        IsType(typeof(int), ret);
+        NotType(typeof(int?), ret);
+    }
+
+    /// <inheritdoc cref="_nonullret" />
+    public static void NoNullRet<TRet>(TRet ret)
+    {
+        IsType(typeof(int), ret);
+        NotType(typeof(int?), ret);
+    }
+    
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TRet>(int expected, TRet ret)
+    {
+        AreEqual(expected, ret);
+        IsType(typeof(int?), ret);
+        NotType(typeof(int), ret);
+    }
+    
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TRet>(int? expected, TRet ret)
+    {
+        AreEqual(expected, ret);
+        IsType(typeof(int?), ret);
+        NotType(typeof(int), ret);
+    }
+    
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TValue>(TValue ret)
+    {
+        IsType(typeof(int?), ret);
+        NotType(typeof(int), ret);
+    }
+
     public static readonly string? NullText      = null;
     public static readonly string? NullyEmpty    = "";
     public static readonly string? NullySpace    = " ";
