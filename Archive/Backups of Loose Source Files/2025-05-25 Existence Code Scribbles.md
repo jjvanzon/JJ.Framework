@@ -771,3 +771,34 @@ Plain variadic coalesce method took over the job.
     //public static string Coalesce   (     object? value, string? fallback)                        => HasRef         (value) ? CoalesceStrings($"{value}", fallback           ) : "";
     //public static string Coalesce<T>(     T?      value, string? fallback) where T : struct       => HasStruct(value) ? CoalesceStrings($"{value}", fallback) : CoalesceString(fallback);
     //public static string Coalesce<T>(     T       value, string? fallback) where T : struct       => HasStruct(value) ? CoalesceStrings($"{value}", fallback) : CoalesceString(fallback);
+
+  //public static bool FilledIn<T>([NotNullWhen(true)]       T?              val) where T : notnull => !Default(val);
+  //public static bool FilledIn<T>([NotNullWhen(true)]       T?              val) where T : new()   => !Default(val);
+  //public static bool Has<T>     ([NotNullWhen(true)]       T?              value) where T : notnull => !Default(value);
+  //public static bool Has<T>     ([NotNullWhen(true)]       T?              value) where T : new()   => !Default(value);
+  //public static bool IsNully<T> ([NotNullWhen(false)]      T?              value) where T : notnull =>  Default(value);
+  //public static bool IsNully<T> ([NotNullWhen(false)]      T               value) where T : struct  => !HasStruct<T>(value);
+  //public static bool IsNully<T> ([NotNullWhen(false)]      T?              value) where T : new()   => !HasStruct(value);
+
+  //public static T?      Coalesce<T>(     T?      value                  ) where T : class        => HasRef        (value           ) ? value       : default;
+  //public static T?      Coalesce<T>(     T?      value                  ) where T : new()        => HasRef        (value           ) ? value       : default;
+  //public static T       Coalesce<T>(     T       value                  ) where T : notnull      => !Default      (value           ) ? value       : default;
+
+  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : notnull      => !Default      (value    ) ? value       : Coalesce(fallback)    ;
+  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : struct       => !NullOrDefault(value    ) ? value.Value : Coalesce(fallback)    ;
+  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : notnull      => !Default      (value    ) ? value       : Coalesce(fallback)    ;
+  //public static T      Coalesce<T>(     T       value, T       fallback) where T : struct       => Has(value               ) ? value       : Coalesce(fallback)    ;
+  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : new()        => Has(value                      ) ? value       : Coalesce(fallback)    ;
+  //public static T      Coalesce<T>(     T       value, T       fallback) where T : class, new() => !Default      (value           ) ? value       : Coalesce(fallback)    ;
+  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : new()        => !NullOrDefault(value           ) ? value.Value : Coalesce(fallback)    ;
+
+  //public static bool FilledIn<T>([NotNullWhen(true)]  this T?              val) where T : notnull => !Default(val); // notnull lied. it wouldn't take non nullable structs.
+  //public static bool FilledIn<T>([NotNullWhen(true)]  this T?              val) where T : new()   => !Default(val);
+
+  //public static bool IsNully<T> ([NotNullWhen(false)] this T?              val) where T : notnull =>  Default(val);
+  //public static bool IsNully<T> ([NotNullWhen(false)] this T?              val) where T : new()   =>  NullOrDefault(val);
+  //public static bool IsNully<T> ([NotNullWhen(false)] this T               val) where T : struct  =>  Default(val);
+
+  //public static T?     Coalesce<T>(this T?      value                  ) where T : class        => HasRef        (value           ) ? value       : default;
+  //public static T      Coalesce<T>(this T?      value                  ) where T : new()        => FilledInHelper.Coalesce(value);
+  //public static T      Coalesce<T>(this T?      value                  ) where T : notnull      => FilledInHelper.Coalesce(value);

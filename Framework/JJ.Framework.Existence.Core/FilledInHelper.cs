@@ -4,59 +4,47 @@ namespace JJ.Framework.Existence.Core;
 
 internal static class ExistenceUtility
 {
-    public static bool HasString           ([NotNullWhen(true)]       string?         value)                           => !IsNullOrWhiteSpace(value);
-    public static bool HasString           ([NotNullWhen(true)]       string?         value, bool trimSpace)           => trimSpace ? !IsNullOrWhiteSpace(value): !IsNullOrEmpty(value);
-    public static bool HasRef              ([NotNullWhen(true)]       object?         value)                           => value != null;
-    // TODO: Replace the next 2 into one HasStruct method ??
-    public static bool Default<T>          ([NotNullWhen(true)]       T               value) where T : notnull         => Equals(value, default(T));
-    public static bool HasStructNonNull<T> ([NotNullWhen(true)]       T               value) where T : struct          => !Equals(value, default(T));
-    public static bool HasStructNullable<T>([NotNullWhen(true)]       T?              value) where T : struct          => !Equals(value, default(T?)) && !Equals(value, default(T));
-    public static bool HasCollection<T>    ([NotNullWhen(true)]       IEnumerable<T>? coll )                           => coll?.Any() ?? false;
+    public static bool   HasText          ([NotNullWhen(true)] string?         text)                 => !IsNullOrWhiteSpace(text);
+    public static bool   HasText          ([NotNullWhen(true)] string?         text, bool trimSpace) =>  trimSpace ? !IsNullOrWhiteSpace(text): !IsNullOrEmpty(text);
+    public static bool   HasObj           ([NotNullWhen(true)] object?         obj)                  =>  obj != null;
+    public static bool   HasValtNonNull<T>([NotNullWhen(true)] T               val) where T : struct => !Equals(val, default(T));
+    public static bool   HasValNullable<T>([NotNullWhen(true)] T?              val) where T : struct => !Equals(val, default(T?)) && !Equals(val, default(T));
+    public static bool   HasCollection<T> ([NotNullWhen(true)] IEnumerable<T>? coll)                 =>  coll?.Any() ?? false;
 
-    public static string CoalesceString   (string? value)                                        => HasString(value           ) ? value : value ?? "";
-    public static string CoalesceString   (string? value, bool trimSpace)                        => HasString(value, trimSpace) ? value : value ?? "";
-    public static T      CoalesceRef   <T>(T       value                ) where T : class, new() => HasRef   (value           ) ? value : new T();
-    public static T      CoalesceStructNullable<T>(T?      value                ) where T : struct       => HasStructNullable(value           ) ? value.Value : default;
-    public static T      CoalesceStructNonNull<T>(T      value                ) where T : struct       => HasStructNonNull(value           ) ? value : default;
-
-
-    public static string CoalesceTwoStrings(string? value, string? fallback)                        => HasString(value           ) ? value       : CoalesceString(fallback);
-    public static string CoalesceTwoStrings(string? value, string? fallback, bool trimSpace)        => HasString(value, trimSpace) ? value       : CoalesceString(fallback, trimSpace);
+    public static string CoalesceString     (string? text)                       => HasText       (text)            ? text      : text ?? "";
+    public static string CoalesceString     (string? text, bool trimSpace)       => HasText       (text, trimSpace) ? text      : text ?? "";
+    public static T      CoalesceObj        <T>(T    obj) where T : class, new() => HasObj        (obj)             ? obj       : new T()    ;
+    public static T      CoalesceValNonNull <T>(T    val) where T : struct       => HasValtNonNull(val)             ? val       : default    ;
+    public static T      CoalesceValNullable<T>(T?   val) where T : struct       => HasValNullable(val)             ? val.Value : default    ;
     
-    public static string CoalesceObjectToString<T>(bool hasObj, T obj, string fallback) => !hasObj ? CoalesceString(fallback) : CoalesceTwoStrings($"{obj}", fallback);
+    public static string CoalesceTwoStrings(string? text, string? fallback)                 => HasText(text           ) ? text : CoalesceString(fallback);
+    public static string CoalesceTwoStrings(string? text, string? fallback, bool trimSpace) => HasText(text, trimSpace) ? text : CoalesceString(fallback, trimSpace);
     
-    //public static string CoalesceRefToString(bool hasRef, object? obj, string fallback)       => !hasRef ? CoalesceString(fallback) : CoalesceStrings($"{obj}", fallback);
+    public static string CoalesceSomethingToString<T>(bool hasObj, T obj, string fallback) => !hasObj ? CoalesceString(fallback) : CoalesceTwoStrings($"{obj}", fallback);
 }
 
 public static class FilledInHelper
 {
-    public static bool FilledIn   ([NotNullWhen(true)]       string?         text)                  => HasString(text);
-    public static bool FilledIn   ([NotNullWhen(true)]       string?         text, bool trimSpace)  => HasString(text, trimSpace);
-    public static bool FilledIn   ([NotNullWhen(true)]       object?         obj )                  => HasRef(obj);
-    public static bool FilledIn<T>([NotNullWhen(true)]       T               val ) where T : struct => HasStructNonNull(val);
-    public static bool FilledIn<T>([NotNullWhen(true)]       T?              val ) where T : struct => HasStructNullable(val);
-    public static bool FilledIn<T>([NotNullWhen(true)]       IEnumerable<T>? coll)                  => HasCollection(coll);
-  //public static bool FilledIn<T>([NotNullWhen(true)]       T?              val) where T : notnull => !Default(val);
-  //public static bool FilledIn<T>([NotNullWhen(true)]       T?              val) where T : new()   => !Default(val);
+    public static bool FilledIn   ([NotNullWhen(true)]       string?         text)                  =>  HasText(text);
+    public static bool FilledIn   ([NotNullWhen(true)]       string?         text, bool trimSpace)  =>  HasText(text, trimSpace);
+    public static bool FilledIn   ([NotNullWhen(true)]       object?         obj )                  =>  HasObj(obj);
+    public static bool FilledIn<T>([NotNullWhen(true)]       T               val ) where T : struct =>  HasValtNonNull(val);
+    public static bool FilledIn<T>([NotNullWhen(true)]       T?              val ) where T : struct =>  HasValNullable(val);
+    public static bool FilledIn<T>([NotNullWhen(true)]       IEnumerable<T>? coll)                  =>  HasCollection(coll);
                                                              
-    public static bool Has        ([NotNullWhen(true)]       string?         value)                   => HasString(value);
-    public static bool Has        ([NotNullWhen(true)]       string?         value, bool trimSpace)   => HasString(value, trimSpace);
-    public static bool Has        ([NotNullWhen(true)]       object?         value)                   => HasRef(value);
-    public static bool Has<T>     ([NotNullWhen(true)]       T?              value) where T : struct  => HasStructNullable(value);
-    public static bool Has<T>     ([NotNullWhen(true)]       T               value) where T : struct  => HasStructNonNull(value);
-    public static bool Has<T>     ([NotNullWhen(true)]       IEnumerable<T>? coll )                   => HasCollection(coll);
-  //public static bool Has<T>     ([NotNullWhen(true)]       T?              value) where T : notnull => !Default(value);
-  //public static bool Has<T>     ([NotNullWhen(true)]       T?              value) where T : new()   => !Default(value);
+    public static bool Has        ([NotNullWhen(true)]       string?         text)                  =>  HasText(text);
+    public static bool Has        ([NotNullWhen(true)]       string?         text, bool trimSpace)  =>  HasText(text, trimSpace);
+    public static bool Has        ([NotNullWhen(true)]       object?         obj )                  =>  HasObj(obj);
+    public static bool Has<T>     ([NotNullWhen(true)]       T?              val ) where T : struct =>  HasValNullable(val);
+    public static bool Has<T>     ([NotNullWhen(true)]       T               val ) where T : struct =>  HasValtNonNull(val);
+    public static bool Has<T>     ([NotNullWhen(true)]       IEnumerable<T>? coll)                  =>  HasCollection(coll);
                                                              
-    public static bool IsNully    ([NotNullWhen(false)]      string?         value)                   => !HasString(value);
-    public static bool IsNully    ([NotNullWhen(false)]      string?         value, bool trimSpace)   => !HasString(value, trimSpace);
-    public static bool IsNully    ([NotNullWhen(false)]      object?         value)                   => !HasRef(value);
-    public static bool IsNully<T> ([NotNullWhen(false)]      T?              value) where T : struct  => !HasStructNullable(value);
-    public static bool IsNully<T> ([NotNullWhen(false)]      T               value) where T : struct  => !HasStructNonNull(value);
-    public static bool IsNully<T> ([NotNullWhen(false)]      IEnumerable<T>? coll )                   => !HasCollection(coll);
-  //public static bool IsNully<T> ([NotNullWhen(false)]      T?              value) where T : notnull =>  Default(value);
-  //public static bool IsNully<T> ([NotNullWhen(false)]      T               value) where T : struct  => !HasStruct<T>(value);
-  //public static bool IsNully<T> ([NotNullWhen(false)]      T?              value) where T : new()   => !HasStruct(value);
+    public static bool IsNully    ([NotNullWhen(false)]      string?         text)                  => !HasText(text);
+    public static bool IsNully    ([NotNullWhen(false)]      string?         text, bool trimSpace)  => !HasText(text, trimSpace);
+    public static bool IsNully    ([NotNullWhen(false)]      object?         obj )                  => !HasObj(obj);
+    public static bool IsNully<T> ([NotNullWhen(false)]      T?              val ) where T : struct => !HasValNullable(val);
+    public static bool IsNully<T> ([NotNullWhen(false)]      T               val ) where T : struct => !HasValtNonNull(val);
+    public static bool IsNully<T> ([NotNullWhen(false)]      IEnumerable<T>? coll)                  => !HasCollection(coll);
     
     public static bool Is(string? a, string? b) => Is(a, b, ignoreCase: true);
     public static bool Is(string? a, string? b, bool ignoreCase)
@@ -93,43 +81,32 @@ public static class FilledInHelper
 
     // Plain Coalesce (for some)
     
-    public static string  Coalesce   (     string? value                  )                        => CoalesceString(value);
-    public static T       Coalesce<T>(     T       value                  ) where T : class, new() => CoalesceRef(value);
-    public static T       Coalesce<T>(     T?      value                  ) where T : struct       => CoalesceStructNullable(value);
-  //public static T?      Coalesce<T>(     T?      value                  ) where T : class        => HasRef        (value           ) ? value       : default;
-  //public static T?      Coalesce<T>(     T?      value                  ) where T : new()        => HasRef        (value           ) ? value       : default;
-  //public static T       Coalesce<T>(     T       value                  ) where T : notnull      => !Default      (value           ) ? value       : default;
+    public static string  Coalesce   (     string? text                 )                        => CoalesceString(text);
+    public static T       Coalesce<T>(     T       obj                  ) where T : class, new() => CoalesceObj(obj);
+    public static T       Coalesce<T>(     T?      val                  ) where T : struct       => CoalesceValNullable(val);
     
     // Single Fallback
     
     public static string Coalesce   (     string? text, string? fallback)                        => CoalesceTwoStrings(text, fallback);
     public static string Coalesce   (     string? text, string? fallback, bool trimSpace)        => CoalesceTwoStrings(text, fallback, trimSpace);
-    public static string Coalesce   (     object? val,  string? fallback)                        => CoalesceObjectToString(HasRef   (val), val, fallback);
-    public static string Coalesce<T>(     T?      val,  string? fallback) where T : struct       => CoalesceObjectToString(HasStructNullable(val), val, fallback);
-    public static string Coalesce<T>(     T       val,  string? fallback) where T : struct       => CoalesceObjectToString(HasStructNonNull(val), val, fallback);
+    public static string Coalesce   (     object? obj,  string? fallback)                        => CoalesceSomethingToString(HasObj        (obj), obj, fallback);
+    public static string Coalesce<T>(     T?      val,  string? fallback) where T : struct       => CoalesceSomethingToString(HasValNullable(val), val, fallback);
+    public static string Coalesce<T>(     T       val,  string? fallback) where T : struct       => CoalesceSomethingToString(HasValtNonNull(val), val, fallback);
     
-    public static T      Coalesce<T>(     object? value, T?      fallback) where T : class, new() =>  HasRef           (value) ? (T)value    : CoalesceRef(fallback);
-    public static T      Coalesce<T>(     T?      value, T?      fallback) where T : struct       =>  HasStructNullable(value) ? value.Value : CoalesceStructNullable(fallback);
-    public static T      Coalesce<T>(     T?      value, T       fallback) where T : struct       =>  HasStructNullable(value) ? value.Value : CoalesceStructNonNull (fallback);
-    public static T      Coalesce<T>(     T       value, T?      fallback) where T : struct       =>  HasStructNonNull (value) ? value       : CoalesceStructNullable(fallback);
-    public static T      Coalesce<T>(     T       value, T       fallback) where T : struct       =>  HasStructNonNull (value) ? value       : CoalesceStructNonNull (fallback);
-  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : notnull      => !Default      (value    ) ? value       : Coalesce(fallback)    ;
-  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : struct       => !NullOrDefault(value    ) ? value.Value : Coalesce(fallback)    ;
-  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : notnull      => !Default      (value    ) ? value       : Coalesce(fallback)    ;
-  //public static T      Coalesce<T>(     T       value, T       fallback) where T : struct       => Has(value               ) ? value       : Coalesce(fallback)    ;
-  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : new()        => Has(value                      ) ? value       : Coalesce(fallback)    ;
-  //public static T      Coalesce<T>(     T       value, T       fallback) where T : class, new() => !Default      (value           ) ? value       : Coalesce(fallback)    ;
-  //public static T      Coalesce<T>(     T?      value, T?      fallback) where T : new()        => !NullOrDefault(value           ) ? value.Value : Coalesce(fallback)    ;
+    public static T      Coalesce<T>(     object? obj, T?      fallback) where T : class, new() =>  HasObj        (obj) ? (T)obj    : CoalesceObj        (fallback);
+    public static T      Coalesce<T>(     T?      val, T?      fallback) where T : struct       =>  HasValNullable(val) ? val.Value : CoalesceValNullable(fallback);
+    public static T      Coalesce<T>(     T?      val, T       fallback) where T : struct       =>  HasValNullable(val) ? val.Value : CoalesceValNonNull (fallback);
+    public static T      Coalesce<T>(     T       val, T?      fallback) where T : struct       =>  HasValtNonNull(val) ? val       : CoalesceValNullable(fallback);
+    public static T      Coalesce<T>(     T       val, T       fallback) where T : struct       =>  HasValtNonNull(val) ? val       : CoalesceValNonNull (fallback);
 
     // 2-Stage Fallback (for some)
     
-    public static string Coalesce   (     string? value, string? fallback, string? fallback2)                  => Coalesce(value, Coalesce(fallback, fallback2));
-    public static string Coalesce   (     string? value, string? fallback, string? fallback2, bool trimSpace)  => Coalesce(value, Coalesce(fallback, fallback2, trimSpace), trimSpace);
-    public static string Coalesce<T>(     T       value, T       fallback, string? fallback2)                  => Coalesce(value, Coalesce(fallback, fallback2));
-    public static string Coalesce<T>(     T?      value, T?      fallback, string? fallback2) where T : struct => Coalesce(value, Coalesce(fallback, fallback2));
-
-    public static T      Coalesce<T>(     T       value, T       fallback, T       fallback2) where T : new()  => Coalesce(value, Coalesce(fallback, fallback2));
-    public static T      Coalesce<T>(     T?      value, T?      fallback, T?      fallback2) where T : struct => Coalesce(value, Coalesce(fallback, fallback2));
+    public static string Coalesce   (     string? text, string? fallback, string? fallback2)                  => Coalesce(text, Coalesce(fallback, fallback2));
+    public static string Coalesce   (     string? text, string? fallback, string? fallback2, bool trimSpace)  => Coalesce(text, Coalesce(fallback, fallback2, trimSpace), trimSpace);
+    public static string Coalesce<T>(     T       obj,  T       fallback, string? fallback2)                  => Coalesce(obj,  Coalesce(fallback, fallback2));
+    public static string Coalesce<T>(     T?      val,  T?      fallback, string? fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
+    public static T      Coalesce<T>(     T       obj,  T       fallback, T       fallback2) where T : new()  => Coalesce(obj,  Coalesce(fallback, fallback2));
+    public static T      Coalesce<T>(     T?      val,  T?      fallback, T?      fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
 
     // Variadic Fallbacks
 
@@ -139,10 +116,10 @@ public static class FilledInHelper
         
         string? last = "";
         
-        foreach (var fallback in fallbacks)
+        foreach (var text in fallbacks)
         {
-            if (Has(fallback)) return fallback;
-            last = fallback;
+            if (HasText(text)) return text;
+            last = text;
         }
         
         return last ?? "";
@@ -155,10 +132,10 @@ public static class FilledInHelper
         
         T last = default;
         
-        foreach (var fallback in fallbacks)
+        foreach (var obj in fallbacks)
         {
-            if (Has(fallback)) return fallback;
-            last = fallback;
+            if (HasObj(obj)) return obj;
+            last = obj;
         }
         
         return last ?? new();
@@ -171,17 +148,17 @@ public static class FilledInHelper
 
         T? last = default;
         
-        foreach (var fallback in fallbacks)
+        foreach (var val in fallbacks)
         {
-            if (Has(fallback))
+            if (HasValNullable(val))
             {
-                if (fallback is T ret)
+                if (val is T ret)
                 {
                     return ret;
                 }
             }
             
-            last = fallback;
+            last = val;
         }
         
         return last ?? default(T);
