@@ -4,7 +4,7 @@
     <Version>2.4.$(BuildNum)</Version>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj" />
   </ItemGroup>
 </Project>

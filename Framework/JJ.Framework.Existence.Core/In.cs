@@ -15,6 +15,12 @@ public static partial class FilledInHelper
         ThrowIfNull(source);
         return source.Any(x => (x ?? "").Equals(match, ignoreCase.ToStringComparison()));
     }
+     
+    // Copied from Text.Core to prevent shipping a wide dependency.
+    private static StringComparison ToStringComparison(this bool ignoreCase)
+    {
+        return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+    }
 }
 
 public static partial class FilledInExtensions

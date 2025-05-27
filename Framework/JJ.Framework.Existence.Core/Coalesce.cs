@@ -129,7 +129,7 @@ public static partial class FilledInExtensions
     public static T      Coalesce<T>(this                       IEnumerable<T?>?      fallbacks) where T : new()  => FilledInHelper.Coalesce(fallbacks);
     public static T      Coalesce<T>(this                       IEnumerable<T?>?      fallbacks) where T : struct => FilledInHelper.Coalesce(fallbacks);
 
-    public static string Coalesce   (this string? first, params IEnumerable<string?>? fallbacks)                  => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
-    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : new()  => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
-    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : struct => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
+    public static string Coalesce   (this string? first, params IEnumerable<string?>? fallbacks)                  => FilledInHelper.Coalesce(new [] { first }.Concat(fallbacks ?? [ ]));
+    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : new()  => FilledInHelper.Coalesce(new [] { first }.Concat(fallbacks ?? [ ]));
+    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : struct => FilledInHelper.Coalesce(new [] { first }.Concat(fallbacks ?? [ ]));
 }
