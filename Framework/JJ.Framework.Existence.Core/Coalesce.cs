@@ -4,13 +4,13 @@ internal static partial class ExistenceUtility
 { 
     public static string CoalesceText        (string? text)                                   => HasText       (text)            ? text      : text ?? "";
     public static string CoalesceText        (string? text, bool trimSpace)                   => HasText       (text, trimSpace) ? text      : text ?? "";
-    public static T      CoalesceObject      <T>(T    obj ) where T : class, new()            => HasObject     (obj)             ? obj       : new T()   ;
+    public static T      CoalesceObject      <T>(T?   obj ) where T : class, new()            => HasObject     (obj)             ? obj       : new T()   ;
     public static T      CoalesceValNonNull  <T>(T    val ) where T : struct                  => HasValNonNull (val)             ? val       : default   ;
     public static T      CoalesceValNullable <T>(T?   val ) where T : struct                  => HasValNullable(val)             ? val.Value : default   ;
     
     public static string CoalesceTwoTexts    (string? text, string? fallback)                 => HasText(text           ) ? text : CoalesceText(fallback);
     public static string CoalesceTwoTexts    (string? text, string? fallback, bool trimSpace) => HasText(text, trimSpace) ? text : CoalesceText(fallback, trimSpace);
-    public static string CoalesceAnyToText<T>(bool hasObj, T obj, string fallback)            => !hasObj ? CoalesceText(fallback) : CoalesceTwoTexts($"{obj}", fallback);
+    public static string CoalesceAnyToText<T>(bool hasObj, T obj, string? fallback)           => !hasObj ? CoalesceText(fallback) : CoalesceTwoTexts($"{obj}", fallback);
 }
 
 public static partial class FilledInHelper
@@ -62,7 +62,7 @@ public static partial class FilledInHelper
         where T: new()
     {
         if (fallbacks == null) return new T();
-        T last = default;
+        T? last = default;
         foreach (var obj in fallbacks)
         {
             if (HasObject(obj)) return obj;
