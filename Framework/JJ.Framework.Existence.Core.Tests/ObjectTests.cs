@@ -6,35 +6,35 @@ public class ObjectTests
     [TestMethod]
     public void FilledIn_Object_True()
     {
-        IsTrue(Has(NonNullObject));
-        IsTrue(Has(NullableFilled));
-        IsTrue(FilledIn(NonNullObject));
-        IsTrue(FilledIn(NullableFilled));
-        IsTrue(NonNullObject.FilledIn());
-        IsTrue(NullableFilled.FilledIn());
+        IsTrue(Has(NonNullObj));
+        IsTrue(Has(NullyFilled));
+        IsTrue(FilledIn(NonNullObj));
+        IsTrue(FilledIn(NullyFilled));
+        IsTrue(NonNullObj.FilledIn());
+        IsTrue(NullyFilled.FilledIn());
     }
     
     [TestMethod]
     public void FilledIn_Object_False()
     {
-        IsFalse(Has(NullObject));
-        IsFalse(FilledIn(NullObject));
-        IsFalse(NullObject.FilledIn());
+        IsFalse(Has(NullObj));
+        IsFalse(FilledIn(NullObj));
+        IsFalse(NullObj.FilledIn());
     }
     
     [TestMethod]
     public void IsNully_Object_False()
     {
-        IsFalse(IsNully(NonNullObject));
-        IsFalse(IsNully(NullableFilled));
-        IsFalse(NonNullObject.IsNully());
-        IsFalse(NullableFilled.IsNully());
+        IsFalse(IsNully(NonNullObj));
+        IsFalse(IsNully(NullyFilled));
+        IsFalse(NonNullObj.IsNully());
+        IsFalse(NullyFilled.IsNully());
     }
     
     [TestMethod]
     public void IsNully_Object_True()
     {
-        IsTrue(IsNully(NullObject));
-        IsTrue(NullObject.IsNully());
+        IsTrue(IsNully(NullObj));
+        IsTrue(NullObj.IsNully());
     }
 }

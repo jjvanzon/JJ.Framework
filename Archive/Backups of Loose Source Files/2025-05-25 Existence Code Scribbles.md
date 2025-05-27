@@ -701,6 +701,43 @@ Plain variadic coalesce method took over the job.
     //    IsType  (typeof(int),  actual);
     //    NotType (typeof(int?), actual);
     //}
+
+    
+    ///// <inheritdoc cref="_nonullret" />
+    //public static void NoNullRet<TRet>(TRet expected, TRet ret)
+    //    where TRet : notnull
+    //{
+    //    AreEqual(expected, ret);
+    //}
+    
+    /// <inheritdoc cref="_nonullret" />
+    //public static void NullRet<TRet>(TRet? expected)
+    //    where TRet : class
+    //{
+        //AreEqual(expected, ret);
+        // From ChatGPT (doesn't work):
+        //if (typeof(TRet) == typeof(object)) _ = (TRet?)null;
+    //}    
+    
+    ///// <inheritdoc cref="_nonullret" />
+    //public static void NullRet<TRet>(TRet? expected, TRet? ret)
+    //    where TRet : class
+    //{
+    //    AreEqual(expected, ret);
+    //}
+
+    /// <inheritdoc cref="_nonullret" />
+    public static void NoNullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        where TRet : struct
+    {
+        IsType(typeof(int), ret);
+        NotType(typeof(int?), ret);
+    }
+        
+        // TODO: Check return types. After extending Testing.Core's helpers.
+        //IsOfType<StringBuilder>(() => Coalesce(NullObject,           NullObject));
+        // TODO: More tests
+
 ```
 
 ### Testing.Core IsType
@@ -718,3 +755,19 @@ Plain variadic coalesce method took over the job.
     //    => Check(typeof(T), message, () => CompileTimeType(obj) != typeof(T));
     //    => Check(typeof(T), message, () => CompileTimeType(obj) != typeof(T));
 ```
+
+### Coalesce
+
+  //public static bool NullRef            ([NotNullWhen(true)]       object?         value)                           => value == null;
+  //public static bool NotDefault<T>      ([NotNullWhen(true)]       T               value) where T : notnull         => !Equals(value, default(T));
+  //public static bool NotNullOrDefault<T>([NotNullWhen(true)]       T?              value) where T : struct          => !Equals(value, default(T?)) && !Equals(value, default(T));
+  //public static bool NotDefault<T>      ([NotNullWhen(true)]       T               value) where T : new()           => !Equals(value, default(T));
+  //public static bool NotDefault<T>      ([NotNullWhen(true)]       T               value) where T : notnull, new()  => !Equals(value, default(T));
+  //public static bool NotHasStruct<T>    ([NotNullWhen(true)]       T?              value) where T : struct          => Equals(value, default(T?)) ||  Equals(value, default(T));
+
+    //public static T      Coalesce<T>(     T       value                  ) where T : struct => Has(value           ) ? value       : new();
+    //public static T      Coalesce<T>(this T       value                  ) where T : struct => FilledInHelper.Coalesce(value);
+
+    //public static string Coalesce   (     object? value, string? fallback)                        => HasRef         (value) ? CoalesceStrings($"{value}", fallback           ) : "";
+    //public static string Coalesce<T>(     T?      value, string? fallback) where T : struct       => HasStruct(value) ? CoalesceStrings($"{value}", fallback) : CoalesceString(fallback);
+    //public static string Coalesce<T>(     T       value, string? fallback) where T : struct       => HasStruct(value) ? CoalesceStrings($"{value}", fallback) : CoalesceString(fallback);

@@ -16,3 +16,4 @@ global using static JJ.Framework.Testing.Core.AssertHelperCore;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Existence.Core.Tests.TestHelper;
 global using static JJ.Framework.Reflection.Core.Reflect;
+global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;

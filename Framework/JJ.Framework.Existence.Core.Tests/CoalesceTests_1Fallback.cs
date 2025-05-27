@@ -50,12 +50,12 @@ public class CoalesceTests_1Fallback
     [TestMethod]
     public void Coalesce_SingleFallback_ObjectToString()
     {
-        AreEqual("None",    Coalesce(NullObject,     "None"));
-        AreEqual("NonNull", Coalesce(NonNullObject,  "None"));
-        AreEqual("Filled",  Coalesce(NullableFilled, "None"));
-        AreEqual("NonNull", NonNullObject .Coalesce( "None"));
-        AreEqual("None",    NullObject    .Coalesce( "None"));
-        AreEqual("Filled",  NullableFilled.Coalesce( "None"));
+        AreEqual("None",    Coalesce(NullObj,    "None"));
+        AreEqual("NonNull", Coalesce(NonNullObj, "None"));
+        AreEqual("Filled",  Coalesce(NullyFilled,   "None"));
+        AreEqual("NonNull", NonNullObj.Coalesce( "None"));
+        AreEqual("None",    NullObj   .Coalesce( "None"));
+        AreEqual("Filled",  NullyFilled  .Coalesce( "None"));
     }
 
     [TestMethod]
@@ -88,10 +88,10 @@ public class CoalesceTests_1Fallback
     public void Coalesce_SingleFallback_Structs()
     {
         // Assert input state
-        NullRet(NullNum);
-        NullRet(Nully0);
-        NullRet(Nully1);
-        NullRet(Nully2);
+        NullRet(null, NullNum);
+        NullRet(0,    Nully0);
+        NullRet(1,    Nully1);
+        NullRet(2,    Nully2);
         NoNullRet(0);
         NoNullRet(1);
         NoNullRet(2);
@@ -201,30 +201,24 @@ public class CoalesceTests_1Fallback
     public void Coalesce_SingleFallback_Objects()
     {
         // TODO: Coalesce returns a nullable reference type, instead of non-nullable reference type.
-        NotNull (                Coalesce(NullObject,     NullObject));
-        AreEqual(NonNullObject,  Coalesce(NonNullObject,  NullObject));
-        AreEqual(NullableFilled, Coalesce(NullableFilled, NullObject));
-        AreEqual(NonNullObject,  Coalesce(NullObject,     NonNullObject));
-        AreEqual(NonNullObject,  Coalesce(NonNullObject,  NonNullObject));
-        AreEqual(NullableFilled, Coalesce(NullableFilled, NonNullObject));
-        AreEqual(NullableFilled, Coalesce(NullObject,     NullableFilled));
-        AreEqual(NonNullObject,  Coalesce(NonNullObject,  NullableFilled));
-        AreEqual(NullableFilled, Coalesce(NullableFilled, NullableFilled));
-
-        NotNull (                NullObject    .Coalesce(NullObject));
-        AreEqual(NonNullObject,  NonNullObject .Coalesce(NullObject));
-        AreEqual(NullableFilled, NullableFilled.Coalesce(NullObject));
-        AreEqual(NonNullObject,  NullObject    .Coalesce(NonNullObject));
-        AreEqual(NonNullObject,  NonNullObject .Coalesce(NonNullObject));
-        AreEqual(NullableFilled, NullableFilled.Coalesce(NonNullObject));
-        AreEqual(NullableFilled, NullObject    .Coalesce(NullableFilled));
-        AreEqual(NonNullObject,  NonNullObject .Coalesce(NullableFilled));
-        AreEqual(NullableFilled, NullableFilled.Coalesce(NullableFilled));
-
-        // TODO: Check for non-null return type. Also in the other tests.
-        
-        // TODO: Check return types. After extending Testing.Core's helpers.
-        //IsOfType<StringBuilder>(() => Coalesce(NullObject,           NullObject));
-        // TODO: More tests
+        NoNullRet(             Coalesce(NullObj,     NullObj    ));
+        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NullObj    ));
+        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NullObj    ));
+        NoNullRet(NullyFilled, Coalesce(NullyFilled, NullObj    ));
+        NoNullRet(NonNullObj,  Coalesce(NullObj,     NonNullObj ));
+        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NonNullObj ));
+        NoNullRet(NullyFilled, Coalesce(NullyFilled, NonNullObj ));
+        NoNullRet(NullyFilled, Coalesce(NullObj,     NullyFilled));
+        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NullyFilled));
+        NoNullRet(NullyFilled, Coalesce(NullyFilled, NullyFilled));
+        NoNullRet(             NullObj    .Coalesce(NullObj     ));
+        NoNullRet(NonNullObj,  NonNullObj .Coalesce(NullObj     ));
+        NoNullRet(NullyFilled, NullyFilled.Coalesce(NullObj     ));
+        NoNullRet(NonNullObj,  NullObj    .Coalesce(NonNullObj  ));
+        NoNullRet(NonNullObj,  NonNullObj .Coalesce(NonNullObj  ));
+        NoNullRet(NullyFilled, NullyFilled.Coalesce(NonNullObj  ));
+        NoNullRet(NullyFilled, NullObj    .Coalesce(NullyFilled ));
+        NoNullRet(NonNullObj,  NonNullObj .Coalesce(NullyFilled ));
+        NoNullRet(NullyFilled, NullyFilled.Coalesce(NullyFilled ));
     }
 }

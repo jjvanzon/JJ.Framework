@@ -65,7 +65,8 @@ public class CollectionTests
             IsTrue(FilledIn(NullyFilledIEnumerable));
         }
     }
-        
+      
+    
     [TestMethod]
     public void FilledIn_Collections_False()
     {

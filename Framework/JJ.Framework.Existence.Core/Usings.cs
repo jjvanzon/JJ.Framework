@@ -12,5 +12,6 @@ global using static System.StringComparison;
 global using static System.ArgumentException;
 global using static System.ArgumentNullException;
 global using static JJ.Framework.PlatformCompatibility.Core.ExceptionPlatformSupport;
+global using static JJ.Framework.Existence.Core.ExistenceUtility;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 

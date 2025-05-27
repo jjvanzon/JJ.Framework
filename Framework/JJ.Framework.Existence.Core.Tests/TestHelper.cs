@@ -2,42 +2,61 @@
 
 internal static class TestHelper
 {
-    /// <inheritdoc cref="_nonullret" />
-    public static void NoNullRet<TRet>(int expected, TRet ret)
-    {
-        AreEqual(expected, ret);
-        IsType(typeof(int), ret);
-        NotType(typeof(int?), ret);
-    }
+    // For objects
 
     /// <inheritdoc cref="_nonullret" />
-    public static void NoNullRet<TRet>(TRet ret)
+    public static void NoNullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        where TRet : notnull
+        => NotNull(ret, message);
+
+    ///// <inheritdoc cref="_nonullret" />
+    //public static void NoNullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
+    //    where TRet : notnull
+    //    => NotNull(ret, message);
+    
+    /// <inheritdoc cref="_nonullret" />
+    public static void NoNullRet<TRet>(TRet expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        where TRet : notnull
     {
-        IsType(typeof(int), ret);
-        NotType(typeof(int?), ret);
+        NotNull(ret, message);
+        AreEqual(expected, ret, message);
+    }
+    
+    // For int
+    
+    /// <inheritdoc cref="_nonullret" />
+    public static void NoNullRet<TRet>(int expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        where TRet : struct
+    {
+        AreEqual(expected, ret, message);
+        IsType(typeof(int), ret, message);
+        NotType(typeof(int?), ret, message);
+    }
+
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TRet>(int expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        //where TRet : struct?
+    {
+        AreEqual(expected, ret, message);
+        IsType(typeof(int?), ret, message);
+        NotType(typeof(int), ret, message);
     }
     
     /// <inheritdoc cref="_nullret" />
-    public static void NullRet<TRet>(int expected, TRet ret)
+    public static void NullRet<TRet>(int? expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        //where TRet : struct
     {
-        AreEqual(expected, ret);
-        IsType(typeof(int?), ret);
-        NotType(typeof(int), ret);
+        AreEqual(expected, ret, message);
+        IsType(typeof(int?), ret, message);
+        NotType(typeof(int), ret, message);
     }
-    
+
     /// <inheritdoc cref="_nullret" />
-    public static void NullRet<TRet>(int? expected, TRet ret)
+    public static void NullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        //where TRet : struct
     {
-        AreEqual(expected, ret);
-        IsType(typeof(int?), ret);
-        NotType(typeof(int), ret);
-    }
-    
-    /// <inheritdoc cref="_nullret" />
-    public static void NullRet<TValue>(TValue ret)
-    {
-        IsType(typeof(int?), ret);
-        NotType(typeof(int), ret);
+        IsType(typeof(int?), ret, message);
+        NotType(typeof(int), ret, message);
     }
 
     public static readonly string? NullText      = null;
@@ -60,9 +79,9 @@ internal static class TestHelper
     public static readonly int  NonNull3 = 3;
     public static readonly int  NonNull4 = 4;
     
-    public static readonly StringBuilder? NullObject     = null;
-    public static readonly StringBuilder  NonNullObject  = new("NonNull");
-    public static readonly StringBuilder? NullableFilled = new("Filled");
+    public static readonly StringBuilder? NullObj     = null;
+    public static readonly StringBuilder  NonNullObj  = new("NonNull");
+    public static readonly StringBuilder? NullyFilled = new("Filled");
     
     public static readonly int[]?                    FilledArray                      = [ 1, 2, 3 ];
     public static readonly List               <int>  FilledList                       = [ 1, 2, 3 ];
@@ -84,15 +103,15 @@ internal static class TestHelper
     public static readonly IReadOnlyCollection<int>? NullyFilledIReadOnlyCollection   = [ 1, 2, 3 ];
     public static readonly IEnumerable        <int>? NullyFilledIEnumerable           = [ 1, 2, 3 ];
     
-    public static readonly int[]                     EmptyArray                       = [ ];
-    public static readonly List               <int>  EmptyList                        = [ ];
-    public static readonly HashSet            <int>  EmptyHashSet                     = [ ];
-    public static readonly IList              <int>  EmptyIList                       = [ ];
-    public static readonly ISet               <int>  EmptyISet       = new HashSet<int> { };
-    public static readonly ICollection        <int>  EmptyICollection                 = [ ];
-    public static readonly IReadOnlyList      <int>  EmptyIReadOnlyList               = [ ];
-    public static readonly IReadOnlyCollection<int>  EmptyIReadOnlyCollection         = [ ];
-    public static readonly IEnumerable        <int>  EmptyIEnumerable                 = [ ];
+    public static readonly int[]                     EmptyArray                          = [ ];
+    public static readonly List               <int>  EmptyList                           = [ ];
+    public static readonly HashSet            <int>  EmptyHashSet                        = [ ];
+    public static readonly IList              <int>  EmptyIList                          = [ ];
+    public static readonly ISet               <int>  EmptyISet          = new HashSet<int> { };
+    public static readonly ICollection        <int>  EmptyICollection                    = [ ];
+    public static readonly IReadOnlyList      <int>  EmptyIReadOnlyList                  = [ ];
+    public static readonly IReadOnlyCollection<int>  EmptyIReadOnlyCollection            = [ ];
+    public static readonly IEnumerable        <int>  EmptyIEnumerable                    = [ ];
     
     public static readonly int[]?                    NullableEmptyArray                  = [ ];
     public static readonly List               <int>? NullableEmptyList                   = [ ];

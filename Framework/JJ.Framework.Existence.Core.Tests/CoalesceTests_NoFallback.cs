@@ -19,19 +19,18 @@ public class CoalesceTests_NoFallback
     [TestMethod]
     public void Coalesce_Structs_Nullable_NoFallback()
     {
-        IsNull   (   NullNum           );
-        NullRet  (   NullNum           );
-        NoNullRet(0, NullNum.Coalesce());
-        NoNullRet(0, Coalesce(NullNum) );
-        NullRet  (0, Nully0            );
-        NoNullRet(0, Nully0.Coalesce() );
-        NoNullRet(0, Coalesce(Nully0)  );
-        NullRet  (1, Nully1            );
-        NoNullRet(1, Nully1.Coalesce() );
-        NoNullRet(1, Coalesce(Nully1)  );
-        NullRet  (2, Nully2            );
-        NoNullRet(2, Nully2.Coalesce() );
-        NoNullRet(2, Coalesce(Nully2)  );
+        NullRet  (null, NullNum           );
+        NoNullRet(0,    NullNum.Coalesce());
+        NoNullRet(0,    Coalesce(NullNum) );
+        NullRet  (0,    Nully0            );
+        NoNullRet(0,    Nully0.Coalesce() );
+        NoNullRet(0,    Coalesce(Nully0)  );
+        NullRet  (1,    Nully1            );
+        NoNullRet(1,    Nully1.Coalesce() );
+        NoNullRet(1,    Coalesce(Nully1)  );
+        NullRet  (2,    Nully2            );
+        NoNullRet(2,    Nully2.Coalesce() );
+        NoNullRet(2,    Coalesce(Nully2)  );
     }
     
     [TestMethod]
@@ -46,21 +45,21 @@ public class CoalesceTests_NoFallback
     [TestMethod]
     public void Coalesce_Objects_NoFallback()
     {
-        NotNull(NonNullObject);
-        NotNull(Coalesce(NonNullObject));
-        NotNull(NonNullObject.Coalesce());
+        NoNullRet(NonNullObj);
+        NoNullRet(Coalesce(NonNullObj));
+        NoNullRet(NonNullObj.Coalesce());
         
-        IsNull (NullObject);
-        NotNull(Coalesce(NullObject));
-        NotNull(NullObject.Coalesce());
+        IsNull(NullObj);
+        NoNullRet(Coalesce(NullObj));
+        NoNullRet(NullObj.Coalesce()); // TODO: Solve nullability mismatch.
     }
     
     [TestMethod]
     public void Coalesce_Collection_NoFallback()
     {
         List<string>? coll = null;
-        List<string> result = Coalesce(coll);
+        List<string> result = Coalesce( [ coll ] );
         IsNull(coll);
-        NotNull(result);
+        NoNullRet(Coalesce(coll));
     }
 }
