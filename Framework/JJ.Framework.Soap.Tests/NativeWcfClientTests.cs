@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,8 +26,8 @@ namespace JJ.Framework.Soap.Tests
             {
                 ComplicatedType obj2 = client.SendAndGetComplicatedObject(obj1);
             }
-			catch (EndpointNotFoundException ex)
-			{
+			catch (CommunicationException ex)
+            {
                 TestHelper.AssertServiceConnectionFailed(ex);
             }
         }
