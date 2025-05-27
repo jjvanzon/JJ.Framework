@@ -16,6 +16,7 @@ public static class FlagHelper
     
     public static int ClearFlags(int value, params ICollection<int> flags)
     {
+        ThrowIfNull(flags);
         foreach (int flag in flags)
         {
             value = ClearFlag(value, flag);
@@ -25,6 +26,7 @@ public static class FlagHelper
     
     public static int SetFlags(int value, params ICollection<int> flags)
     {
+        ThrowIfNull(flags);
         foreach (int flag in flags)
         {
             value = SetFlag(value, flag);
@@ -34,6 +36,7 @@ public static class FlagHelper
 
     public static TEnum SetFlags<TEnum>(TEnum value, params ICollection<TEnum> flags) where TEnum : Enum
     {
+        ThrowIfNull(flags);
         foreach (TEnum flag in flags)
         {
             value = SetFlag(value, flag);
@@ -43,6 +46,7 @@ public static class FlagHelper
 
     public static TEnum ClearFlags<TEnum>(TEnum value, params ICollection<TEnum> flags) where TEnum : Enum
     {
+        ThrowIfNull(flags);
         foreach (TEnum flag in flags)
         {
             value = ClearFlag(value, flag);

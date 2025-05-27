@@ -8,9 +8,17 @@
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common.Core</PackageProjectUrl>    
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors><!-- API surface nulls -->
+    <!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
+    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc-->
+  </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
+    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj" />
   </ItemGroup>
 </Project>
