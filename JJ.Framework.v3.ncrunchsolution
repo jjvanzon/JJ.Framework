@@ -1,6 +1,8 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
+    <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
     <EnableRDI>False</EnableRDI>
     <MetricsExclusionList>
       <Value>External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj</Value>
@@ -264,6 +266,7 @@
       <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:netstandard2.1</Value>
     </MetricsExclusionList>
+    <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>

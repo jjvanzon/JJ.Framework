@@ -10,7 +10,7 @@
     <WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- ❌ API surface nulls -->
     <!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
-    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--> <!-- 〰 Missing doc -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn> <!-- 〰 Missing doc -->
   </PropertyGroup>
 
   <ItemGroup>
