@@ -1220,6 +1220,7 @@
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Puzzle.NPersist.Framework.NET 3.5.csproj.DotSettings" />
     <None Include="PuzzleKey.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

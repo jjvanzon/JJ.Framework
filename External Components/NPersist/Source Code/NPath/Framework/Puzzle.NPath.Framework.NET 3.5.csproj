@@ -295,6 +295,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Puzzle.NPath.Framework.NET 3.5.csproj.DotSettings" />
     <None Include="PuzzleKey.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

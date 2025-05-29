@@ -230,6 +230,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Puzzle.NCore.Framework NET 3.5.csproj.DotSettings" />
     <None Include="PuzzleKey.snk" />
   </ItemGroup>
   <ItemGroup>
