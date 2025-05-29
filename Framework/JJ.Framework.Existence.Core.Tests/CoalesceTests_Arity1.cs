@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_NoFallback
+public class CoalesceTests_Arity1
 {
     [TestMethod]
     public void Coalesce_Strings_NoFallback()
@@ -51,7 +51,7 @@ public class CoalesceTests_NoFallback
         
         IsNull(NullObj);
         NoNullRet(Coalesce(NullObj));
-        NoNullRet(NullObj.Coalesce()); // TODO: Solve nullability mismatch.
+        NoNullRet(NullObj.Coalesce());
     }
     
     [TestMethod]

@@ -758,6 +758,8 @@ Plain variadic coalesce method took over the job.
 
 ### Coalesce
 
+```cs
+
   //public static bool NullRef            ([NotNullWhen(true)]       object?         value)                           => value == null;
   //public static bool NotDefault<T>      ([NotNullWhen(true)]       T               value) where T : notnull         => !Equals(value, default(T));
   //public static bool NotNullOrDefault<T>([NotNullWhen(true)]       T?              value) where T : struct          => !Equals(value, default(T?)) && !Equals(value, default(T));
@@ -802,3 +804,27 @@ Plain variadic coalesce method took over the job.
   //public static T?     Coalesce<T>(this T?      value                  ) where T : class        => HasRef        (value           ) ? value       : default;
   //public static T      Coalesce<T>(this T?      value                  ) where T : new()        => FilledInHelper.Coalesce(value);
   //public static T      Coalesce<T>(this T?      value                  ) where T : notnull      => FilledInHelper.Coalesce(value);
+```
+
+### From CoalesceManyVals
+
+```cs
+    //if (HasValNully(val))
+    //{
+    //    if (val is T ret)
+    //    {
+    //        return ret;
+    //    }
+    //}
+```
+
+### Coalesce
+
+```cs
+    //public static string Coalesce   (this string? text, string? fallback, string? fallback2)                  => Coalesce(text, Coalesce(fallback, fallback2));
+    //public static string Coalesce   (this string? text, string? fallback, string? fallback2, bool trimSpace)  => Coalesce(text, Coalesce(fallback, fallback2, trimSpace), trimSpace);
+    //public static string Coalesce<T>(this T       obj,  T       fallback, string? fallback2)                  => Coalesce(obj,  Coalesce(fallback, fallback2));
+    //public static string Coalesce<T>(this T?      val,  T?      fallback, string? fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
+    //public static T      Coalesce<T>(this T       obj,  T       fallback, T       fallback2) where T : new()  => Coalesce(obj,  Coalesce(fallback, fallback2));
+    //public static T      Coalesce<T>(this T?      val,  T?      fallback, T?      fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
+```
