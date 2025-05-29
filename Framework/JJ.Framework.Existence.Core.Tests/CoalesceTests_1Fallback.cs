@@ -200,25 +200,24 @@ public class CoalesceTests_1Fallback
     [TestMethod]
     public void Coalesce_SingleFallback_Objects()
     {
-        // TODO: Coalesce returns a nullable reference type, instead of non-nullable reference type.
-        NoNullRet(             Coalesce(NullObj,     NullObj    ));
-        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NullObj    ));
-        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NullObj    ));
-        NoNullRet(NullyFilled, Coalesce(NullyFilled, NullObj    ));
-        NoNullRet(NonNullObj,  Coalesce(NullObj,     NonNullObj ));
-        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NonNullObj ));
-        NoNullRet(NullyFilled, Coalesce(NullyFilled, NonNullObj ));
-        NoNullRet(NullyFilled, Coalesce(NullObj,     NullyFilled));
-        NoNullRet(NonNullObj,  Coalesce(NonNullObj,  NullyFilled));
-        NoNullRet(NullyFilled, Coalesce(NullyFilled, NullyFilled));
-        NoNullRet(             NullObj    .Coalesce(NullObj     ));
-        NoNullRet(NonNullObj,  NonNullObj .Coalesce(NullObj     ));
-        NoNullRet(NullyFilled, NullyFilled.Coalesce(NullObj     ));
-        NoNullRet(NonNullObj,  NullObj    .Coalesce(NonNullObj  ));
-        NoNullRet(NonNullObj,  NonNullObj .Coalesce(NonNullObj  ));
-        NoNullRet(NullyFilled, NullyFilled.Coalesce(NonNullObj  ));
-        NoNullRet(NullyFilled, NullObj    .Coalesce(NullyFilled ));
-        NoNullRet(NonNullObj,  NonNullObj .Coalesce(NullyFilled ));
-        NoNullRet(NullyFilled, NullyFilled.Coalesce(NullyFilled ));
+        NoNullRet(              Coalesce(NullObj,     NullObj    ));
+        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NullObj    ));
+        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NullObj    ));
+        NoNullRet(NullyFilled!, Coalesce(NullyFilled, NullObj    ));
+        NoNullRet(NonNullObj,   Coalesce(NullObj,     NonNullObj ));
+        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NonNullObj ));
+        NoNullRet(NullyFilled!, Coalesce(NullyFilled, NonNullObj ));
+        NoNullRet(NullyFilled!, Coalesce(NullObj,     NullyFilled));
+        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NullyFilled));
+        NoNullRet(NullyFilled!, Coalesce(NullyFilled, NullyFilled));
+        NoNullRet(              NullObj    .Coalesce(NullObj     ));
+        NoNullRet(NonNullObj,   NonNullObj .Coalesce(NullObj     ));
+        NoNullRet(NullyFilled!, NullyFilled.Coalesce(NullObj     ));
+        NoNullRet(NonNullObj,   NullObj    .Coalesce(NonNullObj  ));
+        NoNullRet(NonNullObj,   NonNullObj .Coalesce(NonNullObj  ));
+        NoNullRet(NullyFilled!, NullyFilled.Coalesce(NonNullObj  ));
+        NoNullRet(NullyFilled!, NullObj    .Coalesce(NullyFilled ));
+        NoNullRet(NonNullObj,   NonNullObj .Coalesce(NullyFilled ));
+        NoNullRet(NullyFilled!, NullyFilled.Coalesce(NullyFilled ));
     }
 }
