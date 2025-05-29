@@ -18,45 +18,6 @@ internal static partial class ExistenceUtility
     
     public static  T      CoalesceTwoObjects    <T>(T? obj, T? fallback) where T : class, new()  => HasObject  (obj) ? obj       : CoalesceObject(fallback);
     public static  T      CoalesceTwoNullyVals  <T>(T? val, T? fallback) where T : struct        => HasValNully(val) ? val.Value : CoalesceValNully(fallback);
-}
-
-public static partial class FilledInHelper
-{ 
-    // Plain Coalesce (for some)
-    
-    public static string Coalesce   (     string? text)                        => CoalesceText    (text);
-    public static string Coalesce   (     string? text, bool trimSpace)        => CoalesceText    (text, trimSpace);
-    public static T      Coalesce<T>(     T?      obj ) where T : class, new() => CoalesceObject  (obj);
-    public static T      Coalesce<T>(     T?      val ) where T : struct       => CoalesceValNully(val);
-    
-    // Single Fallback
-    
-    public static string Coalesce   (     string? text, string? fallback)                        => CoalesceTwoTexts      (text, fallback);
-    public static string Coalesce   (     string? text, string? fallback, bool trimSpace)        => CoalesceTwoTexts      (text, fallback, trimSpace);
-    public static string Coalesce   (     object? obj,  string? fallback)                        => CoalesceObjectToText  (obj,  fallback);
-    public static string Coalesce<T>(     T?      val,  string? fallback) where T : struct       => CoalesceNullyValToText(val,  fallback);
-    public static string Coalesce<T>(     T       val,  string? fallback) where T : struct       => CoalesceValToText     (val,  fallback);
-    
-    public static T      Coalesce<T>(     object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects  (obj as T, fallback);
-    public static T      Coalesce<T>(     T?      val,  T?      fallback) where T : struct       => CoalesceTwoNullyVals(val,      fallback);
-    public static T      Coalesce<T>(     T?      val,  T       fallback) where T : struct       => HasValNully(val) ? val.Value : CoalesceVal     (fallback);
-    public static T      Coalesce<T>(     T       val,  T?      fallback) where T : struct       => HasVal     (val) ? val       : CoalesceValNully(fallback);
-    public static T      Coalesce<T>(     T       val,  T       fallback) where T : struct       => HasVal     (val) ? val       : CoalesceVal     (fallback);
-
-    // 2-Stage Fallback (for some)
-    
-    public static string Coalesce   (     string? text, string? fallback, string? fallback2)                  => Coalesce(text, Coalesce(fallback, fallback2));
-    public static string Coalesce   (     string? text, string? fallback, string? fallback2, bool trimSpace)  => Coalesce(text, Coalesce(fallback, fallback2, trimSpace), trimSpace);
-    public static string Coalesce<T>(     T       obj,  T       fallback, string? fallback2)                  => Coalesce(obj,  Coalesce(fallback, fallback2));
-    public static string Coalesce<T>(     T?      val,  T?      fallback, string? fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
-    public static T      Coalesce<T>(     T       obj,  T       fallback, T       fallback2) where T : new()  => Coalesce(obj,  Coalesce(fallback, fallback2));
-    public static T      Coalesce<T>(     T?      val,  T?      fallback, T?      fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
-
-    // Multi-Stage Fallbacks
-
-    public static string Coalesce   (params IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts(fallbacks);
-    public static T      Coalesce<T>(params IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(fallbacks);
-    public static T      Coalesce<T>(params IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals(fallbacks);
     
     public static string CoalesceManyTexts(params IEnumerable<string?>? fallbacks)
     {
@@ -102,6 +63,45 @@ public static partial class FilledInHelper
         }
         return last ?? new T();
     }
+}
+
+public static partial class FilledInHelper
+{ 
+    // Plain Coalesce (for some)
+    
+    public static string Coalesce   (     string? text)                        => CoalesceText    (text);
+    public static string Coalesce   (     string? text, bool trimSpace)        => CoalesceText    (text, trimSpace);
+    public static T      Coalesce<T>(     T?      obj ) where T : class, new() => CoalesceObject  (obj);
+    public static T      Coalesce<T>(     T?      val ) where T : struct       => CoalesceValNully(val);
+    
+    // Single Fallback
+    
+    public static string Coalesce   (     string? text, string? fallback)                        => CoalesceTwoTexts      (text, fallback);
+    public static string Coalesce   (     string? text, string? fallback, bool trimSpace)        => CoalesceTwoTexts      (text, fallback, trimSpace);
+    public static string Coalesce   (     object? obj,  string? fallback)                        => CoalesceObjectToText  (obj,  fallback);
+    public static string Coalesce<T>(     T?      val,  string? fallback) where T : struct       => CoalesceNullyValToText(val,  fallback);
+    public static string Coalesce<T>(     T       val,  string? fallback) where T : struct       => CoalesceValToText     (val,  fallback);
+    
+    public static T      Coalesce<T>(     object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects  (obj as T, fallback);
+    public static T      Coalesce<T>(     T?      val,  T?      fallback) where T : struct       => CoalesceTwoNullyVals(val,      fallback);
+    public static T      Coalesce<T>(     T?      val,  T       fallback) where T : struct       => HasValNully(val) ? val.Value : CoalesceVal     (fallback);
+    public static T      Coalesce<T>(     T       val,  T?      fallback) where T : struct       => HasVal     (val) ? val       : CoalesceValNully(fallback);
+    public static T      Coalesce<T>(     T       val,  T       fallback) where T : struct       => HasVal     (val) ? val       : CoalesceVal     (fallback);
+
+    // 2-Stage Fallback (for some)
+    
+    public static string Coalesce   (     string? text, string? fallback, string? fallback2)                  => Coalesce(text, Coalesce(fallback, fallback2));
+    public static string Coalesce   (     string? text, string? fallback, string? fallback2, bool trimSpace)  => Coalesce(text, Coalesce(fallback, fallback2, trimSpace), trimSpace);
+    public static string Coalesce<T>(     T       obj,  T       fallback, string? fallback2)                  => Coalesce(obj,  Coalesce(fallback, fallback2));
+    public static string Coalesce<T>(     T?      val,  T?      fallback, string? fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
+    public static T      Coalesce<T>(     T       obj,  T       fallback, T       fallback2) where T : new()  => Coalesce(obj,  Coalesce(fallback, fallback2));
+    public static T      Coalesce<T>(     T?      val,  T?      fallback, T?      fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
+
+    // Multi-Stage Fallbacks
+
+    public static string Coalesce   (params IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts(fallbacks);
+    public static T      Coalesce<T>(params IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(fallbacks);
+    public static T      Coalesce<T>(params IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals(fallbacks);
 }
 
 public static partial class FilledInExtensions
