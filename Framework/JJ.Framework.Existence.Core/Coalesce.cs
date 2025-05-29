@@ -2,15 +2,21 @@
 
 internal static partial class ExistenceUtility
 { 
-    public static string CoalesceText        (string? text)                                   => HasText       (text)            ? text      : text ?? "";
-    public static string CoalesceText        (string? text, bool trimSpace)                   => HasText       (text, trimSpace) ? text      : text ?? "";
-    public static T      CoalesceObject      <T>(T?   obj ) where T : class, new()            => HasObject     (obj)             ? obj       : new T()   ;
-    public static T      CoalesceValNonNull  <T>(T    val ) where T : struct                  => HasValNonNull (val)             ? val       : default   ;
-    public static T      CoalesceValNullable <T>(T?   val ) where T : struct                  => HasValNullable(val)             ? val.Value : default   ;
+    public static string  CoalesceText           (string? text)                                   => HasText       (text)            ? text      : text ?? "";
+    public static string  CoalesceText           (string? text, bool trimSpace)                   => HasText       (text, trimSpace) ? text      : text ?? "";
+    public static T       CoalesceObject         <T>(T?   obj ) where T : class, new()            => HasObject     (obj)             ? obj       : new T()   ;
+    public static T       CoalesceValNonNull     <T>(T    val ) where T : struct                  => HasValNonNull (val)             ? val       : default   ;
+    public static T       CoalesceValNullable    <T>(T?   val ) where T : struct                  => HasValNullable(val)             ? val.Value : default   ;
     
-    public static string CoalesceTwoTexts    (string? text, string? fallback)                 => HasText(text           ) ? text : CoalesceText(fallback);
-    public static string CoalesceTwoTexts    (string? text, string? fallback, bool trimSpace) => HasText(text, trimSpace) ? text : CoalesceText(fallback, trimSpace);
-    public static string CoalesceAnyToText<T>(bool hasObj, T obj, string? fallback)           => !hasObj ? CoalesceText(fallback) : CoalesceTwoTexts($"{obj}", fallback);
+    public static string  CoalesceTwoTexts       (string? text, string? fallback)                 => HasText(text           ) ? text : CoalesceText(fallback);
+    public static string  CoalesceTwoTexts       (string? text, string? fallback, bool trimSpace) => HasText(text, trimSpace) ? text : CoalesceText(fallback, trimSpace);
+    
+    public static string  CoalesceObjectToText   <T>(T? obj, string? fallback) where T : class  => CoalesceThingToText(HasObject     (obj), obj, fallback);
+    public static string  CoalesceNullyValToText <T>(T? val, string? fallback) where T : struct => CoalesceThingToText(HasValNullable(val), val, fallback);
+    public static string  CoalesceNoNullValToText<T>(T  val, string? fallback) where T : struct => CoalesceThingToText(HasValNonNull (val), val, fallback);
+    private static string CoalesceThingToText    (bool condition, object? obj, string? fallback) => !condition ? CoalesceText(fallback) : CoalesceTwoTexts($"{obj}", fallback);
+    
+    public static T CoalesceTwoObjects <T>(T? obj, T? fallback) where T : class, new()  => HasObject(obj) ? obj : CoalesceObject(fallback);
 }
 
 public static partial class FilledInHelper
@@ -24,13 +30,13 @@ public static partial class FilledInHelper
     
     // Single Fallback
     
-    public static string Coalesce   (     string? text, string? fallback)                        => CoalesceTwoTexts(text, fallback);
-    public static string Coalesce   (     string? text, string? fallback, bool trimSpace)        => CoalesceTwoTexts(text, fallback, trimSpace);
-    public static string Coalesce   (     object? obj,  string? fallback)                        => CoalesceAnyToText(HasObject     (obj), obj, fallback);
-    public static string Coalesce<T>(     T?      val,  string? fallback) where T : struct       => CoalesceAnyToText(HasValNullable(val), val, fallback);
-    public static string Coalesce<T>(     T       val,  string? fallback) where T : struct       => CoalesceAnyToText(HasValNonNull (val), val, fallback);
+    public static string Coalesce   (     string? text, string? fallback)                        => CoalesceTwoTexts       (text, fallback);
+    public static string Coalesce   (     string? text, string? fallback, bool trimSpace)        => CoalesceTwoTexts       (text, fallback, trimSpace);
+    public static string Coalesce   (     object? obj,  string? fallback)                        => CoalesceObjectToText   (obj, fallback);
+    public static string Coalesce<T>(     T?      val,  string? fallback) where T : struct       => CoalesceNullyValToText (val, fallback);
+    public static string Coalesce<T>(     T       val,  string? fallback) where T : struct       => CoalesceNoNullValToText(val, fallback);
     
-    public static T      Coalesce<T>(     object? obj,  T?      fallback) where T : class, new() =>  HasObject     (obj) ? (T)obj    : CoalesceObject     (fallback);
+    public static T      Coalesce<T>(     object? obj,  T?      fallback) where T : class, new() =>  CoalesceTwoObjects(obj as T, fallback);
     public static T      Coalesce<T>(     T?      val,  T?      fallback) where T : struct       =>  HasValNullable(val) ? val.Value : CoalesceValNullable(fallback);
     public static T      Coalesce<T>(     T?      val,  T       fallback) where T : struct       =>  HasValNullable(val) ? val.Value : CoalesceValNonNull (fallback);
     public static T      Coalesce<T>(     T       val,  T?      fallback) where T : struct       =>  HasValNonNull (val) ? val       : CoalesceValNullable(fallback);
@@ -103,11 +109,11 @@ public static partial class FilledInExtensions
 
     // Single Fallback
 
-    public static string Coalesce   (this string? text, string? fallback)                        => CoalesceTwoTexts(text, fallback);
-    public static string Coalesce   (this string? text, string? fallback, bool trimSpace)        => CoalesceTwoTexts(text, fallback, trimSpace);
-    public static string Coalesce   (this object? obj,  string? fallback)                        => CoalesceAnyToText(HasObject     (obj), obj, fallback);
-    public static string Coalesce<T>(this T       val,  string? fallback) where T : struct       => CoalesceAnyToText(HasValNonNull (val), val, fallback);
-    public static string Coalesce<T>(this T?      val,  string? fallback) where T : struct       => CoalesceAnyToText(HasValNullable(val), val, fallback);
+    public static string Coalesce   (this string? text, string? fallback)                        => CoalesceTwoTexts       (text, fallback);
+    public static string Coalesce   (this string? text, string? fallback, bool trimSpace)        => CoalesceTwoTexts       (text, fallback, trimSpace);
+    public static string Coalesce   (this object? obj,  string? fallback)                        => CoalesceObjectToText   (obj, fallback);
+    public static string Coalesce<T>(this T       val,  string? fallback) where T : struct       => CoalesceNoNullValToText(val, fallback);
+    public static string Coalesce<T>(this T?      val,  string? fallback) where T : struct       => CoalesceNullyValToText (val, fallback);
     
     public static T      Coalesce<T>(this object? obj,  T?      fallback) where T : class, new() => HasObject     (obj) ? (T)obj    : CoalesceObject     (fallback);
     public static T      Coalesce<T>(this T?      val,  T?      fallback) where T : struct       => HasValNullable(val) ? val.Value : CoalesceValNullable(fallback);
