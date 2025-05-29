@@ -18,6 +18,7 @@ public static partial class FilledInHelper
     // Plain Coalesce (for some)
     
     public static string Coalesce   (     string? text)                        => CoalesceText(text);
+    public static string Coalesce   (     string? text, bool trimSpace)        => CoalesceText(text, trimSpace);
     public static T      Coalesce<T>(     T       obj ) where T : class, new() => CoalesceObject(obj);
     public static T      Coalesce<T>(     T?      val ) where T : struct       => CoalesceValNullable(val);
     
