@@ -85,7 +85,7 @@ internal static class TestHelper
 
     /// <inheritdoc cref="_nonullret" />
     public static void NoNullRet<TRet>(object? expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
-        where TRet : notnull
+        where TRet : class
     {
         NotNull(ret, message);
         AreEqual(expected, ret, message);
@@ -101,7 +101,6 @@ internal static class TestHelper
         AreEqual(expected, ret, message);
     }
     
-    
     // For int
     
     /// <inheritdoc cref="_nonullret" />
@@ -115,7 +114,6 @@ internal static class TestHelper
 
     /// <inheritdoc cref="_nullret" />
     public static void NullRet<TRet>(int expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
-        //where TRet : struct?
     {
         AreEqual(expected, ret, message);
         IsType(typeof(int?), ret, message);
@@ -124,7 +122,6 @@ internal static class TestHelper
     
     /// <inheritdoc cref="_nullret" />
     public static void NullRet<TRet>(int? expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
-        //where TRet : struct
     {
         AreEqual(expected, ret, message);
         IsType(typeof(int?), ret, message);
@@ -133,7 +130,6 @@ internal static class TestHelper
 
     /// <inheritdoc cref="_nullret" />
     public static void NullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
-        //where TRet : struct
     {
         IsType(typeof(int?), ret, message);
         NotType(typeof(int), ret, message);

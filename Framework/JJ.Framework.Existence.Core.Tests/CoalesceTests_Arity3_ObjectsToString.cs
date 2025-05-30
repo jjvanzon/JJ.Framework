@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_Arity3_ThingToString
+public class CoalesceTests_Arity3_ObjectsToString
 {
     static StringBuilder  Obj            => TestHelper.NoNullObj  ;
     static StringBuilder? Null           => TestHelper.NullObj    ;

@@ -1,29 +1,5 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
-// Should check:
-// - [x] int
-// - [x] int?
-// - [x] string
-// - [x] string?
-// - [x] Reference Types (StringBuilder)
-// - [x] Nullable reference types (StringBuilder?)
-// - [x] ~ Coalescing from collection to collection
-// - [x] Collection types
-// - [x] Trim tolerance
-// - [x] Static variant
-// - [x] Extension variant
-// - [x] Coalesce arity 1
-// - [x] Coalesce arity 2
-// - [x] Coalesce arity 3 - Text
-// - [x] Coalesce arity 3 - Objects
-// - [x] Coalesce arity 3 - Values
-// - [ ] Coalesce arity 3 - Thing to String
-// - [ ] Coalesce arity N
-// - [ ] Enum
-// - [ ] Enum?
-// - [ ] double
-// - [ ] bool
-
 [TestClass]
 public class CoalesceTests_Arity3_Values
 {
