@@ -7,11 +7,11 @@ public class TextTests
     public void FilledIn_Text_True()
     {
         IsTrue(Has(NullyWithText));
-        IsTrue(Has(NonNullText));
+        IsTrue(Has(NoNullText));
         IsTrue(FilledIn(NullyWithText));
-        IsTrue(FilledIn(NonNullText));
+        IsTrue(FilledIn(NoNullText));
         IsTrue(NullyWithText.FilledIn());
-        IsTrue(NonNullText.FilledIn());
+        IsTrue(NoNullText.FilledIn());
     }
 
     [TestMethod]
@@ -20,27 +20,27 @@ public class TextTests
         IsFalse(Has(NullText));
         IsFalse(Has(NullyEmpty));
         IsFalse(Has(NullySpace));
-        IsFalse(Has(NonNullEmpty));
-        IsFalse(Has(NonNullSpace));
+        IsFalse(Has(NoNullEmpty));
+        IsFalse(Has(NoNullSpace));
         IsFalse(FilledIn(NullText));
         IsFalse(FilledIn(NullyEmpty));
         IsFalse(FilledIn(NullySpace));
-        IsFalse(FilledIn(NonNullEmpty));
-        IsFalse(FilledIn(NonNullSpace));
+        IsFalse(FilledIn(NoNullEmpty));
+        IsFalse(FilledIn(NoNullSpace));
         IsFalse(NullText.FilledIn());
         IsFalse(NullyEmpty.FilledIn());
         IsFalse(NullySpace.FilledIn());
-        IsFalse(NonNullEmpty.FilledIn());
-        IsFalse(NonNullSpace.FilledIn());
+        IsFalse(NoNullEmpty.FilledIn());
+        IsFalse(NoNullSpace.FilledIn());
     }
     
     [TestMethod]
     public void IsNully_Text_False()
     {
         IsFalse(IsNully(NullyWithText));
-        IsFalse(IsNully(NonNullText));
+        IsFalse(IsNully(NoNullText));
         IsFalse(NullyWithText.IsNully());
-        IsFalse(NonNullText.IsNully());
+        IsFalse(NoNullText.IsNully());
     }
 
     [TestMethod] 
@@ -49,13 +49,13 @@ public class TextTests
         IsTrue(IsNully(NullText));
         IsTrue(IsNully(NullyEmpty));
         IsTrue(IsNully(NullySpace));
-        IsTrue(IsNully(NonNullEmpty));
-        IsTrue(IsNully(NonNullSpace));
+        IsTrue(IsNully(NoNullEmpty));
+        IsTrue(IsNully(NoNullSpace));
         IsTrue(NullText.IsNully());
         IsTrue(NullyEmpty.IsNully());
         IsTrue(NullySpace.IsNully());
-        IsTrue(NonNullEmpty.IsNully());
-        IsTrue(NonNullSpace.IsNully());
+        IsTrue(NoNullEmpty.IsNully());
+        IsTrue(NoNullSpace.IsNully());
     }
     
     [TestMethod]
@@ -63,12 +63,12 @@ public class TextTests
     {
         IsFalse(NullySpace.IsNully(trimSpace: false));
         IsFalse(NullySpace.IsNully(false));
-        IsFalse(NonNullSpace.IsNully(trimSpace: false));
-        IsFalse(NonNullSpace.IsNully(false));
+        IsFalse(NoNullSpace.IsNully(trimSpace: false));
+        IsFalse(NoNullSpace.IsNully(false));
         IsFalse(IsNully(NullySpace, trimSpace: false));
         IsFalse(IsNully(NullySpace, false));
-        IsFalse(IsNully(NonNullSpace, trimSpace: false));
-        IsFalse(IsNully(NonNullSpace, false));
+        IsFalse(IsNully(NoNullSpace, trimSpace: false));
+        IsFalse(IsNully(NoNullSpace, false));
     }
         
     [TestMethod]
@@ -76,16 +76,16 @@ public class TextTests
     {
         IsTrue(Has(NullySpace, trimSpace: false));
         IsTrue(Has(NullySpace, false));
-        IsTrue(Has(NonNullSpace, trimSpace: false));
-        IsTrue(Has(NonNullSpace, false));
+        IsTrue(Has(NoNullSpace, trimSpace: false));
+        IsTrue(Has(NoNullSpace, false));
         IsTrue(NullySpace.FilledIn(trimSpace: false));
         IsTrue(NullySpace.FilledIn(false));
-        IsTrue(NonNullSpace.FilledIn(trimSpace: false));
-        IsTrue(NonNullSpace.FilledIn(false));
+        IsTrue(NoNullSpace.FilledIn(trimSpace: false));
+        IsTrue(NoNullSpace.FilledIn(false));
         IsTrue(FilledIn(NullySpace, trimSpace: false));
         IsTrue(FilledIn(NullySpace, false));
-        IsTrue(FilledIn(NonNullSpace, trimSpace: false));
-        IsTrue(FilledIn(NonNullSpace, false));
+        IsTrue(FilledIn(NoNullSpace, trimSpace: false));
+        IsTrue(FilledIn(NoNullSpace, false));
     }
     
 }

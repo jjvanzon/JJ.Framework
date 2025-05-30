@@ -6,24 +6,24 @@ internal static class TestHelper
     public static readonly string? NullyEmpty    = "";
     public static readonly string? NullySpace    = " ";
     public static readonly string? NullyWithText = "Hi";
-    public static readonly string  NonNullEmpty  = "";
-    public static readonly string  NonNullSpace  = " ";
-    public static readonly string  NonNullText   = "Hi";
+    public static readonly string  NoNullEmpty   = "";
+    public static readonly string  NoNullSpace   = " ";
+    public static readonly string  NoNullText    = "Hi";
     
-    public static readonly int? NullNum  = null;
-    public static readonly int? Nully0   = 0;
-    public static readonly int? Nully1   = 1;
-    public static readonly int? Nully2   = 2;
-    public static readonly int? Nully3   = 3;
-    public static readonly int? Nully4   = 4;
-    public static readonly int  NonNull0 = 0;
-    public static readonly int  NonNull1 = 1;
-    public static readonly int  NonNull2 = 2;
-    public static readonly int  NonNull3 = 3;
-    public static readonly int  NonNull4 = 4;
+    public static readonly int? NullNum = null;
+    public static readonly int? Nully0  = 0;
+    public static readonly int? Nully1  = 1;
+    public static readonly int? Nully2  = 2;
+    public static readonly int? Nully3  = 3;
+    public static readonly int? Nully4  = 4;
+    public static readonly int  NoNull0 = 0;
+    public static readonly int  NoNull1 = 1;
+    public static readonly int  NoNull2 = 2;
+    public static readonly int  NoNull3 = 3;
+    public static readonly int  NoNull4 = 4;
     
     public static readonly StringBuilder? NullObj     = null;
-    public static readonly StringBuilder  NonNullObj  = new("NonNull");
+    public static readonly StringBuilder  NoNullObj   = new("NonNull");
     public static readonly StringBuilder? NullyFilled = new("Filled");
     
     public static readonly int[]?                    FilledArray                      = [ 1, 2, 3 ];

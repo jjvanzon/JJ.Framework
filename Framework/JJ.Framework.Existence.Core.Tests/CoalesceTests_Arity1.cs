@@ -45,9 +45,9 @@ public class CoalesceTests_Arity1
     [TestMethod]
     public void Coalesce_Arity1_Objects()
     {
-        NoNullRet(NonNullObj);
-        NoNullRet(Coalesce(NonNullObj));
-        NoNullRet(NonNullObj.Coalesce());
+        NoNullRet(NoNullObj);
+        NoNullRet(Coalesce(NoNullObj));
+        NoNullRet(NoNullObj.Coalesce());
         
         IsNull(NullObj);
         NoNullRet(Coalesce(NullObj));

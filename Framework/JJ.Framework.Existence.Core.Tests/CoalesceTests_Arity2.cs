@@ -33,11 +33,11 @@ public class CoalesceTests_Arity2
     public void Coalesce_Arity2_ObjectToText()
     {
         AreEqual("None",    Coalesce(NullObj,    "None"));
-        AreEqual("NonNull", Coalesce(NonNullObj, "None"));
-        AreEqual("Filled",  Coalesce(NullyFilled,   "None"));
-        AreEqual("NonNull", NonNullObj.Coalesce( "None"));
-        AreEqual("None",    NullObj   .Coalesce( "None"));
-        AreEqual("Filled",  NullyFilled  .Coalesce( "None"));
+        AreEqual("NonNull", Coalesce(NoNullObj,  "None"));
+        AreEqual("Filled",  Coalesce(NullyFilled,"None"));
+        AreEqual("NonNull", NoNullObj  .Coalesce("None"));
+        AreEqual("None",    NullObj    .Coalesce("None"));
+        AreEqual("Filled",  NullyFilled.Coalesce("None"));
     }
 
     [TestMethod]
@@ -183,23 +183,23 @@ public class CoalesceTests_Arity2
     public void Coalesce_Arity2_Objects()
     {
         NoNullRet(              Coalesce(NullObj,     NullObj    ));
-        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NullObj    ));
-        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NullObj    ));
+        NoNullRet(NoNullObj,    Coalesce(NoNullObj,   NullObj    ));
+        NoNullRet(NoNullObj,    Coalesce(NoNullObj,   NullObj    ));
         NoNullRet(NullyFilled!, Coalesce(NullyFilled, NullObj    ));
-        NoNullRet(NonNullObj,   Coalesce(NullObj,     NonNullObj ));
-        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NonNullObj ));
-        NoNullRet(NullyFilled!, Coalesce(NullyFilled, NonNullObj ));
+        NoNullRet(NoNullObj,    Coalesce(NullObj,     NoNullObj  ));
+        NoNullRet(NoNullObj,    Coalesce(NoNullObj,   NoNullObj  ));
+        NoNullRet(NullyFilled!, Coalesce(NullyFilled, NoNullObj  ));
         NoNullRet(NullyFilled!, Coalesce(NullObj,     NullyFilled));
-        NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NullyFilled));
+        NoNullRet(NoNullObj,    Coalesce(NoNullObj,   NullyFilled));
         NoNullRet(NullyFilled!, Coalesce(NullyFilled, NullyFilled));
         NoNullRet(              NullObj    .Coalesce(NullObj     ));
-        NoNullRet(NonNullObj,   NonNullObj .Coalesce(NullObj     ));
+        NoNullRet(NoNullObj,    NoNullObj  .Coalesce(NullObj     ));
         NoNullRet(NullyFilled!, NullyFilled.Coalesce(NullObj     ));
-        NoNullRet(NonNullObj,   NullObj    .Coalesce(NonNullObj  ));
-        NoNullRet(NonNullObj,   NonNullObj .Coalesce(NonNullObj  ));
-        NoNullRet(NullyFilled!, NullyFilled.Coalesce(NonNullObj  ));
+        NoNullRet(NoNullObj,    NullObj    .Coalesce(NoNullObj   ));
+        NoNullRet(NoNullObj,    NoNullObj  .Coalesce(NoNullObj   ));
+        NoNullRet(NullyFilled!, NullyFilled.Coalesce(NoNullObj   ));
         NoNullRet(NullyFilled!, NullObj    .Coalesce(NullyFilled ));
-        NoNullRet(NonNullObj,   NonNullObj .Coalesce(NullyFilled ));
+        NoNullRet(NoNullObj,    NoNullObj  .Coalesce(NullyFilled ));
         NoNullRet(NullyFilled!, NullyFilled.Coalesce(NullyFilled ));
     }
 }

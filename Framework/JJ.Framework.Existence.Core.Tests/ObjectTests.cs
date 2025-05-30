@@ -6,11 +6,11 @@ public class ObjectTests
     [TestMethod]
     public void FilledIn_Object_True()
     {
-        IsTrue(Has(NonNullObj));
+        IsTrue(Has(NoNullObj));
         IsTrue(Has(NullyFilled));
-        IsTrue(FilledIn(NonNullObj));
+        IsTrue(FilledIn(NoNullObj));
         IsTrue(FilledIn(NullyFilled));
-        IsTrue(NonNullObj.FilledIn());
+        IsTrue(NoNullObj.FilledIn());
         IsTrue(NullyFilled.FilledIn());
     }
     
@@ -25,9 +25,9 @@ public class ObjectTests
     [TestMethod]
     public void IsNully_Object_False()
     {
-        IsFalse(IsNully(NonNullObj));
+        IsFalse(IsNully(NoNullObj));
         IsFalse(IsNully(NullyFilled));
-        IsFalse(NonNullObj.IsNully());
+        IsFalse(NoNullObj.IsNully());
         IsFalse(NullyFilled.IsNully());
     }
     
