@@ -93,6 +93,8 @@ public static partial class FilledInHelper
     public static string Coalesce   (     string? text, string? fallback, string? fallback2, bool trimSpace)  => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, trimSpace), trimSpace);
     public static string Coalesce   (     object? obj,  object? fallback, string? fallback2)                  => CoalesceObjectToText  (obj,  CoalesceObjectToText  (fallback, fallback2));
     public static string Coalesce<T>(     T?      val,  T?      fallback, string? fallback2) where T : struct => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2));
+    public static string Coalesce<T>(     T       val,  T?      fallback, string? fallback2) where T : struct => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2));
+    public static string Coalesce<T>(     T?      val,  T       fallback, string? fallback2) where T : struct => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2));
     public static string Coalesce<T>(     T       val,  T       fallback, string? fallback2) where T : struct => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2));
     public static T      Coalesce<T>(     T?      val,  T?      fallback, T?      fallback2) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2));
     public static T      Coalesce<T>(     T?      val,  T?      fallback, T       fallback2) where T : struct => CoalesceNullyAndVal   (val,  CoalesceNullyAndVal   (fallback, fallback2));
@@ -136,6 +138,9 @@ public static partial class FilledInExtensions
     public static string Coalesce   (this string? text, string? fallback, string? fallback2)                  => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2));
     public static string Coalesce   (this string? text, string? fallback, string? fallback2, bool trimSpace)  => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, trimSpace), trimSpace);
     public static string Coalesce   (this object? obj,  object? fallback, string? fallback2)                  => CoalesceObjectToText  (obj,  CoalesceObjectToText  (fallback, fallback2));
+    public static string Coalesce<T>(this T       val,  T       fallback, string? fallback2) where T : struct => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2));
+    public static string Coalesce<T>(this T       val,  T?      fallback, string? fallback2) where T : struct => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2));
+    public static string Coalesce<T>(this T?      val,  T       fallback, string? fallback2) where T : struct => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2));
     public static string Coalesce<T>(this T?      val,  T?      fallback, string? fallback2) where T : struct => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2));
 
     public static T      Coalesce<T>(this T?      val,  T?      fallback, T?      fallback2) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2));
