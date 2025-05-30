@@ -34,15 +34,15 @@ public class CoalesceTests_Arity3
         NoNullRet(NoNullEmpty, Coalesce(NullText,      NullText,      NoNullEmpty  ));
         NoNullRet(NoNullSpace, Coalesce(NullText,      NullText,      NoNullSpace  ));
         NoNullRet(NoNullText,  Coalesce(NullText,      NullText,      NoNullText   ));
-
         NoNullRet(NoNullEmpty, Coalesce(NullText,      NullyEmpty,    NullText     ));
-        NoNullRet(null,        Coalesce(NullText,      NullyEmpty,    NullyEmpty   ));
-        NoNullRet(null,        Coalesce(NullText,      NullyEmpty,    NullySpace   ));
-        NoNullRet(null,        Coalesce(NullText,      NullyEmpty,    NullyWithText));
-        NoNullRet(null,        Coalesce(NullText,      NullyEmpty,    NoNullEmpty  ));
-        NoNullRet(null,        Coalesce(NullText,      NullyEmpty,    NoNullSpace  ));
-        NoNullRet(null,        Coalesce(NullText,      NullyEmpty,    NoNullText   ));
-        NoNullRet(null,        Coalesce(NullText,      NullySpace,    NullText     ));
+        NoNullRet(NoNullEmpty, Coalesce(NullText,      NullyEmpty,    NullyEmpty   ));
+        NoNullRet(NoNullSpace, Coalesce(NullText,      NullyEmpty,    NullySpace   ));
+        NoNullRet(NoNullText,  Coalesce(NullText,      NullyEmpty,    NullyWithText));
+        NoNullRet(NoNullEmpty, Coalesce(NullText,      NullyEmpty,    NoNullEmpty  ));
+        NoNullRet(NoNullSpace, Coalesce(NullText,      NullyEmpty,    NoNullSpace  ));
+        NoNullRet(NoNullText,  Coalesce(NullText,      NullyEmpty,    NoNullText   ));
+
+        NoNullRet(NoNullEmpty, Coalesce(NullText,      NullySpace,    NullText     ));
         NoNullRet(null,        Coalesce(NullText,      NullySpace,    NullyEmpty   ));
         NoNullRet(null,        Coalesce(NullText,      NullySpace,    NullySpace   ));
         NoNullRet(null,        Coalesce(NullText,      NullySpace,    NullyWithText));
