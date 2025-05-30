@@ -66,7 +66,6 @@ public class CollectionTests
         }
     }
       
-    
     [TestMethod]
     public void FilledIn_Collections_False()
     {
@@ -267,5 +266,59 @@ public class CollectionTests
             IsTrue(IsNully(NullIReadOnlyCollection));
             IsTrue(IsNully(NullIEnumerable));
         }
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_CoalesceItems()
+    {
+        AreEqual(1, FilledArray.Coalesce());
+        //AreEqual(1, FilledList.Coalesce());
+        //AreEqual(1, FilledHashSet.Coalesce());
+        AreEqual(1, FilledIList.Coalesce());
+        AreEqual(1, FilledISet.Coalesce());
+        AreEqual(1, FilledICollection.Coalesce());
+        AreEqual(1, FilledIReadOnlyList.Coalesce());
+        AreEqual(1, FilledIReadOnlyCollection.Coalesce());
+        AreEqual(1, FilledIEnumerable.Coalesce());
+
+        AreEqual(1, NullyFilledArray.Coalesce());
+        //AreEqual(1, NullyFilledList.Coalesce());
+        //AreEqual(1, NullyFilledHashSet.Coalesce());
+        AreEqual(1, NullyFilledIList.Coalesce());
+        AreEqual(1, NullyFilledISet.Coalesce());
+        AreEqual(1, NullyFilledICollection.Coalesce());
+        AreEqual(1, NullyFilledIReadOnlyList.Coalesce());
+        AreEqual(1, NullyFilledIReadOnlyCollection.Coalesce());
+        AreEqual(1, NullyFilledIEnumerable.Coalesce());
+
+        AreEqual(0, EmptyArray.Coalesce());
+        //AreEqual(0, EmptyList.Coalesce());
+        //AreEqual(0, EmptyHashSet.Coalesce());
+        AreEqual(0, EmptyIList.Coalesce());
+        AreEqual(0, EmptyISet.Coalesce());
+        AreEqual(0, EmptyICollection.Coalesce());
+        AreEqual(0, EmptyIReadOnlyList.Coalesce());
+        AreEqual(0, EmptyIReadOnlyCollection.Coalesce());
+        AreEqual(0, EmptyIEnumerable.Coalesce());
+
+        AreEqual(0, NullableEmptyArray.Coalesce());
+        //AreEqual(0, NullableEmptyList.Coalesce());
+        //AreEqual(0, NullableEmptyHashSet.Coalesce());
+        AreEqual(0, NullableEmptyIList.Coalesce());
+        AreEqual(0, NullableEmptyISet.Coalesce());
+        AreEqual(0, NullableEmptyICollection.Coalesce());
+        AreEqual(0, NullableEmptyIReadOnlyList.Coalesce());
+        AreEqual(0, NullableEmptyIReadOnlyCollection.Coalesce());
+        AreEqual(0, NullableEmptyIEnumerable.Coalesce());
+
+        AreEqual(0, NullArray.Coalesce());
+        //AreEqual(0, NullList.Coalesce());
+        //AreEqual(0, NullHashSet.Coalesce());
+        AreEqual(0, NullIList.Coalesce());
+        AreEqual(0, NullISet.Coalesce());
+        AreEqual(0, NullICollection.Coalesce());
+        AreEqual(0, NullIReadOnlyList.Coalesce());
+        AreEqual(0, NullIReadOnlyCollection.Coalesce());
+        AreEqual(0, NullIEnumerable.Coalesce());
     }
 }

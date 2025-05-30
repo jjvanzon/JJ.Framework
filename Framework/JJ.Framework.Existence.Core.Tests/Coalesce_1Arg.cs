@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_Arity1
+public class Coalesce_1Arg
 {
     [TestMethod]
-    public void Coalesce_Arity1_Text()
+    public void Coalesce_1Arg_Text()
     {
         NoNullRet(""   , NullText.Coalesce());
         NoNullRet(""   , ""      .Coalesce());
@@ -17,7 +17,7 @@ public class CoalesceTests_Arity1
     }
     
     [TestMethod]
-    public void Coalesce_Arity1_NullyVals()
+    public void Coalesce_1Arg_NullyVals()
     {
         NullRet  (null, NullNum           );
         NoNullRet(0,    NullNum.Coalesce());
@@ -34,7 +34,7 @@ public class CoalesceTests_Arity1
     }
     
     [TestMethod]
-    public void Coalesce_Arity1_NonNulVals()
+    public void Coalesce_1Arg_NonNulVals()
     {
         int nonNull = 3;
         NoNullRet(3, nonNull);
@@ -43,7 +43,7 @@ public class CoalesceTests_Arity1
     }
     
     [TestMethod]
-    public void Coalesce_Arity1_Objects()
+    public void Coalesce_1Arg_Objects()
     {
         NoNullRet(NoNullObj);
         NoNullRet(Coalesce(NoNullObj));
@@ -55,7 +55,7 @@ public class CoalesceTests_Arity1
     }
     
     [TestMethod]
-    public void Coalesce_Arity1_Collections()
+    public void Coalesce_1Arg_Collections()
     {
         List<string>? coll = null;
         List<string> result = Coalesce( [ coll ] );

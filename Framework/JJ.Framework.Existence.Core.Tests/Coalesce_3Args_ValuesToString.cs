@@ -1,31 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
-// Should check:
-// - [x] int
-// - [x] int?
-// - [x] string
-// - [x] string?
-// - [x] Reference Types (StringBuilder)
-// - [x] Nullable reference types (StringBuilder?)
-// - [x] ~ Coalescing from collection to collection
-// - [x] Collection types
-// - [x] Trim tolerance
-// - [x] Static variant
-// - [x] Extension variant
-// - [x] Coalesce arity 1
-// - [x] Coalesce arity 2
-// - [x] Coalesce arity 3 - Text
-// - [x] Coalesce arity 3 - Objects
-// - [x] Coalesce arity 3 - Values
-// - [ ] .. Coalesce arity 3 - Thing to String
-// - [ ] Coalesce arity N
-// - [ ] Enum
-// - [ ] Enum?
-// - [ ] double
-// - [ ] bool
-
 [TestClass]
-public class CoalesceTests_Arity3_ValuesToString
+public class Coalesce_3Args_ValuesToString
 {
     static string  EmptyText      = ""  ;
     static string  Space          = " " ;
@@ -33,7 +9,7 @@ public class CoalesceTests_Arity3_ValuesToString
     static string? NullyEmptyText = ""  ;
 
     [TestMethod]
-    public void Coalesce_Arity3_ValsToString_Static()
+    public void Coalesce_3Args_ValsToString_Static()
     {
         // Example
         NoNullRet("1",  Coalesce(1,       NullNum, NullText      ));
@@ -222,7 +198,7 @@ public class CoalesceTests_Arity3_ValuesToString
 
 
     [TestMethod]
-    public void Coalesce_Arity3_ValsToString_Extensions()
+    public void Coalesce_3Args_ValsToString_Extensions()
     {
         // Example
         NoNullRet("1", Nully1.Coalesce(NullNum, NullText));

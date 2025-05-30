@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_Arity2
+public class Coalesce_2Args
 {
     [TestMethod]
-    public void Coalesce_Arity2_Text()
+    public void Coalesce_2Args_Text()
     {
         NoNullRet("",         Coalesce(NullText,  NullText ));
         NoNullRet("Fallback", Coalesce(NullText, "Fallback"));
@@ -30,7 +30,7 @@ public class CoalesceTests_Arity2
     }
 
     [TestMethod]
-    public void Coalesce_Arity2_ObjectToText()
+    public void Coalesce_2Args_ObjectToText()
     {
         AreEqual("None",    Coalesce(NullObj,    "None"));
         AreEqual("NonNull", Coalesce(NoNullObj,  "None"));
@@ -41,7 +41,7 @@ public class CoalesceTests_Arity2
     }
 
     [TestMethod]
-    public void Coalesce_Arity2_ValToText()
+    public void Coalesce_2Args_ValToText()
     {
         // With T
         AreEqual("",           Coalesce(0,  NullText ));
@@ -67,7 +67,7 @@ public class CoalesceTests_Arity2
     }
 
     [TestMethod]
-    public void Coalesce_Arity2_Vals()
+    public void Coalesce_2Args_Vals()
     {
         // Assert input state
         NullRet(null, NullNum);
@@ -180,7 +180,7 @@ public class CoalesceTests_Arity2
     }
 
     [TestMethod]
-    public void Coalesce_Arity2_Objects()
+    public void Coalesce_2Args_Objects()
     {
         NoNullRet(              Coalesce(NullObj,     NullObj    ));
         NoNullRet(NoNullObj,    Coalesce(NoNullObj,   NullObj    ));

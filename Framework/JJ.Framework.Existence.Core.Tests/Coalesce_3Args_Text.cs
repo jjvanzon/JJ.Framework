@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_Arity3_Text
+public class Coalesce_3Args_Text
 {
     private static readonly string  Empty = TestHelper.NoNullEmpty;
     private static readonly string  Space = TestHelper.NoNullSpace;
@@ -9,7 +9,7 @@ public class CoalesceTests_Arity3_Text
     private static readonly string? Null  = TestHelper.NullText;
     
     [TestMethod]
-    public void Coalesce_Arity3_Text_Static()
+    public void Coalesce_3Args_Text_Static()
     {
         AreEqual("Hi!",  Coalesce(" ", null, "Hi!"));
 
@@ -365,7 +365,7 @@ public class CoalesceTests_Arity3_Text
     }
     
     [TestMethod]
-    public void Coalesce_Arity3_Text_Static_NoTrimSpace()
+    public void Coalesce_3Args_Text_Static_NoTrimSpace()
     {
         AreEqual(" ",    Coalesce(" ", null, "Hi!", trimSpace: false));
 
@@ -721,7 +721,7 @@ public class CoalesceTests_Arity3_Text
     }
     
     [TestMethod]
-    public void Coalesce_Arity3_Text_Extensions()
+    public void Coalesce_3Args_Text_Extensions()
     {
         AreEqual("Hi!", " ".Coalesce(null, "Hi!"));
 
@@ -1077,7 +1077,7 @@ public class CoalesceTests_Arity3_Text
     }
     
     [TestMethod]
-    public void Coalesce_Arity3_Text_Extensions_NoTrimSpace()
+    public void Coalesce_3Args_Text_Extensions_NoTrimSpace()
     {
         AreEqual(" ",   " ".Coalesce(null, "Hi!", trimSpace: false));
 

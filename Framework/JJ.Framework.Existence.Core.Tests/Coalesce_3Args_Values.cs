@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_Arity3_Values
+public class Coalesce_3Args_Values
 {
     [TestMethod]
-    public void Coalesce_Arity3_Values_Static()
+    public void Coalesce_3Args_Values_Static()
     {
         NoNullRet(0, Coalesce(NullNum, NullNum, NullNum));
         NoNullRet(0, Coalesce(NullNum, NullNum, Nully0 ));
@@ -137,7 +137,7 @@ public class CoalesceTests_Arity3_Values
     }
 
     [TestMethod]
-    public void Coalesce_Arity3_Values_Extensions()
+    public void Coalesce_3Args_Values_Extensions()
     {
         NoNullRet(0, NullNum .Coalesce(NullNum, NullNum));
         NoNullRet(0, NullNum .Coalesce(NullNum, Nully0 ));

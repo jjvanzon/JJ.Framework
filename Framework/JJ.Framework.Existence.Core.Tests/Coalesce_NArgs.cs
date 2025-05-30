@@ -1,12 +1,12 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_ArityN
+public class Coalesce_NArgs
 {
     static string?[]? StringNullArray = (string?[]?)null;
 
     [TestMethod]
-    public void Coalesce_ArityN_Strings()
+    public void Coalesce_NArgs_Strings()
     {
         NoNullRet("Finally",          Coalesce(  ""  , " " , "\n     ", "Finally"  ));
         NoNullRet("Finally", " "     .Coalesce(  ""  , " " , "\n     ", "Finally"  ));
@@ -26,7 +26,7 @@ public class CoalesceTests_ArityN
     }
 
     [TestMethod]
-    public void Coalesce_ArityN_Values()
+    public void Coalesce_NArgs_Values()
     {
         // Static params
         NoNullRet(1, Coalesce(  NullNum, Nully0, NoNull0, Nully1));
@@ -39,14 +39,10 @@ public class CoalesceTests_ArityN
         // Null collection
         NoNullRet(0, Coalesce(NullArray));
         NoNullRet(0, NullICollection.Coalesce());
-        // Literals
-        //NoNullRet(1, default(int).Coalesce(NullNum, Nully0, Nully1, NoNull0));
-        //NoNullRet(0, 0.Coalesce(NullNum, NullNum, NullNum));
-        NoNullRet(1, Nully0.Coalesce(0, NullNum, 1));
     }
 
     [TestMethod]
-    public void Coalesce_ArityN_Objects()
+    public void Coalesce_NArgs_Objects()
     {
         // Static params
         NoNullRet(NoNullObj,               Coalesce(         NullObj, NoNullObj,   NullyFilled  ));

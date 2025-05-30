@@ -1,14 +1,14 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests_Arity3_Objects
+public class Coalesce_3Args_Objects
 {
     private static readonly StringBuilder? Null        = TestHelper.NullObj;
     private static readonly StringBuilder  NoNull      = TestHelper.NoNullObj;
     private static readonly StringBuilder? NullyFilled = TestHelper.NullyFilled;
 
     [TestMethod]
-    public void Coalesce_Arity3_Objects()
+    public void Coalesce_3Args_Objects_Static()
     {
         NoNullRet(             Coalesce(Null,        Null,        Null       ));
         NoNullRet(NoNull,      Coalesce(Null,        Null,        NoNull     ));
@@ -37,7 +37,11 @@ public class CoalesceTests_Arity3_Objects
         NoNullRet(NullyFilled, Coalesce(NullyFilled, NullyFilled, Null       ));
         NoNullRet(NullyFilled, Coalesce(NullyFilled, NullyFilled, NoNull     ));
         NoNullRet(NullyFilled, Coalesce(NullyFilled, NullyFilled, NullyFilled));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_Objects_Extensions()
+    {
         NoNullRet(             Null        .Coalesce(Null,        Null       ));
         NoNullRet(NoNull,      Null        .Coalesce(Null,        NoNull     ));
         NoNullRet(NullyFilled, Null        .Coalesce(Null,        NullyFilled));
