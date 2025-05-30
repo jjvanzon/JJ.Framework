@@ -5,7 +5,6 @@ internal static partial class ExistenceUtility
     // Arity 1
     
     public static  string CoalesceText          (string? text)                         => HasText    (text)            ? text      : text ?? "";
-    public static  string CoalesceText          (string? text, bool trimSpace)         => HasText    (text, trimSpace) ? text      : text ?? "";
     public static  T      CoalesceObject        <T>(T?   obj ) where T : class, new()  => HasObject  (obj)             ? obj       : new T()   ;
     public static  T      CoalesceVal           <T>(T    val ) where T : struct        => HasVal     (val)             ? val       : default   ;
     public static  T      CoalesceValNully      <T>(T?   val ) where T : struct        => HasValNully(val)             ? val.Value : default   ;
@@ -13,7 +12,7 @@ internal static partial class ExistenceUtility
     // Arity 2
     
     public static  string CoalesceTwoTexts      (string? text, string? fallback)                        => HasText(text           ) ? text : CoalesceText(fallback);
-    public static  string CoalesceTwoTexts      (string? text, string? fallback, bool trimSpace)        => HasText(text, trimSpace) ? text : CoalesceText(fallback, trimSpace);
+    public static  string CoalesceTwoTexts      (string? text, string? fallback, bool trimSpace)        => HasText(text, trimSpace) ? text : CoalesceText(fallback);
     
     public static  string CoalesceObjectToText  <T>(T?   obj,  string? fallback) where T : class        => CoalesceThingToText(HasObject  (obj), obj, fallback);
     public static  string CoalesceNullyValToText<T>(T?   val,  string? fallback) where T : struct       => CoalesceThingToText(HasValNully(val), val, fallback);
@@ -72,7 +71,6 @@ public static partial class FilledInHelper
     // Arity 1 (for some)
     
     public static string Coalesce   (     string? text)                        => CoalesceText    (text);
-    public static string Coalesce   (     string? text, bool trimSpace)        => CoalesceText    (text, trimSpace);
     public static T      Coalesce<T>(     T?      obj ) where T : class, new() => CoalesceObject  (obj);
     public static T      Coalesce<T>(     T?      val ) where T : struct       => CoalesceValNully(val);
     
@@ -84,7 +82,6 @@ public static partial class FilledInHelper
     public static string Coalesce<T>(     T?      val,  string? fallback) where T : struct       => CoalesceNullyValToText(val,      fallback);
     public static string Coalesce<T>(     T       val,  string? fallback) where T : struct       => CoalesceValToText     (val,      fallback);
     
-    public static T      Coalesce<T>(     object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects    (obj as T, fallback);
     public static T      Coalesce<T>(     T?      val,  T?      fallback) where T : struct       => CoalesceTwoNullyVals  (val,      fallback);
     public static T      Coalesce<T>(     T?      val,  T       fallback) where T : struct       => CoalesceNullyAndVal   (val,      fallback);
     public static T      Coalesce<T>(     T       val,  T?      fallback) where T : struct       => CoalesceValAndNully   (val,      fallback);
@@ -111,7 +108,6 @@ public static partial class FilledInExtensions
     // Arity 1
 
     public static string Coalesce   (this string? text)                        => CoalesceText    (text);
-    public static string Coalesce   (this string? text, bool trimSpace)        => CoalesceText    (text, trimSpace);
     public static T      Coalesce<T>(this T?      obj ) where T : class, new() => CoalesceObject  (obj);
     public static T      Coalesce<T>(this T?      val ) where T : struct       => CoalesceValNully(val);
 
@@ -123,7 +119,6 @@ public static partial class FilledInExtensions
     public static string Coalesce<T>(this T       val,  string? fallback) where T : struct       => CoalesceValToText     (val,  fallback);
     public static string Coalesce<T>(this T?      val,  string? fallback) where T : struct       => CoalesceNullyValToText(val,  fallback);
 
-    public static T      Coalesce<T>(this object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects    (obj as T, fallback);
     public static T      Coalesce<T>(this T?      val,  T?      fallback) where T : struct       => CoalesceTwoNullyVals  (val,      fallback);
     public static T      Coalesce<T>(this T?      val,  T       fallback) where T : struct       => CoalesceNullyAndVal   (val,      fallback);
     public static T      Coalesce<T>(this T       val,  T?      fallback) where T : struct       => CoalesceValAndNully   (val,      fallback);
