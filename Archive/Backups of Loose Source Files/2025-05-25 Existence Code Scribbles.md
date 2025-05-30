@@ -868,9 +868,16 @@ A more general overload `(object?, object?)` can't infer the type (must be known
 It's only an extra feature anyway. You'd probably use a null-coalescing operator `??` instead if you want speed.
 And if you do want the syntax sugar: It's there.
 
+### Coalesce Tests
 
+```
         // Values to Test:
         // NullObj / NoNullObj / NullyFilled 
         // NullText / EmptyText / Space / NullyEmpty / NullySpace
         // Text / NullyWithText
        
+
+    // Variance:
+    // 0, 1, Nully0, Nully1, NullNum
+    // NullText, EmptyText, Space, Text, NullyEmptyText, NullySpace, NullyWithText 
+```

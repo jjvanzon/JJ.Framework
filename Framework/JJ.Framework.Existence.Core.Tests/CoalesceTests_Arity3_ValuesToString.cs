@@ -27,20 +27,10 @@
 [TestClass]
 public class CoalesceTests_Arity3_ValuesToString
 {
-    static int? NullNum = null;
-    static int? Nully0  = 0;
-    static int? Nully1  = 1;
-    
     static string  EmptyText      = ""  ;
     static string  Space          = " " ;
     static string  Text           = "Hi";
     static string? NullyEmptyText = ""  ;
-
-    // TODO: False positives occur when using a number instead of a string for the 1st argument of NoNullRet.
-
-    // Variance:
-    // 0, 1, Nully0, Nully1, NullNum
-    // NullText, EmptyText, Space, Text, NullyEmptyText, NullySpace, NullyWithText 
 
     [TestMethod]
     public void Coalesce_Arity3_ValsToString_Static()

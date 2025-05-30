@@ -94,7 +94,6 @@ internal static class TestHelper
     // For text
 
     /// <inheritdoc cref="_nonullret" />
-    [Prio(1)]
     public static void NoNullRet(string? expected, string ret, [ArgExpress(nameof(ret))] string message = "")
     {
         NotNull(ret, message);

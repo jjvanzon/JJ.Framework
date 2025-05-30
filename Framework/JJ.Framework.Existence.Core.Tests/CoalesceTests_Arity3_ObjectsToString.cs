@@ -3,12 +3,12 @@
 [TestClass]
 public class CoalesceTests_Arity3_ObjectsToString
 {
-    static StringBuilder  Obj            => TestHelper.NoNullObj  ;
-    static StringBuilder? Null           => TestHelper.NullObj    ;
-    static string         EmptyText      => TestHelper.NoNullEmpty;
-    static string         Space          => TestHelper.NoNullSpace;
-    static string         Text           => TestHelper.NoNullText ;
-    static string?        NullyEmptyText => TestHelper.NullyEmpty ;
+    static StringBuilder  Obj            = TestHelper.NoNullObj  ;
+    static StringBuilder? Null           = TestHelper.NullObj    ;
+    static string         EmptyText      = TestHelper.NoNullEmpty;
+    static string         Space          = TestHelper.NoNullSpace;
+    static string         Text           = TestHelper.NoNullText ;
+    static string?        NullyEmptyText = TestHelper.NullyEmpty ;
 
     [TestMethod]
     public void Coalesce_Arity3_ObjectsToString_Static()
