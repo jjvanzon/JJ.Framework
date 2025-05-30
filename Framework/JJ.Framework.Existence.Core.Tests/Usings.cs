@@ -17,3 +17,5 @@ global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Existence.Core.Tests.TestHelper;
 global using static JJ.Framework.Reflection.Core.Reflect;
 global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+global using Priority   = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
+global using Prio       = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;

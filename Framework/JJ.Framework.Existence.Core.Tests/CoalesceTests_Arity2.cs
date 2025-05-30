@@ -3,52 +3,34 @@
 [TestClass]
 public class CoalesceTests_Arity2
 {
-    // Should check:
-    // - [x] int
-    // - [x] int?
-    // - [x] string
-    // - [x] string?
-    // - [x] Reference Types (StringBuilder)
-    // - [x] Nullable reference types (StringBuilder?)
-    // - [x] ~ Coalescing from collection to collection
-    // - [x] Collection types
-    // - [x] Trim tolerance
-    // - [x] Static variant
-    // - [x] Extension variant
-    // - [ ] Enum
-    // - [ ] Enum?
-    // - [ ] double
-    // - [ ] bool
-    // - [ ] .. Coalesce arities
-    
     [TestMethod]
-    public void Coalesce_SingleFallback_Strings()
+    public void Coalesce_Arity2_Text()
     {
-        AreEqual("",         Coalesce(NullText,  NullText ));
-        AreEqual("Fallback", Coalesce(NullText, "Fallback"));
-        AreEqual("Fallback", Coalesce("",       "Fallback"));
-        AreEqual("Fallback", Coalesce("   ",    "Fallback"));
-        AreEqual("Fallback", Coalesce(NullText, "Fallback", trimSpace: true ));
-        AreEqual("Fallback", Coalesce("",       "Fallback", trimSpace: true ));
-        AreEqual("Fallback", Coalesce("   ",    "Fallback", trimSpace: true ));
-        AreEqual("Fallback", Coalesce(NullText, "Fallback", trimSpace: false));
-        AreEqual("Fallback", Coalesce("",       "Fallback", trimSpace: false));
-        AreEqual("   ",      Coalesce("   ",    "Fallback", trimSpace: false));
+        NoNullRet("",         Coalesce(NullText,  NullText ));
+        NoNullRet("Fallback", Coalesce(NullText, "Fallback"));
+        NoNullRet("Fallback", Coalesce("",       "Fallback"));
+        NoNullRet("Fallback", Coalesce("   ",    "Fallback"));
+        NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", Coalesce("   ",    "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: false));
+        NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: false));
+        NoNullRet("   ",      Coalesce("   ",    "Fallback", trimSpace: false));
         
-        AreEqual("",         NullText.Coalesce( NullText ));
-        AreEqual("Fallback", NullText.Coalesce("Fallback"));
-        AreEqual("Fallback", ""      .Coalesce("Fallback"));
-        AreEqual("Fallback", "   "   .Coalesce("Fallback"));
-        AreEqual("Fallback", NullText.Coalesce("Fallback", trimSpace: true ));
-        AreEqual("Fallback", ""      .Coalesce("Fallback", trimSpace: true ));
-        AreEqual("Fallback", "   "   .Coalesce("Fallback", trimSpace: true ));
-        AreEqual("Fallback", NullText.Coalesce("Fallback", trimSpace: false));
-        AreEqual("Fallback", ""      .Coalesce("Fallback", trimSpace: false));
-        AreEqual("   ",      "   "   .Coalesce("Fallback", trimSpace: false));
+        NoNullRet("",         NullText.Coalesce( NullText ));
+        NoNullRet("Fallback", NullText.Coalesce("Fallback"));
+        NoNullRet("Fallback", ""      .Coalesce("Fallback"));
+        NoNullRet("Fallback", "   "   .Coalesce("Fallback"));
+        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: true ));
+        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: true ));
+        NoNullRet("Fallback", "   "   .Coalesce("Fallback", trimSpace: true ));
+        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: false));
+        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: false));
+        NoNullRet("   ",      "   "   .Coalesce("Fallback", trimSpace: false));
     }
 
     [TestMethod]
-    public void Coalesce_SingleFallback_ObjectToString()
+    public void Coalesce_Arity2_ObjectToText()
     {
         AreEqual("None",    Coalesce(NullObj,    "None"));
         AreEqual("NonNull", Coalesce(NonNullObj, "None"));
@@ -59,7 +41,7 @@ public class CoalesceTests_Arity2
     }
 
     [TestMethod]
-    public void Coalesce_SingleFallback_StructToString()
+    public void Coalesce_Arity2_ValToText()
     {
         // With T
         AreEqual("",           Coalesce(0,  NullText ));
@@ -85,7 +67,7 @@ public class CoalesceTests_Arity2
     }
 
     [TestMethod]
-    public void Coalesce_SingleFallback_Structs()
+    public void Coalesce_Arity2_Vals()
     {
         // Assert input state
         NullRet(null, NullNum);
@@ -198,7 +180,7 @@ public class CoalesceTests_Arity2
     }
 
     [TestMethod]
-    public void Coalesce_SingleFallback_Objects()
+    public void Coalesce_Arity2_Objects()
     {
         NoNullRet(              Coalesce(NullObj,     NullObj    ));
         NoNullRet(NonNullObj,   Coalesce(NonNullObj,  NullObj    ));

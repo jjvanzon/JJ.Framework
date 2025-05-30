@@ -828,3 +828,43 @@ Plain variadic coalesce method took over the job.
     //public static T      Coalesce<T>(this T       obj,  T       fallback, T       fallback2) where T : new()  => Coalesce(obj,  Coalesce(fallback, fallback2));
     //public static T      Coalesce<T>(this T?      val,  T?      fallback, T?      fallback2) where T : struct => Coalesce(val,  Coalesce(fallback, fallback2));
 ```
+
+### Coalesce: Arity 1 TrimSpace Irrelevant
+
+```cs
+    public static  string CoalesceText          (string? text, bool trimSpace)         => HasText    (text, trimSpace) ? text      : text ?? "";
+    public static string Coalesce   (     string? text, bool trimSpace)        => CoalesceText    (text, trimSpace);
+    public static string Coalesce   (this string? text, bool trimSpace)        => CoalesceText    (text, trimSpace);
+    
+    [TestMethod]
+    public void Coalesce_Arity1_Trim_TrimSpace()
+    {
+        AreEqual("   ", NullText   .Coalesce());
+        AreEqual("   ", NullText   .Coalesce(trimSpace: true));
+        AreEqual("   ", NullText   .Coalesce(trimSpace: false));
+        
+        AreEqual(""   , NullText.Coalesce( trimSpace: false));
+        AreEqual(""   , ""      .Coalesce( trimSpace: false));
+        AreEqual("   ", "   "   .Coalesce( trimSpace: false));
+        AreEqual("Hi" , "Hi"    .Coalesce( trimSpace: false));
+        AreEqual(""   , Coalesce(NullText, trimSpace: false));
+        AreEqual(""   , Coalesce(""      , trimSpace: false));
+        AreEqual("   ", Coalesce("   "   , trimSpace: false));
+        AreEqual("Hi" , Coalesce("Hi"    , trimSpace: false));
+    }
+```
+
+### Coalesce: 
+
+Arity 2 with Objects resolves to arity N. 
+
+```cs
+    public static T      Coalesce<T>(     object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects    (obj as T, fallback);
+    public static T      Coalesce<T>(this object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects    (obj as T, fallback);
+    public static T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
+```
+
+More specific arity 2 overload `(T? T?) where T : class` would clash with `struct`-targeted overload.  
+A more general overload `(object?, object?)` can't infer the type (must be known to create a new one).  
+It's only an extra feature anyway. You'd probably use a null-coalescing operator `??` instead if you want speed.
+And if you do want the syntax sugar: It's there.

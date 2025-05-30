@@ -4,20 +4,20 @@
 public class CoalesceTests_Arity1
 {
     [TestMethod]
-    public void Coalesce_Strings_NoFallback()
+    public void Coalesce_Arity1_Text()
     {
-        AreEqual(""   , NullText.Coalesce());
-        AreEqual(""   , ""      .Coalesce());
-        AreEqual("   ", "   "   .Coalesce());
-        AreEqual("Hi" , "Hi"    .Coalesce());
-        AreEqual(""   , Coalesce(NullText ));
-        AreEqual(""   , Coalesce(""       ));
-        AreEqual("   ", Coalesce("   "    ));
-        AreEqual("Hi" , Coalesce("Hi"     ));
+        NoNullRet(""   , NullText.Coalesce());
+        NoNullRet(""   , ""      .Coalesce());
+        NoNullRet("   ", "   "   .Coalesce());
+        NoNullRet("Hi" , "Hi"    .Coalesce());
+        NoNullRet(""   , Coalesce(NullText ));
+        NoNullRet(""   , Coalesce(""       ));
+        NoNullRet("   ", Coalesce("   "    ));
+        NoNullRet("Hi" , Coalesce("Hi"     ));
     }
     
     [TestMethod]
-    public void Coalesce_Structs_Nullable_NoFallback()
+    public void Coalesce_Arity1_NullyVals()
     {
         NullRet  (null, NullNum           );
         NoNullRet(0,    NullNum.Coalesce());
@@ -34,7 +34,7 @@ public class CoalesceTests_Arity1
     }
     
     [TestMethod]
-    public void Coalesce_Structs_NotNullable_NoFallback()
+    public void Coalesce_Arity1_NonNulVals()
     {
         int nonNull = 3;
         NoNullRet(3, nonNull);
@@ -43,7 +43,7 @@ public class CoalesceTests_Arity1
     }
     
     [TestMethod]
-    public void Coalesce_Objects_NoFallback()
+    public void Coalesce_Arity1_Objects()
     {
         NoNullRet(NonNullObj);
         NoNullRet(Coalesce(NonNullObj));
@@ -55,7 +55,7 @@ public class CoalesceTests_Arity1
     }
     
     [TestMethod]
-    public void Coalesce_Collection_NoFallback()
+    public void Coalesce_Arity1_Collections()
     {
         List<string>? coll = null;
         List<string> result = Coalesce( [ coll ] );
