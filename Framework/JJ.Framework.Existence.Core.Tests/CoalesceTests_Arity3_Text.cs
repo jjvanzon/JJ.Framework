@@ -22,7 +22,7 @@
 // - [ ] bool
 
 [TestClass]
-public class CoalesceTests_Arity3
+public class CoalesceTests_Arity3_Text
 {
     private static readonly string  Empty = TestHelper.NoNullEmpty;
     private static readonly string  Space = TestHelper.NoNullSpace;
