@@ -861,7 +861,6 @@ Arity 2 with Objects resolves to arity N.
 ```cs
     public static T      Coalesce<T>(     object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects    (obj as T, fallback);
     public static T      Coalesce<T>(this object? obj,  T?      fallback) where T : class, new() => CoalesceTwoObjects    (obj as T, fallback);
-    public static T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
 ```
 
 More specific arity 2 overload `(T? T?) where T : class` would clash with `struct`-targeted overload.  
