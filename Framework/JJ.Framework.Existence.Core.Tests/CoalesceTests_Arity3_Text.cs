@@ -1,26 +1,5 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
-// Should check:
-// - [x] int
-// - [x] int?
-// - [x] string
-// - [x] string?
-// - [x] Reference Types (StringBuilder)
-// - [x] Nullable reference types (StringBuilder?)
-// - [x] ~ Coalescing from collection to collection
-// - [x] Collection types
-// - [x] Trim tolerance
-// - [x] Static variant
-// - [x] Extension variant
-// - [x] Coalesce arity 1
-// - [x] Coalesce arity 2
-// - [ ] .. Coalesce arity 3
-// - [ ] Coalesce arity N
-// - [ ] Enum
-// - [ ] Enum?
-// - [ ] double
-// - [ ] bool
-
 [TestClass]
 public class CoalesceTests_Arity3_Text
 {
@@ -32,8 +11,7 @@ public class CoalesceTests_Arity3_Text
     [TestMethod]
     public void Test_Coalesce_Arity3_Text_Static()
     {
-        AreEqual("Hi!", Coalesce(" ", null, "Hi!"));
-        AreEqual(" ",   Coalesce(" ", null, "Hi!", trimSpace: false));
+        AreEqual("Hi!",  Coalesce(" ", null, "Hi!"));
 
         NoNullRet(Empty, Coalesce(Null,          Null,          Null         ));
         NoNullRet(Empty, Coalesce(Null,          Null,          NullyEmpty   ));
@@ -384,6 +362,12 @@ public class CoalesceTests_Arity3_Text
         NoNullRet(Text,  Coalesce(Text,          Text,          Empty        ));
         NoNullRet(Text,  Coalesce(Text,          Text,          Space        ));
         NoNullRet(Text,  Coalesce(Text,          Text,          Text         ));
+    }
+    
+    [TestMethod]
+    public void Test_Coalesce_Arity3_Text_Static_NoTrimSpace()
+    {
+        AreEqual(" ",    Coalesce(" ", null, "Hi!", trimSpace: false));
 
         NoNullRet(Empty, Coalesce(Null,          Null,          Null,          trimSpace: false));
         NoNullRet(Empty, Coalesce(Null,          Null,          NullyEmpty,    trimSpace: false));
@@ -736,12 +720,10 @@ public class CoalesceTests_Arity3_Text
         NoNullRet(Text,  Coalesce(Text,          Text,          Text,          trimSpace: false));
     }
     
-    
     [TestMethod]
     public void Test_Coalesce_Arity3_Text_Extensions()
     {
-        AreEqual("Hi!", Coalesce(" ", null, "Hi!"));
-        AreEqual(" ",   Coalesce(" ", null, "Hi!", trimSpace: false));
+        AreEqual("Hi!", " ".Coalesce(null, "Hi!"));
 
         NoNullRet(Empty, Null         .Coalesce(Null,          Null          ));
         NoNullRet(Empty, Null         .Coalesce(Null,          NullyEmpty    ));
@@ -1092,6 +1074,12 @@ public class CoalesceTests_Arity3_Text
         NoNullRet(Text,  Text         .Coalesce(Text,          Empty         ));
         NoNullRet(Text,  Text         .Coalesce(Text,          Space         ));
         NoNullRet(Text,  Text         .Coalesce(Text,          Text          ));
+    }
+    
+    [TestMethod]
+    public void Test_Coalesce_Arity3_Text_Extensions_NoTrimSpace()
+    {
+        AreEqual(" ",   " ".Coalesce(null, "Hi!", trimSpace: false));
 
         NoNullRet(Empty, Null         .Coalesce(Null,          Null,          trimSpace: false));
         NoNullRet(Empty, Null         .Coalesce(Null,          NullyEmpty,    trimSpace: false));
@@ -1442,11 +1430,5 @@ public class CoalesceTests_Arity3_Text
         NoNullRet(Text,  Text         .Coalesce(Text,          Empty,         trimSpace: false));
         NoNullRet(Text,  Text         .Coalesce(Text,          Space,         trimSpace: false));
         NoNullRet(Text,  Text         .Coalesce(Text,          Text,          trimSpace: false));
-    }
-
-    // TODO: Move to its own file.
-    public void Test_Coalesce_Arity3_Objects()
-    {
-       //NoNullRet(NullyFilled, Coalesce(NullyFilled, NullyFilled, NullyFilled));
     }
 }
