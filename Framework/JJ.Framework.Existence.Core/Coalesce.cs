@@ -19,12 +19,15 @@ internal static partial class ExistenceUtility
     public static  string CoalesceValToText     <T>(T    val,  string? fallback) where T : struct       => CoalesceThingToText(HasVal     (val), val, fallback);
     private static string CoalesceThingToText   (bool condition, object? obj, string? fallback)         => !condition ? CoalesceText(fallback) : CoalesceTwoTexts($"{obj}", fallback);
     
-    public static  T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
     public static  T      CoalesceTwoNullyVals  <T>(T?   val,  T?      fallback) where T : struct       => HasValNully(val) ? val.Value : CoalesceValNully(fallback);
     public static  T      CoalesceNullyAndVal   <T>(T?   val,  T       fallback) where T : struct       => HasValNully(val) ? val.Value : CoalesceVal     (fallback);
     public static  T      CoalesceValAndNully   <T>(T    val,  T?      fallback) where T : struct       => HasVal     (val) ? val       : CoalesceValNully(fallback);
     public static  T      CoalesceTwoVals       <T>(T    val,  T       fallback) where T : struct       => HasVal     (val) ? val       : CoalesceVal     (fallback);
-    
+
+    // ncrunch: no coverage start
+    public static  T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
+    // ncrunch: no coverage end
+
     // Arity N
     
     public static string CoalesceManyTexts(params IEnumerable<string?>? fallbacks)
