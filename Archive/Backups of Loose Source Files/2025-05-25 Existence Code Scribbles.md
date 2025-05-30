@@ -867,3 +867,10 @@ More specific arity 2 overload `(T? T?) where T : class` would clash with `struc
 A more general overload `(object?, object?)` can't infer the type (must be known to create a new one).  
 It's only an extra feature anyway. You'd probably use a null-coalescing operator `??` instead if you want speed.
 And if you do want the syntax sugar: It's there.
+
+
+        // Values to Test:
+        // NullObj / NoNullObj / NullyFilled 
+        // NullText / EmptyText / Space / NullyEmpty / NullySpace
+        // Text / NullyWithText
+       
