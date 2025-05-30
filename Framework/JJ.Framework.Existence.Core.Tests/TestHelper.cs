@@ -84,7 +84,7 @@ internal static class TestHelper
         => NotNull(ret, message);
 
     /// <inheritdoc cref="_nonullret" />
-    public static void NoNullRet<TRet>(TRet expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+    public static void NoNullRet<TRet>(object? expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
         where TRet : notnull
     {
         NotNull(ret, message);
