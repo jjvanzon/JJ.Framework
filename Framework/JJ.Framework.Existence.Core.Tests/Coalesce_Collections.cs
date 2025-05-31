@@ -3,6 +3,15 @@
 [TestClass]
 public class Coalesce_Collections
 {
+    [TestMethod]
+    public void Coalesce_1Arg_Collections()
+    {
+        List<string>? coll = null;
+        List<string> result = Coalesce( [ coll ] );
+        IsNull(coll);
+        NoNullRet(Coalesce(coll));
+    }
+
     // TODO: Use NoNullRet
 
     [TestMethod]

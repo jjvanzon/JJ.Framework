@@ -3,12 +3,12 @@
 internal static class TestHelper
 {
     public static readonly string? NullText      = null;
-    public static readonly string? NullyEmpty    = "";
-    public static readonly string? NullySpace    = " ";
-    public static readonly string? NullyWithText = "Hi";
     public static readonly string  NoNullEmpty   = "";
     public static readonly string  NoNullSpace   = " ";
     public static readonly string  NoNullText    = "Hi";
+    public static readonly string? NullyEmpty    = "";
+    public static readonly string? NullySpace    = " ";
+    public static readonly string? NullyWithText = "Hi";
     
     public static readonly int? NullNum = null;
     public static readonly int? Nully0  = 0;
@@ -79,6 +79,14 @@ internal static class TestHelper
     // For objects
 
     /// <inheritdoc cref="_nonullret" />
+    public static void NoNullRet<TRet>(TRet ret)
+        where TRet : class
+    {
+        NotNull(ret);
+    }
+
+    /// <inheritdoc cref="_nonullret" />
+    // ReSharper disable once MethodOverloadWithOptionalParameter
     public static void NoNullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
         where TRet : notnull
     {
@@ -132,6 +140,7 @@ internal static class TestHelper
 
     /// <inheritdoc cref="_nullret" />
     public static void NullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        where TRet : struct
     {
         IsType(typeof(int?), ret, message);
         NotType(typeof(int), ret, message);
