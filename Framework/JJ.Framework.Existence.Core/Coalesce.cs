@@ -118,6 +118,7 @@ public static partial class FilledInExtensions
 { 
     // 1 Arg (for some)
 
+    [Prio(2)]
     public static string Coalesce   (this string? text)                  => CoalesceText    (text);
     public static T      Coalesce<T>(this T       val ) where T : struct => CoalesceVal     (val);
     public static T      Coalesce<T>(this T?      val ) where T : struct => CoalesceValNully(val);
@@ -154,12 +155,12 @@ public static partial class FilledInExtensions
 
     // N Args (for all others)
 
-    public static string Coalesce   (this                       IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts  (fallbacks);
-    public static T      Coalesce<T>(this                       IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(fallbacks);
-    public static T      Coalesce<T>(this                       IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (fallbacks);
+    [Prio(1)] public static string Coalesce   (this      IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts  (fallbacks);
+    [Prio(1)] public static T      Coalesce<T>(this      IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(fallbacks);
+    [Prio(1)] public static T      Coalesce<T>(this      IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (fallbacks);
 
-    public static string Coalesce   (this string? first, params IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts  (new [] {     first }.Concat(fallbacks ?? [ ]));
-    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(new [] {     first }.Concat(fallbacks ?? [ ]));
-    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (new [] {     first }.Concat(fallbacks ?? [ ]));
-    public static T      Coalesce<T>(this T       first, params IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (new [] { (T?)first }.Concat(fallbacks ?? [ ]));
+    public static string Coalesce   (this string? first, params string?[]?     fallbacks)                  => CoalesceManyTexts  (new [] {     first }.Concat(fallbacks ?? [ ]));
+    public static T      Coalesce<T>(this T?      first, params T?[]           fallbacks) where T : new()  => CoalesceManyObjects(new [] {     first }.Concat(fallbacks ?? [ ]));
+    public static T      Coalesce<T>(this T?      first, params T?[]           fallbacks) where T : struct => CoalesceManyVals   (new [] {     first }.Concat(fallbacks ?? [ ]));
+    public static T      Coalesce<T>(this T       first, params T?[]           fallbacks) where T : struct => CoalesceManyVals   (new [] { (T?)first }.Concat(fallbacks ?? [ ]));
 }

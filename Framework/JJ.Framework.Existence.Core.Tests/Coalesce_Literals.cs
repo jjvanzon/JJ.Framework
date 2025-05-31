@@ -7,7 +7,6 @@ public class Coalesce_Literals
     public void Coalesce_Literals_Support()
     {
         // These can get messy if you mess with the generic constraints in the main code.
-        //
         NoNullRet("Hello", Coalesce("", "Hello", "World"));
         NoNullRet(1, 0.Coalesce(1, 2));
         NoNullRet("Hello", "".Coalesce("Hello", "World"));

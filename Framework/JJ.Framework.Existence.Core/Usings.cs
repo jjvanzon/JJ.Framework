@@ -12,4 +12,5 @@ global using static System.ArgumentNullException;
 global using static JJ.Framework.PlatformCompatibility.Core.ExceptionPlatformSupport;
 global using static JJ.Framework.Existence.Core.ExistenceUtility;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
-
+global using Priority   = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
+global using Prio       = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
