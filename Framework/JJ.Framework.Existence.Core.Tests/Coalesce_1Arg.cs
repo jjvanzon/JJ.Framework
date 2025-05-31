@@ -1,13 +1,8 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_1Arg
+public class Coalesce_1Arg : TestBase
 {
-    static string  Empty     = NoNullEmpty;
-    static string  Space     = NoNullSpace;
-    static string  Text      = NoNullText;
-    static string? NullyText = NullyWithText;
-
     // Text
     
     [TestMethod]

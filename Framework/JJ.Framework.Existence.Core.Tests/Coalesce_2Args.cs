@@ -3,8 +3,36 @@
 [TestClass]
 public class Coalesce_2Args
 {
+    // TODO: Add Distinct Var, Literal and Keyword variants.
+
     [TestMethod]
-    public void Coalesce_2Args_Text()
+    public void Coalesce_2Args_Text_Vars()
+    {
+        NoNullRet("",         Coalesce(NullText,  NullText ));
+        NoNullRet("Fallback", Coalesce(NullText, "Fallback"));
+        NoNullRet("Fallback", Coalesce("",       "Fallback"));
+        NoNullRet("Fallback", Coalesce("   ",    "Fallback"));
+        NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", Coalesce("   ",    "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: false));
+        NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: false));
+        NoNullRet("   ",      Coalesce("   ",    "Fallback", trimSpace: false));
+        
+        NoNullRet("",         NullText.Coalesce( NullText ));
+        NoNullRet("Fallback", NullText.Coalesce("Fallback"));
+        NoNullRet("Fallback", ""      .Coalesce("Fallback"));
+        NoNullRet("Fallback", "   "   .Coalesce("Fallback"));
+        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: true ));
+        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: true ));
+        NoNullRet("Fallback", "   "   .Coalesce("Fallback", trimSpace: true ));
+        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: false));
+        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: false));
+        NoNullRet("   ",      "   "   .Coalesce("Fallback", trimSpace: false));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_Text_LiteralsAndSuch()
     {
         NoNullRet("",         Coalesce(NullText,  NullText ));
         NoNullRet("Fallback", Coalesce(NullText, "Fallback"));

@@ -2,13 +2,13 @@
 
 internal static class TestHelper
 {
-    public static readonly string? NullText      = null;
-    public static readonly string  NoNullEmpty   = "";
-    public static readonly string  NoNullSpace   = " ";
-    public static readonly string  NoNullText    = "Hi";
-    public static readonly string? NullyEmpty    = "";
-    public static readonly string? NullySpace    = " ";
-    public static readonly string? NullyWithText = "Hi";
+    public static readonly string? NullText    = null;
+    public static readonly string  Empty       = "";
+    public static readonly string  Space       = " ";
+    public static readonly string  Text        = "Hi";
+    public static readonly string? NullyEmpty  = "";
+    public static readonly string? NullySpace  = " ";
+    public static readonly string? NullyText   = "Hi";
     
     public static readonly int? NullNum = null;
     public static readonly int? Nully0  = 0;

@@ -17,7 +17,7 @@ public class Coalesce_NArgs
         NoNullRet("Hi",               Coalesce([ ""  , " " , "Hi"     , "Finally" ]));
         NoNullRet("Hi",      " "     .Coalesce([ ""  , " " , "\n     ", "Hi"      ]));
         NoNullRet(" ",       NullText.Coalesce(NullyEmpty, NullText, NullySpace    ));
-        NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, NoNullEmpty   ));
+        NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, TestHelper.Empty   ));
         NoNullRet("Finally", new [] { ""  , " "  , "\n     ", "Finally" }.Coalesce());
         NoNullRet("Hi",      new [] { ""  , "Hi" , "\n     ", "Finally" }.Coalesce());
         NoNullRet("",        new [] { NullText,    NullText,   NullText }.Coalesce());

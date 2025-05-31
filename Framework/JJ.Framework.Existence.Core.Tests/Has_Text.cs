@@ -6,12 +6,12 @@ public class Has_Text
     [TestMethod]
     public void FilledIn_Text_True()
     {
-        IsTrue(Has(NullyWithText));
-        IsTrue(Has(NoNullText));
-        IsTrue(FilledIn(NullyWithText));
-        IsTrue(FilledIn(NoNullText));
-        IsTrue(NullyWithText.FilledIn());
-        IsTrue(NoNullText.FilledIn());
+        IsTrue(Has(NullyText));
+        IsTrue(Has(TestHelper.Text));
+        IsTrue(FilledIn(NullyText));
+        IsTrue(FilledIn(TestHelper.Text));
+        IsTrue(NullyText.FilledIn());
+        IsTrue(TestHelper.Text.FilledIn());
     }
 
     [TestMethod]
@@ -20,27 +20,27 @@ public class Has_Text
         IsFalse(Has(NullText));
         IsFalse(Has(NullyEmpty));
         IsFalse(Has(NullySpace));
-        IsFalse(Has(NoNullEmpty));
-        IsFalse(Has(NoNullSpace));
+        IsFalse(Has(TestHelper.Empty));
+        IsFalse(Has(Space));
         IsFalse(FilledIn(NullText));
         IsFalse(FilledIn(NullyEmpty));
         IsFalse(FilledIn(NullySpace));
-        IsFalse(FilledIn(NoNullEmpty));
-        IsFalse(FilledIn(NoNullSpace));
+        IsFalse(FilledIn(TestHelper.Empty));
+        IsFalse(FilledIn(Space));
         IsFalse(NullText.FilledIn());
         IsFalse(NullyEmpty.FilledIn());
         IsFalse(NullySpace.FilledIn());
-        IsFalse(NoNullEmpty.FilledIn());
-        IsFalse(NoNullSpace.FilledIn());
+        IsFalse(TestHelper.Empty.FilledIn());
+        IsFalse(Space.FilledIn());
     }
     
     [TestMethod]
     public void IsNully_Text_False()
     {
-        IsFalse(IsNully(NullyWithText));
-        IsFalse(IsNully(NoNullText));
-        IsFalse(NullyWithText.IsNully());
-        IsFalse(NoNullText.IsNully());
+        IsFalse(IsNully(NullyText));
+        IsFalse(IsNully(TestHelper.Text));
+        IsFalse(NullyText.IsNully());
+        IsFalse(TestHelper.Text.IsNully());
     }
 
     [TestMethod] 
@@ -49,13 +49,13 @@ public class Has_Text
         IsTrue(IsNully(NullText));
         IsTrue(IsNully(NullyEmpty));
         IsTrue(IsNully(NullySpace));
-        IsTrue(IsNully(NoNullEmpty));
-        IsTrue(IsNully(NoNullSpace));
+        IsTrue(IsNully(TestHelper.Empty));
+        IsTrue(IsNully(Space));
         IsTrue(NullText.IsNully());
         IsTrue(NullyEmpty.IsNully());
         IsTrue(NullySpace.IsNully());
-        IsTrue(NoNullEmpty.IsNully());
-        IsTrue(NoNullSpace.IsNully());
+        IsTrue(TestHelper.Empty.IsNully());
+        IsTrue(Space.IsNully());
     }
     
     [TestMethod]
@@ -63,12 +63,12 @@ public class Has_Text
     {
         IsFalse(NullySpace.IsNully(trimSpace: false));
         IsFalse(NullySpace.IsNully(false));
-        IsFalse(NoNullSpace.IsNully(trimSpace: false));
-        IsFalse(NoNullSpace.IsNully(false));
+        IsFalse(Space.IsNully(trimSpace: false));
+        IsFalse(Space.IsNully(false));
         IsFalse(IsNully(NullySpace, trimSpace: false));
         IsFalse(IsNully(NullySpace, false));
-        IsFalse(IsNully(NoNullSpace, trimSpace: false));
-        IsFalse(IsNully(NoNullSpace, false));
+        IsFalse(IsNully(Space, trimSpace: false));
+        IsFalse(IsNully(Space, false));
     }
         
     [TestMethod]
@@ -76,16 +76,16 @@ public class Has_Text
     {
         IsTrue(Has(NullySpace, trimSpace: false));
         IsTrue(Has(NullySpace, false));
-        IsTrue(Has(NoNullSpace, trimSpace: false));
-        IsTrue(Has(NoNullSpace, false));
+        IsTrue(Has(Space, trimSpace: false));
+        IsTrue(Has(Space, false));
         IsTrue(NullySpace.FilledIn(trimSpace: false));
         IsTrue(NullySpace.FilledIn(false));
-        IsTrue(NoNullSpace.FilledIn(trimSpace: false));
-        IsTrue(NoNullSpace.FilledIn(false));
+        IsTrue(Space.FilledIn(trimSpace: false));
+        IsTrue(Space.FilledIn(false));
         IsTrue(FilledIn(NullySpace, trimSpace: false));
         IsTrue(FilledIn(NullySpace, false));
-        IsTrue(FilledIn(NoNullSpace, trimSpace: false));
-        IsTrue(FilledIn(NoNullSpace, false));
+        IsTrue(FilledIn(Space, trimSpace: false));
+        IsTrue(FilledIn(Space, false));
     }
     
 }

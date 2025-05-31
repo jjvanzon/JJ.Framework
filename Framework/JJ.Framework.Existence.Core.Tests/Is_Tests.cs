@@ -3,7 +3,6 @@
 [TestClass]
 public class Is_Tests
 {
-    
     [TestMethod]
     public void Test_String_Is()
 
@@ -49,7 +48,7 @@ public class Is_Tests
         IsTrue(Is(a, b));
         IsTrue(Is(a, b, ignoreCase: true));
         
-        // Case sensitive
+        // Case-sensitive
         IsFalse("TEST".Is("test", ignoreCase: false));
         IsFalse(Is("test", "Test", ignoreCase: false));
 
