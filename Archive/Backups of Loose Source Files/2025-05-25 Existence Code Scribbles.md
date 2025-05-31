@@ -870,7 +870,7 @@ And if you do want the syntax sugar: It's there.
 
 ### Coalesce Tests
 
-```
+```cs
         // Values to Test:
         // NullObj / NoNullObj / NullyFilled 
         // NullText / EmptyText / Space / NullyEmpty / NullySpace
@@ -880,4 +880,15 @@ And if you do want the syntax sugar: It's there.
     // Variance:
     // 0, 1, Nully0, Nully1, NullNum
     // NullText, EmptyText, Space, Text, NullyEmptyText, NullySpace, NullyWithText 
+
+    [TestMethod]
+    public void Coalesce_2Args_ObjectToText_Literals()
+    {
+        NoNullRet("None",   Coalesce(NullObj,     "None"));
+        NoNullRet("NoNull", Coalesce(NoNullObj,   "None"));
+        NoNullRet("Filled", Coalesce(NullyFilled, "None"));
+        NoNullRet("NoNull", NoNullObj  .Coalesce( "None"));
+        NoNullRet("None",   NullObj    .Coalesce( "None"));
+        NoNullRet("Filled", NullyFilled.Coalesce( "None"));
+    }
 ```

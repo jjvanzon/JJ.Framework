@@ -1,77 +1,87 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_2Args
+public class Coalesce_2Args : TestBase
 {
-    // TODO: Add Distinct Var, Literal and Keyword variants.
+    // Text
 
     [TestMethod]
     public void Coalesce_2Args_Text_Vars()
     {
-        NoNullRet("",         Coalesce(NullText,  NullText ));
-        NoNullRet("Fallback", Coalesce(NullText, "Fallback"));
-        NoNullRet("Fallback", Coalesce("",       "Fallback"));
-        NoNullRet("Fallback", Coalesce("   ",    "Fallback"));
-        NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: true ));
-        NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: true ));
-        NoNullRet("Fallback", Coalesce("   ",    "Fallback", trimSpace: true ));
-        NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: false));
-        NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: false));
-        NoNullRet("   ",      Coalesce("   ",    "Fallback", trimSpace: false));
-        
-        NoNullRet("",         NullText.Coalesce( NullText ));
-        NoNullRet("Fallback", NullText.Coalesce("Fallback"));
-        NoNullRet("Fallback", ""      .Coalesce("Fallback"));
-        NoNullRet("Fallback", "   "   .Coalesce("Fallback"));
-        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: true ));
-        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: true ));
-        NoNullRet("Fallback", "   "   .Coalesce("Fallback", trimSpace: true ));
-        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: false));
-        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: false));
-        NoNullRet("   ",      "   "   .Coalesce("Fallback", trimSpace: false));
+        NoNullRet(Empty, Coalesce(NullText, NullText                  ));
+        NoNullRet(Text,  Coalesce(NullText, Text                      ));
+        NoNullRet(Text,  Coalesce(Empty,    Text                      ));
+        NoNullRet(Text,  Coalesce(Space,    Text                      ));
+        NoNullRet(Empty, Coalesce(NullText, NullText, trimSpace: true ));
+        NoNullRet(Text,  Coalesce(NullText, Text,     trimSpace: true ));
+        NoNullRet(Text,  Coalesce(Empty,    Text,     trimSpace: true ));
+        NoNullRet(Text,  Coalesce(Space,    Text,     trimSpace: true ));
+        NoNullRet(Empty, Coalesce(NullText, NullText, trimSpace: false));
+        NoNullRet(Text,  Coalesce(NullText, Text,     trimSpace: false));
+        NoNullRet(Text,  Coalesce(Empty,    Text,     trimSpace: false));
+        NoNullRet(Space, Coalesce(Space,    Text,     trimSpace: false));
+        NoNullRet(Empty, NullText.Coalesce( NullText                  ));
+        NoNullRet(Text,  NullText.Coalesce( Text                      ));
+        NoNullRet(Text,  Empty   .Coalesce( Text                      ));
+        NoNullRet(Text,  Space   .Coalesce( Text                      ));
+        NoNullRet(Empty, NullText.Coalesce( NullText, trimSpace: true ));
+        NoNullRet(Text,  NullText.Coalesce( Text,     trimSpace: true ));
+        NoNullRet(Text,  Empty   .Coalesce( Text,     trimSpace: true ));
+        NoNullRet(Text,  Space   .Coalesce( Text,     trimSpace: true ));
+        NoNullRet(Empty, NullText.Coalesce( NullText, trimSpace: false));
+        NoNullRet(Text,  NullText.Coalesce( Text,     trimSpace: false));
+        NoNullRet(Text,  Empty   .Coalesce( Text,     trimSpace: false));
+        NoNullRet(Space, Space   .Coalesce( Text,     trimSpace: false));
     }
 
     [TestMethod]
-    public void Coalesce_2Args_Text_LiteralsAndSuch()
+    public void Coalesce_2Args_Text_Literals()
     {
-        NoNullRet("",         Coalesce(NullText,  NullText ));
-        NoNullRet("Fallback", Coalesce(NullText, "Fallback"));
-        NoNullRet("Fallback", Coalesce("",       "Fallback"));
-        NoNullRet("Fallback", Coalesce("   ",    "Fallback"));
+        NoNullRet("",         Coalesce(NullText,  NullText                   ));
+        NoNullRet("Fallback", Coalesce(NullText, "Fallback"                  ));
+        NoNullRet("Fallback", Coalesce("",       "Fallback"                  ));
+        NoNullRet("Fallback", Coalesce("   ",    "Fallback"                  ));
+        NoNullRet("",         Coalesce(NullText,  NullText,  trimSpace: true ));
         NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: true ));
         NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: true ));
         NoNullRet("Fallback", Coalesce("   ",    "Fallback", trimSpace: true ));
+        NoNullRet("",         Coalesce(NullText,  NullText,  trimSpace: false));
         NoNullRet("Fallback", Coalesce(NullText, "Fallback", trimSpace: false));
         NoNullRet("Fallback", Coalesce("",       "Fallback", trimSpace: false));
         NoNullRet("   ",      Coalesce("   ",    "Fallback", trimSpace: false));
-        
-        NoNullRet("",         NullText.Coalesce( NullText ));
-        NoNullRet("Fallback", NullText.Coalesce("Fallback"));
-        NoNullRet("Fallback", ""      .Coalesce("Fallback"));
-        NoNullRet("Fallback", "   "   .Coalesce("Fallback"));
-        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: true ));
-        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: true ));
-        NoNullRet("Fallback", "   "   .Coalesce("Fallback", trimSpace: true ));
-        NoNullRet("Fallback", NullText.Coalesce("Fallback", trimSpace: false));
-        NoNullRet("Fallback", ""      .Coalesce("Fallback", trimSpace: false));
-        NoNullRet("   ",      "   "   .Coalesce("Fallback", trimSpace: false));
+        NoNullRet("",         NullText.Coalesce(  NullText                   ));
+        NoNullRet("Fallback", NullText.Coalesce( "Fallback"                  ));
+        NoNullRet("Fallback", ""      .Coalesce( "Fallback"                  ));
+        NoNullRet("Fallback", "   "   .Coalesce( "Fallback"                  ));
+        NoNullRet("",         NullText.Coalesce(  NullText,  trimSpace: true ));
+        NoNullRet("Fallback", NullText.Coalesce( "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", ""      .Coalesce( "Fallback", trimSpace: true ));
+        NoNullRet("Fallback", "   "   .Coalesce( "Fallback", trimSpace: true ));
+        NoNullRet("",         NullText.Coalesce(  NullText,  trimSpace: false));
+        NoNullRet("Fallback", NullText.Coalesce( "Fallback", trimSpace: false));
+        NoNullRet("Fallback", ""      .Coalesce( "Fallback", trimSpace: false));
+        NoNullRet("   ",      "   "   .Coalesce( "Fallback", trimSpace: false));
     }
+
+    // Objects to Text
 
     [TestMethod]
     public void Coalesce_2Args_ObjectToText()
     {
-        NoNullRet("None",    Coalesce(NullObj,    "None"));
-        NoNullRet("NonNull", Coalesce(NoNullObj,  "None"));
-        NoNullRet("Filled",  Coalesce(NullyFilled,"None"));
-        NoNullRet("NonNull", NoNullObj  .Coalesce("None"));
-        NoNullRet("None",    NullObj    .Coalesce("None"));
-        NoNullRet("Filled",  NullyFilled.Coalesce("None"));
+        NoNullRet(Text,     Coalesce(NullObj,     Text ));
+        NoNullRet("NoNull", Coalesce(NoNullObj,   Text ));
+        NoNullRet("Filled", Coalesce(NullyFilled, Text ));
+        NoNullRet("NoNull", NoNullObj  .Coalesce( Text ));
+        NoNullRet(Text,     NullObj    .Coalesce( Text ));
+        NoNullRet("Filled", NullyFilled.Coalesce( Text ));
     }
+
+    // Vals to Text
 
     [TestMethod]
     public void Coalesce_2Args_ValToText()
     {
-        // With T
+        // With `T`
         NoNullRet("",           Coalesce(0,  NullText ));
         NoNullRet("",           Coalesce(0,  NullText ));
         NoNullRet("peekaboo",   Coalesce(0, "peekaboo"));
@@ -79,20 +89,22 @@ public class Coalesce_2Args
         NoNullRet("peekaboo", 0.Coalesce(   "peekaboo"));
         NoNullRet("1",        1.Coalesce(    NullText ));
         NoNullRet("1",        1.Coalesce(   "peekaboo"));
-        // With T?
-        NoNullRet("",    Coalesce(NullNum,  NullText));
-        NoNullRet("boo", Coalesce(NullNum, "boo"    ));
-        NoNullRet("",    Coalesce(Nully0,   NullText));
-        NoNullRet("boo", Coalesce(Nully0,  "boo"    ));
-        NoNullRet("1",   Coalesce(Nully1,   NullText));
-        NoNullRet("1",   Coalesce(Nully1,  "boo"    ));
-        NoNullRet("",    NullNum.Coalesce(  NullText));
-        NoNullRet("boo", NullNum.Coalesce( "boo"    ));
-        NoNullRet("",    Nully0 .Coalesce(  NullText));
-        NoNullRet("boo", Nully0 .Coalesce( "boo"    ));
-        NoNullRet("1",   Nully1 .Coalesce(  NullText));
-        NoNullRet("1",   Nully1 .Coalesce( "boo"    ));
+        // With `T?`
+        NoNullRet("",    Coalesce(NullNum,   NullText ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo"     ));
+        NoNullRet("",    Coalesce(Nully0,    NullText ));
+        NoNullRet("boo", Coalesce(Nully0,   "boo"     ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo"     ));
+        NoNullRet("",    NullNum.Coalesce(   NullText ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo"     ));
+        NoNullRet("",    Nully0 .Coalesce(   NullText ));
+        NoNullRet("boo", Nully0 .Coalesce(  "boo"     ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo"     ));
     }
+
+    // Vals
 
     [TestMethod]
     public void Coalesce_2Args_Vals()
@@ -206,6 +218,8 @@ public class Coalesce_2Args
         NoNullRet(1,        1.Coalesce(       2));
         NoNullRet(2,        2.Coalesce(       2));
     }
+
+    // Objects
 
     [TestMethod]
     public void Coalesce_2Args_Objects()

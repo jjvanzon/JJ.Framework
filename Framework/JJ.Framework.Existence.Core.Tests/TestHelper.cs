@@ -23,7 +23,7 @@ internal static class TestHelper
     public static readonly int  NoNull4 = 4;
     
     public static readonly StringBuilder? NullObj     = null;
-    public static readonly StringBuilder  NoNullObj   = new("NonNull");
+    public static readonly StringBuilder  NoNullObj   = new("NoNull");
     public static readonly StringBuilder? NullyFilled = new("Filled");
     
     public static readonly int[]?                    FilledArray                      = [ 1, 2, 3 ];

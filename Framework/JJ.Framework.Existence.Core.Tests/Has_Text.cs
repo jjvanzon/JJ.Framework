@@ -1,17 +1,17 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Text
+public class Has_Text : TestBase
 {
     [TestMethod]
     public void FilledIn_Text_True()
     {
         IsTrue(Has(NullyText));
-        IsTrue(Has(TestHelper.Text));
+        IsTrue(Has(Text));
         IsTrue(FilledIn(NullyText));
-        IsTrue(FilledIn(TestHelper.Text));
+        IsTrue(FilledIn(Text));
         IsTrue(NullyText.FilledIn());
-        IsTrue(TestHelper.Text.FilledIn());
+        IsTrue(Text.FilledIn());
     }
 
     [TestMethod]
@@ -20,17 +20,17 @@ public class Has_Text
         IsFalse(Has(NullText));
         IsFalse(Has(NullyEmpty));
         IsFalse(Has(NullySpace));
-        IsFalse(Has(TestHelper.Empty));
+        IsFalse(Has(Empty));
         IsFalse(Has(Space));
         IsFalse(FilledIn(NullText));
         IsFalse(FilledIn(NullyEmpty));
         IsFalse(FilledIn(NullySpace));
-        IsFalse(FilledIn(TestHelper.Empty));
+        IsFalse(FilledIn(Empty));
         IsFalse(FilledIn(Space));
         IsFalse(NullText.FilledIn());
         IsFalse(NullyEmpty.FilledIn());
         IsFalse(NullySpace.FilledIn());
-        IsFalse(TestHelper.Empty.FilledIn());
+        IsFalse(Empty.FilledIn());
         IsFalse(Space.FilledIn());
     }
     
@@ -38,9 +38,9 @@ public class Has_Text
     public void IsNully_Text_False()
     {
         IsFalse(IsNully(NullyText));
-        IsFalse(IsNully(TestHelper.Text));
+        IsFalse(IsNully(Text));
         IsFalse(NullyText.IsNully());
-        IsFalse(TestHelper.Text.IsNully());
+        IsFalse(Text.IsNully());
     }
 
     [TestMethod] 
@@ -49,12 +49,12 @@ public class Has_Text
         IsTrue(IsNully(NullText));
         IsTrue(IsNully(NullyEmpty));
         IsTrue(IsNully(NullySpace));
-        IsTrue(IsNully(TestHelper.Empty));
+        IsTrue(IsNully(Empty));
         IsTrue(IsNully(Space));
         IsTrue(NullText.IsNully());
         IsTrue(NullyEmpty.IsNully());
         IsTrue(NullySpace.IsNully());
-        IsTrue(TestHelper.Empty.IsNully());
+        IsTrue(Empty.IsNully());
         IsTrue(Space.IsNully());
     }
     

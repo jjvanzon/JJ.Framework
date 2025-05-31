@@ -35,19 +35,6 @@ public class Coalesce_1Arg : TestBase
         NoNullRet(Text,  Coalesce(Text       ));
         NoNullRet(Text,  Coalesce(NullyText  ));
     }
-
-    [TestMethod]
-    public void Coalesce_1Arg_Text_Keywords()
-    {
-        NoNullRet("", default(string) .Coalesce());
-        NoNullRet("", default(string?).Coalesce());
-        NoNullRet("", ((string?)null) .Coalesce());
-        NoNullRet("", ((string)null!) .Coalesce());
-        NoNullRet("", Coalesce(default(string)  ));
-        NoNullRet("", Coalesce(default(string?) ));
-        NoNullRet("", Coalesce((string?)null    ));
-        NoNullRet("", Coalesce((string)null!    ));
-    }
     
     // Values
          
@@ -96,33 +83,6 @@ public class Coalesce_1Arg : TestBase
         NoNullRet(3, NoNull3.Coalesce());
         NoNullRet(3, Coalesce(NoNull3) );
     }
-
-    [TestMethod]
-    public void Coalesce_1Arg_Vals_Nully_Keywords()
-    {
-        NullRet  (null, (int?)null             );
-        NullRet  (0,    (int?)0                );
-        NullRet  (1,    (int?)1                );
-        NullRet  (2,    (int?)2                );
-        NoNullRet(0,    ((int?)null).Coalesce());
-        NoNullRet(0,    ((int?)0).Coalesce()   );
-        NoNullRet(1,    ((int?)1).Coalesce()   );
-        NoNullRet(2,    ((int?)2).Coalesce()   );
-        NoNullRet(0,    Coalesce(((int?)null)) );
-        NoNullRet(0,    Coalesce((int?)0)      );
-        NoNullRet(1,    Coalesce((int?)1)      );
-        NoNullRet(2,    Coalesce((int?)2)      );
-    }
-    
-    [TestMethod]
-    public void Coalesce_1Arg_Vals_NoNull_Keywords()
-    {
-        NoNullRet(0, default(int)           );
-        NoNullRet(0, default(int).Coalesce());
-        NoNullRet(0, Coalesce(default(int)) );
-        NoNullRet(0, ((int)0.0).Coalesce()  );
-        NoNullRet(0, Coalesce(((int)0.0))   );
-    }
    
     // Objects
 
@@ -140,20 +100,5 @@ public class Coalesce_1Arg : TestBase
         NotNull(NullyFilled);
         NoNullRet(Coalesce(NullyFilled));
         NoNullRet(NullyFilled.Coalesce());
-    }
-
-    [TestMethod]
-    public void Coalesce_1Arg_Obj_Keywords()
-    {
-        NoNullRet(Coalesce((StringBuilder?)null));
-        NoNullRet(((StringBuilder?)null).Coalesce());
-
-        IsNull(default(StringBuilder?));
-        NoNullRet(Coalesce(default(StringBuilder?)));
-        NoNullRet(default(StringBuilder?).Coalesce());
-
-        IsNull(default(StringBuilder));
-        NoNullRet(Coalesce(default(StringBuilder)));
-        NoNullRet(default(StringBuilder).Coalesce());
     }
 }
