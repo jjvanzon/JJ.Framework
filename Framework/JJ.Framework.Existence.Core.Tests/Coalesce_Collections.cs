@@ -3,6 +3,8 @@
 [TestClass]
 public class Coalesce_Collections
 {
+    // TODO: Use NoNullRet
+
     [TestMethod]
     public void Coalesce_Collections_CoalesceItems_Static()
     {

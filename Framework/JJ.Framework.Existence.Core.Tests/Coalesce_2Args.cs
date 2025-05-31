@@ -32,38 +32,38 @@ public class Coalesce_2Args
     [TestMethod]
     public void Coalesce_2Args_ObjectToText()
     {
-        AreEqual("None",    Coalesce(NullObj,    "None"));
-        AreEqual("NonNull", Coalesce(NoNullObj,  "None"));
-        AreEqual("Filled",  Coalesce(NullyFilled,"None"));
-        AreEqual("NonNull", NoNullObj  .Coalesce("None"));
-        AreEqual("None",    NullObj    .Coalesce("None"));
-        AreEqual("Filled",  NullyFilled.Coalesce("None"));
+        NoNullRet("None",    Coalesce(NullObj,    "None"));
+        NoNullRet("NonNull", Coalesce(NoNullObj,  "None"));
+        NoNullRet("Filled",  Coalesce(NullyFilled,"None"));
+        NoNullRet("NonNull", NoNullObj  .Coalesce("None"));
+        NoNullRet("None",    NullObj    .Coalesce("None"));
+        NoNullRet("Filled",  NullyFilled.Coalesce("None"));
     }
 
     [TestMethod]
     public void Coalesce_2Args_ValToText()
     {
         // With T
-        AreEqual("",           Coalesce(0,  NullText ));
-        AreEqual("",           Coalesce(0,  NullText ));
-        AreEqual("peekaboo",   Coalesce(0, "peekaboo"));
-        AreEqual("",         0.Coalesce(    NullText ));
-        AreEqual("peekaboo", 0.Coalesce(   "peekaboo"));
-        AreEqual("1",        1.Coalesce(    NullText ));
-        AreEqual("1",        1.Coalesce(   "peekaboo"));
+        NoNullRet("",           Coalesce(0,  NullText ));
+        NoNullRet("",           Coalesce(0,  NullText ));
+        NoNullRet("peekaboo",   Coalesce(0, "peekaboo"));
+        NoNullRet("",         0.Coalesce(    NullText ));
+        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo"));
+        NoNullRet("1",        1.Coalesce(    NullText ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo"));
         // With T?
-        AreEqual("",    Coalesce(NullNum,  NullText));
-        AreEqual("boo", Coalesce(NullNum, "boo"    ));
-        AreEqual("",    Coalesce(Nully0,   NullText));
-        AreEqual("boo", Coalesce(Nully0,  "boo"    ));
-        AreEqual("1",   Coalesce(Nully1,   NullText));
-        AreEqual("1",   Coalesce(Nully1,  "boo"    ));
-        AreEqual("",    NullNum.Coalesce(  NullText));
-        AreEqual("boo", NullNum.Coalesce( "boo"    ));
-        AreEqual("",    Nully0 .Coalesce(  NullText));
-        AreEqual("boo", Nully0 .Coalesce( "boo"    ));
-        AreEqual("1",   Nully1 .Coalesce(  NullText));
-        AreEqual("1",   Nully1 .Coalesce( "boo"    ));
+        NoNullRet("",    Coalesce(NullNum,  NullText));
+        NoNullRet("boo", Coalesce(NullNum, "boo"    ));
+        NoNullRet("",    Coalesce(Nully0,   NullText));
+        NoNullRet("boo", Coalesce(Nully0,  "boo"    ));
+        NoNullRet("1",   Coalesce(Nully1,   NullText));
+        NoNullRet("1",   Coalesce(Nully1,  "boo"    ));
+        NoNullRet("",    NullNum.Coalesce(  NullText));
+        NoNullRet("boo", NullNum.Coalesce( "boo"    ));
+        NoNullRet("",    Nully0 .Coalesce(  NullText));
+        NoNullRet("boo", Nully0 .Coalesce( "boo"    ));
+        NoNullRet("1",   Nully1 .Coalesce(  NullText));
+        NoNullRet("1",   Nully1 .Coalesce( "boo"    ));
     }
 
     [TestMethod]

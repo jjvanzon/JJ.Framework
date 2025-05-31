@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class ObjectTests
+public class Has_Object
 {
     [TestMethod]
     public void FilledIn_Object_True()

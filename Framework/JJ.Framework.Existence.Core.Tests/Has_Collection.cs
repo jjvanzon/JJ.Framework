@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CollectionTests
+public class Has_Collection
 {
     [TestMethod]
     public void FilledIn_Collections_True()

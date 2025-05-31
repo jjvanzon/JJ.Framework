@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class TextTests
+public class Has_Text
 {
     [TestMethod]
     public void FilledIn_Text_True()

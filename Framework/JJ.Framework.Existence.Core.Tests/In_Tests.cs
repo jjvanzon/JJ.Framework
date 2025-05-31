@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class InTests
+public class In_Tests
 {
     [TestMethod]
     public void In_Strings()

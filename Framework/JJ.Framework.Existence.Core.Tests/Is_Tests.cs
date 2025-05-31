@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class IsTests
+public class Is_Tests
 {
     
     [TestMethod]
