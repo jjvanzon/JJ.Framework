@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Existence.Core" Version="2.4.2797" />
+    <PackageReference Include="JJ.Framework.Existence.Core" Version="2.4.2800" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.2797" />
     <PackageReference Include="JJ.Framework.Testing" Version="0.250.2797" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="2.4.2797" />
