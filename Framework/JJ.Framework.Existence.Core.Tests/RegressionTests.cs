@@ -36,4 +36,55 @@ public class RegressionTests
             IsFalse(FilledIn(empty)); // Fixed!
         }
     }
+
+
+}
+
+[TestClass]
+public class RegressionTest_Has_GenericType_InfoLost
+{
+    // Copied from JJ.Business.Synthesizer.Wishes
+    // where generic assertion methods were defined
+    // that route to a non-generic object? variant in JJ.Framework.Existence.Core,
+    // Losing the function of comparing to default values, in this case default(int).
+
+    [TestMethod]
+    public void Regression_Has_GenericType_InfoLost_Test()
+    {
+        // strict: false should mean that 0 = default = ok.
+        var sizeOfBitDepth = AssertSizeOfBitDepth(sizeOfBitDepth: 0, strict: false);
+    }
+
+    // Squelch warnings for copied code.
+
+    // ReSharper disable MemberCanBePrivate.Global
+    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
+    #pragma warning disable CS8604 // Possible null reference argument.
+
+    // Leading up to the faulty call
+
+    static int[] ValidBits { get; } = { 8, 16, 32 };
+    static int[] ValidSizesOfBitDepth { get; } = ValidBits.Select(SizeOfBitDepth).ToArray();
+    static int SizeOfBitDepth(int bits) => BitsToSizeOfBitDepth(bits);
+    static int BitsToSizeOfBitDepth(int bits) => AssertBits(bits, strict: false) / 8;
+    static int AssertBits(int bits, bool strict = true) => AssertOptions("Bits", bits, ValidBits, strict);
+    static int AssertSizeOfBitDepth(int sizeOfBitDepth, bool strict = true) => AssertOptions("SizeOfBitDepth", sizeOfBitDepth, ValidSizesOfBitDepth, strict);
+
+    // Contains the faulty call
+
+    static T AssertOptions<T>(string name, T value, ICollection<T> validValues, bool strict)
+    {
+        if (value.In(validValues)) return value;
+        // The faulty Has call (routes wrong).
+        if (!Has(value) && !strict) return value;
+        throw NotSupportedException(name, value, validValues);
+    }
+    
+    // Trailed by the faulty call
+
+    static Exception NotSupportedException<T>(string name, object value, IEnumerable<T> validValues) 
+        => new Exception(NotSupportedMessage(name, value, validValues));
+        
+    static string NotSupportedMessage<T>(string name, object value, IEnumerable<T> validValues) 
+        => $"{name} = {value} not valid. Supported values: " + Join(", ", validValues);
 }
