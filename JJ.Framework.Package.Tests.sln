@@ -3,26 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.NuGet.Tests", "Framework\JJ.Framework.PlatformCompatibility.Core.NuGet.Tests\JJ.Framework.PlatformCompatibility.Core.NuGet.Tests.csproj", "{31B07130-5D5F-E179-BF99-DC82E8F73D13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Core.Package.Tests\JJ.Framework.PlatformCompatibility.Core.Package.Tests.csproj", "{31B07130-5D5F-E179-BF99-DC82E8F73D13}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.NuGet.Tests", "Framework\PlatformCompatibility.NuGet.Tests\JJ.Framework.PlatformCompatibility.NuGet.Tests.csproj", "{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Package.Tests", "Framework\PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Package.Tests.csproj", "{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.NuGet.Tests", "Framework\JJ.Framework.Common.NuGet.Tests\JJ.Framework.Common.NuGet.Tests.csproj", "{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Package.Tests", "Framework\JJ.Framework.Common.Package.Tests\JJ.Framework.Common.Package.Tests.csproj", "{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.NuGet.Tests", "Framework\JJ.Framework.Common.Core.NuGet.Tests\JJ.Framework.Common.Core.NuGet.Tests.csproj", "{E1D2C9C1-3A2F-81F8-4776-9FB6F9983FAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Tests", "Framework\JJ.Framework.Common.Core.Package.Tests\JJ.Framework.Common.Core.Package.Tests.csproj", "{E1D2C9C1-3A2F-81F8-4776-9FB6F9983FAB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		Framework\Directory.Build.props = Framework\Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
-		JJ.Framework.NuGet.Tests.sln.DotSettings = JJ.Framework.NuGet.Tests.sln.DotSettings
+		JJ.Framework.Package.Tests.sln.DotSettings = JJ.Framework.Package.Tests.sln.DotSettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.NuGet.Tests", "Framework\JJ.Framework.Reflection.NuGet.Tests\JJ.Framework.Reflection.NuGet.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Package.Tests", "Framework\JJ.Framework.Reflection.Package.Tests\JJ.Framework.Reflection.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.NuGet.Tests", "Framework\JJ.Framework.Reflection.Core.NuGet.Tests\JJ.Framework.Reflection.Core.NuGet.Tests.csproj", "{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.Package.Tests", "Framework\JJ.Framework.Reflection.Core.Package.Tests\JJ.Framework.Reflection.Core.Package.Tests.csproj", "{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
