@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿using System.Collections;
+
+namespace JJ.Framework.Existence.Core.Tests;
 
 internal static class TestHelper
 {
@@ -26,55 +28,125 @@ internal static class TestHelper
     public static readonly StringBuilder  NoNullObj   = new("NoNull");
     public static readonly StringBuilder? NullyFilled = new("Filled");
     
-    public static readonly int[]?                    FilledArray                      = [ 1, 2, 3 ];
-    public static readonly List               <int>  FilledList                       = [ 1, 2, 3 ];
-    public static readonly HashSet            <int>  FilledHashSet                    = [ 1, 2, 3 ];
-    public static readonly IList              <int>  FilledIList                      = [ 1, 2, 3 ];
-    public static readonly ISet               <int>  FilledISet      = new HashSet<int> { 1, 2, 3 };
-    public static readonly ICollection        <int>  FilledICollection                = [ 1, 2, 3 ];
+    private static HashSet<int> NewHashSet(params int[] nums)
+    {
+        var coll = new HashSet<int>();
+        foreach (var num in nums)
+        {
+            coll.Add(num);
+        }
+        return coll;
+
+    }
+    private static Dictionary<int, int> NewDic(params int[] nums) => nums.ToDictionary(num => num);
+
+    private static Stack<int> NewStack(params int[] nums)
+    {
+        var coll = new Stack<int>();
+        foreach (var num in nums)
+        {
+            coll.Push(num);
+        }
+        return coll;
+    }
+
+    private static Queue<int> NewQueue(params int[] nums)
+    {
+        var coll = new Queue<int>();
+        foreach (var num in nums)
+        {
+            coll.Enqueue(num);
+        }
+        return coll;
+    }
+    
+    private static LinkedList<int> NewLinkedList(params int[] nums)
+    {
+        var coll = new LinkedList<int>();
+        foreach (var num in nums)
+        {
+            coll.AddLast(num);
+        }
+        return coll;
+    }
+    
+    private static SortedList<int, int> NewSortedList(params int[] nums)
+    {
+        var coll = new SortedList<int, int>();
+        foreach (var num in nums)
+        {
+            coll.Add(num, num);
+        }
+        return coll;
+    }
+    
+    private static SortedSet<int> NewSortedSet(params int[] nums)
+    {
+        var coll = new SortedSet<int>();
+        foreach (var num in nums)
+        {
+            coll.Add(num);
+        }
+        return coll;
+    }
+
+    public static readonly int[]?                    FilledArray                      =              [1, 2, 3];
+    public static readonly IList              <int>  FilledIList                      =              [1, 2, 3];
+    public static readonly ISet               <int>  FilledISet                       = NewHashSet   (1, 2, 3);
+    public static readonly IDictionary   <int, int>  FilledIDictionary                = NewDic       (1, 2, 3);
+    public static readonly ICollection        <int>  FilledICollection                =              [1, 2, 3];
+    public static readonly IEnumerable        <int>  FilledIEnumerable                =              [1, 2, 3];
+    public static readonly List               <int>  FilledList                       =              [1, 2, 3];
+    public static readonly HashSet            <int>  FilledHashSet                    =              [1, 2, 3];
+    public static readonly Stack              <int>  FilledStack                      = NewStack     (1, 2, 3);
+    public static readonly Queue              <int>  FilledQueue                      = NewQueue     (1, 2, 3);
+    public static readonly LinkedList         <int>  FilledLinkedList                 = NewLinkedList(1, 2, 3);
+    public static readonly SortedList    <int, int>  FilledSortedList                 = NewSortedList(1, 2, 3);
+    public static readonly SortedSet          <int>  FilledSortedSet                  = NewSortedSet (1, 2, 3);
+
+
     public static readonly IReadOnlyList      <int>  FilledIReadOnlyList              = [ 1, 2, 3 ];
     public static readonly IReadOnlyCollection<int>  FilledIReadOnlyCollection        = [ 1, 2, 3 ];
-    public static readonly IEnumerable        <int>  FilledIEnumerable                = [ 1, 2, 3 ];
     
     public static readonly int[]?                    NullyFilledArray                 = [ 1, 2, 3 ];
     public static readonly List               <int>? NullyFilledList                  = [ 1, 2, 3 ];
     public static readonly HashSet            <int>? NullyFilledHashSet               = [ 1, 2, 3 ];
     public static readonly IList              <int>? NullyFilledIList                 = [ 1, 2, 3 ];
-    public static readonly ISet               <int>? NullyFilledISet = new HashSet<int> { 1, 2, 3 };
+    public static readonly ISet               <int>? NullyFilledISet                  = NewHashSet(1, 2, 3);
     public static readonly ICollection        <int>? NullyFilledICollection           = [ 1, 2, 3 ];
     public static readonly IReadOnlyList      <int>? NullyFilledIReadOnlyList         = [ 1, 2, 3 ];
     public static readonly IReadOnlyCollection<int>? NullyFilledIReadOnlyCollection   = [ 1, 2, 3 ];
     public static readonly IEnumerable        <int>? NullyFilledIEnumerable           = [ 1, 2, 3 ];
     
-    public static readonly int[]                     EmptyArray                          = [ ];
-    public static readonly List               <int>  EmptyList                           = [ ];
-    public static readonly HashSet            <int>  EmptyHashSet                        = [ ];
-    public static readonly IList              <int>  EmptyIList                          = [ ];
-    public static readonly ISet               <int>  EmptyISet          = new HashSet<int> { };
-    public static readonly ICollection        <int>  EmptyICollection                    = [ ];
-    public static readonly IReadOnlyList      <int>  EmptyIReadOnlyList                  = [ ];
-    public static readonly IReadOnlyCollection<int>  EmptyIReadOnlyCollection            = [ ];
-    public static readonly IEnumerable        <int>  EmptyIEnumerable                    = [ ];
+    public static readonly int[]                     EmptyArray                       = [ ];
+    public static readonly List               <int>  EmptyList                        = [ ];
+    public static readonly HashSet            <int>  EmptyHashSet                     = [ ];
+    public static readonly IList              <int>  EmptyIList                       = [ ];
+    public static readonly ISet               <int>  EmptyISet                        = NewHashSet();
+    public static readonly ICollection        <int>  EmptyICollection                 = [ ];
+    public static readonly IReadOnlyList      <int>  EmptyIReadOnlyList               = [ ];
+    public static readonly IReadOnlyCollection<int>  EmptyIReadOnlyCollection         = [ ];
+    public static readonly IEnumerable        <int>  EmptyIEnumerable                 = [ ];
     
-    public static readonly int[]?                    NullableEmptyArray                  = [ ];
-    public static readonly List               <int>? NullableEmptyList                   = [ ];
-    public static readonly HashSet            <int>? NullableEmptyHashSet                = [ ];
-    public static readonly IList              <int>? NullableEmptyIList                  = [ ];
-    public static readonly ISet               <int>? NullableEmptyISet  = new HashSet<int> { };
-    public static readonly ICollection        <int>? NullableEmptyICollection            = [ ];
-    public static readonly IReadOnlyList      <int>? NullableEmptyIReadOnlyList          = [ ];
-    public static readonly IReadOnlyCollection<int>? NullableEmptyIReadOnlyCollection    = [ ];
-    public static readonly IEnumerable        <int>? NullableEmptyIEnumerable            = [ ];
+    public static readonly int[]?                    NullableEmptyArray               = [ ];
+    public static readonly List               <int>? NullableEmptyList                = [ ];
+    public static readonly HashSet            <int>? NullableEmptyHashSet             = [ ];
+    public static readonly IList              <int>? NullableEmptyIList               = [ ];
+    public static readonly ISet               <int>? NullableEmptyISet                = NewHashSet();
+    public static readonly ICollection        <int>? NullableEmptyICollection         = [ ];
+    public static readonly IReadOnlyList      <int>? NullableEmptyIReadOnlyList       = [ ];
+    public static readonly IReadOnlyCollection<int>? NullableEmptyIReadOnlyCollection = [ ];
+    public static readonly IEnumerable        <int>? NullableEmptyIEnumerable         = [ ];
     
-    public static readonly int[]?                    NullArray                           = null;
-    public static readonly List               <int>? NullList                            = null;
-    public static readonly HashSet            <int>? NullHashSet                         = null;
-    public static readonly IList              <int>? NullIList                           = null;
-    public static readonly ISet               <int>? NullISet                            = null;
-    public static readonly ICollection        <int>? NullICollection                     = null;
-    public static readonly IReadOnlyList      <int>? NullIReadOnlyList                   = null;
-    public static readonly IReadOnlyCollection<int>? NullIReadOnlyCollection             = null;
-    public static readonly IEnumerable        <int>? NullIEnumerable                     = null;
+    public static readonly int[]?                    NullArray                        = null;
+    public static readonly List               <int>? NullList                         = null;
+    public static readonly HashSet            <int>? NullHashSet                      = null;
+    public static readonly IList              <int>? NullIList                        = null;
+    public static readonly ISet               <int>? NullISet                         = null;
+    public static readonly ICollection        <int>? NullICollection                  = null;
+    public static readonly IReadOnlyList      <int>? NullIReadOnlyList                = null;
+    public static readonly IReadOnlyCollection<int>? NullIReadOnlyCollection          = null;
+    public static readonly IEnumerable        <int>? NullIEnumerable                  = null;
     
     // For objects
 
