@@ -41,7 +41,10 @@ internal static class TestHelper
         return coll;
 
     }
-    private static Dictionary<int, int> NewDic(params int[] nums) => nums.ToDictionary(num => num);
+
+    private static Dictionary<int, int> NewDic    (params int[] nums) => nums.ToDictionary(num => num);
+    private static DicKeyColl           NewDicKeys(params int[] nums) => nums.ToDictionary(num => num).Keys;
+    private static DicValColl           NewDicVals(params int[] nums) => nums.ToDictionary(num => num).Values;
 
     private static Stack<int> NewStack(params int[] nums)
     {
@@ -93,22 +96,113 @@ internal static class TestHelper
         return coll;
     }
 
-    public static readonly int[]                     FilledArray                      =              [1, 2, 3];
-    public static readonly IList              <int>  FilledIList                      =              [1, 2, 3];
-    public static readonly ISet               <int>  FilledISet                       = NewHashSet   (1, 2, 3);
-    public static readonly IDictionary   <int, int>  FilledIDictionary                = NewDic       (1, 2, 3);
-    public static readonly ICollection        <int>  FilledICollection                =              [1, 2, 3];
-    public static readonly IEnumerable        <int>  FilledIEnumerable                =              [1, 2, 3];
-    public static readonly List               <int>  FilledList                       =              [1, 2, 3];
-    public static readonly HashSet            <int>  FilledHashSet                    =              [1, 2, 3];
-    public static readonly Stack              <int>  FilledStack                      = NewStack     (1, 2, 3);
-    public static readonly Queue              <int>  FilledQueue                      = NewQueue     (1, 2, 3);
-    public static readonly LinkedList         <int>  FilledLinkedList                 = NewLinkedList(1, 2, 3);
-    public static readonly SortedList    <int, int>  FilledSortedList                 = NewSortedList(1, 2, 3);
-    public static readonly SortedSet          <int>  FilledSortedSet                  = NewSortedSet (1, 2, 3);
-    public static readonly Dictionary    <int, int>  FilledDictionary                 = NewDic       (1, 2, 3);
-    public static readonly DicKeyColl                FilledDicKeyColl                 = NewDic       (1, 2, 3).Keys;
-    public static readonly DicValColl                FilledDicValColl                 = NewDic       (1, 2, 3).Values;
+    private static ImmutableDictionary<int, int> NewImmutableDic(params int[] nums) => NewImmutableDicBuilder().ToImmutable();
+    private static ImmutableDictionary<int, int>.Builder NewImmutableDicBuilder(params int[] nums)
+    {
+        var builder = ImmutableDictionary.CreateBuilder<int, int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num, num);
+        }
+
+        return builder;
+    }
+
+    private static ImmutableArray<int> NewImmutableArray(params int[] nums) => NewImmutableArrayBuilder(nums).ToImmutable();
+    private static ImmutableArray<int>.Builder NewImmutableArrayBuilder(params int[] nums)
+    {
+        var builder = ImmutableArray.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+    
+
+    private static ImmutableList<int> NewImmutableList(params int[] nums) => NewImmutableListBuilder(nums).ToImmutable();
+    private static ImmutableList<int>.Builder NewImmutableListBuilder(params int[] nums)
+    {
+        var builder = ImmutableList.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+    
+    private static ImmutableHashSet<int> NewImmutableHashSet(params int[] nums) => NewImmutableHashSetBuilder(nums).ToImmutable();
+    private static ImmutableHashSet<int>.Builder NewImmutableHashSetBuilder(params int[] nums)
+    {
+        var builder = ImmutableHashSet.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+
+    private static ImmutableSortedSet<int> NewImmutableSortedSet(params int[] nums) => NewImmutableSortedSetBuilder(nums).ToImmutable();
+    private static ImmutableSortedSet<int>.Builder NewImmutableSortedSetBuilder(params int[] nums)
+    {
+        var builder = ImmutableSortedSet.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+    
+    private static ImmutableSortedDictionary<int, int> NewImmutableSortedDic(params int[] nums) => NewImmutableSortedDicBuilder(nums).ToImmutable();
+    private static ImmutableSortedDictionary<int, int>.Builder NewImmutableSortedDicBuilder(params int[] nums)
+    {
+        var builder = ImmutableSortedDictionary.CreateBuilder<int, int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num, num);
+        }
+        return builder;
+    }
+
+    private static ImmutableStack<int> NewImmutableStack(params int[] nums) => ImmutableStack.Create(nums);
+    private static ImmutableQueue<int> NewImmutableQueue(params int[] nums) => ImmutableQueue.Create(nums);
+
+    public static readonly int[]                                       FilledArray                            =                             [1, 2, 3];
+    public static readonly IList<int>                                  FilledIList                            =                             [1, 2, 3];
+    public static readonly ISet<int>                                   FilledISet                             = NewHashSet                  (1, 2, 3);
+    public static readonly IDictionary<int, int>                       FilledIDictionary                      = NewDic                      (1, 2, 3);
+    public static readonly ICollection<int>                            FilledICollection                      =                             [1, 2, 3];
+    public static readonly IEnumerable<int>                            FilledIEnumerable                      =                             [1, 2, 3];
+    public static readonly List<int>                                   FilledList                             =                             [1, 2, 3];
+    public static readonly HashSet<int>                                FilledHashSet                          =                             [1, 2, 3];
+    public static readonly Stack<int>                                  FilledStack                            = NewStack                    (1, 2, 3);
+    public static readonly Queue<int>                                  FilledQueue                            = NewQueue                    (1, 2, 3);
+    public static readonly LinkedList<int>                             FilledLinkedList                       = NewLinkedList               (1, 2, 3);
+    public static readonly SortedList<int, int>                        FilledSortedList                       = NewSortedList               (1, 2, 3);
+    public static readonly SortedSet<int>                              FilledSortedSet                        = NewSortedSet                (1, 2, 3);
+    public static readonly Dictionary<int, int>                        FilledDictionary                       = NewDic                      (1, 2, 3);
+    public static readonly DicKeyColl                                  FilledDicKeyColl                       = NewDicKeys                  (1, 2, 3);
+    public static readonly DicValColl                                  FilledDicValColl                       = NewDicVals                  (1, 2, 3);
+    public static readonly IImmutableList<int>                         FilledIImmutableList                   = NewImmutableList            (1, 2, 3);
+    public static readonly IImmutableSet<int>                          FilledIImmutableSet                    = NewImmutableHashSet         (1, 2, 3);
+    public static readonly IImmutableStack<int>                        FilledIImmutableStack                  = NewImmutableStack           (1, 2, 3);
+    public static readonly IImmutableQueue<int>                        FilledIImmutableQueue                  = NewImmutableQueue           (1, 2, 3);
+    public static readonly IImmutableDictionary<int, int>              FilledIImmutableDictionary             = NewImmutableDic             (1, 2, 3);
+    public static readonly ImmutableArray<int>                         FilledImmutableArray                   = NewImmutableArray           (1, 2, 3);
+    public static readonly ImmutableArray<int>.Builder                 FilledImmutableArrayBuilder            = NewImmutableArrayBuilder    (1, 2, 3);
+    public static readonly ImmutableList<int>                          FilledImmutableList                    = NewImmutableList            (1, 2, 3);
+    public static readonly ImmutableList<int>.Builder                  FilledImmutableListBuilder             = NewImmutableListBuilder     (1, 2, 3);
+    public static readonly ImmutableHashSet<int>                       FilledImmutableHashSet                 = NewImmutableHashSet         (1, 2, 3);
+    public static readonly ImmutableHashSet<int>.Builder               FilledImmutableHashSetBuilder          = NewImmutableHashSetBuilder  (1, 2, 3);
+    public static readonly ImmutableStack<int>                         FilledImmutableStack                   = NewImmutableStack           (1, 2, 3);
+    public static readonly ImmutableQueue<int>                         FilledImmutableQueue                   = NewImmutableQueue           (1, 2, 3);
+    public static readonly ImmutableDictionary<int, int>               FilledImmutableDictionary              = NewImmutableDic             (1, 2, 3);
+    public static readonly ImmutableDictionary<int, int>.Builder       FilledImmutableDictionaryBuilder       = NewImmutableDicBuilder      (1, 2, 3);
+    public static readonly ImmutableSortedSet<int>                     FilledImmutableSortedSet               = NewImmutableSortedSet       (1, 2, 3);
+    public static readonly ImmutableSortedSet<int>.Builder             FilledImmutableSortedSetBuilder        = NewImmutableSortedSetBuilder(1, 2, 3);
+    public static readonly ImmutableSortedDictionary<int, int>         FilledImmutableSortedDictionary        = NewImmutableSortedDic       (1, 2, 3);
+    public static readonly ImmutableSortedDictionary<int, int>.Builder FilledImmutableSortedDictionaryBuilder = NewImmutableSortedDicBuilder(1, 2, 3);
+
     public static readonly IReadOnlyList      <int>  FilledIReadOnlyList              =              [1, 2, 3];
     public static readonly IReadOnlyCollection<int>  FilledIReadOnlyCollection        =              [1, 2, 3];
     
