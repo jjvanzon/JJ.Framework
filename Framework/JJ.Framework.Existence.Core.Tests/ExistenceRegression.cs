@@ -41,15 +41,15 @@ public class RegressionTests
 }
 
 [TestClass]
-public class RegressionTest_Has_GenericType_InfoLost
+public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
 {
     // Copied from JJ.Business.Synthesizer.Wishes
     // where generic assertion methods were defined
-    // that route to a non-generic object? variant in JJ.Framework.Existence.Core,
-    // Losing the function of comparing to default values, in this case default(int).
+    // that route to a non-generic `object?` variant in JJ.Framework.Existence.Core,
+    // losing the function of comparing to default values, in this case default(int).
 
     [TestMethod]
-    public void Regression_CallToHas_GenericTypeInfoLost_Test()
+    public void Regression_CallToHas_FromGenericContext_TypeInfoLost()
     {
         // `strict: false` means 0 = default = ok.
         var sizeOfBitDepth = AssertSizeOfBitDepth(sizeOfBitDepth: 0, strict: false);
