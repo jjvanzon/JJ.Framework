@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Value
+public class Has_Value_Tests
 {
     [TestMethod]
     public void FilledIn_Int_True()

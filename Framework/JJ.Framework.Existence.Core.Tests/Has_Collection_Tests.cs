@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Collection
+public class Has_Collection_Tests
 {
     [TestMethod]
     public void FilledIn_Collections_True()
@@ -26,14 +26,23 @@ public class Has_Collection
             IsTrue(FilledIReadOnlyCollection.FilledIn());
             IsTrue(FilledIEnumerable.FilledIn());
             IsTrue(FilledIn(FilledArray));
-            IsTrue(FilledIn(FilledList));
-            IsTrue(FilledIn(FilledHashSet));
             IsTrue(FilledIn(FilledIList));
             IsTrue(FilledIn(FilledISet));
+            IsTrue(FilledIn(FilledIDictionary));
             IsTrue(FilledIn(FilledICollection));
+            IsTrue(FilledIn(FilledIEnumerable));
+            IsTrue(FilledIn(FilledList));
+            IsTrue(FilledIn(FilledHashSet));
+            IsTrue(FilledIn(FilledStack));
+            IsTrue(FilledIn(FilledQueue));
+            IsTrue(FilledIn(FilledLinkedList));
+            IsTrue(FilledIn(FilledSortedList));
+            IsTrue(FilledIn(FilledSortedSet));
+            IsTrue(FilledIn(FilledDictionary));
+            IsTrue(FilledIn(FilledDicKeyColl));
+            IsTrue(FilledIn(FilledDicValColl));
             IsTrue(FilledIn(FilledIReadOnlyList));
             IsTrue(FilledIn(FilledIReadOnlyCollection));
-            IsTrue(FilledIn(FilledIEnumerable));
         }
         {
             IsTrue(Has(NullyFilledArray));
@@ -55,14 +64,23 @@ public class Has_Collection
             IsTrue(NullyFilledIReadOnlyCollection.FilledIn());
             IsTrue(NullyFilledIEnumerable.FilledIn());
             IsTrue(FilledIn(NullyFilledArray));
-            IsTrue(FilledIn(NullyFilledList));
-            IsTrue(FilledIn(NullyFilledHashSet));
             IsTrue(FilledIn(NullyFilledIList));
             IsTrue(FilledIn(NullyFilledISet));
+            IsTrue(FilledIn(NullyFilledIDictionary));
             IsTrue(FilledIn(NullyFilledICollection));
+            IsTrue(FilledIn(NullyFilledIEnumerable));
+            IsTrue(FilledIn(NullyFilledList));
+            IsTrue(FilledIn(NullyFilledHashSet));
+            IsTrue(FilledIn(NullyFilledStack));
+            IsTrue(FilledIn(NullyFilledQueue));
+            IsTrue(FilledIn(NullyFilledLinkedList));
+            IsTrue(FilledIn(NullyFilledSortedList));
+            IsTrue(FilledIn(NullyFilledSortedSet));
+            IsTrue(FilledIn(NullyFilledDictionary));
+            IsTrue(FilledIn(NullyFilledDicKeyColl));
+            IsTrue(FilledIn(NullyFilledDicValColl));
             IsTrue(FilledIn(NullyFilledIReadOnlyList));
             IsTrue(FilledIn(NullyFilledIReadOnlyCollection));
-            IsTrue(FilledIn(NullyFilledIEnumerable));
         }
     }
       
@@ -89,14 +107,23 @@ public class Has_Collection
             IsFalse(EmptyIReadOnlyCollection.FilledIn());
             IsFalse(EmptyIEnumerable.FilledIn());
             IsFalse(FilledIn(EmptyArray));
-            IsFalse(FilledIn(EmptyList));
-            IsFalse(FilledIn(EmptyHashSet));
             IsFalse(FilledIn(EmptyIList));
             IsFalse(FilledIn(EmptyISet));
+            IsFalse(FilledIn(EmptyIDictionary));
             IsFalse(FilledIn(EmptyICollection));
+            IsFalse(FilledIn(EmptyIEnumerable));
+            IsFalse(FilledIn(EmptyList));
+            IsFalse(FilledIn(EmptyHashSet));
+            IsFalse(FilledIn(EmptyStack));
+            IsFalse(FilledIn(EmptyQueue));
+            IsFalse(FilledIn(EmptyLinkedList));
+            IsFalse(FilledIn(EmptySortedList));
+            IsFalse(FilledIn(EmptySortedSet));
+            IsFalse(FilledIn(EmptyDictionary));
+            IsFalse(FilledIn(EmptyDicKeyColl));
+            IsFalse(FilledIn(EmptyDicValColl));
             IsFalse(FilledIn(EmptyIReadOnlyList));
             IsFalse(FilledIn(EmptyIReadOnlyCollection));
-            IsFalse(FilledIn(EmptyIEnumerable));
         }
         {
             IsFalse(Has(NullableEmptyArray));
@@ -118,14 +145,23 @@ public class Has_Collection
             IsFalse(NullableEmptyIReadOnlyCollection.FilledIn());
             IsFalse(NullableEmptyIEnumerable.FilledIn());
             IsFalse(FilledIn(NullableEmptyArray));
-            IsFalse(FilledIn(NullableEmptyList));
-            IsFalse(FilledIn(NullableEmptyHashSet));
             IsFalse(FilledIn(NullableEmptyIList));
             IsFalse(FilledIn(NullableEmptyISet));
+            IsFalse(FilledIn(NullableEmptyIDictionary));
             IsFalse(FilledIn(NullableEmptyICollection));
+            IsFalse(FilledIn(NullableEmptyIEnumerable));
+            IsFalse(FilledIn(NullableEmptyList));
+            IsFalse(FilledIn(NullableEmptyHashSet));
+            IsFalse(FilledIn(NullableEmptyStack));
+            IsFalse(FilledIn(NullableEmptyQueue));
+            IsFalse(FilledIn(NullableEmptyLinkedList));
+            IsFalse(FilledIn(NullableEmptySortedList));
+            IsFalse(FilledIn(NullableEmptySortedSet));
+            IsFalse(FilledIn(NullableEmptyDictionary));
+            IsFalse(FilledIn(NullableEmptyDicKeyColl));
+            IsFalse(FilledIn(NullableEmptyDicValColl));
             IsFalse(FilledIn(NullableEmptyIReadOnlyList));
             IsFalse(FilledIn(NullableEmptyIReadOnlyCollection));
-            IsFalse(FilledIn(NullableEmptyIEnumerable));
         }
         {
             IsFalse(Has(NullArray));
@@ -147,14 +183,23 @@ public class Has_Collection
             IsFalse(NullIReadOnlyCollection.FilledIn());
             IsFalse(NullIEnumerable.FilledIn());
             IsFalse(FilledIn(NullArray));
-            IsFalse(FilledIn(NullList));
-            IsFalse(FilledIn(NullHashSet));
             IsFalse(FilledIn(NullIList));
             IsFalse(FilledIn(NullISet));
+            IsFalse(FilledIn(NullIDictionary));
             IsFalse(FilledIn(NullICollection));
+            IsFalse(FilledIn(NullIEnumerable));
+            IsFalse(FilledIn(NullList));
+            IsFalse(FilledIn(NullHashSet));
+            IsFalse(FilledIn(NullStack));
+            IsFalse(FilledIn(NullQueue));
+            IsFalse(FilledIn(NullLinkedList));
+            IsFalse(FilledIn(NullSortedList));
+            IsFalse(FilledIn(NullSortedSet));
+            IsFalse(FilledIn(NullDictionary));
+            IsFalse(FilledIn(NullDicKeyColl));
+            IsFalse(FilledIn(NullDicValColl));
             IsFalse(FilledIn(NullIReadOnlyList));
             IsFalse(FilledIn(NullIReadOnlyCollection));
-            IsFalse(FilledIn(NullIEnumerable));
         }
     }
     

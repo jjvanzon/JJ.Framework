@@ -2,8 +2,6 @@
 using System.Collections.Specialized;
 using System.Collections.ObjectModel;
 using NonGeneric = System.Collections;
-using Concurrent = System.Collections.Concurrent;
-using ObjectModel = System.Collections.ObjectModel;
 using Specialized = System.Collections.Specialized;
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable GenericEnumeratorNotDisposed
