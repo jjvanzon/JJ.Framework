@@ -12,7 +12,7 @@
     <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.2797" />
     <PackageReference Include="JJ.Framework.Reflection" Version="0.250.2797" />
     <PackageReference Include="JJ.Framework.Testing" Version="0.250.2797" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="2.4.2797" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="2.4.2803" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
