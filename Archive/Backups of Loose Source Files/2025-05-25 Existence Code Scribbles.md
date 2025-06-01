@@ -946,5 +946,11 @@ Irellevant collection types:
         coll.Reset(); 
         return ret;
     }
+
+  //public static bool FilledIn<T,U,V>([NotNullWhen(true )]      Dictionary<T,U>.AlternateLookup<V>                    ? coll) where T : notnull where V : notnull => HasCollection(coll.Dictionary);
+  //public static bool FilledIn<T>    ([NotNullWhen(true )]      HashSet<T>.AlternateLookup<TAlternate>                ? coll)                      => HasCollection(coll);
+  //public static bool FilledIn<T,U,V>([NotNullWhen(true )]      ConcurrentDictionary<T,U>.AlternateLookup<V>          ? coll) where T : notnull    => HasCollection(coll);
+  //public static bool FilledIn<T>    ([NotNullWhen(true )]      IAsyncEnumerable<T>                                   ? coll)                      => HasCollection(coll);
+  //public static bool FilledIn<T>    ([NotNullWhen(true )]      IAsyncEnumerator<T>                                   ? coll)                      => HasCollection(coll);
 ```
 
