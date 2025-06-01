@@ -51,18 +51,16 @@ public class RegressionTest_Has_GenericType_InfoLost
     [TestMethod]
     public void Regression_Has_GenericType_InfoLost_Test()
     {
-        // strict: false should mean that 0 = default = ok.
+        // `strict: false` means 0 = default = ok.
         var sizeOfBitDepth = AssertSizeOfBitDepth(sizeOfBitDepth: 0, strict: false);
     }
 
-    // Squelch warnings for copied code.
-
+    // Squelch irrelevant warnings:
     // ReSharper disable MemberCanBePrivate.Global
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     #pragma warning disable CS8604 // Possible null reference argument.
 
     // Leading up to the faulty call
-
     static int[] ValidBits { get; } = { 8, 16, 32 };
     static int[] ValidSizesOfBitDepth { get; } = ValidBits.Select(SizeOfBitDepth).ToArray();
     static int SizeOfBitDepth(int bits) => BitsToSizeOfBitDepth(bits);
@@ -71,8 +69,9 @@ public class RegressionTest_Has_GenericType_InfoLost
     static int AssertSizeOfBitDepth(int sizeOfBitDepth, bool strict = true) => AssertOptions("SizeOfBitDepth", sizeOfBitDepth, ValidSizesOfBitDepth, strict);
 
     // Contains the faulty call
-
     static T AssertOptions<T>(string name, T value, ICollection<T> validValues, bool strict)
+    // NOTE: Adding generic constraint T : struct to caller code: perfectly reasonable but let's see if we can make it automatic.
+    //static T AssertOptions<T>(string name, T value, ICollection<T> validValues, bool strict) where T : struct 
     {
         if (value.In(validValues)) return value;
         // The faulty Has call (routes wrong).
@@ -80,8 +79,7 @@ public class RegressionTest_Has_GenericType_InfoLost
         throw NotSupportedException(name, value, validValues);
     }
     
-    // Trailed by the faulty call
-
+    // Trailed after the faulty call
     static Exception NotSupportedException<T>(string name, object value, IEnumerable<T> validValues) 
         => new Exception(NotSupportedMessage(name, value, validValues));
         

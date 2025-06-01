@@ -892,3 +892,27 @@ And if you do want the syntax sugar: It's there.
         NoNullRet("Filled", NullyFilled.Coalesce( "None"));
     }
 ```
+
+### FilledIn
+
+```cs
+    //public static bool HasEnumerable   ([NotNullWhen(true)] IEnumerator   ? coll)                  => coll?.MoveNext() ?? false;
+    //public static bool HasEnumerable   ([NotNullWhen(true)] IEnumerable   ? coll)                  => coll?.GetEnumerator().MoveNext() ?? false;
+
+    //public static bool FilledIn   ([NotNullWhen(true)]       object?         obj )                  =>  HasObject(obj);
+    //public static bool Has        ([NotNullWhen(true)]       object?         obj )                  =>  HasObject(obj);
+    public static bool IsNully      ([NotNullWhen(false)]      object?         obj )                  => !HasObject(obj);
+    //public static bool HasObject<T>    ([NotNullWhen(true)] T?                 obj )                  => HasValOrObj(obj);
+    //public static bool HasVal<T>       ([NotNullWhen(true)] T                  val ) where T : struct => HasValOrObj(val);
+    //public static bool IsDefault<T>    ([NotNullWhen(true)] T                  thing)                 => Equals(thing, default(T));
+
+    public static bool HasCollection<T>([NotNullWhen(true)] ImmutableArray<T>  coll)                      => coll is { Length: > 0};
+    public static bool HasCollection<T>([NotNullWhen(true)] ImmutableArray<T>? coll)                      => coll is { Length: > 0};
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray     <T>?   coll)                      => HasCollection(coll);
+    public static bool Has<T>       ([NotNullWhen(true )]      ImmutableArray     <T>?   coll)                      => HasCollection(coll);
+    public static bool IsNully<T>   ([NotNullWhen(false)]      ImmutableArray     <T>?   coll)                      => !HasCollection(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ImmutableArray     <T>    coll)                      => HasCollection(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ImmutableArray     <T>?   coll)                      => HasCollection(coll);
+    public static bool IsNully<T>   ([NotNullWhen(false)] this ImmutableArray     <T>    coll)                      => !HasCollection(coll);
+    public static bool IsNully<T>   ([NotNullWhen(false)] this ImmutableArray     <T>?   coll)                      => !HasCollection(coll);
+```
