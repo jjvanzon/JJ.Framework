@@ -916,3 +916,35 @@ And if you do want the syntax sugar: It's there.
     public static bool IsNully<T>   ([NotNullWhen(false)] this ImmutableArray     <T>    coll)                      => !HasCollection(coll);
     public static bool IsNully<T>   ([NotNullWhen(false)] this ImmutableArray     <T>?   coll)                      => !HasCollection(coll);
 ```
+
+Original set of collection overloads (to be replaced):
+
+```cs
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      List               <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      HashSet            <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T,U>([NotNullWhen(true )]      Dictionary         <T,U>? coll) where T : notnull    => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableList      <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      IEnumerable        <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      ICollection        <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      IList              <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      ISet               <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T,U>([NotNullWhen(true )]      IDictionary        <T,U>? coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlyList      <T>?   coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlyCollection<T>?   coll)                      => HasCollection(coll);
+```
+
+Irellevant collection types:
+
+```cs
+  public static bool FilledIn<T>    ([NotNullWhen(true )]      Specialized.BitVector32                               ? coll)                      => HasCollection(coll);
+  public static bool FilledIn<T>    ([NotNullWhen(true )]      Specialized.BitVector32.Section                       ? coll)                      => HasCollection(coll);
+
+    public static bool HasEnumerator        <T>([NotNullWhen(true)]            IEnumerator<T>? coll)
+    {
+        if (coll == null) return false;
+        bool ret = coll.MoveNext(); 
+        coll.Reset(); 
+        return ret;
+    }
+```
+

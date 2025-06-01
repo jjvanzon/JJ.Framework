@@ -1,5 +1,8 @@
-﻿
-namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Tests;
+
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable ArrangeObjectCreationWhenTypeEvident
+#pragma warning disable CS8604 // Possible null reference argument.
 
 [TestClass]
 public class RegressionTests
@@ -36,8 +39,6 @@ public class RegressionTests
             IsFalse(FilledIn(empty)); // Fixed!
         }
     }
-
-
 }
 
 [TestClass]
@@ -55,11 +56,6 @@ public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
         var sizeOfBitDepth = AssertSizeOfBitDepth(sizeOfBitDepth: 0, strict: false);
     }
 
-    // Squelch irrelevant warnings:
-    // ReSharper disable MemberCanBePrivate.Global
-    // ReSharper disable ArrangeObjectCreationWhenTypeEvident
-    #pragma warning disable CS8604 // Possible null reference argument.
-
     // Leading up to the faulty call
     static int[] ValidBits { get; } = { 8, 16, 32 };
     static int[] ValidSizesOfBitDepth { get; } = ValidBits.Select(SizeOfBitDepth).ToArray();
@@ -70,11 +66,11 @@ public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
 
     // Contains the faulty call
     static T AssertOptions<T>(string name, T value, ICollection<T> validValues, bool strict)
-    // NOTE: Adding generic constraint T : struct to caller code: perfectly reasonable but let's see if we can make it automatic.
+    // NOTE: Adding generic constraint T : struct to caller code works. but it shouldn't be the API user's responsibility.
     //static T AssertOptions<T>(string name, T value, ICollection<T> validValues, bool strict) where T : struct 
     {
         if (value.In(validValues)) return value;
-        // The faulty Has call (routes wrong).
+        // The faulty Has call (routed wrong to object? instead of T.)
         if (!Has(value) && !strict) return value;
         throw NotSupportedException(name, value, validValues);
     }
