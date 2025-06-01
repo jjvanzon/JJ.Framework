@@ -933,7 +933,7 @@ Original set of collection overloads (to be replaced):
   public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlyCollection<T>?   coll)                      => HasCollection(coll);
 ```
 
-Irellevant collection types:
+### Irellevant collection types:
 
 ```cs
   public static bool FilledIn<T>    ([NotNullWhen(true )]      Specialized.BitVector32                               ? coll)                      => HasCollection(coll);
@@ -952,5 +952,75 @@ Irellevant collection types:
   //public static bool FilledIn<T,U,V>([NotNullWhen(true )]      ConcurrentDictionary<T,U>.AlternateLookup<V>          ? coll) where T : notnull    => HasCollection(coll);
   //public static bool FilledIn<T>    ([NotNullWhen(true )]      IAsyncEnumerable<T>                                   ? coll)                      => HasCollection(coll);
   //public static bool FilledIn<T>    ([NotNullWhen(true )]      IAsyncEnumerator<T>                                   ? coll)                      => HasCollection(coll);
+
+
+    // Enumerators
+
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IEnumerator<T>                                         ? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      IEnumerator                                            ? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      Specialized.StringEnumerator                           ? coll)                      => Has_StringEnumerator(coll);
+
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      List<T>                                    .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      HashSet<T>                                 .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      Queue<T>                                   .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      Stack<T>                                   .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      LinkedList<T>                              .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      Dictionary<T,U>                            .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      Dictionary<T,U>.KeyCollection              .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      Dictionary<T,U>.ValueCollection            .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+    #if NET9_0_OR_GREATER
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      OrderedDictionary<T,U>                     .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+    #endif
+    #if NET6_0_OR_GREATER
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection.Enumerator? coll)                      => HasEnumerator(coll);
+    #endif
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      SortedSet<T>                               .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      SortedDictionary<T,U>                      .Enumerator? coll) where T: notnull     => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      SortedDictionary<T,U>.KeyCollection        .Enumerator? coll) where T: notnull     => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      SortedDictionary<T,U>.ValueCollection      .Enumerator? coll) where T: notnull     => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      ImmutableArray<T>                          .Enumerator? coll)                      => HasEnumerator_ForImmutableArray(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      ImmutableList<T>                           .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      ImmutableHashSet<T>                        .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      ImmutableStack<T>                          .Enumerator? coll)                      => HasEnumerator_ForImmutableStack(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      ImmutableQueue<T>                          .Enumerator? coll)                      => HasEnumerator_ForImmutableQueue(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      ImmutableDictionary<T,U>                   .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+    public static bool FilledIn<T>    ([NotNullWhen(true )]      ImmutableSortedSet<T>                      .Enumerator? coll)                      => HasEnumerator(coll);
+    public static bool FilledIn<T,U>  ([NotNullWhen(true )]      ImmutableSortedDictionary<T,U>             .Enumerator? coll) where T : notnull    => HasEnumerator(coll);
+
+    
+    //[Obsolete("WARNING: Use variant for more specific collection type if you can.")]
+    public static bool HasEnumerable_NonGeneric([NotNullWhen(true)] IEnumerable? coll) => HasEnumerator(coll?.GetEnumerator());
+
+    public static bool Has_StringEnumerator([NotNullWhen(true)] Specialized.StringEnumerator? coll)
+    {
+        if (coll == null) return false;
+        bool ret = coll.MoveNext(); 
+        coll.Reset(); 
+        return ret;
+    }
+    
+    public static bool HasEnumerator_ForImmutableArray<T>([NotNullWhen(true)] ImmutableArray<T>.Enumerator? coll) => coll?.MoveNext() ?? false;
+    public static bool HasEnumerator_ForImmutableQueue<T>([NotNullWhen(true)] ImmutableQueue<T>.Enumerator? coll) => coll?.MoveNext() ?? false;
+    public static bool HasEnumerator_ForImmutableStack<T>([NotNullWhen(true)] ImmutableStack<T>.Enumerator? coll) => coll?.MoveNext() ?? false;
+```
+
+### HasCollection Details
+
+```cs
+    //[Obsolete("WARNING: Use variant for more specific collection type if you can.")]
+    public static bool HasEnumerator([NotNullWhen(true)] IEnumerator? coll)
+    {
+        if (coll == null) return false;
+        bool ret = coll.MoveNext(); 
+        coll.Reset(); 
+        return ret;
+    }
+
+    [Obsolete("WARNING: Use variant for more specific collection type if you can.")]
+
+using NonGeneric = System.Collections;
+using Specialized = System.Collections.Specialized;
 ```
 
