@@ -38,7 +38,7 @@ public class Coalesce_NArgs_Tests
         NoNullRet(1, new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce());
         // Null collection
         NoNullRet(0, Coalesce(NullArray));
-        NoNullRet(0, NullICollection.Coalesce());
+        NoNullRet(0, NullIColl.Coalesce());
     }
 
     [TestMethod]
