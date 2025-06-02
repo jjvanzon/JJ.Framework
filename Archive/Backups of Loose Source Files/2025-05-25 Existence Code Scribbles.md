@@ -1024,3 +1024,8 @@ using NonGeneric = System.Collections;
 using Specialized = System.Collections.Specialized;
 ```
 
+### HasCollection Tests
+
+```cs
+    public static void Add<T>(this ConcurrentBag<T> coll, T item) => coll.Add(item);
+```
