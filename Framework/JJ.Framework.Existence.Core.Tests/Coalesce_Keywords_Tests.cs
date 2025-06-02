@@ -2,7 +2,7 @@
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_Keywords
+public class Coalesce_Keywords_Tests
 {
     // 1 Arg
 

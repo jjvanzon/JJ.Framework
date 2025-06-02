@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_NArgs
+public class Coalesce_NArgs_Tests
 {
     static string?[]? StringNullArray = (string?[]?)null;
 

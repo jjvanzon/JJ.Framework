@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_Literals
+public class Coalesce_Literals_Tests
 {
     [TestMethod]
     public void Coalesce_Literals_Support()

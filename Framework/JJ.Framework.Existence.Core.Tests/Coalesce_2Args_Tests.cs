@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_2Args : TestBase
+public class Coalesce_2Args_Tests : TestBase
 {
     // Text
 
