@@ -30,97 +30,6 @@ internal static class TestHelper
     public static readonly StringBuilder? NullObj     = null;
     public static readonly StringBuilder  NoNullObj   = new("NoNull");
     public static readonly StringBuilder? NullyFilled = new("Filled");
-        
-    // Collection Instantiation
-    
-    private static HashSet<int>         NewHashSet   (params int[] nums) => [..nums];
-    private static Dictionary<int, int> NewDic       (params int[] nums) => nums.ToDictionary(num => num);
-    private static DicKeyColl           NewDicKeys   (params int[] nums) => nums.ToDictionary(num => num).Keys;
-    private static DicValColl           NewDicVals   (params int[] nums) => nums.ToDictionary(num => num).Values;
-    private static Stack<int>           NewStack     (params int[] nums) => new(nums);
-    private static Queue<int>           NewQueue     (params int[] nums) => new(nums);
-    private static LinkedList<int>      NewLinkedList(params int[] nums) => new(nums);
-    private static SortedSet<int>       NewSortedSet (params int[] nums) => new(nums);
-    
-    private static SortedList<int, int> NewSortedList(params int[] nums)
-    {
-        var coll = new SortedList<int, int>();
-        foreach (var num in nums)
-        {
-            coll.Add(num, num);
-        }
-        return coll;
-    }
-    
-    private static ImmutableStack<int> NewImmutableStack(params int[] nums) => ImmutableStack.Create(nums);
-    private static ImmutableQueue<int> NewImmutableQueue(params int[] nums) => ImmutableQueue.Create(nums);
-    
-    private static ImmutableArray<int> NewImmutableArray(params int[] nums) => NewImmutableArrayBuilder(nums).ToImmutable();
-    private static ImmutableArray<int>.Builder NewImmutableArrayBuilder(params int[] nums)
-    {
-        var builder = ImmutableArray.CreateBuilder<int>();
-        foreach (var num in nums)
-        {
-            builder.Add(num);
-        }
-        return builder;
-    }
-
-    private static ImmutableList<int> NewImmutableList(params int[] nums) => NewImmutableListBuilder(nums).ToImmutable();
-    private static ImmutableList<int>.Builder NewImmutableListBuilder(params int[] nums)
-    {
-        var builder = ImmutableList.CreateBuilder<int>();
-        foreach (var num in nums)
-        {
-            builder.Add(num);
-        }
-        return builder;
-    }
-        
-    private static ImmutableHashSet<int> NewImmutableHashSet(params int[] nums) => NewImmutableHashSetBuilder(nums).ToImmutable();
-    private static ImmutableHashSet<int>.Builder NewImmutableHashSetBuilder(params int[] nums)
-    {
-        var builder = ImmutableHashSet.CreateBuilder<int>();
-        foreach (var num in nums)
-        {
-            builder.Add(num);
-        }
-        return builder;
-    }
-
-    private static ImmutableDictionary<int, int> NewImmutableDic(params int[] nums) => NewImmutableDicBuilder().ToImmutable();
-    private static ImmutableDictionary<int, int>.Builder NewImmutableDicBuilder(params int[] nums)
-    {
-        var builder = ImmutableDictionary.CreateBuilder<int, int>();
-        foreach (var num in nums)
-        {
-            builder.Add(num, num);
-        }
-
-        return builder;
-    }
-
-    private static ImmutableSortedSet<int> NewImmutableSortedSet(params int[] nums) => NewImmutableSortedSetBuilder(nums).ToImmutable();
-    private static ImmutableSortedSet<int>.Builder NewImmutableSortedSetBuilder(params int[] nums)
-    {
-        var builder = ImmutableSortedSet.CreateBuilder<int>();
-        foreach (var num in nums)
-        {
-            builder.Add(num);
-        }
-        return builder;
-    }
-    
-    private static ImmutableSortedDictionary<int, int> NewImmutableSortedDic(params int[] nums) => NewImmutableSortedDicBuilder(nums).ToImmutable();
-    private static ImmutableSortedDictionary<int, int>.Builder NewImmutableSortedDicBuilder(params int[] nums)
-    {
-        var builder = ImmutableSortedDictionary.CreateBuilder<int, int>();
-        foreach (var num in nums)
-        {
-            builder.Add(num, num);
-        }
-        return builder;
-    }
 
     public static readonly int[]                                        FilledArray                                   =                             [1, 2, 3];
     public static readonly IList<int>                                   FilledIList                                   =                             [1, 2, 3];
@@ -311,6 +220,97 @@ internal static class TestHelper
     public static readonly ImmutableSortedDictionary<int, int>.Builder? NullImmutableSortedDictionaryBuilder          = null;
     public static readonly IReadOnlyList<int>                         ? NullIReadOnlyList                             = null;
     public static readonly IReadOnlyCollection<int>                   ? NullIReadOnlyCollection                       = null;
+    
+    // Collection Instantiation
+    
+    private static HashSet<int>         NewHashSet   (params int[] nums) => [..nums];
+    private static Dictionary<int, int> NewDic       (params int[] nums) => nums.ToDictionary(num => num);
+    private static DicKeyColl           NewDicKeys   (params int[] nums) => nums.ToDictionary(num => num).Keys;
+    private static DicValColl           NewDicVals   (params int[] nums) => nums.ToDictionary(num => num).Values;
+    private static Stack<int>           NewStack     (params int[] nums) => new(nums);
+    private static Queue<int>           NewQueue     (params int[] nums) => new(nums);
+    private static LinkedList<int>      NewLinkedList(params int[] nums) => new(nums);
+    private static SortedSet<int>       NewSortedSet (params int[] nums) => new(nums);
+    
+    private static SortedList<int, int> NewSortedList(params int[] nums)
+    {
+        var coll = new SortedList<int, int>();
+        foreach (var num in nums)
+        {
+            coll.Add(num, num);
+        }
+        return coll;
+    }
+    
+    private static ImmutableStack<int> NewImmutableStack(params int[] nums) => ImmutableStack.Create(nums);
+    private static ImmutableQueue<int> NewImmutableQueue(params int[] nums) => ImmutableQueue.Create(nums);
+    
+    private static ImmutableArray<int> NewImmutableArray(params int[] nums) => NewImmutableArrayBuilder(nums).ToImmutable();
+    private static ImmutableArray<int>.Builder NewImmutableArrayBuilder(params int[] nums)
+    {
+        var builder = ImmutableArray.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+
+    private static ImmutableList<int> NewImmutableList(params int[] nums) => NewImmutableListBuilder(nums).ToImmutable();
+    private static ImmutableList<int>.Builder NewImmutableListBuilder(params int[] nums)
+    {
+        var builder = ImmutableList.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+        
+    private static ImmutableHashSet<int> NewImmutableHashSet(params int[] nums) => NewImmutableHashSetBuilder(nums).ToImmutable();
+    private static ImmutableHashSet<int>.Builder NewImmutableHashSetBuilder(params int[] nums)
+    {
+        var builder = ImmutableHashSet.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+
+    private static ImmutableDictionary<int, int> NewImmutableDic(params int[] nums) => NewImmutableDicBuilder().ToImmutable();
+    private static ImmutableDictionary<int, int>.Builder NewImmutableDicBuilder(params int[] nums)
+    {
+        var builder = ImmutableDictionary.CreateBuilder<int, int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num, num);
+        }
+
+        return builder;
+    }
+
+    private static ImmutableSortedSet<int> NewImmutableSortedSet(params int[] nums) => NewImmutableSortedSetBuilder(nums).ToImmutable();
+    private static ImmutableSortedSet<int>.Builder NewImmutableSortedSetBuilder(params int[] nums)
+    {
+        var builder = ImmutableSortedSet.CreateBuilder<int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num);
+        }
+        return builder;
+    }
+    
+    private static ImmutableSortedDictionary<int, int> NewImmutableSortedDic(params int[] nums) => NewImmutableSortedDicBuilder(nums).ToImmutable();
+    private static ImmutableSortedDictionary<int, int>.Builder NewImmutableSortedDicBuilder(params int[] nums)
+    {
+        var builder = ImmutableSortedDictionary.CreateBuilder<int, int>();
+        foreach (var num in nums)
+        {
+            builder.Add(num, num);
+        }
+        return builder;
+    }
 
     // NoNullRet
     
