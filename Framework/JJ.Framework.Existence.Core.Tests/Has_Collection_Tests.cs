@@ -3,8 +3,10 @@
 [TestClass]
 public class Has_Coll_Tests
 {
+    // FilledIn / Has
+    
     [TestMethod]
-    public void Collection_FilledIn_True()
+    public void Collection_FilledIn_True_WhenFilled()
     {
         {
             IsTrue(Has(FilledArray));
@@ -73,7 +75,52 @@ public class Has_Coll_Tests
             IsTrue(FilledIn(FilledIReadOnlySet));
             IsTrue(FilledIn(FilledReadOnlySet));
             #endif
+            IsTrue(FilledIn(FilledConcurrentBag));
+            IsTrue(FilledIn(FilledConcurrentQueue));
+            IsTrue(FilledIn(FilledConcurrentStack));
+            IsTrue(FilledIn(FilledConcurrentDict));
+            IsTrue(FilledIn(FilledBlockingColl));
+            IsTrue(FilledIn(FilledIProducerConsumerColl));
+            IsTrue(FilledIn(FilledSortedDict));
+            IsTrue(FilledIn(FilledSortedDictKeys));
+            IsTrue(FilledIn(FilledSortedDictVals));
+            #if NET9_0_OR_GREATER
+            IsTrue(FilledIn(FilledOrderedDict));
+            IsTrue(FilledIn(FilledOrderedDictKeys));
+            IsTrue(FilledIn(FilledOrderedDictVals));
+            #endif
+            #if NET6_0_OR_GREATER
+            IsTrue(FilledIn(FilledPrioQueue));
+            IsTrue(FilledIn(FilledPrioQueueUnorderedColl));
+            #endif
+            IsTrue(FilledIn(FilledColl));
+            IsTrue(FilledIn(FilledKeyedColl));
+            IsTrue(FilledIn(FilledObservableColl));
+            IsTrue(FilledIn(FilledReadOnlyObservableColl));
+            IsTrue(FilledIn(FilledArrayList));
+            IsTrue(FilledIn(FilledBitArray));
+            IsTrue(FilledIn(FilledCollBase));
+            IsTrue(FilledIn(FilledDictBase));
+            IsTrue(FilledIn(FilledHashtable));
+            IsTrue(FilledIn(FilledQueueNonGeneric));
+            IsTrue(FilledIn(FilledReadOnlyCollBase));
+            IsTrue(FilledIn(FilledSortedListNonGeneric));
+            IsTrue(FilledIn(FilledStackNonGeneric));
+            IsTrue(FilledIn(FilledHybridDict));
+            IsTrue(FilledIn(FilledListDict));
+            IsTrue(FilledIn(FilledNameObjectCollBase));
+            IsTrue(FilledIn(FilledNameObjectCollBaseKeys));
+            IsTrue(FilledIn(FilledNameValueColl));
+            IsTrue(FilledIn(FilledOrderedDictNonGeneric));
+            IsTrue(FilledIn(FilledStringColl));
+            IsTrue(FilledIn(FilledStringDict));
+            IsTrue(FilledIn(FilledIOrderedDict));
         }
+    }
+
+    [TestMethod]
+    public void Collection_FilledIn_True_ForNullable_WhenFilled()
+    {
         {
             IsTrue(Has(NullyFilledArray));
             IsTrue(Has(NullyFilledList));
@@ -145,7 +192,7 @@ public class Has_Coll_Tests
     }
       
     [TestMethod]
-    public void Collection_FilledIn_False()
+    public void Collection_FilledIn_False_WhenEmpty()
     {
         {
             IsFalse(Has(EmptyArray));
@@ -217,6 +264,11 @@ public class Has_Coll_Tests
             IsFalse(FilledIn(EmptyReadOnlySet));
             #endif
         }
+    }
+      
+    [TestMethod]
+    public void Collection_FilledIn_False_ForNullable_WhenEmpty()
+    {
         {
             IsFalse(Has(NullableEmptyArray));
             IsFalse(Has(NullableEmptyList));
@@ -285,6 +337,11 @@ public class Has_Coll_Tests
             IsFalse(FilledIn(NullableEmptyReadOnlySet));
             #endif
         }
+    }
+      
+    [TestMethod]
+    public void Collection_FilledIn_False_WhenNull()
+    {
         {
             IsFalse(Has(NullArray));
             IsFalse(Has(NullList));
@@ -357,118 +414,125 @@ public class Has_Coll_Tests
         }
     }
     
+    // IsNully
+    
     [TestMethod]
-    public void Collection_IsNully_False()
+    public void Collection_IsNully_False_WhenFilled()
     {
-        {
-            IsFalse(FilledArray.IsNully());
-            IsFalse(FilledList.IsNully());
-            IsFalse(FilledHashSet.IsNully());
-            IsFalse(FilledIList.IsNully());
-            IsFalse(FilledISet.IsNully());
-            IsFalse(FilledIColl.IsNully());
-            IsFalse(FilledIReadOnlyList.IsNully());
-            IsFalse(FilledIReadOnlyColl.IsNully());
-            IsFalse(FilledIEnumerable.IsNully());
-            IsFalse(IsNully(FilledArray));
-            IsFalse(IsNully(FilledList));
-            IsFalse(IsNully(FilledHashSet));
-            IsFalse(IsNully(FilledIList));
-            IsFalse(IsNully(FilledISet));
-            IsFalse(IsNully(FilledIColl));
-            IsFalse(IsNully(FilledIReadOnlyList));
-            IsFalse(IsNully(FilledIReadOnlyColl));
-            IsFalse(IsNully(FilledIEnumerable));
-        }
-        {
-            IsFalse(NullyFilledArray.IsNully());
-            IsFalse(NullyFilledList.IsNully());
-            IsFalse(NullyFilledHashSet.IsNully());
-            IsFalse(NullyFilledIList.IsNully());
-            IsFalse(NullyFilledISet.IsNully());
-            IsFalse(NullyFilledIColl.IsNully());
-            IsFalse(NullyFilledIReadOnlyList.IsNully());
-            IsFalse(NullyFilledIReadOnlyColl.IsNully());
-            IsFalse(NullyFilledIEnumerable.IsNully());
-            IsFalse(IsNully(NullyFilledArray));
-            IsFalse(IsNully(NullyFilledList));
-            IsFalse(IsNully(NullyFilledHashSet));
-            IsFalse(IsNully(NullyFilledIList));
-            IsFalse(IsNully(NullyFilledISet));
-            IsFalse(IsNully(NullyFilledIColl));
-            IsFalse(IsNully(NullyFilledIReadOnlyList));
-            IsFalse(IsNully(NullyFilledIReadOnlyColl));
-            IsFalse(IsNully(NullyFilledIEnumerable));
-        }
+        IsFalse(FilledArray.IsNully());
+        IsFalse(FilledList.IsNully());
+        IsFalse(FilledHashSet.IsNully());
+        IsFalse(FilledIList.IsNully());
+        IsFalse(FilledISet.IsNully());
+        IsFalse(FilledIColl.IsNully());
+        IsFalse(FilledIReadOnlyList.IsNully());
+        IsFalse(FilledIReadOnlyColl.IsNully());
+        IsFalse(FilledIEnumerable.IsNully());
+        IsFalse(IsNully(FilledArray));
+        IsFalse(IsNully(FilledList));
+        IsFalse(IsNully(FilledHashSet));
+        IsFalse(IsNully(FilledIList));
+        IsFalse(IsNully(FilledISet));
+        IsFalse(IsNully(FilledIColl));
+        IsFalse(IsNully(FilledIReadOnlyList));
+        IsFalse(IsNully(FilledIReadOnlyColl));
+        IsFalse(IsNully(FilledIEnumerable));
     }
     
     [TestMethod]
-    public void Collection_IsNully_True()
+    public void Collection_IsNully_False_ForNullable_WhenFilled()
     {
-        {
-            IsTrue(EmptyArray.IsNully());
-            IsTrue(EmptyList.IsNully());
-            IsTrue(EmptyHashSet.IsNully());
-            IsTrue(EmptyIList.IsNully());
-            IsTrue(EmptyISet.IsNully());
-            IsTrue(EmptyIColl.IsNully());
-            IsTrue(EmptyIReadOnlyList.IsNully());
-            IsTrue(EmptyIReadOnlyColl.IsNully());
-            IsTrue(EmptyIEnumerable.IsNully());
-            IsTrue(IsNully(EmptyArray));
-            IsTrue(IsNully(EmptyList));
-            IsTrue(IsNully(EmptyHashSet));
-            IsTrue(IsNully(EmptyIList));
-            IsTrue(IsNully(EmptyISet));
-            IsTrue(IsNully(EmptyIColl));
-            IsTrue(IsNully(EmptyIReadOnlyList));
-            IsTrue(IsNully(EmptyIReadOnlyColl));
-            IsTrue(IsNully(EmptyIEnumerable));
-        }
-        {
-            IsTrue(NullableEmptyArray.IsNully());
-            IsTrue(NullableEmptyList.IsNully());
-            IsTrue(NullableEmptyHashSet.IsNully());
-            IsTrue(NullableEmptyIList.IsNully());
-            IsTrue(NullableEmptyISet.IsNully());
-            IsTrue(NullableEmptyIColl.IsNully());
-            IsTrue(NullableEmptyIReadOnlyList.IsNully());
-            IsTrue(NullableEmptyIReadOnlyColl.IsNully());
-            IsTrue(NullableEmptyIEnumerable.IsNully());
-            IsTrue(IsNully(NullableEmptyArray));
-            IsTrue(IsNully(NullableEmptyList));
-            IsTrue(IsNully(NullableEmptyHashSet));
-            IsTrue(IsNully(NullableEmptyIList));
-            IsTrue(IsNully(NullableEmptyISet));
-            IsTrue(IsNully(NullableEmptyIColl));
-            IsTrue(IsNully(NullableEmptyIReadOnlyList));
-            IsTrue(IsNully(NullableEmptyIReadOnlyColl));
-            IsTrue(IsNully(NullableEmptyIEnumerable));
-        }
-        {
-            IsTrue(NullArray.IsNully());
-            IsTrue(NullList.IsNully());
-            IsTrue(NullHashSet.IsNully());
-            IsTrue(NullIList.IsNully());
-            IsTrue(NullISet.IsNully());
-            IsTrue(NullIColl.IsNully());
-            IsTrue(NullIReadOnlyList.IsNully());
-            IsTrue(NullIReadOnlyColl.IsNully());
-            IsTrue(NullIEnumerable.IsNully());
-            IsTrue(IsNully(NullArray));
-            IsTrue(IsNully(NullList));
-            IsTrue(IsNully(NullHashSet));
-            IsTrue(IsNully(NullIList));
-            IsTrue(IsNully(NullISet));
-            IsTrue(IsNully(NullIColl));
-            IsTrue(IsNully(NullIReadOnlyList));
-            IsTrue(IsNully(NullIReadOnlyColl));
-            IsTrue(IsNully(NullIEnumerable));
-        }
+        IsFalse(NullyFilledArray.IsNully());
+        IsFalse(NullyFilledList.IsNully());
+        IsFalse(NullyFilledHashSet.IsNully());
+        IsFalse(NullyFilledIList.IsNully());
+        IsFalse(NullyFilledISet.IsNully());
+        IsFalse(NullyFilledIColl.IsNully());
+        IsFalse(NullyFilledIReadOnlyList.IsNully());
+        IsFalse(NullyFilledIReadOnlyColl.IsNully());
+        IsFalse(NullyFilledIEnumerable.IsNully());
+        IsFalse(IsNully(NullyFilledArray));
+        IsFalse(IsNully(NullyFilledList));
+        IsFalse(IsNully(NullyFilledHashSet));
+        IsFalse(IsNully(NullyFilledIList));
+        IsFalse(IsNully(NullyFilledISet));
+        IsFalse(IsNully(NullyFilledIColl));
+        IsFalse(IsNully(NullyFilledIReadOnlyList));
+        IsFalse(IsNully(NullyFilledIReadOnlyColl));
+        IsFalse(IsNully(NullyFilledIEnumerable));
     }
     
     [TestMethod]
-    public void ImmutableArray_Emptiness()
+    public void Collection_IsNully_True_WhenEmpty()
+    {
+        IsTrue(EmptyArray.IsNully());
+        IsTrue(EmptyList.IsNully());
+        IsTrue(EmptyHashSet.IsNully());
+        IsTrue(EmptyIList.IsNully());
+        IsTrue(EmptyISet.IsNully());
+        IsTrue(EmptyIColl.IsNully());
+        IsTrue(EmptyIReadOnlyList.IsNully());
+        IsTrue(EmptyIReadOnlyColl.IsNully());
+        IsTrue(EmptyIEnumerable.IsNully());
+        IsTrue(IsNully(EmptyArray));
+        IsTrue(IsNully(EmptyList));
+        IsTrue(IsNully(EmptyHashSet));
+        IsTrue(IsNully(EmptyIList));
+        IsTrue(IsNully(EmptyISet));
+        IsTrue(IsNully(EmptyIColl));
+        IsTrue(IsNully(EmptyIReadOnlyList));
+        IsTrue(IsNully(EmptyIReadOnlyColl));
+        IsTrue(IsNully(EmptyIEnumerable));
+    }
+    
+    [TestMethod]
+    public void Collection_IsNully_True_ForNullable_WhenEmpty()
+    {
+        IsTrue(NullableEmptyArray.IsNully());
+        IsTrue(NullableEmptyList.IsNully());
+        IsTrue(NullableEmptyHashSet.IsNully());
+        IsTrue(NullableEmptyIList.IsNully());
+        IsTrue(NullableEmptyISet.IsNully());
+        IsTrue(NullableEmptyIColl.IsNully());
+        IsTrue(NullableEmptyIReadOnlyList.IsNully());
+        IsTrue(NullableEmptyIReadOnlyColl.IsNully());
+        IsTrue(NullableEmptyIEnumerable.IsNully());
+        IsTrue(IsNully(NullableEmptyArray));
+        IsTrue(IsNully(NullableEmptyList));
+        IsTrue(IsNully(NullableEmptyHashSet));
+        IsTrue(IsNully(NullableEmptyIList));
+        IsTrue(IsNully(NullableEmptyISet));
+        IsTrue(IsNully(NullableEmptyIColl));
+        IsTrue(IsNully(NullableEmptyIReadOnlyList));
+        IsTrue(IsNully(NullableEmptyIReadOnlyColl));
+        IsTrue(IsNully(NullableEmptyIEnumerable));
+    }
+    
+    [TestMethod]
+    public void Collection_IsNully_True_ForNulls()
+    {
+        IsTrue(NullArray.IsNully());
+        IsTrue(NullList.IsNully());
+        IsTrue(NullHashSet.IsNully());
+        IsTrue(NullIList.IsNully());
+        IsTrue(NullISet.IsNully());
+        IsTrue(NullIColl.IsNully());
+        IsTrue(NullIReadOnlyList.IsNully());
+        IsTrue(NullIReadOnlyColl.IsNully());
+        IsTrue(NullIEnumerable.IsNully());
+        IsTrue(IsNully(NullArray));
+        IsTrue(IsNully(NullList));
+        IsTrue(IsNully(NullHashSet));
+        IsTrue(IsNully(NullIList));
+        IsTrue(IsNully(NullISet));
+        IsTrue(IsNully(NullIColl));
+        IsTrue(IsNully(NullIReadOnlyList));
+        IsTrue(IsNully(NullIReadOnlyColl));
+        IsTrue(IsNully(NullIEnumerable));
+    }
+    
+    [TestMethod]
+    public void ImmutableArray_AdditionalStatesOf_Emptiness()
     {
         IsFalse(FilledIn(ImmutableArrayWithDefault));
         IsFalse(FilledIn(ImmutableArrayWithDefaultNullable));
