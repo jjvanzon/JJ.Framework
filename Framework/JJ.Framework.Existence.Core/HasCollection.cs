@@ -11,7 +11,8 @@ internal static partial class ExistenceUtility
     public static bool HasCollT            <T>([NotNullWhen(true)] ICollection<T>        ? coll) => coll is { Count  : > 0 };
     public static bool HasReadOnlyColl     <T>([NotNullWhen(true)] IReadOnlyCollection<T>? coll) => coll is { Count  : > 0 };
     public static bool HasEnumerable       <T>([NotNullWhen(true)] IEnumerable<T>        ? coll) => coll?.Any() ?? false;
-    public static bool Has_ImmutableArray  <T>([NotNullWhen(true)] ref ImmutableArray<T> ? coll) => coll is { IsEmpty: false };
+    public static bool Has_ImmutableArray  <T>([NotNullWhen(true)] ref ImmutableArray<T>   coll) => coll is { IsDefaultOrEmpty: false };
+    public static bool Has_ImmutableArray  <T>([NotNullWhen(true)] ref ImmutableArray<T> ? coll) => coll is { IsDefaultOrEmpty: false };
     public static bool Has_ImmutableStack  <T>([NotNullWhen(true)] IImmutableStack<T>    ? coll) => coll is { IsEmpty: false };
     public static bool Has_ImmutableQueue  <T>([NotNullWhen(true)] IImmutableQueue<T>    ? coll) => coll is { IsEmpty: false };
     public static bool Has_StringDictionary   ([NotNullWhen(true)] StringDictionary      ? coll) => coll is { Count  : > 0 };
@@ -45,6 +46,7 @@ public static partial class FilledInHelper
     public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableStack<T>                         ? coll)                   => Has_ImmutableStack(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableQueue<T>                         ? coll)                   => Has_ImmutableQueue(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      IImmutableDictionary<T,U>                  ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>                            coll)                   => Has_ImmutableArray(ref coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>                          ? coll)                   => Has_ImmutableArray(ref coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>.Builder                  ? coll)                   => HasCollT(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableList<T>                           ? coll)                   => HasColl(coll);

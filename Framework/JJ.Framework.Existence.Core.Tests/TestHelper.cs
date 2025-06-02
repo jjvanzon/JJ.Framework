@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using DicKeyColl = System.Collections.Generic.Dictionary<int, int>.KeyCollection;
 using DicValColl = System.Collections.Generic.Dictionary<int, int>.ValueCollection;
+// ReSharper disable UseCollectionExpression
 
 namespace JJ.Framework.Existence.Core.Tests;
 
@@ -221,6 +222,11 @@ internal static class TestHelper
     public static readonly IReadOnlyList<int>                         ? NullIReadOnlyList                             = null;
     public static readonly IReadOnlyCollection<int>                   ? NullIReadOnlyCollection                       = null;
     
+    public static readonly ImmutableArray<int>                          ImmutableArrayWithDefault                     = default;
+    public static readonly ImmutableArray<int>                        ? ImmutableArrayWithDefaultNullable             = default;
+    public static readonly ImmutableArray<int>                          ImmutableArrayWithNew                         = new();
+    public static readonly ImmutableArray<int>                        ? ImmutableArrayWithNewNullable                 = new();
+    
     // Collection Instantiation
     
     private static HashSet<int>         NewHashSet   (params int[] nums) => [..nums];
@@ -278,7 +284,7 @@ internal static class TestHelper
         return builder;
     }
 
-    private static ImmutableDictionary<int, int> NewImmutableDic(params int[] nums) => NewImmutableDicBuilder().ToImmutable();
+    private static ImmutableDictionary<int, int> NewImmutableDic(params int[] nums) => NewImmutableDicBuilder(nums).ToImmutable();
     private static ImmutableDictionary<int, int>.Builder NewImmutableDicBuilder(params int[] nums)
     {
         var builder = ImmutableDictionary.CreateBuilder<int, int>();

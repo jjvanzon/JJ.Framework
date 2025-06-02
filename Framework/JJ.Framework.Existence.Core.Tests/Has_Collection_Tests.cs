@@ -41,6 +41,25 @@ public class Has_Collection_Tests
             IsTrue(FilledIn(FilledDictionary));
             IsTrue(FilledIn(FilledDicKeyColl));
             IsTrue(FilledIn(FilledDicValColl));
+            IsTrue(FilledIn(FilledIImmutableList));
+            IsTrue(FilledIn(FilledIImmutableSet));
+            IsTrue(FilledIn(FilledIImmutableStack));
+            IsTrue(FilledIn(FilledIImmutableQueue));
+            IsTrue(FilledIn(FilledIImmutableDictionary));
+            IsTrue(FilledIn(FilledImmutableArray));
+            IsTrue(FilledIn(FilledImmutableArrayBuilder));
+            IsTrue(FilledIn(FilledImmutableList));
+            IsTrue(FilledIn(FilledImmutableListBuilder));
+            IsTrue(FilledIn(FilledImmutableHashSet));
+            IsTrue(FilledIn(FilledImmutableHashSetBuilder));
+            IsTrue(FilledIn(FilledImmutableStack));
+            IsTrue(FilledIn(FilledImmutableQueue));
+            IsTrue(FilledIn(FilledImmutableDictionary));
+            IsTrue(FilledIn(FilledImmutableDictionaryBuilder));
+            IsTrue(FilledIn(FilledImmutableSortedSet));
+            IsTrue(FilledIn(FilledImmutableSortedSetBuilder));
+            IsTrue(FilledIn(FilledImmutableSortedDictionary));
+            IsTrue(FilledIn(FilledImmutableSortedDictionaryBuilder));
             IsTrue(FilledIn(FilledIReadOnlyList));
             IsTrue(FilledIn(FilledIReadOnlyCollection));
         }
@@ -79,6 +98,25 @@ public class Has_Collection_Tests
             IsTrue(FilledIn(NullyFilledDictionary));
             IsTrue(FilledIn(NullyFilledDicKeyColl));
             IsTrue(FilledIn(NullyFilledDicValColl));
+            IsTrue(FilledIn(NullyFilledIImmutableList));
+            IsTrue(FilledIn(NullyFilledIImmutableSet));
+            IsTrue(FilledIn(NullyFilledIImmutableStack));
+            IsTrue(FilledIn(NullyFilledIImmutableQueue));
+            IsTrue(FilledIn(NullyFilledIImmutableDictionary));
+            IsTrue(FilledIn(NullyFilledImmutableArray));
+            IsTrue(FilledIn(NullyFilledImmutableArrayBuilder));
+            IsTrue(FilledIn(NullyFilledImmutableList));
+            IsTrue(FilledIn(NullyFilledImmutableListBuilder));
+            IsTrue(FilledIn(NullyFilledImmutableHashSet));
+            IsTrue(FilledIn(NullyFilledImmutableHashSetBuilder));
+            IsTrue(FilledIn(NullyFilledImmutableStack));
+            IsTrue(FilledIn(NullyFilledImmutableQueue));
+            IsTrue(FilledIn(NullyFilledImmutableDictionary));
+            IsTrue(FilledIn(NullyFilledImmutableDictionaryBuilder));
+            IsTrue(FilledIn(NullyFilledImmutableSortedSet));
+            IsTrue(FilledIn(NullyFilledImmutableSortedSetBuilder));
+            IsTrue(FilledIn(NullyFilledImmutableSortedDictionary));
+            IsTrue(FilledIn(NullyFilledImmutableSortedDictionaryBuilder));
             IsTrue(FilledIn(NullyFilledIReadOnlyList));
             IsTrue(FilledIn(NullyFilledIReadOnlyCollection));
         }
@@ -122,6 +160,25 @@ public class Has_Collection_Tests
             IsFalse(FilledIn(EmptyDictionary));
             IsFalse(FilledIn(EmptyDicKeyColl));
             IsFalse(FilledIn(EmptyDicValColl));
+            IsFalse(FilledIn(EmptyIImmutableList));
+            IsFalse(FilledIn(EmptyIImmutableSet));
+            IsFalse(FilledIn(EmptyIImmutableStack));
+            IsFalse(FilledIn(EmptyIImmutableQueue));
+            IsFalse(FilledIn(EmptyIImmutableDictionary));
+            IsFalse(FilledIn(EmptyImmutableArray));
+            IsFalse(FilledIn(EmptyImmutableArrayBuilder));
+            IsFalse(FilledIn(EmptyImmutableList));
+            IsFalse(FilledIn(EmptyImmutableListBuilder));
+            IsFalse(FilledIn(EmptyImmutableHashSet));
+            IsFalse(FilledIn(EmptyImmutableHashSetBuilder));
+            IsFalse(FilledIn(EmptyImmutableStack));
+            IsFalse(FilledIn(EmptyImmutableQueue));
+            IsFalse(FilledIn(EmptyImmutableDictionary));
+            IsFalse(FilledIn(EmptyImmutableDictionaryBuilder));
+            IsFalse(FilledIn(EmptyImmutableSortedSet));
+            IsFalse(FilledIn(EmptyImmutableSortedSetBuilder));
+            IsFalse(FilledIn(EmptyImmutableSortedDictionary));
+            IsFalse(FilledIn(EmptyImmutableSortedDictionaryBuilder));
             IsFalse(FilledIn(EmptyIReadOnlyList));
             IsFalse(FilledIn(EmptyIReadOnlyCollection));
         }
@@ -160,6 +217,25 @@ public class Has_Collection_Tests
             IsFalse(FilledIn(NullableEmptyDictionary));
             IsFalse(FilledIn(NullableEmptyDicKeyColl));
             IsFalse(FilledIn(NullableEmptyDicValColl));
+            IsFalse(FilledIn(NullableEmptyIImmutableList));
+            IsFalse(FilledIn(NullableEmptyIImmutableSet));
+            IsFalse(FilledIn(NullableEmptyIImmutableStack));
+            IsFalse(FilledIn(NullableEmptyIImmutableQueue));
+            IsFalse(FilledIn(NullableEmptyIImmutableDictionary));
+            IsFalse(FilledIn(NullableEmptyImmutableArray));
+            IsFalse(FilledIn(NullableEmptyImmutableArrayBuilder));
+            IsFalse(FilledIn(NullableEmptyImmutableList));
+            IsFalse(FilledIn(NullableEmptyImmutableListBuilder));
+            IsFalse(FilledIn(NullableEmptyImmutableHashSet));
+            IsFalse(FilledIn(NullableEmptyImmutableHashSetBuilder));
+            IsFalse(FilledIn(NullableEmptyImmutableStack));
+            IsFalse(FilledIn(NullableEmptyImmutableQueue));
+            IsFalse(FilledIn(NullableEmptyImmutableDictionary));
+            IsFalse(FilledIn(NullableEmptyImmutableDictionaryBuilder));
+            IsFalse(FilledIn(NullableEmptyImmutableSortedSet));
+            IsFalse(FilledIn(NullableEmptyImmutableSortedSetBuilder));
+            IsFalse(FilledIn(NullableEmptyImmutableSortedDictionary));
+            IsFalse(FilledIn(NullableEmptyImmutableSortedDictionaryBuilder));
             IsFalse(FilledIn(NullableEmptyIReadOnlyList));
             IsFalse(FilledIn(NullableEmptyIReadOnlyCollection));
         }
@@ -198,6 +274,25 @@ public class Has_Collection_Tests
             IsFalse(FilledIn(NullDictionary));
             IsFalse(FilledIn(NullDicKeyColl));
             IsFalse(FilledIn(NullDicValColl));
+            IsFalse(FilledIn(NullIImmutableList));
+            IsFalse(FilledIn(NullIImmutableSet));
+            IsFalse(FilledIn(NullIImmutableStack));
+            IsFalse(FilledIn(NullIImmutableQueue));
+            IsFalse(FilledIn(NullIImmutableDictionary));
+            IsFalse(FilledIn(NullImmutableArray));
+            IsFalse(FilledIn(NullImmutableArrayBuilder));
+            IsFalse(FilledIn(NullImmutableList));
+            IsFalse(FilledIn(NullImmutableListBuilder));
+            IsFalse(FilledIn(NullImmutableHashSet));
+            IsFalse(FilledIn(NullImmutableHashSetBuilder));
+            IsFalse(FilledIn(NullImmutableStack));
+            IsFalse(FilledIn(NullImmutableQueue));
+            IsFalse(FilledIn(NullImmutableDictionary));
+            IsFalse(FilledIn(NullImmutableDictionaryBuilder));
+            IsFalse(FilledIn(NullImmutableSortedSet));
+            IsFalse(FilledIn(NullImmutableSortedSetBuilder));
+            IsFalse(FilledIn(NullImmutableSortedDictionary));
+            IsFalse(FilledIn(NullImmutableSortedDictionaryBuilder));
             IsFalse(FilledIn(NullIReadOnlyList));
             IsFalse(FilledIn(NullIReadOnlyCollection));
         }
@@ -311,5 +406,14 @@ public class Has_Collection_Tests
             IsTrue(IsNully(NullIReadOnlyCollection));
             IsTrue(IsNully(NullIEnumerable));
         }
+    }
+    
+    [TestMethod]
+    public void ImmutableArray_Emptiness()
+    {
+        IsFalse(FilledIn(ImmutableArrayWithDefault));
+        IsFalse(FilledIn(ImmutableArrayWithDefaultNullable));
+        IsFalse(FilledIn(ImmutableArrayWithNew));  
+        IsFalse(FilledIn(ImmutableArrayWithNewNullable));
     }
 }
