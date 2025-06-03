@@ -64,10 +64,6 @@ public static partial class FilledInHelper
     public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
-    #if NET9_0_OR_GREATER                                                                                 
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
-    #endif
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
@@ -77,15 +73,6 @@ public static partial class FilledInHelper
     public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>                      ? coll) where T : notnull => HasColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.KeyCollection        ? coll) where T : notnull => HasColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.ValueCollection      ? coll) where T : notnull => HasColl(coll);
-    #if NET9_0_OR_GREATER
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
-    #endif
-    #if NET6_0_OR_GREATER
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
-    #endif
     public static bool FilledIn<T>  ([NotNullWhen(true )]      Collection<T>                              ? coll)                   => HasColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      KeyedCollection<T,U>                       ? coll) where T : notnull => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ObservableCollection<T>                    ? coll)                   => HasColl(coll);
@@ -108,6 +95,17 @@ public static partial class FilledInHelper
     public static bool FilledIn     ([NotNullWhen(true )]      StringCollection                           ? coll)                   => HasColl(coll);
     public static bool FilledIn     ([NotNullWhen(true )]      StringDictionary                           ? coll)                   => Has_StringDictionary(coll);
     public static bool FilledIn     ([NotNullWhen(true )]      IOrderedDictionary                         ? coll)                   => HasColl(coll);
+    #if NET9_0_OR_GREATER                                                                                 
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
+    #endif
+    #if NET6_0_OR_GREATER
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
+    #endif
     
     // Has (Static)
     
@@ -154,10 +152,6 @@ public static partial class FilledInHelper
     public static bool Has     <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
-    #if NET9_0_OR_GREATER                                                                                 
-    public static bool Has     <T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
-    #endif
     public static bool Has     <T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
@@ -167,15 +161,6 @@ public static partial class FilledInHelper
     public static bool Has     <T,U>([NotNullWhen(true )]      SortedDictionary<T,U>                      ? coll) where T : notnull => HasColl(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.KeyCollection        ? coll) where T : notnull => HasColl(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.ValueCollection      ? coll) where T : notnull => HasColl(coll);
-    #if NET9_0_OR_GREATER
-    public static bool Has     <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
-    public static bool Has     <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
-    public static bool Has     <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
-    #endif
-    #if NET6_0_OR_GREATER
-    public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
-    public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
-    #endif
     public static bool Has     <T>  ([NotNullWhen(true )]      Collection<T>                              ? coll)                   => HasColl(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      KeyedCollection<T,U>                       ? coll) where T : notnull => HasColl(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ObservableCollection<T>                    ? coll)                   => HasColl(coll);
@@ -198,6 +183,17 @@ public static partial class FilledInHelper
     public static bool Has          ([NotNullWhen(true )]      StringCollection                           ? coll)                   => HasColl(coll);
     public static bool Has          ([NotNullWhen(true )]      StringDictionary                           ? coll)                   => Has_StringDictionary(coll);
     public static bool Has          ([NotNullWhen(true )]      IOrderedDictionary                         ? coll)                   => HasColl(coll);
+    #if NET9_0_OR_GREATER                                                                                 
+    public static bool Has     <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
+    public static bool Has     <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
+    public static bool Has     <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
+    #endif
+    #if NET6_0_OR_GREATER
+    public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
+    public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
+    #endif
     
     // IsNully (Static)
     
@@ -244,10 +240,6 @@ public static partial class FilledInHelper
     public static bool IsNully <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => !HasReadOnlyColl(coll);
-    #if NET9_0_OR_GREATER                                                                                 
-    public static bool IsNully <T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => !HasReadOnlyColl(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
-    #endif
     public static bool IsNully <T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => !HasColl(coll);
@@ -257,15 +249,6 @@ public static partial class FilledInHelper
     public static bool IsNully <T,U>([NotNullWhen(true )]      SortedDictionary<T,U>                      ? coll) where T : notnull => !HasColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.KeyCollection        ? coll) where T : notnull => !HasColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.ValueCollection      ? coll) where T : notnull => !HasColl(coll);
-    #if NET9_0_OR_GREATER
-    public static bool IsNully <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => !HasColl(coll);
-    public static bool IsNully <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => !HasColl(coll);
-    public static bool IsNully <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => !HasColl(coll);
-    #endif
-    #if NET6_0_OR_GREATER
-    public static bool IsNully <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);
-    public static bool IsNully <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
-    #endif
     public static bool IsNully <T>  ([NotNullWhen(true )]      Collection<T>                              ? coll)                   => !HasColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      KeyedCollection<T,U>                       ? coll) where T : notnull => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ObservableCollection<T>                    ? coll)                   => !HasColl(coll);
@@ -288,6 +271,17 @@ public static partial class FilledInHelper
     public static bool IsNully      ([NotNullWhen(true )]      StringCollection                           ? coll)                   => !HasColl(coll);
     public static bool IsNully      ([NotNullWhen(true )]      StringDictionary                           ? coll)                   => !Has_StringDictionary(coll);
     public static bool IsNully      ([NotNullWhen(true )]      IOrderedDictionary                         ? coll)                   => !HasColl(coll);
+    #if NET9_0_OR_GREATER                                                                                 
+    public static bool IsNully <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => !HasColl(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => !HasColl(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => !HasColl(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => !HasReadOnlyColl(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
+    #endif
+    #if NET6_0_OR_GREATER
+    public static bool IsNully <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
+    #endif
 }
 
 public static partial class FilledInExtensions
@@ -337,10 +331,6 @@ public static partial class FilledInExtensions
     public static bool FilledIn<T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
-    #if NET9_0_OR_GREATER                                                                                 
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
-    #endif
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
@@ -350,15 +340,6 @@ public static partial class FilledInExtensions
     public static bool FilledIn<T,U>([NotNullWhen(true )] this SortedDictionary<T,U>                      ? coll) where T : notnull => HasColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this SortedDictionary<T,U>.KeyCollection        ? coll) where T : notnull => HasColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this SortedDictionary<T,U>.ValueCollection      ? coll) where T : notnull => HasColl(coll);
-    #if NET9_0_OR_GREATER
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
-    #endif
-    #if NET6_0_OR_GREATER
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
-    #endif
     public static bool FilledIn<T>  ([NotNullWhen(true )] this Collection<T>                              ? coll)                   => HasColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this KeyedCollection<T,U>                       ? coll) where T : notnull => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ObservableCollection<T>                    ? coll)                   => HasColl(coll);
@@ -381,6 +362,17 @@ public static partial class FilledInExtensions
     public static bool FilledIn     ([NotNullWhen(true )] this StringCollection                           ? coll)                   => HasColl(coll);
     public static bool FilledIn     ([NotNullWhen(true )] this StringDictionary                           ? coll)                   => Has_StringDictionary(coll);
     public static bool FilledIn     ([NotNullWhen(true )] this IOrderedDictionary                         ? coll)                   => HasColl(coll);
+    #if NET9_0_OR_GREATER
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
+    #endif
+    #if NET6_0_OR_GREATER
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
+    #endif
     
     // IsNully (Extensions)
     
@@ -427,10 +419,6 @@ public static partial class FilledInExtensions
     public static bool IsNully <T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => !HasReadOnlyColl(coll);
-    #if NET9_0_OR_GREATER                                                                                 
-    public static bool IsNully <T>  ([NotNullWhen(true )] this IReadOnlySet<T>                            ? coll)                   => !HasReadOnlyColl(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
-    #endif
     public static bool IsNully <T>  ([NotNullWhen(true )] this ConcurrentBag<T>                           ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ConcurrentQueue<T>                         ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ConcurrentStack<T>                         ? coll)                   => !HasColl(coll);
@@ -440,15 +428,6 @@ public static partial class FilledInExtensions
     public static bool IsNully <T,U>([NotNullWhen(true )] this SortedDictionary<T,U>                      ? coll) where T : notnull => !HasColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this SortedDictionary<T,U>.KeyCollection        ? coll) where T : notnull => !HasColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this SortedDictionary<T,U>.ValueCollection      ? coll) where T : notnull => !HasColl(coll);
-    #if NET9_0_OR_GREATER
-    public static bool IsNully <T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>                     ? coll) where T : notnull => !HasColl(coll);
-    public static bool IsNully <T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => !HasColl(coll);
-    public static bool IsNully <T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => !HasColl(coll);
-    #endif
-    #if NET6_0_OR_GREATER
-    public static bool IsNully <T,U>([NotNullWhen(true )] this PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);
-    public static bool IsNully <T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
-    #endif
     public static bool IsNully <T>  ([NotNullWhen(true )] this Collection<T>                              ? coll)                   => !HasColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this KeyedCollection<T,U>                       ? coll) where T : notnull => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ObservableCollection<T>                    ? coll)                   => !HasColl(coll);
@@ -471,4 +450,15 @@ public static partial class FilledInExtensions
     public static bool IsNully      ([NotNullWhen(true )] this StringCollection                           ? coll)                   => !HasColl(coll);
     public static bool IsNully      ([NotNullWhen(true )] this StringDictionary                           ? coll)                   => !Has_StringDictionary(coll);
     public static bool IsNully      ([NotNullWhen(true )] this IOrderedDictionary                         ? coll)                   => !HasColl(coll);
+    #if NET9_0_OR_GREATER                                                                                 
+    public static bool IsNully <T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>                     ? coll) where T : notnull => !HasColl(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => !HasColl(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )] this OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => !HasColl(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this IReadOnlySet<T>                            ? coll)                   => !HasReadOnlyColl(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
+    #endif
+    #if NET6_0_OR_GREATER
+    public static bool IsNully <T,U>([NotNullWhen(true )] this PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
+    #endif
 }
