@@ -828,14 +828,93 @@ public class Has_Coll_Tests
     public void Collection_FilledIn_False_ForNullable_WhenEmpty()
     {
         IsFalse(Has(NullableEmptyArray));
-        IsFalse(Has(NullableEmptyList));
-        IsFalse(Has(NullableEmptyHashSet));
         IsFalse(Has(NullableEmptyIList));
         IsFalse(Has(NullableEmptyISet));
+        IsFalse(Has(NullableEmptyIDict));
         IsFalse(Has(NullableEmptyIColl));
+        IsFalse(Has(NullableEmptyIEnumerable));
+        IsFalse(Has(NullableEmptyList));
+        IsFalse(Has(NullableEmptyHashSet));
+        IsFalse(Has(NullableEmptyStack));
+        IsFalse(Has(NullableEmptyQueue));
+        IsFalse(Has(NullableEmptyLinkedList));
+        IsFalse(Has(NullableEmptySortedList));
+        IsFalse(Has(NullableEmptySortedSet));
+        IsFalse(Has(NullableEmptyDict));
+        IsFalse(Has(NullableEmptyDictKeyColl));
+        IsFalse(Has(NullableEmptyDictValColl));
+        IsFalse(Has(NullableEmptyIImmutableList));
+        IsFalse(Has(NullableEmptyIImmutableSet));
+        IsFalse(Has(NullableEmptyIImmutableStack));
+        IsFalse(Has(NullableEmptyIImmutableQueue));
+        IsFalse(Has(NullableEmptyIImmutableDict));
+        IsFalse(Has(NullableEmptyImmutableArray));
+        IsFalse(Has(NullableEmptyImmutableArrayBuilder));
+        IsFalse(Has(NullableEmptyImmutableList));
+        IsFalse(Has(NullableEmptyImmutableListBuilder));
+        IsFalse(Has(NullableEmptyImmutableHashSet));
+        IsFalse(Has(NullableEmptyImmutableHashSetBuilder));
+        IsFalse(Has(NullableEmptyImmutableStack));
+        IsFalse(Has(NullableEmptyImmutableQueue));
+        IsFalse(Has(NullableEmptyImmutableDict));
+        IsFalse(Has(NullableEmptyImmutableDictBuilder));
+        IsFalse(Has(NullableEmptyImmutableSortedSet));
+        IsFalse(Has(NullableEmptyImmutableSortedSetBuilder));
+        IsFalse(Has(NullableEmptyImmutableSortedDict));
+        IsFalse(Has(NullableEmptyImmutableSortedDictBuilder));
         IsFalse(Has(NullableEmptyIReadOnlyList));
         IsFalse(Has(NullableEmptyIReadOnlyColl));
-        IsFalse(Has(NullableEmptyIEnumerable));
+        IsFalse(Has(NullableEmptyIReadOnlyColl));
+        IsFalse(Has(NullableEmptyIReadOnlyList));
+        IsFalse(Has(NullableEmptyIReadOnlyDict));
+        IsFalse(Has(NullableEmptyReadOnlyColl));
+        IsFalse(Has(NullableEmptyReadOnlyDict));
+        IsFalse(Has(NullableEmptyReadOnlyDictKeys));
+        IsFalse(Has(NullableEmptyReadOnlyDictVals));
+        #if NET9_0_OR_GREATER
+        IsFalse(Has(NullableEmptyIReadOnlySet));
+        IsFalse(Has(NullableEmptyReadOnlySet));
+        #endif
+        IsFalse(Has(NullableEmptyConcurrentBag));
+        IsFalse(Has(NullableEmptyConcurrentQueue));
+        IsFalse(Has(NullableEmptyConcurrentStack));
+        IsFalse(Has(NullableEmptyConcurrentDict));
+        IsFalse(Has(NullableEmptyBlockingColl));
+        IsFalse(Has(NullableEmptyIProducerConsumerColl));
+        IsFalse(Has(NullableEmptySortedDict));
+        IsFalse(Has(NullableEmptySortedDictKeys));
+        IsFalse(Has(NullableEmptySortedDictVals));
+        #if NET9_0_OR_GREATER
+        IsFalse(Has(NullableEmptyOrderedDict));
+        IsFalse(Has(NullableEmptyOrderedDictKeys));
+        IsFalse(Has(NullableEmptyOrderedDictVals));
+        #endif
+        #if NET6_0_OR_GREATER
+        IsFalse(Has(NullableEmptyPrioQueue));
+        IsFalse(Has(NullableEmptyPrioQueueUnorderedColl));
+        #endif
+        IsFalse(Has(NullableEmptyColl));
+        IsFalse(Has(NullableEmptyKeyedColl));
+        IsFalse(Has(NullableEmptyObservableColl));
+        IsFalse(Has(NullableEmptyReadOnlyObservableColl));
+        IsFalse(Has(NullableEmptyArrayList));
+        IsFalse(Has(NullableEmptyBitArray));
+        IsFalse(Has(NullableEmptyCollBase));
+        IsFalse(Has(NullableEmptyDictBase));
+        IsFalse(Has(NullableEmptyHashtable));
+        IsFalse(Has(NullableEmptyQueueNonGeneric));
+        IsFalse(Has(NullableEmptyReadOnlyCollBase));
+        IsFalse(Has(NullableEmptySortedListNonGeneric));
+        IsFalse(Has(NullableEmptyStackNonGeneric));
+        IsFalse(Has(NullableEmptyHybridDict));
+        IsFalse(Has(NullableEmptyListDict));
+        IsFalse(Has(NullableEmptyNameObjectCollBase));
+        IsFalse(Has(NullableEmptyNameObjectCollBaseKeys));
+        IsFalse(Has(NullableEmptyNameValueColl));
+        IsFalse(Has(NullableEmptyOrderedDictNonGeneric));
+        IsFalse(Has(NullableEmptyStringColl));
+        IsFalse(Has(NullableEmptyStringDict));
+        IsFalse(Has(NullableEmptyIOrderedDict));
         
         IsFalse(FilledIn(NullableEmptyArray));
         IsFalse(FilledIn(NullableEmptyIList));
@@ -925,30 +1004,190 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullableEmptyStringColl));
         IsFalse(FilledIn(NullableEmptyStringDict));
         IsFalse(FilledIn(NullableEmptyIOrderedDict));
-        
+
         IsFalse(NullableEmptyArray.FilledIn());
-        IsFalse(NullableEmptyList.FilledIn());
-        IsFalse(NullableEmptyHashSet.FilledIn());
         IsFalse(NullableEmptyIList.FilledIn());
         IsFalse(NullableEmptyISet.FilledIn());
+        IsFalse(NullableEmptyIDict.FilledIn());
         IsFalse(NullableEmptyIColl.FilledIn());
+        IsFalse(NullableEmptyIEnumerable.FilledIn());
+        IsFalse(NullableEmptyList.FilledIn());
+        IsFalse(NullableEmptyHashSet.FilledIn());
+        IsFalse(NullableEmptyStack.FilledIn());
+        IsFalse(NullableEmptyQueue.FilledIn());
+        IsFalse(NullableEmptyLinkedList.FilledIn());
+        IsFalse(NullableEmptySortedList.FilledIn());
+        IsFalse(NullableEmptySortedSet.FilledIn());
+        IsFalse(NullableEmptyDict.FilledIn());
+        IsFalse(NullableEmptyDictKeyColl.FilledIn());
+        IsFalse(NullableEmptyDictValColl.FilledIn());
+        IsFalse(NullableEmptyIImmutableList.FilledIn());
+        IsFalse(NullableEmptyIImmutableSet.FilledIn());
+        IsFalse(NullableEmptyIImmutableStack.FilledIn());
+        IsFalse(NullableEmptyIImmutableQueue.FilledIn());
+        IsFalse(NullableEmptyIImmutableDict.FilledIn());
+        IsFalse(NullableEmptyImmutableArray.FilledIn());
+        IsFalse(NullableEmptyImmutableArrayBuilder.FilledIn());
+        IsFalse(NullableEmptyImmutableList.FilledIn());
+        IsFalse(NullableEmptyImmutableListBuilder.FilledIn());
+        IsFalse(NullableEmptyImmutableHashSet.FilledIn());
+        IsFalse(NullableEmptyImmutableHashSetBuilder.FilledIn());
+        IsFalse(NullableEmptyImmutableStack.FilledIn());
+        IsFalse(NullableEmptyImmutableQueue.FilledIn());
+        IsFalse(NullableEmptyImmutableDict.FilledIn());
+        IsFalse(NullableEmptyImmutableDictBuilder.FilledIn());
+        IsFalse(NullableEmptyImmutableSortedSet.FilledIn());
+        IsFalse(NullableEmptyImmutableSortedSetBuilder.FilledIn());
+        IsFalse(NullableEmptyImmutableSortedDict.FilledIn());
+        IsFalse(NullableEmptyImmutableSortedDictBuilder.FilledIn());
         IsFalse(NullableEmptyIReadOnlyList.FilledIn());
         IsFalse(NullableEmptyIReadOnlyColl.FilledIn());
-        IsFalse(NullableEmptyIEnumerable.FilledIn());
+        IsFalse(NullableEmptyIReadOnlyColl.FilledIn());
+        IsFalse(NullableEmptyIReadOnlyList.FilledIn());
+        IsFalse(NullableEmptyIReadOnlyDict.FilledIn());
+        IsFalse(NullableEmptyReadOnlyColl.FilledIn());
+        IsFalse(NullableEmptyReadOnlyDict.FilledIn());
+        IsFalse(NullableEmptyReadOnlyDictKeys.FilledIn());
+        IsFalse(NullableEmptyReadOnlyDictVals.FilledIn());
+        #if NET9_0_OR_GREATER
+        IsFalse(NullableEmptyIReadOnlySet.FilledIn());
+        IsFalse(NullableEmptyReadOnlySet.FilledIn());
+        #endif
+        IsFalse(NullableEmptyConcurrentBag.FilledIn());
+        IsFalse(NullableEmptyConcurrentQueue.FilledIn());
+        IsFalse(NullableEmptyConcurrentStack.FilledIn());
+        IsFalse(NullableEmptyConcurrentDict.FilledIn());
+        IsFalse(NullableEmptyBlockingColl.FilledIn());
+        IsFalse(NullableEmptyIProducerConsumerColl.FilledIn());
+        IsFalse(NullableEmptySortedDict.FilledIn());
+        IsFalse(NullableEmptySortedDictKeys.FilledIn());
+        IsFalse(NullableEmptySortedDictVals.FilledIn());
+        #if NET9_0_OR_GREATER
+        IsFalse(NullableEmptyOrderedDict.FilledIn());
+        IsFalse(NullableEmptyOrderedDictKeys.FilledIn());
+        IsFalse(NullableEmptyOrderedDictVals.FilledIn());
+        #endif
+        #if NET6_0_OR_GREATER
+        IsFalse(NullableEmptyPrioQueue.FilledIn());
+        IsFalse(NullableEmptyPrioQueueUnorderedColl.FilledIn());
+        #endif
+        IsFalse(NullableEmptyColl.FilledIn());
+        IsFalse(NullableEmptyKeyedColl.FilledIn());
+        IsFalse(NullableEmptyObservableColl.FilledIn());
+        IsFalse(NullableEmptyReadOnlyObservableColl.FilledIn());
+        IsFalse(NullableEmptyArrayList.FilledIn());
+        IsFalse(NullableEmptyBitArray.FilledIn());
+        IsFalse(NullableEmptyCollBase.FilledIn());
+        IsFalse(NullableEmptyDictBase.FilledIn());
+        IsFalse(NullableEmptyHashtable.FilledIn());
+        IsFalse(NullableEmptyQueueNonGeneric.FilledIn());
+        IsFalse(NullableEmptyReadOnlyCollBase.FilledIn());
+        IsFalse(NullableEmptySortedListNonGeneric.FilledIn());
+        IsFalse(NullableEmptyStackNonGeneric.FilledIn());
+        IsFalse(NullableEmptyHybridDict.FilledIn());
+        IsFalse(NullableEmptyListDict.FilledIn());
+        IsFalse(NullableEmptyNameObjectCollBase.FilledIn());
+        IsFalse(NullableEmptyNameObjectCollBaseKeys.FilledIn());
+        IsFalse(NullableEmptyNameValueColl.FilledIn());
+        IsFalse(NullableEmptyOrderedDictNonGeneric.FilledIn());
+        IsFalse(NullableEmptyStringColl.FilledIn());
+        IsFalse(NullableEmptyStringDict.FilledIn());
+        IsFalse(NullableEmptyIOrderedDict.FilledIn());
     }
       
     [TestMethod]
     public void Collection_FilledIn_False_WhenNull()
     {
         IsFalse(Has(NullArray));
-        IsFalse(Has(NullList));
-        IsFalse(Has(NullHashSet));
         IsFalse(Has(NullIList));
         IsFalse(Has(NullISet));
+        IsFalse(Has(NullIDict));
         IsFalse(Has(NullIColl));
+        IsFalse(Has(NullIEnumerable));
+        IsFalse(Has(NullList));
+        IsFalse(Has(NullHashSet));
+        IsFalse(Has(NullStack));
+        IsFalse(Has(NullQueue));
+        IsFalse(Has(NullLinkedList));
+        IsFalse(Has(NullSortedList));
+        IsFalse(Has(NullSortedSet));
+        IsFalse(Has(NullDict));
+        IsFalse(Has(NullDictKeyColl));
+        IsFalse(Has(NullDictValColl));
+        IsFalse(Has(NullIImmutableList));
+        IsFalse(Has(NullIImmutableSet));
+        IsFalse(Has(NullIImmutableStack));
+        IsFalse(Has(NullIImmutableQueue));
+        IsFalse(Has(NullIImmutableDict));
+        IsFalse(Has(NullImmutableArray));
+        IsFalse(Has(NullImmutableArrayBuilder));
+        IsFalse(Has(NullImmutableList));
+        IsFalse(Has(NullImmutableListBuilder));
+        IsFalse(Has(NullImmutableHashSet));
+        IsFalse(Has(NullImmutableHashSetBuilder));
+        IsFalse(Has(NullImmutableStack));
+        IsFalse(Has(NullImmutableQueue));
+        IsFalse(Has(NullImmutableDict));
+        IsFalse(Has(NullImmutableDictBuilder));
+        IsFalse(Has(NullImmutableSortedSet));
+        IsFalse(Has(NullImmutableSortedSetBuilder));
+        IsFalse(Has(NullImmutableSortedDict));
+        IsFalse(Has(NullImmutableSortedDictBuilder));
         IsFalse(Has(NullIReadOnlyList));
         IsFalse(Has(NullIReadOnlyColl));
-        IsFalse(Has(NullIEnumerable));
+        IsFalse(Has(NullIReadOnlyList));
+        IsFalse(Has(NullIReadOnlyColl));
+        IsFalse(Has(NullIReadOnlyColl));
+        IsFalse(Has(NullIReadOnlyList));
+        IsFalse(Has(NullIReadOnlyDict));
+        IsFalse(Has(NullReadOnlyColl));
+        IsFalse(Has(NullReadOnlyDict));
+        IsFalse(Has(NullReadOnlyDictKeys));
+        IsFalse(Has(NullReadOnlyDictVals));
+        #if NET9_0_OR_GREATER
+        IsFalse(Has(NullIReadOnlySet));
+        IsFalse(Has(NullReadOnlySet));
+        #endif
+        IsFalse(Has(NullConcurrentBag));
+        IsFalse(Has(NullConcurrentQueue));
+        IsFalse(Has(NullConcurrentStack));
+        IsFalse(Has(NullConcurrentDict));
+        IsFalse(Has(NullBlockingColl));
+        IsFalse(Has(NullIProducerConsumerColl));
+        IsFalse(Has(NullSortedDict));
+        IsFalse(Has(NullSortedDictKeys));
+        IsFalse(Has(NullSortedDictVals));
+        #if NET9_0_OR_GREATER
+        IsFalse(Has(NullOrderedDict));
+        IsFalse(Has(NullOrderedDictKeys));
+        IsFalse(Has(NullOrderedDictVals));
+        #endif
+        #if NET6_0_OR_GREATER
+        IsFalse(Has(NullPrioQueue));
+        IsFalse(Has(NullPrioQueueUnorderedColl));
+        #endif
+        IsFalse(Has(NullColl));
+        IsFalse(Has(NullKeyedColl));
+        IsFalse(Has(NullObservableColl));
+        IsFalse(Has(NullReadOnlyObservableColl));
+        IsFalse(Has(NullArrayList));
+        IsFalse(Has(NullBitArray));
+        IsFalse(Has(NullCollBase));
+        IsFalse(Has(NullDictBase));
+        IsFalse(Has(NullHashtable));
+        IsFalse(Has(NullQueueNonGeneric));
+        IsFalse(Has(NullReadOnlyCollBase));
+        IsFalse(Has(NullSortedListNonGeneric));
+        IsFalse(Has(NullStackNonGeneric));
+        IsFalse(Has(NullHybridDict));
+        IsFalse(Has(NullListDict));
+        IsFalse(Has(NullNameObjectCollBase));
+        IsFalse(Has(NullNameObjectCollBaseKeys));
+        IsFalse(Has(NullNameValueColl));
+        IsFalse(Has(NullOrderedDictNonGeneric));
+        IsFalse(Has(NullStringColl));
+        IsFalse(Has(NullStringDict));
+        IsFalse(Has(NullIOrderedDict));
         
         IsFalse(FilledIn(NullArray));
         IsFalse(FilledIn(NullIList));
@@ -1042,14 +1281,95 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullIOrderedDict));
         
         IsFalse(NullArray.FilledIn());
-        IsFalse(NullList.FilledIn());
-        IsFalse(NullHashSet.FilledIn());
         IsFalse(NullIList.FilledIn());
         IsFalse(NullISet.FilledIn());
+        IsFalse(NullIDict.FilledIn());
         IsFalse(NullIColl.FilledIn());
+        IsFalse(NullIEnumerable.FilledIn());
+        IsFalse(NullList.FilledIn());
+        IsFalse(NullHashSet.FilledIn());
+        IsFalse(NullStack.FilledIn());
+        IsFalse(NullQueue.FilledIn());
+        IsFalse(NullLinkedList.FilledIn());
+        IsFalse(NullSortedList.FilledIn());
+        IsFalse(NullSortedSet.FilledIn());
+        IsFalse(NullDict.FilledIn());
+        IsFalse(NullDictKeyColl.FilledIn());
+        IsFalse(NullDictValColl.FilledIn());
+        IsFalse(NullIImmutableList.FilledIn());
+        IsFalse(NullIImmutableSet.FilledIn());
+        IsFalse(NullIImmutableStack.FilledIn());
+        IsFalse(NullIImmutableQueue.FilledIn());
+        IsFalse(NullIImmutableDict.FilledIn());
+        IsFalse(NullImmutableArray.FilledIn());
+        IsFalse(NullImmutableArrayBuilder.FilledIn());
+        IsFalse(NullImmutableList.FilledIn());
+        IsFalse(NullImmutableListBuilder.FilledIn());
+        IsFalse(NullImmutableHashSet.FilledIn());
+        IsFalse(NullImmutableHashSetBuilder.FilledIn());
+        IsFalse(NullImmutableStack.FilledIn());
+        IsFalse(NullImmutableQueue.FilledIn());
+        IsFalse(NullImmutableDict.FilledIn());
+        IsFalse(NullImmutableDictBuilder.FilledIn());
+        IsFalse(NullImmutableSortedSet.FilledIn());
+        IsFalse(NullImmutableSortedSetBuilder.FilledIn());
+        IsFalse(NullImmutableSortedDict.FilledIn());
+        IsFalse(NullImmutableSortedDictBuilder.FilledIn());
         IsFalse(NullIReadOnlyList.FilledIn());
         IsFalse(NullIReadOnlyColl.FilledIn());
-        IsFalse(NullIEnumerable.FilledIn());
+        IsFalse(NullIReadOnlyList.FilledIn());
+        IsFalse(NullIReadOnlyColl.FilledIn());
+        IsFalse(NullIReadOnlyColl.FilledIn());
+        IsFalse(NullIReadOnlyList.FilledIn());
+        IsFalse(NullIReadOnlyDict.FilledIn());
+        IsFalse(NullReadOnlyColl.FilledIn());
+        IsFalse(NullReadOnlyDict.FilledIn());
+        IsFalse(NullReadOnlyDictKeys.FilledIn());
+        IsFalse(NullReadOnlyDictVals.FilledIn());
+        #if NET9_0_OR_GREATER
+        IsFalse(NullIReadOnlySet.FilledIn());
+        IsFalse(NullReadOnlySet.FilledIn());
+        #endif
+        IsFalse(NullConcurrentBag.FilledIn());
+        IsFalse(NullConcurrentQueue.FilledIn());
+        IsFalse(NullConcurrentStack.FilledIn());
+        IsFalse(NullConcurrentDict.FilledIn());
+        IsFalse(NullBlockingColl.FilledIn());
+        IsFalse(NullIProducerConsumerColl.FilledIn());
+        IsFalse(NullSortedDict.FilledIn());
+        IsFalse(NullSortedDictKeys.FilledIn());
+        IsFalse(NullSortedDictVals.FilledIn());
+        #if NET9_0_OR_GREATER
+        IsFalse(NullOrderedDict.FilledIn());
+        IsFalse(NullOrderedDictKeys.FilledIn());
+        IsFalse(NullOrderedDictVals.FilledIn());
+        #endif
+        #if NET6_0_OR_GREATER
+        IsFalse(NullPrioQueue.FilledIn());
+        IsFalse(NullPrioQueueUnorderedColl.FilledIn());
+        #endif
+        IsFalse(NullColl.FilledIn());
+        IsFalse(NullKeyedColl.FilledIn());
+        IsFalse(NullObservableColl.FilledIn());
+        IsFalse(NullReadOnlyObservableColl.FilledIn());
+        IsFalse(NullArrayList.FilledIn());
+        IsFalse(NullBitArray.FilledIn());
+        IsFalse(NullCollBase.FilledIn());
+        IsFalse(NullDictBase.FilledIn());
+        IsFalse(NullHashtable.FilledIn());
+        IsFalse(NullQueueNonGeneric.FilledIn());
+        IsFalse(NullReadOnlyCollBase.FilledIn());
+        IsFalse(NullSortedListNonGeneric.FilledIn());
+        IsFalse(NullStackNonGeneric.FilledIn());
+        IsFalse(NullHybridDict.FilledIn());
+        IsFalse(NullListDict.FilledIn());
+        IsFalse(NullNameObjectCollBase.FilledIn());
+        IsFalse(NullNameObjectCollBaseKeys.FilledIn());
+        IsFalse(NullNameValueColl.FilledIn());
+        IsFalse(NullOrderedDictNonGeneric.FilledIn());
+        IsFalse(NullStringColl.FilledIn());
+        IsFalse(NullStringDict.FilledIn());
+        IsFalse(NullIOrderedDict.FilledIn());
     }
     
     // IsNully
