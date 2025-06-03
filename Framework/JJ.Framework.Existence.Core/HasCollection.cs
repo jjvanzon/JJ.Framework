@@ -1,19 +1,29 @@
-﻿namespace JJ.Framework.Existence.Core;
+﻿
+namespace JJ.Framework.Existence.Core;
 
 internal static partial class ExistenceUtility
 {
-    public static bool HasArray            <T>([NotNullWhen(true)] T[]                   ? coll) => coll is { Length : > 0 };
-    public static bool HasColl                ([NotNullWhen(true)] ICollection           ? coll) => coll is { Count  : > 0 };
-    public static bool HasCollT            <T>([NotNullWhen(true)] ICollection<T>        ? coll) => coll is { Count  : > 0 };
-    public static bool HasReadOnlyColl     <T>([NotNullWhen(true)] IReadOnlyCollection<T>? coll) => coll is { Count  : > 0 };
-    public static bool HasEnumerable       <T>([NotNullWhen(true)] IEnumerable<T>        ? coll) => coll?.Any() ?? false;
+    public static bool HasArray            <T>([NotNullWhen(true)] T[]                   ? coll) => coll is { Length  : > 0 };
+    public static bool HasColl                ([NotNullWhen(true)] ICollection           ? coll) => coll is { Count   : > 0 };
+    public static bool HasCollT            <T>([NotNullWhen(true)] ICollection<T>        ? coll) => coll is { Count   : > 0 };
+    public static bool HasReadOnlyColl     <T>([NotNullWhen(true)] IReadOnlyCollection<T>? coll) => coll is { Count   : > 0 };
+    public static bool HasLookup        <T, U>([NotNullWhen(true)] ILookup<T, U>         ? coll) => coll is { Count   : > 0 };
+    public static bool HasEnumerable       <T>([NotNullWhen(true)] IEnumerable<T>        ? coll) => coll != null && coll.Any();
     public static bool Has_ImmutableArray  <T>([NotNullWhen(true)] ref ImmutableArray<T>   coll) => coll is { IsDefaultOrEmpty: false };
     public static bool Has_ImmutableArray  <T>([NotNullWhen(true)] ref ImmutableArray<T> ? coll) => coll is { IsDefaultOrEmpty: false };
-    public static bool Has_ImmutableStack  <T>([NotNullWhen(true)] IImmutableStack<T>    ? coll) => coll is { IsEmpty: false };
-    public static bool Has_ImmutableQueue  <T>([NotNullWhen(true)] IImmutableQueue<T>    ? coll) => coll is { IsEmpty: false };
-    public static bool Has_StringDictionary   ([NotNullWhen(true)] StringDictionary      ? coll) => coll is { Count  : > 0 };
+    public static bool Has_ImmutableStack  <T>([NotNullWhen(true)] IImmutableStack<T>    ? coll) => coll is { IsEmpty : false };
+    public static bool Has_ImmutableQueue  <T>([NotNullWhen(true)] IImmutableQueue<T>    ? coll) => coll is { IsEmpty : false };
+    public static bool Has_Memory          <T>([NotNullWhen(true)] Memory<T>               coll) => coll is { IsEmpty : false };
+    public static bool Has_Memory          <T>([NotNullWhen(true)] Memory<T>             ? coll) => coll is { IsEmpty : false };
+    public static bool Has_Span            <T>([NotNullWhen(true)] Span<T>                 coll) => coll is { IsEmpty : false };
+    public static bool Has_ReadOnlyMemory  <T>([NotNullWhen(true)] ReadOnlyMemory<T>       coll) => coll is { IsEmpty : false };
+    public static bool Has_ReadOnlyMemory  <T>([NotNullWhen(true)] ReadOnlyMemory<T>     ? coll) => coll is { IsEmpty : false };
+    public static bool Has_ReadOnlySpan    <T>([NotNullWhen(true)] ReadOnlySpan<T>         coll) => coll is { IsEmpty : false };
+    public static bool Has_ReadOnlySequence<T>([NotNullWhen(true)] ReadOnlySequence<T>     coll) => coll is { IsEmpty : false };
+    public static bool Has_ReadOnlySequence<T>([NotNullWhen(true)] ReadOnlySequence<T>   ? coll) => coll is { IsEmpty : false };
+    public static bool Has_StringDictionary   ([NotNullWhen(true)] StringDictionary      ? coll) => coll is { Count   : > 0 };
     #if NET6_0_OR_GREATER
-    public static bool Has_PriorityQueue<T, U>([NotNullWhen(true)] PriorityQueue<T, U>   ? coll) => coll is { Count  : > 0 };
+    public static bool Has_PriorityQueue<T, U>([NotNullWhen(true)] PriorityQueue<T, U>   ? coll) => coll is { Count   : > 0 };
     #endif
 }
 
@@ -106,7 +116,24 @@ public static partial class FilledInHelper
     public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
-    
+
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      Lookup<T,U>              ? coll) => HasLookup(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ILookup<T,U>             ? coll) => HasLookup(coll);
+    #if NET8_0_OR_GREATER
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>   ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      FrozenSet<T>             ? coll) => HasColl(coll);
+    #endif
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>            coll) => HasCollT   (coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>          ? coll) => HasCollT<T>(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                  coll) => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                ? coll) => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>          coll) => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>        ? coll) => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySpan<T>            coll) => Has_ReadOnlySpan(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Span<T>                    coll) => Has_Span(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>        coll) => Has_ReadOnlySequence(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>      ? coll) => Has_ReadOnlySequence(coll);
+
     // Has (Static)
     
     public static bool Has     <T>  ([NotNullWhen(true )]      T[]                                        ? coll)                   => HasArray(coll);
