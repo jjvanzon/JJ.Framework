@@ -1029,3 +1029,37 @@ using Specialized = System.Collections.Specialized;
 ```cs
     public static void Add<T>(this ConcurrentBag<T> coll, T item) => coll.Add(item);
 ```
+
+### More Collection Types
+
+```cs
+
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      Lookup<T,U>                                ? coll)                   => HasLookup(coll);
+    public static bool Has     <T,U>([NotNullWhen(true )]      Lookup<T,U>                                ? coll)                   => HasLookup(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )]      Lookup<T,U>                                ? coll)                   => !HasLookup(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this Lookup<T,U>                                ? coll)                   => HasLookup(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )] this Lookup<T,U>                                ? coll)                   => !HasLookup(coll);
+
+    public static Lookup<int,int>                  ? NullableLookup                          = NewLookup                    ();
+
+    private static Lookup<int, int> NewLookup(params int[] nums)
+    {
+        //if (nums.Any())
+        {
+            ILookup<int, int> lookup = nums.ToLookup(num => num);
+            ThrowIfNull(lookup);
+            Type type = lookup.GetType();
+            Assert.AreEqual("EmptyLookup`2", type.Name);
+            return (Lookup<int, int>)lookup;
+        //}
+
+        //Func<int, int> del = num => num;
+        //ConstructorInfo constructor = typeof(Lookup<int, int>).GetConstructor(BindingFlagsAll, [ typeof(IEnumerable<int>])
+        //object? obj = CreateInstance(typeof(Lookup<int, int>), new object?[] { nums, del, null }, BindingFlagsAll);
+        //ThrowIfNull(obj);
+        //var lookup = (Lookup<int, int>)obj;
+        //return lookup;
+        } 
+    }
+
+```

@@ -85,6 +85,7 @@ public class RegressionTests
                 // Accidentally public
                 string.Equals(systemType.Name, "ListDictionaryInternal") || 
                 string.Equals(systemType.Name, "TreeSet`1") ||
+                string.Equals(systemType.FullName, "System.Linq.Lookup`2") ||
                 string.Equals(systemType.FullName, "System.Collections.Generic.SortedList`2+ValueList") || 
                 string.Equals(systemType.FullName, "System.Collections.Generic.SortedList`2+KeyList") || 
                 // From specific APIs:

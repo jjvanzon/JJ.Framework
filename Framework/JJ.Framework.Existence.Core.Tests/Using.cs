@@ -1,6 +1,11 @@
 global using System;
+global using System.Collections;
 global using System.Collections.Generic;
 global using System.Collections.Immutable;
+global using System.Collections.Concurrent;
+global using System.Collections.ObjectModel;
+global using System.Collections.Specialized;
+global using System.Buffers;
 global using System.Linq;
 global using System.Reflection;
 global using System.Text;
@@ -13,6 +18,8 @@ global using JJ.Framework.Existence.Core.Tests.docs;
 global using static System.String;
 global using static System.Array;
 global using static System.Environment;
+global using static System.ArgumentNullException;
+global using static System.Activator;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
@@ -22,5 +29,6 @@ global using static JJ.Framework.Reflection.Core.Reflect;
 global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
 global using Priority   = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 global using Prio       = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
-
-
+#if NET8_0_OR_GREATER                                                                    
+global using System.Collections.Frozen;
+#endif

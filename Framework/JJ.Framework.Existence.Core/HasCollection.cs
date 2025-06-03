@@ -117,7 +117,6 @@ public static partial class FilledInHelper
     public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
 
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      Lookup<T,U>                                ? coll)                   => HasLookup(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
     #if NET8_0_OR_GREATER                                                                                 
     public static bool FilledIn<T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
@@ -222,7 +221,6 @@ public static partial class FilledInHelper
     public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
 
-    public static bool Has     <T,U>([NotNullWhen(true )]      Lookup<T,U>                                ? coll)                   => HasLookup(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
     #if NET8_0_OR_GREATER                                                                                 
     public static bool Has     <T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
@@ -327,7 +325,6 @@ public static partial class FilledInHelper
     public static bool IsNully <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
     #endif
 
-    public static bool IsNully <T,U>([NotNullWhen(true )]      Lookup<T,U>                                ? coll)                   => !HasLookup(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => !HasLookup(coll);
     #if NET8_0_OR_GREATER                                                                                 
     public static bool IsNully <T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
@@ -435,7 +432,6 @@ public static partial class FilledInExtensions
     public static bool FilledIn<T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
 
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this Lookup<T,U>                                ? coll)                   => HasLookup(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this ILookup<T,U>                               ? coll)                   => HasLookup(coll);
     #if NET8_0_OR_GREATER                                                                                 
     public static bool FilledIn<T,U>([NotNullWhen(true )] this FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
@@ -540,7 +536,6 @@ public static partial class FilledInExtensions
     public static bool IsNully <T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
     #endif
 
-    public static bool IsNully <T,U>([NotNullWhen(true )] this Lookup<T,U>                                ? coll)                   => !HasLookup(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this ILookup<T,U>                               ? coll)                   => !HasLookup(coll);
     #if NET8_0_OR_GREATER                                                                                 
     public static bool IsNully <T,U>([NotNullWhen(true )] this FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
