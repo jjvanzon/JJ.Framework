@@ -5,12 +5,14 @@ global using System.Linq;
 global using System.Reflection;
 global using System.Text;
 global using System.Globalization;
+global using System.Diagnostics;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Core;
 global using JJ.Framework.Existence.Core.Tests.docs;
 global using static System.String;
 global using static System.Array;
+global using static System.Environment;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
@@ -20,3 +22,5 @@ global using static JJ.Framework.Reflection.Core.Reflect;
 global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
 global using Priority   = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 global using Prio       = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
+
+

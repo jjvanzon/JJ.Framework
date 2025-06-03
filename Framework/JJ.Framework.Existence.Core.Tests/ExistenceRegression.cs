@@ -1,9 +1,5 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable ArrangeObjectCreationWhenTypeEvident
-#pragma warning disable CS8604 // Possible null reference argument.
-
 [TestClass]
 public class RegressionTests
 {
@@ -37,6 +33,71 @@ public class RegressionTests
             ImmutableList<int> empty = ImmutableList.Create<int>();
             //ThrowsException(() => IsFalse(FilledIn(empty)));
             IsFalse(FilledIn(empty)); // Fixed!
+        }
+    }
+        
+    // TODO: Rename
+    [TestMethod]
+    public void AllSystemCollections_HaveHelpers()
+    {
+        //var parameterTypes2 = typeof(FilledInExtensions).GetMethods().SelectMany(x => x.GetParameters()).Select(x => x.ParameterType);
+        var supportedTypeNames = 
+            new [] { typeof(FilledInExtensions), typeof(FilledInHelper) }
+                .SelectMany(x => x.GetMethods())
+                .SelectMany(x => x.GetParameters())
+                .Select(x => x.ParameterType.Name)
+                .Distinct()
+                .ToArray();
+
+        var bclTypes = AppDomain.CurrentDomain
+            .GetAssemblies()
+            .Where(a => a.GetName().Name!.StartsWith("System"))
+            .SelectMany(a => a.GetExportedTypes())
+            .Where(t => t.IsClass || t.IsValueType)
+            .ToArray();
+
+        var unsupportedTypes = new List<Type>();
+        
+        foreach (var systemType in bclTypes)
+        {
+            string nameSpace = systemType.Namespace ?? "";
+
+            bool looksLikeCollection =
+                systemType.GetProperty("Count") != null ||
+                systemType.GetProperty("Length") != null ||
+                systemType.GetProperty("IsEmpty") != null ||
+                systemType.GetProperty("IsDefaultOrEmpty") != null;
+
+            if (!looksLikeCollection) continue;
+            
+            bool excludeFromMatch = 
+                string.Equals(systemType.Name, "Array") ||
+                nameSpace.StartsWith("System.Configuration") ||
+                nameSpace.StartsWith("System.Xml") ||
+                nameSpace.StartsWith("System.IO") ||
+                nameSpace.StartsWith("System.Diagnostics") ||
+                nameSpace.StartsWith("System.Security") ||
+                nameSpace.StartsWith("System.Net") ||
+                nameSpace.StartsWith("System.Data") ||
+                nameSpace.StartsWith("System.Drawing") ||
+                nameSpace.StartsWith("System.ComponentModel") ||
+                nameSpace.StartsWith("System.CodeDom") ||
+                nameSpace.StartsWith("System.Text.RegularExpressions") ||
+                nameSpace.StartsWith("System.Reflection.Metadata") ||
+                nameSpace.StartsWith("System.Formats.Tar");
+            
+            if (excludeFromMatch) continue;
+
+            bool isSupported = supportedTypeNames.Contains(systemType.Name);
+            if (!isSupported)
+            {
+                unsupportedTypes.Add(systemType);
+            }
+        }
+        
+        if (unsupportedTypes.Any())
+        {
+            Fail($"The following {unsupportedTypes.Count} types look like collections, but are not supported:" + NewLine + Join(NewLine, unsupportedTypes));
         }
     }
 }
@@ -76,9 +137,9 @@ public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
     }
     
     // Trailed after the faulty call
-    static Exception NotSupportedException<T>(string name, object value, IEnumerable<T> validValues) 
+    static Exception NotSupportedException<T>(string name, object? value, IEnumerable<T> validValues) 
         => new Exception(NotSupportedMessage(name, value, validValues));
         
-    static string NotSupportedMessage<T>(string name, object value, IEnumerable<T> validValues) 
+    static string NotSupportedMessage<T>(string name, object? value, IEnumerable<T> validValues) 
         => $"{name} = {value} not valid. Supported values: " + Join(", ", validValues);
 }
