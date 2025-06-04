@@ -2,6 +2,7 @@
 
 internal static class AssertNoNullRet
 {
+
     // For objects
 
     /// <inheritdoc cref="_nonullret" />
@@ -37,6 +38,16 @@ internal static class AssertNoNullRet
         AreEqual(expected, ret, message);
     }
     
+    // For structs
+
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        where TRet : struct
+    {
+        IsType(typeof(int?), ret, message);
+        NotType(typeof(int), ret, message);
+    }
+
     // For int
     
     /// <inheritdoc cref="_nonullret" />
@@ -64,10 +75,31 @@ internal static class AssertNoNullRet
         NotType(typeof(int), ret, message);
     }
 
-    /// <inheritdoc cref="_nullret" />
-    public static void NullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
+
+    // For bool
+    
+    /// <inheritdoc cref="_nonullret" />
+    public static void NoNullRet<TRet>(bool expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
         where TRet : struct
     {
-        IsType(typeof(int?), ret, message);
-        NotType(typeof(int), ret, message);
-    }}
+        AreEqual(expected, ret, message);
+        IsType(typeof(bool), ret, message);
+        NotType(typeof(bool?), ret, message);
+    }
+
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TRet>(bool expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+    {
+        AreEqual(expected, ret, message);
+        IsType(typeof(bool?), ret, message);
+        NotType(typeof(bool), ret, message);
+    }
+    
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TRet>(bool? expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+    {
+        AreEqual(expected, ret, message);
+        IsType(typeof(bool?), ret, message);
+        NotType(typeof(bool), ret, message);
+    }
+}

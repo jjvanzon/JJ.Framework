@@ -26,29 +26,29 @@ public class Has_SimpleType_Tests
         bool? nullyFalse = false;
         bool? nullBool = null;
 
-        // TODO: Extend and use NoNullRet. Or extend with NoNullTrue and NoNullFalse?
-        AreEqual(true,  Has(true));
-        AreEqual(false, Has(false));
-        AreEqual(true,  Has(@true));
-        AreEqual(false, Has(@false));
-        AreEqual(false, Has(nullBool));
-        AreEqual(true,  Has(nullyTrue));
-        AreEqual(false, Has(nullyFalse));
+        // TODO: Extend with NoNullTrue and NoNullFalse?
+        NoNullRet(true,  Has(true));
+        NoNullRet(false, Has(false));
+        NoNullRet(true,  Has(@true));
+        NoNullRet(false, Has(@false));
+        NoNullRet(false, Has(nullBool));
+        NoNullRet(true,  Has(nullyTrue));
+        NoNullRet(false, Has(nullyFalse));
 
-        AreEqual(true,  FilledIn(true));
-        AreEqual(false, FilledIn(false));
-        AreEqual(true,  FilledIn(@true));
-        AreEqual(false, FilledIn(@false));
-        AreEqual(false, FilledIn(nullBool));
-        AreEqual(true,  FilledIn(nullyTrue));
-        AreEqual(false, FilledIn(nullyFalse));
+        NoNullRet(true,  FilledIn(true));
+        NoNullRet(false, FilledIn(false));
+        NoNullRet(true,  FilledIn(@true));
+        NoNullRet(false, FilledIn(@false));
+        NoNullRet(false, FilledIn(nullBool));
+        NoNullRet(true,  FilledIn(nullyTrue));
+        NoNullRet(false, FilledIn(nullyFalse));
 
-        AreEqual(true,  true.FilledIn());
-        AreEqual(false, false.FilledIn());
-        AreEqual(true,  @true.FilledIn());
-        AreEqual(false, @false.FilledIn());
-        AreEqual(false, nullBool.FilledIn());
-        AreEqual(true,  nullyTrue.FilledIn());
-        AreEqual(false, nullyFalse.FilledIn());
+        NoNullRet(true,  true.FilledIn());
+        NoNullRet(false, false.FilledIn());
+        NoNullRet(true,  @true.FilledIn());
+        NoNullRet(false, @false.FilledIn());
+        NoNullRet(false, nullBool.FilledIn());
+        NoNullRet(true,  nullyTrue.FilledIn());
+        NoNullRet(false, nullyFalse.FilledIn());
     }
 }

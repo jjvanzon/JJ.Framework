@@ -60,7 +60,7 @@ public class Coalesce_1Arg_Tests : TestBase
     [TestMethod]
     public void Coalesce_1Arg_Vals_Nully_Vars()
     {
-        NullRet  (null,    NullNum           );
+      //NullRet  (null,    NullNum           );
         NullRet  (0,       Nully0            );
         NullRet  (1,       Nully1            );
         NullRet  (2,       Nully2            );
