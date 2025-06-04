@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_SimpleType_Tests
+public class Has_SimpleTypes_Tests
 {
     // From XmlToObjectConverter:
     // Recognized values are the .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
