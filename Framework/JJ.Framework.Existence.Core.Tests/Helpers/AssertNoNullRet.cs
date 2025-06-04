@@ -2,23 +2,17 @@
 
 internal static class AssertNoNullRet
 {
-
-    // For objects
-
-    /// <inheritdoc cref="_nonullret" />
-    public static void NoNullRet<TRet>(TRet ret)
-        where TRet : class
-    {
-        NotNull(ret);
-    }
+    // For values and objects
 
     /// <inheritdoc cref="_nonullret" />
-    // ReSharper disable once MethodOverloadWithOptionalParameter
     public static void NoNullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
         where TRet : notnull
     {
         NotNull(ret, message);
     }
+
+    // For objects
+
 
     /// <inheritdoc cref="_nonullret" />
     public static void NoNullRet<TRet>(object? expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
@@ -36,16 +30,6 @@ internal static class AssertNoNullRet
     {
         NotNull(ret, message);
         AreEqual(expected, ret, message);
-    }
-    
-    // For structs
-
-    /// <inheritdoc cref="_nullret" />
-    public static void NullRet<TRet>(TRet ret, [ArgExpress(nameof(ret))] string message = "")
-        where TRet : struct
-    {
-        IsType(typeof(int?), ret, message);
-        NotType(typeof(int), ret, message);
     }
 
     // For int
@@ -73,33 +57,5 @@ internal static class AssertNoNullRet
         AreEqual(expected, ret, message);
         IsType(typeof(int?), ret, message);
         NotType(typeof(int), ret, message);
-    }
-
-
-    // For bool
-    
-    /// <inheritdoc cref="_nonullret" />
-    public static void NoNullRet<TRet>(bool expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
-        where TRet : struct
-    {
-        AreEqual(expected, ret, message);
-        IsType(typeof(bool), ret, message);
-        NotType(typeof(bool?), ret, message);
-    }
-
-    /// <inheritdoc cref="_nullret" />
-    public static void NullRet<TRet>(bool expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
-    {
-        AreEqual(expected, ret, message);
-        IsType(typeof(bool?), ret, message);
-        NotType(typeof(bool), ret, message);
-    }
-    
-    /// <inheritdoc cref="_nullret" />
-    public static void NullRet<TRet>(bool? expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
-    {
-        AreEqual(expected, ret, message);
-        IsType(typeof(bool?), ret, message);
-        NotType(typeof(bool), ret, message);
     }
 }

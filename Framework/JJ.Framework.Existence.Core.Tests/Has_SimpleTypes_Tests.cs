@@ -26,29 +26,49 @@ public class Has_SimpleTypes_Tests
         bool? nullyFalse = false;
         bool? nullBool = null;
 
-        // TODO: Extend with NoNullTrue and NoNullFalse?
-        NoNullRet(true,  Has(true));
-        NoNullRet(false, Has(false));
-        NoNullRet(true,  Has(@true));
-        NoNullRet(false, Has(@false));
-        NoNullRet(false, Has(nullBool));
-        NoNullRet(true,  Has(nullyTrue));
-        NoNullRet(false, Has(nullyFalse));
+        NoNullRet(Has(true));
+        IsTrue   (Has(true));
+        NoNullRet(Has(false));
+        IsFalse  (Has(false));
+        NoNullRet(Has(@true));
+        IsTrue   (Has(@true));
+        NoNullRet(Has(@false));
+        IsFalse  (Has(@false));
+        NoNullRet(Has(nullyTrue));
+        IsTrue   (Has(nullyTrue));
+        NoNullRet(Has(nullyFalse));
+        IsFalse  (Has(nullyFalse));
+        NoNullRet(Has(nullBool));
+        IsFalse  (Has(nullBool));
 
-        NoNullRet(true,  FilledIn(true));
-        NoNullRet(false, FilledIn(false));
-        NoNullRet(true,  FilledIn(@true));
-        NoNullRet(false, FilledIn(@false));
-        NoNullRet(false, FilledIn(nullBool));
-        NoNullRet(true,  FilledIn(nullyTrue));
-        NoNullRet(false, FilledIn(nullyFalse));
+        NoNullRet(FilledIn(true));
+        IsTrue   (FilledIn(true));
+        NoNullRet(FilledIn(false));
+        IsFalse  (FilledIn(false));
+        NoNullRet(FilledIn(@true));
+        IsTrue   (FilledIn(@true));
+        NoNullRet(FilledIn(@false));
+        IsFalse  (FilledIn(@false));
+        NoNullRet(FilledIn(nullyTrue));
+        IsTrue   (FilledIn(nullyTrue));
+        NoNullRet(FilledIn(nullyFalse));
+        IsFalse  (FilledIn(nullyFalse));
+        NoNullRet(FilledIn(nullBool));
+        IsFalse  (FilledIn(nullBool));
 
-        NoNullRet(true,  true.FilledIn());
-        NoNullRet(false, false.FilledIn());
-        NoNullRet(true,  @true.FilledIn());
-        NoNullRet(false, @false.FilledIn());
-        NoNullRet(false, nullBool.FilledIn());
-        NoNullRet(true,  nullyTrue.FilledIn());
-        NoNullRet(false, nullyFalse.FilledIn());
+        NoNullRet(true.FilledIn());
+        IsTrue   (true.FilledIn());
+        NoNullRet(false.FilledIn());
+        IsFalse  (false.FilledIn());
+        NoNullRet(@true.FilledIn());
+        IsTrue   (@true.FilledIn());
+        NoNullRet(@false.FilledIn());
+        IsFalse  (@false.FilledIn());
+        NoNullRet(nullyTrue.FilledIn());
+        IsTrue   (nullyTrue.FilledIn());
+        NoNullRet(nullyFalse.FilledIn());
+        IsFalse  (nullyFalse.FilledIn());
+        NoNullRet(nullBool.FilledIn());
+        IsFalse  (nullBool.FilledIn());
     }
 }
