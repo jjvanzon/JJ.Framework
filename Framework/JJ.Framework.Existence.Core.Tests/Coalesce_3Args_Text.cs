@@ -3,7 +3,7 @@
 [TestClass]
 public class Coalesce_3Args_Text : TestBase
 {
-    private static readonly string? Null  = TestHelper.NullText;
+    private static readonly string? Null  = Mocks.NullText;
     
     [TestMethod]
     public void Coalesce_3Args_Text_Static()

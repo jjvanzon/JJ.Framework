@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_NArgs_Tests
+public class Coalesce_NArgs_Tests : TestBase
 {
     static string?[]? StringNullArray = (string?[]?)null;
 
@@ -17,7 +17,7 @@ public class Coalesce_NArgs_Tests
         NoNullRet("Hi",               Coalesce([ ""  , " " , "Hi"     , "Finally" ]));
         NoNullRet("Hi",      " "     .Coalesce([ ""  , " " , "\n     ", "Hi"      ]));
         NoNullRet(" ",       NullText.Coalesce(NullyEmpty, NullText, NullySpace    ));
-        NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, TestHelper.Empty   ));
+        NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, Empty         ));
         NoNullRet("Finally", new [] { ""  , " "  , "\n     ", "Finally" }.Coalesce());
         NoNullRet("Hi",      new [] { ""  , "Hi" , "\n     ", "Finally" }.Coalesce());
         NoNullRet("",        new [] { NullText,    NullText,   NullText }.Coalesce());
