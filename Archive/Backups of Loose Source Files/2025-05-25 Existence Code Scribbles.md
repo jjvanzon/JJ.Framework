@@ -1030,7 +1030,7 @@ using Specialized = System.Collections.Specialized;
     public static void Add<T>(this ConcurrentBag<T> coll, T item) => coll.Add(item);
 ```
 
-### More Collection Types
+### Removed Direct support for Lookup in favor of ILookup
 
 ```cs
 
@@ -1061,5 +1061,7 @@ using Specialized = System.Collections.Specialized;
         //return lookup;
         } 
     }
+
+    public static Lookup<int,int>                  ? NullLookup                              = null;
 
 ```
