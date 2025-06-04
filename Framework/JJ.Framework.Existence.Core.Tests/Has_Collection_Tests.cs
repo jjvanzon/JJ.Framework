@@ -95,6 +95,10 @@ public class Has_Coll_Tests
         IsTrue(Has(FilledIReadOnlySet));
         IsTrue(Has(FilledReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(Has(FilledFrozenSet));
+        IsTrue(Has(FilledFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsTrue(Has(FilledPrioQueue));
         IsTrue(Has(FilledPrioQueueUnorderedColl));
@@ -187,6 +191,10 @@ public class Has_Coll_Tests
         IsTrue(FilledIn(FilledIReadOnlySet));
         IsTrue(FilledIn(FilledReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(FilledIn(FilledFrozenSet));
+        IsTrue(FilledIn(FilledFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsTrue(FilledIn(FilledPrioQueue));
         IsTrue(FilledIn(FilledPrioQueueUnorderedColl));
@@ -278,6 +286,10 @@ public class Has_Coll_Tests
         IsTrue(FilledOrderedDictVals.FilledIn());
         IsTrue(FilledIReadOnlySet.FilledIn());
         IsTrue(FilledReadOnlySet.FilledIn());
+        #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(FilledFrozenSet.FilledIn());
+        IsTrue(FilledFrozenDictionary.FilledIn());
         #endif
         #if NET6_0_OR_GREATER
         IsTrue(FilledPrioQueue.FilledIn());
@@ -375,6 +387,10 @@ public class Has_Coll_Tests
         IsTrue(Has(NullyFilledIReadOnlySet));
         IsTrue(Has(NullyFilledReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(Has(NullyFilledFrozenSet));
+        IsTrue(Has(NullyFilledFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsTrue(Has(NullyFilledPrioQueue));
         IsTrue(Has(NullyFilledPrioQueueUnorderedColl));
@@ -467,6 +483,10 @@ public class Has_Coll_Tests
         IsTrue(FilledIn(NullyFilledIReadOnlySet));
         IsTrue(FilledIn(NullyFilledReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(FilledIn(NullyFilledFrozenSet));
+        IsTrue(FilledIn(NullyFilledFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsTrue(FilledIn(NullyFilledPrioQueue));
         IsTrue(FilledIn(NullyFilledPrioQueueUnorderedColl));
@@ -558,6 +578,10 @@ public class Has_Coll_Tests
         IsTrue(NullyFilledOrderedDictVals.FilledIn());
         IsTrue(NullyFilledIReadOnlySet.FilledIn());
         IsTrue(NullyFilledReadOnlySet.FilledIn());
+        #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(NullyFilledFrozenSet.FilledIn());
+        IsTrue(NullyFilledFrozenDictionary.FilledIn());
         #endif
         #if NET6_0_OR_GREATER
         IsTrue(NullyFilledPrioQueue.FilledIn());
@@ -657,6 +681,10 @@ public class Has_Coll_Tests
         IsFalse(Has(EmptyIReadOnlySet));
         IsFalse(Has(EmptyReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(Has(EmptyFrozenSet));
+        IsFalse(Has(EmptyFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(Has(EmptyPrioQueue));
         IsFalse(Has(EmptyPrioQueueUnorderedColl));
@@ -751,6 +779,10 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(EmptyIReadOnlySet));
         IsFalse(FilledIn(EmptyReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(FilledIn(EmptyFrozenSet));
+        IsFalse(FilledIn(EmptyFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledIn(EmptyPrioQueue));
         IsFalse(FilledIn(EmptyPrioQueueUnorderedColl));
@@ -844,6 +876,10 @@ public class Has_Coll_Tests
         IsFalse(EmptyOrderedDictVals.FilledIn());
         IsFalse(EmptyIReadOnlySet.FilledIn());
         IsFalse(EmptyReadOnlySet.FilledIn());
+        #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(EmptyFrozenSet.FilledIn());
+        IsFalse(EmptyFrozenDictionary.FilledIn());
         #endif
         #if NET6_0_OR_GREATER
         IsFalse(EmptyPrioQueue.FilledIn());
@@ -941,6 +977,10 @@ public class Has_Coll_Tests
         IsFalse(Has(NullableEmptyIReadOnlySet));
         IsFalse(Has(NullableEmptyReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(Has(NullableEmptyFrozenSet));
+        IsFalse(Has(NullableEmptyFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(Has(NullableEmptyPrioQueue));
         IsFalse(Has(NullableEmptyPrioQueueUnorderedColl));
@@ -1033,6 +1073,10 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullableEmptyIReadOnlySet));
         IsFalse(FilledIn(NullableEmptyReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(FilledIn(NullableEmptyFrozenSet));
+        IsFalse(FilledIn(NullableEmptyFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledIn(NullableEmptyPrioQueue));
         IsFalse(FilledIn(NullableEmptyPrioQueueUnorderedColl));
@@ -1124,6 +1168,10 @@ public class Has_Coll_Tests
         IsFalse(NullableEmptyOrderedDictVals.FilledIn());
         IsFalse(NullableEmptyIReadOnlySet.FilledIn());
         IsFalse(NullableEmptyReadOnlySet.FilledIn());
+        #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(NullableEmptyFrozenSet.FilledIn());
+        IsFalse(NullableEmptyFrozenDictionary.FilledIn());
         #endif
         #if NET6_0_OR_GREATER
         IsFalse(NullableEmptyPrioQueue.FilledIn());
@@ -1223,6 +1271,10 @@ public class Has_Coll_Tests
         IsFalse(Has(NullIReadOnlySet));
         IsFalse(Has(NullReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(Has(NullFrozenSet));
+        IsFalse(Has(NullFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(Has(NullPrioQueue));
         IsFalse(Has(NullPrioQueueUnorderedColl));
@@ -1317,6 +1369,10 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullIReadOnlySet));
         IsFalse(FilledIn(NullReadOnlySet));
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(FilledIn(NullFrozenSet));
+        IsFalse(FilledIn(NullFrozenDictionary));
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledIn(NullPrioQueue));
         IsFalse(FilledIn(NullPrioQueueUnorderedColl));
@@ -1410,6 +1466,10 @@ public class Has_Coll_Tests
         IsFalse(NullOrderedDictVals.FilledIn());
         IsFalse(NullIReadOnlySet.FilledIn());
         IsFalse(NullReadOnlySet.FilledIn());
+        #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(NullFrozenSet.FilledIn());
+        IsFalse(NullFrozenDictionary.FilledIn());
         #endif
         #if NET6_0_OR_GREATER
         IsFalse(NullPrioQueue.FilledIn());
@@ -1511,6 +1571,10 @@ public class Has_Coll_Tests
         IsFalse(FilledIReadOnlySet.IsNully());
         IsFalse(FilledReadOnlySet.IsNully());
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(FilledFrozenSet.IsNully());
+        IsFalse(FilledFrozenDictionary.IsNully());
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledPrioQueue.IsNully());
         IsFalse(FilledPrioQueueUnorderedColl.IsNully());
@@ -1604,6 +1668,10 @@ public class Has_Coll_Tests
         IsFalse(IsNully(FilledOrderedDictVals));
         IsFalse(IsNully(FilledIReadOnlySet));
         IsFalse(IsNully(FilledReadOnlySet));
+        #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(IsNully(FilledFrozenSet));
+        IsFalse(IsNully(FilledFrozenDictionary));
         #endif
         #if NET6_0_OR_GREATER
         IsFalse(IsNully(FilledPrioQueue));
@@ -1703,6 +1771,10 @@ public class Has_Coll_Tests
         IsFalse(NullyFilledIReadOnlySet.IsNully());
         IsFalse(NullyFilledReadOnlySet.IsNully());
         #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(NullyFilledFrozenSet.IsNully());
+        IsFalse(NullyFilledFrozenDictionary.IsNully());
+        #endif
         #if NET6_0_OR_GREATER
         IsFalse(NullyFilledPrioQueue.IsNully());
         IsFalse(NullyFilledPrioQueueUnorderedColl.IsNully());
@@ -1796,6 +1868,10 @@ public class Has_Coll_Tests
         IsFalse(IsNully(NullyFilledOrderedDictVals));
         IsFalse(IsNully(NullyFilledIReadOnlySet));
         IsFalse(IsNully(NullyFilledReadOnlySet));
+        #endif
+        #if NET8_0_OR_GREATER
+        IsFalse(IsNully(NullyFilledFrozenSet));
+        IsFalse(IsNully(NullyFilledFrozenDictionary));
         #endif
         #if NET6_0_OR_GREATER
         IsFalse(IsNully(NullyFilledPrioQueue));
@@ -1895,6 +1971,10 @@ public class Has_Coll_Tests
         IsTrue(EmptyIReadOnlySet.IsNully());
         IsTrue(EmptyReadOnlySet.IsNully());
         #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(EmptyFrozenSet.IsNully());
+        IsTrue(EmptyFrozenDictionary.IsNully());
+        #endif
         #if NET6_0_OR_GREATER
         IsTrue(EmptyPrioQueue.IsNully());
         IsTrue(EmptyPrioQueueUnorderedColl.IsNully());
@@ -1988,6 +2068,10 @@ public class Has_Coll_Tests
         IsTrue(IsNully(EmptyOrderedDictVals));
         IsTrue(IsNully(EmptyIReadOnlySet));
         IsTrue(IsNully(EmptyReadOnlySet));
+        #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(IsNully(EmptyFrozenSet));
+        IsTrue(IsNully(EmptyFrozenDictionary));
         #endif
         #if NET6_0_OR_GREATER
         IsTrue(IsNully(EmptyPrioQueue));
@@ -2087,6 +2171,10 @@ public class Has_Coll_Tests
         IsTrue(NullableEmptyIReadOnlySet.IsNully());
         IsTrue(NullableEmptyReadOnlySet.IsNully());
         #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(NullableEmptyFrozenSet.IsNully());
+        IsTrue(NullableEmptyFrozenDictionary.IsNully());
+        #endif
         #if NET6_0_OR_GREATER
         IsTrue(NullableEmptyPrioQueue.IsNully());
         IsTrue(NullableEmptyPrioQueueUnorderedColl.IsNully());
@@ -2180,6 +2268,10 @@ public class Has_Coll_Tests
         IsTrue(IsNully(NullableEmptyOrderedDictVals));
         IsTrue(IsNully(NullableEmptyIReadOnlySet));
         IsTrue(IsNully(NullableEmptyReadOnlySet));
+        #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(IsNully(NullableEmptyFrozenSet));
+        IsTrue(IsNully(NullableEmptyFrozenDictionary));
         #endif
         #if NET6_0_OR_GREATER
         IsTrue(IsNully(NullableEmptyPrioQueue));
@@ -2279,6 +2371,10 @@ public class Has_Coll_Tests
         IsTrue(NullIReadOnlySet.IsNully());
         IsTrue(NullReadOnlySet.IsNully());
         #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(NullFrozenSet.IsNully());
+        IsTrue(NullFrozenDictionary.IsNully());
+        #endif
         #if NET6_0_OR_GREATER
         IsTrue(NullPrioQueue.IsNully());
         IsTrue(NullPrioQueueUnorderedColl.IsNully());
@@ -2372,6 +2468,10 @@ public class Has_Coll_Tests
         IsTrue(IsNully(NullOrderedDictVals));
         IsTrue(IsNully(NullIReadOnlySet));
         IsTrue(IsNully(NullReadOnlySet));
+        #endif
+        #if NET8_0_OR_GREATER
+        IsTrue(IsNully(NullFrozenSet));
+        IsTrue(IsNully(NullFrozenDictionary));
         #endif
         #if NET6_0_OR_GREATER
         IsTrue(IsNully(NullPrioQueue));
