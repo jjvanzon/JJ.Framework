@@ -13,13 +13,16 @@ public static partial class FilledInHelper
     
     public static bool Contains(IEnumerable<string?>? source, string? match, bool ignoreCase = false)
     {
-        return source?.Any(x => (x ?? "").Equals(match, ignoreCase.ToStringComparison())) ?? false;
+        if (source == null) return false;
+        match = (match ?? "").Trim();
+        var stringComparison = ignoreCase.ToStringComparison();
+        return source.Any(x => (x ?? "").Trim().Equals(match, stringComparison));
     }
      
     // Copied from Text.Core to prevent shipping a wide dependency.
     private static StringComparison ToStringComparison(this bool ignoreCase)
     {
-        return ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+        return ignoreCase ? OrdinalIgnoreCase : Ordinal;
     }
 }
 
