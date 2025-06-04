@@ -524,10 +524,6 @@ internal static class TestHelper
     public static ImmutableArray<int>              ? ImmutableArrayWithDefaultNullable       = default;
     public static ImmutableArray<int>                ImmutableArrayWithNew                   = new();
     public static ImmutableArray<int>              ? ImmutableArrayWithNewNullable           = new();
-  
-    // TODO: These work differently. Declare inside method.
-    //public static ReadOnlySpan<int>                DefaultReadOnlySpan                        = default;
-    //public static Span<int>                        DefaultSpanWithDefault                     = default;
 
     // Collection Instantiation
     
