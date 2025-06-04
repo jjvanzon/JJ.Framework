@@ -10,7 +10,7 @@ namespace JJ.Framework.Logging.Core.Config
     {
         public bool Active { get; set; }
         public string Type { get; set; }
-        /// <inheritdoc cref="_loggerformat">
+        /// <inheritdoc cref="_loggerformat" />
         public string Format { get; set; }
         public IList<string> Categories { get; set; }
         /// <inheritdoc cref="_loggerexcludedcategories" />

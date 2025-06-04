@@ -13,6 +13,7 @@ public class Has_Coll_Tests
         IsTrue(Has(FilledISet));
         IsTrue(Has(FilledIDict));
         IsTrue(Has(FilledIColl));
+        IsTrue(Has(FilledILookup));
         IsTrue(Has(FilledIEnumerable));
         IsTrue(Has(FilledList));
         IsTrue(Has(FilledHashSet));
@@ -52,6 +53,10 @@ public class Has_Coll_Tests
         IsTrue(Has(FilledReadOnlyDict));
         IsTrue(Has(FilledReadOnlyDictKeys));
         IsTrue(Has(FilledReadOnlyDictVals));
+        IsTrue(Has(FilledArraySegment));
+        IsTrue(Has(FilledMemory));
+        IsTrue(Has(FilledReadOnlyMemory));
+        IsTrue(Has(FilledReadOnlySequence));
         IsTrue(Has(FilledConcurrentBag));
         IsTrue(Has(FilledConcurrentQueue));
         IsTrue(Has(FilledConcurrentStack));
@@ -100,6 +105,7 @@ public class Has_Coll_Tests
         IsTrue(FilledIn(FilledISet));
         IsTrue(FilledIn(FilledIDict));
         IsTrue(FilledIn(FilledIColl));
+        IsTrue(FilledIn(FilledILookup));
         IsTrue(FilledIn(FilledIEnumerable));
         IsTrue(FilledIn(FilledList));
         IsTrue(FilledIn(FilledHashSet));
@@ -139,6 +145,10 @@ public class Has_Coll_Tests
         IsTrue(FilledIn(FilledReadOnlyDict));
         IsTrue(FilledIn(FilledReadOnlyDictKeys));
         IsTrue(FilledIn(FilledReadOnlyDictVals));
+        IsTrue(FilledIn(FilledArraySegment));
+        IsTrue(FilledIn(FilledMemory));
+        IsTrue(FilledIn(FilledReadOnlyMemory));
+        IsTrue(FilledIn(FilledReadOnlySequence));
         IsTrue(FilledIn(FilledConcurrentBag));
         IsTrue(FilledIn(FilledConcurrentQueue));
         IsTrue(FilledIn(FilledConcurrentStack));
@@ -187,6 +197,7 @@ public class Has_Coll_Tests
         IsTrue(FilledISet.FilledIn());
         IsTrue(FilledIDict.FilledIn());
         IsTrue(FilledIColl.FilledIn());
+        IsTrue(FilledILookup.FilledIn());
         IsTrue(FilledIEnumerable.FilledIn());
         IsTrue(FilledList.FilledIn());
         IsTrue(FilledHashSet.FilledIn());
@@ -226,6 +237,10 @@ public class Has_Coll_Tests
         IsTrue(FilledReadOnlyDict.FilledIn());
         IsTrue(FilledReadOnlyDictKeys.FilledIn());
         IsTrue(FilledReadOnlyDictVals.FilledIn());
+        IsTrue(FilledArraySegment.FilledIn());
+        IsTrue(FilledMemory.FilledIn());
+        IsTrue(FilledReadOnlyMemory.FilledIn());
+        IsTrue(FilledReadOnlySequence.FilledIn());
         IsTrue(FilledConcurrentBag.FilledIn());
         IsTrue(FilledConcurrentQueue.FilledIn());
         IsTrue(FilledConcurrentStack.FilledIn());
@@ -278,6 +293,7 @@ public class Has_Coll_Tests
         IsTrue(Has(NullyFilledISet));
         IsTrue(Has(NullyFilledIDict));
         IsTrue(Has(NullyFilledIColl));
+        IsTrue(Has(NullyFilledILookup));
         IsTrue(Has(NullyFilledIEnumerable));
         IsTrue(Has(NullyFilledList));
         IsTrue(Has(NullyFilledHashSet));
@@ -317,6 +333,10 @@ public class Has_Coll_Tests
         IsTrue(Has(NullyFilledReadOnlyDict));
         IsTrue(Has(NullyFilledReadOnlyDictKeys));
         IsTrue(Has(NullyFilledReadOnlyDictVals));
+        IsTrue(Has(NullyFilledArraySegment));
+        IsTrue(Has(NullyFilledMemory));
+        IsTrue(Has(NullyFilledReadOnlyMemory));
+        IsTrue(Has(NullyFilledReadOnlySequence));
         IsTrue(Has(NullyFilledConcurrentBag));
         IsTrue(Has(NullyFilledConcurrentQueue));
         IsTrue(Has(NullyFilledConcurrentStack));
@@ -365,6 +385,7 @@ public class Has_Coll_Tests
         IsTrue(FilledIn(NullyFilledISet));
         IsTrue(FilledIn(NullyFilledIDict));
         IsTrue(FilledIn(NullyFilledIColl));
+        IsTrue(FilledIn(NullyFilledILookup));
         IsTrue(FilledIn(NullyFilledIEnumerable));
         IsTrue(FilledIn(NullyFilledList));
         IsTrue(FilledIn(NullyFilledHashSet));
@@ -404,6 +425,10 @@ public class Has_Coll_Tests
         IsTrue(FilledIn(NullyFilledReadOnlyDict));
         IsTrue(FilledIn(NullyFilledReadOnlyDictKeys));
         IsTrue(FilledIn(NullyFilledReadOnlyDictVals));
+        IsTrue(FilledIn(NullyFilledArraySegment));
+        IsTrue(FilledIn(NullyFilledMemory));
+        IsTrue(FilledIn(NullyFilledReadOnlyMemory));
+        IsTrue(FilledIn(NullyFilledReadOnlySequence));
         IsTrue(FilledIn(NullyFilledConcurrentBag));
         IsTrue(FilledIn(NullyFilledConcurrentQueue));
         IsTrue(FilledIn(NullyFilledConcurrentStack));
@@ -452,6 +477,7 @@ public class Has_Coll_Tests
         IsTrue(NullyFilledISet.FilledIn());
         IsTrue(NullyFilledIDict.FilledIn());
         IsTrue(NullyFilledIColl.FilledIn());
+        IsTrue(NullyFilledILookup.FilledIn());
         IsTrue(NullyFilledIEnumerable.FilledIn());
         IsTrue(NullyFilledList.FilledIn());
         IsTrue(NullyFilledHashSet.FilledIn());
@@ -491,6 +517,10 @@ public class Has_Coll_Tests
         IsTrue(NullyFilledReadOnlyDict.FilledIn());
         IsTrue(NullyFilledReadOnlyDictKeys.FilledIn());
         IsTrue(NullyFilledReadOnlyDictVals.FilledIn());
+        IsTrue(NullyFilledArraySegment.FilledIn());
+        IsTrue(NullyFilledMemory.FilledIn());
+        IsTrue(NullyFilledReadOnlyMemory.FilledIn());
+        IsTrue(NullyFilledReadOnlySequence.FilledIn());
         IsTrue(NullyFilledConcurrentBag.FilledIn());
         IsTrue(NullyFilledConcurrentQueue.FilledIn());
         IsTrue(NullyFilledConcurrentStack.FilledIn());
@@ -543,6 +573,7 @@ public class Has_Coll_Tests
         IsFalse(Has(EmptyISet));
         IsFalse(Has(EmptyIDict));
         IsFalse(Has(EmptyIColl));
+        IsFalse(Has(EmptyILookup));
         IsFalse(Has(EmptyIEnumerable));
         IsFalse(Has(EmptyList));
         IsFalse(Has(EmptyHashSet));
@@ -584,6 +615,10 @@ public class Has_Coll_Tests
         IsFalse(Has(EmptyReadOnlyDict));
         IsFalse(Has(EmptyReadOnlyDictKeys));
         IsFalse(Has(EmptyReadOnlyDictVals));
+        IsFalse(Has(EmptyArraySegment));
+        IsFalse(Has(EmptyMemory));
+        IsFalse(Has(EmptyReadOnlyMemory));
+        IsFalse(Has(EmptyReadOnlySequence));
         IsFalse(Has(EmptyConcurrentBag));
         IsFalse(Has(EmptyConcurrentQueue));
         IsFalse(Has(EmptyConcurrentStack));
@@ -632,6 +667,7 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(EmptyISet));
         IsFalse(FilledIn(EmptyIDict));
         IsFalse(FilledIn(EmptyIColl));
+        IsFalse(FilledIn(EmptyILookup));
         IsFalse(FilledIn(EmptyIEnumerable));
         IsFalse(FilledIn(EmptyList));
         IsFalse(FilledIn(EmptyHashSet));
@@ -673,6 +709,10 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(EmptyReadOnlyDict));
         IsFalse(FilledIn(EmptyReadOnlyDictKeys));
         IsFalse(FilledIn(EmptyReadOnlyDictVals));
+        IsFalse(FilledIn(EmptyArraySegment));
+        IsFalse(FilledIn(EmptyMemory));
+        IsFalse(FilledIn(EmptyReadOnlyMemory));
+        IsFalse(FilledIn(EmptyReadOnlySequence));
         IsFalse(FilledIn(EmptyConcurrentBag));
         IsFalse(FilledIn(EmptyConcurrentQueue));
         IsFalse(FilledIn(EmptyConcurrentStack));
@@ -721,6 +761,7 @@ public class Has_Coll_Tests
         IsFalse(EmptyISet.FilledIn());
         IsFalse(EmptyIDict.FilledIn());
         IsFalse(EmptyIColl.FilledIn());
+        IsFalse(EmptyILookup.FilledIn());
         IsFalse(EmptyIEnumerable.FilledIn());
         IsFalse(EmptyList.FilledIn());
         IsFalse(EmptyHashSet.FilledIn());
@@ -762,6 +803,10 @@ public class Has_Coll_Tests
         IsFalse(EmptyReadOnlyDict.FilledIn());
         IsFalse(EmptyReadOnlyDictKeys.FilledIn());
         IsFalse(EmptyReadOnlyDictVals.FilledIn());
+        IsFalse(EmptyArraySegment.FilledIn());
+        IsFalse(EmptyMemory.FilledIn());
+        IsFalse(EmptyReadOnlyMemory.FilledIn());
+        IsFalse(EmptyReadOnlySequence.FilledIn());
         IsFalse(EmptyConcurrentBag.FilledIn());
         IsFalse(EmptyConcurrentQueue.FilledIn());
         IsFalse(EmptyConcurrentStack.FilledIn());
@@ -814,6 +859,7 @@ public class Has_Coll_Tests
         IsFalse(Has(NullableEmptyISet));
         IsFalse(Has(NullableEmptyIDict));
         IsFalse(Has(NullableEmptyIColl));
+        IsFalse(Has(NullableEmptyILookup));
         IsFalse(Has(NullableEmptyIEnumerable));
         IsFalse(Has(NullableEmptyList));
         IsFalse(Has(NullableEmptyHashSet));
@@ -853,6 +899,10 @@ public class Has_Coll_Tests
         IsFalse(Has(NullableEmptyReadOnlyDict));
         IsFalse(Has(NullableEmptyReadOnlyDictKeys));
         IsFalse(Has(NullableEmptyReadOnlyDictVals));
+        IsFalse(Has(NullableEmptyArraySegment));
+        IsFalse(Has(NullableEmptyMemory));
+        IsFalse(Has(NullableEmptyReadOnlyMemory));
+        IsFalse(Has(NullableEmptyReadOnlySequence));
         IsFalse(Has(NullableEmptyConcurrentBag));
         IsFalse(Has(NullableEmptyConcurrentQueue));
         IsFalse(Has(NullableEmptyConcurrentStack));
@@ -901,6 +951,7 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullableEmptyISet));
         IsFalse(FilledIn(NullableEmptyIDict));
         IsFalse(FilledIn(NullableEmptyIColl));
+        IsFalse(FilledIn(NullableEmptyILookup));
         IsFalse(FilledIn(NullableEmptyIEnumerable));
         IsFalse(FilledIn(NullableEmptyList));
         IsFalse(FilledIn(NullableEmptyHashSet));
@@ -940,6 +991,10 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullableEmptyReadOnlyDict));
         IsFalse(FilledIn(NullableEmptyReadOnlyDictKeys));
         IsFalse(FilledIn(NullableEmptyReadOnlyDictVals));
+        IsFalse(FilledIn(NullableEmptyArraySegment));
+        IsFalse(FilledIn(NullableEmptyMemory));
+        IsFalse(FilledIn(NullableEmptyReadOnlyMemory));
+        IsFalse(FilledIn(NullableEmptyReadOnlySequence));
         IsFalse(FilledIn(NullableEmptyConcurrentBag));
         IsFalse(FilledIn(NullableEmptyConcurrentQueue));
         IsFalse(FilledIn(NullableEmptyConcurrentStack));
@@ -988,6 +1043,7 @@ public class Has_Coll_Tests
         IsFalse(NullableEmptyISet.FilledIn());
         IsFalse(NullableEmptyIDict.FilledIn());
         IsFalse(NullableEmptyIColl.FilledIn());
+        IsFalse(NullableEmptyILookup.FilledIn());
         IsFalse(NullableEmptyIEnumerable.FilledIn());
         IsFalse(NullableEmptyList.FilledIn());
         IsFalse(NullableEmptyHashSet.FilledIn());
@@ -1027,6 +1083,10 @@ public class Has_Coll_Tests
         IsFalse(NullableEmptyReadOnlyDict.FilledIn());
         IsFalse(NullableEmptyReadOnlyDictKeys.FilledIn());
         IsFalse(NullableEmptyReadOnlyDictVals.FilledIn());
+        IsFalse(NullableEmptyArraySegment.FilledIn());
+        IsFalse(NullableEmptyMemory.FilledIn());
+        IsFalse(NullableEmptyReadOnlyMemory.FilledIn());
+        IsFalse(NullableEmptyReadOnlySequence.FilledIn());
         IsFalse(NullableEmptyConcurrentBag.FilledIn());
         IsFalse(NullableEmptyConcurrentQueue.FilledIn());
         IsFalse(NullableEmptyConcurrentStack.FilledIn());
@@ -1079,6 +1139,7 @@ public class Has_Coll_Tests
         IsFalse(Has(NullISet));
         IsFalse(Has(NullIDict));
         IsFalse(Has(NullIColl));
+        IsFalse(Has(NullILookup));
         IsFalse(Has(NullIEnumerable));
         IsFalse(Has(NullList));
         IsFalse(Has(NullHashSet));
@@ -1120,6 +1181,10 @@ public class Has_Coll_Tests
         IsFalse(Has(NullReadOnlyDict));
         IsFalse(Has(NullReadOnlyDictKeys));
         IsFalse(Has(NullReadOnlyDictVals));
+        IsFalse(Has(NullArraySegment));
+        IsFalse(Has(NullMemory));
+        IsFalse(Has(NullReadOnlyMemory));
+        IsFalse(Has(NullReadOnlySequence));
         IsFalse(Has(NullConcurrentBag));
         IsFalse(Has(NullConcurrentQueue));
         IsFalse(Has(NullConcurrentStack));
@@ -1168,6 +1233,7 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullISet));
         IsFalse(FilledIn(NullIDict));
         IsFalse(FilledIn(NullIColl));
+        IsFalse(FilledIn(NullILookup));
         IsFalse(FilledIn(NullIEnumerable));
         IsFalse(FilledIn(NullList));
         IsFalse(FilledIn(NullHashSet));
@@ -1209,6 +1275,10 @@ public class Has_Coll_Tests
         IsFalse(FilledIn(NullReadOnlyDict));
         IsFalse(FilledIn(NullReadOnlyDictKeys));
         IsFalse(FilledIn(NullReadOnlyDictVals));
+        IsFalse(FilledIn(NullArraySegment));
+        IsFalse(FilledIn(NullMemory));
+        IsFalse(FilledIn(NullReadOnlyMemory));
+        IsFalse(FilledIn(NullReadOnlySequence));
         IsFalse(FilledIn(NullConcurrentBag));
         IsFalse(FilledIn(NullConcurrentQueue));
         IsFalse(FilledIn(NullConcurrentStack));
@@ -1257,6 +1327,7 @@ public class Has_Coll_Tests
         IsFalse(NullISet.FilledIn());
         IsFalse(NullIDict.FilledIn());
         IsFalse(NullIColl.FilledIn());
+        IsFalse(NullILookup.FilledIn());
         IsFalse(NullIEnumerable.FilledIn());
         IsFalse(NullList.FilledIn());
         IsFalse(NullHashSet.FilledIn());
@@ -1298,6 +1369,10 @@ public class Has_Coll_Tests
         IsFalse(NullReadOnlyDict.FilledIn());
         IsFalse(NullReadOnlyDictKeys.FilledIn());
         IsFalse(NullReadOnlyDictVals.FilledIn());
+        IsFalse(NullArraySegment.FilledIn());
+        IsFalse(NullMemory.FilledIn());
+        IsFalse(NullReadOnlyMemory.FilledIn());
+        IsFalse(NullReadOnlySequence.FilledIn());
         IsFalse(NullConcurrentBag.FilledIn());
         IsFalse(NullConcurrentQueue.FilledIn());
         IsFalse(NullConcurrentStack.FilledIn());
@@ -1352,6 +1427,7 @@ public class Has_Coll_Tests
         IsFalse(FilledISet.IsNully());
         IsFalse(FilledIDict.IsNully());
         IsFalse(FilledIColl.IsNully());
+        IsFalse(FilledILookup.IsNully());
         IsFalse(FilledIEnumerable.IsNully());
         IsFalse(FilledList.IsNully());
         IsFalse(FilledHashSet.IsNully());
@@ -1393,6 +1469,10 @@ public class Has_Coll_Tests
         IsFalse(FilledReadOnlyDict.IsNully());
         IsFalse(FilledReadOnlyDictKeys.IsNully());
         IsFalse(FilledReadOnlyDictVals.IsNully());
+        IsFalse(FilledArraySegment.IsNully());
+        IsFalse(FilledMemory.IsNully());
+        IsFalse(FilledReadOnlyMemory.IsNully());
+        IsFalse(FilledReadOnlySequence.IsNully());
         IsFalse(FilledConcurrentBag.IsNully());
         IsFalse(FilledConcurrentQueue.IsNully());
         IsFalse(FilledConcurrentStack.IsNully());
@@ -1441,6 +1521,7 @@ public class Has_Coll_Tests
         IsFalse(IsNully(FilledISet));
         IsFalse(IsNully(FilledIDict));
         IsFalse(IsNully(FilledIColl));
+        IsFalse(IsNully(FilledILookup));
         IsFalse(IsNully(FilledIEnumerable));
         IsFalse(IsNully(FilledList));
         IsFalse(IsNully(FilledHashSet));
@@ -1482,6 +1563,10 @@ public class Has_Coll_Tests
         IsFalse(IsNully(FilledReadOnlyDict));
         IsFalse(IsNully(FilledReadOnlyDictKeys));
         IsFalse(IsNully(FilledReadOnlyDictVals));
+        IsFalse(IsNully(FilledArraySegment));
+        IsFalse(IsNully(FilledMemory));
+        IsFalse(IsNully(FilledReadOnlyMemory));
+        IsFalse(IsNully(FilledReadOnlySequence));
         IsFalse(IsNully(FilledConcurrentBag));
         IsFalse(IsNully(FilledConcurrentQueue));
         IsFalse(IsNully(FilledConcurrentStack));
@@ -1534,6 +1619,7 @@ public class Has_Coll_Tests
         IsFalse(NullyFilledISet.IsNully());
         IsFalse(NullyFilledIDict.IsNully());
         IsFalse(NullyFilledIColl.IsNully());
+        IsFalse(NullyFilledILookup.IsNully());
         IsFalse(NullyFilledIEnumerable.IsNully());
         IsFalse(NullyFilledList.IsNully());
         IsFalse(NullyFilledHashSet.IsNully());
@@ -1575,6 +1661,10 @@ public class Has_Coll_Tests
         IsFalse(NullyFilledReadOnlyDict.IsNully());
         IsFalse(NullyFilledReadOnlyDictKeys.IsNully());
         IsFalse(NullyFilledReadOnlyDictVals.IsNully());
+        IsFalse(FilledArraySegment.IsNully());
+        IsFalse(FilledMemory.IsNully());
+        IsFalse(FilledReadOnlyMemory.IsNully());
+        IsFalse(FilledReadOnlySequence.IsNully());
         IsFalse(NullyFilledConcurrentBag.IsNully());
         IsFalse(NullyFilledConcurrentQueue.IsNully());
         IsFalse(NullyFilledConcurrentStack.IsNully());
@@ -1623,6 +1713,7 @@ public class Has_Coll_Tests
         IsFalse(IsNully(NullyFilledISet));
         IsFalse(IsNully(NullyFilledIDict));
         IsFalse(IsNully(NullyFilledIColl));
+        IsFalse(IsNully(NullyFilledILookup));
         IsFalse(IsNully(NullyFilledIEnumerable));
         IsFalse(IsNully(NullyFilledList));
         IsFalse(IsNully(NullyFilledHashSet));
@@ -1664,6 +1755,10 @@ public class Has_Coll_Tests
         IsFalse(IsNully(NullyFilledReadOnlyDict));
         IsFalse(IsNully(NullyFilledReadOnlyDictKeys));
         IsFalse(IsNully(NullyFilledReadOnlyDictVals));
+        IsFalse(IsNully(NullyFilledArraySegment));
+        IsFalse(IsNully(NullyFilledMemory));
+        IsFalse(IsNully(NullyFilledReadOnlyMemory));
+        IsFalse(IsNully(NullyFilledReadOnlySequence));
         IsFalse(IsNully(NullyFilledConcurrentBag));
         IsFalse(IsNully(NullyFilledConcurrentQueue));
         IsFalse(IsNully(NullyFilledConcurrentStack));
@@ -1716,6 +1811,7 @@ public class Has_Coll_Tests
         IsTrue(EmptyISet.IsNully());
         IsTrue(EmptyIDict.IsNully());
         IsTrue(EmptyIColl.IsNully());
+        IsTrue(EmptyILookup.IsNully());
         IsTrue(EmptyIEnumerable.IsNully());
         IsTrue(EmptyList.IsNully());
         IsTrue(EmptyHashSet.IsNully());
@@ -1757,6 +1853,10 @@ public class Has_Coll_Tests
         IsTrue(EmptyReadOnlyDict.IsNully());
         IsTrue(EmptyReadOnlyDictKeys.IsNully());
         IsTrue(EmptyReadOnlyDictVals.IsNully());
+        IsTrue(EmptyArraySegment.IsNully());
+        IsTrue(EmptyMemory.IsNully());
+        IsTrue(EmptyReadOnlyMemory.IsNully());
+        IsTrue(EmptyReadOnlySequence.IsNully());
         IsTrue(EmptyConcurrentBag.IsNully());
         IsTrue(EmptyConcurrentQueue.IsNully());
         IsTrue(EmptyConcurrentStack.IsNully());
@@ -1805,6 +1905,7 @@ public class Has_Coll_Tests
         IsTrue(IsNully(EmptyISet));
         IsTrue(IsNully(EmptyIDict));
         IsTrue(IsNully(EmptyIColl));
+        IsTrue(IsNully(EmptyILookup));
         IsTrue(IsNully(EmptyIEnumerable));
         IsTrue(IsNully(EmptyList));
         IsTrue(IsNully(EmptyHashSet));
@@ -1846,6 +1947,10 @@ public class Has_Coll_Tests
         IsTrue(IsNully(EmptyReadOnlyDict));
         IsTrue(IsNully(EmptyReadOnlyDictKeys));
         IsTrue(IsNully(EmptyReadOnlyDictVals));
+        IsTrue(IsNully(EmptyArraySegment));
+        IsTrue(IsNully(EmptyMemory));
+        IsTrue(IsNully(EmptyReadOnlyMemory));
+        IsTrue(IsNully(EmptyReadOnlySequence));
         IsTrue(IsNully(EmptyConcurrentBag));
         IsTrue(IsNully(EmptyConcurrentQueue));
         IsTrue(IsNully(EmptyConcurrentStack));
@@ -1898,6 +2003,7 @@ public class Has_Coll_Tests
         IsTrue(NullableEmptyISet.IsNully());
         IsTrue(NullableEmptyIDict.IsNully());
         IsTrue(NullableEmptyIColl.IsNully());
+        IsTrue(NullableEmptyILookup.IsNully());
         IsTrue(NullableEmptyIEnumerable.IsNully());
         IsTrue(NullableEmptyList.IsNully());
         IsTrue(NullableEmptyHashSet.IsNully());
@@ -1939,6 +2045,10 @@ public class Has_Coll_Tests
         IsTrue(NullableEmptyReadOnlyDict.IsNully());
         IsTrue(NullableEmptyReadOnlyDictKeys.IsNully());
         IsTrue(NullableEmptyReadOnlyDictVals.IsNully());
+        IsTrue(NullableEmptyArraySegment.IsNully());
+        IsTrue(NullableEmptyMemory.IsNully());
+        IsTrue(NullableEmptyReadOnlyMemory.IsNully());
+        IsTrue(NullableEmptyReadOnlySequence.IsNully());
         IsTrue(NullableEmptyConcurrentBag.IsNully());
         IsTrue(NullableEmptyConcurrentQueue.IsNully());
         IsTrue(NullableEmptyConcurrentStack.IsNully());
@@ -1987,6 +2097,7 @@ public class Has_Coll_Tests
         IsTrue(IsNully(NullableEmptyISet));
         IsTrue(IsNully(NullableEmptyIDict));
         IsTrue(IsNully(NullableEmptyIColl));
+        IsTrue(IsNully(NullableEmptyILookup));
         IsTrue(IsNully(NullableEmptyIEnumerable));
         IsTrue(IsNully(NullableEmptyList));
         IsTrue(IsNully(NullableEmptyHashSet));
@@ -2028,6 +2139,10 @@ public class Has_Coll_Tests
         IsTrue(IsNully(NullableEmptyReadOnlyDict));
         IsTrue(IsNully(NullableEmptyReadOnlyDictKeys));
         IsTrue(IsNully(NullableEmptyReadOnlyDictVals));
+        IsTrue(IsNully(NullableEmptyArraySegment));
+        IsTrue(IsNully(NullableEmptyMemory));
+        IsTrue(IsNully(NullableEmptyReadOnlyMemory));
+        IsTrue(IsNully(NullableEmptyReadOnlySequence));
         IsTrue(IsNully(NullableEmptyConcurrentBag));
         IsTrue(IsNully(NullableEmptyConcurrentQueue));
         IsTrue(IsNully(NullableEmptyConcurrentStack));
@@ -2080,6 +2195,7 @@ public class Has_Coll_Tests
         IsTrue(NullISet.IsNully());
         IsTrue(NullIDict.IsNully());
         IsTrue(NullIColl.IsNully());
+        IsTrue(NullILookup.IsNully());
         IsTrue(NullIEnumerable.IsNully());
         IsTrue(NullList.IsNully());
         IsTrue(NullHashSet.IsNully());
@@ -2121,6 +2237,10 @@ public class Has_Coll_Tests
         IsTrue(NullReadOnlyDict.IsNully());
         IsTrue(NullReadOnlyDictKeys.IsNully());
         IsTrue(NullReadOnlyDictVals.IsNully());
+        IsTrue(NullArraySegment.IsNully());
+        IsTrue(NullMemory.IsNully());
+        IsTrue(NullReadOnlyMemory.IsNully());
+        IsTrue(NullReadOnlySequence.IsNully());
         IsTrue(NullConcurrentBag.IsNully());
         IsTrue(NullConcurrentQueue.IsNully());
         IsTrue(NullConcurrentStack.IsNully());
@@ -2169,6 +2289,7 @@ public class Has_Coll_Tests
         IsTrue(IsNully(NullISet));
         IsTrue(IsNully(NullIDict));
         IsTrue(IsNully(NullIColl));
+        IsTrue(IsNully(NullILookup));
         IsTrue(IsNully(NullIEnumerable));
         IsTrue(IsNully(NullList));
         IsTrue(IsNully(NullHashSet));
@@ -2210,6 +2331,10 @@ public class Has_Coll_Tests
         IsTrue(IsNully(NullReadOnlyDict));
         IsTrue(IsNully(NullReadOnlyDictKeys));
         IsTrue(IsNully(NullReadOnlyDictVals));
+        IsTrue(IsNully(NullArraySegment));
+        IsTrue(IsNully(NullMemory));
+        IsTrue(IsNully(NullReadOnlyMemory));
+        IsTrue(IsNully(NullReadOnlySequence));
         IsTrue(IsNully(NullConcurrentBag));
         IsTrue(IsNully(NullConcurrentQueue));
         IsTrue(IsNully(NullConcurrentStack));

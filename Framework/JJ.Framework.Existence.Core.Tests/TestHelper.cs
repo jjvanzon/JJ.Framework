@@ -134,8 +134,8 @@ internal static class TestHelper
     public static ReadOnlySet<int>                   FilledReadOnlySet                       = NewReadOnlySet               (1, 2, 3);
     #endif                                                                                            
     #if NET8_0_OR_GREATER                                                                       
-    public static FrozenDictionary<int, int>         FilledFrozenDictionary                  = NewFrozenDictionary          (1, 2, 3);
     public static FrozenSet<int>                     FilledFrozenSet                         = NewFrozenSet                 (1, 2, 3);
+    public static FrozenDictionary<int, int>         FilledFrozenDictionary                  = NewFrozenDictionary          (1, 2, 3);
     #endif                                                                                      
     #if NET6_0_OR_GREATER                                                                             
     public static PriorityQueue<int,int>             FilledPrioQueue                         = NewPrioQueue                 (1, 2, 3);
@@ -228,8 +228,8 @@ internal static class TestHelper
     public static ReadOnlySet<int>                 ? NullyFilledReadOnlySet                  = NewReadOnlySet               (1, 2, 3);
     #endif
     #if NET8_0_OR_GREATER                                                                  
-    public static FrozenDictionary<int, int>       ? NullyFilledFrozenDictionary             = NewFrozenDictionary          (1, 2, 3);
     public static FrozenSet<int>                   ? NullyFilledFrozenSet                    = NewFrozenSet                 (1, 2, 3);
+    public static FrozenDictionary<int, int>       ? NullyFilledFrozenDictionary             = NewFrozenDictionary          (1, 2, 3);
     #endif                                                                                 
     #if NET6_0_OR_GREATER                                                                             
     public static PriorityQueue<int,int>           ? NullyFilledPrioQueue                    = NewPrioQueue                 (1, 2, 3);
@@ -322,8 +322,8 @@ internal static class TestHelper
     public static ReadOnlySet<int>                   EmptyReadOnlySet                        = NewReadOnlySet               ();
     #endif                                                    
     #if NET8_0_OR_GREATER                                                                       
-    public static FrozenDictionary<int, int>       ? EmptyFrozenDictionary                   = NewFrozenDictionary          ();
     public static FrozenSet<int>                   ? EmptyFrozenSet                          = NewFrozenSet                 ();
+    public static FrozenDictionary<int, int>       ? EmptyFrozenDictionary                   = NewFrozenDictionary          ();
     #endif                                                                                      
     #if NET6_0_OR_GREATER                                                                                     
     public static PriorityQueue<int,int>             EmptyPrioQueue                          = NewPrioQueue                 ();
@@ -416,8 +416,8 @@ internal static class TestHelper
     public static ReadOnlySet<int>                 ? NullableEmptyReadOnlySet                = NewReadOnlySet               ();
     #endif
     #if NET8_0_OR_GREATER                                                               
-    public static FrozenDictionary<int, int>       ? NullableEmptyFrozenDictionary           = NewFrozenDictionary          ();
     public static FrozenSet<int>                   ? NullableEmptyFrozenSet                  = NewFrozenSet                 ();
+    public static FrozenDictionary<int, int>       ? NullableEmptyFrozenDictionary           = NewFrozenDictionary          ();
     #endif                                                                              
     #if NET6_0_OR_GREATER                                                                             
     public static PriorityQueue<int,int>           ? NullableEmptyPrioQueue                  = NewPrioQueue                 ();
@@ -510,8 +510,8 @@ internal static class TestHelper
     public static ReadOnlySet<int>                 ? NullReadOnlySet                         = null;
     #endif                                                                                                 
     #if NET8_0_OR_GREATER                                                                                 
-    public static FrozenDictionary<int, int>       ? NullFrozenDictionary                    = null;
     public static FrozenSet<int>                   ? NullFrozenSet                           = null;
+    public static FrozenDictionary<int, int>       ? NullFrozenDictionary                    = null;
     #endif                                                                                                                          
     #if NET6_0_OR_GREATER                                                                                  
     public static PriorityQueue<int,int>           ? NullPrioQueue                           = null;
@@ -865,8 +865,8 @@ internal static class TestHelper
     // Newer Additions       
 
     #if NET8_0_OR_GREATER                                                                    
-    private static FrozenDictionary<int, int> NewFrozenDictionary(params int[] nums) => nums.ToDictionary(num => num).ToFrozenDictionary();
     private static FrozenSet<int> NewFrozenSet(params int[] nums) => nums.ToHashSet().ToFrozenSet();
+    private static FrozenDictionary<int, int> NewFrozenDictionary(params int[] nums) => nums.ToDictionary(num => num).ToFrozenDictionary();
     #endif                                                                                   
     
     private static ILookup<int, int> NewLookup(params int[] nums) => nums.ToLookup(num => num);

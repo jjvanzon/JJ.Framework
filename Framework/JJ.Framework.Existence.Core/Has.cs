@@ -4,8 +4,8 @@ internal static partial class ExistenceUtility
 {
     public static bool HasText       ([NotNullWhen(true)]      string? text)                      => !IsNullOrWhiteSpace(text);
     public static bool HasText       ([NotNullWhen(true)]      string? text, bool trimSpace)      => trimSpace ? !IsNullOrWhiteSpace(text): !IsNullOrEmpty(text);
-    public static bool HasVal     <T>([NotNullWhen(true)]      T       thing)                     => !Equals(thing, default(T));
-    public static bool HasObject  <T>([NotNullWhen(true)]      T       thing)                     => !Equals(thing, default(T));
+    public static bool HasVal     <T>([NotNullWhen(true)]      T       val)                       => !Equals(val, default(T));
+    public static bool HasObject  <T>([NotNullWhen(true)]      T       obj)                       => !Equals(obj, default(T));
     public static bool HasValOrObj<T>([NotNullWhen(true)]      T       thing)                     => !Equals(thing, default(T));
     public static bool HasValNully<T>([NotNullWhen(true)]      T?      nullyVal) where T : struct => !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
 

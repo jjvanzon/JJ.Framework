@@ -38,11 +38,9 @@ public class RegressionTests
         }
     }
         
-    // TODO: Rename
     [TestMethod]
     public void AllSystemCollections_HaveHelpers()
     {
-        //var parameterTypes2 = typeof(FilledInExtensions).GetMethods().SelectMany(x => x.GetParameters()).Select(x => x.ParameterType);
         var supportedTypeNames = 
             new [] { typeof(FilledInExtensions), typeof(FilledInHelper) }
                 .SelectMany(x => x.GetMethods())
@@ -55,11 +53,8 @@ public class RegressionTests
             .GetAssemblies()
             .Where(a => a.GetName().Name!.StartsWith("System"))
             .SelectMany(a => a.GetExportedTypes())
-            //.Where(t => t.IsClass || t.IsValueType)
             .ToArray();
         
-        //System.Collections.ListDictionaryInternal
-
         var excludedTypes = new List<Type>();
         var unsupportedTypes = new List<Type>();
         
@@ -119,18 +114,19 @@ public class RegressionTests
             }
 
             bool isSupported = supportedTypeNames.Contains(systemType.Name);
+            // ncrunch: no coverage start
             if (!isSupported)
             {
-                unsupportedTypes.Add(systemType);
+                unsupportedTypes.Add(systemType); 
             }
         }
         
         if (unsupportedTypes.Any())
         {
-            //return;
             Fail($"The following {unsupportedTypes.Count} types look like collections, but are not supported:" + NewLine + Join(NewLine, unsupportedTypes));
         }
     }
+    // ncrunch: no coverage end
 }
 
 [TestClass]
@@ -164,6 +160,7 @@ public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
         if (value.In(validValues)) return value;
         // The faulty Has call (routed wrong to object? instead of T.)
         if (!Has(value) && !strict) return value;
+        // ncrunch: no coverage start
         throw NotSupportedException(name, value, validValues);
     }
     
@@ -173,4 +170,5 @@ public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
         
     static string NotSupportedMessage<T>(string name, object? value, IEnumerable<T> validValues) 
         => $"{name} = {value} not valid. Supported values: " + Join(", ", validValues);
+    // ncrunch: no coverage end
 }

@@ -1,29 +1,30 @@
 ﻿
+
 namespace JJ.Framework.Existence.Core;
 
 internal static partial class ExistenceUtility
 {
-    public static bool HasArray            <T>([NotNullWhen(true)] T[]                   ? coll) => coll is { Length  : > 0 };
-    public static bool HasColl                ([NotNullWhen(true)] ICollection           ? coll) => coll is { Count   : > 0 };
-    public static bool HasCollT            <T>([NotNullWhen(true)] ICollection<T>        ? coll) => coll is { Count   : > 0 };
-    public static bool HasReadOnlyColl     <T>([NotNullWhen(true)] IReadOnlyCollection<T>? coll) => coll is { Count   : > 0 };
-    public static bool HasLookup        <T, U>([NotNullWhen(true)] ILookup<T, U>         ? coll) => coll is { Count   : > 0 };
-    public static bool HasEnumerable       <T>([NotNullWhen(true)] IEnumerable<T>        ? coll) => coll != null && coll.Any();
+    public static bool HasArray            <T>([NotNullWhen(true)] T[]                   ? coll) => coll is { Length          : > 0   };
+    public static bool HasColl                ([NotNullWhen(true)] ICollection           ? coll) => coll is { Count           : > 0   };
+    public static bool HasCollT            <T>([NotNullWhen(true)] ICollection<T>        ? coll) => coll is { Count           : > 0   };
+    public static bool HasReadOnlyColl     <T>([NotNullWhen(true)] IReadOnlyCollection<T>? coll) => coll is { Count           : > 0   };
+    public static bool HasLookup         <T,U>([NotNullWhen(true)] ILookup<T, U>         ? coll) => coll is { Count           : > 0   };
+    public static bool HasEnumerable       <T>([NotNullWhen(true)] IEnumerable<T>        ? coll) => coll?.Any() == true;
     public static bool Has_ImmutableArray  <T>([NotNullWhen(true)] ref ImmutableArray<T>   coll) => coll is { IsDefaultOrEmpty: false };
     public static bool Has_ImmutableArray  <T>([NotNullWhen(true)] ref ImmutableArray<T> ? coll) => coll is { IsDefaultOrEmpty: false };
-    public static bool Has_ImmutableStack  <T>([NotNullWhen(true)] IImmutableStack<T>    ? coll) => coll is { IsEmpty : false };
-    public static bool Has_ImmutableQueue  <T>([NotNullWhen(true)] IImmutableQueue<T>    ? coll) => coll is { IsEmpty : false };
-    public static bool Has_Memory          <T>([NotNullWhen(true)] Memory<T>               coll) => coll is { IsEmpty : false };
-    public static bool Has_Memory          <T>([NotNullWhen(true)] Memory<T>             ? coll) => coll is { IsEmpty : false };
-    public static bool Has_Span            <T>([NotNullWhen(true)] Span<T>                 coll) => coll is { IsEmpty : false };
-    public static bool Has_ReadOnlyMemory  <T>([NotNullWhen(true)] ReadOnlyMemory<T>       coll) => coll is { IsEmpty : false };
-    public static bool Has_ReadOnlyMemory  <T>([NotNullWhen(true)] ReadOnlyMemory<T>     ? coll) => coll is { IsEmpty : false };
-    public static bool Has_ReadOnlySpan    <T>([NotNullWhen(true)] ReadOnlySpan<T>         coll) => coll is { IsEmpty : false };
-    public static bool Has_ReadOnlySequence<T>([NotNullWhen(true)] ReadOnlySequence<T>     coll) => coll is { IsEmpty : false };
-    public static bool Has_ReadOnlySequence<T>([NotNullWhen(true)] ReadOnlySequence<T>   ? coll) => coll is { IsEmpty : false };
-    public static bool Has_StringDictionary   ([NotNullWhen(true)] StringDictionary      ? coll) => coll is { Count   : > 0 };
+    public static bool Has_ImmutableStack  <T>([NotNullWhen(true)] IImmutableStack<T>    ? coll) => coll is { IsEmpty         : false };
+    public static bool Has_ImmutableQueue  <T>([NotNullWhen(true)] IImmutableQueue<T>    ? coll) => coll is { IsEmpty         : false };
+    public static bool Has_Memory          <T>([NotNullWhen(true)] Memory<T>               coll) => coll is { IsEmpty         : false };
+    public static bool Has_Memory          <T>([NotNullWhen(true)] Memory<T>             ? coll) => coll is { IsEmpty         : false };
+    public static bool Has_Span            <T>([NotNullWhen(true)] Span<T>                 coll) => coll is { IsEmpty         : false };
+    public static bool Has_ReadOnlyMemory  <T>([NotNullWhen(true)] ReadOnlyMemory<T>       coll) => coll is { IsEmpty         : false };
+    public static bool Has_ReadOnlyMemory  <T>([NotNullWhen(true)] ReadOnlyMemory<T>     ? coll) => coll is { IsEmpty         : false };
+    public static bool Has_ReadOnlySpan    <T>([NotNullWhen(true)] ReadOnlySpan<T>         coll) => coll is { IsEmpty         : false };
+    public static bool Has_ReadOnlySequence<T>([NotNullWhen(true)] ReadOnlySequence<T>     coll) => coll is { IsEmpty         : false };
+    public static bool Has_ReadOnlySequence<T>([NotNullWhen(true)] ReadOnlySequence<T>   ? coll) => coll is { IsEmpty         : false };
+    public static bool Has_StringDictionary   ([NotNullWhen(true)] StringDictionary      ? coll) => coll is { Count           : > 0   };
     #if NET6_0_OR_GREATER
-    public static bool Has_PriorityQueue<T, U>([NotNullWhen(true)] PriorityQueue<T, U>   ? coll) => coll is { Count   : > 0 };
+    public static bool Has_PriorityQueue< T,U>([NotNullWhen(true)] PriorityQueue<T, U>   ? coll) => coll is { Count           : > 0   };
     #endif
 }
 
@@ -36,6 +37,7 @@ public static partial class FilledInHelper
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ISet<T>                                    ? coll)                   => HasCollT(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      IDictionary<T,U>                           ? coll)                   => HasCollT(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ICollection<T>                             ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      IEnumerable<T>                             ? coll)                   => HasEnumerable(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      List<T>                                    ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      HashSet<T>                                 ? coll)                   => HasCollT(coll);
@@ -74,6 +76,16 @@ public static partial class FilledInHelper
     public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => HasCollT   (coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => Has_Span(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
@@ -112,26 +124,14 @@ public static partial class FilledInHelper
     public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
     #endif
+    #if NET8_0_OR_GREATER                                                                                 
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
+    #endif                                                                                                                          
     #if NET6_0_OR_GREATER
     public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
-
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
-    #if NET8_0_OR_GREATER                                                                                 
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => HasColl(coll);
-    #endif                                                                                                                          
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => HasCollT   (coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => Has_Memory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => Has_Memory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => Has_Span(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
 
     // Has (Static)
     
@@ -140,6 +140,7 @@ public static partial class FilledInHelper
     public static bool Has     <T>  ([NotNullWhen(true )]      ISet<T>                                    ? coll)                   => HasCollT(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      IDictionary<T,U>                           ? coll)                   => HasCollT(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ICollection<T>                             ? coll)                   => HasCollT(coll);
+    public static bool Has     <T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      IEnumerable<T>                             ? coll)                   => HasEnumerable(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      List<T>                                    ? coll)                   => HasColl(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      HashSet<T>                                 ? coll)                   => HasCollT(coll);
@@ -178,6 +179,16 @@ public static partial class FilledInHelper
     public static bool Has     <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => HasCollT   (coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => Has_Memory(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => Has_Memory(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => Has_Span(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
+    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
@@ -216,26 +227,14 @@ public static partial class FilledInHelper
     public static bool Has     <T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
     public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
     #endif
+    #if NET8_0_OR_GREATER                                                                                 
+    public static bool Has     <T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => HasColl(coll);
+    public static bool Has     <T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
+    #endif                                                                                                                          
     #if NET6_0_OR_GREATER
     public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
-
-    public static bool Has     <T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
-    #if NET8_0_OR_GREATER                                                                                 
-    public static bool Has     <T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => HasColl(coll);
-    #endif                                                                                                                          
-    public static bool Has     <T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => HasCollT   (coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => Has_Memory(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => Has_Memory(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => Has_Span(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
-    public static bool Has     <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
     
     // IsNully (Static)
     
@@ -244,6 +243,7 @@ public static partial class FilledInHelper
     public static bool IsNully <T>  ([NotNullWhen(true )]      ISet<T>                                    ? coll)                   => !HasCollT(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      IDictionary<T,U>                           ? coll)                   => !HasCollT(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ICollection<T>                             ? coll)                   => !HasCollT(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => !HasLookup(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      IEnumerable<T>                             ? coll)                   => !HasEnumerable(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      List<T>                                    ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      HashSet<T>                                 ? coll)                   => !HasCollT(coll);
@@ -282,6 +282,16 @@ public static partial class FilledInHelper
     public static bool IsNully <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => !HasReadOnlyColl(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => !HasCollT   (coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => !HasCollT<T>(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => !Has_Memory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => !Has_Memory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => !Has_Span(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => !Has_ReadOnlyMemory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => !Has_ReadOnlyMemory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => !Has_ReadOnlySpan(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => !Has_ReadOnlySequence(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => !Has_ReadOnlySequence(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => !HasColl(coll);
@@ -320,26 +330,14 @@ public static partial class FilledInHelper
     public static bool IsNully <T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => !HasReadOnlyColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
     #endif
+    #if NET8_0_OR_GREATER                                                                                 
+    public static bool IsNully <T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => !HasColl(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
+    #endif                                                                                                                          
     #if NET6_0_OR_GREATER
     public static bool IsNully <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
     #endif
-
-    public static bool IsNully <T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => !HasLookup(coll);
-    #if NET8_0_OR_GREATER                                                                                 
-    public static bool IsNully <T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => !HasColl(coll);
-    #endif                                                                                                                          
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => !HasCollT   (coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => !HasCollT<T>(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => !Has_Memory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => !Has_Memory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => !Has_Span(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => !Has_ReadOnlyMemory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => !Has_ReadOnlyMemory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => !Has_ReadOnlySpan(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => !Has_ReadOnlySequence(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => !Has_ReadOnlySequence(coll);
 }
 
 public static partial class FilledInExtensions
@@ -351,6 +349,7 @@ public static partial class FilledInExtensions
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ISet<T>                                    ? coll)                   => HasCollT(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this IDictionary<T,U>                           ? coll)                   => HasCollT(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ICollection<T>                             ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this ILookup<T,U>                               ? coll)                   => HasLookup(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this IEnumerable<T>                             ? coll)                   => HasEnumerable(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this List<T>                                    ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this HashSet<T>                                 ? coll)                   => HasCollT(coll);
@@ -389,6 +388,16 @@ public static partial class FilledInExtensions
     public static bool FilledIn<T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ArraySegment<T>                              coll)                   => HasCollT   (coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this Memory<T>                                    coll)                   => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this Memory<T>                                  ? coll)                   => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this Span<T>                                      coll)                   => Has_Span(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
@@ -427,26 +436,14 @@ public static partial class FilledInExtensions
     public static bool FilledIn<T>  ([NotNullWhen(true )] this IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
     #endif
+    #if NET8_0_OR_GREATER                                                                                 
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this FrozenSet<T>                               ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )] this FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
+    #endif                                                                                                                          
     #if NET6_0_OR_GREATER
     public static bool FilledIn<T,U>([NotNullWhen(true )] this PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
     public static bool FilledIn<T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
-
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this ILookup<T,U>                               ? coll)                   => HasLookup(coll);
-    #if NET8_0_OR_GREATER                                                                                 
-    public static bool FilledIn<T,U>([NotNullWhen(true )] this FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this FrozenSet<T>                               ? coll)                   => HasColl(coll);
-    #endif                                                                                                                          
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ArraySegment<T>                              coll)                   => HasCollT   (coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this Memory<T>                                    coll)                   => Has_Memory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this Memory<T>                                  ? coll)                   => Has_Memory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this Span<T>                                      coll)                   => Has_Span(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
     
     // IsNully (Extensions)
     
@@ -455,6 +452,7 @@ public static partial class FilledInExtensions
     public static bool IsNully <T>  ([NotNullWhen(true )] this ISet<T>                                    ? coll)                   => !HasCollT(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this IDictionary<T,U>                           ? coll)                   => !HasCollT(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ICollection<T>                             ? coll)                   => !HasCollT(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )] this ILookup<T,U>                               ? coll)                   => !HasLookup(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this IEnumerable<T>                             ? coll)                   => !HasEnumerable(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this List<T>                                    ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this HashSet<T>                                 ? coll)                   => !HasCollT(coll);
@@ -493,6 +491,16 @@ public static partial class FilledInExtensions
     public static bool IsNully <T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => !HasReadOnlyColl(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => !HasReadOnlyColl(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ArraySegment<T>                              coll)                   => !HasCollT   (coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ArraySegment<T>                            ? coll)                   => !HasCollT<T>(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this Memory<T>                                    coll)                   => !Has_Memory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this Memory<T>                                  ? coll)                   => !Has_Memory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this Span<T>                                      coll)                   => !Has_Span(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                            coll)                   => !Has_ReadOnlyMemory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                          ? coll)                   => !Has_ReadOnlyMemory(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySpan<T>                              coll)                   => !Has_ReadOnlySpan(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                          coll)                   => !Has_ReadOnlySequence(coll);
+    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                        ? coll)                   => !Has_ReadOnlySequence(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ConcurrentBag<T>                           ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ConcurrentQueue<T>                         ? coll)                   => !HasColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ConcurrentStack<T>                         ? coll)                   => !HasColl(coll);
@@ -531,24 +539,12 @@ public static partial class FilledInExtensions
     public static bool IsNully <T>  ([NotNullWhen(true )] this IReadOnlySet<T>                            ? coll)                   => !HasReadOnlyColl(coll);
     public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
     #endif
+    #if NET8_0_OR_GREATER                                                                                 
+    public static bool IsNully <T>  ([NotNullWhen(true )] this FrozenSet<T>                               ? coll)                   => !HasColl(coll);
+    public static bool IsNully <T,U>([NotNullWhen(true )] this FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
+    #endif                                                                                                                          
     #if NET6_0_OR_GREATER
     public static bool IsNully <T,U>([NotNullWhen(true )] this PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);
     public static bool IsNully <T,U>([NotNullWhen(true )] this PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => !HasColl(coll);
     #endif
-
-    public static bool IsNully <T,U>([NotNullWhen(true )] this ILookup<T,U>                               ? coll)                   => !HasLookup(coll);
-    #if NET8_0_OR_GREATER                                                                                 
-    public static bool IsNully <T,U>([NotNullWhen(true )] this FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this FrozenSet<T>                               ? coll)                   => !HasColl(coll);
-    #endif                                                                                                                          
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ArraySegment<T>                              coll)                   => !HasCollT   (coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ArraySegment<T>                            ? coll)                   => !HasCollT<T>(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this Memory<T>                                    coll)                   => !Has_Memory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this Memory<T>                                  ? coll)                   => !Has_Memory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this Span<T>                                      coll)                   => !Has_Span(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                            coll)                   => !Has_ReadOnlyMemory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlyMemory<T>                          ? coll)                   => !Has_ReadOnlyMemory(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySpan<T>                              coll)                   => !Has_ReadOnlySpan(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                          coll)                   => !Has_ReadOnlySequence(coll);
-    public static bool IsNully <T>  ([NotNullWhen(true )] this ReadOnlySequence<T>                        ? coll)                   => !Has_ReadOnlySequence(coll);
 }
