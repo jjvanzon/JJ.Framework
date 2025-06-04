@@ -3,8 +3,16 @@
 [TestClass]
 public class Coalesce_1Arg_Tests : TestBase
 {
+    
     // Text
     
+    [TestMethod]
+    public void Coalesce_1Arg_Text_RandomCases()
+    {
+        NoNullRet("Hello", Coalesce("", "Hello", "World"));
+        NoNullRet("Hello", "".Coalesce("Hello", "World"));
+    }
+
     [TestMethod]
     public void Coalesce_1Arg_Text_Literals()
     {

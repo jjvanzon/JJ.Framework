@@ -4,6 +4,18 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Coalesce_Keywords_Tests
 {
+    
+    // Random Cases
+    
+    [TestMethod]
+    public void Coalesce_Keywords_RandomCases()
+    {
+        NoNullRet(1, default(int).Coalesce(NullNum, Nully0, Nully1, NoNull0));
+        NoNullRet(1, default(int?).Coalesce(NullNum, Nully0, Nully1, NoNull0));
+        NoNullRet(0, default(int).Coalesce(NullNum, NullNum, NullNum));
+        NoNullRet(0, default(int?).Coalesce(NullNum, NullNum, NullNum));
+    }    
+    
     // 1 Arg
 
     [TestMethod]
@@ -332,4 +344,6 @@ public class Coalesce_Keywords_Tests
         NoNullRet("NoNull", NoNullObj.Coalesce(   default(string )));
         NoNullRet("NoNull", NoNullObj.Coalesce(   default(string?)));
     }
+    
+    
 }
