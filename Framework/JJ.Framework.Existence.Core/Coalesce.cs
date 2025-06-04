@@ -4,10 +4,10 @@ internal static partial class ExistenceUtility
 {
     // 1 Arg
     
-    public static  string CoalesceText          (string? text)                         => HasText    (text)            ? text      : text ?? "";
-    public static  T      CoalesceObject        <T>(T?   obj ) where T : class, new()  => HasObject  (obj)             ? obj       : new T()   ;
-    public static  T      CoalesceVal           <T>(T    val ) where T : struct        => HasVal     (val)             ? val       : default   ;
-    public static  T      CoalesceValNully      <T>(T?   val ) where T : struct        => HasValNully(val)             ? val.Value : default   ;
+    public static  string CoalesceText          (string? text)                         => HasText    (text)  ? text      : text ?? "";
+    public static  T      CoalesceObject        <T>(T?   obj ) where T : class, new()  => HasObject  (obj)   ? obj       : new T()   ;
+    public static  T      CoalesceVal           <T>(T    val ) where T : struct        => HasVal     (val)   ? val       : default   ;
+    public static  T      CoalesceValNully      <T>(T?   val ) where T : struct        => HasValNully(val)   ? val.Value : default   ;
     
     // 2 Args
     
