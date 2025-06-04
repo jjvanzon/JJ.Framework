@@ -12,74 +12,72 @@ public class Coalesce_Collections_Tests
         NoNullRet(Coalesce(coll));
     }
 
-    // TODO: Use NoNullRet
-
     [TestMethod]
-    public void Coalesce_Collections_CoalesceItems_Static()
+    public void Coalesce_CollectionItems_Static()
     {
-        AreEqual(1, Coalesce(FilledArray                     ));
-        AreEqual(1, Coalesce(FilledList                      ));
-        AreEqual(1, Coalesce(FilledHashSet                   ));
-        AreEqual(1, Coalesce(FilledIList                     ));
-        AreEqual(1, Coalesce(FilledISet                      ));
-        AreEqual(1, Coalesce(FilledIColl                     ));
-        AreEqual(1, Coalesce(FilledIReadOnlyList             ));
-        AreEqual(1, Coalesce(FilledIReadOnlyColl             ));
-        AreEqual(1, Coalesce(FilledIEnumerable               ));
+        NoNullRet(1, Coalesce(FilledArray                     ));
+        NoNullRet(1, Coalesce(FilledList                      ));
+        NoNullRet(1, Coalesce(FilledHashSet                   ));
+        NoNullRet(1, Coalesce(FilledIList                     ));
+        NoNullRet(1, Coalesce(FilledISet                      ));
+        NoNullRet(1, Coalesce(FilledIColl                     ));
+        NoNullRet(1, Coalesce(FilledIReadOnlyList             ));
+        NoNullRet(1, Coalesce(FilledIReadOnlyColl             ));
+        NoNullRet(1, Coalesce(FilledIEnumerable               ));
         
-        AreEqual(1, Coalesce(NullyFilledArray                ));
-        AreEqual(1, Coalesce(NullyFilledList                 ));
-        AreEqual(1, Coalesce(NullyFilledHashSet              ));
-        AreEqual(1, Coalesce(NullyFilledIList                ));
-        AreEqual(1, Coalesce(NullyFilledISet                 ));
-        AreEqual(1, Coalesce(NullyFilledIColl                ));
-        AreEqual(1, Coalesce(NullyFilledIReadOnlyList        ));
-        AreEqual(1, Coalesce(NullyFilledIReadOnlyColl        ));
-        AreEqual(1, Coalesce(NullyFilledIEnumerable          ));
+        NoNullRet(1, Coalesce(NullyFilledArray                ));
+        NoNullRet(1, Coalesce(NullyFilledList                 ));
+        NoNullRet(1, Coalesce(NullyFilledHashSet              ));
+        NoNullRet(1, Coalesce(NullyFilledIList                ));
+        NoNullRet(1, Coalesce(NullyFilledISet                 ));
+        NoNullRet(1, Coalesce(NullyFilledIColl                ));
+        NoNullRet(1, Coalesce(NullyFilledIReadOnlyList        ));
+        NoNullRet(1, Coalesce(NullyFilledIReadOnlyColl        ));
+        NoNullRet(1, Coalesce(NullyFilledIEnumerable          ));
         
-        AreEqual(0, Coalesce(EmptyArray                      ));
-        AreEqual(0, Coalesce(EmptyList                       ));
-        AreEqual(0, Coalesce(EmptyHashSet                    ));
-        AreEqual(0, Coalesce(EmptyIList                      ));
-        AreEqual(0, Coalesce(EmptyISet                       ));
-        AreEqual(0, Coalesce(EmptyIColl                      ));
-        AreEqual(0, Coalesce(EmptyIReadOnlyList              ));
-        AreEqual(0, Coalesce(EmptyIReadOnlyColl              ));
-        AreEqual(0, Coalesce(EmptyIEnumerable                ));
+        NoNullRet(0, Coalesce(EmptyArray                      ));
+        NoNullRet(0, Coalesce(EmptyList                       ));
+        NoNullRet(0, Coalesce(EmptyHashSet                    ));
+        NoNullRet(0, Coalesce(EmptyIList                      ));
+        NoNullRet(0, Coalesce(EmptyISet                       ));
+        NoNullRet(0, Coalesce(EmptyIColl                      ));
+        NoNullRet(0, Coalesce(EmptyIReadOnlyList              ));
+        NoNullRet(0, Coalesce(EmptyIReadOnlyColl              ));
+        NoNullRet(0, Coalesce(EmptyIEnumerable                ));
         
-        AreEqual(0, Coalesce(NullableEmptyArray              ));
-        AreEqual(0, Coalesce(NullableEmptyList               ));
-        AreEqual(0, Coalesce(NullableEmptyHashSet            ));
-        AreEqual(0, Coalesce(NullableEmptyIList              ));
-        AreEqual(0, Coalesce(NullableEmptyISet               ));
-        AreEqual(0, Coalesce(NullableEmptyIColl              ));
-        AreEqual(0, Coalesce(NullableEmptyIReadOnlyList      ));
-        AreEqual(0, Coalesce(NullableEmptyIReadOnlyColl      ));
-        AreEqual(0, Coalesce(NullableEmptyIEnumerable        ));
+        NoNullRet(0, Coalesce(NullableEmptyArray              ));
+        NoNullRet(0, Coalesce(NullableEmptyList               ));
+        NoNullRet(0, Coalesce(NullableEmptyHashSet            ));
+        NoNullRet(0, Coalesce(NullableEmptyIList              ));
+        NoNullRet(0, Coalesce(NullableEmptyISet               ));
+        NoNullRet(0, Coalesce(NullableEmptyIColl              ));
+        NoNullRet(0, Coalesce(NullableEmptyIReadOnlyList      ));
+        NoNullRet(0, Coalesce(NullableEmptyIReadOnlyColl      ));
+        NoNullRet(0, Coalesce(NullableEmptyIEnumerable        ));
         
-        AreEqual(0, Coalesce(NullArray                       ));
-        AreEqual(0, Coalesce(NullList                        ));
-        AreEqual(0, Coalesce(NullHashSet                     ));
-        AreEqual(0, Coalesce(NullIList                       ));
-        AreEqual(0, Coalesce(NullISet                        ));
-        AreEqual(0, Coalesce(NullIColl                       ));
-        AreEqual(0, Coalesce(NullIReadOnlyList               ));
-        AreEqual(0, Coalesce(NullIReadOnlyColl               ));
-        AreEqual(0, Coalesce(NullIEnumerable                 ));
+        NoNullRet(0, Coalesce(NullArray                       ));
+        NoNullRet(0, Coalesce(NullList                        ));
+        NoNullRet(0, Coalesce(NullHashSet                     ));
+        NoNullRet(0, Coalesce(NullIList                       ));
+        NoNullRet(0, Coalesce(NullISet                        ));
+        NoNullRet(0, Coalesce(NullIColl                       ));
+        NoNullRet(0, Coalesce(NullIReadOnlyList               ));
+        NoNullRet(0, Coalesce(NullIReadOnlyColl               ));
+        NoNullRet(0, Coalesce(NullIEnumerable                 ));
     }
 
     [TestMethod]
-    public void Coalesce_Collections_CoalesceItems_Extensions()
+    public void Coalesce_CollectionItems_Extensions()
     {
-        AreEqual(1, FilledArray                     .Coalesce());
-        AreEqual(1, FilledList                      .Coalesce());
-        AreEqual(1, FilledHashSet                   .Coalesce());
-        AreEqual(1, FilledIList                     .Coalesce());
-        AreEqual(1, FilledISet                      .Coalesce());
-        AreEqual(1, FilledIColl                     .Coalesce());
-        AreEqual(1, FilledIReadOnlyList             .Coalesce());
-        AreEqual(1, FilledIReadOnlyColl             .Coalesce());
-        AreEqual(1, FilledIEnumerable               .Coalesce());
+        NoNullRet(1, FilledArray                     .Coalesce());
+        NoNullRet(1, FilledList                      .Coalesce());
+        NoNullRet(1, FilledHashSet                   .Coalesce());
+        NoNullRet(1, FilledIList                     .Coalesce());
+        NoNullRet(1, FilledISet                      .Coalesce());
+        NoNullRet(1, FilledIColl                     .Coalesce());
+        NoNullRet(1, FilledIReadOnlyList             .Coalesce());
+        NoNullRet(1, FilledIReadOnlyColl             .Coalesce());
+        NoNullRet(1, FilledIEnumerable               .Coalesce());
         
         AreEqual(1, NullyFilledArray                .Coalesce());
         AreEqual(1, NullyFilledList                 .Coalesce());
@@ -91,34 +89,34 @@ public class Coalesce_Collections_Tests
         AreEqual(1, NullyFilledIReadOnlyColl        .Coalesce());
         AreEqual(1, NullyFilledIEnumerable          .Coalesce());
         
-        AreEqual(0, EmptyArray                      .Coalesce());
-        AreEqual(0, EmptyList                       .Coalesce());
-        AreEqual(0, EmptyHashSet                    .Coalesce());
-        AreEqual(0, EmptyIList                      .Coalesce());
-        AreEqual(0, EmptyISet                       .Coalesce());
-        AreEqual(0, EmptyIColl                      .Coalesce());
-        AreEqual(0, EmptyIReadOnlyList              .Coalesce());
-        AreEqual(0, EmptyIReadOnlyColl              .Coalesce());
-        AreEqual(0, EmptyIEnumerable                .Coalesce());
+        NoNullRet(0, EmptyArray                      .Coalesce());
+        NoNullRet(0, EmptyList                       .Coalesce());
+        NoNullRet(0, EmptyHashSet                    .Coalesce());
+        NoNullRet(0, EmptyIList                      .Coalesce());
+        NoNullRet(0, EmptyISet                       .Coalesce());
+        NoNullRet(0, EmptyIColl                      .Coalesce());
+        NoNullRet(0, EmptyIReadOnlyList              .Coalesce());
+        NoNullRet(0, EmptyIReadOnlyColl              .Coalesce());
+        NoNullRet(0, EmptyIEnumerable                .Coalesce());
         
-        AreEqual(0, NullableEmptyArray              .Coalesce());
-        AreEqual(0, NullableEmptyList               .Coalesce());
-        AreEqual(0, NullableEmptyHashSet            .Coalesce());
-        AreEqual(0, NullableEmptyIList              .Coalesce());
-        AreEqual(0, NullableEmptyISet               .Coalesce());
-        AreEqual(0, NullableEmptyIColl              .Coalesce());
-        AreEqual(0, NullableEmptyIReadOnlyList      .Coalesce());
-        AreEqual(0, NullableEmptyIReadOnlyColl      .Coalesce());
-        AreEqual(0, NullableEmptyIEnumerable        .Coalesce());
+        NoNullRet(0, NullableEmptyArray              .Coalesce());
+        NoNullRet(0, NullableEmptyList               .Coalesce());
+        NoNullRet(0, NullableEmptyHashSet            .Coalesce());
+        NoNullRet(0, NullableEmptyIList              .Coalesce());
+        NoNullRet(0, NullableEmptyISet               .Coalesce());
+        NoNullRet(0, NullableEmptyIColl              .Coalesce());
+        NoNullRet(0, NullableEmptyIReadOnlyList      .Coalesce());
+        NoNullRet(0, NullableEmptyIReadOnlyColl      .Coalesce());
+        NoNullRet(0, NullableEmptyIEnumerable        .Coalesce());
         
-        AreEqual(0, NullArray                       .Coalesce());
-        AreEqual(0, NullList                        .Coalesce());
-        AreEqual(0, NullHashSet                     .Coalesce());
-        AreEqual(0, NullIList                       .Coalesce());
-        AreEqual(0, NullISet                        .Coalesce());
-        AreEqual(0, NullIColl                       .Coalesce());
-        AreEqual(0, NullIReadOnlyList               .Coalesce());
-        AreEqual(0, NullIReadOnlyColl               .Coalesce());
-        AreEqual(0, NullIEnumerable                 .Coalesce());
+        NoNullRet(0, NullArray                       .Coalesce());
+        NoNullRet(0, NullList                        .Coalesce());
+        NoNullRet(0, NullHashSet                     .Coalesce());
+        NoNullRet(0, NullIList                       .Coalesce());
+        NoNullRet(0, NullISet                        .Coalesce());
+        NoNullRet(0, NullIColl                       .Coalesce());
+        NoNullRet(0, NullIReadOnlyList               .Coalesce());
+        NoNullRet(0, NullIReadOnlyColl               .Coalesce());
+        NoNullRet(0, NullIEnumerable                 .Coalesce());
     }
 }
