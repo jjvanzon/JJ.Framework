@@ -17,7 +17,7 @@ public class Existence_SimpleType_Tests
     // - [x] double
     // - [x] Guid
     // - [x] DateTime
-    // - [ ] .. Char
+    // - [x] Char
     // - [ ] Decimal
 
     bool True       = true ;
