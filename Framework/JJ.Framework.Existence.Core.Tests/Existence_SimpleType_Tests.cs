@@ -1,4 +1,5 @@
-﻿using static System.Double;
+﻿using static System.DateTime;
+using static System.Double;
 using static System.Guid;
 
 namespace JJ.Framework.Existence.Core.Tests;
@@ -9,16 +10,18 @@ public class Existence_SimpleType_Tests
     // TODO:
     // Char, Byte, IntPtr, UIntPtr
     // the numeric types, their the signed and unsigned variations and
-    // Guid, DateTime, TimeSpan
+    // DateTime, TimeSpan
     // Newer .NETs probably have more.
     // But let's start with a basic spread:
     // - [x] Enum/Enum?
     // - [x] bool
     // - [x] double
+    // - [x] Guid
+    // - [x] DateTime
 
     // Bools
 
-    bool  True       = true ;
+    bool True       = true ;
     bool  False      = false;
     bool? NullyTrue  = true ;
     bool? NullyFalse = false;
@@ -267,5 +270,38 @@ public class Existence_SimpleType_Tests
         IsFalse(RandomGuid.IsNully());
         IsFalse(RandomNullyGuid.IsNully());
         NoNullRet(OneGuid, Coalesce(NullGuid, EmptyGuid).Coalesce(ZeroGuid, OneGuid, RandomGuid));
+    }
+
+    DateTime? NullDateTime         = null;
+    DateTime  DefaultDateTime      = default;
+    DateTime? DefaultNullyDateTime = default;
+    DateTime  NewDateTime          = new();
+    DateTime? NewNullyDateTime     = new();
+    DateTime  MinDateTime          = DateTime.MinValue;
+    DateTime? MinNullyDateTime     = DateTime.MinValue; 
+    DateTime  MaxDateTime          = DateTime.MaxValue;
+    DateTime? MaxNullyDateTime     = DateTime.MaxValue;
+    DateTime  NowDateTime          = Now;
+    DateTime? NowNullyDateTime     = Now;
+    DateTime  SomeDateTime         = new(2023, 10, 1, 12, 10, 23);
+    DateTime? SomeNullyDateTime    = new(2023, 10, 1, 12, 10, 23);
+                                   
+    [TestMethod]
+    public void Test_DateTime_FilledIn_Tests()
+    {
+        IsFalse(Has(NullDateTime));
+        IsFalse(Has(DefaultDateTime));
+        IsFalse(Has(DefaultNullyDateTime));
+        IsFalse(Has(NewDateTime));
+        IsFalse(Has(NewNullyDateTime));
+        IsFalse(Has(MinDateTime));
+        IsFalse(Has(MinNullyDateTime));
+        IsTrue (Has(MaxDateTime));
+        IsTrue (Has(MaxNullyDateTime));
+        IsTrue (Has(NowDateTime));
+        IsTrue (Has(NowNullyDateTime));
+        IsTrue (Has(SomeDateTime));
+        IsTrue (Has(SomeNullyDateTime));
+        NoNullRet(SomeDateTime, Coalesce(NewNullyDateTime, NewDateTime, SomeNullyDateTime, NowNullyDateTime, SomeDateTime));
     }
 }
