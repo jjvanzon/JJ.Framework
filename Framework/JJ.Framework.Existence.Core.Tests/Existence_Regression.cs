@@ -1,9 +1,7 @@
-﻿using System.Buffers;
-
-namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class RegressionTests
+public class Existence_Regression
 {
     [TestMethod]
     public void FilledIn_MethodResolution_Object_Over_GenericInterface_Regression()
