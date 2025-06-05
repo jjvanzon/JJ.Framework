@@ -53,13 +53,6 @@ public static partial class FilledInExtensions
     public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj)                  => HasValOrObj(valOrObj);
     public static bool FilledIn<T>  ([NotNullWhen(true )] this T?             nullyVal) where T : struct => HasValNully(nullyVal);
                                                                                                              
-    public static bool Has          ([NotNullWhen(true )] this string?        text)                      => HasText(text);
-    public static bool Has          ([NotNullWhen(true )] this string?        text, bool trimSpace)      => HasText(text, trimSpace);
-    public static bool Has          ([NotNullWhen(true )] this StringBuilder? sb)                        => Has_StringBuilder(sb);
-    public static bool Has          ([NotNullWhen(true )] this StringBuilder? sb,   bool trimSpace)      => Has_StringBuilder(sb, trimSpace);
-    public static bool Has<T>       ([NotNullWhen(true )] this T              valOrObj)                  => HasValOrObj(valOrObj);
-    public static bool Has<T>       ([NotNullWhen(true )] this T?             nullyVal) where T : struct => HasValNully(nullyVal);
-                                                                                                             
     public static bool IsNully      ([NotNullWhen(false)] this string? text)                             => !HasText(text);
     public static bool IsNully      ([NotNullWhen(false)] this string? text,      bool trimSpace)        => !HasText(text, trimSpace);
     public static bool IsNully      ([NotNullWhen(false)] this StringBuilder? sb)                        => !Has_StringBuilder(sb);

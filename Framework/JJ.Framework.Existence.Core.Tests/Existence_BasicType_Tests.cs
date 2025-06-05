@@ -5,7 +5,7 @@ using static System.Guid;
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Existence_SimpleType_Tests
+public class Existence_BasicType_Tests
 {
     // TODO:
     // Char, Byte, IntPtr, UIntPtr
