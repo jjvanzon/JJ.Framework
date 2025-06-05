@@ -181,4 +181,74 @@ public class Existence_SimpleType_Tests
         AreEqual (First1,  First1Default.Coalesce(First1Null, First1, Last2));
         NoNullRet(         First1Default.Coalesce(First1Null, First1, Last2));
     }
+
+    double? NullDouble      = null;
+    double  ZeroDouble      = 0.0;
+    double  OneDouble       = 1.0;
+    double  TwoDouble       = 2.0;
+    double? NullyZeroDouble = 0.0;
+    double? NullyOneDouble  = 1.0;
+    double? NullyTwoDouble  = 2.0;
+
+    [TestMethod]
+    public void Double_FilledIn_Tests()
+    {
+        IsFalse  (Has(NullDouble));
+        NoNullRet(Has(NullDouble));
+        IsFalse  (Has(ZeroDouble));
+        NoNullRet(Has(ZeroDouble));
+        IsTrue   (Has(OneDouble));
+        NoNullRet(Has(OneDouble));
+        IsTrue   (Has(TwoDouble));
+        NoNullRet(Has(TwoDouble));
+        IsFalse  (Has(NullyZeroDouble));
+        NoNullRet(Has(NullyZeroDouble));
+        IsTrue   (Has(NullyOneDouble));
+        NoNullRet(Has(NullyOneDouble));
+        IsTrue   (Has(NullyTwoDouble));
+        NoNullRet(Has(NullyTwoDouble));
+        IsFalse  (FilledIn(NullDouble));
+        NoNullRet(FilledIn(NullDouble));
+        IsFalse  (FilledIn(ZeroDouble));
+        NoNullRet(FilledIn(ZeroDouble));
+        IsTrue   (FilledIn(OneDouble));
+        NoNullRet(FilledIn(OneDouble));
+        IsTrue   (FilledIn(TwoDouble));
+        NoNullRet(FilledIn(TwoDouble));
+        IsFalse  (FilledIn(NullyZeroDouble));
+        NoNullRet(FilledIn(NullyZeroDouble));
+        IsTrue   (FilledIn(NullyOneDouble));
+        NoNullRet(FilledIn(NullyOneDouble));
+        IsTrue   (FilledIn(NullyTwoDouble));
+        NoNullRet(FilledIn(NullyTwoDouble));
+        IsFalse  (ZeroDouble.FilledIn());
+        NoNullRet(ZeroDouble.FilledIn());
+        IsTrue   (OneDouble.FilledIn());
+        NoNullRet(OneDouble.FilledIn());
+        IsTrue   (TwoDouble.FilledIn());
+        NoNullRet(TwoDouble.FilledIn());
+        IsFalse  (NullyZeroDouble.FilledIn());
+        NoNullRet(NullyZeroDouble.FilledIn());
+        IsTrue   (NullyOneDouble.FilledIn());
+        NoNullRet(NullyOneDouble.FilledIn());
+        IsTrue   (NullyTwoDouble.FilledIn());
+        NoNullRet(NullyTwoDouble.FilledIn());
+    }
+
+    [TestMethod]
+    public void Double_Coalesce_Tests()
+    {
+        AreEqual (OneDouble, Coalesce(NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+        NoNullRet(           Coalesce(NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+        AreEqual (TwoDouble, Coalesce(NullDouble, ZeroDouble).Coalesce(TwoDouble).Coalesce(NullyOneDouble));
+        NoNullRet(           Coalesce(NullDouble, ZeroDouble).Coalesce(TwoDouble).Coalesce(NullyOneDouble));
+        AreEqual (OneDouble, NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble));
+        NoNullRet(           NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble));
+    }
+
+    [TestMethod]
+    public void Double_SpecialValue_Tests()
+    {
+       // TODO: Implement
+    }
 }
