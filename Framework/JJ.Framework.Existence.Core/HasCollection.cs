@@ -30,109 +30,6 @@ internal static partial class ExistenceUtility
 
 public static partial class FilledInHelper
 {
-    // FilledIn (Static)
-    
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      T[]                                        ? coll)                   => HasArray(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IList<T>                                   ? coll)                   => HasCollT(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ISet<T>                                    ? coll)                   => HasCollT(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      IDictionary<T,U>                           ? coll)                   => HasCollT(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ICollection<T>                             ? coll)                   => HasCollT(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IEnumerable<T>                             ? coll)                   => HasEnumerable(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      List<T>                                    ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      HashSet<T>                                 ? coll)                   => HasCollT(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Stack<T>                                   ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Queue<T>                                   ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      LinkedList<T>                              ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedList<T,U>                            ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      SortedSet<T>                               ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      Dictionary<T,U>                            ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      Dictionary<T,U>.KeyCollection              ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      Dictionary<T,U>.ValueCollection            ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableList<T>                          ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableSet<T>                           ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableStack<T>                         ? coll)                   => Has_ImmutableStack(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableQueue<T>                         ? coll)                   => Has_ImmutableQueue(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      IImmutableDictionary<T,U>                  ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>                            coll)                   => Has_ImmutableArray(ref coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>                          ? coll)                   => Has_ImmutableArray(ref coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>.Builder                  ? coll)                   => HasCollT(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableList<T>                           ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableList<T>.Builder                   ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableHashSet<T>                        ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableHashSet<T>.Builder                ? coll)                   => HasCollT(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableStack<T>                          ? coll)                   => Has_ImmutableStack(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableQueue<T>                          ? coll)                   => Has_ImmutableQueue(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableDictionary<T,U>                   ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableDictionary<T,U>.Builder           ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableSortedSet<T>                      ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableSortedSet<T>.Builder              ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableSortedDictionary<T,U>             ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableSortedDictionary<T,U>.Builder     ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlyCollection<T>                     ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlyList<T>                           ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      IReadOnlyDictionary<T,U>                   ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyCollection<T>                      ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => HasCollT   (coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => Has_Memory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => Has_Memory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => Has_Span(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      ConcurrentDictionary<T,U>                  ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      BlockingCollection<T>                      ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IProducerConsumerCollection<T>             ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>                      ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.KeyCollection        ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.ValueCollection      ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      Collection<T>                              ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      KeyedCollection<T,U>                       ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ObservableCollection<T>                    ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyObservableCollection<T>            ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      ArrayList                                  ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      BitArray                                   ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      CollectionBase                             ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      DictionaryBase                             ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      Hashtable                                  ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      Queue                                      ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      ReadOnlyCollectionBase                     ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      SortedList                                 ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      Stack                                      ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      HybridDictionary                           ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      ListDictionary                             ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      NameObjectCollectionBase                   ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      NameObjectCollectionBase.KeysCollection    ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      NameValueCollection                        ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      OrderedDictionary                          ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      StringCollection                           ? coll)                   => HasColl(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      StringDictionary                           ? coll)                   => Has_StringDictionary(coll);
-    public static bool FilledIn     ([NotNullWhen(true )]      IOrderedDictionary                         ? coll)                   => HasColl(coll);
-    #if NET9_0_OR_GREATER                                                                                 
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
-    #endif
-    #if NET8_0_OR_GREATER                                                                                 
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => HasColl(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
-    #endif                                                                                                                          
-    #if NET6_0_OR_GREATER
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
-    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
-    #endif
-
     // Has (Static)
     
     public static bool Has     <T>  ([NotNullWhen(true )]      T[]                                        ? coll)                   => HasArray(coll);
@@ -234,6 +131,109 @@ public static partial class FilledInHelper
     #if NET6_0_OR_GREATER
     public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
     public static bool Has     <T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
+    #endif
+
+    // FilledIn (Static)
+    
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      T[]                                        ? coll)                   => HasArray(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IList<T>                                   ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ISet<T>                                    ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      IDictionary<T,U>                           ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ICollection<T>                             ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ILookup<T,U>                               ? coll)                   => HasLookup(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IEnumerable<T>                             ? coll)                   => HasEnumerable(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      List<T>                                    ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      HashSet<T>                                 ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Stack<T>                                   ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Queue<T>                                   ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      LinkedList<T>                              ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedList<T,U>                            ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      SortedSet<T>                               ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      Dictionary<T,U>                            ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      Dictionary<T,U>.KeyCollection              ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      Dictionary<T,U>.ValueCollection            ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableList<T>                          ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableSet<T>                           ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableStack<T>                         ? coll)                   => Has_ImmutableStack(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IImmutableQueue<T>                         ? coll)                   => Has_ImmutableQueue(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      IImmutableDictionary<T,U>                  ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>                            coll)                   => Has_ImmutableArray(ref coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>                          ? coll)                   => Has_ImmutableArray(ref coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableArray<T>.Builder                  ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableList<T>                           ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableList<T>.Builder                   ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableHashSet<T>                        ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableHashSet<T>.Builder                ? coll)                   => HasCollT(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableStack<T>                          ? coll)                   => Has_ImmutableStack(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableQueue<T>                          ? coll)                   => Has_ImmutableQueue(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableDictionary<T,U>                   ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableDictionary<T,U>.Builder           ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableSortedSet<T>                      ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ImmutableSortedSet<T>.Builder              ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableSortedDictionary<T,U>             ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ImmutableSortedDictionary<T,U>.Builder     ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlyCollection<T>                     ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlyList<T>                           ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      IReadOnlyDictionary<T,U>                   ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyCollection<T>                      ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>                    ? coll) where T : notnull => HasReadOnlyColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.KeyCollection      ? coll) where T : notnull => HasReadOnlyColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ReadOnlyDictionary<T,U>.ValueCollection    ? coll) where T : notnull => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                              coll)                   => HasCollT   (coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ArraySegment<T>                            ? coll)                   => HasCollT<T>(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                    coll)                   => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Memory<T>                                  ? coll)                   => Has_Memory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Span<T>                                      coll)                   => Has_Span(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                            coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyMemory<T>                          ? coll)                   => Has_ReadOnlyMemory(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySpan<T>                              coll)                   => Has_ReadOnlySpan(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                          coll)                   => Has_ReadOnlySequence(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySequence<T>                        ? coll)                   => Has_ReadOnlySequence(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentBag<T>                           ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentQueue<T>                         ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ConcurrentStack<T>                         ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      ConcurrentDictionary<T,U>                  ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      BlockingCollection<T>                      ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IProducerConsumerCollection<T>             ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>                      ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.KeyCollection        ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      SortedDictionary<T,U>.ValueCollection      ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      Collection<T>                              ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      KeyedCollection<T,U>                       ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ObservableCollection<T>                    ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlyObservableCollection<T>            ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      ArrayList                                  ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      BitArray                                   ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      CollectionBase                             ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      DictionaryBase                             ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      Hashtable                                  ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      Queue                                      ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      ReadOnlyCollectionBase                     ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      SortedList                                 ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      Stack                                      ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      HybridDictionary                           ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      ListDictionary                             ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      NameObjectCollectionBase                   ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      NameObjectCollectionBase.KeysCollection    ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      NameValueCollection                        ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      OrderedDictionary                          ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      StringCollection                           ? coll)                   => HasColl(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      StringDictionary                           ? coll)                   => Has_StringDictionary(coll);
+    public static bool FilledIn     ([NotNullWhen(true )]      IOrderedDictionary                         ? coll)                   => HasColl(coll);
+    #if NET9_0_OR_GREATER                                                                                 
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>                     ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.KeyCollection       ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      OrderedDictionary<T,U>.ValueCollection     ? coll) where T : notnull => HasColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      IReadOnlySet<T>                            ? coll)                   => HasReadOnlyColl(coll);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      ReadOnlySet<T>                             ? coll)                   => HasReadOnlyColl(coll);
+    #endif
+    #if NET8_0_OR_GREATER                                                                                 
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      FrozenSet<T>                               ? coll)                   => HasColl(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      FrozenDictionary<T, U>                     ? coll) where T : notnull => HasColl(coll);
+    #endif                                                                                                                          
+    #if NET6_0_OR_GREATER
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>                         ? coll)                   => Has_PriorityQueue(coll);
+    public static bool FilledIn<T,U>([NotNullWhen(true )]      PriorityQueue<T,U>.UnorderedItemsCollection? coll)                   => HasColl(coll);
     #endif
     
     // IsNully (Static)

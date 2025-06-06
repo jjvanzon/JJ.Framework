@@ -22,20 +22,20 @@ internal static partial class ExistenceUtility
 
 public static partial class FilledInHelper
 {
-    public static bool FilledIn     ([NotNullWhen(true )]      string?        text)                      => HasText(text);
-    public static bool FilledIn     ([NotNullWhen(true )]      string?        text, bool trimSpace)      => HasText(text, trimSpace);
-    public static bool FilledIn     ([NotNullWhen(true )]      StringBuilder? sb)                        => Has_StringBuilder(sb);
-    public static bool FilledIn     ([NotNullWhen(true )]      StringBuilder? sb,   bool trimSpace)      => Has_StringBuilder(sb, trimSpace);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      T              valOrObj)                  => HasValOrObj(valOrObj);
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      T?             nullyVal) where T : struct => HasValNully(nullyVal);
-                                                                                                             
     public static bool Has          ([NotNullWhen(true )]      string?        text)                      => HasText(text);
     public static bool Has          ([NotNullWhen(true )]      string?        text, bool trimSpace)      => HasText(text, trimSpace);
     public static bool Has          ([NotNullWhen(true )]      StringBuilder? sb)                        => Has_StringBuilder(sb);
     public static bool Has          ([NotNullWhen(true )]      StringBuilder? sb,   bool trimSpace)      => Has_StringBuilder(sb, trimSpace);
     public static bool Has<T>       ([NotNullWhen(true )]      T              valOrObj)                  => HasValOrObj(valOrObj);
     public static bool Has<T>       ([NotNullWhen(true )]      T?             nullyVal) where T : struct => HasValNully(nullyVal);
-                                                                                                             
+
+    public static bool FilledIn     ([NotNullWhen(true )]      string?        text)                      => HasText(text);
+    public static bool FilledIn     ([NotNullWhen(true )]      string?        text, bool trimSpace)      => HasText(text, trimSpace);
+    public static bool FilledIn     ([NotNullWhen(true )]      StringBuilder? sb)                        => Has_StringBuilder(sb);
+    public static bool FilledIn     ([NotNullWhen(true )]      StringBuilder? sb,   bool trimSpace)      => Has_StringBuilder(sb, trimSpace);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      T              valOrObj)                  => HasValOrObj(valOrObj);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      T?             nullyVal) where T : struct => HasValNully(nullyVal);
+
     public static bool IsNully      ([NotNullWhen(false)]      string? text)                             => !HasText(text);
     public static bool IsNully      ([NotNullWhen(false)]      string? text,      bool trimSpace)        => !HasText(text, trimSpace);
     public static bool IsNully      ([NotNullWhen(false)]      StringBuilder? sb)                        => !Has_StringBuilder(sb);
