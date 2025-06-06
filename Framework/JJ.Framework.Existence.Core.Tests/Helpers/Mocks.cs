@@ -44,9 +44,21 @@ internal static class Mocks
     public static int  NoNull3 = 3;
     public static int  NoNull4 = 4;
     
+    // TODO: Use CultureInfo
     public static StringBuilder? NullObj     = null;
     public static StringBuilder  NoNullObj   = new("NoNull");
     public static StringBuilder? NullyFilled = new("Filled");
+    
+    // TODO: Test as string
+    public static StringBuilder? NullSB        = null;
+    public static StringBuilder  NewSB         = new();
+    public static StringBuilder? NullyNewSB    = NewSB;
+    public static StringBuilder  EmptySB       = new("");
+    public static StringBuilder? NullyEmptySB  = EmptySB;
+    public static StringBuilder  SpaceSB       = new(" ");
+    public static StringBuilder? NullySpaceSB  = SpaceSB;
+    public static StringBuilder  FilledSB      = new("Hi");
+    public static StringBuilder? NullyFilledSB = FilledSB;
 
     public static int[]                              FilledArray                             =                              [1, 2, 3];
     public static IList<int>                         FilledIList                             =                              [1, 2, 3];

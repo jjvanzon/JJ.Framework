@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿// ReSharper disable CollectionNeverQueried.Local
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class Existence_Regression

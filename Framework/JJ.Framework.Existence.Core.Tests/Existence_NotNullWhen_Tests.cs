@@ -5,12 +5,9 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Existence_NotNullWhen_Tests
 {
-    private string           ? Text => "Hi!";
-    private StringBuilder    ? SB   => new("Hi!");
-    private int              ? Num  => 1;
-    private int[]            ? Arr  => [ 1, 2, 3 ];
-    private T                ? Coll<T>() where T: new() => new();
-    private ILookup<int, int>? Lookup => new [] { 1, 2, 3 }.ToLookup(x => x);
+    private string       ? Text => "Hi!";
+    private StringBuilder? SB   => new("Hi!");
+    private int          ? Num  => 1;
 
     [TestMethod]
     public void Test_Has_NotNullWhen()

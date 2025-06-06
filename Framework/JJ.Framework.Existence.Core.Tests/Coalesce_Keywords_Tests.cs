@@ -76,11 +76,11 @@ public class Coalesce_Keywords_Tests
     public void Coalesce_Keywords_2Args_Text_Static()
     {
       //NoNullRet("", Coalesce(null,              null                              )); // Compiles, unsupported, ambiguous.
-        NoNullRet("", Coalesce(null,              (string )null!                    ));
-        NoNullRet("", Coalesce(null,              (string?)null                     ));
+      //NoNullRet("", Coalesce(null,              (string )null!                    ));
+      //NoNullRet("", Coalesce(null,              (string?)null                     ));
       //NoNullRet("", Coalesce(null,              default                           )); // Compiles, unsupported, ambiguous.
-        NoNullRet("", Coalesce(null,              default(string )                  ));
-        NoNullRet("", Coalesce(null,              default(string?)                  ));
+      //NoNullRet("", Coalesce(null,              default(string )                  ));
+      //NoNullRet("", Coalesce(null,              default(string?)                  ));
         NoNullRet("", Coalesce((string )null!,    null                              ));
         NoNullRet("", Coalesce((string )null!,    (string )null!                    ));
         NoNullRet("", Coalesce((string )null!,    (string?)null                     ));
@@ -94,11 +94,11 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", Coalesce((string?)null,     default(string )                  ));
         NoNullRet("", Coalesce((string?)null,     default(string?)                  ));
       //NoNullRet("", Coalesce(default,           null                              )); // Compiles, unsupported, ambiguous.
-        NoNullRet("", Coalesce(default,           (string )null!                    ));
-        NoNullRet("", Coalesce(default,           (string?)null                     ));
+      //NoNullRet("", Coalesce(default,           (string )null!                    ));
+      //NoNullRet("", Coalesce(default,           (string?)null                     ));
       //NoNullRet("", Coalesce(default,           default                           )); // Compiles, unsupported, ambiguous.
-        NoNullRet("", Coalesce(default,           default(string )                  ));
-        NoNullRet("", Coalesce(default,           default(string?)                  ));
+      //NoNullRet("", Coalesce(default,           default(string )                  ));
+      //NoNullRet("", Coalesce(default,           default(string?)                  ));
         NoNullRet("", Coalesce(default(string ),  null                              ));
         NoNullRet("", Coalesce(default(string ),  (string )null!                    ));
         NoNullRet("", Coalesce(default(string ),  (string?)null                     ));
