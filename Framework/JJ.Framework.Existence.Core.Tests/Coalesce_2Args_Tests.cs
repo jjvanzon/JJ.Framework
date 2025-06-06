@@ -65,7 +65,6 @@ public class Coalesce_2Args_Tests : TestBase
 
     // StringBuilder
 
-
     [TestMethod]
     public void Coalesce_2Args_StringBuilder_Vars()
     {
