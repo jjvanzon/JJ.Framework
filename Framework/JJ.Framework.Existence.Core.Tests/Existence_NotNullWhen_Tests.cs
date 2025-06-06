@@ -5,13 +5,18 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Existence_NotNullWhen_Tests
 {
-    string? Text => "Hi!";
-    StringBuilder? SB => new("Hi!");
-    int? Num => 1;
+    private string           ? Text => "Hi!";
+    private StringBuilder    ? SB   => new("Hi!");
+    private int              ? Num  => 1;
+    private int[]            ? Arr  => [ 1, 2, 3 ];
+    private T                ? Coll<T>() where T: new() => new();
+    private ILookup<int, int>? Lookup => new [] { 1, 2, 3 }.ToLookup(x => x);
 
     [TestMethod]
     public void Test_Has_NotNullWhen()
     {
+        // ToString() would trigger a nullability compiler error, if Has/FilledIn/UsNully NotNulWhen attribute set wrong.
+
         { string?        text = Text; if ( FilledIn(text         )) text.ToString(); }
         { string?        text = Text; if ( FilledIn(text, default)) text.ToString(); }
         { StringBuilder? sb   = SB  ; if ( FilledIn(sb           )) sb  .ToString(); }
@@ -40,4 +45,25 @@ public class Existence_NotNullWhen_Tests
     }
 
     // TODO: For Collections
+    [TestMethod]
+    public void Test_Has_Collection_NotNullWhen()
+    {
+        // ToString() would trigger a nullability compiler error, if Has/FilledIn/UsNully NotNulWhen attribute set wrong.
+
+        { int[]                ? coll = Arr                         ; if (FilledIn(coll)) coll.ToString(); }
+        { IList      <int>     ? coll = Coll<List      <int>>     (); if (FilledIn(coll)) coll.ToString(); }
+        { ISet       <int>     ? coll = Coll<HashSet   <int>>     (); if (FilledIn(coll)) coll.ToString(); }
+        { IDictionary<int, int>? coll = Coll<Dictionary<int, int>>(); if (FilledIn(coll)) coll.ToString(); }
+        { ICollection<int>     ? coll = Arr                         ; if (FilledIn(coll)) coll.ToString(); }
+        { ILookup    <int, int>? coll = Lookup                      ; if (FilledIn(coll)) coll.ToString(); }
+        { IEnumerable<int>     ? coll = Arr                         ; if (FilledIn(coll)) coll.ToString(); }
+        { List       <int>     ? coll = Coll<List      <int>>     (); if (FilledIn(coll)) coll.ToString(); }
+        { HashSet    <int>     ? coll = Coll<HashSet   <int>>     (); if (FilledIn(coll)) coll.ToString(); }
+        { Stack      <int>     ? coll = Coll<Stack     <int>>     (); if (FilledIn(coll)) coll.ToString(); }
+        { Queue      <int>     ? coll = Coll<Queue     <int>>     (); if (FilledIn(coll)) coll.ToString(); }
+        { LinkedList <int>     ? coll = Coll<LinkedList<int>>     (); if (FilledIn(coll)) coll.ToString(); }
+        { SortedList <int, int>? coll = Coll<SortedList<int, int>>(); if (FilledIn(coll)) coll.ToString(); }
+        { Dictionary <int, int>? coll = Coll<Dictionary<int, int>>(); if (FilledIn(coll)) coll.ToString(); }
+        // TODO: Dictionary<T,U>.KeyCollection
+    }
 }
