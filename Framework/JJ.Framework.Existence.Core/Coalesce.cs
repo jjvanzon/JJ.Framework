@@ -1,12 +1,13 @@
 ﻿namespace JJ.Framework.Existence.Core;
 using SB = StringBuilder;
 
-
 internal static partial class ExistenceUtility
 {
     // 1 Arg
     
-    public static  string CoalesceText     (string? text)                         => HasText    (text) ? text      : text ?? ""   ;
+    // TODO: Simplify logic like the next outcommented line is replaced by the one after thaat.
+  //public static  string CoalesceText     (string? text)                         => HasText    (text) ? text      : text ?? ""   ;
+    public static  string CoalesceText     (string? text)                         => text ?? ""   ;
     public static  SB     CoalesceSB       (SB?     sb  )                         => HasSB      (sb  ) ? sb        : sb   ?? new();
     public static  T      CoalesceObject   <T>(T?   obj ) where T : class, new()  => HasObject  (obj ) ? obj       : new T()      ;
     public static  T      CoalesceVal      <T>(T    val ) where T : struct        => HasVal     (val ) ? val       : default      ;
