@@ -105,6 +105,8 @@ public static partial class FilledInHelper
     
     public static string Coalesce   (     string? text, string? fallback, string? fallback2)                  => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2));
     public static string Coalesce   (     string? text, string? fallback, string? fallback2, bool trimSpace)  => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, trimSpace), trimSpace);
+    public static SB     Coalesce   (     SB?     sb,   SB?     fallback, SB?     fallback2)                  => CoalesceTwoSBs        (sb,   CoalesceTwoSBs        (fallback, fallback2));
+    public static SB     Coalesce   (     SB?     sb,   SB?     fallback, SB?     fallback2, bool trimSpace)  => CoalesceTwoSBs        (sb,   CoalesceTwoSBs        (fallback, fallback2, trimSpace), trimSpace);
     public static string Coalesce   (     SB?     sb,   SB?     fallback, string? fallback2)                  => CoalesceSBToText      (sb,   CoalesceSBToText      (fallback, fallback2));
     public static string Coalesce   (     SB?     sb,   SB?     fallback, string? fallback2, bool trimSpace)  => CoalesceSBToText      (sb,   CoalesceSBToText      (fallback, fallback2, trimSpace), trimSpace);
     public static string Coalesce   (     object? obj,  object? fallback, string? fallback2)                  => CoalesceObjectToText  (obj,  CoalesceObjectToText  (fallback, fallback2));
