@@ -67,22 +67,22 @@ public class Coalesce_1Arg_Tests : TestBase
         NoNullRet(FilledSB, Coalesce(NullyFilledSB )  );
 
         // Compare StringBuilder Text
-        NoNullRet(Empty, $"{NullSB       .Coalesce()}");
-        NoNullRet(Empty, $"{NewSB        .Coalesce()}");
-        NoNullRet(Empty, $"{NullyNewSB   .Coalesce()}");
-        NoNullRet(Empty, $"{EmptySB      .Coalesce()}");
-        NoNullRet(Empty, $"{NullyEmptySB .Coalesce()}");
-        NoNullRet(Space, $"{SpaceSB      .Coalesce()}");
-        NoNullRet(Space, $"{NullySpaceSB .Coalesce()}");
-        NoNullRet(Text,  $"{FilledSB     .Coalesce()}");
-        NoNullRet(Text,  $"{NullyFilledSB.Coalesce()}");
-        NoNullRet(Empty, $"{Coalesce(NullSB        )}");
-        NoNullRet(Empty, $"{Coalesce(EmptySB       )}");
-        NoNullRet(Empty, $"{Coalesce(NullyEmptySB  )}");
-        NoNullRet(Space, $"{Coalesce(SpaceSB       )}");
-        NoNullRet(Space, $"{Coalesce(NullySpaceSB  )}");
-        NoNullRet(Text,  $"{Coalesce(FilledSB      )}");
-        NoNullRet(Text,  $"{Coalesce(NullyFilledSB )}");
+        NoNullRet(Empty,      $"{NullSB       .Coalesce()}");
+        NoNullRet(Empty,      $"{NewSB        .Coalesce()}");
+        NoNullRet(Empty,      $"{NullyNewSB   .Coalesce()}");
+        NoNullRet(Empty,      $"{EmptySB      .Coalesce()}");
+        NoNullRet(Empty,      $"{NullyEmptySB .Coalesce()}");
+        NoNullRet(Space,      $"{SpaceSB      .Coalesce()}");
+        NoNullRet(Space,      $"{NullySpaceSB .Coalesce()}");
+        NoNullRet("FilledSB", $"{FilledSB     .Coalesce()}");
+        NoNullRet("FilledSB", $"{NullyFilledSB.Coalesce()}");
+        NoNullRet(Empty,      $"{Coalesce(NullSB        )}");
+        NoNullRet(Empty,      $"{Coalesce(EmptySB       )}");
+        NoNullRet(Empty,      $"{Coalesce(NullyEmptySB  )}");
+        NoNullRet(Space,      $"{Coalesce(SpaceSB       )}");
+        NoNullRet(Space,      $"{Coalesce(NullySpaceSB  )}");
+        NoNullRet("FilledSB", $"{Coalesce(FilledSB      )}");
+        NoNullRet("FilledSB", $"{Coalesce(NullyFilledSB )}");
     }
     
     // Values
@@ -101,7 +101,7 @@ public class Coalesce_1Arg_Tests : TestBase
     [TestMethod]
     public void Coalesce_1Arg_Vals_Nully_Vars()
     {
-      //NullRet  (null,    NullNum           );
+        NullRet  (null,    NullNum           );
         NullRet  (0,       Nully0            );
         NullRet  (1,       Nully1            );
         NullRet  (2,       Nully2            );

@@ -3,9 +3,9 @@
 [TestClass]
 public class Coalesce_3Args_Objects
 {
-    private static readonly StringBuilder? Null        = Mocks.NullObj;
-    private static readonly StringBuilder  NoNull      = Mocks.NoNullObj;
-    private static readonly StringBuilder? NullyFilled = Mocks.NullyFilled;
+    private static readonly Dummy? Null        = Mocks.NullObj;
+    private static readonly Dummy  NoNull      = Mocks.NoNullObj;
+    private static readonly Dummy? NullyFilled = Mocks.NullyFilled;
 
     [TestMethod]
     public void Coalesce_3Args_Objects_Static()

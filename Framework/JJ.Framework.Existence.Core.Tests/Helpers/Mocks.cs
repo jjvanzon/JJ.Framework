@@ -22,15 +22,23 @@ using PrioQueueUnorderedColl     = System.Collections.Generic.PriorityQueue<int,
 
 namespace JJ.Framework.Existence.Core.Tests.Helpers;
 
+internal class Dummy
+{
+    public Dummy() {}
+    public Dummy(string name) => Name = name;
+    public string Name { get; } = "";
+    public override string ToString() => Name;
+}
+
 internal static class Mocks
 {
     public static string? NullText    = null;
     public static string  Empty       = "";
     public static string  Space       = " ";
-    public static string  Text        = "Hi";
+    public static string  Text        = "Text";
     public static string? NullyEmpty  = "";
     public static string? NullySpace  = " ";
-    public static string? NullyText   = "Hi";
+    public static string? NullyText   = "Text";
     
     public static int? NullNum = null;
     public static int? Nully0  = 0;
@@ -44,10 +52,9 @@ internal static class Mocks
     public static int  NoNull3 = 3;
     public static int  NoNull4 = 4;
     
-    // TODO: Use CultureInfo
-    public static StringBuilder? NullObj     = null;
-    public static StringBuilder  NoNullObj   = new("NoNull");
-    public static StringBuilder? NullyFilled = new("Filled");
+    public static Dummy? NullObj     = null;
+    public static Dummy  NoNullObj   = new("NoNull");
+    public static Dummy? NullyFilled = new("Filled");
     
     // TODO: Test as string
     public static StringBuilder? NullSB        = null;
@@ -57,7 +64,7 @@ internal static class Mocks
     public static StringBuilder? NullyEmptySB  = EmptySB;
     public static StringBuilder  SpaceSB       = new(" ");
     public static StringBuilder? NullySpaceSB  = SpaceSB;
-    public static StringBuilder  FilledSB      = new("Hi");
+    public static StringBuilder  FilledSB      = new("FilledSB");
     public static StringBuilder? NullyFilledSB = FilledSB;
 
     public static int[]                              FilledArray                             =                              [1, 2, 3];

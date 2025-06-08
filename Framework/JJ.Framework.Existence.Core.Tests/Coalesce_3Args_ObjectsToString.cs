@@ -3,8 +3,8 @@
 [TestClass]
 public class Coalesce_3Args_ObjectsToString : TestBase
 {
-    static StringBuilder  Obj  = Mocks.NoNullObj;
-    static StringBuilder? Null = Mocks.NullObj  ;
+    static Dummy  Obj  = Mocks.NoNullObj;
+    static Dummy? Null = Mocks.NullObj  ;
 
     [TestMethod]
     public void Coalesce_3Args_ObjectsToString_Static()
