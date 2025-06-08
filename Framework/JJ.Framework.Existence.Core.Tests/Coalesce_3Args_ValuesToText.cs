@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_ValuesToString : TestBase
+public class Coalesce_3Args_ValuesToText : TestBase
 {
     [TestMethod]
     public void Coalesce_3Args_ValsToString_Static()

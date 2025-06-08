@@ -5,10 +5,13 @@ internal static partial class ExistenceUtility
 {
     // 1 Arg
     
-    // TODO: Simplify logic like the next outcommented line is replaced by the one after thaat.
+    // TODO: Simplify logic like the next outcommented line is replaced by the one after that.
+    // After some testing.
+    
   //public static  string CoalesceText     (string? text)                         => HasText    (text) ? text      : text ?? ""   ;
     public static  string CoalesceText     (string? text)                         => text ?? ""   ;
     public static  SB     CoalesceSB       (SB?     sb  )                         => HasSB      (sb  ) ? sb        : sb   ?? new();
+  //public static  SB     CoalesceSB       (SB?     sb  )                         => sb   ?? new();
     public static  T      CoalesceObject   <T>(T?   obj ) where T : class, new()  => HasObject  (obj ) ? obj       : new T()      ;
     public static  T      CoalesceVal      <T>(T    val ) where T : struct        => HasVal     (val ) ? val       : default      ;
     public static  T      CoalesceValNully <T>(T?   val ) where T : struct        => HasValNully(val ) ? val.Value : default      ;

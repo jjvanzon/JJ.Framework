@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_ObjectsToString : TestBase
+public class Coalesce_3Args_ObjectsToText : TestBase
 {
     static Dummy  Obj  = Mocks.NoNullObj;
     static Dummy? Null = Mocks.NullObj  ;

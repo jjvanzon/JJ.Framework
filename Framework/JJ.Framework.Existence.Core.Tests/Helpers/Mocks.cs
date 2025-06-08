@@ -22,7 +22,7 @@ using PrioQueueUnorderedColl     = System.Collections.Generic.PriorityQueue<int,
 
 namespace JJ.Framework.Existence.Core.Tests.Helpers;
 
-internal class Dummy
+public class Dummy
 {
     public Dummy() {}
     public Dummy(string name) => Name = name;
@@ -30,7 +30,7 @@ internal class Dummy
     public override string ToString() => Name;
 }
 
-internal static class Mocks
+public class Mocks
 {
     public static string? NullText    = null;
     public static string  Empty       = "";
