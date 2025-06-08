@@ -5,16 +5,14 @@ internal static partial class ExistenceUtility
 {
     // 1 Arg
     
-    // TODO: Simplify logic like the next outcommented line is replaced by the one after that.
-    // After some testing.
     
-  //public static  string CoalesceText     (string? text)                         => HasText    (text) ? text      : text ?? ""   ;
-    public static  string CoalesceText     (string? text)                         => text ?? ""   ;
-    public static  SB     CoalesceSB       (SB?     sb  )                         => HasSB      (sb  ) ? sb        : sb   ?? new();
-  //public static  SB     CoalesceSB       (SB?     sb  )                         => sb   ?? new();
-    public static  T      CoalesceObject   <T>(T?   obj ) where T : class, new()  => HasObject  (obj ) ? obj       : new T()      ;
-    public static  T      CoalesceVal      <T>(T    val ) where T : struct        => HasVal     (val ) ? val       : default      ;
-    public static  T      CoalesceValNully <T>(T?   val ) where T : struct        => HasValNully(val ) ? val.Value : default      ;
+    // In 1-arg variants, when the input is empty, it may still be the best option, unless it is null.
+    // This simplifies this code from having to do a Has-check.
+    public static  string CoalesceText     (string? text)                         => text ?? ""     ;
+    public static  SB     CoalesceSB       (SB?     sb  )                         => sb   ?? new()  ;
+    public static  T      CoalesceVal      <T>(T    val ) where T : struct        => val            ;
+    public static  T      CoalesceValNully <T>(T?   val ) where T : struct        => val  ?? default;
+    public static  T      CoalesceObject   <T>(T?   obj ) where T : class, new()  => obj  ?? new T();
     
     // 2 Args
     
@@ -23,13 +21,12 @@ internal static partial class ExistenceUtility
     public static  SB      CoalesceTwoSBs        (SB?     sb,   SB?     fallback)                  => HasSB  (sb             ) ? sb   : CoalesceSB  (fallback);
     public static  SB      CoalesceTwoSBs        (SB?     sb,   SB?     fallback, bool trimSpace)  => HasSB  (sb,   trimSpace) ? sb   : CoalesceSB  (fallback);
     
-    public static  string  CoalesceSBToText      (SB?     sb,   string? fallback)                  => CoalesceConditionToText(HasSB      (sb           ), sb,  fallback);
-    public static  string  CoalesceSBToText      (SB?     sb,   string? fallback, bool trimSpace)  => CoalesceConditionToText(HasSB      (sb, trimSpace), sb,  fallback);
-    public static  string  CoalesceObjectToText  <T>(T?   obj,  string? fallback) where T : class  => CoalesceConditionToText(HasObject  (obj          ), obj, fallback);
-    public static  string  CoalesceNullyValToText<T>(T?   val,  string? fallback) where T : struct => CoalesceConditionToText(HasValNully(val          ), val, fallback);
-    public static  string  CoalesceValToText     <T>(T    val,  string? fallback) where T : struct => CoalesceConditionToText(HasVal     (val          ), val, fallback);
-    private static string  CoalesceConditionToText(bool condition, object? obj, string? fallback) => !condition ? CoalesceText(fallback) : CoalesceTwoTexts($"{obj}", fallback);
-                                                       
+    public static  string  CoalesceSBToText      (SB?     sb,   string? fallback)                  => HasSB      (sb           ) ? CoalesceTwoTexts($"{sb}", fallback) : CoalesceText(fallback);
+    public static  string  CoalesceSBToText      (SB?     sb,   string? fallback, bool trimSpace)  => HasSB      (sb, trimSpace) ? CoalesceTwoTexts($"{sb}", fallback, trimSpace) : CoalesceText(fallback);
+    public static  string  CoalesceObjectToText  <T>(T?   obj,  string? fallback) where T : class  => HasObject  (obj          ) ? CoalesceTwoTexts($"{obj}", fallback) : CoalesceText(fallback);
+    public static  string  CoalesceNullyValToText<T>(T?   val,  string? fallback) where T : struct => HasValNully(val          ) ? CoalesceTwoTexts($"{val}", fallback) : CoalesceText(fallback);
+    public static  string  CoalesceValToText     <T>(T    val,  string? fallback) where T : struct => HasVal     (val          ) ? CoalesceTwoTexts($"{val}", fallback) : CoalesceText(fallback);
+
     public static  T       CoalesceTwoNullyVals  <T>(T?   val,  T?      fallback) where T : struct => HasValNully(val) ? val.Value : CoalesceValNully(fallback);
     public static  T       CoalesceNullyAndVal   <T>(T?   val,  T       fallback) where T : struct => HasValNully(val) ? val.Value : CoalesceVal     (fallback);
     public static  T       CoalesceValAndNully   <T>(T    val,  T?      fallback) where T : struct => HasVal     (val) ? val       : CoalesceValNully(fallback);
