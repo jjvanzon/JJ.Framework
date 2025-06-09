@@ -1,11 +1,10 @@
 ﻿namespace JJ.Framework.Testing.Core.Tests;
 
 [TestClass]
-public class TestingCoreRegressionTests
+public class TestingCore_Case_FromTemplate_ChangesNullPropsToZeroes_Regression_Tests
 {
-            
     [TestMethod]
-    public void Test_CaseCollection_Initialization_RegressionCase()
+    public void Test_CaseCollection_Initialization_Regression()
     {
         // This used to fail before FilledInHelper overloads with HashSet<T> and IList<T> were added.
         // Before, the hope was that HashSet<T> would invoke an overload with ICollection<T>,
@@ -72,4 +71,120 @@ public class TestingCoreRegressionTests
     }
     
     private class Case2 : CaseBase<int> { }
+}
+
+[TestClass]
+public class TestingCore_DifferentNullies_OmittedInCaseKeys_CausedDuplicateKeyError_Tests()
+{
+    // Copied from JJ.Synthesizer repo tests, where the error occurred.
+    
+    internal class Case : CaseBase<int>
+    {
+        //public override IList<object> KeyElements 
+        //    => [ Name, "~", FrameCount, "f", "(", SamplingRate, "Hz", "+", CourtesyFrames, (",", AudioLength, "s"),
+        //         ByteCount, Bits, Channels, FrameSize, HeaderLength, ")" ];
+
+        // FrameCount: The main property being tested, adjusted directly or via dependencies.
+        //public CaseProp<int> FrameCount => this;
+        
+        // SamplingRate: Scales FrameCount
+        public CaseProp<int> SamplingRate { get; set; }
+        public CaseProp<int> Hz           { get => SamplingRate; set => SamplingRate = value; }
+
+        /*
+        // CourtesyFrames: AudioLength does not incorporate CourtesyFrames, but FrameCount does.
+        public CaseProp<int> CourtesyFrames { get; set; }
+
+        // AudioLength: Scales FrameCount + FrameCount setters adjust AudioLength.
+        public CaseProp<double> AudioLength { get; set; }
+
+        // Additional properties, used in conversion formulae
+        public CaseProp<int> ByteCount { get; set; }
+        public CaseProp<int> Bits { get; set; }
+        public CaseProp<int> Channels { get; set; }
+        public CaseProp<int> FrameSize { get; set; }
+        public CaseProp<int> HeaderLength { get; set; }
+        */
+        // Constructors
+        
+        public Case(
+            int?    frameCount     = null,
+            int?    samplingRate   = null)
+            //double? audioLength    = null,
+            //int?    courtesyFrames = null)
+        {
+            if (frameCount     != null) From = To      = frameCount.Value;
+            if (samplingRate   != null) SamplingRate   = samplingRate.Value;
+          //if (audioLength    != null) AudioLength    = audioLength.Value;
+          //if (courtesyFrames != null) CourtesyFrames = courtesyFrames.Value;
+        }
+        
+        public Case() { }
+        public Case(int frameCount) : base(frameCount) { }
+        public Case(int from, int to) : base(from, to) { }
+    }
+    
+    [TestMethod]
+    public void Test_DifferentNullies_OmittedInCaseKeys_CausedDuplicateKeyError()
+    {
+        return;
+        
+        // Duplicate case key:
+        // NullyHz ~ 480 f ( ?48000 => 48000 Hz + 3 , 0.01 s
+        
+        CaseCollection<Case> rootCaseColl = new CaseCollection<Case>();
+        
+        /*CaseCollection<Case> nullyHzCases2 = */rootCaseColl.FromTemplate(new Case
+            
+            { Name = "NullyHz" },
+            //{ Name = "NullyHz", AudioLength = 0.01, CourtesyFrames = 3 },
+          //new Case (480)     { Hz = { From = (null,48000), To = 48000        } },
+            new Case (480)     { Hz = { From = (0,48000)   , To = 48000        } }
+        );        
+        
+        /*CaseCollection<Case> nullyHzCases1 = */rootCaseColl.FromTemplate(new Case
+            
+            { Name = "NullyHz" },
+            //{ Name = "NullyHz", AudioLength = 0.01, CourtesyFrames = 3 },
+            
+                
+            new Case (480)     { Hz = { From = (null,48000), To = 48000        } }//,
+          //new Case (480)     { Hz = { From = (0,48000)   , To = 48000        } }
+        );
+    }
+    
+    [TestMethod]
+    public void ZeroAndNull_SameInCaseKeys_LooseCases_NotDuplicate()
+    {
+        // Keys of loose cases are not same. Hypothesis: It's in the templating.
+        var caseWithZero = new Case(480) { Hz = { From = (0,    48000), To = 48000 } };
+        var caseWithNull = new Case(480) { Hz = { From = (null, 48000), To = 48000 } };
+        string key1 = caseWithZero.ToString();
+        string key2 = caseWithNull.ToString();
+        NotEqual(key1, key2);
+    }
+    
+    [TestMethod]
+    public void ZeroAndNull_SameInCaseKeys_TemplatedCases_WereDuplicate()
+    {
+
+        Case caseWith0;
+        {
+            var rootColl = new CaseCollection<Case>();
+            var template = new Case { Name = "NullyHz" };
+            var coll = rootColl.FromTemplate(template, new Case(480) { Hz = { From = (0,    48000), To = 48000 } });
+            caseWith0 = coll.GetAll().Single();
+        }
+        Case caseWithNull;
+        {
+            var rootColl = new CaseCollection<Case>();
+            var template = new Case { Name = "NullyHz" };
+            var coll = rootColl.FromTemplate(template, new Case(480) { Hz = { From = (null, 48000), To = 48000 } });
+            caseWithNull = coll.GetAll().Single();
+        }
+
+        string keyWith0 = caseWith0.ToString();
+        string keyWithNull = caseWithNull.ToString();
+        NotEqual(keyWith0, keyWithNull);
+    }
 }
