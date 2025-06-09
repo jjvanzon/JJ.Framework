@@ -173,7 +173,7 @@ namespace JJ.Framework.Testing.Core
                 NullyLevel destLevel = GetNullyLevel(To.Nully);
                 if (sourceLevel > destLevel)
                 {
-                    To.Coalesced = Coalesce(To.Coalesced, template.To.Coalesced);
+                    To.Nully = Coalesce(To.Nully, template.To.Nully);
                 }
             }
         }
