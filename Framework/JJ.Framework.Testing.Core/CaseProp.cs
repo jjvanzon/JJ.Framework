@@ -106,28 +106,76 @@ namespace JJ.Framework.Testing.Core
         }
 
         // Templating
+        
+        private enum NullyLevel
+        {
+            Undefined,
+            NullVal,
+            Zero,
+            Filled
+        }
+        
+        private NullyLevel GetNullyLevel(T? value)
+        {
+            if (Equals(value, default(T?)))
+            {
+                return NullyLevel.NullVal;
+            }
+            if (Equals(value, default(T)))
+            {
+                return NullyLevel.Zero;
+            }
+            return NullyLevel.Filled;
+        }
+        
+        private NullyLevel GetNullyLevel(T value)
+        {
+            if (Equals(value, default(T)))
+            {
+                return NullyLevel.Zero;
+            }
+            return NullyLevel.Filled;
+        }
     
         public void CloneFrom(ICaseProp obj)
         {
             var template = (CaseProp<T>)obj;
 
             if (template == null) throw new NullException(() => template);
-            
+
             // Favor specifically specified values over template values,
             // even though that gives 2 competing meanings to Nully values:
             // either not filled in in the test case or use default value in the API.
-                
+
             // Coalesce now does a hard coalesce from null int to 0.
-            //From.Nully     = Coalesce(From.Nully,     template.From.Nully);
-            //To.Nully       = Coalesce(To.Nully,       template.To.Nully);
+            //From.Nully = Coalesce(From.Nully, template.From.Nully);
+            //To.Nully = Coalesce(To.Nully, template.To.Nully);
             //From.Coalesced = Coalesce(From.Coalesced, template.From.Coalesced);
-            //To.Coalesced   = Coalesce(To.Coalesced,   template.To.Coalesced);
-            
+            //To.Coalesced = Coalesce(To.Coalesced, template.To.Coalesced);
+
             // Replaced with explicit fallback instead.
-            if (!From.Nully    .FilledIn()) From.Nully     = template.From.Nully    ;
-            if (!To  .Nully    .FilledIn()) To  .Nully     = template.To  .Nully    ;
+            //if (!From.Nully    .FilledIn()) From.Nully     = template.From.Nully    ;
+            //if (!To  .Nully    .FilledIn()) To  .Nully     = template.To  .Nully    ;
             if (!From.Coalesced.FilledIn()) From.Coalesced = template.From.Coalesced;
             if (!To  .Coalesced.FilledIn()) To  .Coalesced = template.To  .Coalesced;
+
+            //  Patch-up for overwriting null with 0 even though both nully.
+            {
+                NullyLevel sourceLevel = GetNullyLevel(template.From.Nully);
+                NullyLevel destLevel = GetNullyLevel(From.Nully);
+                if (sourceLevel > destLevel)
+                {
+                    From.Nully = Coalesce(From.Nully, template.From.Nully);
+                }
+            }
+            {
+                NullyLevel sourceLevel = GetNullyLevel(template.To.Nully);
+                NullyLevel destLevel = GetNullyLevel(To.Nully);
+                if (sourceLevel > destLevel)
+                {
+                    To.Coalesced = Coalesce(To.Coalesced, template.To.Coalesced);
+                }
+            }
         }
     }
 }

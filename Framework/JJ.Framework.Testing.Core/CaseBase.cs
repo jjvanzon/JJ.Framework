@@ -82,7 +82,7 @@ namespace JJ.Framework.Testing.Core
                 destCase.Name = Coalesce(destCase.Name, template.Name);
                 if (template.Strict == false)
                 {
-                    destCase.Strict = false; // Yield over alleviation from strictness.
+                    destCase.Strict = false; // Yield over "alleviation from strictness".
                 }
                 
                 // Main Prop
