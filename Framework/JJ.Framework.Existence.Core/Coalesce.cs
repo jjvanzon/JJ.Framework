@@ -5,14 +5,15 @@ internal static partial class ExistenceUtility
 {
     // 1 Arg
     
-    
     // In 1-arg variants, when the input is empty, it may still be the best option, unless it is null.
     // This simplifies this code from having to do a Has-check.
     public static  string CoalesceText     (string? text)                         => text ?? ""     ;
     public static  SB     CoalesceSB       (SB?     sb  )                         => sb   ?? new()  ;
     public static  T      CoalesceVal      <T>(T    val ) where T : struct        => val            ;
     public static  T      CoalesceValNully <T>(T?   val ) where T : struct        => val  ?? default;
+    // ncrunch: no coverage start
     public static  T      CoalesceObject   <T>(T?   obj ) where T : class, new()  => obj  ?? new T();
+    // ncrunch: no coverage end
     
     // 2 Args
     
@@ -33,7 +34,7 @@ internal static partial class ExistenceUtility
     public static  T       CoalesceTwoVals       <T>(T    val,  T       fallback) where T : struct => HasVal     (val) ? val       : CoalesceVal     (fallback);
 
     // ncrunch: no coverage start
-    public static  T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
+    public static  T       CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
     // ncrunch: no coverage end
 
     // N Args
