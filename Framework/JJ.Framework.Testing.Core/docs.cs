@@ -23,5 +23,15 @@ namespace JJ.Framework.Testing.Core
         /// despite rounding (e.g., flooring).
         /// </summary>
         public struct _deltadirection { }
+       
+        /// <summary>
+        /// <c>From</c>, <c>Init</c> and <c>Source</c> are synonyms.
+        /// </summary>
+        public struct _from { }
+        
+        /// <summary>
+        /// <c>To</c>, <c>Value</c>, <c>Val</c> and <c>Dest</c> are synonyms.
+        /// </summary>
+        public struct _to { }
     }
 }
