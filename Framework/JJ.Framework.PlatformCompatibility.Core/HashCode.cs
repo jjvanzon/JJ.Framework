@@ -7,6 +7,8 @@ public struct HashCode
     private const int PRIME_LIKE_SEED = -2128831035; // same bits as 0x811C9DC5
     private const int PRIME_MULTIPLIER = 16777619;
 
+    public static int Combine<T1>(T1 v1) => v1?.GetHashCode() ?? 0;
+
     public static int Combine<T1, T2>(T1 v1, T2 v2)
     {
         unchecked

@@ -8,7 +8,7 @@ public class CallerArgumentExpressionAttribute(string parameterName) : Attribute
 
 // Stub is needed to compile code for .NET Standard 2.1,
 // while all its supported frameworks already define it. (Even .NET 5 who officially does not.)
-// So a paradox: it can't be tested, but you can't compile .NET Standard 2.1 without.
+// So a paradox: It can't be tested, but you can't compile .NET Standard 2.1 without it.
 #if NETSTANDARD2_1
 public class CallerArgumentExpressionAttribute(string parameterName) : Attribute; // ncrunch: no coverage
 #endif

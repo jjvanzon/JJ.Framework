@@ -10,6 +10,12 @@ public static class ExceptionSupport
 
     public static void ThrowIfNullOrWhiteSpace(string? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
+        if (argument == null)
+        {
+            if (string.IsNullOrWhiteSpace(expression)) expression = nameof(argument);
+            throw new ArgumentNullException($"{expression} is null.");
+        }
+        
         if (string.IsNullOrWhiteSpace(argument))
         {
             if (string.IsNullOrWhiteSpace(expression)) expression = nameof(argument);
