@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.PlatformCompatibility.Core;
 
-public static class ExceptionPlatformSupport
+public static class ExceptionSupport
 {
     #if !NET8_0_OR_GREATER
     public static void ThrowIfNull(object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")

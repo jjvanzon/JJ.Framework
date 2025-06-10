@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-// ReSharper disable UnusedParameter.Local
 
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
@@ -13,7 +12,7 @@ public class PlatformCompatibility_Core_Tests
         CallerArgumentExpressionDummy(i);
     }
     
-    private void CallerArgumentExpressionDummy(int arg, [CallerArgumentExpression("arg")] string expr = "")
+    private void CallerArgumentExpressionDummy(int arg, [CallerArgumentExpression(nameof(arg))] string expr = "")
     {
         AreEqual("i", expr);
     }

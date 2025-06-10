@@ -7,4 +7,4 @@ global using System.Runtime.CompilerServices;
 global using JJ.Framework.Common.Core.docs;
 global using static System.ArgumentException;
 global using static System.ArgumentNullException;
-global using static JJ.Framework.PlatformCompatibility.Core.ExceptionPlatformSupport;
+global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;

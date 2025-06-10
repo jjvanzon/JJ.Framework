@@ -20,7 +20,7 @@ global using static System.ArgumentNullException;
 global using static System.StringComparison;
 global using static System.Reflection.BindingFlags;
 global using static System.Runtime.CompilerServices.MethodImplOptions;
-global using static JJ.Framework.PlatformCompatibility.Core.ExceptionPlatformSupport;
+global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
 global using static JJ.Framework.Collections.Core.StaticEnumerable;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.ExpressionHelper;
