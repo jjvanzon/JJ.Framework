@@ -1,19 +1,19 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using JJ.Framework.Testing.Core;
-using JJ.Framework.Testing.Core.docs;
 using static System.Console;
 using static System.TimeSpan;
-using static JJ.Framework.Common.Core.NameHelper;
 // ReSharper disable VariableCanBeNotNullable
+// ReSharper disable UseSymbolAlias
 
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
 public class PlatformCompatibility_Core_Tests
 {
+    // CallerArgumentExpression
+    
     [TestMethod]
-    public void Test_CallerArgumentExpression_PlatformCompatibility()
+    public void Test_CallerArgumentExpression_PlatformStub()
     {
         int i = 5;
         CallerArgumentExpressionDummy(i);
@@ -24,8 +24,10 @@ public class PlatformCompatibility_Core_Tests
         AreEqual("i", expr);
     }
 
+    // ExceptionSupport
+    
     [TestMethod]
-    public void Test_ExceptionSupport_PlatformCompatibility()
+    public void Test_ExceptionSupport_PlatformStub()
     {
         string? nullText = null;
         string? emptyText = "";
@@ -36,8 +38,10 @@ public class PlatformCompatibility_Core_Tests
         ThrowsExceptionContaining<ArgumentException    >(() => ThrowIfNullOrWhiteSpace(spaceText), "spaceText", "space");
     }
     
+    // HashCode
+    
     [TestMethod]
-    public void Test_HashCode_PlatformCompatibility()
+    public void Test_HashCode_PlatformStub()
     {
         int hashCode1 =  HashCode.Combine(1);
         int hashCode2 =  HashCode.Combine(1, 2l);
@@ -65,8 +69,10 @@ public class PlatformCompatibility_Core_Tests
         IsTrue(hashCode8 != 0);
     }
     
+    // NotNullWhen
+    
     [TestMethod]
-    public void Test_NotNullWhen_PlatformCompatibility()
+    public void Test_NotNullWhen_PlatformStub()
     {
         var attr = new NotNullWhenAttribute(true);
         IsTrue(attr.ReturnValue);
@@ -88,13 +94,41 @@ public class PlatformCompatibility_Core_Tests
         }
     }
     
-    private bool NotNullDummy([NotNullWhen(true)] string? text)
+    private bool NotNullDummy([NotNullWhen(true)] string? text) => text != null;
+    private bool IsNullDummy([NotNullWhen(false)] string? text) => text == null;
+    
+    // OverloadResolutionPriority
+    
+    [TestMethod]
+    public void PlatformStub_Create_OverloadResolutionPriority_Create()
     {
-        return text != null;
+        var prio1Attribute = new OverloadResolutionPriorityAttribute(1);
+        AreEqual(1, prio1Attribute.Priority);
+
+        var prio0Attribute = new OverloadResolutionPriorityAttribute(0);
+        AreEqual(0, prio0Attribute.Priority);
     }
     
-    private bool IsNullDummy([NotNullWhen(false)] string? text)
+    [TestMethod]
+    public void PlatformStub_OverloadResolutionPriority_Implicit()
     {
-        return text == null;
+        AreEqual("Overload(A,B)", Overload("A", "B"));
+        AreEqual("Overload(A)", Overload("A"));
     }
+    
+    private string Overload(string text) => $"Overload({text})";
+    // ReSharper disable once MethodOverloadWithOptionalParameter
+    private string Overload(string text1, string text2 = "C") => $"Overload({text1},{text2})";
+    
+    [TestMethod]
+    public void PlatformStub_OverloadResolutionPriority_Explicit()
+    {
+        AreEqual("WithPrios(A,B)", WithPrios("A", "B"));
+        // Here, OverloadResolutionPriority(1) leads the single-arg call to the two-arg method instead.
+        AreEqual("WithPrios(A,C)", WithPrios("A"));
+    }
+    
+    private string WithPrios(string text) => $"WithPrios({text})"; // ncrunch: no coverage
+    [OverloadResolutionPriority(1)]
+    private string WithPrios(string text1, string text2 = "C") => $"WithPrios({text1},{text2})";
 }
