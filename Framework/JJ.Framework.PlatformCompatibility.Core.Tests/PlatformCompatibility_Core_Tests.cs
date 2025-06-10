@@ -15,6 +15,9 @@ public class PlatformCompatibility_Core_Tests
     [TestMethod]
     public void Test_CallerArgumentExpression_PlatformStub()
     {
+        var attribute = new CallerArgumentExpressionAttribute("name");
+        AreEqual("name", attribute.ParameterName);
+
         int i = 5;
         CallerArgumentExpressionDummy(i);
     }
