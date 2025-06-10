@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
+using JJ.Framework.Testing.Core;
+using JJ.Framework.Testing.Core.docs;
 using static System.Console;
 using static System.TimeSpan;
 using static JJ.Framework.Common.Core.NameHelper;
@@ -71,27 +73,18 @@ public class PlatformCompatibility_Core_Tests
         
         // ReSharper disable once VariableCanBeNotNullable
         string? nullyFilled = "";
-        string? nullText = null;
+        string? @null = null;
         
         if (!NotNullDummy(nullyFilled))
         {
+            string num = nullyFilled; // Compiles: Successfully promoted to non-null.
             NoNullRet(nullyFilled);
         }
-
-        if (NotNullDummy(nullText))
-        {
-        }
-        else
-        {
-            #warning TODO: Add NullRet method
-            //NullRet(nullText);
-        }
         
-        if (IsNullDummy(nullText))
+        if (IsNullDummy(@null))
         {
-            // Does not compile = correct
+            // Does not compile = correct = not promoted to non-null
             //string noNull = nullText;
-          //NullRet(nullText);
         }
     }
     

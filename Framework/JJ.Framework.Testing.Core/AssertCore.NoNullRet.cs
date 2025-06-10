@@ -2,6 +2,8 @@
 
 public static partial class AssertCore
 {
+    // NoNullRet
+    
     // For values and objects
 
     /// <inheritdoc cref="_nonullret" />
@@ -30,5 +32,17 @@ public static partial class AssertCore
         NotNull(ret, message);
         AreEqual(expected, ret, message);
     }
+    
+    // NullRet
+    
+    // For values
 
+    /// <inheritdoc cref="_nullret" />
+    public static void NullRet<TExpected, TRet>(TExpected expected, TRet ret, [ArgExpress(nameof(ret))] string message = "")
+        where TExpected : struct
+    {
+        AreEqual(expected, ret, message);
+        IsType(typeof(TExpected?), ret, message);
+        NotType(typeof(TExpected), ret, message);
+    }
 }

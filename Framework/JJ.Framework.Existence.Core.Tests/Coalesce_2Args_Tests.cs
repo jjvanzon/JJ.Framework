@@ -193,10 +193,10 @@ public class Coalesce_2Args_Tests : TestBase
     public void Coalesce_2Args_Vals()
     {
         // Assert input state
-        NullRet(null, NullNum);
-        NullRet(0,    Nully0);
-        NullRet(1,    Nully1);
-        NullRet(2,    Nully2);
+        IsNull (   NullNum);
+        NullRet(0, Nully0 );
+        NullRet(1, Nully1 );
+        NullRet(2, Nully2 );
         NoNullRet(0);
         NoNullRet(1);
         NoNullRet(2);

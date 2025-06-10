@@ -39,6 +39,15 @@ namespace JJ.Framework.Testing.Core
         /// <param name="expected">The value ret is expected to have.</param>
         /// <param name="ret">Expression whose return type should not be nullable.</param>
         public struct _nonullret { }
+        
+        /// <summary>
+        /// Asserts that even when a value is filled in,
+        /// the return type is still nullable.
+        /// </summary>
+        /// <typeparam name="TRet">Do not specify explicitly! <c>ret</c> determines this type!</typeparam>
+        /// <param name="expected">The value ret is expected to have.</param>
+        /// <param name="ret">Expression whose return type should be nullable.</param>
+        public struct _nullret { }
 
         /// <summary>
         /// <c>To</c>, <c>Value</c>, <c>Val</c> and <c>Dest</c> are synonyms.

@@ -13,8 +13,6 @@ global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
 global using static System.ArgumentException;
 global using static System.ArgumentNullException;
 #endif
-
-//global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-
-
+global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+global using Prio       = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 
