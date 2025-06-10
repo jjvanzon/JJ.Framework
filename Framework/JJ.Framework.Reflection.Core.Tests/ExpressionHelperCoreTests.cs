@@ -184,9 +184,21 @@ public class ExpressionHelperCoreTests
         var expression = CauseConvert(() => (decimal)(double)GetInt(), targetType);
         string text = GetText(expression);
         object value = GetValue(expression);
-        AssertNestedConvert(expression);
+        AssertWrappedInConvert(expression);
         AreEqual("GetInt()", () => text);
         AreEqual(1m, () => value); 
+    }
+    
+    [TestMethod]
+    public void ExpressionHelper_ConvertToNullable()
+    {
+        object? targetType = null;
+        var expression = CauseConvert(() => (int?)GetInt(), targetType);
+        string text = GetText(expression);
+        object? value = GetValue(expression);
+        AssertWrappedInConvert(expression);
+        AreEqual("GetInt()", () => text);
+        AreEqual(1, () => value); 
     }
     
     /// <summary>
@@ -206,7 +218,7 @@ public class ExpressionHelperCoreTests
     private void AssertConvertConstant(LambdaExpression expression) 
         => AssertIsWrappedInConvert(expression, ExpressionType.Constant);
     
-    private void AssertNestedConvert(LambdaExpression expression) 
+    private void AssertWrappedInConvert(LambdaExpression expression) 
         => AssertIsWrappedInConvert(expression, ExpressionType.Convert);
     
     private static void AssertIsWrappedInConvert(LambdaExpression expression, ExpressionType innerNodeType)
