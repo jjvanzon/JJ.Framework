@@ -13,7 +13,7 @@ global using static System.Math;
 global using static System.String;
 global using static System.Reflection.MethodBase;
 global using static JJ.Framework.Testing.AssertHelper;
-global using static JJ.Framework.Testing.Core.AssertHelperCore;
+global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 global using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 global using static JJ.Framework.Testing.Core.TestHelperCore;

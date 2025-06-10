@@ -1,7 +1,7 @@
 ﻿
 namespace JJ.Framework.Testing.Core;
 
-public static partial class AssertHelperCore
+public static partial class AssertCore
 {
     public static void IsType<TValue>(Type expected, TValue value, [ArgExpress(nameof(value))] string message = "")
     {

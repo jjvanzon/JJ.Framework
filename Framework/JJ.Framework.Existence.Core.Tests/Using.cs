@@ -24,7 +24,7 @@ global using static System.ArgumentNullException;
 global using static System.Activator;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Testing.AssertHelper;
-global using static JJ.Framework.Testing.Core.AssertHelperCore;
+global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Existence.Core.Tests.Helpers.Mocks;
 global using static JJ.Framework.Existence.Core.Tests.Helpers.AssertNoNullRet;

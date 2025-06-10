@@ -3,7 +3,7 @@
 
 namespace JJ.Framework.Testing.Core;
 
-public static partial class AssertHelperCore
+public static partial class AssertCore
 {
     // Basics
     
