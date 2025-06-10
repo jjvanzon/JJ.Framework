@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+// ReSharper disable UnassignedGetOnlyAutoProperty
 
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
@@ -9,7 +10,7 @@ public class PlatformCompatibility_MemberType_Core_Tests
     
     public class DummyClass(int parameter)
     {
-        public event EventHandler Event;
+        public event EventHandler? Event;
         public int _field = parameter;
         public int Property { get; set; }
         public void Method() { }
@@ -20,10 +21,10 @@ public class PlatformCompatibility_MemberType_Core_Tests
         public override object[] GetCustomAttributes(bool inherit) => [];
         public override object[] GetCustomAttributes(Type attributeType, bool inherit) => [];
         public override bool IsDefined(Type attributeType, bool inherit) => default;
-        public override Type DeclaringType { get; }
+        public override Type DeclaringType => GetType();
         public override MemberTypes MemberType { get; }
-        public override string Name { get; }
-        public override Type ReflectedType { get; }
+        public override string Name => "";
+        public override Type ReflectedType => GetType();
     }
 
     // ncrunch: no coverage end
@@ -47,13 +48,13 @@ public class PlatformCompatibility_MemberType_Core_Tests
     {
         // Arrange
         
-        Type            type            =             GetType       (                 );
-        Type            nestedType      =       type .GetNestedType ("DummyClass"     );
-        ConstructorInfo constructorInfo = nestedType!.GetConstructor( [ typeof(int) ] );
-        FieldInfo       fieldInfo       = nestedType .GetField      ("_field"         );
-        PropertyInfo    propertyInfo    = nestedType .GetProperty   ("Property"       );
-        MethodInfo      methodInfo      = nestedType .GetMethod     ("Method"         );
-        EventInfo       eventInfo       = nestedType .GetEvent      ("Event"          );
+        Type             type            =             GetType       (                 );
+        Type?            nestedType      =       type .GetNestedType ("DummyClass"     );
+        ConstructorInfo? constructorInfo = nestedType!.GetConstructor( [ typeof(int) ] );
+        FieldInfo?       fieldInfo       = nestedType .GetField      ("_field"         );
+        PropertyInfo?    propertyInfo    = nestedType .GetProperty   ("Property"       );
+        MethodInfo?      methodInfo      = nestedType .GetMethod     ("Method"         );
+        EventInfo?       eventInfo       = nestedType .GetEvent      ("Event"          );
         
         // Check Nulls
         

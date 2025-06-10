@@ -7,6 +7,13 @@ global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
 global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
+#if !NET8_0_OR_GREATER
+global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
+#else
+global using static System.ArgumentException;
+global using static System.ArgumentNullException;
+#endif
+
 //global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 

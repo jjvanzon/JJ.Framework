@@ -6,10 +6,10 @@ public class PlatformCompatibility_String_Core_Tests
     [TestMethod]
     public void PlatformCompatibility_String_IsNullOrWhiteSpace_Core_Test()
     {
-        string nullString = null;
-        string emptyString = "";
-        string whiteSpaceString = "   ";
-        string nonWhiteSpaceString = "abc";
+        string? nullString = null;
+        string  emptyString = "";
+        string  whiteSpaceString = "   ";
+        string  nonWhiteSpaceString = "abc";
         
         IsTrue (() => string.IsNullOrWhiteSpace(nullString));
         IsTrue (() => string.IsNullOrWhiteSpace(emptyString));
