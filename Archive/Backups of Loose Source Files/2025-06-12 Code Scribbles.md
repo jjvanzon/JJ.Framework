@@ -64,3 +64,10 @@
         /// </summary>
         public static class _existencecore { }
 ```
+
+```cs
+    
+    // Super Magic Resolvers
+    
+    // (Temporary until that of AccessCore is migrated, but it's dependencies get
+```

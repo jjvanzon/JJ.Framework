@@ -1,5 +1,6 @@
 ﻿using static JJ.Framework.Common.KeyHelper;
 // ReSharper disable ChangeFieldTypeToSystemThreadingLock
+// ReSharper disable UseSymbolAlias
 
 namespace JJ.Framework.Reflection.Core
 {

@@ -15,6 +15,7 @@ internal static partial class ReflectUtility
         return typeAndBases;
     }
     
+    // TODO: Unfortunate name that clashes with System.Type in case of static using ReflectUtility.
     private static Type  Type (string shortTypeName                                     , ReflectionCacheLegacy cache) => cache.GetTypeByShortName(shortTypeName);
     private static Type? Type (string shortTypeName, [UsedImplicitly] NullFlag? nullable, ReflectionCacheLegacy cache) => cache.TryGetTypeByShortName(shortTypeName);
     private static Type? Type (string shortTypeName, bool                       nullable, ReflectionCacheLegacy cache) => nullable ? cache.TryGetTypeByShortName(shortTypeName) : cache.GetTypeByShortName(shortTypeName);
@@ -25,6 +26,7 @@ internal static partial class ReflectUtility
     
     /// <inheritdoc cref="_compiletimetype" />
     [MethodImpl(AggressiveInlining)]
+    // ReSharper disable once UnusedParameter.Global
     public static Type CompileTimeTypeCore<T>(T value) => typeof(T);
 }
 

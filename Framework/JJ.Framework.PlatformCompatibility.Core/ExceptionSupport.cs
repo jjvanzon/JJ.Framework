@@ -3,7 +3,7 @@
 public static class ExceptionSupport
 {
     #if !NET8_0_OR_GREATER
-    public static void ThrowIfNull(object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
+    public static void ThrowIfNull([NotNull] object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
         if (argument == null) throw new ArgumentNullException(expression);
     }

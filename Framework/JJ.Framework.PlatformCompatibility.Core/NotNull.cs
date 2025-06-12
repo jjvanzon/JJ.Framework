@@ -1,5 +1,10 @@
-﻿namespace System.Runtime.CompilerServices;
+﻿#if NETSTANDARD2_0
 
-#if NETSTANDARD2_0
-public class NotNullAttribute : Attribute;
+namespace System.Diagnostics.CodeAnalysis;
+
+using static System.AttributeTargets;
+
+[AttributeUsage(Property | Field | Parameter | ReturnValue)]
+public sealed class NotNullAttribute : Attribute;
+
 #endif

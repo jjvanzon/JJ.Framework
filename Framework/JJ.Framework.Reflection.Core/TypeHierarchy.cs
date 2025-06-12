@@ -62,10 +62,11 @@ public static partial class Reflect
 
         if (type is { IsClass: false, IsValueType: false }) return;
         
-        while (type != null)
+        Type? t = type;
+        while (t != null)
         {
-            coll.Add(type);
-            type = type.BaseType;
+            coll.Add(t);
+            t = t.BaseType;
         }
     }
 

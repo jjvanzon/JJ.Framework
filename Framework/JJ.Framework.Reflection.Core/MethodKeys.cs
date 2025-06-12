@@ -27,10 +27,10 @@ internal readonly struct MethodKey1 : IEquatable<MethodKey1>
     private readonly int _hash;
     public override int GetHashCode() => _hash;
 
-    public MethodKey1(Type type, string name, Type argType1)
+    public MethodKey1(Type type, string name, Type? argType1)
     {
         _handle0 = type.TypeHandle;
-        _handle1 = argType1.TypeHandle;
+        _handle1 = argType1?.TypeHandle ?? default;
         _name = name;
         _hash = Combine(_handle0, _handle1, _name);
     }
@@ -50,11 +50,11 @@ internal readonly struct MethodKey2 : IEquatable<MethodKey2>
     private readonly int _hash;
     public override int GetHashCode() => _hash;
 
-    public MethodKey2(Type type, string name, Type argType1, Type argType2)
+    public MethodKey2(Type type, string name, Type? argType1, Type? argType2)
     {
         _handle0 = type.TypeHandle;
-        _handle1 = argType1.TypeHandle;
-        _handle2 = argType2.TypeHandle;
+        _handle1 = argType1?.TypeHandle ?? default;
+        _handle2 = argType2?.TypeHandle ?? default;
         _name = name;
         _hash = Combine(_handle0, _handle1, _handle2, _name);
     }
@@ -76,12 +76,12 @@ internal readonly struct MethodKey3 : IEquatable<MethodKey3>
     private readonly int _hash;
     public override int GetHashCode() => _hash;
 
-    public MethodKey3(Type type, string name, Type argType1, Type argType2, Type argType3)
+    public MethodKey3(Type type, string name, Type? argType1, Type? argType2, Type? argType3)
     {
         _handle0 = type.TypeHandle;
-        _handle1 = argType1.TypeHandle;
-        _handle2 = argType2.TypeHandle;
-        _handle3 = argType3.TypeHandle;
+        _handle1 = argType1?.TypeHandle ?? default;
+        _handle2 = argType2?.TypeHandle ?? default;
+        _handle3 = argType3?.TypeHandle ?? default;
         _name = name;
         _hash = Combine(_handle0, _handle1, _handle2, _handle3, _name);
     }
@@ -105,13 +105,13 @@ internal readonly struct MethodKey4 : IEquatable<MethodKey4>
     private readonly int _hash;
     public override int GetHashCode() => _hash;
 
-    public MethodKey4(Type type, string name, Type argType1, Type argType2, Type argType3, Type argType4)
+    public MethodKey4(Type type, string name, Type? argType1, Type? argType2, Type? argType3, Type? argType4)
     {
         _handle0 = type.TypeHandle;
-        _handle1 = argType1.TypeHandle;
-        _handle2 = argType2.TypeHandle;
-        _handle3 = argType3.TypeHandle;
-        _handle4 = argType4.TypeHandle;
+        _handle1 = argType1?.TypeHandle ?? default;
+        _handle2 = argType2?.TypeHandle ?? default;
+        _handle3 = argType3?.TypeHandle ?? default;
+        _handle4 = argType4?.TypeHandle ?? default;
         _name = name;
         _hash = Combine(_handle0, _handle1, _handle2, _handle3, _handle4, _name);
     }
@@ -137,14 +137,14 @@ internal readonly struct MethodKey5 : IEquatable<MethodKey5>
     private readonly int _hash;
     public override int GetHashCode() => _hash;
 
-    public MethodKey5(Type type, string name, Type argType1, Type argType2, Type argType3, Type argType4, Type argType5)
+    public MethodKey5(Type type, string name, Type? argType1, Type? argType2, Type? argType3, Type? argType4, Type? argType5)
     {
         _handle0 = type.TypeHandle;
-        _handle1 = argType1.TypeHandle;
-        _handle2 = argType2.TypeHandle;
-        _handle3 = argType3.TypeHandle;
-        _handle4 = argType4.TypeHandle;
-        _handle5 = argType5.TypeHandle;
+        _handle1 = argType1?.TypeHandle ?? default;
+        _handle2 = argType2?.TypeHandle ?? default;
+        _handle3 = argType3?.TypeHandle ?? default;
+        _handle4 = argType4?.TypeHandle ?? default;
+        _handle5 = argType5?.TypeHandle ?? default;
         _name = name;
         _hash = Combine(_handle0, _handle1, _handle2, _handle3, _handle4, _handle5, _name);
     }
@@ -167,14 +167,14 @@ internal readonly struct MethodKeyN : IEquatable<MethodKeyN>
     private readonly int _hash;
     public override int GetHashCode() => _hash;
 
-    public MethodKeyN(Type type, string name, params Type[] argTypes)
+    public MethodKeyN(Type type, string name, params Type?[] argTypes)
     {
         _handle0 = type.TypeHandle;
         
         _handleN = new RuntimeTypeHandle[argTypes.Length];
         for (int i = 0; i < argTypes.Length; i++)
         {
-            _handleN[i] = argTypes[i].TypeHandle;
+            _handleN[i] = argTypes[i]?.TypeHandle ?? default;
         }
         
         _name = name;

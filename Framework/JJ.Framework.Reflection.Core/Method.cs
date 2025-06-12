@@ -1,9 +1,12 @@
-﻿namespace JJ.Framework.Reflection.Core;
+﻿
+namespace JJ.Framework.Reflection.Core;
 
 internal static partial class ReflectUtility
 {
     // TODO: Add up to arity 5 specialized methods for faster lookup?
 
+    // Nullable
+    
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo? MethodOrNull(
         Type type, string name, BindingFlags bindingFlags,
@@ -23,7 +26,9 @@ internal static partial class ReflectUtility
 
         ThrowIfNull(type);
         
-        method = type.GetMethod(name, bindingFlags);
+        //method = type.GetMethod(name, bindingFlags);
+        method = TryResolveMethod(type, name, bindingFlags);
+        
         
         lock (lck)
         {
@@ -51,7 +56,8 @@ internal static partial class ReflectUtility
 
         ThrowIfNull(type);
         
-        method = type.GetMethod(name, bindingFlags, null, argTypes, null);
+        method = TryResolveMethod(type, name, bindingFlags, argTypes);
+        //method = type.GetMethod(name, bindingFlags, null, argTypes, null);
         
         lock (lck)
         {
@@ -84,7 +90,8 @@ internal static partial class ReflectUtility
         
         ThrowIfNull(type);
 
-        method = type.GetMethod(name, bindingFlags, null, argTypes, null);
+        method = TryResolveMethod(type, name, bindingFlags, argTypes);
+        //method = type.GetMethod(name, bindingFlags, null, argTypes, null);
 
         lock (lck)
         {
@@ -144,6 +151,7 @@ internal static partial class ReflectUtility
         MethodDic0 dic, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
+        ThrowIfNull(type, nameof(shortTypeName));
         return MethodOrThrow(type, name, bindingFlags, dic, lck);
     }
     
@@ -195,7 +203,7 @@ internal static partial class ReflectUtility
         return MethodOrNull(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
     }
 
-    // Nullable Option
+    // Nullable as Option
     
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo? MethodOrSomething(
@@ -241,6 +249,41 @@ internal static partial class ReflectUtility
            MethodOrNull (type, name, bindingFlags, argTypes, typeArgs, dic, lck) :
            MethodOrThrow(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
 
+    /// <summary>
+    /// Temporary solution to keep some argTypes optional and still resolve the method.
+    /// More refined resolution might be ported from AccessorCore eventually.
+    /// </summary>
+    private static MethodInfo? TryResolveMethod(Type type, string name, BindingFlags bindingFlags, params Type?[] argTypes)
+    { 
+        MethodInfo[] candidates = type.GetMethods(bindingFlags).Where(x => Is(x.Name, name)).ToArray();
+        
+        if (!Has(candidates)) return null;
+
+        Binder? defaultBinder = System.Type.DefaultBinder;
+        if (defaultBinder == null) throw new Exception(TextOf(System.Type.DefaultBinder) + " is null.");
+
+        MethodBase? bestMatch = defaultBinder.SelectMethod(
+            bindingFlags,
+            candidates,
+            argTypes.Select(x => x ?? typeof(object)).ToArray(), 
+            null);
+        
+        if (bestMatch == null)
+        {
+            return null;
+        }
+        
+        if (bestMatch is MethodInfo methodInfo)
+        {
+            return methodInfo;
+        }
+        
+        throw new Exception(
+            $"Unexpected Type '{bestMatch.GetType().Name}' " +
+            $"where {nameof(MethodInfo)} was expected: " + NewLine +
+            Format(type, name, argTypes));
+    }
+    
     // Helpers
     
     // TODO: Make reusable somewhere. I could reuse it in some places.

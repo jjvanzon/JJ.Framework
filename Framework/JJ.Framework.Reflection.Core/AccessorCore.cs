@@ -1,6 +1,4 @@
-﻿using System.Diagnostics; // For StackTrace
-
-namespace JJ.Framework.Reflection.Core;
+﻿namespace JJ.Framework.Reflection.Core;
 
 public partial class AccessorCore
 {
@@ -268,8 +266,7 @@ public partial class AccessorCore
         [Caller] string name = "")
         => CallCore(name, args, argTypes);
 
-    /// <inheritdoc cref="_call
-    /// " />
+    /// <inheritdoc cref="_call" />
     [Priority(1)] 
     public object? Call(
         string name,
