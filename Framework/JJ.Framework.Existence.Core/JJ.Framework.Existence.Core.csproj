@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!--We do not explicitly conditionally compile for net5.0 features, so strictly we don't need it.-->
-    <!--And by excluding it our net5.0 tests hit the netstandard2.1 compilation.-->
+    <!--And by excluding it our net5.0 tests we hit the netstandard2.1 compilation.-->
     <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>2.4.$(BuildNum)</Version>
@@ -11,9 +11,9 @@
   <PropertyGroup>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>
-    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- ❌ API surface nulls -->
-    <!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
-    <NoWarn>$(NoWarn);CS1591</NoWarn> <!-- 〰 Missing doc -->
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--> <!-- Missing doc -->
   </PropertyGroup>
 
   <ItemGroup>

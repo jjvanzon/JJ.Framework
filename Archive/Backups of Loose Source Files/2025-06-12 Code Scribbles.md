@@ -22,3 +22,45 @@
     <!--<NoWarn>$(NoWarn);CS0618</NoWarn>-->
   </PropertyGroup>
 ```
+
+```cs
+        
+        ///// <summary>
+        ///// </summary>
+        //public struct _coalesce { }
+        
+        ///// <summary>
+        ///// </summary>
+        //public struct _contains { }
+        
+        ///// <summary>
+        ///// </summary>
+        //public struct _has { }
+        
+        ///// <summary>
+        ///// </summary>
+        //public struct _in { }
+        
+        ///// <summary>
+        ///// </summary>
+        //public struct _is { }
+        
+        ///// <summary>
+        ///// </summary>
+        //public struct _isnully { }
+```
+
+
+```cs
+        /// <summary>
+        /// Central static APIs for null‐or‐empty checks, fallback coalescing, containment, and loose comparisons:
+        /// <list type="bullet">
+        ///   <item><c>Has</c> / <c>IsNully</c> – null‐or‐empty tests for strings, numbers, collections, enums</item>
+        ///   <item><c>Coalesce</c> – first non‐nully value picker (beyond <c>??</c>)</item>
+        ///   <item><c>Contains</c> / <c>In</c> – membership tests in collections or value sets</item>
+        ///   <item><c>Is</c> – case/trim‐insensitive or loose equality checks</item>
+        /// </list>
+        /// Use these to replace scattered guard logic with clear, consistent method calls.
+        /// </summary>
+        public static class _existencecore { }
+```

@@ -2,7 +2,9 @@
 
 public static partial class FilledInHelper
 {
+    /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b) => Is(a, b, ignoreCase: true);
+    /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, bool ignoreCase)
     {
         if (a == b) return true;
@@ -24,6 +26,8 @@ public static partial class FilledInHelper
 
 public static partial class FilledInExtensions
 {
+    /// <inheritdoc cref="_is" />
     public static bool Is(this string? value, string? comparison                 ) => FilledInHelper.Is(value, comparison       );
+    /// <inheritdoc cref="_is" />
     public static bool Is(this string? value, string? comparison, bool ignoreCase) => FilledInHelper.Is(value, comparison, ignoreCase);
 }
