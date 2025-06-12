@@ -26,12 +26,24 @@ namespace JJ.Framework.Existence.Core
         /// One-stop shop for "nully" checks, fallback picks, existence tests and loose comparisons,
         /// so you never have to never have to wrestle with boilerplate null/empty guards again:
         /// </para>
-        /// <list type="bullet">
-        ///   <item><c>FilledIn</c> / <c>Has</c> / <c>IsNully</c>: One step beyond <c>null</c>, treating empty strings, zero, or empty collections as "nully".</item>
-        ///   <item><c>Coalesce</c>: First non-nully value picker (think <c>??</c> on steroids).</item>
-        ///   <item><c>Contains</c> / <c>In</c>: "Is this in that?" tests for collections and sets.</item>
-        ///   <item><c>Is</c>: Loose equality (case/trim-insensitive, etc.) when you don't care about exact matches.</item>
-        /// </list>
+        /// 
+        /// <para>
+        ///   <c>FilledIn</c> / <c>Has</c> / <c>IsNully</c> <br/>
+        ///   One step beyond <c>null</c>, treating empty strings, zero, or empty lists as "nully".
+        /// </para>
+        /// <para>
+        ///   <c>Coalesce</c> <br/>
+        ///   First non-nully value picker (think <c>??</c> on steroids).
+        /// </para>
+        /// <para>
+        ///   <c>Contains</c> / <c>In</c> <br/>
+        ///   "Is this in that?" tests for collections and sets
+        /// </para>
+        /// <para>
+        ///   <c>Is</c>  <br/>
+        ///   Loose equality (case/trim-insensitive, etc.) when you don't care about exact matches.
+        /// </para>
+        /// 
         /// <para>
         /// Grab these methods instead of wrestling with <c>if</c> statements and repeated checks.
         /// Your code (and your brain) will thank you.
