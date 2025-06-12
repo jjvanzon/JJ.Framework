@@ -1,6 +1,4 @@
-﻿using JJ.Framework.Common.Core.docs;
-
-namespace JJ.Framework.Common.Core;
+﻿namespace JJ.Framework.Common.Core;
 
 /// <inheritdoc cref="_configurationhelpercore" />
 public static class ConfigurationHelperCore
