@@ -21,22 +21,16 @@ namespace JJ.Framework.Common.Core
         public struct _environmentvariableisdefined { }
 
         /// <summary>
+        /// <para>
         /// Sets or gets flags from bit fields (ints) and flag enums.
         /// These otherwise require (hard to remember) bit operations.
-        /// These helpers help you out in this moment of confusion.
+        /// These helpers can help you out in a moment of confusion.
+        /// </para>
+        /// <c>HasFlag</c> to ask: "Is this bit or flag set?" <br/>
+        /// <c>SetFlag</c> / <c>ClearFlag</c> toggles a single flag <br/>
+        /// <c>SetFlags</c> / <c>ClearFlags</c> when you’ve got a collection of flags <br/>
         /// </summary>
         public struct _flagging { }
-
-        // TODO: Alternative doc to consider:
-
-        /// <summary>
-        /// Simple helpers and extensions for flag operations on ints and [Flags] enums:
-        /// – <c>HasFlag</c> to ask “is this bit or flag set?”  
-        /// – <c>SetFlag</c> / <c>ClearFlag</c> for toggling a single flag  
-        /// – <c>SetFlags</c> / <c>ClearFlags</c> when you’ve got a collection of flags  
-        /// Works seamlessly on both raw integer masks and enum-typed flags, so you never typo your bit math again.
-        /// </summary>
-        public struct _flaggingalt { }
 
         /// <summary> 
         /// Returns the current method name or current property name.
