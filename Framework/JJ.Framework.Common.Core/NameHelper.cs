@@ -6,11 +6,10 @@ namespace JJ.Framework.Common.Core;
 public static class NameHelper
 {
     /// <inheritdoc cref="_name"/>
-    public static string Name([CallerMemberName] string name = null)
+    public static string Name([CallerMemberName] string name = "")
         => name.CutLeft("get_").CutLeft("set_");
 
     /// <inheritdoc cref="_textof" />
     public static string TextOf(object? expression, [CallerArgumentExpression(nameof(expression))] string expressionString = "")
         => expressionString;
-    
 }

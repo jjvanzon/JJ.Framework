@@ -3,7 +3,7 @@
 [TestClass]
 public class StringExtensionsCoreTests
 {
-    private static readonly string _null = null;
+    private static readonly string? _null = null;
 
     // Left
     

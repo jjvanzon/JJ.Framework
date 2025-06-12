@@ -170,7 +170,7 @@ public class ConfigurationHelperCoreTests
 
                 // Act
                 ThrowsExceptionContaining<ArgumentNullException>(
-                    () => ConfigurationHelper.SetSection<ConfigurationSectionCore>(null),
+                    () => ConfigurationHelper.SetSection<ConfigurationSectionCore>(null!),
                     expectedMessage);
             }
             finally
@@ -213,7 +213,7 @@ public class ConfigurationHelperCoreTests
             try
             {
                 // Arrange
-                ConfigurationHelperAccessorCore._sections = null;
+                ConfigurationHelperAccessorCore._sections = null!;
 
                 // Act & Assert
                 ThrowsException(() => ConfigurationHelperCore.TryGetSection<object>());

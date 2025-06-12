@@ -22,7 +22,7 @@ public class TrimAllCoreTests
     [TestMethod]
     public void TrimAll_NullException_Core_Test()
     {
-        IEnumerable<string> nullCollection = null;
+        IEnumerable<string>? nullCollection = null;
         
         ThrowsExceptionContaining(
             () => nullCollection.TrimAll(),

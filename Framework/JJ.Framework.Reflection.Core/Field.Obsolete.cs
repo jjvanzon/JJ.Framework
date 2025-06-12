@@ -12,7 +12,7 @@ public static partial class Reflect
     public static FieldInfo GetFieldOrException(Type type, string name)
     {
         if (type == null) throw new ArgumentNullException(nameof(type));
-        FieldInfo field = type.GetField(name, BindingFlagsAll);
+        FieldInfo? field = type.GetField(name, BindingFlagsAll);
         if (field == null) throw new Exception($"Field '{name}' not found on type '{type}'.");
         return field;
     }

@@ -5,7 +5,7 @@ namespace JJ.Framework.Common.Core.Tests;
 [TestClass]
 public class SplitCoreTests
 {
-    private static readonly string _null = null;
+    private static readonly string? _null = null;
     
     // Split With Char Sep
     
@@ -24,8 +24,8 @@ public class SplitCoreTests
     [TestMethod]
     public void Split_CharAndOptions_NullInputException()
     {
-        ThrowsException(() => StringExtensions_Split.Split(null, ',', RemoveEmptyEntries));
-        ThrowsException(() => _null.Split(',', RemoveEmptyEntries));
+        ThrowsException(() => StringExtensions_Split.Split(_null, ',', RemoveEmptyEntries));
+        ThrowsException(() => _null!.Split(',', RemoveEmptyEntries));
     }
     
     [TestMethod]
@@ -53,7 +53,7 @@ public class SplitCoreTests
     public void Split_StringSepOptions_NullInputException()
     {
         ThrowsException(() => StringExtensions_Split.Split(_null, ", ", RemoveEmptyEntries));
-        ThrowsException(() => _null.Split(", ", RemoveEmptyEntries));
+        ThrowsException(() => _null!.Split(", ", RemoveEmptyEntries));
     }
         
     [TestMethod]

@@ -51,7 +51,6 @@ namespace JJ.Framework.Existence.Core
         /// </summary>
         public struct _existencecore { }
 
-        
         /// <summary>
         /// Perform a null-or-empty check one step beyond a plain null check.
         /// Zeroes, empty collections, defaults and white space are considered empty too.

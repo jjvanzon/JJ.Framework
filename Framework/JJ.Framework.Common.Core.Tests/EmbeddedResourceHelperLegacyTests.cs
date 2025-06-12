@@ -20,7 +20,7 @@ namespace JJ.Framework.Common.Core.Tests
 
         private static readonly Assembly _currentAssembly = typeof(EmbeddedResourceHelperLegacyTests).Assembly;
         private static readonly Assembly _otherAssembly = typeof(DummyClass).Assembly;
-        private static readonly string _currentAssemblyName = _currentAssembly.GetName().Name;
+        private static readonly string _currentAssemblyName = _currentAssembly.GetName().Name ?? "";
 
         
         private static readonly Encoding _encoding = Encoding.UTF8;

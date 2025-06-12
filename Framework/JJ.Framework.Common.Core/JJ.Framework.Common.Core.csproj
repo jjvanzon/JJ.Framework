@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <Nullable>enable</Nullable>
     <WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors><!-- API surface nulls -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

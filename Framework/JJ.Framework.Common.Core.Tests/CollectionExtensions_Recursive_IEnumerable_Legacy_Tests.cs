@@ -12,7 +12,7 @@ namespace JJ.Framework.Common.Core.Tests
         [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
         private class Item
         {
-            public string Name { get; set; }
+            public string Name { get; set; } = "";
             public IEnumerable<Item> Children { get; set; } = new List<Item>();
 
             // ncrunch: no coverage start

@@ -5,7 +5,7 @@ namespace JJ.Framework.Common.Core.Tests;
 [TestClass]
 public class SplitWithQuotationCoreTests
 {
-    private static readonly string _null = null;
+    private static readonly string? _null = null;
     
     [TestMethod]
     public void SplitWithQuotation_SimpleExample()

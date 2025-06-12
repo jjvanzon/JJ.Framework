@@ -20,8 +20,8 @@ public class CollectionExtensionsCoreTests
     
     private class Person
     {
-        public string FirstName { get; set; }
-        public string LastName  { get; set; }
+        public string FirstName { get; set; } = "";
+        public string LastName  { get; set; } = "";
         public int    Age       { get; set; }
     }
 
@@ -45,7 +45,7 @@ public class CollectionExtensionsCoreTests
     public void ForEach_Exceptions_Core_Test()
     {
         {
-            IEnumerable<int> enumerable = null;
+            IEnumerable<int>? enumerable = null;
             ThrowsExceptionContaining(() => enumerable.ForEach(x => x++), "enumerable", "cannot be null");
         }
         {
@@ -161,8 +161,8 @@ public class CollectionExtensionsCoreTests
         Item[] collection = [ new(1,2), new(1,3), new(3,4), new(3,null) ];
         Item[]? nullCollection = null;
          
-        Func<Item, int>[] nullDelegateCollection = null;
-        Func<Item, int> nullDelegate = null;
+        Func<Item, int>[]? nullDelegateCollection = null;
+        Func<Item, int>? nullDelegate = null;
         
         ThrowsExceptionContaining(() => nullCollection.Distinct(x => x.Number     ).ToArray(), "enumerable", "cannot be null");
         ThrowsExceptionContaining(() => collection.Distinct(nullDelegateCollection).ToArray(), "keys", "cannot be null");
