@@ -19,7 +19,7 @@ namespace JJ.Framework.Logging.Core.Config
         public static RootLoggerXml GetLoggerXml(string sectionName = "")
         {
             string resolvedSectionName = Coalesce(sectionName, DefaultConfigSectionName);
-            RootLoggerXml rootLoggerXml = TryGetSection<RootLoggerXml>(resolvedSectionName);
+            RootLoggerXml? rootLoggerXml = TryGetSection<RootLoggerXml>(resolvedSectionName);
             return rootLoggerXml ?? _defaultConfigSection;
         }
         

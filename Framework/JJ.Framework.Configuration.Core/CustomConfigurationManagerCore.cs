@@ -8,10 +8,10 @@ namespace JJ.Framework.Configuration.Core
     public static class CustomConfigurationManagerCore
     {
         /// <inheritdoc cref="docs._trygetsection"/>
-        public static T TryGetSection<T>(Assembly assembly)
+        public static T? TryGetSection<T>(Assembly assembly)
             where T: new()
         {
-            T config = default;
+            T? config = default;
             
             try
             {
@@ -26,10 +26,10 @@ namespace JJ.Framework.Configuration.Core
         }
         
         /// <inheritdoc cref="docs._trygetsection"/>
-        public static T TryGetSection<T>(string sectionName)
+        public static T? TryGetSection<T>(string sectionName)
             where T: new()
         {
-            T config = default;
+            T? config = default;
             
             try
             {
@@ -44,10 +44,10 @@ namespace JJ.Framework.Configuration.Core
         }
         
         /// <inheritdoc cref="docs._trygetsection"/>
-        public static T TryGetSection<T>()
+        public static T? TryGetSection<T>()
             where T: class, new()
         {
-            T config = null;
+            T? config = null;
             
             try
             {
@@ -67,7 +67,7 @@ namespace JJ.Framework.Configuration.Core
         private static void AssertExceptionIsAllowed(Exception ex, Assembly assembly) 
             => AssertExceptionIsAllowed(ex, TryGetAssemblyName(assembly)?.ToLower());
         
-        private static void AssertExceptionIsAllowed(Exception ex, string configSectionName)
+        private static void AssertExceptionIsAllowed(Exception ex, string? configSectionName)
         {
             // Allow 'Not Found' Exception
             string allowedMessage    = $"Configuration section '{configSectionName}' not found.";

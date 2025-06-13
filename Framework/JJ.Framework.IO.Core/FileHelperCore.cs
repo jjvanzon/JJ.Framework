@@ -170,7 +170,7 @@ namespace JJ.Framework.IO.Core
         {
             if (string.IsNullOrEmpty(originalFilePath)) throw new Exception("originalFilePath is null or empty.");
             
-            string folderPath               = Path.GetDirectoryName(originalFilePath)?.TrimEnd('\\'); // Remove slash from root (e.g. @"C:\")
+            string folderPath               = Path.GetDirectoryName(originalFilePath)?.TrimEnd('\\') ?? ""; // Remove slash from root (e.g. @"C:\")
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFilePath);
             string fileExtension            = GetExtension(originalFilePath, maxExtensionLength);
             string separator                = !string.IsNullOrEmpty(folderPath) ? "\\" : "";

@@ -56,22 +56,36 @@ namespace JJ.Framework.Mathematics.Core
             // ReSharper disable once PossibleMultipleEnumeration
             return collection.ElementAt(index);
         }
+
+        // ReSharper disable PossibleMultipleEnumeration
         
-        public static T TryGetRandomItem<T>(IEnumerable<T> collection)
+        public static T? TryGetRandomItem<T>(IEnumerable<T?> collection)
+            where T : struct
         {
-            // ReSharper disable once PossibleMultipleEnumeration
             int count = collection.Count();
             if (count == 0)
             {
-                // Unfortunately, you cannot create overloads that return T? for structs and null for classes.
-                // This is not currently possible in C#. I think they're working on it.
                 return default;
             }
             
             int index = GetInt32(count - 1);
-            // ReSharper disable once PossibleMultipleEnumeration
             return collection.ElementAt(index);
         }
+
+        public static T? TryGetRandomItem<T>(IEnumerable<T> collection)
+            where T : notnull
+        {
+            int count = collection.Count();
+            if (count == 0)
+            {
+                return default;
+            }
+            
+            int index = GetInt32(count - 1);
+            return collection.ElementAt(index);
+        }
+        
+        // ReSharper restore PossibleMultipleEnumeration
         
         /// <summary> Returns a random number between 0.0 and 1.0. </summary>
         public static double GetDouble() => _random.NextDouble();
