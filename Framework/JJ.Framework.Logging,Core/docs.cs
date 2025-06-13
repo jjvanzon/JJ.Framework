@@ -1,10 +1,7 @@
-﻿#pragma warning disable CS1572 // XML comment has a param tag, but there is no parameter by that name
-#pragma warning disable CS0649
-#pragma warning disable CS0169 // Field is never used
-#pragma warning disable IDE0044
-
+﻿// ReSharper disable UnusedType.Global
 // ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
+#pragma warning disable CS1572 // XML comment has a param tag, but there is no parameter by that name
 
 namespace JJ.Framework.Logging.Core
 {
@@ -41,12 +38,6 @@ namespace JJ.Framework.Logging.Core
         /// Does not include the ".wishes" part for future compatibility.
         /// </summary>
         public struct _defaultconfigsectionname { } 
-
-        /// <summary> 
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// If the collection is empty, returns 1 (the null-operation for a multiplication).
-        /// </summary> 
-        public struct _frameworkwishproduct { }
 
         /// <summary>
         /// A separate excluded categories collection allows filtering out categories 

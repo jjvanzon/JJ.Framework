@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Text.Core;
-
-namespace JJ.Framework.Collections.Core
+﻿namespace JJ.Framework.Collections.Core
 {
     public static class CollectionExtensionsCore
     {
@@ -19,7 +13,7 @@ namespace JJ.Framework.Collections.Core
             return source.Select(selector).Sum();
         }
         
-        /// <inheritdoc cref="docs._onebecomestwo" />
+        /// <inheritdoc cref="_onebecomestwo" />
         public static IList<T> OneBecomesTwo<T>(this IList<T> list)
         {
             if (list       == null) throw new ArgumentNullException(nameof(list));
@@ -27,10 +21,10 @@ namespace JJ.Framework.Collections.Core
             return list;
         }
         
-        /// <inheritdoc cref="docs._onebecomestwo" />
+        /// <inheritdoc cref="_onebecomestwo" />
         public static T[] OneBecomesTwo<T>(this T[] list) => OneBecomesTwo((IList<T>)list).ToArray();
         
-        /// <inheritdoc cref="docs._frameworkwishproduct" />
+        /// <inheritdoc cref="_product" />
         public static double Product(this IEnumerable<double> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -63,6 +57,9 @@ namespace JJ.Framework.Collections.Core
 
         public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
+            ThrowIfNull(collection);
+            ThrowIfNull(items);
+            
             foreach (var x in items)
             {
                 collection.Add(x);
@@ -83,6 +80,9 @@ namespace JJ.Framework.Collections.Core
         
         public static void Add<T>(this ICollection<T> collection, params T[] items)
         {
+            ThrowIfNull(collection);
+            ThrowIfNull(items);
+            
             foreach (var x in items)
             {
                 collection.Add(x);

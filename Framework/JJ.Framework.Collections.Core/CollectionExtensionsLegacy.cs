@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Framework.Collections.Core
+﻿namespace JJ.Framework.Collections.Core
 {
     public static class CollectionExtensionsLegacy
     {
-        /// <inheritdoc cref="docs._frameworkwishproduct" />
+        /// <inheritdoc cref="_product" />
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
             => collection.Select(selector).Product();
 
@@ -39,8 +34,11 @@ namespace JJ.Framework.Collections.Core
         /// Still this may be useful for certain cases.
         /// </summary>
         public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
-            => source.Where(x => x.GetType() == type);
-        
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            return source.Where(x => x?.GetType() == type);
+        }
+
         /// <summary> Overload of Concat that takes a single item, e.g. myCollection.Concat(myItem); </summary>
         public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, T second) => first.Concat(new[] { second });
         

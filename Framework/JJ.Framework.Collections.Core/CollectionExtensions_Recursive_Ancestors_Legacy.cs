@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Framework.Collections.Core
+﻿namespace JJ.Framework.Collections.Core
 {
     public static class CollectionExtensions_Recursive_Ancestors_Legacy
     {
@@ -21,7 +16,7 @@ namespace JJ.Framework.Collections.Core
         
         private static void SelectAncestors<T>(T sourceItem, Func<T, T?> selector, HashSet<T> destHashSet)
         {
-            T ancestor = sourceItem;
+            T? ancestor = sourceItem;
             while (true)
             {
                 ancestor = selector(ancestor);
