@@ -80,43 +80,15 @@ public class TestingCore_DifferentNullies_OmittedInCaseKeys_CausedDuplicateKeyEr
     
     internal class Case : CaseBase<int>
     {
-        //public override IList<object> KeyElements 
-        //    => [ Name, "~", FrameCount, "f", "(", SamplingRate, "Hz", "+", CourtesyFrames, (",", AudioLength, "s"),
-        //         ByteCount, Bits, Channels, FrameSize, HeaderLength, ")" ];
-
-        // FrameCount: The main property being tested, adjusted directly or via dependencies.
-        //public CaseProp<int> FrameCount => this;
-        
-        // SamplingRate: Scales FrameCount
-        public CaseProp<int> SamplingRate { get; set; }
+        public CaseProp<int> SamplingRate { get; set; } = new();
         public CaseProp<int> Hz           { get => SamplingRate; set => SamplingRate = value; }
-
-        /*
-        // CourtesyFrames: AudioLength does not incorporate CourtesyFrames, but FrameCount does.
-        public CaseProp<int> CourtesyFrames { get; set; }
-
-        // AudioLength: Scales FrameCount + FrameCount setters adjust AudioLength.
-        public CaseProp<double> AudioLength { get; set; }
-
-        // Additional properties, used in conversion formulae
-        public CaseProp<int> ByteCount { get; set; }
-        public CaseProp<int> Bits { get; set; }
-        public CaseProp<int> Channels { get; set; }
-        public CaseProp<int> FrameSize { get; set; }
-        public CaseProp<int> HeaderLength { get; set; }
-        */
-        // Constructors
         
         public Case(
             int?    frameCount     = null,
             int?    samplingRate   = null)
-            //double? audioLength    = null,
-            //int?    courtesyFrames = null)
         {
             if (frameCount     != null) From = To      = frameCount.Value;
             if (samplingRate   != null) SamplingRate   = samplingRate.Value;
-          //if (audioLength    != null) AudioLength    = audioLength.Value;
-          //if (courtesyFrames != null) CourtesyFrames = courtesyFrames.Value;
         }
         
         public Case() { }

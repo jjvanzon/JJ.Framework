@@ -44,6 +44,7 @@
     <NoWarn>$(NoWarn);IDE0032</NoWarn> <!--Use auto-property-->
     <NoWarn>$(NoWarn);CA2263</NoWarn> <!--Prefer type arg-->
     <NoWarn>$(NoWarn);CS0169</NoWarn> <!--Field is never used-->
+    <NoWarn>$(NoWarn);CS0162</NoWarn> <!--Unreachable code-->
   </PropertyGroup>
 
   <!-- Warnings Disabled for Legacy Code -->
@@ -53,12 +54,14 @@
     <NoWarn>$(NoWarn);IDE0057</NoWarn> <!--Use range operator-->
   </PropertyGroup>
 
-  <!-- Strictness for Core Code -->
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
+  <!-- Strictness for Newer Projects -->
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+  </PropertyGroup>
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
   </PropertyGroup>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
