@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Common;
-
+﻿
 namespace JJ.Framework.Text.Core
 {
     public static class StringExtensionsLegacy
@@ -14,8 +9,10 @@ namespace JJ.Framework.Text.Core
         /// </summary>
         public static string TrimEnd(this string input, string end)
         {
-            if (string.IsNullOrEmpty(end)) throw new Exception($"{nameof(end)} is null or empty.");
-            
+            input ??= "";
+
+            if (string.IsNullOrEmpty(end)) return input;
+
             string temp = input;
             
             while (temp.EndsWith(end))
@@ -30,15 +27,20 @@ namespace JJ.Framework.Text.Core
         /// Will trim off repetitions of the same value from the given string.
         /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
-        public static string TrimEnd(this string input, int length) => input.Left(input.Length - length);
-        
+        public static string TrimEnd(this string input, int length)
+        {
+            input ??= "";
+            return input.Left(input.Length - length);
+        }
+
         /// <summary>
         /// Will trim off repetitions of the same value from the given string.
         /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
         public static string TrimStart(this string input, string start)
         {
-            if (string.IsNullOrEmpty(start)) throw new Exception($"{nameof(start)} is null or empty.");
+            if (string.IsNullOrEmpty(start)) return input;
+            if (input == null) return "";
             
             string temp = input;
             
@@ -54,8 +56,12 @@ namespace JJ.Framework.Text.Core
         /// Will trim off repetitions of the same value from the given string.
         /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
-        public static string TrimStart(this string input, int length) => input.Right(input.Length - length);
-        
+        public static string TrimStart(this string input, int length)
+        {
+            input ??= "";
+            return input.Right(input.Length - length);
+        }
+
         /// <summary>
         /// Repeat a string a number of times, returning a single string.
         /// </summary>
@@ -83,6 +89,7 @@ namespace JJ.Framework.Text.Core
         /// </summary>
         public static string TakeEndUntil(this string input, string until)
         {
+            if (input == null) return "";
             if (until == null) throw new ArgumentNullException(nameof(until));
             int index = input.LastIndexOf(until, StringComparison.Ordinal);
             if (index == -1) return "";
@@ -97,6 +104,8 @@ namespace JJ.Framework.Text.Core
         /// </summary>
         public static string TakeStart(this string input, int length)
         {
+            input ??= "";
+            
             if (length > input.Length) length = input.Length;
             
             return input.Left(length);

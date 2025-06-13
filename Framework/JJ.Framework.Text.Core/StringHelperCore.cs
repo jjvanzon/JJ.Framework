@@ -141,13 +141,13 @@
         /// </returns>
         public static bool EndsWithPunctuation(this string text, bool ignoreWhiteSpace = true)
         {
-            if (ignoreWhiteSpace) text = text.TrimEnd();
-            
             if (string.IsNullOrWhiteSpace(text))
             {
                 // Start of string is good enough for punctuation.
                 return true;
             }
+
+            if (ignoreWhiteSpace) text = text.TrimEnd();
             
             // ReSharper disable once PossibleNullReferenceException
             return char.IsPunctuation(text[text.Length - 1]);
