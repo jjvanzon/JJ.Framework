@@ -27,9 +27,9 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
             MethodInfo method1 = _reflectionCache.GetMethod(type, methodName, parameterType);
             MethodInfo method2 = _reflectionCache.GetMethod(type, methodName, parameterType);
 
-            AssertHelper.IsNotNull(() => method1);
-            AssertHelper.IsNotNull(() => method2);
-            AssertHelper.AreEqual(method1, () => method2);
+            NotNull(method1);
+            NotNull(method2);
+            AreEqual(method1, method2);
         }
 
         [TestMethod]
@@ -42,9 +42,9 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
             MethodInfo method1 = _reflectionCache.GetMethod(type, methodName, parameterType);
             MethodInfo method2 = _reflectionCache.GetMethod(type, methodName, parameterType);
 
-            AssertHelper.IsNotNull(() => method1);
-            AssertHelper.IsNotNull(() => method2);
-            AssertHelper.AreEqual(method1, () => method2);
+            NotNull(method1);
+            NotNull(method2);
+            AreEqual(method1, method2);
         }
 
         [TestMethod]
@@ -71,9 +71,9 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
             MethodInfo method1 = _reflectionCache.GetMethod(type, methodName, parameterTypes, typeArguments);
             MethodInfo method2 = _reflectionCache.GetMethod(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.IsNotNull(() => method1);
-            AssertHelper.IsNotNull(() => method2);
-            AssertHelper.AreEqual(method1, () => method2);
+            NotNull(method1);
+            NotNull(method2);
+            AreEqual(method1, method2);
         }
 
         [TestMethod]
@@ -82,12 +82,12 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
             (Type type, string methodName, Type[] parameterTypes, Type[] typeArguments) =
                 GetTestParameters_ForGetMethod_WithTypeArguments();
 
-            MethodInfo method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
-            MethodInfo method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.IsNotNull(() => method1);
-            AssertHelper.IsNotNull(() => method2);
-            AssertHelper.AreEqual(method1, () => method2);
+            NotNull(method1);
+            NotNull(method2);
+            AreEqual(method1, method2);
         }
 
         [TestMethod]
@@ -100,7 +100,7 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 
             string expectedMessage = FormatExpectedMessage_ForGetMethod_WithTypeArguments(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.ThrowsException(
+            ThrowsException(
                 () => _reflectionCache.GetMethod(type, methodName, parameterTypes, typeArguments),
                 expectedMessage);
         }
@@ -113,11 +113,11 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 
             methodName = "WrongName";
 
-            MethodInfo method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
-            MethodInfo method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.IsNull(() => method1);
-            AssertHelper.IsNull(() => method2);
+            IsNull(method1);
+            IsNull(method2);
         }
 
         [TestMethod]
@@ -130,7 +130,7 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 
             string expectedMessage = FormatExpectedMessage_ForGetMethod_WithTypeArguments(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.ThrowsException(
+            ThrowsException(
                 () => _reflectionCache.GetMethod(type, methodName, parameterTypes, typeArguments),
                 expectedMessage);
         }
@@ -143,11 +143,11 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 
             parameterTypes[0] = typeof(Guid);
 
-            MethodInfo method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
-            MethodInfo method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.IsNull(() => method1);
-            AssertHelper.IsNull(() => method2);
+            IsNull(method1);
+            IsNull(method2);
         }
 
         [TestMethod]
@@ -160,7 +160,7 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 
             string expectedMessage = FormatExpectedMessage_ForGetMethod_WithTypeArguments(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.ThrowsException(
+            ThrowsException(
                 () => _reflectionCache.GetMethod(type, methodName, parameterTypes, typeArguments),
                 expectedMessage);
         }
@@ -173,11 +173,11 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 
             typeArguments = typeArguments.Concat(typeof(Guid)).ToArray();
 
-            MethodInfo method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
-            MethodInfo method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method1 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
+            MethodInfo? method2 = _reflectionCache.TryGetMethod(type, methodName, parameterTypes, typeArguments);
 
-            AssertHelper.IsNull(() => method1);
-            AssertHelper.IsNull(() => method2);
+            IsNull(method1);
+            IsNull(method2);
         }
 
         // Helpers
@@ -196,7 +196,7 @@ namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 
         private string FormatExpectedMessage_ForGetMethod_WithTypeArguments(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
             => $"Method '{name}' with {typeArguments.Length} type arguments not found " +
-               $"with parameters ({string.Join(", ", parameterTypes.Select(x => $"{x.Name}"))}) " +
+               $"with parameters ({Join(", ", parameterTypes.Select(x => $"{x.Name}"))}) " +
                $"in type '{type}'.";
 
     }

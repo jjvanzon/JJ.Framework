@@ -74,3 +74,15 @@
         //method = type.GetMethod(name, bindingFlags);
         //method = type.GetMethod(name, bindingFlags, null, argTypes, null);
 ```
+
+```cs
+
+
+    //static IsStaticTests()
+    //{
+    //   StaticEvent += StaticEventHandler;
+    //}
+
+    //static void StaticEventHandler(object? sender, EventArgs e) { }
+
+```

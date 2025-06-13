@@ -1,6 +1,5 @@
 ﻿// ReSharper disable UnusedMember.Local
 
-using static System.Reflection.BindingFlags;
 using static JJ.Framework.Reflection.ReflectionHelper;
 
 namespace JJ.Framework.Reflection.Core.Tests;
@@ -16,7 +15,7 @@ public class ReflectionCacheTests
     private class TestClass
     {
         private int    _testField;
-        private string _testField2;
+        private string _testField2 = "";
         public  int    TestProperty  { get => _testField;  set => _testField = value; } 
         public  string TestProperty2 { get => _testField2; set => _testField2 = value; }
         public int TestMethod() => 0;
@@ -295,30 +294,30 @@ public class ReflectionCacheTests
             IList<MethodInfo> methods = StaticReflectionCache.GetMethods(typeof(TestClass), BINDING_FLAGS_ALL);
             IsNotNull(() => methods);
 
-            MethodInfo method = methods.FirstOrDefault(x => x.Name == "TestMethod");
+            MethodInfo? method = methods.FirstOrDefault(x => x.Name == "TestMethod");
             AssertMethod(method);
             
-            MethodInfo method2 = methods.FirstOrDefault(x => x.Name == "TestMethod2");
+            MethodInfo? method2 = methods.FirstOrDefault(x => x.Name == "TestMethod2");
             AssertMethod2(method2);
         }
     }
     
-    private static void AssertMethod(MethodInfo method)
+    private static void AssertMethod(MethodInfo? method)
     {
-        IsNotNull(() => method);
-        AreEqual("TestMethod", () => method.Name);
-        AreEqual(typeof(int),  () => method.ReturnType);
+        NotNull(method);
+        AreEqual("TestMethod", method.Name);
+        AreEqual(typeof(int),  method.ReturnType);
         
         var parameters = method.GetParameters();
         IsNotNull(() => parameters);
         AreEqual(0, () => parameters.Length);
     }
     
-    private static void AssertMethod2(MethodInfo method2)
+    private static void AssertMethod2(MethodInfo? method2)
     {
-        IsNotNull(() => method2);
-        AreEqual("TestMethod2",  () => method2.Name);
-        AreEqual(typeof(string), () => method2.ReturnType);
+        NotNull(method2);
+        AreEqual("TestMethod2",  method2.Name);
+        AreEqual(typeof(string), method2.ReturnType);
         
         var parameters = method2.GetParameters();
         AreEqual(2,              () => parameters.Length);

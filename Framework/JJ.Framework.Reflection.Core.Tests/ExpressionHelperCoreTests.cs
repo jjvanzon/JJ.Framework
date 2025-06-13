@@ -115,8 +115,8 @@ public class ExpressionHelperCoreTests
         var indexer = new TestIndexer();
         string text = GetText(() => indexer[1, 2]);
         int value = GetValue(() => indexer[1, 2]);
-        AreEqual("indexer[1, 2]", () => text);
-        AreEqual(1, () => value);
+        AreEqual("indexer[1, 2]", text);
+        AreEqual(1, value);
     }
     
     [TestMethod]
@@ -171,10 +171,10 @@ public class ExpressionHelperCoreTests
         object? targetType = null;
         var expression = CauseConvert(() => constant, targetType);
         string text  = GetText(expression);
-        object value = GetValue(expression);
+        object? value = GetValue(expression);
         AssertConvertConstant(expression);
-        AreEqual("1", () => text);
-        AreEqual(1, () => value);
+        AreEqual("1", text);
+        AreEqual(1, value);
     }
     
     [TestMethod]
@@ -183,10 +183,10 @@ public class ExpressionHelperCoreTests
         object? targetType = null;
         var expression = CauseConvert(() => (decimal)(double)GetInt(), targetType);
         string text = GetText(expression);
-        object value = GetValue(expression);
+        object? value = GetValue(expression);
         AssertWrappedInConvert(expression);
-        AreEqual("GetInt()", () => text);
-        AreEqual(1m, () => value); 
+        AreEqual("GetInt()", text);
+        AreEqual(1m, value); 
     }
     
     [TestMethod]
@@ -197,8 +197,8 @@ public class ExpressionHelperCoreTests
         string text = GetText(expression);
         object? value = GetValue(expression);
         AssertWrappedInConvert(expression);
-        AreEqual("GetInt()", () => text);
-        AreEqual(1, () => value); 
+        AreEqual("GetInt()", text);
+        AreEqual(1, value); 
     }
     
     /// <summary>
