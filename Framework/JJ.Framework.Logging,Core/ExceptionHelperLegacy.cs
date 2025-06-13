@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Collections.Core;
+﻿using JJ.Framework.Collections.Core;
 
 namespace JJ.Framework.Logging.Core
 {

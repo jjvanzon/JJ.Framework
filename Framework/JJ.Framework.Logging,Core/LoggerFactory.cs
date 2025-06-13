@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Logging.Core.Config;
 using JJ.Framework.Logging.Core.Loggers;
@@ -13,9 +12,9 @@ namespace JJ.Framework.Logging.Core
 {
     public static class LoggerFactory
     {
-        private static ILogger _emptyLogger = new EmptyLogger();
+        private static readonly ILogger _emptyLogger = new EmptyLogger();
         
-        public static ILogger CreateLoggerFromConfig(string sectionName = null)
+        public static ILogger CreateLoggerFromConfig(string sectionName = "")
         {
             RootLoggerConfig rootLoggerConfig = LoggerConfigFetcher.CreateLoggerConfig(sectionName);
             return CreateLogger(rootLoggerConfig);
@@ -46,7 +45,7 @@ namespace JJ.Framework.Logging.Core
         {
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
             
-            ILogger logger = TryCreateLogger_ByEnum(loggerConfig);
+            ILogger? logger = TryCreateLogger_ByEnum(loggerConfig);
             
             if (logger == null)
             {
@@ -59,7 +58,7 @@ namespace JJ.Framework.Logging.Core
             return logger;
         }
         
-        private static ILogger TryCreateLogger_ByEnum(LoggerConfig loggerConfig)
+        private static ILogger? TryCreateLogger_ByEnum(LoggerConfig loggerConfig)
         {
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
             
@@ -84,7 +83,9 @@ namespace JJ.Framework.Logging.Core
         {
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
             Type type = GetLoggerType(loggerConfig.Type);
-            ILogger logger = (ILogger)Activator.CreateInstance(type);
+            var instance = Activator.CreateInstance(type);
+            ThrowIfNull(instance);
+            ILogger logger = (ILogger)instance;
             return logger;
         }
         
@@ -108,7 +109,7 @@ namespace JJ.Framework.Logging.Core
         {
             lock (_loggerTypeDictionaryLock)
             {
-                if (_loggerTypeDictionary.TryGetValue(loggerType, out Type type))
+                if (_loggerTypeDictionary.TryGetValue(loggerType, out Type? type))
                 {
                     return type;
                 }
@@ -127,7 +128,7 @@ namespace JJ.Framework.Logging.Core
             }
         }
         
-        private static Type TryGetLoggerType_FromAssemblyName(string assemblyName)
+        private static Type? TryGetLoggerType_FromAssemblyName(string assemblyName)
         {
             // Try load assembly.
             Assembly assembly;

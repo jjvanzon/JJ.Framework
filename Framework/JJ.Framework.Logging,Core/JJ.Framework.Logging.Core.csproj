@@ -2,7 +2,17 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>2.4.$(BuildNum)</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>
+    <!--<WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>--><!-- API surface nulls -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
@@ -11,6 +21,7 @@
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
     <ProjectReference Include="..\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <Content Include="app.config.logging.example.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
