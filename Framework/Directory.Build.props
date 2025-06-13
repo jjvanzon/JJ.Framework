@@ -55,13 +55,10 @@
 
   <!-- Strictness for Core Code -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Nullable>enable</Nullable>
-    <!--<WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>-->
-    <!--<WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>--> <!-- API surface nulls -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--> <!--Missing doc lenience-->
-    <!--<WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>--><!--Missing doc strictness-->
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->

@@ -86,7 +86,3 @@
     //static void StaticEventHandler(object? sender, EventArgs e) { }
 
 ```
-
-```xml
-    <!--<WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>--><!--Missing doc strictness-->
-```
