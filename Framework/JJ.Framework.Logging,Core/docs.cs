@@ -38,10 +38,5 @@ namespace JJ.Framework.Logging.Core
         /// <inheritdoc cref="docs._loggertype" />
         public struct _loggertypes { }
 
-        
-        /// <summary> 
-        /// This null-tolerant version is missing in JJ.Framework.Configuration for now.
-        /// </summary> 
-        public struct _trygetsection { }
     }
 }

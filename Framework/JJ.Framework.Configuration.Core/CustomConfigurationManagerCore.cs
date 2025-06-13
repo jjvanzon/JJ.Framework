@@ -7,7 +7,7 @@ namespace JJ.Framework.Configuration.Core
     /// <inheritdoc cref="_trygetsection"/>
     public static class CustomConfigurationManagerCore
     {
-        /// <inheritdoc cref="docs._trygetsection"/>
+        /// <inheritdoc cref="_trygetsection"/>
         public static T? TryGetSection<T>(Assembly assembly)
             where T: new()
         {
@@ -25,7 +25,7 @@ namespace JJ.Framework.Configuration.Core
             return config;
         }
         
-        /// <inheritdoc cref="docs._trygetsection"/>
+        /// <inheritdoc cref="_trygetsection"/>
         public static T? TryGetSection<T>(string sectionName)
             where T: new()
         {
@@ -43,7 +43,7 @@ namespace JJ.Framework.Configuration.Core
             return config;
         }
         
-        /// <inheritdoc cref="docs._trygetsection"/>
+        /// <inheritdoc cref="_trygetsection"/>
         public static T? TryGetSection<T>()
             where T: class, new()
         {

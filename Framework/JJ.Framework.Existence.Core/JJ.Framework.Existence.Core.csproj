@@ -12,8 +12,9 @@
     <!--<Nullable>enable</Nullable>-->
     <!--<WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>-->
     <!--<WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>--> <!-- API surface nulls -->
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
     <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
+    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors><!--Missing doc strictness-->
   </PropertyGroup>
 
   <ItemGroup>
