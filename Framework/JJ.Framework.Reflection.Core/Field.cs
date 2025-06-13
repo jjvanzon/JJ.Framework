@@ -11,6 +11,7 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static FieldInfo FieldOrThrow(Type type, string name, BindingFlags bindingFlags, FieldDic dic, Lock lck)
     {
+        ThrowIfNull(type);
         FieldInfo? field = FieldOrNull(type, name, bindingFlags, dic, lck);
         if (field == null)
         {

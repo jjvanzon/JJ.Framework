@@ -1,6 +1,7 @@
 ﻿using static JJ.Framework.Common.KeyHelper;
 // ReSharper disable ChangeFieldTypeToSystemThreadingLock
 // ReSharper disable UseSymbolAlias
+// ReSharper disable CoVariantArrayConversion
 
 namespace JJ.Framework.Reflection.Core
 {
@@ -57,6 +58,7 @@ namespace JJ.Framework.Reflection.Core
                     return properties;
                 }
 
+                if (type == null) throw new ArgumentNullException(nameof(type));
                 properties = type.GetProperties(_bindingFlags);
                 _propertiesDictionary.Add(type, properties);
 
@@ -78,6 +80,8 @@ namespace JJ.Framework.Reflection.Core
                     return propertyDictionary;
                 }
 
+                if (type == null) throw new ArgumentNullException(nameof(type));
+                
                 propertyDictionary = type.GetProperties(_bindingFlags).ToDictionary(x => x.Name);
                 _propertyDictionaryDictionary.Add(type, propertyDictionary);
 
@@ -133,6 +137,8 @@ namespace JJ.Framework.Reflection.Core
                 {
                     return fields;
                 }
+                
+                if (type == null) throw new ArgumentNullException(nameof(type));
 
                 fields = type.GetFields(_bindingFlags);
                 _fieldsDictionary.Add(type, fields);
@@ -401,6 +407,11 @@ namespace JJ.Framework.Reflection.Core
                 }
             }
 
+            if (IsNullOrWhiteSpace(shortTypeName))
+            {
+                throw new Exception($"{nameof(shortTypeName)} is null or white space.");
+            }
+
             var stringComparison = _bindingFlags.HasFlag(IgnoreCase) ? OrdinalIgnoreCase : Ordinal;
             string trimmedName = shortTypeName.Trim();
 
@@ -443,6 +454,9 @@ namespace JJ.Framework.Reflection.Core
                 {
                     return constructor;
                 }
+                
+                if (type == null) throw new ArgumentNullException(nameof(type));
+                
 
                 IList<ConstructorInfo> constructors = type.GetConstructors(_bindingFlags);
                 switch (constructors.Count)

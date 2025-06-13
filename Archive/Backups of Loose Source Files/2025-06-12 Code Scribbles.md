@@ -70,4 +70,7 @@
     // Super Magic Resolvers
     
     // (Temporary until that of AccessCore is migrated, but it's dependencies get
+
+        //method = type.GetMethod(name, bindingFlags);
+        //method = type.GetMethod(name, bindingFlags, null, argTypes, null);
 ```

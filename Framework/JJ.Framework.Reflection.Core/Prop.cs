@@ -11,6 +11,7 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static PropertyInfo PropOrThrow(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock lck)
     {
+        ThrowIfNull(type);
         PropertyInfo? prop = PropOrNull(type, name, bindingFlags, dic, lck);
         if (prop == null)
         {

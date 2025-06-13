@@ -26,9 +26,7 @@ internal static partial class ReflectUtility
 
         ThrowIfNull(type);
         
-        //method = type.GetMethod(name, bindingFlags);
         method = TryResolveMethod(type, name, bindingFlags);
-        
         
         lock (lck)
         {
@@ -57,7 +55,6 @@ internal static partial class ReflectUtility
         ThrowIfNull(type);
         
         method = TryResolveMethod(type, name, bindingFlags, argTypes);
-        //method = type.GetMethod(name, bindingFlags, null, argTypes, null);
         
         lock (lck)
         {
@@ -69,6 +66,7 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo? MethodOrNull(
+        // ReSharper disable once UnusedParameter.Global
         Type type, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
         MethodDicN dic, Lock lck)
     {
@@ -84,14 +82,11 @@ internal static partial class ReflectUtility
                 return method;
             }
         }
-
-        // TODO: Use typeArgs
-        typeArgs = typeArgs;
         
         ThrowIfNull(type);
 
+        // TODO: Use typeArgs
         method = TryResolveMethod(type, name, bindingFlags, argTypes);
-        //method = type.GetMethod(name, bindingFlags, null, argTypes, null);
 
         lock (lck)
         {

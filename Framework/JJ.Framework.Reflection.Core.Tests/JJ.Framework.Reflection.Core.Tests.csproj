@@ -4,9 +4,12 @@
     <Version>2.4.$(BuildNum)</Version>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
