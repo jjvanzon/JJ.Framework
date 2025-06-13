@@ -1,4 +1,5 @@
 ﻿
+// ReSharper disable ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
 namespace JJ.Framework.Testing.Core
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
@@ -38,8 +39,8 @@ namespace JJ.Framework.Testing.Core
 
         // Conversion Operators
 
-        public static implicit operator T (CaseProp<T> prop) => prop.To;
-        public static implicit operator T?(CaseProp<T> prop) => prop.To;
+        public static implicit operator T (CaseProp<T> prop) => prop?.To ?? default(T);
+        public static implicit operator T?(CaseProp<T> prop) => prop?.To ?? default(T?);
         public static implicit operator CaseProp<T>(T  value) => new CaseProp<T>(value);
         public static implicit operator CaseProp<T>(T? value) => new CaseProp<T>(value);
         public static implicit operator CaseProp<T>((T  from, T  to) values) => new CaseProp<T>(values);

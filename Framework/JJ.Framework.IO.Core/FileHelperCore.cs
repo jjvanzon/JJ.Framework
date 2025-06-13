@@ -213,6 +213,7 @@ namespace JJ.Framework.IO.Core
         
         public static string GetExtension(string filePath, int maxExtensionLength)
         {
+            filePath ??= "";
             if (!Has(filePath)) return filePath;
             string extension = Path.GetExtension(filePath);
             if (extension.Length > maxExtensionLength) return "";
