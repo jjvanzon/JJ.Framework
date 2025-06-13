@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-
-namespace JJ.Framework.Text.Core
+﻿namespace JJ.Framework.Text.Core
 {
     public static class StringHelperCore
     {
-        public static int CountLines(this string str)
+        public static int CountLines(this string? str)
         {
             // Less efficient:
             //int count = str.Trim().Split(NewLine).Length;
@@ -56,7 +50,7 @@ namespace JJ.Framework.Text.Core
         
         public static string PrettyDuration(double? durationInSeconds)
         {
-            if (!durationInSeconds.HasValue) return default;
+            if (!durationInSeconds.HasValue) return "";
             return PrettyDuration(durationInSeconds.Value);
         }
         
@@ -75,7 +69,7 @@ namespace JJ.Framework.Text.Core
             return $"{totalNanoseconds:0.00} ns";
         }
         
-        public static string PrettyByteCount(byte[] bytes)
+        public static string PrettyByteCount(byte[]? bytes)
         {
             int coalescedLength = bytes?.Length ?? 0;
             return PrettyByteCount(coalescedLength);
@@ -147,7 +141,7 @@ namespace JJ.Framework.Text.Core
         /// </returns>
         public static bool EndsWithPunctuation(this string text, bool ignoreWhiteSpace = true)
         {
-            if (ignoreWhiteSpace) text = text?.TrimEnd();
+            if (ignoreWhiteSpace) text = text.TrimEnd();
             
             if (string.IsNullOrWhiteSpace(text))
             {

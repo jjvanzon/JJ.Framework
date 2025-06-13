@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-
-namespace JJ.Framework.Text.Core
+﻿namespace JJ.Framework.Text.Core
 {
     public class StringBuilderWithIndentationCore
     {
@@ -65,7 +59,7 @@ namespace JJ.Framework.Text.Core
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string GetTabs()
         {
-            string tabs = _tabString?.Repeat(_indentLevel);
+            string tabs = _tabString.Repeat(_indentLevel);
             return tabs;
         }
     }
