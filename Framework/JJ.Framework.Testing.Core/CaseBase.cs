@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using JJ.Framework.Common;
-using JJ.Framework.Logging.Core.docs;
-using JJ.Framework.Reflection;
-using JJ.Framework.Reflection.Core;
-using static System.Activator;
-using static System.Array;
-using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Existence.Core.FilledInHelper;
-using static JJ.Framework.Testing.Core.DebuggerDisplayFormatter;
+﻿// ReSharper disable RedundantBaseConstructorCall
 
 namespace JJ.Framework.Testing.Core
 {
@@ -22,7 +8,7 @@ namespace JJ.Framework.Testing.Core
     {
         // Properties
 
-        /// <inheritdoc cref="_strict
+        /// <inheritdoc cref="_strict" />
         public bool Strict { get; set; } = true;
         public CaseProp<TMainProp> MainProp => this;
         ICaseProp ICase.MainProp => this;
@@ -42,10 +28,10 @@ namespace JJ.Framework.Testing.Core
                                                              .ForEach(x => x.SetValue(this, CreateInstance(x.FieldType)));
         // Descriptions
         
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         public string Key => new CaseKeyBuilder(this).BuildKey();
         public override string ToString() => Key;
-        public object[] DynamicData => new object[] { Key };
+        public object[] DynamicData => [ Key ];
         public virtual IList<object> KeyElements { get; } = Empty<object>();
         private string DebuggerDisplay => DebuggerDisplay(this);
 
@@ -72,7 +58,7 @@ namespace JJ.Framework.Testing.Core
         {
             if (template == null) throw new NullException(() => template);
             if (destCases == null) throw new NullException(() => destCases);
-            if (destCases.Contains(null)) throw new Exception($"{nameof(destCases)} contains nulls.");
+            if (destCases.Contains(null!)) throw new Exception($"{nameof(destCases)} contains nulls.");
             
             var sourceCase = template;
             

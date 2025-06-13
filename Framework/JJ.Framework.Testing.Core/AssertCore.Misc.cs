@@ -7,16 +7,19 @@ public static partial class AssertCore
 {
     // Basics
     
-    public static void NotNull([NotNull] object? value, [ArgExpress(nameof(value))] string message = null) 
-        => Check(value != null, message: message);
-    
-    public static void IsNull(object? value, [ArgExpress(nameof(value))] string message = null) 
+    public static void NotNull([NotNull] object? value, [ArgExpress(nameof(value))] string message = "")
+    {
+        Check(value != null, message: message);
+        ThrowIfNull(value);
+    }
+
+    public static void IsNull(object? value, [ArgExpress(nameof(value))] string message = "") 
         => Check(value == null, message: message);
     
-    public static void IsTrue(bool value, [ArgExpress(nameof(value))] string message = null) 
+    public static void IsTrue(bool value, [ArgExpress(nameof(value))] string message = "") 
         => Check(value == true, message: message);
     
-    public static void IsFalse(bool value, [ArgExpress(nameof(value))] string message = null) 
+    public static void IsFalse(bool value, [ArgExpress(nameof(value))] string message = "") 
         => Check(value == false, message: message);
     
     public static void Fail() 
@@ -27,7 +30,7 @@ public static partial class AssertCore
             
     // Partial String Comparison
             
-    public static void Contains(string expectedText, string actualText)
+    public static void Contains(string? expectedText, string? actualText)
     {
         actualText ??= "";
         expectedText ??= "";

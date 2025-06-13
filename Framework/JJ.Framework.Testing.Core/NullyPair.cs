@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Existence.Core;
-using static JJ.Framework.Testing.Core.DebuggerDisplayFormatter;
-using static JJ.Framework.Existence.Core.FilledInHelper;
+﻿#pragma warning disable CS0660, CS0661 // Equals without GetHashCode
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
 
 namespace JJ.Framework.Testing.Core
 {
@@ -21,18 +15,18 @@ namespace JJ.Framework.Testing.Core
         
         public static implicit operator T?(NullyPair<T> pair)  => pair.Nully;
         public static implicit operator T (NullyPair<T> pair)  => pair.Coalesced;
-        public static implicit operator NullyPair<T>(T? value) => new NullyPair<T> { Nully = value };
-        public static implicit operator NullyPair<T>(T  value) => new NullyPair<T> { Nully = value, Coalesced = value };
-        public static implicit operator NullyPair<T>((T? nully, T coalesced) x) => new NullyPair<T> { Nully = x.nully, Coalesced = x.coalesced };
+        public static implicit operator NullyPair<T>(T? value) => new() { Nully = value };
+        public static implicit operator NullyPair<T>(T  value) => new() { Nully = value, Coalesced = value };
+        public static implicit operator NullyPair<T>((T? nully, T coalesced) x) => new() { Nully = x.nully, Coalesced = x.coalesced };
         
         // Equals
         
-        public static bool operator ==(NullyPair<T> a, NullyPair<T> b) => Equalish(a, b);
-        public static bool operator !=(NullyPair<T> a, NullyPair<T> b) => !Equalish(a, b);
-        public override bool Equals(object other) => Equalish(other, this);
-        public bool Equals(NullyPair<T> other) => Equalish(other, this);
+        public static bool operator ==(NullyPair<T>? a, NullyPair<T>? b) => Equalish(a, b);
+        public static bool operator !=(NullyPair<T>? a, NullyPair<T>? b) => !Equalish(a, b);
+        public override bool Equals(object? other) => Equalish(other, this);
+        public bool Equals(NullyPair<T>? other) => Equalish(other, this);
         
-        private static bool Equalish(object inputA, object inputB)
+        private static bool Equalish(object? inputA, object? inputB)
         {
             if (inputA == null && inputB == null) return true;
             if (ReferenceEquals(inputA, inputB)) return true;
@@ -50,7 +44,7 @@ namespace JJ.Framework.Testing.Core
             
             return false;
         }
-        
+
         // Descriptions
         
         string DebuggerDisplay => DebuggerDisplay(this);

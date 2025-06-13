@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Reflection;
-
-namespace JJ.Framework.Testing.Core
+﻿namespace JJ.Framework.Testing.Core
 {
     public static class TestHelperCore
     {
@@ -14,8 +11,8 @@ namespace JJ.Framework.Testing.Core
             var methodQuery = new StackTrace().GetFrames().Select(x => x.GetMethod());
             
             var attributeQuery
-                = methodQuery.SelectMany(method => method.GetCustomAttributes()
-                                                         .Union(method.DeclaringType?.GetCustomAttributes() ?? Array.Empty<Attribute>()));
+                = methodQuery.SelectMany(method => method!.GetCustomAttributes()
+                                                          .Union(method!.DeclaringType?.GetCustomAttributes() ?? Array.Empty<Attribute>()));
             var categoryQuery
                 = attributeQuery.Where(attr => attr.GetType().Name == "TestCategoryAttribute")
                                 .Select(attr => attr.GetType().GetProperty("TestCategories")?.GetValue(attr))

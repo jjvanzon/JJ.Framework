@@ -87,7 +87,7 @@ namespace JJ.Framework.Testing.Core
             return true;
         }
         
-        private IList<string> GetKeyTupleTexts(object tuple)
+        private IList<string> GetKeyTupleTexts(object? tuple)
         {
             var texts = new List<string>();
             
@@ -95,9 +95,9 @@ namespace JJ.Framework.Testing.Core
             
             Type type = tuple.GetType();
             
-            string prefix = type.Field("Item1").GetValue(tuple)?.ToString();
-            string value  = type.Field("Item2").GetValue(tuple)?.ToString();
-            string suffix = type.Field("Item3").GetValue(tuple)?.ToString();
+            string prefix = type.Field("Item1").GetValue(tuple)?.ToString() ?? "";
+            string value  = type.Field("Item2").GetValue(tuple)?.ToString() ?? "";
+            string suffix = type.Field("Item3").GetValue(tuple)?.ToString() ?? "";
             
             if (Has(value))
             {
@@ -116,14 +116,14 @@ namespace JJ.Framework.Testing.Core
             var prop = item as ICaseProp;
             if (prop.IsNully())
             {
-                return default;
+                return "";
             }
             
             string text = prop.Descriptor;
             if (text.IsNully())
             {
                 mustAddUnit = false;
-                return default;
+                return "";
             }
             
             mustAddUnit = true;
@@ -144,22 +144,22 @@ namespace JJ.Framework.Testing.Core
         
         private string GetUnit(object item, ref bool mustAddUnit)
         {
-            string unit = item as string;
+            string? unit = item as string;
             
             if (unit.IsNully())
             {
-                return default;
+                return "";
             }
             
             if (unit.Length > 3)
             {
-                return default;
+                return "";
             }
             
             if (!mustAddUnit)
             {
                 mustAddUnit = true; // Skip at most successive 1 unit.
-                return default;
+                return "";
             }
             
             return unit;
@@ -196,9 +196,9 @@ namespace JJ.Framework.Testing.Core
             }
         }
         
-        private string GetElementDescriptor(string prop, string unit) => GetElementDescriptor(null, prop, unit);
-        private string GetElementDescriptor(object prop, string unit) => GetElementDescriptor(null, prop, unit);
-        private string GetElementDescriptor(string unit, object prop) => GetElementDescriptor(unit, prop, null);
+        private string GetElementDescriptor(string prop, string unit) => GetElementDescriptor("", prop, unit);
+        private string GetElementDescriptor(object prop, string unit) => GetElementDescriptor("", prop, unit);
+        private string GetElementDescriptor(string unit, object prop) => GetElementDescriptor(unit, prop, "");
         
         private string GetElementDescriptor(string prefixUnit, object value, string suffixUnit)
         {

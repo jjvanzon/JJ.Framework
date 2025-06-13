@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Existence.Core;
-using JJ.Framework.Reflection;
-using static JJ.Framework.Existence.Core.FilledInHelper;
-using static JJ.Framework.Testing.Core.DebuggerDisplayFormatter;
-
+﻿
 namespace JJ.Framework.Testing.Core
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
@@ -89,7 +80,7 @@ namespace JJ.Framework.Testing.Core
                 string to = $"{To}";
                 
                 // None Filled In
-                if (from.IsNully() && to.IsNully()) return default;
+                if (from.IsNully() && to.IsNully()) return "";
                 
                 // All Equal
                 if (from.Is(to)) return from;

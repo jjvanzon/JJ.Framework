@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Logging.Core.docs;
-using JJ.Framework.Reflection;
+﻿using System.Collections;
 
 namespace JJ.Framework.Testing.Core
 {
@@ -14,13 +8,13 @@ namespace JJ.Framework.Testing.Core
     {
         // Storage Collection
 
-        private readonly Dictionary<string, TCase> _caseDictionary = new Dictionary<string, TCase>();
+        private readonly Dictionary<string, TCase> _caseDictionary = new();
 
         // Properties
         
         public bool AllowDuplicates { get; set; }
         private bool IsRoot => Root == null;
-        private CaseCollection<TCase> Root { get; set; }
+        private CaseCollection<TCase>? Root { get; set; }
 
         // Constructor (basic)
         
@@ -80,7 +74,7 @@ namespace JJ.Framework.Testing.Core
         
         public TCase Get(string key)
         {
-            if (_caseDictionary.TryGetValue(key, out TCase testCase)) return testCase;
+            if (_caseDictionary.TryGetValue(key, out TCase? testCase)) return testCase;
             throw new Exception($"Case not found: {key}");
         }
                 
