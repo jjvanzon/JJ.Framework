@@ -53,6 +53,11 @@
     <NoWarn>$(NoWarn);IDE0057</NoWarn> <!--Use range operator-->
   </PropertyGroup>
 
+  <!-- Strictness for Core Code -->
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
   <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
