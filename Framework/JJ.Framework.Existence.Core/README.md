@@ -10,12 +10,12 @@ Background
 
 *Nothing* isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, uninitialized structs, `Nullable<T>.HasValue == false`, etc. Things can get quite absurd, once you dive into how many ways nothingness can be expressed in .`NET`.
 
-Here we coin the term __nully__. Don't blame us; the concept it already existed, just nobody dared give it a name yet.
+Here we coin the term __nully__. Don't blame us; the concept already existed, just nobody dared give it a name yet.
 
 Features
 --------
 
-Grab these methods instead of wrestling with all these checks. Your code (and your brain) will thank you:
+Grab these methods instead. Your code (and your brain) will thank you:
 
 - `Has` / `FilledIn` / `IsNully`
 
