@@ -8,7 +8,7 @@ Well, no more. Now you just type `Has(text)` or `Has(collection)` and be done wi
 Background
 ----------
 
-"Nothing" isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, uninitialized structs, `Nullable<T>.HasValue == false`, etc.
+"Nothing" isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, uninitialized structs, `Nullable<T>.HasValue == false`, etc. Things can get quite absurd, once you dive into how many ways nothingness can be expressed.
 
 Features
 --------
