@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Core.Package.Tests\JJ.Framework.PlatformCompatibility.Core.Package.Tests.csproj", "{31B07130-5D5F-E179-BF99-DC82E8F73D13}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Package.Tests", "Framework\PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Package.Tests.csproj", "{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}"
@@ -26,16 +24,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests", "Framework\JJ.Framework.Existence.Core.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.csproj", "{D589D511-228E-937F-4AC8-0009AFCE0BAC}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.PlatformCompatibility.Core", "Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.shproj", "{CE2BF11F-D06A-4EA3-9DD6-FDDA12705F83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{31B07130-5D5F-E179-BF99-DC82E8F73D13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31B07130-5D5F-E179-BF99-DC82E8F73D13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31B07130-5D5F-E179-BF99-DC82E8F73D13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31B07130-5D5F-E179-BF99-DC82E8F73D13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,5 +66,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B958E8C-E60A-4645-9565-A8B8F94E2F5A}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{ce2bf11f-d06a-4ea3-9dd6-fdda12705f83}*SharedItemsImports = 13
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{d589d511-228e-937f-4ac8-0009afce0bac}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

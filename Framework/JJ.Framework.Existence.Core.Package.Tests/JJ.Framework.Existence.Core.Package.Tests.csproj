@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Existence.Core" Version="2.4.2803" />
+    <PackageReference Include="JJ.Framework.Existence.Core" Version="2.4.3059" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.2797" />
     <PackageReference Include="JJ.Framework.Testing" Version="0.250.2797" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="2.4.2803" />
-    <PackageReference Include="JJ.Framework.Tests.Helpers" Version="2.4.2797" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="2.4.3059" />
+    <PackageReference Include="JJ.Framework.Tests.Helpers" Version="2.4.3059" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
@@ -24,5 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
+
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
 
 </Project>
