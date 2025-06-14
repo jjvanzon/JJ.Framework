@@ -4,12 +4,6 @@
     <Version>2.4.$(BuildNum)</Version>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>$(WarningsAsErrors);nullable</WarningsAsErrors>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>

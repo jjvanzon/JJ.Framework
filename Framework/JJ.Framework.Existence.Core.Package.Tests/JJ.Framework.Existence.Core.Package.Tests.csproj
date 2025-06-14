@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Compile Include="..\JJ.Framework.Existence.Core.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Tests\Helpers\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
