@@ -8,17 +8,18 @@ Well, no more. Now you just type `Has(text)` or `Has(collection)` and be done wi
 Background
 ----------
 
-"Nothing" isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, uninitialized structs, `Nullable<T>.HasValue == false`, etc. Things can get quite absurd, once you dive into how many ways nothingness can be expressed.
+*Nothing* isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, uninitialized structs, `Nullable<T>.HasValue == false`, etc. Things can get quite absurd, once you dive into how many ways nothingness can be expressed in .`NET`.
+
+Here we coin the term __nully__. Don't blame us; the concept it already existed, just nobody dared give it a name yet.
 
 Features
 --------
 
-Grab these methods instead of wrestling with repeated checks.
-Your code (and your brain) will thank you:
+Grab these methods instead of wrestling with all these checks. Your code (and your brain) will thank you:
 
 - `Has` / `FilledIn` / `IsNully`
 
-    - One step beyond `null` treating empty `strings` / white space / `0` / empty as `nully`.
+    - One step beyond `null` treating empty `strings` / white space / `0` / empty lists as `nully`.
 
 -----
 
@@ -71,10 +72,10 @@ More is coming to make things super flexible:
 - ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn’t `10`?
 
 
-Mr. Koala
----------
+🐨 Mr. Koala
+------------
 
-Once you think of koalas when you read 🐨 Coalesce, you can never unsee it. Mr. Koala eats your nullies. Nully `nums` are his favorites!
+Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coalesce`, you can never unsee it. *Mr. Koala* eats your nullies. Nully `nums` are his favorites!
 
 
 💬 Feedback
