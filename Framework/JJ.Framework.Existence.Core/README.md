@@ -5,22 +5,26 @@ Ever find yourself trying to decide on `IsNullOrEmpty`, `IsNullOrWhiteSpace`, a 
 
 Well, no more. Now you just type `Has(text)` or `Has(collection)` and be done with it.
 
+Background
+----------
+
+"Nothing" isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, uninitialized structs, `Nullable<T>.HasValue == false`, etc.
 
 Features
 --------
 
-Grab these methods instead of wrestling with `if` statements and repeated checks.
-Your code (and your brain) will thank you.
+Grab these methods instead of wrestling with repeated checks.
+Your code (and your brain) will thank you:
 
 - `Has` / `FilledIn` / `IsNully`
 
-    - One step beyond `null`, treating empty `strings`, `0`, or empty lists as `"nully"`.
+    - One step beyond `null` treating empty `strings` / white space / `0` / empty as `nully`.
 
 -----
 
 - `Coalesce`
 
-    - First non-`nully` value picker (think `??` on steroids).
+    - Pick the first non-`nully` value (`??` on steroids).
 
 -----
 
@@ -55,7 +59,7 @@ Coalesce(" ", null, "Hi!") == "Hi!"
 Future Features
 ---------------
 
-This is just the beginning. More is coming to make things super flexible:
+More is coming to make things super flexible:
 
 - `spaceMatters` everywhere – because sometimes you really care if your `string` is just a single space.
 - `zeroMatters` – flip the switch so `0` isn't disregarded.
@@ -65,3 +69,15 @@ This is just the beginning. More is coming to make things super flexible:
 - `enum` safety net – invalid enum values get flagged as nully instead of blowing up.
 - all-`null` collections – if every item is `null`, the whole collection is officially empty.
 - ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn’t `10`?
+
+
+Mr. Koala
+---------
+
+Once you think of koalas when you read 🐨 Coalesce, you can never unsee it. Mr. Koala eats your nullies. Nully `nums` are his favorites!
+
+
+💬 Feedback
+============
+
+Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)
