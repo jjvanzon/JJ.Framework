@@ -59,33 +59,33 @@ public class Has_Text_Tests : TestBase
     }
     
     [TestMethod]
-    public void IsNully_Text_TrimSpace()
+    public void IsNully_Text_SpaceMatters()
     {
-        IsFalse(NullySpace.IsNully(trimSpace: false));
-        IsFalse(NullySpace.IsNully(false));
-        IsFalse(Space.IsNully(trimSpace: false));
-        IsFalse(Space.IsNully(false));
-        IsFalse(IsNully(NullySpace, trimSpace: false));
-        IsFalse(IsNully(NullySpace, false));
-        IsFalse(IsNully(Space, trimSpace: false));
-        IsFalse(IsNully(Space, false));
+        IsFalse(NullySpace.IsNully(spaceMatters: true));
+        IsFalse(NullySpace.IsNully(true));
+        IsFalse(Space.IsNully(spaceMatters: true));
+        IsFalse(Space.IsNully(true));
+        IsFalse(IsNully(NullySpace, spaceMatters: true));
+        IsFalse(IsNully(NullySpace, true));
+        IsFalse(IsNully(Space, spaceMatters: true));
+        IsFalse(IsNully(Space, true));
     }
         
     [TestMethod]
     public void FilledIn_Text_TrimSpace()
     {
-        IsTrue(Has(NullySpace, trimSpace: false));
-        IsTrue(Has(NullySpace, false));
-        IsTrue(Has(Space, trimSpace: false));
-        IsTrue(Has(Space, false));
-        IsTrue(NullySpace.FilledIn(trimSpace: false));
-        IsTrue(NullySpace.FilledIn(false));
-        IsTrue(Space.FilledIn(trimSpace: false));
-        IsTrue(Space.FilledIn(false));
-        IsTrue(FilledIn(NullySpace, trimSpace: false));
-        IsTrue(FilledIn(NullySpace, false));
-        IsTrue(FilledIn(Space, trimSpace: false));
-        IsTrue(FilledIn(Space, false));
+        IsTrue(Has(NullySpace, spaceMatters: true));
+        IsTrue(Has(NullySpace, true));
+        IsTrue(Has(Space, spaceMatters: true));
+        IsTrue(Has(Space, true));
+        IsTrue(NullySpace.FilledIn(spaceMatters: true));
+        IsTrue(NullySpace.FilledIn(true));
+        IsTrue(Space.FilledIn(spaceMatters: true));
+        IsTrue(Space.FilledIn(true));
+        IsTrue(FilledIn(NullySpace, spaceMatters: true));
+        IsTrue(FilledIn(NullySpace, true));
+        IsTrue(FilledIn(Space, spaceMatters: true));
+        IsTrue(FilledIn(Space, true));
     }
     
 }
