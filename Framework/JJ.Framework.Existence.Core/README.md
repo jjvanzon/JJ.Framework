@@ -3,9 +3,7 @@
 
 Ever find yourself trying to decide on `IsNullOrEmpty`, `IsNullOrWhiteSpace`, a `null` check, empty list check or no check at all?
 
-Well, no more. Now you just type:  
-`Has(text)` or `Has(collection)`  
-and be done with it.
+Well, no more. Now you just type `Has(text)` or `Has(collection)` and be done with it.
 
 
 Features
@@ -14,7 +12,7 @@ Features
 Grab these methods instead of wrestling with `if` statements and repeated checks.
 Your code (and your brain) will thank you.
 
-- `FilledIn` / `Has` / `IsNully`
+- `Has` / `FilledIn` / `IsNully`
 
     - One step beyond `null`, treating empty `strings`, `0`, or empty lists as `"nully"`.
 
@@ -35,6 +33,24 @@ Your code (and your brain) will thank you.
 - `Is`
 
     - Loose equality (case/trim-insensitive, etc.) when you don't care about exact matches.
+
+
+Examples
+--------
+
+```cs
+list = list.Where(FilledIn);
+
+if (number.IsNully()) return;
+
+if (Has(name)) sb.Append($" {name} ");
+
+Coalesce(" ", null, "Hi!") == "Hi!"
+
+"\r\n GREEN\t  ".Is("Green")
+
+"GREEN".In("Red", "Green","Blue") == true!
+```
 
 Future Features
 ---------------

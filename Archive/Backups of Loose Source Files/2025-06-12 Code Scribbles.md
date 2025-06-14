@@ -90,3 +90,7 @@
 ```bash
 del "$(OutputPath)JJ.Framework.PlatformCompatibility.Core.dll"
 ```
+
+`public string Name => Coalesce(_name, _config.Name, DefaultName);`
+
+if (!Has(text)) return text;
