@@ -7,6 +7,13 @@ Well, no more. Now you just type:
 `Has(text)` or `Has(collection)`  
 and be done with it.
 
+
+Features
+--------
+
+Grab these methods instead of wrestling with `if` statements and repeated checks.
+Your code (and your brain) will thank you.
+
 - `FilledIn` / `Has` / `IsNully`
 
     - One step beyond `null`, treating empty `strings`, `0`, or empty lists as `"nully"`.
@@ -29,11 +36,10 @@ and be done with it.
 
     - Loose equality (case/trim-insensitive, etc.) when you don't care about exact matches.
 
-Grab these methods instead of wrestling with `if` statements and repeated checks.
-Your code (and your brain) will thank you.
-
 Future Features
 ---------------
+
+This is just the beginning. More is coming to make things super flexible:
 
 - `spaceMatters` everywhere – because sometimes you really care if your `string` is just a single space.
 - `zeroMatters` – flip the switch so `0` isn't disregarded.
