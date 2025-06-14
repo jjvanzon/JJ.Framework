@@ -3,11 +3,6 @@
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <Version>2.4.$(BuildNum)</Version>
   </PropertyGroup>
-  
-  <PropertyGroup>
-    <NoWarn>1701;1702;CA1806;CS0219;CS0618</NoWarn>
-    <!--<RootNamespace>JJ.Framework.Common.Core.Tests</RootNamespace>-->
-  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="JJ.Framework.Common" Version="0.250.2797" />

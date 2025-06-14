@@ -4,10 +4,6 @@
     <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <NoWarn>1701;1702;CS0067;NU1605</NoWarn>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.2797" />
     <PackageReference Include="JJ.Framework.Reflection" Version="0.250.2797" />
