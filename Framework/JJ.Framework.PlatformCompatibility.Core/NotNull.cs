@@ -1,4 +1,6 @@
-﻿#if NETFRAMEWORK || NETSTANDARD2_0
+﻿// ncrunch: no coverage start
+
+#if NETFRAMEWORK || NETSTANDARD2_0
 
 namespace System.Diagnostics.CodeAnalysis;
 
@@ -8,3 +10,5 @@ using static System.AttributeTargets;
 internal sealed class NotNullAttribute : Attribute;
 
 #endif
+
+// ncrunch: no coverage end

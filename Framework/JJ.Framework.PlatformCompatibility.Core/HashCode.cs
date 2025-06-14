@@ -1,4 +1,6 @@
-﻿#if NETFRAMEWORK || NETSTANDARD2_0
+﻿// ncrunch: no coverage start
+
+#if NETFRAMEWORK || NETSTANDARD2_0
 
 namespace System;
 
@@ -109,3 +111,5 @@ internal struct HashCode
 }
 
 #endif
+
+// ncrunch: no coverage end

@@ -1,4 +1,6 @@
-﻿#if !NET9_0_OR_GREATER
+﻿// ncrunch: no coverage start
+
+#if !NET9_0_OR_GREATER
 
 namespace System.Threading;
 
@@ -13,3 +15,5 @@ internal sealed class Lock
 }
 
 #endif
+
+// ncrunch: no coverage end

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// ncrunch: no coverage start
+
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
     
 namespace JJ.Framework.PlatformCompatibility.Core;
@@ -29,3 +31,5 @@ internal static class ExceptionSupport
     
     #endif
 }
+
+// ncrunch: no coverage end
