@@ -4,7 +4,7 @@
     <!--And by excluding it our net5.0 tests we hit the netstandard2.1 compilation.-->
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>2.5.$(BuildNum)</Version>
-    <Description>Simple, expressive API for null-or-empty checks, fallbacks, coalescing and loose comparison for .NET - think Has(text), Coalesce(a,b,c), list.Where(FilledIn), value.IsNully() and more, so you can ditch boilerplate checks and guard logic and write code that reads like you mean it.</Description>
+    <Description>Simple, expressive API for null-or-empty checks, fallbacks, coalescing and loose comparison for .NET - think Has(text), Coalesce(a,b,c), list.Where(FilledIn), value.IsNully() and more, so you can ditch boilerplate checks and write code like you mean it.</Description>
     <PackageTags>null; empty; whitespace; guards; coalesce; checks; is; in; utility; has; filledin; contains; isnully</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</PackageProjectUrl>
