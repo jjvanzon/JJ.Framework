@@ -2,10 +2,12 @@
   <PropertyGroup>
     <!--We do not explicitly conditionally compile for net5.0 features, so strictly we don't need it.-->
     <!--And by excluding it our net5.0 tests we hit the netstandard2.1 compilation.-->
-    <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>2.5.$(BuildNum)</Version>
-    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors><!--Missing doc strictness-->
+    <Description>Simple, expressive APIs for null-or-empty checks, fallback coalescing and loose comparisons for .NET - think Has(text), Coalesce(a,b,c), list.Where(FilledIn), value.IsNully(), and more, so you can ditch boilerplate guard logic and write code that reads like you mean it.</Description>
+    <PackageTags>null; empty; whitespace; guards; coalesce; checks; is; in; utility; has; filledin; contains; isnully</PackageTags>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

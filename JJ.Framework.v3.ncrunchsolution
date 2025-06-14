@@ -276,6 +276,10 @@
       <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Tests.csproj:net7.0</Value>
       <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Tests.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Tests.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj:netstandard2.1</Value>
     </MetricsExclusionList>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
