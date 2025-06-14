@@ -1,9 +1,13 @@
-﻿namespace JJ.Framework.PlatformCompatibility.Core;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+    
+namespace JJ.Framework.PlatformCompatibility.Core;
 
-public static class ExceptionSupport
+internal static class ExceptionSupport
 {
     #if !NET8_0_OR_GREATER
-    public static void ThrowIfNull([NotNull] object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
+    
+    public static void ThrowIfNull([System.Diagnostics.CodeAnalysis.NotNull] object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
         if (argument == null) throw new ArgumentNullException(expression);
     }
@@ -22,5 +26,6 @@ public static class ExceptionSupport
             throw new ArgumentException($"{expression} is null or white space.");
         }
     }
+    
     #endif
 }

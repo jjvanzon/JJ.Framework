@@ -1,9 +1,9 @@
-﻿namespace System;
+﻿#if NETFRAMEWORK || NETSTANDARD2_0
 
-#if NETSTANDARD2_0
-public struct HashCode
+namespace System;
+
+internal struct HashCode
 {
-    
     private const int PRIME_LIKE_SEED = -2128831035; // same bits as 0x811C9DC5
     private const int PRIME_MULTIPLIER = 16777619;
 
@@ -107,4 +107,5 @@ public struct HashCode
         }
     }
 }
+
 #endif

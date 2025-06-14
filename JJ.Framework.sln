@@ -199,9 +199,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Tests.Helpers", "Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj", "{AEC2E340-F440-0F0C-44F0-2FCF74BC3B18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core", "Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj", "{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Tests", "Framework\JJ.Framework.Existence.Core.Tests\JJ.Framework.Existence.Core.Tests.csproj", "{1980B6A1-4660-4DD0-9036-F61D3AC65ACD}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.PlatformCompatibility.Core", "Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.shproj", "{CE2BF11F-D06A-4EA3-9DD6-FDDA12705F83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -553,10 +553,6 @@ Global
 		{AEC2E340-F440-0F0C-44F0-2FCF74BC3B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEC2E340-F440-0F0C-44F0-2FCF74BC3B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEC2E340-F440-0F0C-44F0-2FCF74BC3B18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1980B6A1-4660-4DD0-9036-F61D3AC65ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1980B6A1-4660-4DD0-9036-F61D3AC65ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1980B6A1-4660-4DD0-9036-F61D3AC65ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -652,10 +648,21 @@ Global
 		{43757C1C-7B5F-1A09-D655-B189A0095663} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{07E99ED0-FD3D-638E-E6D8-6EA66AC15DEC} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{AEC2E340-F440-0F0C-44F0-2FCF74BC3B18} = {72857B67-3003-486C-9BB3-34AF5748BE95}
-		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{1980B6A1-4660-4DD0-9036-F61D3AC65ACD} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{CE2BF11F-D06A-4EA3-9DD6-FDDA12705F83} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{1980b6a1-4660-4dd0-9036-f61d3ac65acd}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{2287d8e1-9376-3a6d-6677-3c028e4f8ef2}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{2c4c1957-cd37-454e-85a8-786ad726a0cf}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{32c2b71c-0192-4f3d-8f8d-990a5b61c307}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{43fc4ab0-7e22-4ddd-9bd9-55a74d19ae67}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{639f2304-2ab3-46fa-8da9-af1b3f50fc66}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{6b83c0e7-f039-448a-99aa-1b989ef96273}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{8e47c2f1-0dbb-4fa2-a734-13a6ad9be0b2}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{ce2bf11f-d06a-4ea3-9dd6-fdda12705f83}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

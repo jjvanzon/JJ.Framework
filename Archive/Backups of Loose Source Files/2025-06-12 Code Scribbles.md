@@ -86,3 +86,7 @@
     //static void StaticEventHandler(object? sender, EventArgs e) { }
 
 ```
+
+```bash
+del "$(OutputPath)JJ.Framework.PlatformCompatibility.Core.dll"
+```

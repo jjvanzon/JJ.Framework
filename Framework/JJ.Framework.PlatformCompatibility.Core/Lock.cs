@@ -1,7 +1,8 @@
-﻿namespace System.Threading;
+﻿#if !NET9_0_OR_GREATER
 
-#if !NET9_0_OR_GREATER
-public sealed class Lock
+namespace System.Threading;
+
+internal sealed class Lock
 {
     public readonly ref struct Scope : System.IDisposable
     {
@@ -10,4 +11,5 @@ public sealed class Lock
 
     public Scope EnterScope() => default;
 }
+
 #endif

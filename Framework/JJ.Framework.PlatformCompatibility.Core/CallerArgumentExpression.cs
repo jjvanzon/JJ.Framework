@@ -1,10 +1,12 @@
-﻿namespace System.Runtime.CompilerServices;
+﻿#if NETFRAMEWORK || NETSTANDARD2_0
 
-#if NETSTANDARD2_0
-public class CallerArgumentExpressionAttribute(string parameterName) : Attribute
+namespace System.Runtime.CompilerServices;
+
+internal class CallerArgumentExpressionAttribute(string parameterName) : Attribute
 {
     public string ParameterName { get; } = parameterName;
 }
+
 #endif
 
 // Stub is needed to compile code for .NET Standard 2.1,
@@ -12,8 +14,10 @@ public class CallerArgumentExpressionAttribute(string parameterName) : Attribute
 // So a paradox: It can't be tested, but you can't compile .NET Standard 2.1 without it.
 #if NETSTANDARD2_1
 
+namespace System.Runtime.CompilerServices;
+
 // ncrunch: no coverage start
-public class CallerArgumentExpressionAttribute(string parameterName) : Attribute
+internal class CallerArgumentExpressionAttribute(string parameterName) : Attribute
 {
     public string ParameterName { get; } = parameterName;
 }
