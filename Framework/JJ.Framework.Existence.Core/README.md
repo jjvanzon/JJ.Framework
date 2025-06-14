@@ -3,19 +3,31 @@
 
 Ever find yourself trying to decide on `IsNullOrEmpty`, `IsNullOrWhiteSpace`, a `null` check, empty list check or no check at all?
 
-Well, no more. Now you just type: `Has(text)` or `Has(collection)` and be done with it.
+Well, no more. Now you just type:  
+`Has(text)` or `Has(collection)`  
+and be done with it.
 
-Features
---------
+- `FilledIn` / `Has` / `IsNully`
 
-- `FilledIn` / `Has` / `IsNully`  
-  One step beyond `null`, treating empty `strings`, `0`, or empty lists as `"nully"`.
-- `Coalesce`  
-  First non-`nully` value picker (think `??` on steroids).
-- `Contains` / `In`  
-  "Is this in that?" tests for collections and sets.
-- `Is`   
-  Loose equality (case/trim-insensitive, etc.) when you don't care about exact matches.
+    - One step beyond `null`, treating empty `strings`, `0`, or empty lists as `"nully"`.
+
+-----
+
+- `Coalesce`
+
+    - First non-`nully` value picker (think `??` on steroids).
+
+-----
+
+- `In` / `Contains`
+
+    - "Is this in that?" tests for collections and sets.
+
+-----
+
+- `Is`
+
+    - Loose equality (case/trim-insensitive, etc.) when you don't care about exact matches.
 
 Grab these methods instead of wrestling with `if` statements and repeated checks.
 Your code (and your brain) will thank you.

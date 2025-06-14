@@ -10,52 +10,52 @@ internal static partial class ExistenceUtility
     // This simplifies this code from having to do a Has-check.
 
     /// <inheritdoc cref="_coalesce" />
-    public static  string CoalesceText     (string? text)                         => text ?? ""     ;
+    public static string CoalesceText     (string? text)                         => text ?? ""     ;
     /// <inheritdoc cref="_coalesce" />
-    public static  SB     CoalesceSB       (SB?     sb  )                         => sb   ?? new()  ;
+    public static SB     CoalesceSB       (SB?     sb  )                         => sb   ?? new()  ;
     /// <inheritdoc cref="_coalesce" />
-    public static  T      CoalesceVal      <T>(T    val ) where T : struct        => val            ;
+    public static T      CoalesceVal      <T>(T    val ) where T : struct        => val            ;
     /// <inheritdoc cref="_coalesce" />
-    public static  T      CoalesceValNully <T>(T?   val ) where T : struct        => val  ?? default;
+    public static T      CoalesceValNully <T>(T?   val ) where T : struct        => val  ?? default;
     // ncrunch: no coverage start
     /// <inheritdoc cref="_coalesce" />
-    public static  T      CoalesceObject   <T>(T?   obj ) where T : class, new()  => obj  ?? new T();
+    public static T      CoalesceObject   <T>(T?   obj ) where T : class, new()  => obj  ?? new T();
     // ncrunch: no coverage end
     
     // 2 Args
     
     /// <inheritdoc cref="_coalesce" />
-    public static  string  CoalesceTwoTexts      (string? text, string? fallback)                    => HasText    (text              ) ? text : CoalesceText(fallback);
+    public static string CoalesceTwoTexts      (string? text, string? fallback)                    => HasText    (text              ) ? text : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  string  CoalesceTwoTexts      (string? text, string? fallback, bool spaceMatters) => HasText    (text, spaceMatters) ? text : CoalesceText(fallback);
+    public static string CoalesceTwoTexts      (string? text, string? fallback, bool spaceMatters) => HasText    (text, spaceMatters) ? text : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  SB      CoalesceTwoSBs        (SB?     sb,   SB?     fallback)                    => HasSB      (sb                ) ? sb   : CoalesceSB  (fallback);
+    public static SB     CoalesceTwoSBs        (SB?     sb,   SB?     fallback)                    => HasSB      (sb                ) ? sb   : CoalesceSB  (fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  SB      CoalesceTwoSBs        (SB?     sb,   SB?     fallback, bool spaceMatters) => HasSB      (sb,   spaceMatters) ? sb   : CoalesceSB  (fallback);
+    public static SB     CoalesceTwoSBs        (SB?     sb,   SB?     fallback, bool spaceMatters) => HasSB      (sb,   spaceMatters) ? sb   : CoalesceSB  (fallback);
     
     /// <inheritdoc cref="_coalesce" />
-    public static  string  CoalesceSBToText      (SB?     sb,   string? fallback)                    => HasSB      (sb                ) ? CoalesceTwoTexts($"{sb}",  fallback) : CoalesceText(fallback);
+    public static string CoalesceSBToText      (SB?     sb,   string? fallback)                    => HasSB      (sb                ) ? CoalesceTwoTexts($"{sb}",  fallback) : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  string  CoalesceSBToText      (SB?     sb,   string? fallback, bool spaceMatters) => HasSB      (sb,   spaceMatters) ? CoalesceTwoTexts($"{sb}",  fallback, spaceMatters) : CoalesceText(fallback);
+    public static string CoalesceSBToText      (SB?     sb,   string? fallback, bool spaceMatters) => HasSB      (sb,   spaceMatters) ? CoalesceTwoTexts($"{sb}",  fallback, spaceMatters) : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  string  CoalesceObjectToText  <T>(T?   obj,  string? fallback) where T : class    => HasObject  (obj               ) ? CoalesceTwoTexts($"{obj}", fallback) : CoalesceText(fallback);
+    public static string CoalesceObjectToText  <T>(T?   obj,  string? fallback) where T : class    => HasObject  (obj               ) ? CoalesceTwoTexts($"{obj}", fallback) : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  string  CoalesceNullyValToText<T>(T?   val,  string? fallback) where T : struct   => HasValNully(val               ) ? CoalesceTwoTexts($"{val}", fallback) : CoalesceText(fallback);
+    public static string CoalesceNullyValToText<T>(T?   val,  string? fallback) where T : struct   => HasValNully(val               ) ? CoalesceTwoTexts($"{val}", fallback) : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  string  CoalesceValToText     <T>(T    val,  string? fallback) where T : struct   => HasVal     (val               ) ? CoalesceTwoTexts($"{val}", fallback) : CoalesceText(fallback);
+    public static string CoalesceValToText     <T>(T    val,  string? fallback) where T : struct   => HasVal     (val               ) ? CoalesceTwoTexts($"{val}", fallback) : CoalesceText(fallback);
 
     /// <inheritdoc cref="_coalesce" />
-    public static  T       CoalesceTwoNullyVals  <T>(T?   val,  T?      fallback) where T : struct   => HasValNully(val) ? val.Value : CoalesceValNully(fallback);
+    public static T      CoalesceTwoNullyVals  <T>(T?   val,  T?      fallback) where T : struct   => HasValNully(val) ? val.Value : CoalesceValNully(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  T       CoalesceNullyAndVal   <T>(T?   val,  T       fallback) where T : struct   => HasValNully(val) ? val.Value : CoalesceVal     (fallback);
+    public static T      CoalesceNullyAndVal   <T>(T?   val,  T       fallback) where T : struct   => HasValNully(val) ? val.Value : CoalesceVal     (fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  T       CoalesceValAndNully   <T>(T    val,  T?      fallback) where T : struct   => HasVal     (val) ? val       : CoalesceValNully(fallback);
+    public static T      CoalesceValAndNully   <T>(T    val,  T?      fallback) where T : struct   => HasVal     (val) ? val       : CoalesceValNully(fallback);
     /// <inheritdoc cref="_coalesce" />
-    public static  T       CoalesceTwoVals       <T>(T    val,  T       fallback) where T : struct   => HasVal     (val) ? val       : CoalesceVal     (fallback);
+    public static T      CoalesceTwoVals       <T>(T    val,  T       fallback) where T : struct   => HasVal     (val) ? val       : CoalesceVal     (fallback);
 
     // ncrunch: no coverage start
     /// <inheritdoc cref="_coalesce" />
-    public static  T       CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
+    public static T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback) where T : class, new() => HasObject  (obj) ? obj       : CoalesceObject  (fallback);
     // ncrunch: no coverage end
 
     // N Args
