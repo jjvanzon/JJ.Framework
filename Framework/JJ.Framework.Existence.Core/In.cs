@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core;
+﻿using static System.Runtime.CompilerServices.MethodImplOptions;
+
+namespace JJ.Framework.Existence.Core;
 
 internal static partial class ExistenceUtil
 {
@@ -6,76 +8,69 @@ internal static partial class ExistenceUtil
     public static bool Contains(IEnumerable<string?>? coll, string? value, bool matchCase = false)
     {
         if (coll == null) return false;
-        value = (value ?? "").Trim();
-        var stringComparison = matchCase.MatchCaseToStringComparison();
-        return coll.Any(x => x == value || (x ?? "").Trim().Equals(value, stringComparison));
+        value = FormatValue(value);
+        var stringComparison = GetStringComparison(matchCase);
+        return coll.Any(x => x == value || FormatValue(x).Equals(value, stringComparison));
     }
 
     /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase, bool spaceMatters)
     {
         if (coll == null) return false;
-        
-        value ??= "";
-        
-        if (!spaceMatters) 
-        { 
-            value = value.Trim();
-        }
-        
-        var stringComparison = matchCase.MatchCaseToStringComparison();
-        
-        foreach (string? x in coll)
-        {
-            if (x == value)
-            {
-                return true; 
-            }
-            
-            string capture = x ?? "";
-            
-            if (!spaceMatters)
-            {
-                capture = capture.Trim();
-            }
-            
-            if (capture.Equals(value, stringComparison)) 
-            {
-                return true;
-            }
-        }
-
-        return false;
+        value = FormatValue(value, spaceMatters);
+        var stringComparison = GetStringComparison(matchCase);
+        return coll.Any(x => x == value || FormatValue(x, spaceMatters).Equals(value, stringComparison));
     }
 
     /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll)
     {
         if (coll == null) return false;
-        value = (value ?? "").Trim();
-        return coll.Any(x => x == value || (x ?? "").Trim().Equals(value, OrdinalIgnoreCase));
+        value = FormatValue(value);
+        return coll.Any(x => x == value || FormatValue(x).Equals(value, OrdinalIgnoreCase));
     }
     
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase)
     {
         if (coll == null) return false;
-        value = (value ?? "").Trim();
-        return coll.Any(x => x == value || (x ?? "").Trim().Equals(value, Ordinal));
+        value = FormatValue(value);
+        return coll.Any(x => x == value || FormatValue(x).Equals(value, Ordinal));
     }
     
     public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
-        value ??= "";
-        return coll.Any(x => x == value || (x ?? "").Equals(value, OrdinalIgnoreCase));
+        value = FormatValue(value, spaceMatters);
+        return coll.Any(x => x == value || FormatValue(value, spaceMatters).Equals(value, OrdinalIgnoreCase));
     }
 
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase, SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
-        value ??= "";
-        return coll.Any(x => x == value || (x ?? "").Equals(value, Ordinal));
+        value = FormatValue(value, spaceMatters);
+        return coll.Any(x => x == value || FormatValue(value, spaceMatters).Equals(value, Ordinal));
     }
+    
+    // Helpers
+
+    [MethodImpl(AggressiveInlining)]
+    private static string FormatValue(string? value) => (value ?? "").Trim();
+    [MethodImpl(AggressiveInlining)]
+    private static string FormatValue(string? value, [UsedImplicitly] SpaceMatters spaceMatters) => value ?? "";
+    [MethodImpl(AggressiveInlining)]
+    private static string FormatValue(string? value, bool spaceMatters)
+    {
+        if (!spaceMatters)
+        {
+            return FormatValue(value);
+        }
+        else
+        {
+            return FormatValue(value, SpaceMatters.spaceMatters);
+        }
+    }
+    
+    private static StringComparison GetStringComparison(bool matchCase) => matchCase ? Ordinal : OrdinalIgnoreCase;
 }
 
 public static partial class FilledInHelper
