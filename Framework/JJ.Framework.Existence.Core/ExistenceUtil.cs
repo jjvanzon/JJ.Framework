@@ -2,7 +2,8 @@
 
 internal static partial class ExistenceUtil
 {
-    // Copied from Text.Core to prevent shipping a wide dependency.
+    // Belongs in Text.Core but prevents shipping an extra dependency for now.
+    
     public static StringComparison IgnoreCaseToStringComparison(this bool ignoreCase)
     {
         return ignoreCase ? OrdinalIgnoreCase : Ordinal;
@@ -12,4 +13,6 @@ internal static partial class ExistenceUtil
     {
         return matchCase ? Ordinal : OrdinalIgnoreCase;
     }
+    
+    public static StringComparison ToStringComparison(this MatchCase matchCase) => Ordinal;
 }
