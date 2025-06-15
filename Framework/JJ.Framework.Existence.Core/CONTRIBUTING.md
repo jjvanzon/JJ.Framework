@@ -1,13 +1,23 @@
 Contributing to Existence.Core
 ==============================
 
+There are 2 specific challenges to programming this lib:
+
+- The various ways to check for emptiness in .NET.
+- Providing a single method to handle all of them.
+
+They are further directed by the aim for:
+
+- 100% test coverage
+- 0% performance cost
+
 Here are some specific patterns used internally in the code of `JJ.Framework.Existence.Core` to make the syntax work.
 
 
 Overload Fields
 ---------------
 
-Vast fields of overloads are normal in this projects. They exist, so an API consumer can call the same command in multiple different contexts. For instance, you can call `Has(x)` on many different types, while internally they may be handled differently.
+Vast fields of overloads are normal in this project. They exist, so an API consumer can call the same command in multiple different contexts. For instance, you can call `Has(x)` on many different types, while internally they may be handled quite differently.
 
 The overload fields delegate to an internal utility class, with more explicit method names, to indicate the specific cases. That keeps control over, how the overloads route to the right implementation, which can otherwise become unwieldly.
 
