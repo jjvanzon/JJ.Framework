@@ -91,6 +91,16 @@
 del "$(OutputPath)JJ.Framework.PlatformCompatibility.Core.dll"
 ```
 
-`public string Name => Coalesce(_name, _config.Name, DefaultName);`
-
+```cs
+public string Name => Coalesce(_name, _config.Name, DefaultName);
 if (!Has(text)) return text;
+````
+
+```cs
+    /// <inheritdoc cref="_coalesce" />
+    public static string CoalesceSBAndText     (SB?     sb,   string? fallback                           ) => HasSB      (sb                ) ? $"{sb}" : CoalesceText(fallback);
+    /// <inheritdoc cref="_coalesce" />
+    public static string CoalesceSBAndText     (SB?     sb,   string? fallback, bool         spaceMatters) => HasSB      (sb,   spaceMatters) ? $"{sb}" : CoalesceText(fallback);
+    /// <inheritdoc cref="_coalesce" />
+    public static string CoalesceSBAndText     (SB?     sb,   string? fallback, SpaceMatters spaceMatters) => HasSB      (sb,   spaceMatters) ? $"{sb}" : CoalesceText(fallback);
+````
