@@ -18,7 +18,7 @@ public class Existence_BasicType_Tests
     // - [x] Guid
     // - [x] DateTime
     // - [x] Char
-    // - [ ] Decimal
+    // - [ ] ~ Decimal
 
     bool True       = true ;
     bool  False      = false;

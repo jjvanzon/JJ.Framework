@@ -1,6 +1,4 @@
-﻿using static JJ.Framework.Existence.Core.SpaceMatters;
-
-namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class ExistenceExamples
