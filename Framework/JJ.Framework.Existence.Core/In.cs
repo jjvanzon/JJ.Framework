@@ -23,6 +23,23 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_in" />
+    public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase)
+    {
+        if (coll == null) return false;
+        value = FormatValue(value);
+        var stringComparison = GetStringComparison(matchCase);
+        return coll.Any(x => x == value || FormatValue(x).Equals(value, stringComparison));
+    }
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, int dummy = 0)
+    {
+        if (coll == null) return false;
+        value = FormatValue(value, spaceMatters);
+        return coll.Any(x => x == value || FormatValue(x, spaceMatters).Equals(value, OrdinalIgnoreCase));
+    }
+
+    /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll)
     {
         if (coll == null) return false;
@@ -30,6 +47,7 @@ internal static partial class ExistenceUtil
         return coll.Any(x => x == value || FormatValue(x).Equals(value, OrdinalIgnoreCase));
     }
     
+    /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase)
     {
         if (coll == null) return false;
@@ -37,6 +55,7 @@ internal static partial class ExistenceUtil
         return coll.Any(x => x == value || FormatValue(x).Equals(value, Ordinal));
     }
     
+    /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
@@ -44,6 +63,7 @@ internal static partial class ExistenceUtil
         return coll.Any(x => x == value || FormatValue(value, spaceMatters).Equals(value, OrdinalIgnoreCase));
     }
 
+    /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase, SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
@@ -78,11 +98,11 @@ public static partial class FilledInHelper
     // TODO: Variants with IEnumerable<string> (non-nullable strings) for lack of covariance?
     
     /// <inheritdoc cref="_in" />
-    public static bool In   (     string? value,                 params IEnumerable<string?>? coll                 ) =>                    coll .Contains(value, matchCase: false);
+    public static bool In   (     string? value,                 params IEnumerable<string?>? coll                 ) =>                    ExistenceUtil.In(value, coll);
     /// <inheritdoc cref="_in" />
-    public static bool In   (     string? value, bool matchCase, params IEnumerable<string?>? coll                 ) =>                    coll .Contains(value, matchCase       );
+    public static bool In   (     string? value, bool matchCase, params IEnumerable<string?>? coll                 ) =>                    ExistenceUtil.In(value, coll, matchCase);
     /// <inheritdoc cref="_in" />
-    public static bool In   (     string? value,                        IEnumerable<string?>? coll, bool matchCase ) =>                    coll .Contains(value, matchCase       );
+    public static bool In   (     string? value,                        IEnumerable<string?>? coll, bool matchCase ) =>                    ExistenceUtil.In(value, coll, matchCase);
     /// <inheritdoc cref="_in" />
     public static bool In<T>(     T       value,                 params IEnumerable<T>?       coll)                  =>                    coll?.Contains(value                  ) ?? false; 
     /// <inheritdoc cref="_in" />
