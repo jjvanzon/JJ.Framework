@@ -3,39 +3,55 @@
 internal static partial class ExistenceUtility
 {
     /// <inheritdoc cref="_has" />
-    public static bool HasText       ([NotNullWhen(true)]      string? text)                            => !IsNullOrWhiteSpace(text);
+    public static bool HasText       ([NotNullWhen(true)]      string? text)                            =>                                       !IsNullOrWhiteSpace(text);
     /// <inheritdoc cref="_has" />
     // ReSharper disable once UnusedParameter.Global
-    public static bool HasText       ([NotNullWhen(true)]      string? text, SpaceMatters spaceMatters) => !IsNullOrEmpty(text);
+    public static bool HasText       ([NotNullWhen(true)]      string? text, SpaceMatters spaceMatters) =>                !IsNullOrEmpty(text);
     /// <inheritdoc cref="_has" />
-    public static bool HasText       ([NotNullWhen(true)]      string? text, bool         spaceMatters) => spaceMatters ? !IsNullOrEmpty(text): !IsNullOrWhiteSpace(text);
+    public static bool HasText       ([NotNullWhen(true)]      string? text, bool         spaceMatters) => spaceMatters ? !IsNullOrEmpty(text) : !IsNullOrWhiteSpace(text);
     /// <inheritdoc cref="_has" />
-    public static bool HasVal     <T>([NotNullWhen(true)]      T       val)                             => !Equals(val, default(T));
+    public static bool HasVal     <T>([NotNullWhen(true)]      T       val)                             => !Equals(val,      default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasObject  <T>([NotNullWhen(true)]      T       obj)                             => !Equals(obj, default(T));
+    public static bool HasObject  <T>([NotNullWhen(true)]      T       obj)                             => !Equals(obj,      default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasValOrObj<T>([NotNullWhen(true)]      T       thing)                           => !Equals(thing, default(T));
+    public static bool HasValOrObj<T>([NotNullWhen(true)]      T       thing)                           => !Equals(thing,    default(T));
     /// <inheritdoc cref="_has" />
     public static bool HasValNully<T>([NotNullWhen(true)]      T?      nullyVal) where T : struct       => !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
 
     /// <inheritdoc cref="_has" />
-    public static bool HasSB([NotNullWhen(true)] StringBuilder? sb) => HasSB(sb, spaceMatters: false);
+    public static bool HasSB([NotNullWhen(true)] StringBuilder? sb) => HasSB_SpaceIgnored(sb);
     /// <inheritdoc cref="_has" />
     // ReSharper disable once UnusedParameter.Global
-    public static bool HasSB([NotNullWhen(true)] StringBuilder? sb, SpaceMatters spaceMatters)
-    {
-        if (sb == null) return false;
-        if (sb.Length == 0) return false;
-        return sb.Length > 0;
-    }
+    public static bool HasSB([NotNullWhen(true)] StringBuilder? sb, SpaceMatters spaceMatters) => HasSB_SpaceMatters(sb);
+
     /// <inheritdoc cref="_has" />
-    public static bool HasSB([NotNullWhen(true)] StringBuilder? sb, bool         spaceMatters)
+    public static bool HasSB([NotNullWhen(true)] StringBuilder? sb, bool spaceMatters) => HasSB_IfSpaceMatters(sb, spaceMatters);
+
+    /// <inheritdoc cref="_has" />
+    private static bool HasSB_IfSpaceMatters([NotNullWhen(true)] StringBuilder? sb, bool spaceMatters)
     {
         if (sb == null) return false;
         if (sb.Length == 0) return false;
         if (spaceMatters) return sb.Length > 0;
         string text = sb.ToString();
         return !IsNullOrWhiteSpace(text);
+    }
+
+    /// <inheritdoc cref="_has" />
+    private static bool HasSB_SpaceIgnored([NotNullWhen(true)] StringBuilder? sb)
+    {
+        if (sb == null) return false;
+        if (sb.Length == 0) return false;
+        string text = sb.ToString();
+        return !IsNullOrWhiteSpace(text);
+    }
+
+    /// <inheritdoc cref="_has" />
+    private static bool HasSB_SpaceMatters([NotNullWhen(true)] StringBuilder? sb)
+    {
+        if (sb == null) return false;
+        if (sb.Length == 0) return false;
+        return sb.Length > 0;
     }
 }
 
