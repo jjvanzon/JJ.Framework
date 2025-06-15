@@ -63,6 +63,7 @@
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->

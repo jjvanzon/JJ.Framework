@@ -111,10 +111,10 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", Coalesce(default(string?),  default                           ));
         NoNullRet("", Coalesce(default(string?),  default(string )                  ));
         NoNullRet("", Coalesce(default(string?),  default(string?)                  ));
-      //NoNullRet("", Coalesce(null,              null            , trimSpace: false)); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(null,              null            , spaceMatters: false)); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(null,              (string )null!  , spaceMatters: false));
         NoNullRet("", Coalesce(null,              (string?)null   , spaceMatters: false));
-      //NoNullRet("", Coalesce(null,              default         , trimSpace: false)); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(null,              default         , spaceMatters: false)); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(null,              default(string ), spaceMatters: false));
         NoNullRet("", Coalesce(null,              default(string?), spaceMatters: false));
         NoNullRet("", Coalesce((string )null!,    null            , spaceMatters: false));
@@ -129,10 +129,10 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", Coalesce((string?)null,     default         , spaceMatters: false));
         NoNullRet("", Coalesce((string?)null,     default(string ), spaceMatters: false));
         NoNullRet("", Coalesce((string?)null,     default(string?), spaceMatters: false));
-      //NoNullRet("", Coalesce(default,           null            , trimSpace: false)); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(default,           null            , spaceMatters: false)); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(default,           (string )null!  , spaceMatters: false));
         NoNullRet("", Coalesce(default,           (string?)null   , spaceMatters: false));
-      //NoNullRet("", Coalesce(default,           default         , trimSpace: false)); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(default,           default         , spaceMatters: false)); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(default,           default(string ), spaceMatters: false));
         NoNullRet("", Coalesce(default,           default(string?), spaceMatters: false));
         NoNullRet("", Coalesce(default(string ),  null            , spaceMatters: false));
@@ -147,10 +147,10 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", Coalesce(default(string?),  default         , spaceMatters: false));
         NoNullRet("", Coalesce(default(string?),  default(string ), spaceMatters: false));
         NoNullRet("", Coalesce(default(string?),  default(string?), spaceMatters: false));
-      //NoNullRet("", Coalesce(null,              null            , trimSpace: true )); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(null,              null            , spaceMatters: true )); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(null,              (string )null!  , spaceMatters: true ));
         NoNullRet("", Coalesce(null,              (string?)null   , spaceMatters: true ));
-      //NoNullRet("", Coalesce(null,              default         , trimSpace: true )); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(null,              default         , spaceMatters: true )); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(null,              default(string ), spaceMatters: true ));
         NoNullRet("", Coalesce(null,              default(string?), spaceMatters: true ));
         NoNullRet("", Coalesce((string )null!,    null            , spaceMatters: true ));
@@ -165,10 +165,10 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", Coalesce((string?)null,     default         , spaceMatters: true ));
         NoNullRet("", Coalesce((string?)null,     default(string ), spaceMatters: true ));
         NoNullRet("", Coalesce((string?)null,     default(string?), spaceMatters: true ));
-      //NoNullRet("", Coalesce(default         ,  null            , trimSpace: true )); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(default         ,  null            , spaceMatters: true )); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(default         ,  (string )null!  , spaceMatters: true ));
         NoNullRet("", Coalesce(default         ,  (string?)null   , spaceMatters: true ));
-      //NoNullRet("", Coalesce(default         ,  default         , trimSpace: true )); // Compiles, unsupported, ambiguous.
+      //NoNullRet("", Coalesce(default         ,  default         , spaceMatters: true )); // Compiles, unsupported, ambiguous.
         NoNullRet("", Coalesce(default         ,  default(string ), spaceMatters: true ));
         NoNullRet("", Coalesce(default         ,  default(string?), spaceMatters: true ));
         NoNullRet("", Coalesce(default(string ),  null            , spaceMatters: true ));
@@ -227,12 +227,12 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", default(string?).Coalesce(  default(string )                  ));
         NoNullRet("", default(string?).Coalesce(  default(string?)                  ));
       //Computer says no
-      //NoNullRet("", null            .Coalesce(  null            , trimSpace: false));
-      //NoNullRet("", null            .Coalesce(  (string )null!  , trimSpace: false));
-      //NoNullRet("", null            .Coalesce(  (string?)null   , trimSpace: false));
-      //NoNullRet("", null            .Coalesce(  default         , trimSpace: false));
-      //NoNullRet("", null            .Coalesce(  default(string ), trimSpace: false));
-      //NoNullRet("", null            .Coalesce(  default(string?), trimSpace: false));
+      //NoNullRet("", null            .Coalesce(  null            , spaceMatters: false));
+      //NoNullRet("", null            .Coalesce(  (string )null!  , spaceMatters: false));
+      //NoNullRet("", null            .Coalesce(  (string?)null   , spaceMatters: false));
+      //NoNullRet("", null            .Coalesce(  default         , spaceMatters: false));
+      //NoNullRet("", null            .Coalesce(  default(string ), spaceMatters: false));
+      //NoNullRet("", null            .Coalesce(  default(string?), spaceMatters: false));
         NoNullRet("", ((string )null!).Coalesce(  null            , spaceMatters: false));
         NoNullRet("", ((string )null!).Coalesce(  (string )null!  , spaceMatters: false));
         NoNullRet("", ((string )null!).Coalesce(  (string?)null   , spaceMatters: false));
@@ -246,12 +246,12 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", ((string?)null ).Coalesce(  default(string ), spaceMatters: false));
         NoNullRet("", ((string?)null ).Coalesce(  default(string?), spaceMatters: false));
       //Computer says no
-      //NoNullRet("", default         .Coalesce(  null            , trimSpace: false));
-      //NoNullRet("", default         .Coalesce(  (string )null!  , trimSpace: false));
-      //NoNullRet("", default         .Coalesce(  (string?)null   , trimSpace: false));
-      //NoNullRet("", default         .Coalesce(  default         , trimSpace: false));
-      //NoNullRet("", default         .Coalesce(  default(string ), trimSpace: false));
-      //NoNullRet("", default         .Coalesce(  default(string?), trimSpace: false));
+      //NoNullRet("", default         .Coalesce(  null            , spaceMatters: false));
+      //NoNullRet("", default         .Coalesce(  (string )null!  , spaceMatters: false));
+      //NoNullRet("", default         .Coalesce(  (string?)null   , spaceMatters: false));
+      //NoNullRet("", default         .Coalesce(  default         , spaceMatters: false));
+      //NoNullRet("", default         .Coalesce(  default(string ), spaceMatters: false));
+      //NoNullRet("", default         .Coalesce(  default(string?), spaceMatters: false));
         NoNullRet("", default(string ).Coalesce(  null            , spaceMatters: false));
         NoNullRet("", default(string ).Coalesce(  (string )null!  , spaceMatters: false));
         NoNullRet("", default(string ).Coalesce(  (string?)null   , spaceMatters: false));
@@ -265,12 +265,12 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", default(string?).Coalesce(  default(string ), spaceMatters: false));
         NoNullRet("", default(string?).Coalesce(  default(string?), spaceMatters: false));
       //Computer says no
-      //NoNullRet("", null            .Coalesce(  null            , trimSpace: true ));
-      //NoNullRet("", null            .Coalesce(  (string )null!  , trimSpace: true ));
-      //NoNullRet("", null            .Coalesce(  (string?)null   , trimSpace: true ));
-      //NoNullRet("", null            .Coalesce(  default         , trimSpace: true ));
-      //NoNullRet("", null            .Coalesce(  default(string ), trimSpace: true ));
-      //NoNullRet("", null            .Coalesce(  default(string?), trimSpace: true ));
+      //NoNullRet("", null            .Coalesce(  null            , spaceMatters: true ));
+      //NoNullRet("", null            .Coalesce(  (string )null!  , spaceMatters: true ));
+      //NoNullRet("", null            .Coalesce(  (string?)null   , spaceMatters: true ));
+      //NoNullRet("", null            .Coalesce(  default         , spaceMatters: true ));
+      //NoNullRet("", null            .Coalesce(  default(string ), spaceMatters: true ));
+      //NoNullRet("", null            .Coalesce(  default(string?), spaceMatters: true ));
         NoNullRet("", ((string )null!).Coalesce(  null            , spaceMatters: true ));
         NoNullRet("", ((string )null!).Coalesce(  (string )null!  , spaceMatters: true ));
         NoNullRet("", ((string )null!).Coalesce(  (string?)null   , spaceMatters: true ));
@@ -284,12 +284,12 @@ public class Coalesce_Keywords_Tests
         NoNullRet("", ((string?)null ).Coalesce(  default(string ), spaceMatters: true ));
         NoNullRet("", ((string?)null ).Coalesce(  default(string?), spaceMatters: true ));
       //Computer says no
-      //NoNullRet("", default         .Coalesce(  null            , trimSpace: true ));
-      //NoNullRet("", default         .Coalesce(  (string )null!  , trimSpace: true ));
-      //NoNullRet("", default         .Coalesce(  (string?)null   , trimSpace: true ));
-      //NoNullRet("", default         .Coalesce(  default         , trimSpace: true ));
-      //NoNullRet("", default         .Coalesce(  default(string ), trimSpace: true ));
-      //NoNullRet("", default         .Coalesce(  default(string?), trimSpace: true ));
+      //NoNullRet("", default         .Coalesce(  null            , spaceMatters: true ));
+      //NoNullRet("", default         .Coalesce(  (string )null!  , spaceMatters: true ));
+      //NoNullRet("", default         .Coalesce(  (string?)null   , spaceMatters: true ));
+      //NoNullRet("", default         .Coalesce(  default         , spaceMatters: true ));
+      //NoNullRet("", default         .Coalesce(  default(string ), spaceMatters: true ));
+      //NoNullRet("", default         .Coalesce(  default(string?), spaceMatters: true ));
         NoNullRet("", default(string ).Coalesce(  null            , spaceMatters: true ));
         NoNullRet("", default(string ).Coalesce(  (string )null!  , spaceMatters: true ));
         NoNullRet("", default(string ).Coalesce(  (string?)null   , spaceMatters: true ));

@@ -708,10 +708,8 @@ public class Coalesce_3Args_StringBuilderToText : TestBase
         NoNullRet("FilledSB", FilledSB     .Coalesce( FilledSB,      NullyText ));
     }
 
-    // TODO: Test trimSpace flag.
-
     [TestMethod]
-    public void Coalesce_3Args_ValsToString_Static_TrimSpace()
+    public void Coalesce_3Args_ValsToString_Static_SpaceMatters()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        NullText,   spaceMatters: true));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty,      spaceMatters: true));
@@ -1063,7 +1061,7 @@ public class Coalesce_3Args_StringBuilderToText : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValsToString_Extensions_TrimSpace()
+    public void Coalesce_3Args_ValsToString_Extensions_SpaceMatters()
     {
         NoNullRet("",         NullSB       .Coalesce( NullSB,        NullText,   spaceMatters: true));
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Empty,      spaceMatters: true));

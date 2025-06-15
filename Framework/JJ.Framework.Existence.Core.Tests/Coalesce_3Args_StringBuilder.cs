@@ -383,7 +383,7 @@ public class Coalesce_3Args_StringBuilder
     }
     
     [TestMethod]
-    public void Coalesce_3Args_Text_Static_NoTrimSpace()
+    public void Coalesce_3Args_Text_Static_SpaceMatters()
     {
         NoNullRet(                 Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters: true));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters: true)}");
@@ -1125,7 +1125,7 @@ public class Coalesce_3Args_StringBuilder
     }
     
     [TestMethod]
-    public void Coalesce_3Args_Text_Extensions_NoTrimSpace()
+    public void Coalesce_3Args_Text_Extensions_SpaceMatters()
     {
         NoNullRet(                 NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters: true)}");

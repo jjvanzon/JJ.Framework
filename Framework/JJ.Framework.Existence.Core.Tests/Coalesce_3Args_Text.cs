@@ -362,7 +362,7 @@ public class Coalesce_3Args_Text : TestBase
     }
     
     [TestMethod]
-    public void Coalesce_3Args_Text_Static_NoTrimSpace()
+    public void Coalesce_3Args_Text_Static_SpaceMatters()
     {
         AreEqual(" ",    Coalesce(" ", null, "Hi!", spaceMatters: true));
 
@@ -1074,7 +1074,7 @@ public class Coalesce_3Args_Text : TestBase
     }
     
     [TestMethod]
-    public void Coalesce_3Args_Text_Extensions_NoTrimSpace()
+    public void Coalesce_3Args_Text_Extensions_SpaceMatters()
     {
         AreEqual(" ",   " ".Coalesce(null, "Hi!", spaceMatters: true));
 
