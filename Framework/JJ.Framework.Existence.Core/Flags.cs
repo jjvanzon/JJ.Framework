@@ -6,3 +6,10 @@ public enum SpaceMatters
     /// <inheritdoc cref="_spacematters" />
     spaceMatters = 1
 }
+
+/// <inheritdoc cref="_matchcase" />
+public enum MatchCase
+{
+    /// <inheritdoc cref="_matchcase" />
+    matchCase = 1
+}

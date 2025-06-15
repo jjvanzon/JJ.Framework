@@ -2,7 +2,7 @@
 
 namespace JJ.Framework.Existence.Core;
 
-internal static partial class ExistenceUtility
+internal static partial class ExistenceUtil
 {
     /// <inheritdoc cref="_has"/>
     public static bool HasArray            <T>([NotNullWhen(true)] T[]                   ? coll) => coll is { Length          : > 0   };

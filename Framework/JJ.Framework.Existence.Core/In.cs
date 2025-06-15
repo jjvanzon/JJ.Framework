@@ -24,14 +24,8 @@ public static partial class FilledInHelper
     {
         if (source == null) return false;
         match = (match ?? "").Trim();
-        var stringComparison = ignoreCase.ToStringComparison();
+        var stringComparison = ignoreCase.IgnoreCaseToStringComparison();
         return source.Any(x => (x ?? "").Trim().Equals(match, stringComparison));
-    }
-     
-    // Copied from Text.Core to prevent shipping a wide dependency.
-    private static StringComparison ToStringComparison(this bool ignoreCase)
-    {
-        return ignoreCase ? OrdinalIgnoreCase : Ordinal;
     }
 }
 

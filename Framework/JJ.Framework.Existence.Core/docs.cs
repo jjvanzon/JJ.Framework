@@ -14,12 +14,12 @@ namespace JJ.Framework.Existence.Core
         /// Pick the first non-nully (non-empty) value from a list of fallbacks.
         /// Works like <c>??</c> but treats empty strings, zero, and empty collections as "null".
         /// </summary>
-        public struct _coalesce { }
+        public struct _coalesce;
 
         /// <summary>
         /// Test whether a collection contains a given element.
         /// </summary>
-        public struct _contains { }
+        public struct _contains;
 
         /// <summary>
         /// <para>
@@ -49,34 +49,45 @@ namespace JJ.Framework.Existence.Core
         /// Your code (and your brain) will thank you.
         /// </para>
         /// </summary>
-        public struct _existencecore { }
+        public struct _existencecore;
 
         /// <summary>
         /// Perform a null-or-empty check one step beyond a plain null check.
         /// Zeroes, empty collections, defaults and white space are considered empty too.
         /// </summary>
-        /// <inheritdoc cref="_spacematters" />
-        public struct _has { }
+        /// <inheritdoc cref="_flagargs" />
+        public struct _has;
         
         /// <inheritdoc cref="_has" />
-        public struct _filledin { }
+        public struct _filledin;
         
         /// <summary>
         /// A looser way to check if a value belongs to a set or collection.
         /// </summary>
-        public struct _in { }
+        /// <inheritdoc cref="_flagargs" />
+        public struct _in;
 
         /// <summary>
         /// Loose equality tests (e.g., case- and trim-insensitive string comparisons).
         /// </summary>
-        public struct _is { }
+        public struct _is;
 
         /// <summary>
         /// The inverse of <c>Has</c>, i.e. true when a value is null, empty, or (optionally) zero/whitespace.
         /// </summary>
-        /// <inheritdoc cref="_spacematters" />
-        public struct _isnully { }
+        /// <inheritdoc cref="_flagargs" />
+        public struct _isnully;
 
+        /// <summary>
+        /// <para> Use <c>matchCase</c> to make checks case-sensitive. </para>
+        /// <para> Example: <c>a.Is(b, matchCase)</c> </para>
+        /// <para> Only exact case matches will return true. You can also use: </para>
+        /// <para> <c>matchCase: true</c> </para>
+        /// <para> if you prefer the explicit boolean. </para>
+        /// </summary>
+        /// <inheritdoc cref="_flagargs" />
+        public struct _matchcase;
+        
         /// <summary>
         /// <para> Use <c>spaceMatters</c> to treat white space as meaningful content. </para>
         /// <para> Example: <c>Has(text, spaceMatters)</c> </para>
@@ -84,10 +95,17 @@ namespace JJ.Framework.Existence.Core
         /// <para> <c>spaceMatters: true</c> </para>
         /// <para> if you prefer the explicit boolean. </para>
         /// </summary>
+        /// <inheritdoc cref="_flagargs" />
+        public struct _spacematters;
+
+        /// <param name="matchCase">
+        /// If true (or if you pass <c>matchCase</c>), comparisons will require exact casing.
+        /// For example, <c>"abc"</c> will not match <c>"ABC"</c>.
+        /// </param>
         /// <param name="spaceMatters">
         /// If true (or if you pass <c>spaceMatters</c>), white space counts as real content.
         /// <c>"   "</c> will be considered filled in, not empty.
         /// </param>
-        public struct _spacematters { }
+        public struct _flagargs;
     }
 }

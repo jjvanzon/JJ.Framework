@@ -1,21 +1,23 @@
-﻿namespace JJ.Framework.Existence.Core;
+﻿// ReSharper disable MethodOverloadWithOptionalParameter
+namespace JJ.Framework.Existence.Core;
 
-public static partial class FilledInHelper
+internal static partial class ExistenceUtil
 {
     /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b) => Is(a, b, ignoreCase: true);
+    public static bool Is(string? a, string? b, [UsedImplicitly] MatchCase    matchCase   ) => Is(a, b, matchCase: true);
     /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, bool ignoreCase)
+    public static bool Is(string? a, string? b, [UsedImplicitly] SpaceMatters spaceMatters) => Is(a, b, spaceMatters: true);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, bool matchCase = false, bool spaceMatters = false)
     {
         if (a == b) return true;
         
-        StringComparison compare = ignoreCase.ToStringComparison();
+        StringComparison compare = matchCase.MatchCaseToStringComparison();
         
-        a = (a ?? "").Trim(); b = (b ?? "").Trim();
+        if (!spaceMatters) { a = (a ?? "").Trim(); b = (b ?? "").Trim(); }
         if (string.Equals(a, b, compare)) return true;
         
-        a = a.RemoveExcessiveWhiteSpace();
-        b = b.RemoveExcessiveWhiteSpace();
+        if (!spaceMatters) { a = a.RemoveExcessiveWhiteSpace(); b = b.RemoveExcessiveWhiteSpace(); }
         if (string.Equals(a, b, compare)) return true;
         
         a = a.RemoveAccents();
@@ -24,10 +26,30 @@ public static partial class FilledInHelper
     }
 }
 
+public static partial class FilledInHelper
+{
+    /// <inheritdoc cref="_is" />
+    public static bool Is(     string? a, string? b                           ) => ExistenceUtil.Is(a, b);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(     string? a, string? b, MatchCase    matchCase   ) => ExistenceUtil.Is(a, b, matchCase);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(     string? a, string? b, bool         matchCase   ) => ExistenceUtil.Is(a, b, matchCase);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(     string? a, string? b, SpaceMatters spaceMatters) => ExistenceUtil.Is(a, b, spaceMatters);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(     string? a, string? b, bool         spaceMatters, [UsedImplicitly] int dummy = 0) => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
+}
+
 public static partial class FilledInExtensions
 {
     /// <inheritdoc cref="_is" />
-    public static bool Is(this string? value, string? comparison                 ) => FilledInHelper.Is(value, comparison       );
+    public static bool Is(this string? a, string? b                           ) => ExistenceUtil.Is(a, b);
     /// <inheritdoc cref="_is" />
-    public static bool Is(this string? value, string? comparison, bool ignoreCase) => FilledInHelper.Is(value, comparison, ignoreCase);
+    public static bool Is(this string? a, string? b, MatchCase    matchCase   ) => ExistenceUtil.Is(a, b, matchCase);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(this string? a, string? b, bool         matchCase   ) => ExistenceUtil.Is(a, b, matchCase);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(this string? a, string? b, SpaceMatters spaceMatters) => ExistenceUtil.Is(a, b, spaceMatters);
+    /// <inheritdoc cref="_is" />
+    public static bool Is(this string? a, string? b, bool         spaceMatters, [UsedImplicitly] int dummy = 0) => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
 }

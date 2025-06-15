@@ -2,7 +2,7 @@
 using SB = StringBuilder;
 
 /// <inheritdoc cref="_existencecore"/>
-internal static partial class ExistenceUtility
+internal static partial class ExistenceUtil
 {
     // 1 Arg
     

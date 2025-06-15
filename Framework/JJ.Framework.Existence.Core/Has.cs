@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Existence.Core;
 
-internal static partial class ExistenceUtility
+internal static partial class ExistenceUtil
 {
     /// <inheritdoc cref="_has" />
     public static bool HasText       ([NotNullWhen(true)]      string? text)                            =>                                       !IsNullOrWhiteSpace(text);
