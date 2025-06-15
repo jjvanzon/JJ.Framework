@@ -8,6 +8,7 @@
     <PackageTags>null; empty; whitespace; guards; coalesce; checks; is; in; utility; has; filledin; contains; isnully</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</PackageProjectUrl>
+    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
 
   <ItemGroup>

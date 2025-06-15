@@ -55,6 +55,7 @@ namespace JJ.Framework.Existence.Core
         /// Perform a null-or-empty check one step beyond a plain null check.
         /// Zeroes, empty collections, defaults and white space are considered empty too.
         /// </summary>
+        /// <inheritdoc cref="_spacematters" />
         public struct _has { }
         
         /// <inheritdoc cref="_has" />
@@ -73,6 +74,20 @@ namespace JJ.Framework.Existence.Core
         /// <summary>
         /// The inverse of <c>Has</c>, i.e. true when a value is null, empty, or (optionally) zero/whitespace.
         /// </summary>
+        /// <inheritdoc cref="_spacematters" />
         public struct _isnully { }
+
+        /// <summary>
+        /// <para> Use <c>spaceMatters</c> to treat white space as meaningful content. </para>
+        /// <para> Example: <c>Has(text, spaceMatters)</c> </para>
+        /// <para> It counts <c>"   "</c> as filled in. You can also use: </para>
+        /// <para> <c>spaceMatters: true</c> </para>
+        /// <para> if you prefer the explicit boolean. </para>
+        /// </summary>
+        /// <param name="spaceMatters">
+        /// If true (or if you pass <c>spaceMatters</c>), white space counts as real content.
+        /// <c>"   "</c> will be considered filled in, not empty.
+        /// </param>
+        public struct _spacematters { }
     }
 }
