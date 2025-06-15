@@ -354,6 +354,7 @@ public static partial class FilledInExtensions
     // These overloads clash: first.Coalesce(others), List.Coalesce(), and string.Coalesce().
     // Prio(1) on IEnumerable<T> for List.Coalesce() else List becomes the first arg in (first, others).
     // Prio(2) on string.Coalesce() makes it win over IEnumerable<char> in string-specific calls.
+    // Prio(2) on other string-only variants makes e.g. null be seen as string rather than StringBuilder.
 
     // 1 Arg (for some)
 
@@ -370,19 +371,32 @@ public static partial class FilledInExtensions
     // 2 Args (for some)
 
     /// <inheritdoc cref="_coalesce" />
+    [Prio(2)]
     public static string Coalesce   (this string? text, string? fallback                           ) => CoalesceTwoTexts      (text, fallback);
     /// <inheritdoc cref="_coalesce" />
+    [Prio(2)]
     public static string Coalesce   (this string? text, string? fallback, bool         spaceMatters) => CoalesceTwoTexts      (text, fallback, spaceMatters);
     /// <inheritdoc cref="_coalesce" />
+    [Prio(2)]
     public static string Coalesce   (this string? text, string? fallback, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, fallback, spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback                           ) => CoalesceTextAndSB     (text, fallback);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, bool         spaceMatters) => CoalesceTextAndSB     (text, fallback, spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, SpaceMatters spaceMatters) => CoalesceTextAndSB     (text, fallback, spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback                           ) => CoalesceSBAndText     (sb,   fallback);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, bool         spaceMatters) => CoalesceSBAndText     (sb,   fallback, spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, SpaceMatters spaceMatters) => CoalesceSBAndText     (sb,   fallback, spaceMatters);
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (this SB?     sb,   SB?     fallback                           ) => CoalesceTwoSBs        (sb,   fallback);
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (this SB?     sb,   SB?     fallback, bool         spaceMatters) => CoalesceTwoSBs        (sb,   fallback, spaceMatters);
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (this SB?     sb,   SB?     fallback, SpaceMatters spaceMatters) => CoalesceTwoSBs        (sb,   fallback, spaceMatters);
-    /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (this SB?     sb,   string? fallback)                            => CoalesceSBAndText      (sb,   fallback);
     /// <inheritdoc cref="_coalesce" />
     public static string Coalesce   (this object? obj,  string? fallback)                            => CoalesceObjectToText  (obj,  fallback);
     /// <inheritdoc cref="_coalesce" />
@@ -401,23 +415,56 @@ public static partial class FilledInExtensions
     // 3 Args (for some)
     
     /// <inheritdoc cref="_coalesce" />
+    [Prio(2)]
     public static string Coalesce   (this string? text, string? fallback, string? fallback2                           ) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2));
     /// <inheritdoc cref="_coalesce" />
+    [Prio(2)]
     public static string Coalesce   (this string? text, string? fallback, string? fallback2, bool         spaceMatters) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
     /// <inheritdoc cref="_coalesce" />
+    [Prio(2)]
     public static string Coalesce   (this string? text, string? fallback, string? fallback2, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, string? fallback, SB?     fallback2                           ) => CoalesceTwoTexts      (text, CoalesceTextAndSB     (fallback, fallback2));
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, string? fallback, SB?     fallback2, bool         spaceMatters) => CoalesceTwoTexts      (text, CoalesceTextAndSB     (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, string? fallback, SB?     fallback2, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, CoalesceTextAndSB     (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, string? fallback2                           ) => CoalesceTwoTexts      (text, CoalesceSBAndText     (fallback, fallback2));
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, string? fallback2, bool         spaceMatters) => CoalesceTwoTexts      (text, CoalesceSBAndText     (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, string? fallback2, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, CoalesceSBAndText     (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, SB?     fallback2                           ) => CoalesceTextAndSB     (text, CoalesceTwoSBs        (fallback, fallback2));
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, SB?     fallback2, bool         spaceMatters) => CoalesceTextAndSB     (text, CoalesceTwoSBs        (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this string? text, SB?     fallback, SB?     fallback2, SpaceMatters spaceMatters) => CoalesceTextAndSB     (text, CoalesceTwoSBs        (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, string? fallback2                           ) => CoalesceSBAndText     (sb,   CoalesceTwoTexts      (fallback, fallback2));
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, string? fallback2, bool         spaceMatters) => CoalesceSBAndText     (sb,   CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, string? fallback2, SpaceMatters spaceMatters) => CoalesceSBAndText     (sb,   CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, SB?     fallback2                           ) => CoalesceSBAndText     (sb,   CoalesceTextAndSB     (fallback, fallback2));
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, SB?     fallback2, bool         spaceMatters) => CoalesceSBAndText     (sb,   CoalesceTextAndSB     (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   string? fallback, SB?     fallback2, SpaceMatters spaceMatters) => CoalesceSBAndText     (sb,   CoalesceTextAndSB     (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   SB?     fallback, string? fallback2                           ) => CoalesceSBAndText     (sb,   CoalesceSBAndText     (fallback, fallback2));
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   SB?     fallback, string? fallback2, bool         spaceMatters) => CoalesceSBAndText     (sb,   CoalesceSBAndText     (fallback, fallback2, spaceMatters), spaceMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce   (this SB?     sb,   SB?     fallback, string? fallback2, SpaceMatters spaceMatters) => CoalesceSBAndText     (sb,   CoalesceSBAndText     (fallback, fallback2, spaceMatters), spaceMatters);
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (this SB?     sb,   SB?     fallback, SB?     fallback2                           ) => CoalesceTwoSBs        (sb,   CoalesceTwoSBs        (fallback, fallback2));
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (this SB?     sb,   SB?     fallback, SB?     fallback2, bool         spaceMatters) => CoalesceTwoSBs        (sb,   CoalesceTwoSBs        (fallback, fallback2, spaceMatters), spaceMatters);
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (this SB?     sb,   SB?     fallback, SB?     fallback2, SpaceMatters spaceMatters) => CoalesceTwoSBs        (sb,   CoalesceTwoSBs        (fallback, fallback2, spaceMatters), spaceMatters);
-    /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (this SB?     sb,   SB?     fallback, string? fallback2                           ) => CoalesceSBAndText      (sb,   CoalesceSBAndText      (fallback, fallback2));
-    /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (this SB?     sb,   SB?     fallback, string? fallback2, bool         spaceMatters) => CoalesceSBAndText      (sb,   CoalesceSBAndText      (fallback, fallback2, spaceMatters), spaceMatters);
-    /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (this SB?     sb,   SB?     fallback, string? fallback2, SpaceMatters spaceMatters) => CoalesceSBAndText      (sb,   CoalesceSBAndText      (fallback, fallback2, spaceMatters), spaceMatters);
     /// <inheritdoc cref="_coalesce" />
     public static string Coalesce   (this object? obj,  object? fallback, string? fallback2)                            => CoalesceObjectToText  (obj,  CoalesceObjectToText  (fallback, fallback2));
     /// <inheritdoc cref="_coalesce" />
@@ -448,18 +495,36 @@ public static partial class FilledInExtensions
     // N Args (for all others)
 
     /// <inheritdoc cref="_coalesce" />
-    [Prio(1)] public static string Coalesce   (this IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts  (fallbacks);
+    [Prio(1)] 
+    public static string Coalesce   (this IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts  (fallbacks);
     /// <inheritdoc cref="_coalesce" />
-    [Prio(1)] public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(fallbacks);
+    [Prio(1)] 
+    public static SB     Coalesce   (this IEnumerable<SB?>?     fallbacks)                  => CoalesceManySBs    (fallbacks);
     /// <inheritdoc cref="_coalesce" />
-    [Prio(1)] public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (fallbacks);
+    [Prio(1)]
+    public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(fallbacks);
+    /// <inheritdoc cref="_coalesce" />
+    [Prio(1)]
+    public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (fallbacks);
 
+    // TODO: spaceMatters variants.
+    
     /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (this string? first, params IEnumerable<string?>? fallbacks)                  => CoalesceManyTexts  (new [] {     first }.Concat(fallbacks ?? [ ]));
+    public static string Coalesce   (this string? first,                            params IEnumerable<string?>? fallbacks) => CoalesceManyTexts(              new [] { first }.Concat(fallbacks ?? [ ]));
     /// <inheritdoc cref="_coalesce" />
-    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : new()  => CoalesceManyObjects(new [] {     first }.Concat(fallbacks ?? [ ]));
+    public static string Coalesce   (this string? first, bool         spaceMatters, params IEnumerable<string?>? fallbacks) => CoalesceManyTexts(spaceMatters, new [] { first }.Concat(fallbacks ?? [ ]));
     /// <inheritdoc cref="_coalesce" />
-    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (new [] {     first }.Concat(fallbacks ?? [ ]));
+    public static string Coalesce   (this string? first, SpaceMatters spaceMatters, params IEnumerable<string?>? fallbacks) => CoalesceManyTexts(spaceMatters, new [] { first }.Concat(fallbacks ?? [ ]));
     /// <inheritdoc cref="_coalesce" />
-    public static T      Coalesce<T>(this T       first, params IEnumerable<T?>?      fallbacks) where T : struct => CoalesceManyVals   (new [] { (T?)first }.Concat(fallbacks ?? [ ]));
+    public static SB     Coalesce   (this SB?     first,                            params IEnumerable<SB?>?     fallbacks) => CoalesceManySBs  (              new [] { first }.Concat(fallbacks ?? [ ]));
+    /// <inheritdoc cref="_coalesce" />
+    public static SB     Coalesce   (this SB?     first, bool         spaceMatters, params IEnumerable<SB?>?     fallbacks) => CoalesceManySBs  (spaceMatters, new [] { first }.Concat(fallbacks ?? [ ]));
+    /// <inheritdoc cref="_coalesce" />
+    public static SB     Coalesce   (this SB?     first, SpaceMatters spaceMatters, params IEnumerable<SB?>?     fallbacks) => CoalesceManySBs  (spaceMatters, new [] { first }.Concat(fallbacks ?? [ ]));
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>? fallbacks) where T : new()  => CoalesceManyObjects(new [] {    first }.Concat(fallbacks ?? [ ]));
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>? fallbacks) where T : struct => CoalesceManyVals   (new [] {    first }.Concat(fallbacks ?? [ ]));
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(this T       first, params IEnumerable<T?>? fallbacks) where T : struct => CoalesceManyVals   (new [] {(T?)first }.Concat(fallbacks ?? [ ]));
 }
