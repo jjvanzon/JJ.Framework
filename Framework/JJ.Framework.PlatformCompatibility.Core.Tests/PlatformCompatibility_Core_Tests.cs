@@ -84,21 +84,23 @@ public class PlatformCompatibility_Core_Tests
         string? nullyFilled = "";
         string? @null = null;
         
-        if (!NotNullDummy(nullyFilled))
+        if (!CheckNotNull(nullyFilled))
+        // ncrunch: no coverage start
         {
             string num = nullyFilled; // Compiles: Successfully promoted to non-null.
             NoNullRet(nullyFilled);
         }
+        // ncrunch: no coverage end
         
-        if (IsNullDummy(@null))
+        if (CheckIsNull(@null))
         {
             // Does not compile = correct = not promoted to non-null
             //string noNull = nullText;
         }
     }
     
-    private bool NotNullDummy([NotNullWhen(true)] string? text) => text != null;
-    private bool IsNullDummy([NotNullWhen(false)] string? text) => text == null;
+    private bool CheckNotNull([NotNullWhen(true)] string? text) => text != null;
+    private bool CheckIsNull([NotNullWhen(false)] string? text) => text == null;
     
     // OverloadResolutionPriority
     

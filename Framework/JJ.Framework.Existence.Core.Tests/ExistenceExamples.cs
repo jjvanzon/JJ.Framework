@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿using static JJ.Framework.Existence.Core.SpaceMatters;
+
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class ExistenceExamples
@@ -19,7 +21,7 @@ public class ExistenceExamples
     [TestMethod]
     public void Existence_Examples_After()
     {
-        if (Has(text)) { }
+        if (Has(text, spaceMatters)) { }
         if (num.IsNully()) { }
         list = list.Where(FilledIn);
     }

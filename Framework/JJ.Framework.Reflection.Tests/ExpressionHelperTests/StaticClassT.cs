@@ -10,10 +10,12 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
     internal static class StaticClass<T>
     {
+        // ncrunch: no coverage start
         public static string Name { get; set; }
         public static int Index { get; set; }
 
         public static Item Parent { get; set; }
+        // ncrunch: no coverage end
 
         public static ComplexItem ComplexItem
         {
