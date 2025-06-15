@@ -103,4 +103,8 @@ if (!Has(text)) return text;
     public static string CoalesceSBAndText     (SB?     sb,   string? fallback, bool         spaceMatters) => HasSB      (sb,   spaceMatters) ? $"{sb}" : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
     public static string CoalesceSBAndText     (SB?     sb,   string? fallback, SpaceMatters spaceMatters) => HasSB      (sb,   spaceMatters) ? $"{sb}" : CoalesceText(fallback);
+
+    // TODO: Variants with IEnumerable<string> (non-nullable strings) for lack of covariance?
+    public static bool In(string? value, params IEnumerable<string?>? coll) ...
+
 ````
