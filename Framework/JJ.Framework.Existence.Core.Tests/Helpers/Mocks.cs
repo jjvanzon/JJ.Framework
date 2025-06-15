@@ -38,8 +38,8 @@ public class Mocks
     public static string  Text        = "Text";
     public static string? NullyEmpty  = "";
     public static string? NullySpace  = " ";
-    public static string? NullyText   = "Text";
-    
+    public static string? NullyText   = "Text"; // TODO: Rename to NullyFilledText, because just NullyText is unclear that it is filled.
+
     public static int? NullNum = null;
     public static int? Nully0  = 0;
     public static int? Nully1  = 1;

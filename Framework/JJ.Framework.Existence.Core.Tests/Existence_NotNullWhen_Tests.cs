@@ -1,5 +1,6 @@
 ﻿// ReSharper disable ReturnTypeCanBeNotNullable
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
@@ -9,39 +10,51 @@ public class Existence_NotNullWhen_Tests
     private StringBuilder? SB   => new("Hi!");
     private int          ? Num  => 1;
 
+    // TODO: Re-enabled [TestMethod] attribute
+    // after StringBuilder coverage is complete in main tests,
+    // so that these tests don't give false coverage numbers.
     [TestMethod]
     public void Test_Has_NotNullWhen()
     {
         // ToString() would trigger a nullability compiler error, if Has/FilledIn/UsNully NotNulWhen attribute set wrong.
 
-        { string?        text = Text; if ( Has     (text         )) text.ToString(); }
-        { string?        text = Text; if ( Has     (text, default)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (sb           )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (sb,   default)) sb  .ToString(); }
-        { int?           num  = Num ; if ( Has     (num          )) num .ToString(); }
-        { string?        text = Text; if ( FilledIn(text         )) text.ToString(); }
-        { string?        text = Text; if ( FilledIn(text, default)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(sb           )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(sb,   default)) sb  .ToString(); }
-        { int?           num  = Num ; if ( FilledIn(num          )) num .ToString(); }
-        { string?        text = Text; if (!IsNully (text         )) text.ToString(); }
-        { string?        text = Text; if (!IsNully (text, default)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb           )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   default)) sb  .ToString(); }
-        { int?           num  = Num ; if (!IsNully (num          )) num .ToString(); }
-        { string?        text = Text; if ( text.FilledIn(        )) text.ToString(); }
-        { string?        text = Text; if ( text.FilledIn( default)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn(        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn( default)) sb  .ToString(); }
-        { int?           num  = Num ; if ( num .FilledIn(        )) num .ToString(); }
-        { string?        text = Text; if (!text.IsNully(         )) text.ToString(); }
-        { string?        text = Text; if (!text.IsNully(  default)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(         )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(  default)) sb  .ToString(); }
-        { int?           num  = Num ; if (!num .IsNully(         )) num .ToString(); }
+        { string?        text = Text; if ( Has     (text              )) text.ToString(); }
+        { string?        text = Text; if ( Has     (text, true        )) text.ToString(); }
+        { string?        text = Text; if ( Has     (text, spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if ( Has     (sb                )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( Has     (sb,   true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( Has     (sb,   spaceMatters)) sb  .ToString(); }
+        { int?           num  = Num ; if ( Has     (num               )) num .ToString(); }
+        { string?        text = Text; if ( FilledIn(text              )) text.ToString(); }
+        { string?        text = Text; if ( FilledIn(text, true        )) text.ToString(); }
+        { string?        text = Text; if ( FilledIn(text, spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if ( FilledIn(sb                )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( FilledIn(sb,   true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( FilledIn(sb,   spaceMatters)) sb  .ToString(); }
+        { int?           num  = Num ; if ( FilledIn(num               )) num .ToString(); }
+        { string?        text = Text; if (!IsNully (text              )) text.ToString(); }
+        { string?        text = Text; if (!IsNully (text, true        )) text.ToString(); }
+        { string?        text = Text; if (!IsNully (text, spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (sb                )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   spaceMatters)) sb  .ToString(); }
+        { int?           num  = Num ; if (!IsNully (num               )) num .ToString(); }
+        { string?        text = Text; if ( text.FilledIn(             )) text.ToString(); }
+        { string?        text = Text; if ( text.FilledIn( true        )) text.ToString(); }
+        { string?        text = Text; if ( text.FilledIn( spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn(             )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn( true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn( spaceMatters)) sb  .ToString(); }
+        { int?           num  = Num ; if ( num .FilledIn(             )) num .ToString(); }
+        { string?        text = Text; if (!text.IsNully(              )) text.ToString(); }
+        { string?        text = Text; if (!text.IsNully(  true        )) text.ToString(); }
+        { string?        text = Text; if (!text.IsNully(  spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(              )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(  true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(  spaceMatters)) sb  .ToString(); }
+        { int?           num  = Num ; if (!num .IsNully(              )) num .ToString(); }
     }
 
-    // TODO: For Collections
     [TestMethod]
     public void Test_Has_Collection_NotNullWhen()
     {

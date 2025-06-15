@@ -75,7 +75,7 @@ More is coming to make things super flexible:
 🐨 Mr. Koala
 ------------
 
-Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coalesce`, you can never unsee it. *Mr. Koala* eats your nullies. Nully `nums` are his favorites!
+Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coalesce`, you can never unsee it. *Mr. Koala* eats your nullies. Nully `nums` are his favorite!
 
 
 💬 Feedback
