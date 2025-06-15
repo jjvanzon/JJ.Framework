@@ -39,6 +39,17 @@ public class Mocks
     public static string? NullyEmpty  = "";
     public static string? NullySpace  = " ";
     public static string? NullyText   = "Text"; // TODO: Rename to NullyFilledText, because just NullyText is unclear that it is filled.
+        
+    // TODO: Test as string
+    public static StringBuilder? NullSB        = null;
+    public static StringBuilder  NewSB         = new();
+    public static StringBuilder? NullyNewSB    = NewSB;
+    public static StringBuilder  EmptySB       = new("");
+    public static StringBuilder? NullyEmptySB  = EmptySB;
+    public static StringBuilder  SpaceSB       = new(" ");
+    public static StringBuilder? NullySpaceSB  = SpaceSB;
+    public static StringBuilder  FilledSB      = new("FilledSB");
+    public static StringBuilder? NullyFilledSB = FilledSB;
 
     public static int? NullNum = null;
     public static int? Nully0  = 0;
@@ -55,17 +66,6 @@ public class Mocks
     public static Dummy? NullObj     = null;
     public static Dummy  NoNullObj   = new("NoNull");
     public static Dummy? NullyFilled = new("Filled");
-    
-    // TODO: Test as string
-    public static StringBuilder? NullSB        = null;
-    public static StringBuilder  NewSB         = new();
-    public static StringBuilder? NullyNewSB    = NewSB;
-    public static StringBuilder  EmptySB       = new("");
-    public static StringBuilder? NullyEmptySB  = EmptySB;
-    public static StringBuilder  SpaceSB       = new(" ");
-    public static StringBuilder? NullySpaceSB  = SpaceSB;
-    public static StringBuilder  FilledSB      = new("FilledSB");
-    public static StringBuilder? NullyFilledSB = FilledSB;
 
     public static int[]                              FilledArray                             =                              [1, 2, 3];
     public static IList<int>                         FilledIList                             =                              [1, 2, 3];

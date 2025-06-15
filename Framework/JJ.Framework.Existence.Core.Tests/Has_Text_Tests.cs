@@ -1,136 +1,135 @@
-﻿
-namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Text_Tests : TestBase
+public class Has_StringBuilder_Tests : TestBase
 {
     [TestMethod]
-    public void Has_Text_True()
+    public void Has_StringBuilder_True()
     {
-        IsTrue(Has(Text));
-        IsTrue(Has(NullyText));
+        IsTrue(Has(FilledSB     ));
+        IsTrue(Has(NullyFilledSB));
     }
 
     [TestMethod]
-    public void Has_Text_False()
+    public void Has_StringBuilder_False()
     {
-        IsFalse(Has(Empty));
-        IsFalse(Has(Space));
-        IsFalse(Has(NullText));
-        IsFalse(Has(NullyEmpty));
-        IsFalse(Has(NullySpace));
+        IsFalse(Has(EmptySB     ));
+        IsFalse(Has(SpaceSB     ));
+        IsFalse(Has(NullSB      ));
+        IsFalse(Has(NullyEmptySB));
+        IsFalse(Has(NullySpaceSB));
     }
     
     [TestMethod]
-    public void FilledIn_Text_True()
+    public void FilledIn_StringBuilder_True()
     {
-        IsTrue(FilledIn(Text));
-        IsTrue(FilledIn(NullyText));
-        IsTrue(Text.FilledIn());
-        IsTrue(NullyText.FilledIn());
+        IsTrue(FilledIn(FilledSB      ));
+        IsTrue(FilledIn(NullyFilledSB ));
+        IsTrue(FilledSB     .FilledIn());
+        IsTrue(NullyFilledSB.FilledIn());
     }
 
     [TestMethod]
-    public void FilledIn_Text_False()
+    public void FilledIn_StringBuilder_False()
     {
-        IsFalse(FilledIn( Empty     ));
-        IsFalse(FilledIn( Space     ));
-        IsFalse(FilledIn( NullText  ));
-        IsFalse(FilledIn( NullyEmpty));
-        IsFalse(FilledIn( NullySpace));
-        IsFalse(Empty     .FilledIn());
-        IsFalse(Space     .FilledIn());
-        IsFalse(NullText  .FilledIn());
-        IsFalse(NullyEmpty.FilledIn());
-        IsFalse(NullySpace.FilledIn());
+        IsFalse(FilledIn(EmptySB      ));
+        IsFalse(FilledIn(SpaceSB      ));
+        IsFalse(FilledIn(NullSB       ));
+        IsFalse(FilledIn(NullyEmptySB ));
+        IsFalse(FilledIn(NullySpaceSB ));
+        IsFalse(EmptySB     .FilledIn());
+        IsFalse(SpaceSB     .FilledIn());
+        IsFalse(NullSB      .FilledIn());
+        IsFalse(NullyEmptySB.FilledIn());
+        IsFalse(NullySpaceSB.FilledIn());
     }
 
     [TestMethod] 
-    public void IsNully_Text_True()
+    public void IsNully_StringBuilder_True()
     {
-        IsTrue(Empty     .IsNully());
-        IsTrue(Space     .IsNully());
-        IsTrue(NullText.  IsNully());
-        IsTrue(NullyEmpty.IsNully());
-        IsTrue(NullySpace.IsNully());
-        IsTrue(IsNully(Empty      ));
-        IsTrue(IsNully(Space      ));
-        IsTrue(IsNully(NullText   ));
-        IsTrue(IsNully(NullyEmpty ));
-        IsTrue(IsNully(NullySpace ));
+        IsTrue(EmptySB     .IsNully());
+        IsTrue(SpaceSB     .IsNully());
+        IsTrue(NullSB.      IsNully());
+        IsTrue(NullyEmptySB.IsNully());
+        IsTrue(NullySpaceSB.IsNully());
+        IsTrue(IsNully(EmptySB      ));
+        IsTrue(IsNully(SpaceSB      ));
+        IsTrue(IsNully(NullSB       ));
+        IsTrue(IsNully(NullyEmptySB ));
+        IsTrue(IsNully(NullySpaceSB ));
     }
         
     [TestMethod]
-    public void IsNully_Text_False()
+    public void IsNully_StringBuilder_False()
     {
-        IsFalse(IsNully(Text));
-        IsFalse(IsNully(NullyText));
-        IsFalse(Text.IsNully());
-        IsFalse(NullyText.IsNully());
+        IsFalse(FilledSB     .IsNully());
+        IsFalse(NullyFilledSB.IsNully());
+        IsFalse(IsNully(FilledSB      ));
+        IsFalse(IsNully(NullyFilledSB ));
     }
             
     [TestMethod]
-    public void Has_Text_SpaceMatters()
+    public void Has_StringBuilder_SpaceMatters()
     {
-        IsTrue (Has(Space,          spaceMatters: true ));
-        IsTrue (Has(Space,          spaceMatters       ));
-        IsTrue (Has(Space,                        true ));
-        IsTrue (Has(NullySpace,     spaceMatters: true ));
-        IsTrue (Has(NullySpace,     spaceMatters       ));
-        IsTrue (Has(NullySpace,                   true ));
-        IsFalse(Has(Space,          spaceMatters: false));
-        IsFalse(Has(Space,                        false));
-        IsFalse(Has(NullySpace,     spaceMatters: false));
-        IsFalse(Has(NullySpace,                   false));
+        IsTrue (Has(SpaceSB,          spaceMatters: true ));
+        IsTrue (Has(SpaceSB,          spaceMatters       ));
+        IsTrue (Has(SpaceSB,                        true ));
+        IsTrue (Has(NullySpaceSB,     spaceMatters: true ));
+        IsTrue (Has(NullySpaceSB,     spaceMatters       ));
+        IsTrue (Has(NullySpaceSB,                   true ));
+        IsFalse(Has(SpaceSB,          spaceMatters: false));
+        IsFalse(Has(SpaceSB,                        false));
+        IsFalse(Has(NullySpaceSB,     spaceMatters: false));
+        IsFalse(Has(NullySpaceSB,                   false));
     }
     
     [TestMethod]
-    public void FilledIn_Text_SpaceMatters()
+    public void FilledIn_StringBuilder_SpaceMatters()
     {
-        IsTrue (Space     .FilledIn( spaceMatters: true ));
-        IsTrue (Space     .FilledIn( spaceMatters       ));
-        IsTrue (Space     .FilledIn(               true ));
-        IsTrue (NullySpace.FilledIn( spaceMatters: true ));
-        IsTrue (NullySpace.FilledIn( spaceMatters       ));
-        IsTrue (NullySpace.FilledIn(               true ));
-        IsTrue (FilledIn(Space,      spaceMatters: true ));
-        IsTrue (FilledIn(Space,      spaceMatters       ));
-        IsTrue (FilledIn(Space,                    true ));
-        IsTrue (FilledIn(NullySpace, spaceMatters: true ));
-        IsTrue (FilledIn(NullySpace, spaceMatters       ));
-        IsTrue (FilledIn(NullySpace,               true ));
-        IsFalse(Space     .FilledIn( spaceMatters: false));
-        IsFalse(Space     .FilledIn(               false));
-        IsFalse(NullySpace.FilledIn( spaceMatters: false));
-        IsFalse(NullySpace.FilledIn(               false));
-        IsFalse(FilledIn(Space,      spaceMatters: false));
-        IsFalse(FilledIn(Space,                    false));
-        IsFalse(FilledIn(NullySpace, spaceMatters: false));
-        IsFalse(FilledIn(NullySpace,               false));
+        IsTrue (SpaceSB     .FilledIn( spaceMatters: true ));
+        IsTrue (SpaceSB     .FilledIn( spaceMatters       ));
+        IsTrue (SpaceSB     .FilledIn(               true ));
+        IsTrue (NullySpaceSB.FilledIn( spaceMatters: true ));
+        IsTrue (NullySpaceSB.FilledIn( spaceMatters       ));
+        IsTrue (NullySpaceSB.FilledIn(               true ));
+        IsTrue (FilledIn(SpaceSB,      spaceMatters: true ));
+        IsTrue (FilledIn(SpaceSB,      spaceMatters       ));
+        IsTrue (FilledIn(SpaceSB,                    true ));
+        IsTrue (FilledIn(NullySpaceSB, spaceMatters: true ));
+        IsTrue (FilledIn(NullySpaceSB, spaceMatters       ));
+        IsTrue (FilledIn(NullySpaceSB,               true ));
+        IsFalse(SpaceSB     .FilledIn( spaceMatters: false));
+        IsFalse(SpaceSB     .FilledIn(               false));
+        IsFalse(NullySpaceSB.FilledIn( spaceMatters: false));
+        IsFalse(NullySpaceSB.FilledIn(               false));
+        IsFalse(FilledIn(SpaceSB,      spaceMatters: false));
+        IsFalse(FilledIn(SpaceSB,                    false));
+        IsFalse(FilledIn(NullySpaceSB, spaceMatters: false));
+        IsFalse(FilledIn(NullySpaceSB,               false));
     }
 
     [TestMethod]
-    public void IsNully_Text_SpaceMatters()
+    public void IsNully_StringBuilder_SpaceMatters()
     {
-        IsFalse(Space     .IsNully( spaceMatters: true ));
-        IsFalse(Space     .IsNully( spaceMatters       ));
-        IsFalse(Space     .IsNully(               true ));
-        IsFalse(NullySpace.IsNully( spaceMatters: true ));
-        IsFalse(NullySpace.IsNully( spaceMatters       ));
-        IsFalse(NullySpace.IsNully(               true ));
-        IsFalse(IsNully(Space,      spaceMatters: true ));
-        IsFalse(IsNully(Space,      spaceMatters       ));
-        IsFalse(IsNully(Space,                    true ));
-        IsFalse(IsNully(NullySpace, spaceMatters: true ));
-        IsFalse(IsNully(NullySpace, spaceMatters       ));
-        IsFalse(IsNully(NullySpace,               true ));
-        IsTrue (Space     .IsNully( spaceMatters: false));
-        IsTrue (Space     .IsNully(               false));
-        IsTrue (NullySpace.IsNully( spaceMatters: false));
-        IsTrue (NullySpace.IsNully(               false));
-        IsTrue (IsNully(Space,      spaceMatters: false));
-        IsTrue (IsNully(Space,                    false));
-        IsTrue (IsNully(NullySpace, spaceMatters: false));
-        IsTrue (IsNully(NullySpace,               false));
+        IsFalse(SpaceSB     .IsNully( spaceMatters: true ));
+        IsFalse(SpaceSB     .IsNully( spaceMatters       ));
+        IsFalse(SpaceSB     .IsNully(               true ));
+        IsFalse(NullySpaceSB.IsNully( spaceMatters: true ));
+        IsFalse(NullySpaceSB.IsNully( spaceMatters       ));
+        IsFalse(NullySpaceSB.IsNully(               true ));
+        IsFalse(IsNully(SpaceSB,      spaceMatters: true ));
+        IsFalse(IsNully(SpaceSB,      spaceMatters       ));
+        IsFalse(IsNully(SpaceSB,                    true ));
+        IsFalse(IsNully(NullySpaceSB, spaceMatters: true ));
+        IsFalse(IsNully(NullySpaceSB, spaceMatters       ));
+        IsFalse(IsNully(NullySpaceSB,               true ));
+        IsTrue (SpaceSB     .IsNully( spaceMatters: false));
+        IsTrue (SpaceSB     .IsNully(               false));
+        IsTrue (NullySpaceSB.IsNully( spaceMatters: false));
+        IsTrue (NullySpaceSB.IsNully(               false));
+        IsTrue (IsNully(SpaceSB,      spaceMatters: false));
+        IsTrue (IsNully(SpaceSB,                    false));
+        IsTrue (IsNully(NullySpaceSB, spaceMatters: false));
+        IsTrue (IsNully(NullySpaceSB,               false));
     }
 }

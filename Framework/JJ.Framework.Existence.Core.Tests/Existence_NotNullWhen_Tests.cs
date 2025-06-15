@@ -13,7 +13,7 @@ public class Existence_NotNullWhen_Tests
     // TODO: Re-enabled [TestMethod] attribute
     // after StringBuilder coverage is complete in main tests,
     // so that these tests don't give false coverage numbers.
-    [TestMethod]
+    //[TestMethod]
     public void Test_Has_NotNullWhen()
     {
         // ToString() would trigger a nullability compiler error, if Has/FilledIn/UsNully NotNulWhen attribute set wrong.
