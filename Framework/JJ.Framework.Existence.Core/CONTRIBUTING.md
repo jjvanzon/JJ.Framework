@@ -17,11 +17,15 @@ Here are some specific patterns used internally in the code of `JJ.Framework.Exi
 Overload Fields
 ---------------
 
+We try to offer the most transparent and widely applicable use of basic commands like Has, Coalesce and the like.
+
 Vast fields of overloads are normal in this project. They exist, so an API consumer can call the same command in multiple different contexts. For instance, you can call `Has(x)` on many different types, while internally they may be handled quite differently.
 
-The overload fields delegate to an internal utility class, with more explicit method names, to indicate the specific cases. That keeps control over, how the overloads route to the right implementation, which can otherwise become unwieldly.
+The overload fields delegate to an internal utility class, with more explicit method names, to indicate the specific cases. That keeps control over, how the overloads route to the right implementation, which would otherwise be hard to control.
 
 It also makes sure that each overload in the field can just be one line of code in a sort of "table of overloads".
+
+Is this easy? No not really. Things can clash. The tests are the ultimate judge whether overload resolution works.
 
 
 Magic Booleans
