@@ -4,9 +4,9 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Is_Tests
 {
+
     [TestMethod]
     public void Test_String_Is()
-
     {
         // NullOrWhiteSpace
         IsTrue(Is(NullText,   NullText));
@@ -65,5 +65,22 @@ public class Is_Tests
         IsTrue(c.Is(a));
         IsTrue(Is(a, c));
         IsTrue(Is(c, a));
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMatters()
+    {
+        IsTrue (Is("\t test \t",   "\r TEST \r"                     ));
+        IsTrue (Is("\t test \t",   "\r TEST \r", spaceMatters: false));
+        IsFalse(Is("\t test \t",   "\r TEST \r", spaceMatters: true ));
+        IsFalse(Is("\t test \t",   "\r TEST \r", spaceMatters       ));
+        IsTrue (Is("\t test \t",   "\t TEST \t", spaceMatters: true ));
+        IsTrue (Is("\t test \t",   "\t TEST \t", spaceMatters       ));
+        IsTrue (   "\t test \t".Is("\r TEST \r"));
+        IsTrue (   "\t test \t".Is("\r TEST \r", spaceMatters: false));
+        IsFalse(   "\t test \t".Is("\r TEST \r", spaceMatters: true ));
+        IsFalse(   "\t test \t".Is("\r TEST \r", spaceMatters       ));
+        IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters: true ));
+        IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters       ));
     }
 }
