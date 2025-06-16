@@ -23,17 +23,29 @@ public class In_Tests : TestBase
         IsTrue (   "GREEN" .In(                  [ "Red", "Green", "Blue" ], matchCase: false));
         
         // Match case
+        IsFalse(In("GREEN" ,   matchCase,          "Red", "Green", "Blue"                    ));
         IsFalse(In("GREEN" ,   matchCase: true,    "Red", "Green", "Blue"                    ));
+        IsFalse(   "GREEN" .In(matchCase,          "Red", "Green", "Blue"                    ));
         IsFalse(   "GREEN" .In(matchCase: true,    "Red", "Green", "Blue"                    ));
+        IsFalse(In("GREEN" ,   matchCase,        [ "Red", "Green", "Blue" ]                  ));
         IsFalse(In("GREEN" ,   matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
+        IsFalse(   "GREEN" .In(matchCase,        [ "Red", "Green", "Blue" ]                  ));
         IsFalse(   "GREEN" .In(matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
+        IsFalse(In("GREEN" ,                     [ "Red", "Green", "Blue" ], matchCase       ));
         IsFalse(In("GREEN" ,                     [ "Red", "Green", "Blue" ], matchCase: true ));
+        IsFalse(   "GREEN" .In(                  [ "Red", "Green", "Blue" ], matchCase       ));
         IsFalse(   "GREEN" .In(                  [ "Red", "Green", "Blue" ], matchCase: true ));
+        IsTrue (In("Green" ,   matchCase,          "Red", "Green", "Blue"                    ));
         IsTrue (In("Green" ,   matchCase: true,    "Red", "Green", "Blue"                    ));
+        IsTrue (   "Green" .In(matchCase,          "Red", "Green", "Blue"                    ));
         IsTrue (   "Green" .In(matchCase: true,    "Red", "Green", "Blue"                    ));
+        IsTrue (In("Green" ,   matchCase,        [ "Red", "Green", "Blue" ]                  ));
         IsTrue (In("Green" ,   matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
+        IsTrue (   "Green" .In(matchCase,        [ "Red", "Green", "Blue" ]                  ));
         IsTrue (   "Green" .In(matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
+        IsTrue (In("Green" ,                     [ "Red", "Green", "Blue" ], matchCase       ));
         IsTrue (In("Green" ,                     [ "Red", "Green", "Blue" ], matchCase: true ));
+        IsTrue (   "Green" .In(                  [ "Red", "Green", "Blue" ], matchCase       ));
         IsTrue (   "Green" .In(                  [ "Red", "Green", "Blue" ], matchCase: true ));
         
         // Negative match
