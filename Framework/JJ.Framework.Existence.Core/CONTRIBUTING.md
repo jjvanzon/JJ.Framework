@@ -1,6 +1,7 @@
 Contributing to Existence.Core
 ==============================
 
+
 The Easy Part
 -------------
 
@@ -9,6 +10,7 @@ The API surface doesn't look hard. It's just a simple set of commands:
 
 What they do internally essentially it isn't difficult either. Things like:
 `x != null || x != 0` - the stuff you'd otherwise program yourself.
+
 
 The Challenge
 -------------
@@ -23,7 +25,7 @@ Overload clashes lurking everywhere.
 
 This doc describes some specific patterns used internally in the code to keep it all working.
 
-On top of that, there is even more added syntax flexibility, so be prepared to make the overload field even worse because of that: extension methods, static methods, flag specifiers of different sorts and parameter order switcheroo all over.
+On top of that, there is even more added syntax flexibility, so be prepared to make the overload field even worse by choice: extension methods, static methods, flag specifiers of different sorts and parameter order switcheroo all over.
 
 All to give the API consumer the most intuitive experience.
 
