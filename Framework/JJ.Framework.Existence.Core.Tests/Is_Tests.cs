@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class Is_Tests
@@ -49,7 +50,9 @@ public class Is_Tests
         IsTrue(Is(a, b, matchCase: false));
         
         // Case-sensitive
-        IsFalse("TEST".Is("test", matchCase: true));
+        IsFalse("TEST".Is( "test", matchCase      ));
+        IsFalse("TEST".Is( "test", matchCase: true));
+        IsFalse(Is("test", "Test", matchCase      ));
         IsFalse(Is("test", "Test", matchCase: true));
 
         // Negative match
