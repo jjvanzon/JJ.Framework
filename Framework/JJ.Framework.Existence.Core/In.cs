@@ -251,6 +251,6 @@ public static partial class FilledInExtensions
     // Contains
     
     /// <inheritdoc cref="_contains" />
-    public static bool Contains(this IEnumerable<string?>? source, string? match, bool matchCase = false) 
-        => ExistenceUtil.Contains(source, match, matchCase);
+    public static bool Contains(this IEnumerable<string?>? coll, string? value, bool matchCase = false) 
+        => ExistenceUtil.Contains(coll, value, matchCase);
 }
