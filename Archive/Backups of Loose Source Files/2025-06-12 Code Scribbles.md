@@ -131,4 +131,33 @@ if (!Has(text)) return text;
     public const string MatchCaseWarning =
         "BREAKING CHANGE: ignoreCase replaced by matchCase! " +
         "Where ignoreCase: false, matchCase should now be true!";
+
+        /// <b>Reason: clear separation between match and collection.</b>
+
+
+    ///// <inheritdoc cref="_in" />
+    //public static bool In(string? value, params IEnumerable<string?>? coll) => coll.Contains(value, ignoreCase: true);
+
+    ///// <inheritdoc cref="_in" />
+    //public static bool In<T>(T value, params IEnumerable<T>? coll) => coll?.Contains(value) ?? false;
+
+    ///// <inheritdoc cref="_in" />
+    //public static bool In<T>(T value, params IEnumerable<T?>? coll) where T : struct => coll?.Contains(value) ?? false;
+
+    ///// <inheritdoc cref="_in" />
+    //public static bool In<T>(T? value, params IEnumerable<T>? coll) where T : struct
+    //    => value.HasValue && (coll?.Contains(value.Value) ?? false);
+
+    ///// <inheritdoc cref="_in" />
+    //public static bool In<T>(T? value, params IEnumerable<T?>? coll) where T : struct => coll?.Contains(value) ?? false;
+
+        // Not supported
+
+        // Semantically unclear:
+        //IsFalse(In("Yellow", "Red", "Green", "Blue"));
+        //IsTrue (In("GREEN" , "Red", "Green", "Blue"));
+
+        // Not semantically clear; not supported
+        //IsTrue (In("Green",   "Red",  "Green", "Blue"));
+        //IsTrue (In(" Green ", "Red", "Green",  "Blue"));
 ```

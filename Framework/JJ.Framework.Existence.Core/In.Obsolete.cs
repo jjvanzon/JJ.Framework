@@ -2,6 +2,8 @@
 
 namespace JJ.Framework.Existence.Core;
 
+// ncrunch: no coverage start
+
 public static partial class FilledInHelper
 {
     /// <inheritdoc cref="_in" />
@@ -66,3 +68,5 @@ public static partial class FilledInExtensions
         throw new NotSupportedException(IgnoreCaseWarning);
     }
 }
+
+// ncrunch: no coverage end

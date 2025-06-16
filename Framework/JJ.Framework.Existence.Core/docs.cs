@@ -79,8 +79,17 @@ namespace JJ.Framework.Existence.Core
 
         /// <summary>
         /// A looser way to check if a value belongs to a set or collection.
+        /// 
         /// <para>
-        /// <b>BREAKING CHANGE:</b><br/>
+        /// <b>BREAKING CHANGES:</b>
+        /// </para>
+        ///
+        /// <para>
+        /// <b>Obsolete: In(x, a, b, c)</b><br/>
+        /// <b>Alternative: x.In(a, b, c)</b>
+        /// </para>
+        /// 
+        /// <para>
         /// <b>ignoreCase replaced by matchCase!</b><br/>
         /// <b>Where ignoreCase: false,</b><br/>
         /// <b>matchCase should now be true!</b>
