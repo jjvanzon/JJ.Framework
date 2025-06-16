@@ -62,13 +62,41 @@ namespace JJ.Framework.Existence.Core
         public struct _filledin;
         
         /// <summary>
+        /// Obsolete.
+        /// Use matchCase instead.
+        /// FLIP YOUR BOOLEANS IF NEEDED:
+        /// Where ignoreCase: false, matchCase should now be true.
+        /// Default behavior is to ignore case.
+        /// </summary>
+        /// <param name="ignoreCase">
+        /// Obsolete.
+        /// Use matchCase instead.
+        /// FLIP YOUR BOOLEANS IF NEEDED:
+        /// Where ignoreCase: false, matchCase should now be true.
+        /// Default behavior is to ignore case.
+        /// </param>
+        public struct _ignorecaseobsolete;
+
+        /// <summary>
         /// A looser way to check if a value belongs to a set or collection.
+        /// <para>
+        /// <b>BREAKING CHANGE:</b><br/>
+        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>Where ignoreCase: false,</b><br/>
+        /// <b>matchCase should now be true!</b>
+        /// </para>
         /// </summary>
         /// <inheritdoc cref="_flagargs" />
         public struct _in;
 
         /// <summary>
         /// Loose equality tests (e.g., case- and trim-insensitive string comparisons).
+        /// <para>
+        /// <b>BREAKING CHANGE:</b><br/>
+        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>Where ignoreCase: false,</b><br/>
+        /// <b>matchCase should now be true!</b>
+        /// </para>
         /// </summary>
         public struct _is;
 
@@ -83,7 +111,13 @@ namespace JJ.Framework.Existence.Core
         /// <para> Example: <c>a.Is(b, matchCase)</c> </para>
         /// <para> Only exact case matches will return true. You can also use: </para>
         /// <para> <c>matchCase: true</c> </para>
-        /// <para> if you prefer the explicit boolean. </para>
+        /// <para> if you prefer the explicit boolean.</para>
+        /// <para>
+        /// <b>BREAKING CHANGE:</b><br/>
+        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>Where ignoreCase: false,</b><br/>
+        /// <b>matchCase should now be true!</b>
+        /// </para>
         /// </summary>
         /// <inheritdoc cref="_flagargs" />
         public struct _matchcase;
@@ -101,6 +135,12 @@ namespace JJ.Framework.Existence.Core
         /// <param name="matchCase">
         /// If true (or if you pass <c>matchCase</c>), comparisons will require exact casing.
         /// For example, <c>"abc"</c> will not match <c>"ABC"</c>.
+        /// <para>
+        /// <b>BREAKING CHANGE:</b><br/>
+        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>Where ignoreCase: false,</b><br/>
+        /// <b>matchCase should now be true!</b>
+        /// </para>
         /// </param>
         /// <param name="spaceMatters">
         /// If true (or if you pass <c>spaceMatters</c>), white space counts as real content.

@@ -1,14 +1,14 @@
 ﻿Existence.Core
 ==============
 
-Ever find yourself trying to decide on `IsNullOrEmpty`, `IsNullOrWhiteSpace`, a `null` check, empty list check or no check at all?
+Ever find yourself trying to decide on `IsNullOrEmpty`, `IsNullOrWhiteSpace`, a `null` check, empty list check or whether you should check at all?
 
 Well, no more. Now you just type `Has(text)` or `Has(collection)` and be done with it.
 
 Background
 ----------
 
-*Nothing* isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, uninitialized structs, `Nullable<T>.HasValue == false`, etc. Things can get quite absurd, once you dive into how many ways nothingness can be expressed in .`NET`.
+*Nothing* isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, `!Equals(x, default(T?)) && !Equals(x, default(T))`. Things get quite absurd, once you dive into how many ways nothingness can be expressed in .`NET`.
 
 Here we coin the term __nully__. Don't blame us; the concept already existed, just nobody dared give it a name yet.
 
@@ -39,6 +39,21 @@ Grab these methods instead. Your code (and your brain) will thank you:
 
     - Loose equality (case/trim-insensitive, etc.) when you don't care about exact matches.
 
+-----
+
+Flags for special occasions:
+
+- `spaceMatters`
+
+
+    - `spaceMatters` flags everywhere – because sometimes you really care if your `string` is just a single space.
+
+-----
+
+- `matchCase`
+
+    - To keep us sane as long as possible, the default is to not trip over case mismatches: GREEN = green. The matchCase flag can make things stricter and case-sensitive again.
+
 
 Examples
 --------
@@ -57,12 +72,17 @@ Coalesce(" ", null, "Hi!") == "Hi!"
 "GREEN".In("Red", "Green","Blue") == true!
 ```
 
-Future Features
----------------
+Releases
+--------
 
-More is coming to make things super flexible:
+- __`2.5` Initial release__  
+- __`2.6` Flags__  
+  `spaceMatters` wider support  
+  `ignoreCase` replaced by `matchCase`
 
-- `spaceMatters` everywhere – because sometimes you really care if your `string` is just a single space.
+Coming Soon
+-----------
+
 - `zeroMatters` – flip the switch so `0` isn't disregarded.
 - `flex` mode – force a full runtime type lookup on values when you're feeling adventurous.
 - `char` quirks – treat lone `' '` as nully by default (no more sneaky space bugs).
@@ -79,6 +99,6 @@ Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coal
 
 
 💬 Feedback
-============
+------------
 
 Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)

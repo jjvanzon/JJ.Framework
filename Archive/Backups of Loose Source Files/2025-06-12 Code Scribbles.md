@@ -126,4 +126,9 @@ if (!Has(text)) return text;
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, bool spaceMatters, int dummy = 1, params IEnumerable<string?>? coll) 
         => ExistenceUtil.In(value, coll, spaceMatters, dummy);
+
+
+    public const string MatchCaseWarning =
+        "BREAKING CHANGE: ignoreCase replaced by matchCase! " +
+        "Where ignoreCase: false, matchCase should now be true!";
 ```
