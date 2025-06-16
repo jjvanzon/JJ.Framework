@@ -14,32 +14,22 @@ public class In_Tests : TestBase
         IsTrue ("GREEN".In( [ "Red", "Green", "Blue" ]));
         
         // Ignore Case (default behavior)
-        IsTrue (In("GREEN", matchCase: false,   "Red", "Green", "Blue"  ));
         IsTrue ("GREEN".In( matchCase: false,   "Red", "Green", "Blue"  ));
-        IsTrue (In("GREEN", matchCase: false, [ "Red", "Green", "Blue" ]));
         IsTrue ("GREEN".In( matchCase: false, [ "Red", "Green", "Blue" ]));
         IsTrue (In("GREEN", [ "Red", "Green", "Blue" ], matchCase: false));
         IsTrue ("GREEN".In( [ "Red", "Green", "Blue" ], matchCase: false));
         
         // Match case
-        IsFalse(In("GREEN", matchCase,         "Red", "Green", "Blue"   ));
-        IsFalse(In("GREEN", matchCase: true,   "Red", "Green", "Blue"   ));
         IsFalse("GREEN".In( matchCase,         "Red", "Green", "Blue"   ));
         IsFalse("GREEN".In( matchCase: true,   "Red", "Green", "Blue"   ));
-        IsFalse(In("GREEN", matchCase,       [ "Red", "Green", "Blue" ] ));
-        IsFalse(In("GREEN", matchCase: true, [ "Red", "Green", "Blue" ] ));
         IsFalse("GREEN".In( matchCase,       [ "Red", "Green", "Blue" ] ));
         IsFalse("GREEN".In( matchCase: true, [ "Red", "Green", "Blue" ] ));
         IsFalse(In("GREEN", [ "Red", "Green", "Blue" ], matchCase       ));
         IsFalse(In("GREEN", [ "Red", "Green", "Blue" ], matchCase: true ));
         IsFalse("GREEN".In( [ "Red", "Green", "Blue" ], matchCase       ));
         IsFalse("GREEN".In( [ "Red", "Green", "Blue" ], matchCase: true ));
-        IsTrue (In("Green", matchCase,          "Red", "Green", "Blue"  ));
-        IsTrue (In("Green", matchCase: true,    "Red", "Green", "Blue"  ));
         IsTrue ("Green" .In(matchCase,          "Red", "Green", "Blue"  ));
         IsTrue ("Green" .In(matchCase: true,    "Red", "Green", "Blue"  ));
-        IsTrue (In("Green", matchCase,        [ "Red", "Green", "Blue" ]));
-        IsTrue (In("Green", matchCase: true,  [ "Red", "Green", "Blue" ]));
         IsTrue ("Green" .In(matchCase,        [ "Red", "Green", "Blue" ]));
         IsTrue ("Green" .In(matchCase: true,  [ "Red", "Green", "Blue" ]));
         IsTrue (In("Green", [ "Red", "Green", "Blue" ], matchCase       ));
@@ -68,8 +58,6 @@ public class In_Tests : TestBase
         IsTrue (In("Green", [ "Red",  "Green",  "Blue" ], spaceMatters: false));
         IsTrue (In("Green", [ "Red",  "Green",  "Blue" ], spaceMatters: true ));
         IsTrue (In("Green", [ "Red",  "Green",  "Blue" ], spaceMatters       ));
-        IsTrue (In("Green", spaceMatters,   "Red",  "Green",  "Blue"         ));
-        IsTrue (In("Green", spaceMatters, [ "Red",  "Green",  "Blue" ]       ));
         
         // Space in value
         IsTrue (" Green ".In(   "Red", "Green", "Blue"                       ));
@@ -83,32 +71,19 @@ public class In_Tests : TestBase
         IsTrue (In(" Green ", [ "Red", "Green", "Blue" ], spaceMatters: false));
         IsFalse(In(" Green ", [ "Red", "Green", "Blue" ], spaceMatters: true ));
         IsFalse(In(" Green ", [ "Red", "Green", "Blue" ], spaceMatters       ));
-        IsFalse(In(" Green ", spaceMatters,   "Red", "Green",   "Blue"       )); // TODO: Too weird? Don't support?
-        IsFalse(In(" Green ", spaceMatters, [ "Red", "Green",   "Blue" ]     ));
 
         // Space in collection
-        IsTrue ("Green".In(  "Red", " Green ", "Blue"                       ));
-        IsTrue ("Green".In([ "Red", " Green ", "Blue" ]                     ));
-        IsTrue ("Green".In([ "Red", " Green ", "Blue" ], spaceMatters: false));
-        IsFalse("Green".In([ "Red", " Green ", "Blue" ], spaceMatters: true ));
-        IsFalse("Green".In([ "Red", " Green ", "Blue" ], spaceMatters       ));
-        IsFalse("Green".In(spaceMatters,   "Red", " Green ", "Blue"         )); // TODO: Flag in front unexpected? Don't support?
-        IsFalse("Green".In(spaceMatters, [ "Red", " Green ", "Blue" ]       ));
-        // TODO: Add static syntax tests
+        IsTrue ("Green".In(   "Red", " Green ", "Blue"                       ));
+        IsTrue ("Green".In( [ "Red", " Green ", "Blue" ]                     ));
+        IsTrue ("Green".In( [ "Red", " Green ", "Blue" ], spaceMatters: false));
+        IsFalse("Green".In( [ "Red", " Green ", "Blue" ], spaceMatters: true ));
+        IsFalse("Green".In( [ "Red", " Green ", "Blue" ], spaceMatters       ));
+        IsFalse("Green".In(spaceMatters,   "Red", " Green ", "Blue"          ));
+        IsFalse("Green".In(spaceMatters, [ "Red", " Green ", "Blue" ]        ));
         IsTrue (In("Green", [ "Red", " Green ", "Blue" ]                     ));
         IsTrue (In("Green", [ "Red", " Green ", "Blue" ], spaceMatters: false));
         IsFalse(In("Green", [ "Red", " Green ", "Blue" ], spaceMatters: true ));
         IsFalse(In("Green", [ "Red", " Green ", "Blue" ], spaceMatters       ));
-        IsFalse(In("Green", spaceMatters,   "Red", " Green ", "Blue"         )); // TODO: Flag in front unexpected? Don't support?
-        IsFalse(In("Green", spaceMatters, [ "Red", " Green ", "Blue" ]       ));
-
-        // Not supported
-
-        // Overload clashes
-        //IsTrue ("Green"  .In(spaceMatters: false,   "Red",  "Green",  "Blue"  ));
-        //IsTrue ("Green"  .In(spaceMatters: false, [ "Red",  "Green",  "Blue" ]));
-        //IsTrue ("Green"  .In(spaceMatters: true ,   "Red",  "Green",  "Blue"  ));
-        //IsTrue ("Green"  .In(spaceMatters: true , [ "Red",  "Green",  "Blue" ]));
     }
 
     public void In_String_MatchCase_And_SpaceMatters()

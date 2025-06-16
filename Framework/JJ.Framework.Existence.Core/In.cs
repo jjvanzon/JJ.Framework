@@ -99,14 +99,6 @@ public static partial class FilledInHelper
         => ExistenceUtil.In(value, coll);
 
     // MatchCase
-    
-    /// <inheritdoc cref="_in" />
-    public static bool In(string? value, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase);
-
-    /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase);
 
     /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase)
@@ -117,10 +109,6 @@ public static partial class FilledInHelper
         => ExistenceUtil.In(value, coll, matchCase);
     
     // SpaceMatters
-    
-    /// <inheritdoc cref="_in" />
-    public static bool In(string? value, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, spaceMatters);
 
     /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters)
@@ -131,18 +119,6 @@ public static partial class FilledInHelper
         => ExistenceUtil.In(value, coll, spaceMatters, dummy);
     
     // MatchCase + SpaceMatters
-
-    /// <inheritdoc cref="_in" />
-    public static bool In(string? value, MatchCase matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
-
-    /// <inheritdoc cref="_in" />
-    public static bool In(string? value, SpaceMatters spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
-    
-    /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool matchCase = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
 
     /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase, SpaceMatters spaceMatters)

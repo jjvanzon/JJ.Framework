@@ -151,13 +151,122 @@ if (!Has(text)) return text;
     ///// <inheritdoc cref="_in" />
     //public static bool In<T>(T? value, params IEnumerable<T?>? coll) where T : struct => coll?.Contains(value) ?? false;
 
+```
+
+### Not Supported: In(x, a, b, c)
+
+```cs
         // Not supported
 
         // Semantically unclear:
-        //IsFalse(In("Yellow", "Red", "Green", "Blue"));
-        //IsTrue (In("GREEN" , "Red", "Green", "Blue"));
+        IsFalse(In("Yellow", "Red", "Green", "Blue"));
+        IsTrue (In("GREEN" , "Red", "Green", "Blue"));
 
         // Not semantically clear; not supported
-        //IsTrue (In("Green",   "Red",  "Green", "Blue"));
-        //IsTrue (In(" Green ", "Red", "Green",  "Blue"));
+        IsTrue (In("Green",   "Red",  "Green", "Blue"));
+        IsTrue (In(" Green ", "Red", "Green",  "Blue"));
+
+
+      IsTrue(  In(a,   a, NullText,   b  )); // Semantically unclear: not supported.
+      IsTrue(  In(b,   a, Empty,      b  )); // Semantically unclear: not supported.
+      IsTrue(  In(a,   a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      IsTrue(  In(b,   a, Space,      b  )); // Semantically unclear: not supported.
+      IsTrue(  In(a,   a, NullySpace, b  )); // Semantically unclear: not supported.
+      
+      IsTrue (In(NullText,     a, b, NullText  )); // Semantically unclear: not supported.
+      IsTrue (In(Empty,        a, b, NullText  )); // Semantically unclear: not supported.
+      IsTrue (In(Space,        a, b, NullText  )); // Semantically unclear: not supported.
+      IsTrue (In(NullyEmpty,   a, b, NullText  )); // Semantically unclear: not supported.
+      IsTrue (In(NullySpace,   a, b, NullText  )); // Semantically unclear: not supported.
+      IsTrue (In(NullText,     a, Empty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Empty,        a, Empty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Space,        a, Empty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullyEmpty,   a, Empty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullySpace,   a, Empty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullText,     a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Empty,        a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Space,        a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullyEmpty,   a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullySpace,   a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullText,     Space, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Empty,        Space, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Space,        Space, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullyEmpty,   Space, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullySpace,   Space, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullText,     NullySpace, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Empty,        NullySpace, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(Space,        NullySpace, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullyEmpty,   NullySpace, a, b  )); // Semantically unclear: not supported.
+      IsTrue (In(NullySpace,   NullySpace, a, b  )); // Semantically unclear: not supported.
+      IsFalse(In(NullText,     a, b  )); // Semantically unclear: not supported.
+      IsFalse(In(Empty,        a, b  )); // Semantically unclear: not supported.
+      IsFalse(In(NullyEmpty,   a, b  )); // Semantically unclear: not supported.
+      IsFalse(In(Space,        a, b  )); // Semantically unclear: not supported.
+      IsFalse(In(NullySpace,   a, b  )); // Semantically unclear: not supported.
+
+      IsTrue (  In(a,   a, b, c  )); // Semantically unclear: not supported.
+      IsTrue (  In(b,   a, b, c  )); // Semantically unclear: not supported.
+      IsFalse(d.In(   [ a, b, c ])); // Semantically unclear: not supported.
+      IsFalse(  In(d,   a, b, c  )); // Semantically unclear: not supported.
+
+      IsTrue (  In(1,   1, 2, 3  )); // Semantically unclear: not supported.
+      IsTrue (  In(2,   1, 2, 3  )); // Semantically unclear: not supported.
+      IsFalse(  In(4,   1, 2, 3  )); // Semantically unclear: not supported.
+```
+
+### Not Supported: Flags in the front
+    
+```cs
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, MatchCase matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, bool matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase);
+
+    
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, MatchCase matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, SpaceMatters spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, bool matchCase = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+
+      IsTrue (In("GREEN", matchCase: false,   "Red", "Green", "Blue"  ));
+      IsTrue (In("GREEN", matchCase: false, [ "Red", "Green", "Blue" ]));
+      IsFalse(In("GREEN", matchCase,         "Red", "Green", "Blue"   ));
+      IsFalse(In("GREEN", matchCase: true,   "Red", "Green", "Blue"   ));
+      IsFalse(In("GREEN", matchCase,       [ "Red", "Green", "Blue" ] ));
+      IsFalse(In("GREEN", matchCase: true, [ "Red", "Green", "Blue" ] ));
+      IsTrue (In("Green", matchCase,          "Red", "Green", "Blue"  ));
+      IsTrue (In("Green", matchCase: true,    "Red", "Green", "Blue"  ));
+      IsTrue (In("Green", matchCase,        [ "Red", "Green", "Blue" ]));
+      IsTrue (In("Green", matchCase: true,  [ "Red", "Green", "Blue" ]));
+
+      IsTrue (In("Green", spaceMatters,   "Red",  "Green",  "Blue"         ));
+      IsTrue (In("Green", spaceMatters, [ "Red",  "Green",  "Blue" ]       ));
+      IsFalse(In(" Green ", spaceMatters,   "Red", "Green",   "Blue"       )); // TODO: Too weird? Don't support?
+      IsFalse(In(" Green ", spaceMatters, [ "Red", "Green",   "Blue" ]     ));
+      IsFalse(In("Green", spaceMatters,   "Red", " Green ", "Blue"         )); // TODO: Flag in front unexpected? Don't support?
+      IsFalse(In("Green", spaceMatters, [ "Red", " Green ", "Blue" ]       ));
+
+        // Not supported
+
+        // Overload clashes
+        IsTrue ("Green"  .In(spaceMatters: false,   "Red",  "Green",  "Blue"  ));
+        IsTrue ("Green"  .In(spaceMatters: false, [ "Red",  "Green",  "Blue" ]));
+        IsTrue ("Green"  .In(spaceMatters: true ,   "Red",  "Green",  "Blue"  ));
+        IsTrue ("Green"  .In(spaceMatters: true , [ "Red",  "Green",  "Blue" ]));
+
 ```
