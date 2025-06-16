@@ -8,7 +8,7 @@ Well, no more. Now you just type `Has(text)` or `Has(collection)` and be done wi
 Background
 ----------
 
-*Nothing* isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, `!Equals(x, default(T?)) && !Equals(x, default(T))`. Things get quite absurd, once you dive into how many ways nothingness can be expressed in .`NET`.
+*Nothing* isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, `!Equals(x, default(T?)) && !Equals(x, default(T))`. It gets quite absurd with the many states of nothingness in .`NET`.
 
 Here we coin the term __nully__. Don't blame us; the concept already existed, just nobody dared give it a name yet.
 
