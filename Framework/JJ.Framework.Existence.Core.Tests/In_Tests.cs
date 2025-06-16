@@ -7,80 +7,157 @@ public class In_Tests : TestBase
     public void In_Strings()
     {
         // Main Use
-        IsTrue (In("GREEN" ,                       "Red", "Green", "Blue"                    ));
-        IsTrue (   "GREEN" .In(                    "Red", "Green", "Blue"                    ));
+        IsTrue ("GREEN".In("Red", "Green", "Blue"));
         
         // Collection Expressions
-        IsTrue (In("GREEN" ,                     [ "Red", "Green", "Blue" ]                  ));
-        IsTrue (   "GREEN" .In(                  [ "Red", "Green", "Blue" ]                  ));
+        IsTrue (In("GREEN", [ "Red", "Green", "Blue" ]));
+        IsTrue ("GREEN".In( [ "Red", "Green", "Blue" ]));
         
         // Ignore Case (default behavior)
-        IsTrue (In("GREEN" ,   matchCase: false,   "Red", "Green", "Blue"                    ));
-        IsTrue (   "GREEN" .In(matchCase: false,   "Red", "Green", "Blue"                    ));
-        IsTrue (In("GREEN" ,   matchCase: false, [ "Red", "Green", "Blue" ]                  ));
-        IsTrue (   "GREEN" .In(matchCase: false, [ "Red", "Green", "Blue" ]                  ));
-        IsTrue (In("GREEN" ,                     [ "Red", "Green", "Blue" ], matchCase: false));
-        IsTrue (   "GREEN" .In(                  [ "Red", "Green", "Blue" ], matchCase: false));
+        IsTrue (In("GREEN", matchCase: false,   "Red", "Green", "Blue"  ));
+        IsTrue ("GREEN".In( matchCase: false,   "Red", "Green", "Blue"  ));
+        IsTrue (In("GREEN", matchCase: false, [ "Red", "Green", "Blue" ]));
+        IsTrue ("GREEN".In( matchCase: false, [ "Red", "Green", "Blue" ]));
+        IsTrue (In("GREEN", [ "Red", "Green", "Blue" ], matchCase: false));
+        IsTrue ("GREEN".In( [ "Red", "Green", "Blue" ], matchCase: false));
         
         // Match case
-        IsFalse(In("GREEN" ,   matchCase,          "Red", "Green", "Blue"                    ));
-        IsFalse(In("GREEN" ,   matchCase: true,    "Red", "Green", "Blue"                    ));
-        IsFalse(   "GREEN" .In(matchCase,          "Red", "Green", "Blue"                    ));
-        IsFalse(   "GREEN" .In(matchCase: true,    "Red", "Green", "Blue"                    ));
-        IsFalse(In("GREEN" ,   matchCase,        [ "Red", "Green", "Blue" ]                  ));
-        IsFalse(In("GREEN" ,   matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
-        IsFalse(   "GREEN" .In(matchCase,        [ "Red", "Green", "Blue" ]                  ));
-        IsFalse(   "GREEN" .In(matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
-        IsFalse(In("GREEN" ,                     [ "Red", "Green", "Blue" ], matchCase       ));
-        IsFalse(In("GREEN" ,                     [ "Red", "Green", "Blue" ], matchCase: true ));
-        IsFalse(   "GREEN" .In(                  [ "Red", "Green", "Blue" ], matchCase       ));
-        IsFalse(   "GREEN" .In(                  [ "Red", "Green", "Blue" ], matchCase: true ));
-        IsTrue (In("Green" ,   matchCase,          "Red", "Green", "Blue"                    ));
-        IsTrue (In("Green" ,   matchCase: true,    "Red", "Green", "Blue"                    ));
-        IsTrue (   "Green" .In(matchCase,          "Red", "Green", "Blue"                    ));
-        IsTrue (   "Green" .In(matchCase: true,    "Red", "Green", "Blue"                    ));
-        IsTrue (In("Green" ,   matchCase,        [ "Red", "Green", "Blue" ]                  ));
-        IsTrue (In("Green" ,   matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
-        IsTrue (   "Green" .In(matchCase,        [ "Red", "Green", "Blue" ]                  ));
-        IsTrue (   "Green" .In(matchCase: true,  [ "Red", "Green", "Blue" ]                  ));
-        IsTrue (In("Green" ,                     [ "Red", "Green", "Blue" ], matchCase       ));
-        IsTrue (In("Green" ,                     [ "Red", "Green", "Blue" ], matchCase: true ));
-        IsTrue (   "Green" .In(                  [ "Red", "Green", "Blue" ], matchCase       ));
-        IsTrue (   "Green" .In(                  [ "Red", "Green", "Blue" ], matchCase: true ));
+        IsFalse(In("GREEN", matchCase,         "Red", "Green", "Blue"   ));
+        IsFalse(In("GREEN", matchCase: true,   "Red", "Green", "Blue"   ));
+        IsFalse("GREEN".In( matchCase,         "Red", "Green", "Blue"   ));
+        IsFalse("GREEN".In( matchCase: true,   "Red", "Green", "Blue"   ));
+        IsFalse(In("GREEN", matchCase,       [ "Red", "Green", "Blue" ] ));
+        IsFalse(In("GREEN", matchCase: true, [ "Red", "Green", "Blue" ] ));
+        IsFalse("GREEN".In( matchCase,       [ "Red", "Green", "Blue" ] ));
+        IsFalse("GREEN".In( matchCase: true, [ "Red", "Green", "Blue" ] ));
+        IsFalse(In("GREEN", [ "Red", "Green", "Blue" ], matchCase       ));
+        IsFalse(In("GREEN", [ "Red", "Green", "Blue" ], matchCase: true ));
+        IsFalse("GREEN".In( [ "Red", "Green", "Blue" ], matchCase       ));
+        IsFalse("GREEN".In( [ "Red", "Green", "Blue" ], matchCase: true ));
+        IsTrue (In("Green", matchCase,          "Red", "Green", "Blue"  ));
+        IsTrue (In("Green", matchCase: true,    "Red", "Green", "Blue"  ));
+        IsTrue ("Green" .In(matchCase,          "Red", "Green", "Blue"  ));
+        IsTrue ("Green" .In(matchCase: true,    "Red", "Green", "Blue"  ));
+        IsTrue (In("Green", matchCase,        [ "Red", "Green", "Blue" ]));
+        IsTrue (In("Green", matchCase: true,  [ "Red", "Green", "Blue" ]));
+        IsTrue ("Green" .In(matchCase,        [ "Red", "Green", "Blue" ]));
+        IsTrue ("Green" .In(matchCase: true,  [ "Red", "Green", "Blue" ]));
+        IsTrue (In("Green", [ "Red", "Green", "Blue" ], matchCase       ));
+        IsTrue (In("Green", [ "Red", "Green", "Blue" ], matchCase: true ));
+        IsTrue ("Green" .In([ "Red", "Green", "Blue" ], matchCase       ));
+        IsTrue ("Green" .In([ "Red", "Green", "Blue" ], matchCase: true ));
         
-        // Negative match
-        IsFalse(In("Yellow",                        "Red", "Green", "Blue"                     ));
-        IsFalse(   "Yellow".In(                     "Red", "Green", "Blue"                     ));
-        IsFalse(In("Yellow",                      [ "Red", "Green", "Blue" ]                   ));
-        IsFalse(   "Yellow".In(                   [ "Red", "Green", "Blue" ]                   ));
+        // Negative match 
+        IsFalse("Yellow".In(   "Red", "Green", "Blue"  ));
+        IsFalse(In("Yellow", [ "Red", "Green", "Blue" ]));
+        IsFalse("Yellow".In( [ "Red", "Green", "Blue" ]));
+
+        // Not supported
+
+        // Semantically unclear:
+        //IsFalse(In("Yellow", "Red", "Green", "Blue"));
+        //IsTrue (In("GREEN" , "Red", "Green", "Blue"));
     }
     
+    [TestMethod]
+    public void In_Strings_SpaceMatters()
+    {
+        // Without spaces
+        IsTrue ("Green".In(   "Red",  "Green",  "Blue"                       ));
+        IsTrue ("Green".In( [ "Red",  "Green",  "Blue" ]                     ));
+        IsTrue ("Green".In( [ "Red",  "Green",  "Blue" ], spaceMatters: false));
+        IsTrue ("Green".In( [ "Red",  "Green",  "Blue" ], spaceMatters: true ));
+        IsTrue ("Green".In( [ "Red",  "Green",  "Blue" ], spaceMatters       ));
+        IsTrue ("Green".In( spaceMatters,   "Red",  "Green",  "Blue"         ));
+        IsTrue ("Green".In( spaceMatters, [ "Red",  "Green",  "Blue" ]       ));
+        IsTrue (In("Green", [ "Red",  "Green",  "Blue" ]                     ));
+        IsTrue (In("Green", [ "Red",  "Green",  "Blue" ], spaceMatters: false));
+        IsTrue (In("Green", [ "Red",  "Green",  "Blue" ], spaceMatters: true ));
+        IsTrue (In("Green", [ "Red",  "Green",  "Blue" ], spaceMatters       ));
+        IsTrue (In("Green", spaceMatters,   "Red",  "Green",  "Blue"         ));
+        IsTrue (In("Green", spaceMatters, [ "Red",  "Green",  "Blue" ]       ));
+        
+        // Space in value
+        IsTrue (" Green ".In(   "Red", "Green", "Blue"                       ));
+        IsTrue (" Green ".In( [ "Red", "Green", "Blue" ]                     ));
+        IsTrue (" Green ".In( [ "Red", "Green", "Blue" ], spaceMatters: false));
+        IsFalse(" Green ".In( [ "Red", "Green", "Blue" ], spaceMatters: true ));
+        IsFalse(" Green ".In( [ "Red", "Green", "Blue" ], spaceMatters       ));
+        IsFalse(" Green ".In( spaceMatters,   "Red", "Green",   "Blue"       ));
+        IsFalse(" Green ".In( spaceMatters, [ "Red", "Green",   "Blue" ]     ));
+        IsTrue (In(" Green ", [ "Red", "Green", "Blue" ]                     ));
+        IsTrue (In(" Green ", [ "Red", "Green", "Blue" ], spaceMatters: false));
+        IsFalse(In(" Green ", [ "Red", "Green", "Blue" ], spaceMatters: true ));
+        IsFalse(In(" Green ", [ "Red", "Green", "Blue" ], spaceMatters       ));
+        IsFalse(In(" Green ", spaceMatters,   "Red", "Green",   "Blue"       )); // TODO: Too weird? Don't support?
+        IsFalse(In(" Green ", spaceMatters, [ "Red", "Green",   "Blue" ]     ));
+
+        // Space in collection
+        IsTrue ("Green".In(  "Red", " Green ", "Blue"                       ));
+        IsTrue ("Green".In([ "Red", " Green ", "Blue" ]                     ));
+        IsTrue ("Green".In([ "Red", " Green ", "Blue" ], spaceMatters: false));
+        IsFalse("Green".In([ "Red", " Green ", "Blue" ], spaceMatters: true ));
+        IsFalse("Green".In([ "Red", " Green ", "Blue" ], spaceMatters       ));
+        IsFalse("Green".In(spaceMatters,   "Red", " Green ", "Blue"         )); // TODO: Flag in front unexpected? Don't support?
+        IsFalse("Green".In(spaceMatters, [ "Red", " Green ", "Blue" ]       ));
+        // TODO: Add static syntax tests
+        IsTrue (In("Green", [ "Red", " Green ", "Blue" ]                     ));
+        IsTrue (In("Green", [ "Red", " Green ", "Blue" ], spaceMatters: false));
+        IsFalse(In("Green", [ "Red", " Green ", "Blue" ], spaceMatters: true ));
+        IsFalse(In("Green", [ "Red", " Green ", "Blue" ], spaceMatters       ));
+        IsFalse(In("Green", spaceMatters,   "Red", " Green ", "Blue"         )); // TODO: Flag in front unexpected? Don't support?
+        IsFalse(In("Green", spaceMatters, [ "Red", " Green ", "Blue" ]       ));
+
+        // Not supported
+
+        // Overload clashes
+        //IsTrue ("Green"  .In(spaceMatters: false,   "Red",  "Green",  "Blue"  ));
+        //IsTrue ("Green"  .In(spaceMatters: false, [ "Red",  "Green",  "Blue" ]));
+        //IsTrue ("Green"  .In(spaceMatters: true ,   "Red",  "Green",  "Blue"  ));
+        //IsTrue ("Green"  .In(spaceMatters: true , [ "Red",  "Green",  "Blue" ]));
+
+        // Not semantically clear; not supported
+        //IsTrue (In("Green",   "Red",  "Green", "Blue"));
+        //IsTrue (In(" Green ", "Red", "Green",  "Blue"));
+    }
+
+    public void In_String_MatchCase_And_SpaceMatters()
+    {
+        IsTrue( "Green"  .In(matchCase: false, spaceMatters: false, [ "Red", "Green", "Blue" ]));
+        IsTrue( "Green"  .In(matchCase: false, spaceMatters: false,   "Red", "Green", "Blue"  ));
+        // TODO: Extend with cases
+    }
+
     [TestMethod]
     public void In_Strings_Nully()
     {
         string  a = "A";
         string  b = "B";
 
+        // Nully in the middle
+
         IsTrue(a.In(     a, NullText,   b  ));
         IsTrue(a.In(   [ a, NullText,   b ]));
-        IsTrue(  In(a,   a, NullText,   b  ));
+      //IsTrue(  In(a,   a, NullText,   b  )); // Semantically unclear: not supported.
         IsTrue(  In(a, [ a, NullText,   b ]));
         IsTrue(b.In(     a, Empty,      b  ));
         IsTrue(b.In(   [ a, Empty,      b ]));
-        IsTrue(  In(b,   a, Empty,      b  ));
+      //IsTrue(  In(b,   a, Empty,      b  )); // Semantically unclear: not supported.
         IsTrue(  In(b, [ a, Empty,      b ]));
         IsTrue(a.In(     a, NullyEmpty, b  ));
         IsTrue(a.In(   [ a, NullyEmpty, b ]));
-        IsTrue(  In(a,   a, NullyEmpty, b  ));
+      //IsTrue(  In(a,   a, NullyEmpty, b  )); // Semantically unclear: not supported.
         IsTrue(  In(a, [ a, NullyEmpty, b ]));
         IsTrue(b.In(     a, Space,      b  ));
         IsTrue(b.In(   [ a, Space,      b ]));
-        IsTrue(  In(b,   a, Space,      b  ));
+      //IsTrue(  In(b,   a, Space,      b  )); // Semantically unclear: not supported.
         IsTrue(  In(b, [ a, Space,      b ]));
         IsTrue(a.In(     a, NullySpace, b  ));
         IsTrue(a.In(   [ a, NullySpace, b ]));
-        IsTrue(  In(a,   a, NullySpace, b  ));
+      //IsTrue(  In(a,   a, NullySpace, b  )); // Semantically unclear: not supported.
         IsTrue(  In(a, [ a, NullySpace, b ]));
+
+        // Nully in the front
 
         IsTrue (NullText  .In(   a, b, NullText  ));
         IsTrue (Empty     .In(   a, b, NullText  ));
@@ -92,11 +169,11 @@ public class In_Tests : TestBase
         IsTrue (Space     .In( [ a, b, NullText ]));
         IsTrue (NullyEmpty.In( [ a, b, NullText ]));
         IsTrue (NullySpace.In( [ a, b, NullText ]));
-        IsTrue (In(NullText,     a, b, NullText  ));
-        IsTrue (In(Empty,        a, b, NullText  ));
-        IsTrue (In(Space,        a, b, NullText  ));
-        IsTrue (In(NullyEmpty,   a, b, NullText  ));
-        IsTrue (In(NullySpace,   a, b, NullText  ));
+      //IsTrue (In(NullText,     a, b, NullText  )); // Semantically unclear: not supported.
+      //IsTrue (In(Empty,        a, b, NullText  )); // Semantically unclear: not supported.
+      //IsTrue (In(Space,        a, b, NullText  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullyEmpty,   a, b, NullText  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullySpace,   a, b, NullText  )); // Semantically unclear: not supported.
         IsTrue (In(NullText,   [ a, b, NullText ]));
         IsTrue (In(Empty,      [ a, b, NullText ]));
         IsTrue (In(Space,      [ a, b, NullText ]));
@@ -112,11 +189,11 @@ public class In_Tests : TestBase
         IsTrue (Space     .In( [ a, Empty, b ]));
         IsTrue (NullyEmpty.In( [ a, Empty, b ]));
         IsTrue (NullySpace.In( [ a, Empty, b ]));
-        IsTrue (In(NullText,     a, Empty, b  ));
-        IsTrue (In(Empty,        a, Empty, b  ));
-        IsTrue (In(Space,        a, Empty, b  ));
-        IsTrue (In(NullyEmpty,   a, Empty, b  ));
-        IsTrue (In(NullySpace,   a, Empty, b  ));
+      //IsTrue (In(NullText,     a, Empty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Empty,        a, Empty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Space,        a, Empty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullyEmpty,   a, Empty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullySpace,   a, Empty, b  )); // Semantically unclear: not supported.
         IsTrue (In(NullText,   [ a, Empty, b ]));
         IsTrue (In(Empty,      [ a, Empty, b ]));
         IsTrue (In(Space,      [ a, Empty, b ]));
@@ -132,11 +209,11 @@ public class In_Tests : TestBase
         IsTrue (Space     .In( [ a, NullyEmpty, b ]));
         IsTrue (NullyEmpty.In( [ a, NullyEmpty, b ]));
         IsTrue (NullySpace.In( [ a, NullyEmpty, b ]));
-        IsTrue (In(NullText,     a, NullyEmpty, b  ));
-        IsTrue (In(Empty,        a, NullyEmpty, b  ));
-        IsTrue (In(Space,        a, NullyEmpty, b  ));
-        IsTrue (In(NullyEmpty,   a, NullyEmpty, b  ));
-        IsTrue (In(NullySpace,   a, NullyEmpty, b  ));
+      //IsTrue (In(NullText,     a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Empty,        a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Space,        a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullyEmpty,   a, NullyEmpty, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullySpace,   a, NullyEmpty, b  )); // Semantically unclear: not supported.
         IsTrue (In(NullText,   [ a, NullyEmpty, b ]));
         IsTrue (In(Empty,      [ a, NullyEmpty, b ]));
         IsTrue (In(Space,      [ a, NullyEmpty, b ]));
@@ -152,11 +229,11 @@ public class In_Tests : TestBase
         IsTrue (Space     .In( [ Space, a, b ]));
         IsTrue (NullyEmpty.In( [ Space, a, b ]));
         IsTrue (NullySpace.In( [ Space, a, b ]));
-        IsTrue (In(NullText,     Space, a, b  ));
-        IsTrue (In(Empty,        Space, a, b  ));
-        IsTrue (In(Space,        Space, a, b  ));
-        IsTrue (In(NullyEmpty,   Space, a, b  ));
-        IsTrue (In(NullySpace,   Space, a, b  ));
+      //IsTrue (In(NullText,     Space, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Empty,        Space, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Space,        Space, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullyEmpty,   Space, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullySpace,   Space, a, b  )); // Semantically unclear: not supported.
         IsTrue (In(NullText,   [ Space, a, b ]));
         IsTrue (In(Empty,      [ Space, a, b ]));
         IsTrue (In(Space,      [ Space, a, b ]));
@@ -172,11 +249,11 @@ public class In_Tests : TestBase
         IsTrue (Space     .In( [ NullySpace, a, b ]));
         IsTrue (NullyEmpty.In( [ NullySpace, a, b ]));
         IsTrue (NullySpace.In( [ NullySpace, a, b ]));
-        IsTrue (In(NullText,     NullySpace, a, b  ));
-        IsTrue (In(Empty,        NullySpace, a, b  ));
-        IsTrue (In(Space,        NullySpace, a, b  ));
-        IsTrue (In(NullyEmpty,   NullySpace, a, b  ));
-        IsTrue (In(NullySpace,   NullySpace, a, b  ));
+      //IsTrue (In(NullText,     NullySpace, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Empty,        NullySpace, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(Space,        NullySpace, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullyEmpty,   NullySpace, a, b  )); // Semantically unclear: not supported.
+      //IsTrue (In(NullySpace,   NullySpace, a, b  )); // Semantically unclear: not supported.
         IsTrue (In(NullText,   [ NullySpace, a, b ]));
         IsTrue (In(Empty,      [ NullySpace, a, b ]));
         IsTrue (In(Space,      [ NullySpace, a, b ]));
@@ -194,11 +271,11 @@ public class In_Tests : TestBase
         IsFalse(NullyEmpty.In( [ a, b ]));
         IsFalse(Space     .In( [ a, b ]));
         IsFalse(NullySpace.In( [ a, b ]));
-        IsFalse(In(NullText,     a, b  ));
-        IsFalse(In(Empty,        a, b  ));
-        IsFalse(In(NullyEmpty,   a, b  ));
-        IsFalse(In(Space,        a, b  ));
-        IsFalse(In(NullySpace,   a, b  ));
+      //IsFalse(In(NullText,     a, b  )); // Semantically unclear: not supported.
+      //IsFalse(In(Empty,        a, b  )); // Semantically unclear: not supported.
+      //IsFalse(In(NullyEmpty,   a, b  )); // Semantically unclear: not supported.
+      //IsFalse(In(Space,        a, b  )); // Semantically unclear: not supported.
+      //IsFalse(In(NullySpace,   a, b  )); // Semantically unclear: not supported.
         IsFalse(In(NullText,   [ a, b ]));
         IsFalse(In(Empty,      [ a, b ]));
         IsFalse(In(NullyEmpty, [ a, b ]));
@@ -218,14 +295,14 @@ public class In_Tests : TestBase
         IsTrue (b.In(     a, b, c  ));
         IsTrue (a.In(   [ a, b, c ]));
         IsTrue (b.In(   [ a, b, c ]));
-        IsTrue (  In(a,   a, b, c  ));
-        IsTrue (  In(b,   a, b, c  ));
+      //IsTrue (  In(a,   a, b, c  )); // Semantically unclear: not supported.
+      //IsTrue (  In(b,   a, b, c  )); // Semantically unclear: not supported.
         IsTrue (  In(a, [ a, b, c ]));
         IsTrue (  In(b, [ a, b, c ]));
 
         IsFalse(d.In(     a, b, c  ));
-        IsFalse(d.In(   [ a, b, c ]));
-        IsFalse(  In(d,   a, b, c  ));
+      //IsFalse(d.In(   [ a, b, c ])); // Semantically unclear: not supported.
+      //IsFalse(  In(d,   a, b, c  )); // Semantically unclear: not supported.
         IsFalse(  In(d, [ a, b, c ]));
     }
         
@@ -249,14 +326,14 @@ public class In_Tests : TestBase
         IsTrue (2.In(     1, 2, 3  ));
         IsTrue (1.In(   [ 1, 2, 3 ]));
         IsTrue (2.In(   [ 1, 2, 3 ]));
-        IsTrue (  In(1,   1, 2, 3  ));
-        IsTrue (  In(2,   1, 2, 3  ));
+      //IsTrue (  In(1,   1, 2, 3  )); // Semantically unclear: not supported.
+      //IsTrue (  In(2,   1, 2, 3  )); // Semantically unclear: not supported.
         IsTrue (  In(1, [ 1, 2, 3 ]));
         IsTrue (  In(2, [ 1, 2, 3 ]));
 
         IsFalse(4.In(     1, 2, 3  ));
         IsFalse(4.In(   [ 1, 2, 3 ]));
-        IsFalse(  In(4,   1, 2, 3  ));
+      //IsFalse(  In(4,   1, 2, 3  )); // Semantically unclear: not supported.
         IsFalse(  In(4, [ 1, 2, 3 ]));
     }
 
@@ -287,27 +364,27 @@ public class In_Tests : TestBase
         IsTrue (NullNum.In(      1,      2,      3, NullNum));
         IsTrue (NullNum.In(      1,      2, Nully3, NullNum));
         IsTrue (NullNum.In( Nully1, Nully2, Nully3, NullNum));
-        IsTrue (In(      1,      1,      2,      3, NullNum));
-        IsTrue (In(      2,      1,      2,      3, NullNum));
-        IsTrue (In(      3,      1,      2,      3, NullNum));
-        IsTrue (In( Nully1,      1,      2,      3         ));
-        IsTrue (In( Nully2,      1,      2,      3         ));
-        IsTrue (In( Nully3,      1,      2,      3         ));
-        IsTrue (In( Nully1,      1,      2, Nully3         ));
-        IsTrue (In( Nully2,      1,      2, Nully3         ));
-        IsTrue (In( Nully3,      1,      2, Nully3         ));
-        IsTrue (In(      1,      1,      2, Nully3         ));
-        IsTrue (In(      2,      1,      2, Nully3         ));
-        IsTrue (In(      3,      1,      2, Nully3         ));
-        IsTrue (In(      1, Nully1, Nully2, Nully3         ));
-        IsTrue (In(      2, Nully1, Nully2, Nully3         ));
-        IsTrue (In(      3, Nully1, Nully2, Nully3         ));
-        IsTrue (In( Nully1, Nully1, Nully2, Nully3         ));
-        IsTrue (In( Nully2, Nully1, Nully2, Nully3         ));
-        IsTrue (In( Nully3, Nully1, Nully2, Nully3         ));
-        IsTrue (In(NullNum,      1,      2,      3, NullNum));
-        IsTrue (In(NullNum,      1,      2, Nully3, NullNum));
-        IsTrue (In(NullNum, Nully1, Nully2, Nully3, NullNum));
+      //IsTrue (In(      1,      1,      2,      3, NullNum)); // Semantically unclear: not supported.
+      //IsTrue (In(      2,      1,      2,      3, NullNum)); // Semantically unclear: not supported.
+      //IsTrue (In(      3,      1,      2,      3, NullNum)); // Semantically unclear: not supported.
+      //IsTrue (In( Nully1,      1,      2,      3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully2,      1,      2,      3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully3,      1,      2,      3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully1,      1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully2,      1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully3,      1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In(      1,      1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In(      2,      1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In(      3,      1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In(      1, Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In(      2, Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In(      3, Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully1, Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully2, Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In( Nully3, Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsTrue (In(NullNum,      1,      2,      3, NullNum)); // Semantically unclear: not supported.
+      //IsTrue (In(NullNum,      1,      2, Nully3, NullNum)); // Semantically unclear: not supported.
+      //IsTrue (In(NullNum, Nully1, Nully2, Nully3, NullNum)); // Semantically unclear: not supported.
         
         // Negative matches
         IsFalse(      4.In(      1,      2,      3, NullNum));
@@ -319,27 +396,27 @@ public class In_Tests : TestBase
         IsFalse(NullNum.In(      1,      2,      3         ));
         IsFalse(NullNum.In(      1,      2, Nully3         ));
         IsFalse(NullNum.In( Nully1, Nully2, Nully3         ));
-        IsFalse(In(     4,       1,      2,      3, NullNum));
-        IsFalse(In(Nully4,       1,      2,      3         ));
-        IsFalse(In(Nully4,       1,      2, Nully3         ));
-        IsFalse(In(     4,       1,      2, Nully3         ));
-        IsFalse(In(     4,  Nully1, Nully2, Nully3         ));
-        IsFalse(In(Nully4,  Nully1, Nully2, Nully3         ));
-        IsFalse(In(NullNum,      1,      2,      3         ));
-        IsFalse(In(NullNum,      1,      2, Nully3         ));
-        IsFalse(In(NullNum, Nully1, Nully2, Nully3         ));
+      //IsFalse(In(     4,       1,      2,      3, NullNum)); // Semantically unclear: not supported.
+      //IsFalse(In(Nully4,       1,      2,      3         )); // Semantically unclear: not supported.
+      //IsFalse(In(Nully4,       1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsFalse(In(     4,       1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsFalse(In(     4,  Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsFalse(In(Nully4,  Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
+      //IsFalse(In(NullNum,      1,      2,      3         )); // Semantically unclear: not supported.
+      //IsFalse(In(NullNum,      1,      2, Nully3         )); // Semantically unclear: not supported.
+      //IsFalse(In(NullNum, Nully1, Nully2, Nully3         )); // Semantically unclear: not supported.
         
         // Staring into the abyss
         IsFalse(   Nully1.In(nullColl));
         IsFalse(        1.In(NullNum  ));
         IsFalse(        1.In(nullColl));
         IsFalse(In(Nully1,   nullColl));
-        IsFalse(In(     1,   NullNum  ));
+      //IsFalse(In(     1,   NullNum  )); // Semantically unclear: not supported.
         IsFalse(In(     1,   nullColl));
         
         // Very much null and empty
         IsTrue (   NullNum.In(NullNum   ));
-        IsTrue (In(NullNum,   NullNum   ));
+      //IsTrue (In(NullNum,   NullNum   )); // Semantically unclear: not supported.
         IsFalse(   NullNum.In(emptyColl));
         IsFalse(In(NullNum,   emptyColl));
         IsFalse(   NullNum.In(nullColl ));

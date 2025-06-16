@@ -116,4 +116,14 @@ if (!Has(text)) return text;
     }
 
     public static StringComparison ToStringComparison(this MatchCase matchCase) => Ordinal;
+
+
+  /// <inheritdoc cref="_in" />
+  public static bool In(string? value, bool spaceMatters, int dummy = 1, params IEnumerable<string?>? coll) 
+      => ExistenceUtil.In(value, coll, spaceMatters, dummy);
+
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(this string? value, bool spaceMatters, int dummy = 1, params IEnumerable<string?>? coll) 
+        => ExistenceUtil.In(value, coll, spaceMatters, dummy);
 ```

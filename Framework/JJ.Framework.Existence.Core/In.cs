@@ -52,7 +52,7 @@ internal static partial class ExistenceUtil
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
-        return coll.Any(x => x == value || FormatValue(value, spaceMatters).Equals(value, OrdinalIgnoreCase));
+        return coll.Any(x => x == value || FormatValue(x, spaceMatters).Equals(value, OrdinalIgnoreCase));
     }
     
     /// <inheritdoc cref="_in" />
@@ -68,7 +68,7 @@ internal static partial class ExistenceUtil
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
-        return coll.Any(x => x == value || FormatValue(value, spaceMatters).Equals(value, Ordinal));
+        return coll.Any(x => x == value || FormatValue(x, spaceMatters).Equals(value, Ordinal));
     }
     
     // Helpers
@@ -95,7 +95,7 @@ public static partial class FilledInHelper
     // Text
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, params IEnumerable<string?>? coll)
+    public static bool In(string? value, IEnumerable<string?>? coll)
         => ExistenceUtil.In(value, coll);
 
     // MatchCase
@@ -123,10 +123,6 @@ public static partial class FilledInHelper
         => ExistenceUtil.In(value, coll, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool spaceMatters, int dummy = 1, params IEnumerable<string?>? coll) 
-        => ExistenceUtil.In(value, coll, spaceMatters, dummy);
-
-    /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters)
         => ExistenceUtil.In(value, coll, spaceMatters);
 
@@ -145,7 +141,7 @@ public static partial class FilledInHelper
         => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool matchCase, bool spaceMatters, params IEnumerable<string?>? coll)
+    public static bool In(string? value, bool matchCase = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
         => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
 
     /// <inheritdoc cref="_in" />
@@ -163,13 +159,13 @@ public static partial class FilledInHelper
     // Values and Objects
 
     /// <inheritdoc cref="_in" />
-    public static bool In<T>(T value, params IEnumerable<T>? coll) => coll?.Contains(value) ?? false;
+    public static bool In<T>(T value, IEnumerable<T>? coll) => coll?.Contains(value) ?? false;
     /// <inheritdoc cref="_in" />
-    public static bool In<T>(T value, params IEnumerable<T?>? coll) where T : struct => coll?.Contains(value) ?? false;
+    public static bool In<T>(T value, IEnumerable<T?>? coll) where T : struct => coll?.Contains(value) ?? false;
     /// <inheritdoc cref="_in" />
-    public static bool In<T>(T? value, params IEnumerable<T>? coll) where T : struct => value.HasValue && (coll?.Contains(value.Value) ?? false);
+    public static bool In<T>(T? value, IEnumerable<T>? coll) where T : struct => value.HasValue && (coll?.Contains(value.Value) ?? false);
     /// <inheritdoc cref="_in" />
-    public static bool In<T>(T? value, params IEnumerable<T?>? coll) where T : struct => coll?.Contains(value) ?? false;
+    public static bool In<T>(T? value, IEnumerable<T?>? coll) where T : struct => coll?.Contains(value) ?? false;
 }
 
 public static partial class FilledInExtensions
@@ -205,10 +201,6 @@ public static partial class FilledInExtensions
         => ExistenceUtil.In(value, coll, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, bool spaceMatters, int dummy = 1, params IEnumerable<string?>? coll) 
-        => ExistenceUtil.In(value, coll, spaceMatters, dummy);
-
-    /// <inheritdoc cref="_in" />
     public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters)
         => ExistenceUtil.In(value, coll, spaceMatters);
 
@@ -227,7 +219,7 @@ public static partial class FilledInExtensions
         => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
     
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, bool matchCase, bool spaceMatters, params IEnumerable<string?>? coll)
+    public static bool In(this string? value, bool matchCase = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
         => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
 
     /// <inheritdoc cref="_in" />
