@@ -2,7 +2,7 @@
 
 internal static partial class ExistenceUtil
 {
-    public const string IgnoreCaseObsolete = 
+    public const string IgnoreCaseWarning = 
         "Use matchCase instead. " +
         "FLIP YOUR BOOLEANS IF NEEDED: " +
         "Where ignoreCase: false, matchCase should now be true. " +
