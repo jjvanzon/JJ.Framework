@@ -107,4 +107,13 @@ if (!Has(text)) return text;
     // TODO: Variants with IEnumerable<string> (non-nullable strings) for lack of covariance?
     public static bool In(string? value, params IEnumerable<string?>? coll) ...
 
-````
+```
+
+```cs
+    public static StringComparison IgnoreCaseToStringComparison(this bool ignoreCase)
+    {
+        return ignoreCase ? OrdinalIgnoreCase : Ordinal;
+    }
+
+    public static StringComparison ToStringComparison(this MatchCase matchCase) => Ordinal;
+```
