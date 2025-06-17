@@ -261,8 +261,6 @@ if (!Has(text)) return text;
       IsFalse(In("Green", spaceMatters,   "Red", " Green ", "Blue"         )); // TODO: Flag in front unexpected? Don't support?
       IsFalse(In("Green", spaceMatters, [ "Red", " Green ", "Blue" ]       ));
 
-        // Not supported
-
         // Overload clashes
         IsTrue ("Green"  .In(spaceMatters: false,   "Red",  "Green",  "Blue"  ));
         IsTrue ("Green"  .In(spaceMatters: false, [ "Red",  "Green",  "Blue" ]));
