@@ -5,17 +5,19 @@ Ever find yourself trying to decide on `IsNullOrEmpty`, `IsNullOrWhiteSpace`, a 
 
 Well, no more. Now you just type `Has(text)` or `Has(collection)` and be done with it.
 
+
 Background
 ----------
 
-*Nothing* isn’t one thing in `.NET`. It’s `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, `!Equals(x, default(T?)) && !Equals(x, default(T))`. It gets quite absurd with the many states of nothingness in .`NET`.
+__Nothing__ isn't one thing in `.NET`. It's `null`, `default`, white space, `0`, `NaN`, `Empty`, `Length = 0`, `!Equals(x, default(T?)) && !Equals(x, default(T))`. It gets quite absurd with the many states of nothingness in .`NET`.
 
 Here we coin the term __nully__. Don't blame us; the concept already existed, just nobody dared give it a name yet.
+
 
 Features
 --------
 
-Grab these methods instead. Your code (and your brain) will thank you:
+Grab these methods instead of wrestling with these checks. Your code (and your brain) will thank you:
 
 - `Has` / `FilledIn` / `IsNully`
 
@@ -31,7 +33,7 @@ Grab these methods instead. Your code (and your brain) will thank you:
 
 - `In` / `Contains`
 
-    - "Is this in that?" tests for collections and sets.
+    - "Is this in that?" tests for collections.
 
 -----
 
@@ -72,25 +74,27 @@ Coalesce(" ", null, "Hi!") == "Hi!"
 "GREEN".In("Red", "Green","Blue") == true!
 ```
 
+
 Releases
 --------
 
 - __`2.5` Initial release__  
 - __`2.6` Flags__  
   `spaceMatters` wider support  
-  `ignoreCase` replaced by `matchCase`
-  `x.In(a, b, c)` in favor of `In(x, a, b, c)`
+  `ignoreCase` replaced by `matchCase`  
+  `x.In(a, b, c)` favored over `In(x, a, b, c)`
+
 
 Coming Soon
 -----------
 
-- `zeroMatters` – flip the switch so `0` isn't disregarded.
+- `zeroMatters` – flip the switch if you consider `0` meaningful.
 - `flex` mode – force a full runtime type lookup on values when you're feeling adventurous.
 - `char` quirks – treat lone `' '` as nully by default (no more sneaky space bugs).
 - `float` drama – `NaN`, `∞`, `+0`/`–0` all count as empty.
 - `enum` safety net – invalid enum values get flagged as nully instead of blowing up.
 - all-`null` collections – if every item is `null`, the whole collection is officially empty.
-- ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn’t `10`?
+- ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn't `10`?
 
 
 🐨 Mr. Koala
