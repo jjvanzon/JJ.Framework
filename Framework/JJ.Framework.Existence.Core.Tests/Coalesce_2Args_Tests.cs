@@ -169,17 +169,66 @@ public class Coalesce_2Args_Tests : TestBase
         NoNullRet(Space,      $"{SpaceSB.Coalesce( FilledSB, spaceMatters       )}");
     }
     
-    // StringBuilder to Text
+    // StringBuilder / Text Combos
     
     [TestMethod]
-    public void Coalesce_2Args_StringBuilderToText()
+    public void Coalesce_2Args_StringBuilderAndText()
     {
-        NoNullRet(Text,       Coalesce(NullSB,       Text));
-        NoNullRet("FilledSB", Coalesce(FilledSB,     Text));
-        NoNullRet("FilledSB", Coalesce(NullyFilledSB,Text));
-        NoNullRet(Text,       NullSB       .Coalesce(Text));
-        NoNullRet("FilledSB", FilledSB     .Coalesce(Text));
-        NoNullRet("FilledSB", NullyFilledSB.Coalesce(Text));
+        NoNullRet(Text,       Coalesce(NullSB,       Text                     ));
+        NoNullRet(Text,       Coalesce(NullSB,       Text, spaceMatters: false));
+        NoNullRet("FilledSB", Coalesce(FilledSB,     Text                     ));
+        NoNullRet("FilledSB", Coalesce(FilledSB,     Text, spaceMatters: false));
+        NoNullRet("FilledSB", Coalesce(NullyFilledSB,Text                     ));
+        NoNullRet("FilledSB", Coalesce(NullyFilledSB,Text, spaceMatters: false));
+        NoNullRet(Text,       NullSB       .Coalesce(Text                     ));
+        NoNullRet(Text,       NullSB       .Coalesce(Text, spaceMatters: false));
+        NoNullRet("FilledSB", FilledSB     .Coalesce(Text                     ));
+        NoNullRet("FilledSB", FilledSB     .Coalesce(Text, spaceMatters: false));
+        NoNullRet("FilledSB", NullyFilledSB.Coalesce(Text                     ));
+        NoNullRet("FilledSB", NullyFilledSB.Coalesce(Text, spaceMatters: false));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_StringBuilderAndText_SpaceMatters()
+    {
+        NoNullRet(" ",    Coalesce(NullySpaceSB, NullyText, spaceMatters      ));
+        NoNullRet(" ",    Coalesce(NullySpaceSB, NullyText, spaceMatters: true));
+        NoNullRet("Text", Coalesce(NullyEmptySB, NullyText, spaceMatters      ));
+        NoNullRet("Text", Coalesce(NullyEmptySB, NullyText, spaceMatters: true));
+        NoNullRet(" ",    NullySpaceSB.Coalesce( NullyText, spaceMatters      ));
+        NoNullRet(" ",    NullySpaceSB.Coalesce( NullyText, spaceMatters: true));
+        NoNullRet("Text", NullyEmptySB.Coalesce( NullyText, spaceMatters      ));
+        NoNullRet("Text", NullyEmptySB.Coalesce( NullyText, spaceMatters: true));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_TextAndStringBuilder()
+    {
+        NoNullRet("FilledSB", Coalesce(NullText,  NullyFilledSB                     ));
+        NoNullRet("FilledSB", Coalesce(NullText,  NullyFilledSB, spaceMatters: false));
+        NoNullRet("Text",     Coalesce(NullyText, NullyFilledSB                     ));
+        NoNullRet("Text",     Coalesce(NullyText, NullyFilledSB, spaceMatters: false));
+        NoNullRet("",         Coalesce(NullText,  NullSB                            ));
+        NoNullRet("",         Coalesce(NullText,  NullSB,        spaceMatters: false));
+        NoNullRet("FilledSB", NullText .Coalesce( NullyFilledSB                     ));
+        NoNullRet("FilledSB", NullText .Coalesce( NullyFilledSB, spaceMatters: false));
+        NoNullRet("Text",     NullyText.Coalesce( NullyFilledSB                     ));
+        NoNullRet("Text",     NullyText.Coalesce( NullyFilledSB, spaceMatters: false));
+        NoNullRet("",         NullText .Coalesce( NullSB                            ));
+        NoNullRet("",         NullText .Coalesce( NullSB,        spaceMatters: false));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_TextAndStringBuilder_SpaceMatters()
+    {
+        NoNullRet(Space,      Coalesce(NullySpace, NullyFilledSB, spaceMatters      ));
+        NoNullRet(Space,      Coalesce(NullySpace, NullyFilledSB, spaceMatters: true));
+        NoNullRet("FilledSB", Coalesce(NullyEmpty, NullyFilledSB, spaceMatters      ));
+        NoNullRet("FilledSB", Coalesce(NullyEmpty, NullyFilledSB, spaceMatters: true));
+        NoNullRet(Space,      NullySpace.Coalesce( NullyFilledSB, spaceMatters      ));
+        NoNullRet(Space,      NullySpace.Coalesce( NullyFilledSB, spaceMatters: true));
+        NoNullRet("FilledSB", NullyEmpty.Coalesce( NullyFilledSB, spaceMatters      ));
+        NoNullRet("FilledSB", NullyEmpty.Coalesce( NullyFilledSB, spaceMatters: true));
     }
 
     // Objects to Text

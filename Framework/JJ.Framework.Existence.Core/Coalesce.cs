@@ -227,6 +227,7 @@ public static partial class FilledInHelper
     public static SB     Coalesce   (     SB?     sb,   SB?     fallback, bool         spaceMatters) => CoalesceTwoSBs        (sb,   fallback, spaceMatters);
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (     SB?     sb,   SB?     fallback, SpaceMatters spaceMatters) => CoalesceTwoSBs        (sb,   fallback, spaceMatters);
+    
     // 2 Args (for some)
     
     /// <inheritdoc cref="_coalesce" />
