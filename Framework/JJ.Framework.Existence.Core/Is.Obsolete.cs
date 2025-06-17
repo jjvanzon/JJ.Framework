@@ -1,6 +1,8 @@
 ﻿// ReSharper disable MethodOverloadWithOptionalParameter
 namespace JJ.Framework.Existence.Core;
 
+// ncrunch: no coverage start
+
 public static partial class FilledInHelper
 {
     /// <inheritdoc cref="_ignorecaseobsolete" />
@@ -18,3 +20,5 @@ public static partial class FilledInExtensions
     public static bool Is(this string? a, string? b, bool ignoreCase, [UsedImplicitly] int dummy1 = 1, [UsedImplicitly] int dummy2 = 2) 
         => throw new NotSupportedException(IgnoreCaseWarning);
 }
+
+// ncrunch: no coverage end
