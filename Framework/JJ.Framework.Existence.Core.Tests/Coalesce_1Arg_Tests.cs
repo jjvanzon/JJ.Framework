@@ -27,20 +27,20 @@ public class Coalesce_1Arg_Tests : TestBase
     [TestMethod]
     public void Coalesce_1Arg_Text_Vars()
     {
-        NoNullRet(Empty, NullText  .Coalesce());
-        NoNullRet(Empty, Empty     .Coalesce());
-        NoNullRet(Empty, NullyEmpty.Coalesce());
-        NoNullRet(Space, Space     .Coalesce());
-        NoNullRet(Space, NullySpace.Coalesce());
-        NoNullRet(Text,  Text      .Coalesce());
-        NoNullRet(Text,  NullyText .Coalesce());
-        NoNullRet(Empty, Coalesce(NullText   ));
-        NoNullRet(Empty, Coalesce(Empty      ));
-        NoNullRet(Empty, Coalesce(NullyEmpty ));
-        NoNullRet(Space, Coalesce(Space      ));
-        NoNullRet(Space, Coalesce(NullySpace ));
-        NoNullRet(Text,  Coalesce(Text       ));
-        NoNullRet(Text,  Coalesce(NullyText  ));
+        NoNullRet(Empty, NullText       .Coalesce());
+        NoNullRet(Empty, Empty          .Coalesce());
+        NoNullRet(Empty, NullyEmpty     .Coalesce());
+        NoNullRet(Space, Space          .Coalesce());
+        NoNullRet(Space, NullySpace     .Coalesce());
+        NoNullRet(Text,  Text           .Coalesce());
+        NoNullRet(Text,  NullyFilledText.Coalesce());
+        NoNullRet(Empty, Coalesce(NullText       ));
+        NoNullRet(Empty, Coalesce(Empty          ));
+        NoNullRet(Empty, Coalesce(NullyEmpty     ));
+        NoNullRet(Space, Coalesce(Space          ));
+        NoNullRet(Space, Coalesce(NullySpace     ));
+        NoNullRet(Text,  Coalesce(Text           ));
+        NoNullRet(Text,  Coalesce(NullyFilledText));
     }
 
     // StringBuilder
@@ -146,8 +146,8 @@ public class Coalesce_1Arg_Tests : TestBase
         NoNullRet(Coalesce(NullObj));
         NoNullRet(NullObj.Coalesce());
 
-        NotNull(NullyFilled);
-        NoNullRet(Coalesce(NullyFilled));
-        NoNullRet(NullyFilled.Coalesce());
+        NotNull(NullyFilledObj);
+        NoNullRet(Coalesce(NullyFilledObj));
+        NoNullRet(NullyFilledObj.Coalesce());
     }
 }

@@ -108,15 +108,15 @@ public class Coalesce_NArgs_Tests : TestBase
     public void Coalesce_NArgs_Objects()
     {
         // Static params
-        NoNullRet(NoNullObj,               Coalesce(         NullObj, NoNullObj,   NullyFilled  ));
-        NoNullRet(NullyFilled,             Coalesce(         NullObj, NullyFilled, NoNullObj    ));
+        NoNullRet(NoNullObj,      Coalesce(NullObj, NoNullObj, NullyFilledObj));
+        NoNullRet(NullyFilledObj, Coalesce(NullObj, NullyFilledObj, NoNullObj));
         // Static collection
-        NoNullRet(NoNullObj,               Coalesce(       [ NullObj, NoNullObj,   NullyFilled ]));
+        NoNullRet(NoNullObj,      Coalesce([NullObj, NoNullObj, NullyFilledObj]));
         // Extension on collection
-        NoNullRet(NullyFilled,                      new [] { NullObj, NullyFilled, NoNullObj    }.Coalesce());
+        NoNullRet(NullyFilledObj, new[] { NullObj, NullyFilledObj, NoNullObj }.Coalesce());
         // Extension first + params
-        NoNullRet(NullyFilled, NullyFilled.Coalesce(         NullObj, NullObj,     NullObj      ));
+        NoNullRet(NullyFilledObj, NullyFilledObj.Coalesce(NullObj, NullObj, NullObj));
         // Extension first + coll
-        NoNullRet(NullyFilled, NullyFilled.Coalesce(new [] { NullObj, NullObj,     NullObj }    ));
+        NoNullRet(NullyFilledObj, NullyFilledObj.Coalesce(new[] { NullObj, NullObj, NullObj }));
     }
 }

@@ -4,11 +4,13 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Has_Text_Tests : TestBase
 {
+    const string? NullyFilled = NullyFilledText;
+
     [TestMethod]
     public void Has_Text_True()
     {
         IsTrue(Has(Text));
-        IsTrue(Has(NullyText));
+        IsTrue(Has(NullyFilled));
     }
 
     [TestMethod]
@@ -25,9 +27,9 @@ public class Has_Text_Tests : TestBase
     public void FilledIn_Text_True()
     {
         IsTrue(FilledIn(Text));
-        IsTrue(FilledIn(NullyText));
+        IsTrue(FilledIn(NullyFilled));
         IsTrue(Text.FilledIn());
-        IsTrue(NullyText.FilledIn());
+        IsTrue(NullyFilled.FilledIn());
     }
 
     [TestMethod]
@@ -64,9 +66,9 @@ public class Has_Text_Tests : TestBase
     public void IsNully_Text_False()
     {
         IsFalse(IsNully(Text));
-        IsFalse(IsNully(NullyText));
+        IsFalse(IsNully(NullyFilled));
         IsFalse(Text.IsNully());
-        IsFalse(NullyText.IsNully());
+        IsFalse(NullyFilled.IsNully());
     }
             
     [TestMethod]

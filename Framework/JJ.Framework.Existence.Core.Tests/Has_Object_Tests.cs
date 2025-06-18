@@ -3,6 +3,8 @@
 [TestClass]
 public class Has_Object_Tests
 {
+    private static Dummy? NullyFilled = NullyFilledObj;
+
     [TestMethod]
     public void FilledIn_Object_True()
     {

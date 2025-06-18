@@ -1,11 +1,11 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_Objects
+public class Coalesce_3Args_Objects : TestBase
 {
-    private static readonly Dummy? Null        = Mocks.NullObj;
-    private static readonly Dummy  NoNull      = Mocks.NoNullObj;
-    private static readonly Dummy? NullyFilled = Mocks.NullyFilled;
+    private static readonly Dummy? Null        = NullObj;
+    private static readonly Dummy  NoNull      = NoNullObj;
+    private static readonly Dummy? NullyFilled = NullyFilledObj;
 
     [TestMethod]
     public void Coalesce_3Args_Objects_Static()

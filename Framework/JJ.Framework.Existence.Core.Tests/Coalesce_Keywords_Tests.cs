@@ -4,7 +4,6 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Coalesce_Keywords_Tests
 {
-    
     // Random Cases
     
     [TestMethod]
@@ -307,42 +306,42 @@ public class Coalesce_Keywords_Tests
     [TestMethod]
     public void Coalesce_2Args_ObjectToText_Keywords()
     {
-      //NoNullRet("",       Coalesce(NullObj,     null            )); // Doesn't resolve to string
-        NoNullRet("",       Coalesce(NullObj,     (string )null!  ));
-        NoNullRet("",       Coalesce(NullObj,     (string?)null   ));
-      //NoNullRet("",       Coalesce(NullObj,     default         )); // Doesn't resolve to string
-        NoNullRet("",       Coalesce(NullObj,     default(string )));
-        NoNullRet("",       Coalesce(NullObj,     default(string?)));
-      //NoNullRet("",       NullObj.Coalesce(     null            )); // Doesn't resolve to string
-        NoNullRet("",       NullObj.Coalesce(     (string )null!  ));
-        NoNullRet("",       NullObj.Coalesce(     (string?)null   ));
-      //NoNullRet("",       NullObj.Coalesce(     default         )); // Doesn't resolve to string
-        NoNullRet("",       NullObj.Coalesce(     default(string )));
-        NoNullRet("",       NullObj.Coalesce(     default(string?)));
-      //NoNullRet("Filled", Coalesce(NullyFilled, null            )); // Doesn't resolve to string
-        NoNullRet("Filled", Coalesce(NullyFilled, (string )null!  ));
-        NoNullRet("Filled", Coalesce(NullyFilled, (string?)null   ));
-      //NoNullRet("Filled", Coalesce(NullyFilled, default         )); // Doesn't resolve to string
-        NoNullRet("Filled", Coalesce(NullyFilled, default(string )));
-        NoNullRet("Filled", Coalesce(NullyFilled, default(string?)));
-      //NoNullRet("Filled", NullyFilled.Coalesce( null            )); // Doesn't resolve to string
-        NoNullRet("Filled", NullyFilled.Coalesce( (string )null!  ));
-        NoNullRet("Filled", NullyFilled.Coalesce( (string?)null   ));
-      //NoNullRet("Filled", NullyFilled.Coalesce( default         )); // Doesn't resolve to string
-        NoNullRet("Filled", NullyFilled.Coalesce( default(string )));
-        NoNullRet("Filled", NullyFilled.Coalesce( default(string?)));
-      //NoNullRet("NoNull", Coalesce(NoNullObj,   null            )); // Doesn't resolve to string
-        NoNullRet("NoNull", Coalesce(NoNullObj,   (string )null!  ));
-        NoNullRet("NoNull", Coalesce(NoNullObj,   (string?)null   ));
-      //NoNullRet("NoNull", Coalesce(NoNullObj,   default         )); // Doesn't resolve to string
-        NoNullRet("NoNull", Coalesce(NoNullObj,   default(string )));
-        NoNullRet("NoNull", Coalesce(NoNullObj,   default(string?)));
-      //NoNullRet("NoNull", NoNullObj.Coalesce(   null            )); // Doesn't resolve to string
-        NoNullRet("NoNull", NoNullObj.Coalesce(   (string )null!  ));
-        NoNullRet("NoNull", NoNullObj.Coalesce(   (string?)null   ));
-      //NoNullRet("NoNull", NoNullObj.Coalesce(   default         )); // Doesn't resolve to string
-        NoNullRet("NoNull", NoNullObj.Coalesce(   default(string )));
-        NoNullRet("NoNull", NoNullObj.Coalesce(   default(string?)));
+      //NoNullRet("",       Coalesce(NullObj,        null            )); // Doesn't resolve to string
+        NoNullRet("",       Coalesce(NullObj,        (string )null!  ));
+        NoNullRet("",       Coalesce(NullObj,        (string?)null   ));
+      //NoNullRet("",       Coalesce(NullObj,        default         )); // Doesn't resolve to string
+        NoNullRet("",       Coalesce(NullObj,        default(string )));
+        NoNullRet("",       Coalesce(NullObj,        default(string?)));
+      //NoNullRet("",       NullObj.Coalesce(        null            )); // Doesn't resolve to string
+        NoNullRet("",       NullObj.Coalesce(        (string )null!  ));
+        NoNullRet("",       NullObj.Coalesce(        (string?)null   ));
+      //NoNullRet("",       NullObj.Coalesce(        default         )); // Doesn't resolve to string
+        NoNullRet("",       NullObj.Coalesce(        default(string )));
+        NoNullRet("",       NullObj.Coalesce(        default(string?)));
+      //NoNullRet("Filled", Coalesce(NullyFilledObj, null            )); // Doesn't resolve to string
+        NoNullRet("Filled", Coalesce(NullyFilledObj, (string )null!  ));
+        NoNullRet("Filled", Coalesce(NullyFilledObj, (string?)null   ));
+      //NoNullRet("Filled", Coalesce(NullyFilledObj, default         )); // Doesn't resolve to string
+        NoNullRet("Filled", Coalesce(NullyFilledObj, default(string )));
+        NoNullRet("Filled", Coalesce(NullyFilledObj, default(string?)));
+      //NoNullRet("Filled", NullyFilledObj.Coalesce( null            )); // Doesn't resolve to string
+        NoNullRet("Filled", NullyFilledObj.Coalesce( (string )null!  ));
+        NoNullRet("Filled", NullyFilledObj.Coalesce( (string?)null   ));
+      //NoNullRet("Filled", NullyFilledObj.Coalesce( default         )); // Doesn't resolve to string
+        NoNullRet("Filled", NullyFilledObj.Coalesce( default(string )));
+        NoNullRet("Filled", NullyFilledObj.Coalesce( default(string?)));
+      //NoNullRet("NoNull", Coalesce(NoNullObj,      null            )); // Doesn't resolve to string
+        NoNullRet("NoNull", Coalesce(NoNullObj,      (string )null!  ));
+        NoNullRet("NoNull", Coalesce(NoNullObj,      (string?)null   ));
+      //NoNullRet("NoNull", Coalesce(NoNullObj,      default         )); // Doesn't resolve to string
+        NoNullRet("NoNull", Coalesce(NoNullObj,      default(string )));
+        NoNullRet("NoNull", Coalesce(NoNullObj,      default(string?)));
+      //NoNullRet("NoNull", NoNullObj.Coalesce(      null            )); // Doesn't resolve to string
+        NoNullRet("NoNull", NoNullObj.Coalesce(      (string )null!  ));
+        NoNullRet("NoNull", NoNullObj.Coalesce(      (string?)null   ));
+      //NoNullRet("NoNull", NoNullObj.Coalesce(      default         )); // Doesn't resolve to string
+        NoNullRet("NoNull", NoNullObj.Coalesce(      default(string )));
+        NoNullRet("NoNull", NoNullObj.Coalesce(      default(string?)));
     }
     
     

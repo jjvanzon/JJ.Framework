@@ -32,40 +32,39 @@ public class Dummy
 
 public class Mocks
 {
-    public static string? NullText    = null;
-    public static string  Empty       = "";
-    public static string  Space       = " ";
-    public static string  Text        = "Text";
-    public static string? NullyEmpty  = "";
-    public static string? NullySpace  = " ";
-    public static string? NullyText   = "Text"; // TODO: Rename to NullyFilledText, because just NullyText is unclear that it is filled.
+    public const string? NullText        = null;
+    public const string  Empty           = "";
+    public const string  Space           = " ";
+    public const string  Text            = "Text";
+    public const string? NullyEmpty      = "";
+    public const string? NullySpace      = " ";
+    public const string? NullyFilledText = "Text";
         
-    // TODO: Test as string
-    public static StringBuilder? NullSB        = null;
-    public static StringBuilder  NewSB         = new();
-    public static StringBuilder? NullyNewSB    = NewSB;
-    public static StringBuilder  EmptySB       = new("");
-    public static StringBuilder? NullyEmptySB  = EmptySB;
-    public static StringBuilder  SpaceSB       = new(" ");
-    public static StringBuilder? NullySpaceSB  = SpaceSB;
-    public static StringBuilder  FilledSB      = new("FilledSB");
-    public static StringBuilder? NullyFilledSB = FilledSB;
+    public static readonly StringBuilder? NullSB        = null;
+    public static readonly StringBuilder  NewSB         = new();
+    public static readonly StringBuilder? NullyNewSB    = NewSB;
+    public static readonly StringBuilder  EmptySB       = new("");
+    public static readonly StringBuilder? NullyEmptySB  = EmptySB;
+    public static readonly StringBuilder  SpaceSB       = new(" ");
+    public static readonly StringBuilder? NullySpaceSB  = SpaceSB;
+    public static readonly StringBuilder  FilledSB      = new("FilledSB");
+    public static readonly StringBuilder? NullyFilledSB = FilledSB;
 
-    public static int? NullNum = null;
-    public static int? Nully0  = 0;
-    public static int? Nully1  = 1;
-    public static int? Nully2  = 2;
-    public static int? Nully3  = 3;
-    public static int? Nully4  = 4;
-    public static int  NoNull0 = 0;
-    public static int  NoNull1 = 1;
-    public static int  NoNull2 = 2;
-    public static int  NoNull3 = 3;
-    public static int  NoNull4 = 4;
+    public static readonly int? NullNum = null;
+    public static readonly int? Nully0  = 0;
+    public static readonly int? Nully1  = 1;
+    public static readonly int? Nully2  = 2;
+    public static readonly int? Nully3  = 3;
+    public static readonly int? Nully4  = 4;
+    public const           int  NoNull0 = 0;
+    public const           int  NoNull1 = 1;
+    public const           int  NoNull2 = 2;
+    public const           int  NoNull3 = 3;
+    public const           int  NoNull4 = 4;
     
-    public static Dummy? NullObj     = null;
-    public static Dummy  NoNullObj   = new("NoNull");
-    public static Dummy? NullyFilled = new("Filled");
+    public static Dummy? NullObj        = null;
+    public static Dummy  NoNullObj      = new("NoNull");
+    public static Dummy? NullyFilledObj = new("Filled");
 
     public static int[]                              FilledArray                             =                              [1, 2, 3];
     public static IList<int>                         FilledIList                             =                              [1, 2, 3];
