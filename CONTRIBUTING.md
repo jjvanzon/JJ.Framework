@@ -14,7 +14,7 @@ __Contents__
 - [Versioning](#versioning)
 - [Namespaces](#namespaces)
 - [Code Copies](#code-copies)
-- [The King and the Ice Queen](#the-king-and-the-ice-queen)
+- [The King, the Queen and the Core](#the-king-the-queen-and-the-core)
 - [Legacy Conclusion](#legacy-conclusion)
 - [Pipelines](#pipelines)
 - [Dev Env](#dev-env)
@@ -69,7 +69,7 @@ Deployments
 Versioning
 ----------
 
-- Code from the legacy branch compiled under `.NET 9` begins with a zero, e.g. `0.250.1053`.
+- Code from the `legacy` branch compiled under `.NET 9` begins with a zero, e.g. `0.250.1053`.
 - That leading `0` signals it's essentially a "prequel" to the versions already in the `1.5.x` range on `NuGet`.
 - The `.Core`-suffixed projects are released with versions in the range of `1.8.x`, signaling the forward continuation.
 
@@ -99,16 +99,16 @@ Code Copies
 `.Core` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Core`, we get all the sweet stuff out there that we want.
 
 
-The King and the Ice Queen
---------------------------
+The King, the Queen and the Core
+--------------------------------
 
 <h3>The King</h3>
 
-The `legacy` HEAD, that is, the latest state of the `legacy`, may colloqially be called __The King__, since it's the *legacy head.* Get it?
+The `legacy` HEAD, that is, the latest state of the `legacy`, colloqially called __The King__, since it's the *legacy head*... Get it?
 
 <h3>The Ice Queen</h3>
 
-The code pulled from an earlier point in history may be referred to as __The Ice Queen__. She only changs minimally to avoid clashes with future historical pulls, but is essentially rigid and unchanging in her rule.
+The code pulled from an earlier point in history may be referred to as __The Ice Queen__. She only changes minimally to avoid clashes with future historical pulls, but is essentially rigid and unchanging in her rule.
 
 <h3>The New Core</h3>
 
