@@ -81,8 +81,9 @@ Releases
 - __`2.5` Initial release__  
 - __`2.6` Flags__  
   `spaceMatters` wider support  
+  `string`/`StringBulder` combos wider support  
   `ignoreCase` replaced by `matchCase`  
-  `x.In(a, b, c)` favored over `In(x, a, b, c)`
+  `x.In(a, b, c)` favored over `In(x, a, b, c)`  
 
 
 Coming Soon
