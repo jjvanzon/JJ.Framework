@@ -3941,7 +3941,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
     [TestMethod]
     public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersTrue()
     {
-        // TODO
+        NoNullRet("",         Coalesce(NullText,      NullText,      NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullText,      NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullText,      NullText,      NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullText,      NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullText,      NullText,      NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullText,      NullText,      NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullText,      NullText,      NullyFilled,   spaceMatters       ));
@@ -3954,7 +3957,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullText,      NullText,      NullySpaceSB,  spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullText,      NullText,      NullyFilledSB, spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullText,      NullText,      NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullText,      NullyEmpty,    NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullyEmpty,    NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullText,      NullyEmpty,    NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullyEmpty,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullText,      NullyEmpty,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullText,      NullyEmpty,    NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullText,      NullyEmpty,    NullyFilled,   spaceMatters       ));
@@ -3967,7 +3973,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullText,      NullyEmpty,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullText,      NullyEmpty,    NullyFilledSB, spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullText,      NullyEmpty,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullyFilled,   spaceMatters       ));
@@ -3980,7 +3989,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullText,      NullySpace,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullyFilled,   spaceMatters       ));
@@ -3993,7 +4005,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullText,      NullyFilled,   NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullText,      NullSB,        NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullSB,        NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullText,      NullSB,        NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullSB,        NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullText,      NullSB,        NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullText,      NullSB,        NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullText,      NullSB,        NullyFilled,   spaceMatters       ));
@@ -4006,7 +4021,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(SpaceSB,    Coalesce(NullText,      NullSB,        NullySpaceSB,  spaceMatters: true ));
         NoNullRet(FilledSB,   Coalesce(NullText,      NullSB,        NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullText,      NullSB,        NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullText,      NullyEmptySB,  NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullyEmptySB,  NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullText,      NullyEmptySB,  NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullText,      NullyEmptySB,  NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullText,      NullyEmptySB,  NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullText,      NullyEmptySB,  NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullText,      NullyEmptySB,  NullyFilled,   spaceMatters       ));
@@ -4019,7 +4037,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(SpaceSB,    Coalesce(NullText,      NullyEmptySB,  NullySpaceSB,  spaceMatters: true ));
         NoNullRet(FilledSB,   Coalesce(NullText,      NullyEmptySB,  NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullText,      NullyEmptySB,  NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("FilledSB", Coalesce(NullText,      NullyFilledSB, NullText,      spaceMatters       ));
+        NoNullRet("FilledSB", Coalesce(NullText,      NullyFilledSB, NullText,      spaceMatters: true ));
+        NoNullRet("FilledSB", Coalesce(NullText,      NullyFilledSB, NullyEmpty,    spaceMatters       ));
+        NoNullRet("FilledSB", Coalesce(NullText,      NullyFilledSB, NullyEmpty,    spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullText,      NullyFilledSB, NullySpace,    spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullText,      NullyFilledSB, NullySpace,    spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullText,      NullyFilledSB, NullyFilled,   spaceMatters       ));
@@ -4033,7 +4054,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(FilledSB,   Coalesce(NullText,      NullyFilledSB, NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullText,      NullyFilledSB, NullyFilledSB, spaceMatters: true ));
 
-        // TODO
+        NoNullRet("",         Coalesce(NullyEmpty,    NullText,      NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullText,      NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullText,      NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullText,      NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullText,      NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullText,      NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullText,      NullyFilled,   spaceMatters       ));
@@ -4046,7 +4070,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullText,      NullySpaceSB,  spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullText,      NullyFilledSB, spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullText,      NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmpty,    NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmpty,    NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmpty,    NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmpty,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullyEmpty,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullyEmpty,    NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyEmpty,    NullyFilled,   spaceMatters       ));
@@ -4059,7 +4086,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullyEmpty,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyEmpty,    NullyFilledSB, spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyEmpty,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullyFilled,   spaceMatters       ));
@@ -4072,7 +4102,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullySpace,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullyFilled,   spaceMatters       ));
@@ -4085,7 +4118,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyFilled,   NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullyEmpty,    NullSB,        NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullSB,        NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullSB,        NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullSB,        NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullSB,        NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullSB,        NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullSB,        NullyFilled,   spaceMatters       ));
@@ -4098,7 +4134,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(SpaceSB,    Coalesce(NullyEmpty,    NullSB,        NullySpaceSB,  spaceMatters: true ));
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullSB,        NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullSB,        NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmptySB,  NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmptySB,  NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmptySB,  NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmpty,    NullyEmptySB,  NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullyEmptySB,  NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    NullyEmptySB,  NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmpty,    NullyEmptySB,  NullyFilled,   spaceMatters       ));
@@ -4111,7 +4150,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(SpaceSB,    Coalesce(NullyEmpty,    NullyEmptySB,  NullySpaceSB,  spaceMatters: true ));
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullyEmptySB,  NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullyEmptySB,  NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyFilledSB, NullText,      spaceMatters       ));
+        NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyFilledSB, NullText,      spaceMatters: true ));
+        NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyFilledSB, NullyEmpty,    spaceMatters       ));
+        NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyFilledSB, NullyEmpty,    spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyFilledSB, NullySpace,    spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyFilledSB, NullySpace,    spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullyEmpty,    NullyFilledSB, NullyFilled,   spaceMatters       ));
@@ -4125,7 +4167,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullyFilledSB, NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullyFilledSB, NullyFilledSB, spaceMatters: true ));
 
-        // TODO
+        NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullyFilled,   spaceMatters       ));
@@ -4138,7 +4183,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullText,      NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullyFilled,   spaceMatters       ));
@@ -4151,7 +4199,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmpty,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullyFilled,   spaceMatters       ));
@@ -4164,7 +4215,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullySpace,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullyFilled,   spaceMatters       ));
@@ -4177,7 +4231,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilled,   NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullyFilled,   spaceMatters       ));
@@ -4190,7 +4247,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullSB,        NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullyFilled,   spaceMatters       ));
@@ -4203,7 +4263,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyEmptySB,  NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullyFilled,   spaceMatters       ));
@@ -4217,7 +4280,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullyFilledSB, spaceMatters: true ));
 
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullyFilled,   spaceMatters       ));
@@ -4230,7 +4296,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullText,      NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullyFilled,   spaceMatters       ));
@@ -4243,7 +4312,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmpty,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullyFilled,   spaceMatters       ));
@@ -4256,7 +4328,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullySpace,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullyFilled,   spaceMatters       ));
@@ -4269,7 +4344,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilled,   NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullyFilled,   spaceMatters       ));
@@ -4282,7 +4360,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullSB,        NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullyFilled,   spaceMatters       ));
@@ -4295,7 +4376,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyEmptySB,  NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullyFilled,   spaceMatters       ));
@@ -4309,7 +4393,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullyFilled,   NullyFilledSB, NullyFilledSB, spaceMatters: true ));
 
-        // TODO
+        NoNullRet("",         Coalesce(NullSB,        NullText,      NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullText,      NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullSB,        NullText,      NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullText,      NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullSB,        NullText,      NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullSB,        NullText,      NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullSB,        NullText,      NullyFilled,   spaceMatters       ));
@@ -4322,7 +4409,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullSB,        NullText,      NullySpaceSB,  spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullSB,        NullText,      NullyFilledSB, spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullSB,        NullText,      NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullSB,        NullyEmpty,    NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullyEmpty,    NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullSB,        NullyEmpty,    NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullyEmpty,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullSB,        NullyEmpty,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullSB,        NullyEmpty,    NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyEmpty,    NullyFilled,   spaceMatters       ));
@@ -4335,7 +4425,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullSB,        NullyEmpty,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullSB,        NullyEmpty,    NullyFilledSB, spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullSB,        NullyEmpty,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullText,      spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullText,      spaceMatters: true ));
+        NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullyEmpty,    spaceMatters       ));
+        NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullySpace,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullyFilled,   spaceMatters       ));
@@ -4348,7 +4441,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullySpaceSB,  spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullyFilledSB, spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullSB,        NullySpace,    NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullText,      spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullText,      spaceMatters: true ));
+        NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullyEmpty,    spaceMatters       ));
+        NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullyEmpty,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullySpace,    spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullyFilled,   spaceMatters       ));
@@ -4361,33 +4457,42 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullySpaceSB,  spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullyFilledSB, spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyFilled,   NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullSB,        NullSB,        NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullSB,        NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullSB,        NullSB,        NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullSB,        NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullSB,        NullSB,        NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullSB,        NullSB,        NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullSB,        NullSB,        NullyFilled,   spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullSB,        NullSB,        NullyFilled,   spaceMatters: true ));
         NoNullRet("",      $"{Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters       )}");
         NoNullRet("",      $"{Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters: true )}");
-        NoNullRet("",      $"{Coalesce(NullSB,        NullSB,        NullyEmptySB,  spaceMatters       )}");
-        NoNullRet("",      $"{Coalesce(NullSB,        NullSB,        NullyEmptySB,  spaceMatters: true )}");
+        NoNullRet(EmptySB,    Coalesce(NullSB,        NullSB,        NullyEmptySB,  spaceMatters       ));
+        NoNullRet(EmptySB,    Coalesce(NullSB,        NullSB,        NullyEmptySB,  spaceMatters: true ));
         NoNullRet(SpaceSB,    Coalesce(NullSB,        NullSB,        NullySpaceSB,  spaceMatters       ));
         NoNullRet(SpaceSB,    Coalesce(NullSB,        NullSB,        NullySpaceSB,  spaceMatters: true ));
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullSB,        NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullSB,        NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("",         Coalesce(NullSB,        NullyEmptySB,  NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullyEmptySB,  NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullSB,        NullyEmptySB,  NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullSB,        NullyEmptySB,  NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullSB,        NullyEmptySB,  NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullSB,        NullyEmptySB,  NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyEmptySB,  NullyFilled,   spaceMatters       ));
         NoNullRet("Text",     Coalesce(NullSB,        NullyEmptySB,  NullyFilled,   spaceMatters: true ));
         NoNullRet("",      $"{Coalesce(NullSB,        NullyEmptySB,  NullSB,        spaceMatters       )}");
         NoNullRet("",      $"{Coalesce(NullSB,        NullyEmptySB,  NullSB,        spaceMatters: true )}");
-        NoNullRet("",      $"{Coalesce(NullSB,        NullyEmptySB,  NullyEmptySB,  spaceMatters       )}");
-        NoNullRet("",      $"{Coalesce(NullSB,        NullyEmptySB,  NullyEmptySB,  spaceMatters: true )}");
+        NoNullRet(EmptySB,    Coalesce(NullSB,        NullyEmptySB,  NullyEmptySB,  spaceMatters       ));
+        NoNullRet(EmptySB,    Coalesce(NullSB,        NullyEmptySB,  NullyEmptySB,  spaceMatters: true ));
         NoNullRet(SpaceSB,    Coalesce(NullSB,        NullyEmptySB,  NullySpaceSB,  spaceMatters       ));
         NoNullRet(SpaceSB,    Coalesce(NullSB,        NullyEmptySB,  NullySpaceSB,  spaceMatters: true ));
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullyEmptySB,  NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullyEmptySB,  NullyFilledSB, spaceMatters: true ));
-        // TODO
+        NoNullRet("FilledSB", Coalesce(NullSB,        NullyFilledSB, NullText,      spaceMatters       ));
+        NoNullRet("FilledSB", Coalesce(NullSB,        NullyFilledSB, NullText,      spaceMatters: true ));
+        NoNullRet("FilledSB", Coalesce(NullSB,        NullyFilledSB, NullyEmpty,    spaceMatters       ));
+        NoNullRet("FilledSB", Coalesce(NullSB,        NullyFilledSB, NullyEmpty,    spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullSB,        NullyFilledSB, NullySpace,    spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullSB,        NullyFilledSB, NullySpace,    spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullSB,        NullyFilledSB, NullyFilled,   spaceMatters       ));
@@ -4401,7 +4506,10 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullyFilledSB, NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullyFilledSB, NullyFilledSB, spaceMatters: true ));
        
-        // TODO
+        NoNullRet("",         Coalesce(NullyEmptySB,  NullText,      NullText,      spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmptySB,  NullText,      NullText,      spaceMatters: true ));
+        NoNullRet("",         Coalesce(NullyEmptySB,  NullText,      NullyEmpty,    spaceMatters       ));
+        NoNullRet("",         Coalesce(NullyEmptySB,  NullText,      NullyEmpty,    spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullyEmptySB,  NullText,      NullySpace,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmptySB,  NullText,      NullySpace,    spaceMatters: true ));
         NoNullRet("Text",     Coalesce(NullyEmptySB,  NullText,      NullyFilled,   spaceMatters       ));
