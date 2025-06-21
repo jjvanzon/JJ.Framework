@@ -99,3 +99,13 @@ If there wouldn't be an unbound generic overload the `Has` method, people couldn
 Now the ugly consequence: When there is an unbound generic overload, then in order to support concrete types that route to specific implementations, you have to add overloads for __each and every concrete type you support__. This breaks the substitution principle. Or at least brute-forces it back with into existence by means of a gazillion overloads. It isn't really we that broke the substitution principle here. Generics broke it. Generics just don't function the same as a regular type hierarchy, even when it looks like they should. So we do it: we add a gazzilion overloads. In particular for the collection types. All the BCL collection types are supported explicitly, one overload each. Any other collection type only lands at the unbound generic overload, which just does a null/default check, skipping the "collection is empty" check.
 
 If there would be another solution that doesn't introduce other ugly API surface problems that would be great. But all the ChatGPTs in the world couldn't come up with something that didn't break something else and neither could I. Go ahead, ask ChatGPT. It'll claim your code style is bad, and it has the solution, but that "solution" breaks the overload field.
+
+
+Permutation Tests
+-----------------
+
+When unsure which combos of values to to test, or what the failure points might be, permutation testing might be an option.
+
+Permutation tests simply check each combination of a set of meaningfully distinct values. This can result in thousands of lines of code, but if it's structured and each case is simple. They should really impose many problems; they'll simply be there shouting when something breaks.
+
+Don't be frightened when you encounter some.
