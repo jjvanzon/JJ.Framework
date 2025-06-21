@@ -122,19 +122,59 @@ A side-effect of this pattern, is that the overload that takes the magic boolean
 Permutation Tests
 -----------------
 
-When unsure which combos of values to test, or what the failure points might be, permutation testing might be an option.
+Unsure which combos of values to test, or what the failure points might be? Permutation testing might be the answer.
 
 Permutation tests simply check each combination of a set of meaningfully distinct values. Because of the explosiveness of combinatorics, this can result in thousands of lines of code, but if it's structured and each case is simple. They shouldn't really cause any trouble; they'll simply be there shouting when something breaks.
 
-Don't be frightened when you encounter some.
+You could also call them __syntax tables__: a table in which you check if all the ways to express something actually work.
+Don't be frightened when you encounter some. Here's one:
 
-`[ TODO: Example ]`
+```cs
+[TestMethod]
+public void In_String_ExtensionSyntax_MatchCaseNo_SpaceMattersYes()
+{
+    IsTrue ("B"   .In([ "A", "B", "C" ], matchCase: false, spaceMatters      ));
+    IsFalse("B \t".In([ "A", "B", "C" ], matchCase: false, spaceMatters      ));
+    IsTrue ("b"   .In([ "A", "B", "C" ], matchCase: false, spaceMatters      ));
+    IsFalse("b \t".In([ "A", "B", "C" ], matchCase: false, spaceMatters      ));
+    IsTrue ("B"   .In([ "A", "B", "C" ], matchCase: false, spaceMatters: true));
+    IsFalse("B \t".In([ "A", "B", "C" ], matchCase: false, spaceMatters: true));
+    IsTrue ("b"   .In([ "A", "B", "C" ], matchCase: false, spaceMatters: true));
+    IsFalse("b \t".In([ "A", "B", "C" ], matchCase: false, spaceMatters: true));
+    IsTrue ("B"   .In([ "A", "B", "C" ], matchCase: false,               true));
+    IsFalse("B \t".In([ "A", "B", "C" ], matchCase: false,               true));
+    IsTrue ("b"   .In([ "A", "B", "C" ], matchCase: false,               true));
+    IsFalse("b \t".In([ "A", "B", "C" ], matchCase: false,               true));
+    IsTrue ("B"   .In([ "A", "B", "C" ],            false, spaceMatters      ));
+    IsFalse("B \t".In([ "A", "B", "C" ],            false, spaceMatters      ));
+    IsTrue ("b"   .In([ "A", "B", "C" ],            false, spaceMatters      ));
+    IsFalse("b \t".In([ "A", "B", "C" ],            false, spaceMatters      ));
+    IsTrue ("B"   .In([ "A", "B", "C" ],            false, spaceMatters: true));
+    IsFalse("B \t".In([ "A", "B", "C" ],            false, spaceMatters: true));
+    IsTrue ("b"   .In([ "A", "B", "C" ],            false, spaceMatters: true));
+    IsFalse("b \t".In([ "A", "B", "C" ],            false, spaceMatters: true));
+    IsTrue ("B"   .In([ "A", "B", "C" ],            false,               true));
+    IsFalse("B \t".In([ "A", "B", "C" ],            false,               true));
+    IsTrue ("b"   .In([ "A", "B", "C" ],            false,               true));
+    IsFalse("b \t".In([ "A", "B", "C" ],            false,               true));
+    IsTrue ("B"   .In([ "A", "B", "C" ],                   spaceMatters      ));
+    IsFalse("B \t".In([ "A", "B", "C" ],                   spaceMatters      ));
+    IsTrue ("b"   .In([ "A", "B", "C" ],                   spaceMatters      ));
+    IsFalse("b \t".In([ "A", "B", "C" ],                   spaceMatters      ));
+    IsTrue ("B"   .In([ "A", "B", "C" ],                   spaceMatters: true));
+    IsFalse("B \t".In([ "A", "B", "C" ],                   spaceMatters: true));
+    IsTrue ("b"   .In([ "A", "B", "C" ],                   spaceMatters: true));
+    IsFalse("b \t".In([ "A", "B", "C" ],                   spaceMatters: true));
+  //IsTrue ("B"   .In([ "A", "B", "C" ],                                 true)); // Resolves to matchCase flag, not spaceMatters.
+  //IsFalse("B \t".In([ "A", "B", "C" ],                                 true));
+  //IsTrue ("b"   .In([ "A", "B", "C" ],                                 true));
+  //IsFalse("b \t".In([ "A", "B", "C" ],                                 true));
+}
+```
 
 If all the combinations are too many, sometimes rotation is chosen over permutation.
 
 `[ TODO: Example ]`
-
-You could also call them __syntax tables__: a table in which you check if all the ways in which to express something actually work.
 
 
 Generic vs Concrete Overloads
