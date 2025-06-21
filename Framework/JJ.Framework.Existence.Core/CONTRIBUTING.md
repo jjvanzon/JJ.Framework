@@ -134,6 +134,8 @@ If all the combinations are too many, sometimes rotation is chosen over permutat
 
 `[ TODO: Example ]`
 
+You could also call them __syntax tables__: a table in which you check if all the ways in which to express something actually work.
+
 
 Generic vs Concrete Overloads
 -----------------------------

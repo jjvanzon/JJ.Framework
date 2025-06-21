@@ -137,7 +137,7 @@ public class In_Tests : TestBase
         IsTrue ("b"   .In(           false,                        "A", "B", "C"  ));
         IsTrue ("b \t".In(           false,                      [ "A", "B", "C" ]));
         IsTrue ("b \t".In(           false,                        "A", "B", "C"  ));
-      //IsTrue ("B"   .In(                  spaceMatters: false, [ "A", "B", "C" ])); // TODO: Make this syntax work
+      //IsTrue ("B"   .In(                  spaceMatters: false, [ "A", "B", "C" ])); // Can't resolve unambiguously.
       //IsTrue ("B"   .In(                  spaceMatters: false,   "A", "B", "C"  ));
       //IsTrue ("B \t".In(                  spaceMatters: false, [ "A", "B", "C" ]));
       //IsTrue ("B \t".In(                  spaceMatters: false,   "A", "B", "C"  ));
@@ -161,6 +161,43 @@ public class In_Tests : TestBase
         IsTrue ("b"   .In(                                         "A", "B", "C"  ));
         IsTrue ("b \t".In(                                       [ "A", "B", "C" ]));
         IsTrue ("b \t".In(                                         "A", "B", "C"  ));
+
+        IsTrue ("B"   .In([ "A", "B", "C" ], matchCase: false, spaceMatters: false));
+        IsTrue ("B \t".In([ "A", "B", "C" ], matchCase: false, spaceMatters: false));
+        IsTrue ("b"   .In([ "A", "B", "C" ], matchCase: false, spaceMatters: false));
+        IsTrue ("b \t".In([ "A", "B", "C" ], matchCase: false, spaceMatters: false));
+        IsTrue ("B"   .In([ "A", "B", "C" ], matchCase: false,               false));
+        IsTrue ("B \t".In([ "A", "B", "C" ], matchCase: false,               false));
+        IsTrue ("b"   .In([ "A", "B", "C" ], matchCase: false,               false));
+        IsTrue ("b \t".In([ "A", "B", "C" ], matchCase: false,               false));
+        IsTrue ("B"   .In([ "A", "B", "C" ], matchCase: false                     ));
+        IsTrue ("B \t".In([ "A", "B", "C" ], matchCase: false                     ));
+        IsTrue ("b"   .In([ "A", "B", "C" ], matchCase: false                     ));
+        IsTrue ("b \t".In([ "A", "B", "C" ], matchCase: false                     ));
+        IsTrue ("B"   .In([ "A", "B", "C" ],            false, spaceMatters: false));
+        IsTrue ("B \t".In([ "A", "B", "C" ],            false, spaceMatters: false));
+        IsTrue ("b"   .In([ "A", "B", "C" ],            false, spaceMatters: false));
+        IsTrue ("b \t".In([ "A", "B", "C" ],            false, spaceMatters: false));
+        IsTrue ("B"   .In([ "A", "B", "C" ],            false,               false));
+        IsTrue ("B \t".In([ "A", "B", "C" ],            false,               false));
+        IsTrue ("b"   .In([ "A", "B", "C" ],            false,               false));
+        IsTrue ("b \t".In([ "A", "B", "C" ],            false,               false));
+        IsTrue ("B"   .In([ "A", "B", "C" ],            false                     ));
+        IsTrue ("B \t".In([ "A", "B", "C" ],            false                     ));
+        IsTrue ("b"   .In([ "A", "B", "C" ],            false                     ));
+        IsTrue ("b \t".In([ "A", "B", "C" ],            false                     ));
+        IsTrue ("B"   .In([ "A", "B", "C" ],                   spaceMatters: false));
+        IsTrue ("B \t".In([ "A", "B", "C" ],                   spaceMatters: false));
+        IsTrue ("b"   .In([ "A", "B", "C" ],                   spaceMatters: false));
+        IsTrue ("b \t".In([ "A", "B", "C" ],                   spaceMatters: false));
+        IsTrue ("B"   .In([ "A", "B", "C" ],                                 false));
+        IsTrue ("B \t".In([ "A", "B", "C" ],                                 false));
+        IsTrue ("b"   .In([ "A", "B", "C" ],                                 false));
+        IsTrue ("b \t".In([ "A", "B", "C" ],                                 false));
+        IsTrue ("B"   .In([ "A", "B", "C" ]                                       ));
+        IsTrue ("B \t".In([ "A", "B", "C" ]                                       ));
+        IsTrue ("b"   .In([ "A", "B", "C" ]                                       ));
+        IsTrue ("b \t".In([ "A", "B", "C" ]                                       ));
     }
 
     [TestMethod]
