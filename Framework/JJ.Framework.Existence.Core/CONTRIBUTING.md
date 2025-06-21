@@ -1,6 +1,8 @@
 Contributing to Existence.Core
 ==============================
 
+Cheeky little lib, turning out to be more tricky than you'd think.
+
 
 The Easy Part
 -------------
@@ -109,3 +111,9 @@ When unsure which combos of values to to test, or what the failure points might 
 Permutation tests simply check each combination of a set of meaningfully distinct values. This can result in thousands of lines of code, but if it's structured and each case is simple. They should really impose many problems; they'll simply be there shouting when something breaks.
 
 Don't be frightened when you encounter some.
+
+`[ TODO: Example ]`
+
+If all the combinations are too many, sometimes rotation is chosen over permutation.
+
+`[ TODO: Example ]`
