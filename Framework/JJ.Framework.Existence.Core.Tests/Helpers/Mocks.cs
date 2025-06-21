@@ -35,10 +35,10 @@ public class Mocks
     public const string? NullText        = null;
     public const string  Empty           = "";
     public const string  Space           = " ";
-    public const string  Text            = "Text";
+    public const string  Text            = "Filled";
     public const string? NullyEmpty      = "";
     public const string? NullySpace      = " ";
-    public const string? NullyFilledText = "Text";
+    public const string? NullyFilledText = "Filled";
         
     public static readonly StringBuilder? NullSB        = null;
     public static readonly StringBuilder  NewSB         = new();
