@@ -89,8 +89,9 @@ public class In_Tests : TestBase
     // No / No
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_ExtensionSyntax_FlagsInBack()
+    public void In_String_CaseMattersSpaceMatters_NoNo_FlagsInBack()
     {
+        // Extension Syntax
         IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase: false, spaceMatters: false));
         IsTrue ("B \t".In( [ "A", "B", "C" ], matchCase: false, spaceMatters: false));
         IsTrue ("b"   .In( [ "A", "B", "C" ], matchCase: false, spaceMatters: false));
@@ -127,93 +128,8 @@ public class In_Tests : TestBase
         IsTrue ("B \t".In( [ "A", "B", "C" ]                                       ));
         IsTrue ("b"   .In( [ "A", "B", "C" ]                                       ));
         IsTrue ("b \t".In( [ "A", "B", "C" ]                                       ));
-    }
 
-    [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_ExtensionSyntax_FlagsInFront()
-    {
-        IsTrue ("B"   .In(matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(matchCase: false,               false, [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(matchCase: false,               false, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(matchCase: false,               false, [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(matchCase: false,               false, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(matchCase: false,                      [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(matchCase: false,                      [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(matchCase: false,                      [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(matchCase: false,                      [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(           false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(           false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(           false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(           false, spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(           false,               false, [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(           false,               false, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(           false,               false, [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(           false,               false, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(           false,                      [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(           false,                      [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(           false,                      [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(           false,                      [ "A", "B", "C" ]));
-      //IsTrue ("B"   .In(                  spaceMatters: false, [ "A", "B", "C" ])); // Resolves ambiguously
-      //IsTrue ("B \t".In(                  spaceMatters: false, [ "A", "B", "C" ]));
-      //IsTrue ("b"   .In(                  spaceMatters: false, [ "A", "B", "C" ]));
-      //IsTrue ("b \t".In(                  spaceMatters: false, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(                                false, [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(                                false, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(                                false, [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(                                false, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(                                       [ "A", "B", "C" ]));
-        IsTrue ("B \t".In(                                       [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(                                       [ "A", "B", "C" ]));
-        IsTrue ("b \t".In(                                       [ "A", "B", "C" ]));
-    }
-
-    [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_ExtensionSyntax_FlagsInFront_Variadic()
-    {
-        IsTrue ("B"   .In(matchCase: false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("B \t".In(matchCase: false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("b"   .In(matchCase: false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("b \t".In(matchCase: false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("B"   .In(matchCase: false,               false,   "A", "B", "C"   ));
-        IsTrue ("B \t".In(matchCase: false,               false,   "A", "B", "C"   ));
-        IsTrue ("b"   .In(matchCase: false,               false,   "A", "B", "C"   ));
-        IsTrue ("b \t".In(matchCase: false,               false,   "A", "B", "C"   ));
-        IsTrue ("B"   .In(matchCase: false,                        "A", "B", "C"   ));
-        IsTrue ("B \t".In(matchCase: false,                        "A", "B", "C"   ));
-        IsTrue ("b"   .In(matchCase: false,                        "A", "B", "C"   ));
-        IsTrue ("b \t".In(matchCase: false,                        "A", "B", "C"   ));
-        IsTrue ("B"   .In(           false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("B \t".In(           false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("b"   .In(           false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("b \t".In(           false, spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("B"   .In(           false,               false,   "A", "B", "C"   ));
-        IsTrue ("B \t".In(           false,               false,   "A", "B", "C"   ));
-        IsTrue ("b"   .In(           false,               false,   "A", "B", "C"   ));
-        IsTrue ("b \t".In(           false,               false,   "A", "B", "C"   ));
-        IsTrue ("B"   .In(           false,                        "A", "B", "C"   ));
-        IsTrue ("B \t".In(           false,                        "A", "B", "C"   ));
-        IsTrue ("b"   .In(           false,                        "A", "B", "C"   ));
-        IsTrue ("b \t".In(           false,                        "A", "B", "C"   ));
-      //IsTrue ("B"   .In(                  spaceMatters: false,   "A", "B", "C"   )); // Resolves ambiguously
-      //IsTrue ("B \t".In(                  spaceMatters: false,   "A", "B", "C"   ));
-      //IsTrue ("b"   .In(                  spaceMatters: false,   "A", "B", "C"   ));
-      //IsTrue ("b \t".In(                  spaceMatters: false,   "A", "B", "C"   ));
-        IsTrue ("B"   .In(                                false,   "A", "B", "C"   ));
-        IsTrue ("B \t".In(                                false,   "A", "B", "C"   ));
-        IsTrue ("b"   .In(                                false,   "A", "B", "C"   ));
-        IsTrue ("b \t".In(                                false,   "A", "B", "C"   ));
-        IsTrue ("B"   .In(                                         "A", "B", "C"   ));
-        IsTrue ("B \t".In(                                         "A", "B", "C"   ));
-        IsTrue ("b"   .In(                                         "A", "B", "C"   ));
-        IsTrue ("b \t".In(                                         "A", "B", "C"   ));
-    }
-
-    [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_StaticSyntax_FlagsInBack()
-    {
+        // Static Syntax
         IsTrue (In("B"   , [ "A", "B", "C" ], matchCase: false, spaceMatters: false));
         IsTrue (In("B \t", [ "A", "B", "C" ], matchCase: false, spaceMatters: false));
         IsTrue (In("b"   , [ "A", "B", "C" ], matchCase: false, spaceMatters: false));
@@ -253,8 +169,85 @@ public class In_Tests : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_StaticSyntax_FlagsInFront()
+    public void In_String_CaseMattersSpaceMatters_NoNo_FlagsInFront()
     {
+        // Extension Syntax
+        IsTrue ("B"   .In( matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In( matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In( matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("b \t".In( matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In( matchCase: false,               false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In( matchCase: false,               false, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In( matchCase: false,               false, [ "A", "B", "C" ]));
+        IsTrue ("b \t".In( matchCase: false,               false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In( matchCase: false,                      [ "A", "B", "C" ]));
+        IsTrue ("B \t".In( matchCase: false,                      [ "A", "B", "C" ]));
+        IsTrue ("b"   .In( matchCase: false,                      [ "A", "B", "C" ]));
+        IsTrue ("b \t".In( matchCase: false,                      [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(            false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(            false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(            false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("b \t".In(            false, spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(            false,               false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(            false,               false, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(            false,               false, [ "A", "B", "C" ]));
+        IsTrue ("b \t".In(            false,               false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(            false,                      [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(            false,                      [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(            false,                      [ "A", "B", "C" ]));
+        IsTrue ("b \t".In(            false,                      [ "A", "B", "C" ]));
+      //IsTrue ("B"   .In(                   spaceMatters: false, [ "A", "B", "C" ])); // Resolves ambiguously
+      //IsTrue ("B \t".In(                   spaceMatters: false, [ "A", "B", "C" ]));
+      //IsTrue ("b"   .In(                   spaceMatters: false, [ "A", "B", "C" ]));
+      //IsTrue ("b \t".In(                   spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(                                 false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(                                 false, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(                                 false, [ "A", "B", "C" ]));
+        IsTrue ("b \t".In(                                 false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(                                        [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(                                        [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(                                        [ "A", "B", "C" ]));
+        IsTrue ("b \t".In(                                        [ "A", "B", "C" ]));
+
+        // Extension Syntax (Variadic)
+        IsTrue ("B"   .In( matchCase: false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In( matchCase: false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("b"   .In( matchCase: false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("b \t".In( matchCase: false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In( matchCase: false,               false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In( matchCase: false,               false,   "A", "B", "C"  ));
+        IsTrue ("b"   .In( matchCase: false,               false,   "A", "B", "C"  ));
+        IsTrue ("b \t".In( matchCase: false,               false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In( matchCase: false,                        "A", "B", "C"  ));
+        IsTrue ("B \t".In( matchCase: false,                        "A", "B", "C"  ));
+        IsTrue ("b"   .In( matchCase: false,                        "A", "B", "C"  ));
+        IsTrue ("b \t".In( matchCase: false,                        "A", "B", "C"  ));
+        IsTrue ("B"   .In(            false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(            false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("b"   .In(            false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("b \t".In(            false, spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(            false,               false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(            false,               false,   "A", "B", "C"  ));
+        IsTrue ("b"   .In(            false,               false,   "A", "B", "C"  ));
+        IsTrue ("b \t".In(            false,               false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(            false,                        "A", "B", "C"  ));
+        IsTrue ("B \t".In(            false,                        "A", "B", "C"  ));
+        IsTrue ("b"   .In(            false,                        "A", "B", "C"  ));
+        IsTrue ("b \t".In(            false,                        "A", "B", "C"  ));
+      //IsTrue ("B"   .In(                   spaceMatters: false,   "A", "B", "C"  )); // Resolves ambiguously
+      //IsTrue ("B \t".In(                   spaceMatters: false,   "A", "B", "C"  ));
+      //IsTrue ("b"   .In(                   spaceMatters: false,   "A", "B", "C"  ));
+      //IsTrue ("b \t".In(                   spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(                                 false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(                                 false,   "A", "B", "C"  ));
+        IsTrue ("b"   .In(                                 false,   "A", "B", "C"  ));
+        IsTrue ("b \t".In(                                 false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(                                          "A", "B", "C"  ));
+        IsTrue ("B \t".In(                                          "A", "B", "C"  ));
+        IsTrue ("b"   .In(                                          "A", "B", "C"  ));
+        IsTrue ("b \t".In(                                          "A", "B", "C"  ));
+
+        // Static Syntax
         IsTrue (In("B"   , matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
         IsTrue (In("B \t", matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
         IsTrue (In("b"   , matchCase: false, spaceMatters: false, [ "A", "B", "C" ]));
@@ -291,11 +284,8 @@ public class In_Tests : TestBase
         IsTrue (In("B \t",                                        [ "A", "B", "C" ]));
         IsTrue (In("b"   ,                                        [ "A", "B", "C" ]));
         IsTrue (In("b \t",                                        [ "A", "B", "C" ]));
-    }
 
-    [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_StaticSyntax_FlagsInFront_Variadic()
-    {
+        // Static Syntax (Variadic)
         IsTrue (In("B"   , matchCase: false, spaceMatters: false,   "A", "B", "C"  ));
         IsTrue (In("B \t", matchCase: false, spaceMatters: false,   "A", "B", "C"  ));
         IsTrue (In("b"   , matchCase: false, spaceMatters: false,   "A", "B", "C"  ));
@@ -337,8 +327,9 @@ public class In_Tests : TestBase
     // No / Yes
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoYes_ExtensionSyntax_FlagsInBack()
+    public void In_String_CaseMattersSpaceMatters_NoYes_FlagsInBack()
     {
+        // Extension Syntax
         IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase: false, spaceMatters      ));
         IsFalse("B \t".In( [ "A", "B", "C" ], matchCase: false, spaceMatters      ));
         IsTrue ("b"   .In( [ "A", "B", "C" ], matchCase: false, spaceMatters      ));
@@ -371,97 +362,8 @@ public class In_Tests : TestBase
         IsFalse("B \t".In( [ "A", "B", "C" ],                   spaceMatters: true));
         IsTrue ("b"   .In( [ "A", "B", "C" ],                   spaceMatters: true));
         IsFalse("b \t".In( [ "A", "B", "C" ],                   spaceMatters: true));
-      //IsTrue ("B"   .In( [ "A", "B", "C" ],                                 true)); // Resolves to matchCase flag, not spaceMatters.
-      //IsFalse("B \t".In( [ "A", "B", "C" ],                                 true));
-      //IsTrue ("b"   .In( [ "A", "B", "C" ],                                 true));
-      //IsFalse("b \t".In( [ "A", "B", "C" ],                                 true));
-    }
-    
-    [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoYes_ExtensionSyntax_FlagsInFront()
-    {
-        IsTrue ("B"   .In(matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
-        IsFalse("B \t".In(matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
-        IsFalse("b \t".In(matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsFalse("B \t".In(matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsFalse("b \t".In(matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(matchCase: false,               true, [ "A", "B", "C" ]));
-        IsFalse("B \t".In(matchCase: false,               true, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(matchCase: false,               true, [ "A", "B", "C" ]));
-        IsFalse("b \t".In(matchCase: false,               true, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(           false, spaceMatters,       [ "A", "B", "C" ]));
-        IsFalse("B \t".In(           false, spaceMatters,       [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(           false, spaceMatters,       [ "A", "B", "C" ]));
-        IsFalse("b \t".In(           false, spaceMatters,       [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(           false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsFalse("B \t".In(           false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(           false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsFalse("b \t".In(           false, spaceMatters: true, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(           false,               true, [ "A", "B", "C" ]));
-        IsFalse("B \t".In(           false,               true, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(           false,               true, [ "A", "B", "C" ]));
-        IsFalse("b \t".In(           false,               true, [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(                  spaceMatters,       [ "A", "B", "C" ]));
-        IsFalse("B \t".In(                  spaceMatters,       [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(                  spaceMatters,       [ "A", "B", "C" ]));
-        IsFalse("b \t".In(                  spaceMatters,       [ "A", "B", "C" ]));
-        IsTrue ("B"   .In(                  spaceMatters: true, [ "A", "B", "C" ]));
-        IsFalse("B \t".In(                  spaceMatters: true, [ "A", "B", "C" ]));
-        IsTrue ("b"   .In(                  spaceMatters: true, [ "A", "B", "C" ]));
-        IsFalse("b \t".In(                  spaceMatters: true, [ "A", "B", "C" ]));
-      //IsTrue ("B"   .In(                                true, [ "A", "B", "C" ])); // Resolves to matchCase flag, not spaceMatters.
-      //IsFalse("B \t".In(                                true, [ "A", "B", "C" ]));
-      //IsTrue ("b"   .In(                                true, [ "A", "B", "C" ]));
-      //IsFalse("b \t".In(                                true, [ "A", "B", "C" ]));
-    }
 
-    [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoYes_ExtensionSyntax_FlagsInFront_Variadic()
-    {
-        IsTrue ("B"   .In(matchCase: false, spaceMatters,       "A", "B", "C"));
-        IsFalse("B \t".In(matchCase: false, spaceMatters,       "A", "B", "C"));
-        IsTrue ("b"   .In(matchCase: false, spaceMatters,       "A", "B", "C"));
-        IsFalse("b \t".In(matchCase: false, spaceMatters,       "A", "B", "C"));
-        IsTrue ("B"   .In(matchCase: false, spaceMatters: true, "A", "B", "C"));
-        IsFalse("B \t".In(matchCase: false, spaceMatters: true, "A", "B", "C"));
-        IsTrue ("b"   .In(matchCase: false, spaceMatters: true, "A", "B", "C"));
-        IsFalse("b \t".In(matchCase: false, spaceMatters: true, "A", "B", "C"));
-        IsTrue ("B"   .In(matchCase: false,               true, "A", "B", "C"));
-        IsFalse("B \t".In(matchCase: false,               true, "A", "B", "C"));
-        IsTrue ("b"   .In(matchCase: false,               true, "A", "B", "C"));
-        IsFalse("b \t".In(matchCase: false,               true, "A", "B", "C"));
-        IsTrue ("B"   .In(           false, spaceMatters,       "A", "B", "C"));
-        IsFalse("B \t".In(           false, spaceMatters,       "A", "B", "C"));
-        IsTrue ("b"   .In(           false, spaceMatters,       "A", "B", "C"));
-        IsFalse("b \t".In(           false, spaceMatters,       "A", "B", "C"));
-        IsTrue ("B"   .In(           false, spaceMatters: true, "A", "B", "C"));
-        IsFalse("B \t".In(           false, spaceMatters: true, "A", "B", "C"));
-        IsTrue ("b"   .In(           false, spaceMatters: true, "A", "B", "C"));
-        IsFalse("b \t".In(           false, spaceMatters: true, "A", "B", "C"));
-        IsTrue ("B"   .In(           false,               true, "A", "B", "C"));
-        IsFalse("B \t".In(           false,               true, "A", "B", "C"));
-        IsTrue ("b"   .In(           false,               true, "A", "B", "C"));
-        IsFalse("b \t".In(           false,               true, "A", "B", "C"));
-        IsTrue ("B"   .In(                  spaceMatters,       "A", "B", "C"));
-        IsFalse("B \t".In(                  spaceMatters,       "A", "B", "C"));
-        IsTrue ("b"   .In(                  spaceMatters,       "A", "B", "C"));
-        IsFalse("b \t".In(                  spaceMatters,       "A", "B", "C"));
-      //IsTrue ("B"   .In(                  spaceMatters: true, "A", "B", "C")); // Resolves ambiguously
-      //IsFalse("B \t".In(                  spaceMatters: true, "A", "B", "C"));
-      //IsTrue ("b"   .In(                  spaceMatters: true, "A", "B", "C"));
-      //IsFalse("b \t".In(                  spaceMatters: true, "A", "B", "C"));
-      //IsTrue ("B"   .In(                                true, "A", "B", "C")); // Resolves to matchCase flag, not spaceMatters.
-      //IsFalse("B \t".In(                                true, "A", "B", "C"));
-      //IsTrue ("b"   .In(                                true, "A", "B", "C"));
-      //IsFalse("b \t".In(                                true, "A", "B", "C"));
-    }
-
-    [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoYes_StaticSyntax_FlagsInBack()
-    {
+        // Static Syntax
         IsTrue (In("B"   , [ "A", "B", "C" ], matchCase: false, spaceMatters      ));
         IsFalse(In("B \t", [ "A", "B", "C" ], matchCase: false, spaceMatters      ));
         IsTrue (In("b"   , [ "A", "B", "C" ], matchCase: false, spaceMatters      ));
@@ -500,24 +402,398 @@ public class In_Tests : TestBase
       //IsFalse(In("b \t", [ "A", "B", "C" ],                                 true));
     }
 
-    // Yes / No
-
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_YesNo_ExtensionSyntax_FlagsInFront_Variadic()
+    public void In_String_CaseMattersSpaceMatters_NoYes_FlagsInFront()
     {
-        IsTrue ("B"   .In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
-        IsTrue ("B \t".In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
-        IsFalse("b"   .In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
-        IsFalse("b \t".In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        // Extension Syntax
+        IsTrue ("B"   .In( matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse("B \t".In( matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue ("b"   .In( matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse("b \t".In( matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue ("B"   .In( matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse("B \t".In( matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In( matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse("b \t".In( matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In( matchCase: false,               true, [ "A", "B", "C" ]));
+        IsFalse("B \t".In( matchCase: false,               true, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In( matchCase: false,               true, [ "A", "B", "C" ]));
+        IsFalse("b \t".In( matchCase: false,               true, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse("B \t".In(            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse("b \t".In(            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse("B \t".In(            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(            false,               true, [ "A", "B", "C" ]));
+        IsFalse("B \t".In(            false,               true, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(            false,               true, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(            false,               true, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(                   spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse("B \t".In(                   spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(                   spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse("b \t".In(                   spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(                   spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse("B \t".In(                   spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue ("b"   .In(                   spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(                   spaceMatters: true, [ "A", "B", "C" ]));
+      //IsTrue ("B"   .In(                                 true, [ "A", "B", "C" ])); // Resolves to matchCase flag, not spaceMatters.
+      //IsFalse("B \t".In(                                 true, [ "A", "B", "C" ]));
+      //IsTrue ("b"   .In(                                 true, [ "A", "B", "C" ]));
+      //IsFalse("b \t".In(                                 true, [ "A", "B", "C" ]));
+
+        // Extension Syntax (Variadic)
+        IsTrue ("B"   .In( matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse("B \t".In( matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue ("b"   .In( matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse("b \t".In( matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue ("B"   .In( matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse("B \t".In( matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue ("b"   .In( matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse("b \t".In( matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue ("B"   .In( matchCase: false,               true,   "A", "B", "C"  ));
+        IsFalse("B \t".In( matchCase: false,               true,   "A", "B", "C"  ));
+        IsTrue ("b"   .In( matchCase: false,               true,   "A", "B", "C"  ));
+        IsFalse("b \t".In( matchCase: false,               true,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(            false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse("B \t".In(            false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue ("b"   .In(            false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse("b \t".In(            false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue ("B"   .In(            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse("B \t".In(            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue ("b"   .In(            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse("b \t".In(            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(            false,               true,   "A", "B", "C"  ));
+        IsFalse("B \t".In(            false,               true,   "A", "B", "C"  ));
+        IsTrue ("b"   .In(            false,               true,   "A", "B", "C"  ));
+        IsFalse("b \t".In(            false,               true,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(                   spaceMatters,         "A", "B", "C"  ));
+        IsFalse("B \t".In(                   spaceMatters,         "A", "B", "C"  ));
+        IsTrue ("b"   .In(                   spaceMatters,         "A", "B", "C"  ));
+        IsFalse("b \t".In(                   spaceMatters,         "A", "B", "C"  ));
+      //IsTrue ("B"   .In(                   spaceMatters: true,   "A", "B", "C"  )); // Resolves ambiguously
+      //IsFalse("B \t".In(                   spaceMatters: true,   "A", "B", "C"  ));
+      //IsTrue ("b"   .In(                   spaceMatters: true,   "A", "B", "C"  ));
+      //IsFalse("b \t".In(                   spaceMatters: true,   "A", "B", "C"  ));
+      //IsTrue ("B"   .In(                                 true,   "A", "B", "C"  )); // Resolves to matchCase flag, not spaceMatters.
+      //IsFalse("B \t".In(                                 true,   "A", "B", "C"  ));
+      //IsTrue ("b"   .In(                                 true,   "A", "B", "C"  ));
+      //IsFalse("b \t".In(                                 true,   "A", "B", "C"  ));
+      
+        // Static Syntax
+        IsTrue (In("B"   , matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse(In("B \t", matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue (In("b"   , matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase: false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue (In("B"   , matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse(In("B \t", matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue (In("b"   , matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase: false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue (In("B"   , matchCase: false,               true, [ "A", "B", "C" ]));
+        IsFalse(In("B \t", matchCase: false,               true, [ "A", "B", "C" ]));
+        IsTrue (In("b"   , matchCase: false,               true, [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase: false,               true, [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse(In("B \t",            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue (In("b"   ,            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse(In("b \t",            false, spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse(In("B \t",            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue (In("b"   ,            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse(In("b \t",            false, spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,            false,               true, [ "A", "B", "C" ]));
+        IsFalse(In("B \t",            false,               true, [ "A", "B", "C" ]));
+        IsTrue (In("b"   ,            false,               true, [ "A", "B", "C" ]));
+        IsFalse(In("b \t",            false,               true, [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,                   spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse(In("B \t",                   spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue (In("b"   ,                   spaceMatters,       [ "A", "B", "C" ]));
+        IsFalse(In("b \t",                   spaceMatters,       [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,                   spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse(In("B \t",                   spaceMatters: true, [ "A", "B", "C" ]));
+        IsTrue (In("b"   ,                   spaceMatters: true, [ "A", "B", "C" ]));
+        IsFalse(In("b \t",                   spaceMatters: true, [ "A", "B", "C" ]));
+      //IsTrue (In("B"   ,                                 true, [ "A", "B", "C" ])); // Resolves to matchCase flag, not spaceMatters.
+      //IsFalse(In("B \t",                                 true, [ "A", "B", "C" ]));
+      //IsTrue (In("b"   ,                                 true, [ "A", "B", "C" ]));
+      //IsFalse(In("b \t",                                 true, [ "A", "B", "C" ]));
+      
+        // Static Syntax (Variadic)
+        IsTrue (In("B"   , matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse(In("B \t", matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue (In("b"   , matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase: false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue (In("B"   , matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse(In("B \t", matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue (In("b"   , matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase: false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue (In("B"   , matchCase: false,               true,   "A", "B", "C"  ));
+        IsFalse(In("B \t", matchCase: false,               true,   "A", "B", "C"  ));
+        IsTrue (In("b"   , matchCase: false,               true,   "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase: false,               true,   "A", "B", "C"  ));
+        IsTrue (In("B"   ,            false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse(In("B \t",            false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue (In("b"   ,            false, spaceMatters,         "A", "B", "C"  ));
+        IsFalse(In("b \t",            false, spaceMatters,         "A", "B", "C"  ));
+        IsTrue (In("B"   ,            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse(In("B \t",            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue (In("b"   ,            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsFalse(In("b \t",            false, spaceMatters: true,   "A", "B", "C"  ));
+        IsTrue (In("B"   ,            false,               true,   "A", "B", "C"  ));
+        IsFalse(In("B \t",            false,               true,   "A", "B", "C"  ));
+        IsTrue (In("b"   ,            false,               true,   "A", "B", "C"  ));
+        IsFalse(In("b \t",            false,               true,   "A", "B", "C"  ));
+        IsTrue (In("B"   ,                   spaceMatters,         "A", "B", "C"  ));
+        IsFalse(In("B \t",                   spaceMatters,         "A", "B", "C"  ));
+        IsTrue (In("b"   ,                   spaceMatters,         "A", "B", "C"  ));
+        IsFalse(In("b \t",                   spaceMatters,         "A", "B", "C"  ));
+      //IsTrue (In("B"   ,                   spaceMatters: true,   "A", "B", "C"  )); // Resolves ambiguously
+      //IsFalse(In("B \t",                   spaceMatters: true,   "A", "B", "C"  ));
+      //IsTrue (In("b"   ,                   spaceMatters: true,   "A", "B", "C"  ));
+      //IsFalse(In("b \t",                   spaceMatters: true,   "A", "B", "C"  ));
+      //IsTrue (In("B"   ,                                 true,   "A", "B", "C"  )); // Resolves to matchCase flag, not spaceMatters.
+      //IsFalse(In("B \t",                                 true,   "A", "B", "C"  ));
+      //IsTrue (In("b"   ,                                 true,   "A", "B", "C"  ));
+      //IsFalse(In("b \t",                                 true,   "A", "B", "C"  ));
     }
+
+    // Yes / No
 
     [TestMethod]
     public void In_String_CaseMattersSpaceMatters_YesNo_ExtensionSyntax_FlagsInBack()
     {
-        IsTrue ("B"   .In([ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
-        IsTrue ("B \t".In([ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
-        IsFalse("b"   .In([ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
-        IsFalse("b \t".In([ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        // Extension Syntax
+        IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsTrue ("B \t".In( [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsFalse("b"   .In( [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsFalse("b \t".In( [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase: true,                false));
+        IsTrue ("B \t".In( [ "A", "B", "C" ], matchCase: true,                false));
+        IsFalse("b"   .In( [ "A", "B", "C" ], matchCase: true,                false));
+        IsFalse("b \t".In( [ "A", "B", "C" ], matchCase: true,                false));
+        IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase: true                      ));
+        IsTrue ("B \t".In( [ "A", "B", "C" ], matchCase: true                      ));
+        IsFalse("b"   .In( [ "A", "B", "C" ], matchCase: true                      ));
+        IsFalse("b \t".In( [ "A", "B", "C" ], matchCase: true                      ));
+        IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsTrue ("B \t".In( [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsFalse("b"   .In( [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsFalse("b \t".In( [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase,                      false));
+        IsTrue ("B \t".In( [ "A", "B", "C" ], matchCase,                      false));
+        IsFalse("b"   .In( [ "A", "B", "C" ], matchCase,                      false));
+        IsFalse("b \t".In( [ "A", "B", "C" ], matchCase,                      false));
+        IsTrue ("B"   .In( [ "A", "B", "C" ], matchCase                            ));
+        IsTrue ("B \t".In( [ "A", "B", "C" ], matchCase                            ));
+        IsFalse("b"   .In( [ "A", "B", "C" ], matchCase                            ));
+        IsFalse("b \t".In( [ "A", "B", "C" ], matchCase                            ));
+        IsTrue ("B"   .In( [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsTrue ("B \t".In( [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsFalse("b"   .In( [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsFalse("b \t".In( [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsTrue ("B"   .In( [ "A", "B", "C" ],            true,                false));
+        IsTrue ("B \t".In( [ "A", "B", "C" ],            true,                false));
+        IsFalse("b"   .In( [ "A", "B", "C" ],            true,                false));
+        IsFalse("b \t".In( [ "A", "B", "C" ],            true,                false));
+        IsTrue ("B"   .In( [ "A", "B", "C" ],            true                      ));
+        IsTrue ("B \t".In( [ "A", "B", "C" ],            true                      ));
+        IsFalse("b"   .In( [ "A", "B", "C" ],            true                      ));
+        IsFalse("b \t".In( [ "A", "B", "C" ],            true                      ));
+        
+        // Static Syntax
+        IsTrue (In("B"   , [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsTrue (In("B \t", [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsFalse(In("b"   , [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsFalse(In("b \t", [ "A", "B", "C" ], matchCase: true,  spaceMatters: false));
+        IsTrue (In("B"   , [ "A", "B", "C" ], matchCase: true,                false));
+        IsTrue (In("B \t", [ "A", "B", "C" ], matchCase: true,                false));
+        IsFalse(In("b"   , [ "A", "B", "C" ], matchCase: true,                false));
+        IsFalse(In("b \t", [ "A", "B", "C" ], matchCase: true,                false));
+        IsTrue (In("B"   , [ "A", "B", "C" ], matchCase: true                      ));
+        IsTrue (In("B \t", [ "A", "B", "C" ], matchCase: true                      ));
+        IsFalse(In("b"   , [ "A", "B", "C" ], matchCase: true                      ));
+        IsFalse(In("b \t", [ "A", "B", "C" ], matchCase: true                      ));
+        IsTrue (In("B"   , [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsTrue (In("B \t", [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsFalse(In("b"   , [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsFalse(In("b \t", [ "A", "B", "C" ], matchCase,        spaceMatters: false));
+        IsTrue (In("B"   , [ "A", "B", "C" ], matchCase,                      false));
+        IsTrue (In("B \t", [ "A", "B", "C" ], matchCase,                      false));
+        IsFalse(In("b"   , [ "A", "B", "C" ], matchCase,                      false));
+        IsFalse(In("b \t", [ "A", "B", "C" ], matchCase,                      false));
+        IsTrue (In("B"   , [ "A", "B", "C" ], matchCase                            ));
+        IsTrue (In("B \t", [ "A", "B", "C" ], matchCase                            ));
+        IsFalse(In("b"   , [ "A", "B", "C" ], matchCase                            ));
+        IsFalse(In("b \t", [ "A", "B", "C" ], matchCase                            ));
+        IsTrue (In("B"   , [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsTrue (In("B \t", [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsFalse(In("b"   , [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsFalse(In("b \t", [ "A", "B", "C" ],            true,  spaceMatters: false));
+        IsTrue (In("B"   , [ "A", "B", "C" ],            true,                false));
+        IsTrue (In("B \t", [ "A", "B", "C" ],            true,                false));
+        IsFalse(In("b"   , [ "A", "B", "C" ],            true,                false));
+        IsFalse(In("b \t", [ "A", "B", "C" ],            true,                false));
+        IsTrue (In("B"   , [ "A", "B", "C" ],            true                      ));
+        IsTrue (In("B \t", [ "A", "B", "C" ],            true                      ));
+        IsFalse(In("b"   , [ "A", "B", "C" ],            true                      ));
+        IsFalse(In("b \t", [ "A", "B", "C" ],            true                      ));
+    }
+
+    [TestMethod]
+    public void In_String_CaseMattersSpaceMatters_YesNo_ExtensionSyntax_FlagsInFront()
+    {
+        // Extension Syntax
+        IsTrue ("B"   .In(matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse("b"   .In(matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(matchCase: true,                false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(matchCase: true,                false, [ "A", "B", "C" ]));
+        IsFalse("b"   .In(matchCase: true,                false, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(matchCase: true,                false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(matchCase: true,                       [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(matchCase: true,                       [ "A", "B", "C" ]));
+        IsFalse("b"   .In(matchCase: true,                       [ "A", "B", "C" ]));
+        IsFalse("b \t".In(matchCase: true,                       [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse("b"   .In(matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(matchCase,                      false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(matchCase,                      false, [ "A", "B", "C" ]));
+        IsFalse("b"   .In(matchCase,                      false, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(matchCase,                      false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(matchCase,                             [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(matchCase,                             [ "A", "B", "C" ]));
+        IsFalse("b"   .In(matchCase,                             [ "A", "B", "C" ]));
+        IsFalse("b \t".In(matchCase,                             [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(           true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(           true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse("b"   .In(           true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(           true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(           true,                false, [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(           true,                false, [ "A", "B", "C" ]));
+        IsFalse("b"   .In(           true,                false, [ "A", "B", "C" ]));
+        IsFalse("b \t".In(           true,                false, [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(           true,                       [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(           true,                       [ "A", "B", "C" ]));
+        IsFalse("b"   .In(           true,                       [ "A", "B", "C" ]));
+        IsFalse("b \t".In(           true,                       [ "A", "B", "C" ]));
+
+        // Extension Syntax (Variadic)
+        IsTrue ("B"   .In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse("b"   .In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse("b \t".In(matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(matchCase: true,                false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(matchCase: true,                false,   "A", "B", "C"  ));
+        IsFalse("b"   .In(matchCase: true,                false,   "A", "B", "C"  ));
+        IsFalse("b \t".In(matchCase: true,                false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(matchCase: true,                         "A", "B", "C"  ));
+        IsTrue ("B \t".In(matchCase: true,                         "A", "B", "C"  ));
+        IsFalse("b"   .In(matchCase: true,                         "A", "B", "C"  ));
+        IsFalse("b \t".In(matchCase: true,                         "A", "B", "C"  ));
+        IsTrue ("B"   .In(matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse("b"   .In(matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse("b \t".In(matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(matchCase,                      false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(matchCase,                      false,   "A", "B", "C"  ));
+        IsFalse("b"   .In(matchCase,                      false,   "A", "B", "C"  ));
+        IsFalse("b \t".In(matchCase,                      false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(matchCase,                               "A", "B", "C"  ));
+        IsTrue ("B \t".In(matchCase,                               "A", "B", "C"  ));
+        IsFalse("b"   .In(matchCase,                               "A", "B", "C"  ));
+        IsFalse("b \t".In(matchCase,                               "A", "B", "C"  ));
+        IsTrue ("B"   .In(           true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(           true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse("b"   .In(           true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse("b \t".In(           true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(           true,                false,   "A", "B", "C"  ));
+        IsTrue ("B \t".In(           true,                false,   "A", "B", "C"  ));
+        IsFalse("b"   .In(           true,                false,   "A", "B", "C"  ));
+        IsFalse("b \t".In(           true,                false,   "A", "B", "C"  ));
+        IsTrue ("B"   .In(           true,                         "A", "B", "C"  ));
+        IsTrue ("B \t".In(           true,                         "A", "B", "C"  ));
+        IsFalse("b"   .In(           true,                         "A", "B", "C"  ));
+        IsFalse("b \t".In(           true,                         "A", "B", "C"  ));
+
+        // Static Syntax
+        IsTrue (In("B"   , matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue (In("B \t", matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse(In("b"   , matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase: true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue (In("B"   , matchCase: true,                false, [ "A", "B", "C" ]));
+        IsTrue (In("B \t", matchCase: true,                false, [ "A", "B", "C" ]));
+        IsFalse(In("b"   , matchCase: true,                false, [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase: true,                false, [ "A", "B", "C" ]));
+        IsTrue (In("B"   , matchCase: true,                       [ "A", "B", "C" ]));
+        IsTrue (In("B \t", matchCase: true,                       [ "A", "B", "C" ]));
+        IsFalse(In("b"   , matchCase: true,                       [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase: true,                       [ "A", "B", "C" ]));
+        IsTrue (In("B"   , matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue (In("B \t", matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse(In("b"   , matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase,        spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue (In("B"   , matchCase,                      false, [ "A", "B", "C" ]));
+        IsTrue (In("B \t", matchCase,                      false, [ "A", "B", "C" ]));
+        IsFalse(In("b"   , matchCase,                      false, [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase,                      false, [ "A", "B", "C" ]));
+        IsTrue (In("B"   , matchCase,                             [ "A", "B", "C" ]));
+        IsTrue (In("B \t", matchCase,                             [ "A", "B", "C" ]));
+        IsFalse(In("b"   , matchCase,                             [ "A", "B", "C" ]));
+        IsFalse(In("b \t", matchCase,                             [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,            true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue (In("B \t",            true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse(In("b"   ,            true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsFalse(In("b \t",            true,  spaceMatters: false, [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,            true,                false, [ "A", "B", "C" ]));
+        IsTrue (In("B \t",            true,                false, [ "A", "B", "C" ]));
+        IsFalse(In("b"   ,            true,                false, [ "A", "B", "C" ]));
+        IsFalse(In("b \t",            true,                false, [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,            true,                       [ "A", "B", "C" ]));
+        IsTrue (In("B \t",            true,                       [ "A", "B", "C" ]));
+        IsFalse(In("b"   ,            true,                       [ "A", "B", "C" ]));
+        IsFalse(In("b \t",            true,                       [ "A", "B", "C" ]));
+
+        // Static Syntax (Variadic)
+        IsTrue (In("B"   , matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue (In("B \t", matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse(In("b"   , matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase: true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue (In("B"   , matchCase: true,                false,   "A", "B", "C"  ));
+        IsTrue (In("B \t", matchCase: true,                false,   "A", "B", "C"  ));
+        IsFalse(In("b"   , matchCase: true,                false,   "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase: true,                false,   "A", "B", "C"  ));
+        IsTrue (In("B"   , matchCase: true,                         "A", "B", "C"  ));
+        IsTrue (In("B \t", matchCase: true,                         "A", "B", "C"  ));
+        IsFalse(In("b"   , matchCase: true,                         "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase: true,                         "A", "B", "C"  ));
+        IsTrue (In("B"   , matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue (In("B \t", matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse(In("b"   , matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase,        spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue (In("B"   , matchCase,                      false,   "A", "B", "C"  ));
+        IsTrue (In("B \t", matchCase,                      false,   "A", "B", "C"  ));
+        IsFalse(In("b"   , matchCase,                      false,   "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase,                      false,   "A", "B", "C"  ));
+        IsTrue (In("B"   , matchCase,                               "A", "B", "C"  ));
+        IsTrue (In("B \t", matchCase,                               "A", "B", "C"  ));
+        IsFalse(In("b"   , matchCase,                               "A", "B", "C"  ));
+        IsFalse(In("b \t", matchCase,                               "A", "B", "C"  ));
+        IsTrue (In("B"   ,            true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue (In("B \t",            true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse(In("b"   ,            true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsFalse(In("b \t",            true,  spaceMatters: false,   "A", "B", "C"  ));
+        IsTrue (In("B"   ,            true,                false,   "A", "B", "C"  ));
+        IsTrue (In("B \t",            true,                false,   "A", "B", "C"  ));
+        IsFalse(In("b"   ,            true,                false,   "A", "B", "C"  ));
+        IsFalse(In("b \t",            true,                false,   "A", "B", "C"  ));
+        IsTrue (In("B"   ,            true,                         "A", "B", "C"  ));
+        IsTrue (In("B \t",            true,                         "A", "B", "C"  ));
+        IsFalse(In("b"   ,            true,                         "A", "B", "C"  ));
+        IsFalse(In("b \t",            true,                         "A", "B", "C"  ));
     }
 
     // Yes / Yes
