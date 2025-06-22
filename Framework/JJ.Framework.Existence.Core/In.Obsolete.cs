@@ -6,6 +6,7 @@ namespace JJ.Framework.Existence.Core;
 
 public static partial class FilledInHelper
 {
+    /*
     /// <inheritdoc cref="_in" />
     [Prio(-1), Obsolete(IgnoreCaseWarning, true)]
     public static bool In(
@@ -13,6 +14,7 @@ public static partial class FilledInHelper
     {
         throw new NotSupportedException(IgnoreCaseWarning);
     }
+    */
 
     /// <inheritdoc cref="_in" />
     [Prio(-1), Obsolete(IgnoreCaseWarning, true)]
@@ -34,6 +36,7 @@ public static partial class FilledInHelper
 
 public static partial class FilledInExtensions
 {
+    /*
     /// <inheritdoc cref="_in" />
     [Obsolete(IgnoreCaseWarning, true)]
     [Prio(-1)]
@@ -43,6 +46,7 @@ public static partial class FilledInExtensions
     {
         throw new NotSupportedException(IgnoreCaseWarning);
     }
+    */
 
     /// <inheritdoc cref="_in" />
     [Obsolete(IgnoreCaseWarning, true)]

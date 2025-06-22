@@ -118,6 +118,14 @@ public static partial class FilledInHelper
     // MatchCase
 
     /// <inheritdoc cref="_in" />
+    public static bool In(string? value, MatchCase matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, bool matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase);
+
+    /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase)
         => ExistenceUtil.In(value, coll, matchCase);
 
@@ -128,6 +136,14 @@ public static partial class FilledInHelper
     // SpaceMatters
 
     /// <inheritdoc cref="_in" />
+    public static bool In(string? value, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, bool spaceMatters, IEnumerable<string?>? coll, int dummy = 1)
+        => ExistenceUtil.In(value, coll, spaceMatters, dummy);
+
+    /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters)
         => ExistenceUtil.In(value, coll, spaceMatters);
 
@@ -136,6 +152,34 @@ public static partial class FilledInHelper
         => ExistenceUtil.In(value, coll, spaceMatters, dummy);
     
     // MatchCase + SpaceMatters
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, MatchCase matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, MatchCase matchCase, bool spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, bool matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, SpaceMatters spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, SpaceMatters spaceMatters, bool matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, bool spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+
+    /// <inheritdoc cref="_in" />
+    public static bool In(string? value, bool matchCase = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
 
     /// <inheritdoc cref="_in" />
     public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase, SpaceMatters spaceMatters)
@@ -208,6 +252,10 @@ public static partial class FilledInExtensions
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
         => ExistenceUtil.In(value, coll, spaceMatters);
+    
+    /// <inheritdoc cref="_in" />
+    public static bool In(this string? value, bool spaceMatters, IEnumerable<string?>? coll, int dummy = 1)
+        => ExistenceUtil.In(value, coll, spaceMatters, dummy);
 
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters)
@@ -216,7 +264,7 @@ public static partial class FilledInExtensions
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, IEnumerable<string?>? coll, bool spaceMatters, int dummy = 1)
         => ExistenceUtil.In(value, coll, spaceMatters, dummy);
-    
+
     // MatchCase + SpaceMatters
 
     /// <inheritdoc cref="_in" />
