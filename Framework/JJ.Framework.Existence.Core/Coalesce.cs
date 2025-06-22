@@ -109,8 +109,6 @@ internal static partial class ExistenceUtil
         return last ?? "";
     }
     
-    
-    
     /// <inheritdoc cref="_coalesce" />
     public static SB CoalesceManySBs(IEnumerable<SB?>? fallbacks)
     {
