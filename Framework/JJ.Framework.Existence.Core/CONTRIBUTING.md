@@ -118,6 +118,14 @@ The explicit boolean value option is still available. That's what makes it look 
 
 A side-effect of this pattern, is that the overload that takes the magic boolean, does not have to swich on `true`/`false`. Instead, it can assume the flag is set, creating opportunities for optimization as a bonus.
 
+Combinations of flags might be comma `,` separated:
+
+```cs
+"a".In("a", "b", "c", spaceMatters, caseMatters);
+```
+
+This was preferred over the a flags enum notation `spaceMatters | caseMatters` for its simplicity and accessibility as well as speed, since `ifs` on flags can be omitted in the method implementations that offer these magic booleans. It does, in turn, require more overloads.
+
 
 Permutation Tests
 -----------------
