@@ -77,14 +77,14 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  NullyEmptySB .Coalesce( [ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB    ], spaceMatters: true ));
 
         // Returns new()
-        NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
-        NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
-        NoNullRet(Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
-        NoNullRet(Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
-        NoNullRet(Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
-        NoNullRet(Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
-        NoNullRet(Coalesce(spaceMatters: true,  NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
-        NoNullRet(Coalesce(spaceMatters: true,  NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
+        NoNullRet(Coalesce(                     NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
+        NoNullRet(Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
+        NoNullRet(Coalesce(spaceMatters: false, NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
+        NoNullRet(Coalesce(spaceMatters,        NullyNewSB,   NewSB,        NullyEmptySB, NullSB));
+        NoNullRet(Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
+        NoNullRet(Coalesce(spaceMatters: true,  NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
+        NoNullRet(Coalesce(spaceMatters: true,  NullyNewSB,   NewSB,        NullyEmptySB, NullSB));
     }
 
     [TestMethod]
