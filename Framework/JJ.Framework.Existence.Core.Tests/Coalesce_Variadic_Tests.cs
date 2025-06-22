@@ -76,8 +76,15 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  NullSB.Coalesce( [ NullySpaceSB, NullyFilledSB, NullyEmptySB ], spaceMatters: true ));
         NoNullRet(NullySpaceSB,  NullSB.Coalesce( [ NullySpaceSB, NullyFilledSB, NullyEmptySB ], spaceMatters: true ));
 
-
-        // TODO: Add more cases
+        // Returns new()
+        NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(spaceMatters: true,  NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
+        NoNullRet(Coalesce(spaceMatters: true,  NullyEmptySB, NullyNewSB, NewSB, NullSB  ));
     }
 
     [TestMethod]
