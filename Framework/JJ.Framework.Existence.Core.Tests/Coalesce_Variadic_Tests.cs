@@ -9,14 +9,14 @@ public class Coalesce_Variadic_Tests : TestBase
     public void Coalesce_Variadic_StringBuilders()
     {
         // Static Variadic
-        NoNullRet(NullyFilledSB, Coalesce(                       NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
-        NoNullRet(NullyFilledSB, Coalesce(                       NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
-        NoNullRet(NullyFilledSB, Coalesce(spaceMatters: false,   NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
-        NoNullRet(NullyFilledSB, Coalesce(spaceMatters: false,   NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
-        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters,          NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
-        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters,          NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
-        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,    NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
-        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,    NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB  ));
+        NoNullRet(NullyFilledSB, Coalesce(                       NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
+        NoNullRet(NullyFilledSB, Coalesce(                       NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB   ));
+        NoNullRet(NullyFilledSB, Coalesce(spaceMatters: false,   NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB   ));
+        NoNullRet(NullyFilledSB, Coalesce(spaceMatters: false,   NullyEmptySB,  NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB     ));
+        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters,          NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB, NullSB         ));
+        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters,          NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
+        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,    NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB   ));
+        NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB     ));
 
         // Static
         NoNullRet(NullyFilledSB, Coalesce(                     [ NullSB, NullySpaceSB, NullyNewSB, NullyFilledSB, NullyEmptySB ]));
