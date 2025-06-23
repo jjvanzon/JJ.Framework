@@ -19,41 +19,41 @@ public class Is_Tests
         
         // Ignore Case
         IsTrue(Is("test",   "test"));
-        IsTrue(Is("test",   "test", matchCase: false));
+        IsTrue(Is("test",   "test", caseMatters: false));
         IsTrue(   "test".Is("test"));
-        IsTrue(   "test".Is("test", matchCase: false));
+        IsTrue(   "test".Is("test", caseMatters: false));
         IsTrue(Is("test",   "TEST"));
-        IsTrue(Is("test",   "TEST", matchCase: false));
+        IsTrue(Is("test",   "TEST", caseMatters: false));
         IsTrue(   "test".Is("TEST"));
-        IsTrue(   "test".Is("TEST", matchCase: false));
+        IsTrue(   "test".Is("TEST", caseMatters: false));
         IsTrue(Is("TEST",   "test"));
-        IsTrue(Is("TEST",   "test", matchCase: false));
+        IsTrue(Is("TEST",   "test", caseMatters: false));
         IsTrue(   "TEST".Is("test"));
-        IsTrue(   "TEST".Is("test", matchCase: false));
+        IsTrue(   "TEST".Is("test", caseMatters: false));
         
         // Bunch of white space and case mismatch
         IsTrue(Is("test",   "\r\n \t TEST  \n"));
-        IsTrue(Is("test",   "\r\n \t TEST  \n", matchCase: false));
+        IsTrue(Is("test",   "\r\n \t TEST  \n", caseMatters: false));
         IsTrue(   "test".Is("\r\n \t TEST  \n"));
-        IsTrue(   "test".Is("\r\n \t TEST  \n", matchCase: false));
+        IsTrue(   "test".Is("\r\n \t TEST  \n", caseMatters: false));
         IsTrue(Is("\r\n \t TEST  \n",   "test"));
-        IsTrue(Is("\r\n \t TEST  \n",   "test", matchCase: false));
+        IsTrue(Is("\r\n \t TEST  \n",   "test", caseMatters: false));
         IsTrue(   "\r\n \t TEST  \n".Is("test"));
-        IsTrue(   "\r\n \t TEST  \n".Is("test", matchCase: false));
+        IsTrue(   "\r\n \t TEST  \n".Is("test", caseMatters: false));
         
         // Excess white space
         string a = "I am a STRING .  ";
         string b = "   i am a string    . \t";
         IsTrue(a.Is(b));
-        IsTrue(a.Is(b,  matchCase: false));
+        IsTrue(a.Is(b,  caseMatters: false));
         IsTrue(Is(a, b));
-        IsTrue(Is(a, b, matchCase: false));
+        IsTrue(Is(a, b, caseMatters: false));
         
         // Case-sensitive
-        IsFalse("TEST".Is( "test", matchCase      ));
-        IsFalse("TEST".Is( "test", matchCase: true));
-        IsFalse(Is("test", "Test", matchCase      ));
-        IsFalse(Is("test", "Test", matchCase: true));
+        IsFalse("TEST".Is( "test", caseMatters      ));
+        IsFalse("TEST".Is( "test", caseMatters: true));
+        IsFalse(Is("test", "Test", caseMatters      ));
+        IsFalse(Is("test", "Test", caseMatters: true));
 
         // Negative match
         IsFalse("Plant".Is("Animal"));

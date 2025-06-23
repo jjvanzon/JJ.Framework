@@ -5,11 +5,11 @@ namespace JJ.Framework.Existence.Core;
 internal static partial class ExistenceUtil
 {
     /// <inheritdoc cref="_contains" />
-    public static bool Contains(IEnumerable<string?>? coll, string? value, bool matchCase = false)
+    public static bool Contains(IEnumerable<string?>? coll, string? value, bool caseMatters = false)
     {
         if (coll == null) return false;
         value = FormatValue(value);
-        var stringComparison = GetStringComparison(matchCase);
+        var stringComparison = GetStringComparison(caseMatters);
         return coll.Any(x => x == value || FormatValue(x).Equals(value, stringComparison));
     }
 
@@ -22,7 +22,7 @@ internal static partial class ExistenceUtil
     }
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] MatchCase matchCase)
+    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] CaseMatters caseMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value);
@@ -30,11 +30,11 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase)
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value);
-        var stringComparison = GetStringComparison(matchCase);
+        var stringComparison = GetStringComparison(caseMatters);
         return coll.Any(x => x == value || FormatValue(x).Equals(value, stringComparison));
     }
     
@@ -55,7 +55,7 @@ internal static partial class ExistenceUtil
     }
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] MatchCase matchCase, [UsedImplicitly] SpaceMatters spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] CaseMatters caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -63,7 +63,7 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] MatchCase matchCase, bool spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] CaseMatters caseMatters, bool spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -71,20 +71,20 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase, [UsedImplicitly] SpaceMatters spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
-        var stringComparison = GetStringComparison(matchCase);
+        var stringComparison = GetStringComparison(caseMatters);
         return coll.Any(x => x == value || FormatValue(x, spaceMatters).Equals(value, stringComparison));
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase, bool spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, bool spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
-        var stringComparison = GetStringComparison(matchCase);
+        var stringComparison = GetStringComparison(caseMatters);
         return coll.Any(x => x == value || FormatValue(x, spaceMatters).Equals(value, stringComparison));
     }
     
@@ -103,8 +103,8 @@ internal static partial class ExistenceUtil
         => spaceMatters ? value ?? "" : (value ?? "").Trim();
 
     [MethodImpl(AggressiveInlining)]
-    private static StringComparison GetStringComparison(bool matchCase)
-        => matchCase ? Ordinal : OrdinalIgnoreCase;
+    private static StringComparison GetStringComparison(bool caseMatters)
+        => caseMatters ? Ordinal : OrdinalIgnoreCase;
 }
 
 public static partial class FilledInHelper
@@ -115,23 +115,23 @@ public static partial class FilledInHelper
     public static bool In(string? value, IEnumerable<string?>? coll)
         => ExistenceUtil.In(value, coll);
 
-    // MatchCase
+    // CaseMatters
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(string? value, CaseMatters caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(string? value, bool caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(string? value, IEnumerable<string?>? coll, CaseMatters caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters);
     
     // SpaceMatters
 
@@ -151,63 +151,63 @@ public static partial class FilledInHelper
     public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, int dummy = 1)
         => ExistenceUtil.In(value, coll, spaceMatters, dummy);
     
-    // MatchCase + SpaceMatters
+    // CaseMatters + SpaceMatters
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, MatchCase matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, CaseMatters caseMatters, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, MatchCase matchCase, bool spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, CaseMatters caseMatters, bool spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, bool caseMatters, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, SpaceMatters spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, SpaceMatters spaceMatters, CaseMatters caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, SpaceMatters spaceMatters, bool matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, SpaceMatters spaceMatters, bool caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, bool spaceMatters, CaseMatters caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, bool matchCase = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, bool caseMatters = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase, SpaceMatters spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, IEnumerable<string?>? coll, CaseMatters caseMatters, SpaceMatters spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, MatchCase matchCase)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, CaseMatters caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, MatchCase matchCase, bool spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, IEnumerable<string?>? coll, CaseMatters caseMatters, bool spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, MatchCase matchCase)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, CaseMatters caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase, SpaceMatters spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, SpaceMatters spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool matchCase)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool matchCase, bool spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, bool spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
     
     // Values and Objects
 
@@ -229,23 +229,23 @@ public static partial class FilledInExtensions
     public static bool In(this string? value, params IEnumerable<string?>? coll) 
         => ExistenceUtil.In(value, coll);
 
-    // MatchCase
+    // CaseMatters
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(this string? value, CaseMatters caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters);
     
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, bool matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(this string? value, bool caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, MatchCase matchCase)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(this string? value, IEnumerable<string?>? coll, CaseMatters caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, bool matchCase)
-        => ExistenceUtil.In(value, coll, matchCase);
+    public static bool In(this string? value, IEnumerable<string?>? coll, bool caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters);
     
     // SpaceMatters
     
@@ -265,63 +265,63 @@ public static partial class FilledInExtensions
     public static bool In(this string? value, IEnumerable<string?>? coll, bool spaceMatters, int dummy = 1)
         => ExistenceUtil.In(value, coll, spaceMatters, dummy);
 
-    // MatchCase + SpaceMatters
+    // CaseMatters + SpaceMatters
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, MatchCase matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, CaseMatters caseMatters, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, MatchCase matchCase, bool spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, CaseMatters caseMatters, bool spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, bool matchCase, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, bool caseMatters, SpaceMatters spaceMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, SpaceMatters spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, SpaceMatters spaceMatters, CaseMatters caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, SpaceMatters spaceMatters, bool matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, SpaceMatters spaceMatters, bool caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, bool spaceMatters, MatchCase matchCase, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, bool spaceMatters, CaseMatters caseMatters, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, bool matchCase = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, bool caseMatters = default, bool spaceMatters = default, params IEnumerable<string?>? coll)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, MatchCase matchCase, SpaceMatters spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, IEnumerable<string?>? coll, CaseMatters caseMatters, SpaceMatters spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, bool matchCase, SpaceMatters spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, IEnumerable<string?>? coll, bool caseMatters, SpaceMatters spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, MatchCase matchCase, bool spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, IEnumerable<string?>? coll, CaseMatters caseMatters, bool spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, MatchCase matchCase)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, CaseMatters caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, bool spaceMatters, MatchCase matchCase)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, IEnumerable<string?>? coll, bool spaceMatters, CaseMatters caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool matchCase)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool caseMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_in" />
-    public static bool In(this string? value, IEnumerable<string?>? coll, bool matchCase, bool spaceMatters)
-        => ExistenceUtil.In(value, coll, matchCase, spaceMatters);
+    public static bool In(this string? value, IEnumerable<string?>? coll, bool caseMatters, bool spaceMatters)
+        => ExistenceUtil.In(value, coll, caseMatters, spaceMatters);
 
     // Values and Objects
 
@@ -340,6 +340,6 @@ public static partial class FilledInExtensions
     // Contains
     
     /// <inheritdoc cref="_contains" />
-    public static bool Contains(this IEnumerable<string?>? coll, string? value, bool matchCase = false) 
-        => ExistenceUtil.Contains(coll, value, matchCase);
+    public static bool Contains(this IEnumerable<string?>? coll, string? value, bool caseMatters = false) 
+        => ExistenceUtil.Contains(coll, value, caseMatters);
 }

@@ -52,9 +52,9 @@ Flags for special occasions:
 
 -----
 
-- `matchCase`
+- `caseMatters`
 
-    - To keep us sane as long as possible, the default is to not trip over case mismatches: GREEN = green. The matchCase flag can make things stricter and case-sensitive again.
+    - To keep us sane as long as possible, the default is to not trip over case mismatches: GREEN = green. The caseMatters flag can make things stricter and case-sensitive again.
 
 
 Examples
@@ -82,7 +82,7 @@ Releases
 - __`2.6` Flags__  
   `spaceMatters` wider support  
   `string`/`StringBulder` combos wider support  
-  `ignoreCase` replaced by `matchCase`  
+  `ignoreCase` replaced by `caseMatters`  
   `x.In(a, b, c)` favored over `In(x, a, b, c)`  
 
 

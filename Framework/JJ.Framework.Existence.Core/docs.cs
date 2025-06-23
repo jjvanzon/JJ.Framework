@@ -63,16 +63,16 @@ namespace JJ.Framework.Existence.Core
         
         /// <summary>
         /// Obsolete.
-        /// Use matchCase instead.
+        /// Use caseMatters instead.
         /// FLIP YOUR BOOLEANS IF NEEDED:
-        /// Where ignoreCase: false, matchCase should now be true.
+        /// Where ignoreCase: false, caseMatters should now be true.
         /// Default behavior is to ignore case.
         /// </summary>
         /// <param name="ignoreCase">
         /// Obsolete.
-        /// Use matchCase instead.
+        /// Use caseMatters instead.
         /// FLIP YOUR BOOLEANS IF NEEDED:
-        /// Where ignoreCase: false, matchCase should now be true.
+        /// Where ignoreCase: false, caseMatters should now be true.
         /// Default behavior is to ignore case.
         /// </param>
         public struct _ignorecaseobsolete;
@@ -90,9 +90,9 @@ namespace JJ.Framework.Existence.Core
         /// </para>
         /// 
         /// <para>
-        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>ignoreCase replaced by caseMatters!</b><br/>
         /// <b>Where ignoreCase: false,</b><br/>
-        /// <b>matchCase should now be true!</b>
+        /// <b>caseMatters should now be true!</b>
         /// </para>
         /// </summary>
         /// <inheritdoc cref="_flagargs" />
@@ -102,9 +102,9 @@ namespace JJ.Framework.Existence.Core
         /// Loose equality tests (e.g., case- and trim-insensitive string comparisons).
         /// <para>
         /// <b>BREAKING CHANGE:</b><br/>
-        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>ignoreCase replaced by caseMatters!</b><br/>
         /// <b>Where ignoreCase: false,</b><br/>
-        /// <b>matchCase should now be true!</b>
+        /// <b>caseMatters should now be true!</b>
         /// </para>
         /// </summary>
         public struct _is;
@@ -116,16 +116,16 @@ namespace JJ.Framework.Existence.Core
         public struct _isnully;
 
         /// <summary>
-        /// <para> Use <c>matchCase</c> to make checks case-sensitive. </para>
-        /// <para> Example: <c>a.Is(b, matchCase)</c> </para>
+        /// <para> Use <c>caseMatters</c> to make checks case-sensitive. </para>
+        /// <para> Example: <c>a.Is(b, caseMatters)</c> </para>
         /// <para> Only exact case matches will return true. You can also use: </para>
-        /// <para> <c>matchCase: true</c> </para>
+        /// <para> <c>caseMatters: true</c> </para>
         /// <para> if you prefer the explicit boolean.</para>
         /// <para>
         /// <b>BREAKING CHANGE:</b><br/>
-        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>ignoreCase replaced by caseMatters!</b><br/>
         /// <b>Where ignoreCase: false,</b><br/>
-        /// <b>matchCase should now be true!</b>
+        /// <b>caseMatters should now be true!</b>
         /// </para>
         /// </summary>
         /// <inheritdoc cref="_flagargs" />
@@ -141,14 +141,14 @@ namespace JJ.Framework.Existence.Core
         /// <inheritdoc cref="_flagargs" />
         public struct _spacematters;
 
-        /// <param name="matchCase">
-        /// If true (or if you pass <c>matchCase</c>), comparisons will require exact casing.
+        /// <param name="caseMatters">
+        /// If true (or if you pass <c>caseMatters</c>), comparisons will require exact casing.
         /// For example, <c>"abc"</c> will not match <c>"ABC"</c>.
         /// <para>
         /// <b>BREAKING CHANGE:</b><br/>
-        /// <b>ignoreCase replaced by matchCase!</b><br/>
+        /// <b>ignoreCase replaced by caseMatters!</b><br/>
         /// <b>Where ignoreCase: false,</b><br/>
-        /// <b>matchCase should now be true!</b>
+        /// <b>caseMatters should now be true!</b>
         /// </para>
         /// </param>
         /// <param name="spaceMatters">

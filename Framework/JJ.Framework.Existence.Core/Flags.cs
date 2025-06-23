@@ -8,8 +8,8 @@ public enum SpaceMatters
 }
 
 /// <inheritdoc cref="_matchcase" />
-public enum MatchCase
+public enum CaseMatters
 {
     /// <inheritdoc cref="_matchcase" />
-    matchCase = 1
+    caseMatters = 1
 }
