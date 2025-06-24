@@ -16,6 +16,14 @@ internal static partial class ExistenceUtil
         => Is(a, b, caseMatters: true, spaceMatters: true);
 
     /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, bool caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
+        => Is(a, b, caseMatters, spaceMatters: true);
+
+    /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, bool spaceMatters)
+        => Is(a, b, caseMatters: true, spaceMatters);
+
+    /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
     {
         if (a == b) return true;
@@ -43,13 +51,29 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, CaseMatters caseMatters) 
         => ExistenceUtil.Is(a, b, caseMatters);
+    
+    /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, bool caseMatters) 
+        => ExistenceUtil.Is(a, b, caseMatters);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, SpaceMatters spaceMatters) 
         => ExistenceUtil.Is(a, b, spaceMatters);
 
     /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, bool spaceMatters, [UsedImplicitly] int dummy = 0)
+        => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
+
+    /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, CaseMatters caseMatters, SpaceMatters spaceMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
+
+    /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, CaseMatters caseMatters, bool spaceMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
+    
+    /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, bool caseMatters, SpaceMatters spaceMatters)
         => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_is" />
@@ -57,12 +81,12 @@ public static partial class FilledInHelper
         => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, bool caseMatters) 
-        => ExistenceUtil.Is(a, b, caseMatters);
-
+    public static bool Is(string? a, string? b, SpaceMatters spaceMatters, bool caseMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
+    
     /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, bool spaceMatters, [UsedImplicitly] int dummy = 0)
-        => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
+    public static bool Is(string? a, string? b, bool spaceMatters, CaseMatters caseMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, bool caseMatters, bool spaceMatters)
@@ -80,24 +104,42 @@ public static partial class FilledInExtensions
         => ExistenceUtil.Is(a, b, caseMatters);
 
     /// <inheritdoc cref="_is" />
+    public static bool Is(this string? a, string? b, bool caseMatters)
+        => ExistenceUtil.Is(a, b, caseMatters);
+
+    /// <inheritdoc cref="_is" />
     public static bool Is(this string? a, string? b, SpaceMatters spaceMatters)
         => ExistenceUtil.Is(a, b, spaceMatters);
+    
+    /// <inheritdoc cref="_is" />
+    public static bool Is(this string? a, string? b, bool spaceMatters, [UsedImplicitly] int dummy = 0)
+        => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(this string? a, string? b, CaseMatters caseMatters, SpaceMatters spaceMatters)
         => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_is" />
-    public static bool Is(this string? a, string? b, SpaceMatters spaceMatters, CaseMatters caseMatters)
+    public static bool Is(this string? a, string? b, CaseMatters caseMatters, bool spaceMatters)
         => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_is" />
-    public static bool Is(this string? a, string? b, bool caseMatters)
-        => ExistenceUtil.Is(a, b, caseMatters);
-
+    public static bool Is(this string? a, string? b, bool caseMatters, SpaceMatters spaceMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
+    
+    
     /// <inheritdoc cref="_is" />
-    public static bool Is(this string? a, string? b, bool spaceMatters, [UsedImplicitly] int dummy = 0)
-        => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
+    public static bool Is(this string? a, string? b, SpaceMatters spaceMatters, CaseMatters caseMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
+    
+    /// <inheritdoc cref="_is" />
+    public static bool Is(this string? a, string? b, SpaceMatters spaceMatters, bool caseMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
+    
+    
+    /// <inheritdoc cref="_is" />
+    public static bool Is(this string? a, string? b, bool spaceMatters, CaseMatters caseMatters)
+        => ExistenceUtil.Is(a, b, caseMatters, spaceMatters);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(this string? a, string? b, bool caseMatters, bool spaceMatters)

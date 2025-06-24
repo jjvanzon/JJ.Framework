@@ -90,16 +90,16 @@ public class Is_Tests
         // TODO: Add more cases
 
         // Extensions
-        IsTrue ("test \t".Is( "TEST \r", caseMatters: false, spaceMatters: false));
-        IsFalse("test \t".Is( "TEST \r", caseMatters: false, spaceMatters: true ));
-        IsFalse("test \t".Is( "TEST \r", caseMatters: true,  spaceMatters: false));
-        IsFalse("test \t".Is( "TEST \r", caseMatters: true,  spaceMatters: true ));
+        IsTrue ("\t test \t".Is( "\r TEST \r", caseMatters: false, spaceMatters: false));
+        IsFalse("\t test \t".Is( "\r TEST \r", caseMatters: false, spaceMatters: true ));
+        IsFalse("\t test \t".Is( "\r TEST \r", caseMatters: true,  spaceMatters: false));
+        IsFalse("\t test \t".Is( "\r TEST \r", caseMatters: true,  spaceMatters: true ));
 
         // Static
-        IsTrue (Is("test \t", "TEST \r", caseMatters: false, spaceMatters: false));
-        IsFalse(Is("test \t", "TEST \r", caseMatters: false, spaceMatters: true ));
-        IsFalse(Is("test \t", "TEST \r", caseMatters: true,  spaceMatters: false));
-        IsFalse(Is("test \t", "TEST \r", caseMatters: true,  spaceMatters: true ));
+        IsTrue (Is("\t test \t", "\r TEST \r", caseMatters: false, spaceMatters: false));
+        IsFalse(Is("\t test \t", "\r TEST \r", caseMatters: false, spaceMatters: true ));
+        IsFalse(Is("\t test \t", "\r TEST \r", caseMatters: true,  spaceMatters: false));
+        IsFalse(Is("\t test \t", "\r TEST \r", caseMatters: true,  spaceMatters: true ));
         
     }
 }
