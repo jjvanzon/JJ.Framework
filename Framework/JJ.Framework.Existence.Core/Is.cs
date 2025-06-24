@@ -4,6 +4,24 @@ namespace JJ.Framework.Existence.Core;
 internal static partial class ExistenceUtil
 {
     /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
+    {
+        if (a == b) return true;
+        
+        StringComparison compare = caseMatters.CaseMattersToStringComparison();
+        
+        if (!spaceMatters) { a = (a ?? "").Trim(); b = (b ?? "").Trim(); }
+        if (string.Equals(a, b, compare)) return true;
+        
+        if (!spaceMatters) { a = a.RemoveExcessiveWhiteSpace(); b = b.RemoveExcessiveWhiteSpace(); }
+        if (string.Equals(a, b, compare)) return true;
+        
+        a = a.RemoveAccents();
+        b = b.RemoveAccents();
+        return string.Equals(a, b, compare);
+    }
+
+    /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters)
         => Is(a, b, caseMatters: true);
 
@@ -22,24 +40,6 @@ internal static partial class ExistenceUtil
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, bool spaceMatters)
         => Is(a, b, caseMatters: true, spaceMatters);
-
-    /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
-    {
-        if (a == b) return true;
-        
-        StringComparison compare = caseMatters.CaseMattersToStringComparison();
-        
-        if (!spaceMatters) { a = (a ?? "").Trim(); b = (b ?? "").Trim(); }
-        if (string.Equals(a, b, compare)) return true;
-        
-        if (!spaceMatters) { a = a.RemoveExcessiveWhiteSpace(); b = b.RemoveExcessiveWhiteSpace(); }
-        if (string.Equals(a, b, compare)) return true;
-        
-        a = a.RemoveAccents();
-        b = b.RemoveAccents();
-        return string.Equals(a, b, compare);
-    }
 }
 
 public static partial class FilledInHelper
