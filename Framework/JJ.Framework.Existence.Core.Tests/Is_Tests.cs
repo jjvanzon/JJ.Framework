@@ -4,7 +4,6 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Is_Tests
 {
-
     [TestMethod]
     public void Test_String_Is()
     {

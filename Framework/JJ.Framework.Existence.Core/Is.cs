@@ -4,7 +4,7 @@ namespace JJ.Framework.Existence.Core;
 internal static partial class ExistenceUtil
 {
     /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
+    private static bool IsCore(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
     {
         if (a == b) return true;
         
@@ -22,24 +22,28 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_is" />
+    public static bool Is(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
+        => IsCore(a, b, caseMatters, spaceMatters);
+
+    /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters)
-        => Is(a, b, caseMatters: true);
+        => IsCore(a, b, caseMatters: true);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, [UsedImplicitly] SpaceMatters spaceMatters)
-        => Is(a, b, spaceMatters: true);
+        => IsCore(a, b, spaceMatters: true);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
-        => Is(a, b, caseMatters: true, spaceMatters: true);
+        => IsCore(a, b, caseMatters: true, spaceMatters: true);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, bool caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
-        => Is(a, b, caseMatters, spaceMatters: true);
+        => IsCore(a, b, caseMatters, spaceMatters: true);
 
     /// <inheritdoc cref="_is" />
     public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, bool spaceMatters)
-        => Is(a, b, caseMatters: true, spaceMatters);
+        => IsCore(a, b, caseMatters: true, spaceMatters);
 }
 
 public static partial class FilledInHelper
