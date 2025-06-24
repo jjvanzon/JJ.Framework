@@ -24,7 +24,7 @@ internal static partial class ExistenceUtil
 
     /// <inheritdoc cref="_is" />
     [MethodImpl(AggressiveInlining)]
-    public static bool Is(string? a, string? b, bool caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
+    public static bool Is(string? a, string? b, bool caseMatters, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters)
     {
         if (a == b) return true;
         
@@ -39,7 +39,7 @@ internal static partial class ExistenceUtil
 
     /// <inheritdoc cref="_is" />
     [MethodImpl(AggressiveInlining)]
-    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, bool spaceMatters)
+    public static bool Is(string? a, string? b, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters, bool spaceMatters)
     {
         if (a == b) return true;
         
@@ -58,7 +58,7 @@ internal static partial class ExistenceUtil
 
     /// <inheritdoc cref="_is" />
     [MethodImpl(AggressiveInlining)]
-    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters)
+    public static bool Is(string? a, string? b, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters)
     {
         if (a == b) return true;
         
@@ -77,7 +77,7 @@ internal static partial class ExistenceUtil
 
     /// <inheritdoc cref="_is" />
     [MethodImpl(AggressiveInlining)]
-    public static bool Is(string? a, string? b, [UsedImplicitly] SpaceMatters spaceMatters)
+    public static bool Is(string? a, string? b, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters)
     {
         if (a == b) return true;
         
@@ -92,7 +92,7 @@ internal static partial class ExistenceUtil
 
     /// <inheritdoc cref="_is" />
     [MethodImpl(AggressiveInlining)]
-    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
+    public static bool Is(string? a, string? b, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters)
     {
         if (a == b) return true;
         
@@ -125,7 +125,7 @@ public static partial class FilledInHelper
         => ExistenceUtil.Is(a, b, spaceMatters);
 
     /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, bool spaceMatters, [UsedImplicitly] int dummy = 0)
+    public static bool Is(string? a, string? b, bool spaceMatters, [UsedImplicitly(Reason = OverloadByName)] int dummy = 0)
         => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
 
     /// <inheritdoc cref="_is" />
@@ -176,7 +176,7 @@ public static partial class FilledInExtensions
         => ExistenceUtil.Is(a, b, spaceMatters);
     
     /// <inheritdoc cref="_is" />
-    public static bool Is(this string? a, string? b, bool spaceMatters, [UsedImplicitly] int dummy = 0)
+    public static bool Is(this string? a, string? b, bool spaceMatters, [UsedImplicitly(Reason = OverloadByName)] int dummy = 0)
         => ExistenceUtil.Is(a, b, spaceMatters: spaceMatters);
 
     /// <inheritdoc cref="_is" />

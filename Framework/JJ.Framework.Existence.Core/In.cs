@@ -22,7 +22,7 @@ internal static partial class ExistenceUtil
     }
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] CaseMatters caseMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value);
@@ -47,7 +47,7 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, [UsedImplicitly] int dummy = 0)
+    public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, [UsedImplicitly(Reason = OverloadByName)] int dummy = 0)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -55,7 +55,7 @@ internal static partial class ExistenceUtil
     }
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] CaseMatters caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -63,7 +63,7 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly] CaseMatters caseMatters, bool spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters, bool spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -71,7 +71,7 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -95,7 +95,7 @@ internal static partial class ExistenceUtil
         => (value ?? "").Trim();
 
     [MethodImpl(AggressiveInlining)]
-    private static string FormatValue(string? value, [UsedImplicitly] SpaceMatters spaceMatters) 
+    private static string FormatValue(string? value, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters) 
         => value ?? "";
 
     [MethodImpl(AggressiveInlining)]

@@ -20,6 +20,7 @@ global using static System.Runtime.CompilerServices.MethodImplOptions;
 global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
 global using static JJ.Framework.Existence.Core.ExistenceUtil;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
+global using static JJ.Framework.Existence.Core.ImplicitUsageReasons;
 global using UsedImplicitlyAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;
 global using Priority = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 global using Prio     = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
