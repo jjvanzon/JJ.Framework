@@ -85,21 +85,123 @@ public class Is_Tests
     }
 
     [TestMethod]
-    public void Test_String_Is_SpaceMattersCaseMattersCombos()
+    public void Test_String_Is_SpaceMattersCaseMattersCombos_Extensions()
     {
-        // TODO: Add more cases
-
-        // Extensions
-        IsTrue ("\t test \t".Is( "\r TEST \r", caseMatters: false, spaceMatters: false));
-        IsFalse("\t test \t".Is( "\r TEST \r", caseMatters: false, spaceMatters: true ));
-        IsFalse("\t test \t".Is( "\r TEST \r", caseMatters: true,  spaceMatters: false));
-        IsFalse("\t test \t".Is( "\r TEST \r", caseMatters: true,  spaceMatters: true ));
-
-        // Static
-        IsTrue (Is("\t test \t", "\r TEST \r", caseMatters: false, spaceMatters: false));
-        IsFalse(Is("\t test \t", "\r TEST \r", caseMatters: false, spaceMatters: true ));
-        IsFalse(Is("\t test \t", "\r TEST \r", caseMatters: true,  spaceMatters: false));
-        IsFalse(Is("\t test \t", "\r TEST \r", caseMatters: true,  spaceMatters: true ));
+        // CaseMatters/SpaceMatters No/No
+        IsTrue ("  test  ".Is( "  test  "                                          ));
+        IsTrue ("  test  ".Is( "\ttest\t"                                          ));
+        IsTrue ("  test  ".Is( "  TEST  "                                          ));
+        IsTrue ("  test  ".Is( "\tTEST\t"                                          ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters:  false                     ));
+        IsTrue ("  test  ".Is( "\ttest\t", caseMatters:  false                     ));
+        IsTrue ("  test  ".Is( "  TEST  ", caseMatters:  false                     ));
+        IsTrue ("  test  ".Is( "\tTEST\t", caseMatters:  false                     ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters:  false, spaceMatters: false));
+        IsTrue ("  test  ".Is( "\ttest\t", caseMatters:  false, spaceMatters: false));
+        IsTrue ("  test  ".Is( "  TEST  ", caseMatters:  false, spaceMatters: false));
+        IsTrue ("  test  ".Is( "\tTEST\t", caseMatters:  false, spaceMatters: false));
+        IsTrue ("  test  ".Is( "  test  ",                      spaceMatters: false));
+        IsTrue ("  test  ".Is( "\ttest\t",                      spaceMatters: false));
+        IsTrue ("  test  ".Is( "  TEST  ",                      spaceMatters: false));
+        IsTrue ("  test  ".Is( "\tTEST\t",                      spaceMatters: false));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false, caseMatters:  false)); // Switch flags
+        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters:  false));
+        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters:  false));
+        IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters:  false));
         
+        // CaseMatters/SpaceMatters Yes/No
+        IsTrue ("  test  ".Is( "  test  ", caseMatters                             ));
+        IsTrue ("  test  ".Is( "\ttest\t", caseMatters                             ));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters                             ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters                             ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters:  true                      ));
+        IsTrue ("  test  ".Is( "\ttest\t", caseMatters:  true                      ));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters:  true                      ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters:  true                      ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters:  true,  spaceMatters: false));
+        IsTrue ("  test  ".Is( "\ttest\t", caseMatters:  true,  spaceMatters: false));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters:  true,  spaceMatters: false));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters:  true,  spaceMatters: false));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters,         spaceMatters: false));
+        IsTrue ("  test  ".Is( "\ttest\t", caseMatters,         spaceMatters: false));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters,         spaceMatters: false));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters,         spaceMatters: false));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false, caseMatters:  true )); // Switch flags
+        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters:  true ));
+        IsFalse("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters:  true ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters:  true ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false, caseMatters        ));
+        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters        ));
+        IsFalse("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters        ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters        ));
+        
+        // CaseMatters/SpaceMatters No/Yes
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters                            ));
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters                            ));
+        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters                            ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters                            ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: true                      ));
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true                      ));
+        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: true                      ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true                      ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: true,  caseMatters:  false));
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true,  caseMatters:  false));
+        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: true,  caseMatters:  false));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true,  caseMatters:  false));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters,        caseMatters:  false));
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters,        caseMatters:  false));
+        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters,        caseMatters:  false));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters,        caseMatters:  false));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters:  false, spaceMatters: true )); // Switch flags
+        IsFalse("  test  ".Is( "\ttest\t", caseMatters:  false, spaceMatters: true ));
+        IsTrue ("  test  ".Is( "  TEST  ", caseMatters:  false, spaceMatters: true ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters:  false, spaceMatters: true ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters:  false, spaceMatters       ));
+        IsFalse("  test  ".Is( "\ttest\t", caseMatters:  false, spaceMatters       ));
+        IsTrue ("  test  ".Is( "  TEST  ", caseMatters:  false, spaceMatters       ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters:  false, spaceMatters       ));
+        
+        // CaseMatters/SpaceMatters Yes/Yes
+        IsTrue ("  test  ".Is( "  test  ", caseMatters,         spaceMatters       ));
+        IsFalse("  test  ".Is( "\ttest\t", caseMatters,         spaceMatters       ));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters,         spaceMatters       ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters,         spaceMatters       ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters: true,   spaceMatters: true ));
+        IsFalse("  test  ".Is( "\ttest\t", caseMatters: true,   spaceMatters: true ));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters: true,   spaceMatters: true ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters: true,   spaceMatters: true ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters: true,   spaceMatters       ));
+        IsFalse("  test  ".Is( "\ttest\t", caseMatters: true,   spaceMatters       ));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters: true,   spaceMatters       ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters: true,   spaceMatters       ));
+        IsTrue ("  test  ".Is( "  test  ", caseMatters,         spaceMatters: true ));
+        IsFalse("  test  ".Is( "\ttest\t", caseMatters,         spaceMatters: true ));
+        IsFalse("  test  ".Is( "  TEST  ", caseMatters,         spaceMatters: true ));
+        IsFalse("  test  ".Is( "\tTEST\t", caseMatters,         spaceMatters: true ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters,         caseMatters       )); // Switch flags
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters,         caseMatters       ));
+        IsFalse("  test  ".Is( "  TEST  ", spaceMatters,         caseMatters       ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters,         caseMatters       ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: true,   caseMatters: true ));
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true,   caseMatters: true ));
+        IsFalse("  test  ".Is( "  TEST  ", spaceMatters: true,   caseMatters: true ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true,   caseMatters: true ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: true,   caseMatters       ));
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true,   caseMatters       ));
+        IsFalse("  test  ".Is( "  TEST  ", spaceMatters: true,   caseMatters       ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true,   caseMatters       ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters,         caseMatters: true ));
+        IsFalse("  test  ".Is( "\ttest\t", spaceMatters,         caseMatters: true ));
+        IsFalse("  test  ".Is( "  TEST  ", spaceMatters,         caseMatters: true ));
+        IsFalse("  test  ".Is( "\tTEST\t", spaceMatters,         caseMatters: true ));
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersCombos_Static()
+    {
+        IsTrue (Is("  test  ", "\tTEST\t", caseMatters: false, spaceMatters: false));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: false, spaceMatters: true ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: true,  spaceMatters: false));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: true,  spaceMatters: true ));
     }
 }
