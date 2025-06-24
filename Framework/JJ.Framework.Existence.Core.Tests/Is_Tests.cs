@@ -83,4 +83,23 @@ public class Is_Tests
         IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters: true ));
         IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters       ));
     }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersCombos()
+    {
+        // TODO: Add more cases
+
+        // Extensions
+        IsTrue ("test \t".Is( "TEST \r", caseMatters: false, spaceMatters: false));
+        IsFalse("test \t".Is( "TEST \r", caseMatters: false, spaceMatters: true ));
+        IsFalse("test \t".Is( "TEST \r", caseMatters: true,  spaceMatters: false));
+        IsFalse("test \t".Is( "TEST \r", caseMatters: true,  spaceMatters: true ));
+
+        // Static
+        IsTrue (Is("test \t", "TEST \r", caseMatters: false, spaceMatters: false));
+        IsFalse(Is("test \t", "TEST \r", caseMatters: false, spaceMatters: true ));
+        IsFalse(Is("test \t", "TEST \r", caseMatters: true,  spaceMatters: false));
+        IsFalse(Is("test \t", "TEST \r", caseMatters: true,  spaceMatters: true ));
+        
+    }
 }

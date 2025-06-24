@@ -9,6 +9,6 @@ internal static partial class ExistenceUtil
         "Default behavior is to ignore case.";
 
     // Belongs in Text.Core but prevents shipping an extra dependency for now.
-    public static StringComparison MatchCaseToStringComparison(this bool caseMatters) 
+    public static StringComparison CaseMattersToStringComparison(this bool caseMatters) 
         => caseMatters ? Ordinal : OrdinalIgnoreCase;
 }
