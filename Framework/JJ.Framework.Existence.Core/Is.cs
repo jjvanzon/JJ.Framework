@@ -4,7 +4,8 @@ namespace JJ.Framework.Existence.Core;
 internal static partial class ExistenceUtil
 {
     /// <inheritdoc cref="_is" />
-    private static bool IsCore(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
+    [MethodImpl(AggressiveInlining)]
+    public static bool Is(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
     {
         if (a == b) return true;
         
@@ -22,28 +23,87 @@ internal static partial class ExistenceUtil
     }
 
     /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, bool caseMatters = false, bool spaceMatters = false)
-        => IsCore(a, b, caseMatters, spaceMatters);
-
-    /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters)
-        => IsCore(a, b, caseMatters: true);
-
-    /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, [UsedImplicitly] SpaceMatters spaceMatters)
-        => IsCore(a, b, spaceMatters: true);
-
-    /// <inheritdoc cref="_is" />
-    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
-        => IsCore(a, b, caseMatters: true, spaceMatters: true);
-
-    /// <inheritdoc cref="_is" />
+    [MethodImpl(AggressiveInlining)]
     public static bool Is(string? a, string? b, bool caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
-        => IsCore(a, b, caseMatters, spaceMatters: true);
+    {
+        if (a == b) return true;
+        
+        StringComparison compare = caseMatters.CaseMattersToStringComparison();
+        
+        if (string.Equals(a, b, compare)) return true;
+        
+        a = a.RemoveAccents();
+        b = b.RemoveAccents();
+        return string.Equals(a, b, compare);
+    }
 
     /// <inheritdoc cref="_is" />
+    [MethodImpl(AggressiveInlining)]
     public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, bool spaceMatters)
-        => IsCore(a, b, caseMatters: true, spaceMatters);
+    {
+        if (a == b) return true;
+        
+        const StringComparison compare = Ordinal;
+        
+        if (!spaceMatters) { a = (a ?? "").Trim(); b = (b ?? "").Trim(); }
+        if (string.Equals(a, b, compare)) return true;
+        
+        if (!spaceMatters) { a = a.RemoveExcessiveWhiteSpace(); b = b.RemoveExcessiveWhiteSpace(); }
+        if (string.Equals(a, b, compare)) return true;
+        
+        a = a.RemoveAccents();
+        b = b.RemoveAccents();
+        return string.Equals(a, b, compare);
+    }
+
+    /// <inheritdoc cref="_is" />
+    [MethodImpl(AggressiveInlining)]
+    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters)
+    {
+        if (a == b) return true;
+        
+        const StringComparison compare = Ordinal;
+        
+        a = (a ?? "").Trim(); b = (b ?? "").Trim();
+        if (string.Equals(a, b, compare)) return true;
+        
+        a = a.RemoveExcessiveWhiteSpace(); b = b.RemoveExcessiveWhiteSpace();
+        if (string.Equals(a, b, compare)) return true;
+        
+        a = a.RemoveAccents();
+        b = b.RemoveAccents();
+        return string.Equals(a, b, compare);
+    }
+
+    /// <inheritdoc cref="_is" />
+    [MethodImpl(AggressiveInlining)]
+    public static bool Is(string? a, string? b, [UsedImplicitly] SpaceMatters spaceMatters)
+    {
+        if (a == b) return true;
+        
+        const StringComparison compare = OrdinalIgnoreCase;
+        
+        if (string.Equals(a, b, compare)) return true;
+        
+        a = a.RemoveAccents();
+        b = b.RemoveAccents();
+        return string.Equals(a, b, compare);
+    }
+
+    /// <inheritdoc cref="_is" />
+    [MethodImpl(AggressiveInlining)]
+    public static bool Is(string? a, string? b, [UsedImplicitly] CaseMatters caseMatters, [UsedImplicitly] SpaceMatters spaceMatters)
+    {
+        if (a == b) return true;
+        
+        const StringComparison compare = Ordinal;
+        
+        if (string.Equals(a, b, compare)) return true;
+        
+        a = a.RemoveAccents();
+        b = b.RemoveAccents();
+        return string.Equals(a, b, compare);
+    }
 }
 
 public static partial class FilledInHelper
