@@ -78,12 +78,12 @@ Coalesce(" ", null, "Hi!") == "Hi!"
 Releases
 --------
 
-- __`2.5` Initial release__  
-- __`2.6` Flags__  
-  `spaceMatters` wider support  
-  `string`/`StringBulder` combos wider support  
-  `ignoreCase` replaced by `caseMatters`  
-  `x.In(a, b, c)` favored over `In(x, a, b, c)`  
+__`2.5` Initial release__  
+__`2.6` Flags:__  
+- `spaceMatters` flags everywhere  
+- `caseMatters` replaced `ignoreCase`  
+- `StringBulder`/`string` more combos possible  
+- `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
 
 
 Coming Soon
