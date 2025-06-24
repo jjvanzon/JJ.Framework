@@ -3,6 +3,7 @@
     <HiddenComponentWarnings>
       <Value>CopyReferencedAssembliesToWorkspaceIsOn</Value>
       <Value>LostReference</Value>
+      <Value>AbnormalReferenceResolution</Value>
     </HiddenComponentWarnings>
   </Settings>
 </ProjectConfiguration>
