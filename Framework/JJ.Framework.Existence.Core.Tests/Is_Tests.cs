@@ -199,9 +199,112 @@ public class Is_Tests
     [TestMethod]
     public void Test_String_Is_SpaceMattersCaseMattersCombos_Static()
     {
-        IsTrue (Is("  test  ", "\tTEST\t", caseMatters: false, spaceMatters: false));
-        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: false, spaceMatters: true ));
-        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: true,  spaceMatters: false));
-        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: true,  spaceMatters: true ));
+        // CaseMatters/SpaceMatters No/No
+        IsTrue (Is("  test  ", "  test  "                                          ));
+        IsTrue (Is("  test  ", "\ttest\t"                                          ));
+        IsTrue (Is("  test  ", "  TEST  "                                          ));
+        IsTrue (Is("  test  ", "\tTEST\t"                                          ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters:  false                     ));
+        IsTrue (Is("  test  ", "\ttest\t", caseMatters:  false                     ));
+        IsTrue (Is("  test  ", "  TEST  ", caseMatters:  false                     ));
+        IsTrue (Is("  test  ", "\tTEST\t", caseMatters:  false                     ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters:  false, spaceMatters: false));
+        IsTrue (Is("  test  ", "\ttest\t", caseMatters:  false, spaceMatters: false));
+        IsTrue (Is("  test  ", "  TEST  ", caseMatters:  false, spaceMatters: false));
+        IsTrue (Is("  test  ", "\tTEST\t", caseMatters:  false, spaceMatters: false));
+        IsTrue (Is("  test  ", "  test  ",                      spaceMatters: false));
+        IsTrue (Is("  test  ", "\ttest\t",                      spaceMatters: false));
+        IsTrue (Is("  test  ", "  TEST  ",                      spaceMatters: false));
+        IsTrue (Is("  test  ", "\tTEST\t",                      spaceMatters: false));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: false, caseMatters:  false)); // Switch flags
+        IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false, caseMatters:  false));
+        IsTrue (Is("  test  ", "  TEST  ", spaceMatters: false, caseMatters:  false));
+        IsTrue (Is("  test  ", "\tTEST\t", spaceMatters: false, caseMatters:  false));
+        
+        // CaseMatters/SpaceMatters Yes/No
+        IsTrue (Is("  test  ", "  test  ", caseMatters                             ));
+        IsTrue (Is("  test  ", "\ttest\t", caseMatters                             ));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters                             ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters                             ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters:  true                      ));
+        IsTrue (Is("  test  ", "\ttest\t", caseMatters:  true                      ));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters:  true                      ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters:  true                      ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters:  true,  spaceMatters: false));
+        IsTrue (Is("  test  ", "\ttest\t", caseMatters:  true,  spaceMatters: false));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters:  true,  spaceMatters: false));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters:  true,  spaceMatters: false));
+        IsTrue (Is("  test  ", "  test  ", caseMatters,         spaceMatters: false));
+        IsTrue (Is("  test  ", "\ttest\t", caseMatters,         spaceMatters: false));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters,         spaceMatters: false));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters,         spaceMatters: false));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: false, caseMatters:  true )); // Switch flags
+        IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false, caseMatters:  true ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters: false, caseMatters:  true ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: false, caseMatters:  true ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: false, caseMatters        ));
+        IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false, caseMatters        ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters: false, caseMatters        ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: false, caseMatters        ));
+        
+        // CaseMatters/SpaceMatters No/Yes
+        IsTrue (Is("  test  ", "  test  ", spaceMatters                            ));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters                            ));
+        IsTrue (Is("  test  ", "  TEST  ", spaceMatters                            ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters                            ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: true                      ));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true                      ));
+        IsTrue (Is("  test  ", "  TEST  ", spaceMatters: true                      ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true                      ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: true,  caseMatters:  false));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,  caseMatters:  false));
+        IsTrue (Is("  test  ", "  TEST  ", spaceMatters: true,  caseMatters:  false));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,  caseMatters:  false));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters,        caseMatters:  false));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters,        caseMatters:  false));
+        IsTrue (Is("  test  ", "  TEST  ", spaceMatters,        caseMatters:  false));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters,        caseMatters:  false));
+        IsTrue (Is("  test  ", "  test  ", caseMatters:  false, spaceMatters: true )); // Switch flags
+        IsFalse(Is("  test  ", "\ttest\t", caseMatters:  false, spaceMatters: true ));
+        IsTrue (Is("  test  ", "  TEST  ", caseMatters:  false, spaceMatters: true ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters:  false, spaceMatters: true ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters:  false, spaceMatters       ));
+        IsFalse(Is("  test  ", "\ttest\t", caseMatters:  false, spaceMatters       ));
+        IsTrue (Is("  test  ", "  TEST  ", caseMatters:  false, spaceMatters       ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters:  false, spaceMatters       ));
+        
+        // CaseMatters/SpaceMatters Yes/Yes
+        IsTrue (Is("  test  ", "  test  ", caseMatters,         spaceMatters       ));
+        IsFalse(Is("  test  ", "\ttest\t", caseMatters,         spaceMatters       ));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters,         spaceMatters       ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters,         spaceMatters       ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters: true,   spaceMatters: true ));
+        IsFalse(Is("  test  ", "\ttest\t", caseMatters: true,   spaceMatters: true ));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters: true,   spaceMatters: true ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: true,   spaceMatters: true ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters: true,   spaceMatters       ));
+        IsFalse(Is("  test  ", "\ttest\t", caseMatters: true,   spaceMatters       ));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters: true,   spaceMatters       ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters: true,   spaceMatters       ));
+        IsTrue (Is("  test  ", "  test  ", caseMatters,         spaceMatters: true ));
+        IsFalse(Is("  test  ", "\ttest\t", caseMatters,         spaceMatters: true ));
+        IsFalse(Is("  test  ", "  TEST  ", caseMatters,         spaceMatters: true ));
+        IsFalse(Is("  test  ", "\tTEST\t", caseMatters,         spaceMatters: true ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters,         caseMatters       )); // Switch flags
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters,         caseMatters       ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters,         caseMatters       ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters,         caseMatters       ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: true,   caseMatters: true ));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,   caseMatters: true ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters: true,   caseMatters: true ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,   caseMatters: true ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: true,   caseMatters       ));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,   caseMatters       ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters: true,   caseMatters       ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,   caseMatters       ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters,         caseMatters: true ));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters,         caseMatters: true ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters,         caseMatters: true ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters,         caseMatters: true ));
     }
 }
