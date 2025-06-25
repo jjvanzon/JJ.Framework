@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Common.Tests\StringExtensions_Split_Tests.cs" />
-    <Compile Include="..\JJ.Framework.Common.Tests\StringExtensionsTests.cs" />
+    <Compile Include="..\JJ.Framework.Common.Tests\*.cs" />
   </ItemGroup>
 </Project>
