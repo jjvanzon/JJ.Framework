@@ -191,9 +191,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Frame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Tests", "Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj", "{2287D8E1-9376-3A6D-6677-3C028E4F8EF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{D180E171-03BE-86A4-3F4E-FF3DD95A0797}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{D180E171-03BE-86A4-3F4E-FF3DD95A0797}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Tests", "Framework\PlatformCompatibility.Tests\JJ.Framework.PlatformCompatibility.Tests.csproj", "{43757C1C-7B5F-1A09-D655-B189A0095663}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Tests", "Framework\JJ.Framework.PlatformCompatibility.Tests\JJ.Framework.PlatformCompatibility.Tests.csproj", "{43757C1C-7B5F-1A09-D655-B189A0095663}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Tests", "Framework\JJ.Framework.Common.Core.Tests\JJ.Framework.Common.Core.Tests.csproj", "{07E99ED0-FD3D-638E-E6D8-6EA66AC15DEC}"
 EndProject
