@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
-using JJ.Framework.Common.Legacy;
+using JJ.Framework.Common;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {

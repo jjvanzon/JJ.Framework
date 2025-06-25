@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Common.Legacy;
+using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.IO

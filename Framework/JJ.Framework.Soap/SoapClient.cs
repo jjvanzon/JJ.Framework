@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml.Linq;
-using JJ.Framework.Common.Legacy;
+using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Soap

@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Common.Legacy;
+﻿using JJ.Framework.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

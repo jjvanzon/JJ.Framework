@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Common.Legacy;
+﻿using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.Web;
 using System;

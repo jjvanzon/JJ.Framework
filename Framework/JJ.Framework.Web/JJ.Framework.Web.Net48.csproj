@@ -54,6 +54,7 @@
     <Compile Include="UrlInfo.cs" />
     <Compile Include="UrlParameterInfo.cs" />
     <Compile Include="UrlParser.cs" />
+    <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

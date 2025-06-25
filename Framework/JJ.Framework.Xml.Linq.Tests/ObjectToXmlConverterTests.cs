@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Linq.Tests.Mocks;
-using JJ.Framework.Common.Legacy;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
