@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Linq.Internal;
 using JJ.Framework.PlatformCompatibility;

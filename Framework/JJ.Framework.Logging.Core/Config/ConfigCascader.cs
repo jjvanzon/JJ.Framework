@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Collections.Core;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 using JJ.Framework.Logging.Core.Mappers;
 using JJ.Framework.Reflection;
 using static System.Array;

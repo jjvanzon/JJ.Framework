@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Common;
+﻿using JJ.Framework.Common.Legacy;
 using System;
 using System.Collections.Generic;
 using System.Linq;

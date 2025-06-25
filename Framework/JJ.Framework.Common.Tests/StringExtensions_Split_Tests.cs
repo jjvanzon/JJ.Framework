@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 
 namespace JJ.Framework.Common.Tests
 {

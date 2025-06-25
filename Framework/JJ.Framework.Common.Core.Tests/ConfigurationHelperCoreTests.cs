@@ -141,8 +141,8 @@ public class ConfigurationHelperCoreTests
             ThrowsException(
                 () => ConfigurationHelper.GetSection<ConfigurationSectionCore>(),
                 "Configuration section of type 'JJ.Framework.Common.Core.Tests.ConfigurationSectionCore' was not set. " +
-                "To allow JJ.Framework.Common to use this configuration section, " +
-                "call JJ.Framework.Common.ConfigurationHelper.SetSection.");
+                "To allow JJ.Framework.Common.Legacy to use this configuration section, " +
+                "call JJ.Framework.Common.Legacy.ConfigurationHelper.SetSection.");
         }
     }
 

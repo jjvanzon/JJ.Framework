@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Common.Legacy 
 {
     /// <inheritdoc cref="_keyvaluepairhelper" />
     public static class KeyValuePairHelper

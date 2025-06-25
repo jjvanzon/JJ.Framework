@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 using JJ.Framework.Reflection;
 using JJ.Framework.IO;
 using JJ.Framework.PlatformCompatibility;

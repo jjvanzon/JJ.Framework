@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Common.Legacy 
 {
     /// <inheritdoc cref="_embeddedresourcehelper" />
     public static class EmbeddedResourceHelper

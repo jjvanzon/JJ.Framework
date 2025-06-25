@@ -10,7 +10,7 @@ global using System.Runtime.Serialization;
 global using System.Text;
 global using System.Globalization;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
-global using JJ.Framework.Common;
+global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Common.Core;
 global using JJ.Framework.Testing;
 global using JJ.Framework.Testing.Core;

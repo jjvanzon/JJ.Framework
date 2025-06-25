@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Common;
+﻿using JJ.Framework.Common.Legacy;
 using JJ.Framework.Testing;
 using JJ.Framework.Xml.Tests.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

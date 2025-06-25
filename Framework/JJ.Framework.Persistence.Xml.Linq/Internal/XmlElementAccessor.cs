@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Reflection;

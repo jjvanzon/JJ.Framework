@@ -4,7 +4,7 @@
 #pragma warning disable IDE1006
 #pragma warning disable CS1572 // XML comment has a param tag, but there is no parameter by that name
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Common.Legacy 
 {
     namespace docs
     {

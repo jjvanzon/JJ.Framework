@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Common.Legacy 
 {
     /// <inheritdoc cref="_culturehelper" />
     public static class CultureHelper

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 using JJ.Framework.Text.Core;
 using static System.AppDomain;
 using static JJ.Framework.Existence.Core.FilledInHelper;

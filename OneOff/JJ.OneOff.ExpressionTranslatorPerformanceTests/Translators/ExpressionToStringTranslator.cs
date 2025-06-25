@@ -5,7 +5,7 @@ using System.Text;
 using System.Linq.Expressions;
 using System.Reflection;
 using JJ.Framework.Reflection;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {

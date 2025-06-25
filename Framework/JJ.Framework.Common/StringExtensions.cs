@@ -6,7 +6,7 @@ using static System.Globalization.CharUnicodeInfo;
 using static System.Globalization.UnicodeCategory;
 using static System.Text.NormalizationForm;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Common.Legacy 
 {
     /// <inheritdoc cref="_stringextensions" />
     public static partial class StringExtensions

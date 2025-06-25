@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using JJ.Framework.Reflection;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 using System.Web.Routing;
 
 namespace JJ.Framework.Presentation.Mvc

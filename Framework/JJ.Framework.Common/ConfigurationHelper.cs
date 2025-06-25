@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Common.Legacy 
 {
     /// <remarks>
     /// For using configuration settings when you cannot be dependent on System.Configuration.

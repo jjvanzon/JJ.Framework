@@ -1,4 +1,4 @@
-﻿using static JJ.Framework.Common.KeyHelper;
+﻿using static JJ.Framework.Common.Legacy.KeyHelper;
 // ReSharper disable ChangeFieldTypeToSystemThreadingLock
 // ReSharper disable UseSymbolAlias
 // ReSharper disable CoVariantArrayConversion

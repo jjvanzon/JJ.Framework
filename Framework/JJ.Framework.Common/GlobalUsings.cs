@@ -1,1 +1,1 @@
-﻿global using JJ.Framework.Common.docs;
+﻿global using JJ.Framework.Common.Legacy.docs;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 
 namespace JJ.Framework.Validation
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using JJ.Framework.Common;
+using JJ.Framework.Common.Legacy;
 using JJ.Framework.Logging.Core.Config;
 using JJ.Framework.Logging.Core.Loggers;
 using JJ.Framework.Logging.Core.Mappers;

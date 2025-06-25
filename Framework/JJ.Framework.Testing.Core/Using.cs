@@ -7,7 +7,7 @@ global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
-global using JJ.Framework.Common;
+global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Existence.Core;
 global using JJ.Framework.Text.Core;
 global using JJ.Framework.Reflection;

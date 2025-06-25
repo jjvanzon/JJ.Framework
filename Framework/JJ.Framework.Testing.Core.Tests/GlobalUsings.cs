@@ -2,7 +2,7 @@
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text;
-global using JJ.Framework.Common;
+global using JJ.Framework.Common.Legacy;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static System.Array;
 global using static JJ.Framework.Testing.AssertHelper;
