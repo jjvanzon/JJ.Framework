@@ -1,7 +1,5 @@
 ﻿// ReSharper disable UnusedMember.Local
 
-using static JJ.Framework.Reflection.ReflectionHelper;
-
 namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]

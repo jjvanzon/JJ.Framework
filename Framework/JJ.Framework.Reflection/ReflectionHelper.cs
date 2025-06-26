@@ -7,7 +7,7 @@ using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.PlatformCompatibility.Core;
 
-namespace JJ.Framework.Reflection
+namespace JJ.Framework.Reflection.Legacy
 {
     public static class ReflectionHelper
     {

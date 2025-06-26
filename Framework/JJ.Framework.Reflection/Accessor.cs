@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Linq.Expressions;
 
-namespace JJ.Framework.Reflection
+namespace JJ.Framework.Reflection.Legacy
 {
     /// <summary>
     /// Allows easy access to members by name, public, private or protected.

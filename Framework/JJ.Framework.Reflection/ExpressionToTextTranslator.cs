@@ -7,7 +7,7 @@ using System.Text;
 using JJ.Framework.Common;
 using System.Linq.Expressions;
 
-namespace JJ.Framework.Reflection
+namespace JJ.Framework.Reflection.Legacy
 {
     internal class ExpressionToTextTranslator
     {

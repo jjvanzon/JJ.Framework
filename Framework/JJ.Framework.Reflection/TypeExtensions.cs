@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Reflection
+namespace JJ.Framework.Reflection.Legacy
 {
     public static class TypeExtensions
     {

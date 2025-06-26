@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using static JJ.Framework.Reflection.ExpressionHelper;
+using static JJ.Framework.Reflection.Legacy.ExpressionHelper;
 
 namespace JJ.Framework.Reflection.Core.Tests;
 

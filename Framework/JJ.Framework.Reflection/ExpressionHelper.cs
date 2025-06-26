@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace JJ.Framework.Reflection
+namespace JJ.Framework.Reflection.Legacy
 {
     public static class ExpressionHelper
     {

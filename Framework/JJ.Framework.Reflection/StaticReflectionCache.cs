@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using JJ.Framework.PlatformCompatibility;
 
-namespace JJ.Framework.Reflection
+namespace JJ.Framework.Reflection.Legacy
 {
     // Outcommented: Deprecating this makes no sense if ReflectionCache does not fully replace it.
     //[Obsolete("May not give much performance gain because the dictionaries use complex keys. You might want to use ReflectionCache instead.")]

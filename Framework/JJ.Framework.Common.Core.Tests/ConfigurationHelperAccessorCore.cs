@@ -1,6 +1,4 @@
-﻿using JJ.Framework.Reflection;
-
-namespace JJ.Framework.Common.Core.Tests;
+﻿namespace JJ.Framework.Common.Core.Tests;
 
 internal static class ConfigurationHelperAccessorCore
 {
