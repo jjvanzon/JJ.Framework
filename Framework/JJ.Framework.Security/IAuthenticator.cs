@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Security
+namespace JJ.Framework.Security.Legacy
 {
     /// <summary> This interface serves as a base for authenticators for various types of authentication. </summary>
     public interface IAuthenticator

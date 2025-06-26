@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Security
+namespace JJ.Framework.Security.Legacy
 {
     public class HashedSaltedPasswordAuthenticator : AuthenticatorBase
     {

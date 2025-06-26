@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Security
+namespace JJ.Framework.Security.Legacy
 {
     public static class AuthenticatorFactory
     {

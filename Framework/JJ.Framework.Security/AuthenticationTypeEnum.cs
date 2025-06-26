@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Security
+﻿namespace JJ.Framework.Security.Legacy
 {
     public enum AuthenticationTypeEnum
     {

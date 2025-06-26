@@ -5,7 +5,7 @@ using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Security
+namespace JJ.Framework.Security.Legacy
 {
     /// <summary> This base class serves as a base for authenticators for various types of authentication. </summary>
     public abstract class AuthenticatorBase : IAuthenticator
