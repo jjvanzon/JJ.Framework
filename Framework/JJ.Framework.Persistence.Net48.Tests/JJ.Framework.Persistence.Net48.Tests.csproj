@@ -65,9 +65,6 @@
     <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Testing, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Testing.0.250.2208\lib\netstandard2.0\JJ.Framework.Testing.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\External Components\NHibernate\NHibernate.dll</HintPath>
@@ -108,6 +105,7 @@
     <Compile Include="..\JJ.Framework.Persistence.Tests\PersistenceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\JJ.Framework.Persistence.Tests\Model\Thing.cs" />
+    <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\JJ.Framework.Persistence.Tests\app.config">
@@ -167,6 +165,10 @@
     <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj">
       <Project>{56b6ba1d-92b6-4f6f-a533-1cd8a9b821e0}</Project>
       <Name>JJ.Framework.Persistence.Net48.NPersist</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
+      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
+      <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ global using System.Globalization;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Common.Core;
-global using JJ.Framework.Testing;
+global using JJ.Framework.Testing.Legacy;
 global using JJ.Framework.Testing.Core;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core;
@@ -32,7 +32,7 @@ global using static JJ.Framework.Reflection.Core.Reflect;
 global using static JJ.Framework.Reflection.Core.NullFlag;
 global using static JJ.Framework.Reflection.Core.MatchCaseFlag;
 //global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert; // Specifically excluded; replaced by AssertHelperCore.
-global using static JJ.Framework.Testing.AssertHelper;
+global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
 

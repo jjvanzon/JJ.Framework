@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading;
 
-namespace JJ.Framework.Testing
+namespace JJ.Framework.Testing.Legacy
 {
     /// <summary>
     /// When using AssertHelper instead of Assert,
