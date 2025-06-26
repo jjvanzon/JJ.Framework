@@ -5,7 +5,7 @@ using System.Text;
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedType.Global
 
-namespace JJ.Framework.PlatformCompatibility.Obsolete
+namespace JJ.Framework.PlatformCompatibility.Legacy.Obsolete
 {
     [Obsolete("Use PlatformHelper instead.", true)]
     public static class Encoding_PlatformSafe

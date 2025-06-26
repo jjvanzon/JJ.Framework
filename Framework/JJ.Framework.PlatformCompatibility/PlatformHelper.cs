@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 // ReSharper disable RedundantIfElseBlock
 
-namespace JJ.Framework.PlatformCompatibility
+namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     /// <summary>
     /// This class provides various alternatives to parts of .NET that do not work on certain platforms.

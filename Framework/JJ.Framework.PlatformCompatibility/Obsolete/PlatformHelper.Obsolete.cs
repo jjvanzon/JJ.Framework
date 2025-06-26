@@ -9,7 +9,7 @@ using System.Xml.Linq;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 
-namespace JJ.Framework.PlatformCompatibility.Obsolete
+namespace JJ.Framework.PlatformCompatibility.Legacy.Obsolete
 {
     public static partial class PlatformHelper
     {

@@ -5,7 +5,7 @@ using System.Xml.Linq;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 
-namespace JJ.Framework.PlatformCompatibility.Obsolete
+namespace JJ.Framework.PlatformCompatibility.Legacy.Obsolete
 {
     [Obsolete("Use PlatformHelper instead.", true)]
     public static class PlatformExtensions

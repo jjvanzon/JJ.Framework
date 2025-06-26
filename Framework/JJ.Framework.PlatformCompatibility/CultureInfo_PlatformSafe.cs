@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.PlatformCompatibility
+namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     /// <summary>
     /// Some parts of CultureInfo are not compatible with some platforms.

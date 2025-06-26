@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.PlatformCompatibility
+namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     public static class Encoding_PlatformSafe
     {

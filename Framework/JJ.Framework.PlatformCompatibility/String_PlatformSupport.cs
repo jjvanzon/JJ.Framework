@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.PlatformCompatibility.Core;
 
-namespace JJ.Framework.PlatformCompatibility
+namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     /// <summary>
     /// Contains substitutes for static String methods that are not present in some .NET versions.

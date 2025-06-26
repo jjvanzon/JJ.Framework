@@ -1,5 +1,5 @@
 ﻿
-namespace JJ.Framework.PlatformCompatibility
+namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     public enum MemberTypes_PlatformSafe
     {
