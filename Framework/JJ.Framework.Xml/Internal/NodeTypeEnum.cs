@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Xml.Internal
+﻿namespace JJ.Framework.Xml.Legacy.Internal
 {
     internal enum NodeTypeEnum
     {

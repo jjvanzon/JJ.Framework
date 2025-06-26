@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace JJ.Framework.Xml
+namespace JJ.Framework.Xml.Legacy
 {
     public static class XmlHelper
     {

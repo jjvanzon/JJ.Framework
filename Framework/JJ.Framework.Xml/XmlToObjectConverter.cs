@@ -10,9 +10,9 @@ using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Reflection;
-using JJ.Framework.Xml.Internal;
+using JJ.Framework.Xml.Legacy.Internal;
 
-namespace JJ.Framework.Xml
+namespace JJ.Framework.Xml.Legacy
 {
     /// <summary>
     /// Converts an XML structure to an object tree.

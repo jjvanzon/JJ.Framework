@@ -6,7 +6,7 @@ using JJ.Framework.Reflection;
 using System.Globalization;
 using JJ.Framework.PlatformCompatibility;
 
-namespace JJ.Framework.Xml.Internal
+namespace JJ.Framework.Xml.Legacy.Internal
 {
     internal static class ConversionHelper
     {
