@@ -1,5 +1,5 @@
 ﻿using JJ.Framework.Reflection;
-using JJ.Framework.Validation.Resources;
+using JJ.Framework.Validation.Legacy.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 
-namespace JJ.Framework.Validation
+namespace JJ.Framework.Validation.Legacy
 {
     public abstract class FluentValidator<TRootObject> : ValidatorBase<TRootObject>
     {

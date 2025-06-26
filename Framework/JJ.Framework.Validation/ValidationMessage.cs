@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Validation
+namespace JJ.Framework.Validation.Legacy
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class ValidationMessage

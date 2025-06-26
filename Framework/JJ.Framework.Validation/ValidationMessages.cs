@@ -8,7 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace JJ.Framework.Validation
+namespace JJ.Framework.Validation.Legacy
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class ValidationMessages : IEnumerable<ValidationMessage>

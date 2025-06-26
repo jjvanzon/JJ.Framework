@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using JJ.Framework.Common;
 
-namespace JJ.Framework.Validation
+namespace JJ.Framework.Validation.Legacy
 {
     public abstract class ValidatorBase<TRootObject> : IValidator
     {

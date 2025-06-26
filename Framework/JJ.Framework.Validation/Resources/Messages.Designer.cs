@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JJ.Framework.Validation.Resources {
+namespace JJ.Framework.Validation.Legacy.Resources {
     using System;
     
     

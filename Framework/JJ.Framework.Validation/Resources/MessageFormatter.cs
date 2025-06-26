@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Validation.Resources
+namespace JJ.Framework.Validation.Legacy.Resources
 {
     internal static class MessageFormatter
     {
