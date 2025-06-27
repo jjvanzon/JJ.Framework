@@ -4,8 +4,8 @@
     <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj" />
   </ItemGroup>
   <ItemGroup>

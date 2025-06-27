@@ -7,7 +7,7 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>
 </Project>

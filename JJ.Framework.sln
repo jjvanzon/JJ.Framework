@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.NH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration", "Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj", "{805A8237-05ED-40AE-8D1A-9288373EA5E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection", "Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj", "{1A8E047C-7893-4918-B415-CE3928E815D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy", "Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj", "{1A8E047C-7893-4918-B415-CE3928E815D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common", "Framework\JJ.Framework.Common\JJ.Framework.Common.csproj", "{44FD9133-5FE7-4824-BD35-27273706D127}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy", "Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj", "{44FD9133-5FE7-4824-BD35-27273706D127}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Tests", "Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Tests.csproj", "{2E520035-5328-4518-BC08-B57D7D3A70C2}"
 EndProject
@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48", "Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.Net48.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing", "Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj", "{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Legacy", "Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj", "{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Tests", "Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj", "{EA2EC919-FC52-47B6-9149-B6A7018572CE}"
 EndProject
@@ -45,7 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO", "Framewor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.WinForms", "Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.csproj", "{84A66716-C686-4B8E-A092-CFE38CA7DDE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation", "Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj", "{59DDC853-62AF-4F86-A803-3D4DD491E978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy", "Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj", "{59DDC853-62AF-4F86-A803-3D4DD491E978}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics", "Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj", "{810B90B9-F501-4B91-B019-2AD5AAD63304}"
 EndProject
@@ -53,9 +53,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.BeginCollectionIt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Tests", "Framework\JJ.Framework.Common.Tests\JJ.Framework.Common.Tests.csproj", "{FF1E5681-3980-429A-87E4-AE0B769595B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml", "Framework\JJ.Framework.Xml\JJ.Framework.Xml.csproj", "{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Legacy", "Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj", "{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Security", "Framework\JJ.Framework.Security\JJ.Framework.Security.csproj", "{4007568E-B2B4-4FC5-AA38-34EDC272F010}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Security.Legacy", "Framework\JJ.Framework.Security\JJ.Framework.Security.Legacy.csproj", "{4007568E-B2B4-4FC5-AA38-34EDC272F010}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation", "Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj", "{79B0EAC3-5159-4FC8-B3D8-53315B205444}"
 EndProject
@@ -191,7 +191,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Frame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Tests", "Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj", "{2287D8E1-9376-3A6D-6677-3C028E4F8EF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{D180E171-03BE-86A4-3F4E-FF3DD95A0797}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy", "Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj", "{D180E171-03BE-86A4-3F4E-FF3DD95A0797}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Tests", "Framework\JJ.Framework.PlatformCompatibility.Tests\JJ.Framework.PlatformCompatibility.Tests.csproj", "{43757C1C-7B5F-1A09-D655-B189A0095663}"
 EndProject

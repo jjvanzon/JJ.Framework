@@ -66,9 +66,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
+      <Name>JJ.Framework.Common.Legacy</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

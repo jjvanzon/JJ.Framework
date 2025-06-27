@@ -15,7 +15,7 @@
     <ProjectReference Include="..\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj" />
     <ProjectReference Include="..\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.NPersist.csproj" />
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>
   
   <ItemGroup>

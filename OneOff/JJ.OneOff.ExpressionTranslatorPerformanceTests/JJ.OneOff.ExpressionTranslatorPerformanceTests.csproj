@@ -8,9 +8,9 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj" />
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\..\Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Framework\JJ.Framework.Logging\JJ.Framework.Logging.csproj" />
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>
 </Project>

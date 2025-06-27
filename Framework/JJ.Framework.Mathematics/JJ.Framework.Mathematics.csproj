@@ -4,6 +4,6 @@
     <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>
 </Project>

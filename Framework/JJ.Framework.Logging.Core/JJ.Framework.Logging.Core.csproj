@@ -7,10 +7,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Configuration.Core\JJ.Framework.Configuration.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj" />
   </ItemGroup>
 

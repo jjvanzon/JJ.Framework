@@ -10,7 +10,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
   </ItemGroup>
   
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />

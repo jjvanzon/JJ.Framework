@@ -8,6 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>
 </Project>

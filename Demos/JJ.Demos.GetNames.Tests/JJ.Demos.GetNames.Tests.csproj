@@ -19,7 +19,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.csproj" />
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Demos.GetNames\JJ.Demos.GetNames.csproj" />
   </ItemGroup>
 </Project>

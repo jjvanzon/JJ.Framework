@@ -17,11 +17,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common.Core\JJ.Framework.Common.Core.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO.Core\JJ.Framework.IO.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj" />
   </ItemGroup>
 </Project>

@@ -7,6 +7,6 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
   </ItemGroup>
 </Project>

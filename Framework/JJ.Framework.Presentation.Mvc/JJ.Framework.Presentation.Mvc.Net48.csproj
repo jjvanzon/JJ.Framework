@@ -83,9 +83,9 @@
     <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
+      <Name>JJ.Framework.Common.Legacy</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj">
       <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>
