@@ -50,20 +50,35 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\External Components\NHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Build, Version=2.2.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Build.2.2.2208\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Common, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Common.0.250.2208\lib\netstandard2.0\JJ.Framework.Common.dll</HintPath>
+    <Reference Include="JJ.Framework.Build, Version=2.6.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.6.3226\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Logging, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Logging.0.250.2208\lib\netstandard2.0\JJ.Framework.Logging.dll</HintPath>
+    <Reference Include="JJ.Framework.Collections, Version=1.7.7817.43032, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Collections.1.7.7817.43032\lib\net461\JJ.Framework.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.PlatformCompatibility, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.0.250.2208\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    <Reference Include="JJ.Framework.Common.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Common.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.7.7817.43032, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.7.7817.43032\lib\net461\JJ.Framework.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Logging, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Logging.0.250.3226\lib\netstandard2.0\JJ.Framework.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Reflection.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Testing.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Testing.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Testing.Legacy.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Text, Version=1.7.7817.43031, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.7.7817.43031\lib\net461\JJ.Framework.Text.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -78,6 +93,9 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
@@ -146,10 +164,6 @@
       <Project>{37a1cde4-c375-41a2-8268-664edb2d02e4}</Project>
       <Name>JJ.Framework.Configuration.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Logging.Core\JJ.Framework.Logging.Core.csproj">
-      <Project>{8e47c2f1-0dbb-4fa2-a734-13a6ad9be0b2}</Project>
-      <Name>JJ.Framework.Logging.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj">
       <Project>{09619aa6-8e88-4487-bf2c-942c414d69ae}</Project>
       <Name>JJ.Framework.Persistence.Net48.EntityFramework5</Name>
@@ -165,10 +179,6 @@
     <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj">
       <Project>{56b6ba1d-92b6-4f6f-a533-1cd8a9b821e0}</Project>
       <Name>JJ.Framework.Persistence.Net48.NPersist</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj">
-      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
-      <Name>JJ.Framework.Testing.Legacy</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

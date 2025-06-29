@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>
 </Project>

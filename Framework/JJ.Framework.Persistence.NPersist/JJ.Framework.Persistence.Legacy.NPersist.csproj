@@ -11,7 +11,7 @@
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj" />
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>
 </Project>

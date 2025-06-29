@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{72857B67-3003-486C-9BB3-34AF5748BE95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence", "Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj", "{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy", "Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj", "{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.NHibernate", "Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj", "{DB783ED9-FDE6-458F-A094-457B7F4283A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.NHibernate", "Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj", "{DB783ED9-FDE6-458F-A094-457B7F4283A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration", "Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj", "{805A8237-05ED-40AE-8D1A-9288373EA5E0}"
 EndProject
@@ -17,11 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Tests", "Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Tests.csproj", "{2E520035-5328-4518-BC08-B57D7D3A70C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.NPersist", "Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.NPersist.csproj", "{35FC288E-5A6F-4DB9-AE54-1B721735ED7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.NPersist", "Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.Legacy.NPersist.csproj", "{35FC288E-5A6F-4DB9-AE54-1B721735ED7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Components", "External Components", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.EntityFramework5", "Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.EntityFramework5", "Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NCore.Framework NET 3.5", "External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj", "{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}"
 EndProject
@@ -69,7 +69,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Memory", "Framework\JJ.Framework.Persistence.Memory\JJ.Framework.Persistence.Memory.csproj", "{86348B50-ECA9-4849-A221-73F0ED31713B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.Memory", "Framework\JJ.Framework.Persistence.Memory\JJ.Framework.Persistence.Legacy.Memory.csproj", "{86348B50-ECA9-4849-A221-73F0ED31713B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xml.Linq.Legacy", "Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Xml.Linq.Legacy.csproj", "{BA423767-A57E-4278-BBA8-5C01F3E8D555}"
 EndProject
