@@ -33,20 +33,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JJ.Framework.Build, Version=2.2.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Build.2.2.2208\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    <Reference Include="JJ.Framework.Build, Version=2.6.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.6.3226\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Common, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Common.0.250.2208\lib\netstandard2.0\JJ.Framework.Common.dll</HintPath>
+    <Reference Include="JJ.Framework.Common.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Common.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.PlatformCompatibility, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.0.250.2208\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    <Reference Include="JJ.Framework.PlatformCompatibility.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="JJ.Framework.Xml, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Xml.0.250.2208\lib\netstandard2.0\JJ.Framework.Xml.dll</HintPath>
+    <Reference Include="JJ.Framework.Reflection.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Reflection.Legacy.dll</HintPath>
     </Reference>
     <Reference Include="SgmlReaderOld, Version=1.7.9233.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SgmlReaderOld.1.7.9233\lib\netstandard2.0\SgmlReaderOld.dll</HintPath>
@@ -57,10 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Configuration\AppSettings.cs" />
-    <Compile Include="..\JJ.Framework.Configuration\ConversionHelper.cs" />
-    <Compile Include="..\JJ.Framework.Configuration\ConfigurationManager.cs" />
-    <Compile Include="..\JJ.Framework.Configuration\ConfigurationSectionHandler.cs" />
+    <Compile Include="..\JJ.Framework.Configuration\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
