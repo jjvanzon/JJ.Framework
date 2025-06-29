@@ -43,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OneOff", "OneOff", "{8811F0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO", "Framework\JJ.Framework.IO\JJ.Framework.IO.csproj", "{C600657B-7E29-44B5-83A1-747FAB30D5D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.WinForms", "Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.csproj", "{84A66716-C686-4B8E-A092-CFE38CA7DDE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.WinForms.Legacy", "Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj", "{84A66716-C686-4B8E-A092-CFE38CA7DDE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy", "Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj", "{59DDC853-62AF-4F86-A803-3D4DD491E978}"
 EndProject

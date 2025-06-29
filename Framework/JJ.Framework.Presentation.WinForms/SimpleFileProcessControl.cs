@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using static System.ComponentModel.DesignerSerializationVisibility;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.Legacy
 {
     public partial class SimpleFileProcessControl : UserControl
     {

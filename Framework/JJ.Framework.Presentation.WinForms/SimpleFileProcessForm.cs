@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using static System.ComponentModel.DesignerSerializationVisibility;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.Legacy
 {
     public partial class SimpleFileProcessForm : Form
     {

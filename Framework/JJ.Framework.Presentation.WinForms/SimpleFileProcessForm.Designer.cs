@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.WinForms
+﻿namespace JJ.Framework.Presentation.WinForms.Legacy
 {
     partial class SimpleFileProcessForm
     {
@@ -35,7 +35,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.simpleFileProcessControl = new JJ.Framework.Presentation.WinForms.SimpleFileProcessControl();
+            this.simpleFileProcessControl = new JJ.Framework.Presentation.WinForms.Legacy.SimpleFileProcessControl();
             this.SuspendLayout();
             // 
             // simpleProcessControl
