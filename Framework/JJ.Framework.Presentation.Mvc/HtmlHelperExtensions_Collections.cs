@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.Mvc
         {
             Qualifier qualifier = GetQualifierForCurrentThread();
 
-            string identifier = JJ.Framework.Reflection.ExpressionHelper.GetName(expression);
+            string identifier = JJ.Framework.Reflection.Legacy.ExpressionHelper.GetName(expression);
 
             qualifier.AddItemNode(htmlHelper, identifier);
 
@@ -25,7 +25,7 @@ namespace JJ.Framework.Presentation.Mvc
         {
             Qualifier qualifier = GetQualifierForCurrentThread();
 
-            string identifier = JJ.Framework.Reflection.ExpressionHelper.GetName(expression);
+            string identifier = JJ.Framework.Reflection.Legacy.ExpressionHelper.GetName(expression);
 
             qualifier.AddCollectionNode(identifier);
 

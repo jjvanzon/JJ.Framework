@@ -71,7 +71,7 @@ Or rather:
         {
             //string name = JJ.Framework.Reflection.ExpressionHelper.GetName(expression);
             string name = System.Web.Mvc.ExpressionHelper.GetExpressionText(expression); // The one from MVC will get the appropriate portion of a complex expression, for when you don't use BeginCollection().
-            T value = JJ.Framework.Reflection.ExpressionHelper.GetValue(expression);
+            T value = JJ.Framework.Reflection.Legacy.ExpressionHelper.GetValue(expression);
             return htmlHelper.Hidden(name, value);
         }
 
