@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Framework.Presentation.Legacy
 {
     public class UnexpectedViewModelTypeException : Exception
     {

@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Framework.Presentation.Legacy
 {
     /// <summary>
     /// This is the platform-independent action dispatcher.

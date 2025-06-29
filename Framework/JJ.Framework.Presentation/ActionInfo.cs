@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Framework.Presentation.Legacy
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
     public sealed class ActionInfo
