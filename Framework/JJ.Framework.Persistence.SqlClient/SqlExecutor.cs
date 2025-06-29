@@ -16,7 +16,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Persistence.SqlClient.Legacy
+namespace JJ.Framework.Persistence.Legacy.SqlClient
 {
     public class SqlExecutor : ISqlExecutor
     {

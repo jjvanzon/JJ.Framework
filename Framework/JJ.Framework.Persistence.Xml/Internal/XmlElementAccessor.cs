@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace JJ.Framework.Persistence.Xml.Legacy.Internal
+namespace JJ.Framework.Persistence.Legacy.Xml.Internal
 {
     /// <summary>
     /// Offers functions for retrieving and storing information from an XML file,

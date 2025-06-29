@@ -65,13 +65,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging", "Framework\JJ.Framework.Logging\JJ.Framework.Logging.csproj", "{CEEB755D-DE12-4E70-816E-546C429B44B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xml.Legacy", "Framework\JJ.Framework.Persistence.Xml\JJ.Framework.Persistence.Xml.Legacy.csproj", "{3EDF4C94-F84A-43B2-95A5-F47DC30F1A5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.Xml", "Framework\JJ.Framework.Persistence.Xml\JJ.Framework.Persistence.Legacy.Xml.csproj", "{3EDF4C94-F84A-43B2-95A5-F47DC30F1A5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.Memory", "Framework\JJ.Framework.Persistence.Memory\JJ.Framework.Persistence.Legacy.Memory.csproj", "{86348B50-ECA9-4849-A221-73F0ED31713B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xml.Linq.Legacy", "Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Xml.Linq.Legacy.csproj", "{BA423767-A57E-4278-BBA8-5C01F3E8D555}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.Xml.Linq", "Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Legacy.Xml.Linq.csproj", "{BA423767-A57E-4278-BBA8-5C01F3E8D555}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Linq.Legacy", "Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.Legacy.csproj", "{8DCBF3F3-B30F-4C11-8957-BEA7F43EE173}"
 EndProject
@@ -109,7 +109,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48", "Framework\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj", "{164520AA-2DB7-4405-9AE5-EB515527A33B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.SqlClient.Legacy", "Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.Legacy.csproj", "{CEB85F8E-D429-4510-95A5-47CC3069D412}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.SqlClient", "Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj", "{CEB85F8E-D429-4510-95A5-47CC3069D412}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48.Tests", "Framework\JJ.Framework.Presentation.Mvc.Tests\JJ.Framework.Presentation.Mvc.Net48.Tests.csproj", "{2D46AA63-78C8-4905-BF83-D08A058CCBED}"
 EndProject

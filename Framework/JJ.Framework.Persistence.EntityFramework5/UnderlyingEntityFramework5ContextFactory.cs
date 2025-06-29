@@ -7,7 +7,7 @@ using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Persistence.EntityFramework5
+namespace JJ.Framework.Persistence.Legacy.EntityFramework5
 {
     internal static class UnderlyingEntityFramework5ContextFactory
     {

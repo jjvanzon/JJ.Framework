@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     /// <summary>
     /// Provides some constants for different dialects,

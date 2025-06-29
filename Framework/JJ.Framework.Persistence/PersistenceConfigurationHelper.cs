@@ -6,7 +6,7 @@ using System.Text;
 using JJ.Framework.Persistence;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     public static class PersistenceConfigurationHelper
     {

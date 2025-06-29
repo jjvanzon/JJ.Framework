@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     public class PersistenceConfiguration
     {

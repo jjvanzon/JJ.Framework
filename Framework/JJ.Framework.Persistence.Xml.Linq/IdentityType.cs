@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Persistence.Xml.Linq.Legacy
+﻿namespace JJ.Framework.Persistence.Legacy.Xml.Linq
 {
     public enum IdentityType
     {

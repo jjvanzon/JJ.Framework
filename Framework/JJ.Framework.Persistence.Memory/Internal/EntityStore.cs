@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Persistence.Memory.Internal
+namespace JJ.Framework.Persistence.Legacy.Memory.Internal
 {
     /// <summary>
     /// Gives access to a data store for a single entity type.

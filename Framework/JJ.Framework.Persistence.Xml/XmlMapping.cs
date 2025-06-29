@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 // ReSharper disable UnusedTypeParameter
 
-namespace JJ.Framework.Persistence.Xml.Legacy
+namespace JJ.Framework.Persistence.Legacy.Xml
 {
     public abstract class XmlMapping<TEntity> : IXmlMapping
     {

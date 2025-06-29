@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     public abstract class ContextBase : IContext
     {

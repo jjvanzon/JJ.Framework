@@ -6,7 +6,7 @@ using NHibernate;
 using NHibernate.Linq;
 using System.Reflection;
 
-namespace JJ.Framework.Persistence.NHibernate
+namespace JJ.Framework.Persistence.Legacy.NHibernate
 {
     public class NHibernateContext : ContextBase
     {

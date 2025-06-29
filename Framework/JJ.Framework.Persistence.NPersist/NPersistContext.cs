@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Puzzle.NPersist.Framework;
 
-namespace JJ.Framework.Persistence.NPersist.Legacy
+namespace JJ.Framework.Persistence.Legacy.NPersist
 {
     public class NPersistContext : ContextBase
     {

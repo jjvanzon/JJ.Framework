@@ -10,7 +10,7 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Xml.Linq;
 
-namespace JJ.Framework.Persistence.Xml.Linq.Legacy.Internal
+namespace JJ.Framework.Persistence.Legacy.Xml.Linq.Internal
 {
     /// <summary>
     /// Gives access to a data store for a single entity type.

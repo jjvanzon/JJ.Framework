@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     public interface IContext : IDisposable
     {

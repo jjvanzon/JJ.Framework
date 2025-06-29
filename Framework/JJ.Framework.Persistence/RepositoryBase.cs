@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     public abstract class RepositoryBase<TEntity, TID> : IRepository<TEntity, TID>
         where TEntity : class, new()

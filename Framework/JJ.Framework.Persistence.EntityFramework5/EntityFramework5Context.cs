@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Transactions;
 
-namespace JJ.Framework.Persistence.EntityFramework5
+namespace JJ.Framework.Persistence.Legacy.EntityFramework5
 {
     public class EntityFramework5Context : ContextBase
     {

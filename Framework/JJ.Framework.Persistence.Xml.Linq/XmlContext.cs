@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 
-namespace JJ.Framework.Persistence.Xml.Linq.Legacy
+namespace JJ.Framework.Persistence.Legacy.Xml.Linq
 {
     public class XmlContext : ContextBase
     {

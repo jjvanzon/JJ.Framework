@@ -9,7 +9,7 @@
     <PackageReference Include="NHibernate" Version="5.5.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj" />
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>

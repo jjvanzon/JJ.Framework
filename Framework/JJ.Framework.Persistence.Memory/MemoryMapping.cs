@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 // ReSharper disable UnusedTypeParameter
 
-namespace JJ.Framework.Persistence.Memory
+namespace JJ.Framework.Persistence.Legacy.Memory
 {
     public abstract class MemoryMapping<TEntity> : IMemoryMapping
     {

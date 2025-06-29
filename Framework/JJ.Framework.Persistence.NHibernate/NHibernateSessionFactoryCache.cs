@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Persistence.NHibernate
+namespace JJ.Framework.Persistence.Legacy.NHibernate
 {
     internal static class NHibernateSessionFactoryCache
     {

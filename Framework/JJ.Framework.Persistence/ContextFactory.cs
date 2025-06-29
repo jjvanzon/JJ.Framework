@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     public static class ContextFactory
     {
@@ -79,7 +79,7 @@ namespace JJ.Framework.Persistence
                 if (type == null)
                 {
                     // Otherwise assume the assembly name is :JJ.Framework.Persistence." + persistenceContextTypeName.
-                    string assumedAssemblyName = typeof(JJ.Framework.Persistence.ContextFactory).Assembly.GetName().Name + "." + contextTypeName;
+                    string assumedAssemblyName = typeof(JJ.Framework.Persistence.Legacy.ContextFactory).Assembly.GetName().Name + "." + contextTypeName;
                     Assembly assembly;
                     try
                     {

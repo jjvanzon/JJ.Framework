@@ -7,7 +7,7 @@ using System.Text;
 using JJ.Framework.Persistence.Memory.Internal;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Persistence.Memory
+namespace JJ.Framework.Persistence.Legacy.Memory
 {
     public class MemoryContext : ContextBase
     {

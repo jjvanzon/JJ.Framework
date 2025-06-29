@@ -10,7 +10,7 @@ using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Persistence.Xml.Linq.Internal;
 using JJ.Framework.Xml.Linq;
 
-namespace JJ.Framework.Persistence.Xml.Linq.Legacy
+namespace JJ.Framework.Persistence.Legacy.Xml.Linq
 {
     public class XmlToEntityConverter
     {

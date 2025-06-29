@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Persistence.NHibernate
+namespace JJ.Framework.Persistence.Legacy.NHibernate
 {
     public class NHibernateSqlExecutor : ISqlExecutor
     {

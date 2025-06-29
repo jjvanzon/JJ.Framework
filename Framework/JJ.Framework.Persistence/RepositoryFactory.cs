@@ -7,7 +7,7 @@ using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 
-namespace JJ.Framework.Persistence
+namespace JJ.Framework.Persistence.Legacy
 {
     public static class RepositoryFactory
     {
