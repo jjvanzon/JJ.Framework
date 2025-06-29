@@ -6,7 +6,7 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>
