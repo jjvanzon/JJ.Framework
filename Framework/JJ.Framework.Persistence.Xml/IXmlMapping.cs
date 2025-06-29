@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Persistence.Xml
+namespace JJ.Framework.Persistence.Xml.Legacy
 {
     public interface IXmlMapping
     {

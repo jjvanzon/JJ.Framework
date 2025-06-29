@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Persistence.Xml.Internal
+namespace JJ.Framework.Persistence.Xml.Legacy.Internal
 {
     internal static class XmlMappingResolver
     {

@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 
-namespace JJ.Framework.Persistence.Xml
+namespace JJ.Framework.Persistence.Xml.Legacy
 {
     public class XmlToEntityConverter
     {

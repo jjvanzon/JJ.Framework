@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 
-namespace JJ.Framework.Persistence.Xml.Internal
+namespace JJ.Framework.Persistence.Xml.Legacy.Internal
 {
     /// <summary>
     /// Gives access to a data store for a single entity type.

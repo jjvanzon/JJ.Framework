@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Persistence.Xml.Internal
+namespace JJ.Framework.Persistence.Xml.Legacy.Internal
 {
     internal interface IEntityStore
     {
