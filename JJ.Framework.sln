@@ -59,7 +59,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Security.Legac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation", "Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj", "{79B0EAC3-5159-4FC8-B3D8-53315B205444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.JavaScript", "Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.csproj", "{BD4CF454-BE0B-490F-997D-665DA7EBEC96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.JavaScript.Legacy", "Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.Legacy.csproj", "{BD4CF454-BE0B-490F-997D-665DA7EBEC96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.ExpressionTranslatorPerformanceTests", "OneOff\JJ.OneOff.ExpressionTranslatorPerformanceTests\JJ.OneOff.ExpressionTranslatorPerformanceTests.csproj", "{D62518C8-8D09-48E4-8CDF-720EEEEE6241}"
 EndProject
