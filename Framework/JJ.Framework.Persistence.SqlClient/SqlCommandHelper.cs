@@ -15,7 +15,7 @@ using System.Data;
 using System.IO;
 using JJ.Framework.IO;
 
-namespace JJ.Framework.Persistence.SqlClient
+namespace JJ.Framework.Persistence.SqlClient.Legacy
 {
     public static class SqlCommandHelper
     {

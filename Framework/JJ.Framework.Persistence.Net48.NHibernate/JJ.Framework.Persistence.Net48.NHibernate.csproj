@@ -42,17 +42,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\External Components\NHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Build, Version=2.2.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Build.2.2.2208\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    <Reference Include="JJ.Framework.Build, Version=2.6.3223.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.6.3223\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Common, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Common.0.250.2208\lib\netstandard2.0\JJ.Framework.Common.dll</HintPath>
+    <Reference Include="JJ.Framework.Common.Legacy, Version=0.250.3223.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.Legacy.0.250.3223\lib\netstandard2.0\JJ.Framework.Common.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.PlatformCompatibility, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.0.250.2208\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    <Reference Include="JJ.Framework.PlatformCompatibility.Legacy, Version=0.250.3223.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.Legacy.0.250.3223\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
+    <Reference Include="JJ.Framework.Reflection.Legacy, Version=0.250.3223.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.Legacy.0.250.3223\lib\netstandard2.0\JJ.Framework.Reflection.Legacy.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -66,10 +66,8 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Persistence.NHibernate\NHibernateContext.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.NHibernate\NHibernateSqlExecutor.cs" />
+    <Compile Include="..\JJ.Framework.Persistence.NHibernate\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.NHibernate\NHibernateSessionFactoryCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">

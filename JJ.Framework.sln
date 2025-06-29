@@ -109,7 +109,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48", "Framework\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj", "{164520AA-2DB7-4405-9AE5-EB515527A33B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.SqlClient", "Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.csproj", "{CEB85F8E-D429-4510-95A5-47CC3069D412}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.SqlClient.Legacy", "Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.Legacy.csproj", "{CEB85F8E-D429-4510-95A5-47CC3069D412}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48.Tests", "Framework\JJ.Framework.Presentation.Mvc.Tests\JJ.Framework.Presentation.Mvc.Net48.Tests.csproj", "{2D46AA63-78C8-4905-BF83-D08A058CCBED}"
 EndProject
