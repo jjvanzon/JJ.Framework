@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Xml.Linq
+﻿namespace JJ.Framework.Xml.Linq.Legacy
 {
     /// <summary>
     /// Identifies what casing is expected in the XML

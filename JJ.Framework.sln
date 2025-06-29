@@ -73,7 +73,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xml.Linq", "Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Xml.Linq.csproj", "{BA423767-A57E-4278-BBA8-5C01F3E8D555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Linq", "Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj", "{8DCBF3F3-B30F-4C11-8957-BEA7F43EE173}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Linq.Legacy", "Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.Legacy.csproj", "{8DCBF3F3-B30F-4C11-8957-BEA7F43EE173}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Linq.Tests", "Framework\JJ.Framework.Xml.Linq.Tests\JJ.Framework.Xml.Linq.Tests.csproj", "{A247CCEF-12FF-4254-93FC-287366920AB8}"
 EndProject

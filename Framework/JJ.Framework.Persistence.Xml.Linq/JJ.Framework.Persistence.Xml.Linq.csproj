@@ -8,6 +8,6 @@
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj" />
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.Legacy.csproj" />
   </ItemGroup>
 </Project>

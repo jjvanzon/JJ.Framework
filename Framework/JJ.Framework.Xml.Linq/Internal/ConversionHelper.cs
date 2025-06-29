@@ -12,7 +12,7 @@ using JJ.Framework.PlatformCompatibility.Core;
 using System.Xml.Linq;
 using System.Xml;
 
-namespace JJ.Framework.Xml.Linq.Internal
+namespace JJ.Framework.Xml.Linq.Legacy.Internal
 {
     internal static class ConversionHelper
     {

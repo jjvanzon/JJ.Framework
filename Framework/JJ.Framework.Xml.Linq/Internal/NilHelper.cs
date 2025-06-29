@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace JJ.Framework.Xml.Linq.Internal
+namespace JJ.Framework.Xml.Linq.Legacy.Internal
 {
     internal static class NilHelper
     {

@@ -6,7 +6,7 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.Legacy.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestResources\ComplicatedExample.xml" />

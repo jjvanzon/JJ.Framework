@@ -13,7 +13,7 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.PlatformCompatibility.Core;
 using System.Globalization;
 
-namespace JJ.Framework.Xml.Linq
+namespace JJ.Framework.Xml.Linq.Legacy
 {
     /// <summary>
     /// Converts an XML structure to an object tree.

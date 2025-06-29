@@ -15,7 +15,7 @@ using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Xml.Linq.Internal;
 using System.Globalization;
 
-namespace JJ.Framework.Xml.Linq
+namespace JJ.Framework.Xml.Linq.Legacy
 {
     /// <summary>
     /// Under certain platforms standard XML serialization may not be available 

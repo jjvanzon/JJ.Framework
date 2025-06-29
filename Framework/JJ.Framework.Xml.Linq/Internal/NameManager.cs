@@ -11,7 +11,7 @@ using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Reflection;
 using JJ.Framework.Mathematics;
 
-namespace JJ.Framework.Xml.Linq.Internal
+namespace JJ.Framework.Xml.Linq.Legacy.Internal
 {
     internal class NameManager
     {
