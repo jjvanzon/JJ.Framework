@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Persistence.Xml.Linq.Internal
+namespace JJ.Framework.Persistence.Xml.Linq.Legacy.Internal
 {
     internal static class ReflectionCacheWrapper
     {

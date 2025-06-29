@@ -9,7 +9,7 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Persistence.Xml.Linq.Internal
+namespace JJ.Framework.Persistence.Xml.Linq.Legacy.Internal
 {
     /// <summary>
     /// Offers functions for retrieving and storing information from an XML file,
