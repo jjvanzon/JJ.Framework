@@ -38,29 +38,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JJ.Framework.Build, Version=2.2.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Build.2.2.2208\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    <Reference Include="JJ.Framework.Build, Version=2.6.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.6.3226\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Common, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Common.0.250.2208\lib\netstandard2.0\JJ.Framework.Common.dll</HintPath>
+    <Reference Include="JJ.Framework.Common.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Common.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.IO, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.IO.0.250.2208\lib\netstandard2.0\JJ.Framework.IO.dll</HintPath>
+    <Reference Include="JJ.Framework.IO, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.IO.0.250.3226\lib\netstandard2.0\JJ.Framework.IO.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Mathematics, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Mathematics.0.250.2208\lib\netstandard2.0\JJ.Framework.Mathematics.dll</HintPath>
+    <Reference Include="JJ.Framework.Mathematics, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Mathematics.0.250.3226\lib\netstandard2.0\JJ.Framework.Mathematics.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.PlatformCompatibility, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.0.250.2208\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    <Reference Include="JJ.Framework.PlatformCompatibility.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
+    <Reference Include="JJ.Framework.Reflection.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Reflection.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Testing, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Testing.0.250.2208\lib\netstandard2.0\JJ.Framework.Testing.dll</HintPath>
+    <Reference Include="JJ.Framework.Testing.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Testing.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Testing.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Xml.Linq, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Xml.Linq.0.250.2208\lib\netstandard2.0\JJ.Framework.Xml.Linq.dll</HintPath>
+    <Reference Include="JJ.Framework.Xml.Linq.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Xml.Linq.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Xml.Linq.Legacy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ServiceModel" />
@@ -78,6 +78,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Using.cs" />
     <Compile Include="Helpers\IAppSettings.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Helpers\NativeWcfClient.cs" />

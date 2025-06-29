@@ -45,6 +45,9 @@
     <Reference Include="JJ.Framework.Reflection.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Reflection.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Reflection.Legacy.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Xml.Legacy, Version=0.250.3226.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Xml.Legacy.0.250.3226\lib\netstandard2.0\JJ.Framework.Xml.Legacy.dll</HintPath>
+    </Reference>
     <Reference Include="SgmlReaderOld, Version=1.7.9233.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SgmlReaderOld.1.7.9233\lib\netstandard2.0\SgmlReaderOld.dll</HintPath>
     </Reference>
