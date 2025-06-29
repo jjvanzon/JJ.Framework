@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation.Resources
+namespace JJ.Framework.Presentation.Resources.Legacy
 {
     public static class CommonTitlesFormatter
     {

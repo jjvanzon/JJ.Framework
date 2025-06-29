@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JJ.Framework.Presentation.Resources {
+namespace JJ.Framework.Presentation.Resources.Legacy {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Presentation.Resources.CommonTitles", typeof(CommonTitles).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Presentation.Resources.Legacy.CommonTitles", typeof(CommonTitles).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
