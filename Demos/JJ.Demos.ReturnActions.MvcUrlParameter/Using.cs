@@ -1,0 +1,1 @@
+global using JJ.Framework.Presentation.Legacy;

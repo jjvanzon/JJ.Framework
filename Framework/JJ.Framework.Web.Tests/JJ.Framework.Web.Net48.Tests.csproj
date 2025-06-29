@@ -38,20 +38,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JJ.Framework.Build, Version=2.6.3220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Build.2.6.3220\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    <Reference Include="JJ.Framework.Build, Version=2.6.3239.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.6.3239\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Common.Legacy, Version=0.250.3220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Common.Legacy.0.250.3220\lib\netstandard2.0\JJ.Framework.Common.Legacy.dll</HintPath>
+    <Reference Include="JJ.Framework.Common.Legacy, Version=0.250.3239.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.Legacy.0.250.3239\lib\netstandard2.0\JJ.Framework.Common.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.PlatformCompatibility.Legacy, Version=0.250.3220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.Legacy.0.250.3220\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.Legacy.dll</HintPath>
+    <Reference Include="JJ.Framework.PlatformCompatibility.Legacy, Version=0.250.3239.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.Legacy.0.250.3239\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection.Legacy, Version=0.250.3220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.Legacy.0.250.3220\lib\netstandard2.0\JJ.Framework.Reflection.Legacy.dll</HintPath>
+    <Reference Include="JJ.Framework.Reflection.Legacy, Version=0.250.3239.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.Legacy.0.250.3239\lib\netstandard2.0\JJ.Framework.Reflection.Legacy.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Testing.Legacy, Version=0.250.3220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Testing.Legacy.0.250.3220\lib\netstandard2.0\JJ.Framework.Testing.Legacy.dll</HintPath>
+    <Reference Include="JJ.Framework.Testing.Legacy, Version=0.250.3239.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Testing.Legacy.0.250.3239\lib\netstandard2.0\JJ.Framework.Testing.Legacy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

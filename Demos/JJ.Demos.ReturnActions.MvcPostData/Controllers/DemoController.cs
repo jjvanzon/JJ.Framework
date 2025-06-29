@@ -1,4 +1,5 @@
-﻿using JJ.Demos.ReturnActions.MvcPostData.Names;
+﻿// ReSharper disable UnusedParameter.Global
+using JJ.Demos.ReturnActions.MvcPostData.Names;
 using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation.Mvc;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ActionDispatcher = JJ.Framework.Presentation.Mvc.ActionDispatcher;
 
 namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
 {
