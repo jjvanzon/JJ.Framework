@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Reflection;
-using static JJ.Framework.IO.StreamHelper;
+using static JJ.Framework.IO.Legacy.StreamHelper;
 
 namespace JJ.Framework.IO.Core
 {

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace JJ.Framework.IO
+namespace JJ.Framework.IO.Legacy
 {
     public static class BinaryWriterExtensions
     {

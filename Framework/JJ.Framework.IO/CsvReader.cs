@@ -6,7 +6,7 @@ using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.IO
+namespace JJ.Framework.IO.Legacy
 {
     public class CsvReader : IDisposable
     {

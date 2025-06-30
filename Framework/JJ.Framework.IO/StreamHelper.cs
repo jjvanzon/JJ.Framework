@@ -6,7 +6,7 @@ using System.Text;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.IO
+namespace JJ.Framework.IO.Legacy
 {
     public static class StreamHelper
     {
