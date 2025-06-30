@@ -38,7 +38,7 @@ Development is done under special "legacy" constraints that affect versioning, b
 Mutations
 ---------
 
-Projects without a suffix (e.g., `JJ.Framework.Configuration`) or with the `.Legacy` suffix (e.g., `JJ.Framework.Configuration.Legacy`) , are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
+Projects suffixed `.Legacy` (e.g. `JJ.Framework.Configuration.Legacy`) or sometimes without a suffix (e.g., `JJ.Framework.Configuration`), are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
 
 
 Extensions
@@ -54,13 +54,17 @@ Branching
 - The new `main` branches off from an __older__ point in that `legacy` history.
 - Why the throwback? We're "replaying" the past to unearth hidden gems that never saw the light of day. This lets us retroactively release not just libraries but entire applications otherwise lost.
 - __The legacy branch shall not be deleted! The legacy shall remain!__
+
+
+### Branch Lines
+ 
 - The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both would be unmanageable.
 - Temporary branches are allowed, but always `fast-forward` merged.
 - In a team setup, `pull rebase` could preserve linear commit history.
 
 
 Deployments
-----------
+-----------
 
 - Around `2018`, about `15` projects were released from `legacy` to `NuGet` for `.NET 4.6.1`, compatible with the now-retired `Mono` compiler.
 - Now, new deployments use `.NET 9` at their core (with `.NET Standard` for compatibility), and we push upgraded legacy versions incrementally to `NuGet.org`.
@@ -113,7 +117,7 @@ The code pulled from an earlier point in history may be referred to as __The Ice
 
 <h3>The New Core</h3>
 
-The __New Core__ is like the revolution. They are they way forward, but can't do without the *King* and *Queen.* The pilars of power have to be respected.
+The __New Core__ is like the revolution. They are they way forward, but can't do without the *King* or *Queen.* The pilars of power have to be respected.
 
 The *King* is still open to change, as long as the *New Core* shares its updates. The *Queen*, not so much. When serving the King, ensure his legacy remains intact; backwards compatibility is a given!
 
