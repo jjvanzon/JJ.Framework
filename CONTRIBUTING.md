@@ -38,7 +38,7 @@ Development is done under special "legacy" constraints that affect versioning, b
 Mutations
 ---------
 
-Projects without a suffix, like `JJ.Framework.Configuration`, are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
+Projects without a suffix (e.g., `JJ.Framework.Configuration`) or with the `.Legacy` suffix (e.g., `JJ.Framework.Configuration.Legacy`) , are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
 
 
 Extensions
@@ -63,13 +63,13 @@ Deployments
 ----------
 
 - Around `2018`, about `15` projects were released from `legacy` to `NuGet` for `.NET 4.6.1`, compatible with the now-retired `Mono` compiler.
-- Now, new deployments use `.NET 9` at their core (with `.NET Standard` for compatibility), and we push updated legacy versions incrementally to `NuGet.org`.
+- Now, new deployments use `.NET 9` at their core (with `.NET Standard` for compatibility), and we push upgraded legacy versions incrementally to `NuGet.org`.
 
 
 Versioning
 ----------
 
-- Code from the `legacy` branch compiled under `.NET 9` begins with a zero, e.g. `0.250.1053`.
+- `.Legacy`-suffixed projects originating from the `legacy` branch, recompiled under `.NET 9` begins with a zero, e.g. `0.250.1053`.
 - That leading `0` signals it's essentially a "prequel" to the versions already in the `1.5.x` range on `NuGet`.
 - The `.Core`-suffixed projects are released with versions in the range of `1.8.x`, signaling the forward continuation.
 
@@ -81,11 +81,12 @@ Here's our naming scheme to juggle both old and new:
 
 ```
 JJ.Framework.Configuration
+JJ.Framework.Configuration.Legacy
 JJ.Framework.Configuration.Net48
 JJ.Framework.Configuration.Core
 ```
 
-- Suffix-free (`JJ.Framework.Configuration`):  
+- `.Legacy` (`JJ.Framework.Configuration.Legacy`) or formerly suffix-free (`JJ.Framework.Configuration`):  
   Directly pulled from the `legacy` branch, now upgraded for `.NET 9` and `.NET Standard`.
 - `.Net48` (`JJ.Framework.Configuration.Net48`):  
   The same code, compiled for `.NET Framework 4.8`, so older systems aren't left behind.
