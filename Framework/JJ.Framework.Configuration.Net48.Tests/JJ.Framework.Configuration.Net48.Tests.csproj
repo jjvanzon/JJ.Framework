@@ -58,7 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\JJ.Framework.Configuration.Tests\app.config">
+    <!--<Content Include="..\JJ.Framework.Configuration.Tests\app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>-->
+    <Content Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

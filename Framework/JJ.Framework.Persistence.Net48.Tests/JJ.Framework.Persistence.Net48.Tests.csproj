@@ -117,7 +117,7 @@
     <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\JJ.Framework.Persistence.Tests\app.config">
+    <Content Include="app.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
