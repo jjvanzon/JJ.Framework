@@ -9,7 +9,7 @@
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj" />
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj" />
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Logging.Core\JJ.Framework.Logging.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj" />
     <ProjectReference Include="..\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj" />

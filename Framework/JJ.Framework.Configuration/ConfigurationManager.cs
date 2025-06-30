@@ -8,7 +8,7 @@ using System.Xml;
 using JJ.Framework.Xml;
 using System.Configuration;
 
-namespace JJ.Framework.Configuration
+namespace JJ.Framework.Configuration.Legacy
 {
     public static class CustomConfigurationManager
     {

@@ -10,7 +10,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -53,12 +53,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Configuration.Tests\AppSettingsTest.cs" />
-    <Compile Include="..\JJ.Framework.Configuration.Tests\CustomConfigurationManagerTests.cs" />
-    <Compile Include="..\JJ.Framework.Configuration.Tests\Settings\IMySettings.cs" />
-    <Compile Include="..\JJ.Framework.Configuration.Tests\Settings\MySettings.cs" />
-    <Compile Include="..\JJ.Framework.Configuration.Tests\Settings\TestSubConfiguration.cs" />
-    <Compile Include="..\JJ.Framework.Configuration.Tests\Settings\TestConfiguration.cs" />
+    <Compile Include="..\JJ.Framework.Configuration.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.Configuration.Tests\Settings\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Configuration
+namespace JJ.Framework.Configuration.Legacy
 {
     internal static class ConversionHelper
     {

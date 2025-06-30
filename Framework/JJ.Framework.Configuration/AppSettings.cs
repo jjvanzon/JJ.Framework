@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace JJ.Framework.Configuration
+namespace JJ.Framework.Configuration.Legacy
 {
     public static class AppSettings<TInterface>
     {

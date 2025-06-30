@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace JJ.Framework.Configuration
+namespace JJ.Framework.Configuration.Legacy
 {
     public class ConfigurationSectionHandler : IConfigurationSectionHandler
     {
