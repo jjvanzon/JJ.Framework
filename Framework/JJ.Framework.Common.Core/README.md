@@ -34,6 +34,15 @@ An extension to [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framewor
 
     - `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, `null` is returned, instead of a crash.
 
+After Upgrading
+===============
+
+Links to legacy dependencies have changed. If you experience problems, these things might help:
+
+- __Option 1__: Do nothing. Everything works.
+- __Option 2__: Use the `JJ.Framework.Common.Legacy` namespace where you currently use `JJ.Framework.Common`.
+- __Option 3__: Install `JJ.Framework.Common` explicitly. You may need a downgrade to a `0.*` version.
+
 
 💬 Feedback
 ============

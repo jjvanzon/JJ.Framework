@@ -98,6 +98,18 @@ Coming Soon
 - ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn't `10`?
 
 
+After Upgrading
+---------------
+
+Links to legacy dependencies have changed. If you experience problems, these things might help:
+
+- __Option 1__: Do nothing. Everything works.
+- __Option 2__: Use the `JJ.Framework.Common.Legacy` namespace where you currently use `JJ.Framework.Common`.
+- __Option 3__: Install `JJ.Framework.Common` explicitly. You may need a downgrade to a `0.*` version.
+
+(This same applies `JJ.Framework.PlatformCompatibility.Legacy`.)
+
+
 🐨 Mr. Koala
 ------------
 
