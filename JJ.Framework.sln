@@ -103,7 +103,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Diagno
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Resources.Legacy", "Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj", "{40A53175-8048-4F2D-93CA-383074C0267E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business", "Framework\JJ.Framework.Business\JJ.Framework.Business.csproj", "{F44D03E8-FEEC-40D4-B866-A87799185B4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy", "Framework\JJ.Framework.Business\JJ.Framework.Business.Legacy.csproj", "{F44D03E8-FEEC-40D4-B866-A87799185B4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests", "Framework\JJ.Framework.Business.Tests\JJ.Framework.Business.Tests.csproj", "{A2657F2A-8508-4E21-BBD4-985E4FA45CF7}"
 EndProject

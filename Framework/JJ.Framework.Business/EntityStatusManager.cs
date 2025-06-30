@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace JJ.Framework.Business
+namespace JJ.Framework.Business.Legacy
 {
     /// <summary>
     /// Stores entity statuses such as IsDirty and IsNew.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Business
+namespace JJ.Framework.Business.Legacy
 {
     public static class EntityStatusHelper
     {
