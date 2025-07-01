@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
+    <AssemblyName>JJ.Framework.Persistence.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

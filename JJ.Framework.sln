@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Tests", "Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Tests.csproj", "{30F1DFB1-BB06-42EA-AE91-56144B56DF45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.Tests", "Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Legacy.Tests.csproj", "{30F1DFB1-BB06-42EA-AE91-56144B56DF45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48", "Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.Net48.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
 EndProject
