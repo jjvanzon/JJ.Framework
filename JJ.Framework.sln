@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Leg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy", "Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj", "{44FD9133-5FE7-4824-BD35-27273706D127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Tests", "Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Tests.csproj", "{2E520035-5328-4518-BC08-B57D7D3A70C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Legacy.Tests", "Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Legacy.Tests.csproj", "{2E520035-5328-4518-BC08-B57D7D3A70C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Legacy.NPersist", "Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.Legacy.NPersist.csproj", "{35FC288E-5A6F-4DB9-AE54-1B721735ED7D}"
 EndProject
