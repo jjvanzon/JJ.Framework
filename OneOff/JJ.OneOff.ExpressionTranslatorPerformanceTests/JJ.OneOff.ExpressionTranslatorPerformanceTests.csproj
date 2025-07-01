@@ -9,7 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Legacy.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Framework\JJ.Framework.Logging\JJ.Framework.Logging.Legacy.csproj" />
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>

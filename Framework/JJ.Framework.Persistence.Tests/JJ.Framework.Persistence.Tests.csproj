@@ -58,7 +58,7 @@
     <EmbeddedResource Include="NPersist\PersistenceTests.npersist" />
     <None Include="NPersist\PersistenceTests.omproj" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <Compile Update="EntityFramework\Model1.Designer.cs">
       <DesignTime>True</DesignTime>
