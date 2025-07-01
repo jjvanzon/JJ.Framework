@@ -38,7 +38,7 @@ Development is done under special "legacy" constraints that affect versioning, b
 Mutations
 ---------
 
-Projects suffixed `.Legacy` (e.g. `JJ.Framework.Configuration.Legacy`) or sometimes without a suffix (e.g., `JJ.Framework.Configuration`), are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
+Projects suffixed `.Legacy` (`JJ.Framework.Configuration.Legacy`) are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
 
 
 Extensions
@@ -50,15 +50,15 @@ Extensions
 Branching
 ---------
 
-- The original `main` branch is now called `legacy`.
-- The new `main` branches off from an __older__ point in that `legacy` history.
+- The original `main` branch is now renamed to `legacy`.
+- A new `main` branches off from an __older__ point in that `legacy` history.
 - Why the throwback? We're "replaying" the past to unearth hidden gems that never saw the light of day. This lets us retroactively release not just libraries but entire applications otherwise lost.
 - __The legacy branch shall not be deleted! The legacy shall remain!__
 
 
 ### Branch Lines
  
-- The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both would be unmanageable.
+- The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both can get unmanageable.
 - Temporary branches are allowed, but always `fast-forward` merged.
 - In a team setup, `pull rebase` could preserve linear commit history.
 
@@ -73,9 +73,9 @@ Deployments
 Versioning
 ----------
 
-- `.Legacy`-suffixed projects originating from the `legacy` branch, recompiled under `.NET 9` begins with a zero, e.g. `0.250.1053`.
+- `.Legacy`-suffixed projects (originating from the `legacy` branch, recompiled under `.NET 9`) begin with a zero, e.g. `0.250.1053`.
 - That leading `0` signals it's essentially a "prequel" to the versions already in the `1.5.x` range on `NuGet`.
-- The `.Core`-suffixed projects are released with versions in the range of `1.8.x`, signaling the forward continuation.
+- The `.Core`-suffixed projects are released with versions in the range of `1.8.x` or above, signaling the forward continuation.
 
 
 Namespaces
@@ -90,12 +90,16 @@ JJ.Framework.Configuration.Net48
 JJ.Framework.Configuration.Core
 ```
 
-- `.Legacy` (`JJ.Framework.Configuration.Legacy`) or formerly suffix-free (`JJ.Framework.Configuration`):  
-  Directly pulled from the `legacy` branch, now upgraded for `.NET 9` and `.NET Standard`.
+- Suffix-free (`JJ.Framework.Configuration`):  
+  Code directly from the `legacy` branch.
+- `.Legacy` (`JJ.Framework.Configuration.Legacy`):  
+  Legacy code now upgraded to `.NET 9` and `.NET Standard`.
 - `.Net48` (`JJ.Framework.Configuration.Net48`):  
   The same code, compiled for `.NET Framework 4.8`, so older systems aren't left behind.
 - `.Core` (`JJ.Framework.Configuration.Core`):  
   Either brand-new development or code copied from the __latest__ `legacy` code. This way, we don't stifle innovation while we're working with legacy code.
+
+For code elements such as classes and methods, `Legacy` suffixes and suffix-free variants get a bit more intermixed. The context usually explains itself whether it's `Core` or `Legacy` code. The `Legacy` suffix is basically used when old conflicts with new.
 
 
 Code Copies
@@ -117,9 +121,9 @@ The code pulled from an earlier point in history may be referred to as __The Ice
 
 <h3>The New Core</h3>
 
-The __New Core__ is like the revolution. They are they way forward, but can't do without the *King* or *Queen.* The pilars of power have to be respected.
+The __New Core__ is the revolution. They are they way forward, but can't do without the *King* or *Queen.* The pilars of power have to be respected.
 
-The *King* is still open to change, as long as the *New Core* shares its updates. The *Queen*, not so much. When serving the King, ensure his legacy remains intact; backwards compatibility is a given!
+The *King* is still open to change, as long as the *New Core* shares its updates. The *Queen*, not so much. When we serve the King, ensure his legacy remains intact; backwards compatibility is a given!
 
 
 Legacy Conclusion
