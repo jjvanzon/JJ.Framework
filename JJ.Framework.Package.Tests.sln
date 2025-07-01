@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		JJ.Framework.Package.Tests.sln.DotSettings = JJ.Framework.Package.Tests.sln.DotSettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Package.Tests", "Framework\JJ.Framework.Reflection.Package.Tests\JJ.Framework.Reflection.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Tests", "Framework\JJ.Framework.Reflection.Package.Tests\JJ.Framework.Reflection.Legacy.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.Package.Tests", "Framework\JJ.Framework.Reflection.Core.Package.Tests\JJ.Framework.Reflection.Core.Package.Tests.csproj", "{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}"
 EndProject

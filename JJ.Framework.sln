@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics.Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.BeginCollectionItemTest.Net48", "OneOff\JJ.OneOff.BeginCollectionItemTest\JJ.OneOff.BeginCollectionItemTest.Net48.csproj", "{CC7D3740-2460-4806-B6E7-4F3670B06D1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Tests", "Framework\JJ.Framework.Common.Tests\JJ.Framework.Common.Tests.csproj", "{FF1E5681-3980-429A-87E4-AE0B769595B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Tests", "Framework\JJ.Framework.Common.Tests\JJ.Framework.Common.Legacy.Tests.csproj", "{FF1E5681-3980-429A-87E4-AE0B769595B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Legacy", "Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj", "{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B}"
 EndProject
@@ -93,7 +93,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests", "Framework\JJ.Framework.Soap.Tests\JJ.Framework.Soap.Net48.Tests.csproj", "{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Tests", "Framework\JJ.Framework.Logging.Tests\JJ.Framework.Logging.Tests.csproj", "{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Legacy.Tests", "Framework\JJ.Framework.Logging.Tests\JJ.Framework.Logging.Legacy.Tests.csproj", "{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests.ServiceInterface", "Framework\JJ.Framework.Soap.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj", "{9F0128B1-B662-474D-9B73-3FD8E9783B40}"
 EndProject
@@ -105,7 +105,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy", "Framework\JJ.Framework.Business\JJ.Framework.Business.Legacy.csproj", "{F44D03E8-FEEC-40D4-B866-A87799185B4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests", "Framework\JJ.Framework.Business.Tests\JJ.Framework.Business.Tests.csproj", "{A2657F2A-8508-4E21-BBD4-985E4FA45CF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Tests", "Framework\JJ.Framework.Business.Tests\JJ.Framework.Business.Legacy.Tests.csproj", "{A2657F2A-8508-4E21-BBD4-985E4FA45CF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48", "Framework\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj", "{164520AA-2DB7-4405-9AE5-EB515527A33B}"
 EndProject
