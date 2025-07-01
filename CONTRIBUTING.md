@@ -91,9 +91,9 @@ JJ.Framework.Configuration.Core
 ```
 
 - Suffix-free (`JJ.Framework.Configuration`):  
-  Code directly from the `legacy` branch.
+  Code directly pulled from the `legacy` branch.
 - `.Legacy` (`JJ.Framework.Configuration.Legacy`):  
-  Legacy code now upgraded to `.NET 9` and `.NET Standard`.
+  The code now upgraded to `.NET 9` and `.NET Standard`.
 - `.Net48` (`JJ.Framework.Configuration.Net48`):  
   The same code, compiled for `.NET Framework 4.8`, so older systems aren't left behind.
 - `.Core` (`JJ.Framework.Configuration.Core`):  
