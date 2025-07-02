@@ -8,7 +8,7 @@ The Easy Part
 -------------
 
 The API surface doesn't look hard. It's just a simple set of commands:  
-`Has`, `FilledIn`, `IsNully`, `Is`, `In`, `Contains`.
+`Has`, `FilledIn`, `IsNully`, `Coalesce`, `Is`, `In`, `Contains`.
 
 What they do internally essentially it isn't difficult either. Things like:
 `x != null || x != 0` - the stuff you'd otherwise program yourself.
