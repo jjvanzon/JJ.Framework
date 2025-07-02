@@ -2,7 +2,7 @@
 ========================
 
 General-purpose utilities with minimal dependencies.  
-An extension to [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.2204).
+An extension to [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy).
 
 - `NameHelper`
 
