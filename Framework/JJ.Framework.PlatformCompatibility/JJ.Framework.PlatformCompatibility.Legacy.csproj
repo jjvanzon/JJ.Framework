@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
-    <Description>Legacy component. Old platform compatibility stubs still linked to by various projects.</Description>
+    <Description>Legacy platform compatibility stubs still linked to by various projects.</Description>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility</RepositoryUrl>    
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility</PackageProjectUrl>    
   </PropertyGroup>
