@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common.Core" Version="2.6.3254" />
-    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.250.3254" />
+    <PackageReference Include="JJ.Framework.Common.Core" Version="2.7.3272" />
+    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.250.3272" />
     <PackageReference Include="JJ.Framework.IO.Core" Version="2.6.3254" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="2.6.3254" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.3254" />

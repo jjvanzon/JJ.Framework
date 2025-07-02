@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="JJ.Framework.IO.Core" Version="2.6.3254" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Legacy" Version="0.250.3254" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Legacy" Version="0.250.3272" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="2.6.3254" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.3254" />
     <PackageReference Include="MSTest" Version="3.7.3" />
