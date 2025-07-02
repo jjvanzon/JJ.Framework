@@ -75,17 +75,6 @@ Coalesce(" ", null, "Hi!") == "Hi!"
 ```
 
 
-Releases
---------
-
-__`2.5` Initial release__  
-__`2.6` Flags:__  
-- `spaceMatters` flags everywhere  
-- `caseMatters` replaced `ignoreCase`  
-- `StringBulder`/`string` more combos possible  
-- `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
-
-
 Coming Soon
 -----------
 
@@ -96,6 +85,18 @@ Coming Soon
 - `enum` safety net – invalid enum values get flagged as nully instead of blowing up.
 - all-`null` collections – if every item is `null`, the whole collection is officially empty.
 - ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn't `10`?
+
+Release Notes
+--------
+
+#### `2.5` Initial release
+#### `2.6` Flags
+- `spaceMatters` flags everywhere  
+- `caseMatters` replaced `ignoreCase`  
+- `StringBulder`/`string` more combos possible  
+- `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+#### `2.7` Technical
+- Improved separation of `Legacy` version lineages for a more stable package update experience.
 
 
 After Upgrading

@@ -56,7 +56,7 @@ Branching
 - __The legacy branch shall not be deleted! The legacy shall remain!__
 
 
-### Branch Lines
+<h2>Branch Lines</h2>
  
 - The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both can get unmanageable.
 - Temporary branches are allowed, but always `fast-forward` merged.
