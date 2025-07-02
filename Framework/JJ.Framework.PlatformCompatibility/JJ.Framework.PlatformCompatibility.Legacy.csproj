@@ -4,7 +4,9 @@
     <Version>0.250.$(BuildNum)</Version>
     <Description>Legacy platform compatibility stubs still linked to by various projects.</Description>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility</RepositoryUrl>    
-    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility</PackageProjectUrl>    
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility</PackageProjectUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors> <!--Missing doc-->
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />

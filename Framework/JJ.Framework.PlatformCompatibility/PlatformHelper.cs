@@ -27,6 +27,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy
         /// "Method not found: 'System.Reflection.MemberTypes".
         /// Use 'is PropertyInfo' and such or call this method instead.
         /// </summary>
+        /// <inheritdoc cref="_membertype" />
         public static MemberTypes_PlatformSafe MemberInfo_MemberType_PlatformSafe(MemberInfo memberInfo)
         {
             if (memberInfo == null) throw new ArgumentNullException(nameof(memberInfo));

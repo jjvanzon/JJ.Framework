@@ -5,6 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.PlatformCompatibility.Legacy
 {
+    /// <inheritdoc cref="_encoding" />
     public static class Encoding_PlatformSafe
     {
         /// <summary>

@@ -9,6 +9,7 @@ using System.Xml.Linq;
 
 namespace JJ.Framework.PlatformCompatibility.Core
 {
+    /// <inheritdoc cref="_platformextensions"/>
     public static class PlatformExtensionsLegacy
     {
         /// <summary>
@@ -17,6 +18,7 @@ namespace JJ.Framework.PlatformCompatibility.Core
         /// "Method not found: 'System.Reflection.MemberTypes".
         /// Use 'is PropertyInfo' and such or call this method instead.
         /// </summary>
+        /// <inheritdoc cref="_membertype" />
         public static MemberTypes_PlatformSafe MemberType_PlatformSafe(this MemberInfo memberInfo)
         {
             return PlatformHelper.MemberInfo_MemberType_PlatformSafe(memberInfo);

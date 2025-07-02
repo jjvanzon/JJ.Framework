@@ -15,6 +15,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy
         /// <summary>
         /// .Net 4 substitute
         /// </summary>
+        /// <inheritdoc cref="_copyto" />
         public static void CopyTo(Stream source, Stream dest, int bufferSize = 8192)
         {
             PlatformHelperLegacy.Stream_CopyTo_PlatformSupport(source, dest, bufferSize);
