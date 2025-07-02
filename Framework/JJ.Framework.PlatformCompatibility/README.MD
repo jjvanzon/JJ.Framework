@@ -1,4 +1,4 @@
-﻿JJ.Framework.PlatformCompatibility
-==================================
+﻿JJ.Framework.PlatformCompatibility.Legacy
+=========================================
 
-Legacy component. A lingering relic for platform support, created before `.NET Standard` and `.NET 5` made things easier. It offered workarounds for compatibility issues on platforms like `iOS`, `Android`, and even `Windows Phone 8`. Mostly outdated now, but still linked to by various projects.
+Legacy component dating back to 2015. It filled gaps between different platforms like `Windows`, `iOS`, `Android`, and `Windows Phone 8`. Tech has changed since then, but these platform compatibility alternatives are still linked to by various projects.
