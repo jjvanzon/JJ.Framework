@@ -1,5 +1,5 @@
-JJ.Framework.Reflection
-=======================
+JJ.Framework.Reflection.Legacy
+==============================
 
 Extensions to the `System.Reflection` and `System.Linq.Expressions` namespaces. Work with expressions and reflection. Turn lambdas into text:
 
