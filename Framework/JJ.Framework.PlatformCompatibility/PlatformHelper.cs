@@ -4,9 +4,8 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
-// ReSharper disable ConvertIfStatementToReturnStatement
-
-// ReSharper disable RedundantIfElseBlock
+// ReSharper disable PartialTypeWithSinglePart
+// ReSharper disable PossibleNullReferenceException
 
 namespace JJ.Framework.PlatformCompatibility.Legacy
 {

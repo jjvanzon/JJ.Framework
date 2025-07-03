@@ -2,13 +2,14 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
-#pragma warning disable CS1711 // XML comment has a typeparam tag, but there is no type parameter by that name
+#pragma warning disable CS1711 // XML doc typeparam tag without type parameter
 #pragma warning disable CS1574, CS1584, CS1581, CS1580
 #pragma warning disable IDE1006
 #pragma warning disable CS1572 // XML comment has a param tag, but there is no parameter by that name
 
 namespace JJ.Framework.PlatformCompatibility.Legacy.docs;
 
+// NOTE: These are structs, so their syntax colorings are unobtrusive.
 
 /// <summary>
 /// filled gaps between different platforms like Windows, iOS, Android, and Windows Phone 8.
@@ -46,7 +47,7 @@ public struct _join;
 
 /// <remarks>
 /// Returns <see langword="true"/> when the <see langword="string"/> has no visible characters; otherwise, <see langword="false"/>.
-/// This serves as a platform stub providing this check on older platforms without native support.
+/// This serves as a platform stub providing this check on platforms without native support (older than .NET 4).
 /// </remarks>
 public struct _isnullorwhitespace;
 
@@ -57,12 +58,17 @@ public struct _isnullorwhitespace;
 /// </remarks>
 public struct _copyto;
 
+/// <summary>
+/// Windows Phone / Unity compatibility:
+/// Don't switch on MemberInfo.MemberType. It produced a strange exception when deployed to Windows Phone using Unity:
+/// "Method not found: 'System.Reflection.MemberTypes".
+/// Use 'is PropertyInfo' and such or call this method instead.
+/// </summary>
 /// <remarks>
-/// Specifies flags for one or more language constructs to indicate the info of what type of code element we're talking about.
+/// MemberType specifies flags for one or more language constructs to indicate the info of what type of code element we're talking about.
 /// For instance: Method, Property, Field or Event. This is a platform safe alternative, where the original causes exceptions under Windows Phone 8 / Unity Game Engine.
 /// </remarks>
 public struct _membertype;
-
 
 /// <summary>
 /// Certain parameter combinations in the method of the Encoding class do not work on Windows Phone 8.
@@ -109,3 +115,22 @@ public struct _xelementsave;
 /// Use 'new CultureInfo(string name)' or call this method instead.
 /// </summary>
 public struct _getcultureinfo;
+
+/// <summary>
+/// .Net 4.5 substitute.
+/// GetCustomAttribute variant with type argument didn't exist before .NET 4.5.
+/// This stub filled that gap, to make this syntax available in lower .NET Framework versions.
+/// </summary>
+public struct _getcustomattribute;
+
+/// <summary>
+/// .NET 4.5 substitute and for iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
+/// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
+/// </summary>
+public struct _getvalue;
+
+/// <summary>
+/// Sets the value of a property by means of reflection..
+/// .NET 4.5 substitute. Before .NET 4.5 this parameter combination was not supported natively.
+/// </summary>
+public struct _setvalue;

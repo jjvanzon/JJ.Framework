@@ -11,18 +11,12 @@ namespace JJ.Framework.PlatformCompatibility.Core
     /// <inheritdoc cref="_platformhelper"/>
     public static class PlatformHelperLegacy
     {
-        /// <summary>
-        /// .Net 4 substitute
-        /// </summary>
         /// <inheritdoc cref="_join" />
         public static string String_Join_PlatformSupport<T>(string separator, IEnumerable<T> values)
         {
             return String.Join(separator, values.Select(x => x.ToString()).ToArray());
         }
 
-        /// <summary>
-        /// .Net 4 substitute
-        /// </summary>
         /// <inheritdoc cref="_copyto" />
         public static void Stream_CopyTo_PlatformSupport(Stream source, Stream dest, int bufferSize)
         {
@@ -34,9 +28,6 @@ namespace JJ.Framework.PlatformCompatibility.Core
             }
         }
 
-        /// <summary>
-        /// .Net 4 substitute
-        /// </summary>
         /// <inheritdoc cref="_isnullorwhitespace" />
         public static bool String_IsNullOrWhiteSpace_PlatformSupport(string value)
         {
@@ -58,18 +49,14 @@ namespace JJ.Framework.PlatformCompatibility.Core
             return false;
         }
 
-        /// <summary>
-        /// .Net 4.5 substitute
-        /// </summary>
+        /// <inheritdoc cref="_getcustomattribute" />
         public static TAttribute PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(PropertyInfo propertyInfo)
             where TAttribute : Attribute
         {
             return (TAttribute)Attribute.GetCustomAttribute(propertyInfo, typeof(TAttribute));
         }
 
-        /// <summary>
-        /// .Net 4.5 substitute
-        /// </summary>
+        /// <inheritdoc cref="_setvalue" />
         public static void PropertyInfo_SetValue_PlatformSupport(PropertyInfo propertyInfo, object obj, object value)
         {
             propertyInfo.SetValue(obj, value, null);

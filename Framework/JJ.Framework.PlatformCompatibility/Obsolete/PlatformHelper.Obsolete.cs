@@ -4,7 +4,6 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
 
-// ReSharper disable CheckNamespace
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
@@ -44,7 +43,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy.Obsolete
         public static void XElement_Save_PlatformSafe(XElement element, Stream stream)
             => throw new NotSupportedException("Use Save_PlatformSafe instead.");
 
-        /// <inheritdoc cref="_getinterface" />
+        /// <inheritdoc cref="_getvalue" />
         [Obsolete("Use GetValue_PlatformSafe instead.", true)]
         public static object PropertyInfo_GetValue_PlatformSafe(PropertyInfo propertyInfo, object obj, params object[] parameters)
             => throw new NotSupportedException("Use GetValue_PlatformSafe instead.");

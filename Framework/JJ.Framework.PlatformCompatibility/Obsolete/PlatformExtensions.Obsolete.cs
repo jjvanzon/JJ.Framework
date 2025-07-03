@@ -36,7 +36,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy.Obsolete
         public static void Save_PlatformSafe(this XElement element, Stream stream)
             => throw new NotSupportedException("Use PlatformHelper instead.");
 
-        /// <inheritdoc cref="_useplatformhelperinstead" />
+        /// <inheritdoc cref="_getvalue" />
         [Obsolete("Use PlatformHelper instead.", true)]
         public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters)
             => throw new NotSupportedException("Use PlatformHelper instead.");
