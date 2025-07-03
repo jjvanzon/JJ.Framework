@@ -6,6 +6,7 @@
 #pragma warning disable CS1574 // cref not found
 #pragma warning disable IDE1006 // Naming styles
 #pragma warning disable CS1572 // param tag without parameter
+#pragma warning disable CS1734 // paramref tag without parameter
 
 namespace JJ.Framework.PlatformCompatibility.Legacy.docs;
 
