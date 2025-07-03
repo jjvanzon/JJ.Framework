@@ -85,9 +85,13 @@ public struct _nullexception;
 /// <para>You can do that by writing the following wrapper class:</para>
 /// 
 /// <code>
-/// public int Private(int arg) 
-///     =&gt; _accessor.InvokeMethod(
-///         () =&gt; Private(arg));
+/// class MyAccessor(MyClass myObject)
+/// {
+///     Accessor _accessor = new(myObject);
+/// 
+///     public int Private 
+///         =&gt; _accessor.GetPropertyValue(() =&gt; Private);
+/// }
 /// </code>
 ///
 /// <para>

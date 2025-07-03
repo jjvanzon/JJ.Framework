@@ -84,7 +84,7 @@ For instance if you have the following private method in a class:
 ```cs
 class MyClass
 {
-    private int PrivateMember(int arg) => 3;
+    private int Private => 3;
 }
 ```
 
@@ -93,7 +93,7 @@ You can run that private method, that would otherwise not be available:
 ```cs
 var obj = new MyClass();
 var acc = new MyAccessor(obj);
-int num = acc.PrivateMember(1);
+int num = acc.Private;
 ```
 
 You can do that by writing the following wrapper class:
@@ -103,8 +103,8 @@ class MyAccessor(MyClass myObject)
 {
     Accessor _accessor = new(myObject);
 
-    public int Private(int arg) 
-        => _accessor.InvokeMethod(() => Private(arg));
+    public int Private 
+        => _accessor.GetPropertyValue(() => Private);
 }
 ```
 
