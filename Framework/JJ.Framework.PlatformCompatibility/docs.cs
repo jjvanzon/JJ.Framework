@@ -2,10 +2,10 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
-#pragma warning disable CS1711 // XML doc typeparam tag without type parameter
-#pragma warning disable CS1574, CS1584, CS1581, CS1580
-#pragma warning disable IDE1006
-#pragma warning disable CS1572 // XML comment has a param tag, but there is no parameter by that name
+#pragma warning disable CS1711 // typeparam tag without type parameter
+#pragma warning disable CS1574 // cref not found
+#pragma warning disable IDE1006 // Naming styles
+#pragma warning disable CS1572 // param tag without parameter
 
 namespace JJ.Framework.PlatformCompatibility.Legacy.docs;
 

@@ -1,5 +1,4 @@
-﻿
-namespace JJ.Framework.PlatformCompatibility.Legacy
+﻿namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     /// <inheritdoc cref="_membertype" />
     public enum MemberTypes_PlatformSafe
