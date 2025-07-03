@@ -9,7 +9,7 @@ namespace JJ.Framework.Reflection.Legacy.docs;
 
 /// <summary>
 /// GetItemType - Gets the item type of a collection type.<br/>
-/// TryGetItemType - Returns null if there is no item type.
+/// TryGetItemType - Same, but returns null if there is no item type.
 /// </summary>
 public struct _getitemtype;
 
@@ -50,7 +50,7 @@ public struct _reflectioncache;
 /// <summary>
 /// <para>Superseded by .NET's own <c>ThrowIfNull</c>, but still used in several projects.</para>
 /// 
-/// <para>This exception signals null being filled in.
+/// <para>This exception signals something is null.
 /// You can pass an expression, whose text becomes part of the message.
 /// For example:</para>
 ///
@@ -70,7 +70,7 @@ public struct _nullexception;
 /// <code>
 /// class MyClass
 /// {
-///     private int Private(int arg) =&gt; 3;
+///     private int Private =&gt; 3;
 /// }
 /// </code>
 ///
@@ -79,7 +79,7 @@ public struct _nullexception;
 /// <code>
 /// var obj = new MyClass();
 /// var acc = new MyAccessor(obj);
-/// int num = acc.Private(1);
+/// int num = acc.Private;
 /// </code>
 /// 
 /// <para>You can do that by writing the following wrapper class:</para>
@@ -96,7 +96,13 @@ public struct _nullexception;
 ///
 /// <para>
 /// <i>Limitations</i><br/>
-/// <c>Accessor</c> may suffice for most use cases, but there are some cases where it might be an idea to use <c>System.Reflection</c> directly or <c>PrivateObject</c> and <c>PrivateType</c> from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this <c>Accessor</c> class might not be able to help you.
+/// <c>Accessor</c> may suffice for most use cases,
+/// but there are some cases where it might be an idea to use
+/// <c>System.Reflection</c> directly or <c>PrivateObject</c> and
+/// <c>PrivateType</c> from a test framework you might use.
+/// Those may have slightly more complex syntax,
+/// but may offer a diversion where this <c>Accessor</c> class
+/// might not be able to help you.
 /// </para>
 /// </remarks>
 public struct _accessor;
@@ -216,7 +222,7 @@ public struct _methodcallinfo;
 public struct _expressionhelper;
 
 /// <summary>
-/// Allow you to retrieve implementations of a specified base class or interface from an assembly,
+/// Allows you to retrieve implementations of a specified base class or interface from an assembly,
 /// which can be useful for plug-in development.
 /// </summary>
 public struct _getimplementations;
@@ -239,7 +245,7 @@ public struct _isstatic;
 /// <summary>
 /// Use this if you want basically all the members,
 /// and don't want to think about BindingFlags,
-/// where you have to provide BindingFlags.
+/// when you have to provide BindingFlags.
 /// </summary>
 public struct _bindingflagsall;
 
@@ -286,7 +292,7 @@ public struct _reflectionhelper;
 
 /// <summary>
 /// Similar to the original <c>Type.IsAssignableFrom</c>,
-/// but now also an <c>IsAssignableTo</c> variation,
+/// but now also the inverse <c>IsAssignableTo</c> variation,
 /// if you find that more intuitive.
 /// </summary>
 public struct _isassignableto;
