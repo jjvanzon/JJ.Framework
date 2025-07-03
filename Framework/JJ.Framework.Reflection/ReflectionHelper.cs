@@ -9,8 +9,10 @@ using JJ.Framework.PlatformCompatibility.Core;
 
 namespace JJ.Framework.Reflection.Legacy
 {
+    /// <inheritdoc cref="_reflectionhelper" />
     public static class ReflectionHelper
     {
+        /// <inheritdoc cref="_bindingflagsall" />
         public const BindingFlags BINDING_FLAGS_ALL =
             BindingFlags.Public |
             BindingFlags.NonPublic |
@@ -155,6 +157,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         // Other
 
+        /// <inheritdoc cref="_typesfromobjects" />
         public static Type[] TypesFromObjects(params ICollection<object> objects)
         {
             object[] arr = objects.ToArray();
@@ -175,6 +178,7 @@ namespace JJ.Framework.Reflection.Legacy
             return types;
         }
 
+        /// <inheritdoc cref="_isindexermethod" />
         public static bool IsIndexerMethod(MethodInfo method)
         {
             if (!method.IsSpecialName)
@@ -205,6 +209,7 @@ namespace JJ.Framework.Reflection.Legacy
             return false; // ncrunch: no coverage
         }
 
+        /// <inheritdoc cref="_isstatic" />
         public static bool IsStatic(MemberInfo member)
         {
             if (member == null) throw new NullException(() => member);

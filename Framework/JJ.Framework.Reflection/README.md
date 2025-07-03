@@ -103,8 +103,8 @@ class MyAccessor(MyClass myObject)
 {
     Accessor _accessor = new(myObject);
 
-    public int PrivateMember(int arg) 
-        => _accessor.InvokeMethod(() => PrivateMember((arg)));
+    public int Private(int arg) 
+        => _accessor.InvokeMethod(() => Private(arg));
 }
 ```
 
@@ -150,6 +150,10 @@ Various helper methods, but one of the most useful features is the `GetImplement
     * Can tell you if a `MethodInfo` points to an indexer property.
 * `IsStatic`
     * Can tell you if a `MemberInfo` is static.
+* `IsNullableType`
+    * Returns `true` if the given type is a value type that allows `null`, like `int?` or `Nullable<bool>`.
+* `GetUnderlyingNullableType`
+    * Slightly faster than `Nullable.GetUnderlyingType`.
 * `TypesFromObjects`
     * You can pass objects to it, and it will return the concrete types of those objects, with some tolerance for nulls.
 * `IsAssignableFrom` / `IsAssignableTo`

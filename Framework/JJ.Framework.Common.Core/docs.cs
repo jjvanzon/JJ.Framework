@@ -38,7 +38,7 @@ namespace JJ.Framework.Common.Core
         public struct _name { }
 
         /// <summary> 
-        /// Helper for conversion from code elements to text (a supplement to the <langword>nameof</langword> keyword).
+        /// Helper for conversion from code elements to text (a supplement to the <see langword="nameof" /> keyword).
         /// </summary> 
         public struct _namehelper { }
         

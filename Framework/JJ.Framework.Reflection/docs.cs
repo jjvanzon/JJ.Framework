@@ -1,4 +1,6 @@
-﻿// ReSharper disable CheckNamespace
+﻿using System;
+
+// ReSharper disable CheckNamespace
 // ReSharper disable UnusedType.Global
 // ReSharper disable IdentifierTypo
 namespace JJ.Framework.Reflection.Legacy.docs;
@@ -83,14 +85,9 @@ public struct _nullexception;
 /// <para>You can do that by writing the following wrapper class:</para>
 /// 
 /// <code>
-/// class MyAccessor(MyClass myObject)
-/// {
-///     Accessor _accessor = new(myObject);
-/// 
-///     public int Private(int arg) 
-///         => _accessor.InvokeMethod(
-///             () => Private((arg)));
-/// }
+/// public int Private(int arg) 
+///     =&gt; _accessor.InvokeMethod(
+///         () =&gt; Private(arg));
 /// </code>
 ///
 /// <para>
@@ -219,3 +216,95 @@ public struct _expressionhelper;
 /// which can be useful for plug-in development.
 /// </summary>
 public struct _getimplementations;
+
+/// <summary>
+/// You can pass objects to it, and it will return the concrete types of those objects, with some tolerance for nulls.
+/// </summary>
+public struct _typesfromobjects;
+
+/// <summary>
+/// Can tell you if a <c>MethodInfo</c> points to an indexer property.
+/// </summary>
+public struct _isindexermethod;
+
+/// <summary>
+/// Can tell you if a <c>MemberInfo</c> is static.
+/// </summary>
+public struct _isstatic;
+
+/// <summary>
+/// Use this if you want basically all the members,
+/// and don't want to think about BindingFlags,
+/// where you have to provide BindingFlags.
+/// </summary>
+public struct _bindingflagsall;
+
+/// <summary>
+/// <para>
+/// Various helper methods, but one of the most useful features
+/// is the `GetImplementation` method and variations thereof,
+/// which allow you to retrieve implementations
+/// of a specified base class or interface from an assembly,
+/// which is useful for plug-in development.
+/// </para>
+///
+/// <para>
+/// <c>GetImplementations</c> <br/>
+/// Allows you to retrieve implementations of a specified base class or interface from an assembly, which is useful for plug-in development.
+/// </para>
+///
+/// <para>
+/// <c>GetItemType</c> <br/>
+/// Gets the item type of a collection type.
+/// </para>
+///
+/// <para>
+/// <c>IsIndexerMethod</c> <br/>
+/// Can tell you if a `MethodInfo` points to an indexer property.
+/// </para>
+///
+/// <para>
+/// <c>IsStatic</c> <br/>
+/// Can tell you if a `MemberInfo` is static.
+/// </para>
+///
+/// <para>
+/// <c>TypesFromObjects</c> <br/>
+/// You can pass objects to it, and it will return the concrete types of those objects, with some tolerance for nulls.
+/// </para>
+///
+/// <para>
+/// <c>IsAssignableFrom</c> / <c>IsAssignableTo</c> <br/>
+/// Similar to the original <c>Type.IsAssignableFrom</c>, but now also an <c>IsAssignableTo</c> variation, if you find that more intuitive.
+/// </para>
+/// </summary>
+public struct _reflectionhelper;
+
+/// <summary>
+/// Similar to the original <c>Type.IsAssignableFrom</c>,
+/// but now also an <c>IsAssignableTo</c> variation,
+/// if you find that more intuitive.
+/// </summary>
+public struct _isassignableto;
+
+/// <summary>
+/// Returns <see langword="true"/> if the given type is a value type that allows <see langword="null"/>, like <c>int?</c> or <c>Nullable&lt;bool?&gt;</c>.
+/// </summary>
+public struct _isnullabletype;
+
+/// <summary>
+/// Slightly faster than <see cref="Nullable.GetUnderlyingType"/>.
+/// </summary>
+public struct _getunderlyingnullabletype;
+
+/// <summary>
+/// Returns <see langword="true"/> if the specified <see cref="Type"/> is a reference type,
+/// such as a <see langword="class"/> or <see langword="interface"/>.
+/// </summary>
+public struct _isreferencetype;
+
+/// <summary>
+/// Provides extension methods for working with <see cref="Type"/> and reflection,
+/// including checks for nullability, reference types and collection item types.
+/// </summary>
+public struct _typeextensions;
