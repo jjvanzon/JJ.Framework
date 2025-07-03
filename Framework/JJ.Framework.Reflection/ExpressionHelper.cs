@@ -8,6 +8,7 @@ using System.Reflection;
 
 namespace JJ.Framework.Reflection.Legacy
 {
+    /// <inheritdoc cref="_expressionhelper" />
     public static class ExpressionHelper
     {
         // GetName
@@ -85,10 +86,11 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary>
         /// Gets a value from an expression.
-        /// Supports field access, propert access, method calls with parameters,
+        /// Supports field access, property access, method calls with parameters,
         /// indexers, array lengths, conversion expressions, params (variable amount of arguments),
         /// and both static and instance member access.
         /// </summary>
+        /// <inheritdoc cref="_getvalue" />
         public static T GetValue<T>(Expression<Func<T>> expression)
         {
             return (T)GetValue((LambdaExpression)expression);
@@ -96,10 +98,11 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary>
         /// Gets a value from an expression.
-        /// Supports field access, propert access, method calls with parameters,
+        /// Supports field access, property access, method calls with parameters,
         /// indexers, array lengths, conversion expressions, params (variable amount of arguments),
         /// and both static and instance member access.
         /// </summary>
+        /// <inheritdoc cref="_getvalue" />
         public static object GetValue(LambdaExpression expression)
         {
             return GetValue(expression.Body);
@@ -107,10 +110,11 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary>
         /// Gets a value from an expression.
-        /// Supports field access, propert access, method calls with parameters,
+        /// Supports field access, property access, method calls with parameters,
         /// indexers, array lengths, conversion expressions, params (variable amount of arguments),
         /// and both static and instance member access.
         /// </summary>
+        /// <inheritdoc cref="_getvalue" />
         public static object GetValue(Expression expression)
         {
             if (expression == null) throw new NullException(() => expression);
@@ -122,16 +126,19 @@ namespace JJ.Framework.Reflection.Legacy
 
         // GetValues
 
+        /// <inheritdoc cref="_getvalue" />
         public static IList<object> GetValues<T>(Expression<Func<T>> expression)
         {
             return GetValues((LambdaExpression)expression);
         }
 
+        /// <inheritdoc cref="_getvalue" />
         public static IList<object> GetValues(LambdaExpression expression)
         {
             return GetValues(expression.Body);
         }
 
+        /// <inheritdoc cref="_getvalue" />
         public static IList<object> GetValues(Expression expression)
         {
             if (expression == null) throw new NullException(() => expression);
@@ -147,6 +154,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
         /// "MyArray[2]" instead of "MyArray[i]".
         /// </param>
+        /// <inheritdoc cref="_gettext" />
         public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
         {
             return GetText((LambdaExpression)expression, showIndexerValues);
@@ -156,6 +164,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
         /// "MyArray[2]" instead of "MyArray[i]".
         /// </param>
+        /// <inheritdoc cref="_gettext" />
         public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
         {
             return GetText(expression.Body, showIndexerValues);
@@ -165,6 +174,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
         /// "MyArray[2]" instead of "MyArray[i]".
         /// </param>
+        /// <inheritdoc cref="_gettext" />
         public static string GetText(Expression expression, bool showIndexerValues = false)
         {
             if (expression == null) throw new NullException(() => expression);
@@ -177,6 +187,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         // GetMethodCallInfo
 
+        /// <inheritdoc cref="_methodcallinfo" />
         public static MethodCallInfo GetMethodCallInfo(LambdaExpression expression)
         {
             if (expression == null) throw new NullException(() => expression);

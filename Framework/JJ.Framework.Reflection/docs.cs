@@ -99,3 +99,117 @@ public struct _nullexception;
 /// </para>
 /// </remarks>
 public struct _accessor;
+
+/// <summary>
+/// <para>For instance:</para>
+/// 
+/// <code>
+/// GetText(() =&gt; myParam.MyProperty.MyList[i].MySomething)
+/// </code>
+/// 
+/// <para>Will return the string:</para>
+/// 
+/// <code>
+/// "myParam.MyProperty.MyList[i].MySomething"
+/// </code>
+/// </summary>
+public struct _gettext;
+
+/// <summary>
+/// Gets a value from an expression.
+/// Supports field access, property access, method calls with parameters,
+/// indexers, array lengths, conversion expressions, params (variable amount of arguments),
+/// and both static and instance member access.
+/// </summary>
+/// <remarks>
+/// <para>You can retrieve values from expressions:</para>
+/// 
+/// <code>
+///     GetValue(() =&gt; myParam.MyProperty.MyList[i].MySomething)
+/// </code>
+/// 
+/// <para>which can return:</para>
+/// 
+/// <code>
+///     3
+/// </code>
+///
+/// <para>This can be useful in conjunction with <c>GetText</c> which takes an expression too,
+/// or in other places where you are dealing with expressions.</para>
+/// </remarks>
+public struct _getvalue;
+
+/// <remarks>
+/// <para>Returns method info, parameter names and parameter value info from lambda expressions.
+/// For instance:</para>
+/// 
+/// <code>
+///     GetMethodCallInfo(() =&gt; MyMethod(3));
+/// </code>
+/// 
+/// <para>Will return:</para>
+/// 
+/// <code>
+///     MethodCallInfo
+///     {
+///         Name = "MyMethod",
+///         Parameters = 
+///         {
+///             ParameterType = typeof(int),
+///             Name = "myParameter",
+///             Value = 3
+///         }
+///     };
+/// </code>
+/// </remarks>
+public struct _methodcallinfo;
+
+/// <summary>
+/// <para>Converts many types of lambda expressions into text or retrieves its resulting value.
+/// Here are some of the things it can do. For instance:</para>
+/// 
+/// <code>
+///     GetText(() =&gt; myParam.MyProperty.MyList[i].MySomething)
+/// </code>
+/// 
+/// <para>Will return the string:</para>
+/// 
+/// <code>
+///     "myParam.MyProperty.MyList[i].MySomething"
+/// </code>
+/// 
+/// <para>Similarly you can retrieve its value:</para>
+/// 
+/// <code>
+///     GetValue(() =&gt; myParam.MyProperty.MyList[i].MySomething)
+/// </code>
+/// 
+/// <para>which can return:</para>
+/// 
+/// <code>
+///     3
+/// </code>
+/// 
+/// <para>It can also give you method info, parameter names and parameter value info from lambda expressions.
+/// For instance:</para>
+/// 
+/// <code>
+///     GetMethodCallInfo(() =&gt; MyMethod(3));
+/// </code>
+/// 
+/// <para>Will return:</para>
+/// 
+/// <code>
+///    MethodCallInfo
+///    {
+///        Name = "MyMethod",
+///        Parameters = 
+///        {
+///            ParameterType = typeof(int),
+///            Name = "myParameter",
+///            Value = 3
+///        }
+///    };
+/// </code>
+/// </summary>
+public struct _expressionhelper;

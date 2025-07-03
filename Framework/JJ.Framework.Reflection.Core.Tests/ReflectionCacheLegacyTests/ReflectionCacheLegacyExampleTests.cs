@@ -1,40 +1,29 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using JJ.Framework.Collections;
-using JJ.Framework.Collections.Core;
-using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests;
 
-// ReSharper disable ConvertToConstant.Local
-
-namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
+[TestClass]
+public class ReflectionCacheLegacyExampleTests
 {
-    [TestClass]
-    public class ReflectionCacheLegacyExampleTests
+    // Example
+
+    class MyClass
     {
-        // Example
+        private int Private(int arg) => 3;
+    }
 
-        class MyClass
-        {
-            private int Private(int arg) => 3;
-        }
+    [TestMethod]
+    public void ReflectionCache_Legacy_Example_Test()
+    {
+        var obj = new MyClass();
+        var acc = new MyAccessor(obj);
+        int num = acc.Private(1);
+    }
 
-        [TestMethod]
-        public void ReflectionCache_Legacy_Example_Test()
-        {
-            var obj = new MyClass();
-            var acc = new MyAccessor(obj);
-            int num = acc.Private(1);
-        }
+    class MyAccessor(MyClass myObject)
+    {
+        Accessor _accessor = new(myObject);
 
-        class MyAccessor(MyClass myObject)
-        {
-            Accessor _accessor = new(myObject);
-
-            public int Private(int arg) 
-                => _accessor.InvokeMethod(
-                    () => Private((arg)));
-        }
+        public int Private(int arg) 
+            => _accessor.InvokeMethod(
+                () => Private((arg)));
     }
 }
