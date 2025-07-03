@@ -7,10 +7,12 @@ using System.Text;
 
 namespace JJ.Framework.Reflection.Legacy
 {
+    /// <inheritdoc cref="_reflectioncache" />
     public class ReflectionCache
     {
         private BindingFlags _bindingFlags;
 
+        /// <inheritdoc cref="_reflectioncache" />
         public ReflectionCache(BindingFlags bindingFlags)
         {
             _bindingFlags = bindingFlags;
@@ -21,6 +23,7 @@ namespace JJ.Framework.Reflection.Legacy
         private IDictionary<Type, PropertyInfo[]> _propertiesDictionary = new Dictionary<Type, PropertyInfo[]>();
         private object _propertiesDictionaryLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public PropertyInfo[] GetProperties(Type type)
         {
             lock (_propertiesDictionaryLock)
@@ -40,6 +43,7 @@ namespace JJ.Framework.Reflection.Legacy
         private IDictionary<Type, IDictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new Dictionary<Type, IDictionary<string, PropertyInfo>>();
         private object _propertyDictionaryDictionaryLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public IDictionary<string, PropertyInfo> GetPropertyDictionary(Type type)
         {
             lock (_propertyDictionaryDictionaryLock)
@@ -59,6 +63,7 @@ namespace JJ.Framework.Reflection.Legacy
         private IDictionary<Type, FieldInfo[]> _fieldsDictionary = new Dictionary<Type, FieldInfo[]>();
         private object _fieldsDictionaryLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
             lock (_fieldsDictionaryLock)
@@ -78,6 +83,7 @@ namespace JJ.Framework.Reflection.Legacy
         private IDictionary<string, Type[]> _typeByShortNameDictionary = new Dictionary<string, Type[]>();
         private object _typeByShortNameDictionaryLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public Type GetTypeByShortName(string shortTypeName)
         {
             Type type = TryGetTypeByShortName(shortTypeName);
@@ -88,6 +94,7 @@ namespace JJ.Framework.Reflection.Legacy
             return type;
         }
 
+        /// <inheritdoc cref="_reflectioncache" />
         public Type TryGetTypeByShortName(string shortTypeName)
         {
             IList<Type> types = GetTypesByShortName(shortTypeName);
@@ -107,6 +114,7 @@ namespace JJ.Framework.Reflection.Legacy
             }
         }
 
+        /// <inheritdoc cref="_reflectioncache" />
         public IList<Type> GetTypesByShortName(string shortTypeName)
         {
             lock (_typeByShortNameDictionaryLock)
@@ -149,6 +157,7 @@ namespace JJ.Framework.Reflection.Legacy
         private IDictionary<Type, ConstructorInfo> _constructorDictionary = new Dictionary<Type, ConstructorInfo>();
         private object _constructorDictionaryLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public ConstructorInfo GetConstructor(Type type)
         {
             lock (_constructorDictionary)

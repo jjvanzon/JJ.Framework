@@ -87,18 +87,21 @@ namespace JJ.Framework.Reflection.Legacy
 
         // GetItemType
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type GetItemType(object collection)
         {
             if (collection == null) throw new NullException(() => collection);
             return GetItemType(collection.GetType());
         }
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type GetItemType(PropertyInfo collectionProperty)
         {
             if (collectionProperty == null) throw new NullException(() => collectionProperty);
             return GetItemType(collectionProperty.PropertyType);
         }
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type GetItemType(Type collectionType)
         {
             Type itemType = TryGetItemType(collectionType);
@@ -112,6 +115,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _itemTypeDictionaryLock = new object ();
         private static Dictionary<Type, Type> _itemTypeDictionary = new Dictionary<Type, Type>();
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type TryGetItemType(Type collectionType)
         {
             if (collectionType == null) throw new NullException(() => collectionType);

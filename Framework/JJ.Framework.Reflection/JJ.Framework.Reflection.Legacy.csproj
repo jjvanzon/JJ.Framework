@@ -8,6 +8,12 @@
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!--<TreatWarningsAsErrors>true</TreatWarningsAsErrors>-->
+    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors><!--Missing doc-->
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />

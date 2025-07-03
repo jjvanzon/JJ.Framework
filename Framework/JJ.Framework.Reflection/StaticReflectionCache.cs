@@ -10,6 +10,7 @@ namespace JJ.Framework.Reflection.Legacy
 {
     // Outcommented: Deprecating this makes no sense if ReflectionCache does not fully replace it.
     //[Obsolete("May not give much performance gain because the dictionaries use complex keys. You might want to use ReflectionCache instead.")]
+    /// <inheritdoc cref="_reflectioncache" />
     public static class StaticReflectionCache
     {
         // TODO: The use of these Tuples as keys (or at least the ones in JJ.Framework.PlatformCompatibility), are not fast dictionary keys.
@@ -20,6 +21,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]> _fieldsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]>();
         private static object _fieldsIndexLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
             lock (_fieldsIndexLock)
@@ -41,6 +43,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo> _fieldIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo>();
         private static object _fieldIndexLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static FieldInfo GetField(Type type, string name)
         {
             FieldInfo field = TryGetField(type, name);
@@ -51,6 +54,7 @@ namespace JJ.Framework.Reflection.Legacy
             return field;
         }
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static FieldInfo TryGetField(Type type, string name)
         {
             lock (_fieldIndexLock)
@@ -74,6 +78,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]> _propertiesIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]>();
         private static object _propertiesIndexLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
             lock (_propertiesIndexLock)
@@ -95,6 +100,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _propertyIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
         private static object _propertyIndexLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static PropertyInfo GetProperty(Type type, string name)
         {
             PropertyInfo property = TryGetProperty(type, name);
@@ -105,6 +111,7 @@ namespace JJ.Framework.Reflection.Legacy
             return property;
         }
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static PropertyInfo TryGetProperty(Type type, string name)
         {
             lock (_propertyIndexLock)
@@ -128,6 +135,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _indexerIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
         private static object _indexerIndexLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
         {
             PropertyInfo property = TryGetIndexer(type, parameterTypes);
@@ -138,6 +146,7 @@ namespace JJ.Framework.Reflection.Legacy
             return property;
         }
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static PropertyInfo TryGetIndexer(Type type, params Type[] parameterTypes)
         {
             if (parameterTypes == null) throw new NullException(() => parameterTypes);
@@ -172,6 +181,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]> _methodsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]>();
         private static object _methodsIndexLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static MethodInfo[] GetMethods(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
             lock (_methodsIndexLock)
@@ -193,6 +203,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo> _methodDictionary = new Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo>();
         private static object _methodDictionaryLock = new object();
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
         {
             MethodInfo method = TryGetMethod(type, name, parameterTypes);
@@ -203,6 +214,7 @@ namespace JJ.Framework.Reflection.Legacy
             return method;
         }
 
+        /// <inheritdoc cref="_reflectioncache" />
         public static MethodInfo TryGetMethod(Type type, string name, params Type[] parameterTypes)
         {
             if (parameterTypes == null) throw new NullException(() => parameterTypes);

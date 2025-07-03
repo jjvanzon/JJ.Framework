@@ -33,21 +33,25 @@ namespace JJ.Framework.Reflection.Legacy
             return !type.IsValueType;
         }
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type GetItemType(this PropertyInfo collectionProperty)
         {
             return ReflectionHelper.GetItemType(collectionProperty);
         }
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type GetItemType(this object collection)
         {
             return ReflectionHelper.GetItemType(collection);
         }
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type GetItemType(this Type collectionType)
         {
             return ReflectionHelper.GetItemType(collectionType);
         }
 
+        /// <inheritdoc cref="_getitemtype" />
         public static Type TryGetItemType(this Type collectionType)
         {
             return ReflectionHelper.TryGetItemType(collectionType);

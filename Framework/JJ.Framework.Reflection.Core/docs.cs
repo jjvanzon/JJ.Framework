@@ -1,7 +1,6 @@
 ﻿#pragma warning disable CS1572 // XML comment has a param tag, but there is no parameter by that name
 #pragma warning disable CS0649
 #pragma warning disable CS0169 // Field is never used
-#pragma warning disable IDE0044
 #pragma warning disable IDE1006 // Naming Styles
 
 // ReSharper disable InconsistentNaming
