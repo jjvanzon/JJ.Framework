@@ -213,3 +213,9 @@ public struct _methodcallinfo;
 /// </code>
 /// </summary>
 public struct _expressionhelper;
+
+/// <summary>
+/// Allow you to retrieve implementations of a specified base class or interface from an assembly,
+/// which can be useful for plug-in development.
+/// </summary>
+public struct _getimplementations;
