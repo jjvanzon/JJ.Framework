@@ -84,37 +84,32 @@ For instance if you have the following private method in a class:
 ```cs
 class MyClass
 {
-    private int MyPrivateMethod(int myParameter)
-    {
-        return 3;
-    }
+    private int PrivateMember(int arg) => 3;
 }
 ```
 
 You can run that private method, that would otherwise not be available:
 
 ```cs
-var myObject = new MyClass();
-var accessor = new MyAccessor(myObject);
-int myInt = accessor.MyPrivateMethod(1);
+var obj = new MyClass();
+var acc = new MyAccessor(obj);
+int num = acc.PrivateMember(1);
 ```
 
 You can do that by writing the following wrapper class:
 
 ```cs
-class MyAccessor
+class MyAccessor(MyClass myObject)
 {
-    Accessor _accessor;
+    Accessor _accessor = new(myObject);
 
-    public MyAccessor(MyClass myObject) => _accessor = new Accessor(myObject);
-
-    public int MyPrivateMethod(int myParameter) 
-        => _accessor.InvokeMethod(() => MyPrivateMethod((myParameter));
+    public int PrivateMember(int arg) 
+        => _accessor.InvokeMethod(() => PrivateMember((arg)));
 }
 ```
 
 *Limitations*  
-`Accessor` may suffice for most use cases, but there are some casees where it might be an idea to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class might not be able to help you.
+`Accessor` may suffice for most use cases, but there are some cases where it might be an idea to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class might not be able to help you.
 
 
 ReflectionCache

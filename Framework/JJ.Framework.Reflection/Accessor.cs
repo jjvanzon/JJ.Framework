@@ -12,12 +12,14 @@ namespace JJ.Framework.Reflection.Legacy
     /// Limitation: private base members cannot be accessed.
     /// Use a separate Accessor object to access the private members of the base class.
     /// </summary>
+    /// <inheritdoc cref="_accessor" />
     public class Accessor
     {
         private readonly object _object;
         private readonly Type _objectType;
 
         /// <summary> Use this constructor to access instance members. </summary>
+        /// <inheritdoc cref="_accessor" />
         public Accessor(object obj)
         {
             if (obj == null) throw new NullException(() => obj);
@@ -27,6 +29,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <summary> Use this constructor to access static members. </summary>
+        /// <inheritdoc cref="_accessor" />
         public Accessor(Type objectType)
         {
             if (objectType == null) throw new NullException(() => objectType);
@@ -35,6 +38,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <summary> Use this constructor to access members of the base class. </summary>
+        /// <inheritdoc cref="_accessor" />
         public Accessor(object obj, Type objectType)
         {
             if (obj == null) throw new NullException(() => obj);
@@ -50,12 +54,14 @@ namespace JJ.Framework.Reflection.Legacy
         /// An expression from which the member name will be extracted. 
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
+        /// <inheritdoc cref="_accessor" />
         public T GetFieldValue<T>(Expression<Func<T>> nameExpression)
         {
             string name = ExpressionHelper.GetName(nameExpression);
             return (T)GetFieldValue(name);
         }
 
+        /// <inheritdoc cref="_accessor" />
         public object GetFieldValue(string name)
         {
             FieldInfo field = StaticReflectionCache.GetField(_objectType, name);
@@ -66,12 +72,14 @@ namespace JJ.Framework.Reflection.Legacy
         /// An expression from which the member name will be extracted. 
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
+        /// <inheritdoc cref="_accessor" />
         public void SetFieldValue<T>(Expression<Func<T>> nameExpression, object value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
             SetFieldValue(name, value);
         }
 
+        /// <inheritdoc cref="_accessor" />
         public void SetFieldValue(string name, object value)
         {
             FieldInfo field = StaticReflectionCache.GetField(_objectType, name);
@@ -84,12 +92,14 @@ namespace JJ.Framework.Reflection.Legacy
         /// An expression from which the member name will be extracted. 
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
+        /// <inheritdoc cref="_accessor" />
         public T GetPropertyValue<T>(Expression<Func<T>> nameExpression)
         {
             string name = ExpressionHelper.GetName(nameExpression);
             return (T)GetPropertyValue(name);
         }
 
+        /// <inheritdoc cref="_accessor" />
         public object GetPropertyValue(string name)
         {
             PropertyInfo property = StaticReflectionCache.GetProperty(_objectType, name);
@@ -100,12 +110,14 @@ namespace JJ.Framework.Reflection.Legacy
         /// An expression from which the member name will be extracted. 
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
+        /// <inheritdoc cref="_accessor" />
         public void SetPropertyValue<T>(Expression<Func<T>> nameExpression, object value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
             SetPropertyValue(name, value);
         }
 
+        /// <inheritdoc cref="_accessor" />
         public void SetPropertyValue(string name, object value)
         {
             PropertyInfo property = StaticReflectionCache.GetProperty(_objectType, name);
@@ -118,6 +130,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// An expression from which the member name will be extracted. 
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
+        /// <inheritdoc cref="_accessor" />
         public void InvokeMethod(Expression<Action> nameExpression, params object[] parameters)
         {
             InvokeMethod((LambdaExpression)nameExpression, parameters);
@@ -127,6 +140,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// An expression from which the member name will be extracted. 
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
+        /// <inheritdoc cref="_accessor" />
         public T InvokeMethod<T>(Expression<Func<T>> nameExpression, params object[] parameters)
         {
             return (T)InvokeMethod((LambdaExpression)nameExpression, parameters);
@@ -136,12 +150,14 @@ namespace JJ.Framework.Reflection.Legacy
         /// An expression from which the member name will be extracted. 
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
+        /// <inheritdoc cref="_accessor" />
         public object InvokeMethod(LambdaExpression nameExpression, params object[] parameters)
         {
             string name = ExpressionHelper.GetName(nameExpression);
             return InvokeMethod(name, parameters);
         }
 
+        /// <inheritdoc cref="_accessor" />
         public object InvokeMethod(string name, params object[] parameters)
         {
             if (parameters == null) throw new NullException(() => parameters);
@@ -152,6 +168,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         // Indexers
 
+        /// <inheritdoc cref="_accessor" />
         public object GetIndexerValue(params object[] parameters)
         {
             if (parameters == null) throw new NullException(() => parameters);
@@ -162,6 +179,7 @@ namespace JJ.Framework.Reflection.Legacy
             return property.GetValue(_object, parameters);
         }
 
+        /// <inheritdoc cref="_accessor" />
         public void SetIndexerValue(params object[] parametersAndValue)
         {
             if (parametersAndValue == null) throw new NullException(() => parametersAndValue);
