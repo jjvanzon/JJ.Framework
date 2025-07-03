@@ -12,7 +12,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy.docs;
 // NOTE: These are structs, so their syntax colorings are unobtrusive.
 
 /// <summary>
-/// filled gaps between different platforms like Windows, iOS, Android, and Windows Phone 8.
+/// Fills gaps between different platforms like Windows, iOS, Android, and Windows Phone 8.
 /// Tech has changed since then, but these platform compatibility alternatives are still linked to by various projects.
 /// </summary>
 public struct _platformcompatibility;
@@ -39,10 +39,8 @@ public struct _tuple;
 /// Concatenates the elements of a sequence, using the specified separator between each element.
 /// This is a platform stub implementation for platforms lacking native support for string.Join taking an IEnumerable&lt;T&gt;.
 /// </remarks>
-/// <typeparam name="T">The type of the elements of <paramref name="values"/>.</typeparam>
-/// <param name="separator">The string to use as a separator.</param>
 /// <param name="values">A sequence that contains the elements to concatenate.</param>
-/// <returns>A string that consists of the elements in <paramref name="values"/> delimited by the separator string.</returns>
+/// <returns>A string that consists of the <paramref name="values"/> delimited by the separator string.</returns>
 public struct _join;
 
 /// <remarks>
@@ -53,7 +51,7 @@ public struct _isnullorwhitespace;
 
 
 /// <remarks>
-/// Transfers data from this stream to the provided destination stream, processing chunks based on the given buffer size.
+/// Transfers data from the source stream to the provided destination stream, processing chunks based on the given buffer size.
 /// Platform stub for this combination of parameters to work on tech older than .NET 4.
 /// </remarks>
 public struct _copyto;
@@ -66,12 +64,12 @@ public struct _copyto;
 /// </summary>
 /// <remarks>
 /// MemberType specifies flags for one or more language constructs to indicate the info of what type of code element we're talking about.
-/// For instance: Method, Property, Field or Event. This is a platform safe alternative, where the original causes exceptions under Windows Phone 8 / Unity Game Engine.
+/// For instance: Method, Property, Field or Event. This is a platform-safe alternative, where the original causes exceptions under Windows Phone 8 / Unity Game Engine.
 /// </remarks>
 public struct _membertype;
 
 /// <summary>
-/// Certain parameter combinations in the method of the Encoding class do not work on Windows Phone 8.
+/// Certain parameter combinations of methods in the Encoding class do not work on Windows Phone 8.
 /// This provides a replacement for that.
 /// </summary>
 public struct _encoding;
@@ -87,11 +85,6 @@ public struct _getstring;
 /// Use the overload 'Type.GetInterface(string name, bool ignoreCase)' or call this method instead.
 /// </summary>
 public struct _getinterface;
-
-/// <summary>
-/// Use PlatformHelper instead
-/// </summary>
-public struct _useplatformhelperinstead;
 
 /// <summary>
 /// Windows Phone 8 compatibility:
@@ -117,7 +110,6 @@ public struct _xelementsave;
 public struct _getcultureinfo;
 
 /// <summary>
-/// .Net 4.5 substitute.
 /// GetCustomAttribute variant with type argument didn't exist before .NET 4.5.
 /// This stub filled that gap, to make this syntax available in lower .NET Framework versions.
 /// </summary>
@@ -130,7 +122,7 @@ public struct _getcustomattribute;
 public struct _getvalue;
 
 /// <summary>
-/// Sets the value of a property by means of reflection..
-/// .NET 4.5 substitute. Before .NET 4.5 this parameter combination was not supported natively.
+/// Sets the value of a property by means of reflection.
+/// Before .NET 4.5 this parameter combination was not supported natively.
 /// </summary>
 public struct _setvalue;

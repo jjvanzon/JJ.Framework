@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace JJ.Framework.PlatformCompatibility.Legacy.Obsolete
 {
-    /// <inheritdoc cref="_useplatformhelperinstead" />
+    /// <inheritdoc cref="_platformextensions" />
     [Obsolete("Use PlatformHelper instead.", true)]
     public static class PlatformExtensions
     {

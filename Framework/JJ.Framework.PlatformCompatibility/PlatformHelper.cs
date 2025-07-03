@@ -12,7 +12,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy
     /// <summary>
     /// This class provides various alternatives to parts of .NET that do not work on certain platforms.
     /// It exists as a helper to get immediate overview over various platform compatibility issues.
-    /// Some of these methods are als accessible as extension methods that become visible
+    /// Some of these methods are also accessible as extension methods that become visible
     /// in intellisense if you try to access a platform-unsafe member.
     /// </summary>
     public static partial class PlatformHelper
