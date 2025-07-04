@@ -8,7 +8,6 @@ using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.PlatformCompatibility.Core;
 using System.Xml.Linq;
 using System.Xml;
 

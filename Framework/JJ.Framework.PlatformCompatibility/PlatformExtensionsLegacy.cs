@@ -7,7 +7,9 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 
-namespace JJ.Framework.PlatformCompatibility.Core
+// Preserved copy of PlatformExtensions class, that would otherwise have been deleted in a cherry-picked commit, while still being used.
+
+namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     /// <inheritdoc cref="_platformextensions"/>
     public static class PlatformExtensionsLegacy

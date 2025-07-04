@@ -11,4 +11,4 @@ But this also meant that the same functionality was accessible from multiple ent
 
 At one point, the `static` methods were deprecated in favor of extension methods, to reduce duplication. But later C# was revised and you could only use `static using` (short static invocation) syntax along with extension method syntax if you define them both.
 
-The result is a bit of a Franckenstein API. It isn't even needed anymore on newer platforms, but still relied upon by some projects and legacy code that we pull in.
+The result is a bit of a Frankenstein API. It isn't even needed anymore on newer platforms, but still relied upon by some projects and legacy code that we pull in.

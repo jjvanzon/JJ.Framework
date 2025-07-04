@@ -6,7 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.PlatformCompatibility.Core
+// Static variant of preserved copy of PlatformExtensions class, that would otherwise have been deleted in a cherry-picked commit, while still being used.
+
+namespace JJ.Framework.PlatformCompatibility.Legacy
 {
     /// <inheritdoc cref="_platformhelper"/>
     public static class PlatformHelperLegacy

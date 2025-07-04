@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.PlatformCompatibility.Core;
 
 namespace JJ.Framework.Reflection.Legacy
 {
