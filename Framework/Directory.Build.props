@@ -23,6 +23,17 @@
     <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
+  <!-- Strictness for Newer Projects -->
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
+  </PropertyGroup>
+
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
     <NoWarn>$(NoWarn);NU1701</NoWarn> <!--Package was not restored with project target framework.-->
@@ -35,7 +46,7 @@
 
   <!-- Warnings Disabled for Tests -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
-    <NoWarn>$(NoWarn);CS0219</NoWarn><!--Unused local variable-->
+    <NoWarn>$(NoWarn);CS0219</NoWarn> <!--Unused local variable-->
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
     <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Unused parameter-->
     <NoWarn>$(NoWarn);IDE0004</NoWarn> <!--Unnecessary cast-->
@@ -48,22 +59,19 @@
     <NoWarn>$(NoWarn);CS0162</NoWarn> <!--Unreachable code-->
   </PropertyGroup>
 
+  <!-- Warnings Disabled for Doc-Only Members. -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS1711</NoWarn> <!--surplus typeparam tag-->
+    <NoWarn>$(NoWarn);CS1574</NoWarn> <!--cref not found-->
+    <NoWarn>$(NoWarn);CS1572</NoWarn> <!--surplus param tag-->
+    <NoWarn>$(NoWarn);CS1734</NoWarn> <!--paramref tag without parameter-->
+  </PropertyGroup>
+
   <!-- Warnings Disabled for Legacy Code -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Legacy'))">
     <NoWarn>$(NoWarn);IDE0063</NoWarn> <!--Use simple 'using' statement-->
     <NoWarn>$(NoWarn);IDE0034</NoWarn> <!--Simplify 'default' expression-->
     <NoWarn>$(NoWarn);IDE0057</NoWarn> <!--Use range operator-->
-  </PropertyGroup>
-
-  <!-- Strictness for Newer Projects -->
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">
-    <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
-    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->

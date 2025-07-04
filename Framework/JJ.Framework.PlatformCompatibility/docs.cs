@@ -1,16 +1,10 @@
-﻿// ReSharper disable InconsistentNaming
-// ReSharper disable IdentifierTypo
+﻿// ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
-#pragma warning disable CS1711 // typeparam tag without type parameter
-#pragma warning disable CS1574 // cref not found
-#pragma warning disable IDE1006 // Naming styles
-#pragma warning disable CS1572 // param tag without parameter
-#pragma warning disable CS1734 // paramref tag without parameter
+
+// These are structs, so their syntax colorings are unobtrusive.
 
 namespace JJ.Framework.PlatformCompatibility.Legacy.docs;
-
-// NOTE: These are structs, so their syntax colorings are unobtrusive.
 
 /// <summary>
 /// <b>[Deprecated]</b>
@@ -54,7 +48,6 @@ public struct _join;
 /// This serves as a platform stub providing this check on platforms without native support (older than .NET 4).
 /// </remarks>
 public struct _isnullorwhitespace;
-
 
 /// <remarks>
 /// <b>[Deprecated]</b>

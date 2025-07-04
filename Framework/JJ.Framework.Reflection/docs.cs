@@ -1,11 +1,12 @@
-﻿using System;
-
-// ReSharper disable CheckNamespace
+﻿// ReSharper disable CheckNamespace
 // ReSharper disable UnusedType.Global
 // ReSharper disable IdentifierTypo
-namespace JJ.Framework.Reflection.Legacy.docs;
 
-// NOTE: These are structs, so their syntax colorings are unobtrusive.
+// These are structs, so their syntax colorings are unobtrusive.
+
+using System;
+
+namespace JJ.Framework.Reflection.Legacy.docs;
 
 /// <summary>
 /// GetItemType - Gets the item type of a collection type.<br/>
