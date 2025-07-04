@@ -108,7 +108,7 @@ public struct _nullexception;
 public struct _accessor;
 
 /// <summary>
-/// <para>For instance:</para>
+/// <b>[Deprecated]</b> Use: <c>NameHelper.TextOf</c> in <c>JJ.Framework.Common.Core</c> instead.
 /// 
 /// <code>
 /// GetText(() =&gt; myParam.MyProperty.MyList[i].MySomething)
@@ -233,17 +233,17 @@ public struct _getimplementations;
 public struct _typesfromobjects;
 
 /// <summary>
-/// Can tell you if a <c>MethodInfo</c> points to an indexer property.
+/// Determines if a <c>MethodInfo</c> points to an indexer property.
 /// </summary>
 public struct _isindexermethod;
 
 /// <summary>
-/// Can tell you if a <c>MemberInfo</c> is static.
+/// Tells you if a <c>MemberInfo</c> is static.
 /// </summary>
 public struct _isstatic;
 
 /// <summary>
-/// Use this if you want basically all the members,
+/// Use this for reflection if you want basically all the members,
 /// and don't want to think about BindingFlags,
 /// when you have to provide BindingFlags.
 /// </summary>
@@ -252,7 +252,7 @@ public struct _bindingflagsall;
 /// <summary>
 /// <para>
 /// Various helper methods, but one of the most useful features
-/// is the `GetImplementation` method and variations thereof,
+/// is the <c>GetImplementation</c> method and variations thereof,
 /// which allow you to retrieve implementations
 /// of a specified base class or interface from an assembly,
 /// which is useful for plug-in development.
@@ -260,7 +260,8 @@ public struct _bindingflagsall;
 ///
 /// <para>
 /// <c>GetImplementations</c> <br/>
-/// Allows you to retrieve implementations of a specified base class or interface from an assembly, which is useful for plug-in development.
+/// Allows you to retrieve implementations of a specified base class or interface
+/// from an assembly, which is useful for plug-in development.
 /// </para>
 ///
 /// <para>
@@ -270,14 +271,25 @@ public struct _bindingflagsall;
 ///
 /// <para>
 /// <c>IsIndexerMethod</c> <br/>
-/// Can tell you if a `MethodInfo` points to an indexer property.
+/// Can tell you if a <c>MethodInfo</c> points to an indexer property.
 /// </para>
 ///
 /// <para>
 /// <c>IsStatic</c> <br/>
-/// Can tell you if a `MemberInfo` is static.
+/// Can tell you if a <c>MemberInfo</c> is static.
 /// </para>
 ///
+/// <para>
+/// <c>IsNullableType</c> <br/>
+/// Returns <see langword="true"/> if the given type is a value type
+/// that allows <see langword="null"/>, like <c>int?</c> or <c>Nullable&lt;bool?&gt;</c>.
+/// </para>
+///
+/// <para>
+/// <c>GetUnderlyingNullableType</c> <br/>
+/// Slightly faster than <c>Nullable.GetUnderlyingType</c>.
+/// </para>
+/// 
 /// <para>
 /// <c>TypesFromObjects</c> <br/>
 /// You can pass objects to it, and it will return the concrete types of those objects, with some tolerance for nulls.
@@ -298,7 +310,7 @@ public struct _reflectionhelper;
 public struct _isassignableto;
 
 /// <summary>
-/// Returns <see langword="true"/> if the given type is a value type that allows <see langword="null"/>, like <c>int?</c> or <c>Nullable&lt;bool?&gt;</c>.
+/// Returns <see langword="true"/> for value types allowed to be <see langword="null"/>, like <c>int?</c> or <c>Nullable&lt;bool?&gt;</c>.
 /// </summary>
 public struct _isnullabletype;
 
