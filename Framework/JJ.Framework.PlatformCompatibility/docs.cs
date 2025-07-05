@@ -1,10 +1,11 @@
-﻿// ReSharper disable IdentifierTypo
+﻿#pragma warning disable CS1574
+// ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
 
-// These are structs, so their syntax colorings are unobtrusive.
-
 namespace JJ.Framework.PlatformCompatibility.Legacy.docs;
+
+// These are structs, so their syntax colorings are unobtrusive.
 
 /// <summary>
 /// <b>[Deprecated]</b>
