@@ -132,8 +132,10 @@ namespace JJ.Framework.Common.Legacy
 
             return text;
         }
-        
+
         // TODO: Manual merge back to legacy branch.
+
+        /// <inheritdoc cref="_removeaccents" />
         public static string RemoveAccents(this string input)
         {
             if (input == null) return "";
@@ -142,7 +144,7 @@ namespace JJ.Framework.Common.Legacy
             return new string(stripped.ToArray()).Normalize(FormC);
         }
     
-    /// <inheritdoc cref="_replace" />
+        /// <inheritdoc cref="_replace" />
         public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
         {
             if (string.IsNullOrEmpty(input)) return input;
