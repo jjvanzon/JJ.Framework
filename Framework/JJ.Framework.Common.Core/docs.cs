@@ -1,5 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
+// ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
 
 // These are structs, so their syntax colorings are unobtrusive.
@@ -45,3 +46,9 @@ public struct _namehelper;
 /// <param name="expressionString">Do not set this parameter. It is for internal use.</param>
 /// <returns>What you pass as expression will be returned as text for further processing.</returns>
 public struct _textof;
+
+/// <summary>
+/// Replaces accented characters in the string (é, ñ, ü) with their unaccented equivalents (e, n, u).
+/// Intended for normalization before search, sorting or comparison.
+/// </summary>
+public struct _removeaccents;

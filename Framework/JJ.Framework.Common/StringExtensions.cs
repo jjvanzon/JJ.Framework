@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using static System.Globalization.CharUnicodeInfo;
-using static System.Globalization.UnicodeCategory;
-using static System.Text.NormalizationForm;
 
 namespace JJ.Framework.Common.Legacy 
 {
@@ -131,17 +128,6 @@ namespace JJ.Framework.Common.Legacy
             text = regex.Replace(text, " ");
 
             return text;
-        }
-
-        // TODO: Manual merge back to legacy branch.
-
-        /// <inheritdoc cref="_removeaccents" />
-        public static string RemoveAccents(this string input)
-        {
-            if (input == null) return "";
-            string formD = input.Normalize(FormD);
-            var stripped = formD.Where(x => GetUnicodeCategory(x) != NonSpacingMark);
-            return new string(stripped.ToArray()).Normalize(FormC);
         }
     
         /// <inheritdoc cref="_replace" />

@@ -5,3 +5,4 @@ global using System.Text;
 global using System.Runtime.CompilerServices;
 global using System.Text.RegularExpressions;
 global using JJ.Framework.Common.Legacy;
+global using JJ.Framework.Text.Core.docs;

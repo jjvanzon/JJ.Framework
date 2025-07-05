@@ -296,9 +296,3 @@ public struct _configurationhelper;
 /// Utility to produce keys for use in <c>Dictionaries</c> by concatenating values with a <c>GUID</c> separator in between.
 /// </summary>
 public struct _keyhelper;
-
-/// <summary>
-/// Replaces accented characters in the string (é, ñ, ü) with their unaccented equivalents (e, n, u).
-/// Intended for normalization before search, sorting or comparison.
-/// </summary>
-public struct _removeaccents;
