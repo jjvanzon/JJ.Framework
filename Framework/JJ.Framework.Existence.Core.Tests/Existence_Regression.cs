@@ -60,6 +60,7 @@ public class Existence_Regression
         foreach (var systemType in systemTypes)
         {
             string nameSpace = systemType.Namespace ?? "";
+            string assemblyName = systemType.Assembly.GetName().Name ?? "";
 
             bool looksLikeCollection =
                 systemType.GetProperty("Count") != null ||
@@ -83,6 +84,7 @@ public class Existence_Regression
                 string.Equals(systemType.FullName, "System.Collections.Generic.SortedList`2+ValueList") || 
                 string.Equals(systemType.FullName, "System.Collections.Generic.SortedList`2+KeyList") || 
                 // From specific APIs:
+                assemblyName.StartsWith("System.ServiceModel") ||
                 nameSpace.StartsWith("System.CodeDom") ||
                 nameSpace.StartsWith("System.ComponentModel") ||
                 nameSpace.StartsWith("System.Configuration") ||
