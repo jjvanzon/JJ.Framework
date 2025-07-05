@@ -1,0 +1,31 @@
+{
+  "solution": {
+    "path": "JJ.Framework.sln",
+    "projects": [
+      "Framework\\JJ.Framework.Build\\JJ.Framework.Build.csproj",
+      "Framework\\JJ.Framework.Collections.Core\\JJ.Framework.Collections.Core.csproj",
+      "Framework\\JJ.Framework.Common.Core.Tests\\JJ.Framework.Common.Core.Tests.csproj",
+      "Framework\\JJ.Framework.Common.Core\\JJ.Framework.Common.Core.csproj",
+      "Framework\\JJ.Framework.Common.Tests\\JJ.Framework.Common.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.Common\\JJ.Framework.Common.Legacy.csproj",
+      "Framework\\JJ.Framework.Configuration.Core\\JJ.Framework.Configuration.Core.csproj",
+      "Framework\\JJ.Framework.Configuration\\JJ.Framework.Configuration.Legacy.csproj",
+      "Framework\\JJ.Framework.Existence.Core.Tests\\JJ.Framework.Existence.Core.Tests.csproj",
+      "Framework\\JJ.Framework.Existence.Core\\JJ.Framework.Existence.Core.csproj",
+      "Framework\\JJ.Framework.IO.Core\\JJ.Framework.IO.Core.csproj",
+      "Framework\\JJ.Framework.IO\\JJ.Framework.IO.Legacy.csproj",
+      "Framework\\JJ.Framework.Logging.Core\\JJ.Framework.Logging.Core.csproj",
+      "Framework\\JJ.Framework.PlatformCompatibility.Core\\JJ.Framework.PlatformCompatibility.Core.shproj",
+      "Framework\\JJ.Framework.PlatformCompatibility.Tests\\JJ.Framework.PlatformCompatibility.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.PlatformCompatibility\\JJ.Framework.PlatformCompatibility.Legacy.csproj",
+      "Framework\\JJ.Framework.Reflection.Core\\JJ.Framework.Reflection.Core.csproj",
+      "Framework\\JJ.Framework.Reflection.Tests\\JJ.Framework.Reflection.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.Reflection\\JJ.Framework.Reflection.Legacy.csproj",
+      "Framework\\JJ.Framework.Testing.Core\\JJ.Framework.Testing.Core.csproj",
+      "Framework\\JJ.Framework.Testing\\JJ.Framework.Testing.Legacy.csproj",
+      "Framework\\JJ.Framework.Tests.Helpers\\JJ.Framework.Tests.Helpers.csproj",
+      "Framework\\JJ.Framework.Text.Core\\JJ.Framework.Text.Core.csproj",
+      "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj"
+    ]
+  }
+}
