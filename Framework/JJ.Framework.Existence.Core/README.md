@@ -104,10 +104,15 @@ After Upgrading
 
 Links to legacy dependencies have changed. If you experience problems, these things might help:
 
-- __Option 2__: Use the [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use `JJ.Framework.Common`.
-- __Option 3__: Install [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
+- __Option 1__  
+  Do nothing. Everything works.
+- __Option 2__  
+  Use the [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use `JJ.Framework.Common`.
+- __Option 3__  
+  Install [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
 
-(This same applies to [JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) vs [JJ.Framework.PlatformCompatibility](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility/0.250.3184))
+(This same applies to  
+[JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) vs [JJ.Framework.PlatformCompatibility](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility/0.250.3184))
 
 
 🐨 Mr. Koala
