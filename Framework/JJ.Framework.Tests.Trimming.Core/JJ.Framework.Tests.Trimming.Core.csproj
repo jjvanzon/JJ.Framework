@@ -11,6 +11,9 @@
 
   <PropertyGroup Condition="$(TargetFramework)!='net461'">
     <PublishTrimmed>true</PublishTrimmed>
+    <!--<IsAotCompatible>true</IsAotCompatible>-->
+    <PublishAot>true</PublishAot>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
