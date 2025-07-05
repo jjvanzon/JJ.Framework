@@ -1,8 +1,12 @@
-﻿// ncrunch: no coverage start
+﻿// ReSharper disable UnusedMember.Global
 
+// ncrunch: no coverage start
+
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-    
+using static System.String;
+
 namespace JJ.Framework.PlatformCompatibility.Core;
 
 internal static class ExceptionSupport
@@ -18,13 +22,13 @@ internal static class ExceptionSupport
     {
         if (argument == null)
         {
-            if (string.IsNullOrWhiteSpace(expression)) expression = nameof(argument);
+            if (IsNullOrWhiteSpace(expression)) expression = nameof(argument);
             throw new ArgumentNullException($"{expression} is null.");
         }
         
-        if (string.IsNullOrWhiteSpace(argument))
+        if (IsNullOrWhiteSpace(argument))
         {
-            if (string.IsNullOrWhiteSpace(expression)) expression = nameof(argument);
+            if (IsNullOrWhiteSpace(expression)) expression = nameof(argument);
             throw new ArgumentException($"{expression} is null or white space.");
         }
     }

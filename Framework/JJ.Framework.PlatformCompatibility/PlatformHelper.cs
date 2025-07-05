@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+
 // ReSharper disable PartialTypeWithSinglePart
 // ReSharper disable PossibleNullReferenceException
 
@@ -76,7 +78,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy
         /// Type.GetInterface(string name) is not supported on Windows Phone 8.
         /// Use the overload 'Type.GetInterface(string name, bool ignoreCase)' or call this method instead.
         /// </summary>
-        public static Type Type_GetInterface_PlatformSafe(Type type, string name) => type.GetInterface(name, ignoreCase: false);
+        public static Type Type_GetInterface_PlatformSafe([Dyn(Interfaces)] Type type, string name) => type.GetInterface(name, ignoreCase: false);
 
         // XDocument / XElement
 

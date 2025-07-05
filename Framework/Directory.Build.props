@@ -80,9 +80,12 @@
   </PropertyGroup>
 
   <!-- Experimental NuGet restore alternative, hopefully faster. -->
+  <!-- No speed gain. Gave error while publishing a console app. -->
+  <!--
   <PropertyGroup>
     <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
   </PropertyGroup>
+  -->
   
   <!-- Icon -->
   

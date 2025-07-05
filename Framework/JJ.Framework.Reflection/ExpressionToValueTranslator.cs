@@ -25,7 +25,7 @@ namespace JJ.Framework.Reflection.Legacy
             _list = new List<object>();
             _stack = new Stack<object>();
             Visit(expression);
-            return _stack.Peek();;
+            return _stack.Peek();
         }
 
         protected virtual void Visit(Expression node)

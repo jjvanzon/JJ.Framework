@@ -21,7 +21,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy
         }
 
         /// <inheritdoc cref="_getinterface" />
-        public static Type GetInterface_PlatformSafe(this Type type, string name)
+        public static Type GetInterface_PlatformSafe([Dyn(Interfaces)] this Type type, string name)
         {
             return PlatformHelper.Type_GetInterface_PlatformSafe(type, name);
         }
