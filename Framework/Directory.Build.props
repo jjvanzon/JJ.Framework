@@ -107,7 +107,8 @@
     <Content Include="$(SolutionDir)\README.md" Visible="False">
       <Pack>True</Pack>
       <PackagePath>\README.md</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
@@ -119,7 +120,8 @@
     <Content Include="README.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
