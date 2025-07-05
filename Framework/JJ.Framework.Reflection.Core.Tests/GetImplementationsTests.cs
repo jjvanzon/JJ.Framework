@@ -1,6 +1,4 @@
-﻿using JJ.Framework.Tests.Helpers;
-
-namespace JJ.Framework.Reflection.Core.Tests;
+﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class GetImplementationsTests

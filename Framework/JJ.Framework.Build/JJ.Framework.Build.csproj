@@ -6,6 +6,7 @@
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</PackageProjectUrl>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>

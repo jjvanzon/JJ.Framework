@@ -23,7 +23,8 @@
       "Framework\\JJ.Framework.Reflection\\JJ.Framework.Reflection.Legacy.csproj",
       "Framework\\JJ.Framework.Testing.Core\\JJ.Framework.Testing.Core.csproj",
       "Framework\\JJ.Framework.Testing\\JJ.Framework.Testing.Legacy.csproj",
-      "Framework\\JJ.Framework.Tests.Helpers\\JJ.Framework.Tests.Helpers.csproj",
+      "Framework\\JJ.Framework.Tests.Helpers.Core\\JJ.Framework.Tests.Helpers.Core.csproj",
+      "Framework\\JJ.Framework.Tests.Trimming.Core\\JJ.Framework.Tests.Trimming.Core.csproj",
       "Framework\\JJ.Framework.Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj"
     ]

@@ -18,6 +18,7 @@ global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Reflection.Core.Tests;
 global using JJ.Framework.Reflection.Core.Tests.Helpers;
+global using JJ.Framework.Tests.Helpers.Core;
 global using static System.String;
 global using static System.Convert;
 global using static System.DayOfWeek;
@@ -35,4 +36,6 @@ global using static JJ.Framework.Reflection.Core.MatchCaseFlag;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
+
+
 

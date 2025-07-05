@@ -22,6 +22,6 @@
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Tests.Helpers.Core\JJ.Framework.Tests.Helpers.Core.csproj" />
   </ItemGroup>
 </Project>
