@@ -93,7 +93,8 @@
     <Content Include="$(SolutionDir)\Resources\jj-icon-64x64-margin4.png" Visible="False">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

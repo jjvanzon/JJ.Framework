@@ -7,13 +7,14 @@
     <TargetFrameworks>net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework)!='net461'">
     <PublishTrimmed>true</PublishTrimmed>
-    <!--<IsAotCompatible>true</IsAotCompatible>-->
     <PublishAot>true</PublishAot>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <!--<IsAotCompatible>true</IsAotCompatible>-->
     <!--<StripSymbols>true</StripSymbols>-->
   </PropertyGroup>
 
