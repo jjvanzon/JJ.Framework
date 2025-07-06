@@ -29,8 +29,6 @@
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)\</PublishDir>
     <PublishProtocol>FileSystem</PublishProtocol>
     <_TargetId>Folder</_TargetId>
-    <!--<IsAotCompatible>True</IsAotCompatible>-->
-    <!--<StripSymbols>True</StripSymbols>-->
   </PropertyGroup>
 
   <Target Name="PublishAfterBuild" AfterTargets="Build">
