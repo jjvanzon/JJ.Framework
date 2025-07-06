@@ -23,7 +23,7 @@
     <SelfContained>true</SelfContained>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishReadyToRun>true</PublishReadyToRun>
-    <PublishDir>bin\Release\net9.0\publish\win-x64\</PublishDir>
+    <PublishDir>bin\$(Configuration)\net9.0\publish\win-x64\</PublishDir><PublishDir>bin\$(Configuration)\net9.0\publish\win-x64\</PublishDir>
     <PublishProtocol>FileSystem</PublishProtocol>
     <!--<IsAotCompatible>true</IsAotCompatible>-->
     <!--<StripSymbols>true</StripSymbols>-->
