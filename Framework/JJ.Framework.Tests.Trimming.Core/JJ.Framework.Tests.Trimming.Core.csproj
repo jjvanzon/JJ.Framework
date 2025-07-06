@@ -4,16 +4,19 @@
     <OutputType>Exe</OutputType>
     <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>-->
-    <TargetFrameworks>net9.0</TargetFrameworks>
+    <!--<TargetFrameworks>net9.0</TargetFrameworks>-->
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <DebugType>none</DebugType>
   </PropertyGroup>
 
+  <!--<PropertyGroup Condition="$(TargetFramework)!='net461'">-->
   <PropertyGroup Condition="$(TargetFramework)!='net461'">
     <PublishTrimmed>true</PublishTrimmed>
     <PublishAot>true</PublishAot>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <!--<IsAotCompatible>true</IsAotCompatible>-->
     <!--<StripSymbols>true</StripSymbols>-->
   </PropertyGroup>
@@ -22,6 +25,13 @@
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>
+
+  <Target Name="PublisAfterBuild" AfterTargets="Build">
+    <MSBuild Projects="$(MSBuildProjectFile)" 
+             Targets="Publish" 
+             Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml;NoBuild=true" />
+             <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml" />-->
+  </Target>
 
   <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="'$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
