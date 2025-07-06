@@ -2,9 +2,6 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461;netstandard2.1;netstandard2.0</TargetFrameworks>-->
-    <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>-->
-    <!--<TargetFrameworks>net9.0</TargetFrameworks>-->
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -14,37 +11,33 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
 
-  <!--<PropertyGroup Condition="$(TargetFramework)!='net461'">-->
-  <PropertyGroup>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PublishTrimmed>true</PublishTrimmed>
-    <PublishAot>true</PublishAot>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
-    <SelfContained>true</SelfContained>
-    <PublishSingleFile>true</PublishSingleFile>
-    <PublishReadyToRun>true</PublishReadyToRun>
-    <PublishDir>bin\$(Configuration)\net9.0\publish\win-x64\</PublishDir><PublishDir>bin\$(Configuration)\net9.0\publish\win-x64\</PublishDir>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <!--<IsAotCompatible>true</IsAotCompatible>-->
-    <!--<StripSymbols>true</StripSymbols>-->
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>
 
-  <Target Name="PublisAfterBuild" AfterTargets="Build">
-    <MSBuild Projects="$(MSBuildProjectFile)" 
-             Targets="Publish" />
-             <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml;NoBuild=true" />-->
-             <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml" />-->
+  <!-- Publish -->
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishAot>true</PublishAot>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)\</PublishDir>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <_TargetId>Folder</_TargetId>
+    <!--<IsAotCompatible>true</IsAotCompatible>-->
+    <!--<StripSymbols>true</StripSymbols>-->
+  </PropertyGroup>
+
+  <Target Name="PublishAfterBuild" AfterTargets="Build">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
 
-  <Target Name="RemoveSymbolsAndDocs" 
-          AfterTargets="Publish" 
-          Condition="'$(PublishDir)'!=''">
-          <!--Condition="'$(PublishDir)'!='' And '$(Configuration)'=='Release'">-->
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="'$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 

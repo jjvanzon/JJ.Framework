@@ -13,3 +13,11 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
 //#pragma warning disable CS1584
 //#pragma warning disable CS1581
 //#pragma warning disable CS1580
+
+
+  <!--<PropertyGroup Condition="$(TargetFramework)!='net461'">-->
+
+          <!--Condition="'$(PublishDir)'!='' And '$(Configuration)'=='Release'">-->
+
+             <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml;NoBuild=true" />-->
+             <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml" />-->
