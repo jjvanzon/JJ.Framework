@@ -16,10 +16,15 @@
 
   <!--<PropertyGroup Condition="$(TargetFramework)!='net461'">-->
   <PropertyGroup>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PublishTrimmed>true</PublishTrimmed>
     <PublishAot>true</PublishAot>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishDir>bin\Release\net9.0\publish\win-x64\</PublishDir>
+    <PublishProtocol>FileSystem</PublishProtocol>
     <!--<IsAotCompatible>true</IsAotCompatible>-->
     <!--<StripSymbols>true</StripSymbols>-->
   </PropertyGroup>
@@ -31,8 +36,8 @@
 
   <Target Name="PublisAfterBuild" AfterTargets="Build">
     <MSBuild Projects="$(MSBuildProjectFile)" 
-             Targets="Publish" 
-             Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml;NoBuild=true" />
+             Targets="Publish" />
+             <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml;NoBuild=true" />-->
              <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml" />-->
   </Target>
 
