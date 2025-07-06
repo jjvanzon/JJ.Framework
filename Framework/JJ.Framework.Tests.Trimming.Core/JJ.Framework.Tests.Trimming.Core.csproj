@@ -8,11 +8,14 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>none</DebugType>
   </PropertyGroup>
 
   <!--<PropertyGroup Condition="$(TargetFramework)!='net461'">-->
-  <PropertyGroup Condition="$(TargetFramework)!='net461'">
+  <PropertyGroup>
     <PublishTrimmed>true</PublishTrimmed>
     <PublishAot>true</PublishAot>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -33,7 +36,10 @@
              <!--Properties="PublishProfile=Properties\PublishProfiles\FolderProfile.pubxml" />-->
   </Target>
 
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="'$(PublishDir)'!=''">
+  <Target Name="RemoveSymbolsAndDocs" 
+          AfterTargets="Publish" 
+          Condition="'$(PublishDir)'!=''">
+          <!--Condition="'$(PublishDir)'!='' And '$(Configuration)'=='Release'">-->
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 
