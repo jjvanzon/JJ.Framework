@@ -4,7 +4,8 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!--<Nullable>enable</Nullable>-->
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -12,8 +13,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.IO.Core\JJ.Framework.IO.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
+  </ItemGroup>
+
+  <!-- Tests -->
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Helpers\*.cs" Link="Helpers\%(Filename)%(Extension)" />
+
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\*.cs" Link="Obsolete\%(Filename)%(Extension)" />
+    
+    <!--<Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\CultureInfo_PlatformSafe_Obsolete_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\Encoding_PlatformSafe_Accessor.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\Encoding_PlatformSafe_Obsolete_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\PlatformExtensions_Accessor.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\PlatformExtensions_Obsolete_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\PlatformHelper_Accessor.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\PlatformHelper_Obsolete_Tests.cs" />-->
+    
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\*.cs" />
+    
+    <!--<Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\CultureInfo_PlatformSafe_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Encoding_PlatformSafe_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\MemberTypes_PlatformSafe_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\PropertyInfo_GetValue_PlatformSafe_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Type_GetInterface_PlatformSafe_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\XDocument_XElement_PlatformSafe_Tests.cs" />-->
+    <!--<Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Using.cs" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
   <!-- Publish -->
