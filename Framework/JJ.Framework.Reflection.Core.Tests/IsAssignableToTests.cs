@@ -1,7 +1,5 @@
 ﻿namespace JJ.Framework.Reflection.Core.Tests;
 
-using JJ.Framework.Tests.Helpers;
-
 [TestClass]
 public class IsAssignableToTests
 {

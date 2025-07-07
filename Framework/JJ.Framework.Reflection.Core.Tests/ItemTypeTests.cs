@@ -1,6 +1,5 @@
 ﻿namespace JJ.Framework.Reflection.Core.Tests;
 
-using JJ.Framework.Tests.Helpers;
 using static ReflectionHelper;
 
 [TestClass] 

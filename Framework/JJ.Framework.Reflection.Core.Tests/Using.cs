@@ -18,7 +18,6 @@ global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Reflection.Core.Tests;
 global using JJ.Framework.Reflection.Core.Tests.Helpers;
-global using JJ.Framework.Tests.Helpers.Core;
 global using static System.String;
 global using static System.Convert;
 global using static System.DayOfWeek;
