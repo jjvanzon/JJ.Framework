@@ -54,6 +54,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
+    <TrimmerRootDescriptor>notrim.xml</TrimmerRootDescriptor>
     <PublishAot>True</PublishAot>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>True</PublishSingleFile>

@@ -1,0 +1,12 @@
+﻿<linker>
+  <!-- Keep the Test SDK host -->
+  <assembly fullname="Microsoft.NET.Test.Sdk" preserve="all" />
+
+  <!-- Preserve MSTest adapter and framework -->
+  <assembly fullname="MSTest.TestAdapter" preserve="all" />
+  <assembly fullname="MSTest.TestFramework" preserve="all" />
+
+  <!-- If you use the VS test platform host -->
+  <assembly fullname="Microsoft.VisualStudio.TestPlatform.TestFramework" preserve="all" />
+  <assembly fullname="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions" preserve="all" />
+</linker>
