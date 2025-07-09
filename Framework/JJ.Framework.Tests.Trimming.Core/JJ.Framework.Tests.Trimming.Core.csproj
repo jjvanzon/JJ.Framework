@@ -24,7 +24,7 @@
   <!-- Tests -->
   <ItemGroup>
     <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Helpers\*.cs" Link="Helpers\%(Filename)%(Extension)" />
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\*.cs" Link="Obsolete\%(Filename)%(Extension)" />
+    <!--<Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Obsolete\*.cs" Link="Obsolete\%(Filename)%(Extension)" />-->
     <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\*.cs" />
     <!--<Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Using.cs" />-->
   </ItemGroup>

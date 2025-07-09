@@ -103,4 +103,10 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
     [UnconditionalSuppressMessage("Trimmer", "IL2072", Justification = "Dyn(PublicMethods) hard to enforce for specific types 
     here.")]
 
+//RunTests<Obsolete.CultureInfo_PlatformSafe_Obsolete_Tests >().ForEach(WriteLine); WriteLine();
+//RunTests<Obsolete.Encoding_PlatformSafe_Obsolete_Tests    >().ForEach(WriteLine); WriteLine();
+//RunTests<Obsolete.PlatformExtensions_Obsolete_Tests       >().ForEach(WriteLine); WriteLine();
+//RunTests<Obsolete.PlatformHelper_Obsolete_Tests           >().ForEach(WriteLine); WriteLine();
+
 ```
+

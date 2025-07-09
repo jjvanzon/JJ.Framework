@@ -2,7 +2,6 @@
 global using System.Reflection;
 global using System.Diagnostics.CodeAnalysis;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
-global using JJ.Framework.PlatformCompatibility.Legacy;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Legacy;
