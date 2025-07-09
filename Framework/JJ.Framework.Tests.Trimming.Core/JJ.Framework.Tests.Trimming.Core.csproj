@@ -63,4 +63,6 @@
     <Delete Files="@(XmlsToDeletejj)" />
   </Target>
 
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+
 </Project>

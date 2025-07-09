@@ -9,5 +9,6 @@ internal static class DynamicallyAccessedMemberTypesEx
 {
     /// <inheritdoc cref="_properties" />
     public const DynamicallyAccessedMemberTypes Properties = PublicProperties | NonPublicProperties;
+    public const DynamicallyAccessedMemberTypes DefaultCtor = PublicParameterlessConstructor;
 }
 

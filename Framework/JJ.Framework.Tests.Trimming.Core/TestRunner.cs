@@ -32,7 +32,6 @@ internal static class TestRunner
     //               .ToArray();
 
     // TODO: Move somewhere centrally.
-    private const DynamicallyAccessedMemberTypes DefaultCtor = DynamicallyAccessedMemberTypes.PublicParameterlessConstructor;
 
     public static void RunTests<[Dyn(PublicMethods | DefaultCtor)] T>()
         => RunTests(typeof(T));
