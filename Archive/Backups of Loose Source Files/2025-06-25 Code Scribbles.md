@@ -39,3 +39,49 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
     <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\PropertyInfo_GetValue_PlatformSafe_Tests.cs" />
     <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Type_GetInterface_PlatformSafe_Tests.cs" />
     <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\XDocument_XElement_PlatformSafe_Tests.cs" />-->
+
+
+    <!--<TrimmerRootDescriptor>notrim.xml</TrimmerRootDescriptor>-->
+
+//namespace JJ.Framework.Tests.Trimming.Core;
+
+//public class Program
+//{
+//    // ReSharper disable once UnusedParameter.Global
+//    public static void Main(string[] args)
+//    {
+//        WriteLine("Hello world!");
+//        ReadKey();
+//    }
+//}
+
+// TODO: Move to MSTestless.cs
+
+
+// Assembly assembly = Assembly.GetExecutingAssembly();
+
+//Type[] types = assembly.GetExportedTypes()
+//                       //.Where(x => x.Name.EndsWith("Tests"))
+//                       .Where(x => x.GetCustomAttribute<TestClassAttribute>() != null)
+//                       .ToArray();
+
+//foreach (Type type in types)
+//{
+//    var methods = type.GetMethods(Public | Instance)
+//                      .Where(x => x.GetCustomAttribute<TestMethodAttribute>() != null)
+//                      .ToArray();
+
+//    foreach (MethodInfo method in methods)
+//    {
+//        try
+//        {
+//            object? instance = Activator.CreateInstance(type);
+//            method.Invoke(instance, null);
+//            WriteLine($"Test {type.Name}.{method.Name} passed.");
+//        }
+//        catch (Exception ex)
+//        {
+//            WriteLine($"Test {type.Name}.{method.Name} failed: {ex.Message}");
+//        }
+//    }
+//}
