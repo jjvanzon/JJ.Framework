@@ -1,6 +1,8 @@
-﻿namespace JJ.Framework.Tests.Trimming.Core;
+﻿// ReSharper disable VariableHidesOuterVariable
 
-internal static class TestRunner
+namespace JJ.Framework.Testing.Core;
+
+public static class TestRunner
 {
     //public static void RunTests()
     //{
@@ -31,31 +33,40 @@ internal static class TestRunner
     //               .Where(x => x.GetCustomAttribute<TestClassAttribute>() != null)
     //               .ToArray();
 
-    // TODO: Move somewhere centrally.
-
-    public static void RunTests<[Dyn(PublicMethods | DefaultCtor)] T>()
+    public static IList<string> RunTests<[Dyn(PublicMethods | DefaultCtor)] T>()
         => RunTests(typeof(T));
 
-    public static void RunTests([Dyn(PublicMethods | DefaultCtor)] Type testClass)
+    public static IList<string> RunTests([Dyn(PublicMethods | DefaultCtor)] Type testClass)
     {
-        WriteLine($"Running tests in {testClass.Name}...");
+        ThrowIfNull(testClass);
+
+        var messages = new List<string>();
+        
+        messages.Add($"Running tests in {testClass.Name}...");
 
         var methods = testClass.GetMethods(Public | Instance)
-                               .Where(x => x.GetCustomAttribute<TestMethodAttribute>() != null)
+                               .Where(x => x.GetCustomAttributes().Any(x => x.GetType().Name.Is("TestMethodAttribute")))
                                .ToArray();
 
         foreach (MethodInfo method in methods)
         {
             try
             {
-                object instance = Activator.CreateInstance(testClass);
+                object? instance = Activator.CreateInstance(testClass);
+                if (instance == null)
+                {
+                    messages.Add($"{method.Name} failed: Could not create instance of {testClass.Name}.");
+                    continue;
+                }
                 method.Invoke(instance, null);
-                WriteLine($"{method.Name} passed.");
+                messages.Add($"{method.Name} passed.");
             }
             catch (Exception ex)
             {
-                WriteLine($"{method.Name} failed: {ex}");
+                messages.Add($"{method.Name} failed: {ex}");
             }
         }
+
+        return messages;
     }
 }

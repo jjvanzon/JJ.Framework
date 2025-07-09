@@ -153,7 +153,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo?> _indexerDictionary = new();
         private readonly object _indexerDictionaryLock = new();
 
-        public PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
+        public PropertyInfo GetIndexer([Dyn(Properties)] Type type, params Type[] parameterTypes)
         {
             PropertyInfo? property = TryGetIndexer(type, parameterTypes);
             if (property == null)
@@ -521,46 +521,46 @@ namespace JJ.Framework.Reflection.Core
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
-        public PropertyInfo GetIndexer<TArg1>(Type type)
+        public PropertyInfo GetIndexer<TArg1>([Dyn(Properties)] Type type)
             => GetIndexer(type, typeof(TArg1));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2>(Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2>([Dyn(Properties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3>(Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3>([Dyn(Properties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4>(Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(Properties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(Properties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(Properties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(Properties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
 
-        public PropertyInfo? TryGetIndexer<TArg1>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1>([Dyn(Properties)] Type type)
             => TryGetIndexer(type, typeof(TArg1));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2>([Dyn(Properties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3>([Dyn(Properties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(Properties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(Properties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(Properties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(Properties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
     }
 }

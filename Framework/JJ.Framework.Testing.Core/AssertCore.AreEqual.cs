@@ -19,12 +19,12 @@ public static partial class AssertCore
         => Check(expected, actual, message, () => !Equals(expected, actual));
     
     /// <inheritdoc cref="_deltadirection" />
-    public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = None)
+    public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
     {
         // Allow negatives to trigger Downward direction automatically
         if (delta < 0 && direction == default) direction = Down;
 
-        if (direction == None)
+        if (direction == DeltaDirectionEnum.None)
         {
             Check(expected, actualExpression, actual => Abs(actual - expected) <= delta);
         }
@@ -43,12 +43,12 @@ public static partial class AssertCore
     }
       
     /// <inheritdoc cref="_deltadirection" />
-    public static void AreEqual(double expected, Expression<Func<double>> actualExpression, double delta, DeltaDirectionEnum direction = None)
+    public static void AreEqual(double expected, Expression<Func<double>> actualExpression, double delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
     {
         // Allow negatives to trigger Downward direction automatically
         if (delta < 0 && direction == default) direction = Down;
 
-        if (direction == None)
+        if (direction == DeltaDirectionEnum.None)
         {
             Check(expected, actualExpression, actual => Abs(actual - expected) <= delta);
         }
