@@ -11,6 +11,7 @@ global using JJ.Framework.Tests.Trimming.Core;
 global using static System.Console;
 global using static System.Reflection.BindingFlags;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
+global using static JJ.Framework.Tests.Trimming.Core.TestRunner;
 global using Dyn = System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute;
 global using NoTrim = System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute;
 

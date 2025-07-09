@@ -21,3 +21,15 @@ public struct _dynamicallyaccessedmembers;
 /// so code analysis can figure out to not optimize those members away that are reflected upon.
 /// </summary>
 public struct _dynamicallyaccessedmembertypes;
+/// <summary>
+/// Additional shorthand variations of DynamicallyAccessedMemberTypes
+/// for more terse annotations for reflection usage in code that is subject to trimming.
+/// </summary>
+public struct _dynamicallyaccessedmembertypesex;
+
+/// <summary>
+/// Represents a combination of both public and non-public properties
+/// in DynamicallyAccessedMemberTypes to indicate what members
+/// are used with reflection so that code can be trimmed without problems.
+/// </summary>
+public struct _properties;

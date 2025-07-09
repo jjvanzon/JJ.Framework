@@ -11,7 +11,3 @@ namespace Microsoft.VisualStudio.TestTools.UnitTesting
             => AssertCore.AreEqual(expected, actual);
     }
 }
-
-namespace JJ.Framework.Tests.Trimming.Core
-{
-}

@@ -20,7 +20,6 @@ internal static class TestRunner
     //{
     //    foreach (Type testClass in testClasses)
     //    {
-    //        WriteLine($"Running tests in {testClass.Name}...");
     //        RunTests(testClass);
     //    }
     //}
@@ -40,6 +39,8 @@ internal static class TestRunner
 
     public static void RunTests([Dyn(PublicMethods | DefaultCtor)] Type testClass)
     {
+        WriteLine($"Running tests in {testClass.Name}...");
+
         var methods = testClass.GetMethods(Public | Instance)
                                .Where(x => x.GetCustomAttribute<TestMethodAttribute>() != null)
                                .ToArray();
@@ -50,11 +51,11 @@ internal static class TestRunner
             {
                 object instance = Activator.CreateInstance(testClass);
                 method.Invoke(instance, null);
-                WriteLine($"Test {method.Name} passed.");
+                WriteLine($"{method.Name} passed.");
             }
             catch (Exception ex)
             {
-                WriteLine($"Test {method.Name} failed: {ex}");
+                WriteLine($"{method.Name} failed: {ex}");
             }
         }
     }

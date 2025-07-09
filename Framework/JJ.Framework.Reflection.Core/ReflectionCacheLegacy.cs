@@ -1,4 +1,5 @@
 ﻿using static JJ.Framework.Common.Legacy.KeyHelper;
+
 // ReSharper disable ChangeFieldTypeToSystemThreadingLock
 // ReSharper disable UseSymbolAlias
 // ReSharper disable CoVariantArrayConversion
@@ -49,7 +50,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new();
         private readonly object _propertiesDictionaryLock = new();
 
-        public PropertyInfo[] GetProperties(Type type)
+        public PropertyInfo[] GetProperties([Dyn(Properties)] Type type)
         {
             lock (_propertiesDictionaryLock)
             {
@@ -71,7 +72,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new();
         private readonly object _propertyDictionaryDictionaryLock = new();
 
-        public Dictionary<string, PropertyInfo> GetPropertyDictionary(Type type)
+        public Dictionary<string, PropertyInfo> GetPropertyDictionary([Dyn(Properties)] Type type)
         {
             lock (_propertyDictionaryDictionaryLock)
             {
@@ -162,7 +163,7 @@ namespace JJ.Framework.Reflection.Core
             return property;
         }
 
-        public PropertyInfo? TryGetIndexer(Type type, params Type[] parameterTypes)
+        public PropertyInfo? TryGetIndexer([Dyn(Properties)] Type type, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
