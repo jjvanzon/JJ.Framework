@@ -19,6 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)NotNull.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NotNullWhen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OverloadResolutionPriority.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RequiresDynamicCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RequiresUnreferencedCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnconditionalSuppressMessage.cs" />
   </ItemGroup>
 </Project>
