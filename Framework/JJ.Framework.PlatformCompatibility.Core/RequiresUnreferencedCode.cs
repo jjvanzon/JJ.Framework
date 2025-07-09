@@ -6,14 +6,9 @@
 
 namespace System.Diagnostics.CodeAnalysis;
 
-internal class RequiresUnreferencedCodeAttribute : Attribute
+internal class RequiresUnreferencedCodeAttribute(string message) : Attribute
 {
-    public RequiresUnreferencedCodeAttribute(string message)
-    {
-        Message = message;
-    }
-
-    public string Message { get; }
+    public string Message { get; } = message;
     public string? Url { get; set; }
 }
 
