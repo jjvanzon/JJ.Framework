@@ -25,7 +25,7 @@ global using static System.Reflection.BindingFlags;
 global using static System.Runtime.CompilerServices.MethodImplOptions;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
-global using static JJ.Framework.PlatformCompatibility.Core.DynamicallyAccessedMemberTypesEx;
+global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Collections.Core.StaticEnumerable;
 global using static JJ.Framework.Existence.Core.FilledInHelper;

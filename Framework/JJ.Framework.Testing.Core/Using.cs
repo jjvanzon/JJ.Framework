@@ -22,7 +22,7 @@ global using static System.Activator;
 global using static System.Reflection.MethodBase;
 global using static System.Reflection.BindingFlags;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
-global using static JJ.Framework.PlatformCompatibility.Core.DynamicallyAccessedMemberTypesEx;
+global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;

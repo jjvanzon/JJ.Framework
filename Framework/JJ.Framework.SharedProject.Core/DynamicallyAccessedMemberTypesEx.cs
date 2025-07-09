@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using JJ.Framework.PlatformCompatibility.Core.docs;
+using JJ.Framework.SharedProject.Core.docs;
 using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 
-namespace JJ.Framework.PlatformCompatibility.Core;
+namespace JJ.Framework.SharedProject.Core;
 
 /// <inheritdoc cref="_dynamicallyaccessedmembertypesex" />
 internal static class DynamicallyAccessedMemberTypesEx
