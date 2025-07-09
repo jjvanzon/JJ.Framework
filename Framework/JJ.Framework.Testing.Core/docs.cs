@@ -16,12 +16,12 @@ namespace JJ.Framework.Testing.Core.docs;
 /// retrieving them by key, conversion to DynamicData
 /// and Case templating.
 /// </summary>
-public struct _casecollection { }
+public struct _casecollection;
 
 /// <summary>
 /// Allow duplicates to pass by, for practical reasons when managing multiple CaseCollections as one.
 /// </summary>
-public struct _casecollectionallowduplicates { }
+public struct _casecollectionallowduplicates;
         
 /// <summary>
 /// Creates new cases based on the specified template, applying its properties to the provided cases.<br/>
@@ -32,7 +32,7 @@ public struct _casecollectionallowduplicates { }
 /// <param name="cases">The cases to which the template is applied.</param>
 /// <param name="destCases">The cases to which the template is applied.</param>
 /// <returns>A collection of cases derived from the template.</returns>
-public struct _casetemplate { }
+public struct _casetemplate;
 
 /// <summary>
 /// <strong>AssertHelperCore.AreEqual</strong> overloads that accept an optional
@@ -49,12 +49,12 @@ public struct _casetemplate { }
 /// Designed for scenarios like double-to-int conversions, ensuring accurate comparisons
 /// despite rounding (e.g., flooring).
 /// </summary>
-public struct _deltadirection { }
+public struct _deltadirection;
 
 /// <summary>
 /// <c>From</c>, <c>Init</c> and <c>Source</c> are synonyms.
 /// </summary>
-public struct _from { }
+public struct _from;
 
         
 /// <summary>
@@ -64,7 +64,7 @@ public struct _from { }
 /// <typeparam name="TRet">Do not specify explicitly! <c>ret</c> determines this type!</typeparam>
 /// <param name="expected">The value ret is expected to have.</param>
 /// <param name="ret">Expression whose return type should not be nullable.</param>
-public struct _nonullret { }
+public struct _nonullret;
 
 /// <summary>
 /// Asserts that even when a value is filled in,
@@ -73,7 +73,7 @@ public struct _nonullret { }
 /// <typeparam name="TRet">Do not specify explicitly! <c>ret</c> determines this type!</typeparam>
 /// <param name="expected">The value ret is expected to have.</param>
 /// <param name="ret">Expression whose return type should be nullable.</param>
-public struct _nullret { }
+public struct _nullret;
 
 /// <summary>
 /// Usage of the flag is up to the developer's discretion. <br/><br/>
@@ -90,9 +90,24 @@ public struct _nullret { }
 /// 
 /// Use this flag to test cases with or without strict mathematical relationships between properties.
 /// </summary>
-public struct _strict { }
+public struct _strict;
 
 /// <summary>
 /// <c>To</c>, <c>Value</c>, <c>Val</c> and <c>Dest</c> are synonyms.
 /// </summary>
-public struct _to { }
+public struct _to;
+
+/// <summary>
+/// <para>
+/// A simple test runner that discovers and runs tests.
+/// Use this if other test tech is out of the question.
+/// </para>
+/// 
+/// <para>
+/// We wanted to run tests in a console app.
+/// But referencing MSTest hijacked the Main method,
+/// making us unable to use MSTest there altogether.
+/// This alternative test runner was added as part of the solution.
+/// </para>
+/// </summary>
+public struct _testrunner;

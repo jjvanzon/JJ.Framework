@@ -23,8 +23,6 @@ global using static JJ.Framework.Existence.Core.ExistenceUtil;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Existence.Core.ImplicitUsageReasons;
 global using UsedImplicitlyAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;
-global using Priority = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
-global using Prio     = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 #if NET8_0_OR_GREATER
 global using System.Collections.Frozen;
 #endif

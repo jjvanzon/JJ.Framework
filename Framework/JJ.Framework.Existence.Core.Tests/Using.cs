@@ -29,9 +29,6 @@ global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Existence.Core.SpaceMatters;
 global using static JJ.Framework.Existence.Core.CaseMatters;
 global using static JJ.Framework.Existence.Core.Tests.Helpers.Mocks;
-global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
-global using Priority   = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
-global using Prio       = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 #if NET8_0_OR_GREATER                                                                    
 global using System.Collections.Frozen;
 #endif

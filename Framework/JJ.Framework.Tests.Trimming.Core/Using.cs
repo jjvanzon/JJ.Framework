@@ -13,6 +13,3 @@ global using static System.Reflection.BindingFlags;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.Testing.Core.TestRunner;
-global using Dyn = System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute;
-global using NoTrim = System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute;
-

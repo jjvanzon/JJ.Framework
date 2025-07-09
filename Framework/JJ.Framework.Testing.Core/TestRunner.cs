@@ -2,6 +2,7 @@
 
 namespace JJ.Framework.Testing.Core;
 
+/// <inheritdoc cref="_testrunner" />
 public static class TestRunner
 {
     //public static void RunTests()
@@ -26,12 +27,14 @@ public static class TestRunner
     //    }
     //}
 
-    //[NoTrim("Types might be removed")]
-    //public static Type[] GetTestClasses(Assembly assembly) 
-    //    => assembly.GetTypes()
-    //             //.Where(x => x.Name.EndsWith("Tests"))
-    //               .Where(x => x.GetCustomAttribute<TestClassAttribute>() != null)
-    //               .ToArray();
+    [NoTrim("Types might be removed")]
+    public static Type[] GetTestClasses(Assembly assembly)
+    {
+        ThrowIfNull(assembly);
+        return assembly.GetTypes()
+            .Where(x => x.GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("TestClasws")))
+            .ToArray();
+    }
 
     public static IList<string> RunTests<[Dyn(PublicMethods | DefaultCtor)] T>()
         => RunTests(typeof(T));
@@ -45,7 +48,7 @@ public static class TestRunner
         messages.Add($"Running tests in {testClass.Name}...");
 
         var methods = testClass.GetMethods(Public | Instance)
-                               .Where(x => x.GetCustomAttributes().Any(x => x.GetType().Name.Is("TestMethodAttribute")))
+                               .Where(x => x.GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("TestMethod")))
                                .ToArray();
 
         foreach (MethodInfo method in methods)

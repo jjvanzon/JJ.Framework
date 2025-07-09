@@ -11,5 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)docs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DynamicallyAccessedMemberTypesEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SharedUsing.cs" />
   </ItemGroup>
 </Project>
