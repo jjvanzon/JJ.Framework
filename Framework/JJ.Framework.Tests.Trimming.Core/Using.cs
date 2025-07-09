@@ -7,6 +7,7 @@ global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Legacy;
 global using JJ.Framework.Testing.Core;
 global using JJ.Framework.PlatformCompatibility.Tests;
+global using JJ.Framework.Tests.Trimming.Core;
 global using static System.Console;
 global using static System.Reflection.BindingFlags;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
