@@ -275,7 +275,9 @@ namespace JJ.Framework.Reflection.Legacy
                 Visit(node.Expressions[i]);
             }
 
-            Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
+            //Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
+            Array array = Array.CreateInstance(node.Type.GetElementType()!, node.Expressions.Count); // Alternative works with Trimmable libs.
+
             for (int i = node.Expressions.Count - 1; i >= 0; i--)
             {
                 object item = _stack.Pop();
