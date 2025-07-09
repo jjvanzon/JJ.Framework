@@ -3,7 +3,7 @@
 public static partial class Reflect
 {
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static ICollection<Type> GetTypesInHierarchy(Type type)
+    public static ICollection<Type> GetTypesInHierarchy([Dyn(Interfaces)] Type type)
     {
         if (type == null) throw new NullException(() => type);
         var coll = new HashSet<Type>();
@@ -12,10 +12,10 @@ public static partial class Reflect
     }
     
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static ICollection<Type> GetTypesInHierarchy<TType>() => GetTypesInHierarchy(typeof(TType));
+    public static ICollection<Type> GetTypesInHierarchy<[Dyn(Interfaces)] TType>() => GetTypesInHierarchy(typeof(TType));
 
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static void AddTypesInHierarchy(Type type, ICollection<Type> coll)
+    public static void AddTypesInHierarchy([Dyn(Interfaces)] Type type, ICollection<Type> coll)
     {
         if (type == null) throw new NullException(() => type);
         if (coll == null) throw new NullException(() => coll);
@@ -28,17 +28,17 @@ public static partial class Reflect
     public static void AddTypesInHierarchy<TType>(ICollection<Type> coll) => AddTypesInHierarchy(typeof(TType), coll);
 
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static bool HasTypeInHierarchy(Type type, Type secondType)
+    public static bool HasTypeInHierarchy([Dyn(Interfaces)] Type type, Type secondType)
     {
         if (secondType == null) throw new NullException(() => secondType);
         return GetTypesInHierarchy(type).Contains(secondType);
     }
 
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static bool HasTypeInHierarchy<TFirst>(Type secondType) => HasTypeInHierarchy(typeof(TFirst), secondType);
+    public static bool HasTypeInHierarchy<[Dyn(Interfaces)] TFirst>(Type secondType) => HasTypeInHierarchy(typeof(TFirst), secondType);
     
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static bool HasTypeInHierarchy<TFirst, TSecond>() => HasTypeInHierarchy(typeof(TFirst), typeof(TSecond));
+    public static bool HasTypeInHierarchy<[Dyn(Interfaces)] TFirst, TSecond>() => HasTypeInHierarchy(typeof(TFirst), typeof(TSecond));
     
     // Classes
 
@@ -90,7 +90,7 @@ public static partial class Reflect
     // Interfaces
             
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static ICollection<Type> GetInterfacesInHierarchy(Type type)
+    public static ICollection<Type> GetInterfacesInHierarchy([Dyn(Interfaces)] Type type)
     {
         var list = new HashSet<Type>();
         AddInterfacesInHierarchy(type, list);
@@ -98,10 +98,10 @@ public static partial class Reflect
     }
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static ICollection<Type> GetInterfacesInHierarchy<T>() => GetInterfacesInHierarchy(typeof(T));
+    public static ICollection<Type> GetInterfacesInHierarchy<[Dyn(Interfaces)] T>() => GetInterfacesInHierarchy(typeof(T));
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static void AddInterfacesInHierarchy(Type type, ICollection<Type> coll)
+    public static void AddInterfacesInHierarchy([Dyn(Interfaces)] Type type, ICollection<Type> coll)
     {
         if (type == null) throw new NullException(() => type);
         if (coll == null) throw new NullException(() => coll);
@@ -114,7 +114,7 @@ public static partial class Reflect
     public static void AddInterfacesInHierarchy<T>(ICollection<Type> coll) => AddInterfacesInHierarchy(typeof(T), coll);
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static bool HasInterfaceInHierarchy(Type type, Type secondType)
+    public static bool HasInterfaceInHierarchy([Dyn(Interfaces)] Type type, Type secondType)
     {
         if (secondType == null) throw new NullException(() => secondType);
         if (!secondType.IsInterface) throw new Exception($"{nameof(secondType)} {secondType.Name} is not an interface.");
@@ -122,10 +122,10 @@ public static partial class Reflect
     }
     
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static bool HasInterfaceInHierarchy<TFirst>(Type secondType) => HasInterfaceInHierarchy(typeof(TFirst), secondType);
+    public static bool HasInterfaceInHierarchy<[Dyn(Interfaces)] TFirst>(Type secondType) => HasInterfaceInHierarchy(typeof(TFirst), secondType);
     
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static bool HasInterfaceInHierarchy<TFirst, TSecond>() => HasInterfaceInHierarchy(typeof(TFirst), typeof(TSecond));
+    public static bool HasInterfaceInHierarchy<[Dyn(Interfaces)] TFirst, TSecond>() => HasInterfaceInHierarchy(typeof(TFirst), typeof(TSecond));
 }
 
 public static partial class ReflectExtensions
@@ -133,18 +133,18 @@ public static partial class ReflectExtensions
     // Types
     
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static ICollection<Type> GetTypesInHierarchy(this Type type)
+    public static ICollection<Type> GetTypesInHierarchy([Dyn(Interfaces)] this Type type)
         => Reflect.GetTypesInHierarchy(type);
 
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static void AddTypesInHierarchy(this Type type, ICollection<Type> coll)
+    public static void AddTypesInHierarchy([Dyn(Interfaces)] this Type type, ICollection<Type> coll)
         => Reflect.AddTypesInHierarchy(type, coll);
 
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static bool HasTypeInHierarchy(this Type type, Type type2)
+    public static bool HasTypeInHierarchy([Dyn(Interfaces)] this Type type, Type type2)
         => Reflect.HasTypeInHierarchy(type, type2);
     
-    public static bool HasTypeInHierarchy<TSecondType>(this Type firstType) 
+    public static bool HasTypeInHierarchy<TSecondType>([Dyn(Interfaces)] this Type firstType) 
         => Reflect.HasTypeInHierarchy(firstType, typeof(TSecondType));
 
     // Classes
@@ -168,18 +168,18 @@ public static partial class ReflectExtensions
     // Interfaces
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static ICollection<Type> GetInterfacesInHierarchy(this Type type)
+    public static ICollection<Type> GetInterfacesInHierarchy([Dyn(Interfaces)] this Type type)
         => Reflect.GetInterfacesInHierarchy(type);
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static void AddInterfacesInHierarchy(this Type type, ICollection<Type> coll)
+    public static void AddInterfacesInHierarchy([Dyn(Interfaces)] this Type type, ICollection<Type> coll)
         => Reflect.AddInterfacesInHierarchy(type, coll);
     
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static bool HasInterfaceInHierarchy(this Type type, Type type2)
+    public static bool HasInterfaceInHierarchy([Dyn(Interfaces)] this Type type, Type type2)
         => Reflect.HasInterfaceInHierarchy(type, type2);
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static bool HasInterfaceInHierarchy<TSecond>(this Type first)
+    public static bool HasInterfaceInHierarchy<TSecond>([Dyn(Interfaces)] this Type first)
         => Reflect.HasInterfaceInHierarchy(first, typeof(TSecond));
 }

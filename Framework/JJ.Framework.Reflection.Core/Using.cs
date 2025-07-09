@@ -7,6 +7,7 @@ global using System.Threading;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using System.Diagnostics; // For StackTrace
+global using System.Diagnostics.CodeAnalysis;
 global using JetBrains.Annotations;
 global using JJ.Framework.Common.Core;
 global using JJ.Framework.Collections.Core;

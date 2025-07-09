@@ -15,7 +15,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<(Type, string), PropertyInfo?> _propertyDictionary = new();
         private readonly object _propertyDictionaryLock = new();
 
-        public PropertyInfo GetProperty(Type type, string name)
+        public PropertyInfo GetProperty([Dyn(AllProperties)] Type type, string name)
         {
             PropertyInfo? property = TryGetProperty(type, name);
             if (property == null)
@@ -25,7 +25,7 @@ namespace JJ.Framework.Reflection.Core
             return property;
         }
 
-        public PropertyInfo? TryGetProperty(Type type, string name)
+        public PropertyInfo? TryGetProperty([Dyn(AllProperties)] Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -50,7 +50,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new();
         private readonly object _propertiesDictionaryLock = new();
 
-        public PropertyInfo[] GetProperties([Dyn(Properties)] Type type)
+        public PropertyInfo[] GetProperties([Dyn(AllProperties)] Type type)
         {
             lock (_propertiesDictionaryLock)
             {
@@ -72,7 +72,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new();
         private readonly object _propertyDictionaryDictionaryLock = new();
 
-        public Dictionary<string, PropertyInfo> GetPropertyDictionary([Dyn(Properties)] Type type)
+        public Dictionary<string, PropertyInfo> GetPropertyDictionary([Dyn(AllProperties)] Type type)
         {
             lock (_propertyDictionaryDictionaryLock)
             {
@@ -95,7 +95,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<(Type, string), FieldInfo?> _fieldDictionary = new();
         private readonly object _fieldDictionaryLock = new();
 
-        public FieldInfo GetField(Type type, string name)
+        public FieldInfo GetField([Dyn(AllFields)] Type type, string name)
         {
             FieldInfo? field = TryGetField(type, name);
             if (field == null)
@@ -105,7 +105,7 @@ namespace JJ.Framework.Reflection.Core
             return field;
         }
 
-        public FieldInfo? TryGetField(Type type, string name)
+        public FieldInfo? TryGetField([Dyn(AllFields)] Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -130,7 +130,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<Type, FieldInfo[]> _fieldsDictionary = new();
         private readonly object _fieldsDictionaryLock = new();
 
-        public FieldInfo[] GetFields(Type type)
+        public FieldInfo[] GetFields([Dyn(AllFields)] Type type)
         {
             lock (_fieldsDictionaryLock)
             {
@@ -153,7 +153,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo?> _indexerDictionary = new();
         private readonly object _indexerDictionaryLock = new();
 
-        public PropertyInfo GetIndexer([Dyn(Properties)] Type type, params Type[] parameterTypes)
+        public PropertyInfo GetIndexer([Dyn(AllProperties)] Type type, params Type[] parameterTypes)
         {
             PropertyInfo? property = TryGetIndexer(type, parameterTypes);
             if (property == null)
@@ -163,7 +163,7 @@ namespace JJ.Framework.Reflection.Core
             return property;
         }
 
-        public PropertyInfo? TryGetIndexer([Dyn(Properties)] Type type, params Type[] parameterTypes)
+        public PropertyInfo? TryGetIndexer([Dyn(AllProperties)] Type type, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
@@ -198,7 +198,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo?> _methodDictionary = new();
         private readonly object _methodDictionaryLock = new();
 
-        public MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
+        public MethodInfo GetMethod([Dyn(AllMethods)] Type type, string name, params Type[] parameterTypes)
         {
             MethodInfo? method = TryGetMethod(type, name, parameterTypes);
             if (method == null)
@@ -208,7 +208,7 @@ namespace JJ.Framework.Reflection.Core
             return method;
         }
 
-        public MethodInfo? TryGetMethod(Type type, string name, params Type[] parameterTypes)
+        public MethodInfo? TryGetMethod([Dyn(AllMethods)] Type type, string name, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
@@ -238,7 +238,7 @@ namespace JJ.Framework.Reflection.Core
 
         private readonly object _methodWithTypeArgumentsDictionaryLock = new();
 
-        public MethodInfo GetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        public MethodInfo GetMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
             if (typeArguments.Length == 0) return GetMethod(type, name, parameterTypes);
@@ -254,7 +254,7 @@ namespace JJ.Framework.Reflection.Core
             return method;
         }
 
-        public MethodInfo? TryGetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        public MethodInfo? TryGetMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
             if (typeArguments.Length == 0) return TryGetMethod(type, name, parameterTypes);
@@ -282,7 +282,11 @@ namespace JJ.Framework.Reflection.Core
             }
         }
 
-        private MethodInfo? TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        //[RequiresDynamicCode(GenericMethods)]
+        //[NoTrim(GenericMethods)]
+        [UnconditionalSuppressMessage("Trimmer", "IL2060", Justification = "Only closed generic methods that are used can be reflected; RequiresUnreferencedCode omitted.")]
+        [UnconditionalSuppressMessage("Trimmer", "IL3050", Justification = "Only closed generic methods that are used can be reflected; RequiresDynamicCode omitted.")]
+        private MethodInfo? TryResolveGenericMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name, Ordinal))
                                                         .Where(x => ArgTypesMatch(x, parameterTypes))
@@ -344,7 +348,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new();
         private readonly object _methodsDictionaryLock = new();
 
-        public MethodInfo[] GetMethods(Type type)
+        public MethodInfo[] GetMethods([Dyn(AllMethods)] Type type)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -447,7 +451,7 @@ namespace JJ.Framework.Reflection.Core
         private readonly Dictionary<Type, ConstructorInfo> _constructorDictionary = new();
         private readonly object _constructorDictionaryLock = new();
 
-        public ConstructorInfo GetConstructor(Type type)
+        public ConstructorInfo GetConstructor([Dyn(AllConstructors)] Type type)
         {
             lock (_constructorDictionaryLock)
             {
@@ -479,88 +483,88 @@ namespace JJ.Framework.Reflection.Core
 
         // Generic Overloads
 
-        public MethodInfo GetMethod<TArg1>(Type type, string name)
+        public MethodInfo GetMethod<TArg1>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
-        public MethodInfo GetMethod<TArg1, TArg2>(Type type, string name)
+        public MethodInfo GetMethod<TArg1, TArg2>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2) ]);
 
-        public MethodInfo GetMethod<TArg1, TArg2, TArg3>(Type type, string name)
+        public MethodInfo GetMethod<TArg1, TArg2, TArg3>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
-        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4>(Type type, string name)
+        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
-        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type, string name)
+        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
-        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type, string name)
+        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
-        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
+        public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
-        public MethodInfo? TryGetMethod<TArg1>(Type type, string name)
+        public MethodInfo? TryGetMethod<TArg1>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
-        public MethodInfo? TryGetMethod<TArg1, TArg2>(Type type, string name)
+        public MethodInfo? TryGetMethod<TArg1, TArg2>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ] , [ typeof(TArg1), typeof(TArg2) ]);
 
-        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3>(Type type, string name)
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
-        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4>(Type type, string name)
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
-        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type, string name)
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
-        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type, string name)
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
-        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
-        public PropertyInfo GetIndexer<TArg1>([Dyn(Properties)] Type type)
+        public PropertyInfo GetIndexer<TArg1>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2>([Dyn(Properties)] Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3>([Dyn(Properties)] Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(Properties)] Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(Properties)] Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(Properties)] Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
 
-        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(Properties)] Type type)
+        public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
 
-        public PropertyInfo? TryGetIndexer<TArg1>([Dyn(Properties)] Type type)
+        public PropertyInfo? TryGetIndexer<TArg1>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2>([Dyn(Properties)] Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3>([Dyn(Properties)] Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(Properties)] Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(Properties)] Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(Properties)] Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
 
-        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(Properties)] Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
     }
 }

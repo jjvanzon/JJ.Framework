@@ -8,9 +8,13 @@ namespace JJ.Framework.SharedProject.Core;
 internal static class DynamicallyAccessedMemberTypesEx
 {
     /// <inheritdoc cref="_properties" />
-    public const DynamicallyAccessedMemberTypes Properties = PublicProperties | NonPublicProperties;
+    public const DynamicallyAccessedMemberTypes AllProperties = PublicProperties | NonPublicProperties;
+    public const DynamicallyAccessedMemberTypes AllFields = PublicFields | NonPublicFields;
+    public const DynamicallyAccessedMemberTypes AllConstructors = PublicConstructors | NonPublicConstructors;
+    public const DynamicallyAccessedMemberTypes AllCtors = PublicConstructors | NonPublicConstructors;
+    public const DynamicallyAccessedMemberTypes DefaultConstructor = PublicParameterlessConstructor;
     public const DynamicallyAccessedMemberTypes DefaultCtor = PublicParameterlessConstructor;
-    public const DynamicallyAccessedMemberTypes PublicCtor = PublicConstructors;
-    public const DynamicallyAccessedMemberTypes Methods = PublicMethods | NonPublicMethods;
+    public const DynamicallyAccessedMemberTypes PublicCtors = PublicConstructors;
+    public const DynamicallyAccessedMemberTypes AllMethods = PublicMethods | NonPublicMethods;
 }
 

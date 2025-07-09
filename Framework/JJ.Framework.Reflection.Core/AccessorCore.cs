@@ -17,7 +17,7 @@ public partial class AccessorCore
         _typesInHierarchy = _type.GetTypesInHierarchy();
     }
 
-    public AccessorCore(Type type, params ICollection<object?> constructArgs)
+    public AccessorCore([Dyn(Interfaces | PublicCtors)] Type type, params ICollection<object?> constructArgs)
     {
         _type = type ?? throw new NullException(() => type);
         _typesInHierarchy = type.GetTypesInHierarchy();
@@ -31,7 +31,7 @@ public partial class AccessorCore
         Obj = NewOrNull(_type, constructArgs);
     }
     
-    private object? NewOrNull(Type type, ICollection<object?> constructArgs)
+    private object? NewOrNull([Dyn(PublicCtors)] Type type, ICollection<object?> constructArgs)
     {
         if (constructArgs == null) throw new NullException(() => constructArgs);
         var constructorTypes = TypesFromObjects(constructArgs);
@@ -190,13 +190,11 @@ public partial class AccessorCore
     // With Name + Params
 
     /// <inheritdoc cref="_call" />
-    [Prio(3)]
-    public object? Call([Caller] string name = "")
+    [Prio(3)] public object? Call([Caller] string name = "")
         => CallCore(name);
 
     /// <inheritdoc cref="_call" />
-    [Prio(3)] 
-    public object? Call(
+    [Prio(3)] public object? Call(
         string name,
         params ICollection<object?> args)
         => CallCore(name, args);
@@ -339,6 +337,7 @@ public partial class AccessorCore
         => ResolveMethod(name, args, [], []).Invoke(Obj, args.ToArray());
 
     /// <inheritdoc cref="_call" />
+    //[NoTrim(StackTraceMethod)]
     private object? CallCore(
         string name,
         ICollection<object?> args,
@@ -400,7 +399,7 @@ public partial class AccessorCore
             foreach (Type type in _typesInHierarchy)
             {
                 MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, argTypesFromStack, typeArgs.ToArray());
-                if (method != null) return method;
+               if (method != null) return method;
             }
         }
 

@@ -6,15 +6,18 @@
 This package may clash with `JJ.Framework.Configuration`.
 The assembly name and namespace of `ConfigurationSectionHandler` class have remained unchanged, so your configs won't break,
 
+```xml
     <AssemblyName>JJ.Framework.Configuration</AssemblyName>
     <PackageId>JJ.Framework.Configuration.Legacy</PackageId>
+```
 
-
+```cs
 //#pragma warning disable CS1584
 //#pragma warning disable CS1581
 //#pragma warning disable CS1580
+```
 
-
+```xml
   <!--<PropertyGroup Condition="$(TargetFramework)!='net461'">-->
 
           <!--Condition="'$(PublishDir)'!='' And '$(Configuration)'=='Release'">-->
@@ -42,6 +45,9 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
 
 
     <!--<TrimmerRootDescriptor>notrim.xml</TrimmerRootDescriptor>-->
+```
+
+```cs
 
 //namespace JJ.Framework.Tests.Trimming.Core;
 
@@ -85,3 +91,16 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
 //        }
 //    }
 //}
+
+            #pragma warning disable IL2026 // Requires unreferenced code
+            #pragma warning restore IL2026
+
+
+                #pragma warning disable IL2072 // Dyn(PublicMethods)
+                #pragma warning restore IL2072 // Dyn(PublicMethods)
+    
+    [UnconditionalSuppressMessage("Trimmer", "IL2026", Justification = "stackFrame.GetMethod() heuristic inspection; Dyn(PublicMethods) omitted.")]
+    [UnconditionalSuppressMessage("Trimmer", "IL2072", Justification = "Dyn(PublicMethods) hard to enforce for specific types 
+    here.")]
+
+```
