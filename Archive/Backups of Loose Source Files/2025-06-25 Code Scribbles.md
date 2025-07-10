@@ -109,7 +109,28 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
 //RunTests<Obsolete.PlatformHelper_Obsolete_Tests           >().ForEach(WriteLine); WriteLine();
 
 => NotNull(testClasses).ForEach(x => RunTests(x, messages));
+
+    private static string FormatMessages(IList<string> messages)
+    {
+        var sb = new StringBuilder();
+
+        foreach (string message in messages)
+        {
+            if (message != null)
+            {
+                sb.Append($"{message}, ");
+            }
+            else
+            {
+                sb.Append("<null>, ");
+            }
+        }
+
+        string formattedMessages = sb.ToString().TrimEnd(", ");
+
+        return formattedMessages;
+    }
+
 ```
 
 
- 

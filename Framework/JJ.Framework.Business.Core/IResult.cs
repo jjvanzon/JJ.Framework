@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace JJ.Framework.Business.Core;
+﻿namespace JJ.Framework.Business.Core;
 
 public interface IResult
 {

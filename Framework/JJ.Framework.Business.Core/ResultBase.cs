@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-
+﻿
 namespace JJ.Framework.Business.Core;
 
-[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 public abstract class ResultBase : IResult
 {
+    public override string ToString() => DebuggerDisplay(this);
+
     public bool Successful { get; set; }
 
     private IList<string> _messages = new List<string>();
@@ -20,6 +18,4 @@ public abstract class ResultBase : IResult
         get => _messages;
         set => _messages = value ?? throw new ArgumentNullException(nameof(value));
     }
-
-    private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 }
