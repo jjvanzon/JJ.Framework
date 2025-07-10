@@ -19,6 +19,7 @@
       "Framework\\JJ.Framework.PlatformCompatibility.Core.Tests\\JJ.Framework.PlatformCompatibility.Core.Tests.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Core\\JJ.Framework.PlatformCompatibility.Core.shproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Tests\\JJ.Framework.PlatformCompatibility.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.PlatformCompatibility.Trimming.TestApp\\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility\\JJ.Framework.PlatformCompatibility.Legacy.csproj",
       "Framework\\JJ.Framework.Reflection.Core.Tests.Helpers\\JJ.Framework.Reflection.Core.Tests.Helpers.csproj",
       "Framework\\JJ.Framework.Reflection.Core.Tests\\JJ.Framework.Reflection.Core.Tests.csproj",
@@ -28,7 +29,6 @@
       "Framework\\JJ.Framework.SharedProject.Core\\JJ.Framework.SharedProject.Core.shproj",
       "Framework\\JJ.Framework.Testing.Core\\JJ.Framework.Testing.Core.csproj",
       "Framework\\JJ.Framework.Testing\\JJ.Framework.Testing.Legacy.csproj",
-      "Framework\\JJ.Framework.Tests.Trimming.Core\\JJ.Framework.Tests.Trimming.Core.csproj",
       "Framework\\JJ.Framework.Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj"
     ]
