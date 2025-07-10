@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Business.Core\JJ.Framework.Business.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj" />

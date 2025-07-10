@@ -152,6 +152,9 @@ public interface IResult
     
     #endif
 }
+
+    //private static readonly IList<string> DefaultMessages = Empty<string>();
+
 ```
 
 
