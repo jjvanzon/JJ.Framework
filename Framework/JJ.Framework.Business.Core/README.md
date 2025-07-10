@@ -4,9 +4,13 @@ JJ.Framework.Business.Core
 Result Types
 ------------
 
-An elegant way of returning data, along with a `Successful` flag and a list of messages.
+An elegant way to return data, status and messages from your operations:
 
-- `IResult`
-- `ResultBase` 
-- `VoidResult` 
-- `Result<T>`
+- `IResult`  
+    - Common interface for result types.
+- `ResultBase`
+    - Base class with core properties: `Successful` and `Messages`.
+- `VoidResult`
+    - Use when there's no return value, just success / failure info.
+- `Result<T>`  
+    - Returns data along with the status metadata.
