@@ -2,7 +2,7 @@
 
 public static class Throw
 {
-    public static T NotNull<T>([NotNull] T x, [ArgExpress(nameof(x))] string expression = "")
+    public static T NotNull<T>([NotNull] T? x, [ArgExpress(nameof(x))] string expression = "")
     {
         if (x == null)
         {
