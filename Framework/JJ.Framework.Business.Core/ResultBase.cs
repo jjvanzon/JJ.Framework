@@ -1,5 +1,4 @@
-﻿
-namespace JJ.Framework.Business.Core;
+﻿namespace JJ.Framework.Business.Core;
 
 public abstract class ResultBase : IResult
 {
@@ -7,15 +6,15 @@ public abstract class ResultBase : IResult
 
     public bool Successful { get; set; }
 
-    private IList<string> _messages = new List<string>();
+    private IList<string> _messages;
 
-    public ResultBase() { }
-    public ResultBase(params string[] messages) => Messages = messages;
+    public ResultBase() => _messages = [ ];
+    public ResultBase(params string[] messages) => _messages = NotNull(messages);
 
     /// <inheritdoc />
     public IList<string> Messages
     {
         get => _messages;
-        set => _messages = value ?? throw new ArgumentNullException(nameof(value));
+        set => _messages = NotNull(value);
     }
 }

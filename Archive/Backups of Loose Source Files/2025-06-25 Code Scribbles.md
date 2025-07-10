@@ -131,6 +131,27 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
         return formattedMessages;
     }
 
+    } = EmptyMessages;
+    private static string[] EmptyMessages = [ ];
+
+namespace JJ.Framework.Business.Core;
+
+public interface IResult
+{
+    bool Successful { get; set; }
+
+    /// <summary> not nullable, auto-instantiated </summary>
+    
+    #if NETFRAMEWORK || NETSTANDARD2_0
+    
+    IList<string> Messages { get; set; }
+    
+    #else
+    
+    IList<string> Messages { get => [ ]; set { } } 
+    
+    #endif
+}
 ```
 
 
