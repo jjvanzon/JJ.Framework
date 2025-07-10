@@ -8,6 +8,21 @@
 namespace JJ.Framework.Testing.Core.docs;
 
 /// <summary>
+/// <para>
+/// A limited replacement MSTest's Assert class when
+/// you can't depend on MSTest for some reasons,
+/// but still have to include code depending on it.
+/// The Assert class checks the state of things for use in automated testing.
+/// </para>
+/// 
+/// <para>
+/// Note: Only a subset of Assert methods are currently implemented. Additional methods will be added on demand.
+/// </para>
+/// </summary>
+/// <inheritdoc cref="_mstestless" />
+public struct _assert;
+
+/// <summary>
 /// Can function as a single collection, but also as a collection of collections, <br/>
 /// and a helper for using structured test Cases. <br/>
 /// Provides integration with MSTest using DynamicData for parameterized data-driven testing. <br/><br/>
@@ -51,11 +66,21 @@ public struct _casetemplate;
 /// </summary>
 public struct _deltadirection;
 
+/// <inheritdoc cref="_mstestless" />
+public struct _gettestmethodattribute;
+
 /// <summary>
 /// <c>From</c>, <c>Init</c> and <c>Source</c> are synonyms.
 /// </summary>
 public struct _from;
 
+/// <remarks>
+/// We wanted to run tests in a console app.
+/// But referencing MSTest hijacked the Main method,
+/// making us unable to use MSTest there altogether.
+/// These alternatives were added to mitigate the situation.
+/// </remarks>
+public struct _mstestless;
         
 /// <summary>
 /// Asserts not only that the value isn't null,
@@ -65,6 +90,9 @@ public struct _from;
 /// <param name="expected">The value ret is expected to have.</param>
 /// <param name="ret">Expression whose return type should not be nullable.</param>
 public struct _nonullret;
+
+/// <summary> Not supported in MSTestless. </summary>
+public struct _testmethodexecute;
 
 /// <summary>
 /// Asserts that even when a value is filled in,
@@ -93,21 +121,29 @@ public struct _nullret;
 public struct _strict;
 
 /// <summary>
+/// Replacement for the TestClass attribute from MSTest,
+/// for in places where you can't rely on MSTest,
+/// but still have to include code that relies on it somehow.
+/// </summary>
+/// <inheritdoc cref="_mstestless" />
+public struct _testclass;
+
+/// <summary>
+/// Replacement for the TestMethod attribute from MSTest,
+/// for in places where you can't rely on MSTest,
+/// but still have to include code that relies on it somehow.
+/// </summary>
+/// <inheritdoc cref="_mstestless" />
+public struct _testmethod;
+
+/// <summary>
+/// A simple test runner that discovers and runs tests.
+/// Use this if other test tech is out of the question.
+/// </summary>
+/// <inheritdoc cref="_mstestless" />
+public struct _testrunner;
+
+/// <summary>
 /// <c>To</c>, <c>Value</c>, <c>Val</c> and <c>Dest</c> are synonyms.
 /// </summary>
 public struct _to;
-
-/// <summary>
-/// <para>
-/// A simple test runner that discovers and runs tests.
-/// Use this if other test tech is out of the question.
-/// </para>
-/// 
-/// <para>
-/// We wanted to run tests in a console app.
-/// But referencing MSTest hijacked the Main method,
-/// making us unable to use MSTest there altogether.
-/// This alternative test runner was added as part of the solution.
-/// </para>
-/// </summary>
-public struct _testrunner;
