@@ -11,6 +11,7 @@
       "Framework\\JJ.Framework.Common\\JJ.Framework.Common.Legacy.csproj",
       "Framework\\JJ.Framework.Configuration.Core\\JJ.Framework.Configuration.Core.csproj",
       "Framework\\JJ.Framework.Configuration\\JJ.Framework.Configuration.Legacy.csproj",
+      "Framework\\JJ.Framework.Exceptions.Core\\JJ.Framework.Exceptions.Core.csproj",
       "Framework\\JJ.Framework.Existence.Core.Tests\\JJ.Framework.Existence.Core.Tests.csproj",
       "Framework\\JJ.Framework.Existence.Core\\JJ.Framework.Existence.Core.csproj",
       "Framework\\JJ.Framework.IO.Core\\JJ.Framework.IO.Core.csproj",
