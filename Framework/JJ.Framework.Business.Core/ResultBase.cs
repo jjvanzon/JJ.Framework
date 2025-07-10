@@ -5,19 +5,19 @@ public abstract class ResultBase : IResult
 {
     public override string ToString() => DebuggerDisplay(this);
 
-    private const bool DefaultSuccessful = true;
+    private const bool DefaultSuccess = true;
 
-    public bool Successful { get; set; }
+    public bool Success { get; set; }
 
     private IList<string> _messages;
 
-    public ResultBase() : this(DefaultSuccessful, [ ]) { }
-    public ResultBase(bool successful) : this(successful, [ ]) { }
-    public ResultBase(params IEnumerable<string> messages) : this(DefaultSuccessful, messages) { }
-    public ResultBase(IEnumerable<string> messages, bool successful) : this(successful, messages) { }
-    public ResultBase(bool successful, params IEnumerable<string> messages)
+    public ResultBase() : this(DefaultSuccess, [ ]) { }
+    public ResultBase(bool success) : this(success, [ ]) { }
+    public ResultBase(params IEnumerable<string> messages) : this(DefaultSuccess, messages) { }
+    public ResultBase(IEnumerable<string> messages, bool success) : this(success, messages) { }
+    public ResultBase(bool success, params IEnumerable<string> messages)
     {
-        Successful = successful;
+        Success = success;
         _messages = NotNull(messages).ToList();
     }
 

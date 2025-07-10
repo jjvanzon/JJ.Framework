@@ -2,7 +2,7 @@
 
 public interface IResult
 {
-    bool Successful { get; set; }
+    bool Success { get; set; }
 
     /// <summary> not nullable, auto-instantiated </summary>
     IList<string> Messages { get; set; }

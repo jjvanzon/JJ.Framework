@@ -12,13 +12,13 @@ internal static class DiagnosticsFormatter
 
         sb.Append($"{{{result.GetType().Name}}}");
 
-        if (result.Successful)
+        if (result.Success)
         {
-            sb.Append($" {nameof(result.Successful)}");
+            sb.Append($" {nameof(result.Success)}");
         }
         else
         {
-            sb.Append($" Not {nameof(result.Successful)}");
+            sb.Append($" Not {nameof(result.Success)}");
         }
 
         if (result.Messages != null)
