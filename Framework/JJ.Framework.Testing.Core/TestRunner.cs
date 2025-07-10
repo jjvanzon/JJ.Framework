@@ -5,49 +5,36 @@ namespace JJ.Framework.Testing.Core;
 /// <inheritdoc cref="_testrunner" />
 public static class TestRunner
 {
-    [NoTrim(MisingTypes)]
-    public static IList<string> RunTests() => RunTests(GetExecutingAssembly());
+    [NoTrim(TypesMising)]
+    public static IList<string> RunTests() => RunTests(GetCallingAssembly());
 
-    [NoTrim(MisingTypes)]
+    [NoTrim(TypesMising)]
     public static IList<string> RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
 
-    [NoTrim(MisingTypes)]
-    public static Type[] GetTestClasses(Assembly assembly)
-    {
-        ThrowIfNull(assembly);
-        return assembly.GetTypes().Where(IsTestClass).ToArray();
-    }
+    [NoTrim(TypesMising)]
+    public static Type[] GetTestClasses(Assembly assembly) => NotNull(assembly).GetTypes().Where(IsTestClass).ToArray();
 
     [NoTrim(TypeArray)]
-    public static IList<string> RunTests(Type[] testClasses)
-    {
-        ThrowIfNull(testClasses);
-        return RunTests(testClasses, [ ]);
-    }
+    public static IList<string> RunTests(Type[] testClasses) => RunTests(NotNull(testClasses), [ ]);
 
     [NoTrim(TypeArray)]
     private static IList<string> RunTests(Type[] testClasses, List<string> messages)
     {
-        foreach (Type testClass in testClasses)
+        foreach (var testClass in testClasses)
         {
-            ThrowIfNull(testClass);
             RunTests(testClass, messages);
         }
 
         return messages;
     }
 
-    public static IList<string> RunTests<[Dyn(PublicMethods | DefaultCtor)] T>() => RunTests(typeof(T));
-
-    public static IList<string> RunTests([Dyn(PublicMethods | DefaultCtor)] Type testClass)
-    {
-        ThrowIfNull(testClass);
-        return RunTests(testClass, [ ]);
-    }
-
+    public  static IList<string> RunTests<[Dyn(PublicMethods | DefaultCtor)] T>() => RunTests(typeof(T));
+    public  static IList<string> RunTests([Dyn(PublicMethods | DefaultCtor)] Type testClass) => RunTests(NotNull(testClass), [ ]);
     private static IList<string> RunTests([Dyn(PublicMethods | DefaultCtor)] Type testClass, List<string> messages)
     {
-        messages.Add($"Running tests in {testClass.Name}...");
+        NotNull(testClass);
+
+        messages.Add($"Running {testClass.Name}...");
 
         var methods = testClass.GetMethods(Public | Instance).Where(IsTestMethod).ToArray();
         
@@ -74,6 +61,5 @@ public static class TestRunner
     }
     
     private static bool IsTestClass(Type x) => x.GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("TestClass"));
-
     private static bool IsTestMethod(MethodInfo x) => x.GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("TestMethod"));
 }

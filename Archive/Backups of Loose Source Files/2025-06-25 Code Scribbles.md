@@ -108,5 +108,8 @@ The assembly name and namespace of `ConfigurationSectionHandler` class have rema
 //RunTests<Obsolete.PlatformExtensions_Obsolete_Tests       >().ForEach(WriteLine); WriteLine();
 //RunTests<Obsolete.PlatformHelper_Obsolete_Tests           >().ForEach(WriteLine); WriteLine();
 
+=> NotNull(testClasses).ForEach(x => RunTests(x, messages));
 ```
 
+
+ 

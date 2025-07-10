@@ -10,5 +10,4 @@ public static class Throw
         }
         return x;
     }
-
 }
