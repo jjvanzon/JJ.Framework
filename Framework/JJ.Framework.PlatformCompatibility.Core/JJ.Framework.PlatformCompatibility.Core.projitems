@@ -15,10 +15,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)DynamicallyAccessedMemberTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExceptionSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IsExternalInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Lock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NotNull.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NotNullWhen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OverloadResolutionPriority.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompilerFeatureRequired.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RequiredMember.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RequiresDynamicCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RequiresUnreferencedCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnconditionalSuppressMessage.cs" />

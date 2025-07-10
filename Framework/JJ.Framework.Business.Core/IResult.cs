@@ -1,0 +1,11 @@
+﻿using System.Collections.Generic;
+
+namespace JJ.Framework.Business.Core;
+
+public interface IResult
+{
+    bool Successful { get; set; }
+
+    /// <summary> not nullable, auto-instantiated </summary>
+    IList<string> Messages { get; set; }
+}

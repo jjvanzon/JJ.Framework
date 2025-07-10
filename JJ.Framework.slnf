@@ -3,6 +3,7 @@
     "path": "JJ.Framework.sln",
     "projects": [
       "Framework\\JJ.Framework.Build\\JJ.Framework.Build.csproj",
+      "Framework\\JJ.Framework.Business.Core\\JJ.Framework.Business.Core.csproj",
       "Framework\\JJ.Framework.Collections.Core\\JJ.Framework.Collections.Core.csproj",
       "Framework\\JJ.Framework.Common.Core.Tests.Helpers\\JJ.Framework.Common.Core.Tests.Helpers.csproj",
       "Framework\\JJ.Framework.Common.Core.Tests\\JJ.Framework.Common.Core.Tests.csproj",
