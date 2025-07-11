@@ -58,7 +58,7 @@ namespace JJ.Framework.Presentation.WinForms.Legacy
             "System.Drawing.Design.UITypeEditor")]
         public string Description
         {
-            get { return simpleFileProcessControl.Description; ; }
+            get { return simpleFileProcessControl.Description; }
             set { simpleFileProcessControl.Description = value; }
         }
 

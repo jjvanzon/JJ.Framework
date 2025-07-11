@@ -52,12 +52,14 @@ namespace JJ.Framework.Persistence.Legacy.NHibernate
         {
             SqlCommand command = SqlCommandHelper.CreateSqlCommand(_sqlConnection, sqlEnum, parameters);
 
+            #pragma warning disable CS0618 // Obsolete: ISession.Transaction
             if (!_session.Transaction.IsActive)
             {
                 _session.Transaction.Begin();
             }
 
             _session.Transaction.Enlist(command);
+            #pragma warning restore CS0618
 
             return command;
         }

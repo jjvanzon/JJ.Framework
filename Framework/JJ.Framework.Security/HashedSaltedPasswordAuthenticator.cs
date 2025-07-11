@@ -56,9 +56,11 @@ namespace JJ.Framework.Security.Legacy
 
         public string GenerateSalt()
         {
+            #pragma warning disable SYSLIB0023 // Obsolete: RNGCryptoServiceProvider
             var randomNumberCrypto = new RNGCryptoServiceProvider();
             byte[] saltBytes = new byte[SALT_BYTES_LENGTH];
             randomNumberCrypto.GetBytes(saltBytes);
+            #pragma warning restore CS0618
             string saltString = Convert.ToBase64String(saltBytes);
             return saltString;
         }

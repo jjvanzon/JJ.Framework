@@ -21,12 +21,12 @@
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework</PackageProjectUrl>
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <!-- Strictness for Newer Projects -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">
     <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

@@ -121,7 +121,7 @@ namespace JJ.Framework.Presentation.WinForms.Legacy
         [DefaultValue("")]
         public string FilePath
         {
-            get { return textBoxFilePath.Text; ; }
+            get { return textBoxFilePath.Text; }
             set { textBoxFilePath.Text = value; }
         }
 
@@ -133,7 +133,7 @@ namespace JJ.Framework.Presentation.WinForms.Legacy
             "System.Drawing.Design.UITypeEditor")]
         public string Description
         {
-            get { return labelDescription.Text; ; }
+            get { return labelDescription.Text; }
             set { labelDescription.Text = value; }
         }
 

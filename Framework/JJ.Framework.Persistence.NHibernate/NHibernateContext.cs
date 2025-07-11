@@ -67,10 +67,12 @@ namespace JJ.Framework.Persistence.Legacy.NHibernate
         {
             Flush();
 
+            #pragma warning disable CS0618 // Obsolete: ISession.Transaction
             if (Session.Transaction.IsActive)
             {
                 Session.Transaction.Commit();
             }
+            #pragma warning restore CS0618
 
             _entitiesToDelete.Clear();
             _entitiesToSave.Clear();
