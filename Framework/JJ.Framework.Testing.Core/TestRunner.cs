@@ -66,17 +66,10 @@ public static class TestRunner
 
     private static void RunTest([Dyn(New| PublicMethods)] Type testClass, MethodInfo method, IResult result)
     {
-        NotNull(method).NotNull(result);
         try
         {
-            object? instance = CreateInstance(testClass);
-            if (instance == null)
-            {
-                result.Success = false;
-                result.Messages.Add($"{method.Name} failed: Could not create instance of {testClass.Name}.");
-                return;
-            }
-
+            NotNull(method).NotNull(result);
+            object instance = CreateTestInstance(testClass);
             method.Invoke(instance, null);
             result.Messages.Add($"{method.Name} passed.");
         }
@@ -85,5 +78,12 @@ public static class TestRunner
             result.Success = false;
             result.Messages.Add($"{method.Name} failed: {ex}");
         }
+    }
+
+    private static object CreateTestInstance([Dyn(New)] Type testClass)
+    {
+        object? instance = CreateInstance(testClass);
+        ThrowIfNull(instance);
+        return instance;
     }
 }
