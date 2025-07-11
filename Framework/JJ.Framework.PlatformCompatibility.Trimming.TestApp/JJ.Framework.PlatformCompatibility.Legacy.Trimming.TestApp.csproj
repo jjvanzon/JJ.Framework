@@ -33,10 +33,11 @@
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <!--<TargetFrameworks>net9.0;net8.0;net7.0</TargetFrameworks>-->
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
+    <Combo>$(TargetFramework)|$(RuntimeIdentifier)</Combo>
   </PropertyGroup>
 
-  <!-- TODO: Vary per TFM/runtime combo -->
-  <PropertyGroup Condition="'$(TargetFramework)'=='net9.0' And '$(RuntimeIdentifier)'=='win-x64'">
+  <PropertyGroup Condition="'$(Combo)'=='net9.0|win-x64'">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -44,7 +45,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' And '$(RuntimeIdentifier)'=='win-x64'">
+  <PropertyGroup Condition="'$(Combo)'=='net8.0|win-x64'">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -52,6 +53,23 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Combo)'=='net9.0|linux-arm64'">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <!--<PublishSingleFile>True</PublishSingleFile>-->
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Combo)'=='net8.0|linux-arm64'">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <!--<PublishSingleFile>True</PublishSingleFile>-->
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+  
   <PropertyGroup>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)\</PublishDir>
