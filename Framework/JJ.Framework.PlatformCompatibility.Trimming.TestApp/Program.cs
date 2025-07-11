@@ -10,6 +10,5 @@ RunTests<XDocument_XElement_PlatformSafe_Tests>(result);
 result.Messages.ForEach(WriteLine);
 
 WriteLine("Done.");
-ReadKey();
 
 if (!result.Success) Exit(1);
