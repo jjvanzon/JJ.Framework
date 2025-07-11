@@ -157,4 +157,16 @@ public interface IResult
 
 ```
 
+### Syntax sugar for TestRunner
+
+```
+var result = RunTests<CultureInfo_PlatformSafe_Tests,
+                      Encoding_PlatformSafe_Tests,
+                      MemberTypes_PlatformSafe_Tests,
+                      PropertyInfo_GetValue_PlatformSafe_Tests,
+                      Type_GetInterface_PlatformSafe_Tests,
+                      XDocument_XElement_PlatformSafe_Tests>();
+
+```
+
 
