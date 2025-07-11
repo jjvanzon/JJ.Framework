@@ -159,7 +159,7 @@ public interface IResult
 
 ### Syntax sugar for TestRunner
 
-```
+```cs
 var result = RunTests<CultureInfo_PlatformSafe_Tests,
                       Encoding_PlatformSafe_Tests,
                       MemberTypes_PlatformSafe_Tests,
@@ -170,3 +170,7 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
 ```
 
 
+```cs
+    [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "No reflection")]
+    public const DynamicallyAccessedMemberTypes DefaultConstructor = PublicParameterlessConstructor;
+```

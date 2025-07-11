@@ -2,9 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net9.0;net8.0;net7.0</TargetFrameworks>
+    <TargetFramework>net9.0</TargetFramework>
+    <!--<TargetFrameworks>net9.0</TargetFrameworks>-->
+    <!--<TargetFrameworks>net9.0;net8.0</TargetFrameworks>-->
+    <!--<TargetFrameworks>net9.0;net8.0;net7.0</TargetFrameworks>-->
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
