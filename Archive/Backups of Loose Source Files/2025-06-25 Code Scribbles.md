@@ -174,3 +174,24 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
     [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "No reflection")]
     public const DynamicallyAccessedMemberTypes DefaultConstructor = PublicParameterlessConstructor;
 ```
+
+```xml
+    <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
+
+  <PropertyGroup Condition="'$(Combo)'=='net9.0|linux-arm64'">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <!--<PublishSingleFile>True</PublishSingleFile>-->
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Combo)'=='net8.0|linux-arm64'">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <!--<PublishSingleFile>True</PublishSingleFile>-->
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+```

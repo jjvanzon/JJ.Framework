@@ -11,18 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Helpers\*.cs" Link="Helpers\%(Filename)%(Extension)" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO.Core\JJ.Framework.IO.Core.csproj" />
-  </ItemGroup>
-
-  <!-- Tests -->
-  <ItemGroup>
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Helpers\*.cs" Link="Helpers\%(Filename)%(Extension)" />
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\*.cs" />
   </ItemGroup>
 
   <!-- Publish -->
@@ -34,10 +33,9 @@
     <!--<TargetFrameworks>net9.0;net8.0;net7.0</TargetFrameworks>-->
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
-    <Combo>$(TargetFramework)|$(RuntimeIdentifier)</Combo>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Combo)'=='net9.0|win-x64'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='net9.0'">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -45,42 +43,39 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Combo)'=='net8.0|win-x64'">
+  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0'">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
     <!--<PublishSingleFile>True</PublishSingleFile>-->
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Combo)'=='net9.0|linux-arm64'">
-    <SelfContained>True</SelfContained>
-    <PublishTrimmed>True</PublishTrimmed>
-    <PublishAot>True</PublishAot>
-    <!--<PublishSingleFile>True</PublishSingleFile>-->
-    <PublishReadyToRun>True</PublishReadyToRun>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Combo)'=='net8.0|linux-arm64'">
-    <SelfContained>True</SelfContained>
-    <PublishTrimmed>True</PublishTrimmed>
-    <PublishAot>True</PublishAot>
-    <!--<PublishSingleFile>True</PublishSingleFile>-->
-    <PublishReadyToRun>True</PublishReadyToRun>
-  </PropertyGroup>
-
   
   <PropertyGroup>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)\</PublishDir>
     <PublishProtocol>FileSystem</PublishProtocol>
     <_TargetId>Folder</_TargetId>
+    <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)\</PublishDir>
   </PropertyGroup>
 
   <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
 
+  <!--<Target Name="PublishWinX64" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
+    <MSBuild Projects="$(MSBuildProjectFile)" 
+             Targets="Publish" 
+             Properties="RuntimeIdentifier=win-x64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
+  </Target>-->
+
+  <!-- Error: Cross-OS native compilation is not supported. -->
+  <!--
+  <Target Name="PublishLinuxArm64" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" 
+             Properties="RuntimeIdentifier=linux-arm64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\linux-arm64\;NoBuild=true" />
+  </Target>
+  -->
+  
   <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="'$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
