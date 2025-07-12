@@ -15,7 +15,7 @@ namespace JJ.Framework.Reflection.Legacy
         private Stack<object> _stack;
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(DynamicArrayCreation)]
+        [NoTrim(ExpressionsWithArrays)]
         #endif
         public IList<object> GetValues(Expression expression)
         {
@@ -25,7 +25,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(DynamicArrayCreation)]
+        [NoTrim(ExpressionsWithArrays)]
         #endif
         public object GetValue(Expression expression)
         {
@@ -275,9 +275,7 @@ namespace JJ.Framework.Reflection.Legacy
             _stack.Push(arrayElement);
         }
 
-        #if !NET9_0_OR_GREATER
-        [Suppress("Trimmer", "IL3050", Justification = DynamicArrayCreation)]
-        #endif
+        [Suppress("Trimmer", "IL3050", Justification = ExpressionsWithArrays)]
         protected virtual void VisitNewArray(NewArrayExpression node)
         {
             for (int i = 0; i < node.Expressions.Count; i++)
@@ -286,11 +284,13 @@ namespace JJ.Framework.Reflection.Legacy
             }
 
             //Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
-            // Alternative works with Trimmable libs.
+            // Alternative works for Trimmable libs.
             #if NET9_0_OR_GREATER
-            Array array = Array.CreateInstanceFromArrayType(node.Type, node.Expressions.Count);
+                Array array = Array.CreateInstanceFromArrayType(node.Type, node.Expressions.Count);
             #else
-            Array array = Array.CreateInstance(node.Type.GetElementType()!, node.Expressions.Count);
+                #pragma warning disable IL3050 // Requires unreferenced code: Already enforced higher up the stack.
+                Array array = Array.CreateInstance(node.Type.GetElementType()!, node.Expressions.Count);
+                #pragma warning restore IL3050
             #endif
 
             for (int i = node.Expressions.Count - 1; i >= 0; i--)

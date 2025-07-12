@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.PlatformCompatibility.Tests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
     [TestClass]
     public class CultureInfo_PlatformSafe_Tests
     {

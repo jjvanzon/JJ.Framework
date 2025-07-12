@@ -212,5 +212,14 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
         
         [return: Dyn(Interfaces)]
         static Type DynInterfaces([Dyn(Interfaces)] Type type) => type;
+
+        [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
+
+        #if !NET9_0_OR_GREATER
+        [Suppress("Trimmer", "IL3050", Justification = ExpressionsWithArrays)]
+        #endif
+
+        [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
 ```
+
 

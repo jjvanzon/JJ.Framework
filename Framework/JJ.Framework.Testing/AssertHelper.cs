@@ -37,6 +37,9 @@ namespace JJ.Framework.Testing.Legacy
 
         // TODO: The code below has not been reviewed (as of 2014-06-11).
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void NotEqual<T>(T a, Expression<Func<T>> bExpresion)
         {
             T b = ExpressionHelper.GetValue(bExpresion);
@@ -50,46 +53,73 @@ namespace JJ.Framework.Testing.Legacy
             }
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression)
         {
             ExpectedActualCheck((actual) => Object.Equals(expected, actual), "AreEqual", expected, actualExpression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression)
         {
             ExpectedActualCheck((actual) => Object.ReferenceEquals(expected, actual), "AreSame", expected, actualExpression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void IsTrue(Expression<Func<bool>> expression)
         {
             Check(x => x == true, "IsTrue", expression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void IsFalse(Expression<Func<bool>> expression)
         {
             Check(x => x == false, "IsFalse", expression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void IsNull(Expression<Func<object>> expression)
         {
             Check(x => x == null, "IsNull", expression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void IsNotNull(Expression<Func<object>> expression)
         {
             Check(x => x != null, "IsNotNull", expression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void IsNullOrEmpty(Expression<Func<string>> expression)
         {
             Check(x => String.IsNullOrEmpty(x), "IsNullOrEmpty", expression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void NotNullOrEmpty(Expression<Func<string>> expression)
         {
             Check(x => !String.IsNullOrEmpty(x), "NotNullOrEmpty", expression);
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void IsOfType<T>(Expression<Func<object>> expression)
         {
             object obj = ExpressionHelper.GetValue(expression);
@@ -101,6 +131,7 @@ namespace JJ.Framework.Testing.Legacy
 
         // ThrowsException Checks
 
+        [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
         public static void ThrowsException(Action statement, string expectedMessage)
         {
             try
@@ -109,13 +140,16 @@ namespace JJ.Framework.Testing.Legacy
             }
             catch (Exception ex)
             {
+                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
                 AreEqual(expectedMessage, () => ex.Message);
+                #pragma warning restore IL2026 
                 return;
             }
 
             throw new Exception("An exception should have been raised.");
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
         public static void ThrowsException(Action statement, Type exceptionType)
         {
             try
@@ -124,13 +158,16 @@ namespace JJ.Framework.Testing.Legacy
             }
             catch (Exception ex)
             {
+                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
                 AreEqual(exceptionType, () => ex.GetType());
+                #pragma warning restore IL2026 
                 return;
             }
 
             throw new Exception("An exception should have been raised.");
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
         public static void ThrowsException(Action statement, Type exceptionType, string expectedMessage)
         {
             try
@@ -139,8 +176,10 @@ namespace JJ.Framework.Testing.Legacy
             }
             catch (Exception ex)
             {
+                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
                 AreEqual(exceptionType, () => ex.GetType());
                 AreEqual(expectedMessage, () => ex.Message);
+                #pragma warning restore IL2026 
                 return;
             }
 
@@ -194,6 +233,9 @@ namespace JJ.Framework.Testing.Legacy
             }
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         private static void ExpectedActualCheck<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression)
         {
             T actual = (T)ExpressionHelper.GetValue(actualExpression);
@@ -215,6 +257,9 @@ namespace JJ.Framework.Testing.Legacy
             }
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ExpressionsWithArrays)]
+        #endif
         public static void Check<T>(Func<T, bool> condition, string methodName, Expression<Func<T>> expression)
         {
             T value = ExpressionHelper.GetValue(expression);
