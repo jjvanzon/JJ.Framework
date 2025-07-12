@@ -15,5 +15,6 @@ internal static class DynamicallyAccessedMemberTypesEx
     public const DynamicallyAccessedMemberTypes New = PublicParameterlessConstructor;
     public const DynamicallyAccessedMemberTypes PublicCtors = PublicConstructors;
     public const DynamicallyAccessedMemberTypes AllMethods = PublicMethods | NonPublicMethods;
+    public const DynamicallyAccessedMemberTypes PropsFieldsMethods = AllProperties | AllFields | AllMethods;
 }
 

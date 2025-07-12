@@ -38,4 +38,4 @@ global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 global using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 global using static JJ.Framework.Testing.Core.TestHelperCore;
 global using static JJ.Framework.Testing.Core.DebuggerDisplayFormatter;
-global using static JJ.Framework.Testing.Core.NoTrimReasons;
+global using static JJ.Framework.SharedProject.Core.NoTrimReasons;

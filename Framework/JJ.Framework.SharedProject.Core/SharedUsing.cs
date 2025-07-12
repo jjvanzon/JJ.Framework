@@ -3,3 +3,4 @@ global using NoTrim = System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAt
 global using Prio = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 global using Caller = System.Runtime.CompilerServices.CallerMemberNameAttribute;
 global using ArgExpress = System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+global using Suppress = System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute;

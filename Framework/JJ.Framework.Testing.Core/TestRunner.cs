@@ -16,7 +16,7 @@ public static class TestRunner
 
     // Get
 
-    [NoTrim(TypesMising)]
+    [NoTrim(GetTypes)]
     public static ICollection<Type> GetTestClasses(Assembly assembly) 
         => NotNull(assembly).GetExportedTypes().Where(IsTestClass).ToArray();
 
@@ -29,8 +29,8 @@ public static class TestRunner
 
     // Run
 
-    [NoTrim(TypesMising)] public static IResult RunTests() => RunTests(GetCallingAssembly());
-    [NoTrim(TypesMising)] public static IResult RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
+    [NoTrim(GetTypes)] public static IResult RunTests() => RunTests(GetCallingAssembly());
+    [NoTrim(GetTypes)] public static IResult RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
 
     [NoTrim(TypeCollection)] public static IResult RunTests(ICollection<Type> testClasses) => RunTests(testClasses, new Result());
     [NoTrim(TypeCollection)] public static IResult RunTests(ICollection<Type> testClasses, IResult result)
