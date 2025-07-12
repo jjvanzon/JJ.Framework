@@ -175,8 +175,15 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
     public const DynamicallyAccessedMemberTypes DefaultConstructor = PublicParameterlessConstructor;
 ```
 
+### MSBuild Targeting Options
+
 ```xml
-    <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
+    <!--<TargetFramework>net9.0</TargetFramework>-->
+    <!--<TargetFrameworks>net9.0</TargetFrameworks>-->
+
+    <Combo>$(TargetFramework)|$(RuntimeIdentifier)</Combo>
+  <PropertyGroup Condition="'$(Combo)'=='net9.0|win-x64'">
+  <PropertyGroup Condition="'$(Combo)'=='net8.0|win-x64'">
 
   <PropertyGroup Condition="'$(Combo)'=='net9.0|linux-arm64'">
     <SelfContained>True</SelfContained>
@@ -194,4 +201,16 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
+
+    <TargetFramework>net7.0</TargetFramework>
+
 ```
+
+### Dyn(Interfaces) on PropertyInfo and Such (does not work)
+
+```cs
+        
+        [return: Dyn(Interfaces)]
+        static Type DynInterfaces([Dyn(Interfaces)] Type type) => type;
+```
+

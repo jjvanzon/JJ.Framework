@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.PlatformCompatibility;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -13,6 +14,9 @@ namespace JJ.Framework.Reflection.Legacy
         private IList<object> _list;
         private Stack<object> _stack;
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public IList<object> GetValues(Expression expression)
         {
             GetValue(expression);
@@ -20,6 +24,9 @@ namespace JJ.Framework.Reflection.Legacy
             return _list;
         }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public object GetValue(Expression expression)
         {
             _list = new List<object>();
@@ -268,6 +275,9 @@ namespace JJ.Framework.Reflection.Legacy
             _stack.Push(arrayElement);
         }
 
+        #if !NET9_0_OR_GREATER
+        [Suppress("Trimmer", "IL3050", Justification = DynamicArrayCreation)]
+        #endif
         protected virtual void VisitNewArray(NewArrayExpression node)
         {
             for (int i = 0; i < node.Expressions.Count; i++)
@@ -276,7 +286,12 @@ namespace JJ.Framework.Reflection.Legacy
             }
 
             //Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
-            Array array = Array.CreateInstance(node.Type.GetElementType()!, node.Expressions.Count); // Alternative works with Trimmable libs.
+            // Alternative works with Trimmable libs.
+            #if NET9_0_OR_GREATER
+            Array array = Array.CreateInstanceFromArrayType(node.Type, node.Expressions.Count);
+            #else
+            Array array = Array.CreateInstance(node.Type.GetElementType()!, node.Expressions.Count);
+            #endif
 
             for (int i = node.Expressions.Count - 1; i >= 0; i--)
             {

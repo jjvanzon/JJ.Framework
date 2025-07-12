@@ -41,25 +41,27 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_getitemtype" />
+        [NoTrim(PropertyType)]
         public static Type GetItemType(this PropertyInfo collectionProperty)
         {
             return ReflectionHelper.GetItemType(collectionProperty);
         }
 
         /// <inheritdoc cref="_getitemtype" />
+        [NoTrim(ObjectGetType)]
         public static Type GetItemType(this object collection)
         {
             return ReflectionHelper.GetItemType(collection);
         }
 
         /// <inheritdoc cref="_getitemtype" />
-        public static Type GetItemType(this Type collectionType)
+        public static Type GetItemType([Dyn(Interfaces)] this Type collectionType)
         {
             return ReflectionHelper.GetItemType(collectionType);
         }
 
         /// <inheritdoc cref="_getitemtype" />
-        public static Type TryGetItemType(this Type collectionType)
+        public static Type TryGetItemType([Dyn(Interfaces)] this Type collectionType)
         {
             return ReflectionHelper.TryGetItemType(collectionType);
         }

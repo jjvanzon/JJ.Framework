@@ -27,10 +27,9 @@
   <!-- Publish -->
 
   <PropertyGroup>
-    <!--<TargetFramework>net9.0</TargetFramework>-->
-    <!--<TargetFrameworks>net9.0</TargetFrameworks>-->
-    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
-    <!--<TargetFrameworks>net9.0;net8.0;net7.0</TargetFrameworks>-->
+
+    <!--<TargetFrameworks>net9.0;net8.0</TargetFrameworks>-->
+    <TargetFrameworks>net9.0;net8.0;net7.0</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
   </PropertyGroup>
@@ -50,6 +49,14 @@
     <!--<PublishSingleFile>True</PublishSingleFile>-->
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net7.0'">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <!--<PublishSingleFile>True</PublishSingleFile>-->
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
   
   <PropertyGroup>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -61,6 +68,8 @@
   <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
+  
+  <!-- Multi-OS Experiment -->
 
   <!--<Target Name="PublishWinX64" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
     <MSBuild Projects="$(MSBuildProjectFile)" 

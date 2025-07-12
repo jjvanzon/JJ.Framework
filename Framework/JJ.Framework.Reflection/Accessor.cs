@@ -16,10 +16,13 @@ namespace JJ.Framework.Reflection.Legacy
     public class Accessor
     {
         private readonly object _object;
+
+        [Dyn(PropsFieldsMethods)]
         private readonly Type _objectType;
 
         /// <summary> Use this constructor to access instance members. </summary>
         /// <inheritdoc cref="_accessor" />
+        [NoTrim(ObjectGetType)]
         public Accessor(object obj)
         {
             if (obj == null) throw new NullException(() => obj);
@@ -30,7 +33,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary> Use this constructor to access static members. </summary>
         /// <inheritdoc cref="_accessor" />
-        public Accessor(Type objectType)
+        public Accessor([Dyn(PropsFieldsMethods)] Type objectType)
         {
             if (objectType == null) throw new NullException(() => objectType);
 
@@ -39,7 +42,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary> Use this constructor to access members of the base class. </summary>
         /// <inheritdoc cref="_accessor" />
-        public Accessor(object obj, Type objectType)
+        public Accessor(object obj, [Dyn(PropsFieldsMethods)] Type objectType)
         {
             if (obj == null) throw new NullException(() => obj);
             if (objectType == null) throw new NullException(() => objectType);

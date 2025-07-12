@@ -1,17 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net7.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
     <Description>For expressions and reflection. Turn lambdas into text: "myParam.MyList[i].MyProperty". Extract structured method call data: { "MyMethod", Parameters = { "myParameter", int, 3 } }. Find types and implementations for plug-ins. Access private members with Accessors. Use ReflectionCache for fast access to properties, fields, methods and indexers. Includes helpers like IsIndexer, IsStatic and more!</Description>
     <PackageTags>Reflection; Expressions; Plug-Ins; Accessor; ReflectionCache; IsIndexer; IsStatic; GetItemType; GetTypeByShortName; TypesFromObjects; GetImplementations; GetProperties; GetFields; GetMethods; GetIndexer; GetConstructor; IsAssignableFrom; IsAssignableTo; Helpers; Lambda; Extensions; Utility</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
   </ItemGroup>
+
+  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
 </Project>

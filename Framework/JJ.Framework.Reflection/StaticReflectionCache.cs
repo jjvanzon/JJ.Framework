@@ -22,7 +22,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _fieldsIndexLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
+        public static FieldInfo[] GetFields([Dyn(AllFields)] Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
             lock (_fieldsIndexLock)
             {
@@ -44,7 +44,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _fieldIndexLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static FieldInfo GetField(Type type, string name)
+        public static FieldInfo GetField([Dyn(AllFields)] Type type, string name)
         {
             FieldInfo field = TryGetField(type, name);
             if (field == null)
@@ -55,7 +55,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static FieldInfo TryGetField(Type type, string name)
+        public static FieldInfo TryGetField([Dyn(AllFields)] Type type, string name)
         {
             lock (_fieldIndexLock)
             {
@@ -79,7 +79,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _propertiesIndexLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
+        public static PropertyInfo[] GetProperties([Dyn(AllProperties)] Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
             lock (_propertiesIndexLock)
             {
@@ -101,7 +101,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _propertyIndexLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static PropertyInfo GetProperty(Type type, string name)
+        public static PropertyInfo GetProperty([Dyn(AllProperties)] Type type, string name)
         {
             PropertyInfo property = TryGetProperty(type, name);
             if (property == null)
@@ -112,7 +112,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static PropertyInfo TryGetProperty(Type type, string name)
+        public static PropertyInfo TryGetProperty([Dyn(AllProperties)] Type type, string name)
         {
             lock (_propertyIndexLock)
             {
@@ -136,7 +136,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _indexerIndexLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
+        public static PropertyInfo GetIndexer([Dyn(AllProperties)] Type type, params Type[] parameterTypes)
         {
             PropertyInfo property = TryGetIndexer(type, parameterTypes);
             if (property == null)
@@ -147,7 +147,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static PropertyInfo TryGetIndexer(Type type, params Type[] parameterTypes)
+        public static PropertyInfo TryGetIndexer([Dyn(AllProperties)] Type type, params Type[] parameterTypes)
         {
             if (parameterTypes == null) throw new NullException(() => parameterTypes);
             if (parameterTypes.Length == 0) throw new ArgumentException("parameterTypes cannot be empty.");
@@ -182,7 +182,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _methodsIndexLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static MethodInfo[] GetMethods(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
+        public static MethodInfo[] GetMethods([Dyn(AllMethods)] Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
             lock (_methodsIndexLock)
             {
@@ -204,7 +204,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static object _methodDictionaryLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
+        public static MethodInfo GetMethod([Dyn(AllMethods)] Type type, string name, params Type[] parameterTypes)
         {
             MethodInfo method = TryGetMethod(type, name, parameterTypes);
             if (method == null)
@@ -215,7 +215,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_reflectioncache" />
-        public static MethodInfo TryGetMethod(Type type, string name, params Type[] parameterTypes)
+        public static MethodInfo TryGetMethod([Dyn(AllMethods)] Type type, string name, params Type[] parameterTypes)
         {
             if (parameterTypes == null) throw new NullException(() => parameterTypes);
             

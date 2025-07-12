@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace JJ.Framework.Reflection.Legacy
@@ -91,6 +92,9 @@ namespace JJ.Framework.Reflection.Legacy
         /// and both static and instance member access.
         /// </summary>
         /// <inheritdoc cref="_getvalue" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public static T GetValue<T>(Expression<Func<T>> expression)
         {
             return (T)GetValue((LambdaExpression)expression);
@@ -103,6 +107,9 @@ namespace JJ.Framework.Reflection.Legacy
         /// and both static and instance member access.
         /// </summary>
         /// <inheritdoc cref="_getvalue" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public static object GetValue(LambdaExpression expression)
         {
             return GetValue(expression.Body);
@@ -115,6 +122,9 @@ namespace JJ.Framework.Reflection.Legacy
         /// and both static and instance member access.
         /// </summary>
         /// <inheritdoc cref="_getvalue" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public static object GetValue(Expression expression)
         {
             if (expression == null) throw new NullException(() => expression);
@@ -127,18 +137,27 @@ namespace JJ.Framework.Reflection.Legacy
         // GetValues
 
         /// <inheritdoc cref="_getvalue" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public static IList<object> GetValues<T>(Expression<Func<T>> expression)
         {
             return GetValues((LambdaExpression)expression);
         }
 
         /// <inheritdoc cref="_getvalue" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public static IList<object> GetValues(LambdaExpression expression)
         {
             return GetValues(expression.Body);
         }
 
         /// <inheritdoc cref="_getvalue" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public static IList<object> GetValues(Expression expression)
         {
             if (expression == null) throw new NullException(() => expression);
@@ -150,31 +169,55 @@ namespace JJ.Framework.Reflection.Legacy
 
         // GetText
 
+        /// <inheritdoc cref="_gettext" />
+        public static string GetText<T>(Expression<Func<T>> expression) => GetText((LambdaExpression)expression);
+
         /// <param name="showIndexerValues">
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
         /// "MyArray[2]" instead of "MyArray[i]".
         /// </param>
         /// <inheritdoc cref="_gettext" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(WhenShowIndexerValues)]
+        #endif
         public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
         {
             return GetText((LambdaExpression)expression, showIndexerValues);
         }
 
-        /// <param name="showIndexerValues">
-        /// If you set this to true, an expression like MyArray[i] will translate to e.g.
-        /// "MyArray[2]" instead of "MyArray[i]".
-        /// </param>
         /// <inheritdoc cref="_gettext" />
-        public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
-        {
-            return GetText(expression.Body, showIndexerValues);
-        }
+        #if !NET9_0_OR_GREATER
+        [Suppress("Trimmer", "IL2026", Justification = WhenShowIndexerValues)]
+        #endif
+        public static string GetText(LambdaExpression expression) => GetText(expression, showIndexerValues: false);
 
         /// <param name="showIndexerValues">
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
         /// "MyArray[2]" instead of "MyArray[i]".
         /// </param>
         /// <inheritdoc cref="_gettext" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(WhenShowIndexerValues)]
+        #endif
+        public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
+        {
+            return GetText(expression.Body, showIndexerValues);
+        }
+
+        /// <inheritdoc cref="_gettext" />
+        #if !NET9_0_OR_GREATER
+        [Suppress("Trimmer", "IL2026", Justification = WhenShowIndexerValues)]
+        #endif
+        public static string GetText(Expression expression) => GetText(expression, showIndexerValues: false);
+
+        /// <param name="showIndexerValues">
+        /// If you set this to true, an expression like MyArray[i] will translate to e.g.
+        /// "MyArray[2]" instead of "MyArray[i]".
+        /// </param>
+        /// <inheritdoc cref="_gettext" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(WhenShowIndexerValues)]
+        #endif
         public static string GetText(Expression expression, bool showIndexerValues = false)
         {
             if (expression == null) throw new NullException(() => expression);
@@ -188,6 +231,9 @@ namespace JJ.Framework.Reflection.Legacy
         // GetMethodCallInfo
 
         /// <inheritdoc cref="_methodcallinfo" />
+        #if !NET9_0_OR_GREATER
+        [NoTrim(DynamicArrayCreation)]
+        #endif
         public static MethodCallInfo GetMethodCallInfo(LambdaExpression expression)
         {
             if (expression == null) throw new NullException(() => expression);

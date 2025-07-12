@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
@@ -18,6 +19,9 @@ namespace JJ.Framework.Reflection.Legacy
         /// "MyArray[2]" instead of "MyArray[i]". </summary>
         public bool ShowIndexerValues { get; set; }
 
+        #if !NET9_0_OR_GREATER
+        [NoTrim(WhenShowIndexerValues)]
+        #endif
         public string Execute(Expression expression)
         {
             Visit(expression);
@@ -258,6 +262,9 @@ namespace JJ.Framework.Reflection.Legacy
         /// If ShowIndexerValues is set to true, indexers are translated to their value, e.g. [2].
         /// To translate to their value, the work is delegated to ExpressionToValueTranslator.
         /// </summary>
+        #if !NET9_0_OR_GREATER
+        [Suppress("Trimmer", "IL2026", Justification = WhenShowIndexerValues)]
+        #endif
         protected virtual void VisitIndexerValue(Expression node)
         {
             if (ShowIndexerValues)

@@ -284,8 +284,8 @@ namespace JJ.Framework.Reflection.Core
 
         //[RequiresDynamicCode(GenericMethods)]
         //[NoTrim(GenericMethods)]
-        [UnconditionalSuppressMessage("Trimmer", "IL2060", Justification = "Only closed generic methods that are used can be reflected; RequiresUnreferencedCode omitted.")]
-        [UnconditionalSuppressMessage("Trimmer", "IL3050", Justification = "Only closed generic methods that are used can be reflected; RequiresDynamicCode omitted.")]
+        [Suppress("Trimmer", "IL2060", Justification = "Only closed generic methods that are used can be reflected; RequiresUnreferencedCode omitted.")]
+        [Suppress("Trimmer", "IL3050", Justification = "Only closed generic methods that are used can be reflected; RequiresDynamicCode omitted.")]
         private MethodInfo? TryResolveGenericMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name, Ordinal))
