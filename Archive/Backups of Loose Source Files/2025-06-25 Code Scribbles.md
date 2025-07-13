@@ -220,6 +220,24 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
         #endif
 
         [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
+
 ```
 
+### MSBuild Targeting
 
+```xml
+  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0'">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <!--<PublishSingleFile>True</PublishSingleFile>-->
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+```
+
+### Trimmability Annotations
+
+```cs
+    // TODO: Rename to Assembly or something?
+  //public const string Types = GetTypes;
+```

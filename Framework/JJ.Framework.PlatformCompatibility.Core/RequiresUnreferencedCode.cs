@@ -2,7 +2,8 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-#if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1
+//#if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1
+#if !NET5_0_OR_GREATER
 
 namespace System.Diagnostics.CodeAnalysis;
 

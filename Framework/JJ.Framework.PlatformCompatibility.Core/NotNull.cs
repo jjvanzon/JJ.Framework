@@ -1,6 +1,10 @@
-﻿// ncrunch: no coverage start
+﻿// ReSharper disable RedundantNameQualifier
 
-#if NETFRAMEWORK || NETSTANDARD2_0
+// ncrunch: no coverage start
+
+//#if NETFRAMEWORK || NETSTANDARD2_0
+//#if !NET5_0_OR_GREATER
+#if !NET5_0_OR_GREATER && !NETSTANDARD2_1
 
 namespace System.Diagnostics.CodeAnalysis;
 

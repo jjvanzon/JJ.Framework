@@ -25,7 +25,7 @@ public static partial class Reflect
     }
             
     /// <inheritdoc cref="_typesinhierarchy" />
-    public static void AddTypesInHierarchy<TType>(ICollection<Type> coll) => AddTypesInHierarchy(typeof(TType), coll);
+    public static void AddTypesInHierarchy<[Dyn(Interfaces)] TType>(ICollection<Type> coll) => AddTypesInHierarchy(typeof(TType), coll);
 
     /// <inheritdoc cref="_typesinhierarchy" />
     public static bool HasTypeInHierarchy([Dyn(Interfaces)] Type type, Type secondType)
@@ -111,7 +111,7 @@ public static partial class Reflect
     }
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
-    public static void AddInterfacesInHierarchy<T>(ICollection<Type> coll) => AddInterfacesInHierarchy(typeof(T), coll);
+    public static void AddInterfacesInHierarchy<[Dyn(Interfaces)] T>(ICollection<Type> coll) => AddInterfacesInHierarchy(typeof(T), coll);
 
     /// <inheritdoc cref="_interfacesinhierarchy" />
     public static bool HasInterfaceInHierarchy([Dyn(Interfaces)] Type type, Type secondType)

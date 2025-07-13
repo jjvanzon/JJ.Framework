@@ -8,7 +8,8 @@ namespace JJ.Framework.Configuration.Core
     public static class CustomConfigurationManagerCore
     {
         /// <inheritdoc cref="_trygetsection"/>
-        public static T? TryGetSection<T>(Assembly assembly)
+        [NoTrim(PropertyType + " " + ObjectGetType)]
+        public static T? TryGetSection<[Dyn(AllProperties)] T>(Assembly assembly)
             where T: new()
         {
             T? config = default;
@@ -26,7 +27,8 @@ namespace JJ.Framework.Configuration.Core
         }
         
         /// <inheritdoc cref="_trygetsection"/>
-        public static T? TryGetSection<T>(string sectionName)
+        [NoTrim(PropertyType + " " + ObjectGetType)]
+        public static T? TryGetSection<[Dyn(AllProperties)] T>(string sectionName)
             where T: new()
         {
             T? config = default;
@@ -44,7 +46,8 @@ namespace JJ.Framework.Configuration.Core
         }
         
         /// <inheritdoc cref="_trygetsection"/>
-        public static T? TryGetSection<T>()
+        [NoTrim(PropertyType + " " + ObjectGetType)]
+        public static T? TryGetSection<[Dyn(AllProperties)] T>()
             where T: class, new()
         {
             T? config = null;

@@ -1,6 +1,12 @@
-﻿using JJ.Framework.Collections.Core;
+﻿// Copied from JJ.Framework.Logging from legacy branch,
+// pasted in JJ.Framework.Exceptions.Core: a more fitting place,
+// and prevents unnecessary dependency on JJ.Framework.Configuration.*
 
-namespace JJ.Framework.Logging.Core
+using System.Linq;
+using System.Text;
+
+
+namespace JJ.Framework.Exceptions.Core
 {
     public static class ExceptionHelperLegacy
     {

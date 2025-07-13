@@ -19,6 +19,9 @@ public static partial class AssertCore
         => Check(expected, actual, message, () => !Equals(expected, actual));
     
     /// <inheritdoc cref="_deltadirection" />
+    #if !NET9_0_OR_GREATER
+    [NoTrim(ExpressionsWithArrays)]
+    #endif
     public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
     {
         // Allow negatives to trigger Downward direction automatically
@@ -43,6 +46,9 @@ public static partial class AssertCore
     }
       
     /// <inheritdoc cref="_deltadirection" />
+    #if !NET9_0_OR_GREATER
+    [NoTrim(ExpressionsWithArrays)]
+    #endif
     public static void AreEqual(double expected, Expression<Func<double>> actualExpression, double delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
     {
         // Allow negatives to trigger Downward direction automatically

@@ -43,7 +43,12 @@ public static class TestRunner
 
     public static IResult RunTests<[Dyn(New| PublicMethods)] T>() => RunTests(typeof(T));
     public static IResult RunTests<[Dyn(New| PublicMethods)] T>(IResult result) => RunTests(typeof(T), result);
-    public static IResult RunTests([Dyn(New| PublicMethods)] Type testClass) => RunTests(NotNull(testClass), new Result());
+    public static IResult RunTests([Dyn(New| PublicMethods)] Type testClass)
+    {
+        ThrowIfNull(testClass);
+        return RunTests(testClass, new Result());
+    }
+
     public static IResult RunTests([Dyn(New| PublicMethods)] Type testClass, IResult result)
     {
         ThrowIfNull(testClass);

@@ -46,7 +46,7 @@ public static partial class AssertCore
         }
         catch (Exception ex)
         {
-            AssertHelper.AreEqual(exceptionType, () => ex.GetType());
+            AreEqual(exceptionType, ex.GetType());
             
             foreach (string expectedText in expectedTexts)
             {

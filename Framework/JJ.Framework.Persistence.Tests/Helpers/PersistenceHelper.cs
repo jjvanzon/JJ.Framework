@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Configuration;
 #if NET5_0_OR_GREATER
-using ExceptionHelper = JJ.Framework.Logging.Core.ExceptionHelperLegacy;
+using ExceptionHelper = JJ.Framework.Exceptions.Core.ExceptionHelperLegacy;
 #else
 using JJ.Framework.Logging;
 #endif

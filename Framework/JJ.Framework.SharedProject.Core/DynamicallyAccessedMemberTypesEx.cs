@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿// ReSharper disable RedundantUsingDirective
+using System.Diagnostics.CodeAnalysis;
 using JJ.Framework.SharedProject.Core.docs;
 using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 
@@ -16,5 +17,10 @@ internal static class DynamicallyAccessedMemberTypesEx
     public const DynamicallyAccessedMemberTypes PublicCtors = PublicConstructors;
     public const DynamicallyAccessedMemberTypes AllMethods = PublicMethods | NonPublicMethods;
     public const DynamicallyAccessedMemberTypes PropsFieldsMethods = AllProperties | AllFields | AllMethods;
+
+    #if NET5_0
+    public const DynamicallyAccessedMemberTypes Interfaces = (DynamicallyAccessedMemberTypes)8192;
+    #endif
+    public const DynamicallyAccessedMemberTypes Intf = Interfaces;
 }
 

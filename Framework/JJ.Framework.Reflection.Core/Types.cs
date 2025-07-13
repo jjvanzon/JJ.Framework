@@ -2,7 +2,7 @@
 
 internal static partial class ReflectUtility
 {
-    private static ICollection<Type> TypesAndBases(Type type, BindingFlags bindingFlags)
+    private static ICollection<Type> TypesAndBases([Dyn(Interfaces)] Type type, BindingFlags bindingFlags)
     {
         if (!AllowsHierarchy(bindingFlags)) return [ type ];
         
@@ -16,9 +16,9 @@ internal static partial class ReflectUtility
     }
     
     // TODO: Unfortunate name that clashes with System.Type in case of static using ReflectUtility.
-    private static Type  Type (string shortTypeName                                     , ReflectionCacheLegacy cache) => cache.GetTypeByShortName(shortTypeName);
-    private static Type? Type (string shortTypeName, [UsedImplicitly] NullFlag? nullable, ReflectionCacheLegacy cache) => cache.TryGetTypeByShortName(shortTypeName);
-    private static Type? Type (string shortTypeName, bool                       nullable, ReflectionCacheLegacy cache) => nullable ? cache.TryGetTypeByShortName(shortTypeName) : cache.GetTypeByShortName(shortTypeName);
+    [NoTrim(GetTypes)] private static Type  Type (string shortTypeName                                     , ReflectionCacheLegacy cache) => cache.GetTypeByShortName(shortTypeName);
+    [NoTrim(GetTypes)] private static Type? Type (string shortTypeName, [UsedImplicitly] NullFlag? nullable, ReflectionCacheLegacy cache) => cache.TryGetTypeByShortName(shortTypeName);
+    [NoTrim(GetTypes)] private static Type? Type (string shortTypeName, bool                       nullable, ReflectionCacheLegacy cache) => nullable ? cache.TryGetTypeByShortName(shortTypeName) : cache.GetTypeByShortName(shortTypeName);
     
     [MethodImpl(AggressiveInlining)]
     private static bool AllowsHierarchy(BindingFlags bindingFlags)

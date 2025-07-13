@@ -1,15 +1,17 @@
-﻿namespace JJ.Framework.Reflection.Core;
+﻿
+namespace JJ.Framework.Reflection.Core;
 
 public partial class AccessorCore
 {
     private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
     public object? Obj { get; }
-    private readonly Type _type;
+    [Dyn(Interfaces)] private readonly Type _type;
     private readonly ICollection<Type> _typesInHierarchy;
 
     // Constructors
 
+    [NoTrim(ObjectGetType)]
     public AccessorCore(object obj)
     {
         Obj = obj ?? throw new NullException(() => obj);
@@ -24,6 +26,7 @@ public partial class AccessorCore
         Obj = NewOrNull(type, constructArgs);
     }
 
+    [NoTrim(GetTypes)]
     public AccessorCore(string shortTypeName, params ICollection<object?> constructArgs)
     {
         _type = _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
@@ -42,10 +45,13 @@ public partial class AccessorCore
     // Fields and Properties
 
     /// <inheritdoc cref="_nameexpression" />
+    [NoTrim(TypeColl)]
     public T? Get<T>(Expression<Func<T>> nameLambda) => (T?)Get(GetName(nameLambda));
     
+    [NoTrim(TypeColl)]
     public T? Get<T>([Caller] string name = "") => (T?)Get(name);
     
+    [NoTrim(TypeColl)]
     public object? Get([Caller] string name = "")
     {
         var prop = _type.Prop(name, nullable);
@@ -63,14 +69,17 @@ public partial class AccessorCore
         throw new Exception($"Property or field {name} not found in {_type.Name}.");
     }
     
-    [Prio(1)]
+    [Prio(1), NoTrim(TypeColl)] 
     public void Set<T>(string name, T value) => SetCore(name, value);
     
+    [NoTrim(TypeColl)]
     public void Set<T>(T value, [Caller] string name = "") => SetCore(name, value);
     
     /// <inheritdoc cref="_nameexpression" />
+    [NoTrim(TypeColl)] 
     public void Set<T>(Expression<Func<T>> nameLambda, T value) => SetCore(GetName(nameLambda), value);
     
+    [NoTrim(TypeColl)]
     private void SetCore(string name, object? value)
     {
         var prop = _type.Prop(name, nullable);
@@ -96,12 +105,14 @@ public partial class AccessorCore
     
     public object? this[params ICollection<object?> indices]
     {
+    [   NoTrim(TypeCollection)]
         get
         {
             AssertIndices(indices);
             var property = ResolveIndexer(indices, [ ]);
             return property.GetValue(Obj, indices.ToArray());
         }
+        [NoTrim(TypeCollection)]
         set
         {
             AssertIndices(indices);
@@ -112,6 +123,7 @@ public partial class AccessorCore
     
     // Indexers With Params
     
+    [NoTrim(TypeCollection)]
     public object? Get(params ICollection<object?> indices)
     {
         AssertIndices(indices);
@@ -119,6 +131,7 @@ public partial class AccessorCore
         return property.GetValue(Obj, indices.ToArray());
     }
     
+    [NoTrim(TypeCollection)]
     public void Set(params ICollection<object?> indicesAndValue)
     {
         AssertIndicesAndValue(indicesAndValue);
@@ -132,6 +145,7 @@ public partial class AccessorCore
     
     // Indexers With Collections
     
+    [NoTrim(TypeCollection)]
     public object? Get(ICollection<object?> indices, ICollection<Type?> argTypes)
     {
         AssertIndices(indices);
@@ -139,11 +153,13 @@ public partial class AccessorCore
         return property.GetValue(Obj, indices.ToArray());
     }
 
+    [NoTrim(TypeCollection)]
     public void Set(ICollection<object?> indices, object? value)
         => Set(indices, value, [ ]);
     
     // TODO: Swap argTypes and value? Support both syntaxes? So with value at the end also supported?
     
+    [NoTrim(TypeCollection)]
     public void Set(ICollection<object?> indices, object? value, ICollection<Type?> argTypes)
     {
         AssertIndices(indices);
@@ -171,12 +187,21 @@ public partial class AccessorCore
     // With Lambdas
 
     /// <inheritdoc cref="_call" />
+    #if !NET9_0_OR_GREATER
+    [NoTrim(ExpressionsWithArrays)]
+    #endif
     public void Call(Expression<Action> callLambda) => Call((LambdaExpression)callLambda);
 
     /// <inheritdoc cref="_call" />
+    #if !NET9_0_OR_GREATER
+    [NoTrim(ExpressionsWithArrays)]
+    #endif
     public T? Call<T>(Expression<Func<T>> callLambda) => (T?)Call((LambdaExpression)callLambda);
     
     /// <inheritdoc cref="_call" />
+    #if !NET9_0_OR_GREATER
+    [NoTrim(ExpressionsWithArrays)]
+    #endif
     public object? Call(LambdaExpression callLambda)
     {
         MethodCallInfo info = GetMethodCallInfo(callLambda);
@@ -190,11 +215,11 @@ public partial class AccessorCore
     // With Name + Params
 
     /// <inheritdoc cref="_call" />
-    [Prio(3)] public object? Call([Caller] string name = "")
+    [Prio(3)] [NoTrim(TypeCollection)] public object? Call([Caller] string name = "")
         => CallCore(name);
 
     /// <inheritdoc cref="_call" />
-    [Prio(3)] public object? Call(
+    [Prio(3)] [NoTrim(TypeCollection)] public object? Call(
         string name,
         params ICollection<object?> args)
         => CallCore(name, args);
@@ -202,48 +227,59 @@ public partial class AccessorCore
     // With CallerMemberName
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, [Caller] string name = "")
         => CallCore(name, [ arg1 ]);
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2 ]);
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3 ]);
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4 ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5 ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6 ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7 ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8 ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, object? arg10, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10 ]);
 
     // With Collections
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(
         ICollection<object?> args,
         [Caller] string name = "")
@@ -251,6 +287,7 @@ public partial class AccessorCore
 
     /// <inheritdoc cref="_call" />
     [Prio(1)] 
+    [NoTrim(TypeCollection)] 
     public object? Call(
         string name,
         ICollection<object?> args,
@@ -258,6 +295,7 @@ public partial class AccessorCore
         => CallCore(name, args, argTypes);
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(
         ICollection<object?> args,
         ICollection<Type?> argTypes,
@@ -266,6 +304,7 @@ public partial class AccessorCore
 
     /// <inheritdoc cref="_call" />
     [Prio(1)] 
+    [NoTrim(TypeCollection)] 
     public object? Call(
         string name,
         ICollection<object?> args,
@@ -274,6 +313,7 @@ public partial class AccessorCore
         => CallCore(name, args, argTypes, typeArgs);
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call(
         ICollection<object?> args,
         ICollection<Type?> argTypes,
@@ -284,60 +324,72 @@ public partial class AccessorCore
     // With Type Args
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs:[ typeof(T1), typeof(T2) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3, T4>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3, T4, T5>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3, T4, T5, T6>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3, T4, T5, T6, T7>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3, T4, T5, T6, T7, T8>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8), typeof(T9) ]);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)] 
     public object? Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8), typeof(T9), typeof(T10) ]);
 
     // Helpers
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)]
     private object? CallCore(
         string name)
         => ResolveMethod(name, [], [], []).Invoke(Obj, []);
     
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)]
     private object? CallCore(
         string name,
         ICollection<object?> args)
         => ResolveMethod(name, args, [], []).Invoke(Obj, args.ToArray());
 
     /// <inheritdoc cref="_call" />
-    //[NoTrim(StackTraceMethod)]
+    [NoTrim(TypeCollection)]
     private object? CallCore(
         string name,
         ICollection<object?> args,
@@ -345,6 +397,7 @@ public partial class AccessorCore
         => ResolveMethod(name, args, argTypes, []).Invoke(Obj, args.ToArray());
 
     /// <inheritdoc cref="_call" />
+    [NoTrim(TypeCollection)]
     private object? CallCore(
         string name,
         ICollection<object?> args,
@@ -354,6 +407,7 @@ public partial class AccessorCore
 
     // Super Magic Resolvers
     
+    [NoTrim(TypeCollection)]
     private MethodInfo ResolveMethod(
         string name,
         ICollection<object?> args,
@@ -399,7 +453,7 @@ public partial class AccessorCore
             foreach (Type type in _typesInHierarchy)
             {
                 MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, argTypesFromStack, typeArgs.ToArray());
-               if (method != null) return method;
+                if (method != null) return method;
             }
         }
 
@@ -412,6 +466,7 @@ public partial class AccessorCore
     private static string FormatTypes(ICollection<Type> types) 
         => Join(", ", types.Select(x => $"{x.Name}"));
     
+    [NoTrim(TypeCollection)]
     private PropertyInfo ResolveIndexer(
         ICollection<object?> indices,
         ICollection<Type?> argTypes)

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!--<TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
-    <TargetFrameworks>net9.0;net8.0;net7.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
     <Description>Legacy platform compatibility stubs still linked to by various projects.</Description>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility</RepositoryUrl>    
@@ -11,6 +11,10 @@
 
   <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0'">
     <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0'">
+    <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>

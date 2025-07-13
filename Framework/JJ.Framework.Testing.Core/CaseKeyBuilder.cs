@@ -5,6 +5,7 @@ using System.Text;
 using JJ.Framework.Existence.Core;
 using JJ.Framework.Reflection;
 using JJ.Framework.Reflection.Core;
+using JJ.Framework.SharedProject.Core;
 using static System.String;
 using static JJ.Framework.Existence.Core.FilledInHelper;
 
@@ -87,6 +88,8 @@ namespace JJ.Framework.Testing.Core
             return true;
         }
         
+        [Suppress("Trimmer", "IL2026", Justification = TupleGetType)]
+        [Suppress("Trimmer", "IL2072", Justification = TupleGetType)]
         private IList<string> GetKeyTupleTexts(object? tuple)
         {
             var texts = new List<string>();

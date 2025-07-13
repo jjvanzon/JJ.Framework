@@ -14,16 +14,21 @@ namespace JJ.Framework.Testing.Core
         ICaseProp ICase.MainProp => this;
         
         public IList<ICaseProp> Props
-            => GetCasePropFields().Select(x => x.GetValue(this))
-                                  .Cast<ICaseProp>()
-                                  .Distinct()
-                                  .ToArray();
-        
+        {
+            [Suppress("Trimmer", "IL2026", Justification = FieldType)]
+            get => GetCasePropFields().Select(x => x.GetValue(this))
+                                      .Cast<ICaseProp>()
+                                      .Distinct()
+                                      .ToArray();
+        }
+
+        [NoTrim(FieldType)]
         private IList<FieldInfo> GetCasePropFields()
             => GetType().GetFields(BINDING_FLAGS_ALL)
                         .Where(x => x.FieldType.HasInterfaceInHierarchy<ICaseProp>())
                         .ToArray();
         
+        [NoTrim(FieldType)]
         private void AutoCreateProps() => GetCasePropFields().Where(x => x.GetValue(this) == null)
                                                              .ForEach(x => x.SetValue(this, CreateInstance(x.FieldType)));
         // Descriptions
@@ -31,7 +36,8 @@ namespace JJ.Framework.Testing.Core
         public string Name { get; set; } = "";
         public string Key => new CaseKeyBuilder(this).BuildKey();
         public override string ToString() => Key;
-        public object[] DynamicData => [ Key ];
+        public object[] DynamicData => [Key];
+
         public virtual IList<object> KeyElements { get; } = Empty<object>();
         private string DebuggerDisplay => DebuggerDisplay(this);
 
@@ -91,21 +97,22 @@ namespace JJ.Framework.Testing.Core
 
         // Constructors
 
-        public CaseBase() : base() => Initialize();
-        public CaseBase(TMainProp value) : base(value) => Initialize();
-        public CaseBase(TMainProp? value) : base(value) => Initialize();
-        public CaseBase(TMainProp from, TMainProp to) : base(from, to) => Initialize();
-        public CaseBase(TMainProp from, TMainProp? to) : base(from, to) => Initialize();
-        public CaseBase(TMainProp? from, TMainProp to) : base(from, to) => Initialize();
-        public CaseBase(TMainProp? from, TMainProp? to) : base(from, to) => Initialize();
-        public CaseBase((TMainProp from, TMainProp to) values) : base(values) => Initialize();
-        public CaseBase((TMainProp? from, TMainProp to) values) : base(values) => Initialize();
-        public CaseBase((TMainProp from, TMainProp? to) values) : base(values) => Initialize();
-        public CaseBase((TMainProp? from, TMainProp? to) values) : base(values) => Initialize();
-        public CaseBase(TMainProp from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
-        public CaseBase((TMainProp? nully, TMainProp coalesced) from, TMainProp to) : base(from, to) => Initialize();
-        public CaseBase((TMainProp? nully, TMainProp coalesced) from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
+        [NoTrim(FieldType)] public CaseBase() : base() => Initialize();
+        [NoTrim(FieldType)] public CaseBase(TMainProp value) : base(value) => Initialize();
+        [NoTrim(FieldType)] public CaseBase(TMainProp? value) : base(value) => Initialize();
+        [NoTrim(FieldType)] public CaseBase(TMainProp from, TMainProp to) : base(from, to) => Initialize();
+        [NoTrim(FieldType)] public CaseBase(TMainProp from, TMainProp? to) : base(from, to) => Initialize();
+        [NoTrim(FieldType)] public CaseBase(TMainProp? from, TMainProp to) : base(from, to) => Initialize();
+        [NoTrim(FieldType)] public CaseBase(TMainProp? from, TMainProp? to) : base(from, to) => Initialize();
+        [NoTrim(FieldType)] public CaseBase((TMainProp from, TMainProp to) values) : base(values) => Initialize();
+        [NoTrim(FieldType)] public CaseBase((TMainProp? from, TMainProp to) values) : base(values) => Initialize();
+        [NoTrim(FieldType)] public CaseBase((TMainProp from, TMainProp? to) values) : base(values) => Initialize();
+        [NoTrim(FieldType)] public CaseBase((TMainProp? from, TMainProp? to) values) : base(values) => Initialize();
+        [NoTrim(FieldType)] public CaseBase(TMainProp from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
+        [NoTrim(FieldType)] public CaseBase((TMainProp? nully, TMainProp coalesced) from, TMainProp to) : base(from, to) => Initialize();
+        [NoTrim(FieldType)] public CaseBase((TMainProp? nully, TMainProp coalesced) from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
         
+        [NoTrim(FieldType)]
         private void Initialize() => AutoCreateProps();
     }
 }

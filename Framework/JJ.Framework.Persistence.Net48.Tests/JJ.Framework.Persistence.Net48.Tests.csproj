@@ -155,6 +155,10 @@
       <Project>{37a1cde4-c375-41a2-8268-664edb2d02e4}</Project>
       <Name>JJ.Framework.Configuration.Net48</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Exceptions.Core\JJ.Framework.Exceptions.Core.csproj">
+      <Project>{fd8ff6ae-32ee-4f85-8659-ba39ecf5bc79}</Project>
+      <Name>JJ.Framework.Exceptions.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj">
       <Project>{09619aa6-8e88-4487-bf2c-942c414d69ae}</Project>
       <Name>JJ.Framework.Persistence.Net48.EntityFramework5</Name>

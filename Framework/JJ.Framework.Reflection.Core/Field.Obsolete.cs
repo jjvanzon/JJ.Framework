@@ -9,7 +9,7 @@ public static partial class Reflect
     /// This method is a little safer than that and throws a clear exception if the field does not exist.
     /// </summary>
     [Obsolete("Use Reflect, Reflector or ReflectExtensions instead.", true)]
-    public static FieldInfo GetFieldOrException(Type type, string name)
+    public static FieldInfo GetFieldOrException([Dyn(AllFields)] Type type, string name)
     {
         if (type == null) throw new ArgumentNullException(nameof(type));
         FieldInfo? field = type.GetField(name, BindingFlagsAll);
@@ -27,6 +27,6 @@ public static partial class ReflectExtensions
     /// This method is a little safer than that and throws a clear exception if the field does not exist.
     /// </summary>
     [Obsolete("Use Reflect, Reflector or ReflectExtensions instead.", true)]
-    public static FieldInfo GetFieldOrException(this Type type, string name)
+    public static FieldInfo GetFieldOrException([Dyn(AllFields)] this Type type, string name)
         => Reflect.GetFieldOrException(type, name);
 }

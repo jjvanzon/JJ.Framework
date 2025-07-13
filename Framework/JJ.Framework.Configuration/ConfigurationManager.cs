@@ -12,14 +12,16 @@ namespace JJ.Framework.Configuration.Legacy
 {
     public static class CustomConfigurationManager
     {
-        public static T GetSection<T>()
+        [NoTrim(PropertyType + " " + ObjectGetType)]
+        public static T GetSection<[Dyn(AllProperties)] T>()
             where T : new()
         {
             Assembly assembly = typeof(T).Assembly;
             return GetSection<T>(assembly);
         }
 
-        public static T GetSection<T>(Assembly assembly)
+        [NoTrim(PropertyType + " " + ObjectGetType)]
+        public static T GetSection<[Dyn(AllProperties)] T>(Assembly assembly)
             where T : new()
         {
             string sectionName = assembly.GetName().Name.ToLower();
@@ -29,7 +31,8 @@ namespace JJ.Framework.Configuration.Legacy
         private static object _sectionDictionaryLock = new object();
         private static Dictionary<string, object> _sectionDictionary = new Dictionary<string, object>();
 
-        public static T GetSection<T>(string sectionName)
+        [NoTrim(PropertyType + " " + ObjectGetType)]
+        public static T GetSection<[Dyn(AllProperties)] T>(string sectionName)
             where T : new()
         {
             lock (_sectionDictionaryLock)

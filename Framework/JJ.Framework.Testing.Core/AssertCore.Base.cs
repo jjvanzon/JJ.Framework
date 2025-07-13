@@ -6,11 +6,17 @@ public static partial class AssertCore
 {
     // Generalized Methods
         
+    #if !NET9_0_OR_GREATER
+    [NoTrim(ExpressionsWithArrays)]
+    #endif
     internal static void Check<T>(
         T expected, Expression<Func<T>> actualExpression, 
         Func<T, bool> condition, [CallerMemberName] string methodName = "")
         => Check(expected, actualExpression, "", condition, methodName);
 
+    #if !NET9_0_OR_GREATER
+    [NoTrim(ExpressionsWithArrays)]
+    #endif
     internal static void Check<T>(
         T expected, Expression<Func<T>> actualExpression, string message,
         Func<T, bool> condition, [CallerMemberName] string methodName = "")

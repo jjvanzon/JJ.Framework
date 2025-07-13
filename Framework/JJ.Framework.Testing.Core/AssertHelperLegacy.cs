@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using JJ.Framework.Logging.Core;
+using JJ.Framework.Exceptions.Core;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Testing.Core

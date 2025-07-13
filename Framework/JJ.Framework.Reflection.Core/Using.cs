@@ -9,6 +9,7 @@ global using System.Runtime.CompilerServices;
 global using System.Diagnostics; // For StackTrace
 global using System.Diagnostics.CodeAnalysis;
 global using JetBrains.Annotations;
+global using JJ.Framework.SharedProject.Core;
 global using JJ.Framework.Common.Core;
 global using JJ.Framework.Collections.Core;
 global using JJ.Framework.Existence.Core;
@@ -25,8 +26,9 @@ global using static System.StringComparison;
 global using static System.Reflection.BindingFlags;
 global using static System.Runtime.CompilerServices.MethodImplOptions;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
-global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
+global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
+global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
 global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Collections.Core.StaticEnumerable;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
@@ -51,4 +53,5 @@ global using MethodDic5   = System.Collections.Generic.Dictionary<JJ.Framework.R
 global using MethodDicN   = System.Collections.Generic.Dictionary<JJ.Framework.Reflection.Core.MethodKeyN, System.Reflection.MethodInfo?>;
 //global using MethodDic2 = System.Collections.Generic.Dictionary<JJ.Framework.Reflection.Core.MethodKey2, System.Reflection.MethodInfo?>;
 //global using MethodDic2 = System.Collections.Generic.Dictionary<JJ.Framework.Reflection.Core.NameTypesKey2, System.Reflection.MethodInfo?>;
+
 

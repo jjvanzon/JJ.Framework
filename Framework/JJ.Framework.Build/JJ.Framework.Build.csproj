@@ -11,6 +11,10 @@
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0'">
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="JJ.AutoIncrementVersion" Version="2.4.2417">
       <PrivateAssets>all</PrivateAssets>
