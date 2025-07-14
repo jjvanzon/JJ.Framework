@@ -270,3 +270,7 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
     <!--<IsOuterBuild>$(!([System.String]::IsNullOrEmpty('$(TargetFramework)')))</IsOuterBuild>-->
     <!--<IsInnerBuild>$([System.String]::IsNullOrEmpty('$(TargetFramework)'))</IsInnerBuild>-->
 ```
+
+### TestRunner
+
+          //result.Messages.Add($"{method.Name} starting.");

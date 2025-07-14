@@ -105,7 +105,7 @@ public class PlatformCompatibility_Core_Tests
     // OverloadResolutionPriority
     
     [TestMethod]
-    public void PlatformStub_Create_OverloadResolutionPriority_Create()
+    public void Test_PlatformStub_OverloadResolutionPriority_Create()
     {
         var prio1Attribute = new OverloadResolutionPriorityAttribute(1);
         AreEqual(1, prio1Attribute.Priority);
@@ -115,7 +115,7 @@ public class PlatformCompatibility_Core_Tests
     }
     
     [TestMethod]
-    public void PlatformStub_OverloadResolutionPriority_Implicit()
+    public void Test_PlatformStub_OverloadResolutionPriority_Implicit()
     {
         AreEqual("Overload(A,B)", Overload("A", "B"));
         AreEqual("Overload(A)", Overload("A"));
@@ -126,7 +126,7 @@ public class PlatformCompatibility_Core_Tests
     private string Overload(string text1, string text2 = "C") => $"Overload({text1},{text2})";
     
     [TestMethod]
-    public void PlatformStub_OverloadResolutionPriority_Explicit()
+    public void Test_PlatformStub_OverloadResolutionPriority_Explicit()
     {
         AreEqual("WithPrios(A,B)", WithPrios("A", "B"));
         // Here, OverloadResolutionPriority(1) leads the single-arg call to the two-arg method instead.
