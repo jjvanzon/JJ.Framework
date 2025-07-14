@@ -1,5 +1,7 @@
-﻿using System.Reflection;
+﻿#pragma warning disable CS0067 // Event never used (Directory.Build.props squelch fails)
 // ReSharper disable UnassignedGetOnlyAutoProperty
+
+using System.Reflection;
 
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
