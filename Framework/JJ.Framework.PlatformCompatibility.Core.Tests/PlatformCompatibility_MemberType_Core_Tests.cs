@@ -4,7 +4,7 @@
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
-public class PlatformCompatibility_MemberType_Core_Tests
+public sealed class PlatformCompatibility_MemberType_Core_Tests
 {
     // ncrunch: no coverage start
     
