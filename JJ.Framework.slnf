@@ -19,6 +19,7 @@
       "Framework\\JJ.Framework.IO\\JJ.Framework.IO.Legacy.csproj",
       "Framework\\JJ.Framework.Logging.Core\\JJ.Framework.Logging.Core.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Core.Tests\\JJ.Framework.PlatformCompatibility.Core.Tests.csproj",
+      "Framework\\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Core\\JJ.Framework.PlatformCompatibility.Core.shproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Tests\\JJ.Framework.PlatformCompatibility.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Trimming.TestApp\\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj",

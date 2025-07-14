@@ -2,11 +2,10 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
     <Nullable>disable</Nullable>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,12 +24,5 @@
   
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
-
-  <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
-  </PropertyGroup>
-
 
 </Project>

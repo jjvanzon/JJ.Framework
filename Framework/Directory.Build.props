@@ -37,7 +37,7 @@
   </PropertyGroup>
 
   <Target Name="JJ_Framework_Vars" AfterTargets="Build">
-    <Message Importance="High" Text="IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsTest = $(IsTest) | IsTrimTest=$(IsTrimTest)" />
+    <Message Importance="High" Text="IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" />
     <Message Importance="High" Text="IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9)" />
   </Target>
 
@@ -45,7 +45,7 @@
   <PropertyGroup Condition="$(IsCore)">
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition="$(IsCore) And !$(IsTest)">
+  <PropertyGroup Condition="$(IsCore) And !$(IsTest) And !$(IsTrimTest)">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
     <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
@@ -166,6 +166,14 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
   
+  <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest)">
+    <Message Importance="High" Text="SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" />
+  </Target>
+
+  <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
   <PropertyGroup Condition="$(IsTrimTest)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PublishProtocol>FileSystem</PublishProtocol>
