@@ -29,7 +29,17 @@
     <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
     <IsTest>$(MSBuildProjectName.Contains('Tests'))</IsTest>
     <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
+    <IsNet5>$(TargetFramework.Equals('net5.0'))</IsNet5>
+    <IsNet6>$(TargetFramework.Equals('net6.0'))</IsNet6>
+    <IsNet7>$(TargetFramework.Equals('net7.0'))</IsNet7>
+    <IsNet8>$(TargetFramework.Equals('net8.0'))</IsNet8>
+    <IsNet9>$(TargetFramework.Equals('net9.0'))</IsNet9>
   </PropertyGroup>
+
+  <Target Name="JJ_Framework_Vars" AfterTargets="Build">
+    <Message Importance="High" Text="IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsTest = $(IsTest) | IsTrimTest=$(IsTrimTest)" />
+    <Message Importance="High" Text="IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9)" />
+  </Target>
 
   <!-- Strictness for Newer Projects -->
   <PropertyGroup Condition="$(IsCore)">
@@ -41,8 +51,8 @@
     <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
 
-  <Target AfterTargets="Build" Name="JJ_Framework_Vars">
-    <Message Importance="High" Text="IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsTest = $(IsTest) | IsTrimTest=$(IsTrimTest) | Nullable = $(Nullable) | GenerateDocFile = $(GenerateDocumentationFile)" />
+  <Target Name="JJ_Framework_Vars2" AfterTargets="Build">
+    <Message Importance="High" Text="Nullable = $(Nullable) | GenerateDocFile = $(GenerateDocumentationFile)" />
   </Target>
 
   <!-- Warnings Disabled Globally -->
@@ -131,10 +141,6 @@
   </ItemGroup>
 
   <!-- Publish / Trimming -->
-
-  <!--<PropertyGroup>
-    <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
-  </PropertyGroup>-->
 
   <PropertyGroup Condition="$(IsTrimTest) And ('$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0')">
     <SelfContained>True</SelfContained>

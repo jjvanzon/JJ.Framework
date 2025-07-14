@@ -258,3 +258,5 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
   <!--<PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">-->
   <!--<PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">-->
   <!--<PropertyGroup Condition="$(IsCore) And !$(MSBuildProjectName.Contains('Tests'))">-->
+
+    <!--<IsNet8>$('$(TargetFramework)'=='net8.0')</IsNet8>-->
