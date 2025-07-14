@@ -24,6 +24,8 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <!-- Helper Variables -->
+
   <PropertyGroup>
     <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
     <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
@@ -34,28 +36,18 @@
     <IsNet7>$(TargetFramework.Equals('net7.0'))</IsNet7>
     <IsNet8>$(TargetFramework.Equals('net8.0'))</IsNet8>
     <IsNet9>$(TargetFramework.Equals('net9.0'))</IsNet9>
-    <!--<IsOuterBuild>$(TargetFramework.Equals(''))</IsOuterBuild>-->
-    <!--<IsOuterBuild>$([System.String]::IsNullOrEmpty('$(TargetFramework)')) == false</IsOuterBuild>-->
-    <!--<IsOuterBuild>$([System.String]::IsNullOrEmpty('$(TargetFramework)') == false)</IsOuterBuild>-->
-    <!--<IsOuterBuild>$(![System.String]::IsNullOrEmpty('$(TargetFramework)'))</IsOuterBuild>-->
-    <!--<IsOuterBuild>$(!([System.String]::IsNullOrEmpty('$(TargetFramework)')))</IsOuterBuild>-->
-    <!--<IsInnerBuild>$([System.String]::IsNullOrEmpty('$(TargetFramework)'))</IsInnerBuild>-->
-  </PropertyGroup>
-
-  <PropertyGroup>
     <IsOuterBuild Condition="'$(TargetFramework)'==''">True</IsOuterBuild>
     <IsOuterBuild Condition="'$(TargetFramework)'!=''">False</IsOuterBuild>
     <IsInnerBuild Condition="'$(TargetFramework)'==''">False</IsInnerBuild>
     <IsInnerBuild Condition="'$(TargetFramework)'!=''">True</IsInnerBuild>
   </PropertyGroup>
 
-
-  <Target Name="JJ_Framework_Vars0" BeforeTargets="Build">
+  <Target Name="JJ_Framework_Vars1" BeforeTargets="Build">
+    <Message Importance="High" Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" />
     <Message Importance="High" Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" />
   </Target>
 
-  <Target Name="JJ_Framework_Vars" BeforeTargets="Build">
-    <Message Importance="High" Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" />
+  <Target Name="JJ_Framework_Vars2" BeforeTargets="Build" Condition="$(IsInnerBuild)">
     <Message Importance="High" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9)" />
   </Target>
 
@@ -69,7 +61,7 @@
     <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
 
-  <Target Name="JJ_Framework_Vars2" BeforeTargets="Build">
+  <Target Name="JJ_Framework_Vars3" BeforeTargets="Build">
     <Message Importance="High" Text="$(MSBuildProjectName) > Nullable = $(Nullable) | GenerateDocFile = $(GenerateDocumentationFile)" />
   </Target>
 
@@ -184,7 +176,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
   
-  <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest)">
+  <Target Name="JJ_Framework_Vars4" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <Message Importance="High" Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" />
   </Target>
 
@@ -192,20 +184,20 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest)">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PublishProtocol>FileSystem</PublishProtocol>
     <_TargetId>Folder</_TargetId>
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
-  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And '$(TargetFramework)'!=''">
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
   
   <!-- Multi-OS Experiment -->
 
-  <!--<Target Name="PublishWinX64" AfterTargets="Build" Condition="$(IsTrimTest) And '$(TargetFramework)'!=''">
+  <!--<Target Name="PublishWinX64" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <MSBuild Projects="$(MSBuildProjectFile)" 
              Targets="Publish" 
              Properties="RuntimeIdentifier=win-x64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
@@ -213,7 +205,7 @@
 
   <!-- Error: Cross-OS native compilation is not supported. -->
   <!--
-  <Target Name="PublishLinuxArm64" AfterTargets="Build" Condition="$(IsTrimTest) And '$(TargetFramework)'!=''">
+  <Target Name="PublishLinuxArm64" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" 
              Properties="RuntimeIdentifier=linux-arm64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\linux-arm64\;NoBuild=true" />
   </Target>

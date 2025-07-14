@@ -244,6 +244,7 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
 
 ### NuGet Restore Alternative
 
+```xml
   <!-- Experimental NuGet restore alternative, hopefully faster. -->
   <!-- No speed gain. Gave error while publishing a console app. -->
   <!--
@@ -251,12 +252,21 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
     <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
   </PropertyGroup>
   -->
-
+```
 
 ### Directory.Build.props variablization
 
+```xml
   <!--<PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">-->
   <!--<PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">-->
   <!--<PropertyGroup Condition="$(IsCore) And !$(MSBuildProjectName.Contains('Tests'))">-->
 
     <!--<IsNet8>$('$(TargetFramework)'=='net8.0')</IsNet8>-->
+
+    <!--<IsOuterBuild>$(TargetFramework.Equals(''))</IsOuterBuild>-->
+    <!--<IsOuterBuild>$([System.String]::IsNullOrEmpty('$(TargetFramework)')) == false</IsOuterBuild>-->
+    <!--<IsOuterBuild>$([System.String]::IsNullOrEmpty('$(TargetFramework)') == false)</IsOuterBuild>-->
+    <!--<IsOuterBuild>$(![System.String]::IsNullOrEmpty('$(TargetFramework)'))</IsOuterBuild>-->
+    <!--<IsOuterBuild>$(!([System.String]::IsNullOrEmpty('$(TargetFramework)')))</IsOuterBuild>-->
+    <!--<IsInnerBuild>$([System.String]::IsNullOrEmpty('$(TargetFramework)'))</IsInnerBuild>-->
+```
