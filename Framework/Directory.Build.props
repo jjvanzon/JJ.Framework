@@ -142,7 +142,7 @@
 
   <!-- Publish / Trimming -->
 
-  <PropertyGroup Condition="$(IsTrimTest) And ('$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0')">
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet8) Or $(IsNet9))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -150,7 +150,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And ('$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0')">
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet6) Or $(IsNet7))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <!--<PublishAot>True</PublishAot>-->
@@ -158,7 +158,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And '$(TargetFramework)'=='net5.0'">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet5)">
     <SelfContained>True</SelfContained>
     <!--<PublishTrimmed>True</PublishTrimmed>-->
     <!--<PublishAot>True</PublishAot>-->
