@@ -24,15 +24,26 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
+    <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
+    <IsTest>$(MSBuildProjectName.Contains('Tests'))</IsTest>
+    <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
+  </PropertyGroup>
+
   <!-- Strictness for Newer Projects -->
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">
+  <PropertyGroup Condition="$(IsCore)">
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">
+  <PropertyGroup Condition="$(IsCore) And !$(IsTest)">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
     <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
+
+  <Target AfterTargets="Build" Name="JJ_Framework_Vars">
+    <Message Importance="High" Text="IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsTest = $(IsTest) | IsTrimTest=$(IsTrimTest) | Nullable = $(Nullable) | GenerateDocFile = $(GenerateDocumentationFile)" />
+  </Target>
 
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
@@ -46,7 +57,7 @@
   </PropertyGroup>
 
   <!-- Warnings Disabled for Tests -->
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
+  <PropertyGroup Condition="$(IsTest)">
     <NoWarn>$(NoWarn);CS0219</NoWarn> <!--Unused local variable-->
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
     <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Unused parameter-->
@@ -69,7 +80,7 @@
   </PropertyGroup>
   
   <!-- Warnings Disabled for Legacy Code -->
-  <PropertyGroup Condition="$(MSBuildProjectName.Contains('Legacy'))">
+  <PropertyGroup Condition="$(IsLegacy)">
     <NoWarn>$(NoWarn);IDE0063</NoWarn> <!--Use simple 'using' statement-->
     <NoWarn>$(NoWarn);IDE0034</NoWarn> <!--Simplify 'default' expression-->
     <NoWarn>$(NoWarn);IDE0057</NoWarn> <!--Use range operator-->
@@ -79,14 +90,6 @@
   <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-
-  <!-- Experimental NuGet restore alternative, hopefully faster. -->
-  <!-- No speed gain. Gave error while publishing a console app. -->
-  <!--
-  <PropertyGroup>
-    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
-  </PropertyGroup>
-  -->
   
   <!-- Icon -->
   
@@ -126,5 +129,77 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <!-- Publish / Trimming -->
+
+  <!--<PropertyGroup>
+    <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
+  </PropertyGroup>-->
+
+  <PropertyGroup Condition="$(IsTrimTest) And ('$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0')">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <!--<PublishSingleFile>True</PublishSingleFile>-->
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(IsTrimTest) And ('$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0')">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <!--<PublishAot>True</PublishAot>-->
+    <PublishSingleFile>True</PublishSingleFile>
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(IsTrimTest) And '$(TargetFramework)'=='net5.0'">
+    <SelfContained>True</SelfContained>
+    <!--<PublishTrimmed>True</PublishTrimmed>-->
+    <!--<PublishAot>True</PublishAot>-->
+    <PublishSingleFile>True</PublishSingleFile>
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="$(IsTrimTest)">
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PublishProtocol>FileSystem</PublishProtocol>
+    <_TargetId>Folder</_TargetId>
+    <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)\</PublishDir>
+  </PropertyGroup>
+
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And '$(TargetFramework)'!=''">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
+  </Target>
+  
+  <!-- Multi-OS Experiment -->
+
+  <!--<Target Name="PublishWinX64" AfterTargets="Build" Condition="$(IsTrimTest) And '$(TargetFramework)'!=''">
+    <MSBuild Projects="$(MSBuildProjectFile)" 
+             Targets="Publish" 
+             Properties="RuntimeIdentifier=win-x64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
+  </Target>-->
+
+  <!-- Error: Cross-OS native compilation is not supported. -->
+  <!--
+  <Target Name="PublishLinuxArm64" AfterTargets="Build" Condition="$(IsTrimTest) And '$(TargetFramework)'!=''">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" 
+             Properties="RuntimeIdentifier=linux-arm64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\linux-arm64\;NoBuild=true" />
+  </Target>
+  -->
+  
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And '$(PublishDir)'!=''">
+    <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
+    <Message Importance="High" Text="PublishDir = $(PublishDir)" />
+
+    <ItemGroup><PdbsToDeletejj Include="$(PublishDir)*.pdb" /></ItemGroup>
+    <Message Importance="High" Text="Removing $(PublishDir)*.pdb" />
+    <Message Importance="High" Text="Removing @(PdbsToDeletejj)" />
+    <Delete Files="@(PdbsToDeletejj)" />
+
+    <ItemGroup><XmlsToDeletejj Include="$(PublishDir)*.xml" /></ItemGroup>
+    <Message Importance="High" Text="Removing $(PublishDir)*.xml" />
+    <Message Importance="High" Text="Removing @(XmlsToDeletejj)" />
+    <Delete Files="@(XmlsToDeletejj)" />
+  </Target>
 
 </Project>

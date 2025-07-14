@@ -22,83 +22,15 @@
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO.Core\JJ.Framework.IO.Core.csproj" />
   </ItemGroup>
-
-  <!-- Publish -->
+  
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <PropertyGroup>
-    <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0</TargetFrameworks>-->
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <!--<RuntimeIdentifiers>win-x64;linux-arm64</RuntimeIdentifiers>-->
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0'">
-    <SelfContained>True</SelfContained>
-    <PublishTrimmed>True</PublishTrimmed>
-    <PublishAot>True</PublishAot>
-    <!--<PublishSingleFile>True</PublishSingleFile>-->
-    <PublishReadyToRun>True</PublishReadyToRun>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0'">
-    <SelfContained>True</SelfContained>
-    <PublishTrimmed>True</PublishTrimmed>
-    <!--<PublishAot>True</PublishAot>-->
-    <PublishSingleFile>True</PublishSingleFile>
-    <PublishReadyToRun>True</PublishReadyToRun>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)'=='net5.0'">
-    <SelfContained>True</SelfContained>
-    <!--<PublishTrimmed>True</PublishTrimmed>-->
-    <!--<PublishAot>True</PublishAot>-->
-    <PublishSingleFile>True</PublishSingleFile>
-    <PublishReadyToRun>True</PublishReadyToRun>
-  </PropertyGroup>
-  
-  <PropertyGroup>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <_TargetId>Folder</_TargetId>
-    <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)\</PublishDir>
-  </PropertyGroup>
-
-  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
-  </Target>
-  
-  <!-- Multi-OS Experiment -->
-
-  <!--<Target Name="PublishWinX64" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
-    <MSBuild Projects="$(MSBuildProjectFile)" 
-             Targets="Publish" 
-             Properties="RuntimeIdentifier=win-x64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
-  </Target>-->
-
-  <!-- Error: Cross-OS native compilation is not supported. -->
-  <!--
-  <Target Name="PublishLinuxArm64" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" 
-             Properties="RuntimeIdentifier=linux-arm64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\linux-arm64\;NoBuild=true" />
-  </Target>
-  -->
-  
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="'$(PublishDir)'!=''">
-    <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
-    <Message Importance="High" Text="PublishDir = $(PublishDir)" />
-
-    <ItemGroup><PdbsToDeletejj Include="$(PublishDir)*.pdb" /></ItemGroup>
-    <Message Importance="High" Text="Removing $(PublishDir)*.pdb" />
-    <Message Importance="High" Text="Removing @(PdbsToDeletejj)" />
-    <Delete Files="@(PdbsToDeletejj)" />
-
-    <ItemGroup><XmlsToDeletejj Include="$(PublishDir)*.xml" /></ItemGroup>
-    <Message Importance="High" Text="Removing $(PublishDir)*.xml" />
-    <Message Importance="High" Text="Removing @(XmlsToDeletejj)" />
-    <Delete Files="@(XmlsToDeletejj)" />
-  </Target>
-  
-  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
-  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
 </Project>

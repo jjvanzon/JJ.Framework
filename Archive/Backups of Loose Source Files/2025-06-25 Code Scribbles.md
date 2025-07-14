@@ -241,3 +241,20 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
     // TODO: Rename to Assembly or something?
   //public const string Types = GetTypes;
 ```
+
+### NuGet Restore Alternative
+
+  <!-- Experimental NuGet restore alternative, hopefully faster. -->
+  <!-- No speed gain. Gave error while publishing a console app. -->
+  <!--
+  <PropertyGroup>
+    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
+  </PropertyGroup>
+  -->
+
+
+### Directory.Build.props variablization
+
+  <!--<PropertyGroup Condition="$(MSBuildProjectName.Contains('Core'))">-->
+  <!--<PropertyGroup Condition="$(MSBuildProjectName.Contains('Core')) And !$(MSBuildProjectName.Contains('Tests'))">-->
+  <!--<PropertyGroup Condition="$(IsCore) And !$(MSBuildProjectName.Contains('Tests'))">-->
