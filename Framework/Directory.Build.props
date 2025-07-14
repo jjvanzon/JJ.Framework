@@ -67,7 +67,7 @@
   </PropertyGroup>
 
   <!-- Warnings Disabled for Tests -->
-  <PropertyGroup Condition="$(IsTest)">
+  <PropertyGroup Condition="$(IsTest) Or $(IsTrimTest)">
     <NoWarn>$(NoWarn);CS0219</NoWarn> <!--Unused local variable-->
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
     <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Unused parameter-->

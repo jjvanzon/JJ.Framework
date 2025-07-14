@@ -8,4 +8,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Core.Tests\MSTestSettings.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
+  </ItemGroup>
+
 </Project>
