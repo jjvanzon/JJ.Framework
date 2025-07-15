@@ -24,7 +24,7 @@ for /R "%~dp0Framework" %%F in (*.Trimming.TestApp.exe) do (
     if /I "%%~nxD"=="publish" (
       echo %%F
       echo(
-      "%%F" || exit /b %ERRORLEVEL%
+      "%%F" || (call echo Error code %%ERRORLEVEL%% & exit /b %%ERRORLEVEL%%)
       echo(
     )
   )
