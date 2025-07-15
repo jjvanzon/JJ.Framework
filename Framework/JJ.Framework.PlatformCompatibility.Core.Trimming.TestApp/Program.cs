@@ -12,3 +12,7 @@ result.Messages.ForEach(WriteLine);
 WriteLine("Done.");
 
 if (!result.Success) Exit(1);
+
+// Temporary test if CI fails upon error code
+// TODO: Remove the following code line
+Exit(1);
