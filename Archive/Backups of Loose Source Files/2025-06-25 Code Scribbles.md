@@ -297,3 +297,21 @@ for /F "delims=" %%F in ('dir /B /S "%~dp0Framework\*\publish\*.Trimming.TestApp
 REM 3rd attempt
 REM -----------
 ```
+
+### Azure Pipelines Command Line Task Swallows Error
+
+```bat
+echo call "$(Build.SourcesDirectory)\RunTrimTests.bat"
+echo exit %ERRORLEVEL%
+
+call "$(Build.SourcesDirectory)\RunTrimTests.bat"
+exit %ERRORLEVEL%
+```
+
+```bat
+echo call "$(Build.SourcesDirectory)\RunTrimTests.bat"
+echo exit %%ERRORLEVEL%%
+
+call "$(Build.SourcesDirectory)\RunTrimTests.bat"
+exit %%ERRORLEVEL%%
+```
