@@ -315,3 +315,17 @@ echo exit %%ERRORLEVEL%%
 call "$(Build.SourcesDirectory)\RunTrimTests.bat"
 exit %%ERRORLEVEL%%
 ```
+
+
+```bat
+for /R "%~dp0Framework" %%F in (*.Trimming.TestApp.exe) do (
+  for %%D in ("%%~dpF\.") do (
+    if /I "%%~nxD"=="publish" (
+      echo %%F
+      echo(
+      "%%F" || (call echo Error code %%ERRORLEVEL%% & exit /b %%ERRORLEVEL%%)
+      echo(
+    )
+  )
+)
+```
