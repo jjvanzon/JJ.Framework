@@ -355,3 +355,14 @@ for /R "%~dp0Framework" %%F in (*.Trimming.TestApp.exe) do (
 // TODO: Remove the following code line
 Exit(1);
 ```
+
+### RunTrimTests.bat Outtakes
+
+```bat
+    rem if /I "%%~nxD"=="publish" (
+      REM echo(
+      REM echo(
+
+echo Error code %ERRORLEVEL%
+echo Error code %ERRORLEVEL%
+```
