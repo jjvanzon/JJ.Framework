@@ -333,3 +333,9 @@ for /R "%~dp0Framework" %%F in (*.Trimming.TestApp.exe) do (
 ```bat
       REM "%%F" || (echo Error code %ERRORLEVEL% & goto Failed)
 ```
+
+```cs
+// Temporary test if CI fails upon error code
+// TODO: Remove the following code line
+Exit(1);
+```
