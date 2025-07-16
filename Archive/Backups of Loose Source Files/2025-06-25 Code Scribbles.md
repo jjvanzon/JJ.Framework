@@ -329,3 +329,7 @@ for /R "%~dp0Framework" %%F in (*.Trimming.TestApp.exe) do (
   )
 )
 ```
+
+```bat
+      REM "%%F" || (echo Error code %ERRORLEVEL% & goto Failed)
+```
