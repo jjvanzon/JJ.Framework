@@ -216,6 +216,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Core"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp", "Framework\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj", "{06497D1F-27D7-4472-ADBA-0F244275E199}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Trimming.TestApp", "Framework\JJ.Framework.Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj", "{CE922AD8-BBD3-6C22-1FF3-B2EB7DC4A98E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -590,6 +592,10 @@ Global
 		{06497D1F-27D7-4472-ADBA-0F244275E199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06497D1F-27D7-4472-ADBA-0F244275E199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06497D1F-27D7-4472-ADBA-0F244275E199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE922AD8-BBD3-6C22-1FF3-B2EB7DC4A98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE922AD8-BBD3-6C22-1FF3-B2EB7DC4A98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE922AD8-BBD3-6C22-1FF3-B2EB7DC4A98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE922AD8-BBD3-6C22-1FF3-B2EB7DC4A98E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -689,6 +695,7 @@ Global
 		{FD8FF6AE-32EE-4F85-8659-BA39ECF5BC79} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{44C2CAA1-6147-4732-ABEF-6679519D238A} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{06497D1F-27D7-4472-ADBA-0F244275E199} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{CE922AD8-BBD3-6C22-1FF3-B2EB7DC4A98E} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
