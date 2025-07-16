@@ -11,20 +11,20 @@ public class PlatformCompatibility_String_Core_Tests
         string  whiteSpaceString = "   ";
         string  nonWhiteSpaceString = "abc";
         
-        IsTrue (() => string.IsNullOrWhiteSpace(nullString));
-        IsTrue (() => string.IsNullOrWhiteSpace(emptyString));
-        IsTrue (() => string.IsNullOrWhiteSpace(whiteSpaceString));
-        IsFalse(() => string.IsNullOrWhiteSpace(nonWhiteSpaceString));
+        IsTrue (string.IsNullOrWhiteSpace(nullString));
+        IsTrue (string.IsNullOrWhiteSpace(emptyString));
+        IsTrue (string.IsNullOrWhiteSpace(whiteSpaceString));
+        IsFalse(string.IsNullOrWhiteSpace(nonWhiteSpaceString));
         
-        IsTrue (() => String_PlatformSupport.IsNullOrWhiteSpace(nullString));
-        IsTrue (() => String_PlatformSupport.IsNullOrWhiteSpace(emptyString));
-        IsTrue (() => String_PlatformSupport.IsNullOrWhiteSpace(whiteSpaceString));
-        IsFalse(() => String_PlatformSupport.IsNullOrWhiteSpace(nonWhiteSpaceString));
+        IsTrue (String_PlatformSupport.IsNullOrWhiteSpace(nullString));
+        IsTrue (String_PlatformSupport.IsNullOrWhiteSpace(emptyString));
+        IsTrue (String_PlatformSupport.IsNullOrWhiteSpace(whiteSpaceString));
+        IsFalse(String_PlatformSupport.IsNullOrWhiteSpace(nonWhiteSpaceString));
         
-        IsTrue (() => PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(nullString));
-        IsTrue (() => PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(emptyString));
-        IsTrue (() => PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(whiteSpaceString));
-        IsFalse(() => PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(nonWhiteSpaceString));
+        IsTrue (PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(nullString));
+        IsTrue (PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(emptyString));
+        IsTrue (PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(whiteSpaceString));
+        IsFalse(PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(nonWhiteSpaceString));
     }
 
     [TestMethod]
@@ -32,8 +32,8 @@ public class PlatformCompatibility_String_Core_Tests
     {
         IEnumerable<string> elements = ["a", "b", "c"];
         string expected = "a,b,c";
-        AreEqual(expected, () => string.Join(",", elements));
-        AreEqual(expected, () => String_PlatformSupport.Join(",", elements));
-        AreEqual(expected, () => PlatformHelperLegacy.String_Join_PlatformSupport(",", elements));
+        AreEqual(expected, string.Join(",", elements));
+        AreEqual(expected, String_PlatformSupport.Join(",", elements));
+        AreEqual(expected, PlatformHelperLegacy.String_Join_PlatformSupport(",", elements));
     }
 }

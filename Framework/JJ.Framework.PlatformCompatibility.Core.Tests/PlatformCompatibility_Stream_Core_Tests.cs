@@ -26,6 +26,6 @@ public class PlatformCompatibility_Stream_Core_Tests
         streamCopy(sourceStream, destStream, bufferSize);
 
         // Assert
-        IsTrue(() => destArray.SequenceEqual(sourceArray));
+        IsTrue(destArray.SequenceEqual(sourceArray));
     }
 }

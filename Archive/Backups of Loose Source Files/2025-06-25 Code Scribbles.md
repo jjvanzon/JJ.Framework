@@ -275,6 +275,22 @@ var result = RunTests<CultureInfo_PlatformSafe_Tests,
           result.Messages.Add($"{method.Name} starting.");
 ```
 
+### Trim Test Batch File
+
+```powershell
+Get-ChildItem -Recurse | foreach {attrib.exe -s -h $_.FullName}
+
+/c for /R "%Build.SourcesDirectory%\publish" %F in (*.Trimming.TestApp.exe) do @echo Running %F & "%F" || exit /b %ERRORLEVEL%
+
+Build.Repository.LocalPath
+
+/c for /R "%Build.Repository.LocalPath%" %F in (*.Trimming.TestApp.exe) do "%F" || exit /b %ERRORLEVEL%
+
+/c for /R "%Build.Repository.LocalPath%\Framework" %F in (*.Trimming.TestApp.exe) do "%F" || exit /b %ERRORLEVEL%
+
+for /R "%~dp0Framework" %%F in (*.Trimming.TestApp.exe) do "%%F" || exit /b %%ERRORLEVEL%%
+```
+
 ### RunTrimTests.bat
 
 ```bat
