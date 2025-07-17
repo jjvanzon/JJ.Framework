@@ -17,12 +17,12 @@ public class CultureHelperCoreTests
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             
             CultureHelper.SetThreadCulture("nl-NL");
-            AreEqual("nl-NL", () => Thread.CurrentThread.CurrentCulture.Name);
-            AreEqual("nl-NL", () => Thread.CurrentThread.CurrentUICulture.Name);
+            AreEqual("nl-NL", Thread.CurrentThread.CurrentCulture.Name);
+            AreEqual("nl-NL", Thread.CurrentThread.CurrentUICulture.Name);
             
             CultureHelper.SetThreadCulture("de-DE");
-            AreEqual("de-DE", () => Thread.CurrentThread.CurrentCulture.Name);
-            AreEqual("de-DE", () => Thread.CurrentThread.CurrentUICulture.Name);
+            AreEqual("de-DE", Thread.CurrentThread.CurrentCulture.Name);
+            AreEqual("de-DE", Thread.CurrentThread.CurrentUICulture.Name);
         }
         finally
         {

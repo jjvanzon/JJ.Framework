@@ -82,10 +82,10 @@ public class SplitCoreTests
         
         foreach (string[] split in splits)
         {
-            IsNotNull(() => split);
-            AreEqual(1, () => split.Length);
-            IsNotNull(() => split[0]);
-            AreEqual("a, b, c", () => split[0]);
+            IsNotNull(split);
+            AreEqual(1, split.Length);
+            IsNotNull(split[0]);
+            AreEqual("a, b, c", split[0]);
         }
     }
 
@@ -137,12 +137,12 @@ public class SplitCoreTests
         
         foreach (string[] split in splits)
         {
-            IsNotNull(() => split);
-            AreEqual(2, () => split.Length);
-            IsNotNull(() => split[0]);
-            IsNotNull(() => split[1]);
-            AreEqual("a,b", () => split[0]);
-            AreEqual("c", () => split[1]);
+            IsNotNull(split);
+            AreEqual(2, split.Length);
+            IsNotNull(split[0]);
+            IsNotNull(split[1]);
+            AreEqual("a,b", split[0]);
+            AreEqual("c", split[1]);
         }
     }
 }

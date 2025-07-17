@@ -37,8 +37,8 @@ public class CollectionExtensionsCoreTests
         int sum2 = 0;
         enumerable.ForEach(x => sum2 += x);
         
-        AreEqual(6, () => sum1);
-        AreEqual(6, () => sum2);
+        AreEqual(6, sum1);
+        AreEqual(6, sum2);
     }
 
     [TestMethod]
@@ -198,7 +198,7 @@ public class CollectionExtensionsCoreTests
             .ToArray();
 
         // Assert
-        AreEqual(2, () => result.Length);
+        AreEqual(2, result.Length);
         IsTrue(result.Any(x => x.LastName == "Smith" && x.Age == 30));
         IsTrue(result.Any(x => x.LastName == "Jones" && x.Age == 25));
     }

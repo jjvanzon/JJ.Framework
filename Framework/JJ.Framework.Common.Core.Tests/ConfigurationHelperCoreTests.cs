@@ -29,8 +29,8 @@ public class ConfigurationHelperCoreTests
                 var output_ConfigSection = ConfigurationHelper.GetSection<ConfigurationSectionCore>();
 
                 // Assert
-                IsNotNull(() => output_ConfigSection);
-                AreSame(configSection, () => output_ConfigSection);
+                IsNotNull(output_ConfigSection);
+                AreSame(configSection, output_ConfigSection);
             }
             finally
             {
@@ -61,11 +61,11 @@ public class ConfigurationHelperCoreTests
                 var outputConfigSection2 = ConfigurationHelper.GetSection<object>();
 
                 // Assert
-                IsNotNull(() => outputConfigSection1);
-                IsNotNull(() => outputConfigSection2);
-                AreSame(inputConfigSection1, () => outputConfigSection1);
-                AreSame(inputConfigSection2, () => outputConfigSection2);
-                NotEqual(outputConfigSection1, () => outputConfigSection2);
+                IsNotNull(outputConfigSection1);
+                IsNotNull(outputConfigSection2);
+                AreSame(inputConfigSection1, outputConfigSection1);
+                AreSame(inputConfigSection2, outputConfigSection2);
+                NotEqual(outputConfigSection1, outputConfigSection2);
             }
             finally
             {
@@ -92,8 +92,8 @@ public class ConfigurationHelperCoreTests
                 var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSectionCore>();
 
                 // Assert
-                IsNotNull(() => outputConfigSection);
-                AreSame(inputConfigSection, () => outputConfigSection);
+                IsNotNull(outputConfigSection);
+                AreSame(inputConfigSection, outputConfigSection);
             }
             finally
             {
@@ -120,8 +120,8 @@ public class ConfigurationHelperCoreTests
                 var outputConfigSection = ConfigurationHelperCore.TryGetSection<ConfigurationSectionCore>();
 
                 // Assert
-                IsNotNull(() => outputConfigSection);
-                AreSame(inputConfigSection, () => outputConfigSection);
+                IsNotNull(outputConfigSection);
+                AreSame(inputConfigSection, outputConfigSection);
             }
             finally
             {
@@ -152,7 +152,7 @@ public class ConfigurationHelperCoreTests
         lock (_lock)
         {
             var configSection = ConfigurationHelperCore.TryGetSection<ConfigurationSectionCore>();
-            IsNull(() => configSection);
+            IsNull(configSection);
         }
     }
 

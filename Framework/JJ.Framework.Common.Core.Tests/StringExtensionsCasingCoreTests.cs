@@ -9,7 +9,7 @@ public class StringExtensionsCasingCoreTests
     
     [TestMethod]
     public void StartWithCap_Core_Test() 
-        => AreEqual("Test", () => "test".StartWithCap());
+        => AreEqual("Test", "test".StartWithCap());
 
     [TestMethod]
     public void StartWithCap_NullException() 
@@ -17,21 +17,21 @@ public class StringExtensionsCasingCoreTests
     
     [TestMethod]
     public void StartWithCap_EmptyString() 
-        => AreEqual("", () => "".StartWithCap());
+        => AreEqual("", "".StartWithCap());
     
     [TestMethod]
     public void StartWithCap_AlreadyStartsWithCap() 
-        => AreEqual("Test", () => "Test".StartWithCap());
+        => AreEqual("Test", "Test".StartWithCap());
 
     // StartWithLowerCase
     
     [TestMethod]
     public void StartWithLowerCase_Example() 
-        => AreEqual("test", () => "Test".StartWithLowerCase());
+        => AreEqual("test", "Test".StartWithLowerCase());
     
     [TestMethod]
     public void StartWithLowerCase_Core_Test() 
-        => AreEqual("tEST", () => "TEST".StartWithLowerCase());
+        => AreEqual("tEST", "TEST".StartWithLowerCase());
     
     [TestMethod]
     public void StartWithLowerCase_NullException() 
@@ -39,9 +39,9 @@ public class StringExtensionsCasingCoreTests
     
     [TestMethod]
     public void StartWithLowerCase_EmptyString()
-        => AreEqual("", () => "".StartWithLowerCase());
+        => AreEqual("", "".StartWithLowerCase());
     
     [TestMethod]
     public void StartWithLowerCase_AlreadyStartsWithLowerCase() 
-        => AreEqual("tEsT", () => "tEsT".StartWithLowerCase());
+        => AreEqual("tEsT", "tEsT".StartWithLowerCase());
 }
