@@ -4,18 +4,22 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
-    // AreEqual
-    
     public static void AreEqual(object? expected, object? actual, [ArgExpress(nameof(actual))] string message = "") 
         => Check(expected, actual, message, () => Equals(expected, actual));
     
     public static void AreEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "") 
         => Check(expected, actual, message, () => Equals(expected, actual));
-    
+
     public static void NotEqual(object expected, object actual, [ArgExpress(nameof(actual))] string message = "") 
         => Check(expected, actual, message, () => !Equals(expected, actual));
-    
+
     public static void NotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "") 
+        => Check(expected, actual, message, () => !Equals(expected, actual));
+    
+    public static void AreNotEqual(object expected, object actual, [ArgExpress(nameof(actual))] string message = "") 
+        => Check(expected, actual, message, () => !Equals(expected, actual));
+    
+    public static void AreNotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "")
         => Check(expected, actual, message, () => !Equals(expected, actual));
     
     /// <inheritdoc cref="_deltadirection" />

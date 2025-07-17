@@ -5,17 +5,6 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
-    // Basics
-    
-    public static void NotNull([NotNull] object? value, [ArgExpress(nameof(value))] string message = "")
-    {
-        Check(value != null, message: message);
-        ThrowIfNull(value);
-    }
-
-    public static void IsNull(object? value, [ArgExpress(nameof(value))] string message = "") 
-        => Check(value == null, message: message);
-    
     public static void IsTrue(bool value, [ArgExpress(nameof(value))] string message = "") 
         => Check(value == true, message: message);
     
