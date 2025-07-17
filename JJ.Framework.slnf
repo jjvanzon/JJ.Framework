@@ -7,6 +7,7 @@
       "Framework\\JJ.Framework.Collections.Core\\JJ.Framework.Collections.Core.csproj",
       "Framework\\JJ.Framework.Common.Core.Tests.Helpers\\JJ.Framework.Common.Core.Tests.Helpers.csproj",
       "Framework\\JJ.Framework.Common.Core.Tests\\JJ.Framework.Common.Core.Tests.csproj",
+      "Framework\\JJ.Framework.Common.Core.Trimming.TestApp\\JJ.Framework.Common.Core.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.Common.Core\\JJ.Framework.Common.Core.csproj",
       "Framework\\JJ.Framework.Common.Tests\\JJ.Framework.Common.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Common.Trimming.TestApp\\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj",
