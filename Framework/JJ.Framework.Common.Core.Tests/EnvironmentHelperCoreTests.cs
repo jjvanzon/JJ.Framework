@@ -4,7 +4,7 @@ using static System.Guid;
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
-public class EnvironmentHelperTests
+public class EnvironmentHelperCoreTests
 {
     [TestMethod]
     public void EnvironmentVariableIsDefined_True_Test()
@@ -14,7 +14,7 @@ public class EnvironmentHelperTests
         try
         {
             SetEnvironmentVariable(key, value);
-            IsTrue(() => EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
+            IsTrue(EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
         }
         finally
         {
@@ -27,7 +27,7 @@ public class EnvironmentHelperTests
     {
         (string key, string value) = RandomKeyAndValue();
         
-        IsFalse(() => EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
+        IsFalse(EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
     }
     
     [TestMethod]
@@ -38,12 +38,12 @@ public class EnvironmentHelperTests
         try
         {
             SetEnvironmentVariable(key, value);
-            IsTrue(() => EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
+            IsTrue(EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
         }
         finally
         {
             SetEnvironmentVariable(key, null);
-            IsFalse(() => EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
+            IsFalse(EnvironmentHelper.EnvironmentVariableIsDefined(key, value));
         }
     }
     
