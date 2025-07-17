@@ -140,9 +140,7 @@ namespace JJ.Framework.Testing.Legacy
             }
             catch (Exception ex)
             {
-                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
                 AreEqual(expectedMessage, () => ex.Message);
-                #pragma warning restore IL2026 
                 return;
             }
 
@@ -158,9 +156,7 @@ namespace JJ.Framework.Testing.Legacy
             }
             catch (Exception ex)
             {
-                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
                 AreEqual(exceptionType, () => ex.GetType());
-                #pragma warning restore IL2026 
                 return;
             }
 
@@ -176,10 +172,8 @@ namespace JJ.Framework.Testing.Legacy
             }
             catch (Exception ex)
             {
-                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
                 AreEqual(exceptionType, () => ex.GetType());
                 AreEqual(expectedMessage, () => ex.Message);
-                #pragma warning restore IL2026 
                 return;
             }
 
