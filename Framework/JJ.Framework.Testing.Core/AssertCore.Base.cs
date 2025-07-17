@@ -11,7 +11,7 @@ public static partial class AssertCore
     #endif
     internal static void Check<T>(
         T expected, Expression<Func<T>> actualExpression, 
-        Func<T, bool> condition, [CallerMemberName] string methodName = "")
+        Func<T, bool> condition, [Caller] string methodName = "")
         => Check(expected, actualExpression, "", condition, methodName);
 
     #if !NET9_0_OR_GREATER
@@ -19,7 +19,7 @@ public static partial class AssertCore
     #endif
     internal static void Check<T>(
         T expected, Expression<Func<T>> actualExpression, string message,
-        Func<T, bool> condition, [CallerMemberName] string methodName = "")
+        Func<T, bool> condition, [Caller] string methodName = "")
     {
         T actual = GetValue(actualExpression);
         message = Coalesce(message, GetText(actualExpression));
@@ -29,34 +29,34 @@ public static partial class AssertCore
     private static void Check<T>(
         T expected, T actual, 
         Func<T, T, bool> condition,
-        [CallerMemberName] string methodName = "")
+        [Caller] string methodName = "")
         => Check(expected, actual, "", () => condition(expected, actual), methodName);
     
     private static void Check<T>(
         T expected, T actual, string message,
         Func<T, T, bool> condition, 
-        [CallerMemberName] string methodName = "")
+        [Caller] string methodName = "")
         => Check(expected, actual, message, () => condition(expected, actual), methodName);
     
     private static void Check<T>(
         T expected, T actual, 
-        Func<T, bool> condition, [CallerMemberName] string methodName = "")
+        Func<T, bool> condition, [Caller] string methodName = "")
         => Check(expected, actual, "", () => condition(actual), methodName);
 
     private static void Check<T>(
         T expected, T actual, string message,
-        Func<T, bool> condition, [CallerMemberName] string methodName = "")
+        Func<T, bool> condition, [Caller] string methodName = "")
         => Check(expected, actual, message, () => condition(actual), methodName);
         
     private static void Check<T>(
         T expected, T actual, 
         Func<bool> condition,
-        [CallerMemberName] string methodName = "")
+        [Caller] string methodName = "")
         => Check(expected, actual, "", () => condition(), methodName);
 
     private static void Check<T>(
         T expected, string message,
-        Func<bool> condition, [CallerMemberName] string methodName = "")
+        Func<bool> condition, [Caller] string methodName = "")
     {
         if (!condition())
         {
@@ -68,7 +68,7 @@ public static partial class AssertCore
 
     private static void Check<T>(
         T expected, T actual, string message,
-        Func<bool> condition, [CallerMemberName] string methodName = "")
+        Func<bool> condition, [Caller] string methodName = "")
     {
         if (!condition())
         {
@@ -78,13 +78,13 @@ public static partial class AssertCore
         }
     }
 
-    private static void Check(Func<bool> condition, [CallerMemberName] string methodName = "")
+    private static void Check(Func<bool> condition, [Caller] string methodName = "")
         => Check(condition(), "", methodName);
 
-    private static void Check(bool condition, [CallerMemberName] string methodName = "")
+    private static void Check(bool condition, [Caller] string methodName = "")
         => Check(condition, "", methodName);
 
-    private static void Check(bool condition, string message, [CallerMemberName] string methodName = "")
+    private static void Check(bool condition, string message, [Caller] string methodName = "")
     {
         if (!condition)
         {
