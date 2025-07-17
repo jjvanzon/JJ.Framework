@@ -30,7 +30,8 @@ namespace JJ.Framework.PlatformCompatibility.Tests
                 // Assert
                 XDocument documentLoaded = XDocument.Load(fileName);
                 string contentLoaded = documentLoaded.ToString();
-                AssertHelper.AreEqual(contentToSave, () => contentLoaded);
+              //AssertHelper.AreEqual(contentToSave, () => contentLoaded);
+                Assert.AreEqual(contentToSave, contentLoaded);
             }
             finally
             {
