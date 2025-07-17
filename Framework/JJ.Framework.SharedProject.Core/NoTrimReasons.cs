@@ -14,9 +14,10 @@ internal static class NoTrimReasons
     public const string ExpressionsWithArrays = 
         "JJ0007 - ExpressionsWithArrays: Array.CreateInstance called internally. " +
         "Not a problem for trimmable code for .NET 9 and up, but can cause issues with lower .NET versions. " +
-        "You can ignore the warning if you're not using an array " +
+        "You could pick an expression-free variant of the function if available (one without `() =>` notation). " +
+        "You can also ignore the warning if you're not using an array " +
         "or if you're sure the array type is loaded. " +
-        "If you're not sure, you can also propagate this warning by annotating your method with " +
+        "You can also propagate this warning by annotating your method with: " +
         "#if !NET9_0_OR_GREATER " +
         "[RequiresUnreferencedCode(<Reason>)] " +
         "#endif";
