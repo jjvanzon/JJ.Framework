@@ -95,5 +95,5 @@ public static partial class AssertCore
     }
     
     private static string GetExpectedMessage<T>(string methodName, T expected, string message)
-        => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>.{(!IsNullOrEmpty(message) ? " " : "")}{message}";
+        => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
 }
