@@ -81,7 +81,9 @@ public static class TestRunner
         catch (Exception ex)
         {
             result.Success = false;
+            result.Messages.Add();
             result.Messages.Add($"{method.Name} failed: {ex}");
+            result.Messages.Add();
         }
     }
 
