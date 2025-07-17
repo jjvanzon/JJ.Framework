@@ -366,3 +366,29 @@ Exit(1);
 echo Error code %ERRORLEVEL%
 echo Error code %ERRORLEVEL%
 ```
+
+### Test Code Remnants
+
+```cs
+//file enum CustomerType
+//{
+//    Undefined,
+//    Subscriber,
+//    Customer
+//}
+```
+
+### Trimming Annotations
+
+Linked won't use these:
+
+```cs
+#pragma warning disable IL2026 // RequiresUnreferencedCode (for ExpressionsWithArrays)
+
+#pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
+#pragma warning restore IL2026 
+                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
+                #pragma warning restore IL2026 
+                #pragma warning disable IL2026 // Requires unreferenced code: Trim warning only applies to Expressions with arrays.
+                #pragma warning restore IL2026 
+```
