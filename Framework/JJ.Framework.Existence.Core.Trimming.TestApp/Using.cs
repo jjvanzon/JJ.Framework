@@ -1,0 +1,41 @@
+﻿global using System;
+global using System.Buffers;
+global using System.Collections;
+global using System.Collections.Concurrent;
+global using System.Collections.Generic;
+global using System.Collections.Immutable;
+global using System.Collections.ObjectModel;
+global using System.Collections.Specialized;
+global using System.Diagnostics;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Globalization;
+global using System.Linq;
+global using System.Reflection;
+global using System.Text;
+global using JJ.Framework.Business.Core;
+global using JJ.Framework.Common.Legacy;
+global using JJ.Framework.Existence.Core.Tests;
+global using JJ.Framework.Existence.Core.Tests.Helpers;
+global using JJ.Framework.Reflection.Core;
+global using JJ.Framework.SharedProject.Core;
+global using JJ.Framework.Testing.Core;
+global using JJ.Framework.Testing.Core.MSTestless;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using static System.Activator;
+global using static System.Array;
+global using static System.Console;
+global using static System.Environment;
+global using static System.Globalization.CultureInfo;
+global using static System.String;
+global using static JJ.Framework.Existence.Core.CaseMatters;
+global using static JJ.Framework.Existence.Core.FilledInHelper;
+global using static JJ.Framework.Existence.Core.SpaceMatters;
+global using static JJ.Framework.Existence.Core.Tests.Helpers.Mocks;
+global using static JJ.Framework.Reflection.Core.Reflect;
+global using static JJ.Framework.Testing.Core.AssertCore;
+global using static JJ.Framework.Testing.Core.TestRunner;
+global using static JJ.Framework.Testing.Legacy.AssertHelper;
+
+#if NET8_0_OR_GREATER
+global using System.Collections.Frozen;
+#endif

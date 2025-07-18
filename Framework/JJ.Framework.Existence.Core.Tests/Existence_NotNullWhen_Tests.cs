@@ -10,9 +10,6 @@ public class Existence_NotNullWhen_Tests
     private StringBuilder? SB   => new("Hi!");
     private int          ? Num  => 1;
 
-    // TODO: Re-enabled [TestMethod] attribute
-    // after StringBuilder coverage is complete in main tests,
-    // so that these tests don't give false coverage numbers.
     [TestMethod]
     public void Test_Has_NotNullWhen()
     {

@@ -4,7 +4,7 @@ using static JJ.Framework.Existence.Core.Tests.FilledInPrototype;
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Dynamic_Tests
+public class Flex_Prototype
 {
     // Example use
     

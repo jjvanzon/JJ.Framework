@@ -4,17 +4,18 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Reflection.Tests\*.cs" />
-    <Compile Include="..\JJ.Framework.Reflection.Tests\AccessorTests\*.cs" Link="AccessorTests\%(Filename)%(Extension)" />
-    <Compile Include="..\JJ.Framework.Reflection.Tests\ExpressionHelperTests\*.cs" Link="ExpressionHelperTests\%(Filename)%(Extension)" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Tests\Helpers\*.cs" Link="Helpers\%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Existence.Core.Tests\CrossRefCollectionTypesTests.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 

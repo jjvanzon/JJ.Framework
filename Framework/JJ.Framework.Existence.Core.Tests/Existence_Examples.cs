@@ -1,7 +1,8 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿// ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class ExistenceExamples
+public class Existence_Examples
 {
     int? num = null;
     string? text = null;

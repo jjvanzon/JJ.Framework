@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Coll_Tests
+public class Has_Collection_Tests
 {
     // FilledIn / Has
     
