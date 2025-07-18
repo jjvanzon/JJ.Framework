@@ -20,7 +20,8 @@ internal static class NoTrimReasons
         "You can also propagate this warning by annotating your method with: " +
         "#if !NET9_0_OR_GREATER " +
         "[RequiresUnreferencedCode(<Reason>)] " +
-        "#endif";
+        "#endif " + 
+        "Another option is to use [DynamicDependency(...)] near (runtime) failing code to retain a type after trimming.";
 
     public const string WhenShowIndexerValues = 
         "JJ0008 - WhenShowIndexerValues: Array.CreateInstance called if ShowIndexerValues is true. " +
