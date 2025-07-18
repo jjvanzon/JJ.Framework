@@ -6,7 +6,6 @@ global using System.Text;
 global using JJ.Framework.SharedProject.Core;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Common.Core.Tests.docs;
-global using JJ.Framework.Common.Core.Tests.Helpers;
 global using JJ.Framework.Business.Core;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Testing.Legacy;
