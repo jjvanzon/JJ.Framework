@@ -19,7 +19,6 @@ global using JJ.Framework.Existence.Core.Tests.Helpers;
 global using static System.String;
 global using static System.Array;
 global using static System.Environment;
-global using static System.ArgumentNullException;
 global using static System.Activator;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;

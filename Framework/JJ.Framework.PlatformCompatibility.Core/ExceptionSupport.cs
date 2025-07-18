@@ -9,16 +9,23 @@ using static System.String;
 
 namespace JJ.Framework.PlatformCompatibility.Core;
 
-internal static class ExceptionSupport
+internal static class ArgumentNullExceptionSupport
 {
-    #if !NET8_0_OR_GREATER
+    #if !NET6_0_OR_GREATER
 
     public static void ThrowIfNull([System.Diagnostics.CodeAnalysis.NotNull] object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
         if (argument == null) throw new ArgumentNullException(expression);
     }
 
-    public static void ThrowIfNullOrWhiteSpace(string? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
+    #endif
+}
+
+internal static class ArgumentExceptionSupport
+{
+    #if !NET8_0_OR_GREATER
+
+    public static void ThrowIfNullOrWhiteSpace([System.Diagnostics.CodeAnalysis.NotNull] string? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
         if (argument == null)
         {

@@ -14,10 +14,4 @@ global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 global using static JJ.Framework.Common.Core.NameHelper;
-#if !NET8_0_OR_GREATER
-global using static JJ.Framework.PlatformCompatibility.Core.ExceptionSupport;
-#else
-global using static System.ArgumentException;
-global using static System.ArgumentNullException;
-#endif
 global using static JJ.Framework.Testing.Core.TestRunner;
