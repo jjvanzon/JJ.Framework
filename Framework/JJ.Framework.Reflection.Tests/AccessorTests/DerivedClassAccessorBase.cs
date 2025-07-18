@@ -13,7 +13,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         public DerivedClassAccessorBase(DerivedClass obj)
         {
-            _accessor = new Accessor(obj);
+            _accessor = new Accessor(obj, typeof(DerivedClass));
             _baseAccessor = new Accessor(obj, typeof(Class));
         }
 

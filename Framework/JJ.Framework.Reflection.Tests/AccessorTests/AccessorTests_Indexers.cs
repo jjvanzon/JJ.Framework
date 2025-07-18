@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
     [TestClass]
     public class AccessorTests_Indexers
     {
@@ -45,6 +46,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         }
 
         [TestMethod]
+        [DynamicDependency(NonPublicProps, typeof(ClassWithNamedIndexer))]
         public void Test_Accessor_UsingStrings_Indexer_Named()
         {
             var obj = new ClassWithNamedIndexer();

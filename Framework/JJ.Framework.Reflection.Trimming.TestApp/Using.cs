@@ -1,0 +1,13 @@
+global using System.Diagnostics.CodeAnalysis;
+global using JJ.Framework.Common.Legacy;
+global using JJ.Framework.Business.Core;
+global using JJ.Framework.Testing.Core.MSTestless;
+global using JJ.Framework.Reflection.Tests;
+global using JJ.Framework.Reflection.Tests.AccessorTests;
+global using JJ.Framework.Reflection.Tests.ExpressionHelperTests;
+global using static System.Console;
+global using static System.Environment;
+global using static JJ.Framework.Testing.Core.TestRunner;
+global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
+global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
+global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;

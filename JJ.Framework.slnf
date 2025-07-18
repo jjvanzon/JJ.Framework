@@ -30,6 +30,7 @@
       "Framework\\JJ.Framework.Reflection.Core.Tests\\JJ.Framework.Reflection.Core.Tests.csproj",
       "Framework\\JJ.Framework.Reflection.Core\\JJ.Framework.Reflection.Core.csproj",
       "Framework\\JJ.Framework.Reflection.Tests\\JJ.Framework.Reflection.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.Reflection.Trimming.TestApp\\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.Reflection\\JJ.Framework.Reflection.Legacy.csproj",
       "Framework\\JJ.Framework.SharedProject.Core\\JJ.Framework.SharedProject.Core.shproj",
       "Framework\\JJ.Framework.Testing.Core\\JJ.Framework.Testing.Core.csproj",

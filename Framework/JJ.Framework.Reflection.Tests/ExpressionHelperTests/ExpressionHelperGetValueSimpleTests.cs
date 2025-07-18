@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
     [TestClass]
     public class ExpressionHelperGetValueSimpleTests
     {

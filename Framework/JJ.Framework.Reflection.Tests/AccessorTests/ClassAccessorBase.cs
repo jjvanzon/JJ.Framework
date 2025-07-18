@@ -10,12 +10,13 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     {
         protected Accessor _accessor;
 
+        [NoTrim(ObjectGetType)]
         public ClassAccessorBase(Class obj)
         {
             _accessor = new Accessor(obj);
         }
 
-        public ClassAccessorBase(Class obj, Type type)
+        public ClassAccessorBase(Class obj, [Dyn(PropsFieldsMethods)] Type type)
         {
             _accessor = new Accessor(obj, type);
         }

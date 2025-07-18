@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DynamicallyAccessedMemberTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ArgumentExceptionSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ArgumentNullExceptionSupport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DynamicDependency.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IsExternalInit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Lock.cs" />

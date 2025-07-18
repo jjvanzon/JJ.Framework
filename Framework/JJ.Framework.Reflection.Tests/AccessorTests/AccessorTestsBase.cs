@@ -7,6 +7,7 @@ using JJ.Framework.Testing;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
     public abstract class AccessorTestsBase
     {
         protected abstract IClassAccessor CreateClassAccessor(Class obj);

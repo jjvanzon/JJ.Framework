@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
     [TestClass]
     public class AccessorTests_UsingStrings : AccessorTestsBase
     {

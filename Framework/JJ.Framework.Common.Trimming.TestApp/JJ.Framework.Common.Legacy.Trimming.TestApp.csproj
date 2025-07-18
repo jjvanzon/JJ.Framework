@@ -4,7 +4,6 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <!--<RuntimeIdentifiers>win-x64;win-x86</RuntimeIdentifiers>-->
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>

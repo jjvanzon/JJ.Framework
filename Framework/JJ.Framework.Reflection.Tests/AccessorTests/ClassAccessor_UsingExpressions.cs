@@ -11,11 +11,12 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     {
         private static Accessor _staticAccessor;
 
+        [NoTrim(ObjectGetType)]
         public ClassAccessor_UsingExpressions(Class obj)
             : base(obj)
         { }
 
-        public ClassAccessor_UsingExpressions(Class obj, Type type)
+        public ClassAccessor_UsingExpressions(Class obj, [Dyn(PropsFieldsMethods)] Type type)
             : base(obj, type)
         { }
 
