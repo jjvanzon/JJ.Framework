@@ -29,7 +29,7 @@
     <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
     <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
     <IsNet48>$(MSBuildProjectName.Contains('Net48'))</IsNet48>
-    <IsTest>$(MSBuildProjectName.Contains('Tests'))</IsTest>
+    <IsTest>$(MSBuildProjectName.EndsWith('Tests'))</IsTest>
     <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
     <IsNet5>$(TargetFramework.Equals('net5.0'))</IsNet5>
     <IsNet6>$(TargetFramework.Equals('net6.0'))</IsNet6>

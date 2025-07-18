@@ -1,2 +1,3 @@
-﻿namespace JJ.Framework.Tests.Helpers.Core;
+﻿namespace JJ.Framework.Common.Core.Tests.Helpers;
+
 public class DummyClass : IDummy;

@@ -30,9 +30,16 @@
   </PropertyGroup>
 ```
 
-Existence.Core's former reason to exclude net5.0, then readded to ensure trimming compatibility.
+### Existence.Core's former reason to exclude net5.0, then readded to ensure trimming compatibility
 
 ```xml
     <!--We do not explicitly conditionally compile for net5.0 features, so strictly we don't need it.-->
     <!--And by excluding it our net5.0 tests we hit the netstandard2.1 compilation.-->
+```
+
+### Docs in *.Tests.Helper projects not needed
+
+```cs
+/// <inheritdoc cref="_dummyclass" />
+/// <inheritdoc cref="_idummy" />
 ```
