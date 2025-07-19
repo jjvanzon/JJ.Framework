@@ -60,4 +60,16 @@
             #if NET9_0_OR_GREATER
                 Array array = Array.CreateInstanceFromArrayType(typeof(T));
             #endif
+
+          //#if NET7_0_OR_GREATER
+            where T : struct, Enum
+          //#else
+          //where T : struct
+          //#endif
+
+          //#if NET7_0_OR_GREATER
+            T[] enumValues = Enum.GetValues<T>(); // Trim-safe variant.
+          //#else
+          //T[] enumValues = (T[])Enum.GetValues(typeof(T));
+          //#endif
 ```
