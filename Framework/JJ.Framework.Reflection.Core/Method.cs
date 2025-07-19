@@ -10,7 +10,7 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo? MethodOrNull(
         [Dyn(AllMethods)] Type type, string name, BindingFlags bindingFlags,
-        MethodDic0 dic, Lock lck)
+        MethodDic0 dict, Lock lck)
     {
         MethodInfo? method;
 
@@ -18,7 +18,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            if (dic.TryGetValue(key, out method))
+            if (dict.TryGetValue(key, out method))
             {
                 return method;
             }
@@ -30,7 +30,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[key] = method;
+            dict[key] = method;
         }
         
         return method;
@@ -39,14 +39,14 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo? MethodOrNull(
         [Dyn(AllMethods)] Type type, string name, BindingFlags bindingFlags, Type?[] argTypes, 
-        MethodDicN dic, Lock lck)
+        MethodDicN dict, Lock lck)
     {
         MethodInfo? method;
         
         var key = new MethodKeyN(type, name, argTypes);
         lock (lck)
         {
-            if (dic.TryGetValue(key, out method))
+            if (dict.TryGetValue(key, out method))
             {
                 return method;
             }
@@ -58,7 +58,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[key] = method;
+            dict[key] = method;
         }
         
         return method;
@@ -68,7 +68,7 @@ internal static partial class ReflectUtility
     public static MethodInfo? MethodOrNull(
         // ReSharper disable once UnusedParameter.Global
         [Dyn(AllMethods)] Type type, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
-        MethodDicN dic, Lock lck)
+        MethodDicN dict, Lock lck)
     {
         MethodInfo? method;
         
@@ -77,7 +77,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            if (dic.TryGetValue(key, out method))
+            if (dict.TryGetValue(key, out method))
             {
                 return method;
             }
@@ -90,7 +90,7 @@ internal static partial class ReflectUtility
 
         lock (lck)
         {
-            dic[key] = method;
+            dict[key] = method;
         }
         
         return method;
@@ -101,9 +101,9 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo MethodOrThrow(
         [Dyn(AllMethods)] Type type, string name, BindingFlags bindingFlags,
-        MethodDic0 dic, Lock lck)
+        MethodDic0 dict, Lock lck)
     {
-        MethodInfo? method = MethodOrNull(type, name, bindingFlags, dic, lck);
+        MethodInfo? method = MethodOrNull(type, name, bindingFlags, dict, lck);
         if (method == null)
         {
             throw new Exception("Method not found: " + Format(type, name));
@@ -115,9 +115,9 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo MethodOrThrow(
         [Dyn(AllMethods)] Type type, string name, BindingFlags bindingFlags, Type?[] argTypes, 
-        MethodDicN dic, Lock lck)
+        MethodDicN dict, Lock lck)
     {
-        MethodInfo? method = MethodOrNull(type, name, bindingFlags, argTypes, dic, lck);
+        MethodInfo? method = MethodOrNull(type, name, bindingFlags, argTypes, dict, lck);
         if (method == null)
         {
             throw new Exception("Method not found: " + Format(type, name, argTypes));
@@ -128,9 +128,9 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo MethodOrThrow(
         [Dyn(AllMethods)] Type type, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
-        MethodDicN dic, Lock lck)
+        MethodDicN dict, Lock lck)
     {
-        MethodInfo? method = MethodOrNull(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
+        MethodInfo? method = MethodOrNull(type, name, bindingFlags, argTypes, typeArgs, dict, lck);
         if (method == null)
         {
             throw new Exception("Method not found: " + Format(type, name, argTypes, typeArgs));
@@ -144,64 +144,64 @@ internal static partial class ReflectUtility
     [NoTrim(GetTypes)]
     public static MethodInfo MethodOrThrow(
         string shortTypeName, string name, BindingFlags bindingFlags, 
-        MethodDic0 dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDic0 dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         ThrowIfNull(type, nameof(shortTypeName));
-        return MethodOrThrow(type, name, bindingFlags, dic, lck);
+        return MethodOrThrow(type, name, bindingFlags, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
     public static MethodInfo? MethodOrNull(
         string shortTypeName, string name, BindingFlags bindingFlags,
-        MethodDic0 dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDic0 dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
-        return MethodOrNull(type, name, bindingFlags, dic, lck);
+        return MethodOrNull(type, name, bindingFlags, dict, lck);
     }
         
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
     public static MethodInfo MethodOrThrow(
         string typeShortName, string name, BindingFlags bindingFlags, Type?[] argTypes, 
-        MethodDicN dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDicN dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type type = Type(typeShortName, cache);
-        return MethodOrThrow(type, name, bindingFlags, argTypes, dic, lck);
+        return MethodOrThrow(type, name, bindingFlags, argTypes, dict, lck);
     }
         
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
     public static MethodInfo? MethodOrNull(
         string shortTypeName, string name, BindingFlags bindingFlags, Type?[] argTypes, 
-        MethodDicN dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDicN dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
-        return MethodOrNull(type, name, bindingFlags, argTypes, dic, lck);
+        return MethodOrNull(type, name, bindingFlags, argTypes, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
     public static MethodInfo MethodOrThrow(
         string shortTypeName, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
-        MethodDicN dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDicN dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type type = Type(shortTypeName, cache);
-        return MethodOrThrow(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
+        return MethodOrThrow(type, name, bindingFlags, argTypes, typeArgs, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
     public static MethodInfo? MethodOrNull(
         string shortTypeName, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
-        MethodDicN dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDicN dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
-        return MethodOrNull(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
+        return MethodOrNull(type, name, bindingFlags, argTypes, typeArgs, dict, lck);
     }
 
     // Nullable as Option
@@ -210,48 +210,48 @@ internal static partial class ReflectUtility
     [NoTrim(GetTypes)]
     public static MethodInfo? MethodOrSomething(
         string typeShortName, string name, bool nullable, BindingFlags bindingFlags, 
-        MethodDic0 dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDic0 dict, Lock lck, ReflectionCacheLegacy cache)
         => nullable ?
-           MethodOrNull (typeShortName, name, bindingFlags, dic, lck, cache) :
-           MethodOrThrow(typeShortName, name, bindingFlags, dic, lck, cache);
+           MethodOrNull (typeShortName, name, bindingFlags, dict, lck, cache) :
+           MethodOrThrow(typeShortName, name, bindingFlags, dict, lck, cache);
     
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo? MethodOrSomething(
         [Dyn(AllMethods)] Type type, string name, bool nullable, BindingFlags bindingFlags, 
-        MethodDic0 dic, Lock lck)
+        MethodDic0 dict, Lock lck)
         => nullable ?
-           MethodOrNull (type, name, bindingFlags, dic, lck) :
-           MethodOrThrow(type, name, bindingFlags, dic, lck);
+           MethodOrNull (type, name, bindingFlags, dict, lck) :
+           MethodOrThrow(type, name, bindingFlags, dict, lck);
 
     [NoTrim(GetTypes)]
     public static MethodInfo? MethodOrSomething(
         string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, Type?[] argTypes,
-        MethodDicN dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDicN dict, Lock lck, ReflectionCacheLegacy cache)
         => nullable ? 
-           MethodOrNull (shortTypeName, name, bindingFlags, argTypes, dic, lck, cache): 
-           MethodOrThrow(shortTypeName, name, bindingFlags, argTypes, dic, lck, cache);
+           MethodOrNull (shortTypeName, name, bindingFlags, argTypes, dict, lck, cache): 
+           MethodOrThrow(shortTypeName, name, bindingFlags, argTypes, dict, lck, cache);
 
     public static MethodInfo? MethodOrSomething(
         [Dyn(AllMethods)] Type type, string name, bool nullable, BindingFlags bindingFlags, Type?[] argTypes, 
-        MethodDicN dic, Lock lck)
+        MethodDicN dict, Lock lck)
         => nullable ?
-           MethodOrNull (type, name, bindingFlags, argTypes, dic, lck):
-           MethodOrThrow(type, name, bindingFlags, argTypes, dic, lck);
+           MethodOrNull (type, name, bindingFlags, argTypes, dict, lck):
+           MethodOrThrow(type, name, bindingFlags, argTypes, dict, lck);
 
     [NoTrim(GetTypes)]
     public static MethodInfo? MethodOrSomething(
         string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs,
-        MethodDicN dic, Lock lck, ReflectionCacheLegacy cache)
+        MethodDicN dict, Lock lck, ReflectionCacheLegacy cache)
         => nullable ?
-           MethodOrNull (shortTypeName, name, bindingFlags, argTypes, typeArgs, dic, lck, cache) :
-           MethodOrThrow(shortTypeName, name, bindingFlags, argTypes, typeArgs, dic, lck, cache);
+           MethodOrNull (shortTypeName, name, bindingFlags, argTypes, typeArgs, dict, lck, cache) :
+           MethodOrThrow(shortTypeName, name, bindingFlags, argTypes, typeArgs, dict, lck, cache);
     
     public static MethodInfo? MethodOrSomething(
         [Dyn(AllMethods)] Type type, string name, bool nullable, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs,
-        MethodDicN dic, Lock lck)
+        MethodDicN dict, Lock lck)
         => nullable ?
-           MethodOrNull (type, name, bindingFlags, argTypes, typeArgs, dic, lck) :
-           MethodOrThrow(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
+           MethodOrNull (type, name, bindingFlags, argTypes, typeArgs, dict, lck) :
+           MethodOrThrow(type, name, bindingFlags, argTypes, typeArgs, dict, lck);
 
     /// <summary>
     /// Temporary solution to keep some argTypes optional and still resolve the method.

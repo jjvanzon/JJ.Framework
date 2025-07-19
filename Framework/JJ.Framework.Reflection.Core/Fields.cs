@@ -4,21 +4,21 @@ internal static partial class ReflectUtility
 {
     [NoTrim(GetTypes)]
     public static FieldInfo[] FieldsCore(
-        string shortTypeName, BindingFlags bindingFlags, FieldsDic dic, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, FieldsDic dict, Lock lck, ReflectionCacheLegacy cache)
     {        
         Type type = Type(shortTypeName, cache);
-        return FieldsCore(type, bindingFlags, dic, lck);
+        return FieldsCore(type, bindingFlags, dict, lck);
     }
     
     [NoTrim(TypeColl)]
     public static FieldInfo[] FieldsCore(
-        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDic dic, Lock lck)
+        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDic dict, Lock lck)
     {
         FieldInfo[]? fields;
         
         lock (lck)
         {
-            if (dic.TryGetValue(type, out fields))
+            if (dict.TryGetValue(type, out fields))
             {
                 return fields;
             }
@@ -31,7 +31,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[type] = fields;
+            dict[type] = fields;
         }
         
         return fields;
@@ -39,21 +39,21 @@ internal static partial class ReflectUtility
     
     [NoTrim(GetTypes)]
     public static Dictionary<string, FieldInfo> FieldDicCore(
-        string shortTypeName, BindingFlags bindingFlags, FieldsDicDic dic, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, FieldsDicDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type type = Type(shortTypeName, cache);
-        return FieldDicCore(type, bindingFlags, dic, lck);
+        return FieldDicCore(type, bindingFlags, dict, lck);
     }
     
     [NoTrim(TypeColl)]
     public static Dictionary<string, FieldInfo> FieldDicCore(
-        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDicDic dic, Lock lck)
+        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDicDic dict, Lock lck)
     { 
         Dictionary<string, FieldInfo>? fields;
         
         lock (lck)
         {
-            if (dic.TryGetValue(type, out fields))
+            if (dict.TryGetValue(type, out fields))
             {
                 return fields;
             }
@@ -66,7 +66,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[type] = fields;
+            dict[type] = fields;
         }
         
         return fields;

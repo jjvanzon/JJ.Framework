@@ -4,17 +4,17 @@ internal static partial class ReflectUtility
 {
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
-    public static FieldInfo FieldOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, FieldDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static FieldInfo FieldOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, FieldDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
-        return FieldOrThrow(Type(shortTypeName, cache), name, bindingFlags, dic, lck);
+        return FieldOrThrow(Type(shortTypeName, cache), name, bindingFlags, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(TypeColl)]
-    public static FieldInfo FieldOrThrow([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, FieldDic dic, Lock lck)
+    public static FieldInfo FieldOrThrow([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, FieldDic dict, Lock lck)
     {
         ThrowIfNull(type);
-        FieldInfo? field = FieldOrNull(type, name, bindingFlags, dic, lck);
+        FieldInfo? field = FieldOrNull(type, name, bindingFlags, dict, lck);
         if (field == null)
         {
             throw new Exception($"Field {name} not found in {type.Name}.");
@@ -24,22 +24,22 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
-    public static FieldInfo? FieldOrNull(string shortTypeName, string name, BindingFlags bindingFlags, FieldDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static FieldInfo? FieldOrNull(string shortTypeName, string name, BindingFlags bindingFlags, FieldDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
-        return FieldOrNull(type, name, bindingFlags, dic, lck);
+        return FieldOrNull(type, name, bindingFlags, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(TypeColl)]
-    public static FieldInfo? FieldOrNull([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, FieldDic dic, Lock lck)
+    public static FieldInfo? FieldOrNull([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, FieldDic dict, Lock lck)
     {
         FieldInfo? field;
         
         lock (lck)
         {
-            if (dic.TryGetValue((type, name), out field))
+            if (dict.TryGetValue((type, name), out field))
             {
                 return field;
             }
@@ -56,7 +56,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[(type, name)] = field;
+            dict[(type, name)] = field;
         }
         
         return field;
@@ -64,17 +64,17 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
-    public static FieldInfo? FieldOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, FieldDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static FieldInfo? FieldOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, FieldDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
-        return FieldOrSomething(type, name, nullable, bindingFlags, dic, lck);
+        return FieldOrSomething(type, name, nullable, bindingFlags, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(TypeColl)]
-    public static FieldInfo? FieldOrSomething([Dyn(Interfaces)] Type type, string name, bool nullable, BindingFlags bindingFlags, FieldDic dic, Lock lck) 
-        => nullable ? FieldOrNull(type, name, bindingFlags, dic, lck) : FieldOrThrow(type, name, bindingFlags, dic, lck);
+    public static FieldInfo? FieldOrSomething([Dyn(Interfaces)] Type type, string name, bool nullable, BindingFlags bindingFlags, FieldDic dict, Lock lck) 
+        => nullable ? FieldOrNull(type, name, bindingFlags, dict, lck) : FieldOrThrow(type, name, bindingFlags, dict, lck);
 }
 
 // ReSharper disable UnusedParameter.Global

@@ -4,21 +4,21 @@ internal static partial class ReflectUtility
 {
     [NoTrim(GetTypes)]
     public static PropertyInfo[] PropsCore(
-        string shortTypeName, BindingFlags bindingFlags, PropsDic dic, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, PropsDic dict, Lock lck, ReflectionCacheLegacy cache)
     {        
         Type type = Type(shortTypeName, cache);
-        return PropsCore(type, bindingFlags, dic, lck);
+        return PropsCore(type, bindingFlags, dict, lck);
     }
     
     [NoTrim(TypeColl)]
     public static PropertyInfo[] PropsCore(
-        [Dyn(Interfaces)] Type type, BindingFlags bindingFlags, PropsDic dic, Lock lck)
+        [Dyn(Interfaces)] Type type, BindingFlags bindingFlags, PropsDic dict, Lock lck)
     {
         PropertyInfo[]? props;
         
         lock (lck)
         {
-            if (dic.TryGetValue(type, out props))
+            if (dict.TryGetValue(type, out props))
             {
                 return props;
             }
@@ -31,7 +31,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[type] = props;
+            dict[type] = props;
         }
         
         return props;
@@ -39,21 +39,21 @@ internal static partial class ReflectUtility
     
     [NoTrim(GetTypes)]
     public static Dictionary<string, PropertyInfo> PropDicCore(
-        string shortTypeName, BindingFlags bindingFlags, PropsDicDic dic, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, PropsDicDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type type = Type(shortTypeName, cache);
-        return PropDicCore(type, bindingFlags, dic, lck);
+        return PropDicCore(type, bindingFlags, dict, lck);
     }
     
     [NoTrim(TypeColl)]
     public static Dictionary<string, PropertyInfo> PropDicCore(
-        [Dyn(Interfaces)] Type type, BindingFlags bindingFlags, PropsDicDic dic, Lock lck)
+        [Dyn(Interfaces)] Type type, BindingFlags bindingFlags, PropsDicDic dict, Lock lck)
     { 
         Dictionary<string, PropertyInfo>? props;
         
         lock (lck)
         {
-            if (dic.TryGetValue(type, out props))
+            if (dict.TryGetValue(type, out props))
             {
                 return props;
             }
@@ -66,7 +66,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[type] = props;
+            dict[type] = props;
         }
         
         return props;

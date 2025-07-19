@@ -4,17 +4,17 @@ internal static partial class ReflectUtility
 {
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
-    public static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
-        return PropOrThrow(Type(shortTypeName, cache), name, bindingFlags, dic, lck);
+        return PropOrThrow(Type(shortTypeName, cache), name, bindingFlags, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(TypeColl)]
-    public static PropertyInfo PropOrThrow([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock lck)
+    public static PropertyInfo PropOrThrow([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, PropDic dict, Lock lck)
     {
         ThrowIfNull(type);
-        PropertyInfo? prop = PropOrNull(type, name, bindingFlags, dic, lck);
+        PropertyInfo? prop = PropOrNull(type, name, bindingFlags, dict, lck);
         if (prop == null)
         {
             throw new Exception($"Property {name} not found in {type.Name}.");
@@ -24,22 +24,22 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
-    public static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
-        return PropOrNull(type, name, bindingFlags, dic, lck);
+        return PropOrNull(type, name, bindingFlags, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(TypeColl)]
-    public static PropertyInfo? PropOrNull([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock lck)
+    public static PropertyInfo? PropOrNull([Dyn(Interfaces)] Type type, string name, BindingFlags bindingFlags, PropDic dict, Lock lck)
     {
         PropertyInfo? prop;
 
         lock (lck)
         {
-            if (dic.TryGetValue((type, name), out prop))
+            if (dict.TryGetValue((type, name), out prop))
             {
                 return prop;
             }
@@ -56,7 +56,7 @@ internal static partial class ReflectUtility
         
         lock (lck)
         {
-            dic[(type, name)] = prop;
+            dict[(type, name)] = prop;
         }
         
         return prop;
@@ -64,19 +64,19 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(GetTypes)]
-    public static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDic dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
-        return PropOrSomething(type, name, nullable, bindingFlags, dic, lck);
+        return PropOrSomething(type, name, nullable, bindingFlags, dict, lck);
     }
     
     [MethodImpl(AggressiveInlining)]
     [NoTrim(TypeColl)]
-    public static PropertyInfo? PropOrSomething([Dyn(Interfaces)] Type type, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock lck) 
+    public static PropertyInfo? PropOrSomething([Dyn(Interfaces)] Type type, string name, bool nullable, BindingFlags bindingFlags, PropDic dict, Lock lck) 
         => nullable ? 
-           PropOrNull (type, name, bindingFlags, dic, lck) :
-           PropOrThrow(type, name, bindingFlags, dic, lck);
+           PropOrNull (type, name, bindingFlags, dict, lck) :
+           PropOrThrow(type, name, bindingFlags, dict, lck);
 }
 
 // ReSharper disable UnusedParameter.Global
