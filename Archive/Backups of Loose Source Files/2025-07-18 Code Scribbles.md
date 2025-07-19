@@ -52,3 +52,12 @@
       <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
       <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
 ```
+
+
+### Trimming / AOT
+
+```cs
+            #if NET9_0_OR_GREATER
+                Array array = Array.CreateInstanceFromArrayType(typeof(T));
+            #endif
+```

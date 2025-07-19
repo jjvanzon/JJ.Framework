@@ -240,7 +240,11 @@ namespace JJ.Framework.Validation.Legacy
         }
 
         public FluentValidator<TRootObject> IsEnumValue<T>()
+            #if NET7_0_OR_GREATER
+            where T : struct, Enum
+            #else
             where T : struct
+            #endif
         {
             // TODO: This does seem to evaluate numerical strings and enum member name strings correctly.
 
@@ -251,7 +255,11 @@ namespace JJ.Framework.Validation.Legacy
                 return this;
             }
 
+            #if NET7_0_OR_GREATER
+            T[] enumValues = Enum.GetValues<T>(); // Trim-safe variant.
+            #else
             T[] enumValues = (T[])Enum.GetValues(typeof(T));
+            #endif
 
             // Convert to a canonical form.
             // "Every enumeration type has an underlying type, which can be any integral type except char."
