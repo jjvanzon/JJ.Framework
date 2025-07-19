@@ -52,7 +52,6 @@
   
   <!-- Packaging -->
 
-  <!--<PropertyGroup Condition="'$(IsTest)'!='True' And '$(IsTrimTest)'!='True'">-->
   <PropertyGroup Condition="!$(IsTest) And !$(IsTrimTest)">
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -80,7 +79,6 @@
     <Content Include="$(SolutionDir)\Resources\jj-icon-64x64-margin4.png" Visible="False">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -95,7 +93,6 @@
     <Content Include="$(SolutionDir)\README.md" Visible="False">
       <Pack>True</Pack>
       <PackagePath>\README.md</PackagePath>
-      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -108,7 +105,6 @@
     <Content Include="README.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

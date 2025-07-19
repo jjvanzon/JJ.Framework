@@ -43,3 +43,12 @@
 /// <inheritdoc cref="_dummyclass" />
 /// <inheritdoc cref="_idummy" />
 ```
+
+### Deprecated Directory.Build.props Content
+
+```xml
+  <!--<PropertyGroup Condition="'$(IsTest)'!='True' And '$(IsTrimTest)'!='True'">-->
+  <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
+      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
+      <!--<CopyToOutputDirectory>Always</CopyToOutputDirectory>-->
+```
