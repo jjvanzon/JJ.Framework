@@ -240,7 +240,7 @@ namespace JJ.Framework.Validation.Legacy
         }
 
         public FluentValidator<TRootObject> IsEnumValue<T>()
-            #if NET7_0_OR_GREATER
+            #if NET5_0_OR_GREATER
             where T : struct, Enum
             #else
             where T : struct
@@ -255,7 +255,7 @@ namespace JJ.Framework.Validation.Legacy
                 return this;
             }
 
-            #if NET7_0_OR_GREATER
+            #if NET5_0_OR_GREATER
             T[] enumValues = Enum.GetValues<T>(); // Trim-safe variant.
             #else
             T[] enumValues = (T[])Enum.GetValues(typeof(T));
