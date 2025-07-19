@@ -73,3 +73,9 @@
           //T[] enumValues = (T[])Enum.GetValues(typeof(T));
           //#endif
 ```
+
+```xml
+    <!--<PublishProtocol>FileSystem</PublishProtocol>-->
+    <!--<_TargetId>Folder</_TargetId>-->
+
+```

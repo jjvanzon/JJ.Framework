@@ -111,7 +111,15 @@
 
   <!-- Publish -->
 
-  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet8) Or $(IsNet9))">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet9)">
+    <SelfContained>True</SelfContained>
+    <PublishTrimmed>True</PublishTrimmed>
+    <PublishAot>True</PublishAot>
+    <PublishSingleFile>True</PublishSingleFile>
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet8)">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -142,27 +150,34 @@
   -->
 
   <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
-    <DebugType>none</DebugType>
+    <!--<DebugType>none</DebugType>-->
+    <!--<DebugSymbols>False</DebugSymbols>-->
+    <!--<IncludeSymbols>False</IncludeSymbols>-->
+    <!--<StripSymbols>True</StripSymbols>--> 
+    <!--<IncludeNativeDebugSymbolsInSingleFile>False</IncludeNativeDebugSymbolsInSingleFile>-->
+    <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
+    <!--<PublishReadyToRunEmitSymbols>False</PublishReadyToRunEmitSymbols>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PublishProtocol>FileSystem</PublishProtocol>
-    <_TargetId>Folder</_TargetId>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
-  <!--<Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
-  </Target>-->
+  </Target>
   
   <!-- Multi-Runtime Experiment -->
-
+  
+  <!--
   <Target Name="PublishWinX64" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <MSBuild Projects="$(MSBuildProjectFile)" 
              Targets="Publish" 
              Properties="RuntimeIdentifier=win-x64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
   </Target>
+  -->
 
   <!-- Error: Trimming not supported -->
   <!--
