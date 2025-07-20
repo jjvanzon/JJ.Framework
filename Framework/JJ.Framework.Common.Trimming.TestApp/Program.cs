@@ -1,9 +1,5 @@
-﻿var result = new Result();
-
-RunTests<StringExtensions_Split_Tests>(result);
-RunTests<StringExtensionsTests>(result);
-result.Messages.ForEach(WriteLine);
-
+﻿bool success = 
+RunTests<StringExtensions_Split_Tests>() &&
+RunTests<StringExtensionsTests>();
 WriteLine("Done.");
-
-if (!result.Success) Exit(1);
+if (!success) Exit(1);

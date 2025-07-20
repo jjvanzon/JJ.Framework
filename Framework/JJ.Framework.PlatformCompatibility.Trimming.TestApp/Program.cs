@@ -1,14 +1,9 @@
-﻿var result = new Result();
-
-RunTests<CultureInfo_PlatformSafe_Tests>(result);
-RunTests<Encoding_PlatformSafe_Tests>(result);
-RunTests<MemberTypes_PlatformSafe_Tests>(result);
-RunTests<PropertyInfo_GetValue_PlatformSafe_Tests>(result);
-RunTests<Type_GetInterface_PlatformSafe_Tests>(result);
-RunTests<XDocument_XElement_PlatformSafe_Tests>(result);
-
-result.Messages.ForEach(WriteLine);
-
+﻿bool success = 
+RunTests<CultureInfo_PlatformSafe_Tests>() &&
+RunTests<Encoding_PlatformSafe_Tests>() &&
+RunTests<MemberTypes_PlatformSafe_Tests>() &&
+RunTests<PropertyInfo_GetValue_PlatformSafe_Tests>() &&
+RunTests<Type_GetInterface_PlatformSafe_Tests>() &&
+RunTests<XDocument_XElement_PlatformSafe_Tests>();
 WriteLine("Done.");
-
-if (!result.Success) Exit(1);
+if (!success) Exit(1);
