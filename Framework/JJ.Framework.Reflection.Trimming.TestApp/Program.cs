@@ -1,9 +1,10 @@
-﻿
-var result = new Result();
-
-RunTests<AccessorTests_Indexers>(result);
-result.Messages.ForEach(WriteLine);
-
+﻿bool success = 
+RunTests<AccessorTests_Indexers>() &&
+RunTests<AccessorTests_UsingExpressions>() &&
+RunTests<AccessorTests_UsingStrings>() &&
+RunTests<ExpressionHelperExtensiveTests>() &&
+RunTests<ExpressionHelperGetTextSimpleTests>() &&
+RunTests<ExpressionHelperGetValueSimpleTests>() &&
+RunTests<ExpressionHelperGetValuesTests>();
 WriteLine("Done.");
-
-if (!result.Success) Exit(1);
+if (!success) Exit(1);
