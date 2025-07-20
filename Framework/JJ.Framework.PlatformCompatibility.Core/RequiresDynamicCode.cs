@@ -1,3 +1,5 @@
+// ncrunch: no coverage start
+
 #if NETSTANDARD2_0 || NETSTANDARD2_1
 
 using static System.AttributeTargets;
@@ -12,3 +14,5 @@ internal sealed class RequiresDynamicCodeAttribute(string message) : Attribute
 }
 
 #endif
+
+// ncrunch: no coverage end
