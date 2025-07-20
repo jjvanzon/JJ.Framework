@@ -189,7 +189,7 @@ namespace JJ.Framework.Reflection.Legacy
         #if !NET9_0_OR_GREATER
         [Suppress("Trimmer", "IL2026", Justification = WhenShowIndexerValues)]
         #endif
-        public static string GetText(LambdaExpression expression) => GetText(expression, showIndexerValues: false);
+        public static string GetText(LambdaExpression expression) => GetText(expression.Body);
 
         /// <param name="showIndexerValues">
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
