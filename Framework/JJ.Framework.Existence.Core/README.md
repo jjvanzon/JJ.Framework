@@ -96,22 +96,24 @@ Release Notes
 - `StringBulder`/`string` more combos possible  
 - `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
 #### `2.7` Technical
-- Improved separation of `Legacy` version lineages for a more stable package update experience.
+- Improved separation of `Legacy` version lineages for a more stable package update.
+#### `2.8` Technical
+- Compatibility with AOT "Ahead-Of-Time" native compilation, core trimming and single-executable, self-contained apps.
 
 
 After Upgrading
 ---------------
 
-Links to legacy dependencies have changed. If you experience problems, these things might help:
+Links to legacy dependencies may have changed. If you experience problems, these things might help:
 
-- __Option 1__  
-  Do nothing. Everything works.
-- __Option 2__  
-  Use the [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184).
-- __Option 3__  
-  Install [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
+#### Option `1`
+- Do nothing. Everything works.
+#### Option `2`
+- Use the [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184).
+#### Option `3`
+- Install [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
 
-(This same applies to  
+(Apply the same thing to 
 [JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) vs [JJ.Framework.PlatformCompatibility](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility/0.250.3184))
 
 
