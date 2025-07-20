@@ -4,15 +4,15 @@ internal static partial class ReflectUtility
 {
     [NoTrim(GetTypes)]
     public static FieldInfo[] FieldsCore(
-        string shortTypeName, BindingFlags bindingFlags, FieldsDic dict, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, FieldsDict dict, Lock lck, ReflectionCacheLegacy cache)
     {        
         Type type = Type(shortTypeName, cache);
         return FieldsCore(type, bindingFlags, dict, lck);
     }
     
-    [NoTrim(TypeColl)]
+    [NoTrim(Bases)]
     public static FieldInfo[] FieldsCore(
-        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDic dict, Lock lck)
+        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDict dict, Lock lck)
     {
         FieldInfo[]? fields;
         
@@ -38,16 +38,16 @@ internal static partial class ReflectUtility
     }
     
     [NoTrim(GetTypes)]
-    public static Dictionary<string, FieldInfo> FieldDicCore(
-        string shortTypeName, BindingFlags bindingFlags, FieldsDicDic dict, Lock lck, ReflectionCacheLegacy cache)
+    public static Dictionary<string, FieldInfo> FieldDictCore(
+        string shortTypeName, BindingFlags bindingFlags, FieldsDictDict dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type type = Type(shortTypeName, cache);
-        return FieldDicCore(type, bindingFlags, dict, lck);
+        return FieldDictCore(type, bindingFlags, dict, lck);
     }
     
-    [NoTrim(TypeColl)]
-    public static Dictionary<string, FieldInfo> FieldDicCore(
-        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDicDic dict, Lock lck)
+    [NoTrim(Bases)]
+    public static Dictionary<string, FieldInfo> FieldDictCore(
+        [Dyn(AllFields | Intf)] Type type, BindingFlags bindingFlags, FieldsDictDict dict, Lock lck)
     { 
         Dictionary<string, FieldInfo>? fields;
         
@@ -78,44 +78,44 @@ internal static partial class ReflectUtility
 
 public static partial class Reflect
 {
-    internal static readonly FieldsDic    _fieldsDic        = new();
-    internal static readonly Lock         _fieldsDicLock    = new();
-    internal static readonly FieldsDicDic _fieldsDicDic     = new();
-    internal static readonly Lock         _fieldsDicDicLock = new();
+    internal static readonly FieldsDict     _fieldsDict         = new();
+    internal static readonly Lock           _fieldsDictLock     = new();
+    internal static readonly FieldsDictDict _fieldsDictDict     = new();
+    internal static readonly Lock           _fieldsDictDictLock = new();
     
-    [NoTrim(TypeColl)] public static FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(                         ) => FieldsCore  (typeof(T),     BindingFlagsAll, _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(TypeColl)] public static FieldInfo[]                   Fields  ([Dyn(AllFields | Intf)]         Type type           ) => FieldsCore  (type,          BindingFlagsAll, _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(GetTypes)] public static FieldInfo[]                   Fields  (                                string shortTypeName) => FieldsCore  (shortTypeName, BindingFlagsAll, _fieldsDic,    _fieldsDicLock,    _cache);
-    [NoTrim(TypeColl)] public static FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldsCore  (typeof(T),     BindingFlagsAll, _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(TypeColl)] public static Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(                         ) => FieldDicCore(typeof(T),     BindingFlagsAll, _fieldsDicDic, _fieldsDicDicLock        );
-    [NoTrim(TypeColl)] public static Dictionary<string, FieldInfo> FieldDic([Dyn(AllFields | Intf)]         Type type           ) => FieldDicCore(type,          BindingFlagsAll, _fieldsDicDic, _fieldsDicDicLock        );
-    [NoTrim(GetTypes)] public static Dictionary<string, FieldInfo> FieldDic(                                string shortTypeName) => FieldDicCore(shortTypeName, BindingFlagsAll, _fieldsDicDic, _fieldsDicDicLock, _cache);
-    [NoTrim(TypeColl)] public static Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldDicCore(typeof(T),     BindingFlagsAll, _fieldsDicDic, _fieldsDicDicLock        );
+    [NoTrim(Bases   )] public static FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(                         ) => FieldsCore   (typeof(T),     BindingFlagsAll, _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(Bases   )] public static FieldInfo[]                   Fields  ([Dyn(AllFields | Intf)]         Type type           ) => FieldsCore   (type,          BindingFlagsAll, _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(GetTypes)] public static FieldInfo[]                   Fields  (                                string shortTypeName) => FieldsCore   (shortTypeName, BindingFlagsAll, _fieldsDict,     _fieldsDictLock,     _cache);
+    [NoTrim(Bases   )] public static FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldsCore   (typeof(T),     BindingFlagsAll, _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(Bases   )] public static Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(                         ) => FieldDictCore(typeof(T),     BindingFlagsAll, _fieldsDictDict, _fieldsDictDictLock        );
+    [NoTrim(Bases   )] public static Dictionary<string, FieldInfo> FieldDic([Dyn(AllFields | Intf)]         Type type           ) => FieldDictCore(type,          BindingFlagsAll, _fieldsDictDict, _fieldsDictDictLock        );
+    [NoTrim(GetTypes)] public static Dictionary<string, FieldInfo> FieldDic(                                string shortTypeName) => FieldDictCore(shortTypeName, BindingFlagsAll, _fieldsDictDict, _fieldsDictDictLock, _cache);
+    [NoTrim(Bases   )] public static Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldDictCore(typeof(T),     BindingFlagsAll, _fieldsDictDict, _fieldsDictDictLock        );
 }
 
 public partial class Reflector
 {
-    private         readonly FieldsDic    _fieldsDic        = new();
-    private         readonly Lock         _fieldsDicLock    = new();
-    private         readonly FieldsDicDic _fieldsDicDic     = new();
-    private         readonly Lock         _fieldsDicDicLock = new();
+    private         readonly FieldsDict     _fieldsDict         = new();
+    private         readonly Lock           _fieldsDictLock     = new();
+    private         readonly FieldsDictDict _fieldsDictDict     = new();
+    private         readonly Lock           _fieldsDictDictLock = new();
 
-    [NoTrim(TypeColl)] public        FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(                         ) => FieldsCore  (typeof(T),     BindingFlags,    _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(TypeColl)] public        FieldInfo[]                   Fields  ([Dyn(AllFields | Intf)]         Type type           ) => FieldsCore  (type,          BindingFlags,    _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(GetTypes)] public        FieldInfo[]                   Fields  (                                string shortTypeName) => FieldsCore  (shortTypeName, BindingFlags,    _fieldsDic,    _fieldsDicLock,    _cache);
-    [NoTrim(TypeColl)] public        FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldsCore  (typeof(T),     BindingFlags,    _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(TypeColl)] public        Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(                         ) => FieldDicCore(typeof(T),     BindingFlags,    _fieldsDicDic, _fieldsDicDicLock        );
-    [NoTrim(TypeColl)] public        Dictionary<string, FieldInfo> FieldDic([Dyn(AllFields | Intf)]         Type type           ) => FieldDicCore(type,          BindingFlags,    _fieldsDicDic, _fieldsDicDicLock        );
-    [NoTrim(GetTypes)] public        Dictionary<string, FieldInfo> FieldDic(                                string shortTypeName) => FieldDicCore(shortTypeName, BindingFlags,    _fieldsDicDic, _fieldsDicDicLock, _cache);
-    [NoTrim(TypeColl)] public        Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldDicCore(typeof(T),     BindingFlags,    _fieldsDicDic, _fieldsDicDicLock        );
+    [NoTrim(Bases   )] public        FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(                         ) => FieldsCore   (typeof(T),     BindingFlags,    _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(Bases   )] public        FieldInfo[]                   Fields  ([Dyn(AllFields | Intf)]         Type type           ) => FieldsCore   (type,          BindingFlags,    _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(GetTypes)] public        FieldInfo[]                   Fields  (                                string shortTypeName) => FieldsCore   (shortTypeName, BindingFlags,    _fieldsDict,     _fieldsDictLock,     _cache);
+    [NoTrim(Bases   )] public        FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldsCore   (typeof(T),     BindingFlags,    _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(Bases   )] public        Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(                         ) => FieldDictCore(typeof(T),     BindingFlags,    _fieldsDictDict, _fieldsDictDictLock        );
+    [NoTrim(Bases   )] public        Dictionary<string, FieldInfo> FieldDic([Dyn(AllFields | Intf)]         Type type           ) => FieldDictCore(type,          BindingFlags,    _fieldsDictDict, _fieldsDictDictLock        );
+    [NoTrim(GetTypes)] public        Dictionary<string, FieldInfo> FieldDic(                                string shortTypeName) => FieldDictCore(shortTypeName, BindingFlags,    _fieldsDictDict, _fieldsDictDictLock, _cache);
+    [NoTrim(Bases   )] public        Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(     T obj               ) => FieldDictCore(typeof(T),     BindingFlags,    _fieldsDictDict, _fieldsDictDictLock        );
 }
 
 public static partial class ReflectExtensions
 {
-    [NoTrim(TypeColl)] public static FieldInfo[]                   Fields  ([Dyn(AllFields | Intf)]    this Type type           ) => FieldsCore  (type,          BindingFlagsAll, _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(GetTypes)] public static FieldInfo[]                   Fields  (                           this string shortTypeName) => FieldsCore  (shortTypeName, BindingFlagsAll, _fieldsDic,    _fieldsDicLock,    _cache);
-    [NoTrim(TypeColl)] public static FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(this T obj               ) => FieldsCore  (typeof(T),     BindingFlagsAll, _fieldsDic,    _fieldsDicLock           );
-    [NoTrim(TypeColl)] public static Dictionary<string, FieldInfo> FieldDic([Dyn(AllFields | Intf)]    this Type type           ) => FieldDicCore(type,          BindingFlagsAll, _fieldsDicDic, _fieldsDicDicLock        );
-    [NoTrim(GetTypes)] public static Dictionary<string, FieldInfo> FieldDic(                           this string shortTypeName) => FieldDicCore(shortTypeName, BindingFlagsAll, _fieldsDicDic, _fieldsDicDicLock, _cache);
-    [NoTrim(TypeColl)] public static Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(this T obj               ) => FieldDicCore(typeof(T),     BindingFlagsAll, _fieldsDicDic, _fieldsDicDicLock        );
+    [NoTrim(Bases   )] public static FieldInfo[]                   Fields  ([Dyn(AllFields | Intf)]    this Type type           ) => FieldsCore   (type,          BindingFlagsAll, _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(GetTypes)] public static FieldInfo[]                   Fields  (                           this string shortTypeName) => FieldsCore   (shortTypeName, BindingFlagsAll, _fieldsDict,     _fieldsDictLock,     _cache);
+    [NoTrim(Bases   )] public static FieldInfo[]                   Fields  <[Dyn(AllFields | Intf)] T>(this T obj               ) => FieldsCore   (typeof(T),     BindingFlagsAll, _fieldsDict,     _fieldsDictLock            );
+    [NoTrim(Bases   )] public static Dictionary<string, FieldInfo> FieldDic([Dyn(AllFields | Intf)]    this Type type           ) => FieldDictCore(type,          BindingFlagsAll, _fieldsDictDict, _fieldsDictDictLock        );
+    [NoTrim(GetTypes)] public static Dictionary<string, FieldInfo> FieldDic(                           this string shortTypeName) => FieldDictCore(shortTypeName, BindingFlagsAll, _fieldsDictDict, _fieldsDictDictLock, _cache);
+    [NoTrim(Bases   )] public static Dictionary<string, FieldInfo> FieldDic<[Dyn(AllFields | Intf)] T>(this T obj               ) => FieldDictCore(typeof(T),     BindingFlagsAll, _fieldsDictDict, _fieldsDictDictLock        );
 }

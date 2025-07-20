@@ -32,8 +32,8 @@ public static class TestRunner
     [NoTrim(GetTypes)] public static IResult RunTests() => RunTests(GetCallingAssembly());
     [NoTrim(GetTypes)] public static IResult RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
 
-    [NoTrim(TypeCollection)] public static IResult RunTests(ICollection<Type> testClasses) => RunTests(testClasses, new Result());
-    [NoTrim(TypeCollection)] public static IResult RunTests(ICollection<Type> testClasses, IResult result)
+    [NoTrim(TypeColl)] public static IResult RunTests(ICollection<Type> testClasses) => RunTests(testClasses, new Result());
+    [NoTrim(TypeColl)] public static IResult RunTests(ICollection<Type> testClasses, IResult result)
     {
         NotNull(testClasses).NotNull(result);
         testClasses.ForEach(x => RunTests(x, result));

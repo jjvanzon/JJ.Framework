@@ -4,15 +4,15 @@ internal static partial class ReflectUtility
 {
     [NoTrim(GetTypes)]
     public static PropertyInfo[] PropsCore(
-        string shortTypeName, BindingFlags bindingFlags, PropsDic dict, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, PropsDict dict, Lock lck, ReflectionCacheLegacy cache)
     {        
         Type type = Type(shortTypeName, cache);
         return PropsCore(type, bindingFlags, dict, lck);
     }
     
-    [NoTrim(TypeColl)]
+    [NoTrim(Bases)]
     public static PropertyInfo[] PropsCore(
-        [Dyn(Interfaces)] Type type, BindingFlags bindingFlags, PropsDic dict, Lock lck)
+        [Dyn(Intf)] Type type, BindingFlags bindingFlags, PropsDict dict, Lock lck)
     {
         PropertyInfo[]? props;
         
@@ -38,16 +38,16 @@ internal static partial class ReflectUtility
     }
     
     [NoTrim(GetTypes)]
-    public static Dictionary<string, PropertyInfo> PropDicCore(
-        string shortTypeName, BindingFlags bindingFlags, PropsDicDic dict, Lock lck, ReflectionCacheLegacy cache)
+    public static Dictionary<string, PropertyInfo> PropDictCore(
+        string shortTypeName, BindingFlags bindingFlags, PropsDictDict dict, Lock lck, ReflectionCacheLegacy cache)
     {
         Type type = Type(shortTypeName, cache);
-        return PropDicCore(type, bindingFlags, dict, lck);
+        return PropDictCore(type, bindingFlags, dict, lck);
     }
     
-    [NoTrim(TypeColl)]
-    public static Dictionary<string, PropertyInfo> PropDicCore(
-        [Dyn(Interfaces)] Type type, BindingFlags bindingFlags, PropsDicDic dict, Lock lck)
+    [NoTrim(Bases)]
+    public static Dictionary<string, PropertyInfo> PropDictCore(
+        [Dyn(Intf)] Type type, BindingFlags bindingFlags, PropsDictDict dict, Lock lck)
     { 
         Dictionary<string, PropertyInfo>? props;
         
@@ -78,44 +78,44 @@ internal static partial class ReflectUtility
 
 public static partial class Reflect
 {
-    internal static readonly PropsDic    _propsDic        = new();
-    internal static readonly Lock        _propsDicLock    = new();
-    internal static readonly PropsDicDic _propsDicDic     = new();
-    internal static readonly Lock        _propsDicDicLock = new();
+    internal static readonly PropsDict     _propsDict         = new();
+    internal static readonly Lock          _propsDictLock     = new();
+    internal static readonly PropsDictDict _propsDictDict     = new();
+    internal static readonly Lock          _propsDictDictLock = new();
     
-    [NoTrim(TypeColl)] public   static PropertyInfo[]                   Props  <[Dyn(Interfaces)] T>(                         ) => PropsCore  (typeof(T),     BindingFlagsAll, _propsDic,    _propsDicLock           );
-    [NoTrim(TypeColl)] public   static PropertyInfo[]                   Props  ([Dyn(Interfaces)]         Type type           ) => PropsCore  (type,          BindingFlagsAll, _propsDic,    _propsDicLock           );
-    [NoTrim(GetTypes)] public   static PropertyInfo[]                   Props  (                          string shortTypeName) => PropsCore  (shortTypeName, BindingFlagsAll, _propsDic,    _propsDicLock,    _cache);
-    [NoTrim(TypeColl)] public   static PropertyInfo[]                   Props  <[Dyn(Interfaces)] T>(     T obj               ) => PropsCore  (typeof(T),     BindingFlagsAll, _propsDic,    _propsDicLock           );
-    [NoTrim(TypeColl)] public   static Dictionary<string, PropertyInfo> PropDic<[Dyn(Interfaces)] T>(                         ) => PropDicCore(typeof(T),     BindingFlagsAll, _propsDicDic, _propsDicDicLock        );
-    [NoTrim(TypeColl)] public   static Dictionary<string, PropertyInfo> PropDic([Dyn(Interfaces)]         Type type           ) => PropDicCore(type,          BindingFlagsAll, _propsDicDic, _propsDicDicLock        );
-    [NoTrim(GetTypes)] public   static Dictionary<string, PropertyInfo> PropDic(                          string shortTypeName) => PropDicCore(shortTypeName, BindingFlagsAll, _propsDicDic, _propsDicDicLock, _cache);
-    [NoTrim(TypeColl)] public   static Dictionary<string, PropertyInfo> PropDic<[Dyn(Interfaces)] T>(     T obj               ) => PropDicCore(typeof(T),     BindingFlagsAll, _propsDicDic, _propsDicDicLock        );
+    [NoTrim(Bases   )] public static PropertyInfo[]                   Props  <[Dyn(Intf)] T>(                         ) => PropsCore   (typeof(T),     BindingFlagsAll, _propsDict,     _propsDictLock            );
+    [NoTrim(Bases   )] public static PropertyInfo[]                   Props  ([Dyn(Intf)]         Type type           ) => PropsCore   (type,          BindingFlagsAll, _propsDict,     _propsDictLock            );
+    [NoTrim(GetTypes)] public static PropertyInfo[]                   Props  (                    string shortTypeName) => PropsCore   (shortTypeName, BindingFlagsAll, _propsDict,     _propsDictLock,     _cache);
+    [NoTrim(Bases   )] public static PropertyInfo[]                   Props  <[Dyn(Intf)] T>(     T obj               ) => PropsCore   (typeof(T),     BindingFlagsAll, _propsDict,     _propsDictLock            );
+    [NoTrim(Bases   )] public static Dictionary<string, PropertyInfo> PropDic<[Dyn(Intf)] T>(                         ) => PropDictCore(typeof(T),     BindingFlagsAll, _propsDictDict, _propsDictDictLock        );
+    [NoTrim(Bases   )] public static Dictionary<string, PropertyInfo> PropDic([Dyn(Intf)]         Type type           ) => PropDictCore(type,          BindingFlagsAll, _propsDictDict, _propsDictDictLock        );
+    [NoTrim(GetTypes)] public static Dictionary<string, PropertyInfo> PropDic(                    string shortTypeName) => PropDictCore(shortTypeName, BindingFlagsAll, _propsDictDict, _propsDictDictLock, _cache);
+    [NoTrim(Bases   )] public static Dictionary<string, PropertyInfo> PropDic<[Dyn(Intf)] T>(     T obj               ) => PropDictCore(typeof(T),     BindingFlagsAll, _propsDictDict, _propsDictDictLock        );
 }
 public partial class Reflector
 {
-    private         readonly PropsDic    _propsDic        = new();
-    private         readonly Lock        _propsDicLock    = new();
-    private         readonly PropsDicDic _propsDicDic     = new();
-    private         readonly Lock        _propsDicDicLock = new();
+    private         readonly PropsDict     _propsDict         = new();
+    private         readonly Lock          _propsDictLock     = new();
+    private         readonly PropsDictDict _propsDictDict     = new();
+    private         readonly Lock          _propsDictDictLock = new();
               
-    [NoTrim(TypeColl)] public          PropertyInfo[]                   Props  <[Dyn(Interfaces)] T>(                         ) => PropsCore  (typeof(T),     BindingFlags,    _propsDic,    _propsDicLock           );
-    [NoTrim(TypeColl)] public          PropertyInfo[]                   Props  ([Dyn(Interfaces)]         Type type           ) => PropsCore  (type,          BindingFlags,    _propsDic,    _propsDicLock           );
-    [NoTrim(GetTypes)] public          PropertyInfo[]                   Props  (                          string shortTypeName) => PropsCore  (shortTypeName, BindingFlags,    _propsDic,    _propsDicLock,    _cache);
-    [NoTrim(TypeColl)] public          PropertyInfo[]                   Props  <[Dyn(Interfaces)] T>(     T obj               ) => PropsCore  (typeof(T),     BindingFlags,    _propsDic,    _propsDicLock           );
-    [NoTrim(TypeColl)] public          Dictionary<string, PropertyInfo> PropDic<[Dyn(Interfaces)] T>(                         ) => PropDicCore(typeof(T),     BindingFlags,    _propsDicDic, _propsDicDicLock        );
-    [NoTrim(TypeColl)] public          Dictionary<string, PropertyInfo> PropDic([Dyn(Interfaces)]         Type type           ) => PropDicCore(type,          BindingFlags,    _propsDicDic, _propsDicDicLock        );
-    [NoTrim(GetTypes)] public          Dictionary<string, PropertyInfo> PropDic(                          string shortTypeName) => PropDicCore(shortTypeName, BindingFlags,    _propsDicDic, _propsDicDicLock, _cache);
-    [NoTrim(TypeColl)] public          Dictionary<string, PropertyInfo> PropDic<[Dyn(Interfaces)] T>(     T obj               ) => PropDicCore(typeof(T),     BindingFlags,    _propsDicDic, _propsDicDicLock        );
+    [NoTrim(Bases   )] public        PropertyInfo[]                   Props  <[Dyn(Intf)] T>(                         ) => PropsCore   (typeof(T),     BindingFlags,    _propsDict,     _propsDictLock            );
+    [NoTrim(Bases   )] public        PropertyInfo[]                   Props  ([Dyn(Intf)]         Type type           ) => PropsCore   (type,          BindingFlags,    _propsDict,     _propsDictLock            );
+    [NoTrim(GetTypes)] public        PropertyInfo[]                   Props  (                    string shortTypeName) => PropsCore   (shortTypeName, BindingFlags,    _propsDict,     _propsDictLock,     _cache);
+    [NoTrim(Bases   )] public        PropertyInfo[]                   Props  <[Dyn(Intf)] T>(     T obj               ) => PropsCore   (typeof(T),     BindingFlags,    _propsDict,     _propsDictLock            );
+    [NoTrim(Bases   )] public        Dictionary<string, PropertyInfo> PropDic<[Dyn(Intf)] T>(                         ) => PropDictCore(typeof(T),     BindingFlags,    _propsDictDict, _propsDictDictLock        );
+    [NoTrim(Bases   )] public        Dictionary<string, PropertyInfo> PropDic([Dyn(Intf)]         Type type           ) => PropDictCore(type,          BindingFlags,    _propsDictDict, _propsDictDictLock        );
+    [NoTrim(GetTypes)] public        Dictionary<string, PropertyInfo> PropDic(                    string shortTypeName) => PropDictCore(shortTypeName, BindingFlags,    _propsDictDict, _propsDictDictLock, _cache);
+    [NoTrim(Bases   )] public        Dictionary<string, PropertyInfo> PropDic<[Dyn(Intf)] T>(     T obj               ) => PropDictCore(typeof(T),     BindingFlags,    _propsDictDict, _propsDictDictLock        );
 }
 
 public static partial class ReflectExtensions
 {
-    [NoTrim(TypeColl)] public static PropertyInfo[]                   Props  ([Dyn(Interfaces)]    this Type type           ) => PropsCore  (type,          BindingFlagsAll, _propsDic,    _propsDicLock           );
-    [NoTrim(GetTypes)] public static PropertyInfo[]                   Props  (                     this string shortTypeName) => PropsCore  (shortTypeName, BindingFlagsAll, _propsDic,    _propsDicLock,    _cache);
-    [NoTrim(TypeColl)] public static PropertyInfo[]                   Props  <[Dyn(Interfaces)] T>(this T obj               ) => PropsCore  (typeof(T),     BindingFlagsAll, _propsDic,    _propsDicLock           );
-    [NoTrim(TypeColl)] public static Dictionary<string, PropertyInfo> PropDic([Dyn(Interfaces)]    this Type type           ) => PropDicCore(type,          BindingFlagsAll, _propsDicDic, _propsDicDicLock        );
-    [NoTrim(GetTypes)] public static Dictionary<string, PropertyInfo> PropDic(                     this string shortTypeName) => PropDicCore(shortTypeName, BindingFlagsAll, _propsDicDic, _propsDicDicLock, _cache);
-    [NoTrim(TypeColl)] public static Dictionary<string, PropertyInfo> PropDic<[Dyn(Interfaces)] T>(this T obj               ) => PropDicCore(typeof(T),     BindingFlagsAll, _propsDicDic, _propsDicDicLock        );
+    [NoTrim(Bases   )] public static PropertyInfo[]                   Props  ([Dyn(Intf)]    this Type type           ) => PropsCore   (type,          BindingFlagsAll, _propsDict,     _propsDictLock            );
+    [NoTrim(GetTypes)] public static PropertyInfo[]                   Props  (               this string shortTypeName) => PropsCore   (shortTypeName, BindingFlagsAll, _propsDict,     _propsDictLock,     _cache);
+    [NoTrim(Bases   )] public static PropertyInfo[]                   Props  <[Dyn(Intf)] T>(this T obj               ) => PropsCore   (typeof(T),     BindingFlagsAll, _propsDict,     _propsDictLock            );
+    [NoTrim(Bases   )] public static Dictionary<string, PropertyInfo> PropDic([Dyn(Intf)]    this Type type           ) => PropDictCore(type,          BindingFlagsAll, _propsDictDict, _propsDictDictLock        );
+    [NoTrim(GetTypes)] public static Dictionary<string, PropertyInfo> PropDic(               this string shortTypeName) => PropDictCore(shortTypeName, BindingFlagsAll, _propsDictDict, _propsDictDictLock, _cache);
+    [NoTrim(Bases   )] public static Dictionary<string, PropertyInfo> PropDic<[Dyn(Intf)] T>(this T obj               ) => PropDictCore(typeof(T),     BindingFlagsAll, _propsDictDict, _propsDictDictLock        );
 }
 
