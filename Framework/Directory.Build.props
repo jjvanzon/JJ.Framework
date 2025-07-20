@@ -166,7 +166,7 @@
   </PropertyGroup>
 
   <Target Name="PublishAfterBuild" AfterTargets="Build" 
-          Condition="$(IsTrimTest) And $(IsInnerBuild) And !$(IsNCrunch)">
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(IsNCrunch)'!='True'">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
   
