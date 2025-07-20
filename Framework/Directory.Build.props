@@ -165,7 +165,8 @@
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
-  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <Target Name="PublishAfterBuild" AfterTargets="Build" 
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And !$(IsNCrunch)">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
   

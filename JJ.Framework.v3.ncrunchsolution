@@ -3,6 +3,9 @@
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
     <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
+    <CustomBuildProperties>
+      <Value>IsNCrunch = True</Value>
+    </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
     <MetricsExclusionList>
       <Value>Demos\JJ.Demos.GetNames\JJ.Demos.GetNames.csproj</Value>

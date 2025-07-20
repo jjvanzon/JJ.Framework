@@ -1,9 +1,0 @@
-﻿<ProjectConfiguration>
-  <Settings>
-    <CustomBuildProperties>
-      <Value>SelfContained = True</Value>
-      <Value>UseAppHost = True</Value>
-    </CustomBuildProperties>
-    <IgnoreThisComponentCompletely>True</IgnoreThisComponentCompletely>
-  </Settings>
-</ProjectConfiguration>
