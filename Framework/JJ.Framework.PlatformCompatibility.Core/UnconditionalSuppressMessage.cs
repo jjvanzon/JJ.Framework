@@ -1,5 +1,3 @@
-//#if NETSTANDARD2_0 || NETSTANDARD2_1 || NETFRAMEWORK
-//#if NETSTANDARD2_0 || NETSTANDARD2_1 || NETFRAMEWORK || NET48
 #if !NET5_0_OR_GREATER
 
 namespace System.Diagnostics.CodeAnalysis;
