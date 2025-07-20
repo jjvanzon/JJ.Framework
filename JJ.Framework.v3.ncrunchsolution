@@ -239,6 +239,66 @@
       <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj:netstandard2.0</Value>
       <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj:netstandard2.1</Value>
       <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll.Net48\SgmlReaderDll.Net48.csproj</Value>
+      <Value>Framework\JJ.Framework.Business.Core\JJ.Framework.Business.Core.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core\JJ.Framework.Business.Core.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core\JJ.Framework.Business.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core\JJ.Framework.Business.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Build\JJ.Framework.Build.csproj</Value>
     </MetricsExclusionList>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
