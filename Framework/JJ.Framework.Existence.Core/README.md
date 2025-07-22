@@ -98,7 +98,7 @@ Release Notes
 #### `2.7` Technical
 - Improved separation of `Legacy` version lineages for a more stable package update.
 #### `2.8` Technical
-- Compatibility with AOT "Ahead-Of-Time" native compilation, core trimming and single-executable, self-contained apps.
+- Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
 
 
 After Upgrading
