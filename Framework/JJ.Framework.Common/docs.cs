@@ -75,8 +75,8 @@ public struct _cutleftorrightuntil;
 /// <b>StartWithCap / StartWithLowerCase</b><br/>
 /// Changes the first character's case:
 /// <code>
-/// &quot;test&quot;.StartWithCap() = &quot;Test&quot;
-/// &quot;TEST&quot;.StartWithLowerCase() = &quot;tEST&quot;
+/// "test".StartWithCap() = "Test"
+/// "TEST".StartWithLowerCase() = "tEST"
 /// </code>
 /// </summary>
 public struct _startwithcaporlowercase;
