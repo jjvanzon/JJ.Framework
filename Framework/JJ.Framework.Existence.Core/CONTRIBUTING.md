@@ -35,7 +35,7 @@ All to give the API consumer the most intuitive experience.
 Not Used
 --------
 
-No IoC, no logging, no specific names, barely any class separation. No patterns, no builders, no config. Column-style code formatting, which all tooling hates and can be distroyed by means of a simple rename. Abbreviations used where screen space was needed. No "each test only tests one thing". None of that.
+No IoC, no logging, no specific names, barely any class separation. No patterns, no builders, no config. Column-style code formatting, which all tooling hates and can be distroyed with a simple rename. Abbreviations used where screen space was needed. No "each test only tests one thing". None of that.
 
 This API is a set of simple commands with a vast field of overloads, mapping to the best nothing-check given the context.
 
@@ -49,7 +49,7 @@ We try to offer the most transparent and widely applicable use of basic commands
 
 Vast fields of overloads are normal in this project. They exist, so an API consumer can call the same command in multiple different contexts. For instance, you can call `Has(x)` on many different types - text, numbers, collections, objects - which internally may be handled quite differently.
 
-The overload fields delegate to an internal utility class, with more explicit method names, to indicate the specific checks. That keeps control over, how the overloads route to the right implementation, which would otherwise be hard to control.
+The overload field delegates to an internal utility class, with more explicit method names, to indicate the specific checks. That keeps control over, how the overloads route to the right implementation, which would otherwise be hard to control.
 
 It also makes sure that each of the overloads, can just be one line of code in a sort of "table of overloads".
 
@@ -59,7 +59,7 @@ Is this easy? No not really. Things can clash. The __tests__ are the ultimate ju
 Static + Extensions
 -------------------
 
-methods are repeated in both a `class` for statics and a `class` for extensions. This is needed to offer both extension method syntax and `using static` syntax: `x.FilledIn()` vs `FilledIn(x)`.
+methods are repeated in a `class` for statics and a `class` for extensions. This is needed to offer both extension method syntax and `using static` syntax: `x.FilledIn()` vs `FilledIn(x)`.
 
 `[ TODO: Implementation code sample ]`
 
@@ -67,7 +67,7 @@ methods are repeated in both a `class` for statics and a `class` for extensions.
 Overload by Parameter Name
 --------------------------
 
-You can't overload methods, by parameter names alone. For instance, this is not valid:
+You can't overload methods by parameter names alone. For instance, this is not valid:
 
 ```
 bool Has(string text, bool spaceMatters) => ...
@@ -105,13 +105,13 @@ enum SpaceMatters { spaceMatters = 1 }
 This lets callers write:
 
 ```cs
-`Has(text, spaceMatters)`
+Has(text, spaceMatters)
 ```
 
 without `: true` for cleaner syntax, instead of:
 
 ```cs
-`Has(text, spaceMatters: true)`
+Has(text, spaceMatters: true)
 ```
 
 The explicit boolean value option is still available. That's what makes it look like a magic boolean, of which you can leave out the value.
@@ -124,7 +124,7 @@ Combinations of flags might be comma `,` separated:
 "a".In("a", "b", "c", spaceMatters, caseMatters);
 ```
 
-This was preferred over the a flags enum notation `spaceMatters | caseMatters` for its simplicity and accessibility as well as speed, since `ifs` on flags can be omitted in the method implementations that offer these magic booleans. It does, in turn, require more overloads.
+This was preferred over the a flags enum notation `spaceMatters | caseMatters` for its simplicity and accessibility as well as speed, since `ifs` on flags can be omitted in the method implementations that offer these magic booleans. It does, in turn, require again more overloads.
 
 
 Permutation Tests
@@ -202,7 +202,7 @@ The crux is that once an unbound generic overload is present, things don't get r
 
 `[ TODO: Code of unbound generic overload + interface overload. ]`
 
-Concrete types don't go the the interface-based onverloads. They go straight to the unbound generic overloads.
+Concrete types don't go the the interface-based overloads. They go straight to the unbound generic overloads.
 
 `[ TODO: Code of interface call works, code for concrete type doesn't. ]`
 
@@ -212,4 +212,4 @@ If we left out the unbound generic overloads, people couldn't use it in generic 
 
 Now the ugly consequence: When there is an unbound generic overload, then in order to support concrete types that route to specific implementations, you have to add overloads for __each and every concrete type you support__. This breaks the substitution principle. Or at least brute-forces it back with into existence by means of a gazillion overloads. It isn't really we that broke the substitution principle here. Generics broke it. Generics just don't function the same as a regular type hierarchy, even when it looks like they should. So we do it: we add a gazzilion overloads. In particular for the collection types. All the BCL collection types are supported explicitly, one overload each. Any non-supported collection type, lands at the unbound generic overload, which just does a null/default check, unfortunately skipping the "collection is empty" check.
 
-If there would be another solution that doesn't introduce other ugly API surface problems that would be great. But all the ChatGPTs in the world couldn't come up with something that didn't break something else and neither could I. Go ahead, ask ChatGPT. It'll claim your code style is bad, and it has the solution, but that "solution": breaks the overload field.
+If there would be another solution that doesn't introduce other ugly API surface problems that would be great. But all the ChatGPTs in the world couldn't come up with something that didn't break something else and neither could I. Go ahead, ask ChatGPT. It'll claim your code style is bad, and it has the solution, but that "solution"... breaks the overload field.
