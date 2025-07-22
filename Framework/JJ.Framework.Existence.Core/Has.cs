@@ -2,21 +2,39 @@
 
 internal static partial class ExistenceUtil
 {
+
     /// <inheritdoc cref="_has" />
-    public static bool HasText       ([NotNullWhen(true)]      string? text)                            =>                                       !IsNullOrWhiteSpace(text);
+    public static bool HasText       ([NotNullWhen(true)] string? text)                                =>                                       !IsNullOrWhiteSpace(text);
     /// <inheritdoc cref="_has" />
     // ReSharper disable once UnusedParameter.Global
-    public static bool HasText       ([NotNullWhen(true)]      string? text, SpaceMatters spaceMatters) =>                !IsNullOrEmpty(text);
+    public static bool HasText       ([NotNullWhen(true)] string? text,     SpaceMatters spaceMatters) =>                !IsNullOrEmpty(text);
+    /// <inheritdoc cref="_has" />                                           
+    public static bool HasText       ([NotNullWhen(true)] string? text,     bool         spaceMatters) => spaceMatters ? !IsNullOrEmpty(text) : !IsNullOrWhiteSpace(text);
+    /// <inheritdoc cref="_has" />                                           
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val)                                 =>                !Equals(val,   default(T));
+    /// <inheritdoc cref="_has" />                                           
+    // ReSharper disable UnusedParameter.Global                              
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      ZeroMatters  zeroMatters)  => true;
+    // ReSharper restore UnusedParameter.Global                              
+    /// <inheritdoc cref="_has" />                                           
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      bool         zeroMatters)  => zeroMatters || !Equals(val,   default(T));
+    /// <inheritdoc cref="_has" />                                           
+    public static bool HasObject  <T>([NotNullWhen(true)] T       obj)                                 =>                !Equals(obj,   default(T));
+    /// <inheritdoc cref="_has" />                                           
+    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing)                               =>                !Equals(thing, default(T));
+    /// <inheritdoc cref="_has" />                                           
+    // ReSharper disable UnusedParameter.Global                              
+    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    ZeroMatters  zeroMatters)  =>                !Equals(thing, default(T));
+    // ReSharper restore UnusedParameter.Global                              
+    /// <inheritdoc cref="_has" />                                           
+    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    bool         zeroMatters)  => !zeroMatters ? !Equals(thing, default(T)) : !Equals(thing, null);
     /// <inheritdoc cref="_has" />
-    public static bool HasText       ([NotNullWhen(true)]      string? text, bool         spaceMatters) => spaceMatters ? !IsNullOrEmpty(text) : !IsNullOrWhiteSpace(text);
+    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal)                          where T : struct =>                !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasVal     <T>([NotNullWhen(true)]      T       val)                             => !Equals(val,      default(T));
+    // ReSharper disable once UnusedParameter.Global
+    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal, ZeroMatters zeroMatters) where T : struct =>                !Equals(nullyVal, default(T?));
     /// <inheritdoc cref="_has" />
-    public static bool HasObject  <T>([NotNullWhen(true)]      T       obj)                             => !Equals(obj,      default(T));
-    /// <inheritdoc cref="_has" />
-    public static bool HasValOrObj<T>([NotNullWhen(true)]      T       thing)                           => !Equals(thing,    default(T));
-    /// <inheritdoc cref="_has" />
-    public static bool HasValNully<T>([NotNullWhen(true)]      T?      nullyVal) where T : struct       => !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
+    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal, bool        zeroMatters) where T : struct => !zeroMatters ? !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T)) : !Equals(nullyVal, default(T?));
 
     /// <inheritdoc cref="_has" />
     public static bool HasSB([NotNullWhen(true)] StringBuilder? sb) => HasSB_SpaceIgnored(sb);

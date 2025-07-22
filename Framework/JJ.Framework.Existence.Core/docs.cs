@@ -104,6 +104,7 @@ public struct _in;
 /// <b>caseMatters should now be true!</b>
 /// </para>
 /// </summary>
+/// <inheritdoc cref="_flagargs" />
 public struct _is;
 
 /// <summary>
@@ -126,7 +127,7 @@ public struct _isnully;
 /// </para>
 /// </summary>
 /// <inheritdoc cref="_flagargs" />
-public struct _matchcase;
+public struct _casematters;
 
 /// <summary>
 /// <para> Use <c>spaceMatters</c> to treat white space as meaningful content. </para>
@@ -141,15 +142,59 @@ public struct _spacematters;
 /// <param name="caseMatters">
 /// If true (or if you pass <c>caseMatters</c>), comparisons will require exact casing.
 /// For example, <c>"abc"</c> will not match <c>"ABC"</c>.
+/// 
 /// <para>
 /// <b>BREAKING CHANGE:</b><br/>
 /// <b>ignoreCase replaced by caseMatters!</b><br/>
 /// <b>Where ignoreCase: false,</b><br/>
 /// <b>caseMatters should now be true!</b>
 /// </para>
+/// 
+/// <para>See also: <see cref="CaseMatters" />.</para>
 /// </param>
+/// 
 /// <param name="spaceMatters">
+/// <para>
 /// If true (or if you pass <c>spaceMatters</c>), white space counts as real content.
 /// <c>"   "</c> will be considered filled in, not empty.
+/// </para>
+/// 
+/// <para>See also: <see cref="SpaceMatters" />.</para>
 /// </param>
+///
+/// <para name="zeroMatters">
+/// See: <see cref="ZeroMatters" />.
+/// </para>
 public struct _flagargs;
+
+/// <summary>
+/// <para>
+/// By default, value types are checked for <c>null</c> and <c>0</c>,
+/// to determine if it's considered empty:
+/// </para>
+///
+/// <para>
+/// <c>Has(0)</c> returns <c>false</c>.
+/// </para>
+///
+/// On the other hand:
+///
+/// <para>
+/// <c>Has(0, zeroMatters)</c> returns <c>true</c>
+/// </para>
+/// 
+/// Sometimes this means that <c>Has</c> doesn't do much more than a <c>null</c> check,
+/// but the benefit is that you can use the <c>Has</c> syntax
+/// and other methods for a wider range of options, e.g.:
+///
+/// <code>
+/// Has(Volume)
+/// Has(SamplingRate)
+/// Has(AudioLength, zeroMatters)
+/// </code>
+///
+/// <b>Zero</b> is wider in meaning than just <c>0</c>: it means any zeroed out data,
+/// or just the <c>default</c> value. That way <c>zeroMatters</c> can also
+/// apply to non-initialized <c>structs</c> or <c>DateTimes</c> or <c>Booleans</c>.
+/// </summary>
+public struct _zeroMatters;

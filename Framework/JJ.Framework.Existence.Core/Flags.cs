@@ -7,9 +7,16 @@ public enum SpaceMatters
     spaceMatters = 1
 }
 
-/// <inheritdoc cref="_matchcase" />
+/// <inheritdoc cref="_casematters" />
 public enum CaseMatters
 {
-    /// <inheritdoc cref="_matchcase" />
+    /// <inheritdoc cref="_casematters" />
     caseMatters = 1
+}
+
+/// <inheritdoc cref="_zeroMatters" />
+public enum ZeroMatters
+{
+    /// <inheritdoc cref="_zeroMatters" />
+    zeroMatters = 1
 }
