@@ -24,10 +24,10 @@ internal static partial class ExistenceUtil
     public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing                              ) =>                !Equals(thing, default(T));
     /// <inheritdoc cref="_has" />
     // ReSharper disable UnusedParameter.Global
-    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    ZeroMatters  zeroMatters ) =>                !Equals(thing, default(T));
+    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    ZeroMatters  zeroMatters ) =>               !Equals(thing, null);
     // ReSharper restore UnusedParameter.Global
     /// <inheritdoc cref="_has" />
-    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    bool         zeroMatters ) => !zeroMatters ? !Equals(thing, default(T)) : !Equals(thing, null);
+    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    bool         zeroMatters ) => zeroMatters ? !Equals(thing, null) : !Equals(thing, default(T));
     /// <inheritdoc cref="_has" />
     public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal                           ) where T : struct =>                !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
     /// <inheritdoc cref="_has" />
