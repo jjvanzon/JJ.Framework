@@ -9,6 +9,8 @@ __📔 Contents__
 - [🏛️ History](#️-history)
 - [🍱 Modularization](#-modularization)
 - [💁 Platform Compatibility](#-platform-compatibility)
+- [📋 Release Notes](#-release-notes)
+- [💬 Feedback](#-feedback)
 
 
 📢 Introduction
@@ -58,7 +60,31 @@ Any reusable code independent of a particular business domain, was moved to this
 💁 Platform Compatibility
 --------------------------
 
-That grip on dependency, was once a good plan for platform compatibility. Some of `JJ.Framework` is still based on `.NET 4.6.1` trying to keep it compatible with `Mono`. Around 2015 `JJ.Framework` was tested to be reasonably compatible with `Mono` and by extension `Android`, `iOS` and `Windows Phone`. This was before newer technology like `.NET Standard` and `.NET 5 +` emerged, which could make platform-compatibility a bit easier than before. For this reason, some of the `JJ.Framework` is currently being ported to a newer `.NET`, but this is still an ongoing process.
+That grip on dependency, was once a good plan for platform compatibility. Some of `JJ.Framework` is still based on `.NET 4.6.1` trying to keep it compatible with `Mono`. Around 2015 `JJ.Framework` was tested to be reasonably compatible with `Mono` and by extension `Android`, `iOS` and `Windows Phone`. This was before newer technology like `.NET Standard` and `.NET 5 +` emerged, which could make platform-compatibility a bit more doable. For this reason, some of the `JJ.Framework` is currently being ported to a newer `.NET`, but this is still in progress.
+
+📋 Release Notes
+-----------------
+
+<h4><code>1.9</code> Build.csproj</h4>
+<h4><code>2.5</code> Existence.Core</h4>
+<h4><code>2.6</code> Flags</h4>
+
+- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core):
+- `spaceMatters` flags everywhere  
+- `caseMatters` replaced `ignoreCase`  
+- `StringBulder`/`string` more combos possible  
+- `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+
+<h4><code>2.7</code> Version Lineages + IntelliSense</h4>
+
+- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core), [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) + dependencies.
+- Improved separation of `Legacy` version lineages for a more stable package update.
+- IntelliSense for [JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) and [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+
+<h4><code>2.8</code> AOT, Trimming and Self-Contained App Support</h4>
+
+- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core), [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) + dependencies.
+- Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
 
 
 💬 Feedback 
