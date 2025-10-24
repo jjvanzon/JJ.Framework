@@ -14,20 +14,14 @@ internal static partial class ExistenceUtil
     public static bool HasVal     <T>([NotNullWhen(true)] T       val                                ) =>                !Equals(val,   default(T));
     /// <inheritdoc cref="_has" />
     // ReSharper disable UnusedParameter.Global
-    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      ZeroMatters  zeroMatters ) => true;
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      ZeroMatters  zeroMatters ) where T : struct => true;
     // ReSharper restore UnusedParameter.Global
     /// <inheritdoc cref="_has" />
-    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      bool         zeroMatters ) => zeroMatters || !Equals(val,   default(T));
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      bool         zeroMatters ) where T : struct => zeroMatters || !Equals(val,   default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasObject  <T>([NotNullWhen(true)] T       obj                                ) =>                !Equals(obj,   default(T));
+    public static bool HasObject  <T>([NotNullWhen(true)] T       obj                                )                  =>                !Equals(obj,   default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing                              ) =>                !Equals(thing, default(T));
-    /// <inheritdoc cref="_has" />
-    // ReSharper disable UnusedParameter.Global
-    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    ZeroMatters  zeroMatters ) =>               !Equals(thing, null);
-    // ReSharper restore UnusedParameter.Global
-    /// <inheritdoc cref="_has" />
-    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing,    bool         zeroMatters ) => zeroMatters ? !Equals(thing, null) : !Equals(thing, default(T));
+    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing                              )                  =>                !Equals(thing, default(T));
     /// <inheritdoc cref="_has" />
     public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal                           ) where T : struct =>                !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
     /// <inheritdoc cref="_has" />
@@ -92,9 +86,9 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_has" />
     public static bool Has<T>       ([NotNullWhen(true )]      T              valOrObj                           ) => HasValOrObj(valOrObj);
     /// <inheritdoc cref="_has" />
-    public static bool Has<T>       ([NotNullWhen(true )]      T              valOrObj, bool         zeroMatters ) => HasValOrObj(valOrObj, zeroMatters);
+    public static bool Has<T>       ([NotNullWhen(true )]      T              valOrObj, bool         zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_has" />
-    public static bool Has<T>       ([NotNullWhen(true )]      T              valOrObj, ZeroMatters  zeroMatters ) => HasValOrObj(valOrObj, zeroMatters);
+    public static bool Has<T>       ([NotNullWhen(true )]      T              valOrObj, ZeroMatters  zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_has" />
     public static bool Has<T>       ([NotNullWhen(true )]      T?             nullyVal                           ) where T : struct => HasValNully(nullyVal);
     /// <inheritdoc cref="_has" />
@@ -116,9 +110,9 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_filledin" />
     public static bool FilledIn<T>  ([NotNullWhen(true )]      T              valOrObj                           ) => HasValOrObj(valOrObj);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      T              valOrObj, bool         zeroMatters ) => HasValOrObj(valOrObj, zeroMatters);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      T              valOrObj, bool         zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  ([NotNullWhen(true )]      T              valOrObj, ZeroMatters  zeroMatters ) => HasValOrObj(valOrObj, zeroMatters);
+    public static bool FilledIn<T>  ([NotNullWhen(true )]      T              valOrObj, ZeroMatters  zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_filledin" />
     public static bool FilledIn<T>  ([NotNullWhen(true )]      T?             nullyVal                           ) where T : struct => HasValNully(nullyVal);
     /// <inheritdoc cref="_filledin" />
@@ -141,9 +135,9 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj                           ) => !HasValOrObj(valOrObj);
     /// <inheritdoc cref="_isnully" />
-    public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj, bool         zeroMatters ) => !HasValOrObj(valOrObj, zeroMatters);
+    public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj, bool         zeroMatters ) where T : struct => !HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_isnully" />
-    public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj, ZeroMatters  zeroMatters ) => !HasValOrObj(valOrObj, zeroMatters);
+    public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj, ZeroMatters  zeroMatters ) where T : struct => !HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully<T>   ([NotNullWhen(false)]      T?             nullyVal                           ) where T : struct => !HasValNully(nullyVal);
     /// <inheritdoc cref="_isnully" />
@@ -151,8 +145,6 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully<T>   ([NotNullWhen(false)]      T?             nullyVal, ZeroMatters  zeroMatters ) where T : struct => !HasValNully(nullyVal, zeroMatters);
 }
-
-// TODO: Add zeroMatters flags.
 
 public static partial class FilledInExtensions
 {
@@ -171,9 +163,9 @@ public static partial class FilledInExtensions
     /// <inheritdoc cref="_filledin" />
     public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj                           ) => HasValOrObj(valOrObj);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj, bool         zeroMatters ) => HasValOrObj(valOrObj, zeroMatters);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj, bool         zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj, ZeroMatters  zeroMatters ) => HasValOrObj(valOrObj, zeroMatters);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj, ZeroMatters  zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_filledin" />
     public static bool FilledIn<T>  ([NotNullWhen(true )] this T?             nullyVal                           ) where T : struct => HasValNully(nullyVal);
     /// <inheritdoc cref="_filledin" />
@@ -196,9 +188,9 @@ public static partial class FilledInExtensions
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully<T>   ([NotNullWhen(false)] this T              valOrObj                           ) => !HasValOrObj(valOrObj);
     /// <inheritdoc cref="_isnully" />
-    public static bool IsNully<T>   ([NotNullWhen(false)] this T              valOrObj, bool         zeroMatters ) => !HasValOrObj(valOrObj, zeroMatters);
+    public static bool IsNully<T>   ([NotNullWhen(false)] this T              valOrObj, bool         zeroMatters ) where T : struct => !HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_isnully" />
-    public static bool IsNully<T>   ([NotNullWhen(false)] this T              valOrObj, ZeroMatters  zeroMatters ) => !HasValOrObj(valOrObj, zeroMatters);
+    public static bool IsNully<T>   ([NotNullWhen(false)] this T              valOrObj, ZeroMatters  zeroMatters ) where T : struct => !HasVal(valOrObj, zeroMatters);
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully<T>   ([NotNullWhen(false)] this T?             nullyVal                           ) where T : struct => !HasValNully(nullyVal);
     /// <inheritdoc cref="_isnully" />
