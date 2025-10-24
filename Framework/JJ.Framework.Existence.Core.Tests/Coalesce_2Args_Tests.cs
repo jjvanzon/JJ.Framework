@@ -4,6 +4,15 @@
 public class Coalesce_2Args_Tests : TestBase
 {
     private static Dummy? NullyFilled = NullyFilledObj;
+            
+    [TestMethod]
+    public void Coalesce_2Args_RandomCases()
+    {
+        NoNullRet("Hello", Coalesce("", "Hello", "World"));
+        NoNullRet("Hello", "".Coalesce("Hello", "World"));
+        NoNullRet(1, Coalesce(null, 0, 1));
+        NoNullRet(0, Coalesce(null, 0, 1, zeroMatters));
+    }
 
     // Text
 
@@ -239,12 +248,16 @@ public class Coalesce_2Args_Tests : TestBase
     public void Coalesce_2Args_ObjectToText()
     {
         NoNullRet(Text,     Coalesce(NullObj,    Text));
+        NoNullRet(Text,     Coalesce(NullObj,    Text));
         NoNullRet("NoNull", Coalesce(NoNullObj,  Text));
         NoNullRet("Filled", Coalesce(NullyFilled,Text));
         NoNullRet(Text,     NullObj    .Coalesce(Text));
         NoNullRet("NoNull", NoNullObj  .Coalesce(Text));
         NoNullRet("Filled", NullyFilled.Coalesce(Text));
     }
+
+
+    // TODO: Add zeroMatters tests
 
     // Vals to Text
 
