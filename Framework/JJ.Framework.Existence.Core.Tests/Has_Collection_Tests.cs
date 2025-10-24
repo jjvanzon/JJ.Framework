@@ -9,6 +9,7 @@ public class Has_Collection_Tests
     public void Collection_FilledIn_True_WhenFilled()
     {
         IsTrue(Has(FilledArray));
+        IsTrue(Has(FilledArray));
         IsTrue(Has(FilledIList));
         IsTrue(Has(FilledISet));
         IsTrue(Has(FilledIDict));
