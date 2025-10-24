@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_StringBuilder
+public class Coalesce_3Args_SBs
 {
     [TestMethod]
     public void Coalesce_3Args_StringBuilder_Static()
