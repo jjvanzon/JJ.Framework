@@ -1,18 +1,17 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_SBTextCombos : TestBase
+public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersNo_Tests : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
 
     // Tests of all StringBuilder/Text Combos
-
     // Non-nullable inputs are omitted. Test combinations of:
-    // NullyEmpty, Null,     NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
+    // NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
 
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersFalse()
+    public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersNo()
     {
         NoNullRet("",         Coalesce(Null,          Null,          Null                              ));
         NoNullRet("",         Coalesce(Null,          Null,          Null,          spaceMatters: false));
@@ -918,9 +917,20 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(FilledSB,   Coalesce(NullyFilledSB, NullyFilledSB, NullyFilledSB                     ));
         NoNullRet(FilledSB,   Coalesce(NullyFilledSB, NullyFilledSB, NullyFilledSB, spaceMatters: false));
     }
- 
+}
+
+[TestClass]
+public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNo_Tests : TestBase
+{
+    private const string? NullyFilled = NullyFilledText;
+    private const string? Null = NullText;
+
+    // Tests of all StringBuilder/Text Combos
+    // Non-nullable inputs are omitted. Test combinations of:
+    // NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
+
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_Extensions_SpaceMattersFalse()
+    public void Coalesce_3Args_SBTextCombos_Extensions_SpaceMattersNo()
     {
         NoNullRet("",         Null         .Coalesce( Null,          Null                              ));
         NoNullRet("",         Null         .Coalesce( Null,          Null,          spaceMatters: false));
@@ -1826,9 +1836,21 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(FilledSB,   NullyFilledSB.Coalesce( NullyFilledSB, NullyFilledSB                     ));
         NoNullRet(FilledSB,   NullyFilledSB.Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters: false));
     }
+}
+
+[TestClass]
+public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYes_Tests : TestBase
+{
+    private const string? NullyFilled = NullyFilledText;
+    private const string? Null = NullText;
+
+    // Tests of all StringBuilder/Text Combos
+    // Non-nullable inputs are omitted. Test combinations of:
+    // NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
+
    
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersTrue()
+    public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersYes()
     {
         NoNullRet("",         Coalesce(Null,          Null,          Null,          spaceMatters       ));
         NoNullRet("",         Coalesce(Null,          Null,          Null,          spaceMatters: true ));
@@ -2734,9 +2756,21 @@ public class Coalesce_3Args_SBTextCombos : TestBase
         NoNullRet(FilledSB,   Coalesce(NullyFilledSB, NullyFilledSB, NullyFilledSB, spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyFilledSB, NullyFilledSB, NullyFilledSB, spaceMatters: true ));
     }
+}
+
+[TestClass]
+public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYes_Tests : TestBase
+{
+    private const string? NullyFilled = NullyFilledText;
+    private const string? Null = NullText;
+
+    // Tests of all StringBuilder/Text Combos
+    // Non-nullable inputs are omitted. Test combinations of:
+    // NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
+
 
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_Extensions_SpaceMattersTrue()
+    public void Coalesce_3Args_SBTextCombos_Extensions_SpaceMattersYes()
     {
         NoNullRet("",         Null         .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet("",         Null         .Coalesce( Null,          Null,          spaceMatters: true ));
