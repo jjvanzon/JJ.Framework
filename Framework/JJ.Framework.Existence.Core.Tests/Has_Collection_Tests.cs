@@ -6,7 +6,7 @@ public class Has_Collection_Tests
     // FilledIn / Has
     
     [TestMethod]
-    public void Collection_FilledIn_True_WhenFilled()
+    public void Has_Collection_True_WhenFilled()
     {
         IsTrue(Has(FilledArray));
         IsTrue(Has(FilledArray));
@@ -299,7 +299,7 @@ public class Has_Collection_Tests
     }
 
     [TestMethod]
-    public void Collection_FilledIn_True_ForNullable_WhenFilled()
+    public void Has_Collection_True_ForNullable_WhenFilled()
     {
         IsTrue(Has(NullyFilledArray));
         IsTrue(Has(NullyFilledIList));
@@ -591,7 +591,7 @@ public class Has_Collection_Tests
     }
       
     [TestMethod]
-    public void Collection_FilledIn_False_WhenEmpty()
+    public void Has_Collection_False_WhenEmpty()
     {
         IsFalse(Has(EmptyArray));
         IsFalse(Has(EmptyIList));
@@ -889,7 +889,7 @@ public class Has_Collection_Tests
     }
       
     [TestMethod]
-    public void Collection_FilledIn_False_ForNullable_WhenEmpty()
+    public void Has_Collection_False_ForNullable_WhenEmpty()
     {
         IsFalse(Has(NullableEmptyArray));
         IsFalse(Has(NullableEmptyIList));
@@ -1181,7 +1181,7 @@ public class Has_Collection_Tests
     }
       
     [TestMethod]
-    public void Collection_FilledIn_False_WhenNull()
+    public void Has_Collection_False_WhenNull()
     {
         IsFalse(Has(NullArray));
         IsFalse(Has(NullIList));
@@ -1481,7 +1481,7 @@ public class Has_Collection_Tests
     // IsNully
     
     [TestMethod]
-    public void Collection_IsNully_False_WhenFilled()
+    public void IsNully_Collection_False_WhenFilled()
     {
         IsFalse(FilledArray.IsNully());
         IsFalse(FilledIList.IsNully());
@@ -1681,7 +1681,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void Collection_IsNully_False_ForNullable_WhenFilled()
+    public void IsNully_Collection_False_ForNullable_WhenFilled()
     {
         IsFalse(NullyFilledArray.IsNully());
         IsFalse(NullyFilledIList.IsNully());
@@ -1881,7 +1881,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void Collection_IsNully_True_WhenEmpty()
+    public void IsNully_Collection_True_WhenEmpty()
     {
         IsTrue(EmptyArray.IsNully());
         IsTrue(EmptyIList.IsNully());
@@ -2081,7 +2081,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void Collection_IsNully_True_ForNullable_WhenEmpty()
+    public void IsNully_Collection_True_ForNullable_WhenEmpty()
     {
         IsTrue(NullableEmptyArray.IsNully());
         IsTrue(NullableEmptyIList.IsNully());
@@ -2281,7 +2281,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void Collection_IsNully_True_ForNulls()
+    public void IsNully_Collection_True_ForNulls()
     {
         IsTrue(NullArray.IsNully());
         IsTrue(NullIList.IsNully());
@@ -2481,7 +2481,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void ImmutableArray_AdditionalStatesOf_Emptiness()
+    public void Has_Collection_ImmutableArray_AdditionalStatesOfEmptiness()
     {
         IsFalse(FilledIn(ImmutableArrayWithDefault));
         IsFalse(FilledIn(ImmutableArrayWithDefaultNullable));
@@ -2490,7 +2490,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void Span_StatesOfEmptiness()
+    public void Has_Collection_Span_StatesOfEmptiness()
     {
         Span<int> filledSpan = [ 1, 2, 3 ];
         Span<int> emptySpan = [ ];
