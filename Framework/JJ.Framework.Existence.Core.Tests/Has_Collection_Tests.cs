@@ -6,7 +6,7 @@ public class Has_Collection_Tests
     // FilledIn / Has
     
     [TestMethod]
-    public void Has_Collection_True_WhenFilled()
+    public void Has_Collection_YesWhenFilled()
     {
         IsTrue(Has(FilledArray));
         IsTrue(Has(FilledArray));
@@ -299,7 +299,7 @@ public class Has_Collection_Tests
     }
 
     [TestMethod]
-    public void Has_Collection_True_ForNullable_WhenFilled()
+    public void Has_Collection_YesWhenFilledNullable()
     {
         IsTrue(Has(NullyFilledArray));
         IsTrue(Has(NullyFilledIList));
@@ -591,7 +591,7 @@ public class Has_Collection_Tests
     }
       
     [TestMethod]
-    public void Has_Collection_False_WhenEmpty()
+    public void Has_Collection_NoWhenEmpty()
     {
         IsFalse(Has(EmptyArray));
         IsFalse(Has(EmptyIList));
@@ -889,7 +889,7 @@ public class Has_Collection_Tests
     }
       
     [TestMethod]
-    public void Has_Collection_False_ForNullable_WhenEmpty()
+    public void Has_Collection_NoWhenEmptyNullable()
     {
         IsFalse(Has(NullableEmptyArray));
         IsFalse(Has(NullableEmptyIList));
@@ -1181,7 +1181,7 @@ public class Has_Collection_Tests
     }
       
     [TestMethod]
-    public void Has_Collection_False_WhenNull()
+    public void Has_Collection_NoWhenNull()
     {
         IsFalse(Has(NullArray));
         IsFalse(Has(NullIList));
@@ -1479,7 +1479,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void Has_Collection_ImmutableArray_AdditionalStatesOfEmptiness()
+    public void Has_Collection_ImmutableArrayAdditionalStatesOfEmptiness()
     {
         IsFalse(FilledIn(ImmutableArrayWithDefault));
         IsFalse(FilledIn(ImmutableArrayWithDefaultNullable));
@@ -1488,7 +1488,7 @@ public class Has_Collection_Tests
     }
     
     [TestMethod]
-    public void Has_Collection_Span_StatesOfEmptiness()
+    public void Has_Collection_SpanStatesOfEmptiness()
     {
         Span<int> filledSpan = [ 1, 2, 3 ];
         Span<int> emptySpan = [ ];

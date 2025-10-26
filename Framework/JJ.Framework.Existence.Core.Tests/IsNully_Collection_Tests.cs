@@ -4,7 +4,7 @@
 public class IsNully_Collection_Tests
 {
     [TestMethod]
-    public void IsNully_Collection_False_WhenFilled()
+    public void IsNully_Collection_NoWhenFilled()
     {
         IsFalse(FilledArray.IsNully());
         IsFalse(FilledIList.IsNully());
@@ -204,7 +204,7 @@ public class IsNully_Collection_Tests
     }
     
     [TestMethod]
-    public void IsNully_Collection_False_ForNullable_WhenFilled()
+    public void IsNully_Collection_NoWhenFilledNullable()
     {
         IsFalse(NullyFilledArray.IsNully());
         IsFalse(NullyFilledIList.IsNully());
@@ -404,7 +404,7 @@ public class IsNully_Collection_Tests
     }
     
     [TestMethod]
-    public void IsNully_Collection_True_WhenEmpty()
+    public void IsNully_Collection_YesWhenEmpty()
     {
         IsTrue(EmptyArray.IsNully());
         IsTrue(EmptyIList.IsNully());
@@ -604,7 +604,7 @@ public class IsNully_Collection_Tests
     }
     
     [TestMethod]
-    public void IsNully_Collection_True_ForNullable_WhenEmpty()
+    public void IsNully_Collection_YesWhenEmptyNullable()
     {
         IsTrue(NullableEmptyArray.IsNully());
         IsTrue(NullableEmptyIList.IsNully());
@@ -804,7 +804,7 @@ public class IsNully_Collection_Tests
     }
     
     [TestMethod]
-    public void IsNully_Collection_True_ForNulls()
+    public void IsNully_Collection_YesForNulls()
     {
         IsTrue(NullArray.IsNully());
         IsTrue(NullIList.IsNully());
