@@ -27,6 +27,7 @@ RunTests<Has_StringBuilder_Tests>() &&
 RunTests<Has_Text_Tests>() &&
 RunTests<Has_Value_Tests>() &&
 RunTests<In_Tests>() &&
-RunTests<Is_Tests>();
+RunTests<Is_Tests>() &&
+RunTests<IsNully_Collection_Tests>();
 WriteLine("Done.");
 if (!success) Exit(1);
