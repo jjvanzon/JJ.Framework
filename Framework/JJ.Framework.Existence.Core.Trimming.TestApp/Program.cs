@@ -21,7 +21,9 @@ RunTests<Existence_Regression>() &&
 RunTests<Existence_Examples>() &&
 RunTests<RegressionTest_CallToHas_FromGenericContext_TypeInfoLost>() &&
 RunTests<Flex_Prototype>() &&
-RunTests<Has_Collection_Tests>() &&
+RunTests<Has_Collection_Misc>() &&
+RunTests<Has_Collection_Yes>() &&
+RunTests<Has_Collection_No>() &&
 RunTests<Has_Object_Tests>() &&
 RunTests<Has_StringBuilder_Tests>() &&
 RunTests<Has_Text_Tests>() &&
