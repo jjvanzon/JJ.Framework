@@ -1,0 +1,27 @@
+  
+  <!-- Multi-Runtime Experiment -->
+  
+  <!--
+  <Target Name="PublishWinX64" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <MSBuild Projects="$(MSBuildProjectFile)" 
+             Targets="Publish" 
+             Properties="RuntimeIdentifier=win-x64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
+  </Target>
+  -->
+
+  <!-- Error: Trimming not supported -->
+  <!--
+  <Target Name="PublishWinX86" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <MSBuild Projects="$(MSBuildProjectFile)" 
+             Targets="Publish" 
+             Properties="RuntimeIdentifier=win-x86;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
+  </Target>
+  -->
+
+  <!-- Error: Cross-OS native compilation is not supported. -->
+  <!--
+  <Target Name="PublishLinuxArm64" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" 
+             Properties="RuntimeIdentifier=linux-arm64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\linux-arm64\;NoBuild=true" />
+  </Target>
+  -->

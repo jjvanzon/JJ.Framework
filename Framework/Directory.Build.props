@@ -161,7 +161,7 @@
 
   <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
@@ -169,33 +169,6 @@
           Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(IsNCrunch)'!='True'">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
-  
-  <!-- Multi-Runtime Experiment -->
-  
-  <!--
-  <Target Name="PublishWinX64" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    <MSBuild Projects="$(MSBuildProjectFile)" 
-             Targets="Publish" 
-             Properties="RuntimeIdentifier=win-x64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
-  </Target>
-  -->
-
-  <!-- Error: Trimming not supported -->
-  <!--
-  <Target Name="PublishWinX86" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    <MSBuild Projects="$(MSBuildProjectFile)" 
-             Targets="Publish" 
-             Properties="RuntimeIdentifier=win-x86;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\win-x64\;NoBuild=true" />
-  </Target>
-  -->
-
-  <!-- Error: Cross-OS native compilation is not supported. -->
-  <!--
-  <Target Name="PublishLinuxArm64" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" 
-             Properties="RuntimeIdentifier=linux-arm64;PublishDir=bin\$(Configuration)\$(TargetFramework)\publish\linux-arm64\;NoBuild=true" />
-  </Target>
-  -->
   
   <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And '$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
@@ -220,6 +193,7 @@
     <NoWarn>$(NoWarn);CA1510</NoWarn> <!--Use ThrowIfNull-->
     <NoWarn>$(NoWarn);CS0078</NoWarn> <!--The 'l' suffix is easily confused with the digit '1'-->
     <NoWarn>$(NoWarn);NETSDK1138</NoWarn> <!--The target framework 'net7.0' is out of support-->
+    <NoWarn>$(NoWarn);NU1510</NoWarn> <!--PackageReference will not be pruned-->
     <!-- See also: Directory.Build.targets for more disabled warnings. -->
   </PropertyGroup>
 
