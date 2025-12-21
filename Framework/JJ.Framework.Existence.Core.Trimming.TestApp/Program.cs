@@ -3,7 +3,8 @@ RunTests<Coalesce_1Arg_Tests>() &&
 RunTests<Coalesce_2Args_Tests>() &&
 RunTests<Coalesce_3Args_Objects>() &&
 RunTests<Coalesce_3Args_ObjectsToText>() &&
-RunTests<Coalesce_3Args_SBs>() &&
+RunTests<Coalesce_3Args_SBs_Extensions>() &&
+RunTests<Coalesce_3Args_SBs_Static>() &&
 RunTests<Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNo_Tests>() &&
 RunTests<Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYes_Tests>() &&
 RunTests<Coalesce_3Args_SBTextCombos_StaticSpaceMattersNo_Tests>() &&
