@@ -4,7 +4,7 @@
 public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYes
 {
     [TestMethod]
-    public void Coalesce_3Args_StringBuilder_Extensions_SpaceMatters_MagicBool()
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_MagicBool()
     {
         NoNullRet(                 NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters));
         NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters)}");
@@ -367,7 +367,7 @@ public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYes
     }
     
     [TestMethod]
-    public void Coalesce_3Args_StringBuilder_Extensions_SpaceMatters_ExplicitBool()
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool()
     {
         NoNullRet(                 NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters: true)}");

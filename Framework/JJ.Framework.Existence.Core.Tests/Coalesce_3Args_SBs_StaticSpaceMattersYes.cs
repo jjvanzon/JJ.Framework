@@ -4,7 +4,7 @@
 public class Coalesce_3Args_SBs_StaticSpaceMattersYes
 {
     [TestMethod]
-    public void Coalesce_3Args_StringBuilder_Static_SpaceMatters_MagicBool()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYes_MagicBool()
     {
         NoNullRet(                 Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters)}");
@@ -367,7 +367,7 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersYes
     }
     
     [TestMethod]
-    public void Coalesce_3Args_StringBuilder_Static_SpaceMatters_ExplicitBool()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYes_ExplicitBool()
     {
         NoNullRet(                 Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters: true));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters: true)}");
