@@ -13,7 +13,8 @@ RunTests<Coalesce_3Args_SBTextCombos_StaticSpaceMattersNo_Tests>() &&
 RunTests<Coalesce_3Args_SBTextCombos_StaticSpaceMattersYes_Tests>() &&
 RunTests<Coalesce_3Args_SBToText>() &&
 RunTests<Coalesce_3Args_Text_Extensions>() &&
-RunTests<Coalesce_3Args_Text_Static>() &&
+RunTests<Coalesce_3Args_Text_StaticSpaceMattersNo_Tests>() &&
+RunTests<Coalesce_3Args_Text_StaticSpaceMattersYes_Tests>() &&
 RunTests<Coalesce_3Args_Values>() &&
 RunTests<Coalesce_3Args_ValuesToText>() &&
 RunTests<Coalesce_Collections_Tests>() &&
