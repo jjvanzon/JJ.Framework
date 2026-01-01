@@ -9,7 +9,7 @@ public class Coalesce_3Args_SBToText_Extensions : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_Extensions()
+    public void Coalesce_3Args_SBToString_ExtensionsSpaceMattersNo()
     {
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Null       ));
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Empty      ));
@@ -362,7 +362,7 @@ public class Coalesce_3Args_SBToText_Extensions : TestBase
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_Extensions_SpaceMatters_MagicBool()
+    public void Coalesce_3Args_SBToString_ExtensionsSpaceMattersYes_MagicBool()
     {
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Null,        spaceMatters));
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Empty,       spaceMatters));
@@ -715,7 +715,7 @@ public class Coalesce_3Args_SBToText_Extensions : TestBase
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_Extensions_SpaceMatters_ExplicitBool()
+    public void Coalesce_3Args_SBToString_ExtensionsSpaceMattersYes_ExplicitBool()
     {
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Empty,       spaceMatters: true));

@@ -9,7 +9,7 @@ public class Coalesce_3Args_SBToText_Static : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_Static()
+    public void Coalesce_3Args_SBToString_StaticSpaceMattersNo()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null       ));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty      ));
@@ -362,7 +362,7 @@ public class Coalesce_3Args_SBToText_Static : TestBase
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_Static_SpaceMatters_MagicBool()
+    public void Coalesce_3Args_SBToString_StaticSpaceMattersYes_MagicBool()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null,        spaceMatters));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty,       spaceMatters));
@@ -715,7 +715,7 @@ public class Coalesce_3Args_SBToText_Static : TestBase
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_Static_SpaceMatters_ExplicitBool()
+    public void Coalesce_3Args_SBToString_StaticSpaceMattersYes_ExplicitBool()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty,       spaceMatters: true));
