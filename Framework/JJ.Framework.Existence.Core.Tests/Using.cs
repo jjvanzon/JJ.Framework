@@ -16,6 +16,7 @@ global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Core;
 global using JJ.Framework.Existence.Core.Tests.Helpers;
+global using JJ.Framework.Existence.Core.Tests.docs;
 global using static System.String;
 global using static System.Array;
 global using static System.Environment;
@@ -29,6 +30,7 @@ global using static JJ.Framework.Existence.Core.SpaceMatters;
 global using static JJ.Framework.Existence.Core.CaseMatters;
 global using static JJ.Framework.Existence.Core.ZeroMatters;
 global using static JJ.Framework.Existence.Core.Tests.Helpers.Mocks;
+
 #if NET8_0_OR_GREATER                                                                    
 global using System.Collections.Frozen;
 #endif

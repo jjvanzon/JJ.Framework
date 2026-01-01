@@ -1,13 +1,13 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
+/// <inheritdoc cref="_coalesce3argssbtotext" />
 [TestClass]
 public class Coalesce_3Args_SBToText : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
-
-    // Permutation Tests of StringBuilder variants, with String as Last Arg
-
+    
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
     public void Coalesce_3Args_SBToString_Static()
     {
@@ -360,6 +360,7 @@ public class Coalesce_3Args_SBToText : TestBase
         NoNullRet("FilledSB", Coalesce(FilledSB,      FilledSB,      NullyFilled));
     }
 
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
     public void Coalesce_3Args_SBToString_Static_SpaceMatters_MagicBool()
     {
@@ -712,6 +713,7 @@ public class Coalesce_3Args_SBToText : TestBase
         NoNullRet("FilledSB", Coalesce(FilledSB,      FilledSB,      NullyFilled, spaceMatters));
     }
 
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
     public void Coalesce_3Args_SBToString_Static_SpaceMatters_ExplicitBool()
     {
@@ -1064,6 +1066,7 @@ public class Coalesce_3Args_SBToText : TestBase
         NoNullRet("FilledSB", Coalesce(FilledSB,      FilledSB,      NullyFilled, spaceMatters: true));
     }
 
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
     public void Coalesce_3Args_SBToString_Extensions()
     {
@@ -1416,6 +1419,7 @@ public class Coalesce_3Args_SBToText : TestBase
         NoNullRet("FilledSB", FilledSB     .Coalesce( FilledSB,      NullyFilled));
     }
 
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
     public void Coalesce_3Args_SBToString_Extensions_SpaceMatters_MagicBool()
     {
@@ -1768,6 +1772,7 @@ public class Coalesce_3Args_SBToText : TestBase
         NoNullRet("FilledSB", FilledSB     .Coalesce( FilledSB,      NullyFilled, spaceMatters));
     }
 
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
     public void Coalesce_3Args_SBToString_Extensions_SpaceMatters_ExplicitBool()
     {
