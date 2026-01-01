@@ -2,14 +2,14 @@
 
 /// <inheritdoc cref="_coalesce3argssbtotext" />
 [TestClass]
-public class Coalesce_3Args_SBToText_Static : TestBase
+public class Coalesce_3Args_SBToText_StaticSpaceMattersNo : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_StaticSpaceMattersNo()
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersNo_Implicit()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null       ));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty      ));
@@ -359,10 +359,18 @@ public class Coalesce_3Args_SBToText_Static : TestBase
         NoNullRet("FilledSB", Coalesce(FilledSB,      FilledSB,      NullySpace ));
         NoNullRet("FilledSB", Coalesce(FilledSB,      FilledSB,      NullyFilled));
     }
+}
+
+/// <inheritdoc cref="_coalesce3argssbtotext" />
+[TestClass]
+public class Coalesce_3Args_SBToText_StaticSpaceMattersYes : TestBase
+{
+    private const string? NullyFilled = NullyFilledText;
+    private const string? Null = NullText;
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_StaticSpaceMattersYes_MagicBool()
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYes_MagicBool()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null,        spaceMatters));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty,       spaceMatters));
@@ -715,7 +723,7 @@ public class Coalesce_3Args_SBToText_Static : TestBase
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToString_StaticSpaceMattersYes_ExplicitBool()
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYes_ExplicitBool()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty,       spaceMatters: true));
