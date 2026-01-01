@@ -4,7 +4,7 @@
 public class In_Tests : TestBase
 {
     [TestMethod]
-    public void In_Strings_MatchCase_YesOrNo()
+    public void In_Strings_CaseMatters_YesOrNo()
     {
         // Main Use
         IsTrue ("GREEN".In("Red", "Green", "Blue"));
@@ -89,7 +89,7 @@ public class In_Tests : TestBase
     // No / No
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_FlagsInBack()
+    public void In_String_CaseOrSpaceMatters_NoNo_FlagsInBack()
     {
         // Extension Syntax
         IsTrue ("B"   .In( [ "A", "B", "C" ]                                         ));
@@ -185,7 +185,7 @@ public class In_Tests : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoNo_FlagsInFront()
+    public void In_String_CaseOrSpaceMatters_NoNo_FlagsInFront()
     {
         // Extension Syntax
         IsTrue ("B"   .In(                                          [ "A", "B", "C" ]));
@@ -375,7 +375,7 @@ public class In_Tests : TestBase
     // No / Yes
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoYes_FlagsInBack()
+    public void In_String_CaseOrSpaceMatters_NoYes_FlagsInBack()
     {
         // Extension Syntax
         IsTrue ("B"   .In( [ "A", "B", "C" ],                     spaceMatters      ));
@@ -487,7 +487,7 @@ public class In_Tests : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_NoYes_FlagsInFront()
+    public void In_String_CaseOrSpaceMatters_NoYes_FlagsInFront()
     {
         // Extension Syntax
         IsTrue ("B"   .In(                     spaceMatters,       [ "A", "B", "C" ]));
@@ -709,7 +709,7 @@ public class In_Tests : TestBase
     // Yes / No
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_YesNo_ExtensionSyntax_FlagsInBack()
+    public void In_String_CaseOrSpaceMatters_YesNo_ExtensionSyntax_FlagsInBack()
     {
         // Extension Syntax
         IsTrue ("B"   .In( [ "A", "B", "C" ], caseMatters                            ));
@@ -829,7 +829,7 @@ public class In_Tests : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_YesNo_ExtensionSyntax_FlagsInFront()
+    public void In_String_CaseOrSpaceMatters_YesNo_ExtensionSyntax_FlagsInFront()
     {
         // Extension Syntax
         IsTrue ("B"   .In(caseMatters,                             [ "A", "B", "C" ]));
@@ -1067,7 +1067,7 @@ public class In_Tests : TestBase
     // Yes / Yes
     
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_YesYes_FlagsInBack()
+    public void In_String_CaseOrSpaceMatters_YesYes_FlagsInBack()
     {
         // Extension Syntax
         IsTrue ("B"   .In( [ "A", "B", "C" ], caseMatters,       spaceMatters      ));
@@ -1211,7 +1211,7 @@ public class In_Tests : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseMattersSpaceMatters_YesYes_FlagsInFront()
+    public void In_String_CaseOrSpaceMatters_YesYes_FlagsInFront()
     {
         // Extension Syntax
         IsTrue ("B"   .In( caseMatters,        spaceMatters,       [ "A", "B", "C" ]));
