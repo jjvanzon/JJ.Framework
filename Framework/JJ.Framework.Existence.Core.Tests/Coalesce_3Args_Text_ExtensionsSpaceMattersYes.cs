@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_Text_ExtensionsSpaceMattersYes_Tests : TestBase
+public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
 {
     const string? Null = NullText;
     const string? NullyFilled = NullyFilledText;
@@ -361,7 +361,14 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYes_Tests : TestBase
         NoNullRet(Text,  Text       .Coalesce(Text,        Space,       spaceMatters));
         NoNullRet(Text,  Text       .Coalesce(Text,        Text,        spaceMatters));
     }
-    
+}
+
+[TestClass]
+public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesExplicitBool : TestBase
+{
+    const string? Null = NullText;
+    const string? NullyFilled = NullyFilledText;
+
     [TestMethod]
     public void Coalesce_3Args_Text_ExtensionsSpaceMattersYes_ExplicitBool()
     {

@@ -2,7 +2,7 @@
 
 /// <inheritdoc cref="_coalesce3argssbtotext" />
 [TestClass]
-public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYes : TestBase
+public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesMagicBool : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
@@ -359,6 +359,14 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYes : TestBase
         NoNullRet("FilledSB", FilledSB     .Coalesce( FilledSB,      NullySpace,  spaceMatters));
         NoNullRet("FilledSB", FilledSB     .Coalesce( FilledSB,      NullyFilled, spaceMatters));
     }
+}
+
+/// <inheritdoc cref="_coalesce3argssbtotext" />
+[TestClass]
+public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : TestBase
+{
+    private const string? NullyFilled = NullyFilledText;
+    private const string? Null = NullText;
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]

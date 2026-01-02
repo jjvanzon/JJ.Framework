@@ -2,7 +2,7 @@
 
 /// <inheritdoc cref="_coalesce3argssbtextcombos" />
 [TestClass]
-public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYes_Tests : TestBase
+public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
@@ -467,6 +467,14 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYes_Tests : TestBase
         NoNullRet(FilledSB,   Coalesce(NullyFilledSB, NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyFilledSB, NullyFilledSB, NullyFilledSB, spaceMatters       ));
     }
+}
+
+/// <inheritdoc cref="_coalesce3argssbtextcombos" />
+[TestClass]
+public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : TestBase
+{
+    private const string? NullyFilled = NullyFilledText;
+    private const string? Null = NullText;
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
