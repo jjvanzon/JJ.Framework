@@ -1,5 +1,8 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
+/// <summary>
+/// Removed from Trimming Test; Heavily relies on Reflection.
+/// </summary>
 [TestClass]
 public class CrossRefCollectionTypesTests
 {
