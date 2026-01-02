@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class In_Tests_CaseOrSpaceMatters_YesYes : TestBase
+public class In_Tests_CaseOrSpaceMattersYesYes : TestBase
 {
     // Yes / Yes
     

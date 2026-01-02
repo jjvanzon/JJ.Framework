@@ -37,10 +37,10 @@ RunTests<Has_Object_Tests>() &&
 RunTests<Has_StringBuilder_Tests>() &&
 RunTests<Has_Text_Tests>() &&
 RunTests<Has_Value_Tests>() &&
-RunTests<In_Tests_CaseOrSpaceMatters_NoNo>() &&
-RunTests<In_Tests_CaseOrSpaceMatters_NoYes>() &&
-RunTests<In_Tests_CaseOrSpaceMatters_YesNo>() &&
-RunTests<In_Tests_CaseOrSpaceMatters_YesYes>() &&
+RunTests<In_Tests_CaseOrSpaceMattersNoNo>() &&
+RunTests<In_Tests_CaseOrSpaceMattersNoYes>() &&
+RunTests<In_Tests_CaseOrSpaceMattersYesNo>() &&
+RunTests<In_Tests_CaseOrSpaceMattersYesYes>() &&
 RunTests<In_Tests_CaseMatters>() &&
 RunTests<In_Tests_SpaceMatters>() &&
 RunTests<In_Tests_Other>() &&

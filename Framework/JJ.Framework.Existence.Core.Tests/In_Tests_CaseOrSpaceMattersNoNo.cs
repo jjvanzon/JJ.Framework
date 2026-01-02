@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class In_Tests_CaseOrSpaceMatters_NoNo : TestBase
+public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
 {
     // No / No
 
