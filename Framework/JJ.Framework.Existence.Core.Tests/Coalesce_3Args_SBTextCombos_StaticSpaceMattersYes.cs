@@ -1,15 +1,13 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
+/// <inheritdoc cref="_coalesce3argssbtextcombos" />
 [TestClass]
 public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYes_Tests : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
 
-    // Tests of all StringBuilder/Text Combos
-    // Non-nullable inputs are omitted. Test combinations of:
-    // NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
-    
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
     public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersYes_MagicBool()
     {
@@ -470,6 +468,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYes_Tests : TestBase
         NoNullRet(FilledSB,   Coalesce(NullyFilledSB, NullyFilledSB, NullyFilledSB, spaceMatters       ));
     }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
     public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersYes_ExplicitBool()
     {

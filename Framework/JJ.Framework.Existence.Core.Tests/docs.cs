@@ -12,3 +12,10 @@ namespace JJ.Framework.Existence.Core.Tests.docs;
 /// Permutation Tests of StringBuilder variants, with String as Last Arg.
 /// </summary>
 public struct _coalesce3argssbtotext;
+
+/// <summary>
+/// Tests of all StringBuilder/Text Combos.<br/>
+/// Non-nullable inputs are omitted. Test combinations of:<br/>
+/// NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
+/// </summary>
+public struct _coalesce3argssbtextcombos;
