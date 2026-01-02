@@ -4,7 +4,7 @@
 public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit
 {
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersNo_Explicit()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_Batch1()
     {
         NoNullRet(                 Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters: false));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters: false)}");
@@ -60,7 +60,11 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit
         NoNullRet(   FilledSB,     Coalesce(NullSB,        FilledSB,      EmptySB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullSB,        FilledSB,      SpaceSB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullSB,        FilledSB,      FilledSB,      spaceMatters: false));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_Batch2()
+    {
         NoNullRet(                 Coalesce(NullyEmptySB,  NullSB,        NullSB,        spaceMatters: false));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullyEmptySB,  NullSB,        NullSB,        spaceMatters: false)}");
         NoNullRet(   EmptySB,      Coalesce(NullyEmptySB,  NullSB,        NullyEmptySB,  spaceMatters: false));
@@ -115,7 +119,11 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit
         NoNullRet(   FilledSB,     Coalesce(NullyEmptySB,  FilledSB,      EmptySB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullyEmptySB,  FilledSB,      SpaceSB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullyEmptySB,  FilledSB,      FilledSB,      spaceMatters: false));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_Batch3()
+    {
         NoNullRet(                 Coalesce(NullySpaceSB,  NullSB,        NullSB,        spaceMatters: false));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullySpaceSB,  NullSB,        NullSB,        spaceMatters: false)}");
         NoNullRet(   EmptySB,      Coalesce(NullySpaceSB,  NullSB,        NullyEmptySB,  spaceMatters: false));
@@ -170,7 +178,11 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit
         NoNullRet(   FilledSB,     Coalesce(NullySpaceSB,  FilledSB,      EmptySB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullySpaceSB,  FilledSB,      SpaceSB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullySpaceSB,  FilledSB,      FilledSB,      spaceMatters: false));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_Batch4()
+    {
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, NullSB,        NullSB,        spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, NullSB,        NullyEmptySB,  spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, NullSB,        NullySpaceSB,  spaceMatters: false));
@@ -220,7 +232,11 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, FilledSB,      EmptySB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, FilledSB,      SpaceSB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, FilledSB,      FilledSB,      spaceMatters: false));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_Batch5()
+    {
         NoNullRet(                 Coalesce(EmptySB,       NullSB,        NullSB,        spaceMatters: false));
         NoNullRet($"{EmptySB}", $"{Coalesce(EmptySB,       NullSB,        NullSB,        spaceMatters: false)}");
         NoNullRet(   EmptySB,      Coalesce(EmptySB,       NullSB,        NullyEmptySB,  spaceMatters: false));
@@ -275,7 +291,11 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit
         NoNullRet(   FilledSB,     Coalesce(EmptySB,       FilledSB,      EmptySB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(EmptySB,       FilledSB,      SpaceSB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(EmptySB,       FilledSB,      FilledSB,      spaceMatters: false));
-                                                 
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_Batch6()
+    {
         NoNullRet(                 Coalesce(SpaceSB,       NullSB,        NullSB,        spaceMatters: false));
         NoNullRet($"{EmptySB}", $"{Coalesce(SpaceSB,       NullSB,        NullSB,        spaceMatters: false)}");
         NoNullRet(   EmptySB,      Coalesce(SpaceSB,       NullSB,        NullyEmptySB,  spaceMatters: false));
@@ -330,7 +350,11 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit
         NoNullRet(   FilledSB,     Coalesce(SpaceSB,       FilledSB,      EmptySB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(SpaceSB,       FilledSB,      SpaceSB,       spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(SpaceSB,       FilledSB,      FilledSB,      spaceMatters: false));
-                                                 
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_Batch7()
+    {
         NoNullRet(   FilledSB,     Coalesce(FilledSB,      NullSB,        NullSB,        spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(FilledSB,      NullSB,        NullyEmptySB,  spaceMatters: false));
         NoNullRet(   FilledSB,     Coalesce(FilledSB,      NullSB,        NullySpaceSB,  spaceMatters: false));

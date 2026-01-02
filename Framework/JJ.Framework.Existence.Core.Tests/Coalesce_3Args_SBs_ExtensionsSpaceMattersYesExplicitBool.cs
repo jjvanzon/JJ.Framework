@@ -4,7 +4,7 @@
 public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool
 {
     [TestMethod]
-    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool()
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool_Batch1()
     {
         NoNullRet(                 NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(NullSB,        NullSB,        spaceMatters: true)}");
@@ -58,7 +58,11 @@ public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool
         NoNullRet(   FilledSB,     NullSB       .Coalesce(FilledSB,      EmptySB,       spaceMatters: true));
         NoNullRet(   FilledSB,     NullSB       .Coalesce(FilledSB,      SpaceSB,       spaceMatters: true));
         NoNullRet(   FilledSB,     NullSB       .Coalesce(FilledSB,      FilledSB,      spaceMatters: true));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool_Batch2()
+    {
         NoNullRet(                 NullyEmptySB .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet($"{EmptySB}", $"{NullyEmptySB .Coalesce(NullSB,        NullSB,        spaceMatters: true)}");
         NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(NullSB,        NullyEmptySB,  spaceMatters: true));
@@ -111,7 +115,11 @@ public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool
         NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(FilledSB,      EmptySB,       spaceMatters: true));
         NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(FilledSB,      SpaceSB,       spaceMatters: true));
         NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(FilledSB,      FilledSB,      spaceMatters: true));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool_Batch3()
+    {
         NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(NullSB,        NullyEmptySB,  spaceMatters: true));
         NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(NullSB,        NullySpaceSB,  spaceMatters: true));
@@ -161,7 +169,11 @@ public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool
         NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(FilledSB,      EmptySB,       spaceMatters: true));
         NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(FilledSB,      SpaceSB,       spaceMatters: true));
         NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(FilledSB,      FilledSB,      spaceMatters: true));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool_Batch4()
+    {
         NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(NullSB,        NullyEmptySB,  spaceMatters: true));
         NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(NullSB,        NullySpaceSB,  spaceMatters: true));
@@ -211,7 +223,11 @@ public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool
         NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(FilledSB,      EmptySB,       spaceMatters: true));
         NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(FilledSB,      SpaceSB,       spaceMatters: true));
         NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(FilledSB,      FilledSB,      spaceMatters: true));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool_Batch5()
+    {
         NoNullRet(                 EmptySB      .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet($"{EmptySB}", $"{EmptySB      .Coalesce(NullSB,        NullSB,        spaceMatters: true)}");
         NoNullRet(   EmptySB,      EmptySB      .Coalesce(NullSB,        NullyEmptySB,  spaceMatters: true));
@@ -264,7 +280,11 @@ public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool
         NoNullRet(   FilledSB,     EmptySB      .Coalesce(FilledSB,      EmptySB,       spaceMatters: true));
         NoNullRet(   FilledSB,     EmptySB      .Coalesce(FilledSB,      SpaceSB,       spaceMatters: true));
         NoNullRet(   FilledSB,     EmptySB      .Coalesce(FilledSB,      FilledSB,      spaceMatters: true));
-                                                                
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool_Batch6()
+    {
         NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(NullSB,        NullyEmptySB,  spaceMatters: true));
         NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(NullSB,        NullySpaceSB,  spaceMatters: true));
@@ -314,7 +334,11 @@ public class Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool
         NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(FilledSB,      EmptySB,       spaceMatters: true));
         NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(FilledSB,      SpaceSB,       spaceMatters: true));
         NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(FilledSB,      FilledSB,      spaceMatters: true));
-                                                                
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersYes_ExplicitBool_Batch7()
+    {
         NoNullRet(   FilledSB,     FilledSB     .Coalesce(NullSB,        NullSB,        spaceMatters: true));
         NoNullRet(   FilledSB,     FilledSB     .Coalesce(NullSB,        NullyEmptySB,  spaceMatters: true));
         NoNullRet(   FilledSB,     FilledSB     .Coalesce(NullSB,        NullySpaceSB,  spaceMatters: true));
