@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class In_Tests : TestBase
+public class In_Tests_CaseMatters : TestBase
 {
     [TestMethod]
     public void In_Strings_CaseMatters_YesOrNo()
@@ -42,7 +42,11 @@ public class In_Tests : TestBase
         IsFalse(In("Yellow", [ "Red", "Green", "Blue" ]));
         IsFalse("Yellow".In( [ "Red", "Green", "Blue" ]));
     }
-    
+}
+
+[TestClass]
+public class In_Tests_SpaceMatters : TestBase
+{
     [TestMethod]
     public void In_Strings_SpaceMatters_YesOrNo()
     {
@@ -85,7 +89,11 @@ public class In_Tests : TestBase
         IsFalse(In("Green", [ "Red", " Green ", "Blue" ], spaceMatters: true ));
         IsFalse(In("Green", [ "Red", " Green ", "Blue" ], spaceMatters       ));
     }
+}
 
+[TestClass]
+public class In_Tests_CaseOrSpaceMatters_NoNo : TestBase
+{
     // No / No
 
     [TestMethod]
@@ -371,7 +379,11 @@ public class In_Tests : TestBase
       //IsTrue (In("b"   ,               false, caseMatters: false,   "A", "B", "C"  ));
       //IsTrue (In("b \t",               false, caseMatters: false,   "A", "B", "C"  ));
     }
+}
 
+[TestClass]
+public class In_Tests_CaseOrSpaceMatters_NoYes : TestBase
+{
     // No / Yes
 
     [TestMethod]
@@ -705,7 +717,11 @@ public class In_Tests : TestBase
       //IsTrue (In("b"   ,               true, caseMatters: false,   "A", "B", "C"  ));
       //IsFalse(In("b \t",               true, caseMatters: false,   "A", "B", "C"  ));
     }
+}
 
+[TestClass]
+public class In_Tests_CaseOrSpaceMatters_YesNo : TestBase
+{
     // Yes / No
 
     [TestMethod]
@@ -1063,7 +1079,11 @@ public class In_Tests : TestBase
       //IsFalse(In("b"   ,               false, caseMatters: true,    "A", "B", "C"  ));
       //IsFalse(In("b \t",               false, caseMatters: true,    "A", "B", "C"  ));
     }
+}
 
+[TestClass]
+public class In_Tests_CaseOrSpaceMatters_YesYes : TestBase
+{
     // Yes / Yes
     
     [TestMethod]
@@ -1493,7 +1513,11 @@ public class In_Tests : TestBase
       //IsFalse(In("b"   ,               true, caseMatters: true,     "A", "B", "C"  ));
       //IsFalse(In("b \t",               true, caseMatters: true,     "A", "B", "C"  ));
     }
+}
 
+[TestClass]
+public class In_Tests_Other : TestBase
+{
     [TestMethod]
     public void In_Strings_Nully()
     {

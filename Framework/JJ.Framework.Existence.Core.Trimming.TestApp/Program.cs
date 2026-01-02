@@ -37,7 +37,13 @@ RunTests<Has_Object_Tests>() &&
 RunTests<Has_StringBuilder_Tests>() &&
 RunTests<Has_Text_Tests>() &&
 RunTests<Has_Value_Tests>() &&
-RunTests<In_Tests>() &&
+RunTests<In_Tests_CaseOrSpaceMatters_NoNo>() &&
+RunTests<In_Tests_CaseOrSpaceMatters_NoYes>() &&
+RunTests<In_Tests_CaseOrSpaceMatters_YesNo>() &&
+RunTests<In_Tests_CaseOrSpaceMatters_YesYes>() &&
+RunTests<In_Tests_CaseMatters>() &&
+RunTests<In_Tests_SpaceMatters>() &&
+RunTests<In_Tests_Other>() &&
 RunTests<Is_Tests>() &&
 RunTests<IsNully_Collection_Tests>();
 WriteLine("Done.");
