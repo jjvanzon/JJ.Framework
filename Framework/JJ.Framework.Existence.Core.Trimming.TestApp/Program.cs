@@ -45,6 +45,7 @@ RunTests<In_Tests_CaseMatters>() &&
 RunTests<In_Tests_SpaceMatters>() &&
 RunTests<In_Tests_Other>() &&
 RunTests<Is_Tests>() &&
-RunTests<IsNully_Collection_Tests>();
+RunTests<IsNully_Collection_No_Tests>();
+RunTests<IsNully_Collection_Yes_Tests>();
 WriteLine("Done.");
 if (!success) Exit(1);
