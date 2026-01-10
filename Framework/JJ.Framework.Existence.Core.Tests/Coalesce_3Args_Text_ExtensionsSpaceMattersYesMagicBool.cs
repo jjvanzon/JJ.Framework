@@ -7,10 +7,14 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
     const string? NullyFilled = NullyFilledText;
 
     [TestMethod]
-    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYes_MagicBool()
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Example()
     {
         AreEqual(" ",   " ".Coalesce(null, "Hi!", spaceMatters: true));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Batch1()
+    {
         NoNullRet(Empty, Null       .Coalesce(Null,        Null,        spaceMatters));
         NoNullRet(Empty, Null       .Coalesce(Null,        NullyEmpty,  spaceMatters));
         NoNullRet(Space, Null       .Coalesce(Null,        NullySpace,  spaceMatters));
@@ -60,7 +64,11 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
         NoNullRet(Text,  Null       .Coalesce(Text,        Empty,       spaceMatters));
         NoNullRet(Text,  Null       .Coalesce(Text,        Space,       spaceMatters));
         NoNullRet(Text,  Null       .Coalesce(Text,        Text,        spaceMatters));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Batch2()
+    {
         NoNullRet(Empty, NullyEmpty .Coalesce(Null,        Null,        spaceMatters));
         NoNullRet(Empty, NullyEmpty .Coalesce(Null,        NullyEmpty,  spaceMatters));
         NoNullRet(Space, NullyEmpty .Coalesce(Null,        NullySpace,  spaceMatters));
@@ -110,7 +118,11 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
         NoNullRet(Text,  NullyEmpty .Coalesce(Text,        Empty,       spaceMatters));
         NoNullRet(Text,  NullyEmpty .Coalesce(Text,        Space,       spaceMatters));
         NoNullRet(Text,  NullyEmpty .Coalesce(Text,        Text,        spaceMatters));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Batch3()
+    {
         NoNullRet(Space, NullySpace .Coalesce(Null,        Null,        spaceMatters));
         NoNullRet(Space, NullySpace .Coalesce(Null,        NullyEmpty,  spaceMatters));
         NoNullRet(Space, NullySpace .Coalesce(Null,        NullySpace,  spaceMatters));
@@ -160,7 +172,11 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
         NoNullRet(Space, NullySpace .Coalesce(Text,        Empty,       spaceMatters));
         NoNullRet(Space, NullySpace .Coalesce(Text,        Space,       spaceMatters));
         NoNullRet(Space, NullySpace .Coalesce(Text,        Text,        spaceMatters));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Batch4()
+    {
         NoNullRet(Text,  NullyFilled.Coalesce(Null,        Null,        spaceMatters));
         NoNullRet(Text,  NullyFilled.Coalesce(Null,        NullyEmpty,  spaceMatters));
         NoNullRet(Text,  NullyFilled.Coalesce(Null,        NullySpace,  spaceMatters));
@@ -210,7 +226,11 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
         NoNullRet(Text,  NullyFilled.Coalesce(Text,        Empty,       spaceMatters));
         NoNullRet(Text,  NullyFilled.Coalesce(Text,        Space,       spaceMatters));
         NoNullRet(Text,  NullyFilled.Coalesce(Text,        Text,        spaceMatters));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Batch5()
+    {
         NoNullRet(Empty, Empty      .Coalesce(Null,        Null,        spaceMatters));
         NoNullRet(Empty, Empty      .Coalesce(Null,        NullyEmpty,  spaceMatters));
         NoNullRet(Space, Empty      .Coalesce(Null,        NullySpace,  spaceMatters));
@@ -260,7 +280,11 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
         NoNullRet(Text,  Empty      .Coalesce(Text,        Empty,       spaceMatters));
         NoNullRet(Text,  Empty      .Coalesce(Text,        Space,       spaceMatters));
         NoNullRet(Text,  Empty      .Coalesce(Text,        Text,        spaceMatters));
-                                                                
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Batch6()
+    {
         NoNullRet(Space, Space      .Coalesce(Null,        Null,        spaceMatters));
         NoNullRet(Space, Space      .Coalesce(Null,        NullyEmpty,  spaceMatters));
         NoNullRet(Space, Space      .Coalesce(Null,        NullySpace,  spaceMatters));
@@ -310,7 +334,11 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool : TestBase
         NoNullRet(Space, Space      .Coalesce(Text,        Empty,       spaceMatters));
         NoNullRet(Space, Space      .Coalesce(Text,        Space,       spaceMatters));
         NoNullRet(Space, Space      .Coalesce(Text,        Text,        spaceMatters));
-                                                                
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_Batch7()
+    {
         NoNullRet(Text,  Text       .Coalesce(Null,        Null,        spaceMatters));
         NoNullRet(Text,  Text       .Coalesce(Null,        NullyEmpty,  spaceMatters));
         NoNullRet(Text,  Text       .Coalesce(Null,        NullySpace,  spaceMatters));

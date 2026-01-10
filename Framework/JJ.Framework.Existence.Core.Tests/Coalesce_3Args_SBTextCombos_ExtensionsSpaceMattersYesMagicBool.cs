@@ -9,7 +9,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_Extensions_SpaceMattersYes_MagicBool()
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch1()
     {
         NoNullRet("",         Null         .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet("",         Null         .Coalesce( Null,          NullyEmpty,    spaceMatters       ));
@@ -67,7 +67,12 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet(FilledSB,   Null         .Coalesce( NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   Null         .Coalesce( NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   Null         .Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch2()
+    {
         NoNullRet("",         NullyEmpty   .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet("",         NullyEmpty   .Coalesce( Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        NullyEmpty   .Coalesce( Null,          NullySpace,    spaceMatters       ));
@@ -124,7 +129,12 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet(FilledSB,   NullyEmpty   .Coalesce( NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   NullyEmpty   .Coalesce( NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   NullyEmpty   .Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch3()
+    {
         NoNullRet(" ",        NullySpace   .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet(" ",        NullySpace   .Coalesce( Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        NullySpace   .Coalesce( Null,          NullySpace,    spaceMatters       ));
@@ -181,7 +191,12 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet(" ",        NullySpace   .Coalesce( NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(" ",        NullySpace   .Coalesce( NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(" ",        NullySpace   .Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch4()
+    {
         NoNullRet("Filled",   NullyFilled  .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet("Filled",   NullyFilled  .Coalesce( Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet("Filled",   NullyFilled  .Coalesce( Null,          NullySpace,    spaceMatters       ));
@@ -238,7 +253,12 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet("Filled",   NullyFilled  .Coalesce( NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet("Filled",   NullyFilled  .Coalesce( NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet("Filled",   NullyFilled  .Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch5()
+    {
         NoNullRet("",         NullSB       .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet("",         NullSB       .Coalesce( Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        NullSB       .Coalesce( Null,          NullySpace,    spaceMatters       ));
@@ -295,7 +315,12 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet(FilledSB,   NullSB       .Coalesce( NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   NullSB       .Coalesce( NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   NullSB       .Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters       ));
-       
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch6()
+    {
         NoNullRet("",         NullyEmptySB .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet("",         NullyEmptySB .Coalesce( Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        NullyEmptySB .Coalesce( Null,          NullySpace,    spaceMatters       ));
@@ -352,7 +377,12 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet(FilledSB,   NullyEmptySB .Coalesce( NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   NullyEmptySB .Coalesce( NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   NullyEmptySB .Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch7()
+    {
         NoNullRet(" ",        NullySpaceSB .Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet(" ",        NullySpaceSB .Coalesce( Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        NullySpaceSB .Coalesce( Null,          NullySpace,    spaceMatters       ));
@@ -409,7 +439,12 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet(SpaceSB,    NullySpaceSB .Coalesce( NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(SpaceSB,    NullySpaceSB .Coalesce( NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(SpaceSB,    NullySpaceSB .Coalesce( NullyFilledSB, NullyFilledSB, spaceMatters       ));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool_Batch8()
+    {
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( Null,          Null,          spaceMatters       ));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( Null,          NullySpace,    spaceMatters       ));
@@ -442,7 +477,6 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersYesMagicBool : Te
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullyFilled,   NullyEmptySB,  spaceMatters       ));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullyFilled,   NullySpaceSB,  spaceMatters       ));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullyFilled,   NullyFilledSB, spaceMatters       ));
-        // TODO
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullSB,        NullySpace,    spaceMatters       ));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullSB,        NullyFilled,   spaceMatters       ));
         NoNullRet(FilledSB,   NullyFilledSB.Coalesce( NullSB,        NullSB,        spaceMatters       ));

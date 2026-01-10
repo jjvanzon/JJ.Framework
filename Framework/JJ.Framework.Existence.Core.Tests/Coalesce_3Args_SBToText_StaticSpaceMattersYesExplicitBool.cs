@@ -9,7 +9,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool : TestBas
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersYes_ExplicitBool()
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool_Batch1()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty,       spaceMatters: true));
@@ -60,7 +60,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool : TestBas
         NoNullRet("FilledSB", Coalesce(NullSB,        FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullSB,        FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullSB,        FilledSB,      NullyFilled, spaceMatters: true));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool_Batch2()
+    {
         NoNullRet("",         Coalesce(NullyEmptySB,  NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         Coalesce(NullyEmptySB,  NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        Coalesce(NullyEmptySB,  NullSB,        Space,       spaceMatters: true));
@@ -110,7 +115,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool : TestBas
         NoNullRet("FilledSB", Coalesce(NullyEmptySB,  FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullyEmptySB,  FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullyEmptySB,  FilledSB,      NullyFilled, spaceMatters: true));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool_Batch3()
+    {
         NoNullRet(" ",        Coalesce(NullySpaceSB,  NullSB,        Null,        spaceMatters: true));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  NullSB,        Space,       spaceMatters: true));
@@ -160,7 +170,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool : TestBas
         NoNullRet(" ",        Coalesce(NullySpaceSB,  FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  FilledSB,      NullyFilled, spaceMatters: true));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool_Batch4()
+    {
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Null,        spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Empty,       spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Space,       spaceMatters: true));
@@ -210,7 +225,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool : TestBas
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, FilledSB,      NullyFilled, spaceMatters: true));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool_Batch5()
+    {
         NoNullRet("",         Coalesce(EmptySB,       NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         Coalesce(EmptySB,       NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        Coalesce(EmptySB,       NullSB,        Space,       spaceMatters: true));
@@ -260,7 +280,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool : TestBas
         NoNullRet("FilledSB", Coalesce(EmptySB,       FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(EmptySB,       FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(EmptySB,       FilledSB,      NullyFilled, spaceMatters: true));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool_Batch6()
+    {
         NoNullRet(" ",        Coalesce(SpaceSB,       NullSB,        Null,        spaceMatters: true));
         NoNullRet(" ",        Coalesce(SpaceSB,       NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        Coalesce(SpaceSB,       NullSB,        Space,       spaceMatters: true));
@@ -310,7 +335,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool : TestBas
         NoNullRet(" ",        Coalesce(SpaceSB,       FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet(" ",        Coalesce(SpaceSB,       FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet(" ",        Coalesce(SpaceSB,       FilledSB,      NullyFilled, spaceMatters: true));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesExplicitBool_Batch7()
+    {
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Null,        spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Empty,       spaceMatters: true));
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Space,       spaceMatters: true));

@@ -9,7 +9,7 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYes_ExplicitBool()
+    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool_Batch1()
     {
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Empty,       spaceMatters: true));
@@ -60,7 +60,12 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : Tes
         NoNullRet("FilledSB", NullSB       .Coalesce( FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", NullSB       .Coalesce( FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", NullSB       .Coalesce( FilledSB,      NullyFilled, spaceMatters: true));
-                                                      
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool_Batch2()
+    {
         NoNullRet("",         NullyEmptySB .Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         NullyEmptySB .Coalesce( NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        NullyEmptySB .Coalesce( NullSB,        Space,       spaceMatters: true));
@@ -110,7 +115,12 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : Tes
         NoNullRet("FilledSB", NullyEmptySB .Coalesce( FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", NullyEmptySB .Coalesce( FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", NullyEmptySB .Coalesce( FilledSB,      NullyFilled, spaceMatters: true));
-                                                      
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool_Batch3()
+    {
         NoNullRet(" ",        NullySpaceSB .Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet(" ",        NullySpaceSB .Coalesce( NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        NullySpaceSB .Coalesce( NullSB,        Space,       spaceMatters: true));
@@ -160,7 +170,12 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : Tes
         NoNullRet(" ",        NullySpaceSB .Coalesce( FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet(" ",        NullySpaceSB .Coalesce( FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet(" ",        NullySpaceSB .Coalesce( FilledSB,      NullyFilled, spaceMatters: true));
-                                                      
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool_Batch4()
+    {
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullSB,        Empty,       spaceMatters: true));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullSB,        Space,       spaceMatters: true));
@@ -210,7 +225,12 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : Tes
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( FilledSB,      NullyFilled, spaceMatters: true));
-                                                      
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool_Batch5()
+    {
         NoNullRet("",         EmptySB      .Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet("",         EmptySB      .Coalesce( NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        EmptySB      .Coalesce( NullSB,        Space,       spaceMatters: true));
@@ -260,7 +280,12 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : Tes
         NoNullRet("FilledSB", EmptySB      .Coalesce( FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet("FilledSB", EmptySB      .Coalesce( FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet("FilledSB", EmptySB      .Coalesce( FilledSB,      NullyFilled, spaceMatters: true));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool_Batch6()
+    {
         NoNullRet(" ",        SpaceSB      .Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet(" ",        SpaceSB      .Coalesce( NullSB,        Empty,       spaceMatters: true));
         NoNullRet(" ",        SpaceSB      .Coalesce( NullSB,        Space,       spaceMatters: true));
@@ -310,7 +335,12 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool : Tes
         NoNullRet(" ",        SpaceSB      .Coalesce( FilledSB,      NullyEmpty,  spaceMatters: true));
         NoNullRet(" ",        SpaceSB      .Coalesce( FilledSB,      NullySpace,  spaceMatters: true));
         NoNullRet(" ",        SpaceSB      .Coalesce( FilledSB,      NullyFilled, spaceMatters: true));
-                                                      
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersYesExplicitBool_Batch7()
+    {
         NoNullRet("FilledSB", FilledSB     .Coalesce( NullSB,        Null,        spaceMatters: true));
         NoNullRet("FilledSB", FilledSB     .Coalesce( NullSB,        Empty,       spaceMatters: true));
         NoNullRet("FilledSB", FilledSB     .Coalesce( NullSB,        Space,       spaceMatters: true));

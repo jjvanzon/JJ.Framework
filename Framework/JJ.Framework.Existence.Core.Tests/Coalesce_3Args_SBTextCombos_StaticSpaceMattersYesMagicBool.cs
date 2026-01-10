@@ -9,7 +9,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_Static_SpaceMattersYes_MagicBool()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch1()
     {
         NoNullRet("",         Coalesce(Null,          Null,          Null,          spaceMatters       ));
         NoNullRet("",         Coalesce(Null,          Null,          NullyEmpty,    spaceMatters       ));
@@ -67,7 +67,12 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
         NoNullRet(FilledSB,   Coalesce(Null,          NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(Null,          NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(Null,          NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch2()
+    {
         NoNullRet("",         Coalesce(NullyEmpty,    Null,          Null,          spaceMatters       ));
         NoNullRet("",         Coalesce(NullyEmpty,    Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmpty,    Null,          NullySpace,    spaceMatters       ));
@@ -124,7 +129,12 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyEmpty,    NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch3()
+    {
         NoNullRet(" ",        Coalesce(NullySpace,    Null,          Null,          spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    Null,          NullySpace,    spaceMatters       ));
@@ -181,7 +191,12 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpace,    NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch4()
+    {
         NoNullRet("Filled",   Coalesce(NullyFilled,   Null,          Null,          spaceMatters       ));
         NoNullRet("Filled",   Coalesce(NullyFilled,   Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet("Filled",   Coalesce(NullyFilled,   Null,          NullySpace,    spaceMatters       ));
@@ -238,7 +253,12 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
         NoNullRet("Filled",   Coalesce(NullyFilled,   NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet("Filled",   Coalesce(NullyFilled,   NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet("Filled",   Coalesce(NullyFilled,   NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch5()
+    {
         NoNullRet("",         Coalesce(NullSB,        Null,          Null,          spaceMatters       ));
         NoNullRet("",         Coalesce(NullSB,        Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullSB,        Null,          NullySpace,    spaceMatters       ));
@@ -295,7 +315,12 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullSB,        NullyFilledSB, NullyFilledSB, spaceMatters       ));
-       
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch6()
+    {
         NoNullRet("",         Coalesce(NullyEmptySB,  Null,          Null,          spaceMatters       ));
         NoNullRet("",         Coalesce(NullyEmptySB,  Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullyEmptySB,  Null,          NullySpace,    spaceMatters       ));
@@ -352,7 +377,12 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
         NoNullRet(FilledSB,   Coalesce(NullyEmptySB,  NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyEmptySB,  NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(FilledSB,   Coalesce(NullyEmptySB,  NullyFilledSB, NullyFilledSB, spaceMatters       ));
+    }
 
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch7()
+    {
         NoNullRet(" ",        Coalesce(NullySpaceSB,  Null,          Null,          spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  Null,          NullySpace,    spaceMatters       ));
@@ -409,7 +439,12 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool : TestBa
         NoNullRet(SpaceSB,    Coalesce(NullySpaceSB,  NullyFilledSB, NullyEmptySB,  spaceMatters       ));
         NoNullRet(SpaceSB,    Coalesce(NullySpaceSB,  NullyFilledSB, NullySpaceSB,  spaceMatters       ));
         NoNullRet(SpaceSB,    Coalesce(NullySpaceSB,  NullyFilledSB, NullyFilledSB, spaceMatters       ));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtextcombos" />
+    [TestMethod]
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesMagicBool_Batch8()
+    {
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, Null,          Null,          spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, Null,          NullyEmpty,    spaceMatters       ));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, Null,          NullySpace,    spaceMatters       ));

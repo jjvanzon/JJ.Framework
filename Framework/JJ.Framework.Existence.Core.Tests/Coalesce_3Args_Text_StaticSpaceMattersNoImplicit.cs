@@ -7,10 +7,14 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
     const string? NullyFilled = NullyFilledText;
     
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersNo_Implicit()
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Example()
     {
         AreEqual("Hi!",  Coalesce(" ", null, "Hi!"));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Batch1()
+    {
         NoNullRet(Empty, Coalesce(Null,        Null,        Null       ));
         NoNullRet(Empty, Coalesce(Null,        Null,        NullyEmpty ));
         NoNullRet(Space, Coalesce(Null,        Null,        NullySpace ));
@@ -60,7 +64,11 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
         NoNullRet(Text,  Coalesce(Null,        Text,        Empty      ));
         NoNullRet(Text,  Coalesce(Null,        Text,        Space      ));
         NoNullRet(Text,  Coalesce(Null,        Text,        Text       ));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Batch2()
+    {
         NoNullRet(Empty, Coalesce(NullyEmpty,  Null,        Null       ));
         NoNullRet(Empty, Coalesce(NullyEmpty,  Null,        NullyEmpty ));
         NoNullRet(Space, Coalesce(NullyEmpty,  Null,        NullySpace ));
@@ -110,7 +118,11 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
         NoNullRet(Text,  Coalesce(NullyEmpty,  Text,        Empty      ));
         NoNullRet(Text,  Coalesce(NullyEmpty,  Text,        Space      ));
         NoNullRet(Text,  Coalesce(NullyEmpty,  Text,        Text       ));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Batch3()
+    {
         NoNullRet(Empty, Coalesce(NullySpace,  Null,        Null       ));
         NoNullRet(Empty, Coalesce(NullySpace,  Null,        NullyEmpty ));
         NoNullRet(Space, Coalesce(NullySpace,  Null,        NullySpace ));
@@ -160,7 +172,11 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
         NoNullRet(Text,  Coalesce(NullySpace,  Text,        Empty      ));
         NoNullRet(Text,  Coalesce(NullySpace,  Text,        Space      ));
         NoNullRet(Text,  Coalesce(NullySpace,  Text,        Text       ));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Batch4()
+    {
         NoNullRet(Text,  Coalesce(NullyFilled, Null,        Null       ));
         NoNullRet(Text,  Coalesce(NullyFilled, Null,        NullyEmpty ));
         NoNullRet(Text,  Coalesce(NullyFilled, Null,        NullySpace ));
@@ -210,7 +226,11 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
         NoNullRet(Text,  Coalesce(NullyFilled, Text,        Empty      ));
         NoNullRet(Text,  Coalesce(NullyFilled, Text,        Space      ));
         NoNullRet(Text,  Coalesce(NullyFilled, Text,        Text       ));
+    }
 
+    [TestMethod]
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Batch5()
+    {
         NoNullRet(Empty, Coalesce(Empty,       Null,        Null       ));
         NoNullRet(Empty, Coalesce(Empty,       Null,        NullyEmpty ));
         NoNullRet(Space, Coalesce(Empty,       Null,        NullySpace ));
@@ -260,7 +280,11 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
         NoNullRet(Text,  Coalesce(Empty,       Text,        Empty      ));
         NoNullRet(Text,  Coalesce(Empty,       Text,        Space      ));
         NoNullRet(Text,  Coalesce(Empty,       Text,        Text       ));
-                                                 
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Batch6()
+    {
         NoNullRet(Empty, Coalesce(Space,       Null,        Null       ));
         NoNullRet(Empty, Coalesce(Space,       Null,        NullyEmpty ));
         NoNullRet(Space, Coalesce(Space,       Null,        NullySpace ));
@@ -310,7 +334,11 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
         NoNullRet(Text,  Coalesce(Space,       Text,        Empty      ));
         NoNullRet(Text,  Coalesce(Space,       Text,        Space      ));
         NoNullRet(Text,  Coalesce(Space,       Text,        Text       ));
-                                                 
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Batch7()
+    {
         NoNullRet(Text,  Coalesce(Text,        Null,        Null       ));
         NoNullRet(Text,  Coalesce(Text,        Null,        NullyEmpty ));
         NoNullRet(Text,  Coalesce(Text,        Null,        NullySpace ));

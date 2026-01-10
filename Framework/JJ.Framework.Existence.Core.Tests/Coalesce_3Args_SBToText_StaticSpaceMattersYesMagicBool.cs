@@ -9,7 +9,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool : TestBase
 
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersYes_MagicBool()
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool_Batch1()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null,        spaceMatters));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty,       spaceMatters));
@@ -60,7 +60,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool : TestBase
         NoNullRet("FilledSB", Coalesce(NullSB,        FilledSB,      NullyEmpty,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullSB,        FilledSB,      NullySpace,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullSB,        FilledSB,      NullyFilled, spaceMatters));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool_Batch2()
+    {
         NoNullRet("",         Coalesce(NullyEmptySB,  NullSB,        Null,        spaceMatters));
         NoNullRet("",         Coalesce(NullyEmptySB,  NullSB,        Empty,       spaceMatters));
         NoNullRet(" ",        Coalesce(NullyEmptySB,  NullSB,        Space,       spaceMatters));
@@ -110,7 +115,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool : TestBase
         NoNullRet("FilledSB", Coalesce(NullyEmptySB,  FilledSB,      NullyEmpty,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullyEmptySB,  FilledSB,      NullySpace,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullyEmptySB,  FilledSB,      NullyFilled, spaceMatters));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool_Batch3()
+    {
         NoNullRet(" ",        Coalesce(NullySpaceSB,  NullSB,        Null,        spaceMatters));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  NullSB,        Empty,       spaceMatters));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  NullSB,        Space,       spaceMatters));
@@ -160,7 +170,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool : TestBase
         NoNullRet(" ",        Coalesce(NullySpaceSB,  FilledSB,      NullyEmpty,  spaceMatters));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  FilledSB,      NullySpace,  spaceMatters));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  FilledSB,      NullyFilled, spaceMatters));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool_Batch4()
+    {
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Null,        spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Empty,       spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Space,       spaceMatters));
@@ -210,7 +225,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool : TestBase
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, FilledSB,      NullyEmpty,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, FilledSB,      NullySpace,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, FilledSB,      NullyFilled, spaceMatters));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool_Batch5()
+    {
         NoNullRet("",         Coalesce(EmptySB,       NullSB,        Null,        spaceMatters));
         NoNullRet("",         Coalesce(EmptySB,       NullSB,        Empty,       spaceMatters));
         NoNullRet(" ",        Coalesce(EmptySB,       NullSB,        Space,       spaceMatters));
@@ -260,7 +280,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool : TestBase
         NoNullRet("FilledSB", Coalesce(EmptySB,       FilledSB,      NullyEmpty,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(EmptySB,       FilledSB,      NullySpace,  spaceMatters));
         NoNullRet("FilledSB", Coalesce(EmptySB,       FilledSB,      NullyFilled, spaceMatters));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool_Batch6()
+    {
         NoNullRet(" ",        Coalesce(SpaceSB,       NullSB,        Null,        spaceMatters));
         NoNullRet(" ",        Coalesce(SpaceSB,       NullSB,        Empty,       spaceMatters));
         NoNullRet(" ",        Coalesce(SpaceSB,       NullSB,        Space,       spaceMatters));
@@ -310,7 +335,12 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool : TestBase
         NoNullRet(" ",        Coalesce(SpaceSB,       FilledSB,      NullyEmpty,  spaceMatters));
         NoNullRet(" ",        Coalesce(SpaceSB,       FilledSB,      NullySpace,  spaceMatters));
         NoNullRet(" ",        Coalesce(SpaceSB,       FilledSB,      NullyFilled, spaceMatters));
-        
+    }
+
+    /// <inheritdoc cref="_coalesce3argssbtotext" />
+    [TestMethod]
+    public void Coalesce_3Args_SBToText_StaticSpaceMattersYesMagicBool_Batch7()
+    {
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Null,        spaceMatters));
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Empty,       spaceMatters));
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Space,       spaceMatters));
