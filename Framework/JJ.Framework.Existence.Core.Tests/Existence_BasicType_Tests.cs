@@ -8,8 +8,8 @@ namespace JJ.Framework.Existence.Core.Tests;
 public class Existence_BasicType_Tests
 {
     // TODO:
-    // Char, Byte, IntPtr, UIntPtr
-    // the numeric types, their the signed and unsigned variations and TimeSpan.
+    // Char (does not behave well yet), Byte, IntPtr, UIntPtr
+    // the numeric types, their signed and unsigned variations and TimeSpan.
     // Newer .NETs probably have more.
     // But let's start with a basic spread:
     // - [x] Enum/Enum?
@@ -20,7 +20,7 @@ public class Existence_BasicType_Tests
     // - [x] Char
     // - [ ] ~ Decimal
 
-    bool True       = true ;
+    bool  True       = true ;
     bool  False      = false;
     bool? NullyTrue  = true ;
     bool? NullyFalse = false;
@@ -426,7 +426,7 @@ public class Existence_BasicType_Tests
     [TestMethod]
     public void Char_Existence_Tests()
     {
-        // Abviously not filled
+        // Obviously not filled
         IsFalse(Has(NullChar));
         IsFalse(Has(DefaultChar));
         IsFalse(Has(DefaultNullyChar));
