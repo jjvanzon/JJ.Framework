@@ -490,7 +490,6 @@ public class Existence_BasicType_Tests
         IsTrue (NullyOneDouble.FilledIn());
         IsTrue (NullyTwoDouble.FilledIn());
     }
-
     
     [TestMethod]
     public void Double_FilledIn_ZeroMatters_Tests()
@@ -628,22 +627,53 @@ public class Existence_BasicType_Tests
     [TestMethod]
     public void Double_Coalesce_Tests()
     {
+        // Static 4-Arg/Variadic
         NoNullRet(OneDouble, Coalesce(NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
-        NoNullRet(TwoDouble, Coalesce(NullDouble, ZeroDouble).Coalesce(TwoDouble).Coalesce(NullyOneDouble));
+        // Extension 3-Arg
         NoNullRet(OneDouble, NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble));
+        // Chaining
+        NoNullRet(TwoDouble, Coalesce(NullDouble, ZeroDouble).Coalesce(TwoDouble).Coalesce(NullyOneDouble));
     }
 
-    // TODO: Use zeroMatters flags.
-
-    /*
     [TestMethod]
     public void Double_Coalesce_ZeroMatters_Tests()
     {
-        NoNullRet(OneDouble, Coalesce(NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
-        NoNullRet(TwoDouble, Coalesce(NullDouble, ZeroDouble).Coalesce(TwoDouble).Coalesce(NullyOneDouble));
-        NoNullRet(OneDouble, NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble));
+        // Static 4-Arg/Variadic
+        NoNullRet(OneDouble,  Coalesce(                    NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+        NoNullRet(OneDouble,  Coalesce(zeroMatters: false, NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+        NoNullRet(OneDouble,  Coalesce(             false, NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+        NoNullRet(ZeroDouble, Coalesce(zeroMatters,        NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+        NoNullRet(ZeroDouble, Coalesce(zeroMatters: true,  NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+        NoNullRet(ZeroDouble, Coalesce(             true,  NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
+
+        // Extension 3-Arg
+        NoNullRet(OneDouble,  NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble                    ));
+        NoNullRet(OneDouble,  NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble, zeroMatters: false));
+        NoNullRet(OneDouble,  NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble,              false));
+        NoNullRet(ZeroDouble, NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble, zeroMatters       ));
+        NoNullRet(ZeroDouble, NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble, zeroMatters: true ));
+        NoNullRet(ZeroDouble, NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble,              true ));
+        NoNullRet(OneDouble,  NullyZeroDouble.Coalesce(                    NullyOneDouble, OneDouble));
+        NoNullRet(OneDouble,  NullyZeroDouble.Coalesce(zeroMatters: false, NullyOneDouble, OneDouble));
+        NoNullRet(OneDouble,  NullyZeroDouble.Coalesce(             false, NullyOneDouble, OneDouble));
+        NoNullRet(ZeroDouble, NullyZeroDouble.Coalesce(zeroMatters,        NullyOneDouble, OneDouble));
+        NoNullRet(ZeroDouble, NullyZeroDouble.Coalesce(zeroMatters: true,  NullyOneDouble, OneDouble));
+        NoNullRet(ZeroDouble, NullyZeroDouble.Coalesce(             true,  NullyOneDouble, OneDouble));
+
+        // Chaining
+        NoNullRet(TwoDouble,  Coalesce(NullDouble, ZeroDouble                    ).Coalesce(TwoDouble                    ).Coalesce(NullyOneDouble                    ));
+        NoNullRet(TwoDouble,  Coalesce(NullDouble, ZeroDouble, zeroMatters: false).Coalesce(TwoDouble, zeroMatters: false).Coalesce(NullyOneDouble, zeroMatters: false));
+        NoNullRet(TwoDouble,  Coalesce(NullDouble, ZeroDouble,              false).Coalesce(TwoDouble,              false).Coalesce(NullyOneDouble,              false));
+        NoNullRet(ZeroDouble, Coalesce(NullDouble, ZeroDouble, zeroMatters       ).Coalesce(TwoDouble, zeroMatters       ).Coalesce(NullyOneDouble, zeroMatters       ));
+        NoNullRet(ZeroDouble, Coalesce(NullDouble, ZeroDouble, zeroMatters: true ).Coalesce(TwoDouble, zeroMatters: true ).Coalesce(NullyOneDouble, zeroMatters: true ));
+        NoNullRet(ZeroDouble, Coalesce(NullDouble, ZeroDouble,              true ).Coalesce(TwoDouble,              true ).Coalesce(NullyOneDouble,              true ));
+        NoNullRet(TwoDouble,  Coalesce(                    NullDouble, ZeroDouble).Coalesce(                    TwoDouble).Coalesce(                    NullyOneDouble));
+        NoNullRet(TwoDouble,  Coalesce(zeroMatters: false, NullDouble, ZeroDouble).Coalesce(zeroMatters: false, TwoDouble).Coalesce(zeroMatters: false, NullyOneDouble));
+        NoNullRet(TwoDouble,  Coalesce(             false, NullDouble, ZeroDouble).Coalesce(             false, TwoDouble).Coalesce(             false, NullyOneDouble));
+        NoNullRet(ZeroDouble, Coalesce(zeroMatters,        NullDouble, ZeroDouble).Coalesce(zeroMatters,        TwoDouble).Coalesce(zeroMatters,        NullyOneDouble));
+        NoNullRet(ZeroDouble, Coalesce(zeroMatters: true,  NullDouble, ZeroDouble).Coalesce(zeroMatters: true,  TwoDouble).Coalesce(zeroMatters: true,  NullyOneDouble));
+        NoNullRet(ZeroDouble, Coalesce(             true,  NullDouble, ZeroDouble).Coalesce(             true,  TwoDouble).Coalesce(             true,  NullyOneDouble));
     }
-    */
 
     [TestMethod]
     public void Double_SpecialValue_Tests()
