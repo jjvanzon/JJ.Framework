@@ -210,6 +210,7 @@
     <NoWarn>$(NoWarn);CA2263</NoWarn> <!--Prefer type arg-->
     <NoWarn>$(NoWarn);CS0169</NoWarn> <!--Field is never used-->
     <NoWarn>$(NoWarn);CS0162</NoWarn> <!--Unreachable code-->
+    <NoWarn>$(NoWarn);IDE0044</NoWarn><!--Field can be readonly-->
   </PropertyGroup>
 
   <!-- Warnings Disabled for Doc-Only Members. -->
