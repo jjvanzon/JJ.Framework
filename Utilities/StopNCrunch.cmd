@@ -1,0 +1,1 @@
+taskkill /im nCrunch.EngineHost48.x64.exe /f
