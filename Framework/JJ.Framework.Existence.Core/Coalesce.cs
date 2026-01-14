@@ -9,7 +9,7 @@ internal static partial class ExistenceUtil
           // In 1-arg variants, when the input is empty, it may still be the best option, unless it is null.
           // This simplifies this code from having to do a Has-check.
 
-                /// <inheritdoc cref="_coalesce" />
+          /// <inheritdoc cref="_coalesce" />
           public static string CoalesceText          (string? text                  )                            => text ?? ""     ;
           /// <inheritdoc cref="_coalesce" />
           public static SB     CoalesceSB            (SB?     sb                    )                            => sb   ?? new()  ;
@@ -92,7 +92,7 @@ internal static partial class ExistenceUtil
           public static T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback                           ) where T : class, new() => HasObject  (obj) ? obj : CoalesceObject  (fallback);
           // ncrunch: no coverage end
 
-                // N Args
+          // N Args
           
           /// <inheritdoc cref="_coalesce" /> 
           public static string CoalesceManyTexts     (IEnumerable<string?>? fallbacks                           )
