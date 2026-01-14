@@ -420,22 +420,6 @@ public class Existence_BasicType_Tests
     }
 
     /// <summary>
-    /// TODO: Trailing String/bool combos are a little less flexible: Too much type confusion.
-    /// Add more flag in front overloads to resolve better and more optimally and more well behaved.
-    /// </summary>
-    [TestMethod]
-    public void Enum_Coalesce_FlagInFront_Confusion()
-    {
-        NoNullRet("OneLast",   Coalesce(                    With0_Default, With0_Null).Coalesce(                    OneLast).Coalesce(                    "Never"));
-      //NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));
-        NoNullRet("OneLast",   Coalesce(             false, With0_Default, With0_Null).Coalesce(             false, OneLast).Coalesce(             false, "Never"));
-        NoNullRet("ZeroFirst", Coalesce(zeroMatters,        With0_Default, With0_Null).Coalesce(zeroMatters,        OneLast).Coalesce(zeroMatters       , "Never"));
-      //NoNullRet("ZeroFirst", Coalesce(zeroMatters: true,  With0_Default, With0_Null).Coalesce(zeroMatters: true,  OneLast).Coalesce(zeroMatters: true , "Never"));
-        NoNullRet("ZeroFirst", Coalesce(             true,  With0_Default, With0_Null).Coalesce(             true,  OneLast).Coalesce(             true , "Never"));
-
-    }
-
-    /// <summary>
     /// TODO: Detect enum values out of range eventually and see them as not filled in.
     /// </summary>
     [TestMethod]
@@ -449,6 +433,21 @@ public class Existence_BasicType_Tests
         IsTrue  (ZeroFirstInvalid_Nully.FilledIn());
         IsTrue  (No0Invalid            .FilledIn());
         IsTrue  (No0Invalid_Nully      .FilledIn());
+    }
+
+    /// <summary>
+    /// TODO: Trailing String/bool combos are a little less flexible: Too much type confusion.
+    /// Add more flag in front overloads to resolve better and more optimally and more well behaved.
+    /// </summary>
+    [TestMethod]
+    public void Enum_Coalesce_FlagInFront_Confusion()
+    {
+        NoNullRet("OneLast",   Coalesce(                    With0_Default, With0_Null).Coalesce(                    OneLast).Coalesce(                    "Never"));
+      //NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));
+        NoNullRet("OneLast",   Coalesce(             false, With0_Default, With0_Null).Coalesce(             false, OneLast).Coalesce(             false, "Never"));
+        NoNullRet("ZeroFirst", Coalesce(zeroMatters,        With0_Default, With0_Null).Coalesce(zeroMatters,        OneLast).Coalesce(zeroMatters,        "Never"));
+      //NoNullRet("ZeroFirst", Coalesce(zeroMatters: true,  With0_Default, With0_Null).Coalesce(zeroMatters: true,  OneLast).Coalesce(zeroMatters: true,  "Never"));
+        NoNullRet("ZeroFirst", Coalesce(             true,  With0_Default, With0_Null).Coalesce(             true,  OneLast).Coalesce(             true,  "Never"));
     }
 
     // Double
