@@ -1,5 +1,6 @@
 ﻿using static System.DateTime;
-﻿namespace JJ.Framework.Existence.Core.Tests;
+
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class Existence_DateTime_Tests
