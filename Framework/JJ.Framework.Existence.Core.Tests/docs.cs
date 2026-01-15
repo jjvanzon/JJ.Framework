@@ -19,3 +19,19 @@ public struct _coalesce3argssbtotext;
 /// NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
 /// </summary>
 public struct _coalesce3argssbtextcombos;
+
+/// <summary>
+/// TODO:
+/// Char (does not behave well yet), Byte, IntPtr, UIntPtr
+/// the numeric types, their signed and unsigned variations and TimeSpan.
+/// Newer .NETs probably have more.
+/// But let's start with a basic spread:<br/>
+/// - [x] Enum/Enum?<br/>
+/// - [x] bool<br/>
+/// - [x] double<br/>
+/// - [x] Guid<br/>
+/// - [x] DateTime<br/>
+/// - [x] Char<br/>
+/// - [ ] ~ Decimal
+/// </summary>
+public struct _basictypestodo;
