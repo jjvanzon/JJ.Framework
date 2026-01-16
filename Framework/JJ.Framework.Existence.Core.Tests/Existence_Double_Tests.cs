@@ -229,7 +229,7 @@ public class Existence_Double_Tests
     }
 
     [TestMethod]
-    public void Double_SpecialValue_Tests()
+    public void BUG_Double_SpecialValue_ConsideredFilledIn()
     {
         // TODO: Make these special values count as not filled in.
         //IsFalse  (Has(NaN));
