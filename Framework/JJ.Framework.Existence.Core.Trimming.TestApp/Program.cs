@@ -42,7 +42,7 @@ RunTests<Coalesce_Keywords_Tests>() &&
 RunTests<Coalesce_Variadic_Tests>() &&
 RunTests<Existence_BasicType_Tests>() &&
 RunTests<Existence_NotNullWhen_Tests>() &&
-RunTests<Existence_Regression>() &&
+RunTests<Existence_Bugs>() &&
 RunTests<Existence_Examples>() &&
 RunTests<RegressionTest_CallToHas_FromGenericContext_TypeInfoLost>() &&
 RunTests<Flex_Prototype>() &&
