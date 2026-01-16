@@ -36,6 +36,33 @@ public class Existence_Bugs
             IsFalse(FilledIn(empty)); // Fixed!
         }
     }
+
+
+    enum EnumWith0
+    {
+        OneLast = 1,
+        ZeroFirst = 0 // Swapping doesn't change that default = 0
+    }
+
+    /// <summary>
+    /// TODO: Trailing String/bool combos are a little less flexible: Too much type confusion.
+    /// Add more flag in front overloads to resolve better and more optimally and more well behaved.
+    /// </summary>
+    [TestMethod]
+    public void BUG_Coalesce_FlagInFront_Confusion()
+    {
+        EnumWith0? With0_Null    = null;
+        EnumWith0  With0_Default = default;
+        EnumWith0  OneLast       = EnumWith0.OneLast;
+
+        NoNullRet("OneLast",   Coalesce(                    With0_Default, With0_Null).Coalesce(                    OneLast).Coalesce(                    "Never"));
+        //NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));
+        NoNullRet("OneLast",   Coalesce(             false, With0_Default, With0_Null).Coalesce(             false, OneLast).Coalesce(             false, "Never"));
+        NoNullRet("ZeroFirst", Coalesce(zeroMatters,        With0_Default, With0_Null).Coalesce(zeroMatters,        OneLast).Coalesce(zeroMatters,        "Never"));
+        //NoNullRet("ZeroFirst", Coalesce(zeroMatters: true,  With0_Default, With0_Null).Coalesce(zeroMatters: true,  OneLast).Coalesce(zeroMatters: true,  "Never"));
+        NoNullRet("ZeroFirst", Coalesce(             true,  With0_Default, With0_Null).Coalesce(             true,  OneLast).Coalesce(             true,  "Never"));
+    }
+
 }
 
 [TestClass]
