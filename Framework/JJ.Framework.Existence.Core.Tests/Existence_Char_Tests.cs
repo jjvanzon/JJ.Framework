@@ -47,7 +47,11 @@ public class Existence_Char_Tests
         IsTrue (Has(FilledChar));
         IsTrue (Has(NullyFilledChar));
         NoNullRet('a', Coalesce(NullChar, ZeroValueChar, NullyFilledChar, 'b'));
+    }
 
+    [TestMethod]
+    public void BUG_Char_Existence_DoesNotBehaveAsString()
+    {
         // TODO: These should be false
         IsTrue (Has(SpaceChar));
         IsTrue (Has(NullySpaceChar));
