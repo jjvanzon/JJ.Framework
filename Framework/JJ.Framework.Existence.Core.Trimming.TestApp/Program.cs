@@ -41,9 +41,13 @@ RunTests<Coalesce_Collections_Tests>() &&
 RunTests<Coalesce_Keywords_Tests>() &&
 RunTests<Coalesce_Variadic_Tests>() &&
 RunTests<Existence_BasicType_Tests>() &&
-RunTests<Existence_NotNullWhen_Tests>() &&
 RunTests<Existence_Bugs>() &&
+RunTests<Existence_Bool_Tests>() &&
+RunTests<Existence_Char_Tests>() &&
+RunTests<Existence_DateTime_Tests>() &&
 RunTests<Existence_Examples>() &&
+RunTests<Existence_Guid_Tests>() &&
+RunTests<Existence_NotNullWhen_Tests>() &&
 RunTests<RegressionTest_CallToHas_FromGenericContext_TypeInfoLost>() &&
 RunTests<Flex_Prototype>() &&
 RunTests<Has_Collection_Misc>() &&
