@@ -256,23 +256,22 @@ public class Coalesce_2Args_Tests : TestBase
         NoNullRet("Filled", NullyFilled.Coalesce(Text));
     }
 
-
-    // TODO: Add zeroMatters tests
-
     // Vals to Text
 
     [TestMethod]
-    public void Coalesce_2Args_ValToText()
+    public void Coalesce_2Args_ValToText_NoNullies()
     {
-        // With `T`
-        NoNullRet("",           Coalesce(0,  NullText ));
         NoNullRet("",           Coalesce(0,  NullText ));
         NoNullRet("peekaboo",   Coalesce(0, "peekaboo"));
         NoNullRet("",         0.Coalesce(    NullText ));
         NoNullRet("peekaboo", 0.Coalesce(   "peekaboo"));
         NoNullRet("1",        1.Coalesce(    NullText ));
         NoNullRet("1",        1.Coalesce(   "peekaboo"));
-        // With `T?`
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_ValToText_WithNullies()
+    {
         NoNullRet("",    Coalesce(NullNum,   NullText ));
         NoNullRet("boo", Coalesce(NullNum,  "boo"     ));
         NoNullRet("",    Coalesce(Nully0,    NullText ));
@@ -287,12 +286,130 @@ public class Coalesce_2Args_Tests : TestBase
         NoNullRet("1",   Nully1 .Coalesce(  "boo"     ));
     }
 
+    [TestMethod]
+    public void Coalesce_2Args_ValToText_ZeroMatters_NoNullies()
+    {
+        NoNullRet("",           Coalesce(0,  NullText                     ));
+        NoNullRet("",           Coalesce(0,  NullText,  zeroMatters: false));
+        NoNullRet("",           Coalesce(0,  NullText,               false));
+        NoNullRet("0",          Coalesce(0,  NullText,  zeroMatters       ));
+        NoNullRet("0",          Coalesce(0,  NullText,  zeroMatters: true ));
+        NoNullRet("0",          Coalesce(0,  NullText,               true ));
+        NoNullRet("peekaboo",   Coalesce(0, "peekaboo"                    ));
+        NoNullRet("peekaboo",   Coalesce(0, "peekaboo", zeroMatters: false));
+        NoNullRet("peekaboo",   Coalesce(0, "peekaboo",              false));
+        NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters       ));
+        NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters: true ));
+        NoNullRet("0",          Coalesce(0, "peekaboo",              true ));
+        NoNullRet("",         0.Coalesce(    NullText                     ));
+        NoNullRet("",         0.Coalesce(    NullText,  zeroMatters: false));
+        NoNullRet("",         0.Coalesce(    NullText,               false));
+        NoNullRet("0",        0.Coalesce(    NullText,  zeroMatters       ));
+        NoNullRet("0",        0.Coalesce(    NullText,  zeroMatters: true ));
+        NoNullRet("0",        0.Coalesce(    NullText,               true ));
+        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo"                    ));
+        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo", zeroMatters: false));
+        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo",              false));
+        NoNullRet("0",        0.Coalesce(   "peekaboo", zeroMatters       ));
+        NoNullRet("0",        0.Coalesce(   "peekaboo", zeroMatters: true ));
+        NoNullRet("0",        0.Coalesce(   "peekaboo",              true ));
+        NoNullRet("1",        1.Coalesce(    NullText                     ));
+        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters: false));
+        NoNullRet("1",        1.Coalesce(    NullText,               false));
+        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters       ));
+        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters: true ));
+        NoNullRet("1",        1.Coalesce(    NullText,               true ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo"                    ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters: false));
+        NoNullRet("1",        1.Coalesce(   "peekaboo",              false));
+        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters       ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters: true ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo",              true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_ValToText_ZeroMatters_WithNullies()
+    {
+        NoNullRet("",    Coalesce(NullNum,   NullText                     ));
+        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters: false));
+        NoNullRet("",    Coalesce(NullNum,   NullText,               false));
+        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters       ));
+        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters: true ));
+        NoNullRet("",    Coalesce(NullNum,   NullText,               true ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo"                         ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters: false));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",                   false));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters       ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters: true ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",                   true ));
+        NoNullRet("",    Coalesce(Nully0,    NullText                     ));
+        NoNullRet("",    Coalesce(Nully0,    NullText,  zeroMatters: false));
+        NoNullRet("",    Coalesce(Nully0,    NullText,               false));
+        NoNullRet("0",   Coalesce(Nully0,    NullText,  zeroMatters       ));
+        NoNullRet("0",   Coalesce(Nully0,    NullText,  zeroMatters: true ));
+        NoNullRet("0",   Coalesce(Nully0,    NullText,               true ));
+        NoNullRet("boo", Coalesce(Nully0,   "boo"                         ));
+        NoNullRet("boo", Coalesce(Nully0,   "boo",      zeroMatters: false));
+        NoNullRet("boo", Coalesce(Nully0,   "boo",                   false));
+        NoNullRet("0",   Coalesce(Nully0,   "boo",      zeroMatters       ));
+        NoNullRet("0",   Coalesce(Nully0,   "boo",      zeroMatters: true ));
+        NoNullRet("0",   Coalesce(Nully0,   "boo",                   true ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText                     ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters: false));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,               false));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters       ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters: true ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,               true ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo"                         ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters: false));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",                   false));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters       ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters: true ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",                   true ));
+        NoNullRet("",    NullNum.Coalesce(   NullText                     ));
+        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters: false));
+        NoNullRet("",    NullNum.Coalesce(   NullText,               false));
+        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters       ));
+        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters: true ));
+        NoNullRet("",    NullNum.Coalesce(   NullText,               true ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo"                         ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters: false));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",                   false));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters       ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters: true ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",                   true ));
+        NoNullRet("",    Nully0 .Coalesce(   NullText                     ));
+        NoNullRet("",    Nully0 .Coalesce(   NullText,  zeroMatters: false));
+        NoNullRet("",    Nully0 .Coalesce(   NullText,               false));
+        NoNullRet("0",   Nully0 .Coalesce(   NullText,  zeroMatters       ));
+        NoNullRet("0",   Nully0 .Coalesce(   NullText,  zeroMatters: true ));
+        NoNullRet("0",   Nully0 .Coalesce(   NullText,               true ));
+        NoNullRet("boo", Nully0 .Coalesce(  "boo"                         ));
+        NoNullRet("boo", Nully0 .Coalesce(  "boo",      zeroMatters: false));
+        NoNullRet("boo", Nully0 .Coalesce(  "boo",                   false));
+        NoNullRet("0",   Nully0 .Coalesce(  "boo",      zeroMatters       ));
+        NoNullRet("0",   Nully0 .Coalesce(  "boo",      zeroMatters: true ));
+        NoNullRet("0",   Nully0 .Coalesce(  "boo",                   true ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText                     ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters: false));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,               false));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters       ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters: true ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,               true ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo"                         ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters: false));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",                   false));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters       ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters: true ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",                   true ));
+    }
+
     // Vals
 
     [TestMethod]
-    public void Coalesce_2Args_Vals()
+    public void Coalesce_2Args_Vals_VerifyInputs()
     {
-        // Assert input state
+        // Assert input states
         IsNull (   NullNum);
         NullRet(0, Nully0 );
         NullRet(1, Nully1 );
@@ -300,8 +417,11 @@ public class Coalesce_2Args_Tests : TestBase
         NoNullRet(0);
         NoNullRet(1);
         NoNullRet(2);
-        
-        // Assert results
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_Vals_Static()
+    {
         NoNullRet(0, Coalesce( NullNum, NullNum));
         NoNullRet(0, Coalesce(  Nully0, NullNum));
         NoNullRet(1, Coalesce(  Nully1, NullNum));
@@ -351,6 +471,148 @@ public class Coalesce_2Args_Tests : TestBase
         NoNullRet(2, Coalesce(       0,       2));
         NoNullRet(1, Coalesce(       1,       2));
         NoNullRet(2, Coalesce(       2,       2));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_Vals_StaticZeroMatters()
+    {
+        NoNullRet(0, Coalesce( NullNum, NullNum                    ));
+        NoNullRet(0, Coalesce( NullNum, NullNum, zeroMatters: false));
+        NoNullRet(0, Coalesce( NullNum, NullNum,              false));
+        NoNullRet(0, Coalesce( NullNum, NullNum, zeroMatters       ));
+        NoNullRet(0, Coalesce( NullNum, NullNum, zeroMatters: true ));
+        NoNullRet(0, Coalesce( NullNum, NullNum,              true ));
+        NoNullRet(0, Coalesce(  Nully0, NullNum                    ));
+        NoNullRet(0, Coalesce(  Nully0, NullNum, zeroMatters: false));
+        NoNullRet(0, Coalesce(  Nully0, NullNum,              false));
+        NoNullRet(0, Coalesce(  Nully0, NullNum, zeroMatters       ));
+        NoNullRet(0, Coalesce(  Nully0, NullNum, zeroMatters: true ));
+        NoNullRet(0, Coalesce(  Nully0, NullNum,              true ));
+        NoNullRet(1, Coalesce(  Nully1, NullNum                    ));
+        NoNullRet(1, Coalesce(  Nully1, NullNum, zeroMatters: false));
+        NoNullRet(1, Coalesce(  Nully1, NullNum,              false));
+        NoNullRet(1, Coalesce(  Nully1, NullNum, zeroMatters       ));
+        NoNullRet(1, Coalesce(  Nully1, NullNum, zeroMatters: true ));
+        NoNullRet(1, Coalesce(  Nully1, NullNum,              true ));
+        NoNullRet(2, Coalesce(  Nully2, NullNum                    ));
+        NoNullRet(2, Coalesce(  Nully2, NullNum, zeroMatters: false));
+        NoNullRet(2, Coalesce(  Nully2, NullNum,              false));
+        NoNullRet(2, Coalesce(  Nully2, NullNum, zeroMatters       ));
+        NoNullRet(2, Coalesce(  Nully2, NullNum, zeroMatters: true ));
+        NoNullRet(2, Coalesce(  Nully2, NullNum,              true ));
+        NoNullRet(0, Coalesce(       0, NullNum                    ));
+        NoNullRet(0, Coalesce(       0, NullNum, zeroMatters: false));
+        NoNullRet(0, Coalesce(       0, NullNum,              false));
+        NoNullRet(0, Coalesce(       0, NullNum, zeroMatters       ));
+        NoNullRet(0, Coalesce(       0, NullNum, zeroMatters: true ));
+        NoNullRet(0, Coalesce(       0, NullNum,              true ));
+        NoNullRet(1, Coalesce(       1, NullNum                    ));
+        NoNullRet(1, Coalesce(       1, NullNum, zeroMatters: false));
+        NoNullRet(1, Coalesce(       1, NullNum,              false));
+        NoNullRet(1, Coalesce(       1, NullNum, zeroMatters       ));
+        NoNullRet(1, Coalesce(       1, NullNum, zeroMatters: true ));
+        NoNullRet(1, Coalesce(       1, NullNum,              true ));
+        NoNullRet(2, Coalesce(       2, NullNum                    ));
+        NoNullRet(2, Coalesce(       2, NullNum, zeroMatters: false));
+        NoNullRet(2, Coalesce(       2, NullNum,              false));
+        NoNullRet(2, Coalesce(       2, NullNum, zeroMatters       ));
+        NoNullRet(2, Coalesce(       2, NullNum, zeroMatters: true ));
+        NoNullRet(2, Coalesce(       2, NullNum,              true ));
+        NoNullRet(0, Coalesce( NullNum,  Nully0                    ));
+        NoNullRet(0, Coalesce( NullNum,  Nully0, zeroMatters: false));
+        NoNullRet(0, Coalesce( NullNum,  Nully0,              false));
+        NoNullRet(0, Coalesce( NullNum,  Nully0, zeroMatters       ));
+        NoNullRet(0, Coalesce( NullNum,  Nully0, zeroMatters: true ));
+        NoNullRet(0, Coalesce( NullNum,  Nully0,              true ));
+        NoNullRet(0, Coalesce(  Nully0,  Nully0                    ));
+        NoNullRet(0, Coalesce(  Nully0,  Nully0, zeroMatters: false));
+        NoNullRet(0, Coalesce(  Nully0,  Nully0,              false));
+        NoNullRet(0, Coalesce(  Nully0,  Nully0, zeroMatters       ));
+        NoNullRet(0, Coalesce(  Nully0,  Nully0, zeroMatters: true ));
+        NoNullRet(0, Coalesce(  Nully0,  Nully0,              true ));
+        NoNullRet(1, Coalesce(  Nully1,  Nully0                    ));
+        NoNullRet(1, Coalesce(  Nully1,  Nully0, zeroMatters: false));
+        NoNullRet(1, Coalesce(  Nully1,  Nully0,              false));
+        NoNullRet(1, Coalesce(  Nully1,  Nully0, zeroMatters       ));
+        NoNullRet(1, Coalesce(  Nully1,  Nully0, zeroMatters: true ));
+        NoNullRet(1, Coalesce(  Nully1,  Nully0,              true ));
+        NoNullRet(2, Coalesce(  Nully2,  Nully0                    ));
+        NoNullRet(2, Coalesce(  Nully2,  Nully0, zeroMatters: false));
+        NoNullRet(2, Coalesce(  Nully2,  Nully0,              false));
+        NoNullRet(2, Coalesce(  Nully2,  Nully0, zeroMatters       ));
+        NoNullRet(2, Coalesce(  Nully2,  Nully0, zeroMatters: true ));
+        NoNullRet(2, Coalesce(  Nully2,  Nully0,              true ));
+        NoNullRet(0, Coalesce(       0,  Nully0                    ));
+        NoNullRet(0, Coalesce(       0,  Nully0, zeroMatters: false));
+        NoNullRet(0, Coalesce(       0,  Nully0,              false));
+        NoNullRet(0, Coalesce(       0,  Nully0, zeroMatters       ));
+        NoNullRet(0, Coalesce(       0,  Nully0, zeroMatters: true ));
+        NoNullRet(0, Coalesce(       0,  Nully0,              true ));
+        NoNullRet(1, Coalesce(       1,  Nully0                    ));
+        NoNullRet(1, Coalesce(       1,  Nully0, zeroMatters: false));
+        NoNullRet(1, Coalesce(       1,  Nully0,              false));
+        NoNullRet(1, Coalesce(       1,  Nully0, zeroMatters       ));
+        NoNullRet(1, Coalesce(       1,  Nully0, zeroMatters: true ));
+        NoNullRet(1, Coalesce(       1,  Nully0,              true ));
+        NoNullRet(2, Coalesce(       2,  Nully0                    ));
+        NoNullRet(2, Coalesce(       2,  Nully0, zeroMatters: false));
+        NoNullRet(2, Coalesce(       2,  Nully0,              false));
+        NoNullRet(2, Coalesce(       2,  Nully0, zeroMatters       ));
+        NoNullRet(2, Coalesce(       2,  Nully0, zeroMatters: true ));
+        NoNullRet(2, Coalesce(       2,  Nully0,              true ));
+        NoNullRet(1, Coalesce( NullNum,  Nully1                    ));
+        NoNullRet(1, Coalesce( NullNum,  Nully1, zeroMatters: false));
+        NoNullRet(1, Coalesce( NullNum,  Nully1,              false));
+        NoNullRet(1, Coalesce( NullNum,  Nully1, zeroMatters       ));
+        NoNullRet(1, Coalesce( NullNum,  Nully1, zeroMatters: true ));
+        NoNullRet(1, Coalesce( NullNum,  Nully1,              true ));
+        NoNullRet(1, Coalesce(  Nully0,  Nully1                    ));
+        NoNullRet(1, Coalesce(  Nully0,  Nully1, zeroMatters: false));
+        NoNullRet(1, Coalesce(  Nully0,  Nully1,              false));
+        NoNullRet(0, Coalesce(  Nully0,  Nully1, zeroMatters       ));
+        NoNullRet(0, Coalesce(  Nully0,  Nully1, zeroMatters: true ));
+        NoNullRet(0, Coalesce(  Nully0,  Nully1,              true ));
+
+        // TODO: Use zeroMatters parameters
+
+        NoNullRet(1, Coalesce(  Nully1,  Nully1));
+        NoNullRet(2, Coalesce(  Nully2,  Nully1));
+        NoNullRet(1, Coalesce(       0,  Nully1));
+        NoNullRet(1, Coalesce(       1,  Nully1));
+        NoNullRet(2, Coalesce(       2,  Nully1));
+        NoNullRet(2, Coalesce( NullNum,  Nully2));
+        NoNullRet(2, Coalesce(  Nully0,  Nully2));
+        NoNullRet(1, Coalesce(  Nully1,  Nully2));
+        NoNullRet(2, Coalesce(  Nully2,  Nully2));
+        NoNullRet(2, Coalesce(       0,  Nully2));
+        NoNullRet(1, Coalesce(       1,  Nully2));
+        NoNullRet(2, Coalesce(       2,  Nully2));
+        NoNullRet(0, Coalesce( NullNum,       0));
+        NoNullRet(0, Coalesce(  Nully0,       0));
+        NoNullRet(1, Coalesce(  Nully1,       0));
+        NoNullRet(2, Coalesce(  Nully2,       0));
+        NoNullRet(0, Coalesce(       0,       0));
+        NoNullRet(1, Coalesce(       1,       0));
+        NoNullRet(2, Coalesce(       2,       0));
+        NoNullRet(1, Coalesce( NullNum,       1));
+        NoNullRet(1, Coalesce(  Nully0,       1));
+        NoNullRet(1, Coalesce(  Nully1,       1));
+        NoNullRet(2, Coalesce(  Nully2,       1));
+        NoNullRet(1, Coalesce(       0,       1));
+        NoNullRet(1, Coalesce(       1,       1));
+        NoNullRet(2, Coalesce(       2,       1));
+        NoNullRet(2, Coalesce( NullNum,       2));
+        NoNullRet(2, Coalesce(  Nully0,       2));
+        NoNullRet(1, Coalesce(  Nully1,       2));
+        NoNullRet(2, Coalesce(  Nully2,       2));
+        NoNullRet(2, Coalesce(       0,       2));
+        NoNullRet(1, Coalesce(       1,       2));
+        NoNullRet(2, Coalesce(       2,       2));
+    }
+    
+    [TestMethod]
+    public void Coalesce_2Args_Vals_Extensions()
+    {
         NoNullRet(0,  NullNum.Coalesce( NullNum));
         NoNullRet(0,   Nully0.Coalesce( NullNum));
         NoNullRet(1,   Nully1.Coalesce( NullNum));

@@ -51,16 +51,28 @@ public class Existence_Bugs
     [TestMethod]
     public void BUG_Coalesce_FlagInFront_Confusion()
     {
-        EnumWith0? With0_Null    = null;
-        EnumWith0  With0_Default = default;
-        EnumWith0  OneLast       = EnumWith0.OneLast;
+        // With Enums
+        {
+            EnumWith0? With0_Null    = null;
+            EnumWith0  With0_Default = default;
+            EnumWith0  OneLast       = EnumWith0.OneLast;
 
-        NoNullRet("OneLast",   Coalesce(                    With0_Default, With0_Null).Coalesce(                    OneLast).Coalesce(                    "Never"));
-        //NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));
-        NoNullRet("OneLast",   Coalesce(             false, With0_Default, With0_Null).Coalesce(             false, OneLast).Coalesce(             false, "Never"));
-        NoNullRet("ZeroFirst", Coalesce(zeroMatters,        With0_Default, With0_Null).Coalesce(zeroMatters,        OneLast).Coalesce(zeroMatters,        "Never"));
-        //NoNullRet("ZeroFirst", Coalesce(zeroMatters: true,  With0_Default, With0_Null).Coalesce(zeroMatters: true,  OneLast).Coalesce(zeroMatters: true,  "Never"));
-        NoNullRet("ZeroFirst", Coalesce(             true,  With0_Default, With0_Null).Coalesce(             true,  OneLast).Coalesce(             true,  "Never"));
+            NoNullRet("OneLast",   Coalesce(                    With0_Default, With0_Null).Coalesce(                    OneLast).Coalesce(                    "Never"));
+          //NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));
+            NoNullRet("OneLast",   Coalesce(             false, With0_Default, With0_Null).Coalesce(             false, OneLast).Coalesce(             false, "Never"));
+            NoNullRet("ZeroFirst", Coalesce(zeroMatters,        With0_Default, With0_Null).Coalesce(zeroMatters,        OneLast).Coalesce(zeroMatters,        "Never"));
+          //NoNullRet("ZeroFirst", Coalesce(zeroMatters: true,  With0_Default, With0_Null).Coalesce(zeroMatters: true,  OneLast).Coalesce(zeroMatters: true,  "Never"));
+            NoNullRet("ZeroFirst", Coalesce(             true,  With0_Default, With0_Null).Coalesce(             true,  OneLast).Coalesce(             true,  "Never"));
+        }
+
+        // Val to Text
+        {    
+          //NoNullRet("",           Coalesce(zeroMatters: false, 0,  NullText ));
+          //NoNullRet("",           Coalesce(             false, 0,  NullText ));
+          //NoNullRet("0",          Coalesce(zeroMatters       , 0,  NullText ));
+          //NoNullRet("0",          Coalesce(zeroMatters: true , 0,  NullText ));
+          //NoNullRet("0",          Coalesce(             true , 0,  NullText ));
+        }
     }
 
 }
