@@ -10,7 +10,7 @@ public class Existence_Bool_Tests
     bool? NullBool   = null ;
 
     [TestMethod]
-    public void Test_Bool_FilledIn()
+    public void Test_Bool_Has()
     {
         IsTrue (Has(true));
         IsFalse(Has(false));
@@ -19,7 +19,11 @@ public class Existence_Bool_Tests
         IsTrue (Has(NullyTrue));
         IsFalse(Has(NullyFalse));
         IsFalse(Has(NullBool));
-
+    }
+        
+    [TestMethod]
+    public void Test_Bool_FilledIn()
+    {
         IsTrue (FilledIn(true));
         IsFalse(FilledIn(false));
         IsTrue (FilledIn(True));
@@ -36,6 +40,26 @@ public class Existence_Bool_Tests
         IsFalse(NullyFalse.FilledIn());
         IsFalse(NullBool.FilledIn());
     }
+        
+    [TestMethod]
+    public void Test_Bool_IsNully()
+    {
+        IsFalse(IsNully (true));
+        IsTrue (IsNully (false));
+        IsFalse(IsNully (True));
+        IsTrue (IsNully (False));
+        IsFalse(IsNully (NullyTrue));
+        IsTrue (IsNully (NullyFalse));
+        IsTrue (IsNully (NullBool));
+
+        IsFalse(true.IsNully ());
+        IsTrue (false.IsNully ());
+        IsFalse(True.IsNully ());
+        IsTrue (False.IsNully ());
+        IsFalse(NullyTrue.IsNully ());
+        IsTrue (NullyFalse.IsNully ());
+        IsTrue (NullBool.IsNully ());
+    }
 
     [TestMethod]
     public void Test_Bool_Coalesce()
@@ -46,7 +70,7 @@ public class Existence_Bool_Tests
     }
 
     [TestMethod]
-    public void Test_Bool_FilledIn_ZeroMatters()
+    public void Test_Bool_Has_ZeroMatters()
     {
         IsTrue (Has     (true                          ));
         IsTrue (Has     (true,       zeroMatters: false));
@@ -90,7 +114,11 @@ public class Existence_Bool_Tests
         IsFalse(Has     (NullBool,   zeroMatters       ));
         IsFalse(Has     (NullBool,   zeroMatters: true ));
         IsFalse(Has     (NullBool,                true ));
+    }
 
+    [TestMethod]
+    public void Test_Bool_FilledIn_ZeroMatters()
+    {
         IsTrue (FilledIn(true                          ));
         IsTrue (FilledIn(true,       zeroMatters: false));
         IsTrue (FilledIn(true,                    false));
@@ -176,6 +204,96 @@ public class Existence_Bool_Tests
         IsFalse(NullBool  .FilledIn( zeroMatters       ));
         IsFalse(NullBool  .FilledIn( zeroMatters: true ));
         IsFalse(NullBool  .FilledIn(              true ));
+    }
+
+    [TestMethod]
+    public void Test_Bool_IsNully_ZeroMatters()
+    {
+        IsFalse(IsNully (true                          ));
+        IsFalse(IsNully (true,       zeroMatters: false));
+        IsFalse(IsNully (true,                    false));
+        IsFalse(IsNully (true,       zeroMatters       ));
+        IsFalse(IsNully (true,       zeroMatters: true ));
+        IsFalse(IsNully (true,                    true ));
+        IsTrue (IsNully (false                         ));
+        IsTrue (IsNully (false,      zeroMatters: false));
+        IsTrue (IsNully (false,                   false));
+        IsFalse(IsNully (false,      zeroMatters       ));
+        IsFalse(IsNully (false,      zeroMatters: true ));
+        IsFalse(IsNully (false,                   true ));
+        IsFalse(IsNully (True                          ));
+        IsFalse(IsNully (True,       zeroMatters: false));
+        IsFalse(IsNully (True,                    false));
+        IsFalse(IsNully (True,       zeroMatters       ));
+        IsFalse(IsNully (True,       zeroMatters: true ));
+        IsFalse(IsNully (True,                    true ));
+        IsTrue (IsNully (False                         ));
+        IsTrue (IsNully (False,      zeroMatters: false));
+        IsTrue (IsNully (False,                   false));
+        IsFalse(IsNully (False,      zeroMatters       ));
+        IsFalse(IsNully (False,      zeroMatters: true ));
+        IsFalse(IsNully (False,                   true ));
+        IsFalse(IsNully (NullyTrue                     ));
+        IsFalse(IsNully (NullyTrue,  zeroMatters: false));
+        IsFalse(IsNully (NullyTrue,               false));
+        IsFalse(IsNully (NullyTrue,  zeroMatters       ));
+        IsFalse(IsNully (NullyTrue,  zeroMatters: true ));
+        IsFalse(IsNully (NullyTrue,               true ));
+        IsTrue (IsNully (NullyFalse                    ));
+        IsTrue (IsNully (NullyFalse, zeroMatters: false));
+        IsTrue (IsNully (NullyFalse,              false));
+        IsFalse(IsNully (NullyFalse, zeroMatters       ));
+        IsFalse(IsNully (NullyFalse, zeroMatters: true ));
+        IsFalse(IsNully (NullyFalse,              true ));
+        IsTrue (IsNully (NullBool                      ));
+        IsTrue (IsNully (NullBool,   zeroMatters: false));
+        IsTrue (IsNully (NullBool,                false));
+        IsTrue (IsNully (NullBool,   zeroMatters       ));
+        IsTrue (IsNully (NullBool,   zeroMatters: true ));
+        IsTrue (IsNully (NullBool,                true ));
+
+        IsFalse(true      .IsNully (                   ));
+        IsFalse(true      .IsNully ( zeroMatters: false));
+        IsFalse(true      .IsNully (              false));
+        IsFalse(true      .IsNully ( zeroMatters       ));
+        IsFalse(true      .IsNully ( zeroMatters: true ));
+        IsFalse(true      .IsNully (              true ));
+        IsTrue (false     .IsNully (                   ));
+        IsTrue (false     .IsNully ( zeroMatters: false));
+        IsTrue (false     .IsNully (              false));
+        IsFalse(false     .IsNully ( zeroMatters       ));
+        IsFalse(false     .IsNully ( zeroMatters: true ));
+        IsFalse(false     .IsNully (              true ));
+        IsFalse(True      .IsNully (                   ));
+        IsFalse(True      .IsNully ( zeroMatters: false));
+        IsFalse(True      .IsNully (              false));
+        IsFalse(True      .IsNully ( zeroMatters       ));
+        IsFalse(True      .IsNully ( zeroMatters: true ));
+        IsFalse(True      .IsNully (              true ));
+        IsTrue (False     .IsNully (                   ));
+        IsTrue (False     .IsNully ( zeroMatters: false));
+        IsTrue (False     .IsNully (              false));
+        IsFalse(False     .IsNully ( zeroMatters       ));
+        IsFalse(False     .IsNully ( zeroMatters: true ));
+        IsFalse(False     .IsNully (              true ));
+        IsFalse(NullyTrue .IsNully (                   ));
+        IsFalse(NullyTrue .IsNully ( zeroMatters: false));
+        IsFalse(NullyTrue .IsNully (              false));
+        IsFalse(NullyTrue .IsNully ( zeroMatters       ));
+        IsFalse(NullyTrue .IsNully ( zeroMatters: true ));
+        IsFalse(NullyTrue .IsNully (              true ));
+        IsTrue (NullyFalse.IsNully (                   ));
+        IsTrue (NullyFalse.IsNully ( zeroMatters: false));
+        IsTrue (NullyFalse.IsNully (              false));
+        IsFalse(NullyFalse.IsNully ( zeroMatters       ));
+        IsFalse(NullyFalse.IsNully ( zeroMatters: true ));
+        IsFalse(NullyFalse.IsNully (              true ));
+        IsTrue (NullBool  .IsNully (                   ));
+        IsTrue (NullBool  .IsNully ( zeroMatters: false));
+        IsTrue (NullBool  .IsNully (              false));
+        IsTrue (NullBool  .IsNully ( zeroMatters       ));
+        IsTrue (NullBool  .IsNully ( zeroMatters: true ));
+        IsTrue (NullBool  .IsNully (              true ));
     }
 
     [TestMethod]
