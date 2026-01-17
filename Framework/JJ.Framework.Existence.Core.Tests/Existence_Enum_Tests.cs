@@ -37,28 +37,197 @@ public class Existence_Enum_Tests
     EnumNo0?   No0Invalid_Nully       = (EnumNo0)(-1);
 
     [TestMethod]
-    public void Enum_FilledIn_Test()
+    public void Test_Enum_Existence_Verify0IsDefault()
     {
-        IsFalse (With0_Null        .FilledIn());
-        IsFalse (With0_Default     .FilledIn());
-        IsFalse (With0_DefaultNully.FilledIn());
-        IsFalse (ZeroFirst         .FilledIn());
-        IsFalse (ZeroFirst_Nully   .FilledIn());
-        IsTrue  (OneLast           .FilledIn());
-        IsTrue  (OneLast_Nully     .FilledIn());
-
-        IsFalse (No0_Null          .FilledIn());
-        IsFalse (No0_Default       .FilledIn());
-        IsFalse (No0_DefaultNully  .FilledIn());
-        IsTrue  (OneFirst          .FilledIn());
-        IsTrue  (OneFirst_Nully    .FilledIn());
-        IsTrue  (TwoLast           .FilledIn());
-        IsTrue  (TwoLast_Nully     .FilledIn());
         AreEqual((EnumNo0)0, No0_Default);
     }
 
     [TestMethod]
-    public void Enum_FilledIn_ZeroMatters_Test()
+    public void Test_Enum_Has()
+    {
+        IsFalse(Has(With0_Null             ));
+        IsFalse(Has(With0_Default          ));
+        IsFalse(Has(With0_DefaultNully     ));
+        IsFalse(Has(ZeroFirst              ));
+        IsFalse(Has(ZeroFirst_Nully        ));
+        IsTrue (Has(OneLast                ));
+        IsTrue (Has(OneLast_Nully          ));
+        IsFalse(Has(No0_Null               ));
+        IsFalse(Has(No0_Default            ));
+        IsFalse(Has(No0_DefaultNully       ));
+        IsTrue (Has(OneFirst               ));
+        IsTrue (Has(OneFirst_Nully         ));
+        IsTrue (Has(TwoLast                ));
+        IsTrue (Has(TwoLast_Nully          ));
+    }
+
+    [TestMethod]
+    public void Test_Enum_FilledIn_Static()
+    {
+        IsFalse(FilledIn(With0_Null        ));
+        IsFalse(FilledIn(With0_Default     ));
+        IsFalse(FilledIn(With0_DefaultNully));
+        IsFalse(FilledIn(ZeroFirst         ));
+        IsFalse(FilledIn(ZeroFirst_Nully   ));
+        IsTrue (FilledIn(OneLast           ));
+        IsTrue (FilledIn(OneLast_Nully     ));
+        IsFalse(FilledIn(No0_Null          ));
+        IsFalse(FilledIn(No0_Default       ));
+        IsFalse(FilledIn(No0_DefaultNully  ));
+        IsTrue (FilledIn(OneFirst          ));
+        IsTrue (FilledIn(OneFirst_Nully    ));
+        IsTrue (FilledIn(TwoLast           ));
+        IsTrue (FilledIn(TwoLast_Nully     ));
+    }
+
+    [TestMethod]
+    public void Test_Enum_FilledIn_Extensions()
+    {
+        IsFalse(With0_Null        .FilledIn());
+        IsFalse(With0_Default     .FilledIn());
+        IsFalse(With0_DefaultNully.FilledIn());
+        IsFalse(ZeroFirst         .FilledIn());
+        IsFalse(ZeroFirst_Nully   .FilledIn());
+        IsTrue (OneLast           .FilledIn());
+        IsTrue (OneLast_Nully     .FilledIn());
+        IsFalse(No0_Null          .FilledIn());
+        IsFalse(No0_Default       .FilledIn());
+        IsFalse(No0_DefaultNully  .FilledIn());
+        IsTrue (OneFirst          .FilledIn());
+        IsTrue (OneFirst_Nully    .FilledIn());
+        IsTrue (TwoLast           .FilledIn());
+        IsTrue (TwoLast_Nully     .FilledIn());
+    }
+
+    [TestMethod]
+    public void Test_Enum_IsNully_Static()
+    {
+        IsTrue (IsNully (With0_Null        ));
+        IsTrue (IsNully (With0_Default     ));
+        IsTrue (IsNully (With0_DefaultNully));
+        IsTrue (IsNully (ZeroFirst         ));
+        IsTrue (IsNully (ZeroFirst_Nully   ));
+        IsFalse(IsNully (OneLast           ));
+        IsFalse(IsNully (OneLast_Nully     ));
+        IsTrue (IsNully (No0_Null          ));
+        IsTrue (IsNully (No0_Default       ));
+        IsTrue (IsNully (No0_DefaultNully  ));
+        IsFalse(IsNully (OneFirst          ));
+        IsFalse(IsNully (OneFirst_Nully    ));
+        IsFalse(IsNully (TwoLast           ));
+        IsFalse(IsNully (TwoLast_Nully     ));
+    }
+
+    [TestMethod]
+    public void Test_Enum_IsNully_Extensions()
+    {
+        IsTrue (With0_Null        .IsNully ());
+        IsTrue (With0_Default     .IsNully ());
+        IsTrue (With0_DefaultNully.IsNully ());
+        IsTrue (ZeroFirst         .IsNully ());
+        IsTrue (ZeroFirst_Nully   .IsNully ());
+        IsFalse(OneLast           .IsNully ());
+        IsFalse(OneLast_Nully     .IsNully ());
+        IsTrue (No0_Null          .IsNully ());
+        IsTrue (No0_Default       .IsNully ());
+        IsTrue (No0_DefaultNully  .IsNully ());
+        IsFalse(OneFirst          .IsNully ());
+        IsFalse(OneFirst_Nully    .IsNully ());
+        IsFalse(TwoLast           .IsNully ());
+        IsFalse(TwoLast_Nully     .IsNully ());
+    }
+
+    [TestMethod]
+    public void Test_Enum_Has_ZeroMatters()
+    {
+        IsFalse (Has     (With0_Null                            ));
+        IsFalse (Has     (With0_Null,         zeroMatters: false));
+        IsFalse (Has     (With0_Null,                      false));
+        IsFalse (Has     (With0_Null,         zeroMatters       ));
+        IsFalse (Has     (With0_Null,         zeroMatters: true ));
+        IsFalse (Has     (With0_Null,                      true ));
+        IsFalse (Has     (With0_Default                         ));
+        IsFalse (Has     (With0_Default,      zeroMatters: false));
+        IsFalse (Has     (With0_Default,                   false));
+        IsTrue  (Has     (With0_Default,      zeroMatters       ));
+        IsTrue  (Has     (With0_Default,      zeroMatters: true ));
+        IsTrue  (Has     (With0_Default,                   true ));
+        IsFalse (Has     (With0_DefaultNully                    ));
+        IsFalse (Has     (With0_DefaultNully, zeroMatters: false));
+        IsFalse (Has     (With0_DefaultNully,              false));
+        IsFalse (Has     (With0_DefaultNully, zeroMatters       ));
+        IsFalse (Has     (With0_DefaultNully, zeroMatters: true ));
+        IsFalse (Has     (With0_DefaultNully,              true ));
+        IsFalse (Has     (ZeroFirst                             ));
+        IsFalse (Has     (ZeroFirst,          zeroMatters: false));
+        IsFalse (Has     (ZeroFirst,                       false));
+        IsTrue  (Has     (ZeroFirst,          zeroMatters       ));
+        IsTrue  (Has     (ZeroFirst,          zeroMatters: true ));
+        IsTrue  (Has     (ZeroFirst,                       true ));
+        IsFalse (Has     (ZeroFirst_Nully                       ));
+        IsFalse (Has     (ZeroFirst_Nully,    zeroMatters: false));
+        IsFalse (Has     (ZeroFirst_Nully,                 false));
+        IsTrue  (Has     (ZeroFirst_Nully,    zeroMatters       ));
+        IsTrue  (Has     (ZeroFirst_Nully,    zeroMatters: true ));
+        IsTrue  (Has     (ZeroFirst_Nully,                 true ));
+        IsTrue  (Has     (OneLast                               ));
+        IsTrue  (Has     (OneLast,            zeroMatters: false));
+        IsTrue  (Has     (OneLast,                         false));
+        IsTrue  (Has     (OneLast,            zeroMatters       ));
+        IsTrue  (Has     (OneLast,            zeroMatters: true ));
+        IsTrue  (Has     (OneLast,                         true ));
+        IsTrue  (Has     (OneLast_Nully                         ));
+        IsTrue  (Has     (OneLast_Nully,      zeroMatters: false));
+        IsTrue  (Has     (OneLast_Nully,                   false));
+        IsTrue  (Has     (OneLast_Nully,      zeroMatters       ));
+        IsTrue  (Has     (OneLast_Nully,      zeroMatters: true ));
+        IsTrue  (Has     (OneLast_Nully,                   true ));
+        IsFalse (Has     (No0_Null                              ));
+        IsFalse (Has     (No0_Null,           zeroMatters: false));
+        IsFalse (Has     (No0_Null,                        false));
+        IsFalse (Has     (No0_Null,           zeroMatters       ));
+        IsFalse (Has     (No0_Null,           zeroMatters: true ));
+        IsFalse (Has     (No0_Null,                        true ));
+        IsFalse (Has     (No0_Default                           ));
+        IsFalse (Has     (No0_Default,        zeroMatters: false));
+        IsFalse (Has     (No0_Default,                     false));
+        IsTrue  (Has     (No0_Default,        zeroMatters       ));
+        IsTrue  (Has     (No0_Default,        zeroMatters: true ));
+        IsTrue  (Has     (No0_Default,                     true ));
+        IsFalse (Has     (No0_DefaultNully                      ));
+        IsFalse (Has     (No0_DefaultNully,   zeroMatters: false));
+        IsFalse (Has     (No0_DefaultNully,                false));
+        IsFalse (Has     (No0_DefaultNully,   zeroMatters       ));
+        IsFalse (Has     (No0_DefaultNully,   zeroMatters: true ));
+        IsFalse (Has     (No0_DefaultNully,                true ));
+        IsTrue  (Has     (OneFirst                              ));
+        IsTrue  (Has     (OneFirst,           zeroMatters: false));
+        IsTrue  (Has     (OneFirst,                        false));
+        IsTrue  (Has     (OneFirst,           zeroMatters       ));
+        IsTrue  (Has     (OneFirst,           zeroMatters: true ));
+        IsTrue  (Has     (OneFirst,                        true ));
+        IsTrue  (Has     (OneFirst_Nully                        ));
+        IsTrue  (Has     (OneFirst_Nully,     zeroMatters: false));
+        IsTrue  (Has     (OneFirst_Nully,                  false));
+        IsTrue  (Has     (OneFirst_Nully,     zeroMatters       ));
+        IsTrue  (Has     (OneFirst_Nully,     zeroMatters: true ));
+        IsTrue  (Has     (OneFirst_Nully,                  true ));
+        IsTrue  (Has     (TwoLast                               ));
+        IsTrue  (Has     (TwoLast,            zeroMatters: false));
+        IsTrue  (Has     (TwoLast,                         false));
+        IsTrue  (Has     (TwoLast,            zeroMatters       ));
+        IsTrue  (Has     (TwoLast,            zeroMatters: true ));
+        IsTrue  (Has     (TwoLast,                         true ));
+        IsTrue  (Has     (TwoLast_Nully                         ));
+        IsTrue  (Has     (TwoLast_Nully,      zeroMatters: false));
+        IsTrue  (Has     (TwoLast_Nully,                   false));
+        IsTrue  (Has     (TwoLast_Nully,      zeroMatters       ));
+        IsTrue  (Has     (TwoLast_Nully,      zeroMatters: true ));
+        IsTrue  (Has     (TwoLast_Nully,                   true ));
+    }
+
+    [TestMethod]
+    public void Test_Enum_FilledIn_Extensions_ZeroMatters()
     {
         IsFalse (With0_Null        .FilledIn(                  ));
         IsFalse (With0_Null        .FilledIn(zeroMatters: false));
@@ -144,11 +313,101 @@ public class Existence_Enum_Tests
         IsTrue  (TwoLast_Nully     .FilledIn(zeroMatters       ));
         IsTrue  (TwoLast_Nully     .FilledIn(zeroMatters: true ));
         IsTrue  (TwoLast_Nully     .FilledIn(             true ));
-        AreEqual((EnumNo0)0, No0_Default);
     }
 
     [TestMethod]
-    public void Enum_Coalesce_Test()
+    public void Test_Enum_FilledIn_Static_ZeroMatters()
+    {
+        IsFalse (FilledIn(With0_Null                            ));
+        IsFalse (FilledIn(With0_Null,         zeroMatters: false));
+        IsFalse (FilledIn(With0_Null,                      false));
+        IsFalse (FilledIn(With0_Null,         zeroMatters       ));
+        IsFalse (FilledIn(With0_Null,         zeroMatters: true ));
+        IsFalse (FilledIn(With0_Null,                      true ));
+        IsFalse (FilledIn(With0_Default                         ));
+        IsFalse (FilledIn(With0_Default,      zeroMatters: false));
+        IsFalse (FilledIn(With0_Default,                   false));
+        IsTrue  (FilledIn(With0_Default,      zeroMatters       ));
+        IsTrue  (FilledIn(With0_Default,      zeroMatters: true ));
+        IsTrue  (FilledIn(With0_Default,                   true ));
+        IsFalse (FilledIn(With0_DefaultNully                    ));
+        IsFalse (FilledIn(With0_DefaultNully, zeroMatters: false));
+        IsFalse (FilledIn(With0_DefaultNully,              false));
+        IsFalse (FilledIn(With0_DefaultNully, zeroMatters       ));
+        IsFalse (FilledIn(With0_DefaultNully, zeroMatters: true ));
+        IsFalse (FilledIn(With0_DefaultNully,              true ));
+        IsFalse (FilledIn(ZeroFirst                             ));
+        IsFalse (FilledIn(ZeroFirst,          zeroMatters: false));
+        IsFalse (FilledIn(ZeroFirst,                       false));
+        IsTrue  (FilledIn(ZeroFirst,          zeroMatters       ));
+        IsTrue  (FilledIn(ZeroFirst,          zeroMatters: true ));
+        IsTrue  (FilledIn(ZeroFirst,                       true ));
+        IsFalse (FilledIn(ZeroFirst_Nully                       ));
+        IsFalse (FilledIn(ZeroFirst_Nully,    zeroMatters: false));
+        IsFalse (FilledIn(ZeroFirst_Nully,                 false));
+        IsTrue  (FilledIn(ZeroFirst_Nully,    zeroMatters       ));
+        IsTrue  (FilledIn(ZeroFirst_Nully,    zeroMatters: true ));
+        IsTrue  (FilledIn(ZeroFirst_Nully,                 true ));
+        IsTrue  (FilledIn(OneLast                               ));
+        IsTrue  (FilledIn(OneLast,            zeroMatters: false));
+        IsTrue  (FilledIn(OneLast,                         false));
+        IsTrue  (FilledIn(OneLast,            zeroMatters       ));
+        IsTrue  (FilledIn(OneLast,            zeroMatters: true ));
+        IsTrue  (FilledIn(OneLast,                         true ));
+        IsTrue  (FilledIn(OneLast_Nully                         ));
+        IsTrue  (FilledIn(OneLast_Nully,      zeroMatters: false));
+        IsTrue  (FilledIn(OneLast_Nully,                   false));
+        IsTrue  (FilledIn(OneLast_Nully,      zeroMatters       ));
+        IsTrue  (FilledIn(OneLast_Nully,      zeroMatters: true ));
+        IsTrue  (FilledIn(OneLast_Nully,                   true ));
+        IsFalse (FilledIn(No0_Null                              ));
+        IsFalse (FilledIn(No0_Null,           zeroMatters: false));
+        IsFalse (FilledIn(No0_Null,                        false));
+        IsFalse (FilledIn(No0_Null,           zeroMatters       ));
+        IsFalse (FilledIn(No0_Null,           zeroMatters: true ));
+        IsFalse (FilledIn(No0_Null,                        true ));
+        IsFalse (FilledIn(No0_Default                           ));
+        IsFalse (FilledIn(No0_Default,        zeroMatters: false));
+        IsFalse (FilledIn(No0_Default,                     false));
+        IsTrue  (FilledIn(No0_Default,        zeroMatters       ));
+        IsTrue  (FilledIn(No0_Default,        zeroMatters: true ));
+        IsTrue  (FilledIn(No0_Default,                     true ));
+        IsFalse (FilledIn(No0_DefaultNully                      ));
+        IsFalse (FilledIn(No0_DefaultNully,   zeroMatters: false));
+        IsFalse (FilledIn(No0_DefaultNully,                false));
+        IsFalse (FilledIn(No0_DefaultNully,   zeroMatters       ));
+        IsFalse (FilledIn(No0_DefaultNully,   zeroMatters: true ));
+        IsFalse (FilledIn(No0_DefaultNully,                true ));
+        IsTrue  (FilledIn(OneFirst                              ));
+        IsTrue  (FilledIn(OneFirst,           zeroMatters: false));
+        IsTrue  (FilledIn(OneFirst,                        false));
+        IsTrue  (FilledIn(OneFirst,           zeroMatters       ));
+        IsTrue  (FilledIn(OneFirst,           zeroMatters: true ));
+        IsTrue  (FilledIn(OneFirst,                        true ));
+        IsTrue  (FilledIn(OneFirst_Nully                        ));
+        IsTrue  (FilledIn(OneFirst_Nully,     zeroMatters: false));
+        IsTrue  (FilledIn(OneFirst_Nully,                  false));
+        IsTrue  (FilledIn(OneFirst_Nully,     zeroMatters       ));
+        IsTrue  (FilledIn(OneFirst_Nully,     zeroMatters: true ));
+        IsTrue  (FilledIn(OneFirst_Nully,                  true ));
+        IsTrue  (FilledIn(TwoLast                               ));
+        IsTrue  (FilledIn(TwoLast,            zeroMatters: false));
+        IsTrue  (FilledIn(TwoLast,                         false));
+        IsTrue  (FilledIn(TwoLast,            zeroMatters       ));
+        IsTrue  (FilledIn(TwoLast,            zeroMatters: true ));
+        IsTrue  (FilledIn(TwoLast,                         true ));
+        IsTrue  (FilledIn(TwoLast_Nully                         ));
+        IsTrue  (FilledIn(TwoLast_Nully,      zeroMatters: false));
+        IsTrue  (FilledIn(TwoLast_Nully,                   false));
+        IsTrue  (FilledIn(TwoLast_Nully,      zeroMatters       ));
+        IsTrue  (FilledIn(TwoLast_Nully,      zeroMatters: true ));
+        IsTrue  (FilledIn(TwoLast_Nully,                   true ));
+    }
+
+    // TODO: Test IsNully with zeroMatters flags.
+
+    [TestMethod]
+    public void Test_Enum_Coalesce()
     {
         // 3-Arg Static Nully
         NoNullRet(OneLast,   Coalesce(With0_Default, OneLast, ZeroFirst_Nully));
@@ -161,7 +420,7 @@ public class Existence_Enum_Tests
     }
 
     [TestMethod]
-    public void Enum_Coalesce_ZeroMatters_Test()
+    public void Test_Enum_Coalesce_ZeroMatters()
     {
         // 3-Arg Static Nully, Flags Front and Back
         NoNullRet(OneLast,   Coalesce(                    With0_Default, OneLast, ZeroFirst_Nully));
