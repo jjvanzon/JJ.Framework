@@ -31,25 +31,67 @@ public class Existence_Char_Tests
     char  FilledChar             = 'a';
     char? NullyFilledChar        = 'a';
 
-    // TODO: Add more variants (FilledIn, extension methods, IsNully).
-
     [TestMethod]
     public void Char_FilledIn_Tests()
     {
         // Obviously not filled
-        IsFalse(Has(NullChar));
-        IsFalse(Has(DefaultChar));
-        IsFalse(Has(DefaultNullyChar));
-        IsFalse(Has(NewChar));
-        IsFalse(Has(NewNullyChar));
-        IsFalse(Has(ZeroValueChar));
-        IsFalse(Has(ZeroValueNullyChar));
+        IsFalse(Has(NullChar                ));
+        IsFalse(Has(DefaultChar             ));
+        IsFalse(Has(DefaultNullyChar        ));
+        IsFalse(Has(NewChar                 ));
+        IsFalse(Has(NewNullyChar            ));
+        IsFalse(Has(ZeroValueChar           ));
+        IsFalse(Has(ZeroValueNullyChar      ));
+        IsFalse(FilledIn(NullChar           ));
+        IsFalse(FilledIn(DefaultChar        ));
+        IsFalse(FilledIn(DefaultNullyChar   ));
+        IsFalse(FilledIn(NewChar            ));
+        IsFalse(FilledIn(NewNullyChar       ));
+        IsFalse(FilledIn(ZeroValueChar      ));
+        IsFalse(FilledIn(ZeroValueNullyChar ));
+        IsFalse(NullChar          .FilledIn());
+        IsFalse(DefaultChar       .FilledIn());
+        IsFalse(DefaultNullyChar  .FilledIn());
+        IsFalse(NewChar           .FilledIn());
+        IsFalse(NewNullyChar      .FilledIn());
+        IsFalse(ZeroValueChar     .FilledIn());
+        IsFalse(ZeroValueNullyChar.FilledIn());
+        IsTrue (IsNully (NullChar           ));
+        IsTrue (IsNully (DefaultChar        ));
+        IsTrue (IsNully (DefaultNullyChar   ));
+        IsTrue (IsNully (NewChar            ));
+        IsTrue (IsNully (NewNullyChar       ));
+        IsTrue (IsNully (ZeroValueChar      ));
+        IsTrue (IsNully (ZeroValueNullyChar ));
+        IsTrue (NullChar          .IsNully( ));
+        IsTrue (DefaultChar       .IsNully( ));
+        IsTrue (DefaultNullyChar  .IsNully( ));
+        IsTrue (NewChar           .IsNully( ));
+        IsTrue (NewNullyChar      .IsNully( ));
+        IsTrue (ZeroValueChar     .IsNully( ));
+        IsTrue (ZeroValueNullyChar.IsNully( ));
 
         // Filled
-        IsTrue (Has(ZeroDigitChar));
-        IsTrue (Has(ZeroDigitNullyChar));
-        IsTrue (Has(FilledChar));
-        IsTrue (Has(NullyFilledChar));
+        IsTrue (Has(ZeroDigitChar           ));
+        IsTrue (Has(ZeroDigitNullyChar      ));
+        IsTrue (Has(FilledChar              ));
+        IsTrue (Has(NullyFilledChar         ));
+        IsTrue (FilledIn(ZeroDigitChar      ));
+        IsTrue (FilledIn(ZeroDigitNullyChar ));
+        IsTrue (FilledIn(FilledChar         ));
+        IsTrue (FilledIn(NullyFilledChar    ));
+        IsTrue (ZeroDigitChar     .FilledIn());
+        IsTrue (ZeroDigitNullyChar.FilledIn());
+        IsTrue (FilledChar        .FilledIn());
+        IsTrue (NullyFilledChar   .FilledIn());
+        IsFalse(IsNully (ZeroDigitChar      ));
+        IsFalse(IsNully (ZeroDigitNullyChar ));
+        IsFalse(IsNully (FilledChar         ));
+        IsFalse(IsNully (NullyFilledChar    ));
+        IsFalse(ZeroDigitChar     .IsNully( ));
+        IsFalse(ZeroDigitNullyChar.IsNully( ));
+        IsFalse(FilledChar        .IsNully( ));
+        IsFalse(NullyFilledChar   .IsNully( ));
     }
 
     [TestMethod]
@@ -57,6 +99,8 @@ public class Existence_Char_Tests
     {
         NoNullRet('a', Coalesce(NullChar, ZeroValueChar, NullyFilledChar, 'b'));
     }
+        
+    // TODO: Add more variants (FilledIn, extension methods, IsNully).
 
     [TestMethod]
     public void Char_FilledIn_ZeroMatters_Tests()
