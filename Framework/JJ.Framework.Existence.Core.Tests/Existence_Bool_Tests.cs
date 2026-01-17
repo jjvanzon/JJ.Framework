@@ -10,7 +10,7 @@ public class Existence_Bool_Tests
     bool? NullBool   = null ;
 
     [TestMethod]
-    public void Bool_FilledIn_Test()
+    public void Test_Bool_FilledIn()
     {
         IsTrue (Has(true));
         IsFalse(Has(false));
@@ -38,7 +38,7 @@ public class Existence_Bool_Tests
     }
 
     [TestMethod]
-    public void Bool_Coalesce_Test()
+    public void Test_Bool_Coalesce()
     {
         IsTrue (Coalesce(False, NullyTrue, NullBool));
         IsTrue (NullyFalse.Coalesce(NullBool, NullyTrue));
@@ -46,7 +46,7 @@ public class Existence_Bool_Tests
     }
 
     [TestMethod]
-    public void Bool_FilledIn_ZeroMatters_Test()
+    public void Test_Bool_FilledIn_ZeroMatters()
     {
         IsTrue (Has     (true                          ));
         IsTrue (Has     (true,       zeroMatters: false));
@@ -179,7 +179,7 @@ public class Existence_Bool_Tests
     }
 
     [TestMethod]
-    public void Bool_Coalesce_ZeroMatters_Test()
+    public void Test_Bool_Coalesce_ZeroMatters()
     {
         IsTrue (Coalesce(False, NullyTrue, NullBool                        ));
         IsTrue (Coalesce(False, NullyTrue, NullBool,     zeroMatters: false));
