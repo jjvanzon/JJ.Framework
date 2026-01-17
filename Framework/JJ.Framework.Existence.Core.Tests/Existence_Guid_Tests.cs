@@ -16,7 +16,7 @@ public class Existence_Guid_Tests
     Guid? RandomNullyGuid = Guid.NewGuid();
 
     [TestMethod]
-    public void Test_Guid_FilledIn()
+    public void Test_Guid_Has()
     {
         IsFalse(Has(NullGuid));
         IsFalse(Has(EmptyGuid));
@@ -27,6 +27,11 @@ public class Existence_Guid_Tests
         IsTrue (Has(OneNullyGuid));
         IsTrue (Has(RandomGuid));
         IsTrue (Has(RandomNullyGuid));
+    }
+
+    [TestMethod]
+    public void Test_Guid_FilledIn()
+    {
         IsFalse(FilledIn(NullGuid));
         IsFalse(FilledIn(EmptyGuid));
         IsFalse(FilledIn(EmptyNullyGuid));
@@ -45,6 +50,11 @@ public class Existence_Guid_Tests
         IsTrue (OneNullyGuid.FilledIn());
         IsTrue (RandomGuid.FilledIn());
         IsTrue (RandomNullyGuid.FilledIn());
+    }
+
+    [TestMethod]
+    public void Test_Guid_IsNully()
+    {
         IsTrue (IsNully(NullGuid));
         IsTrue (IsNully(EmptyGuid));
         IsTrue (IsNully(EmptyNullyGuid));
@@ -72,7 +82,7 @@ public class Existence_Guid_Tests
     }
 
     [TestMethod]
-    public void Test_Guid_FilledIn_ZeroMatters()
+    public void Test_Guid_Has_ZeroMatters()
     {
         IsFalse(Has     (NullGuid                           ));
         IsFalse(Has     (NullGuid,        zeroMatters: false));
@@ -128,6 +138,11 @@ public class Existence_Guid_Tests
         IsTrue (Has     (RandomNullyGuid, zeroMatters       ));
         IsTrue (Has     (RandomNullyGuid, zeroMatters: true ));
         IsTrue (Has     (RandomNullyGuid,              true ));
+    }
+
+    [TestMethod]
+    public void Test_Guid_FilledIn_ZeroMatters()
+    {
         IsFalse(FilledIn(NullGuid                           ));
         IsFalse(FilledIn(NullGuid,        zeroMatters: false));
         IsFalse(FilledIn(NullGuid,                     false));
@@ -236,6 +251,11 @@ public class Existence_Guid_Tests
         IsTrue (RandomNullyGuid.FilledIn( zeroMatters       ));
         IsTrue (RandomNullyGuid.FilledIn( zeroMatters: true ));
         IsTrue (RandomNullyGuid.FilledIn(              true ));
+    }
+
+    [TestMethod]
+    public void Test_Guid_IsNully_ZeroMatters()
+    {
         IsTrue (IsNully( NullGuid                           ));
         IsTrue (IsNully( NullGuid,        zeroMatters: false));
         IsTrue (IsNully( NullGuid,                     false));
