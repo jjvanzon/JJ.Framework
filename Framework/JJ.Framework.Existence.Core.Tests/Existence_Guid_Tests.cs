@@ -16,7 +16,7 @@ public class Existence_Guid_Tests
     Guid? RandomNullyGuid = Guid.NewGuid();
 
     [TestMethod]
-    public void Guid_FilledIn_Tests()
+    public void Test_Guid_FilledIn()
     {
         IsFalse(Has(NullGuid));
         IsFalse(Has(EmptyGuid));
@@ -66,13 +66,13 @@ public class Existence_Guid_Tests
     }
 
     [TestMethod]
-    public void Guid_Coalesce_Tests()
+    public void Test_Guid_Coalesce()
     {
         NoNullRet(OneGuid, Coalesce(NullGuid, EmptyGuid).Coalesce(ZeroGuid, OneGuid, RandomGuid));
     }
 
     [TestMethod]
-    public void Guid_FilledIn_ZeroMatters_Tests()
+    public void Test_Guid_FilledIn_ZeroMatters()
     {
         IsFalse(Has     (NullGuid                           ));
         IsFalse(Has     (NullGuid,        zeroMatters: false));
@@ -347,7 +347,7 @@ public class Existence_Guid_Tests
     }
 
     [TestMethod]
-    public void Guid_Coalesce_ZeroMatters_Tests()
+    public void Tests_Guid_Coalesce_ZeroMatters()
     {
         NoNullRet(OneGuid,  Coalesce(NullGuid, EmptyGuid                    ).Coalesce(                    ZeroGuid, OneGuid, RandomGuid));
         NoNullRet(OneGuid,  Coalesce(NullGuid, EmptyGuid, zeroMatters: false).Coalesce(zeroMatters: false, ZeroGuid, OneGuid, RandomGuid));
