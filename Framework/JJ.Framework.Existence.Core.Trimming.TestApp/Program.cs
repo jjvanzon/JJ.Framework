@@ -46,6 +46,7 @@ RunTests<Existence_Bool_Tests>() &&
 RunTests<Existence_Char_Tests>() &&
 RunTests<Existence_DateTime_Tests>() &&
 RunTests<Existence_Double_Tests>() &&
+RunTests<Existence_Enum_Tests>() &&
 RunTests<Existence_Examples>() &&
 RunTests<Existence_Guid_Tests>() &&
 RunTests<Existence_NotNullWhen_Tests>() &&
