@@ -20,7 +20,7 @@ public class Existence_Double_Tests
     #endif
 
     [TestMethod]
-    public void Double_FilledIn_Tests()
+    public void Test_Double_Has()
     {
         IsFalse(Has(NullDouble));
         IsFalse(Has(ZeroDouble));
@@ -29,6 +29,11 @@ public class Existence_Double_Tests
         IsFalse(Has(NullyZeroDouble));
         IsTrue (Has(NullyOneDouble));
         IsTrue (Has(NullyTwoDouble));
+    }
+
+    [TestMethod]
+    public void Test_Double_FilledIn()
+    {
         IsFalse(FilledIn(NullDouble));
         IsFalse(FilledIn(ZeroDouble));
         IsTrue (FilledIn(OneDouble));
@@ -43,53 +48,75 @@ public class Existence_Double_Tests
         IsTrue (NullyOneDouble.FilledIn());
         IsTrue (NullyTwoDouble.FilledIn());
     }
+
+    [TestMethod]
+    public void Test_Double_IsNully()
+    {
+        IsTrue (IsNully(NullDouble));
+        IsTrue (IsNully(ZeroDouble));
+        IsFalse(IsNully(OneDouble));
+        IsFalse(IsNully(TwoDouble));
+        IsTrue (IsNully(NullyZeroDouble));
+        IsFalse(IsNully(NullyOneDouble));
+        IsFalse(IsNully(NullyTwoDouble));
+        IsTrue (ZeroDouble.IsNully());
+        IsFalse(OneDouble.IsNully());
+        IsFalse(TwoDouble.IsNully());
+        IsTrue (NullyZeroDouble.IsNully());
+        IsFalse(NullyOneDouble.IsNully());
+        IsFalse(NullyTwoDouble.IsNully());
+    }
     
     [TestMethod]
-    public void Double_FilledIn_ZeroMatters_Tests()
+    public void Test_Double_Has_ZeroMatters()
     {
-        IsFalse(Has(NullDouble                         ));
-        IsFalse(Has(NullDouble,      zeroMatters: false));
-        IsFalse(Has(NullDouble,                   false));
-        IsFalse(Has(NullDouble,      zeroMatters       ));
-        IsFalse(Has(NullDouble,      zeroMatters: true ));
-        IsFalse(Has(NullDouble,                   true ));
-        IsFalse(Has(ZeroDouble                         ));
-        IsFalse(Has(ZeroDouble,      zeroMatters: false));
-        IsFalse(Has(ZeroDouble,                   false));
-        IsTrue (Has(ZeroDouble,      zeroMatters       ));
-        IsTrue (Has(ZeroDouble,      zeroMatters: true ));
-        IsTrue (Has(ZeroDouble,                   true ));
-        IsTrue (Has(OneDouble                          ));
-        IsTrue (Has(OneDouble,       zeroMatters: false));
-        IsTrue (Has(OneDouble,                    false));
-        IsTrue (Has(OneDouble,       zeroMatters       ));
-        IsTrue (Has(OneDouble,       zeroMatters: true ));
-        IsTrue (Has(OneDouble,                    true ));
-        IsTrue (Has(TwoDouble                          ));
-        IsTrue (Has(TwoDouble,       zeroMatters: false));
-        IsTrue (Has(TwoDouble,                    false));
-        IsTrue (Has(TwoDouble,       zeroMatters       ));
-        IsTrue (Has(TwoDouble,       zeroMatters: true ));
-        IsTrue (Has(TwoDouble,                    true ));
-        IsFalse(Has(NullyZeroDouble                    ));
-        IsFalse(Has(NullyZeroDouble, zeroMatters: false));
-        IsFalse(Has(NullyZeroDouble,              false));
-        IsTrue (Has(NullyZeroDouble, zeroMatters       ));
-        IsTrue (Has(NullyZeroDouble, zeroMatters: true ));
-        IsTrue (Has(NullyZeroDouble,              true ));
-        IsTrue (Has(NullyOneDouble                     ));
-        IsTrue (Has(NullyOneDouble,  zeroMatters: false));
-        IsTrue (Has(NullyOneDouble,               false));
-        IsTrue (Has(NullyOneDouble,  zeroMatters       ));
-        IsTrue (Has(NullyOneDouble,  zeroMatters: true ));
-        IsTrue (Has(NullyOneDouble,               true ));
-        IsTrue (Has(NullyTwoDouble                     ));
-        IsTrue (Has(NullyTwoDouble,  zeroMatters: false));
-        IsTrue (Has(NullyTwoDouble,               false));
-        IsTrue (Has(NullyTwoDouble,  zeroMatters       ));
-        IsTrue (Has(NullyTwoDouble,  zeroMatters: true ));
-        IsTrue (Has(NullyTwoDouble,               true ));
-
+        IsFalse(Has     (NullDouble                         ));
+        IsFalse(Has     (NullDouble,      zeroMatters: false));
+        IsFalse(Has     (NullDouble,                   false));
+        IsFalse(Has     (NullDouble,      zeroMatters       ));
+        IsFalse(Has     (NullDouble,      zeroMatters: true ));
+        IsFalse(Has     (NullDouble,                   true ));
+        IsFalse(Has     (ZeroDouble                         ));
+        IsFalse(Has     (ZeroDouble,      zeroMatters: false));
+        IsFalse(Has     (ZeroDouble,                   false));
+        IsTrue (Has     (ZeroDouble,      zeroMatters       ));
+        IsTrue (Has     (ZeroDouble,      zeroMatters: true ));
+        IsTrue (Has     (ZeroDouble,                   true ));
+        IsTrue (Has     (OneDouble                          ));
+        IsTrue (Has     (OneDouble,       zeroMatters: false));
+        IsTrue (Has     (OneDouble,                    false));
+        IsTrue (Has     (OneDouble,       zeroMatters       ));
+        IsTrue (Has     (OneDouble,       zeroMatters: true ));
+        IsTrue (Has     (OneDouble,                    true ));
+        IsTrue (Has     (TwoDouble                          ));
+        IsTrue (Has     (TwoDouble,       zeroMatters: false));
+        IsTrue (Has     (TwoDouble,                    false));
+        IsTrue (Has     (TwoDouble,       zeroMatters       ));
+        IsTrue (Has     (TwoDouble,       zeroMatters: true ));
+        IsTrue (Has     (TwoDouble,                    true ));
+        IsFalse(Has     (NullyZeroDouble                    ));
+        IsFalse(Has     (NullyZeroDouble, zeroMatters: false));
+        IsFalse(Has     (NullyZeroDouble,              false));
+        IsTrue (Has     (NullyZeroDouble, zeroMatters       ));
+        IsTrue (Has     (NullyZeroDouble, zeroMatters: true ));
+        IsTrue (Has     (NullyZeroDouble,              true ));
+        IsTrue (Has     (NullyOneDouble                     ));
+        IsTrue (Has     (NullyOneDouble,  zeroMatters: false));
+        IsTrue (Has     (NullyOneDouble,               false));
+        IsTrue (Has     (NullyOneDouble,  zeroMatters       ));
+        IsTrue (Has     (NullyOneDouble,  zeroMatters: true ));
+        IsTrue (Has     (NullyOneDouble,               true ));
+        IsTrue (Has     (NullyTwoDouble                     ));
+        IsTrue (Has     (NullyTwoDouble,  zeroMatters: false));
+        IsTrue (Has     (NullyTwoDouble,               false));
+        IsTrue (Has     (NullyTwoDouble,  zeroMatters       ));
+        IsTrue (Has     (NullyTwoDouble,  zeroMatters: true ));
+        IsTrue (Has     (NullyTwoDouble,               true ));
+    }
+    
+    [TestMethod]
+    public void Test_Double_FilledIn_ZeroMatters_Static()
+    {
         IsFalse(FilledIn(NullDouble                         ));
         IsFalse(FilledIn(NullDouble,      zeroMatters: false));
         IsFalse(FilledIn(NullDouble,                   false));
@@ -132,7 +159,11 @@ public class Existence_Double_Tests
         IsTrue (FilledIn(NullyTwoDouble,  zeroMatters       ));
         IsTrue (FilledIn(NullyTwoDouble,  zeroMatters: true ));
         IsTrue (FilledIn(NullyTwoDouble,               true ));
-
+    }
+    
+    [TestMethod]
+    public void Test_Double_FilledIn_ZeroMatters_Extensions()
+    {
         IsFalse(NullDouble     .FilledIn(                   ));
         IsFalse(NullDouble     .FilledIn( zeroMatters: false));
         IsFalse(NullDouble     .FilledIn(              false));
@@ -175,6 +206,100 @@ public class Existence_Double_Tests
         IsTrue (NullyTwoDouble .FilledIn( zeroMatters       ));
         IsTrue (NullyTwoDouble .FilledIn( zeroMatters: true ));
         IsTrue (NullyTwoDouble .FilledIn(              true ));
+    }
+
+    [TestMethod]
+    public void Test_Double_IsNully_ZeroMatters_Static()
+    {
+        IsTrue (IsNully (NullDouble                         ));
+        IsTrue (IsNully (NullDouble,      zeroMatters: false));
+        IsTrue (IsNully (NullDouble,                   false));
+        IsTrue (IsNully (NullDouble,      zeroMatters       ));
+        IsTrue (IsNully (NullDouble,      zeroMatters: true ));
+        IsTrue (IsNully (NullDouble,                   true ));
+        IsTrue (IsNully (ZeroDouble                         ));
+        IsTrue (IsNully (ZeroDouble,      zeroMatters: false));
+        IsTrue (IsNully (ZeroDouble,                   false));
+        IsFalse(IsNully (ZeroDouble,      zeroMatters       ));
+        IsFalse(IsNully (ZeroDouble,      zeroMatters: true ));
+        IsFalse(IsNully (ZeroDouble,                   true ));
+        IsFalse(IsNully (OneDouble                          ));
+        IsFalse(IsNully (OneDouble,       zeroMatters: false));
+        IsFalse(IsNully (OneDouble,                    false));
+        IsFalse(IsNully (OneDouble,       zeroMatters       ));
+        IsFalse(IsNully (OneDouble,       zeroMatters: true ));
+        IsFalse(IsNully (OneDouble,                    true ));
+        IsFalse(IsNully (TwoDouble                          ));
+        IsFalse(IsNully (TwoDouble,       zeroMatters: false));
+        IsFalse(IsNully (TwoDouble,                    false));
+        IsFalse(IsNully (TwoDouble,       zeroMatters       ));
+        IsFalse(IsNully (TwoDouble,       zeroMatters: true ));
+        IsFalse(IsNully (TwoDouble,                    true ));
+        IsTrue (IsNully (NullyZeroDouble                    ));
+        IsTrue (IsNully (NullyZeroDouble, zeroMatters: false));
+        IsTrue (IsNully (NullyZeroDouble,              false));
+        IsFalse(IsNully (NullyZeroDouble, zeroMatters       ));
+        IsFalse(IsNully (NullyZeroDouble, zeroMatters: true ));
+        IsFalse(IsNully (NullyZeroDouble,              true ));
+        IsFalse(IsNully (NullyOneDouble                     ));
+        IsFalse(IsNully (NullyOneDouble,  zeroMatters: false));
+        IsFalse(IsNully (NullyOneDouble,               false));
+        IsFalse(IsNully (NullyOneDouble,  zeroMatters       ));
+        IsFalse(IsNully (NullyOneDouble,  zeroMatters: true ));
+        IsFalse(IsNully (NullyOneDouble,               true ));
+        IsFalse(IsNully (NullyTwoDouble                     ));
+        IsFalse(IsNully (NullyTwoDouble,  zeroMatters: false));
+        IsFalse(IsNully (NullyTwoDouble,               false));
+        IsFalse(IsNully (NullyTwoDouble,  zeroMatters       ));
+        IsFalse(IsNully (NullyTwoDouble,  zeroMatters: true ));
+        IsFalse(IsNully (NullyTwoDouble,               true ));
+    }
+    
+    [TestMethod]
+    public void Test_Double_IsNully_ZeroMatters_Extensions()
+    {
+        IsTrue (NullDouble     .IsNully (                   ));
+        IsTrue (NullDouble     .IsNully ( zeroMatters: false));
+        IsTrue (NullDouble     .IsNully (              false));
+        IsTrue (NullDouble     .IsNully ( zeroMatters       ));
+        IsTrue (NullDouble     .IsNully ( zeroMatters: true ));
+        IsTrue (NullDouble     .IsNully (              true ));
+        IsTrue (ZeroDouble     .IsNully (                   ));
+        IsTrue (ZeroDouble     .IsNully ( zeroMatters: false));
+        IsTrue (ZeroDouble     .IsNully (              false));
+        IsFalse(ZeroDouble     .IsNully ( zeroMatters       ));
+        IsFalse(ZeroDouble     .IsNully ( zeroMatters: true ));
+        IsFalse(ZeroDouble     .IsNully (              true ));
+        IsFalse(OneDouble      .IsNully (                   ));
+        IsFalse(OneDouble      .IsNully ( zeroMatters: false));
+        IsFalse(OneDouble      .IsNully (              false));
+        IsFalse(OneDouble      .IsNully ( zeroMatters       ));
+        IsFalse(OneDouble      .IsNully ( zeroMatters: true ));
+        IsFalse(OneDouble      .IsNully (              true ));
+        IsFalse(TwoDouble      .IsNully (                   ));
+        IsFalse(TwoDouble      .IsNully ( zeroMatters: false));
+        IsFalse(TwoDouble      .IsNully (              false));
+        IsFalse(TwoDouble      .IsNully ( zeroMatters       ));
+        IsFalse(TwoDouble      .IsNully ( zeroMatters: true ));
+        IsFalse(TwoDouble      .IsNully (              true ));
+        IsTrue (NullyZeroDouble.IsNully (                   ));
+        IsTrue (NullyZeroDouble.IsNully ( zeroMatters: false));
+        IsTrue (NullyZeroDouble.IsNully (              false));
+        IsFalse(NullyZeroDouble.IsNully ( zeroMatters       ));
+        IsFalse(NullyZeroDouble.IsNully ( zeroMatters: true ));
+        IsFalse(NullyZeroDouble.IsNully (              true ));
+        IsFalse(NullyOneDouble .IsNully (                   ));
+        IsFalse(NullyOneDouble .IsNully ( zeroMatters: false));
+        IsFalse(NullyOneDouble .IsNully (              false));
+        IsFalse(NullyOneDouble .IsNully ( zeroMatters       ));
+        IsFalse(NullyOneDouble .IsNully ( zeroMatters: true ));
+        IsFalse(NullyOneDouble .IsNully (              true ));
+        IsFalse(NullyTwoDouble .IsNully (                   ));
+        IsFalse(NullyTwoDouble .IsNully ( zeroMatters: false));
+        IsFalse(NullyTwoDouble .IsNully (              false));
+        IsFalse(NullyTwoDouble .IsNully ( zeroMatters       ));
+        IsFalse(NullyTwoDouble .IsNully ( zeroMatters: true ));
+        IsFalse(NullyTwoDouble .IsNully (              true ));
     }
 
     [TestMethod]
