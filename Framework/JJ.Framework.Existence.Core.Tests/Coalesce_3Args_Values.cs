@@ -109,6 +109,7 @@ public class Coalesce_3Args_Values
         NoNullRet(1, Coalesce(NoNull0, NoNull1, Nully1 ));
         NoNullRet(1, Coalesce(NoNull0, NoNull1, NoNull0));
         NoNullRet(1, Coalesce(NoNull0, NoNull1, NoNull1));
+
         NoNullRet(1, Coalesce(NoNull1, NullNum, NullNum));
         NoNullRet(1, Coalesce(NoNull1, NullNum, Nully0 ));
         NoNullRet(1, Coalesce(NoNull1, NullNum, Nully1 ));
@@ -135,6 +136,85 @@ public class Coalesce_3Args_Values
         NoNullRet(1, Coalesce(NoNull1, NoNull1, NoNull0));
         NoNullRet(1, Coalesce(NoNull1, NoNull1, NoNull1));
     }
+
+
+    // TODO: Check which combos can go before expanding with zeroMatter cases.
+
+
+    [TestMethod]
+    public void Coalesce_3Args_Values_StaticZeroMatters()
+    {
+        NoNullRet(1, Coalesce(NullNum, Nully0,  Nully1 ));
+        NoNullRet(0, Coalesce(NullNum, Nully0,  NoNull0));
+        NoNullRet(1, Coalesce(NullNum, Nully0,  NoNull1));
+        NoNullRet(1, Coalesce(NullNum, Nully1,  Nully0 ));
+        NoNullRet(1, Coalesce(NullNum, Nully1,  NoNull0));
+        NoNullRet(1, Coalesce(NullNum, Nully1,  NoNull1));
+        NoNullRet(0, Coalesce(NullNum, NoNull0, Nully0 ));
+        NoNullRet(1, Coalesce(NullNum, NoNull0, Nully1 ));
+        NoNullRet(1, Coalesce(NullNum, NoNull0, NoNull1));
+        NoNullRet(1, Coalesce(NullNum, NoNull1, Nully0 ));
+        NoNullRet(1, Coalesce(NullNum, NoNull1, Nully1 ));
+        NoNullRet(1, Coalesce(NullNum, NoNull1, NoNull0));
+                     
+        NoNullRet(1, Coalesce(Nully0,  NullNum, Nully1 ));
+        NoNullRet(0, Coalesce(Nully0,  NullNum, NoNull0));
+        NoNullRet(1, Coalesce(Nully0,  NullNum, NoNull1));
+        NoNullRet(1, Coalesce(Nully0,  Nully1,  NullNum));
+        NoNullRet(1, Coalesce(Nully0,  Nully1,  NoNull0));
+        NoNullRet(1, Coalesce(Nully0,  Nully1,  NoNull1));
+        NoNullRet(0, Coalesce(Nully0,  NoNull0, NullNum));
+        NoNullRet(1, Coalesce(Nully0,  NoNull0, Nully1 ));
+        NoNullRet(1, Coalesce(Nully0,  NoNull0, NoNull1));
+        NoNullRet(1, Coalesce(Nully0,  NoNull1, NullNum));
+        NoNullRet(1, Coalesce(Nully0,  NoNull1, Nully1 ));
+        NoNullRet(1, Coalesce(Nully0,  NoNull1, NoNull0));
+                     
+        NoNullRet(1, Coalesce(Nully1,  NullNum, Nully0 ));
+        NoNullRet(1, Coalesce(Nully1,  NullNum, NoNull0));
+        NoNullRet(1, Coalesce(Nully1,  NullNum, NoNull1));
+        NoNullRet(1, Coalesce(Nully1,  Nully0,  NullNum));
+        NoNullRet(1, Coalesce(Nully1,  Nully0,  NoNull0));
+        NoNullRet(1, Coalesce(Nully1,  Nully0,  NoNull1));
+        NoNullRet(1, Coalesce(Nully1,  NoNull0, NullNum));
+        NoNullRet(1, Coalesce(Nully1,  NoNull0, Nully0 ));
+        NoNullRet(1, Coalesce(Nully1,  NoNull0, NoNull1));
+        NoNullRet(1, Coalesce(Nully1,  NoNull1, NullNum));
+        NoNullRet(1, Coalesce(Nully1,  NoNull1, Nully0 ));
+        NoNullRet(1, Coalesce(Nully1,  NoNull1, NoNull0));
+                     
+        NoNullRet(0, Coalesce(NoNull0, NullNum, Nully0 ));
+        NoNullRet(1, Coalesce(NoNull0, NullNum, Nully1 ));
+        NoNullRet(1, Coalesce(NoNull0, NullNum, NoNull1));
+        NoNullRet(0, Coalesce(NoNull0, Nully0,  NullNum));
+        NoNullRet(1, Coalesce(NoNull0, Nully0,  Nully1 ));
+        NoNullRet(1, Coalesce(NoNull0, Nully0,  NoNull1));
+        NoNullRet(1, Coalesce(NoNull0, Nully1,  NullNum));
+        NoNullRet(1, Coalesce(NoNull0, Nully1,  Nully0 ));
+        NoNullRet(1, Coalesce(NoNull0, Nully1,  NoNull1));
+        NoNullRet(1, Coalesce(NoNull0, NoNull1, NullNum));
+        NoNullRet(1, Coalesce(NoNull0, NoNull1, Nully0 ));
+        NoNullRet(1, Coalesce(NoNull0, NoNull1, Nully1 ));
+
+        NoNullRet(1, Coalesce(NoNull1, NullNum, Nully0 ));
+        NoNullRet(1, Coalesce(NoNull1, NullNum, Nully1 ));
+        NoNullRet(1, Coalesce(NoNull1, NullNum, NoNull0));
+        NoNullRet(1, Coalesce(NoNull1, Nully0,  NullNum));
+        NoNullRet(1, Coalesce(NoNull1, Nully0,  Nully1 ));
+        NoNullRet(1, Coalesce(NoNull1, Nully0,  NoNull0));
+        NoNullRet(1, Coalesce(NoNull1, Nully1,  NullNum));
+        NoNullRet(1, Coalesce(NoNull1, Nully1,  Nully0 ));
+        NoNullRet(1, Coalesce(NoNull1, Nully1,  NoNull0));
+        NoNullRet(1, Coalesce(NoNull1, NoNull0, NullNum));
+        NoNullRet(1, Coalesce(NoNull1, NoNull0, Nully0 ));
+        NoNullRet(1, Coalesce(NoNull1, NoNull0, Nully1 ));
+    }
+
+
+
+
+
+
 
     [TestMethod]
     public void Coalesce_3Args_Values_Extensions()
