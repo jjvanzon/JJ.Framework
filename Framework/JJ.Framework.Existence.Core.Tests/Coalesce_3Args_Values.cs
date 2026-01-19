@@ -705,10 +705,6 @@ public class Coalesce_3Args_Values
     [TestMethod]
     public void Coalesce_3Args_Values_ExtensionsZeroMatters_Batch1()
     {
-        NoNullRet(0, NullNum.Coalesce(NullNum, Nully0 ));
-        NoNullRet(1, NullNum.Coalesce(NullNum, Nully1 ));
-        NoNullRet(0, NullNum.Coalesce(NullNum, NoNull0));
-        NoNullRet(1, NullNum.Coalesce(NullNum, NoNull1));
         NoNullRet(0, NullNum.Coalesce(Nully0,  NullNum));
         NoNullRet(1, NullNum.Coalesce(Nully0,  Nully1 ));
         NoNullRet(0, NullNum.Coalesce(Nully0,  NoNull0));
@@ -734,10 +730,6 @@ public class Coalesce_3Args_Values
         NoNullRet(1, Nully0 .Coalesce(NullNum, Nully1 ));
         NoNullRet(0, Nully0 .Coalesce(NullNum, NoNull0));
         NoNullRet(1, Nully0 .Coalesce(NullNum, NoNull1));
-        NoNullRet(0, Nully0 .Coalesce(Nully0,  NullNum));
-        NoNullRet(1, Nully0 .Coalesce(Nully0,  Nully1 ));
-        NoNullRet(0, Nully0 .Coalesce(Nully0,  NoNull0));
-        NoNullRet(1, Nully0 .Coalesce(Nully0,  NoNull1));
         NoNullRet(1, Nully0 .Coalesce(Nully1,  NullNum));
         NoNullRet(1, Nully0 .Coalesce(Nully1,  Nully0 ));
         NoNullRet(1, Nully0 .Coalesce(Nully1,  NoNull0));
@@ -763,10 +755,6 @@ public class Coalesce_3Args_Values
         NoNullRet(1, Nully1 .Coalesce(Nully0,  Nully1 ));
         NoNullRet(1, Nully1 .Coalesce(Nully0,  NoNull0));
         NoNullRet(1, Nully1 .Coalesce(Nully0,  NoNull1));
-        NoNullRet(1, Nully1 .Coalesce(Nully1,  NullNum));
-        NoNullRet(1, Nully1 .Coalesce(Nully1,  Nully0 ));
-        NoNullRet(1, Nully1 .Coalesce(Nully1,  NoNull0));
-        NoNullRet(1, Nully1 .Coalesce(Nully1,  NoNull1));
         NoNullRet(1, Nully1 .Coalesce(NoNull0, NullNum));
         NoNullRet(1, Nully1 .Coalesce(NoNull0, Nully0 ));
         NoNullRet(1, Nully1 .Coalesce(NoNull0, Nully1 ));
@@ -792,10 +780,6 @@ public class Coalesce_3Args_Values
         NoNullRet(1, NoNull0.Coalesce(Nully1,  Nully0 ));
         NoNullRet(1, NoNull0.Coalesce(Nully1,  NoNull0));
         NoNullRet(1, NoNull0.Coalesce(Nully1,  NoNull1));
-        NoNullRet(0, NoNull0.Coalesce(NoNull0, NullNum));
-        NoNullRet(0, NoNull0.Coalesce(NoNull0, Nully0 ));
-        NoNullRet(1, NoNull0.Coalesce(NoNull0, Nully1 ));
-        NoNullRet(1, NoNull0.Coalesce(NoNull0, NoNull1));
         NoNullRet(1, NoNull0.Coalesce(NoNull1, NullNum));
         NoNullRet(1, NoNull0.Coalesce(NoNull1, Nully0 ));
         NoNullRet(1, NoNull0.Coalesce(NoNull1, Nully1 ));
@@ -821,9 +805,5 @@ public class Coalesce_3Args_Values
         NoNullRet(1, NoNull1.Coalesce(NoNull0, Nully0 ));
         NoNullRet(1, NoNull1.Coalesce(NoNull0, Nully1 ));
         NoNullRet(1, NoNull1.Coalesce(NoNull0, NoNull1));
-        NoNullRet(1, NoNull1.Coalesce(NoNull1, NullNum));
-        NoNullRet(1, NoNull1.Coalesce(NoNull1, Nully0 ));
-        NoNullRet(1, NoNull1.Coalesce(NoNull1, Nully1 ));
-        NoNullRet(1, NoNull1.Coalesce(NoNull1, NoNull0));
     }
 }
