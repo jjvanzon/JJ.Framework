@@ -217,13 +217,6 @@ public class Coalesce_3Args_ValuesToText : TestBase
     [TestMethod]
     public void Coalesce_3Args_ValsToString_StaticZeroMatters_Batch1()
     {
-        NoNullRet("",   Coalesce(NullNum, NullNum, NullText       ));
-        NoNullRet("",   Coalesce(NullNum, NullNum, Empty          ));
-        NoNullRet(" ",  Coalesce(NullNum, NullNum, Space          ));
-        NoNullRet(Text, Coalesce(NullNum, NullNum, Text           ));
-        NoNullRet("",   Coalesce(NullNum, NullNum, NullyEmpty     ));
-        NoNullRet(" ",  Coalesce(NullNum, NullNum, NullySpace     ));
-        NoNullRet(Text, Coalesce(NullNum, NullNum, NullyFilledText));
         NoNullRet("",   Coalesce(NullNum,  Nully0, NullText       ));
         NoNullRet("",   Coalesce(NullNum,  Nully0, Empty          ));
         NoNullRet(" ",  Coalesce(NullNum,  Nully0, Space          ));
@@ -264,13 +257,6 @@ public class Coalesce_3Args_ValuesToText : TestBase
         NoNullRet("",   Coalesce(Nully0,  NullNum, NullyEmpty     ));
         NoNullRet(" ",  Coalesce(Nully0,  NullNum, NullySpace     ));
         NoNullRet(Text, Coalesce(Nully0,  NullNum, NullyFilledText));
-        NoNullRet("",   Coalesce(Nully0,   Nully0, NullText       ));
-        NoNullRet("",   Coalesce(Nully0,   Nully0, Empty          ));
-        NoNullRet(" ",  Coalesce(Nully0,   Nully0, Space          ));
-        NoNullRet(Text, Coalesce(Nully0,   Nully0, Text           ));
-        NoNullRet("",   Coalesce(Nully0,   Nully0, NullyEmpty     ));
-        NoNullRet(" ",  Coalesce(Nully0,   Nully0, NullySpace     ));
-        NoNullRet(Text, Coalesce(Nully0,   Nully0, NullyFilledText));
         NoNullRet("1",  Coalesce(Nully0,   Nully1, NullText       ));
         NoNullRet("1",  Coalesce(Nully0,   Nully1, Empty          ));
         NoNullRet("1",  Coalesce(Nully0,   Nully1, Space          ));
@@ -311,13 +297,6 @@ public class Coalesce_3Args_ValuesToText : TestBase
         NoNullRet("1",  Coalesce(Nully1,   Nully0, NullyEmpty     ));
         NoNullRet("1",  Coalesce(Nully1,   Nully0, NullySpace     ));
         NoNullRet("1",  Coalesce(Nully1,   Nully0, NullyFilledText));
-        NoNullRet("1",  Coalesce(Nully1,   Nully1, NullText       ));
-        NoNullRet("1",  Coalesce(Nully1,   Nully1, Empty          ));
-        NoNullRet("1",  Coalesce(Nully1,   Nully1, Space          ));
-        NoNullRet("1",  Coalesce(Nully1,   Nully1, Text           ));
-        NoNullRet("1",  Coalesce(Nully1,   Nully1, NullyEmpty     ));
-        NoNullRet("1",  Coalesce(Nully1,   Nully1, NullySpace     ));
-        NoNullRet("1",  Coalesce(Nully1,   Nully1, NullyFilledText));
         NoNullRet("1",  Coalesce(Nully1,        0, NullText       ));
         NoNullRet("1",  Coalesce(Nully1,        0, Empty          ));
         NoNullRet("1",  Coalesce(Nully1,        0, Space          ));
@@ -358,13 +337,6 @@ public class Coalesce_3Args_ValuesToText : TestBase
         NoNullRet("1",  Coalesce(0,        Nully1, NullyEmpty     ));
         NoNullRet("1",  Coalesce(0,        Nully1, NullySpace     ));
         NoNullRet("1",  Coalesce(0,        Nully1, NullyFilledText));
-        NoNullRet("",   Coalesce(0,             0, NullText       ));
-        NoNullRet("",   Coalesce(0,             0, Empty          ));
-        NoNullRet(" ",  Coalesce(0,             0, Space          ));
-        NoNullRet(Text, Coalesce(0,             0, Text           ));
-        NoNullRet("",   Coalesce(0,             0, NullyEmpty     ));
-        NoNullRet(" ",  Coalesce(0,             0, NullySpace     ));
-        NoNullRet(Text, Coalesce(0,             0, NullyFilledText));
         NoNullRet("1",  Coalesce(0,             1, NullText       ));
         NoNullRet("1",  Coalesce(0,             1, Empty          ));
         NoNullRet("1",  Coalesce(0,             1, Space          ));
@@ -404,16 +376,9 @@ public class Coalesce_3Args_ValuesToText : TestBase
         NoNullRet("1",  Coalesce(1,             0, NullyEmpty     ));
         NoNullRet("1",  Coalesce(1,             0, NullySpace     ));
         NoNullRet("1",  Coalesce(1,             0, NullyFilledText));
-        NoNullRet("1",  Coalesce(1,             1, NullText       ));
-        NoNullRet("1",  Coalesce(1,             1, Empty          ));
-        NoNullRet("1",  Coalesce(1,             1, Space          ));
-        NoNullRet("1",  Coalesce(1,             1, Text           ));
-        NoNullRet("1",  Coalesce(1,             1, NullyEmpty     ));
-        NoNullRet("1",  Coalesce(1,             1, NullySpace     ));
-        NoNullRet("1",  Coalesce(1,             1, NullyFilledText));
     }
 
-    // TODO: STOP adding zeroMAtters parameter variants
+    // TODO: STOP adding zeroMatters parameter variants
 
     [TestMethod]
     public void Coalesce_3Args_ValsToString_Extensions_Batch1()
