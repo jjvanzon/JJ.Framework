@@ -174,13 +174,63 @@ public class Coalesce_Variadic_Tests : TestBase
     public void Coalesce_Variadic_Values()
     {
         // Static params
-        NoNullRet(1, Coalesce(  NullNum, Nully0, NoNull0, Nully1));
+        NoNullRet(1,         Coalesce(  NullNum, Nully0, NoNull0, Nully1 ));
         // Static collection
-        NoNullRet(1, Coalesce([ NullNum, Nully0, Nully0, Nully1 ]));
+        NoNullRet(1,         Coalesce([ NullNum, Nully0, Nully0, Nully1 ]));
         // Extension params
-        NoNullRet(0, NullNum.Coalesce(NullNum, NullNum, NullNum));
+        NoNullRet(0, NullNum.Coalesce(  NullNum, NullNum, NullNum        ));
         // Extension on collection
-        NoNullRet(1, new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce());
+        NoNullRet(1,          new [] {  NullNum, Nully0, NoNull0, Nully1 }.Coalesce());
+        // Null collection
+        NoNullRet(0, Coalesce(NullArray));
+        NoNullRet(0, NullIColl.Coalesce());
+    }
+
+    [TestMethod]
+    public void Coalesce_Variadic_Values_ZeroMatters()
+    {
+        // Static params
+        NoNullRet(1,         Coalesce(                      NullNum, Nully0, NoNull0, Nully1                      ));
+        NoNullRet(1,         Coalesce(zeroMatters: false,   NullNum, Nully0, NoNull0, Nully1                      ));
+        NoNullRet(1,         Coalesce(             false,   NullNum, Nully0, NoNull0, Nully1                      ));
+        NoNullRet(0,         Coalesce(zeroMatters,          NullNum, Nully0, NoNull0, Nully1                      ));
+        NoNullRet(0,         Coalesce(zeroMatters: true,    NullNum, Nully0, NoNull0, Nully1                      ));
+        NoNullRet(0,         Coalesce(             true,    NullNum, Nully0, NoNull0, Nully1                      ));
+        // Static collection
+        NoNullRet(1,         Coalesce(                    [ NullNum, Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(1,         Coalesce(zeroMatters: false, [ NullNum, Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(1,         Coalesce(             false, [ NullNum, Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(0,         Coalesce(zeroMatters,        [ NullNum, Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(0,         Coalesce(zeroMatters: true,  [ NullNum, Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(0,         Coalesce(             true,  [ NullNum, Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(1,         Coalesce(                    [ NullNum, Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(1,         Coalesce(                    [ NullNum, Nully0, Nully0,  Nully1 ], zeroMatters: false));
+        NoNullRet(1,         Coalesce(                    [ NullNum, Nully0, Nully0,  Nully1 ],              false));
+        NoNullRet(0,         Coalesce(                    [ NullNum, Nully0, Nully0,  Nully1 ], zeroMatters       ));
+        NoNullRet(0,         Coalesce(                    [ NullNum, Nully0, Nully0,  Nully1 ], zeroMatters: true ));
+        NoNullRet(0,         Coalesce(                    [ NullNum, Nully0, Nully0,  Nully1 ],              true ));
+        // Extension params
+        NoNullRet(1, NullNum.Coalesce(                               Nully0, Nully0,  Nully1                      ));
+        NoNullRet(1, NullNum.Coalesce(zeroMatters: false,            Nully0, Nully0,  Nully1                      ));
+        NoNullRet(1, NullNum.Coalesce(             false,            Nully0, Nully0,  Nully1                      ));
+        NoNullRet(0, NullNum.Coalesce(zeroMatters,                   Nully0, Nully0,  Nully1                      ));
+        NoNullRet(0, NullNum.Coalesce(zeroMatters: true,             Nully0, Nully0,  Nully1                      ));
+        NoNullRet(0, NullNum.Coalesce(             true,             Nully0, Nully0,  Nully1                      ));
+        NoNullRet(1, NullNum.Coalesce(                    [          Nully0, Nully0,  Nully1 ]                    ));
+        NoNullRet(1, NullNum.Coalesce(                    [          Nully0, Nully0,  Nully1 ], zeroMatters: false));
+        NoNullRet(1, NullNum.Coalesce(                    [          Nully0, Nully0,  Nully1 ],              false));
+        NoNullRet(0, NullNum.Coalesce(                    [          Nully0, Nully0,  Nully1 ], zeroMatters       ));
+        NoNullRet(0, NullNum.Coalesce(                    [          Nully0, Nully0,  Nully1 ], zeroMatters: true ));
+        NoNullRet(0, NullNum.Coalesce(                    [          Nully0, Nully0,  Nully1 ],              true ));
+        // Extension on collection
+        NoNullRet(1,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(                  ));
+        NoNullRet(1,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(zeroMatters: false));
+        NoNullRet(1,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(             false));
+        NoNullRet(0,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(zeroMatters       ));
+        NoNullRet(0,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(zeroMatters: true ));
+        NoNullRet(0,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(             true ));
+
+        // TODO: ZeroMatters flags.
         // Null collection
         NoNullRet(0, Coalesce(NullArray));
         NoNullRet(0, NullIColl.Coalesce());
