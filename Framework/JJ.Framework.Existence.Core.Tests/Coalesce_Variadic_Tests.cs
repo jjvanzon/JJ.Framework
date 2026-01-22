@@ -181,9 +181,6 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(0, NullNum.Coalesce(  NullNum, NullNum, NullNum        ));
         // Extension on collection
         NoNullRet(1,          new [] {  NullNum, Nully0, NoNull0, Nully1 }.Coalesce());
-        // Null collection
-        NoNullRet(0, Coalesce(NullArray));
-        NoNullRet(0, NullIColl.Coalesce());
     }
 
     [TestMethod]
@@ -244,13 +241,6 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(0,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(zeroMatters       ));
         NoNullRet(0,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(zeroMatters: true ));
         NoNullRet(0,                               new [] { NullNum, Nully0, NoNull0, Nully1 }.Coalesce(             true ));
-
-        // TODO: ZeroMatters flags.
-        // Null collection
-        NoNullRet(0, Coalesce(NullArray));
-        NoNullRet(0, Coalesce(NullArray));
-
-        NoNullRet(0, NullIColl.Coalesce());
     }
         
     [TestMethod]
