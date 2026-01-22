@@ -91,15 +91,15 @@ public class Coalesce_Collections_Tests
         NoNullRet(1, FilledIReadOnlyColl             .Coalesce());
         NoNullRet(1, FilledIEnumerable               .Coalesce());
         
-        AreEqual(1, NullyFilledArray                .Coalesce());
-        AreEqual(1, NullyFilledList                 .Coalesce());
-        AreEqual(1, NullyFilledHashSet              .Coalesce());
-        AreEqual(1, NullyFilledIList                .Coalesce());
-        AreEqual(1, NullyFilledISet                 .Coalesce());
-        AreEqual(1, NullyFilledIColl                .Coalesce());
-        AreEqual(1, NullyFilledIReadOnlyList        .Coalesce());
-        AreEqual(1, NullyFilledIReadOnlyColl        .Coalesce());
-        AreEqual(1, NullyFilledIEnumerable          .Coalesce());
+        NoNullRet(1, NullyFilledArray                .Coalesce());
+        NoNullRet(1, NullyFilledList                 .Coalesce());
+        NoNullRet(1, NullyFilledHashSet              .Coalesce());
+        NoNullRet(1, NullyFilledIList                .Coalesce());
+        NoNullRet(1, NullyFilledISet                 .Coalesce());
+        NoNullRet(1, NullyFilledIColl                .Coalesce());
+        NoNullRet(1, NullyFilledIReadOnlyList        .Coalesce());
+        NoNullRet(1, NullyFilledIReadOnlyColl        .Coalesce());
+        NoNullRet(1, NullyFilledIEnumerable          .Coalesce());
         
         NoNullRet(0, EmptyArray                      .Coalesce());
         NoNullRet(0, EmptyList                       .Coalesce());
