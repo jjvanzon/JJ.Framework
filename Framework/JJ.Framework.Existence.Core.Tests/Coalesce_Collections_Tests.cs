@@ -25,7 +25,7 @@ public class Coalesce_Collections_Tests
     }
 
     [TestMethod]
-    public void Coalesce_CollectionItems_Static()
+    public void Coalesce_Collections_Static()
     {
         NoNullRet(1, Coalesce(FilledArray                     ));
         NoNullRet(1, Coalesce(FilledList                      ));
@@ -79,7 +79,7 @@ public class Coalesce_Collections_Tests
     }
 
     [TestMethod]
-    public void Coalesce_CollectionItems_Extensions()
+    public void Coalesce_Collections_Extensions()
     {
         NoNullRet(1, FilledArray                     .Coalesce());
         NoNullRet(1, FilledList                      .Coalesce());
