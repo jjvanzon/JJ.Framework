@@ -235,7 +235,7 @@ public static partial class FilledInHelper
           // [Prio] attributes:
           // string and StringBuilder overloads can clash if keywords like null are used as parameters.
           // [Prio(1)] for strings wins in this case, so that:
-          // `Coalesce(" ", null, "Hi!")` => Coalesce(string, string string)
+          // `Coalesce(" ", null, "Hi!")` => Coalesce(string, string, string)
           
           // 1 Arg (for some)
           
