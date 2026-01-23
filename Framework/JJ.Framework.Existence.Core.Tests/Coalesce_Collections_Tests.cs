@@ -44,7 +44,7 @@ public class Coalesce_Collections_Tests
     }
     
     [TestMethod]
-    public void Coalesce_Collections_SingleArg()
+    public void Coalesce_CollectionOfCollections_1Arg()
     {
         List<string>? coll = null;
         List<string> result = Coalesce( [ coll ] );
@@ -56,7 +56,6 @@ public class Coalesce_Collections_Tests
     public void Coalesce_Collections_Static_Filled()
     {
         var entry = new KeyValuePair<int, int>(1, 1);
-                                                               
         NoNullRet(1,     Coalesce(FilledArray                     ));
         NoNullRet(1,     Coalesce(FilledIList                     ));
         NoNullRet(1,     Coalesce(FilledISet                      ));
@@ -124,21 +123,78 @@ public class Coalesce_Collections_Tests
         #endif                                                                                       
     }
 
-    // TODO: Add more collection types
-
     [TestMethod]
     public void Coalesce_Collections_Static_NullyFilled()
     {
-        NoNullRet(1, Coalesce(NullyFilledArray                ));
-        NoNullRet(1, Coalesce(NullyFilledList                 ));
-        NoNullRet(1, Coalesce(NullyFilledHashSet              ));
-        NoNullRet(1, Coalesce(NullyFilledIList                ));
-        NoNullRet(1, Coalesce(NullyFilledISet                 ));
-        NoNullRet(1, Coalesce(NullyFilledIColl                ));
-        NoNullRet(1, Coalesce(NullyFilledIReadOnlyList        ));
-        NoNullRet(1, Coalesce(NullyFilledIReadOnlyColl        ));
-        NoNullRet(1, Coalesce(NullyFilledIEnumerable          ));
+        var entry = new KeyValuePair<int, int>(1, 1);
+        NoNullRet(1,     Coalesce(NullyFilledArray                     ));
+        NoNullRet(1,     Coalesce(NullyFilledIList                     ));
+        NoNullRet(1,     Coalesce(NullyFilledISet                      ));
+        NoNullRet(entry, Coalesce(NullyFilledIDict                     ));
+        NoNullRet(1,     Coalesce(NullyFilledIColl                     ));
+        NoNullRet(1,     Coalesce(NullyFilledIEnumerable               ));
+        NoNullRet(1,     Coalesce(NullyFilledList                      ));
+        NoNullRet(1,     Coalesce(NullyFilledHashSet                   ));
+        NoNullRet(1,     Coalesce(NullyFilledStack                     ));
+        NoNullRet(1,     Coalesce(NullyFilledQueue                     ));
+        NoNullRet(1,     Coalesce(NullyFilledLinkedList                ));
+        NoNullRet(entry, Coalesce(NullyFilledSortedList                ));
+        NoNullRet(1,     Coalesce(NullyFilledSortedSet                 ));
+        NoNullRet(entry, Coalesce(NullyFilledDict                      ));
+        NoNullRet(1,     Coalesce(NullyFilledDictKeyColl               ));
+        NoNullRet(1,     Coalesce(NullyFilledDictValColl               ));
+        NoNullRet(1,     Coalesce(NullyFilledIImmutableList            ));
+        NoNullRet(1,     Coalesce(NullyFilledIImmutableSet             ));
+        NoNullRet(1,     Coalesce(NullyFilledIImmutableStack           ));
+        NoNullRet(1,     Coalesce(NullyFilledIImmutableQueue           ));
+        NoNullRet(entry, Coalesce(NullyFilledIImmutableDict            ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableArrayBuilder     ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableList             ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableListBuilder      ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableHashSet          ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableHashSetBuilder   ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableStack            ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableQueue            ));
+        NoNullRet(entry, Coalesce(NullyFilledImmutableDict             ));
+        NoNullRet(entry, Coalesce(NullyFilledImmutableDictBuilder      ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableSortedSet        ));
+        NoNullRet(1,     Coalesce(NullyFilledImmutableSortedSetBuilder ));
+        NoNullRet(entry, Coalesce(NullyFilledImmutableSortedDict       ));
+        NoNullRet(entry, Coalesce(NullyFilledImmutableSortedDictBuilder));
+        NoNullRet(1,     Coalesce(NullyFilledIReadOnlyColl             ));
+        NoNullRet(1,     Coalesce(NullyFilledIReadOnlyList             ));
+        NoNullRet(entry, Coalesce(NullyFilledIReadOnlyDict             ));
+        NoNullRet(1,     Coalesce(NullyFilledReadOnlyColl              ));
+        NoNullRet(entry, Coalesce(NullyFilledReadOnlyDict              ));
+        NoNullRet(1,     Coalesce(NullyFilledReadOnlyDictKeys          ));
+        NoNullRet(1,     Coalesce(NullyFilledReadOnlyDictVals          ));
+        NoNullRet(1,     Coalesce(NullyFilledConcurrentBag             ));
+        NoNullRet(1,     Coalesce(NullyFilledConcurrentQueue           ));
+        NoNullRet(1,     Coalesce(NullyFilledConcurrentStack           ));
+        NoNullRet(entry, Coalesce(NullyFilledConcurrentDict            ));
+        NoNullRet(1,     Coalesce(NullyFilledBlockingColl              ));
+        NoNullRet(1,     Coalesce(NullyFilledIProducerConsumerColl     ));
+        NoNullRet(entry, Coalesce(NullyFilledSortedDict                ));
+        NoNullRet(1,     Coalesce(NullyFilledSortedDictKeys            ));
+        NoNullRet(1,     Coalesce(NullyFilledSortedDictVals            ));
+        NoNullRet(1,     Coalesce(NullyFilledColl                      ));
+        NoNullRet(1,     Coalesce(NullyFilledKeyedColl                 ));
+        NoNullRet(1,     Coalesce(NullyFilledObservableColl            ));
+        NoNullRet(1,     Coalesce(NullyFilledReadOnlyObservableColl    ));
+        #if NET9_0_OR_GREATER                                                                                                                  
+        NoNullRet(entry, Coalesce(NullyFilledOrderedDict               ));
+        NoNullRet(1,     Coalesce(NullyFilledOrderedDictKeys           ));
+        NoNullRet(1,     Coalesce(NullyFilledOrderedDictVals           ));
+        NoNullRet(1,     Coalesce(NullyFilledIReadOnlySet              ));
+        NoNullRet(1,     Coalesce(NullyFilledReadOnlySet               ));
+        #endif                                                                                             
+        #if NET8_0_OR_GREATER                                                                        
+        NoNullRet(1,     Coalesce(NullyFilledFrozenSet                 ));          
+        NoNullRet(entry, Coalesce(NullyFilledFrozenDictionary          ));          
+        #endif                                                                                       
     }
+
+    // TODO: Add more collection types
 
     [TestMethod]
     public void Coalesce_Collections_Static_Empty()

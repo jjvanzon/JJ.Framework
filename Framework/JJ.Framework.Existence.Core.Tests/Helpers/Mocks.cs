@@ -169,7 +169,7 @@ public class Mocks
     public static ILookup<int,int>                 ? NullyFilledILookup                      = NewLookup                    (0, 1, 2, 3);
     public static List<int>                        ? NullyFilledList                         =                              [0, 1, 2, 3];
     public static HashSet<int>                     ? NullyFilledHashSet                      =                              [0, 1, 2, 3];
-    public static Stack<int>                       ? NullyFilledStack                        = NewStack                     (0, 1, 2, 3);
+    public static Stack<int>                       ? NullyFilledStack                        = NewStack                     (3, 2, 1, 0);
     public static Queue<int>                       ? NullyFilledQueue                        = NewQueue                     (0, 1, 2, 3);
     public static LinkedList<int>                  ? NullyFilledLinkedList                   = NewLinkedList                (0, 1, 2, 3);
     public static SortedList<int, int>             ? NullyFilledSortedList                   = NewSortedList                (0, 1, 2, 3);
@@ -179,7 +179,7 @@ public class Mocks
     public static DictValColl                      ? NullyFilledDictValColl                  = NewDictVals                  (0, 1, 2, 3);
     public static IImmutableList<int>              ? NullyFilledIImmutableList               = NewImmutableList             (0, 1, 2, 3);
     public static IImmutableSet<int>               ? NullyFilledIImmutableSet                = NewImmutableHashSet          (0, 1, 2, 3);
-    public static IImmutableStack<int>             ? NullyFilledIImmutableStack              = NewImmutableStack            (0, 1, 2, 3);
+    public static IImmutableStack<int>             ? NullyFilledIImmutableStack              = NewImmutableStack            (3, 2, 1, 0);
     public static IImmutableQueue<int>             ? NullyFilledIImmutableQueue              = NewImmutableQueue            (0, 1, 2, 3);
     public static IImmutableDictionary<int, int>   ? NullyFilledIImmutableDict               = NewImmutableDict             (0, 1, 2, 3);
     public static ImmutableArray<int>              ? NullyFilledImmutableArray               = NewImmutableArray            (0, 1, 2, 3);
@@ -188,7 +188,7 @@ public class Mocks
     public static ImmutableList<int>.Builder       ? NullyFilledImmutableListBuilder         = NewImmutableListBuilder      (0, 1, 2, 3);
     public static ImmutableHashSet<int>            ? NullyFilledImmutableHashSet             = NewImmutableHashSet          (0, 1, 2, 3);
     public static ImmutableHashSet<int>.Builder    ? NullyFilledImmutableHashSetBuilder      = NewImmutableHashSetBuilder   (0, 1, 2, 3);
-    public static ImmutableStack<int>              ? NullyFilledImmutableStack               = NewImmutableStack            (0, 1, 2, 3);
+    public static ImmutableStack<int>              ? NullyFilledImmutableStack               = NewImmutableStack            (3, 2, 1, 0);
     public static ImmutableQueue<int>              ? NullyFilledImmutableQueue               = NewImmutableQueue            (0, 1, 2, 3);
     public static ImmutableDictionary<int, int>    ? NullyFilledImmutableDict                = NewImmutableDict             (0, 1, 2, 3);
     public static ImmutableDictBuilder             ? NullyFilledImmutableDictBuilder         = NewImmutableDictBuilder      (0, 1, 2, 3);
@@ -207,9 +207,9 @@ public class Mocks
     public static Memory<int>                      ? NullyFilledMemory                       = NewMemory                    (0, 1, 2, 3);
     public static ReadOnlyMemory<int>              ? NullyFilledReadOnlyMemory               = NewReadOnlyMemory            (0, 1, 2, 3);
     public static ReadOnlySequence<int>            ? NullyFilledReadOnlySequence             = NewReadOnlySequence          (0, 1, 2, 3);
-    public static ConcurrentBag<int>               ? NullyFilledConcurrentBag                =                              [0, 1, 2, 3];
+    public static ConcurrentBag<int>               ? NullyFilledConcurrentBag                =                              [3, 2, 1, 0];
     public static ConcurrentQueue<int>             ? NullyFilledConcurrentQueue              = NewConcurrentQueue           (0, 1, 2, 3);
-    public static ConcurrentStack<int>             ? NullyFilledConcurrentStack              = NewConcurrentStack           (0, 1, 2, 3);
+    public static ConcurrentStack<int>             ? NullyFilledConcurrentStack              = NewConcurrentStack           (3, 2, 1, 0);
     public static ConcurrentDictionary<int,int>    ? NullyFilledConcurrentDict               = NewConcurrentDict            (0, 1, 2, 3);
     public static BlockingCollection<int>          ? NullyFilledBlockingColl                 =                              [0, 1, 2, 3];
     public static IProducerConsumerCollection<int> ? NullyFilledIProducerConsumerColl        = NewProducerConsumerColl      (0, 1, 2, 3);
