@@ -20,7 +20,7 @@ public class Coalesce_Collections_Tests
     }
 
     [TestMethod]
-    public void Coalesce_Collections_Static()
+    public void Coalesce_Collections_Static_Filled()
     {
         NoNullRet(1, Coalesce(FilledArray                     ));
         NoNullRet(1, Coalesce(FilledList                      ));
@@ -31,7 +31,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(1, Coalesce(FilledIReadOnlyList             ));
         NoNullRet(1, Coalesce(FilledIReadOnlyColl             ));
         NoNullRet(1, Coalesce(FilledIEnumerable               ));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Static_NullyFilled()
+    {
         NoNullRet(1, Coalesce(NullyFilledArray                ));
         NoNullRet(1, Coalesce(NullyFilledList                 ));
         NoNullRet(1, Coalesce(NullyFilledHashSet              ));
@@ -41,7 +45,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(1, Coalesce(NullyFilledIReadOnlyList        ));
         NoNullRet(1, Coalesce(NullyFilledIReadOnlyColl        ));
         NoNullRet(1, Coalesce(NullyFilledIEnumerable          ));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Static_Empty()
+    {
         NoNullRet(0, Coalesce(EmptyArray                      ));
         NoNullRet(0, Coalesce(EmptyList                       ));
         NoNullRet(0, Coalesce(EmptyHashSet                    ));
@@ -51,7 +59,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(0, Coalesce(EmptyIReadOnlyList              ));
         NoNullRet(0, Coalesce(EmptyIReadOnlyColl              ));
         NoNullRet(0, Coalesce(EmptyIEnumerable                ));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Static_NullableEmpty()
+    {
         NoNullRet(0, Coalesce(NullableEmptyArray              ));
         NoNullRet(0, Coalesce(NullableEmptyList               ));
         NoNullRet(0, Coalesce(NullableEmptyHashSet            ));
@@ -61,7 +73,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(0, Coalesce(NullableEmptyIReadOnlyList      ));
         NoNullRet(0, Coalesce(NullableEmptyIReadOnlyColl      ));
         NoNullRet(0, Coalesce(NullableEmptyIEnumerable        ));
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Static_Null()
+    {
         NoNullRet(0, Coalesce(NullArray                       ));
         NoNullRet(0, Coalesce(NullList                        ));
         NoNullRet(0, Coalesce(NullHashSet                     ));
@@ -74,7 +90,7 @@ public class Coalesce_Collections_Tests
     }
 
     [TestMethod]
-    public void Coalesce_Collections_Extensions()
+    public void Coalesce_Collections_Extensions_Filled()
     {
         NoNullRet(1, FilledArray                     .Coalesce());
         NoNullRet(1, FilledList                      .Coalesce());
@@ -85,7 +101,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(1, FilledIReadOnlyList             .Coalesce());
         NoNullRet(1, FilledIReadOnlyColl             .Coalesce());
         NoNullRet(1, FilledIEnumerable               .Coalesce());
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Extensions_NullyFilled()
+    {
         NoNullRet(1, NullyFilledArray                .Coalesce());
         NoNullRet(1, NullyFilledList                 .Coalesce());
         NoNullRet(1, NullyFilledHashSet              .Coalesce());
@@ -95,7 +115,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(1, NullyFilledIReadOnlyList        .Coalesce());
         NoNullRet(1, NullyFilledIReadOnlyColl        .Coalesce());
         NoNullRet(1, NullyFilledIEnumerable          .Coalesce());
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Extensions_Empty()
+    {
         NoNullRet(0, EmptyArray                      .Coalesce());
         NoNullRet(0, EmptyList                       .Coalesce());
         NoNullRet(0, EmptyHashSet                    .Coalesce());
@@ -105,7 +129,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(0, EmptyIReadOnlyList              .Coalesce());
         NoNullRet(0, EmptyIReadOnlyColl              .Coalesce());
         NoNullRet(0, EmptyIEnumerable                .Coalesce());
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Extensions_NullableEmpty()
+    {
         NoNullRet(0, NullableEmptyArray              .Coalesce());
         NoNullRet(0, NullableEmptyList               .Coalesce());
         NoNullRet(0, NullableEmptyHashSet            .Coalesce());
@@ -115,7 +143,11 @@ public class Coalesce_Collections_Tests
         NoNullRet(0, NullableEmptyIReadOnlyList      .Coalesce());
         NoNullRet(0, NullableEmptyIReadOnlyColl      .Coalesce());
         NoNullRet(0, NullableEmptyIEnumerable        .Coalesce());
-        
+    }
+
+    [TestMethod]
+    public void Coalesce_Collections_Extensions_Null()
+    {
         NoNullRet(0, NullArray                       .Coalesce());
         NoNullRet(0, NullList                        .Coalesce());
         NoNullRet(0, NullHashSet                     .Coalesce());
