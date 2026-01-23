@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core;
 
 /// <inheritdoc cref="_isnully"/>
-public static class IsNullyExtensions
+public static partial class IsNullyExtensions
 {
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully      ([NotNullWhen(false)] this string?        text                               ) => !HasText(text);

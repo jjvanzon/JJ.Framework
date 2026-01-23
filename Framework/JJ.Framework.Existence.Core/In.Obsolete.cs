@@ -1,5 +1,7 @@
 ﻿// ReSharper disable MethodOverloadWithOptionalParameter
 
+using JJ.Framework.SharedProject.Core;
+
 namespace JJ.Framework.Existence.Core;
 
 // ncrunch: no coverage start
@@ -61,7 +63,8 @@ public static partial class FilledInExtensions
     /// <inheritdoc cref="_contains" />
     [Obsolete(IgnoreCaseWarning, true)]
     [Prio(-1)]
-    public static bool Contains(
+    // Retaining obsolete method as internal, which now clashes with public method.
+    internal static bool Contains(
         this IEnumerable<string?>? source, string? match, bool ignoreCase = false,
         [UsedImplicitly(Reason = OverloadByName)] int dummy = 0)
     {
