@@ -11,7 +11,40 @@ public class Coalesce_Collections_Tests
     }
 
     [TestMethod]
-    public void Coalesce_1Arg_Collections()
+    public void BUG_Coalesce_CollectionTypes_NotSupported()
+    {
+      //NoNullRet(1,     Coalesce(FilledILookup                   ));
+      //NoNullRet(1,     Coalesce(FilledImmutableArray            ));
+      //NoNullRet(1,     Coalesce(FilledArraySegment              ));
+      //NoNullRet(1,     Coalesce(FilledMemory                    ));
+      //NoNullRet(1,     Coalesce(FilledReadOnlyMemory            ));
+      //NoNullRet(1,     Coalesce(FilledReadOnlySequence          ));
+      //NoNullRet(1,     Coalesce(FilledArrayList                 ));
+      //NoNullRet(1,     Coalesce(FilledBitArray                  ));
+      //NoNullRet(1,     Coalesce(FilledCollBase                  ));
+      //NoNullRet(1,     Coalesce(FilledDictBase                  ));
+      //NoNullRet(1,     Coalesce(FilledHashtable                 ));
+      //NoNullRet(1,     Coalesce(FilledQueueNonGeneric           ));
+      //NoNullRet(1,     Coalesce(FilledReadOnlyCollBase          ));
+      //NoNullRet(1,     Coalesce(FilledSortedListNonGeneric      ));
+      //NoNullRet(1,     Coalesce(FilledStackNonGeneric           ));
+      //NoNullRet(1,     Coalesce(FilledHybridDict                ));
+      //NoNullRet(1,     Coalesce(FilledListDict                  ));
+      //NoNullRet(1,     Coalesce(FilledNameObjectCollBase        ));
+      //NoNullRet(1,     Coalesce(FilledNameObjectCollBaseKeys    ));
+      //NoNullRet(1,     Coalesce(FilledNameValueColl             ));
+      //NoNullRet(1,     Coalesce(FilledOrderedDictNonGeneric     ));
+      //NoNullRet(1,     Coalesce(FilledStringColl                ));
+      //NoNullRet(1,     Coalesce(FilledStringDict                ));
+      //NoNullRet(1,     Coalesce(FilledIOrderedDict              ));
+        #if NET6_0_OR_GREATER                                                                              
+      //NoNullRet(1,     Coalesce(FilledPrioQueue                 ));   
+      //NoNullRet(1,     Coalesce(FilledPrioQueueUnorderedColl    ));   
+        #endif                                                                                            
+    }
+    
+    [TestMethod]
+    public void Coalesce_Collections_SingleArg()
     {
         List<string>? coll = null;
         List<string> result = Coalesce( [ coll ] );
@@ -30,7 +63,6 @@ public class Coalesce_Collections_Tests
         NoNullRet(entry, Coalesce(FilledIDict                     ));
         NoNullRet(1,     Coalesce(FilledIColl                     ));
         NoNullRet(1,     Coalesce(FilledIEnumerable               ));
-      //NoNullRet(1,     Coalesce(FilledILookup                   ));
         NoNullRet(1,     Coalesce(FilledList                      ));
         NoNullRet(1,     Coalesce(FilledHashSet                   ));
         NoNullRet(1,     Coalesce(FilledStack                     ));
@@ -46,7 +78,6 @@ public class Coalesce_Collections_Tests
         NoNullRet(1,     Coalesce(FilledIImmutableStack           ));
         NoNullRet(1,     Coalesce(FilledIImmutableQueue           ));
         NoNullRet(entry, Coalesce(FilledIImmutableDict            ));
-      //NoNullRet(1,     Coalesce(FilledImmutableArray            ));
         NoNullRet(1,     Coalesce(FilledImmutableArrayBuilder     ));
         NoNullRet(1,     Coalesce(FilledImmutableList             ));
         NoNullRet(1,     Coalesce(FilledImmutableListBuilder      ));
@@ -67,10 +98,6 @@ public class Coalesce_Collections_Tests
         NoNullRet(entry, Coalesce(FilledReadOnlyDict              ));
         NoNullRet(1,     Coalesce(FilledReadOnlyDictKeys          ));
         NoNullRet(1,     Coalesce(FilledReadOnlyDictVals          ));
-      //NoNullRet(1,     Coalesce(FilledArraySegment              ));
-      //NoNullRet(1,     Coalesce(FilledMemory                    ));
-      //NoNullRet(1,     Coalesce(FilledReadOnlyMemory            ));
-      //NoNullRet(1,     Coalesce(FilledReadOnlySequence          ));
         NoNullRet(1,     Coalesce(FilledConcurrentBag             ));
         NoNullRet(1,     Coalesce(FilledConcurrentQueue           ));
         NoNullRet(1,     Coalesce(FilledConcurrentStack           ));
@@ -84,24 +111,6 @@ public class Coalesce_Collections_Tests
         NoNullRet(1,     Coalesce(FilledKeyedColl                 ));
         NoNullRet(1,     Coalesce(FilledObservableColl            ));
         NoNullRet(1,     Coalesce(FilledReadOnlyObservableColl    ));
-      //NoNullRet(1,     Coalesce(FilledArrayList                 ));
-      //NoNullRet(1,     Coalesce(FilledBitArray                  ));
-      //NoNullRet(1,     Coalesce(FilledCollBase                  ));
-      //NoNullRet(1,     Coalesce(FilledDictBase                  ));
-      //NoNullRet(1,     Coalesce(FilledHashtable                 ));
-      //NoNullRet(1,     Coalesce(FilledQueueNonGeneric           ));
-      //NoNullRet(1,     Coalesce(FilledReadOnlyCollBase          ));
-      //NoNullRet(1,     Coalesce(FilledSortedListNonGeneric      ));
-      //NoNullRet(1,     Coalesce(FilledStackNonGeneric           ));
-      //NoNullRet(1,     Coalesce(FilledHybridDict                ));
-      //NoNullRet(1,     Coalesce(FilledListDict                  ));
-      //NoNullRet(1,     Coalesce(FilledNameObjectCollBase        ));
-      //NoNullRet(1,     Coalesce(FilledNameObjectCollBaseKeys    ));
-      //NoNullRet(1,     Coalesce(FilledNameValueColl             ));
-      //NoNullRet(1,     Coalesce(FilledOrderedDictNonGeneric     ));
-      //NoNullRet(1,     Coalesce(FilledStringColl                ));
-      //NoNullRet(1,     Coalesce(FilledStringDict                ));
-      //NoNullRet(1,     Coalesce(FilledIOrderedDict              ));
         #if NET9_0_OR_GREATER                                                                                                                  
         NoNullRet(entry, Coalesce(FilledOrderedDict               ));
         NoNullRet(1,     Coalesce(FilledOrderedDictKeys           ));
@@ -113,11 +122,9 @@ public class Coalesce_Collections_Tests
         NoNullRet(1,     Coalesce(FilledFrozenSet                 ));          
         NoNullRet(entry, Coalesce(FilledFrozenDictionary          ));          
         #endif                                                                                       
-        #if NET6_0_OR_GREATER                                                                              
-      //NoNullRet(1,     Coalesce(FilledPrioQueue                 ));   
-      //NoNullRet(1,     Coalesce(FilledPrioQueueUnorderedColl    ));   
-        #endif                                                                                            
     }
+
+    // TODO: Add more collection types
 
     [TestMethod]
     public void Coalesce_Collections_Static_NullyFilled()
