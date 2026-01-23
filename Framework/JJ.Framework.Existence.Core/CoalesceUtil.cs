@@ -1,8 +1,8 @@
 ﻿namespace JJ.Framework.Existence.Core;
 using SB = StringBuilder;
 
-/// <inheritdoc cref="_existencecore"/>
-internal static partial class ExistenceUtil
+/// <inheritdoc cref="_coalesce"/>
+internal static class CoalesceUtil
 {
           // 1 Arg
           

@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Existence.Core;
 
-internal static partial class ExistenceUtil
+internal static class HasUtil
 {
     /// <inheritdoc cref="_has" />
     public static bool HasText       ([NotNullWhen(true)] string? text                               ) =>                !IsNullOrWhiteSpace(text);
@@ -146,6 +146,7 @@ public static partial class FilledInHelper
     public static bool IsNully<T>   ([NotNullWhen(false)]      T?             nullyVal, ZeroMatters  zeroMatters ) where T : struct => !HasValNully(nullyVal, zeroMatters);
 }
 
+/// <inheritdoc cref="_existencecore"/>
 public static partial class FilledInExtensions
 {
     /// <inheritdoc cref="_filledin" />

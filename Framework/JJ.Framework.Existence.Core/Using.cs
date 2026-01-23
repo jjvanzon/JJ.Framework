@@ -16,8 +16,10 @@ global using JJ.Framework.Existence.Core.docs;
 global using static System.String;
 global using static System.StringComparison;
 global using static System.Runtime.CompilerServices.MethodImplOptions;
+global using static JJ.Framework.Existence.Core.CoalesceUtil;
 global using static JJ.Framework.Existence.Core.ExistenceUtil;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
+global using static JJ.Framework.Existence.Core.HasUtil;
 global using static JJ.Framework.Existence.Core.ImplicitUsageReasons;
 global using UsedImplicitlyAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;
 #if NET8_0_OR_GREATER
