@@ -3,7 +3,6 @@
 [TestClass]
 public class Coalesce_Collections_Misc_Tests
 {
-    // TODO: Split into files (for diffability and test perf)
     // TODO: Add more collections of collections tests.
 
     [TestMethod]
@@ -11,8 +10,23 @@ public class Coalesce_Collections_Misc_Tests
     {
         List<string>? coll = null;
         List<string> result = Coalesce( [ coll ] );
+
         IsNull(coll);
-        NoNullRet(Coalesce(coll));
+        NoNullRet(result);
+    }
+
+    /// <summary>
+    /// It uses object comparison, not collection comparison,
+    /// so can return an empty list, even when one of the lists is filled.
+    /// </summary>
+    [TestMethod]
+    public void BUG_Coalesce_CollectionOfCollections_3Arg_CanReturnsEmptyCollection()
+    {
+        List<int>? nullList = null;
+        List<int> emptyList = [ ];
+        List<int> threeItems = [ 1, 2, 3 ];
+        List<int> result = Coalesce( [ nullList, emptyList, threeItems ] );
+        NoNullRet(emptyList, Coalesce( [ nullList, emptyList, threeItems ] ));
     }
 
     [TestMethod]
