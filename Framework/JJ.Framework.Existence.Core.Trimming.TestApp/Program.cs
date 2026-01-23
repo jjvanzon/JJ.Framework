@@ -40,7 +40,9 @@ RunTests<Coalesce_3Args_Values_Static>() &&
 RunTests<Coalesce_3Args_ValuesToText_Examples>() &&
 RunTests<Coalesce_3Args_ValuesToText_Extensions>() &&
 RunTests<Coalesce_3Args_ValuesToText_Static>() &&
-RunTests<Coalesce_Collections_Tests>() &&
+RunTests<Coalesce_Collections_Misc_Tests>() &&
+RunTests<Coalesce_Collections_Extensions_Tests>() &&
+RunTests<Coalesce_Collections_Static_Tests>() &&
 RunTests<Coalesce_Keywords_Tests>() &&
 RunTests<Coalesce_Variadic_Tests>() &&
 RunTests<Existence_BasicType_Tests>() &&
