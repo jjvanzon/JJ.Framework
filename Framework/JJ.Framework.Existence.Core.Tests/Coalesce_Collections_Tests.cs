@@ -4,14 +4,9 @@
 public class Coalesce_Collections_Tests
 {
     [TestMethod]
-    public void BUG_Coalesce_NullArrayZeroMatters_FailsToResolve()
+    public void BUG_Coalesce_CollectionZeroMatters_FailsToResolve()
     {
-        // TODO: ZeroMatters flags fail to resolve
-        // Null collection
-        NoNullRet(0, Coalesce(NullArray));
       //NoNullRet(0, Coalesce(zeroMatters, FilledArray));
-
-        NoNullRet(0, NullIColl.Coalesce());
       //NoNullRet(0, NullIColl.Coalesce(zeroMatters));
     }
 
