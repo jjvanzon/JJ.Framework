@@ -23,4 +23,8 @@
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);IDE0130</NoWarn>
+  </PropertyGroup>
 </Project>
