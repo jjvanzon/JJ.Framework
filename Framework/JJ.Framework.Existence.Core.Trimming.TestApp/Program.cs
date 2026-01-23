@@ -36,7 +36,9 @@ RunTests<Coalesce_3Args_Text_StaticSpaceMattersNoImplicit>() &&
 RunTests<Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool>() &&
 RunTests<Coalesce_3Args_Text_StaticSpaceMattersYesMagicBool>() &&
 RunTests<Coalesce_3Args_Values_Extensions>() &&
+RunTests<Coalesce_3Args_Values_ExtensionsZeroMatters>() &&
 RunTests<Coalesce_3Args_Values_Static>() &&
+RunTests<Coalesce_3Args_Values_StaticZeroMatters>() &&
 RunTests<Coalesce_3Args_ValuesToText_Examples>() &&
 RunTests<Coalesce_3Args_ValuesToText_Extensions>() &&
 RunTests<Coalesce_3Args_ValuesToText_Static>() &&

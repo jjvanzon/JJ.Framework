@@ -22,10 +22,10 @@ public class Coalesce_Collections_Misc_Tests
     [TestMethod]
     public void BUG_Coalesce_CollectionOfCollections_3Arg_CanReturnsEmptyCollection()
     {
-        List<int>? nullList = null;
-        List<int> emptyList = [ ];
-        List<int> threeItems = [ 1, 2, 3 ];
-        List<int> result = Coalesce( [ nullList, emptyList, threeItems ] );
+        List<int>? nullList   = null;
+        List<int>  emptyList  = [ ];
+        List<int>  threeItems = [ 1, 2, 3 ];
+        List<int>  result     = Coalesce( [ nullList, emptyList, threeItems ] );
         NoNullRet(emptyList, Coalesce( [ nullList, emptyList, threeItems ] ));
     }
 
