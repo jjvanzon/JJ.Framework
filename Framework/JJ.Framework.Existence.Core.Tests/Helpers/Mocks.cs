@@ -75,7 +75,7 @@ public class Mocks
     public static ILookup<int,int>                   FilledILookup                           = NewLookup                    (0, 1, 2, 3);
     public static List<int>                          FilledList                              =                              [0, 1, 2, 3];
     public static HashSet<int>                       FilledHashSet                           =                              [0, 1, 2, 3];
-    public static Stack<int>                         FilledStack                             = NewStack                     (0, 1, 2, 3);
+    public static Stack<int>                         FilledStack                             = NewStack                     (3, 2, 1, 0);
     public static Queue<int>                         FilledQueue                             = NewQueue                     (0, 1, 2, 3);
     public static LinkedList<int>                    FilledLinkedList                        = NewLinkedList                (0, 1, 2, 3);
     public static SortedList<int, int>               FilledSortedList                        = NewSortedList                (0, 1, 2, 3);
@@ -85,7 +85,7 @@ public class Mocks
     public static DictValColl                        FilledDictValColl                       = NewDictVals                  (0, 1, 2, 3);
     public static IImmutableList<int>                FilledIImmutableList                    = NewImmutableList             (0, 1, 2, 3);
     public static IImmutableSet<int>                 FilledIImmutableSet                     = NewImmutableHashSet          (0, 1, 2, 3);
-    public static IImmutableStack<int>               FilledIImmutableStack                   = NewImmutableStack            (0, 1, 2, 3);
+    public static IImmutableStack<int>               FilledIImmutableStack                   = NewImmutableStack            (3, 2, 1, 0);
     public static IImmutableQueue<int>               FilledIImmutableQueue                   = NewImmutableQueue            (0, 1, 2, 3);
     public static IImmutableDictionary<int, int>     FilledIImmutableDict                    = NewImmutableDict             (0, 1, 2, 3);
     public static ImmutableArray<int>                FilledImmutableArray                    = NewImmutableArray            (0, 1, 2, 3);
@@ -94,7 +94,7 @@ public class Mocks
     public static ImmutableList<int>.Builder         FilledImmutableListBuilder              = NewImmutableListBuilder      (0, 1, 2, 3);
     public static ImmutableHashSet<int>              FilledImmutableHashSet                  = NewImmutableHashSet          (0, 1, 2, 3);
     public static ImmutableHashSet<int>.Builder      FilledImmutableHashSetBuilder           = NewImmutableHashSetBuilder   (0, 1, 2, 3);
-    public static ImmutableStack<int>                FilledImmutableStack                    = NewImmutableStack            (0, 1, 2, 3);
+    public static ImmutableStack<int>                FilledImmutableStack                    = NewImmutableStack            (3, 2, 1, 0);
     public static ImmutableQueue<int>                FilledImmutableQueue                    = NewImmutableQueue            (0, 1, 2, 3);
     public static ImmutableDictionary<int, int>      FilledImmutableDict                     = NewImmutableDict             (0, 1, 2, 3);
     public static ImmutableDictBuilder               FilledImmutableDictBuilder              = NewImmutableDictBuilder      (0, 1, 2, 3);
@@ -113,9 +113,9 @@ public class Mocks
     public static Memory<int>                        FilledMemory                            = NewMemory                    (0, 1, 2, 3);
     public static ReadOnlyMemory<int>                FilledReadOnlyMemory                    = NewReadOnlyMemory            (0, 1, 2, 3);
     public static ReadOnlySequence<int>              FilledReadOnlySequence                  = NewReadOnlySequence          (0, 1, 2, 3);
-    public static ConcurrentBag<int>                 FilledConcurrentBag                     =                              [0, 1, 2, 3];
+    public static ConcurrentBag<int>                 FilledConcurrentBag                     =                              [3, 2, 1, 0];
     public static ConcurrentQueue<int>               FilledConcurrentQueue                   = NewConcurrentQueue           (0, 1, 2, 3);
-    public static ConcurrentStack<int>               FilledConcurrentStack                   = NewConcurrentStack           (0, 1, 2, 3);
+    public static ConcurrentStack<int>               FilledConcurrentStack                   = NewConcurrentStack           (3, 2, 1, 0);
     public static ConcurrentDictionary<int,int>      FilledConcurrentDict                    = NewConcurrentDict            (0, 1, 2, 3);
     public static BlockingCollection<int>            FilledBlockingColl                      =                              [0, 1, 2, 3];
     public static IProducerConsumerCollection<int>   FilledIProducerConsumerColl             = NewProducerConsumerColl      (0, 1, 2, 3);
