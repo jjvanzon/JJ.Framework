@@ -9,7 +9,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersNoImplicit : TestBase
     [TestMethod]
     public void Coalesce_3Args_Text_StaticSpaceMattersNoImplicit_Example()
     {
-        AreEqual("Hi!",  Coalesce(" ", null, "Hi!"));
+        AreEqual("Hi!",  Coalesce(" ", Null, "Hi!"));
     }
 
     [TestMethod]

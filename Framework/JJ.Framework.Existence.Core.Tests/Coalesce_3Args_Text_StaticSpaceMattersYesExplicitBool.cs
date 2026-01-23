@@ -9,7 +9,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
     [TestMethod]
     public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Example()
     {
-        AreEqual(" ",    Coalesce(" ", null, "Hi!", spaceMatters: true));
+        AreEqual(" ",    Coalesce(" ", Null, "Hi!", spaceMatters: true));
     }
 
     [TestMethod]
