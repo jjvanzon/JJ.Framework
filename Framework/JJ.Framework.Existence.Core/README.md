@@ -47,8 +47,13 @@ Flags for special occasions:
 
 - `spaceMatters`
 
+    - At times, you really care if your `string` is just a single space.
 
-    - `spaceMatters` flags everywhere – because sometimes you really care if your `string` is just a single space.
+-----
+
+- `zeroMatters`
+  
+    - Flip the switch if you consider `0` meaningful.
 
 -----
 
@@ -78,7 +83,6 @@ Coalesce(" ", null, "Hi!") == "Hi!"
 Coming Soon
 -----------
 
-- `zeroMatters` – flip the switch if you consider `0` meaningful.
 - `flex` mode – force a full runtime type lookup on values when you're feeling adventurous.
 - `char` quirks – treat lone `' '` as nully by default (no more sneaky space bugs).
 - `float` drama – `NaN`, `∞`, `+0`/`–0` all count as empty.
@@ -90,16 +94,22 @@ Release Notes
 --------
 
 #### `2.5` Initial release
+
 #### `2.6` Flags
+
 - `spaceMatters` flags everywhere  
 - `caseMatters` replaced `ignoreCase`  
 - `StringBulder`/`string` more combos possible  
 - `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+
 #### `2.7` Technical
 - Improved separation of `Legacy` version lineages for a more stable package update.
+
 #### `2.8` Technical
 - Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
 
+#### `2.9` zeroMatters
+- Flag when you consider `0` meaningful (not nully).
 
 After Upgrading
 ---------------

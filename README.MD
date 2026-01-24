@@ -86,6 +86,11 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core), [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) + dependencies.
 - Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
 
+<h4><code>2.9</code> ZeroMatters</h4>
+
+- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core) + dependencies.
+- Added optional <code>zeroMatters</code> flags to indicate if <code>0</code> is a meaningful value, or to favor a fallback to a something less 'nully' instead.
+- Includes [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) to keepi version lineage consistent.
 
 💬 Feedback 
 ------------
