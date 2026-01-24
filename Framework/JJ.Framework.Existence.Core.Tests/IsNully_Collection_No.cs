@@ -95,10 +95,8 @@ public class IsNully_Collection_No_Tests
         IsFalse(FilledIReadOnlySet.IsNully());
         IsFalse(FilledReadOnlySet.IsNully());
         #endif
-      //#if NET8_0_OR_GREATER
         IsFalse(FilledFrozenSet.IsNully());
         IsFalse(FilledFrozenDictionary.IsNully());
-      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledPrioQueue.IsNully());
         IsFalse(FilledPrioQueueUnorderedColl.IsNully());
@@ -193,10 +191,8 @@ public class IsNully_Collection_No_Tests
         IsFalse(IsNully(FilledIReadOnlySet));
         IsFalse(IsNully(FilledReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsFalse(IsNully(FilledFrozenSet));
         IsFalse(IsNully(FilledFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(IsNully(FilledPrioQueue));
         IsFalse(IsNully(FilledPrioQueueUnorderedColl));
@@ -295,10 +291,8 @@ public class IsNully_Collection_No_Tests
         IsFalse(NullyFilledIReadOnlySet.IsNully());
         IsFalse(NullyFilledReadOnlySet.IsNully());
         #endif
-      //#if NET8_0_OR_GREATER
         IsFalse(NullyFilledFrozenSet.IsNully());
         IsFalse(NullyFilledFrozenDictionary.IsNully());
-      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(NullyFilledPrioQueue.IsNully());
         IsFalse(NullyFilledPrioQueueUnorderedColl.IsNully());
@@ -393,10 +387,8 @@ public class IsNully_Collection_No_Tests
         IsFalse(IsNully(NullyFilledIReadOnlySet));
         IsFalse(IsNully(NullyFilledReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsFalse(IsNully(NullyFilledFrozenSet));
         IsFalse(IsNully(NullyFilledFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(IsNully(NullyFilledPrioQueue));
         IsFalse(IsNully(NullyFilledPrioQueueUnorderedColl));

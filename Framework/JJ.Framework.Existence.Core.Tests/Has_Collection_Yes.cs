@@ -94,10 +94,8 @@ public class Has_Collection_Yes
         IsTrue(Has(FilledIReadOnlySet));
         IsTrue(Has(FilledReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(Has(FilledFrozenSet));
         IsTrue(Has(FilledFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(Has(FilledPrioQueue));
         IsTrue(Has(FilledPrioQueueUnorderedColl));
@@ -190,10 +188,8 @@ public class Has_Collection_Yes
         IsTrue(FilledIn(FilledIReadOnlySet));
         IsTrue(FilledIn(FilledReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(FilledIn(FilledFrozenSet));
         IsTrue(FilledIn(FilledFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(FilledIn(FilledPrioQueue));
         IsTrue(FilledIn(FilledPrioQueueUnorderedColl));
@@ -286,10 +282,8 @@ public class Has_Collection_Yes
         IsTrue(FilledIReadOnlySet.FilledIn());
         IsTrue(FilledReadOnlySet.FilledIn());
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(FilledFrozenSet.FilledIn());
         IsTrue(FilledFrozenDictionary.FilledIn());
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(FilledPrioQueue.FilledIn());
         IsTrue(FilledPrioQueueUnorderedColl.FilledIn());
@@ -386,10 +380,8 @@ public class Has_Collection_Yes
         IsTrue(Has(NullyFilledIReadOnlySet));
         IsTrue(Has(NullyFilledReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(Has(NullyFilledFrozenSet));
         IsTrue(Has(NullyFilledFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(Has(NullyFilledPrioQueue));
         IsTrue(Has(NullyFilledPrioQueueUnorderedColl));
@@ -482,10 +474,8 @@ public class Has_Collection_Yes
         IsTrue(FilledIn(NullyFilledIReadOnlySet));
         IsTrue(FilledIn(NullyFilledReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(FilledIn(NullyFilledFrozenSet));
         IsTrue(FilledIn(NullyFilledFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(FilledIn(NullyFilledPrioQueue));
         IsTrue(FilledIn(NullyFilledPrioQueueUnorderedColl));
@@ -578,10 +568,8 @@ public class Has_Collection_Yes
         IsTrue(NullyFilledIReadOnlySet.FilledIn());
         IsTrue(NullyFilledReadOnlySet.FilledIn());
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(NullyFilledFrozenSet.FilledIn());
         IsTrue(NullyFilledFrozenDictionary.FilledIn());
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(NullyFilledPrioQueue.FilledIn());
         IsTrue(NullyFilledPrioQueueUnorderedColl.FilledIn());

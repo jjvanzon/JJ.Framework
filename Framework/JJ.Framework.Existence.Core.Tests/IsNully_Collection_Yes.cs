@@ -95,10 +95,8 @@ public class IsNully_Collection_Yes_Tests
         IsTrue(EmptyIReadOnlySet.IsNully());
         IsTrue(EmptyReadOnlySet.IsNully());
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(EmptyFrozenSet.IsNully());
         IsTrue(EmptyFrozenDictionary.IsNully());
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(EmptyPrioQueue.IsNully());
         IsTrue(EmptyPrioQueueUnorderedColl.IsNully());
@@ -193,10 +191,8 @@ public class IsNully_Collection_Yes_Tests
         IsTrue(IsNully(EmptyIReadOnlySet));
         IsTrue(IsNully(EmptyReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(IsNully(EmptyFrozenSet));
         IsTrue(IsNully(EmptyFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(IsNully(EmptyPrioQueue));
         IsTrue(IsNully(EmptyPrioQueueUnorderedColl));
@@ -295,10 +291,8 @@ public class IsNully_Collection_Yes_Tests
         IsTrue(NullableEmptyIReadOnlySet.IsNully());
         IsTrue(NullableEmptyReadOnlySet.IsNully());
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(NullableEmptyFrozenSet.IsNully());
         IsTrue(NullableEmptyFrozenDictionary.IsNully());
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(NullableEmptyPrioQueue.IsNully());
         IsTrue(NullableEmptyPrioQueueUnorderedColl.IsNully());
@@ -393,10 +387,8 @@ public class IsNully_Collection_Yes_Tests
         IsTrue(IsNully(NullableEmptyIReadOnlySet));
         IsTrue(IsNully(NullableEmptyReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(IsNully(NullableEmptyFrozenSet));
         IsTrue(IsNully(NullableEmptyFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(IsNully(NullableEmptyPrioQueue));
         IsTrue(IsNully(NullableEmptyPrioQueueUnorderedColl));
@@ -495,10 +487,8 @@ public class IsNully_Collection_Yes_Tests
         IsTrue(NullIReadOnlySet.IsNully());
         IsTrue(NullReadOnlySet.IsNully());
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(NullFrozenSet.IsNully());
         IsTrue(NullFrozenDictionary.IsNully());
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(NullPrioQueue.IsNully());
         IsTrue(NullPrioQueueUnorderedColl.IsNully());
@@ -593,10 +583,8 @@ public class IsNully_Collection_Yes_Tests
         IsTrue(IsNully(NullIReadOnlySet));
         IsTrue(IsNully(NullReadOnlySet));
         #endif
-      //#if NET8_0_OR_GREATER
         IsTrue(IsNully(NullFrozenSet));
         IsTrue(IsNully(NullFrozenDictionary));
-      //#endif
         #if NET6_0_OR_GREATER
         IsTrue(IsNully(NullPrioQueue));
         IsTrue(IsNully(NullPrioQueueUnorderedColl));

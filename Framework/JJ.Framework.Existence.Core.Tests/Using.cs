@@ -30,7 +30,4 @@ global using static JJ.Framework.Existence.Core.SpaceMatters;
 global using static JJ.Framework.Existence.Core.CaseMatters;
 global using static JJ.Framework.Existence.Core.ZeroMatters;
 global using static JJ.Framework.Existence.Core.Tests.Helpers.Mocks;
-
-//#if NET8_0_OR_GREATER                                                                    
 global using System.Collections.Frozen;
-//#endif

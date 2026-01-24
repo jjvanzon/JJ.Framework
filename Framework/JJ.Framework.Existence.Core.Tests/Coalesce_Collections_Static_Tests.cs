@@ -68,10 +68,8 @@ public class Coalesce_Collections_Static_Tests
         NoNullRet(1,     Coalesce(FilledIReadOnlySet                      ));
         NoNullRet(1,     Coalesce(FilledReadOnlySet                       ));
         #endif                                                                                                     
-      //#if NET8_0_OR_GREATER                                                                                
         NoNullRet(1,     Coalesce(FilledFrozenSet                         ));          
         NoNullRet(entry, Coalesce(FilledFrozenDictionary                  ));          
-      //#endif                                                                                        
     }                                                                     
                                                                           
     [TestMethod]                                                          
@@ -139,10 +137,8 @@ public class Coalesce_Collections_Static_Tests
         NoNullRet(1,     Coalesce(NullyFilledIReadOnlySet                 ));
         NoNullRet(1,     Coalesce(NullyFilledReadOnlySet                  ));
         #endif                                                                                                
-      //#if NET8_0_OR_GREATER                                                                           
         NoNullRet(1,     Coalesce(NullyFilledFrozenSet                    ));          
         NoNullRet(entry, Coalesce(NullyFilledFrozenDictionary             ));          
-      //#endif                                                                                        
     }                                                                     
                                                                           
     [TestMethod]                                                          
@@ -210,10 +206,8 @@ public class Coalesce_Collections_Static_Tests
         NoNullRet(0,     Coalesce(EmptyIReadOnlySet                       ));
         NoNullRet(0,     Coalesce(EmptyReadOnlySet                        ));
         #endif                                                                                                      
-      //#if NET8_0_OR_GREATER                                                                                 
         NoNullRet(0,     Coalesce(EmptyFrozenSet                          ));          
         NoNullRet(entry, Coalesce(EmptyFrozenDictionary                   ));          
-      //#endif                                                                                        
     }                                                                     
                                                                           
     [TestMethod]                                                          
@@ -281,10 +275,8 @@ public class Coalesce_Collections_Static_Tests
         NoNullRet(0,     Coalesce(NullableEmptyIReadOnlySet               ));
         NoNullRet(0,     Coalesce(NullableEmptyReadOnlySet                ));
         #endif                                                                                             
-      //#if NET8_0_OR_GREATER                                                                        
         NoNullRet(0,     Coalesce(NullableEmptyFrozenSet                  ));          
         NoNullRet(entry, Coalesce(NullableEmptyFrozenDictionary           ));          
-      //#endif                                                                                       
     }
 
     [TestMethod]
@@ -352,9 +344,7 @@ public class Coalesce_Collections_Static_Tests
         NoNullRet(0,     Coalesce(NullIReadOnlySet                        ));
         NoNullRet(0,     Coalesce(NullReadOnlySet                         ));
         #endif                                                                                                       
-      //#if NET8_0_OR_GREATER                                                                                  
         NoNullRet(0,     Coalesce(NullFrozenSet                           ));          
         NoNullRet(entry, Coalesce(NullFrozenDictionary                    ));          
-      //#endif                                                                                       
     }
 }
