@@ -11,7 +11,7 @@
     <Description>A JJ.Framework Component</Description>
     <PackageTags>framework; architecture; utility</PackageTags>
     <Authors>JJ van Zon</Authors>
-    <Copyright>Copyright © 2013 - 2025 Jan Joost van Zon</Copyright>
+    <Copyright>Copyright © 2013 - 2026 Jan Joost van Zon</Copyright>
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <IncludeSymbols>True</IncludeSymbols>
