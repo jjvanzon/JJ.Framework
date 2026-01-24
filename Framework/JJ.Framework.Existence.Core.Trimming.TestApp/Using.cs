@@ -36,6 +36,6 @@ global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Testing.Core.TestRunner;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 
-#if NET8_0_OR_GREATER
+//#if NET8_0_OR_GREATER
 global using System.Collections.Frozen;
-#endif
+//#endif

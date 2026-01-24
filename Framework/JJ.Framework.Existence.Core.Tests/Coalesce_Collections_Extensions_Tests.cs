@@ -68,10 +68,10 @@ public class Coalesce_Collections_Extensions_Tests
         NoNullRet(1,     FilledIReadOnlySet                     .Coalesce());
         NoNullRet(1,     FilledReadOnlySet                      .Coalesce());
         #endif                                                                                                    
-        #if NET8_0_OR_GREATER                                                                               
+      //#if NET8_0_OR_GREATER                                                                               
         NoNullRet(1,     FilledFrozenSet                        .Coalesce());          
         NoNullRet(entry, FilledFrozenDictionary                 .Coalesce());          
-        #endif                                                                                       
+      //#endif                                                                                       
     }
 
     [TestMethod]
@@ -139,10 +139,10 @@ public class Coalesce_Collections_Extensions_Tests
         NoNullRet(1,     NullyFilledIReadOnlySet                .Coalesce());
         NoNullRet(1,     NullyFilledReadOnlySet                 .Coalesce());
         #endif                                                                                               
-        #if NET8_0_OR_GREATER                                                                          
+      //#if NET8_0_OR_GREATER                                                                          
         NoNullRet(1,     NullyFilledFrozenSet                   .Coalesce());          
         NoNullRet(entry, NullyFilledFrozenDictionary            .Coalesce());          
-        #endif                                                                                       
+      //#endif                                                                                       
     }
 
     [TestMethod]
@@ -210,10 +210,10 @@ public class Coalesce_Collections_Extensions_Tests
         NoNullRet(0,     EmptyIReadOnlySet                      .Coalesce());
         NoNullRet(0,     EmptyReadOnlySet                       .Coalesce());
         #endif                                                                                                     
-        #if NET8_0_OR_GREATER                                                                                
+      //#if NET8_0_OR_GREATER                                                                                
         NoNullRet(0,     EmptyFrozenSet                         .Coalesce());          
         NoNullRet(entry, EmptyFrozenDictionary                  .Coalesce());          
-        #endif                                                                                       
+      //#endif                                                                                       
     }
 
     [TestMethod]
@@ -281,10 +281,10 @@ public class Coalesce_Collections_Extensions_Tests
         NoNullRet(0,     NullableEmptyIReadOnlySet              .Coalesce());
         NoNullRet(0,     NullableEmptyReadOnlySet               .Coalesce());
         #endif                                                                                             
-        #if NET8_0_OR_GREATER                                                                        
+      //#if NET8_0_OR_GREATER                                                                        
         NoNullRet(0,     NullableEmptyFrozenSet                 .Coalesce());          
         NoNullRet(entry, NullableEmptyFrozenDictionary          .Coalesce());          
-        #endif                                                                                       
+      //#endif                                                                                       
     }
 
     [TestMethod]
@@ -352,9 +352,9 @@ public class Coalesce_Collections_Extensions_Tests
         NoNullRet(0,     NullIReadOnlySet                       .Coalesce());
         NoNullRet(0,     NullReadOnlySet                        .Coalesce());
         #endif                                                                                                      
-        #if NET8_0_OR_GREATER                                                                                 
+      //#if NET8_0_OR_GREATER                                                                                 
         NoNullRet(0,     NullFrozenSet                          .Coalesce());          
         NoNullRet(entry, NullFrozenDictionary                   .Coalesce());          
-        #endif                                                                                       
+      //#endif                                                                                       
     }
 }

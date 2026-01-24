@@ -95,10 +95,10 @@ public class Has_Collection_No
         IsFalse(Has(EmptyIReadOnlySet));
         IsFalse(Has(EmptyReadOnlySet));
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(Has(EmptyFrozenSet));
         IsFalse(Has(EmptyFrozenDictionary));
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(Has(EmptyPrioQueue));
         IsFalse(Has(EmptyPrioQueueUnorderedColl));
@@ -193,10 +193,10 @@ public class Has_Collection_No
         IsFalse(FilledIn(EmptyIReadOnlySet));
         IsFalse(FilledIn(EmptyReadOnlySet));
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(FilledIn(EmptyFrozenSet));
         IsFalse(FilledIn(EmptyFrozenDictionary));
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledIn(EmptyPrioQueue));
         IsFalse(FilledIn(EmptyPrioQueueUnorderedColl));
@@ -291,10 +291,10 @@ public class Has_Collection_No
         IsFalse(EmptyIReadOnlySet.FilledIn());
         IsFalse(EmptyReadOnlySet.FilledIn());
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(EmptyFrozenSet.FilledIn());
         IsFalse(EmptyFrozenDictionary.FilledIn());
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(EmptyPrioQueue.FilledIn());
         IsFalse(EmptyPrioQueueUnorderedColl.FilledIn());
@@ -391,10 +391,10 @@ public class Has_Collection_No
         IsFalse(Has(NullableEmptyIReadOnlySet));
         IsFalse(Has(NullableEmptyReadOnlySet));
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(Has(NullableEmptyFrozenSet));
         IsFalse(Has(NullableEmptyFrozenDictionary));
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(Has(NullableEmptyPrioQueue));
         IsFalse(Has(NullableEmptyPrioQueueUnorderedColl));
@@ -487,10 +487,10 @@ public class Has_Collection_No
         IsFalse(FilledIn(NullableEmptyIReadOnlySet));
         IsFalse(FilledIn(NullableEmptyReadOnlySet));
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(FilledIn(NullableEmptyFrozenSet));
         IsFalse(FilledIn(NullableEmptyFrozenDictionary));
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledIn(NullableEmptyPrioQueue));
         IsFalse(FilledIn(NullableEmptyPrioQueueUnorderedColl));
@@ -583,10 +583,10 @@ public class Has_Collection_No
         IsFalse(NullableEmptyIReadOnlySet.FilledIn());
         IsFalse(NullableEmptyReadOnlySet.FilledIn());
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(NullableEmptyFrozenSet.FilledIn());
         IsFalse(NullableEmptyFrozenDictionary.FilledIn());
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(NullableEmptyPrioQueue.FilledIn());
         IsFalse(NullableEmptyPrioQueueUnorderedColl.FilledIn());
@@ -685,10 +685,10 @@ public class Has_Collection_No
         IsFalse(Has(NullIReadOnlySet));
         IsFalse(Has(NullReadOnlySet));
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(Has(NullFrozenSet));
         IsFalse(Has(NullFrozenDictionary));
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(Has(NullPrioQueue));
         IsFalse(Has(NullPrioQueueUnorderedColl));
@@ -783,10 +783,10 @@ public class Has_Collection_No
         IsFalse(FilledIn(NullIReadOnlySet));
         IsFalse(FilledIn(NullReadOnlySet));
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(FilledIn(NullFrozenSet));
         IsFalse(FilledIn(NullFrozenDictionary));
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(FilledIn(NullPrioQueue));
         IsFalse(FilledIn(NullPrioQueueUnorderedColl));
@@ -881,10 +881,10 @@ public class Has_Collection_No
         IsFalse(NullIReadOnlySet.FilledIn());
         IsFalse(NullReadOnlySet.FilledIn());
         #endif
-        #if NET8_0_OR_GREATER
+      //#if NET8_0_OR_GREATER
         IsFalse(NullFrozenSet.FilledIn());
         IsFalse(NullFrozenDictionary.FilledIn());
-        #endif
+      //#endif
         #if NET6_0_OR_GREATER
         IsFalse(NullPrioQueue.FilledIn());
         IsFalse(NullPrioQueueUnorderedColl.FilledIn());
