@@ -25,6 +25,4 @@ global using static JJ.Framework.Existence.Core.ImplicitUsageReasons;
 global using static JJ.Framework.Existence.Core.InUtil;
 global using static JJ.Framework.Existence.Core.Util;
 global using UsedImplicitlyAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;
-#if NET8_0_OR_GREATER
 global using System.Collections.Frozen;
-#endif

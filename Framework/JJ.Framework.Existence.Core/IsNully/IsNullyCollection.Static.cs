@@ -186,12 +186,10 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T>  ([NotNullWhen(false)]      ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
     #endif
-    #if NET8_0_OR_GREATER                                                                                 
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T>  ([NotNullWhen(false)]      FrozenSet<T>                               ? coll)                   => !HasColl(coll);
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T,U>([NotNullWhen(false)]      FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
-    #endif                                                                                                                          
     #if NET6_0_OR_GREATER
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T,U>([NotNullWhen(false)]      PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);

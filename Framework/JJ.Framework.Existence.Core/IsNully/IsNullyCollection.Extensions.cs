@@ -187,12 +187,10 @@ public static class IsNullyCollectionExtensions
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T>  ([NotNullWhen(false)] this ReadOnlySet<T>                             ? coll)                   => !HasReadOnlyColl(coll);
     #endif
-    #if NET8_0_OR_GREATER                                                                                 
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T>  ([NotNullWhen(false)] this FrozenSet<T>                               ? coll)                   => !HasColl(coll);
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T,U>([NotNullWhen(false)] this FrozenDictionary<T, U>                     ? coll) where T : notnull => !HasColl(coll);
-    #endif                                                                                                                          
     #if NET6_0_OR_GREATER
     /// <inheritdoc cref="_isnully"/>
     public static bool IsNully <T,U>([NotNullWhen(false)] this PriorityQueue<T,U>                         ? coll)                   => !Has_PriorityQueue(coll);
