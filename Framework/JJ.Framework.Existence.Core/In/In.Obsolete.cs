@@ -1,7 +1,5 @@
 ﻿// ReSharper disable MethodOverloadWithOptionalParameter
 
-using JJ.Framework.SharedProject.Core;
-
 namespace JJ.Framework.Existence.Core;
 
 // ncrunch: no coverage start
