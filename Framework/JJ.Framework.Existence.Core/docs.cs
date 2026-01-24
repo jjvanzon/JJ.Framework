@@ -8,25 +8,25 @@
 namespace JJ.Framework.Existence.Core.docs;
 
 /// <summary>
-/// Pick the first non-nully (non-empty) value from a list of fallbacks.
+/// Pick the first <b>non-nully</b> (non-empty) value from a list of fallbacks.
 /// Works like <c>??</c> but treats empty strings, zero, and empty collections as "null".
 /// </summary>
 public struct _coalesce;
 
 /// <summary>
-/// Test whether a collection contains a given element.
+/// Test whether a collection <c>Contains</c> a given element.
 /// </summary>
 public struct _contains;
 
 /// <summary>
 /// <para>
-/// One-stop shop for "nully" checks, fallback picks, existence tests and loose comparisons,
-/// so you never have to never have to wrestle with boilerplate null/empty guards again:
+/// One-stop shop for <b>"nully"</b> checks, <b>fallback</b> picks, <b>existence</b> tests and loose <b>comparisons</b>,
+/// so you never have to wrestle with boilerplate null/empty guards again:
 /// </para>
 /// 
 /// <para>
 ///   <c>FilledIn</c> / <c>Has</c> / <c>IsNully</c> <br/>
-///   One step beyond <c>null</c>, treating empty strings, zero, or empty lists as "nully".
+///   One step beyond <c>null</c>, treating empty strings, 0, or empty lists as "nully".
 /// </para>
 /// <para>
 ///   <c>Coalesce</c> <br/>
@@ -60,7 +60,7 @@ public struct _filledin;
 
 /// <summary>
 /// Obsolete.
-/// Use caseMatters instead.
+/// Use <c>caseMatters</c> instead.
 /// FLIP YOUR BOOLEANS IF NEEDED:
 /// Where ignoreCase: false, caseMatters should now be true.
 /// Default behavior is to ignore case.
@@ -140,7 +140,7 @@ public struct _casematters;
 public struct _spacematters;
 
 /// <param name="caseMatters">
-/// If true (or if you pass <c>caseMatters</c>), comparisons will require exact casing.
+/// If <c>true</c> (or if you pass <c>caseMatters</c>), comparisons will require exact casing.
 /// For example, <c>"abc"</c> will not match <c>"ABC"</c>.
 /// 
 /// <para>
@@ -155,16 +155,20 @@ public struct _spacematters;
 /// 
 /// <param name="spaceMatters">
 /// <para>
-/// If true (or if you pass <c>spaceMatters</c>), white space counts as real content.
+/// If <c>true</c> (or if you pass <c>spaceMatters</c>), white space counts as real content.
 /// <c>"   "</c> will be considered filled in, not empty.
 /// </para>
 /// 
 /// <para>See also: <see cref="SpaceMatters" />.</para>
 /// </param>
 ///
-/// <para name="zeroMatters">
-/// See: <see cref="ZeroMatters" />.
-/// </para>
+/// <param name="zeroMatters">
+/// If <c>true</c> (or if you pass <c>zeroMatters</c>),
+/// we'll treat <c>0</c> (or any <c>default</c> value) as a real value.
+/// If <c>false</c>, we just treat it as empty and move on.
+/// 
+/// See also: <see cref="ZeroMatters" />.
+/// </param>
 public struct _flagargs;
 
 /// <summary>
