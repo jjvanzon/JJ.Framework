@@ -9,6 +9,7 @@ public static partial class FilledInHelper
           // [Prio(1)] for strings wins in this case, so that:
           // `Coalesce(" ", null, "Hi!")` => Coalesce(string, string, string)
           
+
           // 1 Arg (for some)
           
           /// <inheritdoc cref="_coalesce" />
@@ -211,9 +212,6 @@ public static partial class FilledInHelper
           public static T      Coalesce<T>(     T       val,  T       fallback, T?      fallback2, ZeroMatters  zeroMatters ) where T : struct => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static T      Coalesce<T>(     T       val,  T       fallback, T       fallback2                           ) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2));
-          
-          // TODO: Test
-
           /// <inheritdoc cref="_coalesce" />
           public static T      Coalesce<T>(     T       val,  T       fallback, T       fallback2, bool         zeroMatters ) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
           /// <inheritdoc cref="_coalesce" />
