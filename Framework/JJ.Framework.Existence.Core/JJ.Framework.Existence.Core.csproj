@@ -4,8 +4,8 @@
     <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>2.9.$(BuildNum)</Version>
-    <Description>Has(text), Coalesce(a,b,c), list.Where(FilledIn) to replace garbage like !Equals(x, default(T?)) &amp;&amp; !Equals(x, default(T)) and string.IsNullOrWhiteSpace(text). Simplify fallbacks and emptiness checks, so you can code like you mean it!</Description>
-    <PackageTags>null; empty; whitespace; guards; coalesce; checks; is; in; utility; has; filledin; contains; isnully</PackageTags>
+    <Description>Has(text), Coalesce(a,b,c), list.Where(FilledIn) to replace garbage like !Equals(x, default(T?)) &amp;&amp; !Equals(x, default(T)) and string.IsNullOrWhiteSpace(text). Simple fallbacks and emptiness checks, so you can code it like you mean it.</Description>
+    <PackageTags>null; empty; whitespace; guards; coalesce; checks; is; in; filled; nully; utility; has; filledin; isnully; contains</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</PackageProjectUrl>
   </PropertyGroup>
