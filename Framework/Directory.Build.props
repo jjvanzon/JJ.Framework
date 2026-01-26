@@ -180,6 +180,11 @@
     <Delete Files="@(XmlsToDeletejj)" />
   </Target>
 
+  <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
   <!-- Diagnostics -->
 
   <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
@@ -227,11 +232,6 @@
     <NoWarn>$(NoWarn);IDE0063</NoWarn> <!--Use simple 'using' statement-->
     <NoWarn>$(NoWarn);IDE0034</NoWarn> <!--Simplify 'default' expression-->
     <NoWarn>$(NoWarn);IDE0057</NoWarn> <!--Use range operator-->
-  </PropertyGroup>
-
-  <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
-  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
 </Project>
