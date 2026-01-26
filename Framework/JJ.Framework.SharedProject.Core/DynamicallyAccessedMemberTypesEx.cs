@@ -8,12 +8,17 @@ namespace JJ.Framework.SharedProject.Core;
 /// <inheritdoc cref="_dynamicallyaccessedmembertypesex" />
 internal static class DynamicallyAccessedMemberTypesEx
 {
-    public const DynamicallyAccessedMemberTypes AllCtors = PublicConstructors | NonPublicConstructors;
+    // Aliases
+    
+    public const DynamicallyAccessedMemberTypes AllProps = AllProperties;
+    public const DynamicallyAccessedMemberTypes NonPublicProps = NonPublicProperties;
+    public const DynamicallyAccessedMemberTypes Intf = Interfaces;
     public const DynamicallyAccessedMemberTypes New = PublicParameterlessConstructor;
     public const DynamicallyAccessedMemberTypes PublicCtors = PublicConstructors;
-    public const DynamicallyAccessedMemberTypes AllProps = AllProperties;
+    public const DynamicallyAccessedMemberTypes AllCtors = PublicConstructors | NonPublicConstructors;
     public const DynamicallyAccessedMemberTypes PropsFieldsMethods = AllProperties | AllFields | AllMethods;
-    public const DynamicallyAccessedMemberTypes NonPublicProps = NonPublicProperties;
+
+    // Platform Support
 
     // TODO: Replace by explicit NET5_0 || NET6_0, etc.
     // TODO: Make values same as .NET10 version and/or add alternatives for backward compatiblity.
@@ -27,5 +32,4 @@ internal static class DynamicallyAccessedMemberTypesEx
     #if NET5_0
     public const DynamicallyAccessedMemberTypes Interfaces = (DynamicallyAccessedMemberTypes)8192;
     #endif
-    public const DynamicallyAccessedMemberTypes Intf = Interfaces;
 }
