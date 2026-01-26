@@ -157,7 +157,6 @@
 
   <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
