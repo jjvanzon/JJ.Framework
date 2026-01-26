@@ -11,9 +11,12 @@ internal static class DynamicallyAccessedMemberTypesEx
     public const DynamicallyAccessedMemberTypes AllCtors = PublicConstructors | NonPublicConstructors;
     public const DynamicallyAccessedMemberTypes New = PublicParameterlessConstructor;
     public const DynamicallyAccessedMemberTypes PublicCtors = PublicConstructors;
+    public const DynamicallyAccessedMemberTypes AllProps = AllProperties;
     public const DynamicallyAccessedMemberTypes PropsFieldsMethods = AllProperties | AllFields | AllMethods;
     public const DynamicallyAccessedMemberTypes NonPublicProps = NonPublicProperties;
+
     // TODO: Replace by explicit NET5_0 || NET6_0, etc.
+    // TODO: Make values same as .NET10 version and/or add alternatives for backward compatiblity.
     #if NET5_0_OR_GREATER && !NET10_0
     /// <inheritdoc cref="_properties" />
     public const DynamicallyAccessedMemberTypes AllProperties = PublicProperties | NonPublicProperties;
@@ -26,4 +29,3 @@ internal static class DynamicallyAccessedMemberTypesEx
     #endif
     public const DynamicallyAccessedMemberTypes Intf = Interfaces;
 }
-

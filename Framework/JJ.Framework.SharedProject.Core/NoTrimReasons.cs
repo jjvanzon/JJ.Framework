@@ -2,19 +2,19 @@
 
 internal static class NoTrimReasons
 {
-    private const string WhatInstead = 
+    private const string DoWhatInstead = 
         "Alternatives: " + 
         @"* Use [UnconditionalSuppressMessage(""Trimmer"", ""IL..."", Justification = ""..."")] to ignore warning if expected types are loaded. " +
         "* Use Type parameter if available. " +
         "* Use [RequiresUnreferencedCode(...)] on your member to propagate trimmability warning. " +
         "* Use [DynamicDependency(...)] near code failing (at runtime) to retain a type after trimming.";
 
-    public const string GetTypes = "JJ0002 - Assembly.GetTypes() called internally. Types might be removed in case of trimming. " + WhatInstead;
+    public const string GetTypes = "JJ0002 - Assembly.GetTypes() called internally. Types might be removed in case of trimming. " + DoWhatInstead;
     public const string TypeColl = TypeCollection;
-    public const string TypeCollection = "JJ0003 - TypeCollection: Limited safety for trimming because a Type collections is used. " + WhatInstead;
-    public const string ObjectGetType = "JJ0004 - GetType: Limited safety for trimming because Object.GetType() is used internally. " + WhatInstead;
-    public const string PropertyType = "JJ0005 - PropertyType: Limited safety for trimming because PropertyInfo.PropertyType is used internally. " + WhatInstead;
-    public const string FieldType = "JJ0006 - FieldType: Limited safety for trimming because FieldInfo.FieldType is used internally. " + WhatInstead;
+    public const string TypeCollection = "JJ0003 - TypeCollection: Limited safety for trimming because a Type collections is used. " + DoWhatInstead;
+    public const string ObjectGetType = "JJ0004 - GetType: Limited safety for trimming because Object.GetType() is used internally. " + DoWhatInstead;
+    public const string PropertyType = "JJ0005 - PropertyType: Limited safety for trimming because PropertyInfo.PropertyType is used internally. " + DoWhatInstead;
+    public const string FieldType = "JJ0006 - FieldType: Limited safety for trimming because FieldInfo.FieldType is used internally. " + DoWhatInstead;
 
     public const string ExpressionsWithArrays = 
         "JJ0007 - ExpressionsWithArrays: Array.CreateInstance called internally. " +
@@ -24,18 +24,19 @@ internal static class NoTrimReasons
         "* You can also propagate this warning by annotating your method with: " +
         "#if !NET9_0_OR_GREATER " +
         "[RequiresUnreferencedCode(<Reason>)] " +
-        "#endif " + WhatInstead;
+        "#endif " + DoWhatInstead;
 
     public const string WhenShowIndexerValues = 
         "JJ0008 - WhenShowIndexerValues: Array.CreateInstance called if ShowIndexerValues is true. " +
         "This is not a problem for .NET 9 and up, but can cause issues with lower .NET versions. " +
         "* You can ignore the warning when you're not using an array. " +
-        "* or by using ShowIndexerValues = false. " + WhatInstead;
+        "* or by using ShowIndexerValues = false. " + DoWhatInstead;
 
     public const string TupleGetType = 
-        "JJ0009 - Tuple is use as object, which requires the Type to be available after code trimming. " + WhatInstead;
+        "JJ0009 - Tuple is used as object, which requires the Type to be available after code trimming. " + DoWhatInstead;
 
     public const string Bases = 
-        "JJ0010 - Gets base types and then reflects on its members, which can't be guaranteed to be trim-safe. " + WhatInstead;
+        "JJ0010 - Gets base types and then reflects on its members, which can't be guaranteed to be trim-safe. " + DoWhatInstead;
 
+    public const string Lambda = "JJ0011 - Lambda: Trimmer complains, because of usage in a lamda expression, not actual use of reflection." + DoWhatInstead;
 }

@@ -33,6 +33,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary> Use this constructor to access static members. </summary>
         /// <inheritdoc cref="_accessor" />
+        [Suppress("Trimmer", "IL2110", Justification = Lambda)]
         public Accessor([Dyn(PropsFieldsMethods)] Type objectType)
         {
             if (objectType == null) throw new NullException(() => objectType);
@@ -42,6 +43,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary> Use this constructor to access members of the base class. </summary>
         /// <inheritdoc cref="_accessor" />
+        [Suppress("Trimmer", "IL2110", Justification = Lambda)]
         public Accessor(object obj, [Dyn(PropsFieldsMethods)] Type objectType)
         {
             if (obj == null) throw new NullException(() => obj);

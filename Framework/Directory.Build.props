@@ -116,8 +116,8 @@
 
   <!-- Publish -->
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet9)">
-  <!--<PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">-->
+  <!--<PropertyGroup Condition="$(IsTrimTest) And $(IsNet9)">-->
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
