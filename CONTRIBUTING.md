@@ -17,10 +17,10 @@ __Contents__
 - [The King, the Queen and the Core](#the-king-the-queen-and-the-core)
 - [Legacy Conclusion](#legacy-conclusion)
 - [Pipelines](#pipelines)
-- [Trimmable Libs](#trimmable-libs)
 - [Dev Env](#dev-env)
 - [SQL Server](#sql-server)
 - [Internet Information Services (IIS)](#internet-information-services-iis)
+- [Trimmable Libs](#trimmable-libs)
 - [Old Commits](#old-commits)
 
 
@@ -144,45 +144,7 @@ https://dev.azure.com/jjvanzon/JJs-Software/_artifacts/feed/JJs-Pre-Release-Pack
 - Add these feeds to your Visual Studio under `Menu > Tools > Options > NuGet Package Manager > Package Sources`
 - Further instructions: click on `Connect to Feed` after following one of the links.
 
-Trimmable Libs
---------------
-
-Newer `.NET` versions support trimming away code that isn't used. This makes the final executable smaller. It comes with a lot of hurdles expecially when using `Reflection`. The trimmer cannot guarantee the `Type` or members are loaded when used via `Reflection`.
-
-💡 Clues how to resolve, are all there in the [NoTrimReasons.cs](https://github.com/jjvanzon/JJ.Framework/blob/main/Framework/JJ.Framework.SharedProject.Core/NoTrimReasons.cs), listing out pitfalls, how to annotate the code and for what reasons to do so. The latest should be found under that link. Here's an extract at the time writing:
-
-* Use `[UnconditionalSuppressMessage("Trimmer", "IL...", Justification = "...")]` to ignore warning if expected types are loaded.
-* Use `Type` parameter if available.
-* Use `[RequiresUnreferencedCode(...)]` on your member to propagate trimmability warning.
-* Use `[DynamicDependency(...)]` near code failing (at runtime) to retain a type after trimming.
-
-
-Possible reaons to do so:
-
-| ID       | Name                    | Description
-|:---------|:------------------------|:-----------
-| `JJ0002` | `GetTypes`              | `Assembly.GetTypes()` is called internally. `Types` might be removed in case of trimming.
-| `JJ0003` | `TypeCollection`        | Limited safety for trimming because a `Type` collections is used.
-| `JJ0004` | `ObjectGetType`         | Limited safety for trimming because `Object.GetType()` is used internally.
-| `JJ0005` | `PropertyType`          | Limited safety for trimming because `PropertyInfo.PropertyType` is used internally.
-| `JJ0006` | `FieldType`             | Limited safety for trimming because `FieldInfo.FieldType` is used internally.
-| `JJ0007` | `ExpressionsWithArrays` | `Array.CreateInstance` called internally.
-|          |                         | Not a problem for trimmable code for .NET 9 and up, but can cause issues with lower .NET versions.
-|          |                         | You could pick an expression-free variant of the function if available (one without `() =>` notation).
-|          |                         | You can also ignore the warning if you're not using an array
-|          |                         | You can also propagate this warning by annotating your method with:
-|          |                         | `#if !NET9_0_OR_GREATER`
-|          |                         | `[RequiresUnreferencedCode(<Reason>)]`
-|          |                         | `#endif`
-| `JJ0008` | `WhenShowIndexerValues` | `Array.CreateInstance` called if `ShowIndexerValues` is true.  
-|          |                         | This is not a problem for .NET 9 and up, but can cause issues with lower .NET versions.
-|          |                         | * You can ignore the warning when you're not using an array.
-|          |                         | * or by using `ShowIndexerValues = false`.
-| `JJ0009` | `TupleGetType`          | `Tuple` is used as `object`, which requires the `Type` to be available after code trimming.
-| `JJ0010` | `Bases`                 | Gets base types and then reflects on its members, which can't be guaranteed to be trim-safe.
-| `JJ0011` | `Lambda`                | Trimmer complains, because of usage in a lamda expression, not actual use of reflection.
-
-
+- 
 Dev Env
 -------
 
@@ -268,6 +230,43 @@ Internet Information Services (IIS)
     - hosts file entries:
         - `127.0.0.1  demo-ret-withviewmapping-urlparameter.jjvanzon.io`
         - `::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io`
+
+Trimmable Libs
+--------------
+
+Newer `.NET` versions support trimming away code that isn't used. This makes the final executable smaller. It comes with a lot of hurdles expecially when using `Reflection`. The trimmer cannot guarantee the `Type` or members are loaded when used via `Reflection`.
+
+💡 Clues how to resolve, are all there in the [NoTrimReasons.cs](https://github.com/jjvanzon/JJ.Framework/blob/main/Framework/JJ.Framework.SharedProject.Core/NoTrimReasons.cs), listing out pitfalls, how to annotate the code and for what reasons to do so. The latest should be found under that link. Here's an extract at the time writing:
+
+* Use `[UnconditionalSuppressMessage("Trimmer", "IL...", Justification = "...")]` to ignore warning if expected types are loaded.
+* Use `Type` parameter if available.
+* Use `[RequiresUnreferencedCode(...)]` on your member to propagate trimmability warning.
+* Use `[DynamicDependency(...)]` near code failing (at runtime) to retain a type after trimming.
+
+Possible reaons to do so:
+
+| ID       | Name                    | Description
+|:---------|:------------------------|:-----------
+| `JJ0002` | `GetTypes`              | `Assembly.GetTypes()` is called internally. `Types` might be removed in case of trimming.
+| `JJ0003` | `TypeCollection`        | Limited safety for trimming because a `Type` collections is used.
+| `JJ0004` | `ObjectGetType`         | Limited safety for trimming because `Object.GetType()` is used internally.
+| `JJ0005` | `PropertyType`          | Limited safety for trimming because `PropertyInfo.PropertyType` is used internally.
+| `JJ0006` | `FieldType`             | Limited safety for trimming because `FieldInfo.FieldType` is used internally.
+| `JJ0007` | `ExpressionsWithArrays` | `Array.CreateInstance` called internally.
+|          |                         | Not a problem for trimmable code for .NET 9 and up, but can cause issues with lower .NET versions.
+|          |                         | You could pick an expression-free variant of the function if available (one without `() =>` notation).
+|          |                         | You can also ignore the warning if you're not using an array
+|          |                         | You can also propagate this warning by annotating your method with:
+|          |                         | `#if !NET9_0_OR_GREATER`
+|          |                         | `[RequiresUnreferencedCode(<Reason>)]`
+|          |                         | `#endif`
+| `JJ0008` | `WhenShowIndexerValues` | `Array.CreateInstance` called if `ShowIndexerValues` is true.  
+|          |                         | This is not a problem for .NET 9 and up, but can cause issues with lower .NET versions.
+|          |                         | * You can ignore the warning when you're not using an array.
+|          |                         | * or by using `ShowIndexerValues = false`.
+| `JJ0009` | `TupleGetType`          | `Tuple` is used as `object`, which requires the `Type` to be available after code trimming.
+| `JJ0010` | `Bases`                 | Gets base types and then reflects on its members, which can't be guaranteed to be trim-safe.
+| `JJ0011` | `Lambda`                | Trimmer complains, because of usage in a lamda expression, not actual use of reflection.
 
 
 Old Commits
