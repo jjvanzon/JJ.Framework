@@ -4,3 +4,5 @@
     public const DynamicallyAccessedMemberTypes PropsFieldsMethodsShallow = AllPropertiesShallow | AllFields | AllMethods;
     public const DynamicallyAccessedMemberTypes AllPropsShallow = AllPropertiesShallow;
     public const DynamicallyAccessedMemberTypes AllPropertiesShallow = PublicProperties | NonPublicProperties;
+
+    // TODO: Make values same as .NET10 version and/or add alternatives for backward compatiblity.
