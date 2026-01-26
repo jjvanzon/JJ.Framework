@@ -43,13 +43,13 @@
     <IsInnerBuild Condition="'$(TargetFramework)'!=''">True</IsInnerBuild>
   </PropertyGroup>
 
-  <!--
+  <!-- Diagnostics -->
+
   <Target Name="JJ_Framework_Vars1" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsNet48 = $(IsNet48) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" Importance="High" />
-    <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9)" Importance="High" />
+    <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9) | IsNet10 = $(IsNet10)" Importance="High" />
   </Target>
-  -->
   
   <!-- Packaging -->
 
@@ -68,11 +68,11 @@
     <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
 
-  <!--
+  <!-- Diagnostics -->
+
   <Target Name="JJ_Framework_Vars2" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > Nullable = $(Nullable) | GeneratePackageOnBuild = $(GeneratePackageOnBuild) | GenerateDocFile = $(GenerateDocumentationFile)" Importance="High" />
   </Target>
-  -->
   
   <!-- Icon -->
   
@@ -112,7 +112,7 @@
 
   <!-- Publish -->
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet9)">
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -143,12 +143,6 @@
     <PublishSingleFile>True</PublishSingleFile>
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
-  
-  <!--
-  <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
-  </Target>
-  -->
 
   <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
     <!--<DebugType>none</DebugType>-->
@@ -184,6 +178,12 @@
     <Message Importance="High" Text="Removing $(PublishDir)*.xml" />
     <Message Importance="High" Text="Removing @(XmlsToDeletejj)" />
     <Delete Files="@(XmlsToDeletejj)" />
+  </Target>
+
+  <!-- Diagnostics -->
+
+  <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
   </Target>
 
   <!-- Warnings Disabled Globally -->
