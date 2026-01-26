@@ -45,11 +45,13 @@
 
   <!-- Diagnostics -->
 
+  <!--
   <Target Name="JJ_Framework_Vars1" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsNet48 = $(IsNet48) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" Importance="High" />
     <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9) | IsNet10 = $(IsNet10)" Importance="High" />
   </Target>
+  -->
   
   <!-- Packaging -->
 
@@ -70,10 +72,12 @@
 
   <!-- Diagnostics -->
 
+  <!--
   <Target Name="JJ_Framework_Vars2" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > Nullable = $(Nullable) | GeneratePackageOnBuild = $(GeneratePackageOnBuild) | GenerateDocFile = $(GenerateDocumentationFile)" Importance="High" />
   </Target>
-  
+  -->
+
   <!-- Icon -->
   
   <ItemGroup>
@@ -187,9 +191,11 @@
 
   <!-- Diagnostics -->
 
+  <!--
   <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
   </Target>
+  -->
 
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
