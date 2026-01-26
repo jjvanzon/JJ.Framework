@@ -36,6 +36,7 @@
     <IsNet7>$(TargetFramework.Equals('net7.0'))</IsNet7>
     <IsNet8>$(TargetFramework.Equals('net8.0'))</IsNet8>
     <IsNet9>$(TargetFramework.Equals('net9.0'))</IsNet9>
+    <IsNet10>$(TargetFramework.Equals('net10.0'))</IsNet10>
     <IsOuterBuild>True</IsOuterBuild>
     <IsOuterBuild Condition="'$(TargetFramework)'!=''">False</IsOuterBuild>
     <IsInnerBuild>False</IsInnerBuild>
