@@ -6,7 +6,9 @@ using JJ.Framework.PlatformCompatibility.Core.docs;
 
 namespace System.Diagnostics.CodeAnalysis;
 
-enum DynamicallyAccessedMemberTypes
+/// <inheritdoc cref="_dynamicallyaccessedmembertypes" />
+[Flags]
+internal enum DynamicallyAccessedMemberTypes
 {
     None                               = 0b000000000000000000000000,
     PublicParameterlessConstructor     = 0b000000000000000000000001,
