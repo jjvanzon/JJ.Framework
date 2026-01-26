@@ -6,39 +6,39 @@ using JJ.Framework.PlatformCompatibility.Core.docs;
 
 namespace System.Diagnostics.CodeAnalysis;
 
-    enum DynamicallyAccessedMemberTypes
-    {
-        None = 0,
-        PublicParameterlessConstructor = 0x0001,
-        PublicConstructors = 0x0002 | PublicParameterlessConstructor,
-        NonPublicConstructors = 0x0004,
-        PublicMethods = 0x0008,
-        NonPublicMethods = 0x0010,
-        PublicFields = 0x0020,
-        NonPublicFields = 0x0040,
-        PublicNestedTypes = 0x0080,
-        NonPublicNestedTypes = 0x0100,
-        PublicProperties = 0x0200,
-        NonPublicProperties = 0x0400,
-        PublicEvents = 0x0800,
-        NonPublicEvents = 0x1000,
-        Interfaces = 0x2000,
-        NonPublicConstructorsWithInherited = NonPublicConstructors | 0x4000,
-        NonPublicMethodsWithInherited = NonPublicMethods | 0x8000,
-        NonPublicFieldsWithInherited = NonPublicFields | 0x10000,
-        NonPublicNestedTypesWithInherited = NonPublicNestedTypes | 0x20000,
-        NonPublicPropertiesWithInherited = NonPublicProperties | 0x40000,
-        NonPublicEventsWithInherited = NonPublicEvents | 0x80000,
-        PublicConstructorsWithInherited = PublicConstructors | 0x100000,
-        PublicNestedTypesWithInherited = PublicNestedTypes | 0x200000,
-        AllConstructors = PublicConstructorsWithInherited | NonPublicConstructorsWithInherited,
-        AllMethods = PublicMethods | NonPublicMethodsWithInherited,
-        AllFields = PublicFields | NonPublicFieldsWithInherited,
-        AllNestedTypes = PublicNestedTypesWithInherited | NonPublicNestedTypesWithInherited,
-        AllProperties = PublicProperties | NonPublicPropertiesWithInherited,
-        AllEvents = PublicEvents | NonPublicEventsWithInherited,
-        All = ~None
-    }
+enum DynamicallyAccessedMemberTypes
+{
+    None                               = 0b0,
+    PublicParameterlessConstructor     = 0b1,
+    PublicConstructors                 = 0b11,
+    NonPublicConstructors              = 0b100,
+    PublicMethods                      = 0b1000,
+    NonPublicMethods                   = 0b10000,
+    PublicFields                       = 0b100000,
+    NonPublicFields                    = 0b1000000,
+    PublicNestedTypes                  = 0b10000000,
+    NonPublicNestedTypes               = 0b100000000,
+    PublicProperties                   = 0b1000000000,
+    NonPublicProperties                = 0b10000000000,
+    PublicEvents                       = 0b100000000000,
+    NonPublicEvents                    = 0b1000000000000,
+    Interfaces                         = 0b10000000000000,
+    NonPublicConstructorsWithInherited = 0b100000000000100,
+    NonPublicMethodsWithInherited      = 0b1000000000010000,
+    NonPublicFieldsWithInherited       = 0b10000000001000000,
+    NonPublicNestedTypesWithInherited  = 0b100000000100000000,
+    NonPublicPropertiesWithInherited   = 0b1000000010000000000,
+    NonPublicEventsWithInherited       = 0b10000001000000000000,
+    PublicConstructorsWithInherited    = 0b100000000000000000011,
+    PublicNestedTypesWithInherited     = 0b1000000000000010000000,
+    AllConstructors                    = 0b100000100000000000111,
+    AllMethods                         = 0b1000000000011000,
+    AllFields                          = 0b10000000001100000,
+    AllNestedTypes                     = 0b1000100000000110000000,
+    AllProperties                      = 0b1000000011000000000,
+    AllEvents                          = 0b10000001100000000000,
+    All                                = -0b1
+}
 
 #endif
 
