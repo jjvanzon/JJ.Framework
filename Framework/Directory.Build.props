@@ -7,7 +7,7 @@
   <!-- Project Properties -->
   
   <PropertyGroup>
-    <LangVersion>13.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Description>A JJ.Framework Component</Description>
     <PackageTags>framework; architecture; utility</PackageTags>
     <Authors>JJ van Zon</Authors>
