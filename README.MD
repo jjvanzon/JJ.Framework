@@ -92,6 +92,8 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - Added optional <code>zeroMatters</code> flags to indicate if <code>0</code> is a meaningful value, or to favor a fallback to a something less 'nully' instead.
 - Includes [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) to keepi version lineage consistent.
 
+<h4><code>3.0</code> .NET 10 Support</h4>
+
 💬 Feedback 
 ------------
 

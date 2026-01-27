@@ -111,6 +111,8 @@ Release Notes
 #### `2.9` zeroMatters
 - Flag when you consider `0` meaningful (not nully).
 
+#### `3.0` .NET 10 Support
+
 After Upgrading
 ---------------
 
