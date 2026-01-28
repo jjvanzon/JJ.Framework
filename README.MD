@@ -94,6 +94,11 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 <h4><code>3.0</code> .NET 10 Support</h4>
 
+<h4><code>3.1</code> No Priorities </h4>
+
+- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core) + dependencies.
+- Sacrifice direct use of keywords e.g. `Coalesce(null, "Hallo")` over simpler overload resolution priorities, removing `OverloadResolutionPriority]` (or `[Prio]`) attributes.
+
 💬 Feedback 
 ------------
 

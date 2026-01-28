@@ -72,7 +72,7 @@ if (number.IsNully()) return;
 
 if (Has(name)) sb.Append($" {name} ");
 
-Coalesce(" ", null, "Hi!") == "Hi!"
+Coalesce(" ", Null, "Hi!") == "Hi!"
 
 "\r\n GREEN\t  ".Is("Green")
 
@@ -102,16 +102,26 @@ Release Notes
 - `StringBulder`/`string` more combos possible  
 - `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
 
-#### `2.7` Technical
+#### `2.7` Version Lineages + IntelliSense
+
 - Improved separation of `Legacy` version lineages for a more stable package update.
 
-#### `2.8` Technical
+#### `2.8` AOT, Trimming and Self-Contained App Support
+
 - Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
 
 #### `2.9` zeroMatters
+
 - Flag when you consider `0` meaningful (not nully).
 
 #### `3.0` .NET 10 Support
+
+#### `3.1` No Priorities
+
+- Simplify overload resolution priorities.
+- Removing `OverloadResolutionPriority]` (or `[Prio]`) attributes.
+- Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`, which isn't a real use case anyway.
+
 
 After Upgrading
 ---------------
