@@ -1,12 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Legacy.Package.Tests.csproj", "{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Package.Tests", "Framework\JJ.Framework.Common.Package.Tests\JJ.Framework.Common.Legacy.Package.Tests.csproj", "{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Tests", "Framework\JJ.Framework.Common.Core.Package.Tests\JJ.Framework.Common.Core.Package.Tests.csproj", "{E1D2C9C1-3A2F-81F8-4776-9FB6F9983FAB}"
@@ -20,13 +16,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Tests", "Framework\JJ.Framework.Reflection.Package.Tests\JJ.Framework.Reflection.Legacy.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.Package.Tests", "Framework\JJ.Framework.Reflection.Core.Package.Tests\JJ.Framework.Reflection.Core.Package.Tests.csproj", "{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests", "Framework\JJ.Framework.Existence.Core.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.csproj", "{D589D511-228E-937F-4AC8-0009AFCE0BAC}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.PlatformCompatibility.Core", "Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.shproj", "{CE2BF11F-D06A-4EA3-9DD6-FDDA12705F83}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.SharedProject.Core", "Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.shproj", "{1BEB8E62-FCB0-4B88-B142-23E720D5BACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Legacy.Package.Tests.csproj", "{70B4D771-007B-8549-1264-60818D52BB25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,14 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D46C0F99-E3BE-E3D4-EEA8-67BD22A89BA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,14 +44,18 @@ Global
 		{2F40987D-DD95-159A-F6B1-5C32F4CBF021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F40987D-DD95-159A-F6B1-5C32F4CBF021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F40987D-DD95-159A-F6B1-5C32F4CBF021}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B384C2F-1F3A-3818-B53C-6A6C306E2AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D589D511-228E-937F-4AC8-0009AFCE0BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D589D511-228E-937F-4AC8-0009AFCE0BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D589D511-228E-937F-4AC8-0009AFCE0BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D589D511-228E-937F-4AC8-0009AFCE0BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8FECB2B-336D-B64F-A0B6-3602918E48A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70B4D771-007B-8549-1264-60818D52BB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B4D771-007B-8549-1264-60818D52BB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B4D771-007B-8549-1264-60818D52BB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B4D771-007B-8549-1264-60818D52BB25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,9 +67,9 @@ Global
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1beb8e62-fcb0-4b88-b142-23e720d5bacc}*SharedItemsImports = 13
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{2f40987d-dd95-159a-f6b1-5c32f4cbf021}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{2f40987d-dd95-159a-f6b1-5c32f4cbf021}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{70b4d771-007b-8549-1264-60818d52bb25}*SharedItemsImports = 5
+		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{70b4d771-007b-8549-1264-60818d52bb25}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{ce2bf11f-d06a-4ea3-9dd6-fdda12705f83}*SharedItemsImports = 13
-		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{d46c0f99-e3be-e3d4-eea8-67bd22a89ba3}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{d46c0f99-e3be-e3d4-eea8-67bd22a89ba3}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{d589d511-228e-937f-4ac8-0009afce0bac}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
