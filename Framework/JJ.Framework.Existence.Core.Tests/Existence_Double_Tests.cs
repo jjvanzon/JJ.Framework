@@ -5,18 +5,18 @@ public class Existence_Double_Tests
 {
     // Double
 
-    double? NullDouble            = null;
-    double  ZeroDouble            = 0.0;
-    double  OneDouble             = 1.0;
-    double  TwoDouble             = 2.0;
-    double? NullyZeroDouble       = 0.0;
-    double? NullyOneDouble        = 1.0;
-    double? NullyTwoDouble        = 2.0;
-    double? NullyNaN              = Double.NaN;
-    double? NullyNegativeInfinity = Double.NegativeInfinity;
-    double? NullyPositiveInfinity = Double.PositiveInfinity;
+    readonly double? NullDouble            = null;
+    const    double  ZeroDouble            = 0.0;
+    const    double  OneDouble             = 1.0;
+    const    double  TwoDouble             = 2.0;
+    readonly double? NullyZeroDouble       = 0.0;
+    readonly double? NullyOneDouble        = 1.0;
+    readonly double? NullyTwoDouble        = 2.0;
+    readonly double? NullyNaN              = Double.NaN;
+    readonly double? NullyNegativeInfinity = Double.NegativeInfinity;
+    readonly double? NullyPositiveInfinity = Double.PositiveInfinity;
     #if NET7_0_OR_GREATER
-    double? NullyNegativeZero     = Double.NegativeZero;
+    readonly double? NullyNegativeZero     = Double.NegativeZero;
     #endif
 
     [TestMethod]

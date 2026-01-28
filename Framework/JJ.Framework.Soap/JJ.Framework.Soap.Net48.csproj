@@ -73,6 +73,7 @@
     <Compile Include="WcfHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Soap.Net48.csproj.DotSettings" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

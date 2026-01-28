@@ -3,7 +3,7 @@
 [TestClass]
 public class Coalesce_2Args_Tests : TestBase
 {
-    private static Dummy? NullyFilled = NullyFilledObj;
+    private static readonly Dummy? NullyFilled = NullyFilledObj;
             
     [TestMethod]
     public void Coalesce_2Args_RandomCases()

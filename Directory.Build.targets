@@ -6,15 +6,6 @@
     <!-- NOTE: Most warning squelches are in Directory.Build.props instead. -->
   </PropertyGroup>
 
-  <!--<PropertyGroup>-->
-  <!--  <IsTest>$(MSBuildProjectName.EndsWith('Tests'))</IsTest>-->
-  <!--  <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>-->
-  <!--</PropertyGroup>-->
-
-  <!--<PropertyGroup Condition="$(IsTest) Or $(IsTrimTest)">-->
-  <!--  <NoWarn>$(NoWarn);IDE0044</NoWarn>--> <!--Field can be readonly-->
-  <!--</PropertyGroup>-->
-
   <ItemGroup>
     <None Remove="$(MSBuildProjectDirectory)/*.ncrunchproject" />
   </ItemGroup>

@@ -66,6 +66,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Persistence.Net48.Memory.csproj.DotSettings" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

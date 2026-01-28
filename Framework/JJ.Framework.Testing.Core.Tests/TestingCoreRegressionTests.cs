@@ -13,7 +13,7 @@ public class TestingCore_Case_FromTemplate_ChangesNullPropsToZeroes_Regression_T
         CaseCollection<Case> cases = CreateCasesInit;
     }
 
-    private static int? _ = null;
+    private static readonly int? _ = null;
 
     private class Case : CaseBase<(int? channels, int? channel)>
     {

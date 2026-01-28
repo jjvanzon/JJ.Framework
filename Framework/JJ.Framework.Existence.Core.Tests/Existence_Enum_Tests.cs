@@ -17,24 +17,24 @@ public class Existence_Enum_Tests
         TwoLast = 2
     }
 
-    EnumWith0? With0_Null             = null;
-    EnumWith0  With0_Default          = default;
-    EnumWith0? With0_DefaultNully     = default;
-    EnumWith0  ZeroFirst              = EnumWith0.ZeroFirst;
-    EnumWith0? ZeroFirst_Nully        = EnumWith0.ZeroFirst;
-    EnumWith0  OneLast                = EnumWith0.OneLast;
-    EnumWith0? OneLast_Nully          = EnumWith0.OneLast;
-    EnumWith0  ZeroFirstInvalid       = (EnumWith0)(-1);
-    EnumWith0? ZeroFirstInvalid_Nully = (EnumWith0)(-1);
-    EnumNo0?   No0_Null               = null;
-    EnumNo0    No0_Default            = default;
-    EnumNo0?   No0_DefaultNully       = default;
-    EnumNo0    OneFirst               = EnumNo0.OneFirst;
-    EnumNo0?   OneFirst_Nully         = EnumNo0.OneFirst;
-    EnumNo0    TwoLast                = EnumNo0.TwoLast;
-    EnumNo0?   TwoLast_Nully          = EnumNo0.TwoLast;
-    EnumNo0    No0Invalid             = (EnumNo0)(-1);
-    EnumNo0?   No0Invalid_Nully       = (EnumNo0)(-1);
+    readonly EnumWith0? With0_Null             = null;
+    const    EnumWith0  With0_Default          = default;
+    readonly EnumWith0? With0_DefaultNully     = default;
+    const    EnumWith0  ZeroFirst              = EnumWith0.ZeroFirst;
+    readonly EnumWith0? ZeroFirst_Nully        = EnumWith0.ZeroFirst;
+    const    EnumWith0  OneLast                = EnumWith0.OneLast;
+    readonly EnumWith0? OneLast_Nully          = EnumWith0.OneLast;
+    const    EnumWith0  ZeroFirstInvalid       = (EnumWith0)(-1);
+    readonly EnumWith0? ZeroFirstInvalid_Nully = (EnumWith0)(-1);
+    readonly EnumNo0?   No0_Null               = null;
+    const    EnumNo0    No0_Default            = default;
+    readonly EnumNo0?   No0_DefaultNully       = default;
+    const    EnumNo0    OneFirst               = EnumNo0.OneFirst;
+    readonly EnumNo0?   OneFirst_Nully         = EnumNo0.OneFirst;
+    const    EnumNo0    TwoLast                = EnumNo0.TwoLast;
+    readonly EnumNo0?   TwoLast_Nully          = EnumNo0.TwoLast;
+    const    EnumNo0    No0Invalid             = (EnumNo0)(-1);
+    readonly EnumNo0?   No0Invalid_Nully       = (EnumNo0)(-1);
 
     [TestMethod]
     public void Test_Enum_Existence_Verify0IsDefault()

@@ -53,9 +53,9 @@ public class Existence_Bugs
     {
         // With Enums
         {
-            EnumWith0? With0_Null    = null;
-            EnumWith0  With0_Default = default;
-            EnumWith0  OneLast       = EnumWith0.OneLast;
+                  EnumWith0? With0_Null    = null;
+            const EnumWith0  With0_Default = default;
+            const EnumWith0  OneLast       = EnumWith0.OneLast;
 
             NoNullRet("OneLast",   Coalesce(                    With0_Default, With0_Null).Coalesce(                    OneLast).Coalesce(                    "Never"));
           //NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));

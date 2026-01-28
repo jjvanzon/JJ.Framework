@@ -3,11 +3,11 @@
 [TestClass]
 public class Existence_Bool_Tests
 {
-    bool  True       = true ;
-    bool  False      = false;
-    bool? NullyTrue  = true ;
-    bool? NullyFalse = false;
-    bool? NullBool   = null ;
+    const    bool  True       = true ;
+    const    bool  False      = false;
+    readonly bool? NullyTrue  = true ;
+    readonly bool? NullyFalse = false;
+    readonly bool? NullBool   = null ;
 
     [TestMethod]
     public void Test_Bool_Has()

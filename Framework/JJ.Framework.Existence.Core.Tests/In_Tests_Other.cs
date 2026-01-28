@@ -6,8 +6,8 @@ public class In_Tests_Other : TestBase
     [TestMethod]
     public void In_Strings_Nully()
     {
-        string  a = "A";
-        string  b = "B";
+        const string a = "A";
+        const string b = "B";
 
         // Nully in the middle
 

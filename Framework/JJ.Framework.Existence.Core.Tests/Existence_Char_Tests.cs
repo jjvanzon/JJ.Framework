@@ -5,29 +5,29 @@ public class Existence_Char_Tests
 {
     // Char
 
-    char? NullChar              = null;
-    char  DefaultChar           = default;
-    char? DefaultNullyChar      = default;
-    char  NewChar               = new();
-    char? NewNullyChar          = new();
-    char  ZeroValueChar         = '\0';
-    char? ZeroValueNullyChar    = '\0';
-    char  ZeroDigitChar         = '0';
-    char? ZeroDigitNullyChar    = '0';
-    char  SpaceChar             = ' ';
-    char? NullySpaceChar        = '\t';
-    char  ControlChar           = '\u0001';
-    char? NullyControlChar      = '\u0001';
-    char  SpecialSpace          = '\u2003';
-    char? NullySpecialSpace     = '\u2003';
-    char  ZeroWidthSpace        = '\u200B';
-    char? NullyZeroWidthSpace   = '\u200B';
-    char  NonBreakingSpace      = '\u00A0';
-    char? NullyNonBreakingSpace = '\u00A0';
-    char  HighSurrogate         = '\uD83D'; // Special char used in UTF-16 to help encode values outside the UTF-16 range.
-    char? NullyHighSurrogate    = '\uD83D'; // Special char used in UTF-16 to help encode values outside the UTF-16 range.
-    char  FilledChar             = 'a';
-    char? NullyFilledChar        = 'a';
+    readonly char? NullChar              = null;
+    const    char  DefaultChar           = default;
+    readonly char? DefaultNullyChar      = default;
+    const    char  NewChar               = new();
+    readonly char? NewNullyChar          = new();
+    const    char  ZeroValueChar         = '\0';
+    readonly char? ZeroValueNullyChar    = '\0';
+    const    char  ZeroDigitChar         = '0';
+    readonly char? ZeroDigitNullyChar    = '0';
+    const    char  SpaceChar             = ' ';
+    readonly char? NullySpaceChar        = '\t';
+    const    char  ControlChar           = '\u0001';
+    readonly char? NullyControlChar      = '\u0001';
+    const    char  SpecialSpace          = '\u2003';
+    readonly char? NullySpecialSpace     = '\u2003';
+    const    char  ZeroWidthSpace        = '\u200B';
+    readonly char? NullyZeroWidthSpace   = '\u200B';
+    const    char  NonBreakingSpace      = '\u00A0';
+    readonly char? NullyNonBreakingSpace = '\u00A0';
+    const    char  HighSurrogate         = '\uD83D'; // Special char used in UTF-16 to help encode values outside the UTF-16 range.
+    readonly char? NullyHighSurrogate    = '\uD83D'; // Special char used in UTF-16 to help encode values outside the UTF-16 range.
+    const    char  FilledChar             = 'a';
+    readonly char? NullyFilledChar        = 'a';
 
     [TestMethod]
     public void Test_Char_Has()

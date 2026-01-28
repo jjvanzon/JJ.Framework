@@ -3,9 +3,9 @@
 [TestClass]
 public class Coalesce_3Args_ObjectsToText : TestBase
 {
-    static Dummy  Obj         = NoNullObj;
-    static Dummy? Null        = NullObj;
-    static Dummy? NullyFilled = NullyFilledObj;
+    static readonly Dummy  Obj         = NoNullObj;
+    static readonly Dummy? Null        = NullObj;
+    static readonly Dummy? NullyFilled = NullyFilledObj;
 
     [TestMethod]
     public void Coalesce_3Args_ObjectsToString_Static()

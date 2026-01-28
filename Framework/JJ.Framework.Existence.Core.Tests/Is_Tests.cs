@@ -41,8 +41,8 @@ public class Is_Tests
         IsTrue(   "\r\n \t TEST  \n".Is("test", caseMatters: false));
         
         // Excess white space
-        string a = "I am a STRING .  ";
-        string b = "   i am a string    . \t";
+        const string a = "I am a STRING .  ";
+        const string b = "   i am a string    . \t";
         IsTrue(a.Is(b));
         IsTrue(a.Is(b,  caseMatters: false));
         IsTrue(Is(a, b));
@@ -59,7 +59,7 @@ public class Is_Tests
         IsFalse(Is("Animal", "Plant"));
 
         // Diacritics
-        string c = "   i ÂM ã string   . \t";
+        const string c = "   i ÂM ã string   . \t";
         IsTrue(a.Is(c));
         IsTrue(c.Is(a));
         IsTrue(Is(a, c));

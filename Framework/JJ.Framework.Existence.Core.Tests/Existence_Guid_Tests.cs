@@ -5,15 +5,15 @@ public class Existence_Guid_Tests
 {
     // Guid
 
-    Guid? NullGuid = null;
-    Guid  EmptyGuid = Guid.Empty;
-    Guid? EmptyNullyGuid = Guid.Empty;
-    Guid  ZeroGuid = new("00000000-0000-0000-0000-000000000000");
-    Guid? ZeroNullyGuid = new("00000000-0000-0000-0000-000000000000");
-    Guid  OneGuid = new("00000000-0000-0000-0000-000000000001");
-    Guid? OneNullyGuid = new("00000000-0000-0000-0000-000000000001");
-    Guid  RandomGuid = Guid.NewGuid();
-    Guid? RandomNullyGuid = Guid.NewGuid();
+    readonly Guid? NullGuid = null;
+    readonly Guid  EmptyGuid = Guid.Empty;
+    readonly Guid? EmptyNullyGuid = Guid.Empty;
+    readonly Guid  ZeroGuid = new("00000000-0000-0000-0000-000000000000");
+    readonly Guid? ZeroNullyGuid = new("00000000-0000-0000-0000-000000000000");
+    readonly Guid  OneGuid = new("00000000-0000-0000-0000-000000000001");
+    readonly Guid? OneNullyGuid = new("00000000-0000-0000-0000-000000000001");
+    readonly Guid  RandomGuid = Guid.NewGuid();
+    readonly Guid? RandomNullyGuid = Guid.NewGuid();
 
     [TestMethod]
     public void Test_Guid_Has()

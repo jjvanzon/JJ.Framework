@@ -4,8 +4,8 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Existence_Examples
 {
-    int? num = null;
-    string? text = null;
+    readonly int? num = null;
+    readonly string? text = null;
     IEnumerable<int> list = [ 1, 2, 3 ];
     
     [TestMethod]

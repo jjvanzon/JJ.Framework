@@ -58,6 +58,7 @@
     <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Persistence.Net48.SqlClient.csproj.DotSettings" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

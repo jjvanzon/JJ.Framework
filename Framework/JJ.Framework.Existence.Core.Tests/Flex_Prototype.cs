@@ -16,6 +16,7 @@ public class Flex_Prototype
 
         // Normal case
         {
+            // ReSharper disable once ConvertToConstant.Local
             string text = " "; // type `string`
             bool filled = Has(text);
             // " " is considered not filled in, because Has uses parameter type string here.

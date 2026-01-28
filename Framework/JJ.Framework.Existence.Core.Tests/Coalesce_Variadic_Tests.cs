@@ -3,7 +3,7 @@
 [TestClass]
 public class Coalesce_Variadic_Tests : TestBase
 {
-    static string?[]? StringNullArray = (string?[]?)null;
+    const string?[]? StringNullArray = (string?[]?)null;
 
     [TestMethod]
     public void Coalesce_Variadic_StringBuilders()

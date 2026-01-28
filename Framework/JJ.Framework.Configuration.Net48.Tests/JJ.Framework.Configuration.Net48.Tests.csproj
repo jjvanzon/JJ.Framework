@@ -83,6 +83,9 @@
       <Name>JJ.Framework.Configuration.Net48</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="JJ.Framework.Configuration.Net48.Tests.csproj.DotSettings" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
