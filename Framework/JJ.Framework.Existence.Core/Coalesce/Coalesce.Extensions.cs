@@ -8,7 +8,6 @@ public static class CoalesceExtensions
           // These overloads clash: first.Coalesce(others), List.Coalesce(), and string.Coalesce().
           // Prio(1) on IEnumerable<T> for List.Coalesce() else List becomes the first arg in (first, others).
           // Prio(2) on string.Coalesce() makes it win over IEnumerable<char> in string-specific calls.
-          // Prio(2) on other string-only variants makes e.g. null be seen as string rather than StringBuilder.
           
           // 1 Arg (for some)
           
@@ -24,11 +23,11 @@ public static class CoalesceExtensions
           // 2 Args (for some)
           
           /// <inheritdoc cref="_coalesce" /> 
-[Prio(2)] public static string Coalesce   (this string? text, string? fallback                           ) => CoalesceTwoTexts      (text, fallback);
+          public static string Coalesce   (this string? text, string? fallback                           ) => CoalesceTwoTexts      (text, fallback);
           /// <inheritdoc cref="_coalesce" />
-[Prio(2)] public static string Coalesce   (this string? text, string? fallback, bool         spaceMatters) => CoalesceTwoTexts      (text, fallback, spaceMatters);
+          public static string Coalesce   (this string? text, string? fallback, bool         spaceMatters) => CoalesceTwoTexts      (text, fallback, spaceMatters);
           /// <inheritdoc cref="_coalesce" />
-[Prio(2)] public static string Coalesce   (this string? text, string? fallback, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, fallback, spaceMatters);
+          public static string Coalesce   (this string? text, string? fallback, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, fallback, spaceMatters);
           /// <inheritdoc cref="_coalesce" />
           public static string Coalesce   (this string? text, SB?     fallback                           ) => CoalesceTextAndSB     (text, fallback);
           /// <inheritdoc cref="_coalesce" />
@@ -90,11 +89,11 @@ public static class CoalesceExtensions
           // 3 Args (for text)
           
           /// <inheritdoc cref="_coalesce" />  
-[Prio(2)] public static string Coalesce   (this string? text, string? fallback, string? fallback2                           ) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2));
+          public static string Coalesce   (this string? text, string? fallback, string? fallback2                           ) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2));
           /// <inheritdoc cref="_coalesce" />
-[Prio(2)] public static string Coalesce   (this string? text, string? fallback, string? fallback2, bool         spaceMatters) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
+          public static string Coalesce   (this string? text, string? fallback, string? fallback2, bool         spaceMatters) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
           /// <inheritdoc cref="_coalesce" />
-[Prio(2)] public static string Coalesce   (this string? text, string? fallback, string? fallback2, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
+          public static string Coalesce   (this string? text, string? fallback, string? fallback2, SpaceMatters spaceMatters) => CoalesceTwoTexts      (text, CoalesceTwoTexts      (fallback, fallback2, spaceMatters), spaceMatters);
           /// <inheritdoc cref="_coalesce" />
           public static string Coalesce   (this string? text, string? fallback, SB?     fallback2                           ) => CoalesceTwoTexts      (text, CoalesceTextAndSB     (fallback, fallback2));
           /// <inheritdoc cref="_coalesce" />

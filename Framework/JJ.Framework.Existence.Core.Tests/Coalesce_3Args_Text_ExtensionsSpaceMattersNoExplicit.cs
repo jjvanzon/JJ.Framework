@@ -9,7 +9,7 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersNoExplicit : TestBase
     [TestMethod]
     public void Coalesce_3Args_Text_ExtensionsSpaceMattersNoExplicit_Example()
     {
-        AreEqual("Hi!", " ".Coalesce(null, "Hi!", spaceMatters: false));
+        AreEqual("Hi!", " ".Coalesce(Null, "Hi!", spaceMatters: false));
     }
 
     [TestMethod]
