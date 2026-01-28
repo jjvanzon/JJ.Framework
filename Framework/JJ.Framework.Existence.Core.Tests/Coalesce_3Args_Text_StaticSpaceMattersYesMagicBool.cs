@@ -9,7 +9,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesMagicBool : TestBase
     [TestMethod]
     public void Coalesce_3Args_Text_StaticSpaceMattersYesMagicBool_Example()
     {
-        AreEqual(" ",    Coalesce(" ", null, "Hi!", spaceMatters));
+        AreEqual(" ",    Coalesce(" ", Null, "Hi!", spaceMatters));
     }
 
     [TestMethod]
