@@ -116,10 +116,10 @@ Release Notes
 
 #### `3.0` .NET 10 Support
 
-#### `3.1` No Priorities
+#### `3.1` Less Prios
 
 - Simplify overload resolution priorities.
-- Removing `OverloadResolutionPriority]` (or `[Prio]`) attributes.
+- Removing some `OverloadResolutionPriority]` (or `[Prio]`) attributes.
 - Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`, which isn't a real use case anyway.
 
 
