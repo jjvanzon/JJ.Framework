@@ -1,4 +1,5 @@
 // ReSharper disable IdentifierTypo
+// ReSharper disable UnusedType.Global
 
 namespace JJ.Framework.SharedProject.Core.docs;
 

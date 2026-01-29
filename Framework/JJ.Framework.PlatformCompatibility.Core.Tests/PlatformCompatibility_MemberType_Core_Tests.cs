@@ -2,6 +2,7 @@
 // ReSharper disable UnassignedGetOnlyAutoProperty
 
 using System.Reflection;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
@@ -9,10 +10,12 @@ namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 public sealed class PlatformCompatibility_MemberType_Core_Tests
 {
     // ncrunch: no coverage start
-    
+ 
+    [UsedImplicitly]
     public class DummyClass(int parameter)
     {
         public event EventHandler? Event;
+        [UsedImplicitly]
         public int _field = parameter;
         public int Property { get; set; }
         public void Method() { }

@@ -60,7 +60,6 @@ public class Mocks
     public const           int  NoNull1 = 1;
     public const           int  NoNull2 = 2;
     public const           int  NoNull3 = 3;
-    public const           int  NoNull4 = 4;
     
     public static readonly Dummy? NullObj        = null;
     public static readonly Dummy  NoNullObj      = new("NoNull");

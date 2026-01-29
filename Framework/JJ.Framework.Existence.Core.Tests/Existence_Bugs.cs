@@ -93,7 +93,7 @@ public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
     }
 
     // Leading up to the faulty call
-    static int[] ValidBits { get; } = { 8, 16, 32 };
+    static int[] ValidBits { get; } = [ 8, 16, 32 ];
     static int[] ValidSizesOfBitDepth { get; } = ValidBits.Select(SizeOfBitDepth).ToArray();
     static int SizeOfBitDepth(int bits) => BitsToSizeOfBitDepth(bits);
     static int BitsToSizeOfBitDepth(int bits) => AssertBits(bits, strict: false) / 8;
@@ -114,7 +114,7 @@ public class RegressionTest_CallToHas_FromGenericContext_TypeInfoLost
     
     // Trailed after the faulty call
     static Exception NotSupportedException<T>(string name, object? value, IEnumerable<T> validValues) 
-        => new Exception(NotSupportedMessage(name, value, validValues));
+        => new(NotSupportedMessage(name, value, validValues));
         
     static string NotSupportedMessage<T>(string name, object? value, IEnumerable<T> validValues) 
         => $"{name} = {value} not valid. Supported values: " + Join(", ", validValues);

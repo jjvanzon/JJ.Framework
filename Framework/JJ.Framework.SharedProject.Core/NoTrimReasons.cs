@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.SharedProject.Core;
+﻿// ReSharper disable UnusedType.Global
+#pragma warning disable IDE0051 // Member never used
+
+namespace JJ.Framework.SharedProject.Core;
 
 internal static class NoTrimReasons
 {

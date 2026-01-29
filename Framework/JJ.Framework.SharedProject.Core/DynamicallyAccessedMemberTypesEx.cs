@@ -1,4 +1,7 @@
 ﻿// ReSharper disable RedundantUsingDirective
+// ReSharper disable UnusedType.Global
+#pragma warning disable IDE0051 // Member never used
+
 using System.Diagnostics.CodeAnalysis;
 using JJ.Framework.SharedProject.Core.docs;
 using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;

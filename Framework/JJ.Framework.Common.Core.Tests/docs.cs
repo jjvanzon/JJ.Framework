@@ -1,6 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
 // ReSharper disable CheckNamespace
+// ReSharper disable UnusedType.Global
 
 // These are structs, so their syntax colorings are unobtrusive.
 
