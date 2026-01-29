@@ -9,7 +9,7 @@ public class Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_FlagsInBack 
     [TestMethod]
     public void Coalesce_3Args_Text_ExtensionsSpaceMattersYesMagicBool_FlagsInBack_Example()
     {
-        AreEqual(" ",   " ".Coalesce(Null, "Hi!", spaceMatters: true));
+        AreEqual(" ",   " ".Coalesce(Null, "Hi!", spaceMatters));
     }
 
     [TestMethod]

@@ -1,0 +1,408 @@
+﻿namespace JJ.Framework.Existence.Core.Tests;
+
+[TestClass]
+public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront
+{
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch1()
+    {
+        NoNullRet(                 Coalesce(spaceMatters: false, NullSB,        NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullSB,        NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullSB,        FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        NullyFilledSB, FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullSB,        EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullSB,        EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        EmptySB,       FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullSB,        SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullSB,        SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullSB,        SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullSB,        SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullSB,        FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch2()
+    {
+        NoNullRet(                 Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullSB,        FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB, FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB,       FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch3()
+    {
+        NoNullRet(                 Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullSB,        FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB, FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB,       FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch4()
+    {
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullSB,        NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullSB,        NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullSB,        NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullSB,        EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullSB,        FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB,  NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB,  NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB, FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, EmptySB,       NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, EmptySB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, EmptySB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, EmptySB,       EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, EmptySB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB,       NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB,       EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, NullyFilledSB, FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch5()
+    {
+        NoNullRet(                 Coalesce(spaceMatters: false, EmptySB,       NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, EmptySB,       NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullSB,        FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB, FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, EmptySB,       EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, EmptySB,       EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       EmptySB,       FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, EmptySB,       FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch6()
+    {
+        NoNullRet(                 Coalesce(spaceMatters: false, SpaceSB,       NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, SpaceSB,       NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullSB,        FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB, FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       EmptySB,       FilledSB     ));
+        NoNullRet(                 Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, SpaceSB,       FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch7()
+    {
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullSB,        NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullSB,        NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullSB,        NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullSB,        EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullSB,        FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB,  NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB,  EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB,  NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB,  EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB, FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      EmptySB,       NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      EmptySB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      EmptySB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      EmptySB,       EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      EmptySB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      SpaceSB,       NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      SpaceSB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      SpaceSB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      SpaceSB,       EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     Coalesce(spaceMatters: false, FilledSB,      FilledSB,      FilledSB     ));
+    }
+}
