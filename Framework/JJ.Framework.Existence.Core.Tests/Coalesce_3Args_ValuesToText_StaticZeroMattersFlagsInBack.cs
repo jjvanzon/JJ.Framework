@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_ValuesToText_StaticZeroMatters : TestBase
+public class Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack : TestBase
 {
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_StaticZeroMattersZeroMatters_Batch1()
+    public void Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack_Batch1()
     {
         NoNullRet("",   Coalesce(NullNum,  Nully0, NullText                           ));
         NoNullRet("",   Coalesce(NullNum,  Nully0, NullText,        zeroMatters: false));
@@ -177,7 +177,7 @@ public class Coalesce_3Args_ValuesToText_StaticZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_StaticZeroMattersZeroMatters_Batch2()
+    public void Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack_Batch2()
     {
         NoNullRet("",   Coalesce(Nully0,  NullNum, NullText                           ));
         NoNullRet("",   Coalesce(Nully0,  NullNum, NullText,        zeroMatters: false));
@@ -308,7 +308,7 @@ public class Coalesce_3Args_ValuesToText_StaticZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_StaticZeroMattersZeroMatters_Batch3()
+    public void Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack_Batch3()
     {
         NoNullRet("1",  Coalesce(Nully1,  NullNum, NullText                           ));
         NoNullRet("1",  Coalesce(Nully1,  NullNum, NullText,        zeroMatters: false));
@@ -439,7 +439,7 @@ public class Coalesce_3Args_ValuesToText_StaticZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_StaticZeroMattersZeroMatters_Batch4()
+    public void Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack_Batch4()
     {
         NoNullRet("",   Coalesce(0,       NullNum, NullText                           ));
         NoNullRet("",   Coalesce(0,       NullNum, NullText,        zeroMatters: false));
@@ -570,7 +570,7 @@ public class Coalesce_3Args_ValuesToText_StaticZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_StaticZeroMattersZeroMatters_Batch5()
+    public void Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack_Batch5()
     {
         NoNullRet("1",  Coalesce(1,       NullNum, NullText                           ));
         NoNullRet("1",  Coalesce(1,       NullNum, NullText,        zeroMatters: false));

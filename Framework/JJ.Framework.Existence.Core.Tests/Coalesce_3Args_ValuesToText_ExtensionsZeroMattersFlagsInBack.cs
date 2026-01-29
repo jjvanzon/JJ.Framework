@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_ValuesToText_ExtensionsZeroMatters : TestBase
+public class Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInBack : TestBase
 {
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersZeroMatters_Batch1()
+    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInBack_Batch1()
     {
         NoNullRet("",   NullNum.Coalesce(  Nully0, NullText                           ));
         NoNullRet("",   NullNum.Coalesce(  Nully0, NullText,        zeroMatters: false));
@@ -177,7 +177,7 @@ public class Coalesce_3Args_ValuesToText_ExtensionsZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersZeroMatters_Batch2()
+    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInBack_Batch2()
     {
         NoNullRet("",    Nully0.Coalesce(NullNum, NullText                           ));
         NoNullRet("",    Nully0.Coalesce(NullNum, NullText,        zeroMatters: false));
@@ -308,7 +308,7 @@ public class Coalesce_3Args_ValuesToText_ExtensionsZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersZeroMatters_Batch3()
+    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInBack_Batch3()
     {
         NoNullRet("1",   Nully1.Coalesce(NullNum, NullText                           ));
         NoNullRet("1",   Nully1.Coalesce(NullNum, NullText,        zeroMatters: false));
@@ -439,7 +439,7 @@ public class Coalesce_3Args_ValuesToText_ExtensionsZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersZeroMatters_Batch4()
+    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInBack_Batch4()
     {
         NoNullRet("",         0.Coalesce(NullNum, NullText                           ));
         NoNullRet("",         0.Coalesce(NullNum, NullText,        zeroMatters: false));
@@ -570,7 +570,7 @@ public class Coalesce_3Args_ValuesToText_ExtensionsZeroMatters : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersZeroMatters_Batch5()
+    public void Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInBack_Batch5()
     {
         NoNullRet("1",        1.Coalesce(NullNum, NullText                           ));
         NoNullRet("1",        1.Coalesce(NullNum, NullText,        zeroMatters: false));
