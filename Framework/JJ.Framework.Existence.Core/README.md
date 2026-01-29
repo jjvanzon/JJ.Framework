@@ -90,8 +90,30 @@ Coming Soon
 - all-`null` collections – if every item is `null`, the whole collection is officially empty.
 - ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn't `10`?
 
+
+After Upgrading
+---------------
+
+Links to legacy dependencies may have changed. If you experience problems, these things might help:
+
+#### Option `1`
+- Do nothing. Everything works.
+#### Option `2`
+- Use the [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184).
+#### Option `3`
+- Install [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
+
+The same thing applies to 
+[JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) vs [JJ.Framework.PlatformCompatibility](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility/0.250.3184)
+
+
+🐨 Mr. Koala
+------------
+
+Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coalesce`, you can never unsee it. *Mr. Koala* eats your nullies. Nully `nums` are his favorite!
+
 Release Notes
---------
+-------------
 
 #### `2.5` Initial release
 
@@ -121,28 +143,6 @@ Release Notes
 - Simplify overload resolution priorities.
 - Removing some `OverloadResolutionPriority]` (or `[Prio]`) attributes.
 - Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`, which isn't a real use case anyway.
-
-
-After Upgrading
----------------
-
-Links to legacy dependencies may have changed. If you experience problems, these things might help:
-
-#### Option `1`
-- Do nothing. Everything works.
-#### Option `2`
-- Use the [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184).
-#### Option `3`
-- Install [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
-
-The same thing applies to 
-[JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) vs [JJ.Framework.PlatformCompatibility](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility/0.250.3184)
-
-
-🐨 Mr. Koala
-------------
-
-Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coalesce`, you can never unsee it. *Mr. Koala* eats your nullies. Nully `nums` are his favorite!
 
 
 💬 Feedback
