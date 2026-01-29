@@ -5,10 +5,10 @@ RunTests<Coalesce_2Args_FlagsInFront>() &&
 RunTests<Coalesce_2Args_NoFlags>() &&
 RunTests<Coalesce_3Args_Objects>() &&
 RunTests<Coalesce_3Args_ObjectsToText>() &&
-RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit>() &&
-RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersNoImplicit>() &&
-RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool>() &&
-RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersYesMagicBool>() &&
+RunTests<Coalesce_3Args_SBs_Extensions_NoFlags>() &&
+RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInBack>() &&
+RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersYesExplicitBool_FlagsInBack>() &&
+RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersYesMagicBool_FlagsInBack>() &&
 RunTests<Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit>() &&
 RunTests<Coalesce_3Args_SBs_StaticSpaceMattersNoImplicit>() &&
 RunTests<Coalesce_3Args_SBs_StaticSpaceMattersYesExplicitBool>() &&
