@@ -3,7 +3,7 @@
     <!-- .NET targeting is good for single-exe deployment verification, but omits hitting .NET Standard 2.1 code with .NET 5 tests. -->
     <!--<TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <Version>3.1.$(BuildNum)</Version>
+    <Version>3.2.$(BuildNum)</Version>
     <Description>Has(text), Coalesce(a,b,c), list.Where(FilledIn) to replace garbage like !Equals(x, default(T?)) &amp;&amp; !Equals(x, default(T)) and string.IsNullOrWhiteSpace(text). Simple fallbacks and emptiness checks, so you can code it like you mean it.</Description>
     <PackageTags>null; empty; whitespace; guards; coalesce; checks; is; in; filled; nully; utility; has; filledin; isnully; contains</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Existence.Core</RepositoryUrl>
