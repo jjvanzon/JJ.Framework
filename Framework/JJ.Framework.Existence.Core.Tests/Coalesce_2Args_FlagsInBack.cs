@@ -200,6 +200,16 @@ public class Coalesce_2Args_FlagsInBack : TestBase
         NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters       ));
         NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters: true ));
         NoNullRet("0",          Coalesce(0, "peekaboo",              true ));
+        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters: false));
+        NoNullRet("1",          Coalesce(1,  NullText,               false));
+        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters       ));
+        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters: true ));
+        NoNullRet("1",          Coalesce(1,  NullText,               true ));
+        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters: false));
+        NoNullRet("1",          Coalesce(1, "peekaboo",              false));
+        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters       ));
+        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters: true ));
+        NoNullRet("1",          Coalesce(1, "peekaboo",              true ));
         NoNullRet("",         0.Coalesce(    NullText,  zeroMatters: false));
         NoNullRet("",         0.Coalesce(    NullText,               false));
         NoNullRet("0",        0.Coalesce(    NullText,  zeroMatters       ));

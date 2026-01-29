@@ -1,7 +1,8 @@
 ﻿bool success = 
 RunTests<Coalesce_1Arg_Tests>() &&
-RunTests<Coalesce_2Args_NoFlags>() &&
 RunTests<Coalesce_2Args_FlagsInBack>() &&
+RunTests<Coalesce_2Args_FlagsInFront>() &&
+RunTests<Coalesce_2Args_NoFlags>() &&
 RunTests<Coalesce_3Args_Objects>() &&
 RunTests<Coalesce_3Args_ObjectsToText>() &&
 RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit>() &&
