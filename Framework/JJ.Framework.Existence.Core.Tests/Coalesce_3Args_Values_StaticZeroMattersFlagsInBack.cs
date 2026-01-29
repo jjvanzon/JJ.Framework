@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_Values_StaticZeroMatters
+public class Coalesce_3Args_Values_StaticZeroMattersFlagsInBack
 {
     [TestMethod]
-    public void Coalesce_3Args_Values_StaticZeroMatters_Batch1()
+    public void Coalesce_3Args_Values_StaticZeroMattersFlagsInBack_Batch1()
     {
         NoNullRet(0, Coalesce(NullNum, Nully0,  NullNum                    ));
         NoNullRet(0, Coalesce(NullNum, Nully0,  NullNum, zeroMatters: false));
@@ -127,7 +127,7 @@ public class Coalesce_3Args_Values_StaticZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_StaticZeroMatters_Batch2()
+    public void Coalesce_3Args_Values_StaticZeroMattersFlagsInBack_Batch2()
     {
         NoNullRet(0, Coalesce(Nully0,  NullNum, Nully0                     ));
         NoNullRet(0, Coalesce(Nully0,  NullNum, Nully0,  zeroMatters: false));
@@ -243,7 +243,7 @@ public class Coalesce_3Args_Values_StaticZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_StaticZeroMatters_Batch3()
+    public void Coalesce_3Args_Values_StaticZeroMattersFlagsInBack_Batch3()
     {
         NoNullRet(1, Coalesce(Nully1,  NullNum, Nully0                     ));
         NoNullRet(1, Coalesce(Nully1,  NullNum, Nully0,  zeroMatters: false));
@@ -359,7 +359,7 @@ public class Coalesce_3Args_Values_StaticZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_StaticZeroMatters_Batch4()
+    public void Coalesce_3Args_Values_StaticZeroMattersFlagsInBack_Batch4()
     {
         NoNullRet(0, Coalesce(NoNull0, NullNum, Nully0                     ));
         NoNullRet(0, Coalesce(NoNull0, NullNum, Nully0,  zeroMatters: false));
@@ -475,7 +475,7 @@ public class Coalesce_3Args_Values_StaticZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_StaticZeroMatters_Batch5()
+    public void Coalesce_3Args_Values_StaticZeroMattersFlagsInBack_Batch5()
     {
         NoNullRet(1, Coalesce(NoNull1, NullNum, Nully0                     ));
         NoNullRet(1, Coalesce(NoNull1, NullNum, Nully0,  zeroMatters: false));

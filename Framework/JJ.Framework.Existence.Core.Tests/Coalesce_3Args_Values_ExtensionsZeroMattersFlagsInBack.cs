@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_Values_ExtensionsZeroMatters
+public class Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInBack
 {
     [TestMethod]
-    public void Coalesce_3Args_Values_ExtensionsZeroMatters_Batch1()
+    public void Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInBack_Batch1()
     {
         NoNullRet(0, NullNum.Coalesce(Nully0,  NullNum                    ));
         NoNullRet(0, NullNum.Coalesce(Nully0,  NullNum, zeroMatters: false));
@@ -127,7 +127,7 @@ public class Coalesce_3Args_Values_ExtensionsZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_ExtensionsZeroMatters_Batch2()
+    public void Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInBack_Batch2()
     {
         NoNullRet(0, Nully0 .Coalesce(NullNum, Nully0                     ));
         NoNullRet(0, Nully0 .Coalesce(NullNum, Nully0,  zeroMatters: false));
@@ -243,7 +243,7 @@ public class Coalesce_3Args_Values_ExtensionsZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_ExtensionsZeroMatters_Batch3()
+    public void Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInBack_Batch3()
     {
         NoNullRet(1, Nully1 .Coalesce(NullNum, Nully0                     ));
         NoNullRet(1, Nully1 .Coalesce(NullNum, Nully0,  zeroMatters: false));
@@ -359,7 +359,7 @@ public class Coalesce_3Args_Values_ExtensionsZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_ExtensionsZeroMatters_Batch4()
+    public void Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInBack_Batch4()
     {
         NoNullRet(0, NoNull0.Coalesce(NullNum, Nully0                     ));
         NoNullRet(0, NoNull0.Coalesce(NullNum, Nully0,  zeroMatters: false));
@@ -475,7 +475,7 @@ public class Coalesce_3Args_Values_ExtensionsZeroMatters
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Values_ExtensionsZeroMatters_Batch5()
+    public void Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInBack_Batch5()
     {
         NoNullRet(1, NoNull1.Coalesce(NullNum, Nully0                     ));
         NoNullRet(1, NoNull1.Coalesce(NullNum, Nully0,  zeroMatters: false));
