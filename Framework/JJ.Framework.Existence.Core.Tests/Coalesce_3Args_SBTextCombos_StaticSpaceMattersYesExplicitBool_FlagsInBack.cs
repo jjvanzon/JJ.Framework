@@ -2,14 +2,14 @@
 
 /// <inheritdoc cref="_coalesce3argssbtextcombos" />
 [TestClass]
-public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : TestBase
+public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch1()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch1()
     {
         NoNullRet("",         Coalesce(Null,          Null,          Null,          spaceMatters: true ));
         NoNullRet("",         Coalesce(Null,          Null,          NullyEmpty,    spaceMatters: true ));
@@ -71,7 +71,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch2()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch2()
     {
         NoNullRet("",         Coalesce(NullyEmpty,    Null,          Null,          spaceMatters: true ));
         NoNullRet("",         Coalesce(NullyEmpty,    Null,          NullyEmpty,    spaceMatters: true ));
@@ -133,7 +133,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch3()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch3()
     {
         NoNullRet(" ",        Coalesce(NullySpace,    Null,          Null,          spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpace,    Null,          NullyEmpty,    spaceMatters: true ));
@@ -195,7 +195,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch4()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch4()
     {
         NoNullRet("Filled",   Coalesce(NullyFilled,   Null,          Null,          spaceMatters: true ));
         NoNullRet("Filled",   Coalesce(NullyFilled,   Null,          NullyEmpty,    spaceMatters: true ));
@@ -257,7 +257,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch5()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch5()
     {
         NoNullRet("",         Coalesce(NullSB,        Null,          Null,          spaceMatters: true ));
         NoNullRet("",         Coalesce(NullSB,        Null,          NullyEmpty,    spaceMatters: true ));
@@ -319,7 +319,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch6()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch6()
     {
         NoNullRet("",         Coalesce(NullyEmptySB,  Null,          Null,          spaceMatters: true ));
         NoNullRet("",         Coalesce(NullyEmptySB,  Null,          NullyEmpty,    spaceMatters: true ));
@@ -381,7 +381,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch7()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch7()
     {
         NoNullRet(" ",        Coalesce(NullySpaceSB,  Null,          Null,          spaceMatters: true ));
         NoNullRet(" ",        Coalesce(NullySpaceSB,  Null,          NullyEmpty,    spaceMatters: true ));
@@ -443,7 +443,7 @@ public class Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool : Tes
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_Batch8()
+    public void Coalesce_3Args_SBTextCombos_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch8()
     {
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, Null,          Null,          spaceMatters: true ));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, Null,          NullyEmpty,    spaceMatters: true ));

@@ -2,14 +2,14 @@
 
 /// <inheritdoc cref="_coalesce3argssbtextcombos" />
 [TestClass]
-public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : TestBase
+public class Coalesce_3Args_SBTextCombos_Extensions_NoFlags : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
 
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch1()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch1()
     {
         NoNullRet("",         Null         .Coalesce( Null,          Null         ));
         NoNullRet("",         Null         .Coalesce( Null,          NullyEmpty   ));
@@ -71,7 +71,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : Test
         
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch2()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch2()
     {
         NoNullRet("",         NullyEmpty   .Coalesce( Null,          Null         ));
         NoNullRet("",         NullyEmpty   .Coalesce( Null,          NullyEmpty   ));
@@ -133,7 +133,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : Test
         
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch3()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch3()
     {
         NoNullRet("",         NullySpace   .Coalesce( Null,          Null         ));
         NoNullRet("",         NullySpace   .Coalesce( Null,          NullyEmpty   ));
@@ -195,7 +195,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : Test
         
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch4()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch4()
     {
         NoNullRet("Filled",   NullyFilled  .Coalesce( Null,          Null         ));
         NoNullRet("Filled",   NullyFilled  .Coalesce( Null,          NullyEmpty   ));
@@ -257,7 +257,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : Test
         
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch5()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch5()
     {
         NoNullRet("",         NullSB       .Coalesce( Null,          Null         ));
         NoNullRet("",         NullSB       .Coalesce( Null,          NullyEmpty   ));
@@ -319,7 +319,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : Test
         
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch6()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch6()
     {
         NoNullRet("",         NullyEmptySB .Coalesce( Null,          Null         ));
         NoNullRet("",         NullyEmptySB .Coalesce( Null,          NullyEmpty   ));
@@ -381,7 +381,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : Test
         
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch7()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch7()
     {
         NoNullRet("",         NullySpaceSB .Coalesce( Null,          Null         ));
         NoNullRet("",         NullySpaceSB .Coalesce( Null,          NullyEmpty   ));
@@ -443,7 +443,7 @@ public class Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit : Test
         
     /// <inheritdoc cref="_coalesce3argssbtextcombos" />
     [TestMethod]
-    public void Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoImplicit_Batch8()
+    public void Coalesce_3Args_SBTextCombos_Extensions_NoFlags_Batch8()
     {
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( Null,          Null         ));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( Null,          NullyEmpty   ));

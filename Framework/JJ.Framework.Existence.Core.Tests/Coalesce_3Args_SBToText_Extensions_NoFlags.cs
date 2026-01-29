@@ -2,14 +2,14 @@
 
 /// <inheritdoc cref="_coalesce3argssbtotext" />
 [TestClass]
-public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit : TestBase
+public class Coalesce_3Args_SBToText_Extensions_NoFlags : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit_Batch1()
+    public void Coalesce_3Args_SBToText_Extensions_NoFlags_Batch1()
     {
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Null       ));
         NoNullRet("",         NullSB       .Coalesce( NullSB,        Empty      ));
@@ -64,7 +64,7 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit_Batch2()
+    public void Coalesce_3Args_SBToText_Extensions_NoFlags_Batch2()
     {
         NoNullRet("",         NullyEmptySB .Coalesce( NullSB,        Null       ));
         NoNullRet("",         NullyEmptySB .Coalesce( NullSB,        Empty      ));
@@ -119,7 +119,7 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit_Batch3()
+    public void Coalesce_3Args_SBToText_Extensions_NoFlags_Batch3()
     {
         NoNullRet("",         NullySpaceSB .Coalesce( NullSB,        Null       ));
         NoNullRet("",         NullySpaceSB .Coalesce( NullSB,        Empty      ));
@@ -174,7 +174,7 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit_Batch4()
+    public void Coalesce_3Args_SBToText_Extensions_NoFlags_Batch4()
     {
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullSB,        Null       ));
         NoNullRet("FilledSB", NullyFilledSB.Coalesce( NullSB,        Empty      ));
@@ -229,7 +229,7 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit_Batch5()
+    public void Coalesce_3Args_SBToText_Extensions_NoFlags_Batch5()
     {
         NoNullRet("",         EmptySB      .Coalesce( NullSB,        Null       ));
         NoNullRet("",         EmptySB      .Coalesce( NullSB,        Empty      ));
@@ -284,7 +284,7 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit_Batch6()
+    public void Coalesce_3Args_SBToText_Extensions_NoFlags_Batch6()
     {
         NoNullRet("",         SpaceSB      .Coalesce( NullSB,        Null       ));
         NoNullRet("",         SpaceSB      .Coalesce( NullSB,        Empty      ));
@@ -339,7 +339,7 @@ public class Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_ExtensionsSpaceMattersNoImplicit_Batch7()
+    public void Coalesce_3Args_SBToText_Extensions_NoFlags_Batch7()
     {
         NoNullRet("FilledSB", FilledSB     .Coalesce( NullSB,        Null       ));
         NoNullRet("FilledSB", FilledSB     .Coalesce( NullSB,        Empty      ));

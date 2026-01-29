@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool
+public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack
 {
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_Batch1()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack_Batch1()
     {
         NoNullRet(                 Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullSB,        NullSB,        NullSB,        spaceMatters)}");
@@ -61,7 +61,7 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool
     }
 
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_Batch2()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack_Batch2()
     {
         NoNullRet(                 Coalesce(NullyEmptySB,  NullSB,        NullSB,        spaceMatters));
         NoNullRet($"{EmptySB}", $"{Coalesce(NullyEmptySB,  NullSB,        NullSB,        spaceMatters)}");
@@ -118,7 +118,7 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool
     }
 
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_Batch3()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack_Batch3()
     {
         NoNullRet(   SpaceSB,      Coalesce(NullySpaceSB,  NullSB,        NullSB,        spaceMatters));
         NoNullRet(   SpaceSB,      Coalesce(NullySpaceSB,  NullSB,        NullyEmptySB,  spaceMatters));
@@ -172,7 +172,7 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool
     }
 
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_Batch4()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack_Batch4()
     {
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, NullSB,        NullSB,        spaceMatters));
         NoNullRet(   FilledSB,     Coalesce(NullyFilledSB, NullSB,        NullyEmptySB,  spaceMatters));
@@ -226,7 +226,7 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool
     }
 
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_Batch5()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack_Batch5()
     {
         NoNullRet(                 Coalesce(EmptySB,       NullSB,        NullSB,        spaceMatters));
         NoNullRet($"{EmptySB}", $"{Coalesce(EmptySB,       NullSB,        NullSB,        spaceMatters)}");
@@ -283,7 +283,7 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool
     }
 
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_Batch6()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack_Batch6()
     {
         NoNullRet(   SpaceSB,      Coalesce(SpaceSB,       NullSB,        NullSB,        spaceMatters));
         NoNullRet(   SpaceSB,      Coalesce(SpaceSB,       NullSB,        NullyEmptySB,  spaceMatters));
@@ -337,7 +337,7 @@ public class Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool
     }
 
     [TestMethod]
-    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_Batch7()
+    public void Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack_Batch7()
     {
         NoNullRet(   FilledSB,     Coalesce(FilledSB,      NullSB,        NullSB,        spaceMatters));
         NoNullRet(   FilledSB,     Coalesce(FilledSB,      NullSB,        NullyEmptySB,  spaceMatters));

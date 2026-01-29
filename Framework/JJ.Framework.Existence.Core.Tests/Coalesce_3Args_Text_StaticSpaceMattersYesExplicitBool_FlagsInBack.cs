@@ -1,19 +1,19 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
+public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack : TestBase
 {
     const string? Null = NullText;
     const string? NullyFilled = NullyFilledText;
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Example()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Example()
     {
         AreEqual(" ",    Coalesce(" ", Null, "Hi!", spaceMatters: true));
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Batch1()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch1()
     {
         NoNullRet(Empty, Coalesce(Null,        Null,        Null,        spaceMatters: true));
         NoNullRet(Empty, Coalesce(Null,        Null,        NullyEmpty,  spaceMatters: true));
@@ -67,7 +67,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Batch2()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch2()
     {
         NoNullRet(Empty, Coalesce(NullyEmpty,  Null,        Null,        spaceMatters: true));
         NoNullRet(Empty, Coalesce(NullyEmpty,  Null,        NullyEmpty,  spaceMatters: true));
@@ -121,7 +121,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Batch3()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch3()
     {
         NoNullRet(Space, Coalesce(NullySpace,  Null,        Null,        spaceMatters: true));
         NoNullRet(Space, Coalesce(NullySpace,  Null,        NullyEmpty,  spaceMatters: true));
@@ -175,7 +175,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Batch4()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch4()
     {
         NoNullRet(Text,  Coalesce(NullyFilled, Null,        Null,        spaceMatters: true));
         NoNullRet(Text,  Coalesce(NullyFilled, Null,        NullyEmpty,  spaceMatters: true));
@@ -229,7 +229,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Batch5()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch5()
     {
         NoNullRet(Empty, Coalesce(Empty,       Null,        Null,        spaceMatters: true));
         NoNullRet(Empty, Coalesce(Empty,       Null,        NullyEmpty,  spaceMatters: true));
@@ -283,7 +283,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Batch6()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch6()
     {
         NoNullRet(Space, Coalesce(Space,       Null,        Null,        spaceMatters: true));
         NoNullRet(Space, Coalesce(Space,       Null,        NullyEmpty,  spaceMatters: true));
@@ -337,7 +337,7 @@ public class Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_Batch7()
+    public void Coalesce_3Args_Text_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch7()
     {
         NoNullRet(Text,  Coalesce(Text,        Null,        Null,        spaceMatters: true));
         NoNullRet(Text,  Coalesce(Text,        Null,        NullyEmpty,  spaceMatters: true));

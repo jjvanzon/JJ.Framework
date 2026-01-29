@@ -2,14 +2,14 @@
 
 /// <inheritdoc cref="_coalesce3argssbtotext" />
 [TestClass]
-public class Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit : TestBase
+public class Coalesce_3Args_SBToText_Static_NoFlags : TestBase
 {
     private const string? NullyFilled = NullyFilledText;
     private const string? Null = NullText;
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit_Batch1()
+    public void Coalesce_3Args_SBToText_Static_NoFlags_Batch1()
     {
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Null       ));
         NoNullRet("",         Coalesce(NullSB,        NullSB,        Empty      ));
@@ -64,7 +64,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit_Batch2()
+    public void Coalesce_3Args_SBToText_Static_NoFlags_Batch2()
     {
         NoNullRet("",         Coalesce(NullyEmptySB,  NullSB,        Null       ));
         NoNullRet("",         Coalesce(NullyEmptySB,  NullSB,        Empty      ));
@@ -119,7 +119,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit_Batch3()
+    public void Coalesce_3Args_SBToText_Static_NoFlags_Batch3()
     {
         NoNullRet("",         Coalesce(NullySpaceSB,  NullSB,        Null       ));
         NoNullRet("",         Coalesce(NullySpaceSB,  NullSB,        Empty      ));
@@ -174,7 +174,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit_Batch4()
+    public void Coalesce_3Args_SBToText_Static_NoFlags_Batch4()
     {
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Null       ));
         NoNullRet("FilledSB", Coalesce(NullyFilledSB, NullSB,        Empty      ));
@@ -229,7 +229,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit_Batch5()
+    public void Coalesce_3Args_SBToText_Static_NoFlags_Batch5()
     {
         NoNullRet("",         Coalesce(EmptySB,       NullSB,        Null       ));
         NoNullRet("",         Coalesce(EmptySB,       NullSB,        Empty      ));
@@ -284,7 +284,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit_Batch6()
+    public void Coalesce_3Args_SBToText_Static_NoFlags_Batch6()
     {
         NoNullRet("",         Coalesce(SpaceSB,       NullSB,        Null       ));
         NoNullRet("",         Coalesce(SpaceSB,       NullSB,        Empty      ));
@@ -339,7 +339,7 @@ public class Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit : TestBase
     
     /// <inheritdoc cref="_coalesce3argssbtotext" />
     [TestMethod]
-    public void Coalesce_3Args_SBToText_StaticSpaceMattersNoImplicit_Batch7()
+    public void Coalesce_3Args_SBToText_Static_NoFlags_Batch7()
     {
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Null       ));
         NoNullRet("FilledSB", Coalesce(FilledSB,      NullSB,        Empty      ));
