@@ -284,7 +284,55 @@ public static partial class FilledInHelper
     public static T      Coalesce<T>(     T       val,  T       fallback, T?      fallback2, ZeroMatters  zeroMatters ) where T : struct => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static T      Coalesce<T>(     T       val,  T       fallback, T       fallback2, ZeroMatters  zeroMatters ) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
-    
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     bool         zeroMatters, T?      val,  T?      fallback, string? fallback2 ) where T : struct => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     bool         zeroMatters, T       val,  T?      fallback, string? fallback2 ) where T : struct => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     bool         zeroMatters, T?      val,  T       fallback, string? fallback2 ) where T : struct => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     bool         zeroMatters, T       val,  T       fallback, string? fallback2 ) where T : struct => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T?      val,  T?      fallback, T?      fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T?      val,  T?      fallback, T       fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T?      val,  T       fallback, T?      fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T?      val,  T       fallback, T       fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T       val,  T?      fallback, T?      fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T       val,  T?      fallback, T       fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T       val,  T       fallback, T?      fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     bool         zeroMatters, T       val,  T       fallback, T       fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     ZeroMatters  zeroMatters, T?      val,  T?      fallback, string? fallback2 ) where T : struct => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     ZeroMatters  zeroMatters, T       val,  T?      fallback, string? fallback2 ) where T : struct => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     ZeroMatters  zeroMatters, T?      val,  T       fallback, string? fallback2 ) where T : struct => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static string Coalesce<T>(     ZeroMatters  zeroMatters, T       val,  T       fallback, string? fallback2 ) where T : struct => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T?      val,  T?      fallback, T?      fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T?      val,  T?      fallback, T       fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T?      val,  T       fallback, T?      fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T?      val,  T       fallback, T       fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T       val,  T?      fallback, T?      fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T       val,  T?      fallback, T       fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T       val,  T       fallback, T?      fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     ZeroMatters  zeroMatters, T       val,  T       fallback, T       fallback2 ) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+
     // N Args (for all others)
     
     /// <inheritdoc cref="_coalesce" /> 

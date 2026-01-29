@@ -301,10 +301,10 @@ public class Existence_Bool_Tests
     {
         IsTrue (Coalesce(False, NullyTrue, NullBool                        ));
         IsTrue (Coalesce(False, NullyTrue, NullBool,     zeroMatters: false));
-        IsTrue (Coalesce(False, NullyTrue, NullBool,                  false));
+      //IsTrue (Coalesce(False, NullyTrue, NullBool,                  false)); // Overload clash
         IsFalse(Coalesce(False, NullyTrue, NullBool,     zeroMatters       ));
         IsFalse(Coalesce(False, NullyTrue, NullBool,     zeroMatters: true ));
-        IsFalse(Coalesce(False, NullyTrue, NullBool,                  true ));
+      //IsFalse(Coalesce(False, NullyTrue, NullBool,                  true )); // Overload clash
 
         IsTrue (NullyFalse.Coalesce(NullBool, NullyTrue                    ));
         IsTrue (NullyFalse.Coalesce(NullBool, NullyTrue, zeroMatters: false));
