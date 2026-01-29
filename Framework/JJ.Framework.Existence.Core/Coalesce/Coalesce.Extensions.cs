@@ -20,7 +20,7 @@ public static class CoalesceExtensions
           /// <inheritdoc cref="_coalesce" />
           public static T      Coalesce<T>(this T?      val ) where T : struct => CoalesceValNully(val);
           
-          // 2 Args (for some)
+          // 2 Args (for text)
           
           /// <inheritdoc cref="_coalesce" /> 
           public static string Coalesce   (this string? text, string? fallback                           ) => CoalesceTwoTexts      (text, fallback);
@@ -49,6 +49,8 @@ public static class CoalesceExtensions
           /// <inheritdoc cref="_coalesce" />
           public static SB     Coalesce   (this SB?     sb,   SB?     fallback, SpaceMatters spaceMatters) => CoalesceTwoSBs        (sb,   fallback, spaceMatters);
           
+          // 2 Args (for some)
+
           /// <inheritdoc cref="_coalesce" />
           public static string Coalesce<T>(this T       val,  string? fallback                           ) where T : struct => CoalesceValToText     (val,  fallback);
           /// <inheritdoc cref="_coalesce" />

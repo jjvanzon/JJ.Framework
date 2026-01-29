@@ -205,8 +205,6 @@ public static partial class FilledInHelper
     public static string Coalesce   (     SpaceMatters spaceMatters, SB?     sb,   SB?     fallback, string? fallback2) => CoalesceSBAndText(sb,   CoalesceSBAndText(fallback, fallback2, spaceMatters), spaceMatters);
     /// <inheritdoc cref="_coalesce" />
     public static SB     Coalesce   (     SpaceMatters spaceMatters, SB?     sb,   SB?     fallback, SB?     fallback2) => CoalesceTwoSBs   (sb,   CoalesceTwoSBs   (fallback, fallback2, spaceMatters), spaceMatters);
-    
-    // TODO: Flags in Front
 
     // 3 Args (for some)
     
