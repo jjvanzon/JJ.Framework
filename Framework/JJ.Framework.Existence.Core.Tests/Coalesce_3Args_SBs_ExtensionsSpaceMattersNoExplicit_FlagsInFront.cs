@@ -1,0 +1,408 @@
+﻿namespace JJ.Framework.Existence.Core.Tests;
+
+[TestClass]
+public class Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront
+{
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront_Batch1()
+    {
+        NoNullRet(                 NullSB       .Coalesce(spaceMatters: false, NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(spaceMatters: false, NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullSB,        FilledSB     ));
+        NoNullRet(                 NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, NullyFilledSB, FilledSB     ));
+        NoNullRet(                 NullSB       .Coalesce(spaceMatters: false, EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(spaceMatters: false, EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, EmptySB,       FilledSB     ));
+        NoNullRet(                 NullSB       .Coalesce(spaceMatters: false, SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullSB       .Coalesce(spaceMatters: false, SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      NullSB       .Coalesce(spaceMatters: false, SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      NullSB       .Coalesce(spaceMatters: false, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     NullSB       .Coalesce(spaceMatters: false, FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront_Batch2()
+    {
+        NoNullRet(                 NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullSB,        FilledSB     ));
+        NoNullRet(                 NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, NullyFilledSB, FilledSB     ));
+        NoNullRet(                 NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, EmptySB,       FilledSB     ));
+        NoNullRet(                 NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyEmptySB .Coalesce(spaceMatters: false, FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront_Batch3()
+    {
+        NoNullRet(                 NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullSB,        FilledSB     ));
+        NoNullRet(                 NullySpaceSB .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullySpaceSB. Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, NullyFilledSB, FilledSB     ));
+        NoNullRet(                 NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, EmptySB,       FilledSB     ));
+        NoNullRet(                 NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     NullySpaceSB .Coalesce(spaceMatters: false, FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront_Batch4()
+    {
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullSB,        NullSB       ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullSB,        NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullSB,        NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullSB,        EmptySB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullSB,        FilledSB     ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB     ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, NullyFilledSB, FilledSB     ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, EmptySB,       NullSB       ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, EmptySB,       EmptySB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, EmptySB,       FilledSB     ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, SpaceSB,       NullSB       ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, SpaceSB,       EmptySB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     NullyFilledSB.Coalesce(spaceMatters: false, FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront_Batch5()
+    {
+        NoNullRet(                 EmptySB      .Coalesce(spaceMatters: false, NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{EmptySB      .Coalesce(spaceMatters: false, NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullSB,        FilledSB     ));
+        NoNullRet(                 EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, NullyFilledSB, FilledSB     ));
+        NoNullRet(                 EmptySB      .Coalesce(spaceMatters: false, EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{EmptySB      .Coalesce(spaceMatters: false, EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, EmptySB,       FilledSB     ));
+        NoNullRet(                 EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     EmptySB      .Coalesce(spaceMatters: false, FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront_Batch6()
+    {
+        NoNullRet(                 SpaceSB      .Coalesce(spaceMatters: false, NullSB,        NullSB       ));
+        NoNullRet($"{EmptySB}", $"{SpaceSB      .Coalesce(spaceMatters: false, NullSB,        NullSB       )}");
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, NullSB,        NullyEmptySB ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullSB,        NullyFilledSB));
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, NullSB,        EmptySB      ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullSB,        FilledSB     ));
+        NoNullRet(                 SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       )}");
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB     ));
+        NoNullRet(                 SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       ));
+        NoNullRet($"{EmptySB}", $"{SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       )}");
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, NullyFilledSB, FilledSB     ));
+        NoNullRet(                 SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       NullSB       )}");
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, EmptySB,       FilledSB     ));
+        NoNullRet(                 SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       NullSB       ));
+        NoNullRet($"{EmptySB}", $"{SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       NullSB       )}");
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB));
+        NoNullRet(   EmptySB,      SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       EmptySB      ));
+        NoNullRet(   SpaceSB,      SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     SpaceSB      .Coalesce(spaceMatters: false, FilledSB,      FilledSB     ));
+    }
+
+    [TestMethod]
+    public void Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront_Batch7()
+    {
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullSB,        NullSB       ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullSB,        NullyEmptySB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullSB,        NullySpaceSB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullSB,        NullyFilledSB));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullSB,        EmptySB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullSB,        SpaceSB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullSB,        FilledSB     ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyEmptySB,  NullSB       ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyEmptySB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyEmptySB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyEmptySB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyEmptySB,  EmptySB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyEmptySB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyEmptySB,  FilledSB     ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullySpaceSB,  NullSB       ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullySpaceSB,  NullyEmptySB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullySpaceSB,  NullySpaceSB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullySpaceSB,  NullyFilledSB));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullySpaceSB,  EmptySB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullySpaceSB,  SpaceSB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullySpaceSB,  FilledSB     ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyFilledSB, NullSB       ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyFilledSB, NullyEmptySB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyFilledSB, NullySpaceSB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyFilledSB, NullyFilledSB));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyFilledSB, EmptySB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyFilledSB, SpaceSB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, NullyFilledSB, FilledSB     ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, EmptySB,       NullSB       ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, EmptySB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, EmptySB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, EmptySB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, EmptySB,       EmptySB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, EmptySB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, EmptySB,       FilledSB     ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, SpaceSB,       NullSB       ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, SpaceSB,       NullyEmptySB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, SpaceSB,       NullySpaceSB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, SpaceSB,       NullyFilledSB));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, SpaceSB,       EmptySB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, SpaceSB,       SpaceSB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, SpaceSB,       FilledSB     ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, FilledSB,      NullSB       ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, FilledSB,      NullyEmptySB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, FilledSB,      NullySpaceSB ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, FilledSB,      NullyFilledSB));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, FilledSB,      EmptySB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, FilledSB,      SpaceSB      ));
+        NoNullRet(   FilledSB,     FilledSB     .Coalesce(spaceMatters: false, FilledSB,      FilledSB     ));
+    }
+}
