@@ -107,11 +107,6 @@ The same thing applies to
 [JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) vs [JJ.Framework.PlatformCompatibility](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility/0.250.3184)
 
 
-🐨 Mr. Koala
-------------
-
-Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coalesce`, you can never unsee it. *Mr. Koala* eats your nullies. Nully `nums` are his favorite!
-
 Release Notes
 -------------
 
@@ -129,6 +124,12 @@ Release Notes
 | `3.1` | __Less Prios__                          | Simplify overload picking removing some `[Prio]` attributes.
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
 | `3.2` | __Flags in Front__                      | `Coalesce` now supports both flags in front and at the end of the parameter list.
+
+
+🐨 Mr. Koala
+------------
+
+Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coalesce`, you can never unsee it. *Mr. Koala* eats your nullies. Nully `nums` are his favorite!
 
 
 💬 Feedback
