@@ -115,20 +115,20 @@ Special thanks to *Mr. Koala.* Once you think of koalas when you read 🐨 `Coal
 Release Notes
 -------------
 
-|       |                                                  |   
-|-------|--------------------------------------------------|---
-| `2.5` | __Initial release__                              | -
-| `2.6` | __Flags__                                        | `spaceMatters` flags everywhere 
-|       |                                                  | `caseMatters` replaced `ignoreCase`  
-|       |                                                  | `StringBulder`/`string` more combos possible  
-|       |                                                  | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
-| `2.7` | __Version Lineages + IntelliSense__              | Improved separation of `Legacy` version lineages for a more stable package update.
-| `2.8` | __AOT, Trimming and Self-Contained App Support__ | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
-| `2.9` | __zeroMatters__                                  | Flag when you consider `0` meaningful (not nully).
-| `3.0` | __.NET 10 Support__                              | -
-| `3.1` | __Less Prios__                                   | Simplify overload picking removing some `[Prio]` attributes.
-|       |                                                  | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Flags in Front__                               | `Coalesce` now supports both flags in front and at the end of the parameter list.
+|       |                                         |   |
+|-------|-----------------------------------------|---|
+| `2.5` | __Initial release__                     | -
+| `2.6` | __Flags__                               | `spaceMatters` flags everywhere 
+|       |                                         | `caseMatters` replaced `ignoreCase`  
+|       |                                         | `StringBulder`/`string` more combos possible  
+|       |                                         | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+| `2.7` | __Version Lineages + IntelliSense__     | Improved separation of `Legacy` version lineages for a more stable package update.
+| `2.8` | __AOT, Trimming & Self-Contained Apps__ | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
+| `2.9` | __zeroMatters__                         | Flag when you consider `0` meaningful (not nully).
+| `3.0` | __.NET 10__                             | Upgraded with explicit support for `.NET 10`
+| `3.1` | __Less Prios__                          | Simplify overload picking removing some `[Prio]` attributes.
+|       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
+| `3.2` | __Flags in Front__                      | `Coalesce` now supports both flags in front and at the end of the parameter list.
 
 
 💬 Feedback
