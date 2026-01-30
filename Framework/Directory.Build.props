@@ -166,7 +166,7 @@
 
   <!-- Publish -->
 
-  <!--<PropertyGroup Condition="$(IsTrimTest) And $(IsNet9)">-->
+  <!-- Set Single Exe / Trimming / AOT  -->
   <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
@@ -199,26 +199,25 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
+  <!-- Exclude Symbols -->
   <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
-    <!--<DebugType>none</DebugType>-->
-    <!--<DebugSymbols>False</DebugSymbols>-->
-    <!--<IncludeSymbols>False</IncludeSymbols>-->
-    <!--<StripSymbols>True</StripSymbols>-->
-    <!--<IncludeNativeDebugSymbolsInSingleFile>False</IncludeNativeDebugSymbolsInSingleFile>-->
     <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
-    <!--<PublishReadyToRunEmitSymbols>False</PublishReadyToRunEmitSymbols>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <!-- Do Not Package -->
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <!-- Output Path -->
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
+  <!-- Publish -->
   <Target Name="PublishAfterBuild" AfterTargets="Build"
           Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(IsNCrunch)'!='True'">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
 
+  <!-- Remove Clutter -->
   <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And '$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
