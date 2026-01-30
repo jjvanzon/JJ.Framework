@@ -166,14 +166,8 @@
 
   <!-- Publish -->
 
-  <!-- Conditions -->
-  <PropertyGroup>
-    <MustPublishjj>False</MustPublishjj>
-    <MustPublishjj Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(IsNCrunch)'!='True'">True</MustPublishjj>
-  </PropertyGroup>
-
-  <!-- Set Single Exe / Trimming / AOT  -->
-  <PropertyGroup Condition="$(MustPublishjj) And ($(IsNet9) Or $(IsNet10))">
+  <!--<PropertyGroup Condition="$(IsTrimTest) And $(IsNet9)">-->
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -181,7 +175,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(MustPublishjj) And $(IsNet8)">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet8)">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -189,7 +183,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(MustPublishjj) And ($(IsNet6) Or $(IsNet7))">
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet6) Or $(IsNet7))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <!--<PublishAot>True</PublishAot>-->
@@ -197,7 +191,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(MustPublishjj) And $(IsNet5)">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet5)">
     <SelfContained>True</SelfContained>
     <!--<PublishTrimmed>True</PublishTrimmed>-->
     <!--<PublishAot>True</PublishAot>-->
@@ -205,22 +199,27 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(MustPublishjj) And $(IsInnerBuild)">
-    <!-- Exclude Symbols -->
+  <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
+    <!--<DebugType>none</DebugType>-->
+    <!--<DebugSymbols>False</DebugSymbols>-->
+    <!--<IncludeSymbols>False</IncludeSymbols>-->
+    <!--<StripSymbols>True</StripSymbols>-->
+    <!--<IncludeNativeDebugSymbolsInSingleFile>False</IncludeNativeDebugSymbolsInSingleFile>-->
     <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
-    <!-- Do Not Package -->
+    <!--<PublishReadyToRunEmitSymbols>False</PublishReadyToRunEmitSymbols>-->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <!-- Output Path -->
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
-  <!-- Publish -->
-  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(MustPublishjj) And $(IsInnerBuild)">
+  <Target Name="PublishAfterBuild" AfterTargets="Build"
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(IsNCrunch)'!='True'">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
 
-  <!-- Remove Clutter -->
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(MustPublishjj) And $(IsInnerBuild)">
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And '$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 
