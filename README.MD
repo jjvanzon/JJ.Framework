@@ -65,41 +65,29 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 📋 Release Notes
 -----------------
 
-<h4><code>1.9</code> Build.csproj</h4>
-<h4><code>2.5</code> Existence.Core</h4>
-<h4><code>2.6</code> Flags</h4>
-
-- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core):
-- `spaceMatters` flags everywhere  
-- `caseMatters` replaced `ignoreCase`  
-- `StringBulder`/`string` more combos possible  
-- `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
-
-<h4><code>2.7</code> Version Lineages + IntelliSense</h4>
-
-- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core), [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) + dependencies.
-- Improved separation of `Legacy` version lineages for a more stable package update.
-- IntelliSense for [JJ.Framework.PlatformCompatibility.Legacy](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) and [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
-
-<h4><code>2.8</code> AOT, Trimming and Self-Contained App Support</h4>
-
-- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core), [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) + dependencies.
-- Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
-
-<h4><code>2.9</code> ZeroMatters</h4>
-
-- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core) + dependencies.
-- Added optional <code>zeroMatters</code> flags to indicate if <code>0</code> is a meaningful value, or to favor a fallback to a something less 'nully' instead.
-- Includes [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) to keepi version lineage consistent.
-
-<h4><code>3.0</code> .NET 10 Support</h4>
-
-<h4><code>3.1</code> Less Prios </h4>
-
-- [JJ.Framework.Existence.Core](https://www.nuget.org/packages/JJ.Framework.Existence.Core) + dependencies.
-- Simplify overload resolution priorities.
-- Removing some `[OverloadResolutionPriority]` (or `[Prio]`) attributes.
-- Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`, which isn't a real use case anyway.
+|       |                                           |   
+|-------|-------------------------------------------|---
+| `1.9` | __Build.csproj__                          |
+| `2.5` | __Existence.Core__                        | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                           | Initial release
+| `2.6` | __Flags__                                 | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                           | `spaceMatters` flags everywhere 
+|       |                                           | `caseMatters` replaced `ignoreCase`  
+|       |                                           | `StringBulder`/`string` more combos possible  
+|       |                                           | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+| `2.7` | __Version Lineages + IntelliSense__       | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+|       |                                           | Improved separation of `Legacy` version lineages for a more stable package update.
+|       |                                           | Added more IntelliSense docs.
+| `2.8` | __AOT, Trimming and Self-Contained Apps__ | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+|       |                                           | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
+| `2.9` | __zeroMatters__                           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                           | Flag when you consider `0` meaningful (not nully).
+| `3.0` | __.NET 10 Support__                       | -
+| `3.1` | __Less Prios__                            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                           | Simplify overload picking removing some `[Prio]` attributes.
+|       |                                           | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
+| `3.2` | __Flags in Front__                        | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+|       |                                           | `Coalesce` now supports both flags in front and at the end of the parameter list.
 
 💬 Feedback 
 ------------
