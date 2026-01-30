@@ -168,9 +168,9 @@
   <!-- Conditions -->
   <PropertyGroup>
     <MustPublishjj>False</MustPublishjj>
-    <MustPublishjj Condition="$(IsTrimTest)">True</MustPublishjj>
+    <!--<MustPublishjj Condition="$(IsTrimTest)">True</MustPublishjj>-->
+    <MustPublishjj Condition="$(IsTrimTest) And $(Configuration)=='Release'">True</MustPublishjj>
   </PropertyGroup>
-
 
   <PropertyGroup Condition="$(MustPublishjj)">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
