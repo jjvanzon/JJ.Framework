@@ -116,8 +116,12 @@
 
   <!-- Publish -->
 
-  <!--<PropertyGroup Condition="$(IsTrimTest) And $(IsNet9)">-->
-  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">
+  <PropertyGroup>
+    <MustPublishjj>False</MustPublishjj>
+    <MustPublishjj Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(TargetFramework)'!='' And '$(IsNCrunch)'!='True'">True</MustPublishjj>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(MustPublishjj) And ($(IsNet9) Or $(IsNet10))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -125,7 +129,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet8)">
+  <PropertyGroup Condition="$(MustPublishjj) And $(IsNet8)">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
@@ -133,7 +137,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet6) Or $(IsNet7))">
+  <PropertyGroup Condition="$(MustPublishjj) And ($(IsNet6) Or $(IsNet7))">
     <SelfContained>True</SelfContained>
     <PublishTrimmed>True</PublishTrimmed>
     <!--<PublishAot>True</PublishAot>-->
@@ -141,7 +145,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet5)">
+  <PropertyGroup Condition="$(MustPublishjj) And $(IsNet5)">
     <SelfContained>True</SelfContained>
     <!--<PublishTrimmed>True</PublishTrimmed>-->
     <!--<PublishAot>True</PublishAot>-->
@@ -149,7 +153,7 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
+  <PropertyGroup Condition="$(MustPublishjj)">
     <!--<DebugType>none</DebugType>-->
     <!--<DebugSymbols>False</DebugSymbols>-->
     <!--<IncludeSymbols>False</IncludeSymbols>-->
@@ -159,17 +163,16 @@
     <!--<PublishReadyToRunEmitSymbols>False</PublishReadyToRunEmitSymbols>-->
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <PropertyGroup Condition="$(MustPublishjj)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
-  <Target Name="PublishAfterBuild" AfterTargets="Build" 
-          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(IsNCrunch)'!='True'">
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(MustPublishjj)">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
   
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And '$(PublishDir)'!=''">
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(MustPublishjj)">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 
