@@ -8,6 +8,7 @@
   
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <Description>A JJ.Framework Component</Description>
     <PackageTags>framework; architecture; utility</PackageTags>
     <Authors>JJ van Zon</Authors>
@@ -168,7 +169,7 @@
   <!-- Conditions -->
   <PropertyGroup>
     <MustPublishjj>False</MustPublishjj>
-    <MustPublishjj Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(TargetFramework)'!='' And '$(IsNCrunch)'!='True'">True</MustPublishjj>
+    <MustPublishjj Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(IsNCrunch)'!='True'">True</MustPublishjj>
   </PropertyGroup>
 
   <!-- Set Single Exe / Trimming / AOT  -->
@@ -204,30 +205,22 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(MustPublishjj)">
-    <!--<DebugType>none</DebugType>-->
-    <!--<DebugSymbols>False</DebugSymbols>-->
-    <!--<IncludeSymbols>False</IncludeSymbols>-->
-    <!--<StripSymbols>True</StripSymbols>-->
-    <!--<IncludeNativeDebugSymbolsInSingleFile>False</IncludeNativeDebugSymbolsInSingleFile>-->
-    <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
-    <!--<PublishReadyToRunEmitSymbols>False</PublishReadyToRunEmitSymbols>-->
-  </PropertyGroup>
-
-  <PropertyGroup Condition="$(MustPublishjj)">
+  <PropertyGroup Condition="$(MustPublishjj) And $(IsInnerBuild)">
     <!-- Exclude Symbols -->
+    <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
+    <!-- Do Not Package -->
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <!-- Output Path -->
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
   <!-- Publish -->
-  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(MustPublishjj)">
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(MustPublishjj) And $(IsInnerBuild)">
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
 
   <!-- Remove Clutter -->
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(MustPublishjj)">
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(MustPublishjj) And $(IsInnerBuild)">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 
