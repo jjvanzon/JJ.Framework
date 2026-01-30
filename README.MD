@@ -65,8 +65,8 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 📋 Release Notes
 -----------------
 
-|       |                                           |   
-|-------|-------------------------------------------|---
+|       |                                           |   |
+|-------|-------------------------------------------|---|
 | `1.9` | __Build.csproj__                          |
 | `2.5` | __Existence.Core__                        | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                           | Initial release
