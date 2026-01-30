@@ -82,7 +82,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                           | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
 | `2.9` | __zeroMatters__                           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                           | Flag when you consider `0` meaningful (not nully).
-| `3.0` | __.NET 10 Support__                       | Upgraded with explicit support for .NET 10.
+| `3.0` | __.NET 10 Support__                       | Upgraded with explicit support for `.NET 10`
 | `3.1` | __Less Prios__                            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                           | Simplify overload picking removing some `[Prio]` attributes.
 |       |                                           | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
