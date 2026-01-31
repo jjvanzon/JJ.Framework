@@ -79,7 +79,8 @@ RunTests<Coalesce_Collections_Extensions_Tests>() &&
 RunTests<Coalesce_Collections_Static_Tests>() &&
 RunTests<Coalesce_Keywords_Tests>() &&
 RunTests<Coalesce_Variadic_Tests>() &&
-RunTests<ContainsTests>() &&
+RunTests<Contains_NullableItem_Tests>() &&
+RunTests<Contains_Tests>() &&
 RunTests<Existence_BasicType_Tests>() &&
 RunTests<Existence_Bugs>() &&
 RunTests<Existence_Bool_Tests>() &&
