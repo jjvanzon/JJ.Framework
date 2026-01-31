@@ -87,7 +87,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                         | Simplify overload picking removing some `[Prio]` attributes.
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
 | `3.2` | __Flags in Front__                      | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
-|       |                                         | `Coalesce` now supports both flags in front and at the end of the parameter list.
+|       |                                         | Flags at the beginning of the parameter list, now don't come with a performance penalty.
 
 💬 Feedback 
 ------------

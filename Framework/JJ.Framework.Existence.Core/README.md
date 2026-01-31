@@ -123,7 +123,7 @@ Release Notes
 | `3.0` | __.NET 10__                             | Upgraded with explicit support for `.NET 10`
 | `3.1` | __Less Prios__                          | Simplify overload picking removing some `[Prio]` attributes.
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Flags in Front__                      | `Coalesce` now supports both flags in front and at the end of the parameter list.
+| `3.2` | __Flags in Front__                      | Flags at the beginning of the parameter list, now don't come with a performance penalty.
 
 
 🐨 Mr. Koala
