@@ -1,14 +1,15 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿// ReSharper disable VariableCanBeNotNullable
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Contains_NullableItem_Tests
+public class Contains_Nullable_Tests
 {
-    // CaseMatters No / Nullable Item
+    // Nullables / CaseMatters No
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersNo_Implicit()
+    public void Test_Contains_Nullables_CaseMattersNo_Implicit()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains("Red"   ));
        IsTrue (coll.Contains("RED"   ));
        IsTrue (coll.Contains("Green" ));
@@ -21,9 +22,9 @@ public class Contains_NullableItem_Tests
     }
     
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersNo_ExplicitNamedFlagInBack()
+    public void Test_Contains_Nullables_CaseMattersNo_ExplicitNamedFlagInBack()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains("Red"   , caseMatters: false));
        IsTrue (coll.Contains("RED"   , caseMatters: false));
        IsTrue (coll.Contains("Green" , caseMatters: false));
@@ -36,9 +37,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersNo_ExplicitNamedFlagInFront()
+    public void Test_Contains_Nullables_CaseMattersNo_ExplicitNamedFlagInFront()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains(caseMatters: false, "Red"   ));
        IsTrue (coll.Contains(caseMatters: false, "RED"   ));
        IsTrue (coll.Contains(caseMatters: false, "Green" ));
@@ -51,9 +52,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersNo_ExplicitUnnamedFlagInBack()
+    public void Test_Contains_Nullables_CaseMattersNo_ExplicitUnnamedFlagInBack()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains("Red"   , false));
        IsTrue (coll.Contains("RED"   , false));
        IsTrue (coll.Contains("Green" , false));
@@ -66,9 +67,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersNo_ExplicitUnnamedFlagInFront()
+    public void Test_Contains_Nullables_CaseMattersNo_ExplicitUnnamedFlagInFront()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains(false, "Red"   ));
        IsTrue (coll.Contains(false, "RED"   ));
        IsTrue (coll.Contains(false, "Green" ));
@@ -80,12 +81,12 @@ public class Contains_NullableItem_Tests
        IsTrue (coll.Contains(null           ));
     }
 
-    // CaseMatters Yes / Nullble Item
+    // Nullables / CaseMatters Yes
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersYes_MagicBoolFlagInBack()
+    public void Test_Contains_Nullables_CaseMattersYes_MagicBoolFlagInBack()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains("Red"   , caseMatters));
        IsFalse(coll.Contains("RED"   , caseMatters));
        IsTrue (coll.Contains("Green" , caseMatters));
@@ -98,9 +99,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersYes_MagicBoolFlagInFront()
+    public void Test_Contains_Nullables_CaseMattersYes_MagicBoolFlagInFront()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains(caseMatters, "Red"   ));
        IsFalse(coll.Contains(caseMatters, "RED"   ));
        IsTrue (coll.Contains(caseMatters, "Green" ));
@@ -113,9 +114,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersYes_ExplicitBoolNamedBoolFlagInBack()
+    public void Test_Contains_Nullables_CaseMattersYes_ExplicitBoolNamedBoolFlagInBack()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains("Red"   , caseMatters: true));
        IsFalse(coll.Contains("RED"   , caseMatters: true));
        IsTrue (coll.Contains("Green" , caseMatters: true));
@@ -128,9 +129,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersYes_ExplicitNamedBoolFlagInFront()
+    public void Test_Contains_Nullables_CaseMattersYes_ExplicitNamedBoolFlagInFront()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains(caseMatters: true, "Red"   ));
        IsFalse(coll.Contains(caseMatters: true, "RED"   ));
        IsTrue (coll.Contains(caseMatters: true, "Green" ));
@@ -143,9 +144,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersYes_ExplicitBoolUnnamedBoolFlagInBack()
+    public void Test_Contains_Nullables_CaseMattersYes_ExplicitBoolUnnamedBoolFlagInBack()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains("Red"   , true));
        IsFalse(coll.Contains("RED"   , true));
        IsTrue (coll.Contains("Green" , true));
@@ -158,9 +159,9 @@ public class Contains_NullableItem_Tests
     }
 
     [TestMethod]
-    public void Test_Contains_NullableItem_CaseMattersYes_ExplicitUnnamedBoolFlagInFront()
+    public void Test_Contains_Nullables_CaseMattersYes_ExplicitUnnamedBoolFlagInFront()
     {
-       string?[] coll = [ "Red", "Green", "Blue", null ];
+       string?[]? coll = [ "Red", "Green", "Blue", null ];
        IsTrue (coll.Contains(true, "Red"   ));
        IsFalse(coll.Contains(true, "RED"   ));
        IsTrue (coll.Contains(true, "Green" ));
