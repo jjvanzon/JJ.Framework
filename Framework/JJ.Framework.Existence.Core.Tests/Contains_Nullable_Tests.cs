@@ -4,6 +4,23 @@ namespace JJ.Framework.Existence.Core.Tests;
 [TestClass]
 public class Contains_Nullable_Tests
 {
+    // Null Collecton
+
+    [TestMethod]
+    public void Test_Contains_NullCollection()
+    {
+       string?[]? coll = null;
+       IsFalse(coll.Contains("Red"   ));
+       IsFalse(coll.Contains("RED"   ));
+       IsFalse(coll.Contains("Green" ));
+       IsFalse(coll.Contains("GREEN" ));
+       IsFalse(coll.Contains("Blue"  ));
+       IsFalse(coll.Contains("BLUE"  ));
+       IsFalse(coll.Contains("Yellow"));
+       IsFalse(coll.Contains("YELLOW"));
+       IsFalse(coll.Contains(null    ));
+    }
+
     // Nullables / CaseMatters No
 
     [TestMethod]
