@@ -172,10 +172,6 @@
     <MustPublishjj Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">True</MustPublishjj>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest)">
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-  </PropertyGroup>
-
   <!-- Set Single Exe / Trimming / AOT  -->
   <PropertyGroup Condition="$(MustPublishjj) And ($(IsNet9) Or $(IsNet10))">
     <SelfContained>True</SelfContained>
