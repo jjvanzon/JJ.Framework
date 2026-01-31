@@ -21,7 +21,6 @@ __Contents__
 - [SQL Server](#sql-server)
 - [Internet Information Services (IIS)](#internet-information-services-iis)
 - [Trimmable Libs](#trimmable-libs)
-    - [NoTrimReasons](#notrimreasons)
 - [Old Commits](#old-commits)
 
 
@@ -239,7 +238,7 @@ Newer `.NET` versions support trimming away code that isn't used. This makes the
 
 Clues how to resolve, are there in the [`NoTrimReasons`](https://github.com/jjvanzon/JJ.Framework/blob/main/Framework/JJ.Framework.SharedProject.Core/NoTrimReasons.cs) code file. Here's an extract at the time writing:
 
-### NoTrimReasons
+<h3>NoTrimReasons</h3>
 
 | Name                    | Description
 |:------------------------|:-----------
