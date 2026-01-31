@@ -119,11 +119,12 @@ Release Notes
 |       |                                         | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
 | `2.7` | __Version Lineages + IntelliSense__     | Improved separation of `Legacy` version lineages for a more stable package update.
 | `2.8` | __AOT, Trimming & Self-Contained Apps__ | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
-| `2.9` | __zeroMatters__                         | Flag when you consider `0` meaningful (not nully).
+| `2.9` | __zeroMatters__                         | Flag when you consider `0` meaningful (not nully)
 | `3.0` | __.NET 10__                             | Upgraded with explicit support for `.NET 10`
 | `3.1` | __Less Prios__                          | Simplify overload picking removing some `[Prio]` attributes.
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Flags in Front__                      | Flags at the beginning of the parameter list, now don't come with a performance penalty.
+| `3.2` | __Flags in Front for Coalesce__         | Flags at the beginning of the parameter list, now don't come with a performance penalty.
+| `3.3` | __Flags in Front for Contains__         | More notations options for flags for the `Contains` method
 
 
 🐨 Mr. Koala

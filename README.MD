@@ -79,15 +79,17 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                         | Improved separation of `Legacy` version lineages for a more stable package update.
 |       |                                         | Added more IntelliSense docs.
 | `2.8` | __AOT, Trimming & Self-Contained Apps__ | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
-|       |                                         | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
+|       |                                         | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps
 | `2.9` | __zeroMatters__                         | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | Flag when you consider `0` meaningful (not nully).
+|       |                                         | Flag when you consider `0` meaningful (not nully)
 | `3.0` | __.NET 10__                             | Upgraded with explicit support for `.NET 10`
 | `3.1` | __Less Prios__                          | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | Simplify overload picking removing some `[Prio]` attributes.
+|       |                                         | Simplify overload picking removing some `[Prio]` attributes
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Flags in Front__                      | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+| `3.2` | __Flags in Front for Coalesce__         | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
 |       |                                         | Flags at the beginning of the parameter list, now don't come with a performance penalty.
+| `3.3` | __Flags in Front for Contains__         | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                         | More notations options for flags for the `Contains` method
 
 💬 Feedback 
 ------------
