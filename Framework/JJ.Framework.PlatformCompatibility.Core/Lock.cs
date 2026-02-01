@@ -1,4 +1,7 @@
-﻿// ncrunch: no coverage start
+﻿#pragma warning disable IDE0001 // Redundant qualifier
+// ReSharper disable UnusedType.Global
+
+// ncrunch: no coverage start
 
 #if !NET9_0_OR_GREATER
 

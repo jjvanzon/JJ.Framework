@@ -1,4 +1,5 @@
-﻿// ReSharper disable RedundantUsingDirective
+﻿#pragma warning disable IDE0001 // Redundant qualifier
+// ReSharper disable RedundantUsingDirective
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseSymbolAlias
 
