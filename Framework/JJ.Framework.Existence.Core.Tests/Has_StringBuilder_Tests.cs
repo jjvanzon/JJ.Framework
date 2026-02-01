@@ -87,7 +87,7 @@ public class Has_Text_Tests : TestBase
     }
     
     [TestMethod]
-    public void FilledIn_Text_SpaceMatters()
+    public void FilledIn_Text_SpaceMattersYes()
     {
         IsTrue (Space     .FilledIn( spaceMatters: true ));
         IsTrue (Space     .FilledIn( spaceMatters       ));
@@ -101,6 +101,17 @@ public class Has_Text_Tests : TestBase
         IsTrue (FilledIn(NullySpace, spaceMatters: true ));
         IsTrue (FilledIn(NullySpace, spaceMatters       ));
         IsTrue (FilledIn(NullySpace,               true ));
+        IsTrue (FilledIn(spaceMatters: true,  Space     ));
+        IsTrue (FilledIn(spaceMatters,        Space     ));
+        IsTrue (FilledIn(              true,  Space     ));
+        IsTrue (FilledIn(spaceMatters: true,  NullySpace));
+        IsTrue (FilledIn(spaceMatters,        NullySpace));
+        IsTrue (FilledIn(              true,  NullySpace));
+    }
+    
+    [TestMethod]
+    public void FilledIn_Text_SpaceMattersNo()
+    {
         IsFalse(Space     .FilledIn( spaceMatters: false));
         IsFalse(Space     .FilledIn(               false));
         IsFalse(NullySpace.FilledIn( spaceMatters: false));
@@ -109,6 +120,10 @@ public class Has_Text_Tests : TestBase
         IsFalse(FilledIn(Space,                    false));
         IsFalse(FilledIn(NullySpace, spaceMatters: false));
         IsFalse(FilledIn(NullySpace,               false));
+        IsFalse(FilledIn(spaceMatters: false, Space     ));
+        IsFalse(FilledIn(              false, Space     ));
+        IsFalse(FilledIn(spaceMatters: false, NullySpace));
+        IsFalse(FilledIn(              false, NullySpace));
     }
 
     [TestMethod]

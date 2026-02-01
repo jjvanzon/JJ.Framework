@@ -84,7 +84,7 @@ public class Has_StringBuilder_Tests : TestBase
     }
     
     [TestMethod]
-    public void FilledIn_StringBuilder_SpaceMatters()
+    public void FilledIn_StringBuilder_SpaceMattersYes()
     {
         IsTrue (SpaceSB     .FilledIn( spaceMatters: true ));
         IsTrue (SpaceSB     .FilledIn( spaceMatters       ));
@@ -98,6 +98,17 @@ public class Has_StringBuilder_Tests : TestBase
         IsTrue (FilledIn(NullySpaceSB, spaceMatters: true ));
         IsTrue (FilledIn(NullySpaceSB, spaceMatters       ));
         IsTrue (FilledIn(NullySpaceSB,               true ));
+        IsTrue (FilledIn(spaceMatters: true, SpaceSB      ));
+        IsTrue (FilledIn(spaceMatters,       SpaceSB      ));
+        IsTrue (FilledIn(              true, SpaceSB      ));
+        IsTrue (FilledIn(spaceMatters: true, NullySpaceSB ));
+        IsTrue (FilledIn(spaceMatters,       NullySpaceSB ));
+        IsTrue (FilledIn(              true, NullySpaceSB ));
+    }
+    
+    [TestMethod]
+    public void FilledIn_StringBuilder_SpaceMattersNo()
+    {
         IsFalse(SpaceSB     .FilledIn( spaceMatters: false));
         IsFalse(SpaceSB     .FilledIn(               false));
         IsFalse(NullySpaceSB.FilledIn( spaceMatters: false));
@@ -106,6 +117,10 @@ public class Has_StringBuilder_Tests : TestBase
         IsFalse(FilledIn(SpaceSB,                    false));
         IsFalse(FilledIn(NullySpaceSB, spaceMatters: false));
         IsFalse(FilledIn(NullySpaceSB,               false));
+        IsFalse(FilledIn(spaceMatters: false, SpaceSB     ));
+        IsFalse(FilledIn(              false, SpaceSB     ));
+        IsFalse(FilledIn(spaceMatters: false, NullySpaceSB));
+        IsFalse(FilledIn(              false, NullySpaceSB));
     }
 
     [TestMethod]
