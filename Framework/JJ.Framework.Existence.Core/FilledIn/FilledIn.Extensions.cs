@@ -18,9 +18,9 @@ public static partial class FilledInExtensions
     /// <inheritdoc cref="_filledin" />
     public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj                           ) => HasValOrObj(valOrObj);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj, bool         zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              val,      bool         zeroMatters ) where T : struct => HasVal(val, zeroMatters);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              valOrObj, ZeroMatters  zeroMatters ) where T : struct => HasVal(valOrObj, zeroMatters);
+    public static bool FilledIn<T>  ([NotNullWhen(true )] this T              val,      ZeroMatters  zeroMatters ) where T : struct => HasVal(val, zeroMatters);
     /// <inheritdoc cref="_filledin" />
     public static bool FilledIn<T>  ([NotNullWhen(true )] this T?             nullyVal                           ) where T : struct => HasValNully(nullyVal);
     /// <inheritdoc cref="_filledin" />
