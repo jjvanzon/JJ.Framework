@@ -2,7 +2,9 @@
   
   <!-- BuildNum -->
   
-  <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup><Import Project="BuildNum.xml" Condition="Exists('BuildNum.xml')" />
+  <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup>
+  <Import Project="BuildNum.xml" 
+          Condition="$(Configuration)=='Release' And Exists('BuildNum.xml')" />
   
   <!-- Project Properties -->
   
