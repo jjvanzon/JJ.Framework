@@ -24,7 +24,102 @@ public class IsNully_Tests : TestBase
     }
 
     // Values
+    
+    [TestMethod]
+    public void IsNully_False_Int1()
+    {
+        // Invariant under zeroMatters
+        IsFalse(NoNull1.IsNully(                   ));
+        IsFalse(NoNull1.IsNully( zeroMatters       ));
+        IsFalse(NoNull1.IsNully( zeroMatters: true ));
+        IsFalse(NoNull1.IsNully(              true ));
+        IsFalse(NoNull1.IsNully( zeroMatters: false));
+        IsFalse(NoNull1.IsNully(              false));
+        IsFalse(Nully1 .IsNully(                   ));
+        IsFalse(Nully1 .IsNully( zeroMatters       ));
+        IsFalse(Nully1 .IsNully( zeroMatters: true ));
+        IsFalse(Nully1 .IsNully(              true ));
+        IsFalse(Nully1 .IsNully( zeroMatters: false));
+        IsFalse(Nully1 .IsNully(              false));
+        IsFalse(IsNully(NoNull1                    ));
+        IsFalse(IsNully(NoNull1, zeroMatters       ));
+        IsFalse(IsNully(NoNull1, zeroMatters: true ));
+        IsFalse(IsNully(NoNull1,              true ));
+        IsFalse(IsNully(NoNull1, zeroMatters: false));
+        IsFalse(IsNully(NoNull1,              false));
+        IsFalse(IsNully(Nully1                     ));
+        IsFalse(IsNully(Nully1,  zeroMatters       ));
+        IsFalse(IsNully(Nully1,  zeroMatters: true ));
+        IsFalse(IsNully(Nully1,               true ));
+        IsFalse(IsNully(Nully1,  zeroMatters: false));
+        IsFalse(IsNully(Nully1,               false));
+    }
 
+    [TestMethod]
+    public void IsNully_True_Int0()
+    {
+        // zeroMatters false
+        IsTrue(NoNull0.IsNully(                   ));
+        IsTrue(NoNull0.IsNully( zeroMatters: false));
+        IsTrue(NoNull0.IsNully(              false));
+        IsTrue(Nully0 .IsNully(                   ));
+        IsTrue(Nully0 .IsNully( zeroMatters: false));
+        IsTrue(Nully0 .IsNully(              false));
+        IsTrue(IsNully(NoNull0                    ));
+        IsTrue(IsNully(NoNull0, zeroMatters: false));
+        IsTrue(IsNully(NoNull0,              false));
+        IsTrue(IsNully(Nully0                     ));
+        IsTrue(IsNully(Nully0,  zeroMatters: false));
+        IsTrue(IsNully(Nully0,               false));
+    }
+    
+    [TestMethod]
+    public void IsNully_True_IntNull()
+    {
+        IsTrue(NullNum.IsNully(                   ));
+        IsTrue(NullNum.IsNully( zeroMatters: false));
+        IsTrue(NullNum.IsNully(              false));
+        IsTrue(IsNully(NullNum                    ));
+        IsTrue(IsNully(NullNum, zeroMatters: false));
+        IsTrue(IsNully(NullNum,              false));
+    }
+
+    [TestMethod]
+    public void IsNully_False_Int0_ZeroMatters()
+    {
+        IsFalse(IsNully(NoNull0, zeroMatters       ));
+        IsFalse(IsNully(NoNull0, zeroMatters: true ));
+        IsFalse(IsNully(NoNull0,              true ));
+        IsFalse(IsNully(Nully0,  zeroMatters       ));
+        IsFalse(IsNully(Nully0,  zeroMatters: true ));
+        IsFalse(IsNully(Nully0,               true ));
+        IsFalse(NoNull0.IsNully( zeroMatters       ));
+        IsFalse(NoNull0.IsNully( zeroMatters: true ));
+        IsFalse(NoNull0.IsNully(              true ));
+        IsFalse(Nully0 .IsNully( zeroMatters       ));
+        IsFalse(Nully0 .IsNully( zeroMatters: true ));
+        IsFalse(Nully0 .IsNully(              true ));
+        IsFalse(IsNully(NoNull0, zeroMatters       ));
+        IsFalse(IsNully(NoNull0, zeroMatters: true ));
+        IsFalse(IsNully(NoNull0,              true ));
+        IsFalse(IsNully(Nully0,  zeroMatters       ));
+        IsFalse(IsNully(Nully0,  zeroMatters: true ));
+        IsFalse(IsNully(Nully0,               true ));
+    }
+
+    [TestMethod]
+    public void IsNully_True_IntNull_ZeroMatters()
+    {
+        IsTrue(IsNully(NullNum, zeroMatters       ));
+        IsTrue(IsNully(NullNum, zeroMatters: true ));
+        IsTrue(IsNully(NullNum,              true ));
+        IsTrue(NullNum.IsNully( zeroMatters       ));
+        IsTrue(NullNum.IsNully( zeroMatters: true ));
+        IsTrue(NullNum.IsNully(              true ));
+        IsTrue(IsNully(NullNum, zeroMatters       ));
+        IsTrue(IsNully(NullNum, zeroMatters: true ));
+        IsTrue(IsNully(NullNum,              true ));
+    }
     // Text
         
     [TestMethod]

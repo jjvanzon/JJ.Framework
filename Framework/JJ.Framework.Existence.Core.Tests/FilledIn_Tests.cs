@@ -25,6 +25,105 @@ public class FilledIn_Tests : TestBase
     
     // Values
 
+    [TestMethod]
+    public void FilledIn_True_Int1()
+    {
+        // Invariant under zeroMatters
+        IsTrue(NoNull1.FilledIn(                   ));
+        IsTrue(NoNull1.FilledIn( zeroMatters       ));
+        IsTrue(NoNull1.FilledIn( zeroMatters: true ));
+        IsTrue(NoNull1.FilledIn( zeroMatters: false));
+        IsTrue(Nully1 .FilledIn(                   ));
+        IsTrue(Nully1 .FilledIn( zeroMatters       ));
+        IsTrue(Nully1 .FilledIn( zeroMatters: true ));
+        IsTrue(Nully1 .FilledIn( zeroMatters: false));
+        IsTrue(FilledIn(NoNull1                    ));
+        IsTrue(FilledIn(NoNull1, zeroMatters       ));
+        IsTrue(FilledIn(NoNull1, zeroMatters: true ));
+        IsTrue(FilledIn(NoNull1, zeroMatters: false));
+        IsTrue(FilledIn(Nully1                     ));
+        IsTrue(FilledIn(Nully1,  zeroMatters       ));
+        IsTrue(FilledIn(Nully1,  zeroMatters: true ));
+        IsTrue(FilledIn(Nully1,  zeroMatters: false));
+        IsTrue(FilledIn(zeroMatters,        NoNull1));
+        IsTrue(FilledIn(zeroMatters: true , NoNull1));
+        IsTrue(FilledIn(zeroMatters: false, NoNull1));
+        IsTrue(FilledIn(zeroMatters,        Nully1 ));
+        IsTrue(FilledIn(zeroMatters: true , Nully1 ));
+        IsTrue(FilledIn(zeroMatters: false, Nully1 ));
+    }
+    
+    [TestMethod]
+    public void FilledIn_False_Int0()
+    {
+        IsFalse(NoNull0.FilledIn(                   ));
+        IsFalse(NoNull0.FilledIn( zeroMatters: false));
+        IsFalse(NoNull0.FilledIn(              false));
+        IsFalse(Nully0 .FilledIn(                   ));
+        IsFalse(Nully0 .FilledIn( zeroMatters: false));
+        IsFalse(Nully0 .FilledIn(              false));
+        IsFalse(FilledIn(NoNull0                    ));
+        IsFalse(FilledIn(NoNull0, zeroMatters: false));
+        IsFalse(FilledIn(NoNull0,              false));
+        IsFalse(FilledIn(Nully0                     ));
+        IsFalse(FilledIn(Nully0,  zeroMatters: false));
+        IsFalse(FilledIn(Nully0,               false));
+        IsFalse(FilledIn(zeroMatters: false, NoNull0));
+        IsFalse(FilledIn(             false, NoNull0));
+        IsFalse(FilledIn(zeroMatters: false, Nully0 ));
+        IsFalse(FilledIn(             false, Nully0 ));
+    }
+    
+    [TestMethod]
+    public void FilledIn_False_IntNull()
+    {
+        IsFalse(NullNum.FilledIn(                   ));
+        IsFalse(NullNum.FilledIn( zeroMatters: false));
+        IsFalse(NullNum.FilledIn(              false));
+        IsFalse(FilledIn(NullNum                    ));
+        IsFalse(FilledIn(NullNum, zeroMatters: false));
+        IsFalse(FilledIn(NullNum,              false));
+        IsFalse(FilledIn(zeroMatters: false, NullNum));
+        IsFalse(FilledIn(             false, NullNum));
+    }
+
+    [TestMethod]
+    public void FilledIn_True_Int0_ZeroMatters()
+    {
+        IsTrue(NoNull0.FilledIn( zeroMatters       ));
+        IsTrue(NoNull0.FilledIn( zeroMatters: true ));
+        IsTrue(NoNull0.FilledIn(              true ));
+        IsTrue(Nully0 .FilledIn( zeroMatters       ));
+        IsTrue(Nully0 .FilledIn( zeroMatters: true ));
+        IsTrue(Nully0 .FilledIn(              true ));
+        IsTrue(FilledIn(NoNull0, zeroMatters       ));
+        IsTrue(FilledIn(NoNull0, zeroMatters: true ));
+        IsTrue(FilledIn(NoNull0,              true ));
+        IsTrue(FilledIn(Nully0,  zeroMatters       ));
+        IsTrue(FilledIn(Nully0,  zeroMatters: true ));
+        IsTrue(FilledIn(Nully0,               true ));
+        IsTrue(FilledIn(zeroMatters,       NoNull0 ));
+        IsTrue(FilledIn(zeroMatters: true, NoNull0 ));
+        IsTrue(FilledIn(             true, NoNull0 ));
+        IsTrue(FilledIn(zeroMatters,       Nully0  ));
+        IsTrue(FilledIn(zeroMatters: true, Nully0  ));
+        IsTrue(FilledIn(             true, Nully0  ));
+    }
+
+    [TestMethod]
+    public void FilledIn_False_IntNull_ZeroMatters()
+    {
+        IsFalse(NullNum.FilledIn( zeroMatters       ));
+        IsFalse(NullNum.FilledIn( zeroMatters: true ));
+        IsFalse(NullNum.FilledIn(              true ));
+        IsFalse(FilledIn(NullNum, zeroMatters       ));
+        IsFalse(FilledIn(NullNum, zeroMatters: true ));
+        IsFalse(FilledIn(NullNum,              true ));
+        IsFalse(FilledIn(zeroMatters,       NullNum ));
+        IsFalse(FilledIn(zeroMatters: true, NullNum ));
+        IsFalse(FilledIn(             true, NullNum ));
+    }
+
     // Text
         
     [TestMethod]
