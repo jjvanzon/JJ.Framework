@@ -27,6 +27,8 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_has" />
     public static bool Has<T>       ([NotNullWhen(true )]      T?             nullyVal, ZeroMatters  zeroMatters ) where T : struct => HasValNully(nullyVal, zeroMatters );
 
+    // Flags in Front
+
     /// <inheritdoc cref="_has" />
     public static bool Has          (bool         spaceMatters, [NotNullWhen(true )]      string?        text    )                  => HasText    (text,     spaceMatters);
     /// <inheritdoc cref="_has" />
