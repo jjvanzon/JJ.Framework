@@ -3,17 +3,15 @@
 [TestClass]
 public class FilledIn_Tests : TestBase
 {
-    private static readonly Dummy? NullyFilled = NullyFilledObj;
-
     // Objects
 
     [TestMethod]
     public void FilledIn_Object_True()
     {
         IsTrue(FilledIn(NoNullObj));
-        IsTrue(FilledIn(NullyFilled));
+        IsTrue(FilledIn(NullyFilledObj));
         IsTrue(NoNullObj.FilledIn());
-        IsTrue(NullyFilled.FilledIn());
+        IsTrue(NullyFilledObj.FilledIn());
     }
 
     [TestMethod]
@@ -130,9 +128,9 @@ public class FilledIn_Tests : TestBase
     public void FilledIn_Text_True()
     {
         IsTrue(FilledIn(Text));
-        IsTrue(FilledIn(NullyFilled));
+        IsTrue(FilledIn(NullyFilledText));
         IsTrue(Text.FilledIn());
-        IsTrue(NullyFilled.FilledIn());
+        IsTrue(NullyFilledText.FilledIn());
     }
 
     [TestMethod]

@@ -3,17 +3,15 @@
 [TestClass]
 public class IsNully_Tests : TestBase
 {
-    private static readonly Dummy? NullyFilled = NullyFilledObj;
-    
     // Objects
 
     [TestMethod]
     public void IsNully_Object_False()
     {
         IsFalse(IsNully(NoNullObj));
-        IsFalse(IsNully(NullyFilled));
+        IsFalse(IsNully(NullyFilledObj));
         IsFalse(NoNullObj.IsNully());
-        IsFalse(NullyFilled.IsNully());
+        IsFalse(NullyFilledObj.IsNully());
     }
     
     [TestMethod]
@@ -126,9 +124,9 @@ public class IsNully_Tests : TestBase
     public void IsNully_Text_False()
     {
         IsFalse(IsNully(Text));
-        IsFalse(IsNully(NullyFilled));
+        IsFalse(IsNully(NullyFilledText));
         IsFalse(Text.IsNully());
-        IsFalse(NullyFilled.IsNully());
+        IsFalse(NullyFilledText.IsNully());
     }
 
     [TestMethod] 

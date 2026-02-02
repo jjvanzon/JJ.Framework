@@ -98,9 +98,6 @@ RunTests<Has_Collection_Misc>() &&
 RunTests<Has_Collection_Yes>() &&
 RunTests<Has_Collection_No>() &&
 RunTests<Has_Tests>() &&
-RunTests<Has_StringBuilder_Tests>() &&
-RunTests<Has_Text_Tests>() &&
-RunTests<Has_Value_Tests>() &&
 RunTests<In_Tests_CaseOrSpaceMattersNoNo>() &&
 RunTests<In_Tests_CaseOrSpaceMattersNoYes>() &&
 RunTests<In_Tests_CaseOrSpaceMattersYesNo>() &&
@@ -109,7 +106,8 @@ RunTests<In_Tests_CaseMatters>() &&
 RunTests<In_Tests_SpaceMatters>() &&
 RunTests<In_Tests_Other>() &&
 RunTests<Is_Tests>() &&
-RunTests<IsNully_Collection_No_Tests>();
-RunTests<IsNully_Collection_Yes_Tests>();
+RunTests<IsNully_Collection_No_Tests>() &&
+RunTests<IsNully_Collection_Yes_Tests>() &&
+RunTests<IsNully_Tests>();
 WriteLine("Done.");
 if (!success) Exit(1);
