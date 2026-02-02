@@ -92,11 +92,12 @@ RunTests<Existence_Examples>() &&
 RunTests<Existence_Guid_Tests>() &&
 RunTests<Existence_NotNullWhen_Tests>() &&
 RunTests<RegressionTest_CallToHas_FromGenericContext_TypeInfoLost>() &&
+RunTests<FilledIn_Tests>() &&
 RunTests<Flex_Prototype>() &&
 RunTests<Has_Collection_Misc>() &&
 RunTests<Has_Collection_Yes>() &&
 RunTests<Has_Collection_No>() &&
-RunTests<Has_Object_Tests>() &&
+RunTests<Has_Tests>() &&
 RunTests<Has_StringBuilder_Tests>() &&
 RunTests<Has_Text_Tests>() &&
 RunTests<Has_Value_Tests>() &&

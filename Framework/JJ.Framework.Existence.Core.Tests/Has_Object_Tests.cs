@@ -1,42 +1,22 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Object_Tests
+public class Has_Tests
 {
     private static readonly Dummy? NullyFilled = NullyFilledObj;
 
+    // Objects
+
     [TestMethod]
-    public void FilledIn_Object_True()
+    public void Has_Object_True()
     {
         IsTrue(Has(NoNullObj));
         IsTrue(Has(NullyFilled));
-        IsTrue(FilledIn(NoNullObj));
-        IsTrue(FilledIn(NullyFilled));
-        IsTrue(NoNullObj.FilledIn());
-        IsTrue(NullyFilled.FilledIn());
     }
     
     [TestMethod]
-    public void FilledIn_Object_False()
+    public void Has_Object_False()
     {
         IsFalse(Has(NullObj));
-        IsFalse(FilledIn(NullObj));
-        IsFalse(NullObj.FilledIn());
-    }
-    
-    [TestMethod]
-    public void IsNully_Object_False()
-    {
-        IsFalse(IsNully(NoNullObj));
-        IsFalse(IsNully(NullyFilled));
-        IsFalse(NoNullObj.IsNully());
-        IsFalse(NullyFilled.IsNully());
-    }
-    
-    [TestMethod]
-    public void IsNully_Object_True()
-    {
-        IsTrue(IsNully(NullObj));
-        IsTrue(NullObj.IsNully());
     }
 }
