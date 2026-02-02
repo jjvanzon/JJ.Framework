@@ -70,45 +70,38 @@ public class Existence_Bool_Tests
     }
 
     [TestMethod]
-    public void Test_Bool_Has_ZeroMatters()
+    public void Test_Bool_Has_ZeroMattersFlagsInBack()
     {
-        IsTrue (Has     (true                          ));
         IsTrue (Has     (true,       zeroMatters: false));
         IsTrue (Has     (true,                    false));
         IsTrue (Has     (true,       zeroMatters       ));
         IsTrue (Has     (true,       zeroMatters: true ));
         IsTrue (Has     (true,                    true ));
-        IsFalse(Has     (false                         ));
         IsFalse(Has     (false,      zeroMatters: false));
         IsFalse(Has     (false,                   false));
         IsTrue (Has     (false,      zeroMatters       ));
         IsTrue (Has     (false,      zeroMatters: true ));
         IsTrue (Has     (false,                   true ));
-        IsTrue (Has     (True                          ));
         IsTrue (Has     (True,       zeroMatters: false));
         IsTrue (Has     (True,                    false));
         IsTrue (Has     (True,       zeroMatters       ));
         IsTrue (Has     (True,       zeroMatters: true ));
         IsTrue (Has     (True,                    true ));
-        IsFalse(Has     (False                         ));
         IsFalse(Has     (False,      zeroMatters: false));
         IsFalse(Has     (False,                   false));
         IsTrue (Has     (False,      zeroMatters       ));
         IsTrue (Has     (False,      zeroMatters: true ));
         IsTrue (Has     (False,                   true ));
-        IsTrue (Has     (NullyTrue                     ));
         IsTrue (Has     (NullyTrue,  zeroMatters: false));
         IsTrue (Has     (NullyTrue,               false));
         IsTrue (Has     (NullyTrue,  zeroMatters       ));
         IsTrue (Has     (NullyTrue,  zeroMatters: true ));
         IsTrue (Has     (NullyTrue,               true ));
-        IsFalse(Has     (NullyFalse                    ));
         IsFalse(Has     (NullyFalse, zeroMatters: false));
         IsFalse(Has     (NullyFalse,              false));
         IsTrue (Has     (NullyFalse, zeroMatters       ));
         IsTrue (Has     (NullyFalse, zeroMatters: true ));
         IsTrue (Has     (NullyFalse,              true ));
-        IsFalse(Has     (NullBool                      ));
         IsFalse(Has     (NullBool,   zeroMatters: false));
         IsFalse(Has     (NullBool,                false));
         IsFalse(Has     (NullBool,   zeroMatters       ));
@@ -117,51 +110,128 @@ public class Existence_Bool_Tests
     }
 
     [TestMethod]
-    public void Test_Bool_FilledIn_ZeroMatters()
+    public void Test_Bool_Has_ZeroMattersFlagsInFront()
     {
-        IsTrue (FilledIn(true                          ));
+        IsTrue (Has     (zeroMatters: false, true        ));
+        IsTrue (Has     (             false, true        ));
+        IsTrue (Has     (zeroMatters,        true        ));
+        IsTrue (Has     (zeroMatters: true,  true        ));
+        IsTrue (Has     (             true,  true        ));
+        IsFalse(Has     (zeroMatters: false, false       ));
+        IsFalse(Has     (             false, false       ));
+        IsTrue (Has     (zeroMatters,        false       ));
+        IsTrue (Has     (zeroMatters: true,  false       ));
+        IsTrue (Has     (             true,  false       ));
+        IsTrue (Has     (zeroMatters: false, True        ));
+        IsTrue (Has     (             false, True        ));
+        IsTrue (Has     (zeroMatters,        True        ));
+        IsTrue (Has     (zeroMatters: true,  True        ));
+        IsTrue (Has     (             true,  True        ));
+        IsFalse(Has     (zeroMatters: false, False       ));
+        IsFalse(Has     (             false, False       ));
+        IsTrue (Has     (zeroMatters,        False       ));
+        IsTrue (Has     (zeroMatters: true,  False       ));
+        IsTrue (Has     (             true,  False       ));
+        IsTrue (Has     (zeroMatters: false, NullyTrue   ));
+        IsTrue (Has     (             false, NullyTrue   ));
+        IsTrue (Has     (zeroMatters,        NullyTrue   ));
+        IsTrue (Has     (zeroMatters: true,  NullyTrue   ));
+        IsTrue (Has     (             true,  NullyTrue   ));
+        IsFalse(Has     (zeroMatters: false, NullyFalse  ));
+        IsFalse(Has     (             false, NullyFalse  ));
+        IsTrue (Has     (zeroMatters,        NullyFalse  ));
+        IsTrue (Has     (zeroMatters: true,  NullyFalse  ));
+        IsTrue (Has     (             true,  NullyFalse  ));
+        IsFalse(Has     (zeroMatters: false, NullBool    ));
+        IsFalse(Has     (             false, NullBool    ));
+        IsFalse(Has     (zeroMatters,        NullBool    ));
+        IsFalse(Has     (zeroMatters: true,  NullBool    ));
+        IsFalse(Has     (             true,  NullBool    ));
+    }
+
+    [TestMethod]
+    public void Test_Bool_FilledIn_StaticZeroMattersFlagsInBack()
+    {
         IsTrue (FilledIn(true,       zeroMatters: false));
         IsTrue (FilledIn(true,                    false));
         IsTrue (FilledIn(true,       zeroMatters       ));
         IsTrue (FilledIn(true,       zeroMatters: true ));
         IsTrue (FilledIn(true,                    true ));
-        IsFalse(FilledIn(false                         ));
         IsFalse(FilledIn(false,      zeroMatters: false));
         IsFalse(FilledIn(false,                   false));
         IsTrue (FilledIn(false,      zeroMatters       ));
         IsTrue (FilledIn(false,      zeroMatters: true ));
         IsTrue (FilledIn(false,                   true ));
-        IsTrue (FilledIn(True                          ));
         IsTrue (FilledIn(True,       zeroMatters: false));
         IsTrue (FilledIn(True,                    false));
         IsTrue (FilledIn(True,       zeroMatters       ));
         IsTrue (FilledIn(True,       zeroMatters: true ));
         IsTrue (FilledIn(True,                    true ));
-        IsFalse(FilledIn(False                         ));
         IsFalse(FilledIn(False,      zeroMatters: false));
         IsFalse(FilledIn(False,                   false));
         IsTrue (FilledIn(False,      zeroMatters       ));
         IsTrue (FilledIn(False,      zeroMatters: true ));
         IsTrue (FilledIn(False,                   true ));
-        IsTrue (FilledIn(NullyTrue                     ));
         IsTrue (FilledIn(NullyTrue,  zeroMatters: false));
         IsTrue (FilledIn(NullyTrue,               false));
         IsTrue (FilledIn(NullyTrue,  zeroMatters       ));
         IsTrue (FilledIn(NullyTrue,  zeroMatters: true ));
         IsTrue (FilledIn(NullyTrue,               true ));
-        IsFalse(FilledIn(NullyFalse                    ));
         IsFalse(FilledIn(NullyFalse, zeroMatters: false));
         IsFalse(FilledIn(NullyFalse,              false));
         IsTrue (FilledIn(NullyFalse, zeroMatters       ));
         IsTrue (FilledIn(NullyFalse, zeroMatters: true ));
         IsTrue (FilledIn(NullyFalse,              true ));
-        IsFalse(FilledIn(NullBool                      ));
         IsFalse(FilledIn(NullBool,   zeroMatters: false));
         IsFalse(FilledIn(NullBool,                false));
         IsFalse(FilledIn(NullBool,   zeroMatters       ));
         IsFalse(FilledIn(NullBool,   zeroMatters: true ));
         IsFalse(FilledIn(NullBool,                true ));
+    }
 
+    [TestMethod]
+    public void Test_Bool_FilledIn_StaticZeroMattersFlagsInFront()
+    {
+        IsTrue (FilledIn(zeroMatters: false, true      ));
+        IsTrue (FilledIn(             false, true      ));
+        IsTrue (FilledIn(zeroMatters,        true      ));
+        IsTrue (FilledIn(zeroMatters: true,  true      ));
+        IsTrue (FilledIn(             true,  true      ));
+        IsFalse(FilledIn(zeroMatters: false, false     ));
+        IsFalse(FilledIn(             false, false     ));
+        IsTrue (FilledIn(zeroMatters,        false     ));
+        IsTrue (FilledIn(zeroMatters: true,  false     ));
+        IsTrue (FilledIn(             true,  false     ));
+        IsTrue (FilledIn(zeroMatters: false, True      ));
+        IsTrue (FilledIn(             false, True      ));
+        IsTrue (FilledIn(zeroMatters,        True      ));
+        IsTrue (FilledIn(zeroMatters: true,  True      ));
+        IsTrue (FilledIn(             true,  True      ));
+        IsFalse(FilledIn(zeroMatters: false, False     ));
+        IsFalse(FilledIn(             false, False     ));
+        IsTrue (FilledIn(zeroMatters,        False     ));
+        IsTrue (FilledIn(zeroMatters: true,  False     ));
+        IsTrue (FilledIn(             true,  False     ));
+        IsTrue (FilledIn(zeroMatters: false, NullyTrue ));
+        IsTrue (FilledIn(             false, NullyTrue ));
+        IsTrue (FilledIn(zeroMatters,        NullyTrue ));
+        IsTrue (FilledIn(zeroMatters: true,  NullyTrue ));
+        IsTrue (FilledIn(             true,  NullyTrue ));
+        IsFalse(FilledIn(zeroMatters: false, NullyFalse));
+        IsFalse(FilledIn(             false, NullyFalse));
+        IsTrue (FilledIn(zeroMatters,        NullyFalse));
+        IsTrue (FilledIn(zeroMatters: true,  NullyFalse));
+        IsTrue (FilledIn(             true,  NullyFalse));
+        IsFalse(FilledIn(zeroMatters: false, NullBool  ));
+        IsFalse(FilledIn(             false, NullBool  ));
+        IsFalse(FilledIn(zeroMatters,        NullBool  ));
+        IsFalse(FilledIn(zeroMatters: true,  NullBool  ));
+        IsFalse(FilledIn(             true,  NullBool  ));
+    }
+
+    [TestMethod]
+    public void Test_Bool_FilledIn_ExtensionsZeroMatters()
+    {
         IsTrue (true      .FilledIn(                   ));
         IsTrue (true      .FilledIn( zeroMatters: false));
         IsTrue (true      .FilledIn(              false));
@@ -207,51 +277,91 @@ public class Existence_Bool_Tests
     }
 
     [TestMethod]
-    public void Test_Bool_IsNully_ZeroMatters()
+    public void Test_Bool_IsNully_StaticZeroMattersFlagsInBack()
     {
-        IsFalse(IsNully (true                          ));
         IsFalse(IsNully (true,       zeroMatters: false));
         IsFalse(IsNully (true,                    false));
         IsFalse(IsNully (true,       zeroMatters       ));
         IsFalse(IsNully (true,       zeroMatters: true ));
         IsFalse(IsNully (true,                    true ));
-        IsTrue (IsNully (false                         ));
         IsTrue (IsNully (false,      zeroMatters: false));
         IsTrue (IsNully (false,                   false));
         IsFalse(IsNully (false,      zeroMatters       ));
         IsFalse(IsNully (false,      zeroMatters: true ));
         IsFalse(IsNully (false,                   true ));
-        IsFalse(IsNully (True                          ));
         IsFalse(IsNully (True,       zeroMatters: false));
         IsFalse(IsNully (True,                    false));
         IsFalse(IsNully (True,       zeroMatters       ));
         IsFalse(IsNully (True,       zeroMatters: true ));
         IsFalse(IsNully (True,                    true ));
-        IsTrue (IsNully (False                         ));
         IsTrue (IsNully (False,      zeroMatters: false));
         IsTrue (IsNully (False,                   false));
         IsFalse(IsNully (False,      zeroMatters       ));
         IsFalse(IsNully (False,      zeroMatters: true ));
         IsFalse(IsNully (False,                   true ));
-        IsFalse(IsNully (NullyTrue                     ));
         IsFalse(IsNully (NullyTrue,  zeroMatters: false));
         IsFalse(IsNully (NullyTrue,               false));
         IsFalse(IsNully (NullyTrue,  zeroMatters       ));
         IsFalse(IsNully (NullyTrue,  zeroMatters: true ));
         IsFalse(IsNully (NullyTrue,               true ));
-        IsTrue (IsNully (NullyFalse                    ));
         IsTrue (IsNully (NullyFalse, zeroMatters: false));
         IsTrue (IsNully (NullyFalse,              false));
         IsFalse(IsNully (NullyFalse, zeroMatters       ));
         IsFalse(IsNully (NullyFalse, zeroMatters: true ));
         IsFalse(IsNully (NullyFalse,              true ));
-        IsTrue (IsNully (NullBool                      ));
         IsTrue (IsNully (NullBool,   zeroMatters: false));
         IsTrue (IsNully (NullBool,                false));
         IsTrue (IsNully (NullBool,   zeroMatters       ));
         IsTrue (IsNully (NullBool,   zeroMatters: true ));
         IsTrue (IsNully (NullBool,                true ));
+    }
 
+    // TODO: Enable when IsNully FlagsInFront are realized.
+    /*
+    [TestMethod]
+    public void Test_Bool_IsNully_StaticZeroMattersFlagsInFront()
+    {
+        IsFalse(IsNully (zeroMatters: false, true      ));
+        IsFalse(IsNully (             false, true      ));
+        IsFalse(IsNully (zeroMatters,        true      ));
+        IsFalse(IsNully (zeroMatters: true,  true      ));
+        IsFalse(IsNully (             true,  true      ));
+        IsTrue (IsNully (zeroMatters: false, false     ));
+        IsTrue (IsNully (             false, false     ));
+        IsFalse(IsNully (zeroMatters,        false     ));
+        IsFalse(IsNully (zeroMatters: true,  false     ));
+        IsFalse(IsNully (             true,  false     ));
+        IsFalse(IsNully (zeroMatters: false, True      ));
+        IsFalse(IsNully (             false, True      ));
+        IsFalse(IsNully (zeroMatters,        True      ));
+        IsFalse(IsNully (zeroMatters: true,  True      ));
+        IsFalse(IsNully (             true,  True      ));
+        IsTrue (IsNully (zeroMatters: false, False     ));
+        IsTrue (IsNully (             false, False     ));
+        IsFalse(IsNully (zeroMatters,        False     ));
+        IsFalse(IsNully (zeroMatters: true,  False     ));
+        IsFalse(IsNully (             true,  False     ));
+        IsFalse(IsNully (zeroMatters: false, NullyTrue ));
+        IsFalse(IsNully (             false, NullyTrue ));
+        IsFalse(IsNully (zeroMatters,        NullyTrue ));
+        IsFalse(IsNully (zeroMatters: true,  NullyTrue ));
+        IsFalse(IsNully (             true,  NullyTrue ));
+        IsTrue (IsNully (zeroMatters: false, NullyFalse));
+        IsTrue (IsNully (             false, NullyFalse));
+        IsFalse(IsNully (zeroMatters,        NullyFalse));
+        IsFalse(IsNully (zeroMatters: true,  NullyFalse));
+        IsFalse(IsNully (             true,  NullyFalse));
+        IsTrue (IsNully (zeroMatters: false, NullBool  ));
+        IsTrue (IsNully (             false, NullBool  ));
+        IsTrue (IsNully (zeroMatters,        NullBool  ));
+        IsTrue (IsNully (zeroMatters: true,  NullBool  ));
+        IsTrue (IsNully (             true,  NullBool  ));
+    }
+    */
+
+    [TestMethod]
+    public void Test_Bool_IsNully_ExtensionsZeroMatters()
+    {
         IsFalse(true      .IsNully (                   ));
         IsFalse(true      .IsNully ( zeroMatters: false));
         IsFalse(true      .IsNully (              false));
@@ -296,28 +406,49 @@ public class Existence_Bool_Tests
         IsTrue (NullBool  .IsNully (              true ));
     }
 
+    // TODO: Non-null cases?
+
     [TestMethod]
-    public void Test_Bool_Coalesce_ZeroMatters()
+    public void Test_Bool_Coalesce_ZeroMattersFlagsInBack()
     {
-        IsTrue (Coalesce(False, NullyTrue, NullBool                        ));
         IsTrue (Coalesce(False, NullyTrue, NullBool,     zeroMatters: false));
       //IsTrue (Coalesce(False, NullyTrue, NullBool,                  false)); // Overload clash
         IsFalse(Coalesce(False, NullyTrue, NullBool,     zeroMatters       ));
         IsFalse(Coalesce(False, NullyTrue, NullBool,     zeroMatters: true ));
       //IsFalse(Coalesce(False, NullyTrue, NullBool,                  true )); // Overload clash
 
-        IsTrue (NullyFalse.Coalesce(NullBool, NullyTrue                    ));
         IsTrue (NullyFalse.Coalesce(NullBool, NullyTrue, zeroMatters: false));
         IsTrue (NullyFalse.Coalesce(NullBool, NullyTrue,              false));
         IsFalse(NullyFalse.Coalesce(NullBool, NullyTrue, zeroMatters       ));
         IsFalse(NullyFalse.Coalesce(NullBool, NullyTrue, zeroMatters: true ));
         IsFalse(NullyFalse.Coalesce(NullBool, NullyTrue,              true ));
 
-        IsFalse(NullyFalse.Coalesce(NullBool                               ));
         IsFalse(NullyFalse.Coalesce(NullBool,            zeroMatters: false));
         IsFalse(NullyFalse.Coalesce(NullBool,                         false));
         IsFalse(NullyFalse.Coalesce(NullBool,            zeroMatters       ));
         IsFalse(NullyFalse.Coalesce(NullBool,            zeroMatters: true ));
         IsFalse(NullyFalse.Coalesce(NullBool,                         true ));
+    }
+
+    [TestMethod]
+    public void Test_Bool_Coalesce_ZeroMattersFlagsInFront()
+    {
+        IsTrue (Coalesce(zeroMatters: false, False, NullyTrue, NullBool     ));
+      //IsTrue (Coalesce(             false, False, NullyTrue, NullBool     )); // Overload clash
+        IsFalse(Coalesce(zeroMatters       , False, NullyTrue, NullBool     ));
+        IsFalse(Coalesce(zeroMatters: true , False, NullyTrue, NullBool     ));
+      //IsFalse(Coalesce(             true , False, NullyTrue, NullBool     )); // Overload clash
+
+        IsTrue (NullyFalse.Coalesce(zeroMatters: false, NullBool, NullyTrue));
+        IsTrue (NullyFalse.Coalesce(             false, NullBool, NullyTrue));
+        IsFalse(NullyFalse.Coalesce(zeroMatters       , NullBool, NullyTrue));
+        IsFalse(NullyFalse.Coalesce(zeroMatters: true , NullBool, NullyTrue));
+        IsFalse(NullyFalse.Coalesce(             true , NullBool, NullyTrue));
+
+        IsFalse(NullyFalse.Coalesce(zeroMatters: false, NullBool           ));
+        IsFalse(NullyFalse.Coalesce(             false, NullBool           ));
+        IsFalse(NullyFalse.Coalesce(zeroMatters       , NullBool           ));
+        IsFalse(NullyFalse.Coalesce(zeroMatters: true , NullBool           ));
+        IsFalse(NullyFalse.Coalesce(             true , NullBool           ));
     }
 }
