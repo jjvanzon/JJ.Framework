@@ -56,4 +56,10 @@ public static partial class FilledInHelper
     public static bool Has          ([NotNullWhen(true )]      bool?          nullyVal, bool         zeroMatters )                  => HasValNully(nullyVal, zeroMatters );
     /// <inheritdoc cref="_filledin" />
     public static bool Has          ([NotNullWhen(true )]      bool?          nullyVal, ZeroMatters  zeroMatters )                  => HasValNully(nullyVal, zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          (ZeroMatters  zeroMatters ,[NotNullWhen(true )]      bool           val      )                  => HasVal     (val,      zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          (bool         zeroMatters ,[NotNullWhen(true )]      bool?          nullyVal )                  => HasValNully(nullyVal, zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          (ZeroMatters  zeroMatters ,[NotNullWhen(true )]      bool?          nullyVal )                  => HasValNully(nullyVal, zeroMatters );
 }
