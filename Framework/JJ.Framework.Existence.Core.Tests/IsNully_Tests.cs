@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class IsNully_Tests
+public class IsNully_Tests : TestBase
 {
     private static readonly Dummy? NullyFilled = NullyFilledObj;
     
@@ -21,6 +21,59 @@ public class IsNully_Tests
     {
         IsTrue(IsNully(NullObj));
         IsTrue(NullObj.IsNully());
+    }
+
+    // Values
+
+    // Text
+        
+    [TestMethod]
+    public void IsNully_Text_False()
+    {
+        IsFalse(IsNully(Text));
+        IsFalse(IsNully(NullyFilled));
+        IsFalse(Text.IsNully());
+        IsFalse(NullyFilled.IsNully());
+    }
+
+    [TestMethod] 
+    public void IsNully_Text_True()
+    {
+        IsTrue(Empty     .IsNully());
+        IsTrue(Space     .IsNully());
+        IsTrue(NullText.  IsNully());
+        IsTrue(NullyEmpty.IsNully());
+        IsTrue(NullySpace.IsNully());
+        IsTrue(IsNully(Empty      ));
+        IsTrue(IsNully(Space      ));
+        IsTrue(IsNully(NullText   ));
+        IsTrue(IsNully(NullyEmpty ));
+        IsTrue(IsNully(NullySpace ));
+    }
+
+    [TestMethod]
+    public void IsNully_Text_SpaceMatters()
+    {
+        IsFalse(Space     .IsNully( spaceMatters: true ));
+        IsFalse(Space     .IsNully( spaceMatters       ));
+        IsFalse(Space     .IsNully(               true ));
+        IsFalse(NullySpace.IsNully( spaceMatters: true ));
+        IsFalse(NullySpace.IsNully( spaceMatters       ));
+        IsFalse(NullySpace.IsNully(               true ));
+        IsFalse(IsNully(Space,      spaceMatters: true ));
+        IsFalse(IsNully(Space,      spaceMatters       ));
+        IsFalse(IsNully(Space,                    true ));
+        IsFalse(IsNully(NullySpace, spaceMatters: true ));
+        IsFalse(IsNully(NullySpace, spaceMatters       ));
+        IsFalse(IsNully(NullySpace,               true ));
+        IsTrue (Space     .IsNully( spaceMatters: false));
+        IsTrue (Space     .IsNully(               false));
+        IsTrue (NullySpace.IsNully( spaceMatters: false));
+        IsTrue (NullySpace.IsNully(               false));
+        IsTrue (IsNully(Space,      spaceMatters: false));
+        IsTrue (IsNully(Space,                    false));
+        IsTrue (IsNully(NullySpace, spaceMatters: false));
+        IsTrue (IsNully(NullySpace,               false));
     }
 
     // StringBuilder
