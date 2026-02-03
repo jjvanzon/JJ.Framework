@@ -106,8 +106,8 @@ RunTests<In_Tests_CaseMatters>() &&
 RunTests<In_Tests_SpaceMatters>() &&
 RunTests<In_Tests_Other>() &&
 RunTests<Is_Tests_Examples>() &&
-RunTests<Is_Tests_Extensions>() &&
-RunTests<Is_Tests_Static>() &&
+RunTests<Is_Tests_ExtensionsFlagsInBack>() &&
+RunTests<Is_Tests_StaticFlagsInBack>() &&
 RunTests<IsNully_Collection_No_Tests>() &&
 RunTests<IsNully_Collection_Yes_Tests>() &&
 RunTests<IsNully_Tests>();
