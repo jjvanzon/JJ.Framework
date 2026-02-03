@@ -89,7 +89,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 | `3.2` | __Flags in Front - Coalesce__           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
 |       |                                         | Flags at the beginning of the parameter list, now don't come with a performance penalty.
 | `3.3` | __Flags in Front - Contains__           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | More notations options for flags for the `Contains` method
+|       |                                         | More notation options for flags for the `Contains` method
 | `3.4` | __Flags in Front - FilledIn__           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                         | Support flags in front for the `FilledIn` method
 

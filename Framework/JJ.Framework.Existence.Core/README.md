@@ -125,7 +125,7 @@ Release Notes
 | `3.1` | __Less Prios__                          | Simplify overload picking removing some `[Prio]` attributes.
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
 | `3.2` | __Flags in Front - Coalesce__           | Flags at the beginning of the parameter list, now don't come with a performance penalty.
-| `3.3` | __Flags in Front - Contains__           | More notations options for flags for the `Contains` method
+| `3.3` | __Flags in Front - Contains__           | More notation options for flags for the `Contains` method
 | `3.4` | __Flags in Front - FilledIn__           | Support flags in front for the `FilledIn` method
 
 
