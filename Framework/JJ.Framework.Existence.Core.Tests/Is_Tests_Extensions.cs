@@ -44,8 +44,6 @@ public class Is_Tests_Extensions
         IsTrue ("  test  ".Is( "\tTEST\t",               false,               false));
     }
 
-    // TODO: Figure out why outcommented do not work.
-
     [TestMethod]
     public void Test_String_Is_CaseOrSpaceMattersNoNo_ExtensionsFlagsInBackSwapped()
     {
@@ -327,10 +325,10 @@ public class Is_Tests_Extensions
       //IsFalse("  test  ".Is( "\ttest\t",               true,   caseMatters: true ));
       //IsFalse("  test  ".Is( "  TEST  ",               true,   caseMatters: true ));
       //IsFalse("  test  ".Is( "\tTEST\t",               true,   caseMatters: true ));
-        IsTrue ("  test  ".Is( "  test  ",               true,                true )); 
-        IsFalse("  test  ".Is( "\ttest\t",               true,                true ));
-        IsFalse("  test  ".Is( "  TEST  ",               true,                true ));
-        IsFalse("  test  ".Is( "\tTEST\t",               true,                true ));
+      //IsTrue ("  test  ".Is( "  test  ",               true,                true )); // Not a swap
+      //IsFalse("  test  ".Is( "\ttest\t",               true,                true ));
+      //IsFalse("  test  ".Is( "  TEST  ",               true,                true ));
+      //IsFalse("  test  ".Is( "\tTEST\t",               true,                true ));
     }
 
 }
