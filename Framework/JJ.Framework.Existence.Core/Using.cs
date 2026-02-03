@@ -25,4 +25,5 @@ global using static JJ.Framework.Existence.Core.ImplicitUsageReasons;
 global using static JJ.Framework.Existence.Core.InUtil;
 global using static JJ.Framework.Existence.Core.Util;
 global using UsedImplicitlyAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;
+global using ImplicAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;
 global using System.Collections.Frozen;
