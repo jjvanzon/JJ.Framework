@@ -316,8 +316,6 @@ public class Existence_Bool_Tests
         IsTrue (IsNully (NullBool,                true ));
     }
 
-    // TODO: Enable when IsNully FlagsInFront are realized.
-    /*
     [TestMethod]
     public void Test_Bool_IsNully_StaticZeroMattersFlagsInFront()
     {
@@ -357,7 +355,6 @@ public class Existence_Bool_Tests
         IsTrue (IsNully (zeroMatters: true,  NullBool  ));
         IsTrue (IsNully (             true,  NullBool  ));
     }
-    */
 
     [TestMethod]
     public void Test_Bool_IsNully_ExtensionsZeroMatters()
