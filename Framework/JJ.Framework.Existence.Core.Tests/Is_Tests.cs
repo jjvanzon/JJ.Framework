@@ -69,24 +69,33 @@ public class Is_Tests
     [TestMethod]
     public void Test_String_Is_SpaceMatters()
     {
-        IsTrue (Is("\t test \t",   "\r TEST \r"                     ));
-        IsTrue (Is("\t test \t",   "\r TEST \r", spaceMatters: false));
-        IsFalse(Is("\t test \t",   "\r TEST \r", spaceMatters: true ));
-        IsFalse(Is("\t test \t",   "\r TEST \r", spaceMatters       ));
-        IsTrue (Is("\t test \t",   "\t TEST \t", spaceMatters: true ));
-        IsTrue (Is("\t test \t",   "\t TEST \t", spaceMatters       ));
-        IsTrue (   "\t test \t".Is("\r TEST \r"));
-        IsTrue (   "\t test \t".Is("\r TEST \r", spaceMatters: false));
-        IsFalse(   "\t test \t".Is("\r TEST \r", spaceMatters: true ));
-        IsFalse(   "\t test \t".Is("\r TEST \r", spaceMatters       ));
-        IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters: true ));
-        IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters       ));
+        IsTrue (Is("\t test \t",   "\r TEST \r"                      ));
+        IsTrue (Is("\t test \t",   "\r TEST \r", spaceMatters: false ));
+        IsFalse(Is("\t test \t",   "\r TEST \r", spaceMatters: true  ));
+        IsFalse(Is("\t test \t",   "\r TEST \r", spaceMatters        ));
+        IsTrue (Is("\t test \t",   "\t TEST \t", spaceMatters: true  ));
+        IsTrue (Is("\t test \t",   "\t TEST \t", spaceMatters        ));
+        IsTrue (   "\t test \t".Is("\r TEST \r"                      ));
+        IsTrue (   "\t test \t".Is("\r TEST \r", spaceMatters: false ));
+        IsFalse(   "\t test \t".Is("\r TEST \r", spaceMatters: true  ));
+        IsFalse(   "\t test \t".Is("\r TEST \r", spaceMatters        ));
+        IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters: true  ));
+        IsTrue (   "\t test \t".Is("\t TEST \t", spaceMatters        ));
+        IsTrue (Is(spaceMatters: false, "\t test \t",   "\r TEST \r" ));
+        IsFalse(Is(spaceMatters: true , "\t test \t",   "\r TEST \r" ));
+        IsFalse(Is(spaceMatters       , "\t test \t",   "\r TEST \r" ));
+        IsTrue (Is(spaceMatters: true , "\t test \t",   "\t TEST \t" ));
+        IsTrue (Is(spaceMatters       , "\t test \t",   "\t TEST \t" ));
+        IsTrue (   "\t test \t".Is(spaceMatters: false, "\r TEST \r" ));
+        IsFalse(   "\t test \t".Is(spaceMatters: true , "\r TEST \r" ));
+        IsFalse(   "\t test \t".Is(spaceMatters       , "\r TEST \r" ));
+        IsTrue (   "\t test \t".Is(spaceMatters: true , "\t TEST \t" ));
+        IsTrue (   "\t test \t".Is(spaceMatters       , "\t TEST \t" ));
     }
 
     [TestMethod]
-    public void Test_String_Is_SpaceMattersCaseMattersCombos_Extensions()
+    public void Test_String_Is_SpaceMattersCaseMattersNoNo_Extensions()
     {
-        // CaseMatters/SpaceMatters No/No
         IsTrue ("  test  ".Is( "  test  "                                          ));
         IsTrue ("  test  ".Is( "\ttest\t"                                          ));
         IsTrue ("  test  ".Is( "  TEST  "                                          ));
@@ -107,8 +116,11 @@ public class Is_Tests
         IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters:  false));
         IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters:  false));
         IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters:  false));
-        
-        // CaseMatters/SpaceMatters Yes/No
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersYesNo_Extensions()
+    {
         IsTrue ("  test  ".Is( "  test  ", caseMatters                             ));
         IsTrue ("  test  ".Is( "\ttest\t", caseMatters                             ));
         IsFalse("  test  ".Is( "  TEST  ", caseMatters                             ));
@@ -133,8 +145,11 @@ public class Is_Tests
         IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters        ));
         IsFalse("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters        ));
         IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters        ));
-        
-        // CaseMatters/SpaceMatters No/Yes
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersNoYes_Extensions()
+    {
         IsTrue ("  test  ".Is( "  test  ", spaceMatters                            ));
         IsFalse("  test  ".Is( "\ttest\t", spaceMatters                            ));
         IsTrue ("  test  ".Is( "  TEST  ", spaceMatters                            ));
@@ -159,8 +174,11 @@ public class Is_Tests
         IsFalse("  test  ".Is( "\ttest\t", caseMatters:  false, spaceMatters       ));
         IsTrue ("  test  ".Is( "  TEST  ", caseMatters:  false, spaceMatters       ));
         IsFalse("  test  ".Is( "\tTEST\t", caseMatters:  false, spaceMatters       ));
-        
-        // CaseMatters/SpaceMatters Yes/Yes
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersYesYes_Extensions()
+    {
         IsTrue ("  test  ".Is( "  test  ", caseMatters,         spaceMatters       ));
         IsFalse("  test  ".Is( "\ttest\t", caseMatters,         spaceMatters       ));
         IsFalse("  test  ".Is( "  TEST  ", caseMatters,         spaceMatters       ));
@@ -196,9 +214,8 @@ public class Is_Tests
     }
 
     [TestMethod]
-    public void Test_String_Is_SpaceMattersCaseMattersCombos_Static()
+    public void Test_String_Is_SpaceMattersCaseMattersNoNo_Static()
     {
-        // CaseMatters/SpaceMatters No/No
         IsTrue (Is("  test  ", "  test  "                                          ));
         IsTrue (Is("  test  ", "\ttest\t"                                          ));
         IsTrue (Is("  test  ", "  TEST  "                                          ));
@@ -219,8 +236,11 @@ public class Is_Tests
         IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false, caseMatters:  false));
         IsTrue (Is("  test  ", "  TEST  ", spaceMatters: false, caseMatters:  false));
         IsTrue (Is("  test  ", "\tTEST\t", spaceMatters: false, caseMatters:  false));
-        
-        // CaseMatters/SpaceMatters Yes/No
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersYesNo_Static()
+    {
         IsTrue (Is("  test  ", "  test  ", caseMatters                             ));
         IsTrue (Is("  test  ", "\ttest\t", caseMatters                             ));
         IsFalse(Is("  test  ", "  TEST  ", caseMatters                             ));
@@ -245,8 +265,11 @@ public class Is_Tests
         IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false, caseMatters        ));
         IsFalse(Is("  test  ", "  TEST  ", spaceMatters: false, caseMatters        ));
         IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: false, caseMatters        ));
-        
-        // CaseMatters/SpaceMatters No/Yes
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersNoYes_Static()
+    {
         IsTrue (Is("  test  ", "  test  ", spaceMatters                            ));
         IsFalse(Is("  test  ", "\ttest\t", spaceMatters                            ));
         IsTrue (Is("  test  ", "  TEST  ", spaceMatters                            ));
@@ -271,8 +294,11 @@ public class Is_Tests
         IsFalse(Is("  test  ", "\ttest\t", caseMatters:  false, spaceMatters       ));
         IsTrue (Is("  test  ", "  TEST  ", caseMatters:  false, spaceMatters       ));
         IsFalse(Is("  test  ", "\tTEST\t", caseMatters:  false, spaceMatters       ));
-        
-        // CaseMatters/SpaceMatters Yes/Yes
+    }
+
+    [TestMethod]
+    public void Test_String_Is_SpaceMattersCaseMattersYesYes_Static()
+    {
         IsTrue (Is("  test  ", "  test  ", caseMatters,         spaceMatters       ));
         IsFalse(Is("  test  ", "\ttest\t", caseMatters,         spaceMatters       ));
         IsFalse(Is("  test  ", "  TEST  ", caseMatters,         spaceMatters       ));
