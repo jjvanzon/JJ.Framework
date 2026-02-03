@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Is_Tests_Extensions
+public class Is_Tests_ExtensionsFlagsInBack
 {
     [TestMethod]
     public void Test_String_Is_CaseOrSpaceMattersNoNo_ExtensionsFlagsInBack()

@@ -2,7 +2,7 @@
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Is_Tests_Static
+public class Is_Tests_SIs_Tests_StaticFlagsInBacktatic
 {
     [TestMethod]
     public void Test_String_Is_CaseOrSpaceMattersNoNo_StaticFlagsInBack()
