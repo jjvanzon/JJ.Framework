@@ -51,12 +51,21 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(Nully1,               true ));
         IsFalse(IsNully(Nully1,  zeroMatters: false));
         IsFalse(IsNully(Nully1,               false));
+        IsFalse(IsNully(zeroMatters       , NoNull1));
+        IsFalse(IsNully(zeroMatters: true , NoNull1));
+        IsFalse(IsNully(             true , NoNull1));
+        IsFalse(IsNully(zeroMatters: false, NoNull1));
+        IsFalse(IsNully(             false, NoNull1));
+        IsFalse(IsNully(zeroMatters       , Nully1 ));
+        IsFalse(IsNully(zeroMatters: true , Nully1 ));
+        IsFalse(IsNully(             true , Nully1 ));
+        IsFalse(IsNully(zeroMatters: false, Nully1 ));
+        IsFalse(IsNully(             false, Nully1 ));
     }
 
     [TestMethod]
     public void IsNully_True_Int0()
     {
-        // zeroMatters false
         IsTrue(NoNull0.IsNully(                   ));
         IsTrue(NoNull0.IsNully( zeroMatters: false));
         IsTrue(NoNull0.IsNully(              false));
@@ -69,6 +78,10 @@ public class IsNully_Tests : TestBase
         IsTrue(IsNully(Nully0                     ));
         IsTrue(IsNully(Nully0,  zeroMatters: false));
         IsTrue(IsNully(Nully0,               false));
+        IsTrue(IsNully(zeroMatters: false, NoNull0));
+        IsTrue(IsNully(             false, NoNull0));
+        IsTrue(IsNully(zeroMatters: false, Nully0 ));
+        IsTrue(IsNully(             false, Nully0 ));
     }
     
     [TestMethod]
@@ -80,6 +93,8 @@ public class IsNully_Tests : TestBase
         IsTrue(IsNully(NullNum                    ));
         IsTrue(IsNully(NullNum, zeroMatters: false));
         IsTrue(IsNully(NullNum,              false));
+        IsTrue(IsNully(zeroMatters: false, NullNum));
+        IsTrue(IsNully(             false, NullNum));
     }
 
     [TestMethod]
@@ -118,6 +133,7 @@ public class IsNully_Tests : TestBase
         IsTrue(IsNully(NullNum, zeroMatters: true ));
         IsTrue(IsNully(NullNum,              true ));
     }
+    
     // Text
         
     [TestMethod]
@@ -145,7 +161,7 @@ public class IsNully_Tests : TestBase
     }
 
     [TestMethod]
-    public void IsNully_Text_SpaceMatters()
+    public void IsNully_Text_SpaceMattersYes()
     {
         IsFalse(Space     .IsNully( spaceMatters: true ));
         IsFalse(Space     .IsNully( spaceMatters       ));
@@ -159,6 +175,17 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(NullySpace, spaceMatters: true ));
         IsFalse(IsNully(NullySpace, spaceMatters       ));
         IsFalse(IsNully(NullySpace,               true ));
+        IsFalse(IsNully(spaceMatters: true, Space      ));
+        IsFalse(IsNully(spaceMatters      , Space      ));
+        IsFalse(IsNully(              true, Space      ));
+        IsFalse(IsNully(spaceMatters: true, NullySpace ));
+        IsFalse(IsNully(spaceMatters      , NullySpace ));
+        IsFalse(IsNully(              true, NullySpace ));
+    }
+
+    [TestMethod]
+    public void IsNully_Text_SpaceMattersNo()
+    {
         IsTrue (Space     .IsNully( spaceMatters: false));
         IsTrue (Space     .IsNully(               false));
         IsTrue (NullySpace.IsNully( spaceMatters: false));
@@ -167,6 +194,10 @@ public class IsNully_Tests : TestBase
         IsTrue (IsNully(Space,                    false));
         IsTrue (IsNully(NullySpace, spaceMatters: false));
         IsTrue (IsNully(NullySpace,               false));
+        IsTrue (IsNully(spaceMatters: false, Space     ));
+        IsTrue (IsNully(              false, Space     ));
+        IsTrue (IsNully(spaceMatters: false, NullySpace));
+        IsTrue (IsNully(              false, NullySpace));
     }
 
     // StringBuilder
@@ -196,7 +227,7 @@ public class IsNully_Tests : TestBase
     }
 
     [TestMethod]
-    public void IsNully_StringBuilder_SpaceMatters()
+    public void IsNully_StringBuilder_SpaceMattersYes()
     {
         IsFalse(SpaceSB     .IsNully( spaceMatters: true ));
         IsFalse(SpaceSB     .IsNully( spaceMatters       ));
@@ -210,6 +241,17 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(NullySpaceSB, spaceMatters: true ));
         IsFalse(IsNully(NullySpaceSB, spaceMatters       ));
         IsFalse(IsNully(NullySpaceSB,               true ));
+        IsFalse(IsNully(spaceMatters: true, SpaceSB      ));
+        IsFalse(IsNully(spaceMatters      , SpaceSB      ));
+        IsFalse(IsNully(              true, SpaceSB      ));
+        IsFalse(IsNully(spaceMatters: true, NullySpaceSB ));
+        IsFalse(IsNully(spaceMatters      , NullySpaceSB ));
+        IsFalse(IsNully(              true, NullySpaceSB ));
+    }
+
+    [TestMethod]
+    public void IsNully_StringBuilder_SpaceMattersNo()
+    {
         IsTrue (SpaceSB     .IsNully( spaceMatters: false));
         IsTrue (SpaceSB     .IsNully(               false));
         IsTrue (NullySpaceSB.IsNully( spaceMatters: false));
@@ -218,5 +260,9 @@ public class IsNully_Tests : TestBase
         IsTrue (IsNully(SpaceSB,                    false));
         IsTrue (IsNully(NullySpaceSB, spaceMatters: false));
         IsTrue (IsNully(NullySpaceSB,               false));
+        IsTrue (IsNully(spaceMatters: false, SpaceSB     ));
+        IsTrue (IsNully(              false, SpaceSB     ));
+        IsTrue (IsNully(spaceMatters: false, NullySpaceSB));
+        IsTrue (IsNully(              false, NullySpaceSB));
     }
 }

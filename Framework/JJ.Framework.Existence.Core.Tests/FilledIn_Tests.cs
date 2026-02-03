@@ -30,25 +30,37 @@ public class FilledIn_Tests : TestBase
         IsTrue(NoNull1.FilledIn(                   ));
         IsTrue(NoNull1.FilledIn( zeroMatters       ));
         IsTrue(NoNull1.FilledIn( zeroMatters: true ));
+        IsTrue(NoNull1.FilledIn(              true ));
         IsTrue(NoNull1.FilledIn( zeroMatters: false));
+        IsTrue(NoNull1.FilledIn(              false));
         IsTrue(Nully1 .FilledIn(                   ));
         IsTrue(Nully1 .FilledIn( zeroMatters       ));
         IsTrue(Nully1 .FilledIn( zeroMatters: true ));
+        IsTrue(Nully1 .FilledIn(              true ));
         IsTrue(Nully1 .FilledIn( zeroMatters: false));
+        IsTrue(Nully1 .FilledIn(              false));
         IsTrue(FilledIn(NoNull1                    ));
         IsTrue(FilledIn(NoNull1, zeroMatters       ));
         IsTrue(FilledIn(NoNull1, zeroMatters: true ));
+        IsTrue(FilledIn(NoNull1,              true ));
         IsTrue(FilledIn(NoNull1, zeroMatters: false));
+        IsTrue(FilledIn(NoNull1,              false));
         IsTrue(FilledIn(Nully1                     ));
         IsTrue(FilledIn(Nully1,  zeroMatters       ));
         IsTrue(FilledIn(Nully1,  zeroMatters: true ));
+        IsTrue(FilledIn(Nully1,               true ));
         IsTrue(FilledIn(Nully1,  zeroMatters: false));
+        IsTrue(FilledIn(Nully1,               false));
         IsTrue(FilledIn(zeroMatters,        NoNull1));
         IsTrue(FilledIn(zeroMatters: true , NoNull1));
+        IsTrue(FilledIn(zeroMatters       , NoNull1));
         IsTrue(FilledIn(zeroMatters: false, NoNull1));
+        IsTrue(FilledIn(             false, NoNull1));
         IsTrue(FilledIn(zeroMatters,        Nully1 ));
         IsTrue(FilledIn(zeroMatters: true , Nully1 ));
+        IsTrue(FilledIn(             true , Nully1 ));
         IsTrue(FilledIn(zeroMatters: false, Nully1 ));
+        IsTrue(FilledIn(             false, Nully1 ));
     }
     
     [TestMethod]
