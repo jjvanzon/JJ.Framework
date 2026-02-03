@@ -107,6 +107,7 @@ RunTests<In_Tests_SpaceMatters>() &&
 RunTests<In_Tests_Other>() &&
 RunTests<Is_Tests_Examples>() &&
 RunTests<Is_Tests_ExtensionsFlagsInBack>() &&
+RunTests<Is_Tests_ExtensionsFlagsInFront>() &&
 RunTests<Is_Tests_StaticFlagsInBack>() &&
 RunTests<IsNully_Collection_No_Tests>() &&
 RunTests<IsNully_Collection_Yes_Tests>() &&
