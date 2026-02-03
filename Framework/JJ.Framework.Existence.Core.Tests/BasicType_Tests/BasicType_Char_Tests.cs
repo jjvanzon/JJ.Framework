@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Existence_Char_Tests
+public class BasicType_Char_Tests
 {
     // Char
 

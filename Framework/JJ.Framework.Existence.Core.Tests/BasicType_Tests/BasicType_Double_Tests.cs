@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Existence_Double_Tests
+public class BasicType_Double_Tests
 {
     // Double
 

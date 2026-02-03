@@ -3,7 +3,7 @@
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Existence_DateTime_Tests
+public class BasicType_DateTime_Tests
 {
     // DateTime
 

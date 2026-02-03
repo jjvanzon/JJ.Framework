@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Existence_Guid_Tests
+public class BasicType_Guid_Tests
 {
     // Guid
 

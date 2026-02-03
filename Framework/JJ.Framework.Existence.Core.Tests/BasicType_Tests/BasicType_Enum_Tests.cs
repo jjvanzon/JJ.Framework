@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Existence_Enum_Tests
+public class BasicType_Enum_Tests
 {
     // Enums
         

@@ -10,8 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Existence.Core.Tests\*.cs" />
-    <Compile Include="..\JJ.Framework.Existence.Core.Tests\Helpers\*.cs" Link="Helpers\%(Filename)%(Extension)" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Existence.Core.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Existence.Core.Tests\bin\**" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests\CrossRefCollectionTypesTests.cs" /> <!-- Removed from Trimming Test; Heavily relies on Reflection. -->
   </ItemGroup>
 

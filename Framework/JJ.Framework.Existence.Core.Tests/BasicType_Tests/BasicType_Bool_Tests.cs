@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Existence_Bool_Tests
+public class BasicType_Bool_Tests
 {
     const    bool  True       = true ;
     const    bool  False      = false;
