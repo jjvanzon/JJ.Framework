@@ -1,5 +1,4 @@
-﻿
-namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class Is_Tests_Extensions
@@ -50,22 +49,42 @@ public class Is_Tests_Extensions
     [TestMethod]
     public void Test_String_Is_CaseOrSpaceMattersNoNo_ExtensionsFlagsInBackSwapped()
     {
-        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false                      ));
-        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false                      ));
-        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false                      ));
-        IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false                      ));
-        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false, caseMatters:  false ));
-        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters:  false ));
-        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters:  false ));
-        IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters:  false ));
-      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: false,               false ));
-      //IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false,               false ));
-      //IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false,               false ));
-      //IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false,               false ));
-      //IsTrue ("  test  ".Is( "  test  ",               false, caseMatters:  false ));
-      //IsTrue ("  test  ".Is( "\ttest\t",               false, caseMatters:  false ));
-      //IsTrue ("  test  ".Is( "  TEST  ",               false, caseMatters:  false ));
-      //IsTrue ("  test  ".Is( "\tTEST\t",               false, caseMatters:  false ));
+      //IsTrue ("  test  ".Is( "  test  "                                          )); // Not a swap
+      //IsTrue ("  test  ".Is( "\ttest\t"                                          ));
+      //IsTrue ("  test  ".Is( "  TEST  "                                          ));
+      //IsTrue ("  test  ".Is( "\tTEST\t"                                          ));
+      //IsTrue ("  test  ".Is( "  test  ",                      caseMatters:  false));
+      //IsTrue ("  test  ".Is( "\ttest\t",                      caseMatters:  false));
+      //IsTrue ("  test  ".Is( "  TEST  ",                      caseMatters:  false));
+      //IsTrue ("  test  ".Is( "\tTEST\t",                      caseMatters:  false));
+      //IsTrue ("  test  ".Is( "  test  ",                                    false));
+      //IsTrue ("  test  ".Is( "\ttest\t",                                    false));
+      //IsTrue ("  test  ".Is( "  TEST  ",                                    false));
+      //IsTrue ("  test  ".Is( "\tTEST\t",                                    false));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false                     ));
+        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false                     ));
+        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false                     ));
+        IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false                     ));
+        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false, caseMatters:  false));
+        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters:  false));
+        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters:  false));
+        IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters:  false));
+      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: false,               false)); // TODO: Does not work
+      //IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false,               false));
+      //IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false,               false));
+      //IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false,               false));
+      //IsTrue ("  test  ".Is( "  test  ",               false                     )); // Not a swap
+      //IsTrue ("  test  ".Is( "\ttest\t",               false                     ));
+      //IsTrue ("  test  ".Is( "  TEST  ",               false                     ));
+      //IsTrue ("  test  ".Is( "\tTEST\t",               false                     ));
+      //IsTrue ("  test  ".Is( "  test  ",               false, caseMatters:  false)); // TODO: Does not work
+      //IsTrue ("  test  ".Is( "\ttest\t",               false, caseMatters:  false));
+      //IsTrue ("  test  ".Is( "  TEST  ",               false, caseMatters:  false));
+      //IsTrue ("  test  ".Is( "\tTEST\t",               false, caseMatters:  false));
+      //IsTrue ("  test  ".Is( "  test  ",               false,               false)); // Not a swap
+      //IsTrue ("  test  ".Is( "\ttest\t",               false,               false));
+      //IsTrue ("  test  ".Is( "  TEST  ",               false,               false));
+      //IsTrue ("  test  ".Is( "\tTEST\t",               false,               false));
     }
 
     [TestMethod]
@@ -120,7 +139,7 @@ public class Is_Tests_Extensions
         IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters:  true   ));
         IsFalse("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters:  true   ));
         IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: false, caseMatters:  true   ));
-      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: false,               true   ));
+      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: false,               true   )); // TODO: Does not work
       //IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false,               true   ));
       //IsFalse("  test  ".Is( "  TEST  ", spaceMatters: false,               true   ));
       //IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: false,               true   ));
@@ -128,10 +147,26 @@ public class Is_Tests_Extensions
         IsTrue ("  test  ".Is( "\ttest\t",               false, caseMatters          ));
         IsFalse("  test  ".Is( "  TEST  ",               false, caseMatters          ));
         IsFalse("  test  ".Is( "\tTEST\t",               false, caseMatters          ));
-      //IsTrue ("  test  ".Is( "  test  ",               false, caseMatters:  true   ));
+      //IsTrue ("  test  ".Is( "  test  ",               false, caseMatters:  true   )); // TODO: Does not work
       //IsTrue ("  test  ".Is( "\ttest\t",               false, caseMatters:  true   ));
       //IsFalse("  test  ".Is( "  TEST  ",               false, caseMatters:  true   ));
       //IsFalse("  test  ".Is( "\tTEST\t",               false, caseMatters:  true   ));
+      //IsTrue ("  test  ".Is( "  test  ",               false, caseMatters:  true   )); // Not a swap
+      //IsTrue ("  test  ".Is( "\ttest\t",               false,               true   ));
+      //IsFalse("  test  ".Is( "  TEST  ",               false,               true   ));
+      //IsFalse("  test  ".Is( "\tTEST\t",               false,               true   ));
+      //IsTrue ("  test  ".Is( "  test  ",                      caseMatters          ));
+      //IsTrue ("  test  ".Is( "\ttest\t",                      caseMatters          ));
+      //IsFalse("  test  ".Is( "  TEST  ",                      caseMatters          ));
+      //IsFalse("  test  ".Is( "\tTEST\t",                      caseMatters          ));
+      //IsTrue ("  test  ".Is( "  test  ",                      caseMatters:  true   ));
+      //IsTrue ("  test  ".Is( "\ttest\t",                      caseMatters:  true   ));
+      //IsFalse("  test  ".Is( "  TEST  ",                      caseMatters:  true   ));
+      //IsFalse("  test  ".Is( "\tTEST\t",                      caseMatters:  true   ));
+      //IsTrue ("  test  ".Is( "  test  ",                                    true   ));
+      //IsTrue ("  test  ".Is( "\ttest\t",                                    true   ));
+      //IsFalse("  test  ".Is( "  TEST  ",                                    true   ));
+      //IsFalse("  test  ".Is( "\tTEST\t",                                    true   ));
     }
 
     [TestMethod]
@@ -169,7 +204,7 @@ public class Is_Tests_Extensions
         IsFalse("  test  ".Is( "\ttest\t",               false,               true ));
         IsTrue ("  test  ".Is( "  TEST  ",               false,               true ));
         IsFalse("  test  ".Is( "\tTEST\t",               false,               true ));
-      //IsTrue ("  test  ".Is( "  test  ",                                    true ));
+      //IsTrue ("  test  ".Is( "  test  ",                                    true )); // Assigns wrong parameter
       //IsFalse("  test  ".Is( "\ttest\t",                                    true ));
       //IsTrue ("  test  ".Is( "  TEST  ",                                    true ));
       //IsFalse("  test  ".Is( "\tTEST\t",                                    true ));
@@ -194,7 +229,7 @@ public class Is_Tests_Extensions
         IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true, caseMatters:  false ));
         IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: true, caseMatters:  false ));
         IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true, caseMatters:  false ));
-      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: true,               false )); 
+      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: true,               false )); // TODO: Does not work 
       //IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true,               false ));
       //IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: true,               false ));
       //IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true,               false ));
@@ -202,10 +237,18 @@ public class Is_Tests_Extensions
         IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true                      ));
         IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: true                      ));
         IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true                      ));
-      //IsTrue ("  test  ".Is( "  test  ",               true, caseMatters:  false )); 
+      //IsTrue ("  test  ".Is( "  test  ",               true, caseMatters:  false )); // TODO: Does not work
       //IsFalse("  test  ".Is( "\ttest\t",               true, caseMatters:  false ));
       //IsTrue ("  test  ".Is( "  TEST  ",               true, caseMatters:  false ));
       //IsFalse("  test  ".Is( "\tTEST\t",               true, caseMatters:  false ));
+      //IsTrue ("  test  ".Is( "  test  ",               true,               false )); // Not a swap
+      //IsFalse("  test  ".Is( "\ttest\t",               true,               false ));
+      //IsTrue ("  test  ".Is( "  TEST  ",               true,               false ));
+      //IsFalse("  test  ".Is( "\tTEST\t",               true,               false ));
+      //IsTrue ("  test  ".Is( "  test  ",               true,               false ));
+      //IsFalse("  test  ".Is( "\ttest\t",               true,                     ));
+      //IsTrue ("  test  ".Is( "  TEST  ",               true,                     ));
+      //IsFalse("  test  ".Is( "\tTEST\t",               true,                     ));
     }
 
     [TestMethod]
@@ -248,6 +291,7 @@ public class Is_Tests_Extensions
         IsFalse("  test  ".Is( "  TEST  ",              true,                 true ));
         IsFalse("  test  ".Is( "\tTEST\t",              true,                 true ));
     }                                                   
+
     [TestMethod]
     public void Test_String_Is_CaseOrSpaceMattersYesYes_ExtensionsFlagsInBackSwapped()
     {
@@ -271,7 +315,7 @@ public class Is_Tests_Extensions
         IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true,   caseMatters: true ));
         IsFalse("  test  ".Is( "  TEST  ", spaceMatters: true,   caseMatters: true ));
         IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true,   caseMatters: true ));
-      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: true,                true ));
+      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: true,                true )); // TODO: Does not work
       //IsFalse("  test  ".Is( "\ttest\t", spaceMatters: true,                true ));
       //IsFalse("  test  ".Is( "  TEST  ", spaceMatters: true,                true ));
       //IsFalse("  test  ".Is( "\tTEST\t", spaceMatters: true,                true ));
@@ -279,7 +323,7 @@ public class Is_Tests_Extensions
         IsFalse("  test  ".Is( "\ttest\t",               true,   caseMatters       ));
         IsFalse("  test  ".Is( "  TEST  ",               true,   caseMatters       ));
         IsFalse("  test  ".Is( "\tTEST\t",               true,   caseMatters       ));
-      //IsTrue ("  test  ".Is( "  test  ",               true,   caseMatters: true ));
+      //IsTrue ("  test  ".Is( "  test  ",               true,   caseMatters: true )); // TODO: Does not work
       //IsFalse("  test  ".Is( "\ttest\t",               true,   caseMatters: true ));
       //IsFalse("  test  ".Is( "  TEST  ",               true,   caseMatters: true ));
       //IsFalse("  test  ".Is( "\tTEST\t",               true,   caseMatters: true ));
