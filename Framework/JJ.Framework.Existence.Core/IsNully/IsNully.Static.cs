@@ -17,9 +17,9 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj                           )                  => !HasValOrObj(valOrObj);
     /// <inheritdoc cref="_isnully" />
-    public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj, bool         zeroMatters ) where T : struct => !HasVal(valOrObj, zeroMatters);
+    public static bool IsNully<T>   ([NotNullWhen(false)]      T              val,      bool         zeroMatters ) where T : struct => !HasVal(val, zeroMatters);
     /// <inheritdoc cref="_isnully" />
-    public static bool IsNully<T>   ([NotNullWhen(false)]      T              valOrObj, ZeroMatters  zeroMatters ) where T : struct => !HasVal(valOrObj, zeroMatters);
+    public static bool IsNully<T>   ([NotNullWhen(false)]      T              val,      ZeroMatters  zeroMatters ) where T : struct => !HasVal(val, zeroMatters);
     /// <inheritdoc cref="_isnully" />
     public static bool IsNully<T>   ([NotNullWhen(false)]      T?             nullyVal                           ) where T : struct => !HasValNully(nullyVal);
     /// <inheritdoc cref="_isnully" />
