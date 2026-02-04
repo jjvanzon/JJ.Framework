@@ -64,10 +64,10 @@ public class Is_Tests_StaticFlagsInFront
         IsTrue (Is(spaceMatters: false,                      "  test  ", "\ttest\t"));
         IsTrue (Is(spaceMatters: false,                      "  test  ", "  TEST  "));
         IsTrue (Is(spaceMatters: false,                      "  test  ", "\tTEST\t"));
-      //IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "  test  ")); // TODO: Does not work
-      //IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "\ttest\t"));
-      //IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "  TEST  "));
-      //IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "\tTEST\t"));
+        IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "  test  "));
+        IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "\ttest\t"));
+        IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "  TEST  "));
+        IsTrue (Is(spaceMatters: false, caseMatters:  false, "  test  ", "\tTEST\t"));
         IsTrue (Is(spaceMatters: false,               false, "  test  ", "  test  "));
         IsTrue (Is(spaceMatters: false,               false, "  test  ", "\ttest\t"));
         IsTrue (Is(spaceMatters: false,               false, "  test  ", "  TEST  "));
@@ -146,10 +146,10 @@ public class Is_Tests_StaticFlagsInFront
         IsFalse(Is(spaceMatters: true,                       "  test  ", "\ttest\t"));
         IsTrue (Is(spaceMatters: true,                       "  test  ", "  TEST  "));
         IsFalse(Is(spaceMatters: true,                       "  test  ", "\tTEST\t"));
-      //IsTrue (Is(spaceMatters: true,  caseMatters:  false, "  test  ", "  test  ")); // TODO: Does not work
-      //IsFalse(Is(spaceMatters: true,  caseMatters:  false, "  test  ", "\ttest\t"));
-      //IsTrue (Is(spaceMatters: true,  caseMatters:  false, "  test  ", "  TEST  "));
-      //IsFalse(Is(spaceMatters: true,  caseMatters:  false, "  test  ", "\tTEST\t"));
+        IsTrue (Is(spaceMatters: true,  caseMatters:  false, "  test  ", "  test  "));
+        IsFalse(Is(spaceMatters: true,  caseMatters:  false, "  test  ", "\ttest\t"));
+        IsTrue (Is(spaceMatters: true,  caseMatters:  false, "  test  ", "  TEST  "));
+        IsFalse(Is(spaceMatters: true,  caseMatters:  false, "  test  ", "\tTEST\t"));
         IsTrue (Is(spaceMatters: true,                false, "  test  ", "  test  "));
         IsFalse(Is(spaceMatters: true,                false, "  test  ", "\ttest\t"));
         IsTrue (Is(spaceMatters: true,                false, "  test  ", "  TEST  "));
@@ -216,10 +216,10 @@ public class Is_Tests_StaticFlagsInFront
         IsTrue (Is(spaceMatters: false, caseMatters,         "  test  ", "\ttest\t"));
         IsFalse(Is(spaceMatters: false, caseMatters,         "  test  ", "  TEST  "));
         IsFalse(Is(spaceMatters: false, caseMatters,         "  test  ", "\tTEST\t"));
-      //IsTrue (Is(spaceMatters: false, caseMatters:  true,  "  test  ", "  test  ")); // TODO: Does not work
-      //IsTrue (Is(spaceMatters: false, caseMatters:  true,  "  test  ", "\ttest\t"));
-      //IsFalse(Is(spaceMatters: false, caseMatters:  true,  "  test  ", "  TEST  "));
-      //IsFalse(Is(spaceMatters: false, caseMatters:  true,  "  test  ", "\tTEST\t"));
+        IsTrue (Is(spaceMatters: false, caseMatters:  true,  "  test  ", "  test  "));
+        IsTrue (Is(spaceMatters: false, caseMatters:  true,  "  test  ", "\ttest\t"));
+        IsFalse(Is(spaceMatters: false, caseMatters:  true,  "  test  ", "  TEST  "));
+        IsFalse(Is(spaceMatters: false, caseMatters:  true,  "  test  ", "\tTEST\t"));
         IsTrue (Is(spaceMatters: false,               true,  "  test  ", "  test  "));
         IsTrue (Is(spaceMatters: false,               true,  "  test  ", "\ttest\t"));
         IsFalse(Is(spaceMatters: false,               true,  "  test  ", "  TEST  "));
@@ -310,10 +310,10 @@ public class Is_Tests_StaticFlagsInFront
         IsFalse(Is(spaceMatters: true,  caseMatters,         "  test  ", "\ttest\t"));
         IsFalse(Is(spaceMatters: true,  caseMatters,         "  test  ", "  TEST  "));
         IsFalse(Is(spaceMatters: true,  caseMatters,         "  test  ", "\tTEST\t"));
-      //IsTrue (Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "  test  ")); // TODO: Does not work
-      //IsFalse(Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "\ttest\t"));
-      //IsFalse(Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "  TEST  "));
-      //IsFalse(Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "\tTEST\t"));
+        IsTrue (Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "  test  "));
+        IsFalse(Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "\ttest\t"));
+        IsFalse(Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "  TEST  "));
+        IsFalse(Is(spaceMatters: true,  caseMatters:  true,  "  test  ", "\tTEST\t"));
         IsTrue (Is(spaceMatters: true,                true,  "  test  ", "  test  "));
         IsFalse(Is(spaceMatters: true,                true,  "  test  ", "\ttest\t"));
         IsFalse(Is(spaceMatters: true,                true,  "  test  ", "  TEST  "));

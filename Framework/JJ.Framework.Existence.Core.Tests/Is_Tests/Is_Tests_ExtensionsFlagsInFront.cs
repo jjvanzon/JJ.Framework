@@ -63,10 +63,10 @@ public class Is_Tests_ExtensionsFlagsInFront
         IsTrue ("  test  ".Is( spaceMatters: false                     , "\ttest\t"));
         IsTrue ("  test  ".Is( spaceMatters: false                     , "  TEST  "));
         IsTrue ("  test  ".Is( spaceMatters: false                     , "\tTEST\t"));
-      //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "  test  ")); // TODO: Does not work
-      //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "\ttest\t"));
-      //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "  TEST  "));
-      //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "\tTEST\t"));
+        IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "  test  "));
+        IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "\ttest\t"));
+        IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "  TEST  "));
+        IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "\tTEST\t"));
         IsTrue ("  test  ".Is( spaceMatters: false,               false, "  test  "));
         IsTrue ("  test  ".Is( spaceMatters: false,               false, "\ttest\t"));
         IsTrue ("  test  ".Is( spaceMatters: false,               false, "  TEST  "));
@@ -133,10 +133,10 @@ public class Is_Tests_ExtensionsFlagsInFront
         IsTrue ("  test  ".Is( spaceMatters: false, caseMatters       , "\ttest\t" ));
         IsFalse("  test  ".Is( spaceMatters: false, caseMatters       , "  TEST  " ));
         IsFalse("  test  ".Is( spaceMatters: false, caseMatters       , "\tTEST\t" ));
-      //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  true, "  test  " )); // TODO: Does not work
-      //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  true, "\ttest\t" ));
-      //IsFalse("  test  ".Is( spaceMatters: false, caseMatters:  true, "  TEST  " ));
-      //IsFalse("  test  ".Is( spaceMatters: false, caseMatters:  true, "\tTEST\t" ));
+        IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  true, "  test  " ));
+        IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  true, "\ttest\t" ));
+        IsFalse("  test  ".Is( spaceMatters: false, caseMatters:  true, "  TEST  " ));
+        IsFalse("  test  ".Is( spaceMatters: false, caseMatters:  true, "\tTEST\t" ));
         IsTrue ("  test  ".Is( spaceMatters: false,               true, "  test  " ));
         IsTrue ("  test  ".Is( spaceMatters: false,               true, "\ttest\t" ));
         IsFalse("  test  ".Is( spaceMatters: false,               true, "  TEST  " ));
@@ -223,10 +223,10 @@ public class Is_Tests_ExtensionsFlagsInFront
         IsFalse("  test  ".Is(spaceMatters                           , "\ttest\t" ));
         IsTrue ("  test  ".Is(spaceMatters                           , "  TEST  " ));
         IsFalse("  test  ".Is(spaceMatters                           , "\tTEST\t" ));
-      //IsTrue ("  test  ".Is(spaceMatters: true, caseMatters:  false, "  test  " )); // TODO: Does not work 
-      //IsFalse("  test  ".Is(spaceMatters: true, caseMatters:  false, "\ttest\t" ));
-      //IsTrue ("  test  ".Is(spaceMatters: true, caseMatters:  false, "  TEST  " ));
-      //IsFalse("  test  ".Is(spaceMatters: true, caseMatters:  false, "\tTEST\t" ));
+        IsTrue ("  test  ".Is(spaceMatters: true, caseMatters:  false, "  test  " ));
+        IsFalse("  test  ".Is(spaceMatters: true, caseMatters:  false, "\ttest\t" ));
+        IsTrue ("  test  ".Is(spaceMatters: true, caseMatters:  false, "  TEST  " ));
+        IsFalse("  test  ".Is(spaceMatters: true, caseMatters:  false, "\tTEST\t" ));
         IsTrue ("  test  ".Is(spaceMatters: true,               false, "  test  " ));
         IsFalse("  test  ".Is(spaceMatters: true,               false, "\ttest\t" ));
         IsTrue ("  test  ".Is(spaceMatters: true,               false, "  TEST  " ));
@@ -309,10 +309,10 @@ public class Is_Tests_ExtensionsFlagsInFront
         IsFalse("  test  ".Is(spaceMatters: true,   caseMatters      , "\ttest\t" ));
         IsFalse("  test  ".Is(spaceMatters: true,   caseMatters      , "  TEST  " ));
         IsFalse("  test  ".Is(spaceMatters: true,   caseMatters      , "\tTEST\t" ));
-      //IsTrue ("  test  ".Is(spaceMatters: true,   caseMatters: true, "  test  " )); // TODO: Does not work
-      //IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "\ttest\t" ));
-      //IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "  TEST  " ));
-      //IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "\tTEST\t" ));
+        IsTrue ("  test  ".Is(spaceMatters: true,   caseMatters: true, "  test  " ));
+        IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "\ttest\t" ));
+        IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "  TEST  " ));
+        IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "\tTEST\t" ));
         IsTrue ("  test  ".Is(spaceMatters: true,                true, "  test  " ));
         IsFalse("  test  ".Is(spaceMatters: true,                true, "\ttest\t" ));
         IsFalse("  test  ".Is(spaceMatters: true,                true, "  TEST  " ));
