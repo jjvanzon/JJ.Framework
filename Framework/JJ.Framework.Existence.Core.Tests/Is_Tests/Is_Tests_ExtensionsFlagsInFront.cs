@@ -67,18 +67,18 @@ public class Is_Tests_ExtensionsFlagsInFront
       //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "\ttest\t"));
       //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "  TEST  "));
       //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  false, "\tTEST\t"));
-      //IsTrue ("  test  ".Is( spaceMatters: false,               false, "  test  "));
-      //IsTrue ("  test  ".Is( spaceMatters: false,               false, "\ttest\t"));
-      //IsTrue ("  test  ".Is( spaceMatters: false,               false, "  TEST  "));
-      //IsTrue ("  test  ".Is( spaceMatters: false,               false, "\tTEST\t"));
+        IsTrue ("  test  ".Is( spaceMatters: false,               false, "  test  "));
+        IsTrue ("  test  ".Is( spaceMatters: false,               false, "\ttest\t"));
+        IsTrue ("  test  ".Is( spaceMatters: false,               false, "  TEST  "));
+        IsTrue ("  test  ".Is( spaceMatters: false,               false, "\tTEST\t"));
       //IsTrue ("  test  ".Is(               false                     , "  test  ")); // Not a swap
       //IsTrue ("  test  ".Is(               false                     , "\ttest\t"));
       //IsTrue ("  test  ".Is(               false                     , "  TEST  "));
       //IsTrue ("  test  ".Is(               false                     , "\tTEST\t"));
-      //IsTrue ("  test  ".Is(               false, caseMatters:  false, "  test  ")); // TODO: Does not work
-      //IsTrue ("  test  ".Is(               false, caseMatters:  false, "\ttest\t"));
-      //IsTrue ("  test  ".Is(               false, caseMatters:  false, "  TEST  "));
-      //IsTrue ("  test  ".Is(               false, caseMatters:  false, "\tTEST\t"));
+        IsTrue ("  test  ".Is(               false, caseMatters:  false, "  test  "));
+        IsTrue ("  test  ".Is(               false, caseMatters:  false, "\ttest\t"));
+        IsTrue ("  test  ".Is(               false, caseMatters:  false, "  TEST  "));
+        IsTrue ("  test  ".Is(               false, caseMatters:  false, "\tTEST\t"));
       //IsTrue ("  test  ".Is(               false,               false, "  test  ")); // Not a swap
       //IsTrue ("  test  ".Is(               false,               false, "\ttest\t"));
       //IsTrue ("  test  ".Is(               false,               false, "  TEST  "));
@@ -137,18 +137,18 @@ public class Is_Tests_ExtensionsFlagsInFront
       //IsTrue ("  test  ".Is( spaceMatters: false, caseMatters:  true, "\ttest\t" ));
       //IsFalse("  test  ".Is( spaceMatters: false, caseMatters:  true, "  TEST  " ));
       //IsFalse("  test  ".Is( spaceMatters: false, caseMatters:  true, "\tTEST\t" ));
-      //IsTrue ("  test  ".Is( spaceMatters: false,               true, "  test  " ));
-      //IsTrue ("  test  ".Is( spaceMatters: false,               true, "\ttest\t" ));
-      //IsFalse("  test  ".Is( spaceMatters: false,               true, "  TEST  " ));
-      //IsFalse("  test  ".Is( spaceMatters: false,               true, "\tTEST\t" ));
+        IsTrue ("  test  ".Is( spaceMatters: false,               true, "  test  " ));
+        IsTrue ("  test  ".Is( spaceMatters: false,               true, "\ttest\t" ));
+        IsFalse("  test  ".Is( spaceMatters: false,               true, "  TEST  " ));
+        IsFalse("  test  ".Is( spaceMatters: false,               true, "\tTEST\t" ));
         IsTrue ("  test  ".Is(               false, caseMatters       , "  test  " ));
         IsTrue ("  test  ".Is(               false, caseMatters       , "\ttest\t" ));
         IsFalse("  test  ".Is(               false, caseMatters       , "  TEST  " ));
         IsFalse("  test  ".Is(               false, caseMatters       , "\tTEST\t" ));
-      //IsTrue ("  test  ".Is(               false, caseMatters:  true, "  test  " )); // TODO: Does not work
-      //IsTrue ("  test  ".Is(               false, caseMatters:  true, "\ttest\t" ));
-      //IsFalse("  test  ".Is(               false, caseMatters:  true, "  TEST  " ));
-      //IsFalse("  test  ".Is(               false, caseMatters:  true, "\tTEST\t" ));
+        IsTrue ("  test  ".Is(               false, caseMatters:  true, "  test  " ));
+        IsTrue ("  test  ".Is(               false, caseMatters:  true, "\ttest\t" ));
+        IsFalse("  test  ".Is(               false, caseMatters:  true, "  TEST  " ));
+        IsFalse("  test  ".Is(               false, caseMatters:  true, "\tTEST\t" ));
       //IsTrue ("  test  ".Is(               false, caseMatters:  true, "  test  " )); // Not a swap
       //IsTrue ("  test  ".Is(               false,               true, "\ttest\t" ));
       //IsFalse("  test  ".Is(               false,               true, "  TEST  " ));
@@ -227,18 +227,18 @@ public class Is_Tests_ExtensionsFlagsInFront
       //IsFalse("  test  ".Is(spaceMatters: true, caseMatters:  false, "\ttest\t" ));
       //IsTrue ("  test  ".Is(spaceMatters: true, caseMatters:  false, "  TEST  " ));
       //IsFalse("  test  ".Is(spaceMatters: true, caseMatters:  false, "\tTEST\t" ));
-      //IsTrue ("  test  ".Is(spaceMatters: true,               false, "  test  " ));
-      //IsFalse("  test  ".Is(spaceMatters: true,               false, "\ttest\t" ));
-      //IsTrue ("  test  ".Is(spaceMatters: true,               false, "  TEST  " ));
-      //IsFalse("  test  ".Is(spaceMatters: true,               false, "\tTEST\t" ));
+        IsTrue ("  test  ".Is(spaceMatters: true,               false, "  test  " ));
+        IsFalse("  test  ".Is(spaceMatters: true,               false, "\ttest\t" ));
+        IsTrue ("  test  ".Is(spaceMatters: true,               false, "  TEST  " ));
+        IsFalse("  test  ".Is(spaceMatters: true,               false, "\tTEST\t" ));
         IsTrue ("  test  ".Is(spaceMatters: true                     , "  test  " )); 
         IsFalse("  test  ".Is(spaceMatters: true                     , "\ttest\t" ));
         IsTrue ("  test  ".Is(spaceMatters: true                     , "  TEST  " ));
         IsFalse("  test  ".Is(spaceMatters: true                     , "\tTEST\t" ));
-      //IsTrue ("  test  ".Is(              true, caseMatters:  false, "  test  " )); // TODO: Does not work
-      //IsFalse("  test  ".Is(              true, caseMatters:  false, "\ttest\t" ));
-      //IsTrue ("  test  ".Is(              true, caseMatters:  false, "  TEST  " ));
-      //IsFalse("  test  ".Is(              true, caseMatters:  false, "\tTEST\t" ));
+        IsTrue ("  test  ".Is(              true, caseMatters:  false, "  test  " ));
+        IsFalse("  test  ".Is(              true, caseMatters:  false, "\ttest\t" ));
+        IsTrue ("  test  ".Is(              true, caseMatters:  false, "  TEST  " ));
+        IsFalse("  test  ".Is(              true, caseMatters:  false, "\tTEST\t" ));
       //IsTrue ("  test  ".Is(              true,               false, "  test  " )); // Not a swap
       //IsFalse("  test  ".Is(              true,               false, "\ttest\t" ));
       //IsTrue ("  test  ".Is(              true,               false, "  TEST  " ));
@@ -313,18 +313,18 @@ public class Is_Tests_ExtensionsFlagsInFront
       //IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "\ttest\t" ));
       //IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "  TEST  " ));
       //IsFalse("  test  ".Is(spaceMatters: true,   caseMatters: true, "\tTEST\t" ));
-      //IsTrue ("  test  ".Is(spaceMatters: true,                true, "  test  " ));
-      //IsFalse("  test  ".Is(spaceMatters: true,                true, "\ttest\t" ));
-      //IsFalse("  test  ".Is(spaceMatters: true,                true, "  TEST  " ));
-      //IsFalse("  test  ".Is(spaceMatters: true,                true, "\tTEST\t" ));
+        IsTrue ("  test  ".Is(spaceMatters: true,                true, "  test  " ));
+        IsFalse("  test  ".Is(spaceMatters: true,                true, "\ttest\t" ));
+        IsFalse("  test  ".Is(spaceMatters: true,                true, "  TEST  " ));
+        IsFalse("  test  ".Is(spaceMatters: true,                true, "\tTEST\t" ));
         IsTrue ("  test  ".Is(              true,   caseMatters      , "  test  " ));
         IsFalse("  test  ".Is(              true,   caseMatters      , "\ttest\t" ));
         IsFalse("  test  ".Is(              true,   caseMatters      , "  TEST  " ));
         IsFalse("  test  ".Is(              true,   caseMatters      , "\tTEST\t" ));
-      //IsTrue ("  test  ".Is(              true,   caseMatters: true, "  test  " )); // TODO: Does not work
-      //IsFalse("  test  ".Is(              true,   caseMatters: true, "\ttest\t" ));
-      //IsFalse("  test  ".Is(              true,   caseMatters: true, "  TEST  " ));
-      //IsFalse("  test  ".Is(              true,   caseMatters: true, "\tTEST\t" ));
+        IsTrue ("  test  ".Is(              true,   caseMatters: true, "  test  " ));
+        IsFalse("  test  ".Is(              true,   caseMatters: true, "\ttest\t" ));
+        IsFalse("  test  ".Is(              true,   caseMatters: true, "  TEST  " ));
+        IsFalse("  test  ".Is(              true,   caseMatters: true, "\tTEST\t" ));
       //IsTrue ("  test  ".Is(              true,                true, "  test  " )); // Not a swap
       //IsFalse("  test  ".Is(              true,                true, "\ttest\t" ));
       //IsFalse("  test  ".Is(              true,                true, "  TEST  " ));
