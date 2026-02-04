@@ -68,18 +68,18 @@ public class Is_Tests_StaticFlagsInBack
         IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false, caseMatters:  false));
         IsTrue (Is("  test  ", "  TEST  ", spaceMatters: false, caseMatters:  false));
         IsTrue (Is("  test  ", "\tTEST\t", spaceMatters: false, caseMatters:  false));
-      //IsTrue (Is("  test  ", "  test  ", spaceMatters: false,               false)); // TODO: Does not work
-      //IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false,               false));
-      //IsTrue (Is("  test  ", "  TEST  ", spaceMatters: false,               false));
-      //IsTrue (Is("  test  ", "\tTEST\t", spaceMatters: false,               false));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: false,               false));
+        IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false,               false));
+        IsTrue (Is("  test  ", "  TEST  ", spaceMatters: false,               false));
+        IsTrue (Is("  test  ", "\tTEST\t", spaceMatters: false,               false));
       //IsTrue (Is("  test  ", "  test  ",               false                     )); // Sets other parameter
       //IsTrue (Is("  test  ", "\ttest\t",               false                     ));
       //IsTrue (Is("  test  ", "  TEST  ",               false                     ));
       //IsTrue (Is("  test  ", "\tTEST\t",               false                     ));
-      //IsTrue (Is("  test  ", "  test  ",               false, caseMatters:  false)); // TODO: Does not work
-      //IsTrue (Is("  test  ", "\ttest\t",               false, caseMatters:  false));
-      //IsTrue (Is("  test  ", "  TEST  ",               false, caseMatters:  false));
-      //IsTrue (Is("  test  ", "\tTEST\t",               false, caseMatters:  false));
+        IsTrue (Is("  test  ", "  test  ",               false, caseMatters:  false));
+        IsTrue (Is("  test  ", "\ttest\t",               false, caseMatters:  false));
+        IsTrue (Is("  test  ", "  TEST  ",               false, caseMatters:  false));
+        IsTrue (Is("  test  ", "\tTEST\t",               false, caseMatters:  false));
       //IsTrue (Is("  test  ", "  test  ",               false,               false)); // Not a swap
       //IsTrue (Is("  test  ", "\ttest\t",               false,               false));
       //IsTrue (Is("  test  ", "  TEST  ",               false,               false));
@@ -150,18 +150,18 @@ public class Is_Tests_StaticFlagsInBack
         IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,  caseMatters:  false));
         IsTrue (Is("  test  ", "  TEST  ", spaceMatters: true,  caseMatters:  false));
         IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,  caseMatters:  false));
-      //IsTrue (Is("  test  ", "  test  ", spaceMatters: true,                false)); // TODO: Does not work
-      //IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,                false));
-      //IsTrue (Is("  test  ", "  TEST  ", spaceMatters: true,                false));
-      //IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,                false));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: true,                false));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,                false));
+        IsTrue (Is("  test  ", "  TEST  ", spaceMatters: true,                false));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,                false));
       //IsTrue (Is("  test  ", "  test  ",               true                      )); // Sets other parameter
       //IsFalse(Is("  test  ", "\ttest\t",               true                      ));
       //IsTrue (Is("  test  ", "  TEST  ",               true                      ));
       //IsFalse(Is("  test  ", "\tTEST\t",               true                      ));
-      //IsTrue (Is("  test  ", "  test  ",               true,  caseMatters:  false)); // TODO: Does not work
-      //IsFalse(Is("  test  ", "\ttest\t",               true,  caseMatters:  false));
-      //IsTrue (Is("  test  ", "  TEST  ",               true,  caseMatters:  false));
-      //IsFalse(Is("  test  ", "\tTEST\t",               true,  caseMatters:  false));
+        IsTrue (Is("  test  ", "  test  ",               true,  caseMatters:  false));
+        IsFalse(Is("  test  ", "\ttest\t",               true,  caseMatters:  false));
+        IsTrue (Is("  test  ", "  TEST  ",               true,  caseMatters:  false));
+        IsFalse(Is("  test  ", "\tTEST\t",               true,  caseMatters:  false));
       //IsTrue (Is("  test  ", "  test  ",               true,                false)); // Not a swap
       //IsFalse(Is("  test  ", "\ttest\t",               true,                false));
       //IsTrue (Is("  test  ", "  TEST  ",               true,                false));
@@ -220,18 +220,18 @@ public class Is_Tests_StaticFlagsInBack
         IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false, caseMatters:  true ));
         IsFalse(Is("  test  ", "  TEST  ", spaceMatters: false, caseMatters:  true ));
         IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: false, caseMatters:  true ));
-      //IsTrue (Is("  test  ", "  test  ", spaceMatters: false,               true )); // TODO: Does not work
-      //IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false,               true ));
-      //IsFalse(Is("  test  ", "  TEST  ", spaceMatters: false,               true ));
-      //IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: false,               true ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: false,               true ));
+        IsTrue (Is("  test  ", "\ttest\t", spaceMatters: false,               true ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters: false,               true ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: false,               true ));
         IsTrue (Is("  test  ", "  test  ",               false, caseMatters        ));
         IsTrue (Is("  test  ", "\ttest\t",               false, caseMatters        ));
         IsFalse(Is("  test  ", "  TEST  ",               false, caseMatters        ));
         IsFalse(Is("  test  ", "\tTEST\t",               false, caseMatters        ));
-      //IsTrue (Is("  test  ", "  test  ",               false, caseMatters:  true )); // TODO: Does not work
-      //IsTrue (Is("  test  ", "\ttest\t",               false, caseMatters:  true ));
-      //IsFalse(Is("  test  ", "  TEST  ",               false, caseMatters:  true ));
-      //IsFalse(Is("  test  ", "\tTEST\t",               false, caseMatters:  true ));
+        IsTrue (Is("  test  ", "  test  ",               false, caseMatters:  true ));
+        IsTrue (Is("  test  ", "\ttest\t",               false, caseMatters:  true ));
+        IsFalse(Is("  test  ", "  TEST  ",               false, caseMatters:  true ));
+        IsFalse(Is("  test  ", "\tTEST\t",               false, caseMatters:  true ));
       //IsTrue (Is("  test  ", "  test  ",               false,               true )); // Not a swap
       //IsTrue (Is("  test  ", "\ttest\t",               false,               true ));
       //IsFalse(Is("  test  ", "  TEST  ",               false,               true ));
@@ -314,18 +314,18 @@ public class Is_Tests_StaticFlagsInBack
         IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,  caseMatters:  true ));
         IsFalse(Is("  test  ", "  TEST  ", spaceMatters: true,  caseMatters:  true ));
         IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,  caseMatters:  true ));
-      //IsTrue (Is("  test  ", "  test  ", spaceMatters: true,                true )); // TODO: Does not work
-      //IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,                true ));
-      //IsFalse(Is("  test  ", "  TEST  ", spaceMatters: true,                true ));
-      //IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,                true ));
+        IsTrue (Is("  test  ", "  test  ", spaceMatters: true,                true ));
+        IsFalse(Is("  test  ", "\ttest\t", spaceMatters: true,                true ));
+        IsFalse(Is("  test  ", "  TEST  ", spaceMatters: true,                true ));
+        IsFalse(Is("  test  ", "\tTEST\t", spaceMatters: true,                true ));
         IsTrue (Is("  test  ", "  test  ",               true,  caseMatters        ));
         IsFalse(Is("  test  ", "\ttest\t",               true,  caseMatters        ));
         IsFalse(Is("  test  ", "  TEST  ",               true,  caseMatters        ));
         IsFalse(Is("  test  ", "\tTEST\t",               true,  caseMatters        ));
-      //IsTrue (Is("  test  ", "  test  ",               true,  caseMatters:  true )); // TODO: Does not work
-      //IsFalse(Is("  test  ", "\ttest\t",               true,  caseMatters:  true ));
-      //IsFalse(Is("  test  ", "  TEST  ",               true,  caseMatters:  true ));
-      //IsFalse(Is("  test  ", "\tTEST\t",               true,  caseMatters:  true ));
+        IsTrue (Is("  test  ", "  test  ",               true,  caseMatters:  true ));
+        IsFalse(Is("  test  ", "\ttest\t",               true,  caseMatters:  true ));
+        IsFalse(Is("  test  ", "  TEST  ",               true,  caseMatters:  true ));
+        IsFalse(Is("  test  ", "\tTEST\t",               true,  caseMatters:  true ));
       //IsTrue (Is("  test  ", "  test  ",               true,                true )); // Not a swap
       //IsFalse(Is("  test  ", "\ttest\t",               true,                true ));
       //IsFalse(Is("  test  ", "  TEST  ",               true,                true ));
