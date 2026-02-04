@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)docs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DynamicallyAccessedMemberTypesEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImplicitUsageReasons.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NoTrimReasons.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SharedUsing.cs" />
   </ItemGroup>
