@@ -13,7 +13,7 @@
     <Compile Include="..\JJ.Framework.Existence.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests\bin\**" />
-    <Compile Remove="..\JJ.Framework.Existence.Core.Tests\CrossRefCollectionTypesTests.cs" /> <!-- Removed from Trimming Test; Heavily relies on Reflection. -->
+    <Compile Remove="..\JJ.Framework.Existence.Core.Tests\Existence_CrossRefCollectionTypes_Tests.cs" /> <!-- Removed from Trimming Test; Heavily relies on Reflection. -->
   </ItemGroup>
 
   <ItemGroup>
