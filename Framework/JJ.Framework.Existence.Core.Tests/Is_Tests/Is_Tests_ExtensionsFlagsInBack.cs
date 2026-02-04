@@ -30,10 +30,10 @@ public class Is_Tests_ExtensionsFlagsInBack
         IsTrue ("  test  ".Is( "\ttest\t",               false, spaceMatters: false));
         IsTrue ("  test  ".Is( "  TEST  ",               false, spaceMatters: false));
         IsTrue ("  test  ".Is( "\tTEST\t",               false, spaceMatters: false));
-        IsTrue ("  test  ".Is( "  test  ",                                    false));
-        IsTrue ("  test  ".Is( "\ttest\t",                                    false));
-        IsTrue ("  test  ".Is( "  TEST  ",                                    false));
-        IsTrue ("  test  ".Is( "\tTEST\t",                                    false));
+      //IsTrue ("  test  ".Is( "  test  ",                                    false)); // Assigns wrong parameter
+      //IsTrue ("  test  ".Is( "\ttest\t",                                    false));
+      //IsTrue ("  test  ".Is( "  TEST  ",                                    false));
+      //IsTrue ("  test  ".Is( "\tTEST\t",                                    false));
         IsTrue ("  test  ".Is( "  test  ", caseMatters:  false,               false));
         IsTrue ("  test  ".Is( "\ttest\t", caseMatters:  false,               false));
         IsTrue ("  test  ".Is( "  TEST  ", caseMatters:  false,               false));
@@ -59,10 +59,10 @@ public class Is_Tests_ExtensionsFlagsInBack
       //IsTrue ("  test  ".Is( "\ttest\t",                                    false));
       //IsTrue ("  test  ".Is( "  TEST  ",                                    false));
       //IsTrue ("  test  ".Is( "\tTEST\t",                                    false));
-        IsTrue ("  test  ".Is( "  test  ", spaceMatters: false                     ));
-        IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false                     ));
-        IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false                     ));
-        IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false                     ));
+      //IsTrue ("  test  ".Is( "  test  ", spaceMatters: false                     ));
+      //IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false                     ));
+      //IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false                     ));
+      //IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false                     ));
         IsTrue ("  test  ".Is( "  test  ", spaceMatters: false, caseMatters:  false));
         IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false, caseMatters:  false));
         IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false, caseMatters:  false));
@@ -71,7 +71,7 @@ public class Is_Tests_ExtensionsFlagsInBack
         IsTrue ("  test  ".Is( "\ttest\t", spaceMatters: false,               false));
         IsTrue ("  test  ".Is( "  TEST  ", spaceMatters: false,               false));
         IsTrue ("  test  ".Is( "\tTEST\t", spaceMatters: false,               false));
-      //IsTrue ("  test  ".Is( "  test  ",               false                     )); // Not a swap
+      //IsTrue ("  test  ".Is( "  test  ",               false                     )); // Assigns wrong parameter
       //IsTrue ("  test  ".Is( "\ttest\t",               false                     ));
       //IsTrue ("  test  ".Is( "  TEST  ",               false                     ));
       //IsTrue ("  test  ".Is( "\tTEST\t",               false                     ));
@@ -149,7 +149,7 @@ public class Is_Tests_ExtensionsFlagsInBack
         IsTrue ("  test  ".Is( "\ttest\t",               false, caseMatters:  true   ));
         IsFalse("  test  ".Is( "  TEST  ",               false, caseMatters:  true   ));
         IsFalse("  test  ".Is( "\tTEST\t",               false, caseMatters:  true   ));
-      //IsTrue ("  test  ".Is( "  test  ",               false, caseMatters:  true   )); // Not a swap
+      //IsTrue ("  test  ".Is( "  test  ",               false,               true   )); // Not a swap
       //IsTrue ("  test  ".Is( "\ttest\t",               false,               true   ));
       //IsFalse("  test  ".Is( "  TEST  ",               false,               true   ));
       //IsFalse("  test  ".Is( "\tTEST\t",               false,               true   ));

@@ -6,34 +6,34 @@ public static partial class FilledInHelper
     // Flags in Back
 
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b                                                                     ) => IsUtil.Is(a, b                            );
+    public static bool Is(     string? a, string? b                                                                        ) => IsUtil.Is(a, b                            );
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, CaseMatters  caseMatters                                           ) => IsUtil.Is(a, b, caseMatters               );
+    public static bool Is(     string? a, string? b, CaseMatters  caseMatters                                              ) => IsUtil.Is(a, b, caseMatters               );
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, bool         caseMatters                                           ) => IsUtil.Is(a, b, caseMatters               );
+    public static bool Is(     string? a, string? b, bool         caseMatters                                              ) => IsUtil.Is(a, b, caseMatters               );
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, CaseMatters  caseMatters,  SpaceMatters spaceMatters               ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, CaseMatters  caseMatters,  SpaceMatters spaceMatters                  ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, CaseMatters  caseMatters,  bool         spaceMatters               ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, CaseMatters  caseMatters,  bool         spaceMatters                  ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, bool         caseMatters,  SpaceMatters spaceMatters               ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, bool         caseMatters,  SpaceMatters spaceMatters                  ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, bool         caseMatters,  bool         spaceMatters               ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, bool         caseMatters,  bool         spaceMatters                  ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
 
     // Flags in Back / Swap Parameters
 
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, SpaceMatters spaceMatters                                          ) => IsUtil.Is(a, b, spaceMatters              );
+    public static bool Is(     string? a, string? b, SpaceMatters spaceMatters                                             ) => IsUtil.Is(a, b, spaceMatters              );
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, bool         spaceMatters, [Implic(Reason = NameOvl)] int dummy = 0) => IsUtil.Is(a, b, spaceMatters: spaceMatters);
+    public static bool Is(     string? a, string? b, bool         spaceMatters, [Implic(Reason=NameOvl)]int dum=0          ) => IsUtil.Is(a, b, spaceMatters: spaceMatters);
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, SpaceMatters spaceMatters, CaseMatters  caseMatters                ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, SpaceMatters spaceMatters, CaseMatters  caseMatters                   ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, SpaceMatters spaceMatters, bool         caseMatters                ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, SpaceMatters spaceMatters, bool         caseMatters                   ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, bool         spaceMatters, CaseMatters  caseMatters                ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, bool         spaceMatters, CaseMatters  caseMatters                   ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
-    public static bool Is(     string? a, string? b, bool spaceMatters, bool caseMatters, [Implic(Reason = NameOvl)] int dummy = 0) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
+    public static bool Is(     string? a, string? b, bool spaceMatters, bool caseMatters, [Implic(Reason=NameOvl)]int dum=0) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     
     // Flags in Front
     
