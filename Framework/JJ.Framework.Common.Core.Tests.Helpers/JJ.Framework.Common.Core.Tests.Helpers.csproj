@@ -7,4 +7,7 @@
   <ItemGroup>
     <EmbeddedResource Include="TestResources\EmbeddedResourceFile.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
 </Project>
