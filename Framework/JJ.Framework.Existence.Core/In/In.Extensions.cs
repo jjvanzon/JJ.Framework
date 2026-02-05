@@ -29,6 +29,8 @@ public static class InExtensions
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, SpaceMatters spaceMatters,                             params IEnumerable<string?>? coll) => InUtil.In(value, coll, spaceMatters);
     /// <inheritdoc cref="_in" />
+    public static bool In(this string? value, bool         spaceMatters, [Implic(Reason=NameOvl)]int dum=0, params IEnumerable<string?>? coll) => InUtil.In(value, coll, spaceMatters, dum);
+    /// <inheritdoc cref="_in" />
     public static bool In(this string? value, bool         spaceMatters,                                    IEnumerable<string?>? coll, [Implic(Reason=NameOvl)]int dum=0) => InUtil.In(value, coll, spaceMatters, dum);
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, SpaceMatters spaceMatters,  CaseMatters  caseMatters,  params IEnumerable<string?>? coll) => InUtil.In(value, coll, caseMatters, spaceMatters);

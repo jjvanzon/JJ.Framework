@@ -4,7 +4,7 @@ namespace JJ.Framework.Existence.Core;
 public static partial class FilledInHelper
 {
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value,                                                                      IEnumerable<string?>? coll) => InUtil.In(value, coll);
+    public static bool In(string? value,                                                               params IEnumerable<string?>? coll) => InUtil.In(value, coll);
 
     // Flags in Front
 
