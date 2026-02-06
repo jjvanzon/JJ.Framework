@@ -98,7 +98,8 @@ RunTests<Has_Collection_Misc>() &&
 RunTests<Has_Collection_Yes>() &&
 RunTests<Has_Collection_No>() &&
 RunTests<Has_Tests>() &&
-RunTests<In_Tests_CaseOrSpaceMattersNoNo>() &&
+RunTests<In_Tests_ExtensionsCaseOrSpaceMattersNoNo>() &&
+RunTests<In_Tests_StaticCaseOrSpaceMattersNoNo>() &&
 RunTests<In_Tests_CaseOrSpaceMattersNoYes>() &&
 RunTests<In_Tests_CaseOrSpaceMattersYesNo>() &&
 RunTests<In_Tests_CaseOrSpaceMattersYesYes>() &&
