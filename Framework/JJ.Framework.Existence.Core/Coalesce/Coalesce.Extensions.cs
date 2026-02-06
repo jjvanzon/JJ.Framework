@@ -130,6 +130,9 @@ public static class CoalesceExtensions
 
           // 2 Args (for bools)
 
+          // TODO: Program explicit bool-variant overload resolution + tests. Bools clash with certain flag syntaxes. They deserve their own thing.
+
+          /*
           /// <inheritdoc cref="_coalesce" />
           public static string Coalesce   (this bool    val,  string? fallback                           ) => CoalesceValToText     (val,  fallback);
           /// <inheritdoc cref="_coalesce" />
@@ -190,6 +193,7 @@ public static class CoalesceExtensions
           public static bool   Coalesce   (this bool    val,  ZeroMatters  zeroMatters, bool?   fallback ) => CoalesceValAndNully   (val,  fallback, zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static bool   Coalesce   (this bool    val,  ZeroMatters  zeroMatters, bool    fallback ) => CoalesceTwoVals       (val,  fallback, zeroMatters);
+          */
 
           // 3 Args (for text)
           
@@ -401,6 +405,7 @@ public static class CoalesceExtensions
 
           // 3 Args (for bools)
 
+          /*
           /// <inheritdoc cref="_coalesce" />
           public static string Coalesce   (this bool    val,  bool    fallback, string? fallback2                           )                  => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2));
           /// <inheritdoc cref="_coalesce" />
@@ -521,6 +526,7 @@ public static class CoalesceExtensions
           public static bool   Coalesce   (this bool    val,  ZeroMatters  zeroMatters, bool    fallback, bool?   fallback2 )                  => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static bool   Coalesce   (this bool    val,  ZeroMatters  zeroMatters, bool    fallback, bool    fallback2 )                  => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+          */
 
           // N Args (for all others)
           
@@ -544,12 +550,14 @@ public static class CoalesceExtensions
 [Prio(1)] public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks, bool         zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
           /// <inheritdoc cref="_coalesce" />
 [Prio(1)] public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks, ZeroMatters  zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+          /*
           /// <inheritdoc cref="_coalesce" />
 [Prio(1)] public static bool   Coalesce   (this IEnumerable<bool?>?   fallbacks                           ) => CoalesceManyVals   (fallbacks);
           /// <inheritdoc cref="_coalesce" />
 [Prio(1)] public static bool   Coalesce   (this IEnumerable<bool?>?   fallbacks, bool         zeroMatters ) => CoalesceManyVals   (fallbacks, zeroMatters);
           /// <inheritdoc cref="_coalesce" />
 [Prio(1)] public static bool   Coalesce   (this IEnumerable<bool?>?   fallbacks, ZeroMatters  zeroMatters ) => CoalesceManyVals   (fallbacks, zeroMatters);
+          */
 
           /// <inheritdoc cref="_coalesce" />
           public static string Coalesce   (this string? first,                                     params IEnumerable<string?>? fallbacks   )                  => CoalesceManyTexts  (new [] {       first }.Concat(fallbacks ?? [ ]));
@@ -593,6 +601,8 @@ public static class CoalesceExtensions
           public static T      Coalesce<T>(this T       first, IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static T      Coalesce<T>(this T       first, IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
+          
+          /*
           /// <inheritdoc cref="_coalesce" />
           public static bool   Coalesce<T>(this bool?   first,                                     params IEnumerable<bool?>?   fallbacks   )                  => CoalesceManyVals   (new [] {       first }.Concat(fallbacks ?? [ ]));
           /// <inheritdoc cref="_coalesce" />
@@ -613,4 +623,5 @@ public static class CoalesceExtensions
           public static bool   Coalesce<T>(this bool    first, IEnumerable<bool?>?   fallbacks,    bool                         zeroMatters )                  => CoalesceManyVals   (new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static bool   Coalesce<T>(this bool    first, IEnumerable<bool?>?   fallbacks,    ZeroMatters                  zeroMatters )                  => CoalesceManyVals   (new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+          */
 }
