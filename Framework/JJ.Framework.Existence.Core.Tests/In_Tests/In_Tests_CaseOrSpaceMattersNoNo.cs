@@ -3,8 +3,6 @@
 [TestClass]
 public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
 {
-    // No / No
-
     [TestMethod]
     public void In_String_CaseOrSpaceMattersNoNo_ExtensionsFlagsInBack()
     {
