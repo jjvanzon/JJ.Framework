@@ -3,96 +3,6 @@
 [TestClass]
 public class Has_Tests : TestBase
 {
-    // Objects
-
-    [TestMethod]
-    public void Has_Object_True()
-    {
-        IsTrue(Has(NoNullObj));
-        IsTrue(Has(NullyFilledObj));
-    }
-    
-    [TestMethod]
-    public void Has_Object_False()
-    {
-        IsFalse(Has(NullObj));
-    }
-
-    // Values
-
-    [TestMethod]
-    public void Has_True_Int1()
-    {
-        // Invariant under zeroMatters
-        IsTrue(Has(NoNull1                    ));
-        IsTrue(Has(NoNull1, zeroMatters       ));
-        IsTrue(Has(NoNull1, zeroMatters: true ));
-        IsTrue(Has(NoNull1, zeroMatters: false));
-        IsTrue(Has(Nully1                     ));
-        IsTrue(Has(Nully1,  zeroMatters       ));
-        IsTrue(Has(Nully1,  zeroMatters: true ));
-        IsTrue(Has(Nully1,  zeroMatters: false));
-        IsTrue(Has(zeroMatters,        NoNull1));
-        IsTrue(Has(zeroMatters: true,  NoNull1));
-        IsTrue(Has(zeroMatters: false, NoNull1));
-        IsTrue(Has(zeroMatters,        Nully1 ));
-        IsTrue(Has(zeroMatters: true,  Nully1 ));
-        IsTrue(Has(zeroMatters: false, Nully1 ));
-    }
-    
-    [TestMethod]
-    public void Has_False_Int0()
-    {
-        IsFalse(Has(NoNull0                    ));
-        IsFalse(Has(NoNull0, zeroMatters: false));
-        IsFalse(Has(NoNull0,              false));
-        IsFalse(Has(Nully0                     ));
-        IsFalse(Has(Nully0,  zeroMatters: false));
-        IsFalse(Has(Nully0,               false));
-        IsFalse(Has(zeroMatters: false, NoNull0));
-        IsFalse(Has(             false, NoNull0));
-        IsFalse(Has(zeroMatters: false, Nully0 ));
-        IsFalse(Has(             false, Nully0 ));
-    }
-    
-    [TestMethod]
-    public void Has_False_IntNull()
-    {
-        IsFalse(Has(NullNum                    ));
-        IsFalse(Has(NullNum, zeroMatters: false));
-        IsFalse(Has(NullNum,              false));
-        IsFalse(Has(zeroMatters: false, NullNum));
-        IsFalse(Has(             false, NullNum));
-    }
-
-    [TestMethod]
-    public void Has_True_Int0_ZeroMatters()
-    {
-        IsTrue(Has(NoNull0, zeroMatters       ));
-        IsTrue(Has(NoNull0, zeroMatters: true ));
-        IsTrue(Has(NoNull0,              true ));
-        IsTrue(Has(Nully0,  zeroMatters       ));
-        IsTrue(Has(Nully0,  zeroMatters: true ));
-        IsTrue(Has(Nully0,               true ));
-        IsTrue(Has(zeroMatters,       NoNull0 ));
-        IsTrue(Has(zeroMatters: true, NoNull0 ));
-        IsTrue(Has(             true, NoNull0 ));
-        IsTrue(Has(zeroMatters,       Nully0  ));
-        IsTrue(Has(zeroMatters: true, Nully0  ));
-        IsTrue(Has(             true, Nully0  ));
-    }
-
-    [TestMethod]
-    public void Has_False_IntNull_ZeroMatters()
-    {
-        IsFalse(Has(NullNum, zeroMatters       ));
-        IsFalse(Has(NullNum, zeroMatters: true ));
-        IsFalse(Has(NullNum,              true ));
-        IsFalse(Has(zeroMatters,       NullNum ));
-        IsFalse(Has(zeroMatters: true, NullNum ));
-        IsFalse(Has(             true, NullNum ));
-    }
-
     // Text
 
     [TestMethod]
@@ -189,5 +99,95 @@ public class Has_Tests : TestBase
         IsFalse(Has(              false, SpaceSB     ));
         IsFalse(Has(spaceMatters: false, NullySpaceSB));
         IsFalse(Has(              false, NullySpaceSB));
+    }
+
+    // Values
+
+    [TestMethod]
+    public void Has_True_Int1()
+    {
+        // Invariant under zeroMatters
+        IsTrue(Has(NoNull1                    ));
+        IsTrue(Has(NoNull1, zeroMatters       ));
+        IsTrue(Has(NoNull1, zeroMatters: true ));
+        IsTrue(Has(NoNull1, zeroMatters: false));
+        IsTrue(Has(Nully1                     ));
+        IsTrue(Has(Nully1,  zeroMatters       ));
+        IsTrue(Has(Nully1,  zeroMatters: true ));
+        IsTrue(Has(Nully1,  zeroMatters: false));
+        IsTrue(Has(zeroMatters,        NoNull1));
+        IsTrue(Has(zeroMatters: true,  NoNull1));
+        IsTrue(Has(zeroMatters: false, NoNull1));
+        IsTrue(Has(zeroMatters,        Nully1 ));
+        IsTrue(Has(zeroMatters: true,  Nully1 ));
+        IsTrue(Has(zeroMatters: false, Nully1 ));
+    }
+    
+    [TestMethod]
+    public void Has_False_Int0()
+    {
+        IsFalse(Has(NoNull0                    ));
+        IsFalse(Has(NoNull0, zeroMatters: false));
+        IsFalse(Has(NoNull0,              false));
+        IsFalse(Has(Nully0                     ));
+        IsFalse(Has(Nully0,  zeroMatters: false));
+        IsFalse(Has(Nully0,               false));
+        IsFalse(Has(zeroMatters: false, NoNull0));
+        IsFalse(Has(             false, NoNull0));
+        IsFalse(Has(zeroMatters: false, Nully0 ));
+        IsFalse(Has(             false, Nully0 ));
+    }
+    
+    [TestMethod]
+    public void Has_False_IntNull()
+    {
+        IsFalse(Has(NullNum                    ));
+        IsFalse(Has(NullNum, zeroMatters: false));
+        IsFalse(Has(NullNum,              false));
+        IsFalse(Has(zeroMatters: false, NullNum));
+        IsFalse(Has(             false, NullNum));
+    }
+
+    [TestMethod]
+    public void Has_True_Int0_ZeroMatters()
+    {
+        IsTrue(Has(NoNull0, zeroMatters       ));
+        IsTrue(Has(NoNull0, zeroMatters: true ));
+        IsTrue(Has(NoNull0,              true ));
+        IsTrue(Has(Nully0,  zeroMatters       ));
+        IsTrue(Has(Nully0,  zeroMatters: true ));
+        IsTrue(Has(Nully0,               true ));
+        IsTrue(Has(zeroMatters,       NoNull0 ));
+        IsTrue(Has(zeroMatters: true, NoNull0 ));
+        IsTrue(Has(             true, NoNull0 ));
+        IsTrue(Has(zeroMatters,       Nully0  ));
+        IsTrue(Has(zeroMatters: true, Nully0  ));
+        IsTrue(Has(             true, Nully0  ));
+    }
+
+    [TestMethod]
+    public void Has_False_IntNull_ZeroMatters()
+    {
+        IsFalse(Has(NullNum, zeroMatters       ));
+        IsFalse(Has(NullNum, zeroMatters: true ));
+        IsFalse(Has(NullNum,              true ));
+        IsFalse(Has(zeroMatters,       NullNum ));
+        IsFalse(Has(zeroMatters: true, NullNum ));
+        IsFalse(Has(             true, NullNum ));
+    }
+
+    // Objects
+
+    [TestMethod]
+    public void Has_Object_True()
+    {
+        IsTrue(Has(NoNullObj));
+        IsTrue(Has(NullyFilledObj));
+    }
+    
+    [TestMethod]
+    public void Has_Object_False()
+    {
+        IsFalse(Has(NullObj));
     }
 }
