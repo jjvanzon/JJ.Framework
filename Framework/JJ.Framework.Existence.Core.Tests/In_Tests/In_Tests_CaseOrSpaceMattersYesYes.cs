@@ -44,6 +44,11 @@ public class In_Tests_CaseOrSpaceMattersYesYes : TestBase
         IsFalse("B \t".In( [ "A", "B", "C" ],              true,               true));
         IsFalse("b"   .In( [ "A", "B", "C" ],              true,               true));
         IsFalse("b \t".In( [ "A", "B", "C" ],              true,               true));
+    }
+
+    [TestMethod]
+    public void In_String_CaseOrSpaceMattersYesYes_ExtensionsFlagsInBackSwapped()
+    {
         IsTrue ("B"   .In( [ "A", "B", "C" ], spaceMatters,       caseMatters      )); // Switch Flags
         IsFalse("B \t".In( [ "A", "B", "C" ], spaceMatters,       caseMatters      ));
         IsFalse("b"   .In( [ "A", "B", "C" ], spaceMatters,       caseMatters      ));
@@ -118,6 +123,11 @@ public class In_Tests_CaseOrSpaceMattersYesYes : TestBase
         IsFalse(In("B \t", [ "A", "B", "C" ],              true,               true));
         IsFalse(In("b"   , [ "A", "B", "C" ],              true,               true));
         IsFalse(In("b \t", [ "A", "B", "C" ],              true,               true));
+    }
+    
+    [TestMethod]
+    public void In_String_CaseOrSpaceMattersYesYes_StaticFlagsInBackSwapped()
+    {
         IsTrue (In("B"   , [ "A", "B", "C" ], spaceMatters,       caseMatters      )); // Switch Flags
         IsFalse(In("B \t", [ "A", "B", "C" ], spaceMatters,       caseMatters      ));
         IsFalse(In("b"   , [ "A", "B", "C" ], spaceMatters,       caseMatters      ));
@@ -191,6 +201,11 @@ public class In_Tests_CaseOrSpaceMattersYesYes : TestBase
         IsFalse("B \t".In(              true,                true, [ "A", "B", "C" ]));
         IsFalse("b"   .In(              true,                true, [ "A", "B", "C" ]));
         IsFalse("b \t".In(              true,                true, [ "A", "B", "C" ]));
+    }
+
+    [TestMethod]
+    public void In_String_CaseOrSpaceMattersYesYes_ExtensionsCollectionsFlagsInFrontSwapped()
+    {
         IsTrue ("B"   .In( spaceMatters,       caseMatters,        [ "A", "B", "C" ])); // Switch Flags
         IsFalse("B \t".In( spaceMatters,       caseMatters,        [ "A", "B", "C" ]));
         IsFalse("b"   .In( spaceMatters,       caseMatters,        [ "A", "B", "C" ]));
@@ -268,6 +283,11 @@ public class In_Tests_CaseOrSpaceMattersYesYes : TestBase
         IsFalse("B \t".In( spaceMatters,       caseMatters,          "A", "B", "C"  ));
         IsFalse("b"   .In( spaceMatters,       caseMatters,          "A", "B", "C"  ));
         IsFalse("b \t".In( spaceMatters,       caseMatters,          "A", "B", "C"  ));
+    }
+
+    [TestMethod]
+    public void In_String_CaseOrSpaceMattersYesYes_ExtensionsVariadicFlagsInFrontSwapped()
+    {
       //IsTrue ("B"   .In( spaceMatters: true, caseMatters: true,    "A", "B", "C"  )); // Resolves ambiguously
       //IsFalse("B \t".In( spaceMatters: true, caseMatters: true,    "A", "B", "C"  ));
       //IsFalse("b"   .In( spaceMatters: true, caseMatters: true,    "A", "B", "C"  ));
@@ -338,6 +358,11 @@ public class In_Tests_CaseOrSpaceMattersYesYes : TestBase
         IsFalse(In("B \t",              true,                true,  [ "A", "B", "C" ]));
         IsFalse(In("b"   ,              true,                true,  [ "A", "B", "C" ]));
         IsFalse(In("b \t",              true,                true,  [ "A", "B", "C" ]));
+    }
+
+    [TestMethod]
+    public void In_String_CaseOrSpaceMattersYesYes_StaticCollectionsFlagsInFrontSwapped()
+    {
         IsTrue (In("B"   , spaceMatters,       caseMatters,         [ "A", "B", "C" ])); // Switch Flags
         IsFalse(In("B \t", spaceMatters,       caseMatters,         [ "A", "B", "C" ]));
         IsFalse(In("b"   , spaceMatters,       caseMatters,         [ "A", "B", "C" ]));
@@ -411,6 +436,11 @@ public class In_Tests_CaseOrSpaceMattersYesYes : TestBase
         IsFalse(In("B \t",              true,                true,    "A", "B", "C"  ));
         IsFalse(In("b"   ,              true,                true,    "A", "B", "C"  ));
         IsFalse(In("b \t",              true,                true,    "A", "B", "C"  ));
+    }
+
+    [TestMethod]
+    public void In_String_CaseOrSpaceMattersYesYes_StaticVariadicFlagsInFrontSwapped()
+    {
         IsTrue (In("B"   , spaceMatters,       caseMatters,           "A", "B", "C"  )); // Switch Flags
         IsFalse(In("B \t", spaceMatters,       caseMatters,           "A", "B", "C"  ));
         IsFalse(In("b"   , spaceMatters,       caseMatters,           "A", "B", "C"  ));
