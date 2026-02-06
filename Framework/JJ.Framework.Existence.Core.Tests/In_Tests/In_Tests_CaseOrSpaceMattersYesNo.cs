@@ -49,7 +49,7 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
     [TestMethod]
     public void In_String_CaseOrSpaceMattersYesNo_ExtensionsFlagsInBackSwapped()
     {
-        IsTrue ("B"   .In( [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true )); // Switch Flags 
+        IsTrue ("B"   .In( [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
         IsTrue ("B \t".In( [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
         IsFalse("b"   .In( [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
         IsFalse("b \t".In( [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
@@ -61,14 +61,14 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
         IsTrue ("B \t".In( [ "A", "B", "C" ],               false, caseMatters        ));
         IsFalse("b"   .In( [ "A", "B", "C" ],               false, caseMatters        ));
         IsFalse("b \t".In( [ "A", "B", "C" ],               false, caseMatters        ));
-      //IsTrue ("B"   .In( [ "A", "B", "C" ], spaceMatters: false,               true ));// Resolves ambiguously
-      //IsTrue ("B \t".In( [ "A", "B", "C" ], spaceMatters: false,               true ));
-      //IsFalse("b"   .In( [ "A", "B", "C" ], spaceMatters: false,               true ));
-      //IsFalse("b \t".In( [ "A", "B", "C" ], spaceMatters: false,               true ));
-      //IsTrue ("B"   .In( [ "A", "B", "C" ],               false, caseMatters:  true ));
-      //IsTrue ("B \t".In( [ "A", "B", "C" ],               false, caseMatters:  true ));
-      //IsFalse("b"   .In( [ "A", "B", "C" ],               false, caseMatters:  true ));
-      //IsFalse("b \t".In( [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsTrue ("B"   .In( [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsTrue ("B \t".In( [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsFalse("b"   .In( [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsFalse("b \t".In( [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsTrue ("B"   .In( [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsTrue ("B \t".In( [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsFalse("b"   .In( [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsFalse("b \t".In( [ "A", "B", "C" ],               false, caseMatters:  true ));
     }
 
     [TestMethod]
@@ -115,7 +115,7 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
     [TestMethod]
     public void In_String_CaseOrSpaceMattersYesNo_StaticFlagsInBackSwapped()
     {
-        IsTrue (In("B"   , [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true )); // Switch Flags
+        IsTrue (In("B"   , [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
         IsTrue (In("B \t", [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
         IsFalse(In("b"   , [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
         IsFalse(In("b \t", [ "A", "B", "C" ], spaceMatters: false, caseMatters:  true ));
@@ -127,14 +127,14 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
         IsTrue (In("B \t", [ "A", "B", "C" ],               false, caseMatters        ));
         IsFalse(In("b"   , [ "A", "B", "C" ],               false, caseMatters        ));
         IsFalse(In("b \t", [ "A", "B", "C" ],               false, caseMatters        ));
-      //IsTrue (In("B"   , [ "A", "B", "C" ], spaceMatters: false,               true )); // Resolves ambiguously
-      //IsTrue (In("B \t", [ "A", "B", "C" ], spaceMatters: false,               true ));
-      //IsFalse(In("b"   , [ "A", "B", "C" ], spaceMatters: false,               true ));
-      //IsFalse(In("b \t", [ "A", "B", "C" ], spaceMatters: false,               true ));
-      //IsTrue (In("B"   , [ "A", "B", "C" ],               false, caseMatters:  true ));
-      //IsTrue (In("B \t", [ "A", "B", "C" ],               false, caseMatters:  true ));
-      //IsFalse(In("b"   , [ "A", "B", "C" ],               false, caseMatters:  true ));
-      //IsFalse(In("b \t", [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsTrue (In("B"   , [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsTrue (In("B \t", [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsFalse(In("b"   , [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsFalse(In("b \t", [ "A", "B", "C" ], spaceMatters: false,               true ));
+        IsTrue (In("B"   , [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsTrue (In("B \t", [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsFalse(In("b"   , [ "A", "B", "C" ],               false, caseMatters:  true ));
+        IsFalse(In("b \t", [ "A", "B", "C" ],               false, caseMatters:  true ));
     }
 
     [TestMethod]
@@ -181,10 +181,10 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
     [TestMethod]
     public void In_String_CaseOrSpaceMatters_YesNo_ExtensionsCollectionFlagsInFrontSwapped()
     {
-      //IsTrue ("B"   .In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ])); // Switch Flags // Resolves ambiguously
-      //IsTrue ("B \t".In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ]));
-      //IsFalse("b"   .In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ]));
-      //IsFalse("b \t".In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsFalse("b"   .In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsFalse("b \t".In(spaceMatters: false, caseMatters: true,   [ "A", "B", "C" ]));
         IsTrue ("B"   .In(spaceMatters: false, caseMatters,         [ "A", "B", "C" ]));
         IsTrue ("B \t".In(spaceMatters: false, caseMatters,         [ "A", "B", "C" ]));
         IsFalse("b"   .In(spaceMatters: false, caseMatters,         [ "A", "B", "C" ]));
@@ -193,14 +193,14 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
         IsTrue ("B \t".In(              false, caseMatters,         [ "A", "B", "C" ]));
         IsFalse("b"   .In(              false, caseMatters,         [ "A", "B", "C" ]));
         IsFalse("b \t".In(              false, caseMatters,         [ "A", "B", "C" ]));
-      //IsTrue ("B"   .In(spaceMatters: false,              true,   [ "A", "B", "C" ])); // Resolves ambiguously
-      //IsTrue ("B \t".In(spaceMatters: false,              true,   [ "A", "B", "C" ]));
-      //IsFalse("b"   .In(spaceMatters: false,              true,   [ "A", "B", "C" ]));
-      //IsFalse("b \t".In(spaceMatters: false,              true,   [ "A", "B", "C" ]));
-      //IsTrue ("B"   .In(              false, caseMatters: true,   [ "A", "B", "C" ]));
-      //IsTrue ("B \t".In(              false, caseMatters: true,   [ "A", "B", "C" ]));
-      //IsFalse("b"   .In(              false, caseMatters: true,   [ "A", "B", "C" ]));
-      //IsFalse("b \t".In(              false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(spaceMatters: false,              true,   [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(spaceMatters: false,              true,   [ "A", "B", "C" ]));
+        IsFalse("b"   .In(spaceMatters: false,              true,   [ "A", "B", "C" ]));
+        IsFalse("b \t".In(spaceMatters: false,              true,   [ "A", "B", "C" ]));
+        IsTrue ("B"   .In(              false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsTrue ("B \t".In(              false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsFalse("b"   .In(              false, caseMatters: true,   [ "A", "B", "C" ]));
+        IsFalse("b \t".In(              false, caseMatters: true,   [ "A", "B", "C" ]));
     }
 
     [TestMethod]
@@ -247,7 +247,7 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
     [TestMethod]
     public void In_String_CaseOrSpaceMatters_YesNo_ExtensionsVariadicFlagsInFrontSwapped()
     {
-      //IsTrue ("B"   .In( spaceMatters: false, caseMatters:  true,   "A", "B", "C"  )); // Switch Flags // Resolves ambiguously
+      //IsTrue ("B"   .In( spaceMatters: false, caseMatters:  true,   "A", "B", "C"  )); // TODO: Does not work
       //IsTrue ("B \t".In( spaceMatters: false, caseMatters:  true,   "A", "B", "C"  ));
       //IsFalse("b"   .In( spaceMatters: false, caseMatters:  true,   "A", "B", "C"  ));
       //IsFalse("b \t".In( spaceMatters: false, caseMatters:  true,   "A", "B", "C"  ));
@@ -259,7 +259,7 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
         IsTrue ("B \t".In(               false, caseMatters,          "A", "B", "C"  ));
         IsFalse("b"   .In(               false, caseMatters,          "A", "B", "C"  ));
         IsFalse("b \t".In(               false, caseMatters,          "A", "B", "C"  ));
-      //IsTrue ("B"   .In( spaceMatters: false,               true,   "A", "B", "C"  )); // Resolves ambiguously
+      //IsTrue ("B"   .In( spaceMatters: false,               true,   "A", "B", "C"  )); // TODO: Does not work
       //IsTrue ("B \t".In( spaceMatters: false,               true,   "A", "B", "C"  ));
       //IsFalse("b"   .In( spaceMatters: false,               true,   "A", "B", "C"  ));
       //IsFalse("b \t".In( spaceMatters: false,               true,   "A", "B", "C"  ));
@@ -313,10 +313,10 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
     [TestMethod]
     public void In_String_CaseOrSpaceMatters_YesNo_StaticCollectionFlagsInFrontSwapped()
     {
-      //IsTrue (In("B"   , spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ])); // Switch Flags // Resolves ambiguously
-      //IsTrue (In("B \t", spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ]));
-      //IsFalse(In("b"   , spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ]));
-      //IsFalse(In("b \t", spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsTrue (In("B"   , spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsTrue (In("B \t", spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsFalse(In("b"   , spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsFalse(In("b \t", spaceMatters: false, caseMatters:  true,  [ "A", "B", "C" ]));
         IsTrue (In("B"   , spaceMatters: false, caseMatters,         [ "A", "B", "C" ]));
         IsTrue (In("B \t", spaceMatters: false, caseMatters,         [ "A", "B", "C" ]));
         IsFalse(In("b"   , spaceMatters: false, caseMatters,         [ "A", "B", "C" ]));
@@ -325,14 +325,14 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
         IsTrue (In("B \t",               false, caseMatters,         [ "A", "B", "C" ]));
         IsFalse(In("b"   ,               false, caseMatters,         [ "A", "B", "C" ]));
         IsFalse(In("b \t",               false, caseMatters,         [ "A", "B", "C" ]));
-      //IsTrue (In("B"   , spaceMatters: false,               true,  [ "A", "B", "C" ])); // Resolves ambiguously
-      //IsTrue (In("B \t", spaceMatters: false,               true,  [ "A", "B", "C" ]));
-      //IsFalse(In("b"   , spaceMatters: false,               true,  [ "A", "B", "C" ]));
-      //IsFalse(In("b \t", spaceMatters: false,               true,  [ "A", "B", "C" ]));
-      //IsTrue (In("B"   ,               false, caseMatters:  true,  [ "A", "B", "C" ]));
-      //IsTrue (In("B \t",               false, caseMatters:  true,  [ "A", "B", "C" ]));
-      //IsFalse(In("b"   ,               false, caseMatters:  true,  [ "A", "B", "C" ]));
-      //IsFalse(In("b \t",               false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsTrue (In("B"   , spaceMatters: false,               true,  [ "A", "B", "C" ]));
+        IsTrue (In("B \t", spaceMatters: false,               true,  [ "A", "B", "C" ]));
+        IsFalse(In("b"   , spaceMatters: false,               true,  [ "A", "B", "C" ]));
+        IsFalse(In("b \t", spaceMatters: false,               true,  [ "A", "B", "C" ]));
+        IsTrue (In("B"   ,               false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsTrue (In("B \t",               false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsFalse(In("b"   ,               false, caseMatters:  true,  [ "A", "B", "C" ]));
+        IsFalse(In("b \t",               false, caseMatters:  true,  [ "A", "B", "C" ]));
     }                                                         
 
     [TestMethod]
@@ -379,7 +379,7 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
     [TestMethod]
     public void In_String_CaseOrSpaceMatters_YesNo_StaticVariadicFlagsInFrontSwapped()
     {
-      //IsTrue (In("B"   , spaceMatters: false, caseMatters:  true,    "A", "B", "C"  )); // Switch Flags // Resolves ambiguously
+      //IsTrue (In("B"   , spaceMatters: false, caseMatters:  true,    "A", "B", "C"  )); // TODO: Does not work
       //IsTrue (In("B \t", spaceMatters: false, caseMatters:  true,    "A", "B", "C"  ));
       //IsFalse(In("b"   , spaceMatters: false, caseMatters:  true,    "A", "B", "C"  ));
       //IsFalse(In("b \t", spaceMatters: false, caseMatters:  true,    "A", "B", "C"  ));
@@ -391,7 +391,7 @@ public class In_Tests_CaseOrSpaceMattersYesNo : TestBase
         IsTrue (In("B \t",               false, caseMatters,           "A", "B", "C"  ));
         IsFalse(In("b"   ,               false, caseMatters,           "A", "B", "C"  ));
         IsFalse(In("b \t",               false, caseMatters,           "A", "B", "C"  ));
-      //IsTrue (In("B"   , spaceMatters: false,               true,    "A", "B", "C"  )); // Resolves ambiguously
+      //IsTrue (In("B"   , spaceMatters: false,               true,    "A", "B", "C"  )); // TODO: Does not work
       //IsTrue (In("B \t", spaceMatters: false,               true,    "A", "B", "C"  ));
       //IsFalse(In("b"   , spaceMatters: false,               true,    "A", "B", "C"  ));
       //IsFalse(In("b \t", spaceMatters: false,               true,    "A", "B", "C"  ));
