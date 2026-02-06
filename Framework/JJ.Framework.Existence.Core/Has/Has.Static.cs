@@ -14,6 +14,14 @@ public static partial class FilledInHelper
     public static bool Has          ([NotNullWhen(true )]      StringBuilder? sb,       bool         spaceMatters)                  => HasSB      (sb,       spaceMatters);
     /// <inheritdoc cref="_has" />
     public static bool Has          ([NotNullWhen(true )]      StringBuilder? sb,       SpaceMatters spaceMatters)                  => HasSB      (sb,       spaceMatters);
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          ([NotNullWhen(true )]      bool           val,      bool         zeroMatters )                  => HasVal     (val,      zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          ([NotNullWhen(true )]      bool           val,      ZeroMatters  zeroMatters )                  => HasVal     (val,      zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          ([NotNullWhen(true )]      bool?          nullyVal, bool         zeroMatters )                  => HasValNully(nullyVal, zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          ([NotNullWhen(true )]      bool?          nullyVal, ZeroMatters  zeroMatters )                  => HasValNully(nullyVal, zeroMatters );
     /// <inheritdoc cref="_has" />
     public static bool Has<T>       ([NotNullWhen(true )]      T              valOrObj                           )                  => HasValOrObj(valOrObj              );
     /// <inheritdoc cref="_has" />
@@ -37,6 +45,15 @@ public static partial class FilledInHelper
     public static bool Has          (bool         spaceMatters, [NotNullWhen(true )]      StringBuilder? sb      )                  => HasSB      (sb,       spaceMatters);
     /// <inheritdoc cref="_has" />
     public static bool Has          (SpaceMatters spaceMatters, [NotNullWhen(true )]      StringBuilder? sb      )                  => HasSB      (sb,       spaceMatters);
+    // Ambiguous:
+  ///// <inheritdoc cref="_filledin" />
+  //public static bool Has          (bool         zeroMatters,  [NotNullWhen(true )]      bool           val     )                  => HasVal     (val,      zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          (ZeroMatters  zeroMatters,  [NotNullWhen(true )]      bool           val     )                  => HasVal     (val,      zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          (bool         zeroMatters,  [NotNullWhen(true )]      bool?          nullyVal)                  => HasValNully(nullyVal, zeroMatters );
+    /// <inheritdoc cref="_filledin" />
+    public static bool Has          (ZeroMatters  zeroMatters,  [NotNullWhen(true )]      bool?          nullyVal)                  => HasValNully(nullyVal, zeroMatters );
     /// <inheritdoc cref="_has" />
     public static bool Has<T>       (bool         zeroMatters,  [NotNullWhen(true )]      T              val     ) where T : struct => HasVal     (val,      zeroMatters );
     /// <inheritdoc cref="_has" />
@@ -46,20 +63,4 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_has" />
     public static bool Has<T>       (ZeroMatters  zeroMatters,  [NotNullWhen(true )]      T?             nullyVal) where T : struct => HasValNully(nullyVal, zeroMatters );
 
-    // Boolean Disambiguation
-
-    /// <inheritdoc cref="_filledin" />
-    public static bool Has          ([NotNullWhen(true )]      bool           val,      bool         zeroMatters )                  => HasVal     (val,      zeroMatters );
-    /// <inheritdoc cref="_filledin" />
-    public static bool Has          ([NotNullWhen(true )]      bool           val,      ZeroMatters  zeroMatters )                  => HasVal     (val,      zeroMatters );
-    /// <inheritdoc cref="_filledin" />
-    public static bool Has          ([NotNullWhen(true )]      bool?          nullyVal, bool         zeroMatters )                  => HasValNully(nullyVal, zeroMatters );
-    /// <inheritdoc cref="_filledin" />
-    public static bool Has          ([NotNullWhen(true )]      bool?          nullyVal, ZeroMatters  zeroMatters )                  => HasValNully(nullyVal, zeroMatters );
-    /// <inheritdoc cref="_filledin" />
-    public static bool Has          (ZeroMatters  zeroMatters ,[NotNullWhen(true )]      bool           val      )                  => HasVal     (val,      zeroMatters );
-    /// <inheritdoc cref="_filledin" />
-    public static bool Has          (bool         zeroMatters ,[NotNullWhen(true )]      bool?          nullyVal )                  => HasValNully(nullyVal, zeroMatters );
-    /// <inheritdoc cref="_filledin" />
-    public static bool Has          (ZeroMatters  zeroMatters ,[NotNullWhen(true )]      bool?          nullyVal )                  => HasValNully(nullyVal, zeroMatters );
 }
