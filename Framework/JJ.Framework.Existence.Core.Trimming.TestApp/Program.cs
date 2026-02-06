@@ -102,7 +102,8 @@ RunTests<In_Tests_ExtensionsCaseOrSpaceMattersNoNo>() &&
 RunTests<In_Tests_StaticCaseOrSpaceMattersNoNo>() &&
 RunTests<In_Tests_ExtensionsCaseOrSpaceMattersNoYes>() &&
 RunTests<In_Tests_StaticCaseOrSpaceMattersNoYes>() &&
-RunTests<In_Tests_CaseOrSpaceMattersYesNo>() &&
+RunTests<In_Tests_ExtensionsCaseOrSpaceMattersYesNo>() &&
+RunTests<In_Tests_StaticCaseOrSpaceMattersYesNo>() &&
 RunTests<In_Tests_CaseOrSpaceMattersYesYes>() &&
 RunTests<In_Tests_CaseMatters>() &&
 RunTests<In_Tests_SpaceMatters>() &&
