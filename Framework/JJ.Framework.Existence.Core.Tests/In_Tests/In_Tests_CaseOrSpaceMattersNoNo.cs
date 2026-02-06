@@ -6,7 +6,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     // No / No
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_ExtensionsFlagsInBack()
+    public void In_String_CaseOrSpaceMattersNoNo_ExtensionsFlagsInBack()
     {
         IsTrue ("B"   .In( [ "A", "B", "C" ]                                         ));
         IsTrue ("B \t".In( [ "A", "B", "C" ]                                         ));
@@ -47,7 +47,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_ExtensionsFlagsInBackSwapped()
+    public void In_String_CaseOrSpaceMattersNoNo_ExtensionsFlagsInBackSwapped()
     {
       //IsTrue ("B"   .In( [ "A", "B", "C" ]                                         )); // Not a swap
       //IsTrue ("B \t".In( [ "A", "B", "C" ]                                         ));
@@ -88,7 +88,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
         
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_StaticFlagsInBack()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticFlagsInBack()
     {
         IsTrue (In("B"   , [ "A", "B", "C" ]                                         ));
         IsTrue (In("B \t", [ "A", "B", "C" ]                                         ));
@@ -129,7 +129,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
         
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_StaticFlagsInBackSwapped()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticFlagsInBackSwapped()
     {
       //IsTrue (In("B"   , [ "A", "B", "C" ]                                         )); // Not a swap
       //IsTrue (In("B \t", [ "A", "B", "C" ]                                         ));
@@ -170,7 +170,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_ExtensionsCollectionFlagsInFront()
+    public void In_String_CaseOrSpaceMattersNoNo_ExtensionsCollectionFlagsInFront()
     {
         IsTrue ("B"   .In(                                          [ "A", "B", "C" ]));
         IsTrue ("B \t".In(                                          [ "A", "B", "C" ]));
@@ -211,7 +211,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_ExtensionsCollectionFlagsInFrontSwapped()
+    public void In_String_CaseOrSpaceMattersNoNo_ExtensionsCollectionFlagsInFrontSwapped()
     {
       //IsTrue ("B"   .In(                                          [ "A", "B", "C" ])); // Not a swap
       //IsTrue ("B \t".In(                                          [ "A", "B", "C" ]));
@@ -252,7 +252,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_ExtensionsVariadicFlagsInFront()
+    public void In_String_CaseOrSpaceMattersNoNo_ExtensionsVariadicFlagsInFront()
     {
         IsTrue ("B"   .In(                                            "A", "B", "C"  ));
         IsTrue ("B \t".In(                                            "A", "B", "C"  ));
@@ -293,7 +293,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_ExtensionsVariadicFlagsInFrontSwapped()
+    public void In_String_CaseOrSpaceMattersNoNo_ExtensionsVariadicFlagsInFrontSwapped()
     {
       //IsTrue ("B"   .In(                                            "A", "B", "C"  )); // Not a swap
       //IsTrue ("B \t".In(                                            "A", "B", "C"  ));
@@ -334,7 +334,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_StaticCollectionFlagsInFront()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticCollectionFlagsInFront()
     {
         IsTrue (In("B"   ,                                          [ "A", "B", "C" ]));
         IsTrue (In("B \t",                                          [ "A", "B", "C" ]));
@@ -375,7 +375,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_StaticCollectionFlagsInFrontSwapped()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticCollectionFlagsInFrontSwapped()
     {
       //IsTrue (In("B"   ,                                          [ "A", "B", "C" ])); // Not a swap
       //IsTrue (In("B \t",                                          [ "A", "B", "C" ]));
@@ -416,9 +416,9 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_StaticVariadicFlagsInFront()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticVariadicFlagsInFront()
     {
-        IsTrue (In("B"   ,                                            "A", "B", "C"  )); // Not supported. Too ambiguous.
+        IsTrue (In("B"   ,                                            "A", "B", "C"  ));
         IsTrue (In("B \t",                                            "A", "B", "C"  ));
         IsTrue (In("b"   ,                                            "A", "B", "C"  ));
         IsTrue (In("b \t",                                            "A", "B", "C"  ));
@@ -457,7 +457,7 @@ public class In_Tests_CaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMatters_NoNo_StaticVariadicFlagsInFrontSwapped()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticVariadicFlagsInFrontSwapped()
     {
       //IsTrue (In("B"   ,                                             "A", "B", "C"  )); // Not a swap 
       //IsTrue (In("B \t",                                             "A", "B", "C"  ));
