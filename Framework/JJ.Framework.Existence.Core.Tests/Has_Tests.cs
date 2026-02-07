@@ -239,7 +239,7 @@ public class Has_Tests : TestBase
     }
 
     // Values
-    
+
     [TestMethod]
     public void Has_Values_No()
     {
@@ -330,17 +330,17 @@ public class Has_Tests : TestBase
     }
 
     // Objects
+    
+    [TestMethod]
+    public void Has_Object_False()
+    {
+        IsFalse(Has(NullObj));
+    }
 
     [TestMethod]
     public void Has_Object_True()
     {
         IsTrue(Has(NoNullObj));
         IsTrue(Has(NullyFilledObj));
-    }
-    
-    [TestMethod]
-    public void Has_Object_False()
-    {
-        IsFalse(Has(NullObj));
     }
 }
