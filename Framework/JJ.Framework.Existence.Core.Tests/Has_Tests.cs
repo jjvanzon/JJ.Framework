@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class Has_Tests : TestBase
@@ -357,16 +359,12 @@ public class Has_Tests : TestBase
     }
 
     /// <summary>
-    /// Note: Even though some hit the overload with their unintentionally parameters swapped,
+    /// Note: Even though some hit the overload with their parameters swapped unintentionally,
     /// The simple nature of Booleans seems to output the correct result anyway.
     /// </summary>
     [TestMethod]
     public void Has_Bool_NullableFlag()
     {
-        // ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
-
-        // TODO: Add (bool?, bool?) variant just to avoid the `??` having the output be correct regardless of parameter swaps?
-
         bool? nullyZeroMattersFalse = false;
         bool? nullyZeroMattersTrue  = true;
 
@@ -401,8 +399,6 @@ public class Has_Tests : TestBase
         IsTrue (Has(nullyZeroMattersTrue  ?? true , NullyTrue  ));
         IsTrue (Has(nullyZeroMattersTrue  ?? true , NullyFalse ));
         IsFalse(Has(nullyZeroMattersTrue  ?? true , NullBool   ));
-
-        // ReSharper restore NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
     }
 
     // Values
