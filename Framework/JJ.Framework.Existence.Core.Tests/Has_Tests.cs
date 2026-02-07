@@ -366,7 +366,6 @@ public class Has_Tests : TestBase
         // ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
 
         // TODO: Add (bool?, bool?) variant just to avoid the `??` having the output be correct regardless of parameter swaps?
-        // TODO: Add specialized internal Util method for booleans, so that they're fastest?
 
         bool? nullyZeroMattersFalse = false;
         bool? nullyZeroMattersTrue  = true;
