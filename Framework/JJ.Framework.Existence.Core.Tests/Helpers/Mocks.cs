@@ -61,6 +61,12 @@ public class Mocks
     public const           int  NoNull2 = 2;
     public const           int  NoNull3 = 3;
     
+    public const    bool  True       = true ;
+    public const    bool  False      = false;
+    public readonly bool? NullyTrue  = true ;
+    public readonly bool? NullyFalse = false;
+    public readonly bool? NullBool   = null ;
+    
     public static readonly Dummy? NullObj        = null;
     public static readonly Dummy  NoNullObj      = new("NoNull");
     public static readonly Dummy? NullyFilledObj = new("Filled");

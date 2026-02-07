@@ -1,14 +1,8 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class BasicType_Bool_Tests
+public class BasicType_Bool_Tests : TestBase
 {
-    const    bool  True       = true ;
-    const    bool  False      = false;
-    readonly bool? NullyTrue  = true ;
-    readonly bool? NullyFalse = false;
-    readonly bool? NullBool   = null ;
-
     [TestMethod]
     public void Test_Bool_Has()
     {
