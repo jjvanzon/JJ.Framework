@@ -240,7 +240,24 @@ public class Has_Tests : TestBase
 
     // Values
     
-    // TODO: Add simpler tests without flag use here.
+    [TestMethod]
+    public void Has_Values_No()
+    {
+        IsFalse(Has(NullNum));
+        IsFalse(Has(NoNull0));
+        IsFalse(Has(Nully0 ));
+    }
+
+    [TestMethod]
+    public void Has_Values_Yes()
+    {
+        IsTrue (Has(NoNull1));
+        IsTrue (Has(NoNull2));
+        IsTrue (Has(NoNull3));
+        IsTrue (Has(Nully1 ));
+        IsTrue (Has(Nully2 ));
+        IsTrue (Has(Nully3 ));
+    }
 
     [TestMethod]
     public void Has_Values_ZeroMattersNo()
