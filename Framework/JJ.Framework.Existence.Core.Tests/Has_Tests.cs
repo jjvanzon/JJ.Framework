@@ -25,54 +25,7 @@ public class Has_Tests : TestBase
     }
     
     [TestMethod]
-    public void Has_Text_SpaceMattersYes()
-    {
-        IsFalse(Has(NullText,            spaceMatters       ));
-        IsFalse(Has(NullText,            spaceMatters: true ));
-        IsFalse(Has(NullText,                          true ));
-        IsFalse(Has(Empty,               spaceMatters       ));
-        IsFalse(Has(Empty,               spaceMatters: true ));
-        IsFalse(Has(Empty,                             true ));
-        IsFalse(Has(NullyEmpty,          spaceMatters       ));
-        IsFalse(Has(NullyEmpty,          spaceMatters: true ));
-        IsFalse(Has(NullyEmpty,                        true ));
-        IsTrue (Has(Space,               spaceMatters       ));
-        IsTrue (Has(Space,               spaceMatters: true ));
-        IsTrue (Has(Space,                             true ));
-        IsTrue (Has(NullySpace,          spaceMatters       ));
-        IsTrue (Has(NullySpace,          spaceMatters: true ));
-        IsTrue (Has(NullySpace,                        true ));
-        IsTrue (Has(Text,                spaceMatters       ));
-        IsTrue (Has(Text,                spaceMatters: true ));
-        IsTrue (Has(Text,                              true ));
-        IsTrue (Has(NullyFilledText,     spaceMatters       ));
-        IsTrue (Has(NullyFilledText,     spaceMatters: true ));
-        IsTrue (Has(NullyFilledText,                   true ));
-        IsFalse(Has(spaceMatters,        NullText           ));
-        IsFalse(Has(spaceMatters: true,  NullText           ));
-        IsFalse(Has(              true,  NullText           ));
-        IsFalse(Has(spaceMatters,        Empty              ));
-        IsFalse(Has(spaceMatters: true,  Empty              ));
-        IsFalse(Has(              true,  Empty              ));
-        IsFalse(Has(spaceMatters,        NullyEmpty         ));
-        IsFalse(Has(spaceMatters: true,  NullyEmpty         ));
-        IsFalse(Has(              true,  NullyEmpty         ));
-        IsTrue (Has(spaceMatters,        Space              ));
-        IsTrue (Has(spaceMatters: true,  Space              ));
-        IsTrue (Has(              true,  Space              ));
-        IsTrue (Has(spaceMatters,        NullySpace         ));
-        IsTrue (Has(spaceMatters: true,  NullySpace         ));
-        IsTrue (Has(              true,  NullySpace         ));
-        IsTrue (Has(spaceMatters,        Text               ));
-        IsTrue (Has(spaceMatters: true,  Text               ));
-        IsTrue (Has(              true,  Text               ));
-        IsTrue (Has(spaceMatters,        NullyFilledText    ));
-        IsTrue (Has(spaceMatters: true,  NullyFilledText    ));
-        IsTrue (Has(              true,  NullyFilledText    ));
-    }
-    
-    [TestMethod]
-    public void Has_Text_SpaceMattersNo()
+    public void Has_Text_SpaceMattersNo_FlagsInBack()
     {
         IsFalse(Has(NullText                                ));
         IsFalse(Has(NullText,            spaceMatters: false));
@@ -95,6 +48,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(NullyFilledText                         ));
         IsTrue (Has(NullyFilledText,     spaceMatters: false));
         IsTrue (Has(NullyFilledText,                   false));
+    }
+    
+    [TestMethod]
+    public void Has_Text_SpaceMattersNo_FlagsInFront()
+    {
         IsFalse(Has(                     NullText           ));
         IsFalse(Has(spaceMatters: false, NullText           ));
         IsFalse(Has(              false, NullText           ));
@@ -117,6 +75,58 @@ public class Has_Tests : TestBase
         IsTrue (Has(spaceMatters: false, NullyFilledText    ));
         IsTrue (Has(              false, NullyFilledText    ));
 
+    }
+    
+    [TestMethod]
+    public void Has_Text_SpaceMattersYes_FlagsInBack()
+    {
+        IsFalse(Has(NullText,            spaceMatters       ));
+        IsFalse(Has(NullText,            spaceMatters: true ));
+        IsFalse(Has(NullText,                          true ));
+        IsFalse(Has(Empty,               spaceMatters       ));
+        IsFalse(Has(Empty,               spaceMatters: true ));
+        IsFalse(Has(Empty,                             true ));
+        IsFalse(Has(NullyEmpty,          spaceMatters       ));
+        IsFalse(Has(NullyEmpty,          spaceMatters: true ));
+        IsFalse(Has(NullyEmpty,                        true ));
+        IsTrue (Has(Space,               spaceMatters       ));
+        IsTrue (Has(Space,               spaceMatters: true ));
+        IsTrue (Has(Space,                             true ));
+        IsTrue (Has(NullySpace,          spaceMatters       ));
+        IsTrue (Has(NullySpace,          spaceMatters: true ));
+        IsTrue (Has(NullySpace,                        true ));
+        IsTrue (Has(Text,                spaceMatters       ));
+        IsTrue (Has(Text,                spaceMatters: true ));
+        IsTrue (Has(Text,                              true ));
+        IsTrue (Has(NullyFilledText,     spaceMatters       ));
+        IsTrue (Has(NullyFilledText,     spaceMatters: true ));
+        IsTrue (Has(NullyFilledText,                   true ));
+    }
+    
+    [TestMethod]
+    public void Has_Text_SpaceMattersYes_FlagsInFront()
+    {
+        IsFalse(Has(spaceMatters,        NullText           ));
+        IsFalse(Has(spaceMatters: true,  NullText           ));
+        IsFalse(Has(              true,  NullText           ));
+        IsFalse(Has(spaceMatters,        Empty              ));
+        IsFalse(Has(spaceMatters: true,  Empty              ));
+        IsFalse(Has(              true,  Empty              ));
+        IsFalse(Has(spaceMatters,        NullyEmpty         ));
+        IsFalse(Has(spaceMatters: true,  NullyEmpty         ));
+        IsFalse(Has(              true,  NullyEmpty         ));
+        IsTrue (Has(spaceMatters,        Space              ));
+        IsTrue (Has(spaceMatters: true,  Space              ));
+        IsTrue (Has(              true,  Space              ));
+        IsTrue (Has(spaceMatters,        NullySpace         ));
+        IsTrue (Has(spaceMatters: true,  NullySpace         ));
+        IsTrue (Has(              true,  NullySpace         ));
+        IsTrue (Has(spaceMatters,        Text               ));
+        IsTrue (Has(spaceMatters: true,  Text               ));
+        IsTrue (Has(              true,  Text               ));
+        IsTrue (Has(spaceMatters,        NullyFilledText    ));
+        IsTrue (Has(spaceMatters: true,  NullyFilledText    ));
+        IsTrue (Has(              true,  NullyFilledText    ));
     }
 
     // StringBuilder
@@ -141,7 +151,59 @@ public class Has_Tests : TestBase
     }
             
     [TestMethod]
-    public void Has_StringBuilder_SpaceMattersYes()
+    public void Has_StringBuilder_SpaceMattersNo_FlagsInBack()
+    {
+        IsFalse(Has(NullSB                                  ));
+        IsFalse(Has(NullSB,              spaceMatters: false));
+        IsFalse(Has(NullSB,                            false));
+        IsFalse(Has(NewSB                                   ));
+        IsFalse(Has(NewSB,               spaceMatters: false));
+        IsFalse(Has(NewSB,                             false));
+        IsFalse(Has(NullyNewSB                              ));
+        IsFalse(Has(NullyNewSB,          spaceMatters: false));
+        IsFalse(Has(NullyNewSB,                        false));
+        IsFalse(Has(SpaceSB                                 ));
+        IsFalse(Has(SpaceSB,             spaceMatters: false));
+        IsFalse(Has(SpaceSB,                           false));
+        IsFalse(Has(NullySpaceSB                            ));
+        IsFalse(Has(NullySpaceSB,        spaceMatters: false));
+        IsFalse(Has(NullySpaceSB,                      false));
+        IsTrue (Has(FilledSB                                ));
+        IsTrue (Has(FilledSB,            spaceMatters: false));
+        IsTrue (Has(FilledSB,                          false));
+        IsTrue (Has(NullyFilledSB                           ));
+        IsTrue (Has(NullyFilledSB,       spaceMatters: false));
+        IsTrue (Has(NullyFilledSB,                     false));
+    }
+            
+    [TestMethod]
+    public void Has_StringBuilder_SpaceMattersNo_FlagsInFront()
+    {
+        IsFalse(Has(                     NullSB             ));
+        IsFalse(Has(spaceMatters: false, NullSB             ));
+        IsFalse(Has(              false, NullSB             ));
+        IsFalse(Has(                     NewSB              ));
+        IsFalse(Has(spaceMatters: false, NewSB              ));
+        IsFalse(Has(              false, NewSB              ));
+        IsFalse(Has(                     NullyNewSB         ));
+        IsFalse(Has(spaceMatters: false, NullyNewSB         ));
+        IsFalse(Has(              false, NullyNewSB         ));
+        IsFalse(Has(                     SpaceSB            ));
+        IsFalse(Has(spaceMatters: false, SpaceSB            ));
+        IsFalse(Has(              false, SpaceSB            ));
+        IsFalse(Has(                     NullySpaceSB       ));
+        IsFalse(Has(spaceMatters: false, NullySpaceSB       ));
+        IsFalse(Has(              false, NullySpaceSB       ));
+        IsTrue (Has(                     FilledSB           ));
+        IsTrue (Has(spaceMatters: false, FilledSB           ));
+        IsTrue (Has(              false, FilledSB           ));
+        IsTrue (Has(                     NullyFilledSB      ));
+        IsTrue (Has(spaceMatters: false, NullyFilledSB      ));
+        IsTrue (Has(              false, NullyFilledSB      ));
+    }
+            
+    [TestMethod]
+    public void Has_StringBuilder_SpaceMattersYes_FlagsInBack()
     {
         IsFalse(Has(NullSB,              spaceMatters       ));
         IsFalse(Has(NullSB,              spaceMatters: true ));
@@ -167,6 +229,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(NullyFilledSB,       spaceMatters       ));
         IsTrue (Has(NullyFilledSB,       spaceMatters: true ));
         IsTrue (Has(NullyFilledSB,                     true ));
+    }
+            
+    [TestMethod]
+    public void Has_StringBuilder_SpaceMattersYes_FlagsInFront()
+    {
         IsFalse(Has(spaceMatters,        NullSB             ));
         IsFalse(Has(spaceMatters: true,  NullSB             ));
         IsFalse(Has(              true,  NullSB             ));
@@ -191,53 +258,6 @@ public class Has_Tests : TestBase
         IsTrue (Has(spaceMatters,        NullyFilledSB      ));
         IsTrue (Has(spaceMatters: true,  NullyFilledSB      ));
         IsTrue (Has(              true,  NullyFilledSB      ));
-    }
-            
-    [TestMethod]
-    public void Has_StringBuilder_SpaceMattersNo()
-    {
-        IsFalse(Has(NullSB                                  ));
-        IsFalse(Has(NullSB,              spaceMatters: false));
-        IsFalse(Has(NullSB,                            false));
-        IsFalse(Has(NewSB                                   ));
-        IsFalse(Has(NewSB,               spaceMatters: false));
-        IsFalse(Has(NewSB,                             false));
-        IsFalse(Has(NullyNewSB                              ));
-        IsFalse(Has(NullyNewSB,          spaceMatters: false));
-        IsFalse(Has(NullyNewSB,                        false));
-        IsFalse(Has(SpaceSB                                 ));
-        IsFalse(Has(SpaceSB,             spaceMatters: false));
-        IsFalse(Has(SpaceSB,                           false));
-        IsFalse(Has(NullySpaceSB                            ));
-        IsFalse(Has(NullySpaceSB,        spaceMatters: false));
-        IsFalse(Has(NullySpaceSB,                      false));
-        IsTrue (Has(FilledSB                                ));
-        IsTrue (Has(FilledSB,            spaceMatters: false));
-        IsTrue (Has(FilledSB,                          false));
-        IsTrue (Has(NullyFilledSB                           ));
-        IsTrue (Has(NullyFilledSB,       spaceMatters: false));
-        IsTrue (Has(NullyFilledSB,                     false));
-        IsFalse(Has(                     NullSB             ));
-        IsFalse(Has(spaceMatters: false, NullSB             ));
-        IsFalse(Has(              false, NullSB             ));
-        IsFalse(Has(                     NewSB              ));
-        IsFalse(Has(spaceMatters: false, NewSB              ));
-        IsFalse(Has(              false, NewSB              ));
-        IsFalse(Has(                     NullyNewSB         ));
-        IsFalse(Has(spaceMatters: false, NullyNewSB         ));
-        IsFalse(Has(              false, NullyNewSB         ));
-        IsFalse(Has(                     SpaceSB            ));
-        IsFalse(Has(spaceMatters: false, SpaceSB            ));
-        IsFalse(Has(              false, SpaceSB            ));
-        IsFalse(Has(                     NullySpaceSB       ));
-        IsFalse(Has(spaceMatters: false, NullySpaceSB       ));
-        IsFalse(Has(              false, NullySpaceSB       ));
-        IsTrue (Has(                     FilledSB           ));
-        IsTrue (Has(spaceMatters: false, FilledSB           ));
-        IsTrue (Has(              false, FilledSB           ));
-        IsTrue (Has(                     NullyFilledSB      ));
-        IsTrue (Has(spaceMatters: false, NullyFilledSB      ));
-        IsTrue (Has(              false, NullyFilledSB      ));
     }
 
     // Booleans
@@ -279,32 +299,6 @@ public class Has_Tests : TestBase
         IsFalse(Has(NullBool,   zeroMatters: false));
         IsFalse(Has(NullBool,                false));
     }
-    
-    [TestMethod]
-    public void Has_Bool_ZeroMattersYes_FlagsInBack()
-    { 
-        IsTrue (Has(true,       zeroMatters       ));
-        IsTrue (Has(true,       zeroMatters: true ));
-        IsTrue (Has(true,                    true ));
-        IsTrue (Has(false,      zeroMatters       ));
-        IsTrue (Has(false,      zeroMatters: true ));
-        IsTrue (Has(false,                   true ));
-        IsTrue (Has(True,       zeroMatters       ));
-        IsTrue (Has(True,       zeroMatters: true ));
-        IsTrue (Has(True,                    true ));
-        IsTrue (Has(False,      zeroMatters       ));
-        IsTrue (Has(False,      zeroMatters: true ));
-        IsTrue (Has(False,                   true ));
-        IsTrue (Has(NullyTrue,  zeroMatters       ));
-        IsTrue (Has(NullyTrue,  zeroMatters: true ));
-        IsTrue (Has(NullyTrue,               true ));
-        IsTrue (Has(NullyFalse, zeroMatters       ));
-        IsTrue (Has(NullyFalse, zeroMatters: true ));
-        IsTrue (Has(NullyFalse,              true ));
-        IsFalse(Has(NullBool,   zeroMatters       ));
-        IsFalse(Has(NullBool,   zeroMatters: true ));
-        IsFalse(Has(NullBool,                true ));
-    }
 
     [TestMethod]
     public void Has_Bool_ZeroMattersNo_FlagsInFront()
@@ -330,6 +324,32 @@ public class Has_Tests : TestBase
         IsFalse(Has(                    NullBool    ));
         IsFalse(Has(zeroMatters: false, NullBool    ));
         IsFalse(Has(             false, NullBool    ));
+    }
+    
+    [TestMethod]
+    public void Has_Bool_ZeroMattersYes_FlagsInBack()
+    { 
+        IsTrue (Has(true,       zeroMatters       ));
+        IsTrue (Has(true,       zeroMatters: true ));
+        IsTrue (Has(true,                    true ));
+        IsTrue (Has(false,      zeroMatters       ));
+        IsTrue (Has(false,      zeroMatters: true ));
+        IsTrue (Has(false,                   true ));
+        IsTrue (Has(True,       zeroMatters       ));
+        IsTrue (Has(True,       zeroMatters: true ));
+        IsTrue (Has(True,                    true ));
+        IsTrue (Has(False,      zeroMatters       ));
+        IsTrue (Has(False,      zeroMatters: true ));
+        IsTrue (Has(False,                   true ));
+        IsTrue (Has(NullyTrue,  zeroMatters       ));
+        IsTrue (Has(NullyTrue,  zeroMatters: true ));
+        IsTrue (Has(NullyTrue,               true ));
+        IsTrue (Has(NullyFalse, zeroMatters       ));
+        IsTrue (Has(NullyFalse, zeroMatters: true ));
+        IsTrue (Has(NullyFalse,              true ));
+        IsFalse(Has(NullBool,   zeroMatters       ));
+        IsFalse(Has(NullBool,   zeroMatters: true ));
+        IsFalse(Has(NullBool,                true ));
     }
 
     [TestMethod]
@@ -423,7 +443,7 @@ public class Has_Tests : TestBase
     }
 
     [TestMethod]
-    public void Has_Values_ZeroMattersNo()
+    public void Has_Values_ZeroMattersNo_FlagsInBack()
     {
         IsFalse(Has(NullNum                    ));
         IsFalse(Has(NullNum, zeroMatters: false));
@@ -440,6 +460,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(Nully1                     ));
         IsTrue (Has(Nully1,  zeroMatters: false));
         IsTrue (Has(Nully1,               false));
+    }
+
+    [TestMethod]
+    public void Has_Values_ZeroMattersNo_FlagsInFront()
+    {
         IsFalse(Has(                    NullNum));
         IsFalse(Has(zeroMatters: false, NullNum));
         IsFalse(Has(             false, NullNum));
@@ -458,7 +483,7 @@ public class Has_Tests : TestBase
     }
 
     [TestMethod]
-    public void Has_Values_ZeroMattersYes()
+    public void Has_Values_ZeroMattersYes_FlagsInBack()
     {
         IsFalse(Has(NullNum, zeroMatters       ));
         IsFalse(Has(NullNum, zeroMatters: true ));
@@ -475,6 +500,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(Nully1,  zeroMatters       ));
         IsTrue (Has(Nully1,  zeroMatters: true ));
         IsTrue (Has(Nully1,               true ));
+    }
+
+    [TestMethod]
+    public void Has_Values_ZeroMattersYes_FlagsInFront()
+    {
         IsFalse(Has(zeroMatters,       NullNum ));
         IsFalse(Has(zeroMatters: true, NullNum ));
         IsFalse(Has(             true, NullNum ));
@@ -484,12 +514,12 @@ public class Has_Tests : TestBase
         IsTrue (Has(zeroMatters,       Nully0  ));
         IsTrue (Has(zeroMatters: true, Nully0  ));
         IsTrue (Has(             true, Nully0  ));
-        IsTrue (Has(zeroMatters,        NoNull1));
-        IsTrue (Has(zeroMatters: true,  NoNull1));
-        IsTrue (Has(             true,  NoNull1));
-        IsTrue (Has(zeroMatters,        Nully1 ));
-        IsTrue (Has(zeroMatters: true,  Nully1 ));
-        IsTrue (Has(             true,  Nully1 ));
+        IsTrue (Has(zeroMatters,       NoNull1 ));
+        IsTrue (Has(zeroMatters: true, NoNull1 ));
+        IsTrue (Has(             true, NoNull1 ));
+        IsTrue (Has(zeroMatters,       Nully1  ));
+        IsTrue (Has(zeroMatters: true, Nully1  ));
+        IsTrue (Has(             true, Nully1  ));
     }
 
     // Objects
