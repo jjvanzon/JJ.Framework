@@ -25,31 +25,96 @@ public class Has_Tests : TestBase
     [TestMethod]
     public void Has_Text_SpaceMattersYes()
     {
-        IsTrue (Has(Space,      spaceMatters: true ));
-        IsTrue (Has(Space,      spaceMatters       ));
-        IsTrue (Has(Space,                    true ));
-        IsTrue (Has(NullySpace, spaceMatters: true ));
-        IsTrue (Has(NullySpace, spaceMatters       ));
-        IsTrue (Has(NullySpace,               true ));
-        IsTrue (Has(spaceMatters: true,  Space     ));
-        IsTrue (Has(spaceMatters,        Space     ));
-        IsTrue (Has(              true,  Space     ));
-        IsTrue (Has(spaceMatters: true,  NullySpace));
-        IsTrue (Has(spaceMatters,        NullySpace));
-        IsTrue (Has(              true,  NullySpace));
+        IsFalse(Has(NullText,            spaceMatters       ));
+        IsFalse(Has(NullText,            spaceMatters: true ));
+        IsFalse(Has(NullText,                          true ));
+        IsFalse(Has(Empty,               spaceMatters       ));
+        IsFalse(Has(Empty,               spaceMatters: true ));
+        IsFalse(Has(Empty,                             true ));
+        IsFalse(Has(NullyEmpty,          spaceMatters       ));
+        IsFalse(Has(NullyEmpty,          spaceMatters: true ));
+        IsFalse(Has(NullyEmpty,                        true ));
+        IsTrue (Has(Space,               spaceMatters       ));
+        IsTrue (Has(Space,               spaceMatters: true ));
+        IsTrue (Has(Space,                             true ));
+        IsTrue (Has(NullySpace,          spaceMatters       ));
+        IsTrue (Has(NullySpace,          spaceMatters: true ));
+        IsTrue (Has(NullySpace,                        true ));
+        IsTrue (Has(Text,                spaceMatters       ));
+        IsTrue (Has(Text,                spaceMatters: true ));
+        IsTrue (Has(Text,                              true ));
+        IsTrue (Has(NullyFilledText,     spaceMatters       ));
+        IsTrue (Has(NullyFilledText,     spaceMatters: true ));
+        IsTrue (Has(NullyFilledText,                   true ));
+        IsFalse(Has(spaceMatters,        NullText           ));
+        IsFalse(Has(spaceMatters: true,  NullText           ));
+        IsFalse(Has(              true,  NullText           ));
+        IsFalse(Has(spaceMatters,        Empty              ));
+        IsFalse(Has(spaceMatters: true,  Empty              ));
+        IsFalse(Has(              true,  Empty              ));
+        IsFalse(Has(spaceMatters,        NullyEmpty         ));
+        IsFalse(Has(spaceMatters: true,  NullyEmpty         ));
+        IsFalse(Has(              true,  NullyEmpty         ));
+        IsTrue (Has(spaceMatters,        Space              ));
+        IsTrue (Has(spaceMatters: true,  Space              ));
+        IsTrue (Has(              true,  Space              ));
+        IsTrue (Has(spaceMatters,        NullySpace         ));
+        IsTrue (Has(spaceMatters: true,  NullySpace         ));
+        IsTrue (Has(              true,  NullySpace         ));
+        IsTrue (Has(spaceMatters,        Text               ));
+        IsTrue (Has(spaceMatters: true,  Text               ));
+        IsTrue (Has(              true,  Text               ));
+        IsTrue (Has(spaceMatters,        NullyFilledText    ));
+        IsTrue (Has(spaceMatters: true,  NullyFilledText    ));
+        IsTrue (Has(              true,  NullyFilledText    ));
     }
     
     [TestMethod]
     public void Has_Text_SpaceMattersNo()
     {
-        IsFalse(Has(Space,      spaceMatters: false));
-        IsFalse(Has(Space,                    false));
-        IsFalse(Has(NullySpace, spaceMatters: false));
-        IsFalse(Has(NullySpace,               false));
-        IsFalse(Has(spaceMatters: false, Space     ));
-        IsFalse(Has(              false, Space     ));
-        IsFalse(Has(spaceMatters: false, NullySpace));
-        IsFalse(Has(              false, NullySpace));
+        IsFalse(Has(NullText                                ));
+        IsFalse(Has(NullText,            spaceMatters: false));
+        IsFalse(Has(NullText,                          false));
+        IsFalse(Has(Empty                                   ));
+        IsFalse(Has(Empty,               spaceMatters: false));
+        IsFalse(Has(Empty,                             false));
+        IsFalse(Has(NullyEmpty                              ));
+        IsFalse(Has(NullyEmpty,          spaceMatters: false));
+        IsFalse(Has(NullyEmpty,                        false));
+        IsFalse(Has(Space                                   ));
+        IsFalse(Has(Space,               spaceMatters: false));
+        IsFalse(Has(Space,                             false));
+        IsFalse(Has(NullySpace                              ));
+        IsFalse(Has(NullySpace,          spaceMatters: false));
+        IsFalse(Has(NullySpace,                        false));
+        IsTrue (Has(Text                                    ));
+        IsTrue (Has(Text,                spaceMatters: false));
+        IsTrue (Has(Text,                              false));
+        IsTrue (Has(NullyFilledText                         ));
+        IsTrue (Has(NullyFilledText,     spaceMatters: false));
+        IsTrue (Has(NullyFilledText,                   false));
+        IsFalse(Has(                     NullText           ));
+        IsFalse(Has(spaceMatters: false, NullText           ));
+        IsFalse(Has(              false, NullText           ));
+        IsFalse(Has(                     Empty              ));
+        IsFalse(Has(spaceMatters: false, Empty              ));
+        IsFalse(Has(              false, Empty              ));
+        IsFalse(Has(                     NullyEmpty         ));
+        IsFalse(Has(spaceMatters: false, NullyEmpty         ));
+        IsFalse(Has(              false, NullyEmpty         ));
+        IsFalse(Has(                     Space              ));
+        IsFalse(Has(spaceMatters: false, Space              ));
+        IsFalse(Has(              false, Space              ));
+        IsFalse(Has(                     NullySpace         ));
+        IsFalse(Has(spaceMatters: false, NullySpace         ));
+        IsFalse(Has(              false, NullySpace         ));
+        IsTrue (Has(                     Text               ));
+        IsTrue (Has(spaceMatters: false, Text               ));
+        IsTrue (Has(              false, Text               ));
+        IsTrue (Has(                     NullyFilledText    ));
+        IsTrue (Has(spaceMatters: false, NullyFilledText    ));
+        IsTrue (Has(              false, NullyFilledText    ));
+
     }
 
     // StringBuilder
