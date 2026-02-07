@@ -6,39 +6,39 @@ namespace JJ.Framework.Existence.Core;
 internal static class HasUtil
 {
     /// <inheritdoc cref="_has" />
-    public static bool HasText       ([NotNullWhen(true)] string? text                               )                  =>                !IsNullOrWhiteSpace(text);
+    public static bool HasText       ([NotNullWhen(true)] string? text                                )                  =>                !IsNullOrWhiteSpace(text);
     /// <inheritdoc cref="_has" />
-    public static bool HasText       ([NotNullWhen(true)] string? text,     SpaceMatters spaceMatters)                  =>                !IsNullOrEmpty(text);
+    public static bool HasText       ([NotNullWhen(true)] string? text,      SpaceMatters spaceMatters)                  =>                !IsNullOrEmpty(text);
     /// <inheritdoc cref="_has" />
-    public static bool HasText       ([NotNullWhen(true)] string? text,     bool         spaceMatters)                  => spaceMatters ? !IsNullOrEmpty(text) : !IsNullOrWhiteSpace(text);
+    public static bool HasText       ([NotNullWhen(true)] string? text,      bool         spaceMatters)                  => spaceMatters ? !IsNullOrEmpty(text) : !IsNullOrWhiteSpace(text);
     /// <inheritdoc cref="_has" />
-    public static bool HasBool       ([NotNullWhen(true)] bool    val                                )                  => val;
+    public static bool HasBool       ([NotNullWhen(true)] bool    boolean                             )                  => boolean;
     /// <inheritdoc cref="_has" />
-    public static bool HasBool       ([NotNullWhen(true)] bool    val,      ZeroMatters  zeroMatters )                  => true;
+    public static bool HasBool       ([NotNullWhen(true)] bool    boolean,   ZeroMatters  zeroMatters )                  => true;
     /// <inheritdoc cref="_has" />
-    public static bool HasBool       ([NotNullWhen(true)] bool    val,      bool         zeroMatters )                  => zeroMatters || val;
+    public static bool HasBool       ([NotNullWhen(true)] bool    boolean,   bool         zeroMatters )                  => zeroMatters || boolean;
     /// <inheritdoc cref="_has" />
-    public static bool HasBoolNully  ([NotNullWhen(true)] bool?   nullyVal                           )                  => nullyVal ?? false;
+    public static bool HasBoolNully  ([NotNullWhen(true)] bool?   nullyBool                           )                  => nullyBool ?? false;
     /// <inheritdoc cref="_has" />
-    public static bool HasBoolNully  ([NotNullWhen(true)] bool?   nullyVal, ZeroMatters  zeroMatters )                  => nullyVal != null;
+    public static bool HasBoolNully  ([NotNullWhen(true)] bool?   nullyBool, ZeroMatters  zeroMatters )                  => nullyBool != null;
     /// <inheritdoc cref="_has" />
-    public static bool HasBoolNully  ([NotNullWhen(true)] bool?   nullyVal, bool         zeroMatters )                  => zeroMatters ? nullyVal != null : nullyVal ?? false;
+    public static bool HasBoolNully  ([NotNullWhen(true)] bool?   nullyBool, bool         zeroMatters )                  => zeroMatters ? nullyBool != null : nullyBool ?? false;
     /// <inheritdoc cref="_has" />
-    public static bool HasVal     <T>([NotNullWhen(true)] T       val                                )                  =>                !Equals(val,      default(T));
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val                                 )                  =>                !Equals(val,      default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      ZeroMatters  zeroMatters ) where T : struct => true;
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val,       ZeroMatters  zeroMatters ) where T : struct => true;
     /// <inheritdoc cref="_has" />
-    public static bool HasVal     <T>([NotNullWhen(true)] T       val,      bool         zeroMatters ) where T : struct => zeroMatters || !Equals(val,      default(T));
+    public static bool HasVal     <T>([NotNullWhen(true)] T       val,       bool         zeroMatters ) where T : struct => zeroMatters || !Equals(val,      default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasObject  <T>([NotNullWhen(true)] T       obj                                )                  =>                !Equals(obj,      default(T));
+    public static bool HasObject  <T>([NotNullWhen(true)] T       obj                                 )                  =>                !Equals(obj,      default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing                              )                  =>                !Equals(thing,    default(T));
+    public static bool HasValOrObj<T>([NotNullWhen(true)] T       thing                               )                  =>                !Equals(thing,    default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal                           ) where T : struct =>                !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
+    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal                            ) where T : struct =>                !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T));
     /// <inheritdoc cref="_has" />
-    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal, ZeroMatters  zeroMatters ) where T : struct =>                !Equals(nullyVal, default(T?));
+    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal,  ZeroMatters  zeroMatters ) where T : struct =>                !Equals(nullyVal, default(T?));
     /// <inheritdoc cref="_has" />
-    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal, bool         zeroMatters ) where T : struct => !zeroMatters ? !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T)) : !Equals(nullyVal, default(T?));
+    public static bool HasValNully<T>([NotNullWhen(true)] T?      nullyVal,  bool         zeroMatters ) where T : struct => !zeroMatters ? !Equals(nullyVal, default(T?)) && !Equals(nullyVal, default(T)) : !Equals(nullyVal, default(T?));
 
     /// <inheritdoc cref="_has" />
     public static bool HasSB([NotNullWhen(true)] StringBuilder? sb) => HasSB_SpaceIgnored(sb);
