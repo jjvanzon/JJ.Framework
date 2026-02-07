@@ -304,8 +304,6 @@ public class Has_Tests : TestBase
         IsFalse(Has(NullBool,                true ));
     }
 
-    // TODO: Cartesian completion
-
     [TestMethod]
     public void Has_Bool_ZeroMattersNo_FlagsInFront()
     {
@@ -358,7 +356,33 @@ public class Has_Tests : TestBase
         IsFalse(Has(             true,  NullBool    ));
     }
 
-    // TODO: What happens if you make a nullable zeroMatters variable and then pass that?
+    [TestMethod]
+    public void Has_Bool_NullableFlag()
+    {
+        // ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+        bool? nullyZeroMattersFalse = false;
+        bool? nullyZeroMattersTrue  = true;
+
+        IsTrue (Has(true      , nullyZeroMattersFalse         ));
+        IsFalse(Has(false     , nullyZeroMattersFalse         ));
+        IsTrue (Has(True      , nullyZeroMattersFalse         ));
+        IsFalse(Has(False     , nullyZeroMattersFalse         ));
+        IsTrue (Has(NullyTrue , nullyZeroMattersFalse ?? false));
+        IsFalse(Has(NullyFalse, nullyZeroMattersFalse ?? false));
+        IsFalse(Has(NullBool  , nullyZeroMattersFalse ?? false));
+
+        IsTrue (Has(true,       nullyZeroMattersTrue          ));
+        IsTrue (Has(false,      nullyZeroMattersTrue          ));
+        IsTrue (Has(True,       nullyZeroMattersTrue          ));
+        IsTrue (Has(False,      nullyZeroMattersTrue          ));
+        IsTrue (Has(NullyTrue,  nullyZeroMattersTrue  ?? true ));
+        IsTrue (Has(NullyFalse, nullyZeroMattersTrue  ?? true ));
+        IsFalse(Has(NullBool,   nullyZeroMattersTrue  ?? true ));
+
+        // TODO: Add flags in front variants.
+
+        // ReSharper restore NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+    }
 
     // Values
 
