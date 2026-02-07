@@ -356,20 +356,28 @@ public class Has_Tests : TestBase
         IsFalse(Has(             true,  NullBool    ));
     }
 
+    /// <summary>
+    /// Note: Even though some hit the overload with their unintentionally parameters swapped,
+    /// The simple nature of Booleans seems to output the correct result anyway.
+    /// </summary>
     [TestMethod]
     public void Has_Bool_NullableFlag()
     {
         // ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+
+        // TODO: Add (bool?, bool?) variant just to avoid the `??` having the output be correct regardless of parameter swaps?
+        // TODO: Add specialized internal Util method for booleans, so that they're fastest?
+
         bool? nullyZeroMattersFalse = false;
         bool? nullyZeroMattersTrue  = true;
 
-        IsTrue (Has(true      , nullyZeroMattersFalse         ));
-        IsFalse(Has(false     , nullyZeroMattersFalse         ));
-        IsTrue (Has(True      , nullyZeroMattersFalse         ));
-        IsFalse(Has(False     , nullyZeroMattersFalse         ));
-        IsTrue (Has(NullyTrue , nullyZeroMattersFalse ?? false));
+        IsTrue (Has(true,       nullyZeroMattersFalse         ));
+        IsFalse(Has(false,      nullyZeroMattersFalse         ));
+        IsTrue (Has(True,       nullyZeroMattersFalse         ));
+        IsFalse(Has(False,      nullyZeroMattersFalse         ));
+        IsTrue (Has(NullyTrue,  nullyZeroMattersFalse ?? false));
         IsFalse(Has(NullyFalse, nullyZeroMattersFalse ?? false));
-        IsFalse(Has(NullBool  , nullyZeroMattersFalse ?? false));
+        IsFalse(Has(NullBool,   nullyZeroMattersFalse ?? false));
 
         IsTrue (Has(true,       nullyZeroMattersTrue          ));
         IsTrue (Has(false,      nullyZeroMattersTrue          ));
@@ -379,7 +387,21 @@ public class Has_Tests : TestBase
         IsTrue (Has(NullyFalse, nullyZeroMattersTrue  ?? true ));
         IsFalse(Has(NullBool,   nullyZeroMattersTrue  ?? true ));
 
-        // TODO: Add flags in front variants.
+        IsTrue (Has(nullyZeroMattersFalse,          true       ));
+        IsFalse(Has(nullyZeroMattersFalse,          false      ));
+        IsTrue (Has(nullyZeroMattersFalse,          True       ));
+        IsFalse(Has(nullyZeroMattersFalse,          False      ));
+        IsTrue (Has(nullyZeroMattersFalse ?? false, NullyTrue  ));
+        IsFalse(Has(nullyZeroMattersFalse ?? false, NullyFalse ));
+        IsFalse(Has(nullyZeroMattersFalse ?? false, NullBool   ));
+
+        IsTrue (Has(nullyZeroMattersTrue,           true       ));
+        IsTrue (Has(nullyZeroMattersTrue,           false      ));
+        IsTrue (Has(nullyZeroMattersTrue,           True       ));
+        IsTrue (Has(nullyZeroMattersTrue,           False      ));
+        IsTrue (Has(nullyZeroMattersTrue  ?? true , NullyTrue  ));
+        IsTrue (Has(nullyZeroMattersTrue  ?? true , NullyFalse ));
+        IsFalse(Has(nullyZeroMattersTrue  ?? true , NullBool   ));
 
         // ReSharper restore NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
     }
