@@ -100,7 +100,11 @@ public class Has_Collection_Yes
         IsTrue(Has(FilledPrioQueue));
         IsTrue(Has(FilledPrioQueueUnorderedColl));
         #endif
-        
+    }
+
+    [TestMethod]
+    public void FilledIn_Collection_YesWhenFilled_Static()
+    {
         IsTrue(FilledIn(FilledArray));
         IsTrue(FilledIn(FilledIList));
         IsTrue(FilledIn(FilledISet));
@@ -194,7 +198,11 @@ public class Has_Collection_Yes
         IsTrue(FilledIn(FilledPrioQueue));
         IsTrue(FilledIn(FilledPrioQueueUnorderedColl));
         #endif
-        
+    }
+
+    [TestMethod]
+    public void FilledIn_Collection_YesWhenFilled_Extensions()
+    {
         IsTrue(FilledArray.FilledIn());
         IsTrue(FilledIList.FilledIn());
         IsTrue(FilledISet.FilledIn());
@@ -386,7 +394,11 @@ public class Has_Collection_Yes
         IsTrue(Has(NullyFilledPrioQueue));
         IsTrue(Has(NullyFilledPrioQueueUnorderedColl));
         #endif
-        
+    }
+
+    [TestMethod]
+    public void FilledIn_Collection_YesWhenFilledNullable_Static()
+    {
         IsTrue(FilledIn(NullyFilledArray));
         IsTrue(FilledIn(NullyFilledIList));
         IsTrue(FilledIn(NullyFilledISet));
@@ -480,7 +492,11 @@ public class Has_Collection_Yes
         IsTrue(FilledIn(NullyFilledPrioQueue));
         IsTrue(FilledIn(NullyFilledPrioQueueUnorderedColl));
         #endif
-        
+    }
+
+    [TestMethod]
+    public void FilledIn_Collection_YesWhenFilledNullable_Extensions()
+    {
         IsTrue(NullyFilledArray.FilledIn());
         IsTrue(NullyFilledIList.FilledIn());
         IsTrue(NullyFilledISet.FilledIn());
