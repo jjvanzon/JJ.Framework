@@ -10,16 +10,16 @@ public class Has_Tests : TestBase
     [TestMethod]
     public void Has_Text_True()
     {
-        IsTrue(Has(Text));
+        IsTrue(Has(Text           ));
         IsTrue(Has(NullyFilledText));
     }
 
     [TestMethod]
     public void Has_Text_False()
     {
-        IsFalse(Has(Empty));
-        IsFalse(Has(Space));
-        IsFalse(Has(NullText));
+        IsFalse(Has(Empty     ));
+        IsFalse(Has(Space     ));
+        IsFalse(Has(NullText  ));
         IsFalse(Has(NullyEmpty));
         IsFalse(Has(NullySpace));
     }
@@ -303,27 +303,27 @@ public class Has_Tests : TestBase
     [TestMethod]
     public void Has_Bool_ZeroMattersNo_FlagsInFront()
     {
-        IsTrue (Has(                    true        ));
-        IsTrue (Has(zeroMatters: false, true        ));
-        IsTrue (Has(             false, true        ));
-        IsFalse(Has(                    false       ));
-        IsFalse(Has(zeroMatters: false, false       ));
-        IsFalse(Has(             false, false       ));
-        IsTrue (Has(                    True        ));
-        IsTrue (Has(zeroMatters: false, True        ));
-        IsTrue (Has(             false, True        ));
-        IsFalse(Has(                    False       ));
-        IsFalse(Has(zeroMatters: false, False       ));
-        IsFalse(Has(             false, False       ));
-        IsTrue (Has(                    NullyTrue   ));
-        IsTrue (Has(zeroMatters: false, NullyTrue   ));
-        IsTrue (Has(             false, NullyTrue   ));
-        IsFalse(Has(                    NullyFalse  ));
-        IsFalse(Has(zeroMatters: false, NullyFalse  ));
-        IsFalse(Has(             false, NullyFalse  ));
-        IsFalse(Has(                    NullBool    ));
-        IsFalse(Has(zeroMatters: false, NullBool    ));
-        IsFalse(Has(             false, NullBool    ));
+        IsTrue (Has(                    true      ));
+        IsTrue (Has(zeroMatters: false, true      ));
+        IsTrue (Has(             false, true      ));
+        IsFalse(Has(                    false     ));
+        IsFalse(Has(zeroMatters: false, false     ));
+        IsFalse(Has(             false, false     ));
+        IsTrue (Has(                    True      ));
+        IsTrue (Has(zeroMatters: false, True      ));
+        IsTrue (Has(             false, True      ));
+        IsFalse(Has(                    False     ));
+        IsFalse(Has(zeroMatters: false, False     ));
+        IsFalse(Has(             false, False     ));
+        IsTrue (Has(                    NullyTrue ));
+        IsTrue (Has(zeroMatters: false, NullyTrue ));
+        IsTrue (Has(             false, NullyTrue ));
+        IsFalse(Has(                    NullyFalse));
+        IsFalse(Has(zeroMatters: false, NullyFalse));
+        IsFalse(Has(             false, NullyFalse));
+        IsFalse(Has(                    NullBool  ));
+        IsFalse(Has(zeroMatters: false, NullBool  ));
+        IsFalse(Has(             false, NullBool  ));
     }
     
     [TestMethod]
@@ -355,33 +355,30 @@ public class Has_Tests : TestBase
     [TestMethod]
     public void Has_Bool_ZeroMattersYes_FlagsInFront()
     {
-        IsTrue (Has(zeroMatters,        true        ));
-        IsTrue (Has(zeroMatters: true,  true        ));
-        IsTrue (Has(             true,  true        ));
-        IsTrue (Has(zeroMatters,        false       ));
-        IsTrue (Has(zeroMatters: true,  false       ));
-        IsTrue (Has(             true,  false       ));
-        IsTrue (Has(zeroMatters,        True        ));
-        IsTrue (Has(zeroMatters: true,  True        ));
-        IsTrue (Has(             true,  True        ));
-        IsTrue (Has(zeroMatters,        False       ));
-        IsTrue (Has(zeroMatters: true,  False       ));
-        IsTrue (Has(             true,  False       ));
-        IsTrue (Has(zeroMatters,        NullyTrue   ));
-        IsTrue (Has(zeroMatters: true,  NullyTrue   ));
-        IsTrue (Has(             true,  NullyTrue   ));
-        IsTrue (Has(zeroMatters,        NullyFalse  ));
-        IsTrue (Has(zeroMatters: true,  NullyFalse  ));
-        IsTrue (Has(             true,  NullyFalse  ));
-        IsFalse(Has(zeroMatters,        NullBool    ));
-        IsFalse(Has(zeroMatters: true,  NullBool    ));
-        IsFalse(Has(             true,  NullBool    ));
+        IsTrue (Has(zeroMatters,        true      ));
+        IsTrue (Has(zeroMatters: true,  true      ));
+        IsTrue (Has(             true,  true      ));
+        IsTrue (Has(zeroMatters,        false     ));
+        IsTrue (Has(zeroMatters: true,  false     ));
+        IsTrue (Has(             true,  false     ));
+        IsTrue (Has(zeroMatters,        True      ));
+        IsTrue (Has(zeroMatters: true,  True      ));
+        IsTrue (Has(             true,  True      ));
+        IsTrue (Has(zeroMatters,        False     ));
+        IsTrue (Has(zeroMatters: true,  False     ));
+        IsTrue (Has(             true,  False     ));
+        IsTrue (Has(zeroMatters,        NullyTrue ));
+        IsTrue (Has(zeroMatters: true,  NullyTrue ));
+        IsTrue (Has(             true,  NullyTrue ));
+        IsTrue (Has(zeroMatters,        NullyFalse));
+        IsTrue (Has(zeroMatters: true,  NullyFalse));
+        IsTrue (Has(             true,  NullyFalse));
+        IsFalse(Has(zeroMatters,        NullBool  ));
+        IsFalse(Has(zeroMatters: true,  NullBool  ));
+        IsFalse(Has(             true,  NullBool  ));
     }
 
-    /// <summary>
-    /// Note: Even though some hit the overload with their parameters swapped unintentionally,
-    /// The simple nature of Booleans seems to output the correct result anyway.
-    /// </summary>
+    /// <inheritdoc cref="_nullableflag" />
     [TestMethod]
     public void Has_Bool_NullableFlag()
     {

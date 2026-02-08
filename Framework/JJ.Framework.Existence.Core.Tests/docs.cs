@@ -35,3 +35,9 @@ public struct _coalesce3argssbtextcombos;
 /// - [ ] ~ Decimal
 /// </summary>
 public struct _basictypestodo;
+
+/// <summary>
+/// Note: Even though some hit the overload with their parameters swapped unintentionally,
+/// The simple nature of Booleans seems to output the correct result anyway.
+/// </summary>
+public struct _nullableflag;
