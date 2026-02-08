@@ -103,6 +103,108 @@ public class Has_Collection_Yes
     }
 
     [TestMethod]
+    public void Has_Collection_YesWhenFilledNullable()
+    {
+        IsTrue(Has(NullyFilledArray));
+        IsTrue(Has(NullyFilledIList));
+        IsTrue(Has(NullyFilledISet));
+        IsTrue(Has(NullyFilledIDict));
+        IsTrue(Has(NullyFilledIColl));
+        IsTrue(Has(NullyFilledILookup));
+        IsTrue(Has(NullyFilledIEnumerable));
+        IsTrue(Has(NullyFilledList));
+        IsTrue(Has(NullyFilledHashSet));
+        IsTrue(Has(NullyFilledStack));
+        IsTrue(Has(NullyFilledQueue));
+        IsTrue(Has(NullyFilledLinkedList));
+        IsTrue(Has(NullyFilledSortedList));
+        IsTrue(Has(NullyFilledSortedSet));
+        IsTrue(Has(NullyFilledDict));
+        IsTrue(Has(NullyFilledDictKeyColl));
+        IsTrue(Has(NullyFilledDictValColl));
+        IsTrue(Has(NullyFilledIImmutableList));
+        IsTrue(Has(NullyFilledIImmutableSet));
+        IsTrue(Has(NullyFilledIImmutableStack));
+        IsTrue(Has(NullyFilledIImmutableQueue));
+        IsTrue(Has(NullyFilledIImmutableDict));
+        IsTrue(Has(NullyFilledImmutableArray));
+        IsTrue(Has(NullyFilledImmutableArrayBuilder));
+        IsTrue(Has(NullyFilledImmutableList));
+        IsTrue(Has(NullyFilledImmutableListBuilder));
+        IsTrue(Has(NullyFilledImmutableHashSet));
+        IsTrue(Has(NullyFilledImmutableHashSetBuilder));
+        IsTrue(Has(NullyFilledImmutableStack));
+        IsTrue(Has(NullyFilledImmutableQueue));
+        IsTrue(Has(NullyFilledImmutableDict));
+        IsTrue(Has(NullyFilledImmutableDictBuilder));
+        IsTrue(Has(NullyFilledImmutableSortedSet));
+        IsTrue(Has(NullyFilledImmutableSortedSetBuilder));
+        IsTrue(Has(NullyFilledImmutableSortedDict));
+        IsTrue(Has(NullyFilledImmutableSortedDictBuilder));
+        IsTrue(Has(NullyFilledIReadOnlyList));
+        IsTrue(Has(NullyFilledIReadOnlyColl));
+        IsTrue(Has(NullyFilledIReadOnlyColl));
+        IsTrue(Has(NullyFilledIReadOnlyList));
+        IsTrue(Has(NullyFilledIReadOnlyDict));
+        IsTrue(Has(NullyFilledReadOnlyColl));
+        IsTrue(Has(NullyFilledReadOnlyDict));
+        IsTrue(Has(NullyFilledReadOnlyDictKeys));
+        IsTrue(Has(NullyFilledReadOnlyDictVals));
+        IsTrue(Has(NullyFilledArraySegment));
+        IsTrue(Has(NullyFilledMemory));
+        IsTrue(Has(NullyFilledReadOnlyMemory));
+        IsTrue(Has(NullyFilledReadOnlySequence));
+        IsTrue(Has(NullyFilledConcurrentBag));
+        IsTrue(Has(NullyFilledConcurrentQueue));
+        IsTrue(Has(NullyFilledConcurrentStack));
+        IsTrue(Has(NullyFilledConcurrentDict));
+        IsTrue(Has(NullyFilledBlockingColl));
+        IsTrue(Has(NullyFilledIProducerConsumerColl));
+        IsTrue(Has(NullyFilledSortedDict));
+        IsTrue(Has(NullyFilledSortedDictKeys));
+        IsTrue(Has(NullyFilledSortedDictVals));
+        IsTrue(Has(NullyFilledColl));
+        IsTrue(Has(NullyFilledKeyedColl));
+        IsTrue(Has(NullyFilledObservableColl));
+        IsTrue(Has(NullyFilledReadOnlyObservableColl));
+        IsTrue(Has(NullyFilledArrayList));
+        IsTrue(Has(NullyFilledBitArray));
+        IsTrue(Has(NullyFilledCollBase));
+        IsTrue(Has(NullyFilledDictBase));
+        IsTrue(Has(NullyFilledHashtable));
+        IsTrue(Has(NullyFilledQueueNonGeneric));
+        IsTrue(Has(NullyFilledReadOnlyCollBase));
+        IsTrue(Has(NullyFilledSortedListNonGeneric));
+        IsTrue(Has(NullyFilledStackNonGeneric));
+        IsTrue(Has(NullyFilledHybridDict));
+        IsTrue(Has(NullyFilledListDict));
+        IsTrue(Has(NullyFilledNameObjectCollBase));
+        IsTrue(Has(NullyFilledNameObjectCollBaseKeys));
+        IsTrue(Has(NullyFilledNameValueColl));
+        IsTrue(Has(NullyFilledOrderedDictNonGeneric));
+        IsTrue(Has(NullyFilledStringColl));
+        IsTrue(Has(NullyFilledStringDict));
+        IsTrue(Has(NullyFilledIOrderedDict));
+        #if NET9_0_OR_GREATER
+        IsTrue(Has(NullyFilledOrderedDict));
+        IsTrue(Has(NullyFilledOrderedDictKeys));
+        IsTrue(Has(NullyFilledOrderedDictVals));
+        IsTrue(Has(NullyFilledIReadOnlySet));
+        IsTrue(Has(NullyFilledReadOnlySet));
+        #endif
+        IsTrue(Has(NullyFilledFrozenSet));
+        IsTrue(Has(NullyFilledFrozenDictionary));
+        #if NET6_0_OR_GREATER
+        IsTrue(Has(NullyFilledPrioQueue));
+        IsTrue(Has(NullyFilledPrioQueueUnorderedColl));
+        #endif
+    }
+}
+
+[TestClass]
+public class FilledIn_Collection_Yes
+{
+    [TestMethod]
     public void FilledIn_Collection_YesWhenFilled_Static()
     {
         IsTrue(FilledIn(FilledArray));
@@ -295,104 +397,6 @@ public class Has_Collection_Yes
         #if NET6_0_OR_GREATER
         IsTrue(FilledPrioQueue.FilledIn());
         IsTrue(FilledPrioQueueUnorderedColl.FilledIn());
-        #endif
-    }
-
-    [TestMethod]
-    public void Has_Collection_YesWhenFilledNullable()
-    {
-        IsTrue(Has(NullyFilledArray));
-        IsTrue(Has(NullyFilledIList));
-        IsTrue(Has(NullyFilledISet));
-        IsTrue(Has(NullyFilledIDict));
-        IsTrue(Has(NullyFilledIColl));
-        IsTrue(Has(NullyFilledILookup));
-        IsTrue(Has(NullyFilledIEnumerable));
-        IsTrue(Has(NullyFilledList));
-        IsTrue(Has(NullyFilledHashSet));
-        IsTrue(Has(NullyFilledStack));
-        IsTrue(Has(NullyFilledQueue));
-        IsTrue(Has(NullyFilledLinkedList));
-        IsTrue(Has(NullyFilledSortedList));
-        IsTrue(Has(NullyFilledSortedSet));
-        IsTrue(Has(NullyFilledDict));
-        IsTrue(Has(NullyFilledDictKeyColl));
-        IsTrue(Has(NullyFilledDictValColl));
-        IsTrue(Has(NullyFilledIImmutableList));
-        IsTrue(Has(NullyFilledIImmutableSet));
-        IsTrue(Has(NullyFilledIImmutableStack));
-        IsTrue(Has(NullyFilledIImmutableQueue));
-        IsTrue(Has(NullyFilledIImmutableDict));
-        IsTrue(Has(NullyFilledImmutableArray));
-        IsTrue(Has(NullyFilledImmutableArrayBuilder));
-        IsTrue(Has(NullyFilledImmutableList));
-        IsTrue(Has(NullyFilledImmutableListBuilder));
-        IsTrue(Has(NullyFilledImmutableHashSet));
-        IsTrue(Has(NullyFilledImmutableHashSetBuilder));
-        IsTrue(Has(NullyFilledImmutableStack));
-        IsTrue(Has(NullyFilledImmutableQueue));
-        IsTrue(Has(NullyFilledImmutableDict));
-        IsTrue(Has(NullyFilledImmutableDictBuilder));
-        IsTrue(Has(NullyFilledImmutableSortedSet));
-        IsTrue(Has(NullyFilledImmutableSortedSetBuilder));
-        IsTrue(Has(NullyFilledImmutableSortedDict));
-        IsTrue(Has(NullyFilledImmutableSortedDictBuilder));
-        IsTrue(Has(NullyFilledIReadOnlyList));
-        IsTrue(Has(NullyFilledIReadOnlyColl));
-        IsTrue(Has(NullyFilledIReadOnlyColl));
-        IsTrue(Has(NullyFilledIReadOnlyList));
-        IsTrue(Has(NullyFilledIReadOnlyDict));
-        IsTrue(Has(NullyFilledReadOnlyColl));
-        IsTrue(Has(NullyFilledReadOnlyDict));
-        IsTrue(Has(NullyFilledReadOnlyDictKeys));
-        IsTrue(Has(NullyFilledReadOnlyDictVals));
-        IsTrue(Has(NullyFilledArraySegment));
-        IsTrue(Has(NullyFilledMemory));
-        IsTrue(Has(NullyFilledReadOnlyMemory));
-        IsTrue(Has(NullyFilledReadOnlySequence));
-        IsTrue(Has(NullyFilledConcurrentBag));
-        IsTrue(Has(NullyFilledConcurrentQueue));
-        IsTrue(Has(NullyFilledConcurrentStack));
-        IsTrue(Has(NullyFilledConcurrentDict));
-        IsTrue(Has(NullyFilledBlockingColl));
-        IsTrue(Has(NullyFilledIProducerConsumerColl));
-        IsTrue(Has(NullyFilledSortedDict));
-        IsTrue(Has(NullyFilledSortedDictKeys));
-        IsTrue(Has(NullyFilledSortedDictVals));
-        IsTrue(Has(NullyFilledColl));
-        IsTrue(Has(NullyFilledKeyedColl));
-        IsTrue(Has(NullyFilledObservableColl));
-        IsTrue(Has(NullyFilledReadOnlyObservableColl));
-        IsTrue(Has(NullyFilledArrayList));
-        IsTrue(Has(NullyFilledBitArray));
-        IsTrue(Has(NullyFilledCollBase));
-        IsTrue(Has(NullyFilledDictBase));
-        IsTrue(Has(NullyFilledHashtable));
-        IsTrue(Has(NullyFilledQueueNonGeneric));
-        IsTrue(Has(NullyFilledReadOnlyCollBase));
-        IsTrue(Has(NullyFilledSortedListNonGeneric));
-        IsTrue(Has(NullyFilledStackNonGeneric));
-        IsTrue(Has(NullyFilledHybridDict));
-        IsTrue(Has(NullyFilledListDict));
-        IsTrue(Has(NullyFilledNameObjectCollBase));
-        IsTrue(Has(NullyFilledNameObjectCollBaseKeys));
-        IsTrue(Has(NullyFilledNameValueColl));
-        IsTrue(Has(NullyFilledOrderedDictNonGeneric));
-        IsTrue(Has(NullyFilledStringColl));
-        IsTrue(Has(NullyFilledStringDict));
-        IsTrue(Has(NullyFilledIOrderedDict));
-        #if NET9_0_OR_GREATER
-        IsTrue(Has(NullyFilledOrderedDict));
-        IsTrue(Has(NullyFilledOrderedDictKeys));
-        IsTrue(Has(NullyFilledOrderedDictVals));
-        IsTrue(Has(NullyFilledIReadOnlySet));
-        IsTrue(Has(NullyFilledReadOnlySet));
-        #endif
-        IsTrue(Has(NullyFilledFrozenSet));
-        IsTrue(Has(NullyFilledFrozenDictionary));
-        #if NET6_0_OR_GREATER
-        IsTrue(Has(NullyFilledPrioQueue));
-        IsTrue(Has(NullyFilledPrioQueueUnorderedColl));
         #endif
     }
 

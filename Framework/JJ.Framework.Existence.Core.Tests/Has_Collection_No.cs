@@ -300,7 +300,11 @@ public class Has_Collection_No
         IsFalse(Has(NullPrioQueueUnorderedColl));
         #endif
     }
-    
+}
+
+[TestClass]
+public class FilledIn_Collection_No
+{
     [TestMethod]
     public void FilledIn_Collection_NoWhenEmpty_Static()
     {

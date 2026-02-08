@@ -65,7 +65,11 @@ public class Has_Collection_Misc
             IsTrue(defaultReadOnlySpan.IsNully());
         }
     }
+}
 
+[TestClass]
+public class Has_Collection_NotNullWhen
+{
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_Has_Collection_NotNullWhen()
@@ -162,6 +166,11 @@ public class Has_Collection_Misc
         { var coll = NullyFilledPrioQueueUnorderedColl       ; if (Has     (coll)) coll.ToString(); }
         #endif                                                                                       
     }
+}
+
+[TestClass]
+public class FilledIn_Collection_NotNullWhen
+{
 
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
