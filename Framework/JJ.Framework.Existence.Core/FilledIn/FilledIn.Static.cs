@@ -42,28 +42,28 @@ public static partial class FilledInHelper
     // Flags in Front
 
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn     (bool         spaceMatters, [NotNullWhen(true )]     string?        text       )                  => HasText     (text,      spaceMatters);
+    public static bool FilledIn     (bool         spaceMatters, [NotNullWhen(true )]      string?        text      )                  => HasText     (text,      spaceMatters);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn     (SpaceMatters spaceMatters, [NotNullWhen(true )]     string?        text       )                  => HasText     (text,      spaceMatters);
+    public static bool FilledIn     (SpaceMatters spaceMatters, [NotNullWhen(true )]      string?        text      )                  => HasText     (text,      spaceMatters);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn     (bool         spaceMatters, [NotNullWhen(true )]     StringBuilder? sb         )                  => HasSB       (sb,        spaceMatters);
+    public static bool FilledIn     (bool         spaceMatters, [NotNullWhen(true )]      StringBuilder? sb        )                  => HasSB       (sb,        spaceMatters);
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn     (SpaceMatters spaceMatters, [NotNullWhen(true )]     StringBuilder? sb         )                  => HasSB       (sb,        spaceMatters);
+    public static bool FilledIn     (SpaceMatters spaceMatters, [NotNullWhen(true )]      StringBuilder? sb        )                  => HasSB       (sb,        spaceMatters);
     // Ambiguous:
     ///// <inheritdoc cref="_filledin" />
     //public static bool FilledIn   (bool         zeroMatters,  [NotNullWhen(true )]     bool           boolean    )                  => HasBool     (boolean,   zeroMatters );
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn     (ZeroMatters  zeroMatters,  [NotNullWhen(true )]     bool           boolean    )                  => HasBool     (boolean,   zeroMatters );
+    public static bool FilledIn     (ZeroMatters  zeroMatters,  [NotNullWhen(true )]      bool           boolean   )                  => HasBool     (boolean,   zeroMatters );
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn     (bool         zeroMatters,  [NotNullWhen(true )]     bool?          nullyBool  )                  => HasBoolNully(nullyBool, zeroMatters );
+    public static bool FilledIn     (bool         zeroMatters,  [NotNullWhen(true )]      bool?          nullyBool )                  => HasBoolNully(nullyBool, zeroMatters );
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn     (ZeroMatters  zeroMatters,  [NotNullWhen(true )]     bool?          nullyBool  )                  => HasBoolNully(nullyBool, zeroMatters );
+    public static bool FilledIn     (ZeroMatters  zeroMatters,  [NotNullWhen(true )]      bool?          nullyBool )                  => HasBoolNully(nullyBool, zeroMatters );
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  (bool         zeroMatters,  [NotNullWhen(true )]     T              val        ) where T : struct => HasVal      (val,       zeroMatters );
+    public static bool FilledIn<T>  (bool         zeroMatters,  [NotNullWhen(true )]      T              val       ) where T : struct => HasVal      (val,       zeroMatters );
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  (ZeroMatters  zeroMatters,  [NotNullWhen(true )]     T              val        ) where T : struct => HasVal      (val,       zeroMatters );
+    public static bool FilledIn<T>  (ZeroMatters  zeroMatters,  [NotNullWhen(true )]      T              val       ) where T : struct => HasVal      (val,       zeroMatters );
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  (bool         zeroMatters,  [NotNullWhen(true )]     T?             nullyVal   ) where T : struct => HasValNully (nullyVal,  zeroMatters );
+    public static bool FilledIn<T>  (bool         zeroMatters,  [NotNullWhen(true )]      T?             nullyVal  ) where T : struct => HasValNully (nullyVal,  zeroMatters );
     /// <inheritdoc cref="_filledin" />
-    public static bool FilledIn<T>  (ZeroMatters  zeroMatters,  [NotNullWhen(true )]     T?             nullyVal   ) where T : struct => HasValNully (nullyVal,  zeroMatters );
+    public static bool FilledIn<T>  (ZeroMatters  zeroMatters,  [NotNullWhen(true )]      T?             nullyVal  ) where T : struct => HasValNully (nullyVal,  zeroMatters );
 }
