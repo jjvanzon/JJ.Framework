@@ -82,6 +82,7 @@ RunTests<Coalesce_Variadic_Tests>() &&
 RunTests<Contains_Nullable_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<BasicType_Other_Tests>() &&
+RunTests<BasicType_Bool_Coalesce_Tests>() &&
 RunTests<Existence_Bugs>() &&
 RunTests<BasicType_Bool_Tests>() &&
 RunTests<BasicType_Char_Tests>() &&
@@ -90,7 +91,6 @@ RunTests<BasicType_Double_Tests>() &&
 RunTests<BasicType_Enum_Tests>() &&
 RunTests<Existence_Examples>() &&
 RunTests<BasicType_Guid_Tests>() &&
-RunTests<Existence_NotNullWhen_Tests>() &&
 RunTests<RegressionTest_CallToHas_FromGenericContext_TypeInfoLost>() &&
 RunTests<FilledIn_Tests>() &&
 RunTests<Flex_Prototype>() &&
@@ -113,7 +113,9 @@ RunTests<Is_Tests_Examples>() &&
 RunTests<Is_Tests_ExtensionsFlagsInBack>() &&
 RunTests<Is_Tests_ExtensionsFlagsInFront>() &&
 RunTests<Is_Tests_StaticFlagsInBack>() &&
+RunTests<Is_Tests_StaticFlagsInFront>() &&
 RunTests<IsNully_Collection_No_Tests>() &&
+RunTests<IsNully_Collection_NotNullWhen>() &&
 RunTests<IsNully_Collection_Yes_Tests>() &&
 RunTests<IsNully_Tests>();
 WriteLine("Done.");

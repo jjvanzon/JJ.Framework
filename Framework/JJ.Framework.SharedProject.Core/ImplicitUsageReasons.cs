@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core;
+﻿// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
+
+namespace JJ.Framework.Existence.Core;
 
 internal static class ImplicitUsageReasons
 {
