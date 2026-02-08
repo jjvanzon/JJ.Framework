@@ -3,39 +3,73 @@
 
 namespace JJ.Framework.Existence.Core.Tests;
 
+/// <inheritdoc cref="_notnullwhentests" />
 [TestClass]
 public class Existence_NotNullWhen_Tests
 {
     private string       ? Text => "Hi!";
     private StringBuilder? SB   => new("Hi!");
     private int          ? Num  => 1;
+    private bool         ? Bool => true;
 
+    /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_Has_NotNullWhen()
     {
-        // ToString() would trigger a nullability compiler error, if Has/FilledIn/IsNully NotNullWhen attribute set wrong.
-
         { string?        text = Text; if ( Has     (text              )) text.ToString(); }
         { string?        text = Text; if ( Has     (text, true        )) text.ToString(); }
         { string?        text = Text; if ( Has     (text, spaceMatters)) text.ToString(); }
         { StringBuilder? sb   = SB  ; if ( Has     (sb                )) sb  .ToString(); }
         { StringBuilder? sb   = SB  ; if ( Has     (sb,   true        )) sb  .ToString(); }
         { StringBuilder? sb   = SB  ; if ( Has     (sb,   spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool; if ( Has     (boo               )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( Has     (boo,  true        )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( Has     (boo,  zeroMatters )) boo .ToString(); }
         { int?           num  = Num ; if ( Has     (num               )) num .ToString(); }
+        { int?           num  = Num ; if ( Has     (num,  true        )) num .ToString(); }
+        { int?           num  = Num ; if ( Has     (num,  zeroMatters )) num .ToString(); }
+        { string?        text = Text; if ( Has     (              text)) text.ToString(); }
+        { string?        text = Text; if ( Has     (true,         text)) text.ToString(); }
+        { string?        text = Text; if ( Has     (spaceMatters, text)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if ( Has     (              sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( Has     (true,         sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( Has     (spaceMatters, sb  )) sb  .ToString(); }
+        { bool?          boo  = Bool; if ( Has     (              boo )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( Has     (true,         boo )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( Has     (zeroMatters,  boo )) boo .ToString(); }
+        { int?           num  = Num ; if ( Has     (              num )) num .ToString(); }
+        { int?           num  = Num ; if ( Has     (true,         num )) num .ToString(); }
+        { int?           num  = Num ; if ( Has     (zeroMatters,  num )) num .ToString(); }
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Test_FilledIn_NotNullWhen()
+    {
         { string?        text = Text; if ( FilledIn(text              )) text.ToString(); }
         { string?        text = Text; if ( FilledIn(text, true        )) text.ToString(); }
         { string?        text = Text; if ( FilledIn(text, spaceMatters)) text.ToString(); }
         { StringBuilder? sb   = SB  ; if ( FilledIn(sb                )) sb  .ToString(); }
         { StringBuilder? sb   = SB  ; if ( FilledIn(sb,   true        )) sb  .ToString(); }
         { StringBuilder? sb   = SB  ; if ( FilledIn(sb,   spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool; if ( FilledIn(boo               )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( FilledIn(boo,  true        )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( FilledIn(boo,  zeroMatters )) boo .ToString(); }
         { int?           num  = Num ; if ( FilledIn(num               )) num .ToString(); }
-        { string?        text = Text; if (!IsNully (text              )) text.ToString(); }
-        { string?        text = Text; if (!IsNully (text, true        )) text.ToString(); }
-        { string?        text = Text; if (!IsNully (text, spaceMatters)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb                )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   true        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   spaceMatters)) sb  .ToString(); }
-        { int?           num  = Num ; if (!IsNully (num               )) num .ToString(); }
+        { int?           num  = Num ; if ( FilledIn(num,  true        )) num .ToString(); }
+        { int?           num  = Num ; if ( FilledIn(num,  zeroMatters )) num .ToString(); }
+        { string?        text = Text; if ( FilledIn(              text)) text.ToString(); }
+        { string?        text = Text; if ( FilledIn(true,         text)) text.ToString(); }
+        { string?        text = Text; if ( FilledIn(spaceMatters, text)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if ( FilledIn(              sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( FilledIn(true,         sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if ( FilledIn(spaceMatters, sb  )) sb  .ToString(); }
+        { bool?          boo  = Bool; if ( FilledIn(              boo )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( FilledIn(true,         boo )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( FilledIn(zeroMatters,  boo )) boo .ToString(); }
+        { int?           num  = Num ; if ( FilledIn(              num )) num .ToString(); }
+        { int?           num  = Num ; if ( FilledIn(true,         num )) num .ToString(); }
+        { int?           num  = Num ; if ( FilledIn(zeroMatters,  num )) num .ToString(); }
         { string?        text = Text; if ( text.FilledIn(             )) text.ToString(); }
         { string?        text = Text; if ( text.FilledIn( true        )) text.ToString(); }
         { string?        text = Text; if ( text.FilledIn( spaceMatters)) text.ToString(); }
@@ -43,19 +77,59 @@ public class Existence_NotNullWhen_Tests
         { StringBuilder? sb   = SB  ; if ( sb  .FilledIn( true        )) sb  .ToString(); }
         { StringBuilder? sb   = SB  ; if ( sb  .FilledIn( spaceMatters)) sb  .ToString(); }
         { int?           num  = Num ; if ( num .FilledIn(             )) num .ToString(); }
-        { string?        text = Text; if (!text.IsNully(              )) text.ToString(); }
-        { string?        text = Text; if (!text.IsNully(  true        )) text.ToString(); }
-        { string?        text = Text; if (!text.IsNully(  spaceMatters)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(              )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(  true        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb  .IsNully(  spaceMatters)) sb  .ToString(); }
-        { int?           num  = Num ; if (!num .IsNully(              )) num .ToString(); }
+        { int?           num  = Num ; if ( num .FilledIn( true        )) num .ToString(); }
+        { int?           num  = Num ; if ( num .FilledIn(             )) num .ToString(); }
+        { bool?          boo  = Bool; if ( boo .FilledIn(             )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( boo .FilledIn( true        )) boo .ToString(); }
+        { bool?          boo  = Bool; if ( boo .FilledIn(             )) boo .ToString(); }
     }
 
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Test_IsNully_NotNullWhen()
+    {
+        { string?        text = Text; if (!IsNully (text              )) text.ToString(); }
+        { string?        text = Text; if (!IsNully (text, true        )) text.ToString(); }
+        { string?        text = Text; if (!IsNully (text, spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (sb                )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool; if (!IsNully (boo               )) boo .ToString(); }
+        { bool?          boo  = Bool; if (!IsNully (boo,  true        )) boo .ToString(); }
+        { bool?          boo  = Bool; if (!IsNully (boo,  zeroMatters )) boo .ToString(); }
+        { int?           num  = Num ; if (!IsNully (num               )) num .ToString(); }
+        { int?           num  = Num ; if (!IsNully (num,  true        )) num .ToString(); }
+        { int?           num  = Num ; if (!IsNully (num,  zeroMatters )) num .ToString(); }
+        { string?        text = Text; if (!IsNully (              text)) text.ToString(); }
+        { string?        text = Text; if (!IsNully (true,         text)) text.ToString(); }
+        { string?        text = Text; if (!IsNully (spaceMatters, text)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (              sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (true,         sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!IsNully (spaceMatters, sb  )) sb  .ToString(); }
+        { bool?          boo  = Bool; if (!IsNully (              boo )) boo .ToString(); }
+        { bool?          boo  = Bool; if (!IsNully (true,         boo )) boo .ToString(); }
+        { bool?          boo  = Bool; if (!IsNully (zeroMatters,  boo )) boo .ToString(); }
+        { int?           num  = Num ; if (!IsNully (              num )) num .ToString(); }
+        { int?           num  = Num ; if (!IsNully (true,         num )) num .ToString(); }
+        { int?           num  = Num ; if (!IsNully (zeroMatters,  num )) num .ToString(); }
+        { string?        text = Text; if (!text .IsNully(             )) text.ToString(); }
+        { string?        text = Text; if (!text .IsNully( true        )) text.ToString(); }
+        { string?        text = Text; if (!text .IsNully( spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  ; if (!sb   .IsNully(             )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!sb   .IsNully( true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  ; if (!sb   .IsNully( spaceMatters)) sb  .ToString(); }
+        { int?           num  = Num ; if (!num  .IsNully(             )) num .ToString(); }
+        { int?           num  = Num ; if (!num  .IsNully( true        )) num .ToString(); }
+        { int?           num  = Num ; if (!num  .IsNully(             )) num .ToString(); }
+        { bool?          boo  = Bool; if (!boo  .IsNully(             )) boo .ToString(); }
+        { bool?          boo  = Bool; if (!boo  .IsNully( true        )) boo .ToString(); }
+        { bool?          boo  = Bool; if (!boo  .IsNully(             )) boo .ToString(); }
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_Has_Collection_NotNullWhen()
     {
-        // ToString() would trigger a nullability compiler error, if Has/FilledIn/UsNully NotNulWhen attribute set wrong.
         { var coll = NullyFilledArray                        ; if (Has     (coll)) coll.ToString(); }
         { var coll = NullyFilledIList                        ; if (Has     (coll)) coll.ToString(); }
         { var coll = NullyFilledISet                         ; if (Has     (coll)) coll.ToString(); }
@@ -147,7 +221,12 @@ public class Existence_NotNullWhen_Tests
         { var coll = NullyFilledPrioQueue                    ; if (Has     (coll)) coll.ToString(); }
         { var coll = NullyFilledPrioQueueUnorderedColl       ; if (Has     (coll)) coll.ToString(); }
         #endif                                                                                       
+    }
 
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Test_FilledIn_Collection_NotNullWhen_Static()
+    {
         { var coll = NullyFilledArray                        ; if (FilledIn(coll)) coll.ToString(); }
         { var coll = NullyFilledIList                        ; if (FilledIn(coll)) coll.ToString(); }
         { var coll = NullyFilledISet                         ; if (FilledIn(coll)) coll.ToString(); }
@@ -239,99 +318,12 @@ public class Existence_NotNullWhen_Tests
         { var coll = NullyFilledPrioQueue                    ; if (FilledIn(coll)) coll.ToString(); }
         { var coll = NullyFilledPrioQueueUnorderedColl       ; if (FilledIn(coll)) coll.ToString(); }
         #endif
+    }
 
-        { var coll = NullyFilledArray                        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIList                        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledISet                         ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIDict                        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIColl                        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIEnumerable                  ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledILookup                      ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledList                         ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledHashSet                      ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledStack                        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledQueue                        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledLinkedList                   ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledSortedList                   ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledSortedSet                    ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledDict                         ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledDictKeyColl                  ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledDictValColl                  ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIImmutableList               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIImmutableSet                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIImmutableStack              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIImmutableQueue              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIImmutableDict               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableArray               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableArrayBuilder        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableList                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableListBuilder         ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableHashSet             ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableHashSetBuilder      ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableStack               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableQueue               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableDict                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableDictBuilder         ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableSortedSet           ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableSortedSetBuilder    ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableSortedDict          ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledImmutableSortedDictBuilder   ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIReadOnlyColl                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIReadOnlyList                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIReadOnlyDict                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlyColl                 ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlyDict                 ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlyDictKeys             ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlyDictVals             ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledArraySegment                 ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledMemory                       ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlyMemory               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlySequence             ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledConcurrentBag                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledConcurrentQueue              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledConcurrentStack              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledConcurrentDict               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledBlockingColl                 ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIProducerConsumerColl        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledSortedDict                   ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledSortedDictKeys               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledSortedDictVals               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledColl                         ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledKeyedColl                    ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledObservableColl               ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlyObservableColl       ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledArrayList                    ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledBitArray                     ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledCollBase                     ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledDictBase                     ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledHashtable                    ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledQueueNonGeneric              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlyCollBase             ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledSortedListNonGeneric         ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledStackNonGeneric              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledHybridDict                   ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledListDict                     ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledNameObjectCollBase           ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledNameObjectCollBaseKeys       ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledNameValueColl                ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledOrderedDictNonGeneric        ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledStringColl                   ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledStringDict                   ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIOrderedDict                 ; if (!IsNully(coll)) coll.ToString(); }
-        #if NET9_0_OR_GREATER                                                                        
-        { var coll = NullyFilledOrderedDict                  ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledOrderedDictKeys              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledOrderedDictVals              ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledIReadOnlySet                 ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledReadOnlySet                  ; if (!IsNully(coll)) coll.ToString(); }
-        #endif
-        { var coll = NullyFilledFrozenSet                    ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledFrozenDictionary             ; if (!IsNully(coll)) coll.ToString(); }
-        #if NET6_0_OR_GREATER                                                                             
-        { var coll = NullyFilledPrioQueue                    ; if (!IsNully(coll)) coll.ToString(); }
-        { var coll = NullyFilledPrioQueueUnorderedColl       ; if (!IsNully(coll)) coll.ToString(); }
-        #endif                                                                                       
-
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod] 
+    public void Test_FilledIn_Collection_NotNullWhen_Extensions()
+    {
         { var coll = NullyFilledArray                        ; if (coll.FilledIn()) coll.ToString(); }
         { var coll = NullyFilledIList                        ; if (coll.FilledIn()) coll.ToString(); }
         { var coll = NullyFilledISet                         ; if (coll.FilledIn()) coll.ToString(); }
@@ -423,7 +415,109 @@ public class Existence_NotNullWhen_Tests
         { var coll = NullyFilledPrioQueue                    ; if (coll.FilledIn()) coll.ToString(); }
         { var coll = NullyFilledPrioQueueUnorderedColl       ; if (coll.FilledIn()) coll.ToString(); }
         #endif                                                                                       
+    }
 
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Test_IsNully_Collection_NotNullWhen_Static()
+    {
+        { var coll = NullyFilledArray                        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIList                        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledISet                         ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIDict                        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIColl                        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIEnumerable                  ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledILookup                      ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledList                         ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledHashSet                      ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledStack                        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledQueue                        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledLinkedList                   ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledSortedList                   ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledSortedSet                    ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledDict                         ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledDictKeyColl                  ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledDictValColl                  ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIImmutableList               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIImmutableSet                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIImmutableStack              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIImmutableQueue              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIImmutableDict               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableArray               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableArrayBuilder        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableList                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableListBuilder         ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableHashSet             ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableHashSetBuilder      ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableStack               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableQueue               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableDict                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableDictBuilder         ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableSortedSet           ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableSortedSetBuilder    ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableSortedDict          ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledImmutableSortedDictBuilder   ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIReadOnlyColl                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIReadOnlyList                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIReadOnlyDict                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlyColl                 ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlyDict                 ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlyDictKeys             ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlyDictVals             ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledArraySegment                 ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledMemory                       ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlyMemory               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlySequence             ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledConcurrentBag                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledConcurrentQueue              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledConcurrentStack              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledConcurrentDict               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledBlockingColl                 ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIProducerConsumerColl        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledSortedDict                   ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledSortedDictKeys               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledSortedDictVals               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledColl                         ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledKeyedColl                    ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledObservableColl               ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlyObservableColl       ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledArrayList                    ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledBitArray                     ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledCollBase                     ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledDictBase                     ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledHashtable                    ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledQueueNonGeneric              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlyCollBase             ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledSortedListNonGeneric         ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledStackNonGeneric              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledHybridDict                   ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledListDict                     ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledNameObjectCollBase           ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledNameObjectCollBaseKeys       ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledNameValueColl                ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledOrderedDictNonGeneric        ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledStringColl                   ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledStringDict                   ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIOrderedDict                 ; if (!IsNully(coll)) coll.ToString(); }
+        #if NET9_0_OR_GREATER                                                                        
+        { var coll = NullyFilledOrderedDict                  ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledOrderedDictKeys              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledOrderedDictVals              ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledIReadOnlySet                 ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledReadOnlySet                  ; if (!IsNully(coll)) coll.ToString(); }
+        #endif
+        { var coll = NullyFilledFrozenSet                    ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledFrozenDictionary             ; if (!IsNully(coll)) coll.ToString(); }
+        #if NET6_0_OR_GREATER                                                                             
+        { var coll = NullyFilledPrioQueue                    ; if (!IsNully(coll)) coll.ToString(); }
+        { var coll = NullyFilledPrioQueueUnorderedColl       ; if (!IsNully(coll)) coll.ToString(); }
+        #endif                                                                                       
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Test_IsNully_Collection_NotNullWhen_Extensions()
+    {
         { var coll = NullyFilledArray                        ; if (!coll.IsNully()) coll.ToString(); }
         { var coll = NullyFilledIList                        ; if (!coll.IsNully()) coll.ToString(); }
         { var coll = NullyFilledISet                         ; if (!coll.IsNully()) coll.ToString(); }

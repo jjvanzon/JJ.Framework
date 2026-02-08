@@ -41,3 +41,9 @@ public struct _basictypestodo;
 /// The simple nature of Booleans seems to output the correct result anyway.
 /// </summary>
 public struct _nullableflag;
+
+/// <summary>
+/// ToString() would trigger a nullability compiler error,
+/// if Has/FilledIn/IsNully NotNullWhen attribute set wrong.
+/// </summary>
+public struct _notnullwhentests;
