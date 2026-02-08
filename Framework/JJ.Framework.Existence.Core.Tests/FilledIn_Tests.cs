@@ -627,9 +627,6 @@ public class FilledIn_Tests : TestBase
 
     // Values
 
-    // TODO: Rename 
-    // TODO: ADd extension method syntax
-
     [TestMethod]
     public void FilledIn_Values_No()
     {
