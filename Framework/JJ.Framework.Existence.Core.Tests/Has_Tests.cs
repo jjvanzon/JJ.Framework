@@ -522,15 +522,10 @@ public class Has_Tests : TestBase
     // Objects
     
     [TestMethod]
-    public void Has_Object_False()
+    public void Has_Object()
     {
         IsFalse(Has(NullObj));
-    }
-
-    [TestMethod]
-    public void Has_Object_True()
-    {
-        IsTrue(Has(NoNullObj));
-        IsTrue(Has(NullyFilledObj));
+        IsTrue (Has(NoNullObj));
+        IsTrue (Has(NullyFilledObj));
     }
 }
