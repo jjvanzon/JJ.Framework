@@ -5,125 +5,135 @@ namespace JJ.Framework.Existence.Core.Tests;
 
 /// <inheritdoc cref="_notnullwhentests" />
 [TestClass]
-public class Existence_NotNullWhen_Tests
+public class Existence_NotNullWhen_Tests : TestBase
 {
-    private string       ? Text => "Hi!";
-    private StringBuilder? SB   => new("Hi!");
-    private int          ? Num  => 1;
-    private bool         ? Bool => true;
-
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_Has_NotNullWhen()
     {
-        { string?        text = Text; if ( Has     (text              )) text.ToString(); }
-        { string?        text = Text; if ( Has     (text, true        )) text.ToString(); }
-        { string?        text = Text; if ( Has     (text, spaceMatters)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (sb                )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (sb,   true        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (sb,   spaceMatters)) sb  .ToString(); }
-        { bool?          boo  = Bool; if ( Has     (boo               )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( Has     (boo,  true        )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( Has     (boo,  zeroMatters )) boo .ToString(); }
-        { int?           num  = Num ; if ( Has     (num               )) num .ToString(); }
-        { int?           num  = Num ; if ( Has     (num,  true        )) num .ToString(); }
-        { int?           num  = Num ; if ( Has     (num,  zeroMatters )) num .ToString(); }
-        { string?        text = Text; if ( Has     (              text)) text.ToString(); }
-        { string?        text = Text; if ( Has     (true,         text)) text.ToString(); }
-        { string?        text = Text; if ( Has     (spaceMatters, text)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (              sb  )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (true,         sb  )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( Has     (spaceMatters, sb  )) sb  .ToString(); }
-        { bool?          boo  = Bool; if ( Has     (              boo )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( Has     (true,         boo )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( Has     (zeroMatters,  boo )) boo .ToString(); }
-        { int?           num  = Num ; if ( Has     (              num )) num .ToString(); }
-        { int?           num  = Num ; if ( Has     (true,         num )) num .ToString(); }
-        { int?           num  = Num ; if ( Has     (zeroMatters,  num )) num .ToString(); }
+        string       ? Text() => NullyFilledText;
+        StringBuilder? SB  () => NullyFilledSB;
+        int          ? Num () => Nully1;
+        bool         ? Bool() => NullyTrue;
+
+        { string?        text = Text(); if ( Has     (text              )) text.ToString(); }
+        { string?        text = Text(); if ( Has     (text, true        )) text.ToString(); }
+        { string?        text = Text(); if ( Has     (text, spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if ( Has     (sb                )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( Has     (sb,   true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( Has     (sb,   spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool(); if ( Has     (boo               )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( Has     (boo,  true        )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( Has     (boo,  zeroMatters )) boo = boo.Value; }
+        { int?           num  = Num (); if ( Has     (num               )) num = num.Value; }
+        { int?           num  = Num (); if ( Has     (num,  true        )) num = num.Value; }
+        { int?           num  = Num (); if ( Has     (num,  zeroMatters )) num = num.Value; }
+        { string?        text = Text(); if ( Has     (              text)) text.ToString(); }
+        { string?        text = Text(); if ( Has     (true,         text)) text.ToString(); }
+        { string?        text = Text(); if ( Has     (spaceMatters, text)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if ( Has     (              sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( Has     (true,         sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( Has     (spaceMatters, sb  )) sb  .ToString(); }
+        { bool?          boo  = Bool(); if ( Has     (              boo )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( Has     (true,         boo )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( Has     (zeroMatters,  boo )) boo = boo.Value; }
+        { int?           num  = Num (); if ( Has     (              num )) num = num.Value; }
+        { int?           num  = Num (); if ( Has     (true,         num )) num = num.Value; }
+        { int?           num  = Num (); if ( Has     (zeroMatters,  num )) num = num.Value; }
     }
 
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_FilledIn_NotNullWhen()
     {
-        { string?        text = Text; if ( FilledIn(text              )) text.ToString(); }
-        { string?        text = Text; if ( FilledIn(text, true        )) text.ToString(); }
-        { string?        text = Text; if ( FilledIn(text, spaceMatters)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(sb                )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(sb,   true        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(sb,   spaceMatters)) sb  .ToString(); }
-        { bool?          boo  = Bool; if ( FilledIn(boo               )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( FilledIn(boo,  true        )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( FilledIn(boo,  zeroMatters )) boo .ToString(); }
-        { int?           num  = Num ; if ( FilledIn(num               )) num .ToString(); }
-        { int?           num  = Num ; if ( FilledIn(num,  true        )) num .ToString(); }
-        { int?           num  = Num ; if ( FilledIn(num,  zeroMatters )) num .ToString(); }
-        { string?        text = Text; if ( FilledIn(              text)) text.ToString(); }
-        { string?        text = Text; if ( FilledIn(true,         text)) text.ToString(); }
-        { string?        text = Text; if ( FilledIn(spaceMatters, text)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(              sb  )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(true,         sb  )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( FilledIn(spaceMatters, sb  )) sb  .ToString(); }
-        { bool?          boo  = Bool; if ( FilledIn(              boo )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( FilledIn(true,         boo )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( FilledIn(zeroMatters,  boo )) boo .ToString(); }
-        { int?           num  = Num ; if ( FilledIn(              num )) num .ToString(); }
-        { int?           num  = Num ; if ( FilledIn(true,         num )) num .ToString(); }
-        { int?           num  = Num ; if ( FilledIn(zeroMatters,  num )) num .ToString(); }
-        { string?        text = Text; if ( text.FilledIn(             )) text.ToString(); }
-        { string?        text = Text; if ( text.FilledIn( true        )) text.ToString(); }
-        { string?        text = Text; if ( text.FilledIn( spaceMatters)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn(             )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn( true        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if ( sb  .FilledIn( spaceMatters)) sb  .ToString(); }
-        { int?           num  = Num ; if ( num .FilledIn(             )) num .ToString(); }
-        { int?           num  = Num ; if ( num .FilledIn( true        )) num .ToString(); }
-        { int?           num  = Num ; if ( num .FilledIn(             )) num .ToString(); }
-        { bool?          boo  = Bool; if ( boo .FilledIn(             )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( boo .FilledIn( true        )) boo .ToString(); }
-        { bool?          boo  = Bool; if ( boo .FilledIn(             )) boo .ToString(); }
+        string       ? Text() => NullyFilledText;
+        StringBuilder? SB  () => NullyFilledSB;
+        int          ? Num () => Nully1;
+        bool         ? Bool() => NullyTrue;
+
+        { string?        text = Text(); if ( FilledIn(text              )) text.ToString(); }
+        { string?        text = Text(); if ( FilledIn(text, true        )) text.ToString(); }
+        { string?        text = Text(); if ( FilledIn(text, spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if ( FilledIn(sb                )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( FilledIn(sb,   true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( FilledIn(sb,   spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool(); if ( FilledIn(boo               )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( FilledIn(boo,  true        )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( FilledIn(boo,  zeroMatters )) boo = boo.Value; }
+        { int?           num  = Num (); if ( FilledIn(num               )) num = num.Value; }
+        { int?           num  = Num (); if ( FilledIn(num,  true        )) num = num.Value; }
+        { int?           num  = Num (); if ( FilledIn(num,  zeroMatters )) num = num.Value; }
+        { string?        text = Text(); if ( FilledIn(              text)) text.ToString(); }
+        { string?        text = Text(); if ( FilledIn(true,         text)) text.ToString(); }
+        { string?        text = Text(); if ( FilledIn(spaceMatters, text)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if ( FilledIn(              sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( FilledIn(true,         sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( FilledIn(spaceMatters, sb  )) sb  .ToString(); }
+        { bool?          boo  = Bool(); if ( FilledIn(              boo )) boo =boo.Value; }
+        { bool?          boo  = Bool(); if ( FilledIn(true,         boo )) boo =boo.Value; }
+        { bool?          boo  = Bool(); if ( FilledIn(zeroMatters,  boo )) boo =boo.Value; }
+        { int?           num  = Num (); if ( FilledIn(              num )) num =num.Value; }
+        { int?           num  = Num (); if ( FilledIn(true,         num )) num =num.Value; }
+        { int?           num  = Num (); if ( FilledIn(zeroMatters,  num )) num =num.Value; }
+        { string?        text = Text(); if ( text.FilledIn(             )) text.ToString(); }
+        { string?        text = Text(); if ( text.FilledIn( true        )) text.ToString(); }
+        { string?        text = Text(); if ( text.FilledIn( spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if ( sb  .FilledIn(             )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( sb  .FilledIn( true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if ( sb  .FilledIn( spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool(); if ( boo .FilledIn(             )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( boo .FilledIn( true        )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if ( boo .FilledIn(             )) boo = boo.Value; }
+        { int?           num  = Num (); if ( num .FilledIn(             )) num = num.Value; }
+        { int?           num  = Num (); if ( num .FilledIn( true        )) num = num.Value; }
+        { int?           num  = Num (); if ( num .FilledIn(             )) num = num.Value; }
     }
 
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_IsNully_NotNullWhen()
     {
-        { string?        text = Text; if (!IsNully (text              )) text.ToString(); }
-        { string?        text = Text; if (!IsNully (text, true        )) text.ToString(); }
-        { string?        text = Text; if (!IsNully (text, spaceMatters)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb                )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   true        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (sb,   spaceMatters)) sb  .ToString(); }
-        { bool?          boo  = Bool; if (!IsNully (boo               )) boo .ToString(); }
-        { bool?          boo  = Bool; if (!IsNully (boo,  true        )) boo .ToString(); }
-        { bool?          boo  = Bool; if (!IsNully (boo,  zeroMatters )) boo .ToString(); }
-        { int?           num  = Num ; if (!IsNully (num               )) num .ToString(); }
-        { int?           num  = Num ; if (!IsNully (num,  true        )) num .ToString(); }
-        { int?           num  = Num ; if (!IsNully (num,  zeroMatters )) num .ToString(); }
-        { string?        text = Text; if (!IsNully (              text)) text.ToString(); }
-        { string?        text = Text; if (!IsNully (true,         text)) text.ToString(); }
-        { string?        text = Text; if (!IsNully (spaceMatters, text)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (              sb  )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (true,         sb  )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!IsNully (spaceMatters, sb  )) sb  .ToString(); }
-        { bool?          boo  = Bool; if (!IsNully (              boo )) boo .ToString(); }
-        { bool?          boo  = Bool; if (!IsNully (true,         boo )) boo .ToString(); }
-        { bool?          boo  = Bool; if (!IsNully (zeroMatters,  boo )) boo .ToString(); }
-        { int?           num  = Num ; if (!IsNully (              num )) num .ToString(); }
-        { int?           num  = Num ; if (!IsNully (true,         num )) num .ToString(); }
-        { int?           num  = Num ; if (!IsNully (zeroMatters,  num )) num .ToString(); }
-        { string?        text = Text; if (!text .IsNully(             )) text.ToString(); }
-        { string?        text = Text; if (!text .IsNully( true        )) text.ToString(); }
-        { string?        text = Text; if (!text .IsNully( spaceMatters)) text.ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb   .IsNully(             )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb   .IsNully( true        )) sb  .ToString(); }
-        { StringBuilder? sb   = SB  ; if (!sb   .IsNully( spaceMatters)) sb  .ToString(); }
-        { int?           num  = Num ; if (!num  .IsNully(             )) num .ToString(); }
-        { int?           num  = Num ; if (!num  .IsNully( true        )) num .ToString(); }
-        { int?           num  = Num ; if (!num  .IsNully(             )) num .ToString(); }
-        { bool?          boo  = Bool; if (!boo  .IsNully(             )) boo .ToString(); }
-        { bool?          boo  = Bool; if (!boo  .IsNully( true        )) boo .ToString(); }
-        { bool?          boo  = Bool; if (!boo  .IsNully(             )) boo .ToString(); }
+        string       ? Text() => NullyFilledText;
+        StringBuilder? SB  () => NullyFilledSB;
+        int          ? Num () => Nully1;
+        bool         ? Bool() => NullyTrue;
+
+        { string?        text = Text(); if (!IsNully (text              )) text.ToString(); }
+        { string?        text = Text(); if (!IsNully (text, true        )) text.ToString(); }
+        { string?        text = Text(); if (!IsNully (text, spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if (!IsNully (sb                )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if (!IsNully (sb,   true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if (!IsNully (sb,   spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool(); if (!IsNully (boo               )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if (!IsNully (boo,  true        )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if (!IsNully (boo,  zeroMatters )) boo = boo.Value; }
+        { int?           num  = Num (); if (!IsNully (num               )) num = num.Value; }
+        { int?           num  = Num (); if (!IsNully (num,  true        )) num = num.Value; }
+        { int?           num  = Num (); if (!IsNully (num,  zeroMatters )) num = num.Value; }
+        { string?        text = Text(); if (!IsNully (              text)) text.ToString(); }
+        { string?        text = Text(); if (!IsNully (true,         text)) text.ToString(); }
+        { string?        text = Text(); if (!IsNully (spaceMatters, text)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if (!IsNully (              sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if (!IsNully (true,         sb  )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if (!IsNully (spaceMatters, sb  )) sb  .ToString(); }
+        { bool?          boo  = Bool(); if (!IsNully (              boo )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if (!IsNully (true,         boo )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if (!IsNully (zeroMatters,  boo )) boo = boo.Value; }
+        { int?           num  = Num (); if (!IsNully (              num )) num = num.Value; }
+        { int?           num  = Num (); if (!IsNully (true,         num )) num = num.Value; }
+        { int?           num  = Num (); if (!IsNully (zeroMatters,  num )) num = num.Value; }
+        { string?        text = Text(); if (!text .IsNully(             )) text.ToString(); }
+        { string?        text = Text(); if (!text .IsNully( true        )) text.ToString(); }
+        { string?        text = Text(); if (!text .IsNully( spaceMatters)) text.ToString(); }
+        { StringBuilder? sb   = SB  (); if (!sb   .IsNully(             )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if (!sb   .IsNully( true        )) sb  .ToString(); }
+        { StringBuilder? sb   = SB  (); if (!sb   .IsNully( spaceMatters)) sb  .ToString(); }
+        { bool?          boo  = Bool(); if (!boo  .IsNully(             )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if (!boo  .IsNully( true        )) boo = boo.Value; }
+        { bool?          boo  = Bool(); if (!boo  .IsNully(             )) boo = boo.Value; }
+        { int?           num  = Num (); if (!num  .IsNully(             )) num = num.Value; }
+        { int?           num  = Num (); if (!num  .IsNully( true        )) num = num.Value; }
+        { int?           num  = Num (); if (!num  .IsNully(             )) num = num.Value; }
     }
 
     /// <inheritdoc cref="_notnullwhentests" />
