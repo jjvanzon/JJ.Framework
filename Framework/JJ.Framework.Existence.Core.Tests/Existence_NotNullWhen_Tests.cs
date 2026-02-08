@@ -13,7 +13,7 @@ public class Existence_NotNullWhen_Tests
     [TestMethod]
     public void Test_Has_NotNullWhen()
     {
-        // ToString() would trigger a nullability compiler error, if Has/FilledIn/UsNully NotNulWhen attribute set wrong.
+        // ToString() would trigger a nullability compiler error, if Has/FilledIn/IsNully NotNullWhen attribute set wrong.
 
         { string?        text = Text; if ( Has     (text              )) text.ToString(); }
         { string?        text = Text; if ( Has     (text, true        )) text.ToString(); }
