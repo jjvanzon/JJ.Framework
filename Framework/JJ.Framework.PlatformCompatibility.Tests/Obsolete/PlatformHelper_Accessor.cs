@@ -9,6 +9,7 @@ using JJ.Framework.Reflection.Core;
 
 namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 {
+    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
     internal static class PlatformHelper_Accessor
     {
         private static readonly AccessorCore _accessor = new (typeof(JJ.Framework.PlatformCompatibility.Legacy.Obsolete.PlatformHelper));
@@ -25,9 +26,11 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
         public static void XDocument_Save_PlatformSafe(XDocument doc, string fileName)
             => _accessor.Call(() => XDocument_Save_PlatformSafe(doc, fileName));
 
+        //[Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
         public static void XElement_Save_PlatformSafe(XElement element, string fileName)
             => _accessor.Call(() => XElement_Save_PlatformSafe(element, fileName));
 
+        //[Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
         public static void XElement_Save_PlatformSafe(XElement element, Stream stream)
             => _accessor.Call(() => XElement_Save_PlatformSafe(element, stream));
 

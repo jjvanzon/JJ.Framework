@@ -6,6 +6,7 @@ using JJ.Framework.Reflection.Core;
 
 namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 {
+    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
     internal static class Encoding_PlatformSafe_Accessor
     {
         private static readonly AccessorCore _accessor
