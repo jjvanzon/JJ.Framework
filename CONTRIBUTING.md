@@ -144,7 +144,7 @@ https://dev.azure.com/jjvanzon/JJs-Software/_artifacts/feed/JJs-Pre-Release-Pack
 - Add these feeds to your Visual Studio under `Menu > Tools > Options > NuGet Package Manager > Package Sources`
 - Further instructions: click on `Connect to Feed` after following one of the links.
 
-- 
+
 Dev Env
 -------
 
