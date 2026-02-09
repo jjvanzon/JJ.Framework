@@ -3,10 +3,8 @@
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class IsNully_Tests : TestBase
+public class IsNully_Text_Tests : TestBase
 {
-    // Text
-
     [TestMethod]
     public void IsNully_Text_False_Extensions()
     {
@@ -196,9 +194,11 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(spaceMatters: true,  NullyFilledText    ));
         IsFalse(IsNully(              true,  NullyFilledText    ));
     }
+}
 
-    // StringBuilder
-            
+[TestClass]
+public class IsNully_StringBuilder_Tests : TestBase
+{
     [TestMethod]
     public void IsNully_StringBuilder_False_Extensions()
     {
@@ -401,9 +401,11 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(spaceMatters: true,  NullyFilledSB));
         IsFalse(IsNully(              true,  NullyFilledSB));
     }
-    
-    // Booleans
+}
 
+[TestClass]
+public class IsNully_Bool_Tests : TestBase
+{
     [TestMethod]
     public void IsNully_Bool_Static()
     {
@@ -625,9 +627,11 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(nullyZeroMattersTrue  ?? true , NullyFalse ));
         IsTrue (IsNully(nullyZeroMattersTrue  ?? true , NullBool   ));
     }
+}
 
-    // Values
-
+[TestClass]
+public class IsNully_Values_Tests : TestBase
+{
     [TestMethod]
     public void IsNully_Values_No()
     {
@@ -766,9 +770,11 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(zeroMatters: true, Nully1  ));
         IsFalse(IsNully(             true, Nully1  ));
     }
+}
 
-    // Objects
-
+[TestClass]
+public class IsNully_Object_Tests : TestBase
+{
     [TestMethod]
     public void IsNully_Object_Extensions()
     {
@@ -784,9 +790,11 @@ public class IsNully_Tests : TestBase
         IsFalse(IsNully(NoNullObj     ));
         IsFalse(IsNully(NullyFilledObj));
     }
+}
 
-    // NotNullWhen
-
+[TestClass]
+public class IsNully_NotNullWhen_Tests : TestBase
+{
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_IsNully_NotNullWhen()

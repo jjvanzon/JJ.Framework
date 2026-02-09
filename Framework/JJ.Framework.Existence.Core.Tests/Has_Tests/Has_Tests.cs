@@ -4,10 +4,8 @@
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Has_Tests : TestBase
+public class Has_Text_Tests : TestBase
 {
-    // Text
-
     [TestMethod]
     public void Has_Text_True()
     {
@@ -129,9 +127,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(spaceMatters: true,  NullyFilledText    ));
         IsTrue (Has(              true,  NullyFilledText    ));
     }
+}
 
-    // StringBuilder
-
+[TestClass]
+public class Has_StringBuilder_Tests : TestBase
+{
     [TestMethod]
     public void Has_StringBuilder_True()
     {
@@ -260,9 +260,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(spaceMatters: true,  NullyFilledSB      ));
         IsTrue (Has(              true,  NullyFilledSB      ));
     }
+}
 
-    // Booleans
-
+[TestClass]
+public class Has_Bool_Tests : TestBase
+{
     [TestMethod]
     public void Has_Bool()
     {
@@ -418,9 +420,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(nullyZeroMattersTrue  ?? true , NullyFalse ));
         IsFalse(Has(nullyZeroMattersTrue  ?? true , NullBool   ));
     }
+}
 
-    // Values
-
+[TestClass]
+public class Has_Values_Tests : TestBase
+{
     [TestMethod]
     public void Has_Values_No()
     {
@@ -519,9 +523,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(zeroMatters: true, Nully1  ));
         IsTrue (Has(             true, Nully1  ));
     }
+}
 
-    // Objects
-    
+[TestClass]
+public class Has_Object_Tests : TestBase
+{
     [TestMethod]
     public void Has_Object()
     {
@@ -529,9 +535,11 @@ public class Has_Tests : TestBase
         IsTrue (Has(NoNullObj));
         IsTrue (Has(NullyFilledObj));
     }
+}
 
-    // NotNullWhen
-
+[TestClass]
+public class Has_NotNullWhen_Tests : TestBase
+{
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_Has_NotNullWhen()

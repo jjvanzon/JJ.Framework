@@ -3,10 +3,8 @@
 namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class FilledIn_Tests : TestBase
+public class FilledIn_Text_Tests : TestBase
 {
-    // Text
-
     [TestMethod]
     public void FilledIn_Text_True_Extensions()
     {
@@ -196,9 +194,11 @@ public class FilledIn_Tests : TestBase
         IsTrue (FilledIn(spaceMatters: true,  NullyFilledText    ));
         IsTrue (FilledIn(              true,  NullyFilledText    ));
     }
+}
 
-    // StringBuilder
-            
+[TestClass]
+public class FilledIn_StringBuilder_Tests : TestBase
+{
     [TestMethod]
     public void FilledIn_StringBuilder_True_Extensions()
     {
@@ -401,9 +401,11 @@ public class FilledIn_Tests : TestBase
         IsTrue (FilledIn(spaceMatters: true,  NullyFilledSB));
         IsTrue (FilledIn(              true,  NullyFilledSB));
     }
-    
-    // Booleans
+}
 
+[TestClass]
+public class FilledIn_Bool_Tests : TestBase
+{
     [TestMethod]
     public void FilledIn_Bool_Static()
     {
@@ -625,9 +627,11 @@ public class FilledIn_Tests : TestBase
         IsTrue (FilledIn(nullyZeroMattersTrue  ?? true , NullyFalse ));
         IsFalse(FilledIn(nullyZeroMattersTrue  ?? true , NullBool   ));
     }
+}
 
-    // Values
-
+[TestClass]
+public class FilledIn_Values_Tests : TestBase
+{
     [TestMethod]
     public void FilledIn_Values_No()
     {
@@ -766,9 +770,11 @@ public class FilledIn_Tests : TestBase
         IsTrue (FilledIn(zeroMatters: true, Nully1  ));
         IsTrue (FilledIn(             true, Nully1  ));
     }
+}
 
-    // Objects
-
+[TestClass]
+public class FilledIn_Objects_Tests : TestBase
+{
     [TestMethod]
     public void FilledIn_Object_Extensions()
     {
@@ -784,9 +790,12 @@ public class FilledIn_Tests : TestBase
         IsTrue (FilledIn(NoNullObj     ));
         IsTrue (FilledIn(NullyFilledObj));
     }
+}
 
-    // NotNullWhen
-
+/// <inheritdoc cref="_notnullwhentests" />
+[TestClass]
+public class FilledIn_NotNullWhen_Tests : TestBase
+{
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
     public void Test_FilledIn_NotNullWhen()
