@@ -11,8 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\Helpers\*.cs" Link="Helpers\%(Filename)%(Extension)" />
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>

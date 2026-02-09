@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Common.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.Common.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Common.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Common.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
