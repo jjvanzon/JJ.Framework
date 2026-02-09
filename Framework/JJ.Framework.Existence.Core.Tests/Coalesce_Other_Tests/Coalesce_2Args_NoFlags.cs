@@ -96,50 +96,6 @@ public class Coalesce_2Args_NoFlags : TestBase
         NoNullRet("",         NullText       .Coalesce( NullSB       ));
     }
 
-    // Objects to Text
-
-    [TestMethod]
-    public void Coalesce_2Args_ObjectToText()
-    {
-        NoNullRet(Text,     Coalesce(NullObj,    Text));
-        NoNullRet(Text,     Coalesce(NullObj,    Text));
-        NoNullRet("NoNull", Coalesce(NoNullObj,  Text));
-        NoNullRet("Filled", Coalesce(NullyFilled,Text));
-        NoNullRet(Text,     NullObj    .Coalesce(Text));
-        NoNullRet("NoNull", NoNullObj  .Coalesce(Text));
-        NoNullRet("Filled", NullyFilled.Coalesce(Text));
-    }
-
-    // Vals to Text
-
-    [TestMethod]
-    public void Coalesce_2Args_ValToText_NoNullies()
-    {
-        NoNullRet("",           Coalesce(0,  NullText ));
-        NoNullRet("peekaboo",   Coalesce(0, "peekaboo"));
-        NoNullRet("",         0.Coalesce(    NullText ));
-        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo"));
-        NoNullRet("1",        1.Coalesce(    NullText ));
-        NoNullRet("1",        1.Coalesce(   "peekaboo"));
-    }
-
-    [TestMethod]
-    public void Coalesce_2Args_ValToText_WithNullies()
-    {
-        NoNullRet("",    Coalesce(NullNum,   NullText ));
-        NoNullRet("boo", Coalesce(NullNum,  "boo"     ));
-        NoNullRet("",    Coalesce(Nully0,    NullText ));
-        NoNullRet("boo", Coalesce(Nully0,   "boo"     ));
-        NoNullRet("1",   Coalesce(Nully1,    NullText ));
-        NoNullRet("1",   Coalesce(Nully1,   "boo"     ));
-        NoNullRet("",    NullNum.Coalesce(   NullText ));
-        NoNullRet("boo", NullNum.Coalesce(  "boo"     ));
-        NoNullRet("",    Nully0 .Coalesce(   NullText ));
-        NoNullRet("boo", Nully0 .Coalesce(  "boo"     ));
-        NoNullRet("1",   Nully1 .Coalesce(   NullText ));
-        NoNullRet("1",   Nully1 .Coalesce(  "boo"     ));
-    }
-
     // Vals
 
     [TestMethod]
@@ -263,6 +219,36 @@ public class Coalesce_2Args_NoFlags : TestBase
         NoNullRet(2,        2.Coalesce(       2));
     }
 
+    // Vals to Text
+
+    [TestMethod]
+    public void Coalesce_2Args_ValToText_NoNullies()
+    {
+        NoNullRet("",           Coalesce(0,  NullText ));
+        NoNullRet("peekaboo",   Coalesce(0, "peekaboo"));
+        NoNullRet("",         0.Coalesce(    NullText ));
+        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo"));
+        NoNullRet("1",        1.Coalesce(    NullText ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo"));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_ValToText_WithNullies()
+    {
+        NoNullRet("",    Coalesce(NullNum,   NullText ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo"     ));
+        NoNullRet("",    Coalesce(Nully0,    NullText ));
+        NoNullRet("boo", Coalesce(Nully0,   "boo"     ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo"     ));
+        NoNullRet("",    NullNum.Coalesce(   NullText ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo"     ));
+        NoNullRet("",    Nully0 .Coalesce(   NullText ));
+        NoNullRet("boo", Nully0 .Coalesce(  "boo"     ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo"     ));
+    }
+
     // Objects
 
     [TestMethod]
@@ -287,5 +273,19 @@ public class Coalesce_2Args_NoFlags : TestBase
         NoNullRet(NullyFilled!, NullObj    .Coalesce(NullyFilled ));
         NoNullRet(NoNullObj,    NoNullObj  .Coalesce(NullyFilled ));
         NoNullRet(NullyFilled!, NullyFilled.Coalesce(NullyFilled ));
+    }
+
+    // Objects to Text
+
+    [TestMethod]
+    public void Coalesce_2Args_ObjectToText()
+    {
+        NoNullRet(Text,     Coalesce(NullObj,    Text));
+        NoNullRet(Text,     Coalesce(NullObj,    Text));
+        NoNullRet("NoNull", Coalesce(NoNullObj,  Text));
+        NoNullRet("Filled", Coalesce(NullyFilled,Text));
+        NoNullRet(Text,     NullObj    .Coalesce(Text));
+        NoNullRet("NoNull", NoNullObj  .Coalesce(Text));
+        NoNullRet("Filled", NullyFilled.Coalesce(Text));
     }
 }
