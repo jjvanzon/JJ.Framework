@@ -183,119 +183,7 @@ public class Coalesce_2Args_FlagsInBack : TestBase
         NoNullRet("FilledSB", NullyEmpty.Coalesce( NullyFilledSB, spaceMatters: true));
     }
 
-    // Objects to Text
-
-    // Vals to Text
-
-    [TestMethod]
-    public void Coalesce_2Args_ValToText_ZeroMattersNoNulliesFlagsInBack()
-    {
-        NoNullRet("",           Coalesce(0,  NullText,  zeroMatters: false));
-        NoNullRet("",           Coalesce(0,  NullText,               false));
-        NoNullRet("0",          Coalesce(0,  NullText,  zeroMatters       ));
-        NoNullRet("0",          Coalesce(0,  NullText,  zeroMatters: true ));
-        NoNullRet("0",          Coalesce(0,  NullText,               true ));
-        NoNullRet("peekaboo",   Coalesce(0, "peekaboo", zeroMatters: false));
-        NoNullRet("peekaboo",   Coalesce(0, "peekaboo",              false));
-        NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters       ));
-        NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters: true ));
-        NoNullRet("0",          Coalesce(0, "peekaboo",              true ));
-        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters: false));
-        NoNullRet("1",          Coalesce(1,  NullText,               false));
-        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters       ));
-        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters: true ));
-        NoNullRet("1",          Coalesce(1,  NullText,               true ));
-        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters: false));
-        NoNullRet("1",          Coalesce(1, "peekaboo",              false));
-        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters       ));
-        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters: true ));
-        NoNullRet("1",          Coalesce(1, "peekaboo",              true ));
-        NoNullRet("",         0.Coalesce(    NullText,  zeroMatters: false));
-        NoNullRet("",         0.Coalesce(    NullText,               false));
-        NoNullRet("0",        0.Coalesce(    NullText,  zeroMatters       ));
-        NoNullRet("0",        0.Coalesce(    NullText,  zeroMatters: true ));
-        NoNullRet("0",        0.Coalesce(    NullText,               true ));
-        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo", zeroMatters: false));
-        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo",              false));
-        NoNullRet("0",        0.Coalesce(   "peekaboo", zeroMatters       ));
-        NoNullRet("0",        0.Coalesce(   "peekaboo", zeroMatters: true ));
-        NoNullRet("0",        0.Coalesce(   "peekaboo",              true ));
-        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters: false));
-        NoNullRet("1",        1.Coalesce(    NullText,               false));
-        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters       ));
-        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters: true ));
-        NoNullRet("1",        1.Coalesce(    NullText,               true ));
-        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters: false));
-        NoNullRet("1",        1.Coalesce(   "peekaboo",              false));
-        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters       ));
-        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters: true ));
-        NoNullRet("1",        1.Coalesce(   "peekaboo",              true ));
-    }
-
-    [TestMethod]
-    public void Coalesce_2Args_ValToText_ZeroMattersWithNulliesFlagsInBack()
-    {
-        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters: false));
-        NoNullRet("",    Coalesce(NullNum,   NullText,               false));
-        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters       ));
-        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters: true ));
-        NoNullRet("",    Coalesce(NullNum,   NullText,               true ));
-        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters: false));
-        NoNullRet("boo", Coalesce(NullNum,  "boo",                   false));
-        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters       ));
-        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters: true ));
-        NoNullRet("boo", Coalesce(NullNum,  "boo",                   true ));
-        NoNullRet("",    Coalesce(Nully0,    NullText,  zeroMatters: false));
-        NoNullRet("",    Coalesce(Nully0,    NullText,               false));
-        NoNullRet("0",   Coalesce(Nully0,    NullText,  zeroMatters       ));
-        NoNullRet("0",   Coalesce(Nully0,    NullText,  zeroMatters: true ));
-        NoNullRet("0",   Coalesce(Nully0,    NullText,               true ));
-        NoNullRet("boo", Coalesce(Nully0,   "boo",      zeroMatters: false));
-        NoNullRet("boo", Coalesce(Nully0,   "boo",                   false));
-        NoNullRet("0",   Coalesce(Nully0,   "boo",      zeroMatters       ));
-        NoNullRet("0",   Coalesce(Nully0,   "boo",      zeroMatters: true ));
-        NoNullRet("0",   Coalesce(Nully0,   "boo",                   true ));
-        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters: false));
-        NoNullRet("1",   Coalesce(Nully1,    NullText,               false));
-        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters       ));
-        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters: true ));
-        NoNullRet("1",   Coalesce(Nully1,    NullText,               true ));
-        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters: false));
-        NoNullRet("1",   Coalesce(Nully1,   "boo",                   false));
-        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters       ));
-        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters: true ));
-        NoNullRet("1",   Coalesce(Nully1,   "boo",                   true ));
-        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters: false));
-        NoNullRet("",    NullNum.Coalesce(   NullText,               false));
-        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters       ));
-        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters: true ));
-        NoNullRet("",    NullNum.Coalesce(   NullText,               true ));
-        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters: false));
-        NoNullRet("boo", NullNum.Coalesce(  "boo",                   false));
-        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters       ));
-        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters: true ));
-        NoNullRet("boo", NullNum.Coalesce(  "boo",                   true ));
-        NoNullRet("",    Nully0 .Coalesce(   NullText,  zeroMatters: false));
-        NoNullRet("",    Nully0 .Coalesce(   NullText,               false));
-        NoNullRet("0",   Nully0 .Coalesce(   NullText,  zeroMatters       ));
-        NoNullRet("0",   Nully0 .Coalesce(   NullText,  zeroMatters: true ));
-        NoNullRet("0",   Nully0 .Coalesce(   NullText,               true ));
-        NoNullRet("boo", Nully0 .Coalesce(  "boo",      zeroMatters: false));
-        NoNullRet("boo", Nully0 .Coalesce(  "boo",                   false));
-        NoNullRet("0",   Nully0 .Coalesce(  "boo",      zeroMatters       ));
-        NoNullRet("0",   Nully0 .Coalesce(  "boo",      zeroMatters: true ));
-        NoNullRet("0",   Nully0 .Coalesce(  "boo",                   true ));
-        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters: false));
-        NoNullRet("1",   Nully1 .Coalesce(   NullText,               false));
-        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters       ));
-        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters: true ));
-        NoNullRet("1",   Nully1 .Coalesce(   NullText,               true ));
-        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters: false));
-        NoNullRet("1",   Nully1 .Coalesce(  "boo",                   false));
-        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters       ));
-        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters: true ));
-        NoNullRet("1",   Nully1 .Coalesce(  "boo",                   true ));
-    }
+    // TODO: Booleans
 
     // Vals
 
@@ -507,5 +395,117 @@ public class Coalesce_2Args_FlagsInBack : TestBase
         NoNullRet(0,        0.Coalesce(       1, zeroMatters       ));
         NoNullRet(0,        0.Coalesce(       1, zeroMatters: true ));
         NoNullRet(0,        0.Coalesce(       1,              true ));
+    }
+
+    // Vals to Text
+
+    [TestMethod]
+    public void Coalesce_2Args_ValToText_ZeroMattersNoNulliesFlagsInBack()
+    {
+        NoNullRet("",           Coalesce(0,  NullText,  zeroMatters: false));
+        NoNullRet("",           Coalesce(0,  NullText,               false));
+        NoNullRet("0",          Coalesce(0,  NullText,  zeroMatters       ));
+        NoNullRet("0",          Coalesce(0,  NullText,  zeroMatters: true ));
+        NoNullRet("0",          Coalesce(0,  NullText,               true ));
+        NoNullRet("peekaboo",   Coalesce(0, "peekaboo", zeroMatters: false));
+        NoNullRet("peekaboo",   Coalesce(0, "peekaboo",              false));
+        NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters       ));
+        NoNullRet("0",          Coalesce(0, "peekaboo", zeroMatters: true ));
+        NoNullRet("0",          Coalesce(0, "peekaboo",              true ));
+        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters: false));
+        NoNullRet("1",          Coalesce(1,  NullText,               false));
+        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters       ));
+        NoNullRet("1",          Coalesce(1,  NullText,  zeroMatters: true ));
+        NoNullRet("1",          Coalesce(1,  NullText,               true ));
+        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters: false));
+        NoNullRet("1",          Coalesce(1, "peekaboo",              false));
+        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters       ));
+        NoNullRet("1",          Coalesce(1, "peekaboo", zeroMatters: true ));
+        NoNullRet("1",          Coalesce(1, "peekaboo",              true ));
+        NoNullRet("",         0.Coalesce(    NullText,  zeroMatters: false));
+        NoNullRet("",         0.Coalesce(    NullText,               false));
+        NoNullRet("0",        0.Coalesce(    NullText,  zeroMatters       ));
+        NoNullRet("0",        0.Coalesce(    NullText,  zeroMatters: true ));
+        NoNullRet("0",        0.Coalesce(    NullText,               true ));
+        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo", zeroMatters: false));
+        NoNullRet("peekaboo", 0.Coalesce(   "peekaboo",              false));
+        NoNullRet("0",        0.Coalesce(   "peekaboo", zeroMatters       ));
+        NoNullRet("0",        0.Coalesce(   "peekaboo", zeroMatters: true ));
+        NoNullRet("0",        0.Coalesce(   "peekaboo",              true ));
+        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters: false));
+        NoNullRet("1",        1.Coalesce(    NullText,               false));
+        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters       ));
+        NoNullRet("1",        1.Coalesce(    NullText,  zeroMatters: true ));
+        NoNullRet("1",        1.Coalesce(    NullText,               true ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters: false));
+        NoNullRet("1",        1.Coalesce(   "peekaboo",              false));
+        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters       ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo", zeroMatters: true ));
+        NoNullRet("1",        1.Coalesce(   "peekaboo",              true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_2Args_ValToText_ZeroMattersWithNulliesFlagsInBack()
+    {
+        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters: false));
+        NoNullRet("",    Coalesce(NullNum,   NullText,               false));
+        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters       ));
+        NoNullRet("",    Coalesce(NullNum,   NullText,  zeroMatters: true ));
+        NoNullRet("",    Coalesce(NullNum,   NullText,               true ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters: false));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",                   false));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters       ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",      zeroMatters: true ));
+        NoNullRet("boo", Coalesce(NullNum,  "boo",                   true ));
+        NoNullRet("",    Coalesce(Nully0,    NullText,  zeroMatters: false));
+        NoNullRet("",    Coalesce(Nully0,    NullText,               false));
+        NoNullRet("0",   Coalesce(Nully0,    NullText,  zeroMatters       ));
+        NoNullRet("0",   Coalesce(Nully0,    NullText,  zeroMatters: true ));
+        NoNullRet("0",   Coalesce(Nully0,    NullText,               true ));
+        NoNullRet("boo", Coalesce(Nully0,   "boo",      zeroMatters: false));
+        NoNullRet("boo", Coalesce(Nully0,   "boo",                   false));
+        NoNullRet("0",   Coalesce(Nully0,   "boo",      zeroMatters       ));
+        NoNullRet("0",   Coalesce(Nully0,   "boo",      zeroMatters: true ));
+        NoNullRet("0",   Coalesce(Nully0,   "boo",                   true ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters: false));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,               false));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters       ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,  zeroMatters: true ));
+        NoNullRet("1",   Coalesce(Nully1,    NullText,               true ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters: false));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",                   false));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters       ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",      zeroMatters: true ));
+        NoNullRet("1",   Coalesce(Nully1,   "boo",                   true ));
+        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters: false));
+        NoNullRet("",    NullNum.Coalesce(   NullText,               false));
+        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters       ));
+        NoNullRet("",    NullNum.Coalesce(   NullText,  zeroMatters: true ));
+        NoNullRet("",    NullNum.Coalesce(   NullText,               true ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters: false));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",                   false));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters       ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",      zeroMatters: true ));
+        NoNullRet("boo", NullNum.Coalesce(  "boo",                   true ));
+        NoNullRet("",    Nully0 .Coalesce(   NullText,  zeroMatters: false));
+        NoNullRet("",    Nully0 .Coalesce(   NullText,               false));
+        NoNullRet("0",   Nully0 .Coalesce(   NullText,  zeroMatters       ));
+        NoNullRet("0",   Nully0 .Coalesce(   NullText,  zeroMatters: true ));
+        NoNullRet("0",   Nully0 .Coalesce(   NullText,               true ));
+        NoNullRet("boo", Nully0 .Coalesce(  "boo",      zeroMatters: false));
+        NoNullRet("boo", Nully0 .Coalesce(  "boo",                   false));
+        NoNullRet("0",   Nully0 .Coalesce(  "boo",      zeroMatters       ));
+        NoNullRet("0",   Nully0 .Coalesce(  "boo",      zeroMatters: true ));
+        NoNullRet("0",   Nully0 .Coalesce(  "boo",                   true ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters: false));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,               false));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters       ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,  zeroMatters: true ));
+        NoNullRet("1",   Nully1 .Coalesce(   NullText,               true ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters: false));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",                   false));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters       ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",      zeroMatters: true ));
+        NoNullRet("1",   Nully1 .Coalesce(  "boo",                   true ));
     }
 }
