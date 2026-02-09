@@ -12,13 +12,17 @@ public static class CoalesceExtensions
           // 1 Arg (for some)
           
           /// <inheritdoc cref="_coalesce" />
-[Prio(2)] public static string Coalesce   (this string? text)                  => CoalesceText    (text);
+[Prio(2)] public static string Coalesce   (this string? text)                  => CoalesceText     (text);
           /// <inheritdoc cref="_coalesce" />
-          public static SB     Coalesce   (this SB?     sb  )                  => CoalesceSB      (sb);
+          public static SB     Coalesce   (this SB?     sb  )                  => CoalesceSB       (sb);
           /// <inheritdoc cref="_coalesce" />
-          public static T      Coalesce<T>(this T       val ) where T : struct => CoalesceVal     (val);
+          public static bool   Coalesce   (this bool    val )                  => CoalesceBool     (val);
           /// <inheritdoc cref="_coalesce" />
-          public static T      Coalesce<T>(this T?      val ) where T : struct => CoalesceValNully(val);
+          public static bool   Coalesce   (this bool?   val )                  => CoalesceBoolNully(val);
+          /// <inheritdoc cref="_coalesce" />
+          public static T      Coalesce<T>(this T       val ) where T : struct => CoalesceVal      (val);
+          /// <inheritdoc cref="_coalesce" />
+          public static T      Coalesce<T>(this T?      val ) where T : struct => CoalesceValNully (val);
           
           // 2 Args (for text)
           

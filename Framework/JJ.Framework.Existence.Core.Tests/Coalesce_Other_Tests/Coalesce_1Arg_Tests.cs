@@ -77,6 +77,28 @@ public class Coalesce_1Arg_Tests : TestBase
         NoNullRet("FilledSB", $"{Coalesce(FilledSB      )}");
         NoNullRet("FilledSB", $"{Coalesce(NullyFilledSB )}");
     }
+
+    // Booleans
+
+    [TestMethod]
+    public void Coalesce_1Arg_Bools()
+    {
+        NoNullRet(false, NullBool  .Coalesce());
+        NoNullRet(true,  true      .Coalesce());
+        NoNullRet(false, false     .Coalesce());
+        NoNullRet(true,  True      .Coalesce());
+        NoNullRet(false, False     .Coalesce());
+        NoNullRet(true,  NullyTrue .Coalesce());
+        NoNullRet(false, NullyFalse.Coalesce());
+
+        NoNullRet(false, Coalesce(NullBool  ));
+        NoNullRet(true,  Coalesce(true      ));
+        NoNullRet(false, Coalesce(false     ));
+        NoNullRet(true,  Coalesce(True      ));
+        NoNullRet(false, Coalesce(False     ));
+        NoNullRet(true,  Coalesce(NullyTrue ));
+        NoNullRet(false, Coalesce(NullyFalse));
+    }
     
     // Values
          

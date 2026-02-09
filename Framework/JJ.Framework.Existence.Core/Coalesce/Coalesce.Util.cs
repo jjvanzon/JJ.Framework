@@ -14,6 +14,10 @@ internal static class CoalesceUtil
           /// <inheritdoc cref="_coalesce" />
           public static SB     CoalesceSB            (SB?     sb                    )                            => sb   ?? new()  ;
           /// <inheritdoc cref="_coalesce" />
+          public static bool   CoalesceBool          (bool    val                   )                            => val            ;
+          /// <inheritdoc cref="_coalesce" />
+          public static bool   CoalesceBoolNully     (bool?   val                   )                            => val  ?? false;
+          /// <inheritdoc cref="_coalesce" />
           public static T      CoalesceVal           <T>(T    val                   ) where T : struct           => val            ;
           /// <inheritdoc cref="_coalesce" />
           public static T      CoalesceValNully      <T>(T?   val                   ) where T : struct           => val  ?? default;

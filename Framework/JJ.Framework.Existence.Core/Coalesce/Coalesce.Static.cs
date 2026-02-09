@@ -7,13 +7,18 @@ public static partial class FilledInHelper
     // 1 Arg (for some)
     
     /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (     string? text)                  => CoalesceText    (text);
+    public static string Coalesce   (     string? text)                  => CoalesceText     (text);
     /// <inheritdoc cref="_coalesce" />
-    public static SB     Coalesce   (     SB?     sb  )                  => CoalesceSB      (sb  );
+    public static SB     Coalesce   (     SB?     sb  )                  => CoalesceSB       (sb  );
     /// <inheritdoc cref="_coalesce" />
-    public static T      Coalesce<T>(     T       val ) where T : struct => CoalesceVal     (val );
+    public static bool   Coalesce   (     bool    val )                  => CoalesceBool     (val );
     /// <inheritdoc cref="_coalesce" />
-    public static T      Coalesce<T>(     T?      val ) where T : struct => CoalesceValNully(val );
+    public static bool   Coalesce   (     bool?   val )                  => CoalesceBoolNully(val );
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     T       val ) where T : struct => CoalesceVal      (val );
+    /// <inheritdoc cref="_coalesce" />
+    public static T      Coalesce<T>(     T?      val ) where T : struct => CoalesceValNully (val );
+
     
     // 2 Args (for text)
     
