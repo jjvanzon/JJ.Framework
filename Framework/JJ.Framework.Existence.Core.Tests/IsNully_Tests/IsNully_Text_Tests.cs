@@ -1,5 +1,4 @@
-﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
-namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class IsNully_Text_Tests : TestBase
