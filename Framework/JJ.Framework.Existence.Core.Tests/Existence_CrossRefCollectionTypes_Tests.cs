@@ -23,6 +23,7 @@ public class Existence_CrossRefCollectionTypes_Tests
             .SelectMany(a => a.GetExportedTypes())
             .ToArray();
         
+        // ReSharper disable once CollectionNeverQueried.Local
         var excludedTypes = new List<Type>();
         var unsupportedTypes = new List<Type>();
         
