@@ -22,8 +22,9 @@
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Common.Core.Tests\Helpers\*.cs" />
-    <Compile Include="..\JJ.Framework.Common.Core.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.Common.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Common.Core.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Common.Core.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
