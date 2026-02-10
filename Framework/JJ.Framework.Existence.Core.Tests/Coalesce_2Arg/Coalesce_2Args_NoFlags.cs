@@ -3,8 +3,6 @@
 [TestClass]
 public class Coalesce_2Args_SBTextCombos_NoFlags : TestBase
 {
-    private static readonly Dummy? NullyFilled = NullyFilledObj;
-            
     [TestMethod]
     public void Coalesce_2Args_RandomCases()
     {
@@ -414,6 +412,8 @@ public class Coalesce_2Args_Values_NoFlags : TestBase
 [TestClass]
 public class Coalesce_2Args_Objects_NoFlags : TestBase
 {
+    private static readonly Dummy? NullyFilled = NullyFilledObj;
+
     // Objects
 
     [TestMethod]

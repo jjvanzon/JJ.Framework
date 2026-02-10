@@ -187,7 +187,7 @@ public class Coalesce_2Args_SBTextCombos_FlagsInBack : TestBase
 }
 
 [TestClass]
-public class Coalesce_2Arg_Values_FlagsInBack : TestBase
+public class Coalesce_2Args_Values_FlagsInBack : TestBase
 {
     // Vals
 
