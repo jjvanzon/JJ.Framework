@@ -2,9 +2,9 @@
 RunTests<Coalesce_1Arg_Tests>() &&
 RunTests<Coalesce_2Args_Bool_NoFlags>() &&
 RunTests<Coalesce_2Args_Objects_NoFlags>() &&
-RunTests<Coalesce_2Args_SBTextCombos_FlagsInBack>() &&
-RunTests<Coalesce_2Args_SBTextCombos_FlagsInFront>() &&
-RunTests<Coalesce_2Args_SBTextCombos_NoFlags>() &&
+RunTests<Coalesce_2Args_SBText_FlagsInBack>() &&
+RunTests<Coalesce_2Args_SBText_FlagsInFront>() &&
+RunTests<Coalesce_2Args_SBText_NoFlags>() &&
 RunTests<Coalesce_2Args_Values_FlagsInBack>() &&
 RunTests<Coalesce_2Args_Values_FlagsInFront>() &&
 RunTests<Coalesce_2Args_Values_NoFlags>() &&

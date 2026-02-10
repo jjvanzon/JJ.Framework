@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_2Args_SBTextCombos_FlagsInFront : TestBase
+public class Coalesce_2Args_SBText_FlagsInFront : TestBase
 {
     // Text
 
