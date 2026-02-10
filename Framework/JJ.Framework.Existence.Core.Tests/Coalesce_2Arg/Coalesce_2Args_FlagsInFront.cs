@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_2Args_FlagsInFront : TestBase
+public class Coalesce_2Args_SBTextCombos_FlagsInFront : TestBase
 {
     // Text
 
@@ -62,7 +62,7 @@ public class Coalesce_2Args_FlagsInFront : TestBase
         NoNullRet(Text,  Empty   .Coalesce(spaceMatters,         Text    ));
         NoNullRet(Space, Space   .Coalesce(spaceMatters,         Text    ));
     }
-    
+
     // StringBuilder
 
     [TestMethod]
@@ -184,7 +184,11 @@ public class Coalesce_2Args_FlagsInFront : TestBase
     }
 
     // TODO: Booleans
+}
 
+[TestClass]
+public class Coalesce_2Args_Values_FlagsInFront : TestBase
+{
     // Vals
 
     [TestMethod]

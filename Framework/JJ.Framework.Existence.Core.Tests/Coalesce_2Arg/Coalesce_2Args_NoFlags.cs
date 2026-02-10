@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_2Args_NoFlags : TestBase
+public class Coalesce_2Args_SBTextCombos_NoFlags : TestBase
 {
     private static readonly Dummy? NullyFilled = NullyFilledObj;
             
@@ -95,7 +95,11 @@ public class Coalesce_2Args_NoFlags : TestBase
         NoNullRet("Filled",   NullyFilledText.Coalesce( NullyFilledSB));
         NoNullRet("",         NullText       .Coalesce( NullSB       ));
     }
+}
 
+[TestClass]
+public class Coalesce_2Args_Bool_NoFlags : TestBase
+{
     // Bool
 
     [TestMethod]
@@ -248,7 +252,11 @@ public class Coalesce_2Args_NoFlags : TestBase
         NoNullRet("True", NullyTrue .Coalesce( NullText ));
         NoNullRet("True", NullyTrue .Coalesce( "boo"     ));
     }
+}
 
+[TestClass]
+public class Coalesce_2Args_Values_NoFlags : TestBase
+{
     // Vals
 
     [TestMethod]
@@ -401,7 +409,11 @@ public class Coalesce_2Args_NoFlags : TestBase
         NoNullRet("1",   Nully1 .Coalesce(   NullText ));
         NoNullRet("1",   Nully1 .Coalesce(  "boo"     ));
     }
+}
 
+[TestClass]
+public class Coalesce_2Args_Objects_NoFlags : TestBase
+{
     // Objects
 
     [TestMethod]
