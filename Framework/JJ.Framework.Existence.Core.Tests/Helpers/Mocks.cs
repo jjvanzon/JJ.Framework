@@ -71,6 +71,8 @@ public class Mocks
     public static readonly Dummy  NoNullObj      = new("NoNull");
     public static readonly Dummy? NullyFilledObj = new("Filled");
 
+    public const string?[]? StringNullArray = null;
+
     public static readonly int[]                              FilledArray                             =                              [0, 1, 2, 3];
     public static readonly IList<int>                         FilledIList                             =                              [0, 1, 2, 3];
     public static readonly ISet<int>                          FilledISet                              = NewHashSet                   (0, 1, 2, 3);

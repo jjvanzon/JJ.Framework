@@ -2,6 +2,7 @@
 RunTests<Coalesce_1Arg_Tests>() &&
 RunTests<Coalesce_2Args_Bool_NoFlags>() &&
 RunTests<Coalesce_2Args_Bool_FlagsInBack>() &&
+RunTests<Coalesce_2Args_Bool_FlagsInFront>() &&
 RunTests<Coalesce_2Args_Objects_NoFlags>() &&
 RunTests<Coalesce_2Args_SBText_FlagsInBack>() &&
 RunTests<Coalesce_2Args_SBText_FlagsInFront>() &&
@@ -97,7 +98,11 @@ RunTests<Coalesce_Collections_Misc_Tests>() &&
 RunTests<Coalesce_Collections_Extensions_Tests>() &&
 RunTests<Coalesce_Collections_Static_Tests>() &&
 RunTests<Coalesce_Keywords_Tests>() &&
-RunTests<Coalesce_Variadic_Tests>() &&
+RunTests<Coalesce_Variadic_Bool_Tests>() &&
+RunTests<Coalesce_Variadic_Objects_Tests>() &&
+RunTests<Coalesce_Variadic_SB_Tests>() &&
+RunTests<Coalesce_Variadic_Text_Tests>() &&
+RunTests<Coalesce_Variadic_Values_Tests>() &&
 RunTests<Contains_Nullable_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<BasicType_Other_Tests>() &&

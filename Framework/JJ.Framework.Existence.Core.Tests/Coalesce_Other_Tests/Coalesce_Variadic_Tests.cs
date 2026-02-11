@@ -1,10 +1,8 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_Variadic_Tests : TestBase
+public class Coalesce_Variadic_SB_Tests : TestBase
 {
-    const string?[]? StringNullArray = null;
-
     // StringBuilder
 
     [TestMethod]
@@ -112,7 +110,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(Coalesce(spaceMatters: true,  NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
         NoNullRet(Coalesce(spaceMatters: true,  NullyNewSB,   NewSB,        NullyEmptySB, NullSB));
     }
+}
 
+[TestClass]
+public class Coalesce_Variadic_Text_Tests : TestBase
+{
     // Text
     
     [TestMethod] 
@@ -216,7 +218,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet("",        Coalesce(StringNullArray, spaceMatters      ));
         NoNullRet("",        Coalesce(StringNullArray, spaceMatters: true));
     }
+}
 
+[TestClass]
+public class Coalesce_Variadic_Bool_Tests : TestBase
+{
     // Bools
 
     // TODO: Not enough nully/non-nully variants. Needed to confuse the flag and nullable vals exchanging.
@@ -307,7 +313,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(false,                               new [] { NullBool, NullyFalse, False,      NullyTrue }.Coalesce(zeroMatters: true ));
         NoNullRet(false,                               new [] { NullBool, NullyFalse, False,      NullyTrue }.Coalesce(             true ));
     }
+}
 
+[TestClass]
+public class Coalesce_Variadic_Values_Tests : TestBase
+{
     // Values
 
     [TestMethod]
@@ -396,7 +406,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(0,                               new [] { NullNum, Nully0,  NoNull0, Nully1 }.Coalesce(zeroMatters: true ));
         NoNullRet(0,                               new [] { NullNum, Nully0,  NoNull0, Nully1 }.Coalesce(             true ));
     }
- 
+}
+
+[TestClass]
+public class Coalesce_Variadic_Objects_Tests : TestBase
+{
     // Objects
 
     [TestMethod]
