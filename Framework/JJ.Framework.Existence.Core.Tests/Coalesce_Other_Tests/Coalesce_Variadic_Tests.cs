@@ -8,7 +8,7 @@ public class Coalesce_Variadic_Tests : TestBase
     // StringBuilder
 
     [TestMethod]
-    public void Coalesce_Variadic_StringBuilders()
+    public void Coalesce_StringBuilders_StaticVariadic()
     {
         // Static Variadic
         NoNullRet(NullyFilledSB, Coalesce(                       NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
@@ -19,8 +19,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  Coalesce(spaceMatters,          NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
         NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,    NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB   ));
         NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB     ));
+    }
 
-        // Static
+    [TestMethod]
+    public void Coalesce_StringBuilders_StaticCollExpress()
+    {
         NoNullRet(NullyFilledSB, Coalesce(                     [ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]));
         NoNullRet(NullyFilledSB, Coalesce(                     [ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]));
         NoNullRet(NullyFilledSB, Coalesce(spaceMatters: false, [ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ]));
@@ -29,8 +32,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  Coalesce(spaceMatters,        [ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]));
         NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,  [ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ]));
         NoNullRet(NullySpaceSB,  Coalesce(spaceMatters: true,  [ NullyEmptySB,  NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB    ]));
+    }
 
-        // Extension Variadic
+    [TestMethod]
+    public void Coalesce_StringBuilders_ExtensionsVariadic()
+    {
         NoNullRet(NullyFilledSB, NullSB       .Coalesce(                        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
         NoNullRet(NullyFilledSB, NullyFilledSB.Coalesce(                        NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB   ));
         NoNullRet(NullyFilledSB, NullySpaceSB .Coalesce(spaceMatters: false,    NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB   ));
@@ -39,8 +45,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  NullSB       .Coalesce(spaceMatters,           NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
         NoNullRet(NullySpaceSB,  NullySpaceSB .Coalesce(spaceMatters: true,     NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB   ));
         NoNullRet(NullySpaceSB,  NullyEmptySB .Coalesce(spaceMatters: true,     NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB     ));
-                                                                 
-        // Extensions
+    }
+
+    [TestMethod]
+    public void Coalesce_StringBuilders_ExtensionsCollExpress()
+    {
         NoNullRet(NullyFilledSB, NullSB       .Coalesce(                      [ NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]));
         NoNullRet(NullyFilledSB, NullyFilledSB.Coalesce(                      [ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]));
         NoNullRet(NullyFilledSB, NullySpaceSB .Coalesce(spaceMatters: false,  [ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ]));
@@ -49,8 +58,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  NullSB       .Coalesce(spaceMatters,         [ NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]));
         NoNullRet(NullySpaceSB,  NullySpaceSB .Coalesce(spaceMatters: true,   [ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ]));
         NoNullRet(NullySpaceSB,  NullyEmptySB .Coalesce(spaceMatters: true,   [ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB    ]));
-       
-        // Flag in the Back
+    }
+
+    [TestMethod]
+    public void Coalesce_StringBuilders_StaticCollExpressFlagsInBack()
+    {
         NoNullRet(NullyFilledSB, Coalesce([ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]                     ));
         NoNullRet(NullyFilledSB, Coalesce([ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]                     ));
         NoNullRet(NullyFilledSB, Coalesce([ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ], spaceMatters: false));
@@ -59,7 +71,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  Coalesce([ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ], spaceMatters       ));
         NoNullRet(NullySpaceSB,  Coalesce([ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ], spaceMatters: true ));
         NoNullRet(NullySpaceSB,  Coalesce([ NullyEmptySB,  NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB    ], spaceMatters: true ));
+    }
 
+    [TestMethod]
+    public void Coalesce_StringBuilders_ExtensionOnCollectionFlagsInBack()
+    {
         NoNullRet(NullyFilledSB, new []   { NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB }.Coalesce(                   ));
         NoNullRet(NullyFilledSB, new []   { NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  }.Coalesce(                   ));
         NoNullRet(NullyFilledSB, new []   { NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  }.Coalesce(spaceMatters: false));
@@ -68,7 +84,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  new []   { NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB }.Coalesce(spaceMatters       ));
         NoNullRet(NullySpaceSB,  new []   { NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  }.Coalesce(spaceMatters: true ));
         NoNullRet(NullySpaceSB,  new []   { NullyEmptySB,  NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB    }.Coalesce(spaceMatters: true ));
-                                                                       
+    }
+
+    [TestMethod]
+    public void Coalesce_StringBuilders_ExtensionCollExpressFlagsInBack()
+    {
         NoNullRet(NullyFilledSB, NullSB       .Coalesce( [ NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]                     ));
         NoNullRet(NullyFilledSB, NullyFilledSB.Coalesce( [ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]                     ));
         NoNullRet(NullyFilledSB, NullySpaceSB .Coalesce( [ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ], spaceMatters: false));
@@ -77,7 +97,11 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(NullySpaceSB,  NullSB       .Coalesce( [ NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ], spaceMatters       ));
         NoNullRet(NullySpaceSB,  NullySpaceSB .Coalesce( [ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB  ], spaceMatters: true ));
         NoNullRet(NullySpaceSB,  NullyEmptySB .Coalesce( [ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB    ], spaceMatters: true ));
+    }
 
+    [TestMethod]
+    public void Coalesce_StringBuilders_Variadic_ReturnsNew()
+    {
         // Returns new()
         NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
         NoNullRet(Coalesce(                     NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
@@ -90,26 +114,25 @@ public class Coalesce_Variadic_Tests : TestBase
     }
 
     // Text
-    [TestMethod]
-    public void Coalesce_Variadic_Text()
-    {
-        NoNullRet("Finally",          Coalesce(  "",   " ",  "\n     ", "Finally"  ));
-        NoNullRet("Finally", " "     .Coalesce(  "",   " ",  "\n     ", "Finally"  ));
-        NoNullRet("Finally",          Coalesce([ "",   " ",  "\n     ", "Finally" ]));
-        NoNullRet("Finally", " "     .Coalesce([ "",   " ",  "\n     ", "Finally" ]));
-        NoNullRet("Hi",               Coalesce(  "Hi", " ",  "\n     ", "Finally"  ));
-        NoNullRet("Hi",      " "     .Coalesce(  "",   "Hi", "\n     ", "Finally"  ));
-        NoNullRet("Hi",               Coalesce([ "",   " ",  "Hi",      "Finally" ]));
-        NoNullRet("Hi",      " "     .Coalesce([ "",   " ",  "\n     ", "Hi"      ]));
-        NoNullRet(" ",       NullText.Coalesce(NullyEmpty, NullText, NullySpace    ));
-        NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, Empty         ));
-        NoNullRet("Finally", new [] { "",   " ",   "\n     ", "Finally" }.Coalesce());
-        NoNullRet("Hi",      new [] { "",   "Hi",  "\n     ", "Finally" }.Coalesce());
-        NoNullRet("",        new [] { NullText,    NullText,   NullText }.Coalesce());
-        NoNullRet("",        new string[0] .Coalesce());
-        NoNullRet("",        Coalesce(StringNullArray));
-    }
+    
+    [TestMethod] public void Coalesce_Text_StaticVariadic1              () => NoNullRet("Finally",          Coalesce(  "",   " ",  "\n     ", "Finally"  ));
+    [TestMethod] public void Coalesce_Text_StaticVariadic2              () => NoNullRet("Hi",               Coalesce(  "Hi", " ",  "\n     ", "Finally"  ));
+    [TestMethod] public void Coalesce_Text_ExtensionVariadic1           () => NoNullRet("Finally", " "     .Coalesce(  "",   " ",  "\n     ", "Finally"  ));
+    [TestMethod] public void Coalesce_Text_ExtensionVariadic2           () => NoNullRet("Hi",      " "     .Coalesce(  "",   "Hi", "\n     ", "Finally"  ));
+    [TestMethod] public void Coalesce_Text_ExtensionVariadicNully1      () => NoNullRet(" ",       NullText.Coalesce(NullyEmpty, NullText, NullySpace    ));
+    [TestMethod] public void Coalesce_Text_ExtensionVariadicNully2      () => NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, Empty         ));
+    
+    [TestMethod] public void Coalesce_Text_StaticCollExpress1           () => NoNullRet("Finally",          Coalesce([ "",   " ",  "\n     ", "Finally" ]));
+    [TestMethod] public void Coalesce_Text_StaticCollExpress2           () => NoNullRet("Hi",               Coalesce([ "",   " ",  "Hi",      "Finally" ]));
+    [TestMethod] public void Coalesce_Text_ExtensionCollExpress1        () => NoNullRet("Finally", " "     .Coalesce([ "",   " ",  "\n     ", "Finally" ]));
+    [TestMethod] public void Coalesce_Text_ExtensionCollExpress2        () => NoNullRet("Hi",      " "     .Coalesce([ "",   " ",  "\n     ", "Hi"      ]));
 
+    [TestMethod] public void Coalesce_Text_ExtensionOnColl1             () => NoNullRet("Finally", new [] { "",   " ",   "\n     ", "Finally" }.Coalesce());
+    [TestMethod] public void Coalesce_Text_ExtensionOnColl2             () => NoNullRet("Hi",      new [] { "",   "Hi",  "\n     ", "Finally" }.Coalesce());
+    [TestMethod] public void Coalesce_Text_ExtensionOnColl_LastResortNew() => NoNullRet("",        new [] { NullText,    NullText,   NullText }.Coalesce());
+    [TestMethod] public void Coalesce_Text_ExtensionOnColl_EmptyColl    () => NoNullRet("",        new string[0] .Coalesce());
+    [TestMethod] public void Coalesce_Text_ExtensionOnColl_NullColl     () => NoNullRet("",        Coalesce(StringNullArray));
+    
     [TestMethod]
     public void Coalesce_Variadic_Text_SpaceMatters_False()
     {
