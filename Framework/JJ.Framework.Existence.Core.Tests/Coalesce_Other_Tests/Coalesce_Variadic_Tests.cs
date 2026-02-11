@@ -115,23 +115,44 @@ public class Coalesce_Variadic_Tests : TestBase
 
     // Text
     
-    [TestMethod] public void Coalesce_Text_StaticVariadic1              () => NoNullRet("Finally",          Coalesce(  "",   " ",  "\n     ", "Finally"  ));
-    [TestMethod] public void Coalesce_Text_StaticVariadic2              () => NoNullRet("Hi",               Coalesce(  "Hi", " ",  "\n     ", "Finally"  ));
-    [TestMethod] public void Coalesce_Text_ExtensionVariadic1           () => NoNullRet("Finally", " "     .Coalesce(  "",   " ",  "\n     ", "Finally"  ));
-    [TestMethod] public void Coalesce_Text_ExtensionVariadic2           () => NoNullRet("Hi",      " "     .Coalesce(  "",   "Hi", "\n     ", "Finally"  ));
-    [TestMethod] public void Coalesce_Text_ExtensionVariadicNully1      () => NoNullRet(" ",       NullText.Coalesce(NullyEmpty, NullText, NullySpace    ));
-    [TestMethod] public void Coalesce_Text_ExtensionVariadicNully2      () => NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, Empty         ));
+    [TestMethod] 
+    public void Coalesce_Text_Variadic() 
+    {
+        // Static
+        NoNullRet("Finally",          Coalesce(  "",   " ",  "\n     ", "Finally"  ));
+        NoNullRet("Hi",               Coalesce(  "Hi", " ",  "\n     ", "Finally"  ));
+        // Extensions
+        NoNullRet("Finally", " "     .Coalesce(  "",   " ",  "\n     ", "Finally"  ));
+        NoNullRet("Hi",      " "     .Coalesce(  "",   "Hi", "\n     ", "Finally"  ));
+        // Extensions Nully
+        NoNullRet(" ",       NullText.Coalesce(NullyEmpty, NullText, NullySpace    ));
+        NoNullRet("",        NullText.Coalesce(NullyEmpty, NullText, Empty         ));
+    }
     
-    [TestMethod] public void Coalesce_Text_StaticCollExpress1           () => NoNullRet("Finally",          Coalesce([ "",   " ",  "\n     ", "Finally" ]));
-    [TestMethod] public void Coalesce_Text_StaticCollExpress2           () => NoNullRet("Hi",               Coalesce([ "",   " ",  "Hi",      "Finally" ]));
-    [TestMethod] public void Coalesce_Text_ExtensionCollExpress1        () => NoNullRet("Finally", " "     .Coalesce([ "",   " ",  "\n     ", "Finally" ]));
-    [TestMethod] public void Coalesce_Text_ExtensionCollExpress2        () => NoNullRet("Hi",      " "     .Coalesce([ "",   " ",  "\n     ", "Hi"      ]));
+    [TestMethod] 
+    public void Coalesce_Text_CollExpress() 
+    {
+        // Static
+        NoNullRet("Finally",          Coalesce([ "",   " ",  "\n     ", "Finally" ]));
+        NoNullRet("Hi",               Coalesce([ "",   " ",  "Hi",      "Finally" ]));
+        // Extension
+        NoNullRet("Finally", " "     .Coalesce([ "",   " ",  "\n     ", "Finally" ]));
+        NoNullRet("Hi",      " "     .Coalesce([ "",   " ",  "\n     ", "Hi"      ]));
+    }
 
-    [TestMethod] public void Coalesce_Text_ExtensionOnColl1             () => NoNullRet("Finally", new [] { "",   " ",   "\n     ", "Finally" }.Coalesce());
-    [TestMethod] public void Coalesce_Text_ExtensionOnColl2             () => NoNullRet("Hi",      new [] { "",   "Hi",  "\n     ", "Finally" }.Coalesce());
-    [TestMethod] public void Coalesce_Text_ExtensionOnColl_LastResortNew() => NoNullRet("",        new [] { NullText,    NullText,   NullText }.Coalesce());
-    [TestMethod] public void Coalesce_Text_ExtensionOnColl_EmptyColl    () => NoNullRet("",        new string[0] .Coalesce());
-    [TestMethod] public void Coalesce_Text_ExtensionOnColl_NullColl     () => NoNullRet("",        Coalesce(StringNullArray));
+    [TestMethod]
+    public void Coalesce_Text_ExtensionsOnColl()
+    {
+        // Main Case
+        NoNullRet("Finally", new [] { "",   " ",   "\n     ", "Finally" }.Coalesce());
+        NoNullRet("Hi",      new [] { "",   "Hi",  "\n     ", "Finally" }.Coalesce());
+        // Last Resort New
+        NoNullRet("",        new [] { NullText,    NullText,   NullText }.Coalesce());
+        // Empty Coll
+        NoNullRet("",        new string[0] .Coalesce());
+        // Null Coll
+        NoNullRet("",        Coalesce(StringNullArray));
+    }
     
     [TestMethod]
     public void Coalesce_Variadic_Text_SpaceMatters_False()
@@ -196,26 +217,7 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet("",        Coalesce(StringNullArray, spaceMatters: true));
     }
 
-    // TODO: Bools
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Bools
 
     // TODO: Not enough nully/non-nully variants. Needed to confuse the flag and nullable vals exchanging.
 
@@ -305,29 +307,6 @@ public class Coalesce_Variadic_Tests : TestBase
         NoNullRet(false,                               new [] { NullBool, NullyFalse, False,      NullyTrue }.Coalesce(zeroMatters: true ));
         NoNullRet(false,                               new [] { NullBool, NullyFalse, False,      NullyTrue }.Coalesce(             true ));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // Values
 
