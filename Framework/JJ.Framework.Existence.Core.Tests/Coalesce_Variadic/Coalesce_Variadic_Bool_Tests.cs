@@ -21,7 +21,7 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_Variadic_Bools_ZeroMatters()
+    public void Coalesce_Variadic_Bools_StaticZeroMatters()
     {
         // Static
         // Params
@@ -31,7 +31,7 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
         NoNullRet(false,         Coalesce(zeroMatters,          NullBool, NullyFalse, False,      NullyTrue                              ));
         NoNullRet(false,         Coalesce(zeroMatters: true,    NullBool, NullyFalse, False,      NullyTrue                              ));
         NoNullRet(false,         Coalesce(             true,    NullBool, NullyFalse, False,      NullyTrue                              )); // TODO: Should have failed
-        // Collection                                                                                                  
+        // Collection Exp                                                                                                  
         NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
         NoNullRet(true,          Coalesce(zeroMatters: false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
         NoNullRet(true,          Coalesce(             false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
@@ -51,6 +51,11 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
         NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters       ));
         NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters: true ));
         NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],                      true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_Variadic_Bools_ExtensionsVariadicZeroMatters()
+    {
         // Extension
         // Params
         NoNullRet(true,  NullBool.Coalesce(                               NullyFalse, NullyFalse, NullyTrue                              ));
@@ -65,6 +70,11 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
         NoNullRet(false, False   .Coalesce(zeroMatters,                   NullyFalse, NullyTrue,  NullyTrue                              ));
         NoNullRet(false, False   .Coalesce(zeroMatters: true,             NullyFalse, NullyTrue,  NullyTrue                              ));
         NoNullRet(false, False   .Coalesce(             true,             NullyFalse, NullyTrue,  NullyTrue                              ));
+    }
+
+    [TestMethod]
+    public void Coalesce_Variadic_Bools_ExtensionsCollExpressZeroMatters()
+    {
         // Collection                                                                           
         NoNullRet(true,  NullBool.Coalesce(                   [           NullyFalse, NullyFalse, NullyTrue ]                            ));
         NoNullRet(true,  NullBool.Coalesce(                   [           NullyFalse, NullyFalse, NullyTrue ],         zeroMatters: false));
@@ -85,6 +95,11 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
         NoNullRet(false, NullBool.Coalesce(                   [           NullBool,   NullBool,   NullBool  ],         zeroMatters       ));
         NoNullRet(false, NullBool.Coalesce(                   [           NullBool,   NullBool,   NullBool  ],         zeroMatters: true ));
         NoNullRet(false, NullBool.Coalesce(                   [           NullBool,   NullBool,   NullBool  ],                      true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_Variadic_Bools_ExtensionsOnCollectionZeroMatters()
+    {
         // Extension on collection                                            
         NoNullRet(true,                                new [] { NullBool, NullyFalse, False,      NullyTrue }.Coalesce(                  ));
         NoNullRet(true,                                new [] { NullBool, NullyFalse, False,      NullyTrue }.Coalesce(zeroMatters: false));
