@@ -23,34 +23,35 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
     [TestMethod]
     public void Coalesce_Variadic_Bools_StaticZeroMatters()
     {
-        // Static
-        // Params
-        NoNullRet(true,          Coalesce(                      NullBool, NullyFalse, False,      NullyTrue                              ));
-        NoNullRet(true,          Coalesce(zeroMatters: false,   NullBool, NullyFalse, False,      NullyTrue                              ));
-        NoNullRet(true,          Coalesce(             false,   NullBool, NullyFalse, False,      NullyTrue                              ));
-        NoNullRet(false,         Coalesce(zeroMatters,          NullBool, NullyFalse, False,      NullyTrue                              ));
-        NoNullRet(false,         Coalesce(zeroMatters: true,    NullBool, NullyFalse, False,      NullyTrue                              ));
-        NoNullRet(false,         Coalesce(             true,    NullBool, NullyFalse, False,      NullyTrue                              )); // TODO: Should have failed
-        // Collection Exp                                                                                                  
-        NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
-        NoNullRet(true,          Coalesce(zeroMatters: false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
-        NoNullRet(true,          Coalesce(             false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
-        NoNullRet(false,         Coalesce(zeroMatters,        [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
-        NoNullRet(false,         Coalesce(zeroMatters: true,  [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
-        NoNullRet(false,         Coalesce(             true,  [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
-        NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
-        NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],         zeroMatters: false));
-        NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],                      false));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],         zeroMatters       ));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],         zeroMatters: true ));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],                      true ));
-        // Hits Last Resort                                                                                            
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ]                            ));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters: false));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],                      false));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters       ));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters: true ));
-        NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],                      true ));
+             // Static
+             // Params
+             NoNullRet(true,          Coalesce(                      NullBool, NullyFalse, False,      NullyTrue                              ));
+             NoNullRet(true,          Coalesce(zeroMatters: false,   NullBool, NullyFalse, False,      NullyTrue                              ));
+             NoNullRet(true,          Coalesce(             false,   NullBool, NullyFalse, False,      NullyTrue                              ));
+             NoNullRet(false,         Coalesce(zeroMatters,          NullBool, NullyFalse, False,      NullyTrue                              ));
+             NoNullRet(false,         Coalesce(zeroMatters: true,    NullBool, NullyFalse, False,      NullyTrue                              ));
+             // TODO: case should fail, but does not Throw
+//Throws(() => NoNullRet(false,         Coalesce(             true,    NullBool, NullyFalse, False,      NullyTrue                              )), "Actual <True>"); // Not a flag
+             // Collection Exp                                                                                                  
+             NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
+             NoNullRet(true,          Coalesce(zeroMatters: false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
+             NoNullRet(true,          Coalesce(             false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
+             NoNullRet(false,         Coalesce(zeroMatters,        [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
+             NoNullRet(false,         Coalesce(zeroMatters: true,  [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
+             NoNullRet(false,         Coalesce(             true,  [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
+             NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
+             NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],         zeroMatters: false));
+             NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],                      false));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],         zeroMatters       ));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],         zeroMatters: true ));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],                      true ));
+             // Hits Last Resort                                                                                            
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ]                            ));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters: false));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],                      false));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters       ));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],         zeroMatters: true ));
+             NoNullRet(false,         Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],                      true ));
     }
 
     [TestMethod]

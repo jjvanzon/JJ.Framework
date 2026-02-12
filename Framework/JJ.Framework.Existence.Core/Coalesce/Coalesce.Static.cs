@@ -598,7 +598,9 @@ public static partial class FilledInHelper
     public static T      Coalesce<T>(IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static T      Coalesce<T>(IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+    // TODO: Prio does make accidental first bool end up as value, not flag, but also leads calls with less arguments to this slower overload.
     /// <inheritdoc cref="_coalesce" />
+    //[Prio(1)] 
     public static bool   Coalesce   (                                    params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyVals   (fallbacks);
     /// <inheritdoc cref="_coalesce" />
     public static bool   Coalesce   (bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyVals   (fallbacks, zeroMatters);
