@@ -8,7 +8,7 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
     // TODO: Not enough nully/non-nully variants. Needed to confuse the flag and nullable vals exchanging.
 
     [TestMethod]
-    public void Coalesce_Variadic_Bools()
+    public void Coalesce_Variadic_Bools_NoFlags()
     {
         // Static params
         NoNullRet(true,           Coalesce(  NullBool, NullyFalse, False,      NullyTrue            ));
