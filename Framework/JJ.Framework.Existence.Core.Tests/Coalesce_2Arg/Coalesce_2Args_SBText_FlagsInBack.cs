@@ -182,6 +182,4 @@ public class Coalesce_2Args_SBText_FlagsInBack : TestBase
         NoNullRet("FilledSB", NullyEmpty.Coalesce( NullyFilledSB, spaceMatters      ));
         NoNullRet("FilledSB", NullyEmpty.Coalesce( NullyFilledSB, spaceMatters: true));
     }
-
-    // TODO: Booleans
 }
