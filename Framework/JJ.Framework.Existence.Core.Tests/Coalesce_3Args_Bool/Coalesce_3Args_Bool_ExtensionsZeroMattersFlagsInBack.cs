@@ -99,17 +99,17 @@ Throws(() => NoNullRet(false, NullBool  .Coalesce(False,      True,             
              
              NoNullRet(true,  NullBool  .Coalesce(True,       NullBool                      ));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullBool,   zeroMatters: false));
-           //NoNullRet(true,  NullBool  .Coalesce(True,       NullBool,                false)); // TODO: Fails
+             NoNullRet(true,  NullBool  .Coalesce(True,       NullBool,                false));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullBool,   zeroMatters       ));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullBool,   zeroMatters: true ));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullBool,                true ));
              
              NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse                    ));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse, zeroMatters: false));
-           //NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse,              false)); // TODO: Fails
+             NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse,              false));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse, zeroMatters       ));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse, zeroMatters: true ));
-           //NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse,              true )); // TODO: Fails
+             NoNullRet(true,  NullBool  .Coalesce(True,       NullyFalse,              true ));
              
              NoNullRet(true,  NullBool  .Coalesce(True,       NullyTrue                     ));
              NoNullRet(true,  NullBool  .Coalesce(True,       NullyTrue,  zeroMatters: false));
@@ -120,10 +120,10 @@ Throws(() => NoNullRet(false, NullBool  .Coalesce(False,      True,             
              
              NoNullRet(true,  NullBool  .Coalesce(True,       False                         ));
              NoNullRet(true,  NullBool  .Coalesce(True,       False,      zeroMatters: false));
-           //NoNullRet(true,  NullBool  .Coalesce(True,       False,                   false)); // TODO: Fails
+             NoNullRet(true,  NullBool  .Coalesce(True,       False,                   false));
              NoNullRet(true,  NullBool  .Coalesce(True,       False,      zeroMatters       ));
              NoNullRet(true,  NullBool  .Coalesce(True,       False,      zeroMatters: true ));
-           //NoNullRet(true,  NullBool  .Coalesce(True,       False,                   true )); // TODO: Fails
+             NoNullRet(true,  NullBool  .Coalesce(True,       False,                   true ));
     }
 
     [TestMethod]
@@ -215,28 +215,28 @@ Throws(() => NoNullRet(false, NullyFalse.Coalesce(False,      True,             
         
              NoNullRet(true,  NullyFalse.Coalesce(True,       NullBool                      ));
              NoNullRet(true,  NullyFalse.Coalesce(True,       NullBool,   zeroMatters: false));
-           //NoNullRet(true,  NullyFalse.Coalesce(True,       NullBool,                false)); // TODO: Fails
+             NoNullRet(true,  NullyFalse.Coalesce(True,       NullBool,                false));
              NoNullRet(false, NullyFalse.Coalesce(True,       NullBool,   zeroMatters       ));
              NoNullRet(false, NullyFalse.Coalesce(True,       NullBool,   zeroMatters: true ));
 Throws(() => NoNullRet(false, NullyFalse.Coalesce(True,       NullBool,                true )), "Actual <True>"); // Not a flag
              
              NoNullRet(true,  NullyFalse.Coalesce(True,       NullyFalse                    ));
              NoNullRet(true,  NullyFalse.Coalesce(True,       NullyFalse, zeroMatters: false));
-           //NoNullRet(true,  NullyFalse.Coalesce(True,       NullyFalse,              false)); // TODO: Fails
+             NoNullRet(true,  NullyFalse.Coalesce(True,       NullyFalse,              false));
              NoNullRet(false, NullyFalse.Coalesce(True,       NullyFalse, zeroMatters       ));
              NoNullRet(false, NullyFalse.Coalesce(True,       NullyFalse, zeroMatters: true ));
 Throws(() => NoNullRet(false, NullyFalse.Coalesce(True,       NullyFalse,              true )), "Actual <True>"); // Not a flag
              
              NoNullRet(true,  NullyFalse.Coalesce(True,       NullyTrue                     ));
              NoNullRet(true,  NullyFalse.Coalesce(True,       NullyTrue,  zeroMatters: false));
-           //NoNullRet(true,  NullyFalse.Coalesce(True,       NullyTrue,               false)); // TODO: Fails
+             NoNullRet(true,  NullyFalse.Coalesce(True,       NullyTrue,               false));
              NoNullRet(false, NullyFalse.Coalesce(True,       NullyTrue,  zeroMatters       ));
              NoNullRet(false, NullyFalse.Coalesce(True,       NullyTrue,  zeroMatters: true ));
 Throws(() => NoNullRet(false, NullyFalse.Coalesce(True,       NullyTrue,               true )), "Actual <True>"); // Not a flag
              
              NoNullRet(true,  NullyFalse.Coalesce(True,       False                         ));
              NoNullRet(true,  NullyFalse.Coalesce(True,       False,      zeroMatters: false));
-           //NoNullRet(true,  NullyFalse.Coalesce(True,       False,                   false)); // TODO: Fails
+             NoNullRet(true,  NullyFalse.Coalesce(True,       False,                   false));
              NoNullRet(false, NullyFalse.Coalesce(True,       False,      zeroMatters       ));
              NoNullRet(false, NullyFalse.Coalesce(True,       False,      zeroMatters: true ));
 Throws(() => NoNullRet(false, NullyFalse.Coalesce(True,       False,                   true )), "Actual <True>"); // Not a flag
@@ -447,28 +447,28 @@ Throws(() => NoNullRet(false, False     .Coalesce(NullyTrue,  True,             
              
              NoNullRet(true,  False     .Coalesce(True,       NullBool                      ));
              NoNullRet(true,  False     .Coalesce(True,       NullBool,   zeroMatters: false));
-           //NoNullRet(true,  False     .Coalesce(True,       NullBool,                false)); // TODO: Fails
+             NoNullRet(true,  False     .Coalesce(True,       NullBool,                false));
              NoNullRet(false, False     .Coalesce(True,       NullBool,   zeroMatters       ));
              NoNullRet(false, False     .Coalesce(True,       NullBool,   zeroMatters: true ));
 Throws(() => NoNullRet(false, False     .Coalesce(True,       NullBool,                true )), "Actual <True>"); // Not a flag
              
              NoNullRet(true,  False     .Coalesce(True,       NullyFalse                    ));
              NoNullRet(true,  False     .Coalesce(True,       NullyFalse, zeroMatters: false));
-           //NoNullRet(true,  False     .Coalesce(True,       NullyFalse,              false)); // TODO: Fails
+             NoNullRet(true,  False     .Coalesce(True,       NullyFalse,              false));
              NoNullRet(false, False     .Coalesce(True,       NullyFalse, zeroMatters       ));
              NoNullRet(false, False     .Coalesce(True,       NullyFalse, zeroMatters: true ));
 Throws(() => NoNullRet(false, False     .Coalesce(True,       NullyFalse,              true )), "Actual <True>"); // Not a flag
              
              NoNullRet(true,  False     .Coalesce(True,       NullyTrue                     ));
              NoNullRet(true,  False     .Coalesce(True,       NullyTrue,  zeroMatters: false));
-           //NoNullRet(true,  False     .Coalesce(True,       NullyTrue,               false)); // TODO: Fails
+             NoNullRet(true,  False     .Coalesce(True,       NullyTrue,               false));
              NoNullRet(false, False     .Coalesce(True,       NullyTrue,  zeroMatters       ));
              NoNullRet(false, False     .Coalesce(True,       NullyTrue,  zeroMatters: true ));
 Throws(() => NoNullRet(false, False     .Coalesce(True,       NullyTrue,               true )), "Actual <True>"); // Not a flag
              
              NoNullRet(true,  False     .Coalesce(True,       False                         ));
              NoNullRet(true,  False     .Coalesce(True,       False,      zeroMatters: false));
-           //NoNullRet(true,  False     .Coalesce(True,       False,                   false)); // TODO: Fails
+             NoNullRet(true,  False     .Coalesce(True,       False,                   false));
              NoNullRet(false, False     .Coalesce(True,       False,      zeroMatters       ));
              NoNullRet(false, False     .Coalesce(True,       False,      zeroMatters: true ));
 Throws(() => NoNullRet(false, False     .Coalesce(True,       False,                   true )), "Actual <True>"); // Not a flag
