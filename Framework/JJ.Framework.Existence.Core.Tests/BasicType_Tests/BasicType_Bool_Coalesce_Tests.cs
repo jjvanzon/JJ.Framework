@@ -28,23 +28,23 @@ public class BasicType_Bool_Coalesce_Tests : TestBase
     [TestMethod]
     public void Test_Bool_Coalesce_ZeroMattersFlagsInFront()
     {
-        IsTrue (Coalesce(zeroMatters: false, False, NullyTrue, NullBool     ));
-        IsTrue (Coalesce(             false, False, NullyTrue, NullBool     ));
-        IsFalse(Coalesce(zeroMatters       , False, NullyTrue, NullBool     ));
-        IsFalse(Coalesce(zeroMatters: true , False, NullyTrue, NullBool     ));
-        IsFalse(Coalesce(             true , False, NullyTrue, NullBool     ));
-
-        IsTrue (NullyFalse.Coalesce(zeroMatters: false, NullBool, NullyTrue));
-        IsTrue (NullyFalse.Coalesce(             false, NullBool, NullyTrue));
-        IsFalse(NullyFalse.Coalesce(zeroMatters       , NullBool, NullyTrue));
-        IsFalse(NullyFalse.Coalesce(zeroMatters: true , NullBool, NullyTrue));
-        IsFalse(NullyFalse.Coalesce(             true , NullBool, NullyTrue));
-
-        IsFalse(NullyFalse.Coalesce(zeroMatters: false, NullBool           ));
-        IsFalse(NullyFalse.Coalesce(             false, NullBool           ));
-        IsFalse(NullyFalse.Coalesce(zeroMatters       , NullBool           ));
-        IsFalse(NullyFalse.Coalesce(zeroMatters: true , NullBool           ));
-      //IsFalse(NullyFalse.Coalesce(             true , NullBool           )); // Not a flag
+             IsTrue (Coalesce(zeroMatters: false, False, NullyTrue, NullBool    ));
+             IsTrue (Coalesce(             false, False, NullyTrue, NullBool    ));
+             IsFalse(Coalesce(zeroMatters       , False, NullyTrue, NullBool    ));
+             IsFalse(Coalesce(zeroMatters: true , False, NullyTrue, NullBool    ));
+Throws(() => IsFalse(Coalesce(             true , False, NullyTrue, NullBool    )), "IsFalse failed"); // Not a flag
+         
+             IsTrue (NullyFalse.Coalesce(zeroMatters: false, NullBool, NullyTrue));
+             IsTrue (NullyFalse.Coalesce(             false, NullBool, NullyTrue));
+             IsFalse(NullyFalse.Coalesce(zeroMatters       , NullBool, NullyTrue));
+             IsFalse(NullyFalse.Coalesce(zeroMatters: true , NullBool, NullyTrue));
+Throws(() => IsFalse(NullyFalse.Coalesce(             true , NullBool, NullyTrue)), "IsFalse failed"); // Not a flag
+          
+             IsFalse(NullyFalse.Coalesce(zeroMatters: false, NullBool           ));
+             IsFalse(NullyFalse.Coalesce(             false, NullBool           ));
+             IsFalse(NullyFalse.Coalesce(zeroMatters       , NullBool           ));
+             IsFalse(NullyFalse.Coalesce(zeroMatters: true , NullBool           ));
+Throws(() => IsFalse(NullyFalse.Coalesce(             true , NullBool           )), "IsFalse failed"); // Not a flag
     }
 
     [TestMethod]
