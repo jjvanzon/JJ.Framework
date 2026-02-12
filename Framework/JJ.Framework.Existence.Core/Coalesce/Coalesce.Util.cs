@@ -221,6 +221,47 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
+          public static bool   CoalesceManyBools     (IEnumerable<bool?  >? fallbacks                           )
+          {
+              if (fallbacks == null) return default;
+              bool? last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasBoolNully(val)) return (bool)val;
+                  last = val;
+              }
+              return last ?? default(bool);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static bool   CoalesceManyBools     (IEnumerable<bool?  >? fallbacks, bool         zeroMatters )
+          {
+              if (fallbacks == null) return default;
+              bool? last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasBoolNully(val, zeroMatters)) return (bool)val;
+                  last = val;
+              }
+              return last ?? default(bool);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static bool   CoalesceManyBools     (IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
+          {
+              if (fallbacks == null) return default;
+              bool? last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasBoolNully(val, zeroMatters)) return (bool)val;
+                  last = val;
+              }
+
+              // boolODO: boolest
+              return last ?? default(bool);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
           public static T      CoalesceManyObjects<T>(IEnumerable<T?     >? fallbacks                           )
               where T: new()
           {
