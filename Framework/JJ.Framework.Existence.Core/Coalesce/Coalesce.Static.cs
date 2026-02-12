@@ -146,14 +146,14 @@ public static partial class FilledInHelper
     public static string Coalesce   (     bool?   val,  string? fallback, bool         zeroMatters) => CoalesceNullyValToText(val, fallback, zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static string Coalesce   (     bool    val,  string? fallback, bool         zeroMatters) => CoalesceValToText     (val, fallback, zeroMatters);
-  ///// <inheritdoc cref="_coalesce" />
-  //public static bool   Coalesce   (     bool?   val,  bool?   fallback, bool         zeroMatters) => CoalesceTwoNullyVals  (val, fallback, zeroMatters);
-  ///// <inheritdoc cref="_coalesce" />
-  //public static bool   Coalesce   (     bool?   val,  bool    fallback, bool         zeroMatters) => CoalesceNullyAndVal   (val, fallback, zeroMatters);
-  ///// <inheritdoc cref="_coalesce" />
-  //public static bool   Coalesce   (     bool    val,  bool?   fallback, bool         zeroMatters) => CoalesceValAndNully   (val, fallback, zeroMatters);
-  ///// <inheritdoc cref="_coalesce" />
-  //public static bool   Coalesce   (     bool    val,  bool    fallback, bool         zeroMatters) => CoalesceTwoVals       (val, fallback, zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static bool   Coalesce   (     bool?   val,  bool?   fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceTwoNullyVals  (val, fallback, zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static bool   Coalesce   (     bool?   val,  bool    fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceNullyAndVal   (val, fallback, zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static bool   Coalesce   (     bool    val,  bool?   fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceValAndNully   (val, fallback, zeroMatters);
+    /// <inheritdoc cref="_coalesce" />
+    public static bool   Coalesce   (     bool    val,  bool    fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceTwoVals       (val, fallback, zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static string Coalesce   (     bool?   val,  string? fallback, ZeroMatters  zeroMatters) => CoalesceNullyValToText(val, fallback, zeroMatters);
     /// <inheritdoc cref="_coalesce" />
