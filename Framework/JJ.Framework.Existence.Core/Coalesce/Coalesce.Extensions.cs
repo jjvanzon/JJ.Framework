@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Existence.Core;
+﻿// ReSharper disable MethodOverloadWithOptionalParameter
+namespace JJ.Framework.Existence.Core;
 using SB = StringBuilder;
 
 /// <inheritdoc cref="_coalesce"/>
@@ -171,6 +172,7 @@ public static class CoalesceExtensions
           public static bool   Coalesce   (this bool    val,  bool?   fallback, ZeroMatters  zeroMatters ) => CoalesceValAndNully   (val,  fallback, zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static bool   Coalesce   (this bool    val,  bool    fallback, ZeroMatters  zeroMatters ) => CoalesceTwoVals       (val,  fallback, zeroMatters);
+        // Clashes 3-Arg
         ///// <inheritdoc cref="_coalesce" />
         //public static string Coalesce   (this bool    val,  bool         zeroMatters, string? fallback ) => CoalesceValToText     (val,  fallback, zeroMatters);
         ///// <inheritdoc cref="_coalesce" />
