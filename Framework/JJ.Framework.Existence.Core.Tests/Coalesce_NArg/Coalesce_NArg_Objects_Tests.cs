@@ -1,12 +1,12 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_Variadic_Objects_Tests : TestBase
+public class Coalesce_NArg_Objects_Tests : TestBase
 {
     // Objects
 
     [TestMethod]
-    public void Coalesce_Variadic_Objects()
+    public void Coalesce_NArg_Objects()
     {
         // Static params
         NoNullRet(NoNullObj,      Coalesce(NullObj, NoNullObj, NullyFilledObj));

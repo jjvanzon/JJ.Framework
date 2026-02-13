@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_Variadic_SB_Tests : TestBase
+public class Coalesce_NArg_SB_Tests : TestBase
 {
     // StringBuilder
 

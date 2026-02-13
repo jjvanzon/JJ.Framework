@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_Variadic_Bool_Tests : TestBase
+public class Coalesce_NArg_Bool_Tests : TestBase
 {
     // Bools
 
