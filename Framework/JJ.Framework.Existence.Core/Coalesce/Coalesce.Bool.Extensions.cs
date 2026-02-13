@@ -205,7 +205,7 @@ public static partial class CoalesceExtensions
           
           // 4 Args (only for bools)
 
-          // These prefer bools mapped to values, over unnamed flags.
+          // These help bools mapp to values, instead of unnamed flags.
 
           /// <inheritdoc cref="_coalesce" />
           public static bool   Coalesce   (this bool  val, bool  fallback1, bool  fallback2, bool  fallback3) => CoalesceManyBools([val, fallback1, fallback2, fallback3]);

@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Existence.Core;
+﻿// ReSharper disable MethodOverloadWithOptionalParameter
+namespace JJ.Framework.Existence.Core;
 
 /// <inheritdoc cref="_existencecore"/>
 public static partial class FilledInHelper
@@ -48,12 +49,11 @@ public static partial class FilledInHelper
     public static bool   Coalesce   (     bool    val,  bool?   fallback, ZeroMatters  zeroMatters) => CoalesceValAndNully   (val, fallback, zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static bool   Coalesce   (     bool    val,  bool    fallback, ZeroMatters  zeroMatters) => CoalesceTwoVals       (val, fallback, zeroMatters);
-  // Clash with 2-Arg
+  // Clash with 3-Arg
   ///// <inheritdoc cref="_coalesce" />
   //public static string Coalesce   (     bool         zeroMatters, bool?   val,  string? fallback) => CoalesceNullyValToText(val, fallback, zeroMatters);
   ///// <inheritdoc cref="_coalesce" />
   //public static string Coalesce   (     bool         zeroMatters, bool    val,  string? fallback) => CoalesceValToText     (val, fallback, zeroMatters);
-  // Clash with 3-Arg
   ///// <inheritdoc cref="_coalesce" />
   //public static bool   Coalesce   (     bool         zeroMatters, bool?   val,  bool?   fallback) => CoalesceTwoNullyVals  (val, fallback, zeroMatters);
   ///// <inheritdoc cref="_coalesce" />
@@ -149,7 +149,7 @@ public static partial class FilledInHelper
     public static bool   Coalesce   (     bool    val,  bool    fallback, bool?   fallback2, ZeroMatters  zeroMatters ) => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static bool   Coalesce   (     bool    val,  bool    fallback, bool    fallback2, ZeroMatters  zeroMatters ) => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
-  // Clash with 3-Arg
+  // Clash with 4-Arg
   ///// <inheritdoc cref="_coalesce" />
   //public static string Coalesce   (     bool         zeroMatters, bool?   val,  bool?   fallback, string? fallback2 ) => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
   ///// <inheritdoc cref="_coalesce" />
@@ -158,7 +158,6 @@ public static partial class FilledInHelper
   //public static string Coalesce   (     bool         zeroMatters, bool?   val,  bool    fallback, string? fallback2 ) => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
   ///// <inheritdoc cref="_coalesce" />
   //public static string Coalesce   (     bool         zeroMatters, bool    val,  bool    fallback, string? fallback2 ) => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
-  // Clash with 4-Arg
   ///// <inheritdoc cref="_coalesce" />
   //public static bool   Coalesce   (     bool         zeroMatters, bool?   val,  bool?   fallback, bool?   fallback2 ) => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
   ///// <inheritdoc cref="_coalesce" />
@@ -202,7 +201,7 @@ public static partial class FilledInHelper
 
     // 4-Arg (only for bools)
 
-    // These prefer bools mapped to values, over unnamed flags.
+    // These help bools mapp to values, instead of unnamed flags.
 
     /// <inheritdoc cref="_coalesce" />
     public static bool   Coalesce   (     bool  val, bool  fallback1, bool  fallback2, bool  fallback3) => CoalesceManyBools([val, fallback1, fallback2, fallback3]);
