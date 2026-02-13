@@ -8,20 +8,7 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
     // TODO: Not enough nully/non-nully variants. Needed to confuse the flag and nullable vals exchanging.
 
     [TestMethod]
-    public void Coalesce_Variadic_Bools_NoFlags()
-    {
-        // Static params
-        NoNullRet(true,           Coalesce(  NullBool, NullyFalse, False,      NullyTrue            ));
-        // Static collection                                                                        
-        NoNullRet(true,           Coalesce([ NullBool, NullyFalse, NullyFalse, NullyTrue ]          ));
-        // Extension params                                                                         
-        NoNullRet(false, NullBool.Coalesce(  NullBool, NullBool,   NullBool                         ));
-        // Extension on collection
-        NoNullRet(true,            new [] {  NullBool, NullyFalse, False,      NullyTrue }.Coalesce());
-    }
-
-    [TestMethod]
-    public void Coalesce_NArg_Bools_StaticParamsZeroMatters()
+    public void Coalesce_NArg_Bool_StaticParams()
     {
              // Variadic
              NoNullRet(true,  Coalesce(                      NullBool, NullyFalse, False,      NullyTrue                      ));
@@ -33,7 +20,7 @@ Throws(() => NoNullRet(false, Coalesce(             true,    NullBool, NullyFals
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Bools_CollExpressZeroMatters()
+    public void Coalesce_NArg_Bool_StaticCollExpress()
     {
              NoNullRet(true,  Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                    ));
              NoNullRet(true,  Coalesce(zeroMatters: false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                    ));
@@ -50,7 +37,7 @@ Throws(() => NoNullRet(false, Coalesce(             true,    NullBool, NullyFals
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Bools_CollExpressZeroMatters_HitsLastResort()
+    public void Coalesce_NArg_Bool_StaticCollExpress_HitsLastResort()
     {
              NoNullRet(false, Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ]                    ));
              NoNullRet(false, Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ], zeroMatters: false));
@@ -61,7 +48,7 @@ Throws(() => NoNullRet(false, Coalesce(             true,    NullBool, NullyFals
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Bools_ExtensionsParamsZeroMatters()
+    public void Coalesce_NArg_Bool_ExtensionsParams()
     {
              NoNullRet(true,  NullBool.Coalesce(                    NullyFalse, NullyFalse, NullyTrue ));
              NoNullRet(true,  NullBool.Coalesce(zeroMatters: false, NullyFalse, NullyFalse, NullyTrue ));
@@ -78,7 +65,7 @@ Throws(() => NoNullRet(false, False   .Coalesce(             true,  NullyFalse, 
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Bools_ExtensionsCollExpressZeroMatters()
+    public void Coalesce_NArg_Bool_ExtensionsCollExpress()
     {
              NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ]                    ));
              NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ], zeroMatters: false));
@@ -95,7 +82,7 @@ Throws(() => NoNullRet(false, False   .Coalesce(             true,  NullyFalse, 
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Bools_ExtensionsCollExpressZeroMatters_HitsLastResort()
+    public void Coalesce_NArg_Bool_ExtensionsCollExpress_HitsLastResort()
     {
              NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ]                    ));
              NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ], zeroMatters: false));
@@ -106,9 +93,8 @@ Throws(() => NoNullRet(false, False   .Coalesce(             true,  NullyFalse, 
     }
 
     [TestMethod]
-    public void Coalesce_Variadic_Bools_ExtensionsOnCollectionZeroMatters()
+    public void Coalesce_NArg_Bool_ExtensionsOnCollection()
     {
-            // Extension on collection                                            
             NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(                  ));
             NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: false));
             NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(             false));
