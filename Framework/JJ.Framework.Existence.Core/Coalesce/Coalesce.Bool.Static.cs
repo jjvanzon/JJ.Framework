@@ -102,13 +102,13 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_coalesce" />
     public static bool   Coalesce   (     bool    val,  bool    fallback, bool    fallback2                           ) => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2));
     /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (     bool?   val,  bool?   fallback, string? fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+    public static string Coalesce   (     bool?   val,  bool?   fallback, string? fallback2, bool         zeroMatters ) => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
     /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (     bool    val,  bool?   fallback, string? fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+    public static string Coalesce   (     bool    val,  bool?   fallback, string? fallback2, bool         zeroMatters) => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
     /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (     bool?   val,  bool    fallback, string? fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+    public static string Coalesce   (     bool?   val,  bool    fallback, string? fallback2, bool         zeroMatters) => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
     /// <inheritdoc cref="_coalesce" />
-    public static string Coalesce   (     bool    val,  bool    fallback, string? fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+    public static string Coalesce   (     bool    val,  bool    fallback, string? fallback2, bool         zeroMatters) => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static bool   Coalesce   (     bool?   val,  bool?   fallback, bool?   fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
     /// <inheritdoc cref="_coalesce" />
@@ -239,12 +239,14 @@ public static partial class FilledInHelper
 
     // N Args (for all others)
 
-    // TODO: Prio does make accidental first bool end up as value, not flag, but also leads calls with less arguments to this slower overload.
-    // TODO: Try negative prios, avoiding to assign explicit prios to everything.
     /// <inheritdoc cref="_coalesce" />
-    //[Prio(1)] 
     public static bool   Coalesce   (                                    params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyVals   (fallbacks);
+
+    // Prio(-1) is used to prefer mapping booleans as values,
+    // not as flags, except when the flag is explicitly named.
+
     /// <inheritdoc cref="_coalesce" />
+    [Prio(-1)] 
     public static bool   Coalesce   (bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyVals   (fallbacks, zeroMatters);
     /// <inheritdoc cref="_coalesce" />
     public static bool   Coalesce   (ZeroMatters           zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyVals   (fallbacks, zeroMatters);

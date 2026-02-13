@@ -33,7 +33,6 @@ public static partial class CoalesceExtensions
           public static string Coalesce   (this bool    val,  string? fallback, bool         zeroMatters ) => CoalesceValToText     (val,  fallback, zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static string Coalesce   (this bool?   val,  string? fallback, bool         zeroMatters ) => CoalesceNullyValToText(val,  fallback, zeroMatters);
-          // Clashes 3-Arg
           /// <inheritdoc cref="_coalesce" />
           public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0) => CoalesceTwoNullyVals  (val,  fallback, zeroMatters);
           /// <inheritdoc cref="_coalesce" />
