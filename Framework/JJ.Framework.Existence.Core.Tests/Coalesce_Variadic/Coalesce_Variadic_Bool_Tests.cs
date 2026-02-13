@@ -60,7 +60,7 @@ Throws(() => NoNullRet(false, Coalesce(             true,    NullBool, NullyFals
              NoNullRet(true,  NullBool.Coalesce(             false, NullyFalse, NullyFalse, NullyTrue ));
              NoNullRet(false, NullBool.Coalesce(zeroMatters,        NullyFalse, NullyFalse, NullyTrue ));
              NoNullRet(false, NullBool.Coalesce(zeroMatters: true,  NullyFalse, NullyFalse, NullyTrue ));
-             NoNullRet(false, NullBool.Coalesce(             true,  NullyFalse, NullyFalse, NullyTrue ));
+Throws(() => NoNullRet(false, NullBool.Coalesce(             true,  NullyFalse, NullyFalse, NullyTrue )), "Actual <True>"); // Not a flag
              NoNullRet(true,  False   .Coalesce(                    NullyFalse, NullyTrue,  NullyTrue ));
              NoNullRet(true,  False   .Coalesce(zeroMatters: false, NullyFalse, NullyTrue,  NullyTrue ));
              NoNullRet(true,  False   .Coalesce(             false, NullyFalse, NullyTrue,  NullyTrue ));
