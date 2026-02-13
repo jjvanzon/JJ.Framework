@@ -98,11 +98,11 @@ RunTests<Coalesce_Collections_Misc_Tests>() &&
 RunTests<Coalesce_Collections_Extensions_Tests>() &&
 RunTests<Coalesce_Collections_Static_Tests>() &&
 RunTests<Coalesce_Keywords_Tests>() &&
-RunTests<Coalesce_Variadic_Bool_Tests>() &&
-RunTests<Coalesce_Variadic_Objects_Tests>() &&
-RunTests<Coalesce_Variadic_SB_Tests>() &&
-RunTests<Coalesce_Variadic_Text_Tests>() &&
-RunTests<Coalesce_Variadic_Values_Tests>() &&
+RunTests<Coalesce_NArg_Bool_Tests>() &&
+RunTests<Coalesce_NArg_Objects_Tests>() &&
+RunTests<Coalesce_NArg_SB_Tests>() &&
+RunTests<Coalesce_NArg_Text_Tests>() &&
+RunTests<Coalesce_NArg_Values_Tests>() &&
 RunTests<Contains_Nullable_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<BasicType_Other_Tests>() &&
