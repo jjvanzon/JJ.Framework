@@ -12,7 +12,11 @@ internal static class ImplicitUsageReasons
         "It makes the right flag lead to the right specialized method.";
 
     /// <summary> Shorthand for <see cref="OverloadByName" />. </summary>
-    internal const string NameOvl = OverloadByName;
+    internal const string NameOvl = 
+        "Adding optional parameters that aren't used, " +
+        "can allow a certain kind of overload by parameter name, " +
+        "which you can normally not do. " +
+        "E.g. MyMethod(10, arg: true); MyMethod(10, differentArg: true)";
     
     internal const string OverloadByName =
         "Adding optional parameters that aren't used, " +
