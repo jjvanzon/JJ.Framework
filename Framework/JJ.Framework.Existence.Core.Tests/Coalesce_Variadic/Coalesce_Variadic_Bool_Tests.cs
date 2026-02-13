@@ -30,8 +30,7 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
              NoNullRet(true,          Coalesce(             false,   NullBool, NullyFalse, False,      NullyTrue                              ));
              NoNullRet(false,         Coalesce(zeroMatters,          NullBool, NullyFalse, False,      NullyTrue                              ));
              NoNullRet(false,         Coalesce(zeroMatters: true,    NullBool, NullyFalse, False,      NullyTrue                              ));
-             // TODO: case should fail, but does not Throw
-//Throws(() => NoNullRet(false,         Coalesce(             true,    NullBool, NullyFalse, False,      NullyTrue                              )), "Actual <True>"); // Not a flag
+Throws(() => NoNullRet(false,         Coalesce(             true,    NullBool, NullyFalse, False,      NullyTrue                              )), "Actual <True>"); // Not a flag
              // Collection Exp                                                                                                  
              NoNullRet(true,          Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
              NoNullRet(true,          Coalesce(zeroMatters: false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                            ));
