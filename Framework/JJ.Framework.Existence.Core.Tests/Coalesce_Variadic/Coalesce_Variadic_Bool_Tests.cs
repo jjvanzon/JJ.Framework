@@ -21,16 +21,20 @@ public class Coalesce_Variadic_Bool_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_Variadic_Bools_StaticZeroMatters()
+    public void Coalesce_NArg_Bools_StaticParamsZeroMatters()
     {
-             // Params
+             // Variadic
              NoNullRet(true,  Coalesce(                      NullBool, NullyFalse, False,      NullyTrue                      ));
              NoNullRet(true,  Coalesce(zeroMatters: false,   NullBool, NullyFalse, False,      NullyTrue                      ));
              NoNullRet(true,  Coalesce(             false,   NullBool, NullyFalse, False,      NullyTrue                      ));
              NoNullRet(false, Coalesce(zeroMatters,          NullBool, NullyFalse, False,      NullyTrue                      ));
              NoNullRet(false, Coalesce(zeroMatters: true,    NullBool, NullyFalse, False,      NullyTrue                      ));
 Throws(() => NoNullRet(false, Coalesce(             true,    NullBool, NullyFalse, False,      NullyTrue                      )), "Actual <True>"); // Not a flag
-             // Collection Exp                                                                                          
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bools_CollExpressZeroMatters()
+    {
              NoNullRet(true,  Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                    ));
              NoNullRet(true,  Coalesce(zeroMatters: false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                    ));
              NoNullRet(true,  Coalesce(             false, [ NullBool, NullyFalse, NullyFalse, NullyTrue ]                    ));
@@ -43,7 +47,11 @@ Throws(() => NoNullRet(false, Coalesce(             true,    NullBool, NullyFals
              NoNullRet(false, Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ], zeroMatters       ));
              NoNullRet(false, Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ], zeroMatters: true ));
              NoNullRet(false, Coalesce(                    [ NullBool, NullyFalse, NullyFalse, NullyTrue ],              true ));
-             // Hits Last Resort                                                                                    
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bools_CollExpressZeroMatters_HitsLastResort()
+    {
              NoNullRet(false, Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ]                    ));
              NoNullRet(false, Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ], zeroMatters: false));
              NoNullRet(false, Coalesce(                    [ NullBool, NullBool,   NullBool,   NullBool  ],              false));
@@ -53,7 +61,7 @@ Throws(() => NoNullRet(false, Coalesce(             true,    NullBool, NullyFals
     }
 
     [TestMethod]
-    public void Coalesce_Variadic_Bools_ExtensionsVariadicZeroMatters()
+    public void Coalesce_NArg_Bools_ExtensionsParamsZeroMatters()
     {
              NoNullRet(true,  NullBool.Coalesce(                    NullyFalse, NullyFalse, NullyTrue ));
              NoNullRet(true,  NullBool.Coalesce(zeroMatters: false, NullyFalse, NullyFalse, NullyTrue ));
@@ -70,39 +78,42 @@ Throws(() => NoNullRet(false, False   .Coalesce(             true,  NullyFalse, 
     }
 
     [TestMethod]
-    public void Coalesce_Variadic_Bools_ExtensionsCollExpressZeroMatters()
+    public void Coalesce_NArg_Bools_ExtensionsCollExpressZeroMatters()
     {
-        // Collection                                                                           
-        NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ]                    ));
-        NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ], zeroMatters: false));
-        NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ],              false));
-        NoNullRet(false, NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ], zeroMatters       ));
-        NoNullRet(false, NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ], zeroMatters: true ));
-        NoNullRet(false, NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ],              true ));
-        NoNullRet(true,  False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ]                    ));
-        NoNullRet(true,  False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ], zeroMatters: false));
-        NoNullRet(true,  False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ],              false));
-        NoNullRet(false, False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ], zeroMatters       ));
-        NoNullRet(false, False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ], zeroMatters: true ));
-        NoNullRet(false, False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ],              true ));
-        // Hits Last Resort                                                        
-        NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ]                    ));
-        NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ], zeroMatters: false));
-        NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ],              false));
-        NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ], zeroMatters       ));
-        NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ], zeroMatters: true ));
-        NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ],              true ));
+             NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ]                    ));
+             NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ], zeroMatters: false));
+             NoNullRet(true,  NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ],              false));
+             NoNullRet(false, NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ], zeroMatters       ));
+             NoNullRet(false, NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ], zeroMatters: true ));
+             NoNullRet(false, NullBool.Coalesce( [ NullyFalse, NullyFalse, NullyTrue ],              true ));
+             NoNullRet(true,  False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ]                    ));
+             NoNullRet(true,  False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ], zeroMatters: false));
+             NoNullRet(true,  False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ],              false));
+             NoNullRet(false, False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ], zeroMatters       ));
+             NoNullRet(false, False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ], zeroMatters: true ));
+             NoNullRet(false, False   .Coalesce( [ NullyFalse, NullyTrue,  NullyTrue ],              true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bools_ExtensionsCollExpressZeroMatters_HitsLastResort()
+    {
+             NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ]                    ));
+             NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ], zeroMatters: false));
+             NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ],              false));
+             NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ], zeroMatters       ));
+             NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ], zeroMatters: true ));
+             NoNullRet(false, NullBool.Coalesce( [ NullBool,   NullBool,   NullBool  ],              true ));
     }
 
     [TestMethod]
     public void Coalesce_Variadic_Bools_ExtensionsOnCollectionZeroMatters()
     {
-        // Extension on collection                                            
-        NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(                  ));
-        NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: false));
-        NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(             false));
-        NoNullRet(false, new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(zeroMatters       ));
-        NoNullRet(false, new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: true ));
-        NoNullRet(false, new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(             true ));
+            // Extension on collection                                            
+            NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(                  ));
+            NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: false));
+            NoNullRet(true,  new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(             false));
+            NoNullRet(false, new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(zeroMatters       ));
+            NoNullRet(false, new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: true ));
+            NoNullRet(false, new [] { NullBool, NullyFalse, False, NullyTrue }.Coalesce(             true ));
     }
 }
