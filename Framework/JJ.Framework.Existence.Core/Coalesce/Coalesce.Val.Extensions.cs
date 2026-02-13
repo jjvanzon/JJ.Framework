@@ -222,7 +222,12 @@ public static partial class CoalesceExtensions
           public static T      Coalesce<T>(this T?      first, IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static T      Coalesce<T>(this T       first,                                     params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]));
+
+          // Prio(-1) is used to prefer mapping booleans as values,
+          // not as flags, except when the flag is explicitly named.
+
           /// <inheritdoc cref="_coalesce" />
+          [Prio(-1)]
           public static T      Coalesce<T>(this T       first, bool                  zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
           /// <inheritdoc cref="_coalesce" />
           public static T      Coalesce<T>(this T       first, ZeroMatters           zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
