@@ -86,3 +86,19 @@
         NoNullRet(false, Null    .Coalesce( [ Null,       Null,       Null      ],              true ));
     }
     */
+
+
+    /*
+    [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionsOnCollection_Old()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(                  ));
+        NoNullRet(true,  new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: false));
+        NoNullRet(true,  new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(             false));
+        // ZeroMatters Yes
+        NoNullRet(false, new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(zeroMatters       ));
+        NoNullRet(false, new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: true ));
+        NoNullRet(false, new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(             true ));
+    }
+    */

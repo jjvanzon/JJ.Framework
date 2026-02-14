@@ -3,10 +3,10 @@
 [TestClass]
 public class Coalesce_NArg_Bool_Tests : TestBase
 {
-    // TODO: params is only hit with arity 5 (for flag free variants).
-
     private readonly bool? Null = null;
     private const bool Default = default;
+
+    // Static
 
     // Static Params
 
@@ -215,6 +215,8 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(true,  Coalesce( [ Null,       NullyTrue,  False,      Null       ],              true )); // Starts with true
     }
 
+    // Extensions
+
     // Extensions Params
 
     [TestMethod]
@@ -416,20 +418,57 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(true,  Null      .Coalesce( [ NullyTrue,  False,      Null       ],              true )); // Starts with true
     }
 
-    // TODO: Structure value variations same as above.
-
     // Extensions on Collections
 
     [TestMethod]
-    public void Coalesce_NArg_Bool_ExtensionsOnCollection()
+    public void Coalesce_NArg_Bool_ExtensionOnCollection_AllNull()
     {
         // ZeroMatters No
-        NoNullRet(true,  new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(                  ));
-        NoNullRet(true,  new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: false));
-        NoNullRet(true,  new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(             false));
+        NoNullRet(false, new [] { Null,       Null,       Null,       Null       }.Coalesce(                  ));
+        NoNullRet(false, new [] { Null,       Null,       Null,       Null       }.Coalesce(zeroMatters: false));
+        NoNullRet(false, new [] { Null,       Null,       Null,       Null       }.Coalesce(             false));
+        // ZeroMatters Yes                                                            
+        NoNullRet(false, new [] { Null,       Null,       Null,       Null       }.Coalesce(zeroMatters       ));
+        NoNullRet(false, new [] { Null,       Null,       Null,       Null       }.Coalesce(zeroMatters: true ));
+        NoNullRet(false, new [] { Null,       Null,       Null,       Null       }.Coalesce(             true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionOnCollection_NullAndTrue()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  new [] { NullyTrue,  Default,    NullyTrue,  Null       }.Coalesce(                  ));
+        NoNullRet(true,  new [] { Null,       True,       Null,       True       }.Coalesce(zeroMatters: false));
+        NoNullRet(true,  new [] { NullyTrue,  Default,    True,       Null       }.Coalesce(             false));
         // ZeroMatters Yes
-        NoNullRet(false, new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(zeroMatters       ));
-        NoNullRet(false, new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(zeroMatters: true ));
-        NoNullRet(false, new [] { Null,     NullyFalse, False, NullyTrue }.Coalesce(             true ));
+        NoNullRet(true,  new [] { Null,       True,       Default,    True       }.Coalesce(zeroMatters       ));
+        NoNullRet(true,  new [] { True,       Null,       NullyTrue,  Null       }.Coalesce(zeroMatters: true ));
+        NoNullRet(false, new [] { Default,    NullyTrue,  Null,       True       }.Coalesce(             true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionOnCollection_TrueAndFalse()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  new [] { True,       NullyFalse, True,       NullyFalse }.Coalesce(                  ));
+        NoNullRet(true,  new [] { False,      NullyTrue,  False,      True       }.Coalesce(zeroMatters: false));
+        NoNullRet(true,  new [] { True,       False,      NullyTrue,  NullyFalse }.Coalesce(             false));
+        // ZeroMatters Yes
+        NoNullRet(false, new [] { False,      True,       NullyFalse, True       }.Coalesce(zeroMatters       ));
+        NoNullRet(true,  new [] { True,       False,      True,       NullyFalse }.Coalesce(zeroMatters: true )); // Starts with true
+      //NoNullRet(false, new [] { False,      True,       False,      True       }.Coalesce(             true )); // TODO: no-null collection doesn't map.
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionOnCollection_SparseTrue()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  new [] { Null,       False,      False,      NullyTrue  }.Coalesce(                  ));
+        NoNullRet(true,  new [] { Null,       False,      True,       NullyFalse }.Coalesce(zeroMatters: false));
+        NoNullRet(true,  new [] { Null,       True,       False,      Null       }.Coalesce(             false));
+        // ZeroMatters Yes
+        NoNullRet(false, new [] { Null,       NullyFalse, False,      NullyTrue  }.Coalesce(zeroMatters       ));
+        NoNullRet(false, new [] { Null,       NullyFalse, True,       NullyFalse }.Coalesce(zeroMatters: true ));
+        NoNullRet(true,  new [] { Null,       NullyTrue,  False,      Null       }.Coalesce(             true )); // Starts with true
     }
 }
