@@ -456,7 +456,7 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         // ZeroMatters Yes
         NoNullRet(false, new [] { False,      True,       NullyFalse, True       }.Coalesce(zeroMatters       ));
         NoNullRet(true,  new [] { True,       False,      True,       NullyFalse }.Coalesce(zeroMatters: true )); // Starts with true
-      //NoNullRet(false, new [] { False,      True,       False,      True       }.Coalesce(             true )); // TODO: no-null collection doesn't map.
+        NoNullRet(false, new [] { False,      True,       False,      True       }.Coalesce(             true ));
     }
 
     [TestMethod]
