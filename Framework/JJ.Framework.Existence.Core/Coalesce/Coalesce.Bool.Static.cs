@@ -186,13 +186,23 @@ public static partial class FilledInHelper
            // N Args
        
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (                                    params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools   (fallbacks);
+           public static bool   Coalesce   (                                    params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyBools     (fallbacks             );
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools   (fallbacks, zeroMatters);
+           public static bool   Coalesce   (                                    params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(fallbacks             );
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (ZeroMatters           zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools   (fallbacks, zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (bool                  zeroMatters,  params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyBools     (fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (IEnumerable<bool?>?   fallbacks,    bool                         zeroMatters ) => CoalesceManyNullyBools   (fallbacks, zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (IEnumerable<bool?>?   fallbacks,    ZeroMatters                  zeroMatters ) => CoalesceManyNullyBools   (fallbacks, zeroMatters);
+           public static bool   Coalesce   (ZeroMatters           zeroMatters,  params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyBools     (fallbacks, zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (ZeroMatters           zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(fallbacks, zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (IEnumerable<bool> ?   fallbacks,    bool                         zeroMatters ) => CoalesceManyBools     (fallbacks, zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (IEnumerable<bool?>?   fallbacks,    bool                         zeroMatters ) => CoalesceManyNullyBools(fallbacks, zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (IEnumerable<bool>?    fallbacks,    ZeroMatters                  zeroMatters ) => CoalesceManyBools     (fallbacks, zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (IEnumerable<bool?>?   fallbacks,    ZeroMatters                  zeroMatters ) => CoalesceManyNullyBools(fallbacks, zeroMatters);
 }

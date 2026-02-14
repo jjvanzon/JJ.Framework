@@ -1,4 +1,5 @@
 ﻿// ReSharper disable RedundantCast
+#pragma warning disable IDE0034
 namespace JJ.Framework.Existence.Core;
 using SB = StringBuilder;
 
@@ -176,6 +177,49 @@ internal static class CoalesceUtil
               }
               return last ?? new();
           }
+              
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>     (IEnumerable<T      >? fallbacks                           )
+              where T : struct 
+          {
+              if (fallbacks == null) return default(T);
+              T last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val)) return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>     (IEnumerable<T      >? fallbacks, bool         zeroMatters )
+              where T : struct 
+          {
+              if (fallbacks == null) return default(T);
+              T last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val, zeroMatters)) return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>     (IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
+              where T : struct 
+          {
+              if (fallbacks == null) return default(T);
+              T last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val, zeroMatters)) return (T)val;
+                  last = val;
+              }
+
+              return last;
+          }
           
           /// <inheritdoc cref="_coalesce" />
           public static T      CoalesceManyNullyVals<T>(IEnumerable<T?     >? fallbacks                           )
@@ -218,6 +262,48 @@ internal static class CoalesceUtil
               }
 
               return last ?? default(T);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static bool   CoalesceManyBools       (IEnumerable<bool   >? fallbacks, bool         zeroMatters )
+          {
+              if (fallbacks == null) return default;
+              bool last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasBool(val, zeroMatters)) return (bool)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static bool   CoalesceManyBools       (IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
+          {
+              if (fallbacks == null) return default;
+              bool last = default;
+              foreach (var val in fallbacks)
+              {
+                  if (HasBool(val, zeroMatters)) return (bool)val;
+                  last = val;
+              }
+
+              // boolODO: boolest
+              return last;
+          }
+
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyObjects<T>  (IEnumerable<T?     >? fallbacks                           )
+              where T: new()
+          {
+              if (fallbacks == null) return new T();
+              T? last = default;
+              foreach (var obj in fallbacks)
+              {
+                  if (HasObject(obj)) return obj;
+                  last = obj;
+              }
+              return last ?? new T();
           }
           
           /// <inheritdoc cref="_coalesce" />
@@ -271,47 +357,5 @@ internal static class CoalesceUtil
                   last = val;
               }
               return last;
-          }
-          
-          /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools       (IEnumerable<bool   >? fallbacks, bool         zeroMatters )
-          {
-              if (fallbacks == null) return default;
-              bool last = default;
-              foreach (var val in fallbacks)
-              {
-                  if (HasBool(val, zeroMatters)) return (bool)val;
-                  last = val;
-              }
-              return last;
-          }
-          
-          /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools       (IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
-          {
-              if (fallbacks == null) return default;
-              bool last = default;
-              foreach (var val in fallbacks)
-              {
-                  if (HasBool(val, zeroMatters)) return (bool)val;
-                  last = val;
-              }
-
-              // boolODO: boolest
-              return last;
-          }
-
-          /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyObjects<T>  (IEnumerable<T?     >? fallbacks                           )
-              where T: new()
-          {
-              if (fallbacks == null) return new T();
-              T? last = default;
-              foreach (var obj in fallbacks)
-              {
-                  if (HasObject(obj)) return obj;
-                  last = obj;
-              }
-              return last ?? new T();
           }
 }

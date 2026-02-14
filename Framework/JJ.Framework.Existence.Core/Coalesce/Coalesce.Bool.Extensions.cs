@@ -185,37 +185,58 @@ public static partial class CoalesceExtensions
            // N Args
 
            /// <inheritdoc cref="_coalesce" />
-[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool?>?   fallbacks                           ) => CoalesceManyNullyBools(fallbacks);
+[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool> ?   fallbacks                           ) => CoalesceManyBools     (fallbacks             );
+           /// <inheritdoc cref="_coalesce" />
+[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool?>?   fallbacks                           ) => CoalesceManyNullyBools(fallbacks             );
+           /// <inheritdoc cref="_coalesce" />
+[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool> ?   fallbacks, bool         zeroMatters ) => CoalesceManyBools     (fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
 [Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool?>?   fallbacks, bool         zeroMatters ) => CoalesceManyNullyBools(fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
+[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool> ?   fallbacks, ZeroMatters  zeroMatters ) => CoalesceManyBools     (fallbacks, zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
 [Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool?>?   fallbacks, ZeroMatters  zeroMatters ) => CoalesceManyNullyBools(fallbacks, zeroMatters);
 
-           /// <inheritdoc cref="_coalesce" />
-[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool>?    fallbacks                           ) => CoalesceManyBools(fallbacks);
-           /// <inheritdoc cref="_coalesce" />
-[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool>?    fallbacks, bool         zeroMatters ) => CoalesceManyBools(fallbacks, zeroMatters);
-           /// <inheritdoc cref="_coalesce" />
-[Prio(1)]  public static bool   Coalesce   (this IEnumerable<bool>?    fallbacks, ZeroMatters  zeroMatters ) => CoalesceManyBools(fallbacks, zeroMatters);
+           // TODO: Could be faster with an additional helper
            
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool?   first,                                     params IEnumerable<bool?>?   fallbacks   )                  => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]));
+           public static bool   Coalesce   (this bool    first,                                     params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyBools     (new [] {       first }.Concat(fallbacks ?? [ ]));
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool?   first, bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   )                  => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static bool   Coalesce   (this bool?   first,                                     params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks?.Cast<bool?>() ?? [ ]));
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool?   first, ZeroMatters           zeroMatters,  params IEnumerable<bool?>?   fallbacks   )                  => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static bool   Coalesce   (this bool    first,                                     params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]));
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool?   first, IEnumerable<bool?>?   fallbacks,    bool                         zeroMatters )                  => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static bool   Coalesce   (this bool?   first,                                     params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]));
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool?   first, IEnumerable<bool?>?   fallbacks,    ZeroMatters                  zeroMatters )                  => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    first, bool                  zeroMatters,  params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyBools     (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool    first,                                     params IEnumerable<bool?>?   fallbacks   )                  => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]));
+[Prio(-1)] public static bool   Coalesce   (this bool?   first, bool                  zeroMatters,  params IEnumerable<bool>?    fallbacks   ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks?.Cast<bool?>() ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool    first, bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   )                  => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    first, bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool    first, ZeroMatters           zeroMatters,  params IEnumerable<bool?>?   fallbacks   )                  => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool?   first, bool                  zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool    first, IEnumerable<bool?>?   fallbacks,    bool                         zeroMatters )                  => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static bool   Coalesce   (this bool    first, ZeroMatters           zeroMatters,  params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyBools     (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static bool   Coalesce   (this bool    first, IEnumerable<bool?>?   fallbacks,    ZeroMatters                  zeroMatters )                  => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static bool   Coalesce   (this bool?   first, ZeroMatters           zeroMatters,  params IEnumerable<bool> ?   fallbacks   ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks?.Cast<bool?>() ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool    first, ZeroMatters           zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool?   first, ZeroMatters           zeroMatters,  params IEnumerable<bool?>?   fallbacks   ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool    first, IEnumerable<bool>?    fallbacks,    bool                         zeroMatters ) => CoalesceManyBools     (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool?   first, IEnumerable<bool>?    fallbacks,    bool                         zeroMatters ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks?.Cast<bool?>() ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool    first, IEnumerable<bool?>?   fallbacks,    bool                         zeroMatters ) => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool?   first, IEnumerable<bool?>?   fallbacks,    bool                         zeroMatters ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool    first, IEnumerable<bool> ?   fallbacks,    ZeroMatters                  zeroMatters ) => CoalesceManyBools     (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool?   first, IEnumerable<bool> ?   fallbacks,    ZeroMatters                  zeroMatters ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks?.Cast<bool?>() ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool    first, IEnumerable<bool?>?   fallbacks,    ZeroMatters                  zeroMatters ) => CoalesceManyNullyBools(new [] {(bool?)first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           /// <inheritdoc cref="_coalesce" />
+           public static bool   Coalesce   (this bool?   first, IEnumerable<bool?>?   fallbacks,    ZeroMatters                  zeroMatters ) => CoalesceManyNullyBools(new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
 }
