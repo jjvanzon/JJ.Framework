@@ -5,8 +5,6 @@ public class Coalesce_NArg_Bool_Tests : TestBase
 {
     // Bools
 
-    // TODO: Not enough nully/non-nully variants. Needed to confuse the flag and nullable vals exchanging.
-
     private readonly bool? Null = null;
     private const bool Default = default;
 
@@ -68,7 +66,23 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(true,  Coalesce(             true,    False,      True,       False,      True      )); // Not a flag
     }
 
-    // TODO: Structure value variations
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticParams_SparseTrue()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  Coalesce(                      Null,       False,      False,      NullyTrue ));
+        NoNullRet(true,  Coalesce(zeroMatters: false,   Null,       False,      True,       NullyFalse));
+        NoNullRet(true,  Coalesce(             false,   Null,       True,       False,      Null      ));
+        // ZeroMatters Yes
+        NoNullRet(false, Coalesce(zeroMatters,          Null,       NullyFalse, False,      NullyTrue));
+        NoNullRet(false, Coalesce(zeroMatters: true,    Null,       NullyFalse, True,       NullyFalse));
+        NoNullRet(true,  Coalesce(             true,    Null,       NullyTrue,  False,      Null      )); // Not a flag
+    }
+
+    // TODO: Complete the coverage of Static 4-arg. Perhaps with a full cartesian set (without flags).
+    // TODO: static params is only hit with arity 5 for flag-free syntax
+    // NOTE: Nullability variance matters less for params/collection based. It does for the this arguments though. And possibly confusing that with flags.
+    // TODO: Structure value variations same as above.
 
     [TestMethod]
     public void Coalesce_NArg_Bool_StaticCollExpress_FlagsInFront()
@@ -121,6 +135,8 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(false, Coalesce([ Null,     Null,       Null,       Null      ], zeroMatters: true ));
         NoNullRet(false, Coalesce([ Null,     Null,       Null,       Null      ],              true ));
     }
+
+    // TODO: Extension params is only hit with arity 5 (for flag free variants).
 
     [TestMethod]
     public void Coalesce_NArg_Bool_ExtensionsParams()
