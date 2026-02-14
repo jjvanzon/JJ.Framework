@@ -147,30 +147,30 @@ public static partial class CoalesceExtensions
            // N Args
          
            /// <inheritdoc cref="_coalesce" />
-[Prio(1)]  public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks                           ) where T : struct => CoalesceManyVals   (fallbacks);
+[Prio(1)]  public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks                           ) where T : struct => CoalesceManyNullyVals   (fallbacks);
            /// <inheritdoc cref="_coalesce" />
-[Prio(1)]  public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks, bool         zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+[Prio(1)]  public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks, bool         zeroMatters ) where T : struct => CoalesceManyNullyVals   (fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(1)]  public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks, ZeroMatters  zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+[Prio(1)]  public static T      Coalesce<T>(this IEnumerable<T?>?      fallbacks, ZeroMatters  zeroMatters ) where T : struct => CoalesceManyNullyVals   (fallbacks, zeroMatters);
 
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T?      first,                                     params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {       first }.Concat(fallbacks ?? [ ]));
+           public static T      Coalesce<T>(this T?      first,                                     params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (new [] {       first }.Concat(fallbacks ?? [ ]));
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static T      Coalesce<T>(this T?      first, bool                  zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+[Prio(-1)] public static T      Coalesce<T>(this T?      first, bool                  zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T?      first, ZeroMatters           zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static T      Coalesce<T>(this T?      first, ZeroMatters           zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T?      first, IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static T      Coalesce<T>(this T?      first, IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyNullyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T?      first, IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static T      Coalesce<T>(this T?      first, IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyNullyVals   (new [] {       first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T       first,                                     params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]));
+           public static T      Coalesce<T>(this T       first,                                     params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]));
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static T      Coalesce<T>(this T       first, bool                  zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
+[Prio(-1)] public static T      Coalesce<T>(this T       first, bool                  zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T       first, ZeroMatters           zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static T      Coalesce<T>(this T       first, ZeroMatters           zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T       first, IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static T      Coalesce<T>(this T       first, IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyNullyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(this T       first, IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
+           public static T      Coalesce<T>(this T       first, IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyNullyVals   (new [] {(T?)   first }.Concat(fallbacks ?? [ ]), zeroMatters);
 }

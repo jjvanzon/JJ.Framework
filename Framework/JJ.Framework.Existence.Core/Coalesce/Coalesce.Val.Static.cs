@@ -148,13 +148,13 @@ public static partial class FilledInHelper
            // N Args
 
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(                                    params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (fallbacks);
+           public static T      Coalesce<T>(                                    params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (fallbacks);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static T      Coalesce<T>(bool                  zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+[Prio(-1)] public static T      Coalesce<T>(bool                  zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(ZeroMatters           zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+           public static T      Coalesce<T>(ZeroMatters           zeroMatters,  params IEnumerable<T?>?      fallbacks   ) where T : struct => CoalesceManyNullyVals   (fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+           public static T      Coalesce<T>(IEnumerable<T?>?      fallbacks,    bool                         zeroMatters ) where T : struct => CoalesceManyNullyVals   (fallbacks, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-           public static T      Coalesce<T>(IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyVals   (fallbacks, zeroMatters);
+           public static T      Coalesce<T>(IEnumerable<T?>?      fallbacks,    ZeroMatters                  zeroMatters ) where T : struct => CoalesceManyNullyVals   (fallbacks, zeroMatters);
 }
