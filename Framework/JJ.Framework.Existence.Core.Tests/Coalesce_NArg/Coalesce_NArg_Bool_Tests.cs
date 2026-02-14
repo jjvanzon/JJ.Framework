@@ -3,10 +3,13 @@
 [TestClass]
 public class Coalesce_NArg_Bool_Tests : TestBase
 {
-    // Bools
+    // TODO: static params is only hit with arity 5 for flag-free syntax
+    // NOTE: Nullability variance matters less for params/collection based. It does for the this arguments though. And possibly confusing that with flags.
 
     private readonly bool? Null = null;
     private const bool Default = default;
+
+    // Static Params
 
     [TestMethod]
     public void Coalesce_NArg_Bool_StaticParams_AllNull()
@@ -74,18 +77,16 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(true,  Coalesce(zeroMatters: false,   Null,       False,      True,       NullyFalse));
         NoNullRet(true,  Coalesce(             false,   Null,       True,       False,      Null      ));
         // ZeroMatters Yes
-        NoNullRet(false, Coalesce(zeroMatters,          Null,       NullyFalse, False,      NullyTrue));
+        NoNullRet(false, Coalesce(zeroMatters,          Null,       NullyFalse, False,      NullyTrue ));
         NoNullRet(false, Coalesce(zeroMatters: true,    Null,       NullyFalse, True,       NullyFalse));
         NoNullRet(true,  Coalesce(             true,    Null,       NullyTrue,  False,      Null      )); // Not a flag
     }
 
-    // TODO: Complete the coverage of Static 4-arg. Perhaps with a full cartesian set (without flags).
-    // TODO: static params is only hit with arity 5 for flag-free syntax
-    // NOTE: Nullability variance matters less for params/collection based. It does for the this arguments though. And possibly confusing that with flags.
-    // TODO: Structure value variations same as above.
+    // Coll Express / Flags in Front
 
+    /*
     [TestMethod]
-    public void Coalesce_NArg_Bool_StaticCollExpress_FlagsInFront()
+    public void Coalesce_NArg_Bool_StaticCollExpress_FlagsInFront_Old()
     {
         // ZeroMatters No
         NoNullRet(true,  Coalesce(                    [ Null,     NullyFalse, NullyFalse, NullyTrue ] ));
@@ -96,6 +97,74 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(false, Coalesce(zeroMatters: true,  [ Null,     NullyFalse, NullyFalse, NullyTrue ] ));
         NoNullRet(false, Coalesce(             true,  [ Null,     NullyFalse, NullyFalse, NullyTrue ] ));
     }
+    */
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticCollExpressFlagsInFront_AllNull()
+    {
+        // ZeroMatters No
+        NoNullRet(false, Coalesce(                    [ Null,       Null,       Null,       Null       ] ));
+        NoNullRet(false, Coalesce(zeroMatters: false, [ Null,       Null,       Null,       Null       ] ));
+        NoNullRet(false, Coalesce(             false, [ Null,       Null,       Null,       Null       ] ));
+        // ZeroMatters Yes
+        NoNullRet(false, Coalesce(zeroMatters,        [ Null,       Null,       Null,       Null       ] ));
+        NoNullRet(false, Coalesce(zeroMatters: true,  [ Null,       Null,       Null,       Null       ] ));
+        NoNullRet(false, Coalesce(             true,  [ Null,       Null,       Null,       Null       ] ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticCollExpressFlagsInFront_NullAndFalse()
+    {
+        // ZeroMatters No
+        NoNullRet(false, Coalesce(                    [ Null,       NullyFalse, Null,       NullyFalse ] ));
+        NoNullRet(false, Coalesce(zeroMatters: false, [ NullyFalse, Null,       NullyFalse, Default    ] ));
+        NoNullRet(false, Coalesce(             false, [ Null,       NullyFalse, Default,    NullyFalse ] ));
+        // ZeroMatters Yes
+        NoNullRet(false, Coalesce(zeroMatters,        [ NullyFalse, Null,       False,      Default    ] ));
+        NoNullRet(false, Coalesce(zeroMatters: true,  [ Null,       False,      Null,       NullyFalse ] ));
+        NoNullRet(false, Coalesce(             true,  [ NullyFalse, Null,       False,      Default    ] ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticCollExpressFlagsInFront_NullAndTrue()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  Coalesce(                    [ NullyTrue,  Default,    NullyTrue,  Null       ] ));
+        NoNullRet(true,  Coalesce(zeroMatters: false, [ Null,       True,       Null,       True       ] ));
+        NoNullRet(true,  Coalesce(             false, [ NullyTrue,  Default,    True,       Null       ] ));
+        // ZeroMatters Yes
+        NoNullRet(true,  Coalesce(zeroMatters,        [ Null,       True,       Default,    True       ] ));
+        NoNullRet(true,  Coalesce(zeroMatters: true,  [ True,       Null,       NullyTrue,  Null       ] ));
+        NoNullRet(false, Coalesce(             true,  [ Default,    NullyTrue,  Null,       True       ] ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticCollExpressFlagsInFront_TrueAndFalse()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  Coalesce(                    [ True,       NullyFalse, True,       NullyFalse ] ));
+        NoNullRet(true,  Coalesce(zeroMatters: false, [ False,      NullyTrue,  False,      True       ] ));
+        NoNullRet(true,  Coalesce(             false, [ True,       False,      NullyTrue,  NullyFalse ] ));
+        // ZeroMatters Yes
+        NoNullRet(false, Coalesce(zeroMatters,        [ False,      True,       NullyFalse, True       ] ));
+        NoNullRet(true,  Coalesce(zeroMatters: true,  [ True,       False,      True,       NullyFalse ] )); // Starts with true
+        NoNullRet(false, Coalesce(             true,  [ False,      True,       False,      True       ] ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticCollExpressFlagsInFront_SparseTrue()
+    {
+        // ZeroMatters No
+        NoNullRet(true,  Coalesce(                    [ Null,       False,      False,      NullyTrue  ] ));
+        NoNullRet(true,  Coalesce(zeroMatters: false, [ Null,       False,      True,       NullyFalse ] ));
+        NoNullRet(true,  Coalesce(             false, [ Null,       True,       False,      Null       ] ));
+        // ZeroMatters Yes
+        NoNullRet(false, Coalesce(zeroMatters,        [ Null,       NullyFalse, False,      NullyTrue  ] ));
+        NoNullRet(false, Coalesce(zeroMatters: true,  [ Null,       NullyFalse, True,       NullyFalse ] ));
+        NoNullRet(true,  Coalesce(             true,  [ Null,       NullyTrue,  False,      Null       ] )); // Starts with true
+    }
+
+    // TODO: Structure value variations same as above.
 
     [TestMethod]
     public void Coalesce_NArg_Bool_StaticCollExpress_FlagsInBack()
