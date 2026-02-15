@@ -3,8 +3,6 @@
 [TestClass]
 public class Coalesce_NArg_SB_Tests : TestBase
 {
-    // StringBuilder
-
     [TestMethod]
     public void Coalesce_StringBuilders_StaticParams()
     {
@@ -19,7 +17,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_StaticCollExpress()
+    public void Coalesce_StringBuilders_StaticCollExpress_FlagsInFront()
     {
         NoNullRet(NullyFilledSB, Coalesce(                     [ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]));
         NoNullRet(NullyFilledSB, Coalesce(                     [ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]));
@@ -45,7 +43,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_ExtensionsCollExpress()
+    public void Coalesce_StringBuilders_ExtensionsCollExpress_FlagsInFront()
     {
         NoNullRet(NullyFilledSB, NullSB       .Coalesce(                      [ NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]));
         NoNullRet(NullyFilledSB, NullyFilledSB.Coalesce(                      [ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]));
@@ -58,7 +56,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_StaticCollExpressFlagsInBack()
+    public void Coalesce_StringBuilders_StaticCollExpress_FlagsInBack()
     {
         NoNullRet(NullyFilledSB, Coalesce([ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]                     ));
         NoNullRet(NullyFilledSB, Coalesce([ NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]                     ));
@@ -71,7 +69,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_ExtensionOnCollectionFlagsInBack()
+    public void Coalesce_StringBuilders_ExtensionOnColl_FlagsInBack()
     {
         NoNullRet(NullyFilledSB, new []   { NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB }.Coalesce(                   ));
         NoNullRet(NullyFilledSB, new []   { NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  }.Coalesce(                   ));
@@ -84,7 +82,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_ExtensionCollExpressFlagsInBack()
+    public void Coalesce_StringBuilders_ExtensionCollExpress_FlagsInBack()
     {
         NoNullRet(NullyFilledSB, NullSB       .Coalesce( [ NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB ]                     ));
         NoNullRet(NullyFilledSB, NullyFilledSB.Coalesce( [ NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB  ]                     ));
@@ -97,9 +95,8 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_Params_ReturnsNew()
+    public void Coalesce_StringBuilders_StaticParams_ReturnsNew()
     {
-        // Returns new()
         NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
         NoNullRet(Coalesce(                     NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
         NoNullRet(Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB,   NewSB,        NullSB));

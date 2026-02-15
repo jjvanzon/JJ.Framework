@@ -9,13 +9,13 @@ public class Coalesce_NArg_Objects_Tests : TestBase
         // Static params
         NoNullRet(NoNullObj,      Coalesce(NullObj, NoNullObj, NullyFilledObj));
         NoNullRet(NullyFilledObj, Coalesce(NullObj, NullyFilledObj, NoNullObj));
-        // Static collection
+        // Static coll express
         NoNullRet(NoNullObj,      Coalesce([NullObj, NoNullObj, NullyFilledObj]));
-        // Extension on collection
+        // Extension on coll
         NoNullRet(NullyFilledObj, new[] { NullObj, NullyFilledObj, NoNullObj }.Coalesce());
-        // Extension first + params
+        // Extension params
         NoNullRet(NullyFilledObj, NullyFilledObj.Coalesce(NullObj, NullObj, NullObj));
-        // Extension first + coll
-        NoNullRet(NullyFilledObj, NullyFilledObj.Coalesce(new[] { NullObj, NullObj, NullObj }));
+        // Extension coll express
+        NoNullRet(NullyFilledObj, NullyFilledObj.Coalesce([ NullObj, NullObj, NullObj ]));
     }
 }
