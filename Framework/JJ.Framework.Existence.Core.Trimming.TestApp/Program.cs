@@ -94,6 +94,8 @@ RunTests<Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInFront>() &&
 RunTests<Coalesce_3Args_ValuesToText_Static>() &&
 RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack>() &&
 RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInFront>() &&
+RunTests<Coalesce_4Args_Bool_Extensions>() &&
+RunTests<Coalesce_4Args_Bool_Static>() &&
 RunTests<Coalesce_Collections_Misc_Tests>() &&
 RunTests<Coalesce_Collections_Extensions_Tests>() &&
 RunTests<Coalesce_Collections_Static_Tests>() &&
@@ -102,7 +104,7 @@ RunTests<Coalesce_NArg_Bool_Tests>() &&
 RunTests<Coalesce_NArg_Objects_Tests>() &&
 RunTests<Coalesce_NArg_SB_Tests>() &&
 RunTests<Coalesce_NArg_Text_Tests>() &&
-RunTests<Coalesce_NArg_Values_Tests>() &&
+RunTests<Coalesce_NArg_Values_Tests_Old>() &&
 RunTests<Contains_Nullable_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<BasicType_Other_Tests>() &&
