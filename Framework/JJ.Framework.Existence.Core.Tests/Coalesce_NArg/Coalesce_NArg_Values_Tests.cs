@@ -1,10 +1,11 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿// ReSharper disable ConvertToConstant.Local
+namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class Coalesce_NArg_Values_Tests : TestBase
 {
     private readonly int? Null = null;
-    private const int Default = default;
+    private readonly int Default = 0; // Can't be constant. Constant 0 clashes with enums.
 
     // Static
 
@@ -16,7 +17,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
         // ZeroMatters No
         NoNullRet(0,     Coalesce(                      NoNull0,    NoNull0,    NoNull0,    NoNull0      ));
         NoNullRet(1,     Coalesce(zeroMatters: false,   NoNull1,    NoNull0,    NoNull1,    NoNull0      ));
-      //NoNullRet(1,     Coalesce(             false,   NoNull0,    NoNull0,    NoNull0,    NoNull1      )); // TODO: Does not work
+        NoNullRet(1,     Coalesce(             false,   NoNull0,    NoNull0,    NoNull0,    NoNull1      ));
         // ZeroMatters Yes                                                                               
         NoNullRet(0,     Coalesce(zeroMatters,          NoNull0,    NoNull0,    NoNull0,    NoNull0      ));
         NoNullRet(1,     Coalesce(zeroMatters: true,    NoNull1,    NoNull0,    NoNull1,    NoNull0      )); // Starts with 1
@@ -42,7 +43,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
         // ZeroMatters No
         NoNullRet(0,     Coalesce(                      Nully0,     NoNull0,    NoNull0,    NoNull0      ));
         NoNullRet(1,     Coalesce(zeroMatters: false,   Nully1,     NoNull0,    NoNull1,    NoNull0      ));
-      //NoNullRet(1,     Coalesce(             false,   Nully0,     NoNull0,    NoNull0,    NoNull1      )); // TODO: Does not work
+        NoNullRet(1,     Coalesce(             false,   Nully0,     NoNull0,    NoNull0,    NoNull1      ));
         // ZeroMatters Yes                                                                               
         NoNullRet(0,     Coalesce(zeroMatters,          Nully0,     NoNull0,    NoNull0,    NoNull0      ));
         NoNullRet(1,     Coalesce(zeroMatters: true,    Nully1,     NoNull0,    NoNull1,    NoNull0      )); // Starts with 1
@@ -353,7 +354,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     public void Coalesce_NArg_Vals_ExtensionsParams_NullAndTrue()
     {
         // ZeroMatters No
-      //NoNullRet(1,     Nully1    .Coalesce(                      Default,    Nully1,     Null         )); // TODO: Does not work
+        NoNullRet(1,     Nully1    .Coalesce(                      Default,    Nully1,     Null         ));
         NoNullRet(1,     Null      .Coalesce(zeroMatters: false,   NoNull1,    Null,       NoNull1      ));
         NoNullRet(1,     Nully1    .Coalesce(             false,   Default,    NoNull1,    Null         ));
         // ZeroMatters Yes                                                                   
@@ -379,7 +380,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     public void Coalesce_NArg_Vals_ExtensionsParams_SparseTrue()
     {
         // ZeroMatters No
-      //NoNullRet(1,     Null      .Coalesce(                      NoNull0,    NoNull0,    Nully1       )); // TODO: Does not work
+        NoNullRet(1,     Null      .Coalesce(                      NoNull0,    NoNull0,    Nully1       ));
         NoNullRet(1,     Null      .Coalesce(zeroMatters: false,   NoNull0,    NoNull1,    Nully0       ));
         NoNullRet(1,     Null      .Coalesce(             false,   NoNull1,    NoNull0,    Null         ));
         // ZeroMatters Yes                                                                   

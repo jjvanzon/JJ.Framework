@@ -56,7 +56,7 @@ public class Mocks
     public static readonly int? Nully2  = 2;
     public static readonly int? Nully3  = 3;
     public static readonly int? Nully4  = 4;
-    public const           int  NoNull0 = 0;
+    public static readonly int  NoNull0 = 0; // Needs to be readonly not const, to prevent implicit conversion to enum.
     public const           int  NoNull1 = 1;
     public const           int  NoNull2 = 2;
     public const           int  NoNull3 = 3;
