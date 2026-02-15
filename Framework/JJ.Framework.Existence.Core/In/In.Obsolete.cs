@@ -20,7 +20,7 @@ public static partial class FilledInHelper
     [Prio(-1), Obsolete(IgnoreCaseWarning, true)]
     public static bool In(
         string? value, IEnumerable<string?>? coll, bool ignoreCase, 
-        [UsedImplicitly(Reason = OverloadByName)] int dummy1 = 1, [UsedImplicitly(Reason = OverloadByName)] int dummy2 = 2)
+        NameOvl ovl1 = default, NameOvl ovl2 = default)
     {
         throw new NotSupportedException(IgnoreCaseWarning);
     }
@@ -28,7 +28,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_contains" />
     [Prio(-1), Obsolete(IgnoreCaseWarning, true)]
     public static bool Contains(IEnumerable<string?>? source, string? match, bool ignoreCase = false,
-        [UsedImplicitly(Reason = OverloadByName)] int dummy = 0)
+        NameOvl ovl = default)
     {
         throw new NotSupportedException(IgnoreCaseWarning);
     }
@@ -53,7 +53,7 @@ public static partial class FilledInExtensions
     [Prio(-1)]
     public static bool In(
         this string? value, IEnumerable<string?>? coll, bool ignoreCase, 
-        [UsedImplicitly(Reason = OverloadByName)] int dummy1 = 1, [UsedImplicitly(Reason = OverloadByName)] int dummy2 = 2)
+        NameOvl ovl1 = default, NameOvl ovl2 = default)
     {
         throw new NotSupportedException(IgnoreCaseWarning);
     }
@@ -64,7 +64,7 @@ public static partial class FilledInExtensions
     // Retaining obsolete method as internal, which now clashes with public method.
     internal static bool Contains(
         this IEnumerable<string?>? source, string? match, bool ignoreCase = false,
-        [UsedImplicitly(Reason = OverloadByName)] int dummy = 0)
+        NameOvl ovl = default)
     {
         throw new NotSupportedException(IgnoreCaseWarning);
     }

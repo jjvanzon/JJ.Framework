@@ -27,13 +27,13 @@ public static partial class CoalesceExtensions
            /// <inheritdoc cref="_coalesce" />                                                                               
            public static bool   Coalesce   (this bool    val,  bool    fallback                           )                  => CoalesceTwoVals       (val,  fallback);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceTwoNullyVals  (val,  fallback, zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceTwoNullyVals  (val,  fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />                                                                                                                
-[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool    fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceNullyAndVal   (val,  fallback, zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool    fallback, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceNullyAndVal   (val,  fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />                                                                                                                
-[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool?   fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceValAndNully   (val,  fallback, zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool?   fallback, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceValAndNully   (val,  fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />                                                                                                                
-[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool    fallback, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceTwoVals       (val,  fallback, zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool    fallback, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceTwoVals       (val,  fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />                                                                               
            public static bool   Coalesce   (this bool?   val,  bool?   fallback, ZeroMatters  zeroMatters )                  => CoalesceTwoNullyVals  (val,  fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />                                                                               
@@ -79,21 +79,21 @@ public static partial class CoalesceExtensions
            /// <inheritdoc cref="_coalesce" />
            public static bool   Coalesce   (this bool    val,  bool    fallback, bool    fallback2                           )                  => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2));
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool?   fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool?   fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool    fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceNullyAndVal   (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool    fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceNullyAndVal   (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool    fallback, bool?   fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceNullyAndVal   (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool    fallback, bool?   fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceNullyAndVal   (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool    fallback, bool    fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceNullyAndVal   (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool?   val,  bool    fallback, bool    fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceNullyAndVal   (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool?   fallback, bool?   fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceTwoVals       (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool?   fallback, bool?   fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceTwoVals       (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool?   fallback, bool    fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceTwoVals       (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool?   fallback, bool    fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceTwoVals       (val,  CoalesceNullyAndVal   (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool    fallback, bool?   fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool    fallback, bool?   fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
-[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool    fallback, bool    fallback2, bool         zeroMatters,[Implic(Reason=NameOvl)]int dum=0)                  => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+[Prio(-1)] public static bool   Coalesce   (this bool    val,  bool    fallback, bool    fallback2, bool         zeroMatters, NameOvl ovl = default)                  => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
            public static bool   Coalesce   (this bool?   val,  bool?   fallback, bool?   fallback2, ZeroMatters  zeroMatters )                  => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />

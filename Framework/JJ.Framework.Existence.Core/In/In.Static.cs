@@ -28,7 +28,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, SpaceMatters spaceMatters,                             params IEnumerable<string?>? coll) => InUtil.In(value, coll, spaceMatters);
     /// <inheritdoc cref="_in" />
-    public static bool In(     string? value, bool         spaceMatters,                                    IEnumerable<string?>? coll, [Implic(Reason=NameOvl)]int dum=0) => InUtil.In(value, coll, spaceMatters, dum);
+    public static bool In(     string? value, bool         spaceMatters,                                    IEnumerable<string?>? coll, NameOvl ovl = default) => InUtil.In(value, coll, spaceMatters, ovl);
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, SpaceMatters spaceMatters,  CaseMatters  caseMatters,  params IEnumerable<string?>? coll) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
@@ -36,7 +36,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, bool         spaceMatters,  CaseMatters  caseMatters,  params IEnumerable<string?>? coll) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
-    public static bool In(     string? value, bool         spaceMatters,  bool         caseMatters, IEnumerable<string?>? coll, [Implic(Reason=NameOvl)]int dum=0       ) => InUtil.In(value, coll, caseMatters, spaceMatters);
+    public static bool In(     string? value, bool         spaceMatters,  bool         caseMatters,         IEnumerable<string?>? coll, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
 
     // Flags in Back
     
@@ -58,7 +58,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters                           ) => InUtil.In(value, coll, spaceMatters);
     /// <inheritdoc cref="_in" />
-    public static bool In(     string? value, IEnumerable<string?>? coll, bool         spaceMatters, [Implic(Reason=NameOvl)] int dum = 0) => InUtil.In(value, coll, spaceMatters, dum);
+    public static bool In(     string? value, IEnumerable<string?>? coll, bool         spaceMatters,                          NameOvl ovl = default) => InUtil.In(value, coll, spaceMatters, ovl);
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, CaseMatters  caseMatters ) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
@@ -66,7 +66,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool         caseMatters ) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
-    public static bool In(     string? value, IEnumerable<string?>? coll, bool         spaceMatters, bool         caseMatters, [Implic(Reason=NameOvl)]int dum=0) => InUtil.In(value, coll, caseMatters, spaceMatters);
+    public static bool In(     string? value, IEnumerable<string?>? coll, bool         spaceMatters, bool         caseMatters, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
 
     // Values and Objects
 

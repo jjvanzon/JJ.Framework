@@ -38,7 +38,7 @@ internal static class InUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, [Implic(Reason = NameOvl)] int dum = 0)
+    public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, NameOvl ovl = default)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
