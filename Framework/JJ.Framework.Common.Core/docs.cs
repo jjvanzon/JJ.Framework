@@ -2,6 +2,7 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
+#pragma warning disable IDE1006 // Naming rule violation
 
 // These are structs, so their syntax colorings are unobtrusive.
 
@@ -34,10 +35,43 @@ public struct _flagging;
 /// </summary> 
 public struct _name;
 
-/// <summary> 
+/// <summary>
 /// Helper for conversion from code elements to text (a supplement to the <see langword="nameof" /> keyword).
 /// </summary> 
 public struct _namehelper;
+
+/// <summary>
+/// <para>
+/// Not intended for direct use. Do not assign directly.
+/// </para>
+/// 
+/// <para>
+/// Allows a certain kind of overloading by parameter name,
+/// which you can normally not do.
+/// </para>
+/// 
+/// <para>
+/// This allows situations like:
+/// <code>
+/// MyMethod(10, arg: true);
+/// MyMethod(10, differentArg: true);
+/// </code>
+/// One of those methods has a hidden optional parameter:
+/// <code>
+/// MyMethod(int num, bool arg);
+/// MyMethod(int num, bool differentArg, OverloadByName ovl = default);
+/// </code>
+/// </para>
+/// 
+/// Calls with unnamed parameters: <c>MyMethod(10, true);</c><br/>
+/// Would lead to the first method: <c>MyMethod(int num, bool arg)</c><br/>
+/// (The one without the <c>OverloadByName</c> parameter.)
+/// 
+/// <para>
+/// (When brevity is required <c>NameOvl</c> can serve as a synonym for <c>OverloadByName</c>.)
+/// </para>
+/// </summary>
+public struct _overloadbyname;
 
 /// <summary>
 /// Gets the string representation of an expression.

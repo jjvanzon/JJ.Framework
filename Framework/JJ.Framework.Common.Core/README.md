@@ -32,7 +32,20 @@ An extension to [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.F
 
 - `ConfigurationHelperCore`
 
-    - `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, `null` is returned, instead of a crash.
+    - `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, `null` is returned, instead of a crash. (This helper avoids direct use of `System.Configuration`.)
+
+- `OverloadByName` / `NameOvl`
+
+    - Allows overloading by parameter name, which you normally cannot do:
+        ```
+        MyMethod(10, arg: true);
+        MyMethod(10, differentArg: true);
+        ```
+    - One of those methods has a hidden optional parameter:
+        ```
+        MyMethod(int num, bool arg);
+        MyMethod(int num, bool differentArg, OverloadByName ovl = default);
+        ```
 
 After Upgrading
 ===============
