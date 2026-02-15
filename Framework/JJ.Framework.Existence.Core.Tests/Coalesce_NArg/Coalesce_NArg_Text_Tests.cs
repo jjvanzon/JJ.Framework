@@ -6,7 +6,7 @@ public class Coalesce_NArg_Text_Tests : TestBase
     // Text
     
     [TestMethod] 
-    public void Coalesce_Text_Variadic() 
+    public void Coalesce_Text_Params() 
     {
         // Static
         NoNullRet("Finally",          Coalesce(  "",   " ",  "\n     ", "Finally"  ));

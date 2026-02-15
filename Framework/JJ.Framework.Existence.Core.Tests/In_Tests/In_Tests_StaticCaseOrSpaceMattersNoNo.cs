@@ -168,7 +168,7 @@ public class In_Tests_StaticCaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMattersNoNo_StaticVariadicFlagsInFront()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticParamsFlagsInFront()
     {
         IsTrue (In("B"   ,                                            "A", "B", "C"  ));
         IsTrue (In("B \t",                                            "A", "B", "C"  ));
@@ -209,7 +209,7 @@ public class In_Tests_StaticCaseOrSpaceMattersNoNo : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMattersNoNo_StaticVariadicFlagsInFrontSwapped()
+    public void In_String_CaseOrSpaceMattersNoNo_StaticParamsFlagsInFrontSwapped()
     {
       //IsTrue (In("B"   ,                                             "A", "B", "C"  )); // Not a swap 
       //IsTrue (In("B \t",                                             "A", "B", "C"  ));

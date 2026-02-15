@@ -6,7 +6,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     // StringBuilder
 
     [TestMethod]
-    public void Coalesce_StringBuilders_StaticVariadic()
+    public void Coalesce_StringBuilders_StaticParams()
     {
         NoNullRet(NullyFilledSB, Coalesce(                       NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
         NoNullRet(NullyFilledSB, Coalesce(                       NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB   ));
@@ -32,7 +32,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_ExtensionsVariadic()
+    public void Coalesce_StringBuilders_ExtensionsParams()
     {
         NoNullRet(NullyFilledSB, NullSB       .Coalesce(                        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
         NoNullRet(NullyFilledSB, NullyFilledSB.Coalesce(                        NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB   ));
@@ -97,7 +97,7 @@ public class Coalesce_NArg_SB_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_StringBuilders_Variadic_ReturnsNew()
+    public void Coalesce_StringBuilders_Params_ReturnsNew()
     {
         // Returns new()
         NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB,   NewSB,        NullSB));

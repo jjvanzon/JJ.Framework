@@ -53,7 +53,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     // Checker pattern of nulls and falses, going by permutations of nullable/non-nullable, 
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticParams_NullAndFalse()
+    public void Coalesce_NArg_Vals_StaticParams_NullAnd0()
     {
         // ZeroMatters No
         NoNullRet(0,     Coalesce(                      Null,       Nully0,     Null,       Nully0       ));
@@ -68,7 +68,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     // Now checker-pattern true and null, continuing to follow permutations of nullable/non-nullable.
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticParams_NullAndTrue()
+    public void Coalesce_NArg_Vals_StaticParams_NullAnd1()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce(                      Nully1,     Default,    Nully1,     Null         ));
@@ -83,7 +83,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     // Checker-pattern true and false now, continued permutations of nullable/non-nullable
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticParams_TrueAndFalse()
+    public void Coalesce_NArg_Vals_StaticParams_1And0()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce(                      NoNull1,    Nully0,     NoNull1,    Nully0       ));
@@ -96,7 +96,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticParams_SparseTrue()
+    public void Coalesce_NArg_Vals_StaticParams_Sparse1()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce(                      Null,       NoNull0,    NoNull0,    Nully1       ));
@@ -150,7 +150,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_NullAndFalse()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_NullAnd0()
     {
         // ZeroMatters No
         NoNullRet(0,     Coalesce(                    [ Null,       Nully0,     Null,       Nully0     ] ));
@@ -163,7 +163,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_NullAndTrue()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_NullAnd1()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce(                    [ Nully1,     Default,    Nully1,     Null       ] ));
@@ -176,7 +176,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_TrueAndFalse()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_1And0()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce(                    [ NoNull1,    Nully0,     NoNull1,    Nully0     ] ));
@@ -189,7 +189,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_SparseTrue()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInFront_Sparse1()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce(                    [ Null,       NoNull0,    NoNull0,    Nully1     ] ));
@@ -243,7 +243,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_NullAndFalse()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_NullAnd0()
     {
         // ZeroMatters No
         NoNullRet(0,     Coalesce( [ Null,       Nully0,     Null,       Nully0     ]                    ));
@@ -256,7 +256,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_NullAndTrue()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_NullAnd1()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce( [ Nully1,     Default,    Nully1,     Null       ]                    ));
@@ -269,7 +269,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_TrueAndFalse()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_1And0()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce( [ NoNull1,    Nully0,     NoNull1,    Nully0     ]                    ));
@@ -282,7 +282,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_SparseTrue()
+    public void Coalesce_NArg_Vals_StaticCollExpressFlagsInBack_Sparse1()
     {
         // ZeroMatters No
         NoNullRet(1,     Coalesce( [ Null,       NoNull0,    NoNull0,    Nully1     ]                    ));
@@ -338,7 +338,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsParams_NullAndFalse()
+    public void Coalesce_NArg_Vals_ExtensionsParams_NullAnd0()
     {
         // ZeroMatters No
         NoNullRet(0,     Null      .Coalesce(                       Nully0,     Null,       Nully0       ));
@@ -351,7 +351,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsParams_NullAndTrue()
+    public void Coalesce_NArg_Vals_ExtensionsParams_NullAnd1()
     {
         // ZeroMatters No
         NoNullRet(1,     Nully1    .Coalesce(                      Default,    Nully1,     Null         ));
@@ -364,7 +364,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsParams_TrueAndFalse()
+    public void Coalesce_NArg_Vals_ExtensionsParams_1And0()
     {
         // ZeroMatters No
         NoNullRet(1,     NoNull1   .Coalesce(                      Nully0,     NoNull1,    Nully0       ));
@@ -377,7 +377,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsParams_SparseTrue()
+    public void Coalesce_NArg_Vals_ExtensionsParams_Sparse1()
     {
         // ZeroMatters No
         NoNullRet(1,     Null      .Coalesce(                      NoNull0,    NoNull0,    Nully1       ));
@@ -431,7 +431,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_NullAndFalse()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_NullAnd0()
     {
         // ZeroMatters No
         NoNullRet(0,     Null      .Coalesce(                    [ Nully0,     Null,       Nully0     ] ));
@@ -444,7 +444,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_NullAndTrue()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_NullAnd1()
     {
         // ZeroMatters No
         NoNullRet(1,     Nully1     .Coalesce(                    [ Default,    Nully1,     Null       ] ));
@@ -457,7 +457,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
     
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_TrueAndFalse()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_1And0()
     {
         // ZeroMatters No
         NoNullRet(1,     NoNull1    .Coalesce(                    [ Nully0,     NoNull1,    Nully0     ] ));
@@ -470,7 +470,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_SparseTrue()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInFront_Sparse1()
     {
         // ZeroMatters No
         NoNullRet(1,     Null       .Coalesce(                    [ NoNull0,    NoNull0,    Nully1     ] ));
@@ -524,7 +524,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_NullAndFalse()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_NullAnd0()
     {
         // ZeroMatters No
         NoNullRet(0,     Null      .Coalesce( [ Nully0,     Null,       Nully0     ]                    ));
@@ -537,7 +537,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_NullAndTrue()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_NullAnd1()
     {
         // ZeroMatters No
         NoNullRet(1,     Nully1    .Coalesce( [ Default,    Nully1,     Null       ]                    ));
@@ -550,7 +550,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_TrueAndFalse()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_1And0()
     {
         // ZeroMatters No
         NoNullRet(1,     NoNull1   .Coalesce( [ Nully0,     NoNull1,    Nully0     ]                    ));
@@ -563,7 +563,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_SparseTrue()
+    public void Coalesce_NArg_Vals_ExtensionsCollExpressFlagsInBack_Sparse1()
     {
         // ZeroMatters No
         NoNullRet(1,     Null      .Coalesce( [ NoNull0,    NoNull0,    Nully1     ]                    ));
@@ -617,7 +617,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionOnCollection_NullAndTrue()
+    public void Coalesce_NArg_Vals_ExtensionOnCollection_NullAnd1()
     {
         // ZeroMatters No
         NoNullRet(1,     new [] { Nully1,     Default,    Nully1,     Null       }.Coalesce(                  ));
@@ -630,7 +630,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionOnCollection_TrueAndFalse()
+    public void Coalesce_NArg_Vals_ExtensionOnCollection_1And0()
     {
         // ZeroMatters No
         NoNullRet(1,     new [] { NoNull1,    Nully0,     NoNull1,    Nully0     }.Coalesce(                  ));
@@ -643,7 +643,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Vals_ExtensionOnCollection_SparseTrue()
+    public void Coalesce_NArg_Vals_ExtensionOnCollection_Sparse1()
     {
         // ZeroMatters No
         NoNullRet(1,     new [] { Null,       NoNull0,    NoNull0,    Nully1     }.Coalesce(                  ));

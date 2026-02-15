@@ -167,7 +167,7 @@ public class In_Tests_ExtensionsCaseOrSpaceMattersYesYes : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMattersYesYes_ExtensionsVariadicFlagsInFront()
+    public void In_String_CaseOrSpaceMattersYesYes_ExtensionsParamsFlagsInFront()
     {
         IsTrue ("B"   .In( caseMatters,         spaceMatters,          "A", "B", "C"  ));
         IsFalse("B \t".In( caseMatters,         spaceMatters,          "A", "B", "C"  ));
@@ -208,7 +208,7 @@ public class In_Tests_ExtensionsCaseOrSpaceMattersYesYes : TestBase
     }
 
     [TestMethod]
-    public void In_String_CaseOrSpaceMattersYesYes_ExtensionsVariadicFlagsInFrontSwapped()
+    public void In_String_CaseOrSpaceMattersYesYes_ExtensionsParamsFlagsInFrontSwapped()
     {
         IsTrue ("B"   .In( spaceMatters,        caseMatters,           "A", "B", "C"  ));
         IsFalse("B \t".In( spaceMatters,        caseMatters,           "A", "B", "C"  ));
