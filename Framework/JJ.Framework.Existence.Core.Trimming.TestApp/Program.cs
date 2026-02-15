@@ -105,7 +105,6 @@ RunTests<Coalesce_NArg_Objects_Tests>() &&
 RunTests<Coalesce_NArg_SB_Tests>() &&
 RunTests<Coalesce_NArg_Text_Tests>() &&
 RunTests<Coalesce_NArg_Values_Tests>() &&
-RunTests<Coalesce_NArg_Values_Tests_Old>() &&
 RunTests<Contains_Nullable_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<BasicType_Other_Tests>() &&
