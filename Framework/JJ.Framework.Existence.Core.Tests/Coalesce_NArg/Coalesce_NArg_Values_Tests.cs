@@ -676,7 +676,6 @@ public class Coalesce_NArg_Values_Tests : TestBase
         NoNullRet(NoNull0,        Coalesce(nullColl, zeroMatters: true ));
         NoNullRet(NoNull0,        Coalesce(nullColl,              true ));
         // Extension Flags in Front
-        // TODO: Add first=1 cases.
         NoNullRet(0,     Null    .Coalesce(                    nullColl));
         NoNullRet(0,     Null    .Coalesce(zeroMatters: false, nullColl));
         NoNullRet(0,     Null    .Coalesce(             false, nullColl));
@@ -689,8 +688,25 @@ public class Coalesce_NArg_Values_Tests : TestBase
         NoNullRet(0,     NoNull0 .Coalesce(zeroMatters,        nullColl));
         NoNullRet(0,     NoNull0 .Coalesce(zeroMatters: true,  nullColl));
         NoNullRet(0,     NoNull0 .Coalesce(             true,  nullColl));
+        NoNullRet(0,     Nully0  .Coalesce(                    nullColl));
+        NoNullRet(0,     Nully0  .Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(0,     Nully0  .Coalesce(             false, nullColl));
+        NoNullRet(0,     Nully0  .Coalesce(zeroMatters,        nullColl));
+        NoNullRet(0,     Nully0  .Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(0,     Nully0  .Coalesce(             true,  nullColl));
+        NoNullRet(1,     NoNull1 .Coalesce(                    nullColl));
+        NoNullRet(1,     NoNull1 .Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(1,     NoNull1 .Coalesce(             false, nullColl));
+        NoNullRet(1,     NoNull1 .Coalesce(zeroMatters,        nullColl));
+        NoNullRet(1,     NoNull1 .Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(1,     NoNull1 .Coalesce(             true,  nullColl));
+        NoNullRet(1,     Nully1  .Coalesce(                    nullColl));
+        NoNullRet(1,     Nully1  .Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(1,     Nully1  .Coalesce(             false, nullColl));
+        NoNullRet(1,     Nully1  .Coalesce(zeroMatters,        nullColl));
+        NoNullRet(1,     Nully1  .Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(1,     Nully1  .Coalesce(             true,  nullColl));
         // Extension Flags in Back
-        // TODO: Add first=1 cases.
         NoNullRet(0,     Null    .Coalesce(nullColl                    ));
         NoNullRet(0,     Null    .Coalesce(nullColl, zeroMatters: false));
         NoNullRet(0,     Null    .Coalesce(nullColl,              false));
@@ -703,6 +719,24 @@ public class Coalesce_NArg_Values_Tests : TestBase
         NoNullRet(0,     NoNull0 .Coalesce(nullColl, zeroMatters       ));
         NoNullRet(0,     NoNull0 .Coalesce(nullColl, zeroMatters: true ));
         NoNullRet(0,     NoNull0 .Coalesce(nullColl,              true ));
+        NoNullRet(0,     Nully0  .Coalesce(nullColl                    ));
+        NoNullRet(0,     Nully0  .Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(0,     Nully0  .Coalesce(nullColl,              false));
+        NoNullRet(0,     Nully0  .Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(0,     Nully0  .Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(0,     Nully0  .Coalesce(nullColl,              true ));
+        NoNullRet(1,     NoNull1 .Coalesce(nullColl                    ));
+        NoNullRet(1,     NoNull1 .Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(1,     NoNull1 .Coalesce(nullColl,              false));
+        NoNullRet(1,     NoNull1 .Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(1,     NoNull1 .Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(1,     NoNull1 .Coalesce(nullColl,              true ));
+        NoNullRet(1,     Nully1  .Coalesce(nullColl                    ));
+        NoNullRet(1,     Nully1  .Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(1,     Nully1  .Coalesce(nullColl,              false));
+        NoNullRet(1,     Nully1  .Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(1,     Nully1  .Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(1,     Nully1  .Coalesce(nullColl,              true ));
         // Extensions on Collection
         NoNullRet(0,     nullColl.Coalesce(                            ));
         NoNullRet(0,     nullColl.Coalesce(          zeroMatters: false));
