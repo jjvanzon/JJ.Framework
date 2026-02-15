@@ -15,11 +15,11 @@ public class Coalesce_NArg_Values_Tests : TestBase
     {
         // ZeroMatters No
         NoNullRet(0,     Coalesce(                      NoNull0,    NoNull0,    NoNull0,    NoNull0      ));
-        NoNullRet(1,     Coalesce(zeroMatters: false,   NoNull1,    NoNull0,    NoNull1,    NoNull0      )); // TODO: Picks wrong overload
+        NoNullRet(1,     Coalesce(zeroMatters: false,   NoNull1,    NoNull0,    NoNull1,    NoNull0      ));
       //NoNullRet(1,     Coalesce(             false,   NoNull0,    NoNull0,    NoNull0,    NoNull1      )); // TODO: Does not work
         // ZeroMatters Yes                                                                               
         NoNullRet(0,     Coalesce(zeroMatters,          NoNull0,    NoNull0,    NoNull0,    NoNull0      ));
-        NoNullRet(1,     Coalesce(zeroMatters: true,    NoNull1,    NoNull0,    NoNull1,    NoNull0      )); // TODO: Picks wrong overload // Starts with 1
+        NoNullRet(1,     Coalesce(zeroMatters: true,    NoNull1,    NoNull0,    NoNull1,    NoNull0      )); // Starts with 1
         NoNullRet(0,     Coalesce(             true,    NoNull0,    NoNull0,    NoNull0,    NoNull1      ));
     }
 
@@ -41,11 +41,11 @@ public class Coalesce_NArg_Values_Tests : TestBase
     {
         // ZeroMatters No
         NoNullRet(0,     Coalesce(                      Nully0,     NoNull0,    NoNull0,    NoNull0      ));
-        NoNullRet(1,     Coalesce(zeroMatters: false,   Nully1,     NoNull0,    NoNull1,    NoNull0      )); // TODO: Picks wrong overload
+        NoNullRet(1,     Coalesce(zeroMatters: false,   Nully1,     NoNull0,    NoNull1,    NoNull0      ));
       //NoNullRet(1,     Coalesce(             false,   Nully0,     NoNull0,    NoNull0,    NoNull1      )); // TODO: Does not work
         // ZeroMatters Yes                                                                               
         NoNullRet(0,     Coalesce(zeroMatters,          Nully0,     NoNull0,    NoNull0,    NoNull0      ));
-        NoNullRet(1,     Coalesce(zeroMatters: true,    Nully1,     NoNull0,    NoNull1,    NoNull0      )); // TODO: Picks wrong overload // Starts with 1
+        NoNullRet(1,     Coalesce(zeroMatters: true,    Nully1,     NoNull0,    NoNull1,    NoNull0      )); // Starts with 1
         NoNullRet(0,     Coalesce(             true,    Nully0,     NoNull0,    NoNull0,    NoNull1      ));
     }
 
@@ -56,12 +56,12 @@ public class Coalesce_NArg_Values_Tests : TestBase
     {
         // ZeroMatters No
         NoNullRet(0,     Coalesce(                      Null,       Nully0,     Null,       Nully0       ));
-        NoNullRet(0,     Coalesce(zeroMatters: false,   Nully0,     Null,       Nully0,     Default      )); // TODO: Picks wrong overload
+        NoNullRet(0,     Coalesce(zeroMatters: false,   Nully0,     Null,       Nully0,     Default      ));
         NoNullRet(0,     Coalesce(             false,   Null,       Nully0,     Default,    Nully0       ));
         // ZeroMatters Yes                                                                               
         NoNullRet(0,     Coalesce(zeroMatters,          Nully0,     Null,       NoNull0,    Default      ));
         NoNullRet(0,     Coalesce(zeroMatters: true,    Null,       NoNull0,    Null,       Nully0       ));
-        NoNullRet(0,     Coalesce(             true,    Nully0,     Null,       NoNull0,    Default      )); // TODO: Picks wrong overload
+        NoNullRet(0,     Coalesce(             true,    Nully0,     Null,       NoNull0,    Default      ));
     }
 
     // Now checker-pattern true and null, continuing to follow permutations of nullable/non-nullable.
