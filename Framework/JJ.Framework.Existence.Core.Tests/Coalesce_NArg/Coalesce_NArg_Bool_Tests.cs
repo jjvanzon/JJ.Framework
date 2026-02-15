@@ -36,6 +36,19 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(true,  Coalesce(             true,    False,      False,      False,      True         )); // Not a flag
     }
 
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticParams_NullyFirst()
+    {
+        // ZeroMatters No
+        NoNullRet(false, Coalesce(                      NullyFalse, False,      False,      False        ));
+        NoNullRet(true,  Coalesce(zeroMatters: false,   NullyTrue,  False,      True,       False        ));
+        NoNullRet(true,  Coalesce(             false,   NullyFalse, False,      False,      True         ));
+        // ZeroMatters Yes                                                                               
+        NoNullRet(false, Coalesce(zeroMatters,          NullyFalse, False,      False,      False        ));
+        NoNullRet(true,  Coalesce(zeroMatters: true,    NullyTrue,  False,      True,       False        )); // Starts with true
+        NoNullRet(true,  Coalesce(             true,    NullyFalse, False,      False,      True         )); // Not a flag
+    }
+
     // Checker pattern of nulls and falses, going by permutations of nullable/non-nullable, 
 
     [TestMethod]
@@ -123,6 +136,19 @@ public class Coalesce_NArg_Bool_Tests : TestBase
     }
 
     [TestMethod]
+    public void Coalesce_NArg_Bool_StaticCollExpressFlagsInFront_NullyFirst()
+    {
+        // ZeroMatters No
+        NoNullRet(false, Coalesce(                    [ NullyFalse, False,      False,      False      ] ));
+        NoNullRet(true,  Coalesce(zeroMatters: false, [ NullyTrue,  False,      True,       False      ] ));
+        NoNullRet(true,  Coalesce(             false, [ NullyFalse, False,      False,      True       ] ));
+        // ZeroMatters Yes                                                                               
+        NoNullRet(false, Coalesce(zeroMatters,        [ NullyFalse, False,      False,      False      ] ));
+        NoNullRet(true,  Coalesce(zeroMatters: true,  [ NullyTrue,  False,      True,       False      ] )); // Starts with true
+        NoNullRet(false, Coalesce(             true,  [ NullyFalse, False,      False,      True       ] ));
+    }
+
+    [TestMethod]
     public void Coalesce_NArg_Bool_StaticCollExpressFlagsInFront_NullAndFalse()
     {
         // ZeroMatters No
@@ -200,6 +226,19 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(false, Coalesce( [ False,      False,      False,      False      ], zeroMatters       ));
         NoNullRet(true,  Coalesce( [ True,       False,      True,       False      ], zeroMatters: true )); // Starts with true
         NoNullRet(false, Coalesce( [ False,      False,      False,      True       ],              true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_StaticCollExpressFlagsInBack_NullyFirst()
+    {
+        // ZeroMatters No
+        NoNullRet(false, Coalesce( [ NullyFalse, False,      False,      False      ]                    ));
+        NoNullRet(true,  Coalesce( [ NullyTrue,  False,      True,       False      ], zeroMatters: false));
+        NoNullRet(true,  Coalesce( [ NullyFalse, False,      False,      True       ],              false));
+        // ZeroMatters Yes                                                                               
+        NoNullRet(false, Coalesce( [ NullyFalse, False,      False,      False      ], zeroMatters       ));
+        NoNullRet(true,  Coalesce( [ NullyTrue,  False,      True,       False      ], zeroMatters: true )); // Starts with true
+        NoNullRet(false, Coalesce( [ NullyFalse, False,      False,      True       ],              true ));
     }
 
     [TestMethod]
@@ -285,6 +324,19 @@ public class Coalesce_NArg_Bool_Tests : TestBase
     }
 
     [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionsParams_NullyFirst()
+    {
+        // ZeroMatters No
+        NoNullRet(false, NullyFalse.Coalesce(                      False,      False,      False        ));
+        NoNullRet(true,  NullyTrue .Coalesce(zeroMatters: false,   False,      True,       False        ));
+        NoNullRet(true,  NullyFalse.Coalesce(             false,   False,      False,      True         ));
+        // ZeroMatters Ye.s                                                                 
+        NoNullRet(false, NullyFalse.Coalesce(zeroMatters,          False,      False,      False        ));
+        NoNullRet(true,  NullyTrue .Coalesce(zeroMatters: true,    False,      True,       False        )); // Starts with true
+        NoNullRet(true,  NullyFalse.Coalesce(             true,    False,      False,      True         )); // Not a flag
+    }
+
+    [TestMethod]
     public void Coalesce_NArg_Bool_ExtensionsParams_NullAndFalse()
     {
         // ZeroMatters No
@@ -362,6 +414,19 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(false, False     .Coalesce(zeroMatters,        [ False,      False,      False      ] ));
         NoNullRet(true,  True      .Coalesce(zeroMatters: true,  [ False,      True,       False      ] )); // Starts with true
         NoNullRet(false, False     .Coalesce(             true,  [ False,      False,      True       ] ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionsCollExpressFlagsInFront_NullyFirst()
+    {
+        // ZeroMatters No
+        NoNullRet(false, NullyFalse.Coalesce(                    [ False,      False,      False      ] ));
+        NoNullRet(true,  NullyTrue .Coalesce(zeroMatters: false, [ False,      True,       False      ] ));
+        NoNullRet(true,  NullyFalse.Coalesce(             false, [ False,      False,      True       ] ));
+        // ZeroMatters Yes                                                                               
+        NoNullRet(false, NullyFalse.Coalesce(zeroMatters,        [ False,      False,      False      ] ));
+        NoNullRet(true,  NullyTrue .Coalesce(zeroMatters: true,  [ False,      True,       False      ] )); // Starts with true
+        NoNullRet(false, NullyFalse.Coalesce(             true,  [ False,      False,      True       ] ));
     }
 
     [TestMethod]
@@ -445,6 +510,19 @@ public class Coalesce_NArg_Bool_Tests : TestBase
     }
 
     [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionsCollExpressFlagsInBack_NullyFirst()
+    {
+        // ZeroMatters No
+        NoNullRet(false, NullyFalse.Coalesce( [ False,      False,      False      ]                    ));
+        NoNullRet(true,  NullyTrue .Coalesce( [ False,      True,       False      ], zeroMatters: false));
+        NoNullRet(true,  NullyFalse.Coalesce( [ False,      False,      True       ],              false));
+        // ZeroMatters Yes                                                                               
+        NoNullRet(false, NullyFalse.Coalesce( [ False,      False,      False      ], zeroMatters       ));
+        NoNullRet(true,  NullyTrue .Coalesce( [ False,      True,       False      ], zeroMatters: true )); // Starts with true
+        NoNullRet(false, NullyFalse.Coalesce( [ False,      False,      True       ],              true ));
+    }
+
+    [TestMethod]
     public void Coalesce_NArg_Bool_ExtensionsCollExpressFlagsInBack_NullAndFalse()
     {
         // ZeroMatters No
@@ -522,6 +600,19 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(false,  new [] { False,      False,      False,      False      }.Coalesce(zeroMatters       ));
         NoNullRet(true,   new [] { True,       False,      True,       False      }.Coalesce(zeroMatters: true )); // Starts with true
         NoNullRet(false,  new [] { False,      False,      False,      True       }.Coalesce(             true ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionOnCollection_NullyFirst()
+    {
+        // ZeroMatters No
+        NoNullRet(false,  new [] { NullyFalse, False,      False,      False      }.Coalesce(                  ));
+        NoNullRet(true,   new [] { NullyTrue,  False,      True,       False      }.Coalesce(zeroMatters: false));
+        NoNullRet(true,   new [] { NullyFalse, False,      False,      True       }.Coalesce(             false));
+        // ZeroMatters Yes                                                                               
+        NoNullRet(false,  new [] { NullyFalse, False,      False,      False      }.Coalesce(zeroMatters       ));
+        NoNullRet(true,   new [] { NullyTrue,  False,      True,       False      }.Coalesce(zeroMatters: true )); // Starts with true
+        NoNullRet(false,  new [] { NullyFalse, False,      False,      True       }.Coalesce(             true ));
     }
 
     [TestMethod]
