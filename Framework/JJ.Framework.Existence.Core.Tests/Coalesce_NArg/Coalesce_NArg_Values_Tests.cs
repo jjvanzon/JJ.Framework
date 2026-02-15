@@ -675,6 +675,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
         NoNullRet(NoNull0,        Coalesce(nullColl, zeroMatters: true ));
         NoNullRet(NoNull0,        Coalesce(nullColl,              true ));
         // Extension Flags in Front
+        // TODO: Add first=1 cases.
         NoNullRet(0,     Null    .Coalesce(                    nullColl));
         NoNullRet(0,     Null    .Coalesce(zeroMatters: false, nullColl));
         NoNullRet(0,     Null    .Coalesce(             false, nullColl));
@@ -688,6 +689,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
         NoNullRet(0,     NoNull0 .Coalesce(zeroMatters: true,  nullColl));
         NoNullRet(0,     NoNull0 .Coalesce(             true,  nullColl));
         // Extension Flags in Back
+        // TODO: Add first=1 cases.
         NoNullRet(0,     Null    .Coalesce(nullColl                    ));
         NoNullRet(0,     Null    .Coalesce(nullColl, zeroMatters: false));
         NoNullRet(0,     Null    .Coalesce(nullColl,              false));
