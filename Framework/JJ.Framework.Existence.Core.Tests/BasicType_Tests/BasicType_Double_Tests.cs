@@ -305,7 +305,7 @@ public class BasicType_Double_Tests
     [TestMethod]
     public void Double_Coalesce_Tests()
     {
-        // Static 4-Arg/Variadic
+        // Static 4-Arg/Params
         NoNullRet(OneDouble, Coalesce(NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
         // Extension 3-Arg
         NoNullRet(OneDouble, NullyZeroDouble.Coalesce(NullyOneDouble, OneDouble));
@@ -316,7 +316,7 @@ public class BasicType_Double_Tests
     [TestMethod]
     public void Double_Coalesce_ZeroMatters_Tests()
     {
-        // Static 4-Arg/Variadic
+        // Static 4-Arg/PArams
         NoNullRet(OneDouble,  Coalesce(                    NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
         NoNullRet(OneDouble,  Coalesce(zeroMatters: false, NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));
         NoNullRet(OneDouble,  Coalesce(             false, NullDouble, ZeroDouble, OneDouble, NullyTwoDouble));

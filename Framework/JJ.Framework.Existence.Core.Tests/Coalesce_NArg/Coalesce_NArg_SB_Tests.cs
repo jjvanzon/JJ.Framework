@@ -8,7 +8,6 @@ public class Coalesce_NArg_SB_Tests : TestBase
     [TestMethod]
     public void Coalesce_StringBuilders_StaticVariadic()
     {
-        // Static Variadic
         NoNullRet(NullyFilledSB, Coalesce(                       NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB,  NullyFilledSB  ));
         NoNullRet(NullyFilledSB, Coalesce(                       NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB,  NullySpaceSB   ));
         NoNullRet(NullyFilledSB, Coalesce(spaceMatters: false,   NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB,    NullyEmptySB   ));

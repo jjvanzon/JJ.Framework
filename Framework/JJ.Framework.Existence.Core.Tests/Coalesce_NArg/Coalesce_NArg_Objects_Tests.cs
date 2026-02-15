@@ -3,8 +3,6 @@
 [TestClass]
 public class Coalesce_NArg_Objects_Tests : TestBase
 {
-    // Objects
-
     [TestMethod]
     public void Coalesce_NArg_Objects()
     {

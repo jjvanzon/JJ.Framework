@@ -587,9 +587,9 @@ public class BasicType_Enum_Tests
     {
         // 3-Arg Static Nully
         NoNullRet(OneLast,   Coalesce(With0_Default, OneLast, ZeroFirst_Nully));
-        // 4-Arg/Variadic Static Nully
+        // 4-Arg/Params Static Nully
         NoNullRet(OneLast,   Coalesce(With0_Default, With0_Null, OneLast, ZeroFirst_Nully));
-        // Extension Method Variadic
+        // Extension Method Params
         NoNullRet(OneFirst,  No0_Default.Coalesce(No0_Null, OneFirst, TwoLast));
         // Chaining, String Trailed, Mixed Static/Extensions
         NoNullRet("OneLast", Coalesce(With0_Default, With0_Null).Coalesce(OneLast).Coalesce("Never"));
@@ -612,7 +612,7 @@ public class BasicType_Enum_Tests
         NoNullRet(ZeroFirst, Coalesce(With0_Default, OneLast, ZeroFirst_Nully, zeroMatters: true ));
         NoNullRet(ZeroFirst, Coalesce(With0_Default, OneLast, ZeroFirst_Nully,              true ));
         
-        // Variadic/4-Arg Static Nully, Flags always the Front
+        // Params/4-Arg Static Nully, Flags always the Front
         NoNullRet(OneLast,   Coalesce(                    With0_Default, With0_Null, OneLast, ZeroFirst_Nully));
         NoNullRet(OneLast,   Coalesce(zeroMatters: false, With0_Default, With0_Null, OneLast, ZeroFirst_Nully));
         NoNullRet(OneLast,   Coalesce(             false, With0_Default, With0_Null, OneLast, ZeroFirst_Nully));
@@ -628,7 +628,7 @@ public class BasicType_Enum_Tests
         NoNullRet("ZeroFirst", Coalesce(With0_Default, With0_Null, zeroMatters: true ).Coalesce(OneLast, zeroMatters: true ).Coalesce("Never", zeroMatters: true ));
         NoNullRet("ZeroFirst", Coalesce(With0_Default, With0_Null,              true ).Coalesce(OneLast,              true ).Coalesce("Never",              true ));
 
-        // Extension Method, Variadic
+        // Extension Method, Params
         NoNullRet(OneFirst,   No0_Default.Coalesce(                    No0_Null, OneFirst, TwoLast));
         NoNullRet(OneFirst,   No0_Default.Coalesce(zeroMatters: false, No0_Null, OneFirst, TwoLast));
         NoNullRet(OneFirst,   No0_Default.Coalesce(             false, No0_Null, OneFirst, TwoLast));
