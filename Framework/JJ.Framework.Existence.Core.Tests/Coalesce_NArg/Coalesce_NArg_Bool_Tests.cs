@@ -336,6 +336,21 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(true,  NullyFalse.Coalesce(             true,    False,      False,      True         )); // Not a flag
     }
 
+    /*
+    [TestMethod]
+    public void Coalesce_NArg_Bool_ExtensionsParams_NullyLast()
+    {
+        // ZeroMatters No
+        NoNullRet(false, False     .Coalesce(                      False,      False,      NullyFalse   ));
+        NoNullRet(true,  True      .Coalesce(zeroMatters: false,   False,      True,       NullyFalse   ));
+        NoNullRet(true,  False     .Coalesce(             false,   False,      False,      NullyTrue    ));
+        // ZeroMatters Yes                                                                 
+        NoNullRet(false, False     .Coalesce(zeroMatters,          False,      False,      NullyFalse   ));
+        NoNullRet(true,  True      .Coalesce(zeroMatters: true,    False,      True,       NullyFalse   ));
+        NoNullRet(true,  False     .Coalesce(             true,    False,      False,      NullyTrue    ));
+    }
+    */
+
     [TestMethod]
     public void Coalesce_NArg_Bool_ExtensionsParams_NullAndFalse()
     {
@@ -657,10 +672,103 @@ public class Coalesce_NArg_Bool_Tests : TestBase
     // Null Collections
 
     [TestMethod]
-    public void Coalesce_NArg_Bool_NullCollections()
+    public void Coalesce_NArg_Bool_NullCollNoNullItem()
     {
         ICollection<bool>? nullColl = null;
         // Static Flags in Front
+        NoNullRet(false,            Coalesce(                    nullColl));
+        NoNullRet(false,            Coalesce(                    nullColl));
+        NoNullRet(false,            Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(false,            Coalesce(             false, nullColl));
+        NoNullRet(false,            Coalesce(zeroMatters,        nullColl));
+        NoNullRet(false,            Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(false,            Coalesce(             true,  nullColl));
+        // Static Flags in Back
+        NoNullRet(false,            Coalesce(nullColl                    ));
+        NoNullRet(false,            Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(false,            Coalesce(nullColl,              false));
+        NoNullRet(false,            Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(false,            Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(false,            Coalesce(nullColl,              true ));
+        // Extension Flags in Front
+        NoNullRet(false, Null      .Coalesce(                    nullColl));
+        NoNullRet(false, Null      .Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(false, Null      .Coalesce(             false, nullColl));
+        NoNullRet(false, Null      .Coalesce(zeroMatters,        nullColl));
+        NoNullRet(false, Null      .Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(false, Null      .Coalesce(             true,  nullColl));
+        NoNullRet(false, False     .Coalesce(                    nullColl));
+        NoNullRet(false, False     .Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(false, False     .Coalesce(             false, nullColl));
+        NoNullRet(false, False     .Coalesce(zeroMatters,        nullColl));
+        NoNullRet(false, False     .Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(false, False     .Coalesce(             true,  nullColl));
+        NoNullRet(false, NullyFalse.Coalesce(                    nullColl));
+        NoNullRet(false, NullyFalse.Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(false, NullyFalse.Coalesce(             false, nullColl));
+        NoNullRet(false, NullyFalse.Coalesce(zeroMatters,        nullColl));
+        NoNullRet(false, NullyFalse.Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(false, NullyFalse.Coalesce(             true,  nullColl));
+        NoNullRet(true,  True      .Coalesce(                    nullColl));
+        NoNullRet(true,  True      .Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(true,  True      .Coalesce(             false, nullColl));
+        NoNullRet(true,  True      .Coalesce(zeroMatters,        nullColl));
+        NoNullRet(true,  True      .Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(true,  True      .Coalesce(             true,  nullColl));
+        NoNullRet(true,  NullyTrue .Coalesce(                    nullColl));
+        NoNullRet(true,  NullyTrue .Coalesce(zeroMatters: false, nullColl));
+        NoNullRet(true,  NullyTrue .Coalesce(             false, nullColl));
+        NoNullRet(true,  NullyTrue .Coalesce(zeroMatters,        nullColl));
+        NoNullRet(true,  NullyTrue .Coalesce(zeroMatters: true,  nullColl));
+        NoNullRet(true,  NullyTrue .Coalesce(             true,  nullColl));
+        // Extension Flags in Back
+        NoNullRet(false, Null      .Coalesce(nullColl                    ));
+        NoNullRet(false, Null      .Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(false, Null      .Coalesce(nullColl,              false));
+        NoNullRet(false, Null      .Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(false, Null      .Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(false, Null      .Coalesce(nullColl,              true ));
+        NoNullRet(false, False     .Coalesce(nullColl                    ));
+        NoNullRet(false, False     .Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(false, False     .Coalesce(nullColl,              false));
+        NoNullRet(false, False     .Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(false, False     .Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(false, False     .Coalesce(nullColl,              true ));
+        NoNullRet(false, NullyFalse.Coalesce(nullColl                    ));
+        NoNullRet(false, NullyFalse.Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(false, NullyFalse.Coalesce(nullColl,              false));
+        NoNullRet(false, NullyFalse.Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(false, NullyFalse.Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(false, NullyFalse.Coalesce(nullColl,              true ));
+        NoNullRet(true,  True      .Coalesce(nullColl                    ));
+        NoNullRet(true,  True      .Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(true,  True      .Coalesce(nullColl,              false));
+        NoNullRet(true,  True      .Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(true,  True      .Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(true,  True      .Coalesce(nullColl,              true ));
+        NoNullRet(true,  NullyTrue .Coalesce(nullColl                    ));
+        NoNullRet(true,  NullyTrue .Coalesce(nullColl, zeroMatters: false));
+        NoNullRet(true,  NullyTrue .Coalesce(nullColl,              false));
+        NoNullRet(true,  NullyTrue .Coalesce(nullColl, zeroMatters       ));
+        NoNullRet(true,  NullyTrue .Coalesce(nullColl, zeroMatters: true ));
+        NoNullRet(true,  NullyTrue .Coalesce(nullColl,              true ));
+        // Extensions on Collection
+        NoNullRet(false, nullColl  .Coalesce(                            ));
+        NoNullRet(false, nullColl  .Coalesce(          zeroMatters: false));
+        NoNullRet(false, nullColl  .Coalesce(                       false));
+        NoNullRet(false, nullColl  .Coalesce(          zeroMatters       ));
+    }
+
+
+
+
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_NullCollNullItem()
+    {
+        ICollection<bool?>? nullColl = null;
+        // Static Flags in Front
+        NoNullRet(false,            Coalesce(                    nullColl));
         NoNullRet(false,            Coalesce(                    nullColl));
         NoNullRet(false,            Coalesce(zeroMatters: false, nullColl));
         NoNullRet(false,            Coalesce(             false, nullColl));
