@@ -54,8 +54,7 @@ internal static class CoalesceUtil
     public static SB     CoalesceTwoSBs        (SB?     sb,   SB?     fallback, bool         spaceMatters) => HasSB      (sb,   spaceMatters) ? sb   : CoalesceSB(fallback);
     /// <inheritdoc cref="_coalesce" />
     public static SB     CoalesceTwoSBs        (SB?     sb,   SB?     fallback, SpaceMatters spaceMatters) => HasSB      (sb,   spaceMatters) ? sb   : CoalesceSB(fallback);
-    
-    /// <inheritdoc cref="_coalesce" />  
+    /// <inheritdoc cref="_coalesce" /> 
     public static string CoalesceObjectToText  <T>(T?   obj,  string? fallback                           ) where T : class  => HasObject  (obj             ) ? CoalesceTwoTexts($"{obj}", fallback) : CoalesceText(fallback);
     /// <inheritdoc cref="_coalesce" />
     public static string CoalesceNullyValToText<T>(T?   val,  string? fallback                           ) where T : struct => HasValNully(val             ) ? CoalesceTwoTexts($"{val}", fallback) : CoalesceText(fallback);
@@ -814,7 +813,7 @@ internal static class CoalesceUtil
     // Many Objects
 
     /// <inheritdoc cref="_coalesce" />
-    public static T      CoalesceManyObjects<T>  (             IEnumerable<T?     >? fallbacks                           )
+    public static T      CoalesceManyObjects<T>(          IEnumerable<T?     >? fallbacks                           )
         where T: new()
     {
         if (fallbacks == null) 

@@ -23,6 +23,7 @@ public static partial class FilledInHelper
            public static bool   Coalesce   (     bool  val, bool? fallback                                                ) => CoalesceValAndNully (val, fallback             );
            /// <inheritdoc cref="_coalesce" />
            public static bool   Coalesce   (     bool  val, bool  fallback                                                ) => CoalesceTwoVals     (val, fallback             );
+           // ReSharper disable UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static bool   Coalesce   (     bool? val, bool? fallback, bool        zeroMatters, NameOvl ovl = default) => CoalesceTwoNullyVals(val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -31,6 +32,7 @@ public static partial class FilledInHelper
 [Prio(-1)] public static bool   Coalesce   (     bool  val, bool? fallback, bool        zeroMatters, NameOvl ovl = default) => CoalesceValAndNully (val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static bool   Coalesce   (     bool  val, bool  fallback, bool        zeroMatters, NameOvl ovl = default) => CoalesceTwoVals     (val, fallback, zeroMatters);
+           // ReSharper restore UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
            public static bool   Coalesce   (     bool? val, bool? fallback, ZeroMatters zeroMatters                       ) => CoalesceTwoNullyVals(val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -75,6 +77,7 @@ public static partial class FilledInHelper
            public static bool   Coalesce   (     bool  val, bool  fallback, bool? fallback2                                                ) => CoalesceTwoVals    (val, CoalesceValAndNully (fallback, fallback2             )             );
            /// <inheritdoc cref="_coalesce" />
            public static bool   Coalesce   (     bool  val, bool  fallback, bool  fallback2                                                ) => CoalesceTwoVals    (val, CoalesceTwoVals     (fallback, fallback2             )             );
+           // ReSharper disable UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static bool   Coalesce   (     bool? val, bool? fallback, bool? fallback2, bool        zeroMatters, NameOvl ovl = default) => CoalesceNullyAndVal(val, CoalesceTwoNullyVals(fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -91,6 +94,7 @@ public static partial class FilledInHelper
 [Prio(-1)] public static bool   Coalesce   (     bool  val, bool  fallback, bool? fallback2, bool        zeroMatters, NameOvl ovl = default) => CoalesceTwoVals    (val, CoalesceValAndNully (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static bool   Coalesce   (     bool  val, bool  fallback, bool  fallback2, bool        zeroMatters, NameOvl ovl = default) => CoalesceTwoVals    (val, CoalesceTwoVals     (fallback, fallback2, zeroMatters), zeroMatters);
+           // ReSharper restore UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
            public static bool   Coalesce   (     bool? val, bool? fallback, bool? fallback2, ZeroMatters zeroMatters                       ) => CoalesceNullyAndVal(val, CoalesceTwoNullyVals(fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />

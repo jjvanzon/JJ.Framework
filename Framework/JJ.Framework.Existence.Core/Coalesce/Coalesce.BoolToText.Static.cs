@@ -19,9 +19,9 @@ public static partial class FilledInHelper
            public static string Coalesce   (     bool  val,  string? fallback, ZeroMatters zeroMatters) => CoalesceValToText     (val, fallback, zeroMatters);
          // Clash with 3-Arg                                                                                                
          ///// <inheritdoc cref="_coalesce" />
-         //public static string Coalesce   (     bool         zeroMatters, bool?   val,  string? fallback)                  => CoalesceNullyValToText(val, fallback, zeroMatters);
+         //public static string Coalesce   (     bool zeroMatters, bool? val, string? fallback)         => CoalesceNullyValToText(val, fallback, zeroMatters);
          ///// <inheritdoc cref="_coalesce" />
-         //public static string Coalesce   (     bool         zeroMatters, bool    val,  string? fallback)                  => CoalesceValToText     (val, fallback, zeroMatters);
+         //public static string Coalesce   (     bool zeroMatters, bool  val, string? fallback)         => CoalesceValToText     (val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
            public static string Coalesce   (     ZeroMatters zeroMatters, bool? val, string? fallback ) => CoalesceNullyValToText(val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -55,13 +55,13 @@ public static partial class FilledInHelper
            public static string Coalesce   (     bool  val, bool  fallback, string? fallback2, ZeroMatters zeroMatters) => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
          // Clash with 4-Arg                                                                                                                    
          ///// <inheritdoc cref="_coalesce" />
-         //public static string Coalesce   (     bool         zeroMatters, bool?   val,  bool?   fallback, string? fallback2 )                                                   => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+         //public static string Coalesce   (     bool  zeroMatters, bool? val, bool? fallback, string? fallback2 )      => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
          ///// <inheritdoc cref="_coalesce" />
-         //public static string Coalesce   (     bool         zeroMatters, bool    val,  bool?   fallback, string? fallback2 )                                                   => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
+         //public static string Coalesce   (     bool  zeroMatters, bool  val, bool? fallback, string? fallback2 )      => CoalesceValToText     (val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
          ///// <inheritdoc cref="_coalesce" />
-         //public static string Coalesce   (     bool         zeroMatters, bool?   val,  bool    fallback, string? fallback2 )                                                   => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+         //public static string Coalesce   (     bool  zeroMatters, bool? val, bool  fallback, string? fallback2 )      => CoalesceNullyValToText(val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
          ///// <inheritdoc cref="_coalesce" />
-         //public static string Coalesce   (     bool         zeroMatters, bool    val,  bool    fallback, string? fallback2 )                                                   => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
+         //public static string Coalesce   (     bool  zeroMatters, bool  val, bool  fallback, string? fallback2 )      => CoalesceValToText     (val,  CoalesceValToText     (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
            public static string Coalesce   (     ZeroMatters zeroMatters, bool? val, bool? fallback, string? fallback2) => CoalesceNullyValToText(val,  CoalesceNullyValToText(fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
