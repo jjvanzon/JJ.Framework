@@ -447,11 +447,13 @@ internal static class CoalesceUtil
     }
 
     // Many Values
-
+    
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceManyVals<T>(             IEnumerable<T      >? fallbacks                           )
         where T : struct 
     {
+        // TODO: Probably unreachable because overload shadowed (check that)
+
         if (fallbacks == null) 
             return default(T);
         T last = default;
@@ -702,43 +704,18 @@ internal static class CoalesceUtil
     
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceManyVals<T>(T     first, IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
-        where T : struct 
+        where T : struct
     {
-        if (HasVal(first, zeroMatters)) 
-            return (T)first;
-        if (fallbacks == null) 
-            return first;
-
-        T last = first;
-        foreach (var val in fallbacks)
-        {
-            if (HasVal(val, zeroMatters)) 
-                return (T)val;
-            last = val;
-        }
-        return last;
+        return first;
     }
-    
+
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceManyVals<T>(T     first, IEnumerable<T?     >? fallbacks, ZeroMatters  zeroMatters )
-        where T : struct 
+        where T : struct
     {
-        if (HasVal(first, zeroMatters)) 
-            return (T)first;
-        if (fallbacks == null) 
-            return first;
-
-        T? last = first;
-        foreach (var val in fallbacks)
-        {
-            if (HasValNully(val, zeroMatters)) 
-                return (T)val;
-            last = val;
-        }
-
-        return last ?? default(T);
+        return first;
     }
-    
+
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceManyVals<T>(T?    first, IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
         where T : struct 

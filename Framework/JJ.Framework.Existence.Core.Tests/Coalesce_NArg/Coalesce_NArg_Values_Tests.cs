@@ -830,4 +830,44 @@ public class Coalesce_NArg_Values_Tests : TestBase
         NoNullRet(0,     nullColl.Coalesce(                       false));
         NoNullRet(0,     nullColl.Coalesce(          zeroMatters       ));
     }
+
+    [TestMethod]
+    public void Coalesce_NArg_Vals_EmptyColl()
+    {
+        NoNullRet(0,       Coalesce(EmptyIntArray                         ));
+        NoNullRet(0,       Coalesce(EmptyIntArray,      zeroMatters: false));
+        NoNullRet(0,       Coalesce(EmptyIntArray,      zeroMatters       ));
+        NoNullRet(0,       Coalesce(EmptyNullyIntArray                    ));
+        NoNullRet(0,       Coalesce(EmptyNullyIntArray, zeroMatters: false));
+        NoNullRet(0,       Coalesce(EmptyNullyIntArray, zeroMatters       ));
+        NoNullRet(0, Null .Coalesce(EmptyIntArray                         ));
+        NoNullRet(0, Null .Coalesce(EmptyIntArray,      zeroMatters: false));
+        NoNullRet(0, Null .Coalesce(EmptyIntArray,      zeroMatters       ));
+        NoNullRet(0, Null .Coalesce(EmptyNullyIntArray                    ));
+        NoNullRet(0, Null .Coalesce(EmptyNullyIntArray, zeroMatters: false));
+        NoNullRet(0, Null .Coalesce(EmptyNullyIntArray, zeroMatters       ));
+        NoNullRet(0, 0    .Coalesce(EmptyIntArray                         ));
+        NoNullRet(0, 0    .Coalesce(EmptyIntArray,      zeroMatters: false));
+        NoNullRet(0, 0    .Coalesce(EmptyIntArray,      zeroMatters       ));
+        NoNullRet(0, 0    .Coalesce(EmptyNullyIntArray                    ));
+        NoNullRet(0, 0    .Coalesce(EmptyNullyIntArray, zeroMatters: false));
+        NoNullRet(0, 0    .Coalesce(EmptyNullyIntArray, zeroMatters       ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Vals_LastResort_Test()
+    {
+        NoNullRet(0, Coalesce([ Null,  Null,  Null,  Null,  Null  ]                    ));
+        NoNullRet(0, Coalesce([ Null,  Null,  Null,  Null,  Null  ], zeroMatters: false));
+        NoNullRet(0, Coalesce([ 0,     0,     0,     0,     0     ]                    ));
+        NoNullRet(0, Coalesce([ 0,     0,     0,     0,     0     ], zeroMatters: false));
+        NoNullRet(0, Null  .Coalesce([ Null,  Null,  Null,  Null  ]                    ));
+        NoNullRet(0, Null  .Coalesce([ Null,  Null,  Null,  Null  ], zeroMatters: false));
+        NoNullRet(0, 0     .Coalesce([ Null,  Null,  Null,  Null  ]                    ));
+        NoNullRet(0, 0     .Coalesce([ Null,  Null,  Null,  Null  ], zeroMatters: false));
+        NoNullRet(0, Null  .Coalesce([ 0,     0,     0,     0     ]                    ));
+        NoNullRet(0, Null  .Coalesce([ 0,     0,     0,     0     ], zeroMatters: false));
+        NoNullRet(0, 0     .Coalesce([ 0,     0,     0,     0     ]                    ));
+        NoNullRet(0, 0     .Coalesce([ 0,     0,     0,     0     ], zeroMatters: false));
+    }
 }
