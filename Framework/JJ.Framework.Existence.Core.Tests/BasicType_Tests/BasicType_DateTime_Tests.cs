@@ -531,7 +531,10 @@ public class BasicType_DateTime_Tests
     [TestMethod]
     public void Test_DateTime_Coalesce()
     {
-        NoNullRet(SomeDateTime, Coalesce(NewNullyDateTime, NewDateTime, SomeNullyDateTime, NowNullyDateTime, SomeDateTime));
+        NoNullRet(SomeDateTime, Coalesce(  NewNullyDateTime, NewDateTime, SomeNullyDateTime, NowNullyDateTime, SomeDateTime  ));
+        NoNullRet(SomeDateTime, Coalesce([ NewNullyDateTime, NewDateTime, SomeNullyDateTime, NowNullyDateTime, SomeDateTime ]));
+        NoNullRet(SomeDateTime, NewNullyDateTime.Coalesce(   NewDateTime, SomeNullyDateTime, NowNullyDateTime, SomeDateTime  ));
+        NoNullRet(SomeDateTime, NewNullyDateTime.Coalesce([  NewDateTime, SomeNullyDateTime, NowNullyDateTime, SomeDateTime ]));
     }
 
     [TestMethod]

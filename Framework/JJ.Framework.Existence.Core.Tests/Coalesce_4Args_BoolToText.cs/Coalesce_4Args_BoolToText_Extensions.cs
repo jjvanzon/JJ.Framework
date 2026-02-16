@@ -263,8 +263,6 @@ public class Coalesce_4Args_BoolToText_Extensions : TestBase
         NoNullRet("True",  NullyFalse.Coalesce(True,       True,       NullyFilledText));
     }
 
-    // TODO: Turn into extension syntax
-
     [TestMethod]
     public void Coalesce_4Args_BoolToText_Extensions_Batch3()
     {

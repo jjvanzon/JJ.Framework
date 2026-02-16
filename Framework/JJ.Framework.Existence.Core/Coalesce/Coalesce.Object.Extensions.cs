@@ -2,8 +2,6 @@
 
 namespace JJ.Framework.Existence.Core;
 
-// TODO: Rename file
-
 /// <inheritdoc cref="_coalesce"/>
 public static class CoalesceObjectExtensions
 {

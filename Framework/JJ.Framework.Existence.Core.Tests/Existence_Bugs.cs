@@ -5,7 +5,7 @@ namespace JJ.Framework.Existence.Core.Tests;
 public class Existence_Bugs
 {
     [TestMethod]
-    public void FilledIn_MethodResolution_Object_Over_GenericInterface_Regression()
+    public void Regression_FilledIn_MethodResolution_Object_Over_GenericInterface()
     {
         // ImmutableArray<T> works out even with fallback to plain T - default(T) apparently is an empty collection (because it is a struct?)
         {
@@ -45,11 +45,12 @@ public class Existence_Bugs
     }
 
     /// <summary>
-    /// TODO: Trailing String/bool combos are a little less flexible: Too much type confusion.
-    /// Add more flag in front overloads to resolve better and more optimally and more well behaved.
+    /// Trailing String/bool combos were a little less flexible: Too much type confusion.
+    /// Added more flag in front overloads to resolve better and more optimally and more well behaved.
+    /// Test now succeeds. Kept as a regression test.
     /// </summary>
     [TestMethod]
-    public void BUG_Coalesce_FlagInFront_Confusion()
+    public void Regression_Coalesce_FlagInFront_Confusion()
     {
         // With Enums
         {
@@ -58,20 +59,20 @@ public class Existence_Bugs
             const EnumWith0  OneLast       = EnumWith0.OneLast;
 
             NoNullRet("OneLast",   Coalesce(                    With0_Default, With0_Null).Coalesce(                    OneLast).Coalesce(                    "Never"));
-          //NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));
+            NoNullRet("OneLast",   Coalesce(zeroMatters: false, With0_Default, With0_Null).Coalesce(zeroMatters: false, OneLast).Coalesce(zeroMatters: false, "Never"));
             NoNullRet("OneLast",   Coalesce(             false, With0_Default, With0_Null).Coalesce(             false, OneLast).Coalesce(             false, "Never"));
             NoNullRet("ZeroFirst", Coalesce(zeroMatters,        With0_Default, With0_Null).Coalesce(zeroMatters,        OneLast).Coalesce(zeroMatters,        "Never"));
-          //NoNullRet("ZeroFirst", Coalesce(zeroMatters: true,  With0_Default, With0_Null).Coalesce(zeroMatters: true,  OneLast).Coalesce(zeroMatters: true,  "Never"));
+            NoNullRet("ZeroFirst", Coalesce(zeroMatters: true,  With0_Default, With0_Null).Coalesce(zeroMatters: true,  OneLast).Coalesce(zeroMatters: true,  "Never"));
             NoNullRet("ZeroFirst", Coalesce(             true,  With0_Default, With0_Null).Coalesce(             true,  OneLast).Coalesce(             true,  "Never"));
         }
 
         // Val to Text
         {    
-          //NoNullRet("",           Coalesce(zeroMatters: false, 0,  NullText ));
-          //NoNullRet("",           Coalesce(             false, 0,  NullText ));
-          //NoNullRet("0",          Coalesce(zeroMatters       , 0,  NullText ));
-          //NoNullRet("0",          Coalesce(zeroMatters: true , 0,  NullText ));
-          //NoNullRet("0",          Coalesce(             true , 0,  NullText ));
+            NoNullRet("",           Coalesce(zeroMatters: false, 0,  NullText ));
+            NoNullRet("",           Coalesce(             false, 0,  NullText ));
+            NoNullRet("0",          Coalesce(zeroMatters       , 0,  NullText ));
+            NoNullRet("0",          Coalesce(zeroMatters: true , 0,  NullText ));
+            NoNullRet("0",          Coalesce(             true , 0,  NullText ));
         }
     }
 

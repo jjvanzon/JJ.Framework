@@ -146,7 +146,7 @@ public static partial class FilledInHelper
 
            // N Args
 
-           // TODO: Clash
+           // TODO: Clashes
          ///// <inheritdoc cref="_coalesce" />
          //public static T      Coalesce<T>(                                    params IEnumerable<T>?       fallbacks   ) where T : struct => CoalesceManyVals        (fallbacks);
            /// <inheritdoc cref="_coalesce" />

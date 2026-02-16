@@ -202,8 +202,6 @@ public static class CoalesceBoolExtensions
            /// <inheritdoc cref="_coalesce" />
 [Prio(1)]  public static bool Coalesce   (this IEnumerable<bool?>? fallbacks, ZeroMatters zeroMatters) => CoalesceManyBools(fallbacks, zeroMatters);
 
-           // TODO: Could be faster with an additional helper
-           
            /// <inheritdoc cref="_coalesce" />
            public static bool Coalesce   (this bool  first,                                  params IEnumerable<bool >? fallbacks  ) => CoalesceManyBools(first, fallbacks             );
            /// <inheritdoc cref="_coalesce" />
