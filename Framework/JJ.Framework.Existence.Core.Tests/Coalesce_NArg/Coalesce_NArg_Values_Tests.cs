@@ -515,6 +515,7 @@ public class Coalesce_NArg_Values_Tests : TestBase
     {
         // ZeroMatters No
         NoNullRet(0,     Nully0.    Coalesce( [ NoNull0,    NoNull0,    NoNull0    ]                    ));
+        NoNullRet(1,     Nully0.    Coalesce( [ NoNull0,    NoNull1,    NoNull0    ]                    )); // Hits in the middle
         NoNullRet(1,     Nully1    .Coalesce( [ NoNull0,    NoNull1,    NoNull0    ], zeroMatters: false));
         NoNullRet(1,     Nully0.    Coalesce( [ NoNull0,    NoNull0,    NoNull1    ],              false));
         // ZeroMatters Yes                                                                               
