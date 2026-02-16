@@ -263,20 +263,6 @@ internal static class CoalesceUtil
               return last;
           }
 
-          /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyObjects<T>  (IEnumerable<T?     >? fallbacks                           )
-              where T: new()
-          {
-              if (fallbacks == null) return new T();
-              T? last = default;
-              foreach (var obj in fallbacks)
-              {
-                  if (HasObject(obj)) return obj;
-                  last = obj;
-              }
-              return last ?? new T();
-          }
-
           // Many Values
 
           /// <inheritdoc cref="_coalesce" />
@@ -365,4 +351,19 @@ internal static class CoalesceUtil
               return last ?? default(T);
           }
 
+          // Objects
+
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyObjects<T>  (IEnumerable<T?     >? fallbacks                           )
+              where T: new()
+          {
+              if (fallbacks == null) return new T();
+              T? last = default;
+              foreach (var obj in fallbacks)
+              {
+                  if (HasObject(obj)) return obj;
+                  last = obj;
+              }
+              return last ?? new T();
+          }
 }
