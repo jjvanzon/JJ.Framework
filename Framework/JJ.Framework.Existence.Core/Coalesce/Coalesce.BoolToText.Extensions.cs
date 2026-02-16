@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core;
 
 /// <inheritdoc cref="_coalesce"/>
-public static partial class CoalesceExtensions
+public static class CoalesceBoolToTextExtensions
 {
            // 2 Args
 

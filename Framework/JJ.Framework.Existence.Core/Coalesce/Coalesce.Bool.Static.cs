@@ -148,7 +148,8 @@ public static partial class FilledInHelper
            // 4-Arg (only for bools)
  
            // * These help bools map to values, instead of unnamed flags.
-           // * E.g. clashes with (T,T,T,bool) are by shadowed by (bool,bool,bool,bool), not (params bool).
+           // * For instance (bool,bool,bool,bool) shadows (T,T,T,bool) whereas (params bool[]) alone can't.
+           // * String variants like (bool,bool,bool,string) shadow (bool,T,T,string) overloads.
        
            /// <inheritdoc cref="_coalesce" />
            public static bool   Coalesce   (     bool  val, bool  fallback1, bool  fallback2, bool    fallback3) => CoalesceManyBools     ([val, fallback1, fallback2, fallback3]);

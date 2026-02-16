@@ -54,7 +54,7 @@ public class Coalesce_NArg_Text_Tests : TestBase
     [TestMethod]
     public void Coalesce_NArg_Text_ExtensionsOnColl_EmptyColl()
     {
-        NoNullRet("",        new string[0] .Coalesce());
+        NoNullRet("",        Array.Empty<string>() .Coalesce());
     }
 
     [TestMethod]

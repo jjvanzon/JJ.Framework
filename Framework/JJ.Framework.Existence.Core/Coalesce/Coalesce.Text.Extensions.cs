@@ -2,7 +2,7 @@
 using SB = StringBuilder;
 
 /// <inheritdoc cref="_coalesce"/>
-public static partial class CoalesceExtensions
+public static class CoalesceTextExtensions
 {
           // [Prio] attributes:
           // These overloads clash: first.Coalesce(others), List.Coalesce(), and string.Coalesce().
