@@ -611,6 +611,238 @@ internal static class CoalesceUtil
               return last ?? default(T);
           }
 
+          // Many Vals with First Arg
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T     first, IEnumerable<T      >? fallbacks                           )
+              where T : struct 
+          {
+              if (HasVal(first)) 
+                  return (T)first;
+              if (fallbacks == null)
+                  return first;
+
+              T    last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T     first, IEnumerable<T   ?  >? fallbacks                           )
+              where T : struct 
+          {
+              if (HasVal(first)) 
+                  return first;
+              if (fallbacks == null) 
+                  return first;
+              
+              T   ? last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasValNully(val)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last ?? default(T);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T   ? first, IEnumerable<T      >? fallbacks                           )
+              where T : struct 
+          {
+              if (HasValNully(first)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first ?? default(T);
+
+              T    last = first ?? default(T);
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T   ? first, IEnumerable<T   ?  >? fallbacks                           )
+              where T : struct 
+          {
+              if (HasValNully(first)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first ?? default(T);
+              
+              T   ? last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasValNully(val))
+                      return (T)val;
+                  last = val;
+              }
+              return last ?? default(T);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T     first, IEnumerable<T      >? fallbacks, bool         zeroMatters )
+              where T : struct
+          {
+              if (HasVal(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first;
+
+              T    last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T     first, IEnumerable<T   ?  >? fallbacks, bool         zeroMatters )
+              where T : struct 
+          {
+              if (HasVal(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first;
+
+              T   ? last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasValNully(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last ?? default(T);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T   ? first, IEnumerable<T      >? fallbacks, bool         zeroMatters )
+              where T : struct 
+          {
+              if (HasValNully(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first ?? default(T);
+
+              T    last = first ?? default(T);
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T   ? first, IEnumerable<T   ?  >? fallbacks, bool         zeroMatters )
+              where T : struct 
+          {
+              if (HasValNully(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first ?? default(T);
+
+              T   ? last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasValNully(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last ?? default(T);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T     first, IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
+              where T : struct 
+          {
+              if (HasVal(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first;
+
+              T    last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T     first, IEnumerable<T   ?  >? fallbacks, ZeroMatters  zeroMatters )
+              where T : struct 
+          {
+              if (HasVal(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first;
+
+              T   ? last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasValNully(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+
+              return last ?? default(T);
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T   ? first, IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
+              where T : struct 
+          {
+              if (HasValNully(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first ?? default(T);
+
+              T    last = first ?? default(T);
+              foreach (var val in fallbacks)
+              {
+                  if (HasVal(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+              return last;
+          }
+          
+          /// <inheritdoc cref="_coalesce" />
+          public static T      CoalesceManyVals<T>(T   ? first, IEnumerable<T   ?  >? fallbacks, ZeroMatters  zeroMatters )
+              where T : struct 
+          {
+              if (HasValNully(first, zeroMatters)) 
+                  return (T)first;
+              if (fallbacks == null) 
+                  return first ?? default(T);
+
+              T   ? last = first;
+              foreach (var val in fallbacks)
+              {
+                  if (HasValNully(val, zeroMatters)) 
+                      return (T)val;
+                  last = val;
+              }
+
+              return last ?? default(T);
+          }
+
           // Many Objects
 
           /// <inheritdoc cref="_coalesce" />
