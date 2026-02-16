@@ -101,7 +101,7 @@ internal static class CoalesceUtil
           // Many Texts
           
           /// <inheritdoc cref="_coalesce" /> 
-          public static string CoalesceManyTexts(             IEnumerable<string?>? fallbacks                           )
+          public static string CoalesceManyTexts  (             IEnumerable<string?>? fallbacks                           )
           {
               if (fallbacks == null) 
                   return "";
@@ -117,7 +117,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static string CoalesceManyTexts(             IEnumerable<string?>? fallbacks, bool         spaceMatters)
+          public static string CoalesceManyTexts  (             IEnumerable<string?>? fallbacks, bool         spaceMatters)
           {
               if (fallbacks == null) 
                   return "";
@@ -133,7 +133,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static string CoalesceManyTexts(             IEnumerable<string?>? fallbacks, SpaceMatters spaceMatters)
+          public static string CoalesceManyTexts  (             IEnumerable<string?>? fallbacks, SpaceMatters spaceMatters)
           {
               if (fallbacks == null) 
                   return "";
@@ -151,7 +151,7 @@ internal static class CoalesceUtil
           // Many StringBuilders
 
           /// <inheritdoc cref="_coalesce" />
-          public static SB     CoalesceManySBs  (             IEnumerable<SB    ?>? fallbacks                           )
+          public static SB     CoalesceManySBs    (             IEnumerable<SB    ?>? fallbacks                           )
           {
               if (fallbacks == null) 
                   return new();
@@ -167,7 +167,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static SB     CoalesceManySBs  (             IEnumerable<SB    ?>? fallbacks, bool         spaceMatters)
+          public static SB     CoalesceManySBs    (             IEnumerable<SB    ?>? fallbacks, bool         spaceMatters)
           {
               if (fallbacks == null) 
                   return new();
@@ -182,7 +182,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static SB     CoalesceManySBs  (             IEnumerable<SB    ?>? fallbacks, SpaceMatters spaceMatters)
+          public static SB     CoalesceManySBs    (             IEnumerable<SB    ?>? fallbacks, SpaceMatters spaceMatters)
           {
               if (fallbacks == null) 
                   return new();
@@ -199,7 +199,7 @@ internal static class CoalesceUtil
           // Many Bools
 
           /// <inheritdoc cref="_coalesce" /> 
-          public static bool   CoalesceManyBools(             IEnumerable<bool   >? fallbacks                           )
+          public static bool   CoalesceManyBools  (             IEnumerable<bool   >? fallbacks                           )
           {
               if (fallbacks == null)
                   return default;
@@ -214,7 +214,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(             IEnumerable<bool   >? fallbacks, bool         zeroMatters )
+          public static bool   CoalesceManyBools  (             IEnumerable<bool   >? fallbacks, bool         zeroMatters )
           {
               if (fallbacks == null) 
                   return default;
@@ -229,7 +229,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(             IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
+          public static bool   CoalesceManyBools  (             IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
           {
               if (fallbacks == null) 
                   return default;
@@ -246,7 +246,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(             IEnumerable<bool?  >? fallbacks                           )
+          public static bool   CoalesceManyBools  (             IEnumerable<bool?  >? fallbacks                           )
           {
               if (fallbacks == null)
                   return default;
@@ -261,7 +261,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(             IEnumerable<bool?  >? fallbacks, bool         zeroMatters )
+          public static bool   CoalesceManyBools  (             IEnumerable<bool?  >? fallbacks, bool         zeroMatters )
           {
               if (fallbacks == null) 
                   return default;
@@ -276,7 +276,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(             IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
+          public static bool   CoalesceManyBools  (             IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
           {
               if (fallbacks == null) 
                   return default;
@@ -294,7 +294,7 @@ internal static class CoalesceUtil
           // Many Bools with First Arg
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool  first, IEnumerable<bool   >? fallbacks                           )
+          public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool   >? fallbacks                           )
           {
               if (HasBool(first)) 
                   return (bool)first;
@@ -312,7 +312,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool  first, IEnumerable<bool?  >? fallbacks                           )
+          public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool?  >? fallbacks                           )
           {
               if (HasBool(first)) 
                   return first;
@@ -330,7 +330,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool? first, IEnumerable<bool   >? fallbacks                           )
+          public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool   >? fallbacks                           )
           {
               if (HasBoolNully(first)) 
                   return (bool)first;
@@ -348,7 +348,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool? first, IEnumerable<bool?  >? fallbacks                           )
+          public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool?  >? fallbacks                           )
           {
               if (HasBoolNully(first)) 
                   return (bool)first;
@@ -366,7 +366,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool  first, IEnumerable<bool   >? fallbacks, bool         zeroMatters )
+          public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool   >? fallbacks, bool         zeroMatters )
           {
               if (HasBool(first, zeroMatters)) 
                   return (bool)first;
@@ -384,7 +384,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool  first, IEnumerable<bool?  >? fallbacks, bool         zeroMatters )
+          public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool?  >? fallbacks, bool         zeroMatters )
           {
               if (HasBool(first, zeroMatters)) 
                   return (bool)first;
@@ -402,7 +402,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool? first, IEnumerable<bool   >? fallbacks, bool         zeroMatters )
+          public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool   >? fallbacks, bool         zeroMatters )
           {
               if (HasBoolNully(first, zeroMatters)) 
                   return (bool)first;
@@ -420,7 +420,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool? first, IEnumerable<bool?  >? fallbacks, bool         zeroMatters )
+          public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool?  >? fallbacks, bool         zeroMatters )
           {
               if (HasBoolNully(first, zeroMatters)) 
                   return (bool)first;
@@ -438,7 +438,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool  first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
+          public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
           {
               if (HasBool(first, zeroMatters)) 
                   return (bool)first;
@@ -456,7 +456,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool  first, IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
+          public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
           {
               if (HasBool(first, zeroMatters)) 
                   return (bool)first;
@@ -475,7 +475,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool? first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
+          public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
           {
               if (HasBoolNully(first, zeroMatters)) 
                   return (bool)first;
@@ -493,7 +493,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static bool   CoalesceManyBools(bool? first, IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
+          public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
           {
               if (HasBoolNully(first, zeroMatters)) 
                   return (bool)first;
@@ -514,7 +514,7 @@ internal static class CoalesceUtil
           // Many Values
 
           /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyVals<T>     (             IEnumerable<T      >? fallbacks                           )
+          public static T      CoalesceManyVals<T>(             IEnumerable<T      >? fallbacks                           )
               where T : struct 
           {
               if (fallbacks == null) 
@@ -530,7 +530,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyVals<T>     (             IEnumerable<T      >? fallbacks, bool         zeroMatters )
+          public static T      CoalesceManyVals<T>(             IEnumerable<T      >? fallbacks, bool         zeroMatters )
               where T : struct 
           {
               if (fallbacks == null) return 
@@ -546,7 +546,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyVals<T>     (             IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
+          public static T      CoalesceManyVals<T>(             IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
               where T : struct 
           {
               if (fallbacks == null) return 
@@ -563,7 +563,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyNullyVals<T>(             IEnumerable<T?     >? fallbacks                           )
+          public static T      CoalesceManyVals<T>(             IEnumerable<T?     >? fallbacks                           )
               where T : struct 
           {
               if (fallbacks == null) 
@@ -579,7 +579,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyNullyVals<T>(             IEnumerable<T?     >? fallbacks, bool         zeroMatters )
+          public static T      CoalesceManyVals<T>(             IEnumerable<T?     >? fallbacks, bool         zeroMatters )
               where T : struct 
           {
               if (fallbacks == null) 
@@ -595,7 +595,7 @@ internal static class CoalesceUtil
           }
           
           /// <inheritdoc cref="_coalesce" />
-          public static T      CoalesceManyNullyVals<T>(             IEnumerable<T?     >? fallbacks, ZeroMatters  zeroMatters )
+          public static T      CoalesceManyVals<T>(             IEnumerable<T?     >? fallbacks, ZeroMatters  zeroMatters )
               where T : struct 
           {
               if (fallbacks == null) 
