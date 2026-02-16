@@ -1,8 +1,9 @@
 ﻿bool success = 
 RunTests<Coalesce_1Arg_Tests>() &&
-RunTests<Coalesce_2Args_Bool_NoFlags>() &&
+RunTests<Coalesce_2Args_Bool_Examples>() &&
 RunTests<Coalesce_2Args_Bool_FlagsInBack>() &&
 RunTests<Coalesce_2Args_Bool_FlagsInFront>() &&
+RunTests<Coalesce_2Args_Bool_NoFlags>() &&
 RunTests<Coalesce_2Args_Objects_NoFlags>() &&
 RunTests<Coalesce_2Args_SBText_FlagsInBack>() &&
 RunTests<Coalesce_2Args_SBText_FlagsInFront>() &&
@@ -10,6 +11,7 @@ RunTests<Coalesce_2Args_SBText_NoFlags>() &&
 RunTests<Coalesce_2Args_Values_FlagsInBack>() &&
 RunTests<Coalesce_2Args_Values_FlagsInFront>() &&
 RunTests<Coalesce_2Args_Values_NoFlags>() &&
+RunTests<Coalesce_3Args_Bool_Examples>() &&
 RunTests<Coalesce_3Args_Bool_Extensions>() &&
 RunTests<Coalesce_3Args_Bool_ExtensionsZeroMattersFlagsInBack>() &&
 RunTests<Coalesce_3Args_Bool_ExtensionsZeroMattersFlagsInFront>() &&
@@ -110,7 +112,6 @@ RunTests<Coalesce_NArg_Values_Tests>() &&
 RunTests<Contains_Nullable_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<BasicType_Other_Tests>() &&
-RunTests<BasicType_Bool_Coalesce_Tests>() &&
 RunTests<Existence_Bugs>() &&
 RunTests<BasicType_Bool_Tests>() &&
 RunTests<BasicType_Char_Tests>() &&

@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests.Coalesce_2Args;
+﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
 public class Coalesce_2Args_Bool_Examples : TestBase

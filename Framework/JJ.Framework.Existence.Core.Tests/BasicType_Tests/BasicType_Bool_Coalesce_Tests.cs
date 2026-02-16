@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_3Arg_Bool_Examples : TestBase
+public class Coalesce_3Args_Bool_Examples : TestBase
 {
     [TestMethod]
     public void Coalesce_3Args_Bool_Examples_ZeroMattersFlagsInBack()
