@@ -94,16 +94,66 @@ public class Coalesce_NArg_SB_Tests : TestBase
         NoNullRet(NullySpaceSB,  NullyEmptySB .Coalesce( [ NullySpaceSB,  NullyFilledSB, NullSB,        NullyNewSB    ], spaceMatters: true ));
     }
 
+    // TODO: The ReturnsNew tests do not really check which object / that a new object comes out.
+
     [TestMethod]
-    public void Coalesce_StringBuilders_StaticParams_ReturnsNew()
+    public void Coalesce_StringBuilders_StaticParams_ReturnsNewNotNull()
     {
-        NoNullRet(Coalesce(                     NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
-        NoNullRet(Coalesce(                     NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
-        NoNullRet(Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
-        NoNullRet(Coalesce(spaceMatters: false, NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
-        NoNullRet(Coalesce(spaceMatters,        NullyNewSB,   NewSB,        NullyEmptySB, NullSB));
-        NoNullRet(Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB,   NewSB,        NullSB));
-        NoNullRet(Coalesce(spaceMatters: true,  NewSB,        NullyEmptySB, NullyNewSB,   NullSB));
-        NoNullRet(Coalesce(spaceMatters: true,  NullyNewSB,   NewSB,        NullyEmptySB, NullSB));
+        NoNullRet(       Coalesce(                     NullyEmptySB, NullyNewSB,   NewSB,        NullSB ));
+        NoNullRet(       Coalesce(                     NewSB,        NullyEmptySB, NullyNewSB,   NullSB ));
+        NoNullRet(       Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB,   NewSB,        NullSB ));
+        NoNullRet(       Coalesce(spaceMatters: false, NewSB,        NullyEmptySB, NullyNewSB,   NullSB ));
+        NoNullRet(       Coalesce(spaceMatters,        NullyNewSB,   NewSB,        NullyEmptySB, NullSB ));
+        NoNullRet(       Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB,   NewSB,        NullSB ));
+        NoNullRet(       Coalesce(spaceMatters: true,  NewSB,        NullyEmptySB, NullyNewSB,   NullSB ));
+        NoNullRet(       Coalesce(spaceMatters: true,  NullyNewSB,   NewSB,        NullyEmptySB, NullSB ));
+    }
+
+    [TestMethod]
+    public void Coalesce_StringBuilders_StaticParams_ReturnsNewEmpty()
+    {
+        NoNullRet("", $"{Coalesce(                     NullyEmptySB, NullyNewSB,   NewSB,        NullSB)}");
+        NoNullRet("", $"{Coalesce(                     NewSB,        NullyEmptySB, NullyNewSB,   NullSB)}");
+        NoNullRet("", $"{Coalesce(spaceMatters: false, NullyEmptySB, NullyNewSB,   NewSB,        NullSB)}");
+        NoNullRet("", $"{Coalesce(spaceMatters: false, NewSB,        NullyEmptySB, NullyNewSB,   NullSB)}");
+        NoNullRet("", $"{Coalesce(spaceMatters,        NullyNewSB,   NewSB,        NullyEmptySB, NullSB)}");
+        NoNullRet("", $"{Coalesce(spaceMatters,        NullyEmptySB, NullyNewSB,   NewSB,        NullSB)}");
+        NoNullRet("", $"{Coalesce(spaceMatters: true,  NewSB,        NullyEmptySB, NullyNewSB,   NullSB)}");
+        NoNullRet("", $"{Coalesce(spaceMatters: true,  NullyNewSB,   NewSB,        NullyEmptySB, NullSB)}");
+    }
+
+    [TestMethod]
+    public void Coalesce_StringBuilders_NullColls_FlagsInBack()
+    {
+        
+        NoNullRet(       Coalesce(SBNullArray                      ) );
+        NoNullRet("", $"{Coalesce(SBNullArray                     )}");
+        NoNullRet(       Coalesce(SBNullArray, spaceMatters: false ) );
+        NoNullRet("", $"{Coalesce(SBNullArray, spaceMatters: false)}");
+        NoNullRet(       Coalesce(SBNullArray,               false ) );
+        NoNullRet("", $"{Coalesce(SBNullArray,               false)}");
+        NoNullRet(       Coalesce(SBNullArray, spaceMatters        ) );
+        NoNullRet("", $"{Coalesce(SBNullArray, spaceMatters       )}");
+        NoNullRet(       Coalesce(SBNullArray, spaceMatters:  true ) );
+        NoNullRet("", $"{Coalesce(SBNullArray, spaceMatters:  true)}");
+        NoNullRet(       Coalesce(SBNullArray,                true ) );
+        NoNullRet("", $"{Coalesce(SBNullArray,                true)}");
+    }
+
+    [TestMethod]
+    public void Coalesce_StringBuilders_NullColls_FlagsInFront()
+    {
+        NoNullRet(       Coalesce(                     SBNullArray ) );
+        NoNullRet("", $"{Coalesce(                     SBNullArray)}");
+        NoNullRet(       Coalesce(spaceMatters: false, SBNullArray ) );
+        NoNullRet("", $"{Coalesce(spaceMatters: false, SBNullArray)}");
+        NoNullRet(       Coalesce(              false, SBNullArray ) );
+        NoNullRet("", $"{Coalesce(              false, SBNullArray)}");
+        NoNullRet(       Coalesce(spaceMatters,        SBNullArray ) );
+        NoNullRet("", $"{Coalesce(spaceMatters,        SBNullArray)}");
+        NoNullRet(       Coalesce(spaceMatters:  true, SBNullArray ) );
+        NoNullRet("", $"{Coalesce(spaceMatters:  true, SBNullArray)}");
+        NoNullRet(       Coalesce(               true, SBNullArray ) );
+        NoNullRet("", $"{Coalesce(               true, SBNullArray)}");
     }
 }
