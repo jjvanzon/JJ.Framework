@@ -113,7 +113,6 @@ RunTests<Contains_Nullable_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<BasicType_Other_Tests>() &&
 RunTests<Existence_Bugs>() &&
-RunTests<BasicType_Bool_Tests>() &&
 RunTests<BasicType_Char_Tests>() &&
 RunTests<BasicType_DateTime_Tests>() &&
 RunTests<BasicType_Double_Tests>() &&

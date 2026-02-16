@@ -4,6 +4,13 @@
 public class Coalesce_3Args_Bool_Examples : TestBase
 {
     [TestMethod]
+    public void Coalesce_3Arg_Bool_Examples()
+    {
+        IsTrue (Coalesce(False, NullyTrue, NullBool));
+        IsTrue (NullyFalse.Coalesce(NullBool, NullyTrue));
+    }
+
+    [TestMethod]
     public void Coalesce_3Args_Bool_Examples_ZeroMattersFlagsInBack()
     {
         IsTrue (Coalesce(False, NullyTrue, NullBool,     zeroMatters: false));
