@@ -159,8 +159,6 @@ public static class CoalesceValueExtensions
            /// <inheritdoc cref="_coalesce" />
 [Prio(1)]  public static T    Coalesce<T>(this IEnumerable<T?>?    fallbacks, ZeroMatters zeroMatters) where T : struct => CoalesceManyVals(fallbacks, zeroMatters);
 
-           // TODO: Faster implementations with Util methods.
-
            // TODO: Clashes
          ///// <inheritdoc cref="_coalesce" />
          //public static T      Coalesce<T>(this T       first,                                     params IEnumerable<T> ?      fallbacks   ) where T : struct => CoalesceManyVals        (new [] {       first }.Concat(fallbacks ?? [ ]));
