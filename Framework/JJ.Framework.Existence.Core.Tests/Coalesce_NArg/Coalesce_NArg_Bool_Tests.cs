@@ -674,7 +674,7 @@ public class Coalesce_NArg_Bool_Tests : TestBase
     // Null Collections
 
     [TestMethod]
-    public void Coalesce_NArg_Bool_NullCollNoNullItem()
+    public void Coalesce_NArg_Bool_NullCollNonNullableItem()
     {
         ICollection<bool>? nullColl = null;
         // Static Flags in Front
@@ -762,7 +762,7 @@ public class Coalesce_NArg_Bool_Tests : TestBase
     }
 
     [TestMethod]
-    public void Coalesce_NArg_Bool_NullCollNullItem()
+    public void Coalesce_NArg_Bool_NullCollNullableItem()
     {
         ICollection<bool?>? nullColl = null;
         // Static Flags in Front
@@ -847,5 +847,45 @@ public class Coalesce_NArg_Bool_Tests : TestBase
         NoNullRet(false, nullColl  .Coalesce(          zeroMatters: false));
         NoNullRet(false, nullColl  .Coalesce(                       false));
         NoNullRet(false, nullColl  .Coalesce(          zeroMatters       ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_EmptyColl()
+    {
+        NoNullRet(false,       Coalesce(EmptyBoolArray                         ));
+        NoNullRet(false,       Coalesce(EmptyBoolArray,      zeroMatters: false));
+        NoNullRet(false,       Coalesce(EmptyBoolArray,      zeroMatters       ));
+        NoNullRet(false,       Coalesce(EmptyNullyBoolArray                    ));
+        NoNullRet(false,       Coalesce(EmptyNullyBoolArray, zeroMatters: false));
+        NoNullRet(false,       Coalesce(EmptyNullyBoolArray, zeroMatters       ));
+        NoNullRet(false, Null .Coalesce(EmptyBoolArray                         ));
+        NoNullRet(false, Null .Coalesce(EmptyBoolArray,      zeroMatters: false));
+        NoNullRet(false, Null .Coalesce(EmptyBoolArray,      zeroMatters       ));
+        NoNullRet(false, Null .Coalesce(EmptyNullyBoolArray                    ));
+        NoNullRet(false, Null .Coalesce(EmptyNullyBoolArray, zeroMatters: false));
+        NoNullRet(false, Null .Coalesce(EmptyNullyBoolArray, zeroMatters       ));
+        NoNullRet(false, False.Coalesce(EmptyBoolArray                         ));
+        NoNullRet(false, False.Coalesce(EmptyBoolArray,      zeroMatters: false));
+        NoNullRet(false, False.Coalesce(EmptyBoolArray,      zeroMatters       ));
+        NoNullRet(false, False.Coalesce(EmptyNullyBoolArray                    ));
+        NoNullRet(false, False.Coalesce(EmptyNullyBoolArray, zeroMatters: false));
+        NoNullRet(false, False.Coalesce(EmptyNullyBoolArray, zeroMatters       ));
+    }
+
+    [TestMethod]
+    public void Coalesce_NArg_Bool_LastResort_Test()
+    {
+        NoNullRet(false, Coalesce([ Null,  Null,  Null,  Null,  Null  ]                    ));
+        NoNullRet(false, Coalesce([ Null,  Null,  Null,  Null,  Null  ], zeroMatters: false));
+        NoNullRet(false, Coalesce([ False, False, False, False, False ]                    ));
+        NoNullRet(false, Coalesce([ False, False, False, False, False ], zeroMatters: false));
+        NoNullRet(false, Null  .Coalesce([ Null,  Null,  Null,  Null  ]                    ));
+        NoNullRet(false, Null  .Coalesce([ Null,  Null,  Null,  Null  ], zeroMatters: false));
+        NoNullRet(false, False .Coalesce([ Null,  Null,  Null,  Null  ]                    ));
+        NoNullRet(false, False .Coalesce([ Null,  Null,  Null,  Null  ], zeroMatters: false));
+        NoNullRet(false, Null  .Coalesce([ False, False, False, False ]                    ));
+        NoNullRet(false, Null  .Coalesce([ False, False, False, False ], zeroMatters: false));
+        NoNullRet(false, False .Coalesce([ False, False, False, False ]                    ));
+        NoNullRet(false, False .Coalesce([ False, False, False, False ], zeroMatters: false));
     }
 }

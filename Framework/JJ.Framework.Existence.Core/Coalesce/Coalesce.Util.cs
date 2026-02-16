@@ -232,7 +232,7 @@ internal static class CoalesceUtil
         {
             if (HasBool(boo, zeroMatters)) 
                 return boo;
-        }
+        } // ncrunch: no coverage
         return false;
     }
     
@@ -407,44 +407,12 @@ internal static class CoalesceUtil
     }
 
     /// <inheritdoc cref="_coalesce" />
-    public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
-    {
-        // TODO: Optimize later - with coverage.
-        if (HasBool(first, zeroMatters)) 
-            return (bool)first;
-        if (fallbacks == null) 
-            return first;
-
-        bool last = first;
-        foreach (bool boo in fallbacks)
-        {
-            if (HasBool(boo, zeroMatters)) 
-                return (bool)boo;
-            last = boo;
-        }
-        return last;
-    }
+    public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters ) 
+        => first;
 
     /// <inheritdoc cref="_coalesce" />
-    public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters )
-    {
-        // TODO: Optimize later - with coverage.
-        if (HasBool(first, zeroMatters)) 
-            return (bool)first;
-        if (fallbacks == null) 
-            return first;
-
-        bool? last = first;
-        foreach (bool? boo in fallbacks)
-        {
-            if (HasBoolNully(boo, zeroMatters)) 
-                return (bool)boo;
-            last = boo;
-        }
-
-        return last ?? default(bool);
-    }
-    
+    public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters ) 
+        => first;
 
     /// <inheritdoc cref="_coalesce" />
     public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
