@@ -14,13 +14,6 @@ namespace JJ.Framework.Existence.Core.Tests.docs;
 public struct _coalesce3argssbtotext;
 
 /// <summary>
-/// Tests of all StringBuilder/Text Combos.<br/>
-/// Non-nullable inputs are omitted. Test combinations of:<br/>
-/// NullyEmpty, Null, NullySpace, NullyFilled, NullSB, NullyEmptySB, NullySpaceSB, NullyFilledSB.
-/// </summary>
-public struct _coalesce3argssbtextcombos;
-
-/// <summary>
 /// 4-arg bools have their own overloads for flag-free calls to Coalesce.
 /// This is for overload resolution purposes specific to Booleans.
 /// These tests check those overloads systematically.

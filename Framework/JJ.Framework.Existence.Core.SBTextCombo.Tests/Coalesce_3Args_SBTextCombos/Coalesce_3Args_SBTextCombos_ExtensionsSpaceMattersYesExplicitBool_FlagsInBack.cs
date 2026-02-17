@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.SBTextCombo.Tests;
 
 /// <inheritdoc cref="_coalesce3argssbtextcombos" />
 [TestClass]
