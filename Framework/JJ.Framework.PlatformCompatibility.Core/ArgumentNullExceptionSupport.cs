@@ -1,6 +1,7 @@
 ﻿// ReSharper disable RedundantUsingDirective
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseSymbolAlias
+// ReSharper disable UnusedType.Global
 
 // ncrunch: no coverage start
 

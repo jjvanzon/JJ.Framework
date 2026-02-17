@@ -1,5 +1,7 @@
-﻿// ncrunch: no coverage start
+﻿// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable UnusedMember.Global
 
+// ncrunch: no coverage start
 #if !NET9_0_OR_GREATER
 
 namespace System.Runtime.CompilerServices;
@@ -11,5 +13,4 @@ internal class OverloadResolutionPriorityAttribute(int priority) : Attribute
 }
 
 #endif
-
 // ncrunch: no coverage end
