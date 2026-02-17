@@ -6,10 +6,11 @@ namespace JJ.Framework.Common.Core;
 public static class NameHelper
 {
     /// <inheritdoc cref="_name"/>
-    public static string Name([CallerMemberName] string name = "")
+    public static string Name([Caller] string name = "")
         => name.CutLeft("get_").CutLeft("set_");
 
+    #pragma warning disable IDE0060 // Parameter unused (expression only used for ArgExpress
     /// <inheritdoc cref="_textof" />
-    public static string TextOf(object? expression, [CallerArgumentExpression(nameof(expression))] string expressionString = "")
+    public static string TextOf(object? expression, [ArgExpress(nameof(expression))] string expressionString = "")
         => expressionString;
 }
