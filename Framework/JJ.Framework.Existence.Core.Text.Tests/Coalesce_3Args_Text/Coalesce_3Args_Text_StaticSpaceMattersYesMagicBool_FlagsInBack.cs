@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Text.Tests;
 
 [TestClass]
 public class Coalesce_3Args_Text_StaticSpaceMattersYesMagicBool_FlagsInBack : TestBase
