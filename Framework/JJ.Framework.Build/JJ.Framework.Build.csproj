@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="3.6.4594">
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="3.6.4595">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
