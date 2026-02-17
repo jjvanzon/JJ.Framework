@@ -13,6 +13,7 @@ RunTests<SplitCoreTests>() &&
 RunTests<SplitWithQuotationCoreTests>() &&
 RunTests<StringExtensionsCasingCoreTests>() &&
 RunTests<StringExtensionsCoreTests>() &&
-RunTests<TrimAllCoreTests>();
+RunTests<TrimAllCoreTests>() &&
+RunTests<OverloadByNameTests>();
 WriteLine("Done.");
 if (!success) Exit(1);
