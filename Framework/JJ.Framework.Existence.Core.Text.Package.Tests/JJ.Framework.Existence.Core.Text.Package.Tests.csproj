@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\JJ.Framework.Existence.Core.Text.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Text.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Text.Tests\bin\**" />

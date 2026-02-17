@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.SBToText.Tests;
 
 /// <inheritdoc cref="_coalesce3argssbtotext" />
 [TestClass]

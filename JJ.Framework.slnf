@@ -17,6 +17,8 @@
       "Framework\\JJ.Framework.Exceptions.Core\\JJ.Framework.Exceptions.Core.csproj",
       "Framework\\JJ.Framework.Existence.Core.SBTextCombo.Tests\\JJ.Framework.Existence.Core.SBTextCombo.Tests.csproj",
       "Framework\\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp\\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp.csproj",
+      "Framework\\JJ.Framework.Existence.Core.SBToText.Tests\\JJ.Framework.Existence.Core.SBToText.Tests.csproj",
+      "Framework\\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp\\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.Existence.Core.SBs.Tests\\JJ.Framework.Existence.Core.SBs.Tests.csproj",
       "Framework\\JJ.Framework.Existence.Core.SBs.Trimming.TestApp\\JJ.Framework.Existence.Core.SBs.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.Existence.Core.Tests.Helpers\\JJ.Framework.Existence.Core.Tests.Helpers.csproj",
