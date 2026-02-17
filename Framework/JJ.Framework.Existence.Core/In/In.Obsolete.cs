@@ -1,4 +1,6 @@
 ﻿// ReSharper disable MethodOverloadWithOptionalParameter
+// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Existence.Core;
 

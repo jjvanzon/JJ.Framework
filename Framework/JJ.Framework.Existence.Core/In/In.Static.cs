@@ -36,6 +36,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, bool         spaceMatters,  CaseMatters  caseMatters,  params IEnumerable<string?>? coll) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
+    // ReSharper disable once UnusedParameter.Global
     public static bool In(     string? value, bool         spaceMatters,  bool         caseMatters,         IEnumerable<string?>? coll, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
 
     // Flags in Back
@@ -66,6 +67,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_in" />
     public static bool In(     string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool         caseMatters ) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
+    // ReSharper disable once UnusedParameter.Global
     public static bool In(     string? value, IEnumerable<string?>? coll, bool         spaceMatters, bool         caseMatters, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
 
     // Values and Objects

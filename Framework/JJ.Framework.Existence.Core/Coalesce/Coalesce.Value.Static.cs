@@ -27,6 +27,7 @@ public static partial class FilledInHelper
            public static T    Coalesce<T>(     T     val, T?    fallback                                                ) where T : struct => CoalesceValAndNully (val, fallback);
            /// <inheritdoc cref="_coalesce" />
            public static T    Coalesce<T>(     T     val, T     fallback                                                ) where T : struct => CoalesceTwoVals     (val, fallback);
+           // ReSharper disable UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static T    Coalesce<T>(     T?    val, T?    fallback, bool        zeroMatters, NameOvl ovl = default) where T : struct => CoalesceTwoNullyVals(val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -35,6 +36,7 @@ public static partial class FilledInHelper
 [Prio(-1)] public static T    Coalesce<T>(     T     val, T?    fallback, bool        zeroMatters, NameOvl ovl = default) where T : struct => CoalesceValAndNully (val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static T    Coalesce<T>(     T     val, T     fallback, bool        zeroMatters, NameOvl ovl = default) where T : struct => CoalesceTwoVals     (val, fallback, zeroMatters);
+           // ReSharper restore UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
            public static T    Coalesce<T>(     T?    val, T?    fallback, ZeroMatters zeroMatters                       ) where T : struct => CoalesceTwoNullyVals(val, fallback, zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -78,6 +80,7 @@ public static partial class FilledInHelper
            public static T    Coalesce<T>(     T     val, T     fallback, T?    fallback2                                                ) where T : struct => CoalesceTwoVals    (val, CoalesceValAndNully (fallback, fallback2));
            /// <inheritdoc cref="_coalesce" />
            public static T    Coalesce<T>(     T     val, T     fallback, T     fallback2                                                ) where T : struct => CoalesceTwoVals    (val, CoalesceTwoVals     (fallback, fallback2));
+           // ReSharper disable UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static T    Coalesce<T>(     T?    val, T?    fallback, T?    fallback2, bool        zeroMatters, NameOvl ovl = default) where T : struct => CoalesceNullyAndVal(val, CoalesceTwoNullyVals(fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -94,6 +97,7 @@ public static partial class FilledInHelper
 [Prio(-1)] public static T    Coalesce<T>(     T     val, T     fallback, T?    fallback2, bool        zeroMatters, NameOvl ovl = default) where T : struct => CoalesceTwoVals    (val, CoalesceValAndNully (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static T    Coalesce<T>(     T     val, T     fallback, T     fallback2, bool        zeroMatters, NameOvl ovl = default) where T : struct => CoalesceTwoVals    (val, CoalesceTwoVals     (fallback, fallback2, zeroMatters), zeroMatters);
+           // ReSharper restore UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
            public static T    Coalesce<T>(     T?    val, T?    fallback, T?    fallback2, ZeroMatters zeroMatters                       ) where T : struct => CoalesceNullyAndVal(val, CoalesceTwoNullyVals(fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -111,6 +115,7 @@ public static partial class FilledInHelper
            /// <inheritdoc cref="_coalesce" />
            public static T    Coalesce<T>(     T     val, T     fallback, T     fallback2, ZeroMatters zeroMatters                       ) where T : struct => CoalesceTwoVals    (val, CoalesceTwoVals     (fallback, fallback2, zeroMatters), zeroMatters);
 
+           // ReSharper disable UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static T    Coalesce<T>(     bool         zeroMatters, T?      val,  T?      fallback, T?      fallback2, NameOvl ovl = default) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
@@ -127,6 +132,7 @@ public static partial class FilledInHelper
 [Prio(-1)] public static T    Coalesce<T>(     bool         zeroMatters, T       val,  T       fallback, T?      fallback2, NameOvl ovl = default) where T : struct => CoalesceTwoVals       (val,  CoalesceValAndNully   (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />
 [Prio(-1)] public static T    Coalesce<T>(     bool         zeroMatters, T       val,  T       fallback, T       fallback2, NameOvl ovl = default) where T : struct => CoalesceTwoVals       (val,  CoalesceTwoVals       (fallback, fallback2, zeroMatters), zeroMatters);
+           // ReSharper restore UnusedParameter.Global
            /// <inheritdoc cref="_coalesce" />
            public static T    Coalesce<T>(     ZeroMatters  zeroMatters, T?      val,  T?      fallback, T?      fallback2 ) where T : struct => CoalesceNullyAndVal   (val,  CoalesceTwoNullyVals  (fallback, fallback2, zeroMatters), zeroMatters);
            /// <inheritdoc cref="_coalesce" />

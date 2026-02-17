@@ -25,6 +25,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_is" />
     public static bool Is(     string? a, string? b, SpaceMatters spaceMatters                                                  ) => IsUtil.Is(a, b, spaceMatters              );
     /// <inheritdoc cref="_is" />
+    // ReSharper disable once UnusedParameter.Global
     public static bool Is(     string? a, string? b, bool         spaceMatters,                            NameOvl ovl = default) => IsUtil.Is(a, b, spaceMatters: spaceMatters);
     /// <inheritdoc cref="_is" />
     public static bool Is(     string? a, string? b, SpaceMatters spaceMatters, CaseMatters  caseMatters                        ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
@@ -33,6 +34,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_is" />
     public static bool Is(     string? a, string? b, bool         spaceMatters, CaseMatters  caseMatters                        ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
+    // ReSharper disable once UnusedParameter.Global
     public static bool Is(     string? a, string? b, bool         spaceMatters, bool         caseMatters,  NameOvl ovl = default) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     
     // Flags in Front
@@ -55,6 +57,7 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_is" />
     public static bool Is(     SpaceMatters spaceMatters,                            string? a, string? b                       ) => IsUtil.Is(a, b, spaceMatters              );
     /// <inheritdoc cref="_is" />
+    // ReSharper disable once UnusedParameter.Global
     public static bool Is(     bool         spaceMatters,                            string? a, string? b, NameOvl ovl = default) => IsUtil.Is(a, b, spaceMatters: spaceMatters);
     /// <inheritdoc cref="_is" />
     public static bool Is(     SpaceMatters spaceMatters, CaseMatters  caseMatters,  string? a, string? b                       ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
@@ -63,5 +66,6 @@ public static partial class FilledInHelper
     /// <inheritdoc cref="_is" />
     public static bool Is(     bool         spaceMatters, CaseMatters  caseMatters,  string? a, string? b                       ) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
     /// <inheritdoc cref="_is" />
+    // ReSharper disable once UnusedParameter.Global
     public static bool Is(     bool         spaceMatters, bool         caseMatters,  string? a, string? b, NameOvl ovl = default) => IsUtil.Is(a, b, caseMatters,  spaceMatters);
 }

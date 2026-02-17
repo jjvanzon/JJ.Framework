@@ -36,6 +36,7 @@ public static class InExtensions
     public static bool In(this string? value, SpaceMatters spaceMatters,  bool         caseMatters,  params IEnumerable<string?>? coll) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, bool         spaceMatters,  CaseMatters  caseMatters,  params IEnumerable<string?>? coll) => InUtil.In(value, coll, caseMatters, spaceMatters);
+    // ReSharper disable once UnusedParameter.Global
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, bool         spaceMatters,  bool         caseMatters, IEnumerable<string?>? coll, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
     
@@ -66,6 +67,7 @@ public static class InExtensions
     public static bool In(this string? value, IEnumerable<string?>? coll, bool         spaceMatters, CaseMatters caseMatters  ) => InUtil.In(value, coll, caseMatters, spaceMatters);
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool        caseMatters  ) => InUtil.In(value, coll, caseMatters, spaceMatters);
+    // ReSharper disable once UnusedParameter.Global
     /// <inheritdoc cref="_in" />
     public static bool In(this string? value, IEnumerable<string?>? coll, bool         spaceMatters, bool        caseMatters, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
 

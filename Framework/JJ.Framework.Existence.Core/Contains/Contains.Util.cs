@@ -21,7 +21,7 @@ internal static class ContainsUtil
     }
 
     /// <inheritdoc cref="_contains" />
-    public static bool Contains(IEnumerable<string?>? coll, string? value, CaseMatters caseMatters)
+    public static bool Contains(IEnumerable<string?>? coll, string? value, [Implic(Reason = MagicBool)] CaseMatters caseMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value);

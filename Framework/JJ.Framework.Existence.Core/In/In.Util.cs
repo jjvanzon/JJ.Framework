@@ -13,7 +13,7 @@ internal static class InUtil
     }
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [Implic(Reason = MagicBool)] CaseMatters caseMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value);
@@ -38,6 +38,7 @@ internal static class InUtil
     }
 
     /// <inheritdoc cref="_in" />
+    // ReSharper disable once UnusedParameter.Global
     public static bool In(string? value, IEnumerable<string?>? coll, bool spaceMatters, NameOvl ovl = default)
     {
         if (coll == null) return false;
@@ -46,7 +47,7 @@ internal static class InUtil
     }
     
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [Implic(Reason = MagicBool)] CaseMatters caseMatters, [Implic(Reason = MagicBool)] SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -54,7 +55,7 @@ internal static class InUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, [UsedImplicitly(Reason = MagicBool)] CaseMatters caseMatters, bool spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, [Implic(Reason = MagicBool)] CaseMatters caseMatters, bool spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -62,7 +63,7 @@ internal static class InUtil
     }
 
     /// <inheritdoc cref="_in" />
-    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters)
+    public static bool In(string? value, IEnumerable<string?>? coll, bool caseMatters, [Implic(Reason = MagicBool)] SpaceMatters spaceMatters)
     {
         if (coll == null) return false;
         value = FormatValue(value, spaceMatters);
@@ -86,7 +87,7 @@ internal static class InUtil
         => (value ?? "").Trim();
 
     [MethodImpl(AggressiveInlining)]
-    public static string FormatValue(string? value, [UsedImplicitly(Reason = MagicBool)] SpaceMatters spaceMatters) 
+    public static string FormatValue(string? value, [Implic(Reason = MagicBool)] SpaceMatters spaceMatters) 
         => value ?? "";
 
     [MethodImpl(AggressiveInlining)]

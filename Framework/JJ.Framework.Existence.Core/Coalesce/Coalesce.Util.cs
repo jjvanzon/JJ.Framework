@@ -91,6 +91,7 @@ internal static class CoalesceUtil
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceTwoVals       <T>(T    val,  T       fallback, ZeroMatters  zeroMatters ) where T : struct => HasVal     (val, zeroMatters) ? val       : CoalesceVal     (fallback);
     // ncrunch: no coverage start
+    // ReSharper disable once UnusedMember.Global
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceTwoObjects    <T>(T?   obj,  T?      fallback                           ) where T : class, new() => HasObject  (obj) ? obj : CoalesceObject  (fallback);
     // ncrunch: no coverage end
@@ -404,6 +405,7 @@ internal static class CoalesceUtil
         return false;
     }
 
+    // ReSharper disable UnusedParameter.Global
     /// <inheritdoc cref="_coalesce" />
     public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters ) 
         => first;
@@ -411,6 +413,7 @@ internal static class CoalesceUtil
     /// <inheritdoc cref="_coalesce" />
     public static bool   CoalesceManyBools  (bool  first, IEnumerable<bool?  >? fallbacks, ZeroMatters  zeroMatters ) 
         => first;
+    // ReSharper restore UnusedParameter.Global
 
     /// <inheritdoc cref="_coalesce" />
     public static bool   CoalesceManyBools  (bool? first, IEnumerable<bool   >? fallbacks, ZeroMatters  zeroMatters )
@@ -481,6 +484,7 @@ internal static class CoalesceUtil
         return last;
     }
     
+    // ReSharper disable once UnusedParameter.Global
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceManyVals<T>(             IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
         where T : struct 
@@ -701,6 +705,7 @@ internal static class CoalesceUtil
         return last ?? default;
     }
     
+    // ReSharper disable UnusedParameter.Global
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceManyVals<T>(T     first, IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
         where T : struct
@@ -714,6 +719,7 @@ internal static class CoalesceUtil
     {
         return first;
     }
+    // ReSharper restore UnusedParameter.Global
 
     /// <inheritdoc cref="_coalesce" />
     public static T      CoalesceManyVals<T>(T?    first, IEnumerable<T      >? fallbacks, ZeroMatters  zeroMatters )
