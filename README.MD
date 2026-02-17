@@ -62,11 +62,12 @@ Any reusable code independent of a particular business domain, was moved to this
 
 That grip on dependency, was once a good plan for platform compatibility. Some of `JJ.Framework` is still based on `.NET 4.6.1` trying to keep it compatible with `Mono`. Around 2015 `JJ.Framework` was tested to be reasonably compatible with `Mono` and by extension `Android`, `iOS` and `Windows Phone`. This was before newer technology like `.NET Standard` and `.NET 5 +` emerged, which could make platform-compatibility a bit more doable. For this reason, some of the `JJ.Framework` is currently being ported to a newer `.NET`, but this is still in progress.
 
+
 📋 Release Notes
 -----------------
 
-|       |                                         |   |
-|-------|-----------------------------------------|---|
+|       |                                         |     |
+|-------|-----------------------------------------|-----|
 | `1.9` | __Build.csproj__                        |
 | `2.5` | __Existence.Core__                      | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                         | Initial release
@@ -86,12 +87,20 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 | `3.1` | __Less Prios__                          | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                         | Simplify overload picking removing some `[Prio]` attributes
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Flags in Front - Coalesce__           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+| `3.2` | __Leading Flags - Coalesce__            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
 |       |                                         | Flags at the beginning of the parameter list, now don't come with a performance penalty.
-| `3.3` | __Flags in Front - Contains__           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+| `3.3` | __Leading Flags - Contains__            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                         | More notation options for flags for the `Contains` method
-| `3.4` | __Flags in Front - FilledIn__           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+| `3.4` | __Leading Flags - FilledIn__            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 |       |                                         | Support flags in front for the `FilledIn` method
+| `3.7` | __Clash of the Booleans__               | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                         | Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
+|       |                                         | Improved `Coalesce` resolution and performance for 4+ values and collections.
+|       |                                         | Added overloads for reduced clashes between `bool` flags and value lists.
+|       |                                         | Various non-critical renames for clarity and modularity.
+|       |                                         | [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
+|       |                                         | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
+
 
 💬 Feedback 
 ------------

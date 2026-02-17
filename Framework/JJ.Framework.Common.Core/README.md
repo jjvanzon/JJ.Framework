@@ -34,6 +34,8 @@ An extension to [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.F
 
     - `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, `null` is returned, instead of a crash. (This helper avoids direct use of `System.Configuration`.)
 
+-----
+
 - `OverloadByName` / `NameOvl`
 
     - Allows overloading by parameter name, which you normally cannot do:
@@ -58,6 +60,13 @@ Links to legacy dependencies may have changed. If you experience problems, these
 - Use the [`JJ.Framework.Common.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use [`JJ.Framework.Common`](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184).
 #### Option `3`
 - Install [`JJ.Framework.Common`](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
+
+Release Notes
+-------------
+
+|       |                                         |   |
+|-------|-----------------------------------------|---|
+| `3.7` | __Clash of the Booleans__               | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
 
 
 💬 Feedback

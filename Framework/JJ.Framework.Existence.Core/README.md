@@ -83,7 +83,6 @@ Coalesce(" ", Null, "Hi!") == "Hi!"
 Coming Soon
 -----------
 
-- Flags in front - More places where you can lead with a flag, instead of them trailing behind.
 - `flex` mode – force a full runtime type lookup on values when you're feeling adventurous.
 - `char` quirks – treat lone `' '` as nully by default (no more sneaky space bugs).
 - `float` drama – `NaN`, `∞`, `+0`/`–0` all count as empty.
@@ -124,9 +123,13 @@ Release Notes
 | `3.0` | __.NET 10__                             | Upgraded with explicit support for `.NET 10`
 | `3.1` | __Less Prios__                          | Simplify overload picking removing some `[Prio]` attributes.
 |       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Flags in Front - Coalesce__           | Flags at the beginning of the parameter list, now don't come with a performance penalty.
-| `3.3` | __Flags in Front - Contains__           | More notation options for flags for the `Contains` method
-| `3.4` | __Flags in Front - FilledIn__           | Support flags in front for the `FilledIn` method
+| `3.2` | __Leading Flags - Coalesce__            | Flags at the beginning of the parameter list, now don't come with a performance penalty.
+| `3.3` | __Leading Flags - Contains__            | More notation options for flags for the `Contains` method
+| `3.4` | __Leading Flags - FilledIn__            | Support flags in front for the `FilledIn` method
+| `3.7` | __Clash of the Booleans__               | Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
+|       |                                         | Improved `Coalesce` resolution and performance for 4+ values and collections.
+|       |                                         | Added overloads for reduced clashes between `bool` flags and value lists.
+|       |                                         | Various non-critical renames for clarity and modularity.
 
 
 🐨 Mr. Koala
