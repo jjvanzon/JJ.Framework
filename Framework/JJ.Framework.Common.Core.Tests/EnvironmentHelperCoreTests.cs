@@ -1,5 +1,4 @@
-﻿using static System.Environment;
-using static System.Guid;
+﻿using static System.Guid;
 
 namespace JJ.Framework.Common.Core.Tests;
 

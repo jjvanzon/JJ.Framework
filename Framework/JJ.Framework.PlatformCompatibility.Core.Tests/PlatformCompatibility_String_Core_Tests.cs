@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+﻿// ReSharper disable PossibleMultipleEnumeration
+namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
 public class PlatformCompatibility_String_Core_Tests

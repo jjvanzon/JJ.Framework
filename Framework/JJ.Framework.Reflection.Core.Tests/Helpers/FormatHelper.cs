@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using static System.Globalization.CultureInfo;
-
-namespace JJ.Framework.Reflection.Core.Tests.Helpers;
+﻿namespace JJ.Framework.Reflection.Core.Tests.Helpers;
 
 internal static class FormatHelper
 {

@@ -28,7 +28,7 @@ public class CollectionExtensionsCoreTests
     [TestMethod]
     public void ForEach_Core_Test()
     {
-        List<int> list = new List<int> { 1, 2, 3 };
+        List<int> list = [ 1, 2, 3 ];
         IEnumerable<int> enumerable = list;
 
         int sum1 = 0;
@@ -116,14 +116,14 @@ public class CollectionExtensionsCoreTests
     [TestMethod]
     public void Union_WithSingleItem_Core_Test()
     {
-        int[] input = { 1, 2, 3 };
+        int[] input = [ 1, 2, 3 ];
         {
-            int[] expected = { 1, 2, 3, 4 };
+            int[] expected = [ 1, 2, 3, 4 ];
             int[] actual   = input.Union(4).ToArray();
             CollectionAssert.AreEqual(expected, actual);
         }
         {
-            int[] expected = { 4, 1, 2, 3 };
+            int[] expected = [ 4, 1, 2, 3 ];
             int[] actual   = 4.Union(input).ToArray();
             CollectionAssert.AreEqual(expected, actual);
         }

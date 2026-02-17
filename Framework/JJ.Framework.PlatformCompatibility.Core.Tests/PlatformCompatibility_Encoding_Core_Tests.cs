@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+﻿// ReSharper disable InvokeAsExtensionMember
+namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
 public sealed class PlatformCompatibility_Encoding_Core_Tests
@@ -27,7 +28,7 @@ public sealed class PlatformCompatibility_Encoding_Core_Tests
             AreEqual(expected, actual1);
             AreEqual(expected, actual2);
             AreEqual(expected, actual3);
-            IsTrue(byteCount > previousByteCount, "byteCount > previousByteCount");
+            IsTrue(byteCount > previousByteCount);
             
             previousByteCount = byteCount;
             

@@ -2,7 +2,7 @@
 
 internal static class ConfigurationHelperAccessorCore
 {
-    private static readonly Accessor _accessor = new Accessor(typeof(ConfigurationHelper));
+    private static readonly Accessor _accessor = new (typeof(ConfigurationHelper));
     
     public static IDictionary<Type, object> _sections
     {

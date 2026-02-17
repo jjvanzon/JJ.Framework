@@ -1,5 +1,5 @@
-﻿using static System.StringSplitOptions;
-
+﻿// ReSharper disable InvokeAsExtensionMember
+using static System.StringSplitOptions;
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]

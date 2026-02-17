@@ -392,7 +392,7 @@ public class AccessorCoreTests_Indexers
                 _numNullyNumDic.TryGetValue((arg1, arg2), out string? val);
                 if (Has(val)) 
                 { 
-                    return val!;
+                    return val;
                 }
                 else
                 {
@@ -411,7 +411,7 @@ public class AccessorCoreTests_Indexers
                 _numNullyTextDic.TryGetValue((arg1, arg2), out string? val);
                 if (Has(val)) 
                 { 
-                    return val!;
+                    return val;
                 }
                 else
                 {

@@ -1,5 +1,6 @@
-﻿using System.Globalization;
+﻿#pragma warning disable IDE0005 // Redundant namespace (implicit namespaces not always working)
 using System.Threading;
+using System.Globalization;
 
 namespace JJ.Framework.Common.Core.Tests;
 

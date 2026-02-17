@@ -1,5 +1,7 @@
 ﻿// ReSharper disable ConvertToConstant.Local
 
+using System.Threading;
+
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
@@ -7,7 +9,7 @@ public class ConfigurationHelperCoreTests
 {
     // Lock to Force Serial Execution
 
-    private static readonly object _lock = new();
+    private static readonly Lock _lock = new();
 
     // Example
 

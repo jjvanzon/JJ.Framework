@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Common.Core.Tests;
+﻿// ReSharper disable PossibleMultipleEnumeration
+namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
 public class TrimAllCoreTests
