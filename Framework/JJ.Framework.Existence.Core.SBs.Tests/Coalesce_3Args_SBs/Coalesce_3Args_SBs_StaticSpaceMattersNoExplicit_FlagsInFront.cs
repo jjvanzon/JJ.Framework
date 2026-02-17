@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.SBs.Tests;
 
 [TestClass]
-public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront
+public class Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront: TestBase
 {
     [TestMethod]
     public void Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront_Batch1()

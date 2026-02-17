@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.SBs.Tests;
 
 [TestClass]
-public class Coalesce_3Args_SBs_Static_NoFlags
+public class Coalesce_3Args_SBs_Static_NoFlags: TestBase
 {
     [TestMethod]
     public void Coalesce_3Args_SBs_Static_NoFlags_Batch1()

@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <Version>3.7.$(BuildNum)</Version>
     <OutputType>Exe</OutputType>
@@ -17,15 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\JJ.Framework.Existence.Core.SBs.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Existence.Core.SBs.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Existence.Core.SBs.Tests\bin\**" />
   </ItemGroup>
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
 </Project>

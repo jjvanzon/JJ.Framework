@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.SBs.Tests;
 
 [TestClass]
-public class Coalesce_3Args_SBs_StaticSpaceMattersYesExplicitBool_FlagsInBack
+public class Coalesce_3Args_SBs_StaticSpaceMattersYesExplicitBool_FlagsInBack: TestBase
 {
     [TestMethod]
     public void Coalesce_3Args_SBs_StaticSpaceMattersYesExplicitBool_FlagsInBack_Batch1()
