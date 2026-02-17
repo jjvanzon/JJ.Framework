@@ -68,13 +68,13 @@ Deployments
 -----------
 
 - Around `2018`, about `15` projects were released from `legacy` to `NuGet` for `.NET 4.6.1`, compatible with the now-retired `Mono` compiler.
-- Now, new deployments use `.NET 9` at their core (with `.NET Standard` for compatibility), and we push upgraded legacy versions incrementally to `NuGet.org`.
+- Now, new deployments use `.NET 10` at their core (with `.NET Standard` for compatibility), and we push upgraded legacy versions incrementally to `NuGet.org`.
 
 
 Versioning
 ----------
 
-- `.Legacy`-suffixed projects (originating from the `legacy` branch, recompiled under `.NET 9`) begin with a zero, e.g. `0.250.1053`.
+- `.Legacy`-suffixed projects (originating from the `legacy` branch, recompiled under `.NET 10`) begin with a zero, e.g. `0.250.1053`.
 - That leading `0` signals it's essentially a "prequel" to the versions already in the `1.5.x` range on `NuGet`.
 - The `.Core`-suffixed projects are released with versions in the range of `1.8.x` or above, signaling the forward continuation.
 
@@ -94,7 +94,7 @@ JJ.Framework.Configuration.Core
 - Suffix-free (`JJ.Framework.Configuration`):  
   Code directly pulled from the `legacy` branch.
 - `.Legacy` (`JJ.Framework.Configuration.Legacy`):  
-  The code now upgraded to `.NET 9` and `.NET Standard`.
+  The code now upgraded to `.NET 10` and `.NET Standard`.
 - `.Net48` (`JJ.Framework.Configuration.Net48`):  
   The same code, compiled for `.NET Framework 4.8`, so older systems aren't left behind.
 - `.Core` (`JJ.Framework.Configuration.Core`):  

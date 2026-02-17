@@ -58,8 +58,8 @@ public struct _namehelper;
 /// </code>
 /// One of those methods has a hidden optional parameter:
 /// <code>
-/// MyMethod(int num, bool arg);
-/// MyMethod(int num, bool differentArg, OverloadByName ovl = default);
+/// void MyMethod(int num, bool arg);
+/// void MyMethod(int num, bool differentArg, OverloadByName ovl = default);
 /// </code>
 /// </para>
 /// 

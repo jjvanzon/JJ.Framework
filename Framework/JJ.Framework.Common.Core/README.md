@@ -45,8 +45,8 @@ An extension to [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.F
         ```
     - One of those methods has a hidden optional parameter:
         ```
-        MyMethod(int num, bool arg);
-        MyMethod(int num, bool differentArg, OverloadByName ovl = default);
+        void MyMethod(int num, bool arg);
+        void MyMethod(int num, bool differentArg, OverloadByName ovl = default);
         ```
 
 After Upgrading
