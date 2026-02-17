@@ -23,9 +23,10 @@ public class OverloadByNameTests
     }
 
     private int MyMethod1(int param) => param * 10;
-    private int MyMethod1(int differentParam, OverloadByName ovl =default) => differentParam * 20;
+    // ReSharper disable once UnusedParameter.Local
+    private int MyMethod1(int differentParam, OverloadByName ovl = default) => differentParam * 20;
 
     private int MyMethod2(int param) => param * 50;
+    // ReSharper disable once UnusedParameter.Local
     private int MyMethod2(int differentParam, NameOvl ovl = default) => differentParam * 70;
-
 }
