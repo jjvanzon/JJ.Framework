@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
+using System.Threading;
 using JJ.Framework.Logging.Core.Config;
 using JJ.Framework.Logging.Core.Loggers;
 using JJ.Framework.Logging.Core.Mappers;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Logging.Core
 {
@@ -52,7 +49,7 @@ namespace JJ.Framework.Logging.Core
             
             if (logger == null)
             {
-                logger =  CreateLogger_FromResolvedType(loggerConfig);
+                logger = CreateLogger_FromResolvedType(loggerConfig);
             }
             
             SetCategories(logger, loggerConfig);
@@ -106,8 +103,8 @@ namespace JJ.Framework.Logging.Core
 
         // Getting Logger Types
 
-        private static readonly object _loggerTypeDictionaryLock = new object();
-        private static readonly Dictionary<string, Type> _loggerTypeDictionary = new Dictionary<string, Type>();
+        private static readonly Lock _loggerTypeDictionaryLock = new();
+        private static readonly Dictionary<string, Type> _loggerTypeDictionary = new();
 
         [NoTrim(GetTypes)]
         private static Type GetLoggerType(string loggerType)

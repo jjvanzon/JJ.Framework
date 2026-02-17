@@ -13,7 +13,7 @@
             
             var attributeQuery
                 = methodQuery.SelectMany(method => method!.GetCustomAttributes()
-                                                          .Union(method!.DeclaringType?.GetCustomAttributes() ?? Array.Empty<Attribute>()));
+                                                          .Union(method!.DeclaringType?.GetCustomAttributes() ?? []));
             var categoryQuery
                 = attributeQuery.Where(attr => attr.GetType().Name == "TestCategoryAttribute")
                                 .Select(attr => attr.GetType().GetProperty("TestCategories")?.GetValue(attr))

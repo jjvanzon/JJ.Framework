@@ -6,3 +6,4 @@ global using System.Xml.Serialization;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Reflection.Legacy;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
+global using ImplicAttribute = JetBrains.Annotations.UsedImplicitlyAttribute;

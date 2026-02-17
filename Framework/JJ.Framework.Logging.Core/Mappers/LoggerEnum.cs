@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Framework.Logging.Core.Mappers
+﻿namespace JJ.Framework.Logging.Core.Mappers
 {
     public enum LoggerEnum
     {
+        [Implic]
         Undefined,
         Console,
         Debug

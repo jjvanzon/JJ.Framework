@@ -8,14 +8,14 @@ namespace JJ.Framework.Testing.Core
         // Properties
         
         /// <inheritdoc cref="docs._from" />
-        public NullyPair<T> From   { get; set; } = new NullyPair<T>();
+        public NullyPair<T> From   { get; set; } = new();
         /// <inheritdoc cref="docs._from" />
         public NullyPair<T> Init   { get => From; set => From = value; }
         /// <inheritdoc cref="docs._from" />
         public NullyPair<T> Source { get => From; set => From = value; }
         
         /// <inheritdoc cref="docs._to" />
-        public NullyPair<T> To    { get; set; } = new NullyPair<T>();
+        public NullyPair<T> To    { get; set; } = new();
         /// <inheritdoc cref="docs._to" />
         public NullyPair<T> Dest  { get => To; set => To = value; }
         /// <inheritdoc cref="docs._to" />
@@ -41,15 +41,15 @@ namespace JJ.Framework.Testing.Core
 
         public static implicit operator T (CaseProp<T> prop) => prop?.To ?? default(T);
         public static implicit operator T?(CaseProp<T> prop) => prop?.To ?? default(T?);
-        public static implicit operator CaseProp<T>(T  value) => new CaseProp<T>(value);
-        public static implicit operator CaseProp<T>(T? value) => new CaseProp<T>(value);
-        public static implicit operator CaseProp<T>((T  from, T  to) values) => new CaseProp<T>(values);
-        public static implicit operator CaseProp<T>((T? from, T  to) values) => new CaseProp<T>(values);
-        public static implicit operator CaseProp<T>((T  from, T? to) values) => new CaseProp<T>(values);
-        public static implicit operator CaseProp<T>((T? from, T? to) values) => new CaseProp<T>(values);
-        public static implicit operator CaseProp<T>((T from, (T? nully, T coalesced) to) x) => new CaseProp<T>(x.from, x.to);
-        public static implicit operator CaseProp<T>(((T? nully, T coalesced) from, T to) x) =>  new CaseProp<T>(x.from, x.to);
-        public static implicit operator CaseProp<T>(((T? nully, T coalesced) from, (T? nully, T coalesced) to) x) => new CaseProp<T>(x.from, x.to);
+        public static implicit operator CaseProp<T>(T  value) => new(value);
+        public static implicit operator CaseProp<T>(T? value) => new(value);
+        public static implicit operator CaseProp<T>((T  from, T  to) values) => new(values);
+        public static implicit operator CaseProp<T>((T? from, T  to) values) => new(values);
+        public static implicit operator CaseProp<T>((T  from, T? to) values) => new(values);
+        public static implicit operator CaseProp<T>((T? from, T? to) values) => new(values);
+        public static implicit operator CaseProp<T>((T from, (T? nully, T coalesced) to) x) => new(x.from, x.to);
+        public static implicit operator CaseProp<T>(((T? nully, T coalesced) from, T to) x) =>  new(x.from, x.to);
+        public static implicit operator CaseProp<T>(((T? nully, T coalesced) from, (T? nully, T coalesced) to) x) => new(x.from, x.to);
         
         // Constructors
         
@@ -101,6 +101,7 @@ namespace JJ.Framework.Testing.Core
         
         private enum NullyLevel
         {
+            [Implic]
             Undefined,
             NullVal,
             Zero,

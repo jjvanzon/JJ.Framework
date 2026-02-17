@@ -19,7 +19,7 @@
         private readonly string _tabString;
         private readonly string _enter;
         
-        private readonly StringBuilder _sb = new StringBuilder();
+        private readonly StringBuilder _sb = new();
         
         public override string ToString()       => _sb.ToString();
         public          void   Indent()         => IndentLevel++;

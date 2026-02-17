@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Framework.Logging.Core.Loggers
+﻿namespace JJ.Framework.Logging.Core.Loggers
 {
     public interface ILogger
     {

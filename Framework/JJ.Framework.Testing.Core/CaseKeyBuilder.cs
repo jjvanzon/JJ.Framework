@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Existence.Core;
-using JJ.Framework.Reflection;
-using JJ.Framework.Reflection.Core;
-using JJ.Framework.SharedProject.Core;
-using static System.String;
-using static JJ.Framework.Existence.Core.FilledInHelper;
-
-namespace JJ.Framework.Testing.Core
+﻿namespace JJ.Framework.Testing.Core
 {
     class CaseKeyBuilder
     {
@@ -183,7 +172,7 @@ namespace JJ.Framework.Testing.Core
                 if (Has(_testCase.Props))
                 {
                     propString = Join(", ", _testCase.Props
-                                                     .Except(new [] { _testCase })
+                                                     .Except([_testCase])
                                                      .Where(FilledIn)
                                                      .Select(x => x.Descriptor)
                                                      .Where(FilledIn));
@@ -207,7 +196,7 @@ namespace JJ.Framework.Testing.Core
         {
             string valueText = $"{value}";
             if (!Has(valueText)) return "";
-            string[] elements = { prefixUnit, valueText, suffixUnit };
+            string[] elements = [ prefixUnit, valueText, suffixUnit ];
             return Join(" ", elements.Where(FilledIn));
         }
     }

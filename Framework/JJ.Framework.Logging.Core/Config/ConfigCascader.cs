@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Collections.Core;
+﻿using JJ.Framework.Collections.Core;
 using JJ.Framework.Logging.Core.Mappers;
 using static System.Array;
 using static System.StringSplitOptions;
@@ -98,6 +94,6 @@ namespace JJ.Framework.Logging.Core.Config
         }
         
         private static IList<string> SplitValues(string semiColonSeparated) 
-            => semiColonSeparated?.Split(";", RemoveEmptyEntries).TrimAll() ?? Empty<string>();
+            => semiColonSeparated?.Split(";", RemoveEmptyEntries).TrimAll() ?? [ ];
     }
 }

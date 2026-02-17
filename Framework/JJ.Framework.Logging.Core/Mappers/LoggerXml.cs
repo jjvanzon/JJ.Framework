@@ -1,5 +1,4 @@
-﻿using System.Xml.Serialization;
-using JJ.Framework.Logging.Core.docs;
+﻿using JJ.Framework.Logging.Core.docs;
 
 namespace JJ.Framework.Logging.Core.Mappers
 {

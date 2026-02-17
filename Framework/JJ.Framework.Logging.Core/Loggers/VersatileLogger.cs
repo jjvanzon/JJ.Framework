@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Reflection;
-
-namespace JJ.Framework.Logging.Core.Loggers
+﻿namespace JJ.Framework.Logging.Core.Loggers
 {
     internal class VersatileLogger : LoggerBase
     {

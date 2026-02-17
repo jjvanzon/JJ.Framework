@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-// ReSharper disable UnusedParameter.Global
+﻿// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Logging.Core.Loggers
 {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Threading;
 using JJ.Framework.Collections.Core;
 using JJ.Framework.Existence.Core;
 using JJ.Framework.Logging.Core.docs;
-using JJ.Framework.Reflection;
 using JJ.Framework.Text.Core;
 using static System.Environment;
 using static System.StringComparer;
@@ -21,7 +17,7 @@ namespace JJ.Framework.Logging.Core.Loggers
         // NOTE: All the threading, locking and flushing helped
         // Test Explorer in Visual Studio 2022 avoid mangling blank lines.
         
-        private readonly object _logLock = new object();
+        private readonly Lock _logLock = new();
         private bool _blankLinePending;
         
         protected abstract void WriteLine(string message);
@@ -90,10 +86,10 @@ namespace JJ.Framework.Logging.Core.Loggers
 
         // Category Filtering
         // 
-        private readonly HashSet<string> _categories = new HashSet<string>(OrdinalIgnoreCase);
+        private readonly HashSet<string> _categories = new(OrdinalIgnoreCase);
         
         /// <inheritdoc cref="_loggerexcludedcategories" />
-        private readonly HashSet<string> _excludedCategories = new HashSet<string>(OrdinalIgnoreCase);
+        private readonly HashSet<string> _excludedCategories = new(OrdinalIgnoreCase);
 
         public bool WillLog(string category)
         {

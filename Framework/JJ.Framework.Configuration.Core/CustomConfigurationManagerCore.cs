@@ -68,7 +68,7 @@ namespace JJ.Framework.Configuration.Core
             => AssertExceptionIsAllowed(ex, GetAssemblyName<T>().ToLower());
         
         private static void AssertExceptionIsAllowed(Exception ex, Assembly assembly) 
-            => AssertExceptionIsAllowed(ex, TryGetAssemblyName(assembly)?.ToLower());
+            => AssertExceptionIsAllowed(ex, TryGetAssemblyName(assembly).ToLower());
         
         private static void AssertExceptionIsAllowed(Exception ex, string? configSectionName)
         {

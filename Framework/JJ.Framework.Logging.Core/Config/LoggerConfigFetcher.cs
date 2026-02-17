@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using JJ.Framework.Logging.Core.docs;
+﻿using JJ.Framework.Logging.Core.docs;
 using JJ.Framework.Logging.Core.Mappers;
 using static JJ.Framework.Existence.Core.FilledInHelper;
 using static JJ.Framework.Configuration.Core.CustomConfigurationManagerCore;
 
 namespace JJ.Framework.Logging.Core.Config
 {
-    public class LoggerConfigFetcher
+    public static class LoggerConfigFetcher
     {
         public const bool DefaultActive = true;
         public const string DefaultType = "Console";
@@ -40,7 +39,7 @@ namespace JJ.Framework.Logging.Core.Config
             return rootLoggerConfig;
         }
         
-        private static RootLoggerXml CreateDefaultConfigSection() => new RootLoggerXml
+        private static RootLoggerXml CreateDefaultConfigSection() => new()
         {
             Active = DefaultActive,
             Type   = DefaultType,
