@@ -1,5 +1,10 @@
-﻿bool success = 
+﻿using JJ.Framework.Existence.Core.Tests;
+
+bool success = 
 RunTests<Coalesce_1Arg_SB_Tests>() &&
+RunTests<Coalesce_2Args_SB_FlagsInBack>() &&
+RunTests<Coalesce_2Args_SB_FlagsInFront>() &&
+RunTests<Coalesce_2Args_SB_NoFlags>() &&
 RunTests<Coalesce_3Args_SBs_Extensions_NoFlags>() &&
 RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInBack>() &&
 RunTests<Coalesce_3Args_SBs_ExtensionsSpaceMattersNoExplicit_FlagsInFront>() &&

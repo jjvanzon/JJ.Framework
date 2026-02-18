@@ -1,4 +1,7 @@
 ﻿bool success = 
+RunTests<Coalesce_2Args_SBTextCombos_FlagsInBack>() &&
+RunTests<Coalesce_2Args_SBTextCombos_FlagsInFront>() &&
+RunTests<Coalesce_2Args_SBTextCombos_NoFlags>() &&
 RunTests<Coalesce_3Args_SBTextCombos_Extensions_NoFlags>() &&
 RunTests<Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoExplicit_FlagsInBack>() &&
 RunTests<Coalesce_3Args_SBTextCombos_ExtensionsSpaceMattersNoExplicit_FlagsInFront>() &&
