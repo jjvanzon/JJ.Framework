@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.SBs.Tests;
 
 [TestClass]
 public class Has_StringBuilder_Tests : TestBase

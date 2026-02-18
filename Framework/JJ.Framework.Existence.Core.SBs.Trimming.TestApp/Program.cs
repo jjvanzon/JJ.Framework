@@ -12,6 +12,9 @@ RunTests<Coalesce_3Args_SBs_StaticSpaceMattersNoExplicit_FlagsInFront>() &&
 RunTests<Coalesce_3Args_SBs_StaticSpaceMattersYesExplicitBool_FlagsInBack>() &&
 RunTests<Coalesce_3Args_SBs_StaticSpaceMattersYesExplicitBool_FlagsInFront>() &&
 RunTests<Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInBack>() &&
-RunTests<Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInFront>();
+RunTests<Coalesce_3Args_SBs_StaticSpaceMattersYesMagicBool_FlagsInFront>() &&
+RunTests<FilledIn_StringBuilder_Tests>() &&
+RunTests<Has_StringBuilder_Tests>() &&
+RunTests<IsNully_StringBuilder_Tests>();
 WriteLine("Done.");
 if (!success) Exit(1);

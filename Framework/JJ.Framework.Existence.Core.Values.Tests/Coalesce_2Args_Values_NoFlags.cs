@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Values.Tests;
 
 [TestClass]
 public class Coalesce_2Args_Values_NoFlags : TestBase
