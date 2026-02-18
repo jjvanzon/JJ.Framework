@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.BoolToText.Tests;
 
 [TestClass]
 public class Coalesce_4Args_BoolToText_Extensions : TestBase

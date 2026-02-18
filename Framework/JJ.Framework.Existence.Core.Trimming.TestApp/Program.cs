@@ -35,8 +35,6 @@ RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack>() &&
 RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInFront>() &&
 RunTests<Coalesce_4Args_Bool_Extensions>() &&
 RunTests<Coalesce_4Args_Bool_Static>() &&
-RunTests<Coalesce_4Args_BoolToText_Extensions>() &&
-RunTests<Coalesce_4Args_BoolToText_Static>() &&
 RunTests<Coalesce_Collections_Misc_Tests>() &&
 RunTests<Coalesce_Collections_Extensions_Tests>() &&
 RunTests<Coalesce_Collections_Static_Tests>() &&
