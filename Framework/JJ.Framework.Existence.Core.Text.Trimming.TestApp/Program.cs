@@ -1,4 +1,5 @@
 ﻿bool success = 
+RunTests<Coalesce_1Arg_Text_Tests>() &&
 RunTests<Coalesce_3Args_Text_Extensions_NoFlags>() &&
 RunTests<Coalesce_3Args_Text_ExtensionsSpaceMattersNoExplicit_FlagsInBack>() &&
 RunTests<Coalesce_3Args_Text_ExtensionsSpaceMattersNoExplicit_FlagsInFront>() &&

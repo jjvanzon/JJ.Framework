@@ -1,4 +1,5 @@
 ﻿bool success = 
+RunTests<Coalesce_1Arg_Bool_Tests>() &&
 RunTests<Coalesce_2Args_Bool_Examples>() &&
 RunTests<Coalesce_2Args_Bool_FlagsInBack>() &&
 RunTests<Coalesce_2Args_Bool_FlagsInFront>() &&
