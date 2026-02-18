@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Bool.Package.Tests", "Framework\JJ.Framework.Existence.Core.Bool.Package.Tests\JJ.Framework.Existence.Core.Bool.Package.Tests.csproj", "{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.ValuesToText.Package.Tests", "Framework\JJ.Framework.Existence.Core.ValuesToText.Package.Tests\JJ.Framework.Existence.Core.ValuesToText.Package.Tests.csproj", "{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +123,6 @@ Global
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{d589d511-228e-937f-4ac8-0009afce0bac}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{e6893427-6fe9-b2c3-b8ee-00fd5b68483a}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

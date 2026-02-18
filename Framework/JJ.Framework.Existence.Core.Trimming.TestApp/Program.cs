@@ -19,13 +19,6 @@ RunTests<Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInFront>() &&
 RunTests<Coalesce_3Args_Values_Static>() &&
 RunTests<Coalesce_3Args_Values_StaticZeroMattersFlagsInBack>() &&
 RunTests<Coalesce_3Args_Values_StaticZeroMattersFlagsInFront>() &&
-RunTests<Coalesce_3Args_ValuesToText_Examples>() &&
-RunTests<Coalesce_3Args_ValuesToText_Extensions>() &&
-RunTests<Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInBack>() &&
-RunTests<Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInFront>() &&
-RunTests<Coalesce_3Args_ValuesToText_Static>() &&
-RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack>() &&
-RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInFront>() &&
 RunTests<Coalesce_Collections_Misc_Tests>() &&
 RunTests<Coalesce_Collections_Extensions_Tests>() &&
 RunTests<Coalesce_Collections_Static_Tests>() &&

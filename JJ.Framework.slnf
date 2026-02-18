@@ -30,6 +30,8 @@
       "Framework\\JJ.Framework.Existence.Core.Text.Tests\\JJ.Framework.Existence.Core.Text.Tests.csproj",
       "Framework\\JJ.Framework.Existence.Core.Text.Trimming.TestApp\\JJ.Framework.Existence.Core.Text.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.Existence.Core.Trimming.TestApp\\JJ.Framework.Existence.Core.Trimming.TestApp.csproj",
+      "Framework\\JJ.Framework.Existence.Core.ValuesToText.Tests\\JJ.Framework.Existence.Core.ValuesToText.Tests.csproj",
+      "Framework\\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp\\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.Existence.Core\\JJ.Framework.Existence.Core.csproj",
       "Framework\\JJ.Framework.IO.Core\\JJ.Framework.IO.Core.csproj",
       "Framework\\JJ.Framework.IO\\JJ.Framework.IO.Legacy.csproj",
