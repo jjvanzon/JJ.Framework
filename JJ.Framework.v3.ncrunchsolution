@@ -390,6 +390,12 @@
       <Value>Framework\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net7.0</Value>
       <Value>Framework\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net9.0</Value>
     </MetricsExclusionList>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>

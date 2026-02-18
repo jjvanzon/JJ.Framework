@@ -11,13 +11,6 @@ RunTests<Coalesce_2Args_SBText_NoFlags>() &&
 RunTests<Coalesce_2Args_Values_FlagsInBack>() &&
 RunTests<Coalesce_2Args_Values_FlagsInFront>() &&
 RunTests<Coalesce_2Args_Values_NoFlags>() &&
-RunTests<Coalesce_3Args_Bool_Examples>() &&
-RunTests<Coalesce_3Args_Bool_Extensions>() &&
-RunTests<Coalesce_3Args_Bool_ExtensionsZeroMattersFlagsInBack>() &&
-RunTests<Coalesce_3Args_Bool_ExtensionsZeroMattersFlagsInFront>() &&
-RunTests<Coalesce_3Args_Bool_Static>() &&
-RunTests<Coalesce_3Args_Bool_StaticZeroMattersFlagsInBack>() &&
-RunTests<Coalesce_3Args_Bool_StaticZeroMattersFlagsInFront>() &&
 RunTests<Coalesce_3Args_Objects>() &&
 RunTests<Coalesce_3Args_ObjectsToText>() &&
 RunTests<Coalesce_3Args_Values_Extensions>() &&
@@ -33,8 +26,6 @@ RunTests<Coalesce_3Args_ValuesToText_ExtensionsZeroMattersFlagsInFront>() &&
 RunTests<Coalesce_3Args_ValuesToText_Static>() &&
 RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInBack>() &&
 RunTests<Coalesce_3Args_ValuesToText_StaticZeroMattersFlagsInFront>() &&
-RunTests<Coalesce_4Args_Bool_Extensions>() &&
-RunTests<Coalesce_4Args_Bool_Static>() &&
 RunTests<Coalesce_Collections_Misc_Tests>() &&
 RunTests<Coalesce_Collections_Extensions_Tests>() &&
 RunTests<Coalesce_Collections_Static_Tests>() &&

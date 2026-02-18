@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Bool.Tests;
 
 /// <inheritdoc cref="_coalesce4argsbool" />
 [TestClass]
