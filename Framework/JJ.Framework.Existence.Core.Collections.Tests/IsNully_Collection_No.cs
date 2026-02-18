@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Collections.Tests;
 
 [TestClass]
-public class IsNully_Collection_No_Tests
+public class IsNully_Collection_No_Tests : TestBase
 {
     [TestMethod]
     public void IsNully_Collection_NoWhenFilled()

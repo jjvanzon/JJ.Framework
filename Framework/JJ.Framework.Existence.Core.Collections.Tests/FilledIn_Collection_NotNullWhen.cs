@@ -1,8 +1,8 @@
 ﻿// ReSharper disable ReturnValueOfPureMethodIsNotUsed
-namespace JJ.Framework.Existence.Core.Tests;
+namespace JJ.Framework.Existence.Core.Collections.Tests;
 
 [TestClass]
-public class FilledIn_Collection_NotNullWhen
+public class FilledIn_Collection_NotNullWhen : TestBase
 {
 
     /// <inheritdoc cref="_notnullwhentests" />

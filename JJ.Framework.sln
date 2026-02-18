@@ -258,6 +258,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Values.Trimming.TestApp", "Framework\JJ.Framework.Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Values.Trimming.TestApp.csproj", "{6DE53E94-4B8D-628D-0B7F-9ACBADAEDB50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Collections.Tests", "Framework\JJ.Framework.Existence.Core.Collections.Tests\JJ.Framework.Existence.Core.Collections.Tests.csproj", "{D006B97B-EC80-E826-AE18-4C54CDF3ED50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Collections.Trimming.TestApp", "Framework\JJ.Framework.Existence.Core.Collections.Trimming.TestApp\JJ.Framework.Existence.Core.Collections.Trimming.TestApp.csproj", "{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -716,6 +720,14 @@ Global
 		{6DE53E94-4B8D-628D-0B7F-9ACBADAEDB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DE53E94-4B8D-628D-0B7F-9ACBADAEDB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DE53E94-4B8D-628D-0B7F-9ACBADAEDB50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D006B97B-EC80-E826-AE18-4C54CDF3ED50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D006B97B-EC80-E826-AE18-4C54CDF3ED50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D006B97B-EC80-E826-AE18-4C54CDF3ED50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D006B97B-EC80-E826-AE18-4C54CDF3ED50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -836,6 +848,8 @@ Global
 		{1DB74E76-FF84-A7C0-EC8B-2ACA26949F68} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{6B2E7C43-22DE-5D3A-47EF-8AFB3C8F3F1F} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{6DE53E94-4B8D-628D-0B7F-9ACBADAEDB50} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{D006B97B-EC80-E826-AE18-4C54CDF3ED50} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
@@ -862,6 +876,8 @@ Global
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{2c4c1957-cd37-454e-85a8-786ad726a0cf}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{32c2b71c-0192-4f3d-8f8d-990a5b61c307}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{32c2b71c-0192-4f3d-8f8d-990a5b61c307}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{32ed0141-c9ff-aa4b-6b17-126145f1a1b8}*SharedItemsImports = 5
+		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{32ed0141-c9ff-aa4b-6b17-126145f1a1b8}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{37a1cde4-c375-41a2-8268-664edb2d02e4}*SharedItemsImports = 4
@@ -914,6 +930,8 @@ Global
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{cb8e5c78-366f-ed17-1919-969273721f9d}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cb8e5c78-366f-ed17-1919-969273721f9d}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{ce2bf11f-d06a-4ea3-9dd6-fdda12705f83}*SharedItemsImports = 13
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{d006b97b-ec80-e826-ae18-4c54cdf3ed50}*SharedItemsImports = 5
+		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{d006b97b-ec80-e826-ae18-4c54cdf3ed50}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{d180e171-03be-86a4-3f4e-ff3dd95a0797}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{d180e171-03be-86a4-3f4e-ff3dd95a0797}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{e150ebf6-16f7-4299-b4bd-791757d6cc9e}*SharedItemsImports = 5

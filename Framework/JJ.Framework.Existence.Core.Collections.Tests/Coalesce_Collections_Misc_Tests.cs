@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Collections.Tests;
 
 [TestClass]
-public class Coalesce_Collections_Misc_Tests
+public class Coalesce_Collections_Misc_Tests : TestBase
 {
     // TODO: Add more collections of collections tests.
 

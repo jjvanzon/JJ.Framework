@@ -6,9 +6,6 @@ RunTests<Coalesce_2Args_SBText_FlagsInFront>() &&
 RunTests<Coalesce_2Args_SBText_NoFlags>() &&
 RunTests<Coalesce_3Args_Objects>() &&
 RunTests<Coalesce_3Args_ObjectsToText>() &&
-RunTests<Coalesce_Collections_Misc_Tests>() &&
-RunTests<Coalesce_Collections_Extensions_Tests>() &&
-RunTests<Coalesce_Collections_Static_Tests>() &&
 RunTests<Coalesce_Keywords_Tests>() &&
 RunTests<Coalesce_NArg_Objects_Tests>() &&
 RunTests<Contains_Nullable_Tests>() &&
@@ -22,16 +19,9 @@ RunTests<BasicType_Enum_Tests>() &&
 RunTests<Existence_Examples>() &&
 RunTests<BasicType_Guid_Tests>() &&
 RunTests<RegressionTest_CallToHas_FromGenericContext_TypeInfoLost>() &&
-RunTests<FilledIn_Collection_No>() &&
-RunTests<FilledIn_Collection_NotNullWhen>() &&
-RunTests<FilledIn_Collection_Yes>() &&
 RunTests<FilledIn_NotNullWhen_Tests>() &&
 RunTests<FilledIn_Objects_Tests>() &&
 RunTests<Flex_Prototype>() &&
-RunTests<Has_Collection_Misc>() &&
-RunTests<Has_Collection_NotNullWhen>() &&
-RunTests<Has_Collection_No>() &&
-RunTests<Has_Collection_Yes>() &&
 RunTests<Has_NotNullWhen_Tests>() &&
 RunTests<Has_Object_Tests>() &&
 RunTests<In_Tests_ExtensionsCaseOrSpaceMattersNoNo>() &&
@@ -50,9 +40,6 @@ RunTests<Is_Tests_ExtensionsFlagsInBack>() &&
 RunTests<Is_Tests_ExtensionsFlagsInFront>() &&
 RunTests<Is_Tests_StaticFlagsInBack>() &&
 RunTests<Is_Tests_StaticFlagsInFront>() &&
-RunTests<IsNully_Collection_No_Tests>() &&
-RunTests<IsNully_Collection_NotNullWhen>() &&
-RunTests<IsNully_Collection_Yes_Tests>() &&
 RunTests<IsNully_NotNullWhen_Tests>() &&
 RunTests<IsNully_Object_Tests>();
 WriteLine("Done.");

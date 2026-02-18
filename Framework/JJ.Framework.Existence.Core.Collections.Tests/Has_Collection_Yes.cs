@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Collections.Tests;
 
 [TestClass]
-public class Has_Collection_Yes
+public class Has_Collection_Yes : TestBase
 {
     [TestMethod]
     public void Has_Collection_YesWhenFilled()

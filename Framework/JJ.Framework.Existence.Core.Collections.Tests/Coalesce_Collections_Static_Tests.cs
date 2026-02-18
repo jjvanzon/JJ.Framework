@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Collections.Tests;
 
 [TestClass]
-public class Coalesce_Collections_Static_Tests
+public class Coalesce_Collections_Static_Tests : TestBase
 {
     [TestMethod]                                                          
     public void Coalesce_Collections_Static_Filled()                      
