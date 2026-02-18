@@ -1,11 +1,9 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class Coalesce_2Args_Objects_NoFlags : TestBase
+public class Coalesce_2Args_Objects_Tests : TestBase
 {
     private static readonly Dummy? NullyFilled = NullyFilledObj;
-
-    // Objects
 
     [TestMethod]
     public void Coalesce_2Args_Objects()

@@ -1,6 +1,6 @@
 ﻿bool success = 
 RunTests<Coalesce_1Arg_Object_Tests>() &&
-RunTests<Coalesce_2Args_Objects_NoFlags>() &&
+RunTests<Coalesce_2Args_Objects_Tests>() &&
 RunTests<Coalesce_2Args_SBText_FlagsInBack>() &&
 RunTests<Coalesce_2Args_SBText_FlagsInFront>() &&
 RunTests<Coalesce_2Args_SBText_NoFlags>() &&
