@@ -1,5 +1,5 @@
 ﻿// ReSharper disable ConvertToConstant.Local
-namespace JJ.Framework.Existence.Core.Tests;
+namespace JJ.Framework.Existence.Core.Values.Tests;
 
 [TestClass]
 public class Coalesce_NArg_Values_Tests : TestBase

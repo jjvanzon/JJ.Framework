@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.SBs.Tests;
 
 [TestClass]
-public class Coalesce_NArg_SB_Tests : TestBase
+public class Coalesce_NArgs_SB_Tests : TestBase
 {
     [TestMethod]
     public void Coalesce_StringBuilders_StaticParams()

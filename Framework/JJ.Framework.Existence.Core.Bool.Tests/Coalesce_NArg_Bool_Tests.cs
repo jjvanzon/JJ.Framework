@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Bool.Tests;
 
 [TestClass]
 public class Coalesce_NArg_Bool_Tests : TestBase

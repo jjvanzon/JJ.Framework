@@ -8,6 +8,7 @@ RunTests<Coalesce_3Args_Values_ExtensionsZeroMattersFlagsInFront>() &&
 RunTests<Coalesce_3Args_Values_Static>() &&
 RunTests<Coalesce_3Args_Values_StaticZeroMattersFlagsInBack>() &&
 RunTests<Coalesce_3Args_Values_StaticZeroMattersFlagsInFront>() &&
+RunTests<Coalesce_NArg_Values_Tests>() &&
 RunTests<FilledIn_Values_Tests>() &&
 RunTests<Has_Values_Tests>() &&
 RunTests<IsNully_Values_Tests>();

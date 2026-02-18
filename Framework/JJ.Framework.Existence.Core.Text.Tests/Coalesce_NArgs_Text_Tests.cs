@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Text.Tests;
 
 [TestClass]
-public class Coalesce_NArg_Text_Tests : TestBase
+public class Coalesce_NArgs_Text_Tests : TestBase
 {
     [TestMethod] 
     public void Coalesce_NArg_Text_StaticParams() 
