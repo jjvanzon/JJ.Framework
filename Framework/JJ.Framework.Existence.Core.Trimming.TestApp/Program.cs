@@ -31,8 +31,6 @@ RunTests<FilledIn_Collection_NotNullWhen>() &&
 RunTests<FilledIn_Collection_Yes>() &&
 RunTests<FilledIn_NotNullWhen_Tests>() &&
 RunTests<FilledIn_Objects_Tests>() &&
-RunTests<FilledIn_Text_Tests>() &&
-RunTests<FilledIn_Values_Tests>() &&
 RunTests<Flex_Prototype>() &&
 RunTests<Has_Collection_Misc>() &&
 RunTests<Has_Collection_NotNullWhen>() &&
@@ -40,8 +38,6 @@ RunTests<Has_Collection_No>() &&
 RunTests<Has_Collection_Yes>() &&
 RunTests<Has_NotNullWhen_Tests>() &&
 RunTests<Has_Object_Tests>() &&
-RunTests<Has_Text_Tests>() &&
-RunTests<Has_Values_Tests>() &&
 RunTests<In_Tests_ExtensionsCaseOrSpaceMattersNoNo>() &&
 RunTests<In_Tests_StaticCaseOrSpaceMattersNoNo>() &&
 RunTests<In_Tests_ExtensionsCaseOrSpaceMattersNoYes>() &&
@@ -62,8 +58,6 @@ RunTests<IsNully_Collection_No_Tests>() &&
 RunTests<IsNully_Collection_NotNullWhen>() &&
 RunTests<IsNully_Collection_Yes_Tests>() &&
 RunTests<IsNully_NotNullWhen_Tests>() &&
-RunTests<IsNully_Object_Tests>() &&
-RunTests<IsNully_Text_Tests>() &&
-RunTests<IsNully_Values_Tests>();
+RunTests<IsNully_Object_Tests>();
 WriteLine("Done.");
 if (!success) Exit(1);

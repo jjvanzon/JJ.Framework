@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Values.Tests;
 
 [TestClass]
 public class Has_Values_Tests : TestBase
