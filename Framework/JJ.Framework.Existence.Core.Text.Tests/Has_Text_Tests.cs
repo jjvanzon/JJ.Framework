@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.Text.Tests;
+﻿// ReSharper disable ReturnValueOfPureMethodIsNotUsed
+
+namespace JJ.Framework.Existence.Core.Text.Tests;
 
 [TestClass]
 public class Has_Text_Tests : TestBase
@@ -123,5 +125,19 @@ public class Has_Text_Tests : TestBase
         IsTrue (Has(spaceMatters,        NullyFilledText    ));
         IsTrue (Has(spaceMatters: true,  NullyFilledText    ));
         IsTrue (Has(              true,  NullyFilledText    ));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Has_Text_NotNullWhen()
+    {
+        string? Text() => NullyFilledText;
+
+        { string? text = Text(); if (Has(text              )) text.ToString(); }
+        { string? text = Text(); if (Has(text, true        )) text.ToString(); }
+        { string? text = Text(); if (Has(text, spaceMatters)) text.ToString(); }
+        { string? text = Text(); if (Has(              text)) text.ToString(); }
+        { string? text = Text(); if (Has(true,         text)) text.ToString(); }
+        { string? text = Text(); if (Has(spaceMatters, text)) text.ToString(); }
     }
 }

@@ -1,4 +1,6 @@
 ﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+// ReSharper disable RedundantAssignment
+
 namespace JJ.Framework.Existence.Core.Bool.Tests;
 
 [TestClass]
@@ -158,5 +160,19 @@ public class Has_Bool_Tests : TestBase
         IsTrue (Has(nullyZeroMattersTrue  ?? true , NullyTrue  ));
         IsTrue (Has(nullyZeroMattersTrue  ?? true , NullyFalse ));
         IsFalse(Has(nullyZeroMattersTrue  ?? true , NullBool   ));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Has_Bool_NotNullWhen()
+    {
+        bool? Bool() => NullyTrue;
+
+        { bool? boo = Bool(); if ( Has(boo             )) boo = boo.Value; }
+        { bool? boo = Bool(); if ( Has(boo, true       )) boo = boo.Value; }
+        { bool? boo = Bool(); if ( Has(boo, zeroMatters)) boo = boo.Value; }
+        { bool? boo = Bool(); if ( Has(             boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if ( Has(true,        boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if ( Has(zeroMatters, boo)) boo = boo.Value; }
     }
 }

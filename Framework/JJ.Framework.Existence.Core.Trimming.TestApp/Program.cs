@@ -19,10 +19,8 @@ RunTests<BasicType_Enum_Tests>() &&
 RunTests<Existence_Examples>() &&
 RunTests<BasicType_Guid_Tests>() &&
 RunTests<RegressionTest_CallToHas_FromGenericContext_TypeInfoLost>() &&
-RunTests<FilledIn_NotNullWhen_Tests>() &&
 RunTests<FilledIn_Objects_Tests>() &&
 RunTests<Flex_Prototype>() &&
-RunTests<Has_NotNullWhen_Tests>() &&
 RunTests<Has_Object_Tests>() &&
 RunTests<In_Tests_ExtensionsCaseOrSpaceMattersNoNo>() &&
 RunTests<In_Tests_StaticCaseOrSpaceMattersNoNo>() &&
@@ -40,7 +38,6 @@ RunTests<Is_Tests_ExtensionsFlagsInBack>() &&
 RunTests<Is_Tests_ExtensionsFlagsInFront>() &&
 RunTests<Is_Tests_StaticFlagsInBack>() &&
 RunTests<Is_Tests_StaticFlagsInFront>() &&
-RunTests<IsNully_NotNullWhen_Tests>() &&
 RunTests<IsNully_Object_Tests>();
 WriteLine("Done.");
 if (!success) Exit(1);

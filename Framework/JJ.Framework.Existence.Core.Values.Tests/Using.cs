@@ -2,6 +2,7 @@ global using System;
 global using System.Collections.Generic;
 global using System.Diagnostics.CodeAnalysis;
 global using JJ.Framework.Existence.Core.Tests.Helpers;
+global using JJ.Framework.Existence.Core.Tests.Helpers.docs;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static System.String;
 global using static JJ.Framework.Existence.Core.FilledInHelper;

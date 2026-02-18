@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.Values.Tests;
+﻿// ReSharper disable RedundantAssignment
+
+namespace JJ.Framework.Existence.Core.Values.Tests;
 
 [TestClass]
 public class Has_Values_Tests : TestBase
@@ -100,5 +102,19 @@ public class Has_Values_Tests : TestBase
         IsTrue (Has(zeroMatters,       Nully1  ));
         IsTrue (Has(zeroMatters: true, Nully1  ));
         IsTrue (Has(             true, Nully1  ));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Has_Values_NotNullWhen()
+    {
+        int? Num() => Nully1;
+
+        { int? num = Num (); if(Has(num             )) num = num.Value; }
+        { int? num = Num (); if(Has(num, true       )) num = num.Value; }
+        { int? num = Num (); if(Has(num, zeroMatters)) num = num.Value; }
+        { int? num = Num (); if(Has(             num)) num = num.Value; }
+        { int? num = Num (); if(Has(true,        num)) num = num.Value; }
+        { int? num = Num (); if(Has(zeroMatters, num)) num = num.Value; }
     }
 }

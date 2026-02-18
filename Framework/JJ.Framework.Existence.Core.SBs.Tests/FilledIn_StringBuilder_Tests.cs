@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.SBs.Tests;
+﻿// ReSharper disable ReturnValueOfPureMethodIsNotUsed
+
+namespace JJ.Framework.Existence.Core.SBs.Tests;
 
 [TestClass]
 public class FilledIn_StringBuilder_Tests : TestBase
@@ -204,5 +206,22 @@ public class FilledIn_StringBuilder_Tests : TestBase
         IsTrue (FilledIn(spaceMatters,        NullyFilledSB));
         IsTrue (FilledIn(spaceMatters: true,  NullyFilledSB));
         IsTrue (FilledIn(              true,  NullyFilledSB));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void FilledIn_NotNullWhen_StringBuilder()
+    {
+        SB? SB() => NullyFilledSB;
+
+        { SB? sb = SB (); if ( FilledIn(sb              )) sb.ToString(); }
+        { SB? sb = SB (); if ( FilledIn(sb, true        )) sb.ToString(); }
+        { SB? sb = SB (); if ( FilledIn(sb, spaceMatters)) sb.ToString(); }
+        { SB? sb = SB (); if ( FilledIn(              sb)) sb.ToString(); }
+        { SB? sb = SB (); if ( FilledIn(true,         sb)) sb.ToString(); }
+        { SB? sb = SB (); if ( FilledIn(spaceMatters, sb)) sb.ToString(); }
+        { SB? sb = SB (); if ( sb.FilledIn(             )) sb.ToString(); }
+        { SB? sb = SB (); if ( sb.FilledIn(true         )) sb.ToString(); }
+        { SB? sb = SB (); if ( sb.FilledIn(spaceMatters )) sb.ToString(); }
     }
 }

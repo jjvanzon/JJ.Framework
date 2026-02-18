@@ -1,4 +1,6 @@
 ﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+// ReSharper disable RedundantAssignment
+
 namespace JJ.Framework.Existence.Core.Bool.Tests;
 
 [TestClass]
@@ -224,5 +226,22 @@ public class IsNully_Bool_Tests : TestBase
         IsFalse(IsNully(nullyZeroMattersTrue  ?? true , NullyTrue  ));
         IsFalse(IsNully(nullyZeroMattersTrue  ?? true , NullyFalse ));
         IsTrue (IsNully(nullyZeroMattersTrue  ?? true , NullBool   ));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void IsNully_Bool_NotNullWhen()
+    {
+        bool? Bool() => NullyTrue;
+
+        { bool? boo = Bool(); if (!IsNully(boo             )) boo = boo.Value; }
+        { bool? boo = Bool(); if (!IsNully(boo, true       )) boo = boo.Value; }
+        { bool? boo = Bool(); if (!IsNully(boo, zeroMatters)) boo = boo.Value; }
+        { bool? boo = Bool(); if (!IsNully(             boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if (!IsNully(true,        boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if (!IsNully(zeroMatters, boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if (!boo.IsNully(            )) boo = boo.Value; }
+        { bool? boo = Bool(); if (!boo.IsNully(true        )) boo = boo.Value; }
+        { bool? boo = Bool(); if (!boo.IsNully(zeroMatters )) boo = boo.Value; }
     }
 }

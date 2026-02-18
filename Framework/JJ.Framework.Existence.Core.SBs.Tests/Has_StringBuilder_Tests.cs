@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.SBs.Tests;
+﻿// ReSharper disable ReturnValueOfPureMethodIsNotUsed
+
+namespace JJ.Framework.Existence.Core.SBs.Tests;
 
 [TestClass]
 public class Has_StringBuilder_Tests : TestBase
@@ -130,5 +132,19 @@ public class Has_StringBuilder_Tests : TestBase
         IsTrue (Has(spaceMatters,        NullyFilledSB      ));
         IsTrue (Has(spaceMatters: true,  NullyFilledSB      ));
         IsTrue (Has(              true,  NullyFilledSB      ));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Has_StringBuilder_NotNullWhen()
+    {
+        SB? SB() => NullyFilledSB;
+
+        { SB? sb = SB(); if (Has(sb              )) sb.ToString(); }
+        { SB? sb = SB(); if (Has(sb, true        )) sb.ToString(); }
+        { SB? sb = SB(); if (Has(sb, spaceMatters)) sb.ToString(); }
+        { SB? sb = SB(); if (Has(              sb)) sb.ToString(); }
+        { SB? sb = SB(); if (Has(true,         sb)) sb.ToString(); }
+        { SB? sb = SB(); if (Has(spaceMatters, sb)) sb.ToString(); }
     }
 }

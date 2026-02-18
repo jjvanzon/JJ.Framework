@@ -1,4 +1,5 @@
 ﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+// ReSharper disable RedundantAssignment
 namespace JJ.Framework.Existence.Core.Bool.Tests;
 
 [TestClass]
@@ -224,5 +225,22 @@ public class FilledIn_Bool_Tests : TestBase
         IsTrue (FilledIn(nullyZeroMattersTrue  ?? true , NullyTrue  ));
         IsTrue (FilledIn(nullyZeroMattersTrue  ?? true , NullyFalse ));
         IsFalse(FilledIn(nullyZeroMattersTrue  ?? true , NullBool   ));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void FilledIn_Bool_NotNullWhen()
+    {
+        bool? Bool() => NullyTrue;
+
+        { bool? boo = Bool(); if ( FilledIn(boo             )) boo = boo.Value; }
+        { bool? boo = Bool(); if ( FilledIn(boo, true       )) boo = boo.Value; }
+        { bool? boo = Bool(); if ( FilledIn(boo, zeroMatters)) boo = boo.Value; }
+        { bool? boo = Bool(); if ( FilledIn(             boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if ( FilledIn(true,        boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if ( FilledIn(zeroMatters, boo)) boo = boo.Value; }
+        { bool? boo = Bool(); if ( boo.FilledIn(            )) boo = boo.Value; }
+        { bool? boo = Bool(); if ( boo.FilledIn(true        )) boo = boo.Value; }
+        { bool? boo = Bool(); if ( boo.FilledIn(zeroMatters )) boo = boo.Value; }
     }
 }

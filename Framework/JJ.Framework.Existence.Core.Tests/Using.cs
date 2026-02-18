@@ -17,6 +17,7 @@ global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Core;
 global using JJ.Framework.Existence.Core.Tests.Helpers;
 global using JJ.Framework.Existence.Core.Tests.docs;
+global using JJ.Framework.Existence.Core.Tests.Helpers.docs;
 global using static System.String;
 global using static System.Array;
 global using static System.Activator;

@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Existence.Core.Values.Tests;
+﻿// ReSharper disable RedundantAssignment
+namespace JJ.Framework.Existence.Core.Values.Tests;
 
 [TestClass]
 public class IsNully_Values_Tests : TestBase
@@ -140,5 +141,22 @@ public class IsNully_Values_Tests : TestBase
         IsFalse(IsNully(zeroMatters,       Nully1  ));
         IsFalse(IsNully(zeroMatters: true, Nully1  ));
         IsFalse(IsNully(             true, Nully1  ));
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void IsNully_Values_NotNullWhen()
+    {
+        int? Num() => Nully1;
+
+        { int? num  = Num(); if (!IsNully(num             )) num = num.Value; }
+        { int? num  = Num(); if (!IsNully(num, true       )) num = num.Value; }
+        { int? num  = Num(); if (!IsNully(num, zeroMatters)) num = num.Value; }
+        { int? num  = Num(); if (!IsNully(             num)) num = num.Value; }
+        { int? num  = Num(); if (!IsNully(true,        num)) num = num.Value; }
+        { int? num  = Num(); if (!IsNully(zeroMatters, num)) num = num.Value; }
+        { int? num  = Num(); if (!num.IsNully(            )) num = num.Value; }
+        { int? num  = Num(); if (!num.IsNully(true        )) num = num.Value; }
+        { int? num  = Num(); if (!num.IsNully(zeroMatters )) num = num.Value; }
     }
 }
