@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Values.Tests;
 
 [TestClass]
-public class Coalesce_3Args_Values_StaticZeroMattersFlagsInBack
+public class Coalesce_3Args_Values_StaticZeroMattersFlagsInBack : TestBase
 {
     [TestMethod]
     public void Coalesce_3Args_Values_StaticZeroMattersFlagsInBack_Batch1()

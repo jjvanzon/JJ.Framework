@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Existence.Core.Tests;
+﻿namespace JJ.Framework.Existence.Core.Values.Tests;
 
 [TestClass]
-public class Coalesce_3Args_Values_Extensions
+public class Coalesce_3Args_Values_Extensions : TestBase
 {
     [TestMethod]
     public void Coalesce_3Args_Values_Extensions_Batch1()
