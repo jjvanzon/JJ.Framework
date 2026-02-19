@@ -26,23 +26,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Frame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Legacy.Package.Tests.csproj", "{70B4D771-007B-8549-1264-60818D52BB25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.SBTextCombo.Package.Tests", "Framework\JJ.Framework.Existence.Core.SBTextCombo.Package.Tests\JJ.Framework.Existence.Core.SBTextCombo.Package.Tests.csproj", "{05CCB395-852D-64E3-F586-B553AF7179AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBTextCombo", "Framework\JJ.Framework.Existence.Core.SBTextCombo.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.SBTextCombo.csproj", "{05CCB395-852D-64E3-F586-B553AF7179AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.SBs.Package.Tests", "Framework\JJ.Framework.Existence.Core.SBs.Package.Tests\JJ.Framework.Existence.Core.SBs.Package.Tests.csproj", "{7DCA52BE-7214-EBF8-55E3-FBD84D98D48C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBs", "Framework\JJ.Framework.Existence.Core.SBs.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.SBs.csproj", "{7DCA52BE-7214-EBF8-55E3-FBD84D98D48C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Text.Package.Tests", "Framework\JJ.Framework.Existence.Core.Text.Package.Tests\JJ.Framework.Existence.Core.Text.Package.Tests.csproj", "{8621A65B-4E1D-31F5-F341-BB10A06E9628}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Text", "Framework\JJ.Framework.Existence.Core.Text.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.Text.csproj", "{8621A65B-4E1D-31F5-F341-BB10A06E9628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.SBToText.Package.Tests", "Framework\JJ.Framework.Existence.Core.SBToText.Package.Tests\JJ.Framework.Existence.Core.SBToText.Package.Tests.csproj", "{82CCE832-CD76-9828-22C2-325CEB12D7AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBToText", "Framework\JJ.Framework.Existence.Core.SBToText.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.SBToText.csproj", "{82CCE832-CD76-9828-22C2-325CEB12D7AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.BoolToText.Package.Tests", "Framework\JJ.Framework.Existence.Core.BoolToText.Package.Tests\JJ.Framework.Existence.Core.BoolToText.Package.Tests.csproj", "{20C98D85-2FA3-5081-8DFA-A9C0FCEFD78B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.BoolToText", "Framework\JJ.Framework.Existence.Core.BoolToText.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.BoolToText.csproj", "{20C98D85-2FA3-5081-8DFA-A9C0FCEFD78B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Bool.Package.Tests", "Framework\JJ.Framework.Existence.Core.Bool.Package.Tests\JJ.Framework.Existence.Core.Bool.Package.Tests.csproj", "{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Bool", "Framework\JJ.Framework.Existence.Core.Bool.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.Bool.csproj", "{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.ValuesToText.Package.Tests", "Framework\JJ.Framework.Existence.Core.ValuesToText.Package.Tests\JJ.Framework.Existence.Core.ValuesToText.Package.Tests.csproj", "{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.ValuesToText", "Framework\JJ.Framework.Existence.Core.ValuesToText.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.ValuesToText.csproj", "{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Values.Package.Tests", "Framework\JJ.Framework.Existence.Core.Values.Package.Tests\JJ.Framework.Existence.Core.Values.Package.Tests.csproj", "{75CBA8C3-C2CB-4877-D2FA-959C596EFCF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Values", "Framework\JJ.Framework.Existence.Core.Values.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.Values.csproj", "{75CBA8C3-C2CB-4877-D2FA-959C596EFCF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Collections.Package.Tests", "Framework\JJ.Framework.Existence.Core.Collections.Package.Tests\JJ.Framework.Existence.Core.Collections.Package.Tests.csproj", "{B9C7C51D-3AF4-3068-5E17-6F15A4459325}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Collections", "Framework\JJ.Framework.Existence.Core.Collections.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.Collections.csproj", "{B9C7C51D-3AF4-3068-5E17-6F15A4459325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
