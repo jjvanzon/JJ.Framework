@@ -4,7 +4,7 @@ cls
 echo RUN TRIM TESTS
 echo --------------
 echo Runs trimmed exe files, which execute automated tests.
-echo Walks the "Framework" folder for "publish\*.Trimming.TestApp.exe" files.
+echo Walks the "Framework" folder for "publish\*.Trimming.TestApp*.exe" files.
 echo Runs them and exits with error code in case tests fail.
 
 REM REM timeout /t 2
@@ -19,7 +19,7 @@ REM /I     = Case-insensitive
 REM %%~nxD = Folder name of the directory item
 REM /b     = Prevent quit command line
 
-for /R "%~dp0Framework" %%F in (*.Trimming.TestApp.exe) do (
+for /R "%~dp0Framework" %%F in (*.Trimming.TestApp*.exe) do (
   for %%D in ("%%~dpF\.") do (
     echo %%~dpF | findstr /I "\\publish\\" >nul && (
       echo %%F

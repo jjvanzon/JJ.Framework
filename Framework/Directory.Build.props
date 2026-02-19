@@ -31,7 +31,9 @@
     <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
     <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
     <IsNet48>$(MSBuildProjectName.Contains('Net48'))</IsNet48>
-    <IsTest>$(MSBuildProjectName.EndsWith('Tests'))</IsTest>
+    <IsTest>False</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.EndsWith('.Tests'))">True</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.Contains('.Tests.'))">True</IsTest>
     <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
     <IsNet5>$(TargetFramework.Equals('net5.0'))</IsNet5>
     <IsNet6>$(TargetFramework.Equals('net6.0'))</IsNet6>
