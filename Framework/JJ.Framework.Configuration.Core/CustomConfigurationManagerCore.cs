@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using static JJ.Framework.Reflection.Core.Reflect;
+//using static JJ.Framework.Reflection.Core.Reflect;
+#pragma warning disable CS0168 // Variable is declared but never used
 
 namespace JJ.Framework.Configuration.Core
 {
@@ -20,7 +21,7 @@ namespace JJ.Framework.Configuration.Core
             }
             catch (Exception ex)
             {
-                AssertExceptionIsAllowed(ex, assembly);
+                AssertExceptionIsAllowed(ex);
             }
             
             return config;
@@ -39,7 +40,7 @@ namespace JJ.Framework.Configuration.Core
             }
             catch (Exception ex)
             {
-                AssertExceptionIsAllowed(ex, sectionName);
+                AssertExceptionIsAllowed(ex);
             }
             
             return config;
@@ -58,30 +59,28 @@ namespace JJ.Framework.Configuration.Core
             }
             catch (Exception ex)
             {
-                AssertExceptionIsAllowed<T>(ex);
+                AssertExceptionIsAllowed(ex);
             }
             
             return config;
         }
         
-        private static void AssertExceptionIsAllowed<T>(Exception ex)
-            => AssertExceptionIsAllowed(ex, GetAssemblyName<T>().ToLower());
-        
-        private static void AssertExceptionIsAllowed(Exception ex, Assembly assembly) 
-            => AssertExceptionIsAllowed(ex, TryGetAssemblyName(assembly).ToLower());
-        
-        private static void AssertExceptionIsAllowed(Exception ex, string? configSectionName)
+        /// <summary> Allow 'Not Found' Exception </summary>
+        private static void AssertExceptionIsAllowed(Exception ex)
         {
-            // Allow 'Not Found' Exception
-            string allowedMessage    = $"Configuration section '{configSectionName}' not found.";
-            bool   messageIsAllowed  = string.Equals(ex.Message,                 allowedMessage);
-            bool   messageIsAllowed2 = string.Equals(ex.InnerException?.Message, allowedMessage);
-            bool   mustThrow         = !messageIsAllowed && !messageIsAllowed2;
+            const string allowedStart    = "Configuration section";
+            const string allowedEnd      = "not found.";
             
-            if (mustThrow)
-            {
-                throw new Exception($"The only exceptions message allowed is: '{allowedMessage}'", ex);
-            }
+            string message               = ex                .Message ?? "";
+            string innerMessage          = ex.InnerException?.Message ?? "";
+
+            bool   messageIsAllowed      = message     .StartsWith(allowedStart) && message     .EndsWith(allowedEnd);
+            bool   innerMessageIsAllowed = innerMessage.StartsWith(allowedStart) && innerMessage.EndsWith(allowedEnd);
+
+            if (messageIsAllowed) return;
+            if (innerMessageIsAllowed) return;
+
+            throw new Exception($"Exception message only allowed to start with '{allowedStart}' and end with '{allowedEnd}'.", ex);
         }
     }
 }

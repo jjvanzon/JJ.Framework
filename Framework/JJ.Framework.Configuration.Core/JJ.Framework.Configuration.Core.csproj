@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
   </ItemGroup>
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
