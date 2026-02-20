@@ -4,6 +4,8 @@
     "projects": [
       "Framework\\JJ.Framework.Build\\JJ.Framework.Build.csproj",
       "Framework\\JJ.Framework.Business.Core\\JJ.Framework.Business.Core.csproj",
+      "Framework\\JJ.Framework.Business.Tests\\JJ.Framework.Business.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.Business\\JJ.Framework.Business.Legacy.csproj",
       "Framework\\JJ.Framework.Collections.Core\\JJ.Framework.Collections.Core.csproj",
       "Framework\\JJ.Framework.Common.Core.Tests.Helpers\\JJ.Framework.Common.Core.Tests.Helpers.csproj",
       "Framework\\JJ.Framework.Common.Core.Tests\\JJ.Framework.Common.Core.Tests.csproj",
@@ -40,6 +42,8 @@
       "Framework\\JJ.Framework.IO.Core\\JJ.Framework.IO.Core.csproj",
       "Framework\\JJ.Framework.IO\\JJ.Framework.IO.Legacy.csproj",
       "Framework\\JJ.Framework.Logging.Core\\JJ.Framework.Logging.Core.csproj",
+      "Framework\\JJ.Framework.Mathematics.Tests\\JJ.Framework.Mathematics.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.Mathematics\\JJ.Framework.Mathematics.Legacy.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Core.Tests\\JJ.Framework.PlatformCompatibility.Core.Tests.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Core\\JJ.Framework.PlatformCompatibility.Core.shproj",
@@ -56,6 +60,7 @@
       "Framework\\JJ.Framework.Testing.Core\\JJ.Framework.Testing.Core.csproj",
       "Framework\\JJ.Framework.Testing\\JJ.Framework.Testing.Legacy.csproj",
       "Framework\\JJ.Framework.Text.Core\\JJ.Framework.Text.Core.csproj",
+      "Framework\\JJ.Framework.Validation\\JJ.Framework.Validation.Legacy.csproj",
       "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj"
     ]
   }
