@@ -11,9 +11,9 @@ public class ListIsDirtyTests
         var list1 = new List<ViewModel> { new() { Key = 1, Name = "A" }, new() { Key = 2, Name = "B" } };
         var list2 = new List<Category>  { new() { ID  = 1, Name = "A" }, new() { ID  = 2, Name = "B" } };
 
-        bool result = GetListIsDirty(list1, x => x.Key, list2, x => x.ID);
+        bool isDirty = GetListIsDirty(list1, x => x.Key, list2, x => x.ID);
 
-        IsFalse(result);
+        IsFalse(isDirty);
     }
 
     [TestMethod]
@@ -31,11 +31,14 @@ public class ListIsDirtyTests
         var list1 = new List<ViewModel> { new() { Key = 1 }, new() { Key = 2 } };
         var list2 = new List<Category>  { new() { ID  = 2 }, new() { ID  = 1 } };
 
-        // Order matters by default -> dirty
-        IsTrue(GetListIsDirty(list1, x => x.Key, list2, x => x.ID, ingoreOrder: false));
+        // Order matters implicitly
+        IsTrue(GetListIsDirty(list1, x => x.Key, list2, x => x.ID));
+
+        // Ignore order explicitly set to false
+        IsTrue(GetListIsDirty(list1, x => x.Key, list2, x => x.ID, ignoreOrder: false));
 
         // Ignore order -> not dirty
-        IsFalse(GetListIsDirty(list1, x => x.Key, list2, x => x.ID, ingoreOrder: true));
+        IsFalse(GetListIsDirty(list1, x => x.Key, list2, x => x.ID, ignoreOrder: true));
     }
 
     [TestMethod]
