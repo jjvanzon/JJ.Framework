@@ -151,7 +151,7 @@ public class EntityStatusManagerByIDCoreTests
     }
 
     [TestMethod]
-    public void EntityStatusManagerByID_MultiQuestionScenario()
+    public void EntityStatusManagerByID_MultiEntityScenario()
     {
         Question entity = CreateRichQuestion();
 

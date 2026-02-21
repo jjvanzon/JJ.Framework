@@ -138,29 +138,28 @@ public class EntityStatusManagerCoreTests
     }
 
     [TestMethod]
-    public void EntityStatusManager_MultiQuestionScenario()
+    public void EntityStatusManager_MultiEntityScenario()
     {
-        var q = CreateRichQuestion();
-
+        Question entity = CreateRichQuestion();
         var manager = new EntityStatusManager();
 
         // start clean
-        IsFalse(MustSetLastModifiedByUser(q, manager));
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
 
         // mark several things
-        manager.SetIsDirty(() => q.Name);
-        manager.SetIsDirty(q.QuestionLinks[0]);
-        manager.SetIsNew(q.QuestionFlags[0]);
-        manager.SetIsDirty(() => q.QuestionCategories);
+        manager.SetIsDirty(() => entity.Name);
+        manager.SetIsDirty(entity.QuestionLinks[0]);
+        manager.SetIsNew(entity.QuestionFlags[0]);
+        manager.SetIsDirty(() => entity.QuestionCategories);
 
         // assertions
-        IsTrue(manager.IsDirty(() => q.Name));
-        IsTrue(manager.IsDirty(q.QuestionLinks[0]));
-        IsTrue(manager.IsNew(q.QuestionFlags[0]));
-        IsTrue(manager.IsDirty(() => q.QuestionCategories));
+        IsTrue(manager.IsDirty(() => entity.Name));
+        IsTrue(manager.IsDirty(entity.QuestionLinks[0]));
+        IsTrue(manager.IsNew(entity.QuestionFlags[0]));
+        IsTrue(manager.IsDirty(() => entity.QuestionCategories));
 
         // overall composed check
-        IsTrue(MustSetLastModifiedByUser(q, manager));
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
     }
 
     [TestMethod]
