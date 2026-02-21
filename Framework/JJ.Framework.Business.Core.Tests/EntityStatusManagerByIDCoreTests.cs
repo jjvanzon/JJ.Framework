@@ -1,8 +1,10 @@
-﻿namespace JJ.Framework.Business.Core.Tests;
+﻿
+namespace JJ.Framework.Business.Core.Tests;
 
 [TestClass]
 public class EntityStatusManagerByIDCoreTests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManagerByID_BasicCases()
     {
@@ -38,6 +40,7 @@ public class EntityStatusManagerByIDCoreTests
         IsFalse(manager.IsDirty<Question>(entity.ID));
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManagerByID_MustSetLastModifiedByUser_Cases()
     {
@@ -119,7 +122,9 @@ public class EntityStatusManagerByIDCoreTests
             IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
     }
-    
+
+    // TODO: Arrays are used, so not sure if this will pass by suppresing it..
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManagerByID_MultiEntityScenario()
     {
@@ -146,6 +151,7 @@ public class EntityStatusManagerByIDCoreTests
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManagerByID_MixedStatus_LastSetWins()
     {
@@ -193,6 +199,8 @@ public class EntityStatusManagerByIDCoreTests
         IsFalse(manager.IsDirty(question.ID, () => question.Name));
     }
 
+    // TODO: Arrays are used, so not sure if this will pass by suppresing it..
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManagerByID_DuplicateSets_DoNotThrow()
     {
@@ -216,6 +224,7 @@ public class EntityStatusManagerByIDCoreTests
         IsTrue(manager.IsDirty<Link>(entity.QuestionLinks[0].ID));
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManagerByID_EdgeCases()
     {
@@ -230,6 +239,7 @@ public class EntityStatusManagerByIDCoreTests
         Throws(() => manager.SetIsDirty(1, () => 1), "expression", "2 elements");
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     private bool MustSetLastModifiedByUserByID(Question entity, EntityStatusManagerByID statusManager)
     {
         return statusManager.IsDirty<Question>(entity.ID) ||

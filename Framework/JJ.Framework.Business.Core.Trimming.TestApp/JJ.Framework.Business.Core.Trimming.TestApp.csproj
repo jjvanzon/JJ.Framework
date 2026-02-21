@@ -1,12 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <Version>0.250.$(BuildNum)</Version>
+    <Version>3.7.$(BuildNum)</Version>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <PackageReference Include="MSTest" Version="3.7.3" />
+    <Compile Include="..\JJ.Framework.Business.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Business.Core.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Business.Core.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,4 +21,5 @@
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
 </Project>

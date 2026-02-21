@@ -50,12 +50,18 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary> For properties. </summary>
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ArrayInit)]
+        #endif
         public bool IsDirty<T>(Expression<Func<T>> propertyExpression)
         {
             return GetStatus(propertyExpression) == PropertyStatusEnum.Dirty;
         }
 
         /// <summary> For properties. </summary>
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ArrayInit)]
+        #endif
         public void SetIsDirty<T>(Expression<Func<T>> propertyExpression)
         {
             SetStatus(propertyExpression, PropertyStatusEnum.Dirty);
@@ -74,6 +80,9 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary> For properties. </summary>
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ArrayInit)]
+        #endif
         private PropertyStatusEnum GetStatus<T>(Expression<Func<T>> propertyExpression)
         {
             if (propertyExpression == null) throw new NullException(() => propertyExpression);
@@ -98,6 +107,9 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary> For properties. </summary>
+        #if !NET9_0_OR_GREATER
+        [NoTrim(ArrayInit)]
+        #endif
         private void SetStatus<T>(Expression<Func<T>> propertyExpression, PropertyStatusEnum propertyStatus)
         {
             if (propertyExpression == null) throw new NullException(() => propertyExpression);

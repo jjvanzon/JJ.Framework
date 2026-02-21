@@ -5,6 +5,7 @@ namespace JJ.Framework.Business.Core.Tests;
 [TestClass]
 public class EntityStatusManagerCoreTests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManager_BasicEntityAndPropertyStatusOperations()
     {
@@ -40,6 +41,7 @@ public class EntityStatusManagerCoreTests
         IsFalse(manager.IsDeleted(entity));
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManager_MustSetLastModifiedByUser_Cases()
     {
@@ -120,6 +122,7 @@ public class EntityStatusManagerCoreTests
         manager.Clear();
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManager_MultiEntityScenario()
     {
@@ -146,6 +149,7 @@ public class EntityStatusManagerCoreTests
     }
 
     [TestMethod]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     public void EntityStatusManager_MixedStatus_LastSetWins()
     {
         Question entity = CreateSimpleQuestion();
@@ -190,6 +194,7 @@ public class EntityStatusManagerCoreTests
         IsFalse(manager.IsDeleted(entity));
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManager_DuplicateSets_DoNotThrow()
     {
@@ -213,6 +218,7 @@ public class EntityStatusManagerCoreTests
         IsTrue(manager.IsDirty(entity.QuestionLinks[0]));
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void EntityStatusManager_EdgeCases()
     {
@@ -227,6 +233,7 @@ public class EntityStatusManagerCoreTests
         Throws(() => manager.SetIsDirty(() => 1), "expression", "2 elements");
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     private bool MustSetLastModifiedByUser(Question entity, EntityStatusManager statusManager)
     {
         return statusManager.IsDirty(entity) ||
