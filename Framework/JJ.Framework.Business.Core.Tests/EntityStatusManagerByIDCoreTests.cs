@@ -39,85 +39,108 @@ public class EntityStatusManagerByIDCoreTests
     }
 
     [TestMethod]
+    public void EntityStatusManagerByID_DuplicateSets_DoNotThrow()
+    {
+        Question entity = CreateSimpleQuestion();
+        var manager = new EntityStatusManagerByID();
+
+        // Setting the same entity status multiple times should not throw and should retain the status.
+        manager.SetIsDirty<Question>(entity.ID);
+        manager.SetIsDirty<Question>(entity.ID);
+        IsTrue(manager.IsDirty<Question>(entity.ID));
+
+        // Property status duplicates
+        manager.SetIsDirty(entity.ID, () => entity.Name);
+        manager.SetIsDirty(entity.ID, () => entity.Name);
+        IsTrue(manager.IsDirty(entity.ID, () => entity.Name));
+
+        // Element in a collection duplicates
+        entity.QuestionLinks.Add(new Link { ID = 99, Name = "DupLink" });
+        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
+        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
+        IsTrue(manager.IsDirty<Link>(entity.QuestionLinks[0].ID));
+    }
+
+    [TestMethod]
     public void EntityStatusManagerByID_MustSetLastModifiedByUser_Cases()
     {
         Question entity = CreateRichQuestion();
         {
-        var manager = new EntityStatusManagerByID();
+            var manager = new EntityStatusManagerByID();
 
-        // Clean entity => false
-        IsFalse(MustSetLastModifiedByUserByID(entity, manager));
+            // Clean entity => false
+            IsFalse(MustSetLastModifiedByUserByID(entity, manager));
 
-        // Entity dirty
-        manager.SetIsDirty<Question>(entity.ID);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            // Entity dirty
+            manager.SetIsDirty<Question>(entity.ID);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Entity new
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsNew<Question>(entity.ID);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsNew<Question>(entity.ID);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Property dirty: QuestionType
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty(entity.ID, () => entity.QuestionType);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty(entity.ID, () => entity.QuestionType);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Property dirty: Source
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty(entity.ID, () => entity.Source);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty(entity.ID, () => entity.Source);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Property dirty: QuestionCategories (collection property)
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty(entity.ID, () => entity.QuestionCategories);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty(entity.ID, () => entity.QuestionCategories);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Element in QuestionCategories is dirty
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty<Category>(entity.QuestionCategories[0].ID);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty<Category>(entity.QuestionCategories[0].ID);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Property dirty: QuestionLinks
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty(entity.ID, () => entity.QuestionLinks);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty(entity.ID, () => entity.QuestionLinks);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Element in QuestionLinks is dirty
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Element in QuestionLinks is new
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsNew<Link>(entity.QuestionLinks[0].ID);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsNew<Link>(entity.QuestionLinks[0].ID);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Property dirty: QuestionFlags
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty(entity.ID, () => entity.QuestionFlags);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty(entity.ID, () => entity.QuestionFlags);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Element in QuestionFlags is dirty
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsDirty<Flag>(entity.QuestionFlags[0].ID);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+            manager.SetIsDirty<Flag>(entity.QuestionFlags[0].ID);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
         // Element in QuestionFlags is new
         {
             var manager = new EntityStatusManagerByID();
-        manager.SetIsNew<Flag>(entity.QuestionFlags[0].ID);
-        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
-    }
+            manager.SetIsNew<Flag>(entity.QuestionFlags[0].ID);
+            IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+        }
     }
 
     private bool MustSetLastModifiedByUserByID(Question entity, EntityStatusManagerByID statusManager)

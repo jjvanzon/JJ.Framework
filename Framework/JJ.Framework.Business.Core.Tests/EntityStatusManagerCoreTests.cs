@@ -162,6 +162,29 @@ public class EntityStatusManagerCoreTests
     }
 
     [TestMethod]
+    public void EntityStatusManager_DuplicateSets_DoNotThrow()
+    {
+        Question entity = CreateSimpleQuestion();
+        var manager = new EntityStatusManager();
+
+        // Setting the same entity status multiple times should not throw and should retain the status.
+        manager.SetIsDirty(entity);
+        manager.SetIsDirty(entity);
+        IsTrue(manager.IsDirty(entity));
+
+        // Property status duplicates
+        manager.SetIsDirty(() => entity.Name);
+        manager.SetIsDirty(() => entity.Name);
+        IsTrue(manager.IsDirty(() => entity.Name));
+
+        // Element in a collection duplicates
+        entity.QuestionLinks.Add(new Link { ID = 99, Name = "DupLink" });
+        manager.SetIsDirty(entity.QuestionLinks[0]);
+        manager.SetIsDirty(entity.QuestionLinks[0]);
+        IsTrue(manager.IsDirty(entity.QuestionLinks[0]));
+    }
+
+    [TestMethod]
     public void EntityStatusManager_EdgeCases()
     {
         var manager = new EntityStatusManager();
