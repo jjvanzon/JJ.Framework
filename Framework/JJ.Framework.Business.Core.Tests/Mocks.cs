@@ -13,6 +13,12 @@ internal class Entity
 
 internal static class EntityFactory
 {
+    public static Entity CreateEmptyEntity() => new() 
+    {
+        ID = 1, 
+        Name = "" 
+    };
+
     public static Entity CreateSimpleEntity() => new() 
     {
         ID = 1, 

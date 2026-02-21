@@ -1,3 +1,4 @@
+
 #pragma warning disable IDE0290
 
 namespace JJ.Framework.Business.Core.Tests;
@@ -17,20 +18,6 @@ public class SideEffectTests
         public void Execute() => _action();
     }
 
-    private class FieldSideEffect : ISideEffect
-    {
-        private readonly Entity _entity;
-        private readonly string _newName;
-
-        public FieldSideEffect(Entity entity, string newName)
-        {
-            _entity = entity ?? throw new ArgumentNullException(nameof(entity));
-            _newName = newName ?? throw new ArgumentNullException(nameof(newName));
-        }
-
-        public void Execute() => _entity.Name = _newName;
-    }
-
     [TestMethod]
     public void SideEffect_Execute_CallsAction()
     {
@@ -47,22 +34,39 @@ public class SideEffectTests
         Throws<InvalidOperationException>(() => sideEffect.Execute(), "boom");
     }
 
+    private class InitNameSideEffect : ISideEffect
+    {
+        private readonly Entity _entity;
+
+        public InitNameSideEffect(Entity entity)
+        {
+            _entity = entity ?? throw new ArgumentNullException(nameof(entity));
+        }
+
+        public void Execute()
+        {
+            if (!Has(_entity.Name))
+            {
+                _entity.Name = "New Name";
+            }
+        }
+    }
+
     [TestMethod]
     public void SideEffect_Field_ChangesEntityProperty()
     {
-        var entity = CreateSimpleEntity();
-        IsFalse(entity.Name == "Updated");
+        Entity entity = CreateEmptyEntity();
+        IsFalse(entity.Name.Is("New Name"));
 
-        ISideEffect sideEffect = new FieldSideEffect(entity, "Updated");
-        sideEffect.Execute();
+        new InitNameSideEffect(entity).Execute();
 
-        IsTrue(entity.Name == "Updated");
+        IsTrue(entity.Name.Is("New Name"));
     }
 
     [TestMethod]
     public void SideEffect_Field_ConstructorGuardsAgainstNull()
     {
-        Throws<ArgumentNullException>(() => new FieldSideEffect(null!, "x"));
-        Throws<ArgumentNullException>(() => new FieldSideEffect(CreateSimpleEntity(), null!));
+        Entity? nullEntity = null;
+        Throws(() => new InitNameSideEffect(nullEntity!), "entity", "null");
     }
 }
