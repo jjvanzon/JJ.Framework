@@ -1,83 +1,68 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Business.Legacy;
+using static JJ.Framework.Business.Legacy.EntityStatusHelper;
 
 namespace JJ.Framework.Business.Core.Tests;
 
 [TestClass]
-public class EntityStatusHelperCoreTests
+public class ListIsDirtyTests
 {
-    private class ViewModel
-    {
-        public int Key { get; set; }
-        public string? Name { get; set; }
-    }
-
-    private class E
-    {
-        public int ID { get; set; }
-        public string? Name { get; set; }
-    }
-
     [TestMethod]
-    public void GetListIsDirty_SameLists_ReturnsFalse()
+    public void GetListIsDirty_SameLists()
     {
-        var list1 = new List<ViewModel> { new() { Key = 1, Name = "A" }, new() { Key = 2, Name = "B" } };
-        var list2 = new List<E> { new() { ID = 1, Name = "A" }, new() { ID = 2, Name = "B" } };
+        var list1 = new List<Entity> { new() { ID = 1, Name = "A" }, new() { ID = 2, Name = "B" } };
+        var list2 = new List<Entity> { new() { ID = 1, Name = "A" }, new() { ID = 2, Name = "B" } };
 
-        bool result = EntityStatusHelper.GetListIsDirty(list1, vm => vm.Key, list2, e => e.ID);
+        bool result = GetListIsDirty(list1, x => x.ID, list2, x => x.ID);
 
         IsFalse(result);
     }
 
     [TestMethod]
-    public void GetListIsDirty_DifferentCount_ReturnsTrue()
+    public void GetListIsDirty_DifferentCount()
     {
-        var list1 = new List<ViewModel> { new() { Key = 1 } };
-        var list2 = new List<E> { new() { ID = 1 }, new() { ID = 2 } };
+        var list1 = new List<Entity> { new() { ID = 1 } };
+        var list2 = new List<Entity> { new() { ID = 1 }, new() { ID = 2 } };
 
-        IsTrue(EntityStatusHelper.GetListIsDirty(list1, vm => vm.Key, list2, e => e.ID));
+        IsTrue(GetListIsDirty(list1, x => x.ID, list2, x => x.ID));
     }
 
     [TestMethod]
-    public void GetListIsDirty_DifferentOrder_BehavesAccordingToFlag()
+    public void GetListIsDirty_IgnoreOrderFlagUse()
     {
-        var list1 = new List<ViewModel> { new() { Key = 1 }, new() { Key = 2 } };
-        var list2 = new List<E> { new() { ID = 2 }, new() { ID = 1 } };
+        var list1 = new List<Entity> { new() { ID = 1 }, new() { ID = 2 } };
+        var list2 = new List<Entity> { new() { ID = 2 }, new() { ID = 1 } };
 
         // Order matters by default -> dirty
-        IsTrue(EntityStatusHelper.GetListIsDirty(list1, vm => vm.Key, list2, e => e.ID, ingoreOrder: false));
+        IsTrue(GetListIsDirty(list1, x => x.ID, list2, x => x.ID, ingoreOrder: false));
 
         // Ignore order -> not dirty
-        IsFalse(EntityStatusHelper.GetListIsDirty(list1, vm => vm.Key, list2, e => e.ID, ingoreOrder: true));
+        IsFalse(GetListIsDirty(list1, x => x.ID, list2, x => x.ID, ingoreOrder: true));
     }
 
     [TestMethod]
-    public void GetListIsDirty_ElementChanged_ReturnsTrue()
+    public void GetListIsDirty_ElementChanged()
     {
-        var list1 = new List<ViewModel> { new() { Key = 1 }, new() { Key = 2 } };
-        var list2 = new List<E> { new() { ID = 1 }, new() { ID = 3 } };
+        var list1 = new List<Entity> { new() { ID = 1 }, new() { ID = 2 } };
+        var list2 = new List<Entity> { new() { ID = 1 }, new() { ID = 3 } };
 
-        IsTrue(EntityStatusHelper.GetListIsDirty(list1, vm => vm.Key, list2, e => e.ID));
+        IsTrue(GetListIsDirty(list1, x => x.ID, list2, x => x.ID));
     }
 
     [TestMethod]
-    public void GetListIsDirty_NullArguments_ThrowNullException()
+    public void GetListIsDirty_NullExceptions()
     {
-        var list = new List<ViewModel> { new() { Key = 1 } };
-        var listE = new List<E> { new() { ID = 1 } };
+        var list = new List<Entity> { new() { ID = 1 } };
+        var listE = new List<Entity> { new() { ID = 1 } };
 
         // list1 null
-        Throws(() => EntityStatusHelper.GetListIsDirty<ViewModel, E>(null!, vm => vm.Key, listE, e => e.ID), "list1", "null");
+        Throws(() => GetListIsDirty<Entity, Entity>(null!, x => x.ID, listE, x => x.ID), "list1", "null");
 
         // getKey1 null
-        Throws(() => EntityStatusHelper.GetListIsDirty<ViewModel, E>(list, null!, listE, e => e.ID), "getKey1", "null");
+        Throws(() => GetListIsDirty<Entity, Entity>(list, null!, listE, x => x.ID), "getKey1", "null");
 
         // list2 null
-        Throws(() => EntityStatusHelper.GetListIsDirty<ViewModel, E>(list, vm => vm.Key, null!, e => e.ID), "list2", "null");
+        Throws(() => GetListIsDirty<Entity, Entity>(list, x => x.ID, null!, x => x.ID), "list2", "null");
 
         // getKey2 null
-        Throws(() => EntityStatusHelper.GetListIsDirty<ViewModel, E>(list, vm => vm.Key, listE, null!), "getKey2", "null");
+        Throws(() => GetListIsDirty<Entity, Entity>(list, x => x.ID, listE, null!), "getKey2", "null");
     }
 }
