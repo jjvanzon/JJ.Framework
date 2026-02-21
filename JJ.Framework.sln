@@ -262,6 +262,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Trimming.TestApp.Collections", "Framework\JJ.Framework.Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj", "{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Core.Tests", "Framework\JJ.Framework.Business.Core.Tests\JJ.Framework.Business.Core.Tests.csproj", "{C00EB914-792B-5C1F-EEF7-21B059458FC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -728,6 +730,10 @@ Global
 		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C00EB914-792B-5C1F-EEF7-21B059458FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C00EB914-792B-5C1F-EEF7-21B059458FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C00EB914-792B-5C1F-EEF7-21B059458FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C00EB914-792B-5C1F-EEF7-21B059458FC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -850,6 +856,7 @@ Global
 		{6DE53E94-4B8D-628D-0B7F-9ACBADAEDB50} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{D006B97B-EC80-E826-AE18-4C54CDF3ED50} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{C00EB914-792B-5C1F-EEF7-21B059458FC2} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
