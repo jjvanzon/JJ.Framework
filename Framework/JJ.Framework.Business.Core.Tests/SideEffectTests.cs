@@ -17,6 +17,20 @@ public class SideEffectTests
         public void Execute() => _action();
     }
 
+    private class FieldSideEffect : ISideEffect
+    {
+        private readonly Entity _entity;
+        private readonly string _newName;
+
+        public FieldSideEffect(Entity entity, string newName)
+        {
+            _entity = entity ?? throw new ArgumentNullException(nameof(entity));
+            _newName = newName ?? throw new ArgumentNullException(nameof(newName));
+        }
+
+        public void Execute() => _entity.Name = _newName;
+    }
+
     [TestMethod]
     public void SideEffect_Execute_CallsAction()
     {
@@ -31,5 +45,24 @@ public class SideEffectTests
     {
         ISideEffect sideEffect = new DelegateSideEffect(() => throw new InvalidOperationException("boom"));
         Throws<InvalidOperationException>(() => sideEffect.Execute(), "boom");
+    }
+
+    [TestMethod]
+    public void SideEffect_Field_ChangesEntityProperty()
+    {
+        var entity = CreateSimpleEntity();
+        IsFalse(entity.Name == "Updated");
+
+        ISideEffect sideEffect = new FieldSideEffect(entity, "Updated");
+        sideEffect.Execute();
+
+        IsTrue(entity.Name == "Updated");
+    }
+
+    [TestMethod]
+    public void SideEffect_Field_ConstructorGuardsAgainstNull()
+    {
+        Throws<ArgumentNullException>(() => new FieldSideEffect(null!, "x"));
+        Throws<ArgumentNullException>(() => new FieldSideEffect(CreateSimpleEntity(), null!));
     }
 }
