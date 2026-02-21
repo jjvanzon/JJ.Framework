@@ -73,7 +73,7 @@ namespace JJ.Framework.Business.Legacy
 
         public void SetIsNew(Type entityType, object id)
         {
-            SetStatus(entityType, id, EntityStatusEnum.Dirty);
+            SetStatus(entityType, id, EntityStatusEnum.New); // BUGFIX: "Dirty" => "New"
         }
 
         // IsDeleted
@@ -97,7 +97,7 @@ namespace JJ.Framework.Business.Legacy
 
         public void SetIsDeleted(Type entityType, object id)
         {
-            SetStatus(entityType, id, EntityStatusEnum.Dirty);
+            SetStatus(entityType, id, EntityStatusEnum.Deleted); // BUGFIX: "Dirty" => "Deleted"
         }
 
         // Generalized methods
