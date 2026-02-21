@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable NotAccessedVariable
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Business.Tests.Helpers;
 using System.Linq;
@@ -32,6 +34,8 @@ namespace JJ.Framework.Business.Tests
             isDirty = statusManagerByID.IsDirty(entity.ID, () => entity.Name);
         }
 
+        // ncrunch: no coverage start
+
         private bool MustSetLastModifiedByUser(Entity entity, EntityStatusManager statusManager)
         {
             return statusManager.IsDirty(entity) ||
@@ -47,6 +51,8 @@ namespace JJ.Framework.Business.Tests
                    entity.QuestionFlags.Any(x => statusManager.IsDirty(x)) ||
                    entity.QuestionFlags.Any(x => statusManager.IsNew(x));
         }
+
+        // ncrunch: no coverage end
 
         // Mocks
         private const int DEFAULT_ID = 1;
