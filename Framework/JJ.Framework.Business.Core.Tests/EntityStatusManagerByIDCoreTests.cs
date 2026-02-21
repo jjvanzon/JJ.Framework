@@ -41,43 +41,48 @@ public class EntityStatusManagerByIDCoreTests
     [TestMethod]
     public void EntityStatusManagerByID_MixedStatus_LastSetWins()
     {
-        var q = EntityFactory.CreateSimpleQuestion();
+        Question question = CreateSimpleQuestion();
         var manager = new EntityStatusManagerByID();
 
         // Start New
-        manager.SetIsNew<Question>(q.ID);
-        IsTrue(manager.IsNew<Question>(q.ID));
+        manager.SetIsNew<Question>(question.ID);
+        IsTrue(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty<Question>(question.ID));
 
         // Then Dirty should overwrite New
-        manager.SetIsDirty<Question>(q.ID);
-        IsTrue(manager.IsDirty<Question>(q.ID));
-        IsFalse(manager.IsNew<Question>(q.ID));
+        manager.SetIsDirty<Question>(question.ID);
+        IsTrue(manager.IsDirty<Question>(question.ID));
+        IsFalse(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
 
         // Then Deleted should overwrite Dirty
-        manager.SetIsDeleted<Question>(q.ID);
-        IsTrue(manager.IsDeleted<Question>(q.ID));
-        IsFalse(manager.IsDirty<Question>(q.ID));
+        manager.SetIsDeleted<Question>(question.ID);
+        IsTrue(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty<Question>(question.ID));
+        IsFalse(manager.IsNew<Question>(question.ID));
 
         // Set New again
-        manager.SetIsNew<Question>(q.ID);
-        IsTrue(manager.IsNew<Question>(q.ID));
-        IsFalse(manager.IsDeleted<Question>(q.ID));
+        manager.SetIsNew<Question>(question.ID);
+        IsTrue(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty<Question>(question.ID));
 
         // Property dirty remains independent
-        manager.SetIsDirty(q.ID, () => q.Name);
-        IsTrue(manager.IsDirty(q.ID, () => q.Name));
+        manager.SetIsDirty(question.ID, () => question.Name);
+        IsTrue(manager.IsDirty(question.ID, () => question.Name));
 
         // Setting entity dirty does not clear property dirty
-        manager.SetIsDirty<Question>(q.ID);
-        IsTrue(manager.IsDirty<Question>(q.ID));
-        IsTrue(manager.IsDirty(q.ID, () => q.Name));
+        manager.SetIsDirty<Question>(question.ID);
+        IsTrue(manager.IsDirty<Question>(question.ID));
+        IsTrue(manager.IsDirty(question.ID, () => question.Name));
 
-        // Clear resets everything
+        // New resets everything
         manager = new EntityStatusManagerByID();
-        IsFalse(manager.IsDirty<Question>(q.ID));
-        IsFalse(manager.IsDirty(q.ID, () => q.Name));
-        IsFalse(manager.IsNew<Question>(q.ID));
-        IsFalse(manager.IsDeleted<Question>(q.ID));
+        IsFalse(manager.IsDirty<Question>(question.ID));
+        IsFalse(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty(question.ID, () => question.Name));
     }
 
     [TestMethod]
