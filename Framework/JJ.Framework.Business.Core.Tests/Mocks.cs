@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Business.Core.Tests;
+﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
+
+namespace JJ.Framework.Business.Core.Tests;
 
 internal class Question
 {

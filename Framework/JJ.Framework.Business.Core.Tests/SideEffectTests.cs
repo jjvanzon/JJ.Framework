@@ -1,4 +1,3 @@
-
 #pragma warning disable IDE0290
 
 namespace JJ.Framework.Business.Core.Tests;
