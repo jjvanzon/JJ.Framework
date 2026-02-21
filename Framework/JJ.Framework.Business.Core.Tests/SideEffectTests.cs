@@ -56,7 +56,7 @@ public class SideEffectTests
     public void SideEffect_InitName_ChangesEntityProperty()
     {
         Question entity = CreateEmptyQuestion();
-        IsFalse(entity.Name == "New Name");
+        IsFalse(entity.Name.Is("New Name"));
 
         new InitNameSideEffect(entity).Execute();
 
