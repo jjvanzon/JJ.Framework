@@ -6,12 +6,24 @@ internal class Question
     public string Topic { get; set; } = "";
     public string Author { get; set; } = "";
 
-    public Question? QuestionType { get; set; }
-    public Question? Source { get; set; }
+    public QuestionType? QuestionType { get; set; }
+    public Source? Source { get; set; }
     public string Name { get; set; } = "";
     public IList<Category> QuestionCategories { get; set; } = new List<Category>();
     public IList<Link> QuestionLinks { get; set; } = new List<Link>();
     public IList<Flag> QuestionFlags { get; set; } = new List<Flag>();
+}
+
+internal class QuestionType
+{
+    public int ID { get; set; }
+    public string Name { get; set; } = "";
+}
+
+internal class Source
+{
+    public int ID { get; set; }
+    public string Name { get; set; } = "";
 }
 
 internal class Category
