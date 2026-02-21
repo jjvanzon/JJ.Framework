@@ -7,10 +7,20 @@ public class EntityStatusManagerCoreTests
     {
         public int ID { get; set; }
         public string? Name { get; set; }
+        public Entity RelatedEntity { get; set; }
+
+        public Entity QuestionType { get; set; }
+        public Entity Source { get; set; }
+        public IList<Entity> QuestionCategories { get; set; }
+        public IList<Entity> QuestionLinks { get; set; }
+        public IList<Entity> QuestionFlags { get; set; }
 
         public Entity(int id = 1)
         {
             ID = id;
+            QuestionCategories = new List<Entity>();
+            QuestionLinks = new List<Entity>();
+            QuestionFlags = new List<Entity>();
         }
     }
 
@@ -124,5 +134,102 @@ public class EntityStatusManagerCoreTests
         // Insufficient expression elements (needs both entity and property, e.g. `entity.Name`.
         Throws(() => manager.IsDirty(1, () => 1), "expression", "2 elements");
         Throws(() => manager.SetIsDirty(1, () => 1), "expression", "2 elements");
+    }
+
+    // Re-implementation of the legacy helper used in real code.
+    private bool MustSetLastModifiedByUser(Entity entity, EntityStatusManager statusManager)
+    {
+        return statusManager.IsDirty(entity) ||
+               statusManager.IsNew(entity) ||
+               statusManager.IsDirty(() => entity.QuestionType) ||
+               statusManager.IsDirty(() => entity.Source) ||
+               statusManager.IsDirty(() => entity.QuestionCategories) ||
+               entity.QuestionCategories.Any(x => statusManager.IsDirty(x)) ||
+               statusManager.IsDirty(() => entity.QuestionLinks) ||
+               entity.QuestionLinks.Any(x => statusManager.IsDirty(x)) ||
+               entity.QuestionLinks.Any(x => statusManager.IsNew(x)) ||
+               statusManager.IsDirty(() => entity.QuestionFlags) ||
+               entity.QuestionFlags.Any(x => statusManager.IsDirty(x)) ||
+               entity.QuestionFlags.Any(x => statusManager.IsNew(x));
+    }
+
+    [TestMethod]
+    public void EntityStatusManager_MustSetLastModifiedByUser_Cases()
+    {
+        Entity CreateRichEntity()
+        {
+            var e = new Entity(1) { Name = "Root" };
+            e.QuestionType = new Entity(2) { Name = "QType" };
+            e.Source = new Entity(3) { Name = "Source" };
+            e.QuestionCategories.Add(new Entity(4) { Name = "Cat1" });
+            e.QuestionLinks.Add(new Entity(5) { Name = "Link1" });
+            e.QuestionFlags.Add(new Entity(6) { Name = "Flag1" });
+            return e;
+        }
+
+        // Clean entity => false
+        var entity = CreateRichEntity();
+        var manager = new EntityStatusManager();
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
+
+        // Entity dirty
+        manager.SetIsDirty(entity);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Entity new
+        manager.SetIsNew(entity);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Property dirty: QuestionType
+        manager.SetIsDirty(() => entity.QuestionType);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Property dirty: Source
+        manager.SetIsDirty(() => entity.Source);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Property dirty: QuestionCategories (collection property)
+        manager.SetIsDirty(() => entity.QuestionCategories);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Element in QuestionCategories is dirty
+        manager.SetIsDirty(entity.QuestionCategories[0]);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Property dirty: QuestionLinks
+        manager.SetIsDirty(() => entity.QuestionLinks);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Element in QuestionLinks is dirty
+        manager.SetIsDirty(entity.QuestionLinks[0]);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Element in QuestionLinks is new
+        manager.SetIsNew(entity.QuestionLinks[0]);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Property dirty: QuestionFlags
+        manager.SetIsDirty(() => entity.QuestionFlags);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Element in QuestionFlags is dirty
+        manager.SetIsDirty(entity.QuestionFlags[0]);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
+
+        // Element in QuestionFlags is new
+        manager.SetIsNew(entity.QuestionFlags[0]);
+        IsTrue(MustSetLastModifiedByUser(entity, manager));
+        manager.Clear();
     }
 }
