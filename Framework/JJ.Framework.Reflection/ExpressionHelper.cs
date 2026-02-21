@@ -93,7 +93,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// </summary>
         /// <inheritdoc cref="_getvalue" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public static T GetValue<T>(Expression<Func<T>> expression)
         {
@@ -108,7 +108,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// </summary>
         /// <inheritdoc cref="_getvalue" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public static object GetValue(LambdaExpression expression)
         {
@@ -123,7 +123,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// </summary>
         /// <inheritdoc cref="_getvalue" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public static object GetValue(Expression expression)
         {
@@ -138,7 +138,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <inheritdoc cref="_getvalue" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public static IList<object> GetValues<T>(Expression<Func<T>> expression)
         {
@@ -147,7 +147,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <inheritdoc cref="_getvalue" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public static IList<object> GetValues(LambdaExpression expression)
         {
@@ -156,7 +156,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <inheritdoc cref="_getvalue" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public static IList<object> GetValues(Expression expression)
         {
@@ -232,7 +232,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <inheritdoc cref="_methodcallinfo" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public static MethodCallInfo GetMethodCallInfo(LambdaExpression expression)
         {

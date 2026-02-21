@@ -11,7 +11,7 @@ using JJ.Framework.IO.Core;
 namespace JJ.Framework.Common.Core.Tests
 {
     [TestClass]
-    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     public class EmbeddedResourceHelperLegacyTests
     {
         private const string EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE = "Text of embedded resource file 1 without sub name space";

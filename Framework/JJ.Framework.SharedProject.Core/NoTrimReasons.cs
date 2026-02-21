@@ -13,18 +13,20 @@ internal static class NoTrimReasons
         "* Use [DynamicDependency(...)] near code failing (at runtime) to retain a type after trimming.";
 
     public const string GetTypes = "JJ0002 - Assembly.GetTypes() called internally. Types might be removed in case of trimming. " + DoWhatInstead;
-    public const string TypeColl = TypeCollection;
+    public const string TypeColl =  "JJ0003 - TypeCollection: Limited safety for trimming because a Type collections is used. " + DoWhatInstead;
     public const string TypeCollection = "JJ0003 - TypeCollection: Limited safety for trimming because a Type collections is used. " + DoWhatInstead;
     public const string ObjectGetType = "JJ0004 - GetType: Limited safety for trimming because Object.GetType() is used internally. " + DoWhatInstead;
     public const string PropertyType = "JJ0005 - PropertyType: Limited safety for trimming because PropertyInfo.PropertyType is used internally. " + DoWhatInstead;
     public const string FieldType = "JJ0006 - FieldType: Limited safety for trimming because FieldInfo.FieldType is used internally. " + DoWhatInstead;
 
-    public const string ExpressionsWithArrays = 
-        "JJ0007 - ExpressionsWithArrays: Array.CreateInstance called internally. " +
+    public const string ArrayInit = 
+        "JJ0007 - ArrayInit: Array.CreateInstance called internally. " +
         "Not a problem for trimmable code for .NET 9 and up, but can cause issues with lower .NET versions. " +
         "* You could pick an expression-free variant of the function if available (one without `() =>` notation). " +
-        "* You can also ignore the warning if you're not using an array " +
-        "* You can also propagate this warning by annotating your method with: " +
+        "* You can also ignore the warning if your (lambda) expression does have array initialization in it." +
+        "* NOTE: Your lambda expression can also have an array init unnoticed," +
+        "  if you call anything with a variadic amount of arguments (`params`)." +
+        "* You could also propagate this warning by annotating your method with: " +
         "#if !NET9_0_OR_GREATER " +
         "[RequiresUnreferencedCode(<Reason>)] " +
         "#endif " + DoWhatInstead;

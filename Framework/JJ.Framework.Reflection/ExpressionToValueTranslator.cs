@@ -15,7 +15,7 @@ namespace JJ.Framework.Reflection.Legacy
         private Stack<object> _stack;
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public IList<object> GetValues(Expression expression)
         {
@@ -25,7 +25,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ExpressionsWithArrays)]
+        [NoTrim(ArrayInit)]
         #endif
         public object GetValue(Expression expression)
         {
@@ -275,7 +275,7 @@ namespace JJ.Framework.Reflection.Legacy
             _stack.Push(arrayElement);
         }
 
-        [Suppress("Trimmer", "IL3050", Justification = ExpressionsWithArrays)]
+        [Suppress("Trimmer", "IL3050", Justification = ArrayInit)]
         protected virtual void VisitNewArray(NewArrayExpression node)
         {
             for (int i = 0; i < node.Expressions.Count; i++)

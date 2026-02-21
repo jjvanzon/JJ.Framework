@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.PlatformCompatibility.Tests
 {
-    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]
     public class Encoding_PlatformSafe_Tests
     {

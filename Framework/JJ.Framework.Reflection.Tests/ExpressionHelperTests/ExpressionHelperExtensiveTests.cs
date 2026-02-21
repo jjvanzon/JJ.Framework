@@ -7,8 +7,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
-    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
-    [Suppress("Trimmer", "IL3050", Justification = ExpressionsWithArrays)]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
+    [Suppress("Trimmer", "IL3050", Justification = ArrayInit)]
     [TestClass]
     public class ExpressionHelperExtensiveTests
     {

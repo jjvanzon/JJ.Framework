@@ -7,7 +7,7 @@ public static partial class AssertCore
     // Generalized Methods
         
     #if !NET9_0_OR_GREATER
-    [NoTrim(ExpressionsWithArrays)]
+    [NoTrim(ArrayInit)]
     #endif
     internal static void Check<T>(
         T expected, Expression<Func<T>> actualExpression, 
@@ -15,7 +15,7 @@ public static partial class AssertCore
         => Check(expected, actualExpression, "", condition, methodName);
 
     #if !NET9_0_OR_GREATER
-    [NoTrim(ExpressionsWithArrays)]
+    [NoTrim(ArrayInit)]
     #endif
     internal static void Check<T>(
         T expected, Expression<Func<T>> actualExpression, string message,

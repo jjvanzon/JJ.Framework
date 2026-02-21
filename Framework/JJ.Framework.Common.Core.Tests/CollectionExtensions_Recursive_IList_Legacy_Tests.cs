@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Common.Core.Tests
 {
-    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]
     public class CollectionExtensions_Recursive_IList_Legacy_Tests
     {

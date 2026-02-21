@@ -7,7 +7,7 @@ using System.Text;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    [Suppress("Trimmer", "IL2026", Justification = ExpressionsWithArrays)]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]
     public class AccessorTests_UsingExpressions : AccessorTestsBase
     {

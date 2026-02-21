@@ -188,19 +188,19 @@ public partial class AccessorCore
 
     /// <inheritdoc cref="_call" />
     #if !NET9_0_OR_GREATER
-    [NoTrim(ExpressionsWithArrays)]
+    [NoTrim(ArrayInit)]
     #endif
     public void Call(Expression<Action> callLambda) => Call((LambdaExpression)callLambda);
 
     /// <inheritdoc cref="_call" />
     #if !NET9_0_OR_GREATER
-    [NoTrim(ExpressionsWithArrays)]
+    [NoTrim(ArrayInit)]
     #endif
     public T? Call<T>(Expression<Func<T>> callLambda) => (T?)Call((LambdaExpression)callLambda);
     
     /// <inheritdoc cref="_call" />
     #if !NET9_0_OR_GREATER
-    [NoTrim(ExpressionsWithArrays)]
+    [NoTrim(ArrayInit)]
     #endif
     public object? Call(LambdaExpression callLambda)
     {

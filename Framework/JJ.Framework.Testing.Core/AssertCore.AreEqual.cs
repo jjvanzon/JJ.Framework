@@ -24,7 +24,7 @@ public static partial class AssertCore
     
     /// <inheritdoc cref="_deltadirection" />
     #if !NET9_0_OR_GREATER
-    [NoTrim(ExpressionsWithArrays)]
+    [NoTrim(ArrayInit)]
     #endif
     public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
     {
@@ -51,7 +51,7 @@ public static partial class AssertCore
       
     /// <inheritdoc cref="_deltadirection" />
     #if !NET9_0_OR_GREATER
-    [NoTrim(ExpressionsWithArrays)]
+    [NoTrim(ArrayInit)]
     #endif
     public static void AreEqual(double expected, Expression<Func<double>> actualExpression, double delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
     {
