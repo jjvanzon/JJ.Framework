@@ -9,7 +9,8 @@ public class EntityStatusManagerCoreTests
     {
         public int ID { get; set; }
         public string? Name { get; set; }
-        public Entity? RelatedEntity { get; set; }
+        // Unused for now
+        //public Entity? RelatedEntity { get; set; }
 
         public Entity? QuestionType { get; set; }
         public Entity? Source { get; set; }
@@ -17,9 +18,8 @@ public class EntityStatusManagerCoreTests
         public IList<Entity> QuestionLinks { get; set; }
         public IList<Entity> QuestionFlags { get; set; }
 
-        public Entity(int id = 1)
+        public Entity()
         {
-            ID = id;
             QuestionCategories = new List<Entity>();
             QuestionLinks = new List<Entity>();
             QuestionFlags = new List<Entity>();
@@ -43,7 +43,7 @@ public class EntityStatusManagerCoreTests
     [TestMethod]
     public void EntityStatusManager_BasicEntityAndPropertyStatusOperations()
     {
-        var entity = new Entity(1) { Name = "Original" };
+        var entity = new Entity { ID = 1, Name = "Original" };
         var manager = new EntityStatusManager();
 
         // Initially everything is clean
@@ -92,7 +92,7 @@ public class EntityStatusManagerCoreTests
     [TestMethod]
     public void EntityStatusManagerByID_BasicCases()
     {
-        var entity = new Entity(1) { Name = "Original" };
+        var entity = new Entity { ID = 1, Name = "Original" };
         var manager = new EntityStatusManagerByID();
 
         // Initially clean
@@ -158,19 +158,18 @@ public class EntityStatusManagerCoreTests
     [TestMethod]
     public void EntityStatusManager_MustSetLastModifiedByUser_Cases()
     {
-        Entity CreateRichEntity()
-        {
-            var e = new Entity(1) { Name = "Root" };
-            e.QuestionType = new Entity(2) { Name = "QType" };
-            e.Source = new Entity(3) { Name = "Source" };
-            e.QuestionCategories.Add(new Entity(4) { Name = "Cat1" });
-            e.QuestionLinks.Add(new Entity(5) { Name = "Link1" });
-            e.QuestionFlags.Add(new Entity(6) { Name = "Flag1" });
-            return e;
-        }
-
         // Clean entity => false
-        var entity = CreateRichEntity();
+        var entity = new Entity
+        {
+            ID                 = 1,
+            Name               = "Root",
+            QuestionType       = new Entity{ ID = 2, Name = "QType" },
+            Source             = new Entity{ ID = 3, Name = "Source" },
+            QuestionCategories = [ new Entity{ ID = 4, Name = "Cat1" } ],
+            QuestionLinks      = [ new Entity{ ID = 5, Name = "Link1" } ],
+            QuestionFlags      = [ new Entity{ ID = 6, Name = "Flag1" } ] 
+        };
+
         var manager = new EntityStatusManager();
         IsFalse(MustSetLastModifiedByUser(entity, manager));
 
@@ -180,58 +179,71 @@ public class EntityStatusManagerCoreTests
         manager.Clear();
 
         // Entity new
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsNew(entity);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Property dirty: QuestionType
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(() => entity.QuestionType);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Property dirty: Source
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(() => entity.Source);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Property dirty: QuestionCategories (collection property)
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(() => entity.QuestionCategories);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Element in QuestionCategories is dirty
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(entity.QuestionCategories[0]);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Property dirty: QuestionLinks
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(() => entity.QuestionLinks);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Element in QuestionLinks is dirty
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(entity.QuestionLinks[0]);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Element in QuestionLinks is new
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsNew(entity.QuestionLinks[0]);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Property dirty: QuestionFlags
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(() => entity.QuestionFlags);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Element in QuestionFlags is dirty
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsDirty(entity.QuestionFlags[0]);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
 
         // Element in QuestionFlags is new
+        IsFalse(MustSetLastModifiedByUser(entity, manager));
         manager.SetIsNew(entity.QuestionFlags[0]);
         IsTrue(MustSetLastModifiedByUser(entity, manager));
         manager.Clear();
     }
+
+    // TODO: Variant with EntityStatusManagerByID.
 }
