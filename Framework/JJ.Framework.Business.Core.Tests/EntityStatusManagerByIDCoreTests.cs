@@ -39,76 +39,6 @@ public class EntityStatusManagerByIDCoreTests
     }
 
     [TestMethod]
-    public void EntityStatusManagerByID_MixedStatus_LastSetWins()
-    {
-        Question question = CreateSimpleQuestion();
-        var manager = new EntityStatusManagerByID();
-
-        // Start New
-        manager.SetIsNew<Question>(question.ID);
-        IsTrue(manager.IsNew<Question>(question.ID));
-        IsFalse(manager.IsDeleted<Question>(question.ID));
-        IsFalse(manager.IsDirty<Question>(question.ID));
-
-        // Then Dirty should overwrite New
-        manager.SetIsDirty<Question>(question.ID);
-        IsTrue(manager.IsDirty<Question>(question.ID));
-        IsFalse(manager.IsNew<Question>(question.ID));
-        IsFalse(manager.IsDeleted<Question>(question.ID));
-
-        // Then Deleted should overwrite Dirty
-        manager.SetIsDeleted<Question>(question.ID);
-        IsTrue(manager.IsDeleted<Question>(question.ID));
-        IsFalse(manager.IsDirty<Question>(question.ID));
-        IsFalse(manager.IsNew<Question>(question.ID));
-
-        // Set New again
-        manager.SetIsNew<Question>(question.ID);
-        IsTrue(manager.IsNew<Question>(question.ID));
-        IsFalse(manager.IsDeleted<Question>(question.ID));
-        IsFalse(manager.IsDirty<Question>(question.ID));
-
-        // Property dirty remains independent
-        manager.SetIsDirty(question.ID, () => question.Name);
-        IsTrue(manager.IsDirty(question.ID, () => question.Name));
-
-        // Setting entity dirty does not clear property dirty
-        manager.SetIsDirty<Question>(question.ID);
-        IsTrue(manager.IsDirty<Question>(question.ID));
-        IsTrue(manager.IsDirty(question.ID, () => question.Name));
-
-        // New resets everything
-        manager = new EntityStatusManagerByID();
-        IsFalse(manager.IsDirty<Question>(question.ID));
-        IsFalse(manager.IsNew<Question>(question.ID));
-        IsFalse(manager.IsDeleted<Question>(question.ID));
-        IsFalse(manager.IsDirty(question.ID, () => question.Name));
-    }
-
-    [TestMethod]
-    public void EntityStatusManagerByID_DuplicateSets_DoNotThrow()
-    {
-        Question entity = CreateSimpleQuestion();
-        var manager = new EntityStatusManagerByID();
-
-        // Setting the same entity status multiple times should not throw and should retain the status.
-        manager.SetIsDirty<Question>(entity.ID);
-        manager.SetIsDirty<Question>(entity.ID);
-        IsTrue(manager.IsDirty<Question>(entity.ID));
-
-        // Property status duplicates
-        manager.SetIsDirty(entity.ID, () => entity.Name);
-        manager.SetIsDirty(entity.ID, () => entity.Name);
-        IsTrue(manager.IsDirty(entity.ID, () => entity.Name));
-
-        // Element in a collection duplicates
-        entity.QuestionLinks.Add(new Link { ID = 99, Name = "DupLink" });
-        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
-        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
-        IsTrue(manager.IsDirty<Link>(entity.QuestionLinks[0].ID));
-    }
-
-    [TestMethod]
     public void EntityStatusManagerByID_MustSetLastModifiedByUser_Cases()
     {
         Question entity = CreateRichQuestion();
@@ -189,37 +119,7 @@ public class EntityStatusManagerByIDCoreTests
             IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         }
     }
-
-    private bool MustSetLastModifiedByUserByID(Question entity, EntityStatusManagerByID statusManager)
-    {
-        return statusManager.IsDirty<Question>(entity.ID) ||
-               statusManager.IsNew<Question>(entity.ID) ||
-               statusManager.IsDirty(entity.ID, () => entity.QuestionType) ||
-               statusManager.IsDirty(entity.ID, () => entity.Source) ||
-               statusManager.IsDirty(entity.ID, () => entity.QuestionCategories) ||
-               entity.QuestionCategories.Any(x => statusManager.IsDirty<Category>(x.ID)) ||
-               statusManager.IsDirty(entity.ID, () => entity.QuestionLinks) ||
-               entity.QuestionLinks.Any(x => statusManager.IsDirty<Link>(x.ID)) ||
-               entity.QuestionLinks.Any(x => statusManager.IsNew<Link>(x.ID)) ||
-               statusManager.IsDirty(entity.ID, () => entity.QuestionFlags) ||
-               entity.QuestionFlags.Any(x => statusManager.IsDirty<Flag>(x.ID)) ||
-               entity.QuestionFlags.Any(x => statusManager.IsNew<Flag>(x.ID));
-    }
-
-    [TestMethod]
-    public void EntityStatusManagerByID_EdgeCases()
-    {
-        var manager = new EntityStatusManagerByID();
-        
-        // Null expression checks for property-releated methods
-        Throws(() => manager.IsDirty<int>(1, null!), "expression", "null");
-        Throws(() => manager.SetIsDirty<int>(1, null!), "expression", "null");
-
-        // Insufficient expression elements (needs both entity and property, e.g. `entity.Name`.
-        Throws(() => manager.IsDirty(1, () => 1), "expression", "2 elements");
-        Throws(() => manager.SetIsDirty(1, () => 1), "expression", "2 elements");
-    }
-
+    
     [TestMethod]
     public void EntityStatusManagerByID_MultiEntityScenario()
     {
@@ -244,5 +144,105 @@ public class EntityStatusManagerByIDCoreTests
 
         // overall composed check
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
+    }
+
+    [TestMethod]
+    public void EntityStatusManagerByID_MixedStatus_LastSetWins()
+    {
+        Question question = CreateSimpleQuestion();
+        var manager = new EntityStatusManagerByID();
+
+        // Start New
+        manager.SetIsNew<Question>(question.ID);
+        IsTrue(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty<Question>(question.ID));
+
+        // Then Dirty should overwrite New
+        manager.SetIsDirty<Question>(question.ID);
+        IsTrue(manager.IsDirty<Question>(question.ID));
+        IsFalse(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
+
+        // Then Deleted should overwrite Dirty
+        manager.SetIsDeleted<Question>(question.ID);
+        IsTrue(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty<Question>(question.ID));
+        IsFalse(manager.IsNew<Question>(question.ID));
+
+        // Set New again
+        manager.SetIsNew<Question>(question.ID);
+        IsTrue(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty<Question>(question.ID));
+
+        // Property dirty remains independent
+        manager.SetIsDirty(question.ID, () => question.Name);
+        IsTrue(manager.IsDirty(question.ID, () => question.Name));
+
+        // Setting entity dirty does not clear property dirty
+        manager.SetIsDirty<Question>(question.ID);
+        IsTrue(manager.IsDirty<Question>(question.ID));
+        IsTrue(manager.IsDirty(question.ID, () => question.Name));
+
+        // New resets everything
+        manager = new EntityStatusManagerByID();
+        IsFalse(manager.IsDirty<Question>(question.ID));
+        IsFalse(manager.IsNew<Question>(question.ID));
+        IsFalse(manager.IsDeleted<Question>(question.ID));
+        IsFalse(manager.IsDirty(question.ID, () => question.Name));
+    }
+
+    [TestMethod]
+    public void EntityStatusManagerByID_DuplicateSets_DoNotThrow()
+    {
+        Question entity = CreateSimpleQuestion();
+        var manager = new EntityStatusManagerByID();
+
+        // Setting the same entity status multiple times should not throw and should retain the status.
+        manager.SetIsDirty<Question>(entity.ID);
+        manager.SetIsDirty<Question>(entity.ID);
+        IsTrue(manager.IsDirty<Question>(entity.ID));
+
+        // Property status duplicates
+        manager.SetIsDirty(entity.ID, () => entity.Name);
+        manager.SetIsDirty(entity.ID, () => entity.Name);
+        IsTrue(manager.IsDirty(entity.ID, () => entity.Name));
+
+        // Element in a collection duplicates
+        entity.QuestionLinks.Add(new Link { ID = 99, Name = "DupLink" });
+        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
+        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
+        IsTrue(manager.IsDirty<Link>(entity.QuestionLinks[0].ID));
+    }
+
+    [TestMethod]
+    public void EntityStatusManagerByID_EdgeCases()
+    {
+        var manager = new EntityStatusManagerByID();
+        
+        // Null expression checks for property-releated methods
+        Throws(() => manager.IsDirty<int>(1, null!), "expression", "null");
+        Throws(() => manager.SetIsDirty<int>(1, null!), "expression", "null");
+
+        // Insufficient expression elements (needs both entity and property, e.g. `entity.Name`.
+        Throws(() => manager.IsDirty(1, () => 1), "expression", "2 elements");
+        Throws(() => manager.SetIsDirty(1, () => 1), "expression", "2 elements");
+    }
+
+    private bool MustSetLastModifiedByUserByID(Question entity, EntityStatusManagerByID statusManager)
+    {
+        return statusManager.IsDirty<Question>(entity.ID) ||
+               statusManager.IsNew<Question>(entity.ID) ||
+               statusManager.IsDirty(entity.ID, () => entity.QuestionType) ||
+               statusManager.IsDirty(entity.ID, () => entity.Source) ||
+               statusManager.IsDirty(entity.ID, () => entity.QuestionCategories) ||
+               entity.QuestionCategories.Any(x => statusManager.IsDirty<Category>(x.ID)) ||
+               statusManager.IsDirty(entity.ID, () => entity.QuestionLinks) ||
+               entity.QuestionLinks.Any(x => statusManager.IsDirty<Link>(x.ID)) ||
+               entity.QuestionLinks.Any(x => statusManager.IsNew<Link>(x.ID)) ||
+               statusManager.IsDirty(entity.ID, () => entity.QuestionFlags) ||
+               entity.QuestionFlags.Any(x => statusManager.IsDirty<Flag>(x.ID)) ||
+               entity.QuestionFlags.Any(x => statusManager.IsNew<Flag>(x.ID));
     }
 }
