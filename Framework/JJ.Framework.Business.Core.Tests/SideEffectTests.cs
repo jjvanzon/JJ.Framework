@@ -36,9 +36,9 @@ public class SideEffectTests
 
     private class InitNameSideEffect : ISideEffect
     {
-        private readonly Entity _entity;
+        private readonly Question _entity;
 
-        public InitNameSideEffect(Entity entity)
+        public InitNameSideEffect(Question entity)
         {
             _entity = entity ?? throw new ArgumentNullException(nameof(entity));
         }
@@ -55,8 +55,8 @@ public class SideEffectTests
     [TestMethod]
     public void SideEffect_InitName_ChangesEntityProperty()
     {
-        Entity entity = CreateEmptyEntity();
-        IsFalse(entity.Name.Is("New Name"));
+        Question entity = CreateEmptyQuestion();
+        IsFalse(entity.Name == "New Name");
 
         new InitNameSideEffect(entity).Execute();
 
@@ -66,7 +66,7 @@ public class SideEffectTests
     [TestMethod]
     public void SideEffect_InitName_ConstructorGuardsAgainstNull()
     {
-        Entity? nullEntity = null;
+        Question? nullEntity = null;
         Throws(() => new InitNameSideEffect(nullEntity!), "entity", "null");
     }
 }

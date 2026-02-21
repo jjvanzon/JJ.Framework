@@ -8,7 +8,7 @@ public class EntityStatusManagerCoreTests
     [TestMethod]
     public void EntityStatusManager_BasicEntityAndPropertyStatusOperations()
     {
-        var entity = new Entity { ID = 1, Name = "Original" };
+        var entity = CreateSimpleQuestion();
         var manager = new EntityStatusManager();
 
         // Initially everything is clean
@@ -44,7 +44,7 @@ public class EntityStatusManagerCoreTests
     public void EntityStatusManager_MustSetLastModifiedByUser_Cases()
     {
         // Clean entity => false
-        Entity entity = CreateRichEntity();
+        Question entity = CreateRichQuestion();
 
         var manager = new EntityStatusManager();
         IsFalse(MustSetLastModifiedByUser(entity, manager));
@@ -121,7 +121,7 @@ public class EntityStatusManagerCoreTests
         manager.Clear();
     }
 
-    private bool MustSetLastModifiedByUser(Entity entity, EntityStatusManager statusManager)
+    private bool MustSetLastModifiedByUser(Question entity, EntityStatusManager statusManager)
     {
         return statusManager.IsDirty(entity) ||
                statusManager.IsNew(entity) ||
@@ -135,6 +135,32 @@ public class EntityStatusManagerCoreTests
                statusManager.IsDirty(() => entity.QuestionFlags) ||
                entity.QuestionFlags.Any(x => statusManager.IsDirty(x)) ||
                entity.QuestionFlags.Any(x => statusManager.IsNew(x));
+    }
+
+    [TestMethod]
+    public void EntityStatusManager_MultiQuestionScenario()
+    {
+        var q = CreateRichQuestion();
+
+        var manager = new EntityStatusManager();
+
+        // start clean
+        IsFalse(MustSetLastModifiedByUser(q, manager));
+
+        // mark several things
+        manager.SetIsDirty(() => q.Name);
+        manager.SetIsDirty(q.QuestionLinks[0]);
+        manager.SetIsNew(q.QuestionFlags[0]);
+        manager.SetIsDirty(() => q.QuestionCategories);
+
+        // assertions
+        IsTrue(manager.IsDirty(() => q.Name));
+        IsTrue(manager.IsDirty(q.QuestionLinks[0]));
+        IsTrue(manager.IsNew(q.QuestionFlags[0]));
+        IsTrue(manager.IsDirty(() => q.QuestionCategories));
+
+        // overall composed check
+        IsTrue(MustSetLastModifiedByUser(q, manager));
     }
 
     [TestMethod]

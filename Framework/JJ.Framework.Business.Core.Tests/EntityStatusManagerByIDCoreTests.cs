@@ -6,55 +6,55 @@ public class EntityStatusManagerByIDCoreTests
     [TestMethod]
     public void EntityStatusManagerByID_BasicCases()
     {
-        Entity entity = CreateSimpleEntity();
+        Question entity = CreateSimpleQuestion();
         var manager = new EntityStatusManagerByID();
 
         // Initially clean
-        IsFalse(manager.IsDirty<Entity>(entity.ID));
-        IsFalse(manager.IsNew<Entity>(entity.ID));
-        IsFalse(manager.IsDeleted<Entity>(entity.ID));
+        IsFalse(manager.IsDirty<Question>(entity.ID));
+        IsFalse(manager.IsNew<Question>(entity.ID));
+        IsFalse(manager.IsDeleted<Question>(entity.ID));
 
         // Set dirty (generic)
-        manager.SetIsDirty<Entity>(entity.ID);
-        IsTrue(manager.IsDirty<Entity>(entity.ID));
+        manager.SetIsDirty<Question>(entity.ID);
+        IsTrue(manager.IsDirty<Question>(entity.ID));
 
         // Property dirty by id
         manager.SetIsDirty(entity.ID, () => entity.Name);
         IsTrue(manager.IsDirty(entity.ID, () => entity.Name));
 
         // SetIsNew currently sets Dirty in the legacy implementation.
-        manager.SetIsNew<Entity>(entity.ID);
-        IsFalse(manager.IsNew<Entity>(entity.ID));
-        IsTrue(manager.IsDirty<Entity>(entity.ID));
+        manager.SetIsNew<Question>(entity.ID);
+        IsFalse(manager.IsNew<Question>(entity.ID));
+        IsTrue(manager.IsDirty<Question>(entity.ID));
 
         // Non-generic overloads
-        manager.SetIsNew(typeof(Entity), entity.ID);
-        IsFalse(manager.IsNew(typeof(Entity), entity.ID));
-        IsTrue(manager.IsDirty(typeof(Entity), entity.ID));
+        manager.SetIsNew(typeof(Question), entity.ID);
+        IsFalse(manager.IsNew(typeof(Question), entity.ID));
+        IsTrue(manager.IsDirty(typeof(Question), entity.ID));
 
         // SetIsDeleted currently sets Dirty in the legacy implementation.
-        manager.SetIsDeleted<Entity>(entity.ID);
-        IsFalse(manager.IsDeleted<Entity>(entity.ID));
-        IsTrue(manager.IsDirty<Entity>(entity.ID));
+        manager.SetIsDeleted<Question>(entity.ID);
+        IsFalse(manager.IsDeleted<Question>(entity.ID));
+        IsTrue(manager.IsDirty<Question>(entity.ID));
     }
 
     [TestMethod]
     public void EntityStatusManagerByID_MustSetLastModifiedByUser_Cases()
     {
-        Entity entity = CreateRichEntity();
+        Question entity = CreateRichQuestion();
         var manager = new EntityStatusManagerByID();
 
         // Clean entity => false
         IsFalse(MustSetLastModifiedByUserByID(entity, manager));
 
         // Entity dirty
-        manager.SetIsDirty<Entity>(entity.ID);
+        manager.SetIsDirty<Question>(entity.ID);
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         manager = new EntityStatusManagerByID();
 
         // Entity new
         IsFalse(MustSetLastModifiedByUserByID(entity, manager));
-        manager.SetIsNew<Entity>(entity.ID);
+        manager.SetIsNew<Question>(entity.ID);
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         manager = new EntityStatusManagerByID();
 
@@ -78,7 +78,7 @@ public class EntityStatusManagerByIDCoreTests
 
         // Element in QuestionCategories is dirty
         IsFalse(MustSetLastModifiedByUserByID(entity, manager));
-        manager.SetIsDirty<Entity>(entity.QuestionCategories[0].ID);
+        manager.SetIsDirty<Category>(entity.QuestionCategories[0].ID);
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         manager = new EntityStatusManagerByID();
 
@@ -90,13 +90,13 @@ public class EntityStatusManagerByIDCoreTests
 
         // Element in QuestionLinks is dirty
         IsFalse(MustSetLastModifiedByUserByID(entity, manager));
-        manager.SetIsDirty<Entity>(entity.QuestionLinks[0].ID);
+        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         manager = new EntityStatusManagerByID();
 
         // Element in QuestionLinks is new
         IsFalse(MustSetLastModifiedByUserByID(entity, manager));
-        manager.SetIsNew<Entity>(entity.QuestionLinks[0].ID);
+        manager.SetIsNew<Link>(entity.QuestionLinks[0].ID);
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         manager = new EntityStatusManagerByID();
 
@@ -108,30 +108,30 @@ public class EntityStatusManagerByIDCoreTests
 
         // Element in QuestionFlags is dirty
         IsFalse(MustSetLastModifiedByUserByID(entity, manager));
-        manager.SetIsDirty<Entity>(entity.QuestionFlags[0].ID);
+        manager.SetIsDirty<Flag>(entity.QuestionFlags[0].ID);
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
         manager = new EntityStatusManagerByID();
 
         // Element in QuestionFlags is new
         IsFalse(MustSetLastModifiedByUserByID(entity, manager));
-        manager.SetIsNew<Entity>(entity.QuestionFlags[0].ID);
+        manager.SetIsNew<Flag>(entity.QuestionFlags[0].ID);
         IsTrue(MustSetLastModifiedByUserByID(entity, manager));
     }
 
-    private bool MustSetLastModifiedByUserByID(Entity entity, EntityStatusManagerByID statusManager)
+    private bool MustSetLastModifiedByUserByID(Question entity, EntityStatusManagerByID statusManager)
     {
-        return statusManager.IsDirty<Entity>(entity.ID) ||
-               statusManager.IsNew<Entity>(entity.ID) ||
+        return statusManager.IsDirty<Question>(entity.ID) ||
+               statusManager.IsNew<Question>(entity.ID) ||
                statusManager.IsDirty(entity.ID, () => entity.QuestionType) ||
                statusManager.IsDirty(entity.ID, () => entity.Source) ||
                statusManager.IsDirty(entity.ID, () => entity.QuestionCategories) ||
-               entity.QuestionCategories.Any(x => statusManager.IsDirty<Entity>(x.ID)) ||
+               entity.QuestionCategories.Any(x => statusManager.IsDirty<Category>(x.ID)) ||
                statusManager.IsDirty(entity.ID, () => entity.QuestionLinks) ||
-               entity.QuestionLinks.Any(x => statusManager.IsDirty<Entity>(x.ID)) ||
-               entity.QuestionLinks.Any(x => statusManager.IsNew<Entity>(x.ID)) ||
+               entity.QuestionLinks.Any(x => statusManager.IsDirty<Link>(x.ID)) ||
+               entity.QuestionLinks.Any(x => statusManager.IsNew<Link>(x.ID)) ||
                statusManager.IsDirty(entity.ID, () => entity.QuestionFlags) ||
-               entity.QuestionFlags.Any(x => statusManager.IsDirty<Entity>(x.ID)) ||
-               entity.QuestionFlags.Any(x => statusManager.IsNew<Entity>(x.ID));
+               entity.QuestionFlags.Any(x => statusManager.IsDirty<Flag>(x.ID)) ||
+               entity.QuestionFlags.Any(x => statusManager.IsNew<Flag>(x.ID));
     }
 
     [TestMethod]
