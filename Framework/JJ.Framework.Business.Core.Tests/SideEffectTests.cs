@@ -19,7 +19,7 @@ public class SideEffectTests
     }
 
     [TestMethod]
-    public void SideEffect_Execute_CallsAction()
+    public void SideEffect_Execute_CallsDelegate()
     {
         bool wasCalled = false;
         ISideEffect sideEffect = new DelegateSideEffect(() => wasCalled = true);
@@ -28,7 +28,7 @@ public class SideEffectTests
     }
 
     [TestMethod]
-    public void SideEffect_Exception_Propagates()
+    public void SideEffect_WithDelegate_Exception_Propagates()
     {
         ISideEffect sideEffect = new DelegateSideEffect(() => throw new InvalidOperationException("boom"));
         Throws<InvalidOperationException>(() => sideEffect.Execute(), "boom");
@@ -53,7 +53,7 @@ public class SideEffectTests
     }
 
     [TestMethod]
-    public void SideEffect_Field_ChangesEntityProperty()
+    public void SideEffect_InitName_ChangesEntityProperty()
     {
         Entity entity = CreateEmptyEntity();
         IsFalse(entity.Name.Is("New Name"));
@@ -64,7 +64,7 @@ public class SideEffectTests
     }
 
     [TestMethod]
-    public void SideEffect_Field_ConstructorGuardsAgainstNull()
+    public void SideEffect_InitName_ConstructorGuardsAgainstNull()
     {
         Entity? nullEntity = null;
         Throws(() => new InitNameSideEffect(nullEntity!), "entity", "null");
