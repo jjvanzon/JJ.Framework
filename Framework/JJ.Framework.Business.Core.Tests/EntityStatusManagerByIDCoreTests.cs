@@ -22,20 +22,20 @@ public class EntityStatusManagerByIDCoreTests
         manager.SetIsDirty(entity.ID, () => entity.Name);
         IsTrue(manager.IsDirty(entity.ID, () => entity.Name));
 
-        // SetIsNew currently sets Dirty in the legacy implementation.
+        // Fixed bug that SetIsNew erroneously set Dirty.
         manager.SetIsNew<Question>(entity.ID);
-        IsFalse(manager.IsNew<Question>(entity.ID));
-        IsTrue(manager.IsDirty<Question>(entity.ID));
+        IsTrue(manager.IsNew<Question>(entity.ID));
+        IsFalse(manager.IsDirty<Question>(entity.ID));
 
         // Non-generic overloads
         manager.SetIsNew(typeof(Question), entity.ID);
-        IsFalse(manager.IsNew(typeof(Question), entity.ID));
-        IsTrue(manager.IsDirty(typeof(Question), entity.ID));
+        IsTrue(manager.IsNew(typeof(Question), entity.ID));
+        IsFalse(manager.IsDirty(typeof(Question), entity.ID));
 
-        // SetIsDeleted currently sets Dirty in the legacy implementation.
+        // Fixed bug that SetIsDeleted erroneously set Dirty.
         manager.SetIsDeleted<Question>(entity.ID);
-        IsFalse(manager.IsDeleted<Question>(entity.ID));
-        IsTrue(manager.IsDirty<Question>(entity.ID));
+        IsTrue(manager.IsDeleted<Question>(entity.ID));
+        IsFalse(manager.IsDirty<Question>(entity.ID));
     }
 
     [TestMethod]
@@ -146,5 +146,31 @@ public class EntityStatusManagerByIDCoreTests
         // Insufficient expression elements (needs both entity and property, e.g. `entity.Name`.
         Throws(() => manager.IsDirty(1, () => 1), "expression", "2 elements");
         Throws(() => manager.SetIsDirty(1, () => 1), "expression", "2 elements");
+    }
+
+    [TestMethod]
+    public void EntityStatusManagerByID_MultiQuestionScenario()
+    {
+        Question entity = CreateRichQuestion();
+
+        var manager = new EntityStatusManagerByID();
+
+        // start clean
+        IsFalse(MustSetLastModifiedByUserByID(entity, manager));
+
+        // mark several things by id
+        manager.SetIsDirty(entity.ID, () => entity.Name);
+        manager.SetIsDirty<Link>(entity.QuestionLinks[0].ID);
+        manager.SetIsNew<Flag>(entity.QuestionFlags[0].ID);
+        manager.SetIsDirty(entity.ID, () => entity.QuestionCategories);
+
+        // assertions
+        IsTrue(manager.IsDirty(entity.ID, () => entity.Name));
+        IsTrue(manager.IsDirty<Link>(entity.QuestionLinks[0].ID));
+        IsTrue(manager.IsNew<Flag>(entity.QuestionFlags[0].ID));
+        IsTrue(manager.IsDirty(entity.ID, () => entity.QuestionCategories));
+
+        // overall composed check
+        IsTrue(MustSetLastModifiedByUserByID(entity, manager));
     }
 }
