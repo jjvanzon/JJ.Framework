@@ -10,6 +10,7 @@ namespace JJ.Framework.Business.Tests
     [TestClass]
     public class EntityStatusManagerTests
     {
+        [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
         [TestMethod]
         public void Test_EntityStatusManager()
         {
@@ -36,6 +37,7 @@ namespace JJ.Framework.Business.Tests
 
         // ncrunch: no coverage start
 
+        [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
         private bool MustSetLastModifiedByUser(Entity entity, EntityStatusManager statusManager)
         {
             return statusManager.IsDirty(entity) ||
