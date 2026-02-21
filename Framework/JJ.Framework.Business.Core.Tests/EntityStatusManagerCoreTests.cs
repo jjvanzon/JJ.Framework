@@ -8,7 +8,7 @@ public class EntityStatusManagerCoreTests
     [TestMethod]
     public void EntityStatusManager_BasicEntityAndPropertyStatusOperations()
     {
-        var entity = CreateSimpleQuestion();
+        Question entity = CreateSimpleQuestion();
         var manager = new EntityStatusManager();
 
         // Initially everything is clean
@@ -45,7 +45,6 @@ public class EntityStatusManagerCoreTests
     {
         // Clean entity => false
         Question entity = CreateRichQuestion();
-
         var manager = new EntityStatusManager();
         IsFalse(MustSetLastModifiedByUser(entity, manager));
 

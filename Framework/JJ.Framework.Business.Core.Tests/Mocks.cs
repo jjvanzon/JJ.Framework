@@ -70,10 +70,10 @@ internal static class EntityFactory
         Name               = "Root",
         Topic              = "Topic",
         Author             = "Author",
-        QuestionType       = new Question { ID = 2, Name = "QType" },
-        Source             = new Question { ID = 3, Name = "Source" },
-        QuestionCategories = [ new Category { ID = 4, Name = "Cat1" } ],
-        QuestionLinks      = [ new Link { ID = 5, Name = "Link1" } ],
-        QuestionFlags      = [ new Flag { ID = 6, Name = "Flag1" } ]
+        QuestionType       = new QuestionType { ID = 2, Name = "QType"  },
+        Source             = new Source       { ID = 3, Name = "Source" },
+        QuestionCategories = [ new Category   { ID = 4, Name = "Cat1"  } ],
+        QuestionLinks      = [ new Link       { ID = 5, Name = "Link1" } ],
+        QuestionFlags      = [ new Flag       { ID = 6, Name = "Flag1" } ]
     };
 }
