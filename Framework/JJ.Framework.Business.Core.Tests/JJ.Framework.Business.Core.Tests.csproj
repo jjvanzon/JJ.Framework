@@ -8,5 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Business\JJ.Framework.Business.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 </Project>
