@@ -32,6 +32,12 @@ internal class Flag
     public string Name { get; set; } = "";
 }
 
+internal class ViewModel
+{
+    public int Key { get; set; }
+    public string? Name { get; set; }
+}
+
 internal static class EntityFactory
 {
     public static Question CreateEmptyQuestion() => new()
