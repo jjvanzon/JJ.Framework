@@ -41,6 +41,48 @@ public class EntityStatusManagerCoreTests
     }
 
     [TestMethod]
+    public void EntityStatusManager_MixedStatus_LastSetWins()
+    {
+        var q = EntityFactory.CreateSimpleQuestion();
+        var manager = new EntityStatusManager();
+
+        // Start New
+        manager.SetIsNew(q);
+        IsTrue(manager.IsNew(q));
+
+        // Then Dirty should overwrite New
+        manager.SetIsDirty(q);
+        IsTrue(manager.IsDirty(q));
+        IsFalse(manager.IsNew(q));
+
+        // Then Deleted should overwrite Dirty
+        manager.SetIsDeleted(q);
+        IsTrue(manager.IsDeleted(q));
+        IsFalse(manager.IsDirty(q));
+
+        // Set New again
+        manager.SetIsNew(q);
+        IsTrue(manager.IsNew(q));
+        IsFalse(manager.IsDeleted(q));
+
+        // Property dirty remains independent
+        manager.SetIsDirty(() => q.Name);
+        IsTrue(manager.IsDirty(() => q.Name));
+
+        // Setting entity dirty does not clear property dirty
+        manager.SetIsDirty(q);
+        IsTrue(manager.IsDirty(q));
+        IsTrue(manager.IsDirty(() => q.Name));
+
+        // Clear resets everything
+        manager.Clear();
+        IsFalse(manager.IsDirty(q));
+        IsFalse(manager.IsDirty(() => q.Name));
+        IsFalse(manager.IsNew(q));
+        IsFalse(manager.IsDeleted(q));
+    }
+
+    [TestMethod]
     public void EntityStatusManager_MustSetLastModifiedByUser_Cases()
     {
         // Clean entity => false
