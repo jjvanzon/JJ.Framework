@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
+using JJ.Framework.Business.Legacy.docs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace JJ.Framework.Business.Legacy
 {
+    /// <inheritdoc cref="_entitystatusmanager" />
     public class EntityStatusManagerByID
     {
         // TODO: Tuples as keys might not be fast.
@@ -18,17 +20,20 @@ namespace JJ.Framework.Business.Legacy
 
         // IsDirty
 
+        /// <inheritdoc cref="_isdirty" />
         public bool IsDirty<TEntity>(object id)
         {
             return IsDirty(typeof(TEntity), id);
         }
 
+        /// <inheritdoc cref="_isdirty" />
         public bool IsDirty(Type entityType, object id)
         {
             return GetStatus(entityType, id) == EntityStatusEnum.Dirty;
         }
 
-        /// <summary> For properties. </summary>
+        /// <remarks> For properties. </remarks>
+        /// <inheritdoc cref="_isdirty_property" />
         #if !NET9_0_OR_GREATER
         [NoTrim(ArrayInit)]
         #endif
@@ -39,17 +44,20 @@ namespace JJ.Framework.Business.Legacy
 
         // SetIsDirty
 
+        /// <inheritdoc cref="_setisdirty" />
         public void SetIsDirty<TEntity>(object id)
         {
             SetIsDirty(typeof(TEntity), id);
         }
 
+        /// <inheritdoc cref="_setisdirty" />
         public void SetIsDirty(Type entityType, object id)
         {
             SetStatus(entityType, id,  EntityStatusEnum.Dirty);
         }
 
-        /// <summary> For properties. </summary>
+        /// <remarks> For properties. </remarks>
+        /// <inheritdoc cref="_setisdirty_property" />
         #if !NET9_0_OR_GREATER
         [NoTrim(ArrayInit)]
         #endif
@@ -60,11 +68,13 @@ namespace JJ.Framework.Business.Legacy
 
         // IsNew
 
+        /// <inheritdoc cref="_isnew" />
         public bool IsNew<TEntity>(object id)
         {
             return IsNew(typeof(TEntity), id);
         }
 
+        /// <inheritdoc cref="_isnew" />
         public bool IsNew(Type entityType, object id)
         {
             return GetStatus(entityType, id) == EntityStatusEnum.New;
@@ -72,11 +82,13 @@ namespace JJ.Framework.Business.Legacy
 
         // SetIsNew
 
+        /// <inheritdoc cref="_setisnew" />
         public void SetIsNew<TEntity>(object id)
         {
             SetIsNew(typeof(TEntity), id);
         }
 
+        /// <inheritdoc cref="_setisnew" />
         public void SetIsNew(Type entityType, object id)
         {
             SetStatus(entityType, id, EntityStatusEnum.New); // BUGFIX: "Dirty" => "New"
@@ -84,11 +96,13 @@ namespace JJ.Framework.Business.Legacy
 
         // IsDeleted
 
+        /// <inheritdoc cref="_isdeleted" />
         public bool IsDeleted<TEntity>(object id)
         {
             return IsDeleted(typeof(TEntity), id);
         }
 
+        /// <inheritdoc cref="_isdeleted" />
         public bool IsDeleted(Type entityType, object id)
         {
             return GetStatus(entityType, id) == EntityStatusEnum.Deleted;
@@ -96,11 +110,13 @@ namespace JJ.Framework.Business.Legacy
 
         // SetIsDeleted
 
+        /// <inheritdoc cref="_setisdeleted" />
         public void SetIsDeleted<TEntity>(object id)
         {
             SetIsDeleted(typeof(TEntity), id);
         }
 
+        /// <inheritdoc cref="_setisdeleted" />
         public void SetIsDeleted(Type entityType, object id)
         {
             SetStatus(entityType, id, EntityStatusEnum.Deleted); // BUGFIX: "Dirty" => "Deleted"
