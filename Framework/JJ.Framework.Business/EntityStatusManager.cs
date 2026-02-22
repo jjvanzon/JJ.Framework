@@ -8,10 +8,18 @@ using System.Text;
 
 namespace JJ.Framework.Business.Legacy
 {
-        /// <summary>
-    /// Stores entity statuses such as IsDirty and IsNew.
-    /// It is just a glorified set of dictionaries, really.
-        /// </summary>
+    /// <summary>
+    /// Simple in-memory holder for small, useful pieces of state about objects
+    /// (for example: New, Dirty, Deleted).
+    ///
+    /// The goal: let business code ask "does this object look new/dirty/deleted?"
+    /// without depending on a database or a large persistence framework. You
+    /// can fill this object from wherever is convenient (service code, UI, or
+    /// persistence layer) and pass it around. Business rules can then react to
+    /// those flags (for example: update LastModified) without being tied to
+    /// how the data is stored. It's intentionally tiny and non-persistent:
+    /// just a transient bag of status flags.
+    /// </summary>
     public class EntityStatusManager
     {
         // TODO: Tuples as keys might not be fast.
