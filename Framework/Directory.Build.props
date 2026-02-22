@@ -72,7 +72,6 @@
   <PropertyGroup Condition="$(IsCore) And !$(IsTest) And !$(IsTrimTest)">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
-    <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
   </PropertyGroup>
 
   <!-- Diagnostics -->
