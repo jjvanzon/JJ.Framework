@@ -100,7 +100,11 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                         | Various non-critical renames for clarity and modularity.
 |       |                                         | [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
 |       |                                         | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
-
+| `3.8` | __Business.Legacy__                     | [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+|       |                                         | Full code coverage with automated tests and corrections.
+|       |                                         | Releasing a historic version `0.250.x`
+|       |                                         | `EntityStatusManager` and `GetListIsDirty` for framework-agnostic flagging for New/Deleted/Dirty
+|       |                                         | `ISideEffect` for keeping business logic units separated.
 
 💬 Feedback 
 ------------
