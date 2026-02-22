@@ -2,6 +2,10 @@
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
+    <Description>Supporting lib for business logic or APIs. Separate business logic units using ISideEffect. EntityStatusManager: a container for dirty/new/deleted flags. Check if a list is dirty.</Description>
+    <PackageTags>entity state side effect dirty deleted new check EntityStatusManager EntityStatusManagerByID ListIsDirty ISideEffect GetListIsDirty</PackageTags>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Business</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Business</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
