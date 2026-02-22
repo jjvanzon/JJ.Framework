@@ -11,6 +11,9 @@ namespace JJ.Framework.Business.Legacy
     /// <inheritdoc cref="_entitystatusmanager" />
     public class EntityStatusManagerByID
     {
+        /// <inheritdoc cref="_entitystatusmanager" />
+        public EntityStatusManagerByID() { }
+
         // TODO: Tuples as keys might not be fast.
         // TODO: Tuple has bad platform compatibility.
 

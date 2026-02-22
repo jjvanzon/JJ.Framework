@@ -11,7 +11,7 @@ namespace JJ.Framework.Business.Legacy.docs;
 /// Simple in-memory holder for small, useful pieces of state about objects
 /// (for example: New, Dirty, Deleted).
 ///
-/// The goal: let business code ask "does this object look new/dirty/deleted?"
+/// The goal: let business logic ask "does this object look new/dirty/deleted?"
 /// without depending on a database or a large persistence framework. You
 /// can fill this object from wherever is convenient (service code, UI, or
 /// persistence layer) and pass it around. Business rules can then react to
@@ -23,19 +23,19 @@ public struct _entitystatusmanager;
 
 /// <summary>
 /// Returns true when an entity was marked as "new" via <c>SetIsNew</c>.
-/// Business code can use this to handle newly created objects differently.
+/// Business logic can use this to handle newly created objects differently.
 /// </summary>
 public struct _isnew;
 
 /// <summary>
-/// Mark an entity as "new". The manager records the state; creating/saving the
-/// entity is still the job of other code.
+/// Mark an entity as "new". The <c>EntityStatusManager</c> records the state;
+/// creating/saving the entity is still the job of other code.
 /// </summary>
 public struct _setisnew;
 
 /// <summary>
 /// Returns true when an entity was marked as "dirty" via <c>SetIsDirty</c>.
-/// Business code can use this to detect changed objects.
+/// Business logic can use this to detect changed objects.
 /// </summary>
 public struct _isdirty;
 
@@ -52,8 +52,8 @@ public struct _setisdirty;
 public struct _isdeleted;
 
 /// <summary>
-/// Mark an entity as deleted. The manager records deletion intent; performing
-/// the actual delete is the responsibility of caller code.
+/// Mark an entity as deleted. The <c>EntityStatusManager</c> records deletion intent;
+/// performing the actual delete is the responsibility of caller code.
 /// </summary>
 public struct _setisdeleted;
 
@@ -67,7 +67,7 @@ public struct _isdirty_property;
 /// <summary>
 /// Mark a property as dirty using an expression like
 /// <c>SetIsDirty(() =&gt; myEntity.SomeProperty)</c>. Records which property on
-/// which instance is dirty so business code can act on that.
+/// which instance is dirty so business logic can act on that.
 /// </summary>
 public struct _setisdirty_property;
 

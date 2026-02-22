@@ -15,6 +15,9 @@ namespace JJ.Framework.Business.Legacy
     /// <inheritdoc cref="_entitystatusmanager" />
     public class EntityStatusManager
     {
+        /// <inheritdoc cref="_entitystatusmanager" />
+        public EntityStatusManager() { }
+
         // TODO: Tuples as keys might not be fast.
 
         private IDictionary<object, EntityStatusEnum> _entityStatuses = new Dictionary<object, EntityStatusEnum>();
