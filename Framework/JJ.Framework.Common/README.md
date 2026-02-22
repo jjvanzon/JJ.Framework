@@ -18,16 +18,16 @@ String Extensions
 
 - `Left` / `Right`  
 
-	* Return the left or right part of a string:  
-	* `"12345".Left(2)` = `"12"`  
-	* `"12345".Right(2)` = `"45"`  
+    * Return the left or right part of a string:  
+    * `"12345".Left(2)` = `"12"`  
+    * `"12345".Right(2)` = `"45"`  
     * (Throws exception if string shorter than requested length.)
 
 -----
 
 - `FromTill`
 
-	* Take the middle of a string by start/end index (zero‑based, inclusive)  
+    * Take the middle of a string by start/end index (zero‑based, inclusive)  
     * `"12345".FromTill(2, 3)` = `"34"`  
     * (Throws exception if indexes out of range.)
 
@@ -35,8 +35,8 @@ String Extensions
 
 - `CutLeft` / `CutRight`
 
-	* Trim at most one occurrence of a value from the given string:  
-	* `"BlaLala".CutLeft("Bla")` = `"Lala"`  
+    * Trim at most one occurrence of a value from the given string:  
+    * `"BlaLala".CutLeft("Bla")` = `"Lala"`  
     * `"12345".CutRight(2)` = `"123"`
 
 -----
@@ -44,15 +44,15 @@ String Extensions
 - `CutLeftUntil` / `CutRightUntil`
 
     * Remove text until the delimiter, keeping the delimiter:  
-	* `"Path/to/file.txt".CutRightUntil("/")` = `"Path/to/"`  
-	* `"Hello world!".CutLeftUntil("world")` = `"world!"`
+    * `"Path/to/file.txt".CutRightUntil("/")` = `"Path/to/"`  
+    * `"Hello world!".CutLeftUntil("world")` = `"world!"`
 
 -----
 
 - `StartWithCap` / `StartWithLowerCase`
 
-	* Change just the first character's case:   
-	* `"test".StartWithCap()` = `"Test"`
+    * Change just the first character's case:   
+    * `"test".StartWithCap()` = `"Test"`
     * `"TEST".StartWithLowerCase()` = `"tEST"`
 
 -----
@@ -73,15 +73,15 @@ String Extensions
 
 - `RemoveExcessiveWhiteSpace`
 
-	* Trim and replace sequences of two or more white space characters by a single space:  
-	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
+    * Trim and replace sequences of two or more white space characters by a single space:  
+    * `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
 
 -----
 
 - `Replace`
 
-	* `String.Replace` variant with optional case-insensitive match:  
-	* `"HelloWORLD".Replace("world", "Universe",` __`ignoreCase: true`__ `)` = `"HelloUniverse"`
+    * `String.Replace` variant with optional case-insensitive match:  
+    * `"HelloWORLD".Replace("world", "Universe",` __`ignoreCase: true`__ `)` = `"HelloUniverse"`
 
 
 Collection Extensions
