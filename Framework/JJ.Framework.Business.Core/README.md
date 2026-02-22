@@ -4,7 +4,9 @@ JJ.Framework.Business.Core
 Result Types
 ------------
 
-An elegant way to return data, status and messages from your operations:
+An extension to [JJ.Framework.Business.Legacy](https://www.nuget.org/packages/JJ.Framework.Business.Legacy).
+
+An elegant way to return data, status and messages from your operations:  
 
 - `IResult`  
     - Common interface for result types.
