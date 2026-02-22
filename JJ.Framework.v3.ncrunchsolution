@@ -67,10 +67,6 @@
       <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net7.0</Value>
       <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.Legacy.NPersist.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.Legacy.NPersist.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.Legacy.NPersist.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.Legacy.NPersist.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj:net462</Value>
       <Value>Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj:net5.0</Value>
       <Value>Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj:net6.0</Value>
@@ -94,7 +90,6 @@
       <Value>Framework\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj</Value>
       <Value>Framework\JJ.Framework.Persistence.Net48.Memory\JJ.Framework.Persistence.Net48.Memory.csproj</Value>
       <Value>Framework\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj</Value>
-      <Value>Framework\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj</Value>
       <Value>Framework\JJ.Framework.Persistence.Net48.SqlClient\JJ.Framework.Persistence.Net48.SqlClient.csproj</Value>
       <Value>Framework\JJ.Framework.Persistence.Net48.Tests\JJ.Framework.Persistence.Net48.Tests.csproj</Value>
       <Value>Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.Legacy.csproj:net8.0</Value>
@@ -182,10 +177,6 @@
       <Value>Framework\JJ.Framework.Xml.Linq.Tests\JJ.Framework.Xml.Linq.Legacy.Tests.csproj:net9.0</Value>
       <Value>OneOff\JJ.OneOff.BeginCollectionItemTest\JJ.OneOff.BeginCollectionItemTest.Net48.csproj</Value>
       <Value>OneOff\JJ.OneOff.ExpressionTranslatorPerformanceTests\JJ.OneOff.ExpressionTranslatorPerformanceTests.csproj</Value>
-      <Value>External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj</Value>
-      <Value>External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj</Value>
-      <Value>External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj</Value>
-      <Value>External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj</Value>
       <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj:net8.0</Value>
       <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj:net9.0</Value>
       <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj:netstandard2.0</Value>
@@ -278,7 +269,6 @@
       <Value>Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Memory\JJ.Framework.Persistence.Legacy.Memory.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.Legacy.NPersist.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Legacy.Tests.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Xml\JJ.Framework.Persistence.Legacy.Xml.csproj:net10.0</Value>

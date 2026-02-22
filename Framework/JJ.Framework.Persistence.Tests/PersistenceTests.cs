@@ -22,12 +22,14 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_CreateContext(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_CreateContext()
         {
             string contextType = GetNPersistContextType();
             Test_Persistence_CreateContext(contextType);
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_CreateContext()
@@ -51,6 +53,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_Get(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_Get()
         {
@@ -64,6 +67,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_Get()
@@ -97,6 +101,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_TryGet(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_TryGet()
         {
@@ -110,6 +115,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_TryGet()
@@ -144,6 +150,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_GetAll(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_GetAll()
         {
@@ -157,6 +164,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_GetAll()
@@ -186,6 +194,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_Create(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_Create()
         {
@@ -199,6 +208,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_Create()
@@ -226,6 +236,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_Insert(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_Insert()
         {
@@ -239,6 +250,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_Insert()
@@ -266,6 +278,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_Update(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_Update()
         {
@@ -279,6 +292,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_Update()
@@ -306,6 +320,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_Delete(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_Delete()
         {
@@ -319,6 +334,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_Delete()
@@ -355,6 +371,7 @@ namespace JJ.Framework.Persistence.Tests
             Test_Persistence_Query(contextType);
         }
 
+        /*
         [TestMethod]
         public void Test_Persistence_NPersist_Query()
         {
@@ -368,6 +385,7 @@ namespace JJ.Framework.Persistence.Tests
                 Assert.Inconclusive(FormatNPersistException(ex));
             }
         }
+        */
 
         [TestMethod]
         public void Test_Persistence_EntityFramework5_Query()
@@ -395,10 +413,12 @@ namespace JJ.Framework.Persistence.Tests
             return GetConfiguration().NHibernateContextType;
         }
 
+        /*
         private string GetNPersistContextType()
         {
             return GetConfiguration().NPersistContextType;
         }
+        */
 
         private string GetEntityFramework5ContextType()
         {
@@ -410,7 +430,9 @@ namespace JJ.Framework.Persistence.Tests
             return CustomConfigurationManager.GetSection<ConfigurationSection>("jj.framework.persistence.tests");
         }
 
+        /*
 		public static string FormatNPersistException(Exception ex)
 			=> $"NPersist is known to not work here.{Environment.NewLine}Exception:{Environment.NewLine}{ex}";
+        */
 	}
 }
