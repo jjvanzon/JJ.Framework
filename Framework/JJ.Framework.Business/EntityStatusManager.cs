@@ -26,10 +26,9 @@ namespace JJ.Framework.Business.Legacy
 
         private IDictionary<object, EntityStatusEnum> _entityStatuses = new Dictionary<object, EntityStatusEnum>();
         private IDictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum>();
-
         /// <summary>
-        /// Is this thing marked as "new"? Returns <c>true</c> when someone called <see cref="SetIsNew(object)"/> for it.
-        /// Think of this as a tiny flag store: nothing clever, just a dictionary lookup.
+        /// Returns <c>true</c> when the entity was marked as "new".
+        /// Business code can use this to treat freshly created objects differently.
         /// </summary>
         public bool IsNew(object entity)
         {
@@ -37,8 +36,8 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary>
-        /// Mark this entity as "new". We just stash the status in the internal dictionary.
-        /// Useful when you want to remember that an object was created client-side and hasn't been persisted yet.
+        /// Mark the entity as "new". Recording the state lets other code know the
+        /// object was created during this workflow.
         /// </summary>
         public void SetIsNew(object entity)
         {
@@ -46,8 +45,8 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary>
-        /// Is this thing "dirty"? Returns <c>true</c> when someone marked it dirty with <see cref="SetIsDirty(object)"/>.
-        /// Dirty means the object has changes that might need persisting. We don't enforce anything, we just remember the flag.
+        /// Returns <c>true</c> when the entity was marked as "dirty".
+        /// Business logic can check this to decide whether the object needs updating.
         /// </summary>
         public bool IsDirty(object entity)
         {
@@ -55,7 +54,9 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary>
-        /// Mark this entity as dirty. We simply remember that someone called this. No persistence or validation happens here.
+        /// Mark the entity as dirty. This records that the object was changed so
+        /// business code can react accordingly. Saving or validating the object
+        /// is still the responsibility of other parts of the application.
         /// </summary>
         public void SetIsDirty(object entity)
         {
@@ -63,8 +64,8 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary>
-        /// Is this entity marked as deleted? Returns <c>true</c> when <see cref="SetIsDeleted(object)"/> was called.
-        /// We treat deleted like any other flag; it's just a status in the toy dictionary.
+        /// Returns <c>true</c> when the entity was marked as deleted. Use this to
+        /// record deletion intent so business rules can respond appropriately.
         /// </summary>
         public bool IsDeleted(object entity)
         {
@@ -72,18 +73,19 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary>
-        /// Mark the entity as deleted. This only records the intention; actual deletion is handled elsewhere.
+        /// Mark the entity as deleted. The manager records the intent; performing
+        /// the deletion is handled by other code.
         /// </summary>
         public void SetIsDeleted(object entity)
         {
             SetStatus(entity, EntityStatusEnum.Deleted);
         }
 
-        /// <summary> For properties. </summary>
-        /// <remarks>
-        /// Check whether a property (identified with a lambda expression) is marked dirty.
-        /// Example: <c>IsDirty(() =&gt; myEntity.SomeProperty)</c>. Works by extracting the entity and property name from the expression.
-        /// </remarks>
+        /// <summary>
+        /// Check whether a specific property is marked dirty. Example:
+        /// <c>IsDirty(() =&gt; myEntity.SomeProperty)</c>. The expression identifies
+        /// the entity instance and the property name to check.
+        /// </summary>
         #if !NET9_0_OR_GREATER
         [NoTrim(ArrayInit)]
         #endif
@@ -92,11 +94,12 @@ namespace JJ.Framework.Business.Legacy
             return GetStatus(propertyExpression) == PropertyStatusEnum.Dirty;
         }
 
-        /// <summary> For properties. </summary>
-        /// <remarks>
-        /// Mark a property as dirty using an expression like <c>SetIsDirty(() =&gt; myEntity.SomeProperty)</c>.
-        /// The implementation will remember the property per-entity in an internal dictionary.
-        /// </remarks>
+        /// <summary>
+        /// Mark a property as dirty using an expression like
+        /// <c>SetIsDirty(() =&gt; myEntity.SomeProperty)</c>. The manager records
+        /// which property on which entity instance is dirty so business code can
+        /// act on that information.
+        /// </summary>
         #if !NET9_0_OR_GREATER
         [NoTrim(ArrayInit)]
         #endif
