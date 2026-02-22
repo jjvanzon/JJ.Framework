@@ -1,6 +1,5 @@
 ﻿using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
-using JJ.Framework.Business.Legacy.docs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

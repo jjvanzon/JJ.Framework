@@ -6,6 +6,7 @@ using System.Text;
 
 namespace JJ.Framework.Business.Legacy
 {
+    /// <inheritdoc cref="_entitystatushelper" />
     public static class EntityStatusHelper
     {
         /// <summary>

@@ -8,6 +8,10 @@ using System.Text;
 
 namespace JJ.Framework.Business.Legacy
 {
+    /// <remarks>
+    /// Stores entity statuses such as IsDirty and IsNew.
+    /// It is just a glorified set of dictionaries, really.
+    /// </remarks>
     /// <inheritdoc cref="_entitystatusmanager" />
     public class EntityStatusManager
     {

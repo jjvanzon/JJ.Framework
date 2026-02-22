@@ -75,3 +75,16 @@ public struct _setisdirty_property;
 /// Remove all recorded entity and property states from the manager.
 /// </summary>
 public struct _clear;
+
+/// <summary>
+/// Determine whether two lists (view model and entity list) differ in items.
+/// Compares by keys supplied by the <c>getKey</c> callbacks and optionally ignores order.
+/// </summary>
+public struct _entitystatushelper;
+
+/// <summary>
+/// Represents a small side-effect that can be executed as part of a business logic workflow.
+/// Implementations perform a single action when <see cref="ISideEffect.Execute"/> is called.
+/// This can be good for modularity purposes and separations of concerns in business logic code.
+/// </summary>
+public struct _isideeffect;
