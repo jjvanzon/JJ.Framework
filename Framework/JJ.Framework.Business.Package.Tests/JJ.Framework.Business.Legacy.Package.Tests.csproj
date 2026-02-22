@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>0.250.$(BuildNum)</Version>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.250.4951" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.4847" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Business.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Business.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Business.Tests\bin\**" />
+  </ItemGroup>
+</Project>
