@@ -23,6 +23,7 @@
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <!-- Helper Variables -->
