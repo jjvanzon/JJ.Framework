@@ -479,6 +479,36 @@
       <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net7.0</Value>
       <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.1</Value>
     </MetricsExclusionList>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
