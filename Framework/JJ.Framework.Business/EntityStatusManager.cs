@@ -21,7 +21,7 @@ namespace JJ.Framework.Business.Legacy
 
         /// <summary>
         /// Is this thing marked as "new"? Returns <c>true</c> when someone called <see cref="SetIsNew(object)"/> for it.
-        /// Think of this as a tiny flag store — nothing clever, just a dictionary lookup.
+        /// Think of this as a tiny flag store: nothing clever, just a dictionary lookup.
         /// </summary>
         public bool IsNew(object entity)
         {
@@ -39,7 +39,7 @@ namespace JJ.Framework.Business.Legacy
 
         /// <summary>
         /// Is this thing "dirty"? Returns <c>true</c> when someone marked it dirty with <see cref="SetIsDirty(object)"/>.
-        /// Dirty means the object has changes that might need persisting — we don't enforce anything, we just remember the flag.
+        /// Dirty means the object has changes that might need persisting. We don't enforce anything, we just remember the flag.
         /// </summary>
         public bool IsDirty(object entity)
         {
@@ -47,7 +47,7 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary>
-        /// Mark this entity as dirty. We simply remember that someone called this — no persistence or validation happens here.
+        /// Mark this entity as dirty. We simply remember that someone called this. No persistence or validation happens here.
         /// </summary>
         public void SetIsDirty(object entity)
         {
@@ -56,7 +56,7 @@ namespace JJ.Framework.Business.Legacy
 
         /// <summary>
         /// Is this entity marked as deleted? Returns <c>true</c> when <see cref="SetIsDeleted(object)"/> was called.
-        /// We treat deleted like any other flag — it's just a status in the toy dictionary.
+        /// We treat deleted like any other flag; it's just a status in the toy dictionary.
         /// </summary>
         public bool IsDeleted(object entity)
         {
@@ -64,7 +64,7 @@ namespace JJ.Framework.Business.Legacy
         }
 
         /// <summary>
-        /// Mark the entity as deleted. This only records the intention — actual deletion must be handled elsewhere.
+        /// Mark the entity as deleted. This only records the intention; actual deletion is handled elsewhere.
         /// </summary>
         public void SetIsDeleted(object entity)
         {
