@@ -510,6 +510,7 @@
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.1</Value>
     </MetricsExclusionList>
+    <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
