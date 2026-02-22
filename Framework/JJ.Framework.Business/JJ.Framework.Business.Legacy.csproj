@@ -7,6 +7,14 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net10.0'">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0'">
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
