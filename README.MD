@@ -101,10 +101,12 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                         | [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
 |       |                                         | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
 | `3.8` | __Business.Legacy__                     | [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
-|       |                                         | Full code coverage with automated tests and corrections.
-|       |                                         | Releasing a historic version `0.250.x`
-|       |                                         | `EntityStatusManager` and `GetListIsDirty` for framework-agnostic flagging for New/Deleted/Dirty
+|       |                                         | Full code coverage with automated tests.
+|       |                                         | Releasing a historic version `0.250`.
+|       |                                         | Features:
+|       |                                         | `EntityStatusManager` and `GetListIsDirty` for framework-agnostic `New`/`Deleted`/`Dirty` flag container.
 |       |                                         | `ISideEffect` for keeping business logic units separated.
+|       |                                         | Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
 
 💬 Feedback 
 ------------

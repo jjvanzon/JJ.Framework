@@ -130,6 +130,8 @@ Release Notes
 |       |                                         | Improved `Coalesce` resolution and performance for 4+ values and collections.
 |       |                                         | Added overloads for reduced clashes between `bool` flags and value lists.
 |       |                                         | Various non-critical renames for clarity and modularity.
+| `3.8` | __Business.Legacy__                     | Added project properties hardening code trimming and native compile compatibility.
+|       |                                         | During a release of another library: [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
 
 
 🐨 Mr. Koala
