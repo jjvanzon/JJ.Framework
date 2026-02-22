@@ -8,84 +8,50 @@ using System.Text;
 
 namespace JJ.Framework.Business.Legacy
 {
-    /// <summary>
-    /// Simple in-memory holder for small, useful pieces of state about objects
-    /// (for example: New, Dirty, Deleted).
-    ///
-    /// The goal: let business code ask "does this object look new/dirty/deleted?"
-    /// without depending on a database or a large persistence framework. You
-    /// can fill this object from wherever is convenient (service code, UI, or
-    /// persistence layer) and pass it around. Business rules can then react to
-    /// those flags (for example: update LastModified) without being tied to
-    /// how the data is stored. It's intentionally tiny and non-persistent:
-    /// just a transient bag of status flags.
-    /// </summary>
+    /// <inheritdoc cref="_entitystatusmanager" />
     public class EntityStatusManager
     {
         // TODO: Tuples as keys might not be fast.
 
         private IDictionary<object, EntityStatusEnum> _entityStatuses = new Dictionary<object, EntityStatusEnum>();
         private IDictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum>();
-        /// <summary>
-        /// Returns <c>true</c> when the entity was marked as "new".
-        /// Business code can use this to treat freshly created objects differently.
-        /// </summary>
+        /// <inheritdoc cref="_isnew" />
         public bool IsNew(object entity)
         {
             return GetStatus(entity) == EntityStatusEnum.New;
         }
 
-        /// <summary>
-        /// Mark the entity as "new". Recording the state lets other code know the
-        /// object was created during this workflow.
-        /// </summary>
+        /// <inheritdoc cref="_setisnew" />
         public void SetIsNew(object entity)
         {
             SetStatus(entity, EntityStatusEnum.New);
         }
 
-        /// <summary>
-        /// Returns <c>true</c> when the entity was marked as "dirty".
-        /// Business logic can check this to decide whether the object needs updating.
-        /// </summary>
+        /// <inheritdoc cref="_isdirty" />
         public bool IsDirty(object entity)
         {
             return GetStatus(entity) == EntityStatusEnum.Dirty;
         }
 
-        /// <summary>
-        /// Mark the entity as dirty. This records that the object was changed so
-        /// business code can react accordingly. Saving or validating the object
-        /// is still the responsibility of other parts of the application.
-        /// </summary>
+        /// <inheritdoc cref="_setisdirty" />
         public void SetIsDirty(object entity)
         {
             SetStatus(entity, EntityStatusEnum.Dirty);
         }
 
-        /// <summary>
-        /// Returns <c>true</c> when the entity was marked as deleted. Use this to
-        /// record deletion intent so business rules can respond appropriately.
-        /// </summary>
+        /// <inheritdoc cref="_isdeleted" />
         public bool IsDeleted(object entity)
         {
             return GetStatus(entity) == EntityStatusEnum.Deleted;
         }
 
-        /// <summary>
-        /// Mark the entity as deleted. The manager records the intent; performing
-        /// the deletion is handled by other code.
-        /// </summary>
+        /// <inheritdoc cref="_setisdeleted" />
         public void SetIsDeleted(object entity)
         {
             SetStatus(entity, EntityStatusEnum.Deleted);
         }
 
-        /// <summary>
-        /// Check whether a specific property is marked dirty. Example:
-        /// <c>IsDirty(() =&gt; myEntity.SomeProperty)</c>. The expression identifies
-        /// the entity instance and the property name to check.
-        /// </summary>
+        /// <inheritdoc cref="_isdirty_property" />
         #if !NET9_0_OR_GREATER
         [NoTrim(ArrayInit)]
         #endif
@@ -94,12 +60,7 @@ namespace JJ.Framework.Business.Legacy
             return GetStatus(propertyExpression) == PropertyStatusEnum.Dirty;
         }
 
-        /// <summary>
-        /// Mark a property as dirty using an expression like
-        /// <c>SetIsDirty(() =&gt; myEntity.SomeProperty)</c>. The manager records
-        /// which property on which entity instance is dirty so business code can
-        /// act on that information.
-        /// </summary>
+        /// <inheritdoc cref="_setisdirty_property" />
         #if !NET9_0_OR_GREATER
         [NoTrim(ArrayInit)]
         #endif
@@ -167,9 +128,7 @@ namespace JJ.Framework.Business.Legacy
             _propertyStatuses[key] = propertyStatus;
         }
 
-        /// <summary>
-        /// Removes all stored entity and property statuses.
-        /// </summary>
+        /// <inheritdoc cref="_clear" />
         public void Clear()
         {
             _entityStatuses.Clear();
