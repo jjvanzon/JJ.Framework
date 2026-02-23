@@ -1,7 +1,7 @@
 ﻿JJ.Framework.Business.Legacy
 ----------------------------
 
-Classes to support a business logic layer or an API.
+Classes to support a business logic layer.
 
 - `EntityStatusManager`
 
