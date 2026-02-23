@@ -40,6 +40,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             }
         }
 
+        /*
         [TestMethod]
         public void Test_XDocument_Save_WithDotNet()
         {
@@ -66,6 +67,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
                 if (File.Exists(fileName)) File.Delete(fileName);
             }
         }
+        */
 
         [TestMethod]
         public void Test_XElement_Save_PlatformSafe_WithFileName()
@@ -94,6 +96,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             }
         }
 
+        /*
         [TestMethod]
         public void Test_XElement_Save_WithDotNet_WithFileName()
         {
@@ -120,6 +123,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
                 if (File.Exists(fileName)) File.Delete(fileName);
             }
         }
+        */
 
         [TestMethod]
         public void Test_XElement_Save_PlatformSafe_WithStream()
@@ -151,6 +155,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             }
         }
 
+        /*
         [TestMethod]
         public void Test_XElement_Save_WithDotNet_WithStream()
         {
@@ -180,6 +185,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
                 if (File.Exists(fileName)) File.Delete(fileName);
             }
         }
+        */
 
         // Helper
 

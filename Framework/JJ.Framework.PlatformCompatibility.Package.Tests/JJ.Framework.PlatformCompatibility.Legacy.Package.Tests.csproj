@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="JJ.Framework.IO.Core" Version="3.7.4966" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Legacy" Version="0.250.4991" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.7.4966" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.8.4995" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.4966" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
@@ -23,7 +23,5 @@
   </ItemGroup>
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
-
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
-
 </Project>

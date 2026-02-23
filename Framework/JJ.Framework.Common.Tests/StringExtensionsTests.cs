@@ -1,5 +1,6 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+// Replaced by global using; Trimming.TestApps use JJ.Framework.Testing.Core.MSTestless instead.
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Common;
 
 namespace JJ.Framework.Common.Tests
