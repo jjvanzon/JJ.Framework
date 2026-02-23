@@ -135,22 +135,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj">
-      <Project>{d08f9a33-6d4e-43e9-86f2-8e79ec115b9e}</Project>
-      <Name>Puzzle.NAspect.Framework.NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj">
-      <Project>{5fb1569e-253e-42a7-a4e8-b4651fc6dca2}</Project>
-      <Name>Puzzle.NCore.Framework NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj">
-      <Project>{7f415fbf-21fa-4e00-82de-aad8ceecc84b}</Project>
-      <Name>Puzzle.NPath.Framework.NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj">
-      <Project>{e6c03d2a-d150-4473-9439-d300746a1390}</Project>
-      <Name>Puzzle.NPersist.Framework.NET 3.5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Configuration.Net48\JJ.Framework.Configuration.Net48.csproj">
       <Project>{37a1cde4-c375-41a2-8268-664edb2d02e4}</Project>
       <Name>JJ.Framework.Configuration.Net48</Name>
@@ -170,10 +154,6 @@
     <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj">
       <Project>{0714682c-e14a-4ceb-8b44-1d755050edf3}</Project>
       <Name>JJ.Framework.Persistence.Net48.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj">
-      <Project>{56b6ba1d-92b6-4f6f-a533-1cd8a9b821e0}</Project>
-      <Name>JJ.Framework.Persistence.Net48.NPersist</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
