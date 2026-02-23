@@ -16,11 +16,11 @@ Classes to support a business logic layer.
 
 -----
 
-- `EntityStatusHelper.GetListIsDirty`
+- `GetListIsDirty`
 
     - Compares two lists (a source list of data and a destination list of data). Determines whether a list is dirty. This means that it checks whether items were removed, added or changed. (The changing of items does not mean that the entities themselves are dirty, it means that a list position now points to another object.)
 
-A historic version released in aid of older apps, that still hold value. Now targets `.NET 10` and `.NET Standard` supporting native code with code trimming for wide compatibility, tested with `100%` code coverage, doc pop-ups everywhere.
+A historic version released in aid of older apps, that still hold value. Now targets `.NET 10` and `.NET Standard` supporting native compilation and code trimming for wide compatibility, tested with `100%` code coverage, doc pop-ups everywhere.
 
 Release Notes
 -------------
