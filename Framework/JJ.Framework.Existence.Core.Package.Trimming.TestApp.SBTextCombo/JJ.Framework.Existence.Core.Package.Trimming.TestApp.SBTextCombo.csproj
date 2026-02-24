@@ -20,8 +20,9 @@
     <Compile Include="..\JJ.Framework.Existence.Core.Tests.SBTextCombo\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests.SBTextCombo\obj\**" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests.SBTextCombo\bin\**" />
-    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp\Program.cs" />
-    <Compile Include="..\JJ.Framework.Existence.Core.Package.Trimming.TestApp\Using.cs" Link="Using.cs" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo\Program.cs" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo\UsingMore.cs" />
+    <Compile Remove="..\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBTextCombo\Using.cs" />
   </ItemGroup>
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />

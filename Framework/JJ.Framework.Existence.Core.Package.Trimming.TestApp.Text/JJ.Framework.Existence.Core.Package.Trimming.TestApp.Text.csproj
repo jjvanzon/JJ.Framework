@@ -20,8 +20,8 @@
     <Compile Include="..\JJ.Framework.Existence.Core.Tests.Text\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests.Text\obj\**" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests.Text\bin\**" />
-    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp\Program.cs" />
-    <Compile Include="..\JJ.Framework.Existence.Core.Package.Trimming.TestApp\Using.cs" Link="Using.cs" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp.Text\Program.cs" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp.Text\UsingMore.cs" />
   </ItemGroup>
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
