@@ -3,11 +3,12 @@ namespace JJ.Framework.IO.Core.Tests;
 [TestClass]
 public class StreamHelperLegacyTests
 {
+    private static readonly Encoding encoding = Encoding.UTF8;
+
     [TestMethod]
     public void StringToBytes_Includes_UTF8_BOM_WhenRequested()
     {
         const string text = "Hello";
-        Encoding encoding = Encoding.UTF8;
 
         byte[] bytes = StreamHelperLegacy.StringToBytes(text, encoding, includeByteOrderMark: true);
 
@@ -22,8 +23,6 @@ public class StreamHelperLegacyTests
     public void StringToBytes_DoesNotInclude_BOM_WhenNotRequested()
     {
         const string text = "Hello";
-        Encoding encoding = Encoding.UTF8;
-
         byte[] bytes = StreamHelperLegacy.StringToBytes(text, encoding, includeByteOrderMark: false);
 
         CollectionAssert.AreEqual(encoding.GetBytes(text), bytes);
@@ -33,9 +32,7 @@ public class StreamHelperLegacyTests
     public void StringToBytes_EmptyString_WithBOM_ReturnsOnlyPreamble()
     {
         const string text = "";
-        Encoding encoding = Encoding.UTF8;
-
-        byte[] bytes = JJ.Framework.IO.Core.StreamHelperLegacy.StringToBytes(text, encoding, includeByteOrderMark: true);
+        byte[] bytes = StreamHelperLegacy.StringToBytes(text, encoding, includeByteOrderMark: true);
 
         CollectionAssert.AreEqual(encoding.GetPreamble(), bytes);
     }
@@ -44,12 +41,10 @@ public class StreamHelperLegacyTests
     public void StringToStream_And_StreamToString_WithBOM_Roundtrip()
     {
         const string text = "Hello World";
-        Encoding encoding = Encoding.UTF8;
-
-        using Stream s = StreamHelperLegacy.StringToStream(text, encoding, includeByteOrderMark: true);
+        using Stream stream = StreamHelperLegacy.StringToStream(text, encoding, includeByteOrderMark: true);
 
         // StreamHelper.StreamToString handles the BOM correctly when provided the same encoding.
-        string result = StreamHelper.StreamToString(s, encoding);
+        string result = StreamHelper.StreamToString(stream, encoding);
 
         AreEqual(text, result);
     }
@@ -58,15 +53,13 @@ public class StreamHelperLegacyTests
     public void StringToBytes_NullEncoding_ThrowsNullException()
     {
         const string text = "x";
-
-        Throws(() => StreamHelperLegacy.StringToBytes(text, null!, includeByteOrderMark: false));
+        Throws(() => StreamHelperLegacy.StringToBytes(text, null!, includeByteOrderMark: false), "encoding", "null");
     }
 
     [TestMethod]
     public void StringToStream_NullEncoding_ThrowsNullException()
     {
         const string text = "x";
-
-        Throws(() => StreamHelperLegacy.StringToStream(text, null!, includeByteOrderMark: false));
+        Throws(() => StreamHelperLegacy.StringToStream(text, null!, includeByteOrderMark: false), "encoding", "null");
     }
 }
