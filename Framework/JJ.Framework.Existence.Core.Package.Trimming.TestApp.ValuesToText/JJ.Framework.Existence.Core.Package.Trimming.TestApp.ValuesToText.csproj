@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>3.7.$(BuildNum)</Version>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Existence.Core" Version="3.8.5027" />
+    <PackageReference Include="JJ.Framework.Existence.Core.Tests.Helpers" Version="3.7.4872" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.8.5027" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.5027" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Existence.Core.Tests.ValuesToText\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Existence.Core.Tests.ValuesToText\obj\**" />
+    <Compile Remove="..\JJ.Framework.Existence.Core.Tests.ValuesToText\bin\**" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp\Program.cs" />
+  </ItemGroup>
+
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <TrimmerRootAssembly Include="$(AssemblyName)" />
+  </ItemGroup>
+
+</Project>
