@@ -28,6 +28,7 @@
       "Framework\\JJ.Framework.Existence.Core.Tests.Values\\JJ.Framework.Existence.Core.Tests.Values.csproj",
       "Framework\\JJ.Framework.Existence.Core.Tests\\JJ.Framework.Existence.Core.Tests.csproj",
       "Framework\\JJ.Framework.Existence.Core\\JJ.Framework.Existence.Core.csproj",
+      "Framework\\JJ.Framework.IO.Core.Tests\\JJ.Framework.IO.Core.Tests.csproj",
       "Framework\\JJ.Framework.IO.Core\\JJ.Framework.IO.Core.csproj",
       "Framework\\JJ.Framework.IO\\JJ.Framework.IO.Legacy.csproj",
       "Framework\\JJ.Framework.Logging.Core\\JJ.Framework.Logging.Core.csproj",
