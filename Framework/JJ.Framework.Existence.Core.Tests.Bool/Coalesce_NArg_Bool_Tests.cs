@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.Bool.Tests;
+﻿// ReSharper disable RedundantExplicitParamsArrayCreation
+
+namespace JJ.Framework.Existence.Core.Bool.Tests;
 
 [TestClass]
 public class Coalesce_NArg_Bool_Tests : TestBase

@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core.Bool.Tests.docs;
+﻿// ReSharper disable UnusedType.Global
+
+namespace JJ.Framework.Existence.Core.Bool.Tests.docs;
 
 /// <summary>
 /// Note: Even though some hit the overload with their parameters swapped unintentionally,
