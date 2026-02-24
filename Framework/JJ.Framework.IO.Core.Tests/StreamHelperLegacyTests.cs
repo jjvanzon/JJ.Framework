@@ -43,8 +43,10 @@ public class StreamHelperLegacyTests
         const string text = "Hello World";
         using Stream stream = StreamHelperLegacy.StringToStream(text, encoding, includeByteOrderMark: true);
 
-        // StreamHelper.StreamToString handles the BOM correctly when provided the same encoding.
-        string result = StreamHelper.StreamToString(stream, encoding);
+        // Use plain .NET StreamReader to read the stream so the test only verifies
+        // StreamHelperLegacy.StringToStream behavior and does not depend on other helpers.
+        using var reader = new StreamReader(stream, encoding, detectEncodingFromByteOrderMarks: true, bufferSize: 1024, leaveOpen: true);
+        string result = reader.ReadToEnd();
 
         AreEqual(text, result);
     }
