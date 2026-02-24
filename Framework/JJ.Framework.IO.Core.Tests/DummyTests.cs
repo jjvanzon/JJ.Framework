@@ -1,13 +1,10 @@
-using System;
-using System.IO;
-
 namespace JJ.Framework.IO.Core.Tests;
 
 [TestClass]
-public class FileHelperCoreTests
+public class DummyTests
 {
     [TestMethod]
-    public void SmokeTest_FileHelper_CreateDelete()
+    public void SmokeTest_CreateDeleteFile()
     {
         string tempFile = Path.GetTempFileName();
         Assert.IsTrue(File.Exists(tempFile));
