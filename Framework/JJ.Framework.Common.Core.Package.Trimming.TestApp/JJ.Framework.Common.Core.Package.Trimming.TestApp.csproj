@@ -32,4 +32,11 @@
     <TrimmerRootAssembly Include="$(AssemblyName)" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
+  </ItemGroup>
+
 </Project>
