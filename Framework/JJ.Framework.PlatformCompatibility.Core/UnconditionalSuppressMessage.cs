@@ -1,5 +1,6 @@
-// ncrunch: no coverage start
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
+// ncrunch: no coverage start
 #if !NET5_0_OR_GREATER
 
 namespace System.Diagnostics.CodeAnalysis;
@@ -16,5 +17,4 @@ internal sealed class UnconditionalSuppressMessageAttribute(string category, str
 }
 
 #endif
-
 // ncrunch: no coverage end

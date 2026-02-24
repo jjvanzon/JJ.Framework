@@ -1,5 +1,6 @@
-// ncrunch: no coverage start
+// ReSharper disable UnusedType.Global
 
+// ncrunch: no coverage start
 #if !NET5_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -43,5 +44,4 @@ internal enum DynamicallyAccessedMemberTypes
 }
 
 #endif
-
 // ncrunch: no coverage end

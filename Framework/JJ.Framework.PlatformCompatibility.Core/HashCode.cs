@@ -1,4 +1,6 @@
-﻿// ncrunch: no coverage start
+﻿// ReSharper disable UnusedType.Global
+
+// ncrunch: no coverage start
 
 #if NETFRAMEWORK || NETSTANDARD2_0
 

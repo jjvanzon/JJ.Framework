@@ -1,5 +1,6 @@
-// ncrunch: no coverage start
+// ReSharper disable UnusedType.Global
 
+// ncrunch: no coverage start
 #if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1
 
 namespace System.Runtime.CompilerServices;
@@ -14,5 +15,4 @@ internal class CompilerFeatureRequiredAttribute(string featureName) : Attribute
 }
 
 #endif
-
 // ncrunch: no coverage end

@@ -1,7 +1,7 @@
-// ncrunch: no coverage start
-
+// ReSharper disable UnusedType.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
+// ncrunch: no coverage start
 #if !NET5_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -22,5 +22,4 @@ internal class DynamicallyAccessedMembersAttribute : Attribute
 }
 
 #endif
-
 // ncrunch: no coverage end

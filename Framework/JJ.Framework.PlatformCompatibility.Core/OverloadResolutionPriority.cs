@@ -1,5 +1,7 @@
 ﻿// ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UnuzedType.Local
+// ReSharper disable UnusedType.Global
 
 // ncrunch: no coverage start
 #if !NET9_0_OR_GREATER

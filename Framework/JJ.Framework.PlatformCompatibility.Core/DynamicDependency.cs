@@ -1,5 +1,6 @@
-// ncrunch: no coverage start
+// ReSharper disable UnusedType.Global
 
+// ncrunch: no coverage start
 #if !NET5_0_OR_GREATER
 
 namespace System.Diagnostics.CodeAnalysis;
@@ -46,5 +47,4 @@ internal sealed class DynamicDependencyAttribute : Attribute
 }
 
 #endif
-
 // ncrunch: no coverage end

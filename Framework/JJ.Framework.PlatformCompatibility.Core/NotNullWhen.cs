@@ -1,5 +1,6 @@
-﻿// ncrunch: no coverage start
+﻿// ReSharper disable UnusedType.Global
 
+// ncrunch: no coverage start
 #if NETFRAMEWORK || NETSTANDARD2_0
 
 namespace System.Diagnostics.CodeAnalysis;
@@ -11,5 +12,4 @@ internal sealed class NotNullWhenAttribute(bool returnValue) : Attribute
 }
 
 #endif
-
 // ncrunch: no coverage end
