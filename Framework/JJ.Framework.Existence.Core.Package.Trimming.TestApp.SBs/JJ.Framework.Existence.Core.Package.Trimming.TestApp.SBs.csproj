@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Existence.Core" Version="3.8.5027" />
+    <PackageReference Include="JJ.Framework.Existence.Core" Version="3.8.5089" />
     <PackageReference Include="JJ.Framework.Existence.Core.Tests.Helpers" Version="3.7.4872" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.8.5027" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.5027" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.8.5089" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.5089" />
   </ItemGroup>
 
   <ItemGroup>

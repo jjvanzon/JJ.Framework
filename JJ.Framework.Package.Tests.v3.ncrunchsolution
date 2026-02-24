@@ -2,6 +2,20 @@
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <EnableRDI>False</EnableRDI>
+    <MetricsExclusionList>
+      <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
+    </MetricsExclusionList>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
