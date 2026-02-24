@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>3.7.$(BuildNum)</Version>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
@@ -20,6 +20,7 @@
     <Compile Include="..\JJ.Framework.Existence.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests\bin\**" />
+    <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp\Program.cs" />
     <!-- Exclude tests that rely heavily on reflection or APIs not compatible with trimming analysis -->
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests\Existence_CrossRefCollectionTypes_Tests.cs" />
   </ItemGroup>
