@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Treat the test app assembly as a trimmer root so trimming retains the test types and entry points -->
+    <TrimmerRootAssembly Include="$(AssemblyName)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 
