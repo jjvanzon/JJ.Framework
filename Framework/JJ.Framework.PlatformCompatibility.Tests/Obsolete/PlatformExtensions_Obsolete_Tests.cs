@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml.Linq;
 using JJ.Framework.Testing;
 using JJ.Framework.Testing.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable IDE0034 // Simplify 'default' expression
 // ReSharper disable RedundantTypeSpecificationInDefaultExpression

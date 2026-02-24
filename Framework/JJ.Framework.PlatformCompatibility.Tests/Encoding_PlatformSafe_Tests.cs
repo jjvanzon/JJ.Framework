@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using JJ.Framework.IO.Core;
 using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable ConvertToConstant.Local
 

@@ -3,7 +3,7 @@ using System.Reflection;
 using JJ.Framework.PlatformCompatibility.Tests.Helpers;
 using JJ.Framework.Testing;
 using JJ.Framework.PlatformCompatibility.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable ConvertToConstant.Local
 

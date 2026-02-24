@@ -2,7 +2,7 @@
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.PlatformCompatibility.Tests.Helpers;
 using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.PlatformCompatibility.Tests
 {

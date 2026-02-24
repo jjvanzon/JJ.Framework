@@ -2,7 +2,7 @@
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Reflection.Core;
 using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable RedundantCast
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 // ReSharper disable ConvertToConstant.Local

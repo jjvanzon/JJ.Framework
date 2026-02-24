@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using JJ.Framework.IO.Core;
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.PlatformCompatibility.Tests
 {
