@@ -88,7 +88,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj", "{C1FD2B8C-EC11-A29F-0BBC-F61CC4A5434C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Legacy.Package.Tests", "Framework\JJ.Framework.IO.Core.Package.Tests\JJ.Framework.IO.Core.Legacy.Package.Tests.csproj", "{CB1F6004-F221-0653-C14B-0EE228D7C2C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Package.Tests", "Framework\JJ.Framework.IO.Core.Package.Tests\JJ.Framework.IO.Core.Package.Tests.csproj", "{CB1F6004-F221-0653-C14B-0EE228D7C2C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
