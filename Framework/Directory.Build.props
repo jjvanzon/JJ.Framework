@@ -4,7 +4,11 @@
   
   <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup>
   <Import Project="BuildNum.xml" 
-          Condition="$(Configuration)=='Release' And Exists('BuildNum.xml')" />
+          Condition="$(Configuration)=='Release' And 
+                     !$(MSBuildProjectName.EndsWith('.Tests')) And
+                     !$(MSBuildProjectName.Contains('.Tests.')) And
+                     !$(MSBuildProjectName.Contains('Trimming.TestApp')) And
+                     Exists('BuildNum.xml')" />
   
   <!-- Project Properties -->
   
