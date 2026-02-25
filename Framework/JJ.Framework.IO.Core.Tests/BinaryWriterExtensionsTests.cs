@@ -45,7 +45,7 @@ public class BinaryWriterExtensionsTests
 
         using var memoryStream = new MemoryStream();
 
-        using (var writer = new BinaryWriter(memoryStream))
+        using (var writer = new BinaryWriter(memoryStream, DefaultEncoding, leaveOpen: true))
         {
             writer.WriteStruct(myStruct);
         }
