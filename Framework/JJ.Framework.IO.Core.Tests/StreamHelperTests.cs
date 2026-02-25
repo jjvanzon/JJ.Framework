@@ -11,43 +11,45 @@ public class StreamHelperTests
     public void StreamToBytes_ReturnsSameBytes()
     {
         byte[] bytesBefore = [1, 2, 3, 4, 5];
-        using var stream = new MemoryStream(bytesBefore);
-        byte[] bytesAfter = StreamToBytes(stream);
+        using var streamBefore = new MemoryStream(bytesBefore);
+        byte[] bytesAfter = StreamToBytes(streamBefore);
         CollectionAssert.AreEqual(bytesBefore, bytesAfter);
     }
 
     [TestMethod]
-    public void BytesToStream_StreamToBytes_Roundtrip()
+    public void BytesToStream_CreatesStreamWithSameBytes()
     {
         byte[] bytesBefore = encoding.GetBytes("Hello IO");
-        using Stream stream = BytesToStream(bytesBefore);
-        byte[] bytesAfter = StreamToBytes(stream);
-        CollectionAssert.AreEqual(bytesBefore, bytesAfter);
+        using Stream streamAfter = BytesToStream(bytesBefore);
+        using MemoryStream copiedStreamAfter = new();
+        streamAfter.CopyTo(copiedStreamAfter);
+        CollectionAssert.AreEqual(bytesBefore, copiedStreamAfter.ToArray());
     }
 
     [TestMethod]
-    public void StringToBytes_BytesToString_Roundtrip()
+    public void StringToBytes_ProducesExpectedBytes()
     {
         const string textBefore = "Hello Åäö — тест";
-        byte[] bytes = StringToBytes(textBefore, encoding);
-        string textAfter = BytesToString(bytes, encoding);
+        byte[] bytesAfter = StringToBytes(textBefore, encoding);
+        string textAfter = encoding.GetString(bytesAfter);
         AreEqual(textBefore, textAfter);
     }
 
     [TestMethod]
-    public void StringToStream_StreamToString_Roundtrip()
+    public void StringToStream_ProducesReadableStream()
     {
         const string textBefore = "Line1\nLine2\n";
-        using Stream stream = StringToStream(textBefore, encoding);
-        string textAfter = StreamToString(stream, encoding);
+        using Stream streamAfter = StringToStream(textBefore, encoding);
+        using var readerAfter = new StreamReader(streamAfter, encoding);
+        string textAfter = readerAfter.ReadToEnd();
         AreEqual(textBefore, textAfter);
     }
 
     [TestMethod]
     public void BytesToString_HandlesEmpty()
     {
-        byte[] bytes = [];
-        string result = BytesToString(bytes, encoding);
-        AreEqual(string.Empty, result);
+        byte[] bytesBefore = [];
+        string textAfter = BytesToString(bytesBefore, encoding);
+        AreEqual("", textAfter);
     }
 }
