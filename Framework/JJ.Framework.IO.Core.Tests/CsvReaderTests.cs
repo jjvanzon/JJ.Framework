@@ -37,7 +37,10 @@ public class CsvReaderTests
     public void CsvReader_HandlesEscapedQuotesInsideQuotedField()
     {
         // Double quote inside quoted field is represented by two quotes.
-        const string csv = "\"He said \"\"hi\"\"\",Other\n";
+        const string csv = """"
+                           "He said ""hi""",Other
+
+                           """";
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(csv));
 
         using var reader = new CsvReader(ms);
@@ -56,9 +59,9 @@ public class CsvReaderTests
         using var reader = new CsvReader(ms);
 
         IsTrue(reader.Read());
-        AreEqual(string.Empty, reader[0]);
-        AreEqual(string.Empty, reader[1]);
-        AreEqual(string.Empty, reader[2]);
+        AreEqual("", reader[0]);
+        AreEqual("", reader[1]);
+        AreEqual("", reader[2]);
     }
 
     [TestMethod]
