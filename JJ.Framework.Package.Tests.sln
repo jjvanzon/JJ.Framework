@@ -15,6 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Framework\Directory.Build.props = Framework\Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		JJ.Framework.Package.Tests.sln.DotSettings = JJ.Framework.Package.Tests.sln.DotSettings
+		JJ.Framework.Package.Tests.v3.ncrunchsolution = JJ.Framework.Package.Tests.v3.ncrunchsolution
+		LICENSE.TXT = LICENSE.TXT
+		NuGet.config = NuGet.config
+		README.MD = README.MD
+		RunTrimTests.bat = RunTrimTests.bat
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Tests", "Framework\JJ.Framework.Reflection.Package.Tests\JJ.Framework.Reflection.Legacy.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
