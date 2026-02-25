@@ -101,7 +101,7 @@ namespace JJ.Framework.Common.Legacy
                 if (input.Substring(pos, separator.Length) == separator)
                 {
                     // An end-of-element was found.
-                    string value = input.FromTill(startPos, pos - 1);
+                    string value = input.FromTillNoThrow(startPos, pos - 1);
 
                     if (!String.IsNullOrEmpty(value) || options != StringSplitOptions.RemoveEmptyEntries)
                     {
@@ -115,13 +115,20 @@ namespace JJ.Framework.Common.Legacy
 
             // Add last element
             // (For the previous elements, the separator functions as an end-of-value, while the last value does hot have that.)
-            string str2 = input.FromTill(startPos, input.Length - 1);
+            string str2 = input.FromTillNoThrow(startPos, input.Length - 1);
             if (!String.IsNullOrEmpty(str2) || options != StringSplitOptions.RemoveEmptyEntries)
             {
                 values.Add(str2);
             }
 
             return values.ToArray();
+        }
+
+        private static string FromTillNoThrow(this string input, int startIndex, int endIndex)
+        {
+            if (endIndex < startIndex) 
+                return "";
+            return input.Substring(startIndex, endIndex - startIndex + 1);
         }
     }
 }
