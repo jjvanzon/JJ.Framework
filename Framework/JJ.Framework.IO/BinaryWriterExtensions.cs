@@ -35,7 +35,7 @@ namespace JJ.Framework.IO.Legacy
         /// 
         /// Beware that the performance might not be better than reading the values one by one.
         /// </summary>
-        public static T ReadStruct<T>(this BinaryReader reader)
+        public static T ReadStruct<[Dyn(Ctors)]T>(this BinaryReader reader)
             where T : struct
         {
             int size = Marshal.SizeOf<T>();

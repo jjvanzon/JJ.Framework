@@ -19,6 +19,7 @@ internal static class DynamicallyAccessedMemberTypesEx
     public const DynamicallyAccessedMemberTypes Intf = Interfaces;
     public const DynamicallyAccessedMemberTypes New = PublicParameterlessConstructor;
     public const DynamicallyAccessedMemberTypes PublicCtors = PublicConstructors;
+    public const DynamicallyAccessedMemberTypes Ctors = AllCtors;
     public const DynamicallyAccessedMemberTypes AllCtors = PublicConstructors | NonPublicConstructors;
     public const DynamicallyAccessedMemberTypes PropsFieldsMethods = AllProperties | AllFields | AllMethods;
 
