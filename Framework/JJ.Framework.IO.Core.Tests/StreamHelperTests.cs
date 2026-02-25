@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using System.Text;
-using static JJ.Framework.IO.Legacy.StreamHelper;
+﻿using static JJ.Framework.IO.Legacy.StreamHelper;
 
 namespace JJ.Framework.IO.Core.Tests;
 
