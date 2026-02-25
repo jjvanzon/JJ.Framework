@@ -19,7 +19,7 @@ namespace JJ.Framework.IO.Legacy
         public static void WriteStruct<T>(this BinaryWriter writer, T strct)
             where T : struct
         {
-            int size = Marshal.SizeOf(typeof(T));
+            int size = Marshal.SizeOf<T>();
             byte[] buffer = new byte[size];
             GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
             Marshal.StructureToPtr(strct, gcHandle.AddrOfPinnedObject(), true);
@@ -38,10 +38,10 @@ namespace JJ.Framework.IO.Legacy
         public static T ReadStruct<T>(this BinaryReader reader)
             where T : struct
         {
-            int size = Marshal.SizeOf(typeof(T));
+            int size = Marshal.SizeOf<T>();
             byte[] buffer = reader.ReadBytes(size);
             GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-            T result = (T)Marshal.PtrToStructure(gcHandle.AddrOfPinnedObject(), typeof(T));
+            T result = Marshal.PtrToStructure<T>(gcHandle.AddrOfPinnedObject());
             gcHandle.Free();
             return result;
         }

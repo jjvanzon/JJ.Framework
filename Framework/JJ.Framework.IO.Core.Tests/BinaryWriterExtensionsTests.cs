@@ -50,7 +50,7 @@ public class BinaryWriterExtensionsTests
             writer.WriteStruct(myStruct);
         }
 
-        int expectedSize = Marshal.SizeOf(typeof(TestStruct));
+        int expectedSize = Marshal.SizeOf<TestStruct>();
 
         AreEqual(expectedSize, (int)memoryStream.Length);
     }

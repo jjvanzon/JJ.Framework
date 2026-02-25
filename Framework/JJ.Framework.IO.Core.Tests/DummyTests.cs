@@ -7,8 +7,8 @@ public class DummyTests
     public void SmokeTest_CreateDeleteFile()
     {
         string tempFile = Path.GetTempFileName();
-        Assert.IsTrue(File.Exists(tempFile));
+        IsTrue(File.Exists(tempFile));
         File.Delete(tempFile);
-        Assert.IsFalse(File.Exists(tempFile));
+        IsFalse(File.Exists(tempFile));
     }
 }

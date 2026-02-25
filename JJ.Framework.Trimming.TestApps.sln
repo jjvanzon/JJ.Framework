@@ -94,6 +94,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Trimming.TestApp", "Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj", "{59CCC530-5791-7BA2-CEEB-50642CCEC855}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Trimming.TestApp", "Framework\JJ.Framework.IO.Core.Trimming.TestApp\JJ.Framework.IO.Core.Trimming.TestApp.csproj", "{93AC11D4-E037-9C2F-58E5-376FE33149EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -240,6 +242,10 @@ Global
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
