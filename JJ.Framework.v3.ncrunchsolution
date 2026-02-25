@@ -489,11 +489,6 @@
       <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.1</Value>
-      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net9.0</Value>
