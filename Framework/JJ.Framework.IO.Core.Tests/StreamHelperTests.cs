@@ -1,4 +1,7 @@
-﻿using static JJ.Framework.IO.Legacy.StreamHelper;
+﻿using System.IO;
+using System.Linq;
+using System.Text;
+using static JJ.Framework.IO.Legacy.StreamHelper;
 
 namespace JJ.Framework.IO.Core.Tests;
 
@@ -51,5 +54,17 @@ public class StreamHelperTests
         byte[] bytesBefore = [];
         string textAfter = BytesToString(bytesBefore, encoding);
         AreEqual("", textAfter);
+    }
+
+    [TestMethod]
+    public void StreamToString_HandlesBOMAndReturnsText()
+    {
+        byte[] preamble = encoding.GetPreamble();
+        byte[] bytesBefore = preamble.Concat(encoding.GetBytes("Hello BOM")).ToArray();
+
+        using var streamBefore = new MemoryStream(bytesBefore);
+        string textAfter = StreamToString(streamBefore, encoding);
+
+        AreEqual("Hello BOM", textAfter);
     }
 }
