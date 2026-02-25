@@ -13,7 +13,6 @@
   <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net10.0'">
     <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0'">
     <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
