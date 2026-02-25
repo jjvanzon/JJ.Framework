@@ -88,4 +88,39 @@ public class CsvReaderTests
     {
         Throws(() => new CsvReader(null!), "stream", "null");
     }
+
+    [TestMethod]
+    public void CsvReader_Finalizer_DisposesStream()
+    {
+        // Arrange
+        var stream = new DisposableMemoryStream();
+
+        // Act: create a reader and drop the reference so the finalizer can run.
+        void CreateReader()
+        {
+            var reader = new CsvReader(stream);
+            // Intentionally do not dispose reader.
+        }
+
+        CreateReader();
+
+        // Force GC and finalizers.
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        GC.Collect();
+
+        // Assert: finalizer should have disposed the underlying stream.
+        IsTrue(stream.WasDisposed);
+    }
+
+    private class DisposableMemoryStream : MemoryStream
+    {
+        public bool WasDisposed { get; private set; }
+
+        protected override void Dispose(bool disposing)
+        {
+            WasDisposed = true;
+            base.Dispose(disposing);
+        }
+    }
 }
