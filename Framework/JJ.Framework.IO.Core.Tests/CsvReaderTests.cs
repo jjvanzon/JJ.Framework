@@ -1,7 +1,3 @@
-using System.IO;
-using System.Text;
-using static JJ.Framework.Testing.Core.AssertCore;
-
 namespace JJ.Framework.IO.Core.Tests;
 
 [TestClass]
@@ -10,10 +6,10 @@ public class CsvReaderTests
     [TestMethod]
     public void CsvReader_ReadsSimpleLine()
     {
-        string csv = "a,b,c\n";
+        const string csv = "a,b,c\n";
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(csv));
 
-        using var reader = new JJ.Framework.IO.Legacy.CsvReader(ms);
+        using var reader = new CsvReader(ms);
 
         IsTrue(reader.Read());
         AreEqual("a", reader[0]);
@@ -26,10 +22,10 @@ public class CsvReaderTests
     [TestMethod]
     public void CsvReader_ParsesQuotedFieldsWithCommas()
     {
-        string csv = "\"a,1\",b,\"c\"\n";
+        const string csv = "\"a,1\",b,\"c\"\n";
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(csv));
 
-        using var reader = new JJ.Framework.IO.Legacy.CsvReader(ms);
+        using var reader = new CsvReader(ms);
 
         IsTrue(reader.Read());
         AreEqual("a,1", reader[0]);
@@ -41,10 +37,10 @@ public class CsvReaderTests
     public void CsvReader_HandlesEscapedQuotesInsideQuotedField()
     {
         // Double quote inside quoted field is represented by two quotes.
-        string csv = "\"He said \"\"hi\"\"\",Other\n";
+        const string csv = "\"He said \"\"hi\"\"\",Other\n";
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(csv));
 
-        using var reader = new JJ.Framework.IO.Legacy.CsvReader(ms);
+        using var reader = new CsvReader(ms);
 
         IsTrue(reader.Read());
         AreEqual("He said \"hi\"", reader[0]);
@@ -54,10 +50,10 @@ public class CsvReaderTests
     [TestMethod]
     public void CsvReader_EmptyFields_AreEmptyStrings()
     {
-        string csv = ",,\n";
+        const string csv = ",,\n";
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(csv));
 
-        using var reader = new JJ.Framework.IO.Legacy.CsvReader(ms);
+        using var reader = new CsvReader(ms);
 
         IsTrue(reader.Read());
         AreEqual(string.Empty, reader[0]);
@@ -68,10 +64,10 @@ public class CsvReaderTests
     [TestMethod]
     public void CsvReader_MultipleLines_ReadSequentially()
     {
-        string csv = "a,b\n1,2\n";
+        const string csv = "a,b\n1,2\n";
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(csv));
 
-        using var reader = new JJ.Framework.IO.Legacy.CsvReader(ms);
+        using var reader = new CsvReader(ms);
 
         IsTrue(reader.Read());
         AreEqual("a", reader[0]);
@@ -87,6 +83,6 @@ public class CsvReaderTests
     [TestMethod]
     public void CsvReader_Ctor_NullStream_ThrowsNullException()
     {
-        Throws(() => new JJ.Framework.IO.Legacy.CsvReader(null!), "stream", "null");
+        Throws(() => new CsvReader(null!), "stream", "null");
     }
 }
