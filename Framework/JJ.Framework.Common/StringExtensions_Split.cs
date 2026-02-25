@@ -49,7 +49,7 @@ namespace JJ.Framework.Common.Legacy
 
             return values.Select(value => (value ?? "")
                          .Replace($"{quote}{quote}", $"{quote}")
-                         .Trim(quote.Value))
+                         .TrimOnce(quote.Value))
                          .ToArray();
         }
         
@@ -122,13 +122,6 @@ namespace JJ.Framework.Common.Legacy
             }
 
             return values.ToArray();
-        }
-
-        private static string FromTillNoThrow(this string input, int startIndex, int endIndex)
-        {
-            if (endIndex < startIndex) 
-                return "";
-            return input.Substring(startIndex, endIndex - startIndex + 1);
         }
     }
 }
