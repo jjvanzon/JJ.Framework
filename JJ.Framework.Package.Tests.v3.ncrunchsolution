@@ -1,6 +1,9 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <CustomBuildProperties>
+      <Value>IsNCrunch = True</Value>
+    </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
     <MetricsExclusionList>
       <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net10.0</Value>
