@@ -178,7 +178,7 @@
     <MSBuild Projects="$(MSBuildProjectFile)" Targets="Publish" Properties="NoBuild=true" />
   </Target>
   
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And '$(PublishDir)'!=''">
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 
