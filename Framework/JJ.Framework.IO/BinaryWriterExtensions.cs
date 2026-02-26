@@ -8,6 +8,7 @@ using System.Text;
 
 namespace JJ.Framework.IO.Legacy
 {
+    /// <summary> Contains some methods for reading and writing structs to a stream. </summary>
     public static class BinaryWriterExtensions
     {
         /// <summary>

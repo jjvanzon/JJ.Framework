@@ -26,6 +26,7 @@ namespace JJ.Framework.IO.Legacy
             _reader = new StreamReader(stream);
         }
 
+        /// <inheritdoc cref="_dispose" />
         ~CsvReader()
         {
             Dispose();
