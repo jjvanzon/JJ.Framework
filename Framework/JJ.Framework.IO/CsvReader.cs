@@ -8,6 +8,7 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.IO.Legacy
 {
+    /// <inheritdoc cref="_csvreader" />
     public class CsvReader : IDisposable
     {
         // TODO: Enforce number of columns.
@@ -16,6 +17,7 @@ namespace JJ.Framework.IO.Legacy
         private StreamReader _reader;
         private string[] _values;
 
+        /// <inheritdoc cref="_csvreader_ctor" />
         public CsvReader(Stream stream)
         {
             if (stream == null) throw new NullException(() => stream);
@@ -29,6 +31,7 @@ namespace JJ.Framework.IO.Legacy
             Dispose();
         }
 
+        /// <inheritdoc cref="_dispose" />
         public void Dispose()
         {
             if (_reader != null)
@@ -37,6 +40,7 @@ namespace JJ.Framework.IO.Legacy
             }
         }
 
+        /// <inheritdoc cref="_read" />
         public bool Read()
         {
             if (_reader.EndOfStream)
@@ -56,6 +60,7 @@ namespace JJ.Framework.IO.Legacy
             return line.SplitWithQuotation(",", quote: '"');
         }
 
+        /// <inheritdoc cref="_indexer" />
         public string this[int i]
         {
             get { return _values[i]; }
