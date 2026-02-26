@@ -107,6 +107,14 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                         | `EntityStatusManager` and `GetListIsDirty` for framework-agnostic `New`/`Deleted`/`Dirty` flag container.
 |       |                                         | `ISideEffect` for keeping business logic units separated.
 |       |                                         | Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
+| `3.9` | __IO.Legacy__                           | [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
+|       |                                         | Full code coverage with automated tests.
+|       |                                         | Releasing a historic version `0.250`.
+|       |                                         | Features:
+|       |                                         | `CsvReader`: simple streaming CSV reader supporting quoted fields and escaped double-quotes (`""`).
+|       |                                         | `StreamHelper`: convenience conversions between `Stream`, `byte[]` and `string`
+|       |                                         | `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
+|       |                                         | Bug fix: `CsvReader` now correctly handles trailing new lines and does not cut off intentionally escaped quotes at the end of a value.
 
 💬 Feedback 
 ------------
