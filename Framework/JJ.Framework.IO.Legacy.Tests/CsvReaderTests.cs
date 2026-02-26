@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+
 namespace JJ.Framework.IO.Legacy.Tests;
 
 [TestClass]
@@ -60,6 +64,63 @@ public class CsvReaderTests
         IsFalse(reader.Read());
     }
 
+
+    [TestMethod]
+    public void CsvReader_ReadsIntoListOfDtos()
+    {
+        const string csv =
+        """
+        Name,Age,Notes
+        "Smith, John",30,"Likes ""pizza"" and coding"
+        Doe,25,""
+        Alice,29,"Uses,commas"
+
+        """;
+
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(csv));
+        using var reader = new CsvReader(stream);
+
+        // Skip header
+        IsTrue(reader.Read());
+
+        var list = new List<PersonDto>();
+
+        while (reader.Read())
+        {
+            list.Add(new PersonDto
+            {
+                Name = reader[0],
+                Age = GetAge(reader[1]),
+                Notes = reader[2]
+            });
+        }
+
+        AreEqual(3, list.Count);
+
+        AreEqual("Smith, John", list[0].Name);
+        AreEqual(30, list[0].Age);
+        AreEqual("Likes \"pizza\" and coding", list[0].Notes);
+
+        AreEqual("Doe", list[1].Name);
+        AreEqual(25, list[1].Age);
+        AreEqual("", list[1].Notes);
+
+        AreEqual("Alice", list[2].Name);
+        AreEqual(29, list[2].Age);
+        AreEqual("Uses,commas", list[2].Notes);
+    }
+
+    private int GetAge(string text)
+    {
+        if (!int.TryParse(text, out int age))
+        // ncrunch: no coverage start
+        { 
+            throw new Exception($"age '{text}' is not a number.");
+        }
+        // ncrunch: no coverage end
+        return age;
+    }
+
     [TestMethod]
     public void CsvReader_ParsesQuotedFieldsWithCommas()
     {
@@ -78,10 +139,12 @@ public class CsvReaderTests
     public void CsvReader_HandlesEscapedQuotesInsideQuotedField()
     {
         // Double quote inside quoted field is represented by two quotes.
-        const string csv = """"
-                           "He said ""hi""",Other
+        const string csv = 
+        """"
+        "He said ""hi""",Other
 
-                           """";
+        """";
+        
         using var ms = new MemoryStream(Encoding.UTF8.GetBytes(csv));
 
         using var reader = new CsvReader(ms);
@@ -163,5 +226,12 @@ public class CsvReaderTests
             WasDisposed = true;
             base.Dispose(disposing);
         }
+    }
+
+    private class PersonDto
+    {
+        public string Name { get; set; } = string.Empty;
+        public int Age { get; set; }
+        public string Notes { get; set; } = string.Empty;
     }
 }
