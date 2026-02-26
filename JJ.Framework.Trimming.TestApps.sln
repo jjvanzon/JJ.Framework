@@ -94,8 +94,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Trimming.TestApp", "Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj", "{59CCC530-5791-7BA2-CEEB-50642CCEC855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Trimming.TestApp", "Framework\JJ.Framework.IO.Core.Trimming.TestApp\JJ.Framework.IO.Core.Trimming.TestApp.csproj", "{93AC11D4-E037-9C2F-58E5-376FE33149EC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Trimming.TestApp", "Framework\JJ.Framework.IO.Legacy.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj", "{409358C6-FD72-ABD0-F200-275DFBDE5D93}"
 EndProject
 Global
@@ -244,10 +242,6 @@ Global
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93AC11D4-E037-9C2F-58E5-376FE33149EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{409358C6-FD72-ABD0-F200-275DFBDE5D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{409358C6-FD72-ABD0-F200-275DFBDE5D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{409358C6-FD72-ABD0-F200-275DFBDE5D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -302,7 +296,6 @@ Global
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{85ff000e-e6e2-2593-9096-3b26cd650534}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{8704eecb-1cb8-a6a8-2e2d-cb5471b22c0f}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8704eecb-1cb8-a6a8-2e2d-cb5471b22c0f}*SharedItemsImports = 5
-		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{93ac11d4-e037-9c2f-58e5-376fe33149ec}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{97ba5708-4e83-9b7e-8082-eae0604a8134}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{97ba5708-4e83-9b7e-8082-eae0604a8134}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{9af1694a-01ce-a1a9-1481-f5dd6ce95817}*SharedItemsImports = 5
