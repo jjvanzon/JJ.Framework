@@ -1,0 +1,26 @@
+    <!--<Content Include="$(SolutionDir)\Resources\jj-icon-64x64-margin4.png" Visible="False">-->
+    <!--<Content Include="$(MSBuildThisFileDirectory)\..\Resources\jj-icon-64x64-margin4.png" Visible="False">-->
+
+
+  <!-- Keep specific package assemblies as trimmer roots to avoid AOT analysis warnings when
+       native AOT runs analysis on package binaries. Add any assemblies that the native AOT
+       compiler reports as producing IL3053 here. -->
+  <!--<ItemGroup>
+    <TrimmerRootAssembly Include="JJ.Framework.IO.Legacy" />
+  </ItemGroup>-->
+
+
+🤷 IO Tests - Package.Trimming.TestApp added to sln. AOT disabled for now; DOES NOT WORK. Applied UsingMore.cs pattern for easier base project variant code file reuse. Removed csproj content that do not help solve.
+
+
+    <!-- Disable native AOT/publishing for trimming testapps to avoid invoking ilc which currently does not work yet. -->
+    <EnableNativeAot>false</EnableNativeAot>
+    <PublishAot>false</PublishAot>
+    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
+
+  <ItemGroup>
+    <TrimmerRootAssembly Include="$(AssemblyName)" />
+    <TrimmerRootAssembly Include="JJ.Framework.Testing.Core" />
+    <TrimmerRootAssembly Include="JJ.Framework.Reflection.Core" />
+    <TrimmerRootAssembly Include="JJ.Framework.IO.Core.Package.Trimming.TestApp" />
+  </ItemGroup>

@@ -1,4 +1,4 @@
-namespace JJ.Framework.IO.Core.Tests;
+namespace JJ.Framework.IO.Legacy.Tests;
 
 [TestClass]
 public class CsvReaderTests
