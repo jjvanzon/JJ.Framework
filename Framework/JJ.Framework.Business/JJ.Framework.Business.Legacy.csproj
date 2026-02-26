@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Description>Helpers for business logic. Use ISideEffect to separate business logic units. EntityStatusManager is a container for dirty/new/deleted flags and there is a check if a list is dirty.</Description>
     <PackageTags>entity state side effect check dirty deleted new entitystatusmanager entitystatusmanagerbyid listisdirty isideeffect getlistisdirty</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Business</RepositoryUrl>
