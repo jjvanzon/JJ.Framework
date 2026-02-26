@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.IO.Core" Version="3.8.5162" />
     <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.250.5162" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="3.8.5162" />
   </ItemGroup>
@@ -16,18 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.IO.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.IO.Core.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.IO.Core.Tests\bin\**" />
-    <Compile Include="..\JJ.Framework.IO.Core.Trimming.TestApp\Program.cs" />
-    <Compile Include="..\JJ.Framework.IO.Core.Trimming.TestApp\UsingMore.cs" />
+    <Compile Include="..\JJ.Framework.IO.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\bin\**" />
+    <Compile Include="..\JJ.Framework.IO.Legacy.Trimming.TestApp\Program.cs" />
+    <Compile Include="..\JJ.Framework.IO.Legacy.Trimming.TestApp\UsingMore.cs" />
   </ItemGroup>
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
-
-  <ItemGroup>
-    <TrimmerRootAssembly Include="$(AssemblyName)" />
-  </ItemGroup>
-
 </Project>
