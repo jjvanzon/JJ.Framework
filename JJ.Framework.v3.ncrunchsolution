@@ -494,6 +494,13 @@
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net9.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
