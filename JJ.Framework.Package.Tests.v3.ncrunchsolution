@@ -1,6 +1,7 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
     <CustomBuildProperties>
       <Value>IsNCrunch = True</Value>
     </CustomBuildProperties>
@@ -91,6 +92,8 @@
       <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
     </MetricsExclusionList>
+    <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
+    <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
