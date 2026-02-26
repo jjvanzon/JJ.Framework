@@ -114,7 +114,8 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                         | `CsvReader`: simple streaming CSV reader supporting quoted fields and escaped double-quotes (`""`).
 |       |                                         | `StreamHelper`: convenience conversions between `Stream`, `byte[]` and `string`
 |       |                                         | `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
-|       |                                         | Bug fix: `CsvReader` now correctly handles trailing new lines and does not cut off intentionally escaped quotes at the end of a value.
+|       |                                         | Bug fix: `CsvReader` now correctly preserves a trailing escaped quotes
+|       |                                         | and doesn't crash over trailing new lines.
 
 💬 Feedback 
 ------------
