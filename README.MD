@@ -66,56 +66,56 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 📋 Release Notes
 -----------------
 
-|       |                                         |     |
-|-------|-----------------------------------------|-----|
-| `1.9` | __Build.csproj__                        |
-| `2.5` | __Existence.Core__                      | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | Initial release
-| `2.6` | __Flags__                               | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | `spaceMatters` flags everywhere 
-|       |                                         | `caseMatters` replaced `ignoreCase`  
-|       |                                         | `StringBulder`/`string` more combos possible  
-|       |                                         | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
-| `2.7` | __Version Lineages + IntelliSense__     | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
-|       |                                         | Improved separation of `Legacy` version lineages for a more stable package update.
-|       |                                         | Added more IntelliSense docs.
-| `2.8` | __AOT, Trimming & Self-Contained Apps__ | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
-|       |                                         | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps
-| `2.9` | __zeroMatters__                         | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | Flag when you consider `0` meaningful (not nully)
-| `3.0` | __.NET 10__                             | Upgraded with explicit support for `.NET 10`
-| `3.1` | __Less Prios__                          | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | Simplify overload picking removing some `[Prio]` attributes
-|       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Leading Flags - Coalesce__            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
-|       |                                         | Flags at the beginning of the parameter list, now don't come with a performance penalty.
-| `3.3` | __Leading Flags - Contains__            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | More notation options for flags for the `Contains` method
-| `3.4` | __Leading Flags - FilledIn__            | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | Support flags in front for the `FilledIn` method
-| `3.7` | __Clash of the Booleans__               | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-|       |                                         | Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
-|       |                                         | Improved `Coalesce` resolution and performance for 4+ values and collections.
-|       |                                         | Added overloads for reduced clashes between `bool` flags and value lists.
-|       |                                         | Various non-critical renames for clarity and modularity.
-|       |                                         | [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
-|       |                                         | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
-| `3.8` | __Business.Legacy__                     | [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
-|       |                                         | Full code coverage with automated tests.
-|       |                                         | Releasing a historic version `0.250`.
-|       |                                         | Features:
-|       |                                         | `EntityStatusManager` and `GetListIsDirty` for framework-agnostic `New`/`Deleted`/`Dirty` flag container.
-|       |                                         | `ISideEffect` for keeping business logic units separated.
-|       |                                         | Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
-| `3.9` | __IO.Legacy__                           | [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
-|       |                                         | Full code coverage with automated tests.
-|       |                                         | Releasing a historic version `0.250`.
-|       |                                         | Features:
-|       |                                         | `CsvReader`: simple streaming CSV reader supporting quoted fields and escaped double-quotes (`""`).
-|       |                                         | `StreamHelper`: convenience conversions between `Stream`, `byte[]` and `string`
-|       |                                         | `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
-|       |                                         | Bug fix: `CsvReader` now correctly preserves a trailing escaped quotes
-|       |                                         | and doesn't crash over trailing new lines.
+|       |                                     |     |
+|-------|-------------------------------------|-----|
+| `1.9` | __Build.csproj__                    |
+| `2.5` | __Existence.Core__                  | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                     | Initial release
+| `2.6` | __Flags__                           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                     | `spaceMatters` flags everywhere 
+|       |                                     | `caseMatters` replaced `ignoreCase`  
+|       |                                     | `StringBulder`/`string` more combos possible  
+|       |                                     | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+| `2.7` | __Version Lineages + IntelliSense__ | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+|       |                                     | Improved separation of `Legacy` version lineages for a more stable package update.
+|       |                                     | Added more IntelliSense docs.
+| `2.8` | __AOT, Trimming, Stand-Alone Apps__ | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+|       |                                     | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps
+| `2.9` | __zeroMatters__                     | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                     | Flag when you consider `0` meaningful (not nully)
+| `3.0` | __.NET 10__                         | Upgraded with explicit support for `.NET 10`
+| `3.1` | __Less Prios__                      | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                     | Simplify overload picking removing some `[Prio]` attributes
+|       |                                     | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
+| `3.2` | __Leading Flags - Coalesce__        | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core) [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+|       |                                     | Flags at the beginning of the parameter list, now don't come with a performance penalty.
+| `3.3` | __Leading Flags - Contains__        | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                     | More notation options for flags for the `Contains` method
+| `3.4` | __Leading Flags - FilledIn__        | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                     | Support flags in front for the `FilledIn` method
+| `3.7` | __Clash of the Booleans__           | [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+|       |                                     | Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
+|       |                                     | Improved `Coalesce` resolution and performance for 4+ values and collections.
+|       |                                     | Added overloads for reduced clashes between `bool` flags and value lists.
+|       |                                     | Various non-critical renames for clarity and modularity.
+|       |                                     | [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
+|       |                                     | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
+| `3.8` | __Business.Legacy__                 | [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+|       |                                     | Full code coverage with automated tests.
+|       |                                     | Releasing a historic version `0.250`.
+|       |                                     | Features:
+|       |                                     | `EntityStatusManager` and `GetListIsDirty` for framework-agnostic `New`/`Deleted`/`Dirty` flag container.
+|       |                                     | `ISideEffect` for keeping business logic units separated.
+|       |                                     | Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
+| `3.9` | __IO.Legacy__                       | [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
+|       |                                     | Full test coverage, and member docs.
+|       |                                     | Release of historic version `0.250`.
+|       |                                     | Features:
+|       |                                     | `CsvReader`: simple streaming CSV reader supporting quoted fields and escaped double-quotes (`""`).
+|       |                                     | `StreamHelper`: convenience conversions between `Stream`, `byte[]` and `string`
+|       |                                     | `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
+|       |                                     | Bug fix: `CsvReader` preserves a trailing escaped quotes
+|       |                                     | Bug fix: `CsvReader` solved crash over trailing new line.
 
 💬 Feedback 
 ------------
