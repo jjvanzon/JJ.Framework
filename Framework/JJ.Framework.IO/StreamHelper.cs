@@ -10,6 +10,8 @@ namespace JJ.Framework.IO.Legacy
 {
     public static class StreamHelper
     {
+        /// <inheritdoc cref="_streamhelper" />
+        
         public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)
         {
             if (stream == null) throw new NullException(() => stream);
@@ -22,11 +24,13 @@ namespace JJ.Framework.IO.Legacy
             }
         }
 
+        /// <inheritdoc cref="_bytestostream" />
         public static Stream BytesToStream(byte[] bytes)
         {
             return new MemoryStream(bytes);
         }
 
+        /// <inheritdoc cref="_streamtostring" />
         public static string StreamToString(Stream stream, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
@@ -39,6 +43,7 @@ namespace JJ.Framework.IO.Legacy
             }
         }
 
+        /// <inheritdoc cref="_stringtostream" />
         public static Stream StringToStream(string text, Encoding encoding)
         {
             byte[] bytes = StringToBytes(text, encoding);
@@ -46,12 +51,14 @@ namespace JJ.Framework.IO.Legacy
             return stream;
         }
 
+        /// <inheritdoc cref="_stringtobytes" />
         public static byte[] StringToBytes(string text, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
             return encoding.GetBytes(text);
         }
 
+        /// <inheritdoc cref="_bytestostring" />
         public static string BytesToString(byte[] bytes, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);

@@ -25,3 +25,39 @@ public struct _csvread;
 /// Indexer to obtain the parsed field value by zero-based column index for the most recently read line.
 /// </summary>
 public struct _csvindexer;
+
+/// <summary>
+/// Helper methods for converting between <see cref="Stream"/>, <see cref="byte[]"/> and <see cref="string"/>.
+/// These are small utility wrappers used by higher-level IO code.
+/// </summary>
+public struct _streamhelper;
+
+/// <summary>
+/// Convert the entire stream to a byte array. The stream position is read from its current position.
+/// </summary>
+public struct _streamtobytes;
+
+/// <summary>
+/// Create a <see cref="Stream"/> from a byte array.
+/// </summary>
+public struct _bytestostream;
+
+/// <summary>
+/// Read a <see cref="Stream"/> into a <see cref="string"/> using the provided <see cref="Encoding"/>.
+/// </summary>
+public struct _streamtostring;
+
+/// <summary>
+/// Create a <see cref="Stream"/> from a <see cref="string"/> using the provided <see cref="Encoding"/>.
+/// </summary>
+public struct _stringtostream;
+
+/// <summary>
+/// Convert a <see cref="string"/> to a <see cref="byte[]"/> using the provided <see cref="Encoding"/>.
+/// </summary>
+public struct _stringtobytes;
+
+/// <summary>
+/// Convert a <see cref="byte[]"/> to a <see cref="string"/> using the provided <see cref="Encoding"/>.
+/// </summary>
+public struct _bytestostring;
