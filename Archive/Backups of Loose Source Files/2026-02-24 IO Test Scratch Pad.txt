@@ -24,3 +24,9 @@
     <TrimmerRootAssembly Include="JJ.Framework.Reflection.Core" />
     <TrimmerRootAssembly Include="JJ.Framework.IO.Core.Package.Trimming.TestApp" />
   </ItemGroup>
+
+
+/// <summary>
+/// Construct a CsvReader over the provided <c>Stream</c>.
+/// </summary>
+public struct _csvreader_ctor;

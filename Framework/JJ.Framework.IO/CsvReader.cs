@@ -17,7 +17,7 @@ namespace JJ.Framework.IO.Legacy
         private StreamReader _reader;
         private string[] _values;
 
-        /// <inheritdoc cref="_csvreader_ctor" />
+        /// <inheritdoc cref="_csvreader" />
         public CsvReader(Stream stream)
         {
             if (stream == null) throw new NullException(() => stream);
@@ -40,7 +40,7 @@ namespace JJ.Framework.IO.Legacy
             }
         }
 
-        /// <inheritdoc cref="_read" />
+        /// <inheritdoc cref="_csvread" />
         public bool Read()
         {
             if (_reader.EndOfStream)
@@ -60,7 +60,7 @@ namespace JJ.Framework.IO.Legacy
             return line.SplitWithQuotation(",", quote: '"');
         }
 
-        /// <inheritdoc cref="_indexer" />
+        /// <inheritdoc cref="_csvindexer" />
         public string this[int i]
         {
             get { return _values[i]; }
