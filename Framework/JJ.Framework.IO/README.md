@@ -9,6 +9,20 @@ Contains various file functions, functions for working with streams and working 
 
 Historic release for compatibility with older projects, now upgraded to the newest .NET, doc comments everywhere and compatible with code trimming and native compilation.
 
+Release Notes
+--------------
+
+|         |               |     |
+|---------|---------------|-----|
+| `0.250` | __IO.Legacy__ | Full test coverage, and member docs.
+|         |               | Release of historic version.
+|         |               | Features:
+|         |               | `CsvReader`: simple streaming CSV reader supporting quoted fields and escaped double-quotes (`""`).
+|         |               | `StreamHelper`: convenience conversions between `Stream`, `byte[]` and `string`
+|         |               | `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
+|         |               | Bug fix: `CsvReader` preserves a trailing escaped quotes
+|         |               | Bug fix: `CsvReader` solved crash over trailing new line
+
 
 💬 Feedback
 ============

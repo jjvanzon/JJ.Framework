@@ -115,7 +115,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                     | `StreamHelper`: convenience conversions between `Stream`, `byte[]` and `string`
 |       |                                     | `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
 |       |                                     | Bug fix: `CsvReader` preserves a trailing escaped quotes
-|       |                                     | Bug fix: `CsvReader` solved crash over trailing new line.
+|       |                                     | Bug fix: `CsvReader` solved crash over trailing new line
 
 💬 Feedback 
 ------------
