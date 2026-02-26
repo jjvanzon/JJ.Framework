@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
-    <Version>3.8.$(BuildNum)</Version>
+    <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.IO.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.IO.Core.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.IO.Core.Tests\bin\**" />
+    <Compile Include="..\JJ.Framework.IO.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.IO.Core" Version="3.8.5162" />
+    <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.250.5175" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="3.8.5162" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
