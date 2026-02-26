@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>3.8.$(BuildNum)</Version>
+    <Version>3.9.$(BuildNum)</Version>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Existence.Core" Version="3.8.5162" />
+    <PackageReference Include="JJ.Framework.Existence.Core" Version="3.9.5197" />
     <PackageReference Include="JJ.Framework.Existence.Core.Tests.Helpers" Version="3.7.4872" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.8.5162" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.5162" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.9.5197" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.250.5197" />
   </ItemGroup>
 
   <ItemGroup>
