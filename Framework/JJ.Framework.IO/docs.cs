@@ -27,8 +27,9 @@ public struct _csvread;
 public struct _csvindexer;
 
 /// <summary>
-/// Helper methods for converting between <see cref="Stream"/>, <see cref="byte[]"/> and <see cref="string"/>.
-/// These are small utility wrappers used by higher-level IO code.
+/// Helper methods for converting between <see cref="string"/>, <see cref="byte"/>[] and <see cref="Stream"/>.
+/// Surprisingly different code is required for converting between those three,
+/// and this helper class makes it a bit more consistent.
 /// </summary>
 public struct _streamhelper;
 
@@ -38,7 +39,7 @@ public struct _streamhelper;
 public struct _streamtobytes;
 
 /// <summary>
-/// Create a <see cref="Stream"/> from a byte array.
+/// Turns a <see cref="byte"/> array into a <see cref="Stream"/> so it can be used with common IO methods.
 /// </summary>
 public struct _bytestostream;
 
@@ -48,16 +49,16 @@ public struct _bytestostream;
 public struct _streamtostring;
 
 /// <summary>
-/// Create a <see cref="Stream"/> from a <see cref="string"/> using the provided <see cref="Encoding"/>.
+/// Create a <see cref="Stream"/> from a <see cref="string"/> using the provided <see cref="Encoding"/> (usually set to <see cref="Encoding.UTF8"/>).
 /// </summary>
 public struct _stringtostream;
 
 /// <summary>
-/// Convert a <see cref="string"/> to a <see cref="byte[]"/> using the provided <see cref="Encoding"/>.
+/// Convert a <see cref="string"/> to a <see cref="byte"/>[] using the provided <see cref="Encoding"/> (usually set to <see cref="Encoding.UTF8"/>).
 /// </summary>
 public struct _stringtobytes;
 
 /// <summary>
-/// Convert a <see cref="byte[]"/> to a <see cref="string"/> using the provided <see cref="Encoding"/>.
+/// Convert a <see cref="byte"/>[] to a <see cref="string"/> using the provided <see cref="Encoding"/> (usually set to <see cref="Encoding.UTF8"/>).
 /// </summary>
 public struct _bytestostring;

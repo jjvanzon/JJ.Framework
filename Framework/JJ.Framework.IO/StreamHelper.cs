@@ -8,10 +8,10 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.IO.Legacy
 {
+    /// <inheritdoc cref="_streamhelper" />
     public static class StreamHelper
     {
-        /// <inheritdoc cref="_streamhelper" />
-        
+        /// <inheritdoc cref="_streamtobytes" />
         public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)
         {
             if (stream == null) throw new NullException(() => stream);
