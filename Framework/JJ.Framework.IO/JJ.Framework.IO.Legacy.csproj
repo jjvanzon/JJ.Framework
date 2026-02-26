@@ -3,7 +3,7 @@
     <Version>0.250.$(BuildNum)</Version>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Description>Lightweight IO utilities: CsvReader, string/stream/byte[] conversions, reading/writing structs to streams.</Description>
-    <PackageTags>io csv csvreader stream streamhelper encoding bytes string readstruct writestruct</PackageTags>
+    <PackageTags>io csv csvreader stream streamhelper encoding conversion bytes string readstruct writestruct</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.IO</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.IO</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
