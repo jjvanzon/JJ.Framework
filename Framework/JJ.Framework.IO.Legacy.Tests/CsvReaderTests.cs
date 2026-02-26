@@ -20,6 +20,47 @@ public class CsvReaderTests
     }
 
     [TestMethod]
+    public void CsvReader_ParsesComplexMultipleRows()
+    {
+        const string csv =
+            """
+            Name,Age,Notes
+            "Smith, John",30,Likes pizza and coding
+            Doe,25,
+            ,,
+            """;
+
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(csv));
+        using var reader = new CsvReader(stream);
+
+        // Header
+        IsTrue(reader.Read());
+        AreEqual("Name", reader[0]);
+        AreEqual("Age", reader[1]);
+        AreEqual("Notes", reader[2]);
+
+        // First data row with quoted name
+        IsTrue(reader.Read());
+        AreEqual("Smith, John", reader[0]);
+        AreEqual("30", reader[1]);
+        AreEqual("Likes pizza and coding", reader[2]);
+
+        // Second data row
+        IsTrue(reader.Read());
+        AreEqual("Doe", reader[0]);
+        AreEqual("25", reader[1]);
+        AreEqual("", reader[2]);
+
+        // Third data row with empty fields
+        IsTrue(reader.Read());
+        AreEqual("", reader[0]);
+        AreEqual("", reader[1]);
+        AreEqual("", reader[2]);
+
+        IsFalse(reader.Read());
+    }
+
+    [TestMethod]
     public void CsvReader_ParsesQuotedFieldsWithCommas()
     {
         const string csv = "\"a,1\",b,\"c\"\n";
