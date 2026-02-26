@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.IO.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.IO.Core.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.IO.Core.Tests\bin\**" />
+    <Compile Include="..\JJ.Framework.IO.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.IO.Core\JJ.Framework.IO.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 

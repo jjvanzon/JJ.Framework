@@ -1,8 +1,3 @@
-bool success = 
-RunTests<BinaryWriterExtensionsTests>() &&
-RunTests<CsvReaderTests>() &&
-RunTests<DummyTests>() &&
-RunTests<StreamHelperLegacyTests>() &&
-RunTests<StreamHelperTests>();
+bool success = RunTests<StreamHelperLegacyTests>();
 WriteLine("Done.");
 if (!success) Exit(1);
