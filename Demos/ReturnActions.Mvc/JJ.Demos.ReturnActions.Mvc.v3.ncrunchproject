@@ -1,0 +1,7 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <CopyReferencedAssembliesToWorkspace>True</CopyReferencedAssembliesToWorkspace>
+    <IncludeStaticReferencesInWorkspace>True</IncludeStaticReferencesInWorkspace>
+    <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
+  </Settings>
+</ProjectConfiguration>
