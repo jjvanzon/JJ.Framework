@@ -1,4 +1,5 @@
 ﻿// ReSharper disable MethodOverloadWithOptionalParameter
+
 namespace JJ.Framework.Existence.Core;
 
 /// <inheritdoc cref="_in" />
@@ -38,8 +39,10 @@ public static class InExtensions
     public static bool In(this string? value, bool         spaceMatters,  CaseMatters  caseMatters,  params IEnumerable<string?>? coll) => InUtil.In(value, coll, caseMatters, spaceMatters);
     // ReSharper disable once UnusedParameter.Global
     /// <inheritdoc cref="_in" />
+    #pragma warning disable IDE0060 // Remove unused parameter
     public static bool In(this string? value, bool         spaceMatters,  bool         caseMatters, IEnumerable<string?>? coll, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
-    
+    #pragma warning restore IDE0060 // Remove unused parameter
+
     // Flags in Back
 
     /// <inheritdoc cref="_in" />  
@@ -69,7 +72,9 @@ public static class InExtensions
     public static bool In(this string? value, IEnumerable<string?>? coll, SpaceMatters spaceMatters, bool        caseMatters  ) => InUtil.In(value, coll, caseMatters, spaceMatters);
     // ReSharper disable once UnusedParameter.Global
     /// <inheritdoc cref="_in" />
+    #pragma warning disable IDE0060 // Remove unused parameter
     public static bool In(this string? value, IEnumerable<string?>? coll, bool         spaceMatters, bool        caseMatters, NameOvl ovl = default) => InUtil.In(value, coll, caseMatters, spaceMatters);
+    #pragma warning restore IDE0060 // Remove unused parameter
 
     // Values and Objects
 
