@@ -52,6 +52,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryWriterExtensionsTests.cs" />
     <Compile Include="DirectoryInfoExtensionsTests.cs" />
     <Compile Include="FileFunctionsTests.cs" />
     <Compile Include="FileFunctionsTests_NumberFilePath.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="JJ_Framework_IO_ResourceFormatter_Tests.cs" />
     <Compile Include="SafeFileOverwriterTests.cs" />
     <Compile Include="TestHelper.cs" />
+    <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IO\JJ.Framework.IO.csproj">
