@@ -12,8 +12,8 @@ TestResults
 UpgradeLog.htm
 
 # NCrunch
-*.ncrunchsolution
-*.ncrunchproject
+#*.ncrunchsolution
+#*.ncrunchproject
 nCrunchTemp*.*
 .NCrunch*
 NCrunch*.xml
