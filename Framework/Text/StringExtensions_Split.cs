@@ -34,7 +34,7 @@ namespace JJ.Framework.Text
 
             return values.Select(value => (value ?? "")
                          .Replace($"{quote}{quote}", $"{quote}")
-                         .Trim(quote.Value))
+                         .TrimOnce(quote.Value))
                          .ToList();
         }
 
