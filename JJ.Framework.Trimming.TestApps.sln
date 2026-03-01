@@ -96,6 +96,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Trimming.TestApp", "Framework\JJ.Framework.IO.Legacy.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj", "{409358C6-FD72-ABD0-F200-275DFBDE5D93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.Tests.Helpers", "Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj", "{A740C190-EA9B-492B-4721-B3EBF0FFC70F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -246,6 +248,10 @@ Global
 		{409358C6-FD72-ABD0-F200-275DFBDE5D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{409358C6-FD72-ABD0-F200-275DFBDE5D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{409358C6-FD72-ABD0-F200-275DFBDE5D93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A740C190-EA9B-492B-4721-B3EBF0FFC70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A740C190-EA9B-492B-4721-B3EBF0FFC70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A740C190-EA9B-492B-4721-B3EBF0FFC70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A740C190-EA9B-492B-4721-B3EBF0FFC70F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
