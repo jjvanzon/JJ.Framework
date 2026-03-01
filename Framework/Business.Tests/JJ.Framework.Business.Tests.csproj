@@ -54,11 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityStatusManagerTests.cs" />
-    <Compile Include="ListIsDirtyTests.cs" />
+    <Compile Include="ListIsDirtyCoreTests.cs" />
     <Compile Include="Mocks.cs" />
     <Compile Include="OneToManyRelationshipTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SideEffectTests.cs" />
+    <Compile Include="SideEffectCoreTests.cs" />
     <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
