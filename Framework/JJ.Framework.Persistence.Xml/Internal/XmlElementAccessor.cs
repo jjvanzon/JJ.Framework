@@ -80,7 +80,7 @@ namespace JJ.Framework.Persistence.Legacy.Xml.Internal
         }
 
         /// <summary>
-        /// Mainly used to get the an element by identity value.
+        /// Mainly used to get an element by identity value.
         /// </summary>
         public XmlElement GetElementByAttributeValue(string attributeName, string attributeValue)
         {
@@ -93,7 +93,7 @@ namespace JJ.Framework.Persistence.Legacy.Xml.Internal
         }
 
         /// <summary>
-        /// Mainly used to get the an element by identity value.
+        /// Mainly used to get an element by identity value.
         /// </summary>
         public XmlElement TryGetElementByAttributeValue(string attributeName, string attributeValue)
         {
