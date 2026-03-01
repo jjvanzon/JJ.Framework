@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
 namespace JJ.Framework.IO.Legacy.Tests;
 
 [TestClass]
@@ -202,6 +198,7 @@ public class CsvReaderTests
         // Act: create a reader and drop the reference so the finalizer can run.
         void CreateReader()
         {
+            // ReSharper disable once UnusedVariable
             var reader = new CsvReader(stream);
             // Intentionally do not dispose reader.
         }
