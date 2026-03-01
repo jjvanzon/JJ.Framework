@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryWriterExtensionsTests.cs" />
+    <Compile Include="CsvReaderTests.cs" />
     <Compile Include="DirectoryInfoExtensionsTests.cs" />
     <Compile Include="FileFunctionsTests.cs" />
     <Compile Include="FileFunctionsTests_NumberFilePath.cs" />
