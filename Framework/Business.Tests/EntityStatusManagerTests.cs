@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using JJ.Framework.Business.Tests.Helpers;
+using JJ.Framework.Business.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable NotAccessedVariable
@@ -16,7 +16,7 @@ namespace JJ.Framework.Business.Tests
         [TestMethod]
         public void Test_EntityStatusManager()
         {
-            Entity entity = CreateMockEntity();
+            Question entity = CreateMockEntity();
             ViewModel viewModel = CreateMockViewModel();
 
             //EntityStatusEnum status;
@@ -31,13 +31,13 @@ namespace JJ.Framework.Business.Tests
 
             // Without instance integrity
             var statusManagerByID = new EntityStatusManagerByID();
-            statusManagerByID.SetIsDirty<Entity>(entity.ID);
+            statusManagerByID.SetIsDirty<Question>(entity.ID);
             statusManagerByID.SetIsDirty(entity.ID, () => entity.Name);
-            isDirty = statusManagerByID.IsDirty<Entity>(entity.ID);
+            isDirty = statusManagerByID.IsDirty<Question>(entity.ID);
             isDirty = statusManagerByID.IsDirty(entity.ID, () => entity.Name);
         }
 
-        private bool MustSetLastModifiedByUser(Entity entity, EntityStatusManager statusManager)
+        private bool MustSetLastModifiedByUser(Question entity, EntityStatusManager statusManager)
             => statusManager.IsDirty(entity) ||
                statusManager.IsNew(entity) ||
                statusManager.IsDirty(() => entity.QuestionType) ||
@@ -55,7 +55,7 @@ namespace JJ.Framework.Business.Tests
 
         private const int DEFAULT_ID = 1;
 
-        private Entity CreateMockEntity() => new Entity { ID = DEFAULT_ID, Name = "OriginalName" };
-        private ViewModel CreateMockViewModel() => new ViewModel { ID = DEFAULT_ID, Name = "NewName" };
+        private Question CreateMockEntity() => new Question { ID = DEFAULT_ID, Name = "OriginalName" };
+        private ViewModel CreateMockViewModel() => new ViewModel { Key = DEFAULT_ID, Name = "NewName" };
     }
 }

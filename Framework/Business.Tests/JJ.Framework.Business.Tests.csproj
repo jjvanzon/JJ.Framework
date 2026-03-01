@@ -53,6 +53,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityStatusManagerTests.cs" />
     <Compile Include="ListIsDirtyTests.cs" />
     <Compile Include="Mocks.cs" />
     <Compile Include="OneToManyRelationshipTests.cs" />
