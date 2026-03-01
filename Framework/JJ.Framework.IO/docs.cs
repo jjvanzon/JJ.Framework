@@ -27,14 +27,14 @@ public struct _csvread;
 public struct _csvindexer;
 
 /// <summary>
-/// Helper methods for converting between <see cref="string"/>, <see cref="byte"/>[] and <see cref="Stream"/>.
+/// Converts between string, Stream and byte[]. 
 /// Surprisingly different code is required for converting between those three,
 /// and this helper class makes it a bit more consistent.
 /// </summary>
 public struct _streamhelper;
 
 /// <summary>
-/// Convert the entire stream to a byte array. The stream position is read from its current position.
+/// Convert the entire stream to a byte array.
 /// </summary>
 public struct _streamtobytes;
 
@@ -62,3 +62,11 @@ public struct _stringtobytes;
 /// Convert a <see cref="byte"/>[] to a <see cref="string"/> using the provided <see cref="Encoding"/> (usually set to <see cref="Encoding.UTF8"/>).
 /// </summary>
 public struct _bytestostring;
+
+/// <summary>
+/// In other languages / environments I used to be able to write a struct directly to a file.
+/// And in C# I can't. It is just a set of freaking bytes
+/// litterly stored in memory and it needs to be streamed to a file. 
+/// Why are things like that not possible using a BinaryWriter?!?
+/// </summary>
+public struct _readwritestruct;
