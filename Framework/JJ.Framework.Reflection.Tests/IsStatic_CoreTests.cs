@@ -1,4 +1,5 @@
 ﻿
+
 namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
@@ -14,6 +15,7 @@ public class IsStatic_CoreTests
     public static event EventHandler StaticEvent = (sender, args) => { };
     // ncrunch: no coverage end
 
+    [Suppress("Trimmer", "IL2075", Justification = TypeLoaded)]
     [TestMethod]
     public void IsStatic_True()
     {
@@ -30,6 +32,7 @@ public class IsStatic_CoreTests
         IsTrue(ReflectionHelper.IsStatic(method));
     }
     
+    [Suppress("Trimmer", "IL2075", Justification = TypeLoaded)]
     [TestMethod]
     public void IsStatic_False()
     {
@@ -46,6 +49,7 @@ public class IsStatic_CoreTests
         IsFalse(ReflectionHelper.IsStatic(method));
     }
     
+    [Suppress("Trimmer", "IL2075", Justification = TypeLoaded)]
     [TestMethod]
     public void IsStatic_Exceptions()
     {

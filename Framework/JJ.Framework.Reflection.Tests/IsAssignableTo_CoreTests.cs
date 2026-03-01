@@ -3,6 +3,7 @@
 [TestClass]
 public class IsAssignableTo_CoreTests
 {
+    [Suppress("Trimmer", "IL2026", Justification = TypeLoaded)]
     [TestMethod]
     public void IsAssignableTo_True()
     {
@@ -15,6 +16,7 @@ public class IsAssignableTo_CoreTests
         IsTrue(() => typeof(DummyClass).IsAssignableTo(typeof(IDummy)));
     }
     
+    [Suppress("Trimmer", "IL2026", Justification = TypeLoaded)]
     [TestMethod]
     public void IsAssignableTo_False()
     {

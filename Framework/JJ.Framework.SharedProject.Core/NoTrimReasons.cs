@@ -44,4 +44,6 @@ internal static class NoTrimReasons
         "JJ0010 - Gets base types and then reflects on its members, which can't be guaranteed to be trim-safe. " + DoWhatInstead;
 
     public const string Lambda = "JJ0011 - Lambda: Trimmer complains, because of usage in a lamda expression, not actual use of reflection." + DoWhatInstead;
+
+    public const string TypeLoaded = "JJ0012 - TypeLoaded: Trimming issue can be ignored, when Type loaded.";
 }

@@ -1,4 +1,5 @@
 global using System.Diagnostics.CodeAnalysis;
+global using JJ.Framework.SharedProject.Core;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Business.Core;
 global using JJ.Framework.Testing.Core.MSTestless;
