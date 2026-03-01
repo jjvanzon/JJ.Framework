@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="docs.cs" />
     <Compile Include="EntityStatusEnum.cs" />
     <Compile Include="EntityStatusHelper.cs" />
     <Compile Include="EntityStatusManager.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="PropertyStatusEnum.cs" />
     <Compile Include="ResultBase.cs" />
     <Compile Include="ResultT.cs" />
+    <Compile Include="Using.cs" />
     <Compile Include="VoidResult.cs" />
   </ItemGroup>
   <ItemGroup>

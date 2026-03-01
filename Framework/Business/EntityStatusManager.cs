@@ -1,43 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Business
 {
-    /// <summary>
+    /// <remarks>
     /// Stores entity statuses such as IsDirty and IsNew.
     /// It is just a glorified set of dictionaries, really.
-    /// </summary>
+    /// </remarks>
+    /// <inheritdoc cref="_entitystatusmanager" />
     [Obsolete("Use your own custom-programmed EntityStatusManager instead. " +
               "Then you can give it a more specific interface like: IsNew(Order) and NameIsDirty(Customer) " +
               "So writers and readers know what to do and what to expect.")]
-    [PublicAPI]
     public class EntityStatusManager
     {
+        /// <inheritdoc cref="_entitystatusmanager" />
+        public EntityStatusManager() { }
+
         // TODO: Tuples as keys might not be fast.
 
         private readonly Dictionary<object, EntityStatusEnum> _entityStatuses = new Dictionary<object, EntityStatusEnum>();
         private readonly Dictionary<Tuple<object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple<object, string>, PropertyStatusEnum>();
 
+        /// <inheritdoc cref="_isnew" />
         public bool IsNew(object entity) => GetStatus(entity) == EntityStatusEnum.New;
 
+        /// <inheritdoc cref="_setisnew" />
         public void SetIsNew(object entity) => SetStatus(entity, EntityStatusEnum.New);
 
+        /// <inheritdoc cref="_isdirty" />
         public bool IsDirty(object entity) => GetStatus(entity) == EntityStatusEnum.Dirty;
 
+        /// <inheritdoc cref="_setisdirty" />
         public void SetIsDirty(object entity) => SetStatus(entity, EntityStatusEnum.Dirty);
 
+        /// <inheritdoc cref="_isdeleted" />
         public bool IsDeleted(object entity) => GetStatus(entity) == EntityStatusEnum.Deleted;
 
         public void SetIsDeleted(object entity) => SetStatus(entity, EntityStatusEnum.Deleted);
 
-        /// <summary> For properties. </summary>
+        /// <inheritdoc cref="_isdirty_property" />
+        /// <remarks> For properties. </remarks>
         public bool IsDirty<T>(Expression<Func<T>> propertyExpression) => GetStatus(propertyExpression) == PropertyStatusEnum.Dirty;
 
-        /// <summary> For properties. </summary>
+        /// <inheritdoc cref="_setisdirty_property" />
+        /// <remarks> For properties. </remarks>
         public void SetIsDirty<T>(Expression<Func<T>> propertyExpression) => SetStatus(propertyExpression, PropertyStatusEnum.Dirty);
 
         // TODO: I am not happy about type argument T.
@@ -90,6 +99,7 @@ namespace JJ.Framework.Business
             _propertyStatuses[key] = propertyStatus;
         }
 
+        /// <inheritdoc cref="_clear" />
         public void Clear()
         {
             _entityStatuses.Clear();

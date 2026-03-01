@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 
 namespace JJ.Framework.Business
 {
-    [PublicAPI]
+    /// <inheritdoc cref="_entitystatushelper" />
     public static class EntityStatusHelper
     {
         /// <summary>

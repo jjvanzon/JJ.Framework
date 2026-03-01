@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Business
 {
-    [PublicAPI]
+    /// <inheritdoc cref="_entitystatusmanager" />
     public class EntityStatusManagerByID
     {
+        /// <inheritdoc cref="_entitystatusmanager" />
+        public EntityStatusManagerByID() { }
+
         // TODO: Tuples as keys might not be fast.
 
         private readonly IDictionary<Tuple<Type, object>, EntityStatusEnum> _entityStatuses = new Dictionary<Tuple<Type, object>, EntityStatusEnum>();
@@ -17,44 +19,58 @@ namespace JJ.Framework.Business
 
         // IsDirty
 
+        /// <inheritdoc cref="_isdirty" />
         public bool IsDirty<TEntity>(object id) => IsDirty(typeof(TEntity), id);
 
+        /// <inheritdoc cref="_isdirty" />
         public bool IsDirty(Type entityType, object id) => GetStatus(entityType, id) == EntityStatusEnum.Dirty;
 
-        /// <summary> For properties. </summary>
+        /// <inheritdoc cref="_isdirty_property" />
+        /// <remarks> For properties. </remarks>
         public bool IsDirty<T>(object id, Expression<Func<T>> propertyExpression) => GetStatus(id, propertyExpression) == PropertyStatusEnum.Dirty;
 
         // SetIsDirty
 
+        /// <inheritdoc cref="_setisdirty" />
         public void SetIsDirty<TEntity>(object id) => SetIsDirty(typeof(TEntity), id);
 
+        /// <inheritdoc cref="_setisdirty" />
         public void SetIsDirty(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.Dirty);
 
-        /// <summary> For properties. </summary>
+        /// <inheritdoc cref="_setisdirty_property" />
+        /// <remarks> For properties. </remarks>
         public void SetIsDirty<T>(object id, Expression<Func<T>> propertyExpression) => SetStatus(id, propertyExpression, PropertyStatusEnum.Dirty);
 
         // IsNew
 
+        /// <inheritdoc cref="_isnew" />
         public bool IsNew<TEntity>(object id) => IsNew(typeof(TEntity), id);
 
+        /// <inheritdoc cref="_isnew" />
         public bool IsNew(Type entityType, object id) => GetStatus(entityType, id) == EntityStatusEnum.New;
 
         // SetIsNew
 
+        /// <inheritdoc cref="_setisnew" />
         public void SetIsNew<TEntity>(object id) => SetIsNew(typeof(TEntity), id);
 
+        /// <inheritdoc cref="_setisnew" />
         public void SetIsNew(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.New); // BUGFIX: "Dirty" => "New"
 
         // IsDeleted
 
+        /// <inheritdoc cref="_isdeleted" />
         public bool IsDeleted<TEntity>(object id) => IsDeleted(typeof(TEntity), id);
 
+        /// <inheritdoc cref="_isdeleted" />
         public bool IsDeleted(Type entityType, object id) => GetStatus(entityType, id) == EntityStatusEnum.Deleted;
 
         // SetIsDeleted
 
+        /// <inheritdoc cref="_setisdeleted" />
         public void SetIsDeleted<TEntity>(object id) => SetIsDeleted(typeof(TEntity), id);
 
+        /// <inheritdoc cref="_setisdeleted" />
         public void SetIsDeleted(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.Deleted); // BUGFIX: "Dirty" => "Deleted"
 
         // Generalized methods
