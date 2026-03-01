@@ -1,13 +1,15 @@
 ﻿JJ.Framework.IO.Legacy
 ======================
 
-Contains various file functions, functions for working with streams and working with CSV's.
+Historic release for compatibility with older projects from `2015`, now upgraded to the newest .NET, doc comments everywhere and compatible with code trimming and native compilation.
+
+A version from `2018` is [`JJ.Framework.IO`](https://www.nuget.org/packages/JJ.Framework.IO). That one has more features, but officially only supports an older version of .NET, even though compatibility with newer .NET versions is probably good.
+
+This library contains various file functions, functions for working with streams and working with CSV's.
 
 * `CsvReader`: A class for reading out CSV files.
 * `StreamHelper`: Converts between `string`, `Stream` and `byte[]`. Surprisingly different code is required for converting between those three, and this helper class makes it a bit more consistent.
 * `BinaryWriterExtensions`: Contains some methods for reading and writing `structs` to a `Stream`.
-
-Historic release for compatibility with older projects, now upgraded to the newest .NET, doc comments everywhere and compatible with code trimming and native compilation.
 
 Release Notes
 --------------

@@ -1,6 +1,11 @@
 JJ.Framework.Reflection.Legacy
 ==============================
 
+Version from `2015`, now upgraded to .NET 10, doc comments everywhere and compatible with code trimming and native compilation. 
+
+A different version from `2018` is [`JJ.Framework.Reflection`](https://www.nuget.org/packages/JJ.Framework.Reflection). It has a slightly larger set of helpers but officially only supports an older version of .NET, even though 
+
+
 Extensions to the `System.Reflection` and `System.Linq.Expressions` namespaces. Work with expressions and reflection. Turn lambdas into text:
 
 ```cs

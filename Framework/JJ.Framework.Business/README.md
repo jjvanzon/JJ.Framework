@@ -1,6 +1,10 @@
 ﻿JJ.Framework.Business.Legacy
 ----------------------------
 
+A historic version released in aid of older apps, that still hold value. Now targets `.NET 10` and `.NET Standard` supporting native compilation and code trimming for wide compatibility, tested with `100%` code coverage, doc pop-ups everywhere.
+
+A version from a different point in time is [`JJ.Framework.Business`](https://www.nuget.org/packages/JJ.Framework.Business). That one has additional classes to manage bidirectional relationships between entities, but also excludes the `EntityStatusManager` class. It only officially supports an older version of .NET, even though compatibility with a newer .NET should be fine.
+
 Classes to support a business logic layer.
 
 - `EntityStatusManager`
@@ -19,8 +23,6 @@ Classes to support a business logic layer.
 - `GetListIsDirty`
 
     - Compares two lists (a source list of data and a destination list of data). Determines whether a list is dirty. This means that it checks whether items were removed, added or changed. (The changing of items does not mean that the entities themselves are dirty, it means that a list position now points to another object.)
-
-A historic version released in aid of older apps, that still hold value. Now targets `.NET 10` and `.NET Standard` supporting native compilation and code trimming for wide compatibility, tested with `100%` code coverage, doc pop-ups everywhere.
 
 Release Notes
 -------------
