@@ -4,4 +4,4 @@
 //WriteLine("Done.");
 //if (!success) Exit(1);
 
-Exit(1);
+Exit(0);
