@@ -225,12 +225,12 @@ public class EntityStatusManagerCoreTests
         var manager = new EntityStatusManager();
 
         // Null expressions throw NullException
-        Throws(() => manager.IsDirty<string>(null!), "expression", "null");
-        Throws(() => manager.SetIsDirty<string>(null!), "expression", "null");
+        ThrowsException(() => manager.IsDirty   <string>(null!), "propertyExpression cannot be null.");
+        ThrowsException(() => manager.SetIsDirty<string>(null!), "propertyExpression cannot be null.");
 
         // Insufficient expression elements (needs both entity and property, e.g. `entity.Name`.
-        Throws(() => manager.IsDirty(() => 1), "expression", "2 elements");
-        Throws(() => manager.SetIsDirty(() => 1), "expression", "2 elements");
+        ThrowsException(() => manager.IsDirty   (() => 1), "propertyExpression must have at least 2 elements.");
+        ThrowsException(() => manager.SetIsDirty(() => 1), "propertyExpression must have at least 2 elements.");
     }
 
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
