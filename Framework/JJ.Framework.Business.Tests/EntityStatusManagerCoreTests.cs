@@ -1,6 +1,6 @@
 ﻿// ReSharper disable RedundantArgumentDefaultValue
 
-namespace JJ.Framework.Business.Core.Tests;
+namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
 public class EntityStatusManagerCoreTests

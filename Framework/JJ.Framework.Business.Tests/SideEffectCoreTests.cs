@@ -1,10 +1,10 @@
 // ReSharper disable ObjectCreationAsStatement
 // ReSharper disable ExpressionIsAlwaysNull
 
-namespace JJ.Framework.Business.Core.Tests;
+namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
-public class SideEffectTests
+public class SideEffectCoreTests
 {
     private class DelegateSideEffect(Action action) : ISideEffect
     {

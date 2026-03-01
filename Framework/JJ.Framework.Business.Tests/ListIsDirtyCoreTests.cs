@@ -1,9 +1,9 @@
 using static JJ.Framework.Business.Legacy.EntityStatusHelper;
 
-namespace JJ.Framework.Business.Core.Tests;
+namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
-public class ListIsDirtyTests
+public class ListIsDirtyCoreTests
 {
     [TestMethod]
     public void GetListIsDirty_SameLists()
