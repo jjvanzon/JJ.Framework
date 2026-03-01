@@ -19,7 +19,7 @@ public class SideEffectTests
         bool wasCalled = false;
         ISideEffect sideEffect = new DelegateSideEffect(() => wasCalled = true);
         sideEffect.Execute();
-        IsTrue(wasCalled);
+        IsTrue(() => wasCalled);
     }
 
     [TestMethod]
