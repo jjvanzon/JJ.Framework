@@ -54,6 +54,7 @@
     <Compile Include="CsvReader.cs" />
     <Compile Include="DiagnosticsFormatter.cs" />
     <Compile Include="DirectoryInfoExtensions.cs" />
+    <Compile Include="docs.cs" />
     <Compile Include="FileDeduplicator.cs" />
     <Compile Include="BulkFileDeleterBase.cs" />
     <Compile Include="FileDeduplicatorCallbackCountEnum.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="SafeFileOverwriter.cs" />
     <Compile Include="StreamHelper.cs" />
     <Compile Include="FilePathExtensions.cs" />
+    <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">

@@ -7,6 +7,7 @@ namespace JJ.Framework.IO
     /// <summary> Contains some methods for reading and writing structs to a stream. </summary>
     public static class BinaryWriterExtensions
     {
+        /// <inheritdoc cref="_readwritestruct" />
         public static void WriteStruct<T>(this BinaryWriter writer, T @struct)
             where T : struct
         {
@@ -23,6 +24,7 @@ namespace JJ.Framework.IO
         /// <summary>
         /// Beware that the performance might not be better than reading the values one by one.
         /// </summary>
+        /// <inheritdoc cref="_readwritestruct" />
         public static T ReadStruct<T>(this BinaryReader reader)
             where T : struct
         {

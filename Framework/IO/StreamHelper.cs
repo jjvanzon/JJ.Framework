@@ -6,13 +6,10 @@ using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {
-    /// <summary>
-    /// Converts between string, Stream and byte[]. 
-    /// Surprisingly different code is required for converting between those three,
-    /// and this helper class makes it a bit more consistent.
-    /// </summary>
+    /// <inheritdoc cref="_streamhelper" />
     public static class StreamHelper
     {
+        /// <inheritdoc cref="_streamtobytes" />
         public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)
         {
             if (stream == null) throw new NullException(() => stream);
@@ -27,8 +24,10 @@ namespace JJ.Framework.IO
             return memoryStream.ToArray();
         }
 
+        /// <inheritdoc cref="_bytestostream" />
         public static Stream BytesToStream(byte[] bytes) => new MemoryStream(bytes);
 
+        /// <inheritdoc cref="_streamtostring" />
         public static string StreamToString(Stream stream, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
@@ -41,6 +40,7 @@ namespace JJ.Framework.IO
             }
         }
 
+        /// <inheritdoc cref="_stringtostream" />
         public static Stream StringToStream(string text, Encoding encoding, bool includeByteOrderMark = false)
         {
             byte[] bytes = StringToBytes(text, encoding, includeByteOrderMark);
@@ -48,6 +48,7 @@ namespace JJ.Framework.IO
             return stream;
         }
 
+        /// <inheritdoc cref="_stringtobytes" />
         public static byte[] StringToBytes(string text, Encoding encoding, bool includeByteOrderMark = false)
         {
             if (encoding == null) throw new NullException(() => encoding);
@@ -62,6 +63,7 @@ namespace JJ.Framework.IO
             return bytes;
         }
 
+        /// <inheritdoc cref="_bytestostring" />
         public static string BytesToString(byte[] bytes, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);

@@ -6,7 +6,7 @@ using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {
-    /// <summary> A class for reading out CSV files. </summary>
+    /// <inheritdoc cref="_csvreader" />
     [PublicAPI]
     public class CsvReader : IDisposable
     {
@@ -15,6 +15,7 @@ namespace JJ.Framework.IO
         private readonly StreamReader _reader;
         private IList<string> _values;
 
+        /// <inheritdoc cref="_csvreader" />
         public CsvReader(Stream stream, string columnSeparator = ",", int? enforcedColumnCount = null)
         {
             _columnSeparator = columnSeparator;
@@ -22,13 +23,16 @@ namespace JJ.Framework.IO
             _reader = new StreamReader(stream);
         }
 
+        /// <inheritdoc cref="_dispose" />
         ~CsvReader() => Dispose();
 
+        /// <inheritdoc cref="_dispose" />
         public void Dispose() => _reader?.Dispose();
 
         public int ColumnCount => _values.Count;
         public int CurrentLine { get; private set; }
 
+        /// <inheritdoc cref="_csvread" />
         public bool Read()
         {
             if (_reader.EndOfStream)
@@ -55,6 +59,7 @@ namespace JJ.Framework.IO
 
         private IList<string> ParseLine(string line) => line.SplitWithQuotation(_columnSeparator, quote: '"');
 
+        /// <inheritdoc cref="_csvindexer" />
         public string this[int i] => _values[i];
     }
 }
