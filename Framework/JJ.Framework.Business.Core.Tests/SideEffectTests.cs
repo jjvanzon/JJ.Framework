@@ -13,6 +13,7 @@ public class SideEffectTests
         public void Execute() => _action();
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void SideEffect_Execute_CallsDelegate()
     {
@@ -42,6 +43,7 @@ public class SideEffectTests
         }
     }
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]
     public void SideEffect_InitName_ChangesEntityProperty()
     {
