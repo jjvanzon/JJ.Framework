@@ -58,8 +58,8 @@ namespace JJ.Framework.Business.Legacy
             SetStatus(entityType, id,  EntityStatusEnum.Dirty);
         }
 
-        /// <remarks> For properties. </remarks>
         /// <inheritdoc cref="_setisdirty_property" />
+        /// <remarks> For properties. </remarks>
         #if !NET9_0_OR_GREATER
         [NoTrim(ArrayInit)]
         #endif

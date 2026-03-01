@@ -22,6 +22,7 @@ namespace JJ.Framework.Business.Legacy
 
         private IDictionary<object, EntityStatusEnum> _entityStatuses = new Dictionary<object, EntityStatusEnum>();
         private IDictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum>();
+        
         /// <inheritdoc cref="_isnew" />
         public bool IsNew(object entity)
         {
