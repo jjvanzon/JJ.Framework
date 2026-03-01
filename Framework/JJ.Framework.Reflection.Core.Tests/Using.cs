@@ -31,7 +31,7 @@ global using static JJ.Framework.Reflection.Legacy.ReflectionHelper;
 global using static JJ.Framework.Reflection.Core.Reflect;
 global using static JJ.Framework.Reflection.Core.NullFlag;
 global using static JJ.Framework.Reflection.Core.MatchCaseFlag;
-//global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert; // Specifically excluded; replaced by AssertHelperCore.
+//global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert; // Specifically excluded; replaced by AssertCore.
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
