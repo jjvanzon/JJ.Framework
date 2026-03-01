@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Business.Tests.Helpers
+namespace JJ.Framework.Business.Legacy.Tests.Helpers
 {
     internal class ViewModel
     {
-        public int ID { get; set; }
+        public int Key { get; set; }
         public string Name { get; set; }
     }
 }

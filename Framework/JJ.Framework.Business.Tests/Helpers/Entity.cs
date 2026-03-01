@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Business.Tests.Helpers
+namespace JJ.Framework.Business.Legacy.Tests.Helpers
 {
     internal class Entity
     {

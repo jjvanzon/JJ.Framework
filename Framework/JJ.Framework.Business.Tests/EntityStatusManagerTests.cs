@@ -1,8 +1,9 @@
-﻿// ReSharper disable NotAccessedVariable
+﻿#pragma warning disable IDE0130 // Namespace does notg match folder
+// // ReSharper disable NotAccessedVariable
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Business.Tests.Helpers;
+using JJ.Framework.Business.Legacy.Tests.Helpers;
 using System.Linq;
 
 namespace JJ.Framework.Business.Tests
@@ -66,7 +67,7 @@ namespace JJ.Framework.Business.Tests
 
         private ViewModel CreateMockViewModel()
         {
-            return new ViewModel { ID = DEFAULT_ID, Name = "NewName" };
+            return new ViewModel { Key = DEFAULT_ID, Name = "NewName" };
         }
     }
 }
