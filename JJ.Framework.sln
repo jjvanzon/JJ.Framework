@@ -782,6 +782,8 @@ Global
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{c00eb914-792b-5c1f-eef7-21b059458fc2}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{c600657b-7e29-44b5-83a1-747fab30d5d0}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{c600657b-7e29-44b5-83a1-747fab30d5d0}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{c848b474-8016-4709-9d2d-e756e2f2a99c}*SharedItemsImports = 5
+		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{c848b474-8016-4709-9d2d-e756e2f2a99c}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{cb205117-4c63-a403-fa87-91ed2805c410}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cb205117-4c63-a403-fa87-91ed2805c410}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{ce2bf11f-d06a-4ea3-9dd6-fdda12705f83}*SharedItemsImports = 13
