@@ -43,7 +43,7 @@ namespace JJ.Framework.Business
 
         public void SetIsNew<TEntity>(object id) => SetIsNew(typeof(TEntity), id);
 
-        public void SetIsNew(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.Dirty);
+        public void SetIsNew(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.New); // BUGFIX: "Dirty" => "New"
 
         // IsDeleted
 
@@ -55,7 +55,7 @@ namespace JJ.Framework.Business
 
         public void SetIsDeleted<TEntity>(object id) => SetIsDeleted(typeof(TEntity), id);
 
-        public void SetIsDeleted(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.Dirty);
+        public void SetIsDeleted(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.Deleted); // BUGFIX: "Dirty" => "Deleted"
 
         // Generalized methods
 
