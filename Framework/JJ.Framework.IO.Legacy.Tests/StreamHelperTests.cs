@@ -15,6 +15,18 @@ public class StreamHelperTests
         byte[] bytesAfter = StreamToBytes(streamBefore);
         CollectionAssert.AreEqual(bytesBefore, bytesAfter);
     }
+    
+    [TestMethod]
+    public void StreamToBytes_ReadsFromCurrentPosition()
+    {
+        byte[] bytesBefore = [0, 1, 2, 3, 4];
+        using var stream = new MemoryStream(bytesBefore);
+        stream.Position = 2; // move to third byte
+
+        byte[] bytesAfter = StreamToBytes(stream);
+
+        CollectionAssert.AreEqual(new byte[] { 2, 3, 4 }, bytesAfter);
+    }
 
     [TestMethod]
     public void BytesToStream_CreatesStreamWithSameBytes()
