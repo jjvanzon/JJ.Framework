@@ -1,0 +1,3 @@
+#!/bin/sh
+# Run trim tests before committing to catch trimming failures early.
+cmd.exe /c "$(git rev-parse --show-toplevel)/RunTrimTests.bat"
