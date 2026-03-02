@@ -1,6 +1,4 @@
-﻿
-
-namespace JJ.Framework.Reflection.Core.Tests;
+﻿namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [TestClass]
 public class IsStatic_CoreTests
