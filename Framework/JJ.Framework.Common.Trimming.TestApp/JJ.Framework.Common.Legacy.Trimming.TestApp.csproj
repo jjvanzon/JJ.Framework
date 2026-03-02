@@ -18,4 +18,8 @@
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <TrimmerRootAssembly Include="$(AssemblyName)" />
+  </ItemGroup>
+
 </Project>
