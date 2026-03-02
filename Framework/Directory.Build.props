@@ -181,10 +181,10 @@
     <MSBuild Condition="'$(IsNCrunch)'=='True' And ($(IsNet9) Or $(IsNet10))" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishSingleFile=true;PublishReadyToRun=true" />
 
-    <!--<MSBuild Condition="'$(IsNCrunch)'=='True' And $(IsNet8)" Targets="Publish" 
+    <MSBuild Condition="'$(IsNCrunch)'=='True' And $(IsNet8)" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishReadyToRun=true" />
 
-    <MSBuild Condition="'$(IsNCrunch)'=='True' And ($(IsNet6) Or $(IsNet7))" Targets="Publish" 
+    <!--<MSBuild Condition="'$(IsNCrunch)'=='True' And ($(IsNet6) Or $(IsNet7))" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishSingleFile=true;PublishReadyToRun=true" />
 
     <MSBuild Condition="'$(IsNCrunch)'=='True' And $(IsNet5)" Targets="Publish" 
