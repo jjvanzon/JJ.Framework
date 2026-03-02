@@ -14,14 +14,16 @@ public partial class AccessorCore
     [NoTrim(ObjectGetType)]
     public AccessorCore(object obj)
     {
-        Obj = obj ?? throw new NullException(() => obj);
+        ThrowIfNull(obj);
+        Obj = obj;
         _type = obj.GetType();
         _typesInHierarchy = _type.GetTypesInHierarchy();
     }
 
     public AccessorCore([Dyn(Intf | PublicCtors)] Type type, params ICollection<object?> constructArgs)
     {
-        _type = type ?? throw new NullException(() => type);
+        ThrowIfNull(type);
+        _type = type;
         _typesInHierarchy = type.GetTypesInHierarchy();
         Obj = NewOrNull(type, constructArgs);
     }
@@ -36,7 +38,7 @@ public partial class AccessorCore
     
     private object? NewOrNull([Dyn(PublicCtors)] Type type, ICollection<object?> constructArgs)
     {
-        if (constructArgs == null) throw new NullException(() => constructArgs);
+        ThrowIfNull(constructArgs);
         var constructorTypes = TypesFromObjects(constructArgs);
         ConstructorInfo? constructor = type.GetConstructor(constructorTypes);
         return constructor?.Invoke(constructArgs.ToArray());

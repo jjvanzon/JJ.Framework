@@ -5,7 +5,7 @@ public static partial class Reflect
     /// <inheritdoc cref="_typesinhierarchy" />
     public static ICollection<Type> GetTypesInHierarchy([Dyn(Interfaces)] Type type)
     {
-        if (type == null) throw new NullException(() => type);
+        ThrowIfNull(type);
         var coll = new HashSet<Type>();
         AddTypesInHierarchy(type, coll);
         return coll;
@@ -17,9 +17,8 @@ public static partial class Reflect
     /// <inheritdoc cref="_typesinhierarchy" />
     public static void AddTypesInHierarchy([Dyn(Interfaces)] Type type, ICollection<Type> coll)
     {
-        if (type == null) throw new NullException(() => type);
-        if (coll == null) throw new NullException(() => coll);
-
+        ThrowIfNull(type);
+        ThrowIfNull(coll);
         AddStateTypesInHierarchy(type, coll);
         AddInterfacesInHierarchy(type, coll);
     }
@@ -103,9 +102,8 @@ public static partial class Reflect
     /// <inheritdoc cref="_interfacesinhierarchy" />
     public static void AddInterfacesInHierarchy([Dyn(Interfaces)] Type type, ICollection<Type> coll)
     {
-        if (type == null) throw new NullException(() => type);
-        if (coll == null) throw new NullException(() => coll);
-        
+        ThrowIfNull(type);
+        ThrowIfNull(coll);
         if (type.IsInterface) coll.Add(type);
         coll.AddRange(type.GetInterfaces()); // GetInterfaces from .NET is already recursive.
     }
