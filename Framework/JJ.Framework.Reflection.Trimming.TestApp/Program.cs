@@ -1,4 +1,5 @@
 ﻿bool success = 
+RunTests<GetImplementations_CoreTests>() &&
 RunTests<IsAssignableTo_CoreTests>() &&
 RunTests<IsIndexer_CoreTests>() &&
 RunTests<IsStatic_CoreTests>() &&

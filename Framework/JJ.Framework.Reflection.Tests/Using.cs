@@ -2,6 +2,8 @@
 global using System.Diagnostics.CodeAnalysis;
 // ReSharper disable once RedundantUsingDirective.Global
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable once RedundantUsingDirective.Global
+global using JJ.Framework.SharedProject.Core;
 global using JJ.Framework.Testing.Legacy;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core.Tests.Helpers;
