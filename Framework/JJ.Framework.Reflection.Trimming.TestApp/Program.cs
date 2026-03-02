@@ -1,6 +1,6 @@
 ﻿#if DEBUG
-WriteLine("Attach debugger if needed and/or press any key to continue.");
-ReadKey(intercept: true);
+WriteLine($"PID: {ProcessId} - Attach debugger if needed and/or press any key to continue.");
+ReadKey(true);
 #endif
 
 bool success = 
