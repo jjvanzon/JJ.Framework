@@ -19,6 +19,7 @@
     <Compile Remove="..\JJ.Framework.Reflection.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Reflection.Tests\bin\**" />
     <Compile Include="..\JJ.Framework.Reflection.Trimming.TestApp\Program.cs" />
+    <Compile Include="..\JJ.Framework.Reflection.Trimming.TestApp\UsingMore.cs" />
   </ItemGroup>
 
   <ItemGroup>
