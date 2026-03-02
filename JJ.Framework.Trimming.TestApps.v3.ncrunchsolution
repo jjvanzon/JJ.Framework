@@ -5,6 +5,7 @@
     <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
     <CustomBuildProperties>
       <Value>IsNCrunch = True</Value>
+      <Value>UseAppHost = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
     <MetricsExclusionList>
