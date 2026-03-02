@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests;
+﻿#pragma warning disable IDE0051 // Remove unused private member
+
+namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests;
 
 [TestClass]
 public class ReflectionCacheLegacyExampleTests
