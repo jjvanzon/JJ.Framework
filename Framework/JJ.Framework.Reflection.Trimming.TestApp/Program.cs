@@ -1,5 +1,6 @@
 ﻿bool success = 
 RunTests<IsAssignableTo_CoreTests>() &&
+RunTests<IsIndexer_CoreTests>() &&
 RunTests<IsStatic_CoreTests>() &&
 RunTests<AccessorTests_Indexers>() &&
 RunTests<AccessorTests_UsingExpressions>() &&

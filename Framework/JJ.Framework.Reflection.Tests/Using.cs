@@ -8,5 +8,6 @@ global using JJ.Framework.Reflection.Core.Tests.Helpers;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
+global using static JJ.Framework.Reflection.Legacy.ReflectionHelper;
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
