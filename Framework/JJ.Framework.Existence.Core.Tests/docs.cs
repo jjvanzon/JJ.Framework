@@ -9,13 +9,6 @@
 namespace JJ.Framework.Existence.Core.Tests.docs;
 
 /// <summary>
-/// 4-arg bools have their own overloads for flag-free calls to Coalesce.
-/// This is for overload resolution purposes specific to Booleans.
-/// These tests check those overloads systematically.
-/// </summary>
-public struct _coalesce4argsbool;
-
-/// <summary>
 /// TODO:
 /// Char (does not behave well yet), Byte, IntPtr, UIntPtr
 /// the numeric types, their signed and unsigned variations and TimeSpan.
