@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Framework\BuildNum.xml = Framework\BuildNum.xml
 		ClearBins.bat = ClearBins.bat
 		ClearObj.bat = ClearObj.bat
+		ClearVs.bat = ClearVs.bat
 		CONTRIBUTING.md = CONTRIBUTING.md
 		.github\copilot-instructions.md = .github\copilot-instructions.md
 		Framework\Directory.Build.props = Framework\Directory.Build.props
