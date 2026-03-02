@@ -1,4 +1,9 @@
-﻿bool success = 
+﻿#if DEBUG
+WriteLine("Attach debugger if needed and/or press any key to continue.");
+ReadKey(intercept: true);
+#endif
+
+bool success = 
 RunTests<AccessorTests_Indexers>() &&
 RunTests<AccessorTests_UsingExpressions>() &&
 RunTests<AccessorTests_UsingStrings>() &&
@@ -12,5 +17,7 @@ RunTests<GetImplementations_CoreTests>() &&
 RunTests<IsAssignableTo_CoreTests>() &&
 RunTests<IsIndexer_CoreTests>() &&
 RunTests<IsStatic_CoreTests>();
+
 WriteLine("Done.");
+
 if (!success) Exit(1);
