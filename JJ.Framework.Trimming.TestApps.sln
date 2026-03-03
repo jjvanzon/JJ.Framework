@@ -96,8 +96,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Trimming.TestApp.Collections", "Framework\JJ.Framework.Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj", "{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Core.Trimming.TestApp", "Framework\JJ.Framework.Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj", "{026B0155-71BD-FC7B-9D0B-7687313D9171}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Trimming.TestApp", "Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj", "{59CCC530-5791-7BA2-CEEB-50642CCEC855}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Trimming.TestApp", "Framework\JJ.Framework.IO.Legacy.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj", "{409358C6-FD72-ABD0-F200-275DFBDE5D93}"
@@ -242,10 +240,6 @@ Global
 		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32ED0141-C9FF-AA4B-6B17-126145F1A1B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{026B0155-71BD-FC7B-9D0B-7687313D9171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{026B0155-71BD-FC7B-9D0B-7687313D9171}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{026B0155-71BD-FC7B-9D0B-7687313D9171}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{026B0155-71BD-FC7B-9D0B-7687313D9171}.Release|Any CPU.Build.0 = Release|Any CPU
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CCC530-5791-7BA2-CEEB-50642CCEC855}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -266,8 +260,6 @@ Global
 		SolutionGuid = {A3255BAD-6046-491F-A222-798856BD5F68}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{026b0155-71bd-fc7b-9d0b-7687313d9171}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{026b0155-71bd-fc7b-9d0b-7687313d9171}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{06497d1f-27d7-4472-adba-0f244275e199}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{06497d1f-27d7-4472-adba-0f244275e199}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{1a8e047c-7893-4918-b415-ce3928e815d8}*SharedItemsImports = 5
