@@ -202,6 +202,7 @@
   <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild" 
           Condition="$(IsTrimTest) And $(IsInnerBuild) And ('$(Configuration)'=='Release' Or '$(IsNCrunch)'=='True')">
 
+    <!-- Diagnostics -->
     <PropertyGroup>
       <PublishedExe>$(PublishDir)\$(MSBuildProjectName).exe</PublishedExe>
       <PublishedDll>$(PublishDir)\$(MSBuildProjectName).dll</PublishedDll>
@@ -217,13 +218,39 @@
     <!-- Nothing found, show message -->
     <Message Condition="!$(PublishedExeExists) And !$(PublishedDllExists)" Text="$(MSBuildProjectName) > PUBLISHED EXE OR DLL NOT FOUND!!!" Importance="High" />
 
+    <PropertyGroup>
+      <_TrimRunOutput>$(PublishDir)$(MSBuildProjectName)-run.txt</_TrimRunOutput>
+    </PropertyGroup>
+
     <!-- Run exe if present -->
+
     <Message Condition="$(PublishedExeExists)" Text="$(MSBuildProjectName) > RUNNING EXE $(PublishedExe)" Importance="High" />
-    <Exec    Condition="$(PublishedExeExists)" Command="&quot;$(PublishedExe)&quot;" />
+    <Message Condition="$(PublishedExeExists)" Text="$(MSBuildProjectName) > output => $(_TrimRunOutput)" Importance="High" />
+    <Exec    Condition="$(PublishedExeExists)"
+          Command="&quot;$(PublishedExe)&quot; &gt; &quot;$(_TrimRunOutput)&quot; 2&gt;&amp;1"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="TrimTestExitCode" />
+    </Exec>
 
     <!-- If no exe, run dll with dotnet -->
-    <Message Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Text="$(MSBuildProjectName) > RUNNING DLL $(PublishedDll)" Importance="High" />
-    <Exec    Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Command="dotnet &quot;$(PublishedDll)&quot;" />
+    <Message Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Text="$(MSBuildProjectName) > RUNNING DLL $(PublishedDll) (output => $(_TrimRunOutput))" Importance="High" />
+    <Exec    Condition="!$(PublishedExeExists) And $(PublishedDllExists)"
+          Command="dotnet &quot;$(PublishedDll)&quot; &gt; &quot;$(_TrimRunOutput)&quot; 2&gt;&amp;1"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="TrimTestExitCode" />
+    </Exec>
+
+    <!-- If an output file was produced, read it -->
+    <ReadLinesFromFile Condition="Exists('$(_TrimRunOutput)')" File="$(_TrimRunOutput)">
+      <Output TaskParameter="Lines" ItemName="TrimTestOutput" />
+    </ReadLinesFromFile>
+
+    <!-- If succeeded, show a short success message only -->
+    <Message Condition="'$(TrimTestExitCode)'=='' Or '$(TrimTestExitCode)'=='0'" Text="$(MSBuildProjectName) > Trim test succeeded (exit code 0)." Importance="High" />
+
+    <!-- If failed, print the captured output lines and then emit an Error so build shows the actual failure text -->
+    <Message Condition="'$(TrimTestExitCode)'!='' And '$(TrimTestExitCode)'!='0'" Text="%(TrimTestOutput.Identity)" Importance="High" />
+    <Error Condition="'$(TrimTestExitCode)'!='' And '$(TrimTestExitCode)'!='0'" Text="$(MSBuildProjectName) > Trim test failed (exit code $(TrimTestExitCode)). See output above." />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
