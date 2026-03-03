@@ -8,7 +8,8 @@ rem These are typically folders created by NCrunch (often start with underscore
 rem or ".ncrunch"). We only target directories so "*.ncrunchproject" and
 rem "*.ncrunchsolution" files are not affected.
 rem ------------------------------------------------------------------
-for /d %%D in ("*_NCrunch*" "_ncrunch*" "*.ncrunch*" "ncrunch_*" "_nCrunch*") do (
+rem Include more permissive patterns for temp caches (matches variants like nCrunchTemp, nCrunchTemp_123, etc.)
+for /d /r %%D in ("*_NCrunch*" "_ncrunch*" "*.ncrunch*" "ncrunch_*" "_nCrunch*") do (
   if exist "%%~fD" (
     echo Deleting "%%~fD"
     echo "COLD RUN. NOTHING DELETED FOR NOW. VERIFY VALIDITY FIRST."
@@ -16,12 +17,22 @@ for /d %%D in ("*_NCrunch*" "_ncrunch*" "*.ncrunch*" "ncrunch_*" "_nCrunch*") do
   )
 )
 
+rem Also look for NCrunch-generated files (e.g. nCrunchTemp_*.csproj.user) and report them.
+for /r %%F in ("nCrunchTemp_*.*") do (
+  if exist "%%~fF" (
+    echo Deleting "%%~fF"
+    del "%%~fF"
+  )
+)
+
 rem ------------------------------------------------------------------
 rem Remove per-user/global NCrunch cache under Local AppData.
 rem This is the heavy cache and safe to remove; NCrunch will re-create it.
 rem ------------------------------------------------------------------
-echo Deleting "%LOCALAPPDATA%\NCrunch"
-rd /s /q "%LOCALAPPDATA%\NCrunch"
+rem if exists "%LOCALAPPDATA%\NCrunch" (
+  echo Deleting "%LOCALAPPDATA%\NCrunch"
+  rd /s /q "%LOCALAPPDATA%\NCrunch"
+rem )
 
 REM Surplus:
 
