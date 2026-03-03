@@ -248,9 +248,10 @@
     <!-- If succeeded, show a short success message only -->
     <Message Condition="'$(TrimTestExitCode)'=='' Or '$(TrimTestExitCode)'=='0'" Text="$(MSBuildProjectName) > Trim test succeeded (exit code 0)." Importance="High" />
 
-    <!-- If failed, print the captured output lines and then emit an Error so build shows the actual failure text -->
+    <!-- If failed, print the captured output lines and then emit an Error that includes the full output
+         so the Error List contains actionable details. -->
     <Message Condition="'$(TrimTestExitCode)'!='' And '$(TrimTestExitCode)'!='0'" Text="%(TrimTestOutput.Identity)" Importance="High" />
-    <Error Condition="'$(TrimTestExitCode)'!='' And '$(TrimTestExitCode)'!='0'" Text="$(MSBuildProjectName) > Trim test failed (exit code $(TrimTestExitCode)). See output above." />
+    <Error Condition="'$(TrimTestExitCode)'!='' And '$(TrimTestExitCode)'!='0'" Text="$(MSBuildProjectName) > Trim test failed (exit code $(TrimTestExitCode)). Output: @(TrimTestOutput, '&#x0D;&#x0A;')" />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
