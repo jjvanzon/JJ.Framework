@@ -206,18 +206,25 @@
     <PropertyGroup>
       <PublishedExe>$(PublishDir)\$(MSBuildProjectName).exe</PublishedExe>
       <PublishedDll>$(PublishDir)\$(MSBuildProjectName).dll</PublishedDll>
+      <PublishedExeExists>False</PublishedExeExists>
+      <PublishedExeExists Condition="Exists('$(PublishedExe)')">True</PublishedExeExists>
+      <PublishedDllExists>False</PublishedDllExists>
+      <PublishedDllExists Condition="Exists('$(PublishedDll)')">True</PublishedDllExists>
     </PropertyGroup>
 
+    <Message Text="$(MSBuildProjectName) > PublishedExe Exists = $(PublishedExeExists) | $(PublishedExe)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > PublishedDll Exists = $(PublishedDllExists) | $(PublishedDll)" Importance="High" />
+
+    <!-- Nothing found, show message -->
+    <Message Condition="!$(PublishedExeExists) And !$(PublishedDllExists)" Text="$(MSBuildProjectName) > RUN: PUBLISHED EXE OR DLL NOT FOUND!!!" Importance="High" />
+
     <!-- Run exe if present -->
-    <Message Condition="Exists('$(PublishedExe)')" Text="$(MSBuildProjectName) > RUN | $(PublishedExe)" Importance="High" />
-    <Exec Condition="Exists('$(PublishedExe)')" Command="&quot;$(PublishedExe)&quot;" />
+    <Message Condition="$(PublishedExeExists)" Text="$(MSBuildProjectName) > RUNNING: $(PublishedExe)" Importance="High" />
+    <Exec    Condition="$(PublishedExeExists)" Command="&quot;$(PublishedExe)&quot;" />
 
     <!-- If no exe, run dll with dotnet -->
-    <Message Condition="!Exists('$(PublishedExe)') And Exists('$(PublishedDll)')" Text="$(MSBuildProjectName) > RUN | $(PublishedDll)" Importance="High" />
-    <Exec Condition="!Exists('$(PublishedExe)') And Exists('$(PublishedDll)')" Command="dotnet &quot;$(PublishedDll)&quot;" />
-    
-    <!-- Nothing found, show message -->
-    <Message Condition="!Exists('$(PublishedExe)') And !Exists('$(PublishedDll)')" Text="$(MSBuildProjectName) > RUN - No exe or dll found under $(PublishDir) - nothing to run." Importance="High" />
+    <Message Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Text="$(MSBuildProjectName) > RUNNING: $(PublishedDll)" Importance="High" />
+    <Exec    Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Command="dotnet &quot;$(PublishedDll)&quot;" />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
