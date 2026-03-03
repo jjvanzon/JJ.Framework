@@ -29,10 +29,10 @@ rem ------------------------------------------------------------------
 rem Remove per-user/global NCrunch cache under Local AppData.
 rem This is the heavy cache and safe to remove; NCrunch will re-create it.
 rem ------------------------------------------------------------------
-rem if exists "%LOCALAPPDATA%\NCrunch" (
+if exist "%LOCALAPPDATA%\NCrunch" (
   echo Deleting "%LOCALAPPDATA%\NCrunch"
   rd /s /q "%LOCALAPPDATA%\NCrunch"
-rem )
+)
 
 REM Surplus:
 
