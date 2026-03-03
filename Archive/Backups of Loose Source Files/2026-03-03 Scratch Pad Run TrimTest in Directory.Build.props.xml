@@ -1,0 +1,7 @@
+
+    <!-- Diagnostic output for publish invocation -->
+    <!--
+    <Message Importance="High" Text="PublishAfterBuild: Invoking Publish for $(MSBuildProjectName) (IsTrimTest=$(IsTrimTest), IsInnerBuild=$(IsInnerBuild), IsNCrunch=$(IsNCrunch))" />
+    <Message Importance="High" Text="PublishAfterBuild: MSBuildProjectFile=$(MSBuildProjectFile) | PublishDir=$(PublishDir) | RuntimeIdentifier=$(RuntimeIdentifier)" />
+    <Message Importance="High" Text="PublishAfterBuild: TargetFileName=$(TargetFileName) | TargetExt=$(TargetExt) | PublishSingleFile=$(PublishSingleFile) | PublishAot=$(PublishAot) | SelfContained=$(SelfContained) | PublishTrimmed=$(PublishTrimmed) | PublishReadyToRun=$(PublishReadyToRun)" />
+    -->

@@ -208,34 +208,16 @@
       <PublishedDll>$(PublishDir)\$(MSBuildProjectName).dll</PublishedDll>
     </PropertyGroup>
 
-    <Message Text="$(MSBuildProjectName) > RUN - PublishedExe = $(PublishedExe)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > RUN - PublishedDll = $(PublishedDll)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > RUN - PublishDir = $(PublishDir)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > RUN - TargetFileName = $(TargetFileName)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > RUN - TargetExt = $(TargetExt)" Importance="High" />
+    <!-- Run exe if present -->
+    <Message Condition="Exists('$(PublishedExe)')" Text="$(MSBuildProjectName) > RUN | $(PublishedExe)" Importance="High" />
+    <Exec Condition="Exists('$(PublishedExe)')" Command="&quot;$(PublishedExe)&quot;" />
 
-    <!-- Enumerate published files (recursive) so we can find the actual artifact location -->
-    <ItemGroup>
-      <PublishedExes Include="$(PublishDir)**\*.exe" />
-      <PublishedDlls Include="$(PublishDir)**\*.dll" />
-      <PublishedFiles Include="$(PublishDir)**\*.*" />
-    </ItemGroup>
-
-    <Message Importance="High" Text="$(MSBuildProjectName) > RUN - PublishedExes = @(PublishedExes, ', ')" />
-    <Message Importance="High" Text="$(MSBuildProjectName) > RUN - PublishedDlls = @(PublishedDlls, ', ')" />
-
-    <!--<Message Importance="High" Text="TrimTest: All published files (sample): @(PublishedFiles->'%(RecursiveDir)%(Filename)%(Extension)', ', ')" />-->
-
-    <!-- Prefer running an exe if present -->
-    <Message Condition="@(PublishedExes) != ''" Text="$(MSBuildProjectName) > RUN - Executing 1st EXE: %(PublishedExes.Identity)" Importance="High" />
-    <!-- Run exe by full path (no WorkingDirectory to avoid duplicating PublishDir) -->
-    <Exec Condition="@(PublishedExes) != ''" Command="&quot;%(PublishedExes.Identity)&quot;" />
-    <!-- If no exe, run first dll with dotnet -->
-    <Message Condition="@(PublishedExes) == '' And @(PublishedDlls) != ''" Text="$(MSBuildProjectName) > RUN - No EXE found; will run first published DLL with dotnet: %(PublishedDlls.Identity)" Importance="High" />
-    <!-- Run dll via dotnet by full path (no WorkingDirectory) -->
-    <Exec Condition="@(PublishedExes) == '' And @(PublishedDlls) != ''" Command="dotnet &quot;%(PublishedDlls.Identity)&quot;" />
-    <!-- If nothing found, explain why -->
-    <Message Condition="@(PublishedExes) == '' And @(PublishedDlls) == ''" Text="$(MSBuildProjectName) > RUN - No exe or dll found under $(PublishDir) - nothing to run." Importance="High" />
+    <!-- If no exe, run dll with dotnet -->
+    <Message Condition="!Exists('$(PublishedExe)') And Exists('$(PublishedDll)')" Text="$(MSBuildProjectName) > RUN | $(PublishedDll)" Importance="High" />
+    <Exec Condition="!Exists('$(PublishedExe)') And Exists('$(PublishedDll)')" Command="dotnet &quot;$(PublishedDll)&quot;" />
+    
+    <!-- Nothing found, show message -->
+    <Message Condition="!Exists('$(PublishedExe)') And !Exists('$(PublishedDll)')" Text="$(MSBuildProjectName) > RUN - No exe or dll found under $(PublishDir) - nothing to run." Importance="High" />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
