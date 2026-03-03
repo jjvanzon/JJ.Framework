@@ -1,7 +1,9 @@
-﻿#if DEBUG
+﻿/*
+#if DEBUG
 WriteLine($"PID: {ProcessId} - Attach debugger if needed and/or press any key to continue.");
 ReadKey(true);
 #endif
+*/
 
 bool success = 
 RunTests<AccessorTests_Indexers>() &&
