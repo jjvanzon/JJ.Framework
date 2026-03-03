@@ -191,36 +191,6 @@
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishSingleFile=true;PublishReadyToRun=false" />-->
   </Target>
   
-  <!-- Run published output for TrimTests immediately after publish -->
-  <Target Name="RunTrimTest" AfterTargets="Publish" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    <Message Importance="High" Text="RunTrimTest: PublishDir=$(PublishDir) | TargetFileName=$(TargetFileName) | TargetExt=$(TargetExt) | RuntimeIdentifier=$(RuntimeIdentifier)" />
-
-    <!-- Enumerate published files (recursive) so we can find the actual artifact location -->
-    <ItemGroup>
-      <PublishedExe Include="$(PublishDir)**\*.exe" />
-      <PublishedDll Include="$(PublishDir)**\*.dll" />
-      <PublishedFiles Include="$(PublishDir)**\*.*" />
-    </ItemGroup>
-
-    <Message Importance="High" Text="RunTrimTestPublishedExe: Published executables: @(PublishedExe, ', ')" />
-    <Message Importance="High" Text="RunTrimTestPublishedExe: Published dlls: @(PublishedDll, ', ')" />
-    
-    <!--<Message Importance="High" Text="RunTrimTestPublishedExe: All published files (sample): @(PublishedFiles->'%(RecursiveDir)%(Filename)%(Extension)', ', ')" />-->
-
-    <!-- Prefer running an exe if present -->
-    <Message Condition="@(PublishedExe) != ''" Importance="High" Text="RunTrimTestPublishedExe: Will execute first published EXE: %(PublishedExe.Identity)" />
-    <!-- Run exe by full path (no WorkingDirectory to avoid duplicating PublishDir) -->
-    <Exec Condition="@(PublishedExe) != ''" Command="&quot;%(PublishedExe.Identity)&quot;" />
-
-    <!-- If no exe, run first dll with dotnet -->
-    <Message Condition="@(PublishedExe) == '' And @(PublishedDll) != ''" Importance="High" Text="RunTrimTestPublishedExe: No EXE found; will run first published DLL with dotnet: %(PublishedDll.Identity)" />
-    <!-- Run dll via dotnet by full path (no WorkingDirectory) -->
-    <Exec Condition="@(PublishedExe) == '' And @(PublishedDll) != ''" Command="dotnet &quot;%(PublishedDll.Identity)&quot;" />
-
-    <!-- If nothing found, explain why -->
-    <Message Condition="@(PublishedExe) == '' And @(PublishedDll) == ''" Importance="High" Text="RunTrimTestPublishedExe: No published exe or dll found under $(PublishDir) - nothing to run." />
-  </Target>
-  
   <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
@@ -234,6 +204,37 @@
     <Message Importance="High" Text="Removing $(PublishDir)*.xml" />
     <Message Importance="High" Text="Removing @(XmlsToDeletejj)" />
     <Delete Files="@(XmlsToDeletejj)" />
+  </Target>
+
+  <!-- Trim Test -->
+
+  <Target Name="RunTrimTest" AfterTargets="Publish" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <Message Importance="High" Text="$(MSBuildProjectName) > TrimTest: PublishDir=$(PublishDir) | TargetFileName=$(TargetFileName) | TargetExt=$(TargetExt) | RuntimeIdentifier=$(RuntimeIdentifier)" />
+
+    <!-- Enumerate published files (recursive) so we can find the actual artifact location -->
+    <ItemGroup>
+      <PublishedExe Include="$(PublishDir)**\*.exe" />
+      <PublishedDll Include="$(PublishDir)**\*.dll" />
+      <PublishedFiles Include="$(PublishDir)**\*.*" />
+    </ItemGroup>
+
+    <Message Importance="High" Text="$(MSBuildProjectName) > TrimTest: Published exes: @(PublishedExe, ', ')" />
+    <Message Importance="High" Text="$(MSBuildProjectName) > TrimTest: Published dlls: @(PublishedDll, ', ')" />
+
+    <!--<Message Importance="High" Text="TrimTest: All published files (sample): @(PublishedFiles->'%(RecursiveDir)%(Filename)%(Extension)', ', ')" />-->
+
+    <!-- Prefer running an exe if present -->
+    <Message Condition="@(PublishedExe) != ''" Importance="High" Text="$(MSBuildProjectName) > TrimTest: Executing 1st EXE: %(PublishedExe.Identity)" />
+    <!-- Run exe by full path (no WorkingDirectory to avoid duplicating PublishDir) -->
+    <Exec Condition="@(PublishedExe) != ''" Command="&quot;%(PublishedExe.Identity)&quot;" />
+
+    <!-- If no exe, run first dll with dotnet -->
+    <Message Condition="@(PublishedExe) == '' And @(PublishedDll) != ''" Importance="High" Text="$(MSBuildProjectName) > TrimTest: No EXE found; will run first published DLL with dotnet: %(PublishedDll.Identity)" />
+    <!-- Run dll via dotnet by full path (no WorkingDirectory) -->
+    <Exec Condition="@(PublishedExe) == '' And @(PublishedDll) != ''" Command="dotnet &quot;%(PublishedDll.Identity)&quot;" />
+
+    <!-- If nothing found, explain why -->
+    <Message Condition="@(PublishedExe) == '' And @(PublishedDll) == ''" Importance="High" Text="$(MSBuildProjectName) > TrimTest: No exe or dll found under $(PublishDir) - nothing to run." />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
