@@ -7,7 +7,6 @@ echo Runs trimmed exe files, which execute automated tests.
 echo Walks the "Framework" folder for "publish\*.Trimming.TestApp*.exe" files.
 echo Runs them and exits with error code in case tests fail.
 
-REM REM timeout /t 2
 echo(
 
 REM /R     = Recursive
