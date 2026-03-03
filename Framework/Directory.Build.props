@@ -158,13 +158,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
-    <!--<DebugType>none</DebugType>-->
-    <!--<DebugSymbols>False</DebugSymbols>-->
-    <!--<IncludeSymbols>False</IncludeSymbols>-->
-    <!--<StripSymbols>True</StripSymbols>--> 
-    <!--<IncludeNativeDebugSymbolsInSingleFile>False</IncludeNativeDebugSymbolsInSingleFile>-->
     <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
-    <!--<PublishReadyToRunEmitSymbols>False</PublishReadyToRunEmitSymbols>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
@@ -172,9 +166,8 @@
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
-  <Target Name="PublishAfterBuild" AfterTargets="Build" 
-          Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+
     <MSBuild Condition="'$(IsNCrunch)'!='True'" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true" />
 

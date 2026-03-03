@@ -1,0 +1,10 @@
+
+  <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
+    <!--<DebugType>none</DebugType>-->
+    <!--<DebugSymbols>False</DebugSymbols>-->
+    <!--<IncludeSymbols>False</IncludeSymbols>-->
+    <!--<StripSymbols>True</StripSymbols>--> 
+    <!--<IncludeNativeDebugSymbolsInSingleFile>False</IncludeNativeDebugSymbolsInSingleFile>-->
+    <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
+    <!--<PublishReadyToRunEmitSymbols>False</PublishReadyToRunEmitSymbols>-->
+  </PropertyGroup>
