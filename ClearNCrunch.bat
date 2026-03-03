@@ -1,5 +1,5 @@
 @echo off
-setlocal
+REM setlocal
 echo Clearing NCrunch caches (will only remove cache folders, not .ncrunchproject/.ncrunchsolution files)...
 
 rem ------------------------------------------------------------------
@@ -39,5 +39,5 @@ REM   rd /s /q "%USERPROFILE%\\.ncrunch"
 REM )
 
 echo Done.
-endlocal
-pause
+REM endlocal
+REM pause
