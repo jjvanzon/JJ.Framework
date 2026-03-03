@@ -19,3 +19,5 @@
 
     <!-- Failure output => Build Output -->
     <!--<Message Condition="$(TrimTestHasError)" Text="%(TrimTestOutputLines.Identity)" Importance="High" />-->
+
+    <Message Condition="$(PublishedExeExists)" Text="$(MSBuildProjectName) > RUNNING EXE $(PublishedExe)" Importance="High" />

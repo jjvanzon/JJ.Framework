@@ -54,11 +54,13 @@
 
   <!-- Diagnostics -->
 
+  <!--
   <Target Name="JJ_Framework_Vars1" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsNet48 = $(IsNet48) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" Importance="High" />
     <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9) | IsNet10 = $(IsNet10)" Importance="High" />
   </Target>
+  -->
   
   <!-- Packaging -->
 
@@ -78,9 +80,11 @@
 
   <!-- Diagnostics -->
 
+  <!--
   <Target Name="JJ_Framework_Vars2" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > Nullable = $(Nullable) | GeneratePackageOnBuild = $(GeneratePackageOnBuild) | GenerateDocFile = $(GenerateDocumentationFile)" Importance="High" />
   </Target>
+  -->
 
   <PropertyGroup>
     <SolutionDirjj>$(SolutionDir)</SolutionDirjj>
@@ -214,7 +218,6 @@
     <Message Text="$(MSBuildProjectName) > PublishedExe Exists = $(PublishedExeExists) | $(PublishedExe)" Importance="High" />
 
     <!-- Run exe if present -->
-    <Message Condition="$(PublishedExeExists)" Text="$(MSBuildProjectName) > RUNNING EXE $(PublishedExe)" Importance="High" />
     <Exec    Condition="$(PublishedExeExists)"
           Command="&quot;$(PublishedExe)&quot; &gt; &quot;$(TrimTestOutputFilePath)&quot; 2&gt;&amp;1"
           IgnoreExitCode="true">
@@ -242,14 +245,11 @@
 
     <!-- Diagnostics -->
     <Message Text="$(MSBuildProjectName) > Output Exists = $(TrimTestOutputExists) | $(TrimTestOutputFilePath)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > ExitCode      = $(TrimTestExitCode)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > HasError      = $(TrimTestHasError)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > OutputJoined  = $(TrimTestOutputJoined)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > Exception     = $(TrimTestException)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimTestHasError) And '$(TrimTestException)'==''" />
-
-    <!-- Build Output -->
-    <Message Text="%(TrimTestOutputLines.Identity)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > ExitCode = $(TrimTestExitCode)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > HasError = $(TrimTestHasError)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimTestOutputJoined)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > Exception = $(TrimTestException)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimTestHasError) And '$(TrimTestException)'==''" Importance="High" />
 
     <!-- Failure exception parsed => Error List -->
     <Error Condition="$(TrimTestHasError) And '$(TrimTestException)' != ''"
@@ -258,6 +258,9 @@
     <!-- Failure without exception => Error List -->
     <Error Condition="$(TrimTestHasError) And '$(TrimTestException)'==''"
            Text="$(MSBuildProjectName) > Failed (exit code $(TrimTestExitCode)). Output: @(TrimTestOutputLines, '&#x0D;&#x0A;')" />
+
+    <!-- Build Output -->
+    <Message Text="%(TrimTestOutputLines.Identity)" Importance="High" />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
@@ -267,9 +270,11 @@
 
   <!-- Diagnostics -->
 
+  <!--
   <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
   </Target>
+  -->
 
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
