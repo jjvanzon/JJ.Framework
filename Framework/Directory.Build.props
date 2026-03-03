@@ -239,7 +239,9 @@
 
     <!-- Join output and try extract text after 'Exception: ' -->
     <PropertyGroup>
-      <TrimTestOutputJoined>$([System.String]::Join('||', @(TrimTestOutputLines)))</TrimTestOutputJoined>
+      <TrimTestOutputJoined>@(TrimTestOutputLines, '||')</TrimTestOutputJoined>
+    </PropertyGroup>
+    <PropertyGroup>
       <TrimTestException>$([System.Text.RegularExpressions.Regex]::Match('$(TrimTestOutputJoined)','(?s)Exception:\s*(.*)').Groups[1].Value)</TrimTestException>
     </PropertyGroup>
 
