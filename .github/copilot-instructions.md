@@ -15,3 +15,4 @@
 
 ## Misc
 - Prefer regular Command Prompt over PowerShell.
+- Please stop over-engineering. Lean code is important for the system.
