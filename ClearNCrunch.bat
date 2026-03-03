@@ -10,19 +10,15 @@ rem "*.ncrunchsolution" files are not affected.
 rem ------------------------------------------------------------------
 rem Include more permissive patterns for temp caches (matches variants like nCrunchTemp, nCrunchTemp_123, etc.)
 for /d /r %%D in ("*_NCrunch*" "_ncrunch*" "*.ncrunch*" "ncrunch_*" "_nCrunch*") do (
-  if exist "%%~fD" (
-    echo Deleting "%%~fD"
-    echo "COLD RUN. NOTHING DELETED FOR NOW. VERIFY VALIDITY FIRST."
-    REM rd /s /q "%%~fD"
-  )
+  echo Deleting "%%~fD"
+  echo "COLD RUN. NOTHING DELETED FOR NOW. VERIFY VALIDITY FIRST."
+  REM rd /s /q "%%~fD"
 )
 
 rem Also look for NCrunch-generated files (e.g. nCrunchTemp_*.csproj.user) and report them.
 for /r %%F in ("nCrunchTemp_*.*") do (
-  if exist "%%~fF" (
-    echo Deleting "%%~fF"
-    del "%%~fF"
-  )
+  echo Deleting "%%~fF"
+  del "%%~fF"
 )
 
 rem ------------------------------------------------------------------
