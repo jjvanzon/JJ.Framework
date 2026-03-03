@@ -168,6 +168,13 @@
 
   <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
 
+    <!-- Diagnostic output for publish invocation -->
+    <!--
+    <Message Importance="High" Text="PublishAfterBuild: Invoking Publish for $(MSBuildProjectName) (IsTrimTest=$(IsTrimTest), IsInnerBuild=$(IsInnerBuild), IsNCrunch=$(IsNCrunch))" />
+    <Message Importance="High" Text="PublishAfterBuild: MSBuildProjectFile=$(MSBuildProjectFile) | PublishDir=$(PublishDir) | RuntimeIdentifier=$(RuntimeIdentifier)" />
+    <Message Importance="High" Text="PublishAfterBuild: TargetFileName=$(TargetFileName) | TargetExt=$(TargetExt) | PublishSingleFile=$(PublishSingleFile) | PublishAot=$(PublishAot) | SelfContained=$(SelfContained) | PublishTrimmed=$(PublishTrimmed) | PublishReadyToRun=$(PublishReadyToRun)" />
+    -->
+    
     <MSBuild Condition="'$(IsNCrunch)'!='True'" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true" />
 
@@ -182,6 +189,36 @@
 
     <MSBuild Condition="'$(IsNCrunch)'=='True' And $(IsNet5)" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishSingleFile=true;PublishReadyToRun=false" />-->
+  </Target>
+  
+  <!-- Run published output for TrimTests immediately after publish -->
+  <Target Name="RunTrimTest" AfterTargets="Publish" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <Message Importance="High" Text="RunTrimTest: PublishDir=$(PublishDir) | TargetFileName=$(TargetFileName) | TargetExt=$(TargetExt) | RuntimeIdentifier=$(RuntimeIdentifier)" />
+
+    <!-- Enumerate published files (recursive) so we can find the actual artifact location -->
+    <ItemGroup>
+      <PublishedExe Include="$(PublishDir)**\*.exe" />
+      <PublishedDll Include="$(PublishDir)**\*.dll" />
+      <PublishedFiles Include="$(PublishDir)**\*.*" />
+    </ItemGroup>
+
+    <Message Importance="High" Text="RunTrimTestPublishedExe: Published executables: @(PublishedExe, ', ')" />
+    <Message Importance="High" Text="RunTrimTestPublishedExe: Published dlls: @(PublishedDll, ', ')" />
+    
+    <!--<Message Importance="High" Text="RunTrimTestPublishedExe: All published files (sample): @(PublishedFiles->'%(RecursiveDir)%(Filename)%(Extension)', ', ')" />-->
+
+    <!-- Prefer running an exe if present -->
+    <Message Condition="@(PublishedExe) != ''" Importance="High" Text="RunTrimTestPublishedExe: Will execute first published EXE: %(PublishedExe.Identity)" />
+    <!-- Run exe by full path (no WorkingDirectory to avoid duplicating PublishDir) -->
+    <Exec Condition="@(PublishedExe) != ''" Command="&quot;%(PublishedExe.Identity)&quot;" />
+
+    <!-- If no exe, run first dll with dotnet -->
+    <Message Condition="@(PublishedExe) == '' And @(PublishedDll) != ''" Importance="High" Text="RunTrimTestPublishedExe: No EXE found; will run first published DLL with dotnet: %(PublishedDll.Identity)" />
+    <!-- Run dll via dotnet by full path (no WorkingDirectory) -->
+    <Exec Condition="@(PublishedExe) == '' And @(PublishedDll) != ''" Command="dotnet &quot;%(PublishedDll.Identity)&quot;" />
+
+    <!-- If nothing found, explain why -->
+    <Message Condition="@(PublishedExe) == '' And @(PublishedDll) == ''" Importance="High" Text="RunTrimTestPublishedExe: No published exe or dll found under $(PublishDir) - nothing to run." />
   </Target>
   
   <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(PublishDir)'!=''">
