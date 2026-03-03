@@ -1,9 +1,7 @@
 @echo off
-REM ClearCaches.bat - call each Clear*.bat explicitly (de-variablized)
-echo Running cache-clear scripts...
-echo ------------------------------------------------------------------
-echo Calling ClearBins.bat
-call "%~dp0ClearBins.bat"
+REM %~dp0 = this bat file's dir
+echo Calling ClearBin.bat
+call "%~dp0ClearBin.bat"
 echo ------------------------------------------------------------------
 echo Calling ClearObj.bat
 call "%~dp0ClearObj.bat"
