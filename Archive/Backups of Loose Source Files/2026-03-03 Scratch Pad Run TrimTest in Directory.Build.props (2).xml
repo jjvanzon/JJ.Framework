@@ -1,0 +1,21 @@
+      <!--<PublishedDll>$(PublishDir)\$(MSBuildProjectName).dll</PublishedDll>-->
+      <!--<PublishedDllExists>False</PublishedDllExists>-->
+      <!--<PublishedDllExists Condition="Exists('$(PublishedDll)')">True</PublishedDllExists>-->
+
+    <!--<Message Text="$(MSBuildProjectName) > PublishedDll Exists = $(PublishedDllExists) | $(PublishedDll)" Importance="High" />-->
+    <!--<Message Text="$(MSBuildProjectName) > PUBLISHED EXE OR DLL NOT FOUND!!!" Condition="!$(PublishedExeExists) And !$(PublishedDllExists)" Importance="High" />-->
+
+    
+    <!-- If no exe, run dll with dotnet -->
+    <!--
+    <Message Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Text="$(MSBuildProjectName) > RUNNING DLL $(PublishedDll)" Importance="High" />
+    <Exec    Condition="!$(PublishedExeExists) And $(PublishedDllExists)"
+          Command="dotnet &quot;$(PublishedDll)&quot; &gt; &quot;$(TrimTestOutputFilePath)&quot; 2&gt;&amp;1"
+          IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="TrimTestExitCode" />
+    </Exec>
+    -->
+
+
+    <!-- Failure output => Build Output -->
+    <!--<Message Condition="$(TrimTestHasError)" Text="%(TrimTestOutputLines.Identity)" Importance="High" />-->
