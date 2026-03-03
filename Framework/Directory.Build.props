@@ -201,7 +201,8 @@
 
   <!-- Trim Test -->
 
-  <Target Name="RunTrimTest" AfterTargets="Publish" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild" 
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And ('$(Configuration)'=='Release' Or '$(IsNCrunch)'=='True')">
 
     <PropertyGroup>
       <PublishedExe>$(PublishDir)\$(MSBuildProjectName).exe</PublishedExe>
@@ -216,14 +217,14 @@
     <Message Text="$(MSBuildProjectName) > PublishedDll Exists = $(PublishedDllExists) | $(PublishedDll)" Importance="High" />
 
     <!-- Nothing found, show message -->
-    <Message Condition="!$(PublishedExeExists) And !$(PublishedDllExists)" Text="$(MSBuildProjectName) > RUN: PUBLISHED EXE OR DLL NOT FOUND!!!" Importance="High" />
+    <Message Condition="!$(PublishedExeExists) And !$(PublishedDllExists)" Text="$(MSBuildProjectName) > PUBLISHED EXE OR DLL NOT FOUND!!!" Importance="High" />
 
     <!-- Run exe if present -->
-    <Message Condition="$(PublishedExeExists)" Text="$(MSBuildProjectName) > RUNNING: $(PublishedExe)" Importance="High" />
+    <Message Condition="$(PublishedExeExists)" Text="$(MSBuildProjectName) > RUNNING EXE $(PublishedExe)" Importance="High" />
     <Exec    Condition="$(PublishedExeExists)" Command="&quot;$(PublishedExe)&quot;" />
 
     <!-- If no exe, run dll with dotnet -->
-    <Message Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Text="$(MSBuildProjectName) > RUNNING: $(PublishedDll)" Importance="High" />
+    <Message Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Text="$(MSBuildProjectName) > RUNNING DLL $(PublishedDll)" Importance="High" />
     <Exec    Condition="!$(PublishedExeExists) And $(PublishedDllExists)" Command="dotnet &quot;$(PublishedDll)&quot;" />
   </Target>
 
