@@ -235,9 +235,10 @@
       <!-- Extract text after 'Exception: ' -->
       <TrimTestException>$([System.Text.RegularExpressions.Regex]::Match('$(TrimTestOutputJoined)','(?s)Exception:\s*(.*)').Groups[1].Value)</TrimTestException>
       <!-- Build error text -->
-      <TrimTestErrorListText>$(TrimTestException)</TrimTestErrorListText>
+      <TrimTestErrorText>$(TrimTestException)</TrimTestErrorText>
       <!-- Fallback to complete exe output -->
-      <TrimTestErrorListText Condition="'$(TrimTestException)'==''">@(TrimTestOutputLines, '&#x0D;&#x0A;')</TrimTestErrorListText>
+      <TrimTestErrorText Condition="'$(TrimTestException)'==''">@(TrimTestOutputLines, '&#x0D;&#x0A;')</TrimTestErrorText>
+      <TrimTestErrorText>EXE code $(TrimTestExitCode). $(TrimTestErrorText)</TrimTestErrorText>
     </PropertyGroup>
 
     <!-- Diagnostics -->
@@ -252,12 +253,11 @@
     <Message Text="$(MSBuildProjectName) > ExitCode = $(TrimTestExitCode)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > HasError = $(TrimTestHasError)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > Exception = $(TrimTestException)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimTestHasError) And '$(TrimTestException)'==''" Importance="High" />
-    <!--<Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimTestOutputJoined)" Importance="High" />--> <!--Too verbose-->
+    <!--<Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimTestHasError) And '$(TrimTestException)'==''" Importance="High" />-->
+    <!--<Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimTestOutputJoined)" Importance="High" />-->
 
     <!-- Failure => Error List -->
-    <Error Condition="$(TrimTestHasError)"
-           Text="$(MSBuildProjectName) > Failed (exit code $(TrimTestExitCode)). $(TrimTestErrorListText)" />
+    <Error Condition="$(TrimTestHasError)" Text="$(TrimTestErrorText)" />
 
     <!-- Build Output -->
     <Message Text="%(TrimTestOutputLines.Identity)" Importance="High" />
