@@ -1,19 +1,12 @@
 ﻿<SolutionConfiguration>
   <Settings>
-    <!--
-    IMPORTANT: 
-    Trimming solution requires RunTrimTest.
-    Trimming solution does not use coverage metrics.
-    InstrumentOutputAssembly is for coverage metrics.
-    InstrumentOutputAssembly can make RunTrimTest fail.
-    -->
-    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
     <CustomBuildProperties>
       <Value>IsNCrunch = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
+    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
     <MetricsExclusionList>
       <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net5.0</Value>
@@ -101,7 +94,6 @@
       <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
-    <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>

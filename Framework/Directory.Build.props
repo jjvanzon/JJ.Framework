@@ -4,11 +4,11 @@
   
   <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup>
   <Import Project="BuildNum.xml" 
-          Condition="!$(MSBuildProjectName.EndsWith('.Tests')) And
+          Condition="'$(IsNCrunch)'!='True' And
+                     !$(MSBuildProjectName.EndsWith('.Tests')) And
                      !$(MSBuildProjectName.Contains('.Tests.')) And
                      !$(MSBuildProjectName.Contains('Trimming.TestApp')) And
                      Exists('BuildNum.xml')" />
-                  <!--$(Configuration)=='Release' And-->
 
   <!-- Project Properties -->
   
@@ -202,7 +202,8 @@
   <!-- Trim Test -->
 
   <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild"
-          Condition="$(IsTrimTest) And $(IsInnerBuild) And ('$(Configuration)'=='Release' Or '$(IsNCrunch)'=='True')">
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And 
+                   ('$(IsNCrunch)'=='True' Or '$(Configuration)'=='Release')">
 
     <!-- Helper Vars -->
     <PropertyGroup>
@@ -213,8 +214,7 @@
     </PropertyGroup>
 
     <!-- Run Exe -->
-    <Exec Condition="$(PublishedExeExists)"
-          Command="&quot;$(PublishedExe)&quot; &gt; &quot;$(TrimTestOutputFilePath)&quot; 2&gt;&amp;1"
+    <Exec Command="&quot;$(PublishedExe)&quot; &gt; &quot;$(TrimTestOutputFilePath)&quot; 2&gt;&amp;1"
           IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="TrimTestExitCode" />
     </Exec>
@@ -228,7 +228,7 @@
     </PropertyGroup>
 
     <!-- Read output -->
-    <ReadLinesFromFile Condition="$(TrimTestOutputExists)" File="$(TrimTestOutputFilePath)">
+    <ReadLinesFromFile File="$(TrimTestOutputFilePath)">
       <Output TaskParameter="Lines" ItemName="TrimTestOutputLines" />
     </ReadLinesFromFile>
 
@@ -241,7 +241,7 @@
     </PropertyGroup>
 
     <!-- Diagnostics -->
-    <Message Text="$(MSBuildProjectName) > PublishedExe Exists = $(PublishedExeExists) | $(PublishedExe)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > PublishedExe Exists = $(Exists('$(PublishedExe)')) | $(PublishedExe)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > Output Exists = $(TrimTestOutputExists) | $(TrimTestOutputFilePath)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > ExitCode = $(TrimTestExitCode)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > HasError = $(TrimTestHasError)" Importance="High" />
