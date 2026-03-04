@@ -231,13 +231,13 @@
     <!-- Parse -->
     <PropertyGroup>
       <!-- Join output -->
-      <TrimTestOutputJoined>@(TrimTestOutputLines, '||')</TrimTestOutputJoined>
+      <TrimTestOutputJoined>@(TrimTestOutputLines, '&#x0D;&#x0A;')</TrimTestOutputJoined>
       <!-- Extract text after 'Exception: ' -->
       <TrimTestException>$([System.Text.RegularExpressions.Regex]::Match('$(TrimTestOutputJoined)','(?s)Exception:\s*(.*)').Groups[1].Value)</TrimTestException>
       <!-- Build error text -->
       <TrimTestErrorText>$(TrimTestException)</TrimTestErrorText>
       <!-- Fallback to complete exe output -->
-      <TrimTestErrorText Condition="'$(TrimTestException)'==''">@(TrimTestOutputLines, '&#x0D;&#x0A;')</TrimTestErrorText>
+      <TrimTestErrorText Condition="'$(TrimTestException)'==''">$(TrimTestOutputJoined)</TrimTestErrorText>
       <TrimTestErrorText>EXE code $(TrimTestExitCode). $(TrimTestErrorText)</TrimTestErrorText>
     </PropertyGroup>
 
@@ -260,7 +260,7 @@
     <Error Condition="$(TrimTestHasError)" Text="$(TrimTestErrorText)" />
 
     <!-- Build Output -->
-    <Message Text="%(TrimTestOutputLines.Identity)" Importance="High" />
+    <Message Text="$(TrimTestOutputJoined)" Importance="High" />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
