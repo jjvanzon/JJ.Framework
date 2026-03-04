@@ -54,13 +54,11 @@
 
   <!-- Diagnostics -->
 
-  <!--
   <Target Name="JJ_Framework_Vars1" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsNet48 = $(IsNet48) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" Importance="High" />
     <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9) | IsNet10 = $(IsNet10)" Importance="High" />
   </Target>
-  -->
   
   <!-- Packaging -->
 
@@ -215,7 +213,6 @@
     </PropertyGroup>
 
     <!-- Run Exe -->
-
     <Exec Condition="$(PublishedExeExists)"
           Command="&quot;$(PublishedExe)&quot; &gt; &quot;$(TrimTestOutputFilePath)&quot; 2&gt;&amp;1"
           IgnoreExitCode="true">
@@ -230,7 +227,7 @@
       <TrimTestHasError Condition="'$(TrimTestExitCode)'!='' And '$(TrimTestExitCode)'!='0'">True</TrimTestHasError>
     </PropertyGroup>
 
-    <!-- Read output  -->
+    <!-- Read output -->
     <ReadLinesFromFile Condition="$(TrimTestOutputExists)" File="$(TrimTestOutputFilePath)">
       <Output TaskParameter="Lines" ItemName="TrimTestOutputLines" />
     </ReadLinesFromFile>
@@ -250,11 +247,11 @@
     <Message Text="$(MSBuildProjectName) > HasError = $(TrimTestHasError)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > Exception = $(TrimTestException)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimTestHasError) And '$(TrimTestException)'==''" Importance="High" />
-    <!--<Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimTestOutputJoined)" Importance="High" />-->
+    <!--<Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimTestOutputJoined)" Importance="High" />--> <!--Too verbose-->
 
     <!-- Failure exception parsed => Error List -->
     <Error Condition="$(TrimTestHasError) And '$(TrimTestException)' != ''"
-           Text="$(MSBuildProjectName) > Failed (exit code $(TrimTestExitCode)). Exception: $(TrimTestException)" />
+           Text="$(MSBuildProjectName) > Failed (exit code $(TrimTestExitCode)). $(TrimTestException)" />
 
     <!-- Failure without exception => Error List -->
     <Error Condition="$(TrimTestHasError) And '$(TrimTestException)'==''"
@@ -271,11 +268,9 @@
 
   <!-- Diagnostics -->
 
-  <!--
   <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
   </Target>
-  -->
 
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
