@@ -2,6 +2,7 @@
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
+    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
     <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
     <CustomBuildProperties>
       <Value>IsNCrunch = True</Value>
