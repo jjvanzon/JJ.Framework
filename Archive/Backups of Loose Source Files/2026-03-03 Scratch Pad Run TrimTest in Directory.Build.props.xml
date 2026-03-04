@@ -5,3 +5,15 @@
     <Message Importance="High" Text="PublishAfterBuild: MSBuildProjectFile=$(MSBuildProjectFile) | PublishDir=$(PublishDir) | RuntimeIdentifier=$(RuntimeIdentifier)" />
     <Message Importance="High" Text="PublishAfterBuild: TargetFileName=$(TargetFileName) | TargetExt=$(TargetExt) | PublishSingleFile=$(PublishSingleFile) | PublishAot=$(PublishAot) | SelfContained=$(SelfContained) | PublishTrimmed=$(PublishTrimmed) | PublishReadyToRun=$(PublishReadyToRun)" />
     -->
+
+
+    <!-- Run exe if present -->
+    <!--
+    <Exec Condition="$(PublishedExeExists)"
+          Command="&quot;$(PublishedExe)&quot; &gt; &quot;$(TrimTestOutputFilePath)&quot; 2&gt;&amp;1"
+          IgnoreExitCode="true">
+    </Exec>-->
+
+
+  <!--</Target>
+  <Target Name="JJ_DisbledTarget">-->
