@@ -202,7 +202,7 @@
   <!-- Trim Test -->
 
   <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild"
-          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!=''
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!='' And
                    ('$(IsNCrunch)'=='True' Or '$(Configuration)'=='Release')">
 
     <!-- Helper Vars -->
