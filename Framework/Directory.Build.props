@@ -202,65 +202,65 @@
   <!-- Trim Test -->
 
   <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild"
-          Condition="$(IsTrimTest) And $(IsInnerBuild) And 
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!=''
                    ('$(IsNCrunch)'=='True' Or '$(Configuration)'=='Release')">
 
     <!-- Helper Vars -->
     <PropertyGroup>
-      <PublishedExe>$(PublishDir)\$(MSBuildProjectName).exe</PublishedExe>
-      <TrimTestOutputFilePath>$(PublishDir)$(MSBuildProjectName)-Output.txt</TrimTestOutputFilePath>
+      <TrimmedExe>$(PublishDir)\$(MSBuildProjectName).exe</TrimmedExe>
+      <TrimRunOutputFilePath>$(PublishDir)$(MSBuildProjectName)-Output.txt</TrimRunOutputFilePath>
     </PropertyGroup>
 
     <!-- Run Exe -->
-    <Exec Command="&quot;$(PublishedExe)&quot; &gt; &quot;$(TrimTestOutputFilePath)&quot; 2&gt;&amp;1"
+    <Exec Command="&quot;$(TrimmedExe)&quot; &gt; &quot;$(TrimRunOutputFilePath)&quot; 2&gt;&amp;1"
           IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="TrimTestExitCode" />
+      <Output TaskParameter="ExitCode" PropertyName="TrimRunExitCode" />
     </Exec>
 
     <!-- Helper Vars -->
     <PropertyGroup>
-      <TrimTestHasError>False</TrimTestHasError>
-      <TrimTestHasError Condition="'$(TrimTestExitCode)'!='' And '$(TrimTestExitCode)'!='0'">True</TrimTestHasError>
+      <TrimRunHasError>False</TrimRunHasError>
+      <TrimRunHasError Condition="'$(TrimRunExitCode)'!='' And '$(TrimRunExitCode)'!='0'">True</TrimRunHasError>
     </PropertyGroup>
 
     <!-- Read output -->
-    <ReadLinesFromFile File="$(TrimTestOutputFilePath)">
-      <Output TaskParameter="Lines" ItemName="TrimTestOutputLines" />
+    <ReadLinesFromFile File="$(TrimRunOutputFilePath)">
+      <Output TaskParameter="Lines" ItemName="TrimRunOutputLines" />
     </ReadLinesFromFile>
 
     <!-- Parse -->
     <PropertyGroup>
       <!-- Join output -->
-      <TrimTestOutputJoined>@(TrimTestOutputLines, '&#x0D;&#x0A;')</TrimTestOutputJoined>
+      <TrimRunOutputJoined>@(TrimRunOutputLines, '&#x0D;&#x0A;')</TrimRunOutputJoined>
       <!-- Extract text after 'Exception: ' -->
-      <TrimTestException>$([System.Text.RegularExpressions.Regex]::Match('$(TrimTestOutputJoined)','(?s)Exception:\s*(.*)').Groups[1].Value)</TrimTestException>
+      <TrimRunException>$([System.Text.RegularExpressions.Regex]::Match('$(TrimRunOutputJoined)','(?s)Exception:\s*(.*)').Groups[1].Value)</TrimRunException>
       <!-- Build error text -->
-      <TrimTestErrorText>$(TrimTestException)</TrimTestErrorText>
+      <TrimRunErrorText>$(TrimRunException)</TrimRunErrorText>
       <!-- Fallback to complete exe output -->
-      <TrimTestErrorText Condition="'$(TrimTestException)'==''">$(TrimTestOutputJoined)</TrimTestErrorText>
-      <TrimTestErrorText>EXE code $(TrimTestExitCode). $(TrimTestErrorText)</TrimTestErrorText>
+      <TrimRunErrorText Condition="'$(TrimRunException)'==''">$(TrimRunOutputJoined)</TrimRunErrorText>
+      <TrimRunErrorText>Trim run exit code $(TrimRunExitCode). $(TrimRunErrorText)</TrimRunErrorText>
     </PropertyGroup>
 
     <!-- Diagnostics -->
     <PropertyGroup>
-      <PublishedExeExists>False</PublishedExeExists>
-      <PublishedExeExists Condition="Exists('$(PublishedExe)')">True</PublishedExeExists>
-      <TrimTestOutputExists>False</TrimTestOutputExists>
-      <TrimTestOutputExists Condition="Exists('$(TrimTestOutputFilePath)')">True</TrimTestOutputExists>
+      <TrimmedExeExists>False</TrimmedExeExists>
+      <TrimmedExeExists Condition="Exists('$(TrimmedExe)')">True</TrimmedExeExists>
+      <TrimRunOutputExists>False</TrimRunOutputExists>
+      <TrimRunOutputExists Condition="Exists('$(TrimRunOutputFilePath)')">True</TrimRunOutputExists>
     </PropertyGroup>
-    <Message Text="$(MSBuildProjectName) > PublishedExe Exists = $(PublishedExeExists) | $(PublishedExe)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > Output Exists = $(TrimTestOutputExists) | $(TrimTestOutputFilePath)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > ExitCode = $(TrimTestExitCode)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > HasError = $(TrimTestHasError)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > Exception = $(TrimTestException)" Importance="High" />
-    <!--<Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimTestHasError) And '$(TrimTestException)'==''" Importance="High" />-->
-    <!--<Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimTestOutputJoined)" Importance="High" />-->
+    <Message Text="$(MSBuildProjectName) > TrimmedExe Exists = $(TrimmedExeExists) | $(TrimmedExe)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > Output Exists = $(TrimRunOutputExists) | $(TrimRunOutputFilePath)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > ExitCode = $(TrimRunExitCode)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > HasError = $(TrimRunHasError)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > Exception = $(TrimRunException)" Importance="High" />
+    <!--<Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimRunHasError) And '$(TrimRunException)'==''" Importance="High" />-->
+    <!--<Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimRunOutputJoined)" Importance="High" />-->
 
     <!-- Failure => Error List -->
-    <Error Condition="$(TrimTestHasError)" Text="$(TrimTestErrorText)" />
+    <Error Condition="$(TrimRunHasError)" Text="$(TrimRunErrorText)" />
 
     <!-- Build Output -->
-    <Message Text="$(TrimTestOutputJoined)" Importance="High" />
+    <Message Text="$(TrimRunOutputJoined)" Importance="High" />
   </Target>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
