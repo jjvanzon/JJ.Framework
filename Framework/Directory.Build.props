@@ -238,7 +238,7 @@
       <TrimRunErrorText>$(TrimRunException)</TrimRunErrorText>
       <!-- Fallback to complete exe output -->
       <TrimRunErrorText Condition="'$(TrimRunException)'==''">$(TrimRunOutputJoined)</TrimRunErrorText>
-      <TrimRunErrorText>$(MSBuildProjectName) > ERROR! Exit Code $(TrimRunExitCode). $(TrimRunErrorText)</TrimRunErrorText>
+      <TrimRunErrorText>$(MSBuildProjectName) > Exit Code $(TrimRunExitCode). $(TrimRunErrorText)</TrimRunErrorText>
     </PropertyGroup>
 
     <!-- Diagnostics -->
