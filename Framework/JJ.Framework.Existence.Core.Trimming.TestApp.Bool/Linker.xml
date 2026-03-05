@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="JJ.Framework.Existence.Core.Trimming.TestApp.Bool">
+    <type fullname="Program" preserve="all">
+      <method name="&lt;Main&gt;$" />
+    </type>
+  </assembly>
+</linker>

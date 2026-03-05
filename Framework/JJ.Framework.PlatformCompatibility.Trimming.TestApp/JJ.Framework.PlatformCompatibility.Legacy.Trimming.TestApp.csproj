@@ -27,7 +27,7 @@
 
   <!-- Gives problems with Reflection.Core, which doesn't guarantee trimming yet. -->
   <!-- TODO: Somehow retain Program.cs as trimming root? -->
-  <!--<ItemGroup>
-    <TrimmerRootAssembly Include="$(AssemblyName)" />
-  </ItemGroup>-->
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+  </ItemGroup>
 </Project>
