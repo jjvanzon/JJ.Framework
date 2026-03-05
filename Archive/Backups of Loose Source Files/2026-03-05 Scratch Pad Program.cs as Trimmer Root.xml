@@ -1,0 +1,20 @@
+            // Dump assembly and types for inspection at startup
+          //var asm = System.Reflection.Assembly.GetExecutingAssembly();
+          //WriteLine("Assembly: " + asm.GetName().Name);
+          //var entry = asm.EntryPoint;
+          //WriteLine("EntryPoint: " + (entry != null ? (entry.DeclaringType?.FullName + "." + entry.Name) : "<none>"));
+
+
+  <assembly fullname="JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText">
+    <!-- The compiler places the generated Program type into the project's
+         root namespace by default. Use the namespace-qualified name so the
+         linker can find the generated type and its Main entrypoint. -->
+    <type fullname="JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.Program" preserve="all">
+      <!--<method name="Main" />-->
+      <method name="&lt;Main&gt;$" />
+    </type>
+    <type fullname="Program" preserve="all">
+      <!--<method name="Main" />-->
+      <method name="&lt;Main&gt;$" />
+    </type>
+  </assembly>

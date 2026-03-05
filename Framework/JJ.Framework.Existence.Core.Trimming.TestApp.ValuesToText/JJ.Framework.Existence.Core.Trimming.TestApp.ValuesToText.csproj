@@ -23,15 +23,6 @@
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
-    <!--<TrimmerRootAssembly Include="$(AssemblyName)" />-->
     <TrimmerRootDescriptor Include="Linker.xml" />
   </ItemGroup>
-
-  <!--
-  <PropertyGroup>
-    <PublishTrimmed>False</PublishTrimmed>
-    <PublishAot>False</PublishAot>
-  </PropertyGroup>
-  -->
-
 </Project>
