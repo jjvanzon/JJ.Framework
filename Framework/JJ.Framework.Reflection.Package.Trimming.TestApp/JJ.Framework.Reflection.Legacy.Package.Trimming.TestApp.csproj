@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TrimmerRootAssembly Include="$(AssemblyName)" />
+    <TrimmerRootDescriptor Include="Linker.xml" />
   </ItemGroup>
 
   <ItemGroup>

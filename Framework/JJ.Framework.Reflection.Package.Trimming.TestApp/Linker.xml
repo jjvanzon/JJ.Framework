@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+  <assembly fullname="JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp">
+    <type fullname="Program" preserve="all">
+      <method name="&lt;Main&gt;$" />
+    </type>
+  </assembly>
+</linker>
