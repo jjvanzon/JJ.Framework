@@ -23,7 +23,9 @@
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
-    <TrimmerRootAssembly Include="$(AssemblyName)" />
+    <!-- Use a linker descriptor so the trimmer roots can be targeted at the Program type/method
+         rather than the whole assembly. The descriptor file is added next to this project. -->
+    <TrimmerRootDescriptor Include="TrimmerRoots.Program.xml" />
   </ItemGroup>
 
 </Project>
