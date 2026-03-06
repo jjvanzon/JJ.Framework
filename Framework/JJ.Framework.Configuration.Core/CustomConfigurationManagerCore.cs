@@ -9,7 +9,7 @@ namespace JJ.Framework.Configuration.Core
     public static class CustomConfigurationManagerCore
     {
         /// <inheritdoc cref="_trygetsection"/>
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static T? TryGetSection<[Dyn(AllProperties)] T>(Assembly assembly)
             where T: new()
         {
@@ -28,7 +28,7 @@ namespace JJ.Framework.Configuration.Core
         }
         
         /// <inheritdoc cref="_trygetsection"/>
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static T? TryGetSection<[Dyn(AllProperties)] T>(string sectionName)
             where T: new()
         {
@@ -47,7 +47,7 @@ namespace JJ.Framework.Configuration.Core
         }
         
         /// <inheritdoc cref="_trygetsection"/>
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static T? TryGetSection<[Dyn(AllProperties)] T>()
             where T: class, new()
         {

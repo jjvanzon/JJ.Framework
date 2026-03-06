@@ -18,7 +18,7 @@ public static class TestRunner
 
     // Get
 
-    [NoTrim(GetTypes)]
+    [TrimWarn(GetTypes)]
     public static ICollection<Type> GetTestClasses(Assembly assembly) 
         => NotNull(assembly).GetExportedTypes().Where(IsTestClass).ToArray();
         
@@ -30,10 +30,10 @@ public static class TestRunner
 
     // Run
 
-    [NoTrim(GetTypes)] public static bool RunTests() => RunTests(GetCallingAssembly());
-    [NoTrim(GetTypes)] public static bool RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
+    [TrimWarn(GetTypes)] public static bool RunTests() => RunTests(GetCallingAssembly());
+    [TrimWarn(GetTypes)] public static bool RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
 
-    [NoTrim(TypeColl)] public static bool RunTests(ICollection<Type> testClasses)
+    [TrimWarn(TypeColl)] public static bool RunTests(ICollection<Type> testClasses)
     {
         NotNull(testClasses);
         foreach (var testClass in testClasses)

@@ -20,7 +20,7 @@ namespace JJ.Framework.Reflection.Legacy
         public bool ShowIndexerValues { get; set; }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(WhenShowIndexerValues)]
+        [TrimWarn(WhenShowIndexerValues)]
         #endif
         public string Execute(Expression expression)
         {

@@ -285,7 +285,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         //[RequiresDynamicCode(GenericMethods)]
-        //[NoTrim(GenericMethods)]
+        //[TrimWarn(GenericMethods)]
         [Suppress("Trimmer", "IL2060", Justification = "Only closed generic methods that are used can be reflected; RequiresUnreferencedCode omitted.")]
         [Suppress("Trimmer", "IL3050", Justification = "Only closed generic methods that are used can be reflected; RequiresDynamicCode omitted.")]
         private MethodInfo? TryResolveGenericMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
@@ -373,7 +373,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new();
         private readonly object _typeByShortNameDictionaryLock = new();
 
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public Type GetTypeByShortName(string shortTypeName)
         {
             Type? type = TryGetTypeByShortName(shortTypeName);
@@ -384,7 +384,7 @@ namespace JJ.Framework.Reflection.Legacy
             return type;
         }
 
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public Type? TryGetTypeByShortName(string shortTypeName)
         {
             IList<Type> types = GetTypesByShortName(shortTypeName);
@@ -404,7 +404,7 @@ namespace JJ.Framework.Reflection.Legacy
             }
         }
 
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public IList<Type> GetTypesByShortName(string shortTypeName)
         {
             Type[]? types;

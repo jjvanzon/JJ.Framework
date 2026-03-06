@@ -46,7 +46,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         }
 
         [TestMethod]
-        [DynamicDependency(NonPublicProps, typeof(ClassWithNamedIndexer))]
+        [NoTrim(NonPublicProps, typeof(ClassWithNamedIndexer))]
         public void Test_Accessor_UsingStrings_Indexer_Named()
         {
             var obj = new ClassWithNamedIndexer();

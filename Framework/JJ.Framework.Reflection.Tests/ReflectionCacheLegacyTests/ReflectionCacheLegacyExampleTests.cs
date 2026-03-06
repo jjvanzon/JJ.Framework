@@ -10,7 +10,7 @@ public class ReflectionCacheLegacyExampleTests
         private int Private => 3;
     }
 
-    [DynamicDependency(NonPublicProps, typeof(MyClass))]
+    [NoTrim(NonPublicProps, typeof(MyClass))]
     [TestMethod]
     public void ReflectionCache_Legacy_Example_Test()
     {

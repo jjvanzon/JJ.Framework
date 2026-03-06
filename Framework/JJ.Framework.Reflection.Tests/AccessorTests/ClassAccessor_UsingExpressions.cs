@@ -11,7 +11,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     {
         private static Accessor _staticAccessor;
 
-        [NoTrim(ObjectGetType)]
+        [TrimWarn(ObjectGetType)]
         public ClassAccessor_UsingExpressions(Class obj)
             : base(obj)
         { }

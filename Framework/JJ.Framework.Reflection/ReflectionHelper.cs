@@ -25,7 +25,7 @@ namespace JJ.Framework.Reflection.Legacy
         private static Dictionary<string, Type[]> _implementationsDictionary = new Dictionary<string, Type[]>();
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type GetImplementation(Assembly assembly, Type baseType)
         {
             Type type = TryGetImplementation(assembly, baseType);
@@ -39,7 +39,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type TryGetImplementation(Assembly assembly, Type baseType)
         {
             Type[] types = GetImplementations(assembly, baseType);
@@ -58,14 +58,14 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type[] GetImplementations(IEnumerable<Assembly> assemblies, Type baseType)
         {
             return assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
         }
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type[] GetImplementations(Assembly assembly, Type baseType)
         {
             if (assembly == null) throw new NullException(() => assembly);
@@ -97,7 +97,7 @@ namespace JJ.Framework.Reflection.Legacy
         // GetItemType
 
         /// <inheritdoc cref="_getitemtype" />
-        [NoTrim(ObjectGetType)]
+        [TrimWarn(ObjectGetType)]
         public static Type GetItemType(object collection)
         {
             if (collection == null) throw new NullException(() => collection);
@@ -105,7 +105,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_getitemtype" />
-        [NoTrim(PropertyType)]
+        [TrimWarn(PropertyType)]
         public static Type GetItemType(PropertyInfo collectionProperty)
         {
             if (collectionProperty == null) throw new NullException(() => collectionProperty);
@@ -245,28 +245,28 @@ namespace JJ.Framework.Reflection.Legacy
         // Generic overloads
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type GetImplementation<TBaseType>(Assembly assembly)
         {
             return GetImplementation(assembly, typeof(TBaseType));
         }
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type TryGetImplementation<TBaseType>(Assembly assembly)
         {
             return TryGetImplementation(assembly, typeof(TBaseType));
         }
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type[] GetImplementations<TBaseType>(Assembly assembly)
         {
             return GetImplementations(assembly, typeof(TBaseType));
         }
 
         /// <inheritdoc cref="_getimplementations" />
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static Type[] GetImplementations<TBaseType>(IEnumerable<Assembly> assemblies)
         {
             return GetImplementations(assemblies, typeof(TBaseType));

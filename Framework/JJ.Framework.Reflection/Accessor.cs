@@ -22,7 +22,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         /// <summary> Use this constructor to access instance members. </summary>
         /// <inheritdoc cref="_accessor" />
-        [NoTrim(ObjectGetType)]
+        [TrimWarn(ObjectGetType)]
         public Accessor(object obj)
         {
             if (obj == null) throw new NullException(() => obj);

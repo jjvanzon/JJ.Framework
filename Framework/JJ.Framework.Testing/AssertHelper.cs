@@ -38,7 +38,7 @@ namespace JJ.Framework.Testing.Legacy
         // TODO: The code below has not been reviewed (as of 2014-06-11).
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void NotEqual<T>(T a, Expression<Func<T>> bExpresion)
         {
@@ -54,7 +54,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression)
         {
@@ -62,7 +62,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression)
         {
@@ -70,7 +70,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void IsTrue(Expression<Func<bool>> expression)
         {
@@ -78,7 +78,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void IsFalse(Expression<Func<bool>> expression)
         {
@@ -86,7 +86,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void IsNull(Expression<Func<object>> expression)
         {
@@ -94,7 +94,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void IsNotNull(Expression<Func<object>> expression)
         {
@@ -102,7 +102,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void IsNullOrEmpty(Expression<Func<string>> expression)
         {
@@ -110,7 +110,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void NotNullOrEmpty(Expression<Func<string>> expression)
         {
@@ -118,7 +118,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void IsOfType<T>(Expression<Func<object>> expression)
         {
@@ -228,7 +228,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         private static void ExpectedActualCheck<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression)
         {
@@ -252,7 +252,7 @@ namespace JJ.Framework.Testing.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public static void Check<T>(Func<T, bool> condition, string methodName, Expression<Func<T>> expression)
         {

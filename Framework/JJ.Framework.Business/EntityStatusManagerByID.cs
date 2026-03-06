@@ -37,7 +37,7 @@ namespace JJ.Framework.Business.Legacy
         /// <remarks> For properties. </remarks>
         /// <inheritdoc cref="_isdirty_property" />
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public bool IsDirty<T>(object id, Expression<Func<T>> propertyExpression)
         {
@@ -61,7 +61,7 @@ namespace JJ.Framework.Business.Legacy
         /// <inheritdoc cref="_setisdirty_property" />
         /// <remarks> For properties. </remarks>
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public void SetIsDirty<T>(object id, Expression<Func<T>> propertyExpression)
         {
@@ -140,7 +140,7 @@ namespace JJ.Framework.Business.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         private PropertyStatusEnum GetStatus<T>(object id, Expression<Func<T>> propertyExpression)
         {
@@ -168,7 +168,7 @@ namespace JJ.Framework.Business.Legacy
 
         /// <summary> For properties. </summary>
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         private void SetStatus<T>(object id, Expression<Func<T>> expression, PropertyStatusEnum entityStatus)
         {

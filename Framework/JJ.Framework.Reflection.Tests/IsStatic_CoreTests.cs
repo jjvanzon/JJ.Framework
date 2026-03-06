@@ -17,7 +17,7 @@ public class IsStatic_CoreTests
     public static event EventHandler StaticEvent = (sender, args) => { };
     // ncrunch: no coverage end
 
-    [DynamicDependency("_staticField")]
+    [NoTrim("_staticField")]
     [TestMethod]
     public void IsStatic_True()
     {
@@ -34,7 +34,7 @@ public class IsStatic_CoreTests
         IsTrue(ReflectionHelper.IsStatic(method));
     }
     
-    [DynamicDependency("_field")]
+    [NoTrim("_field")]
     [TestMethod]
     public void IsStatic_False()
     {

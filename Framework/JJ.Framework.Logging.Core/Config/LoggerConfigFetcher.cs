@@ -15,7 +15,7 @@ namespace JJ.Framework.Logging.Core.Config
         private const string DefaultConfigSectionName = "jj.framework.logging";
         private static readonly RootLoggerXml _defaultConfigSection = CreateDefaultConfigSection();
         
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static RootLoggerXml GetLoggerXml(string sectionName = "")
         {
             string resolvedSectionName = Coalesce(sectionName, DefaultConfigSectionName);
@@ -23,7 +23,7 @@ namespace JJ.Framework.Logging.Core.Config
             return rootLoggerXml ?? _defaultConfigSection;
         }
         
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static RootLoggerConfig CreateLoggerConfig(string sectionName = "")
         {
             RootLoggerXml rootLoggerXml = GetLoggerXml(sectionName);

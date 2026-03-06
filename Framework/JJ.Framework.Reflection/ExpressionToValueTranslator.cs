@@ -15,7 +15,7 @@ namespace JJ.Framework.Reflection.Legacy
         private Stack<object> _stack;
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public IList<object> GetValues(Expression expression)
         {
@@ -25,7 +25,7 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         #if !NET9_0_OR_GREATER
-        [NoTrim(ArrayInit)]
+        [TrimWarn(ArrayInit)]
         #endif
         public object GetValue(Expression expression)
         {

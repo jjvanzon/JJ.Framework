@@ -10,7 +10,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     {
         private Accessor _accessor;
 
-        [NoTrim(ObjectGetType)]
+        [TrimWarn(ObjectGetType)]
         public ClassWithNamedIndexerAccessor(ClassWithNamedIndexer obj)
         {
             _accessor = new Accessor(obj);

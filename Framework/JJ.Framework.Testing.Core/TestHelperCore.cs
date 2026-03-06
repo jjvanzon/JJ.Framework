@@ -6,7 +6,7 @@
             => Has(messageOrExpression) ? $"Tested: '{messageOrExpression}'." : "";
         
         // ReSharper disable AssignNullToNotNullAttribute
-        [NoTrim(ObjectGetType)]
+        [TrimWarn(ObjectGetType)]
         public static bool CurrentTestIsInCategory(string category)
         {
             var methodQuery = new StackTrace().GetFrames().Select(x => x.GetMethod());

@@ -12,7 +12,7 @@ namespace JJ.Framework.Configuration.Legacy
 {
     public static class CustomConfigurationManager
     {
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static T GetSection<[Dyn(AllProperties)] T>()
             where T : new()
         {
@@ -20,7 +20,7 @@ namespace JJ.Framework.Configuration.Legacy
             return GetSection<T>(assembly);
         }
 
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static T GetSection<[Dyn(AllProperties)] T>(Assembly assembly)
             where T : new()
         {
@@ -31,7 +31,7 @@ namespace JJ.Framework.Configuration.Legacy
         private static object _sectionDictionaryLock = new object();
         private static Dictionary<string, object> _sectionDictionary = new Dictionary<string, object>();
 
-        [NoTrim(PropertyType + " " + ObjectGetType)]
+        [TrimWarn(PropertyType + " " + ObjectGetType)]
         public static T GetSection<[Dyn(AllProperties)] T>(string sectionName)
             where T : new()
         {

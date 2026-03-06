@@ -41,14 +41,14 @@ namespace JJ.Framework.Reflection.Legacy
         }
 
         /// <inheritdoc cref="_getitemtype" />
-        [NoTrim(PropertyType)]
+        [TrimWarn(PropertyType)]
         public static Type GetItemType(this PropertyInfo collectionProperty)
         {
             return ReflectionHelper.GetItemType(collectionProperty);
         }
 
         /// <inheritdoc cref="_getitemtype" />
-        [NoTrim(ObjectGetType)]
+        [TrimWarn(ObjectGetType)]
         public static Type GetItemType(this object collection)
         {
             return ReflectionHelper.GetItemType(collection);

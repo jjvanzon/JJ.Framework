@@ -22,13 +22,13 @@ namespace JJ.Framework.Testing.Core
                                       .ToArray();
         }
 
-        [NoTrim(FieldType)]
+        [TrimWarn(FieldType)]
         private IList<FieldInfo> GetCasePropFields()
             => GetType().GetFields(BINDING_FLAGS_ALL)
                         .Where(x => x.FieldType.HasInterfaceInHierarchy<ICaseProp>())
                         .ToArray();
         
-        [NoTrim(FieldType)]
+        [TrimWarn(FieldType)]
         private void AutoCreateProps() => GetCasePropFields().Where(x => x.GetValue(this) == null)
                                                              .ForEach(x => x.SetValue(this, CreateInstance(x.FieldType)));
         // Descriptions
@@ -97,22 +97,22 @@ namespace JJ.Framework.Testing.Core
 
         // Constructors
 
-        [NoTrim(FieldType)] public CaseBase() : base() => Initialize();
-        [NoTrim(FieldType)] public CaseBase(TMainProp value) : base(value) => Initialize();
-        [NoTrim(FieldType)] public CaseBase(TMainProp? value) : base(value) => Initialize();
-        [NoTrim(FieldType)] public CaseBase(TMainProp from, TMainProp to) : base(from, to) => Initialize();
-        [NoTrim(FieldType)] public CaseBase(TMainProp from, TMainProp? to) : base(from, to) => Initialize();
-        [NoTrim(FieldType)] public CaseBase(TMainProp? from, TMainProp to) : base(from, to) => Initialize();
-        [NoTrim(FieldType)] public CaseBase(TMainProp? from, TMainProp? to) : base(from, to) => Initialize();
-        [NoTrim(FieldType)] public CaseBase((TMainProp from, TMainProp to) values) : base(values) => Initialize();
-        [NoTrim(FieldType)] public CaseBase((TMainProp? from, TMainProp to) values) : base(values) => Initialize();
-        [NoTrim(FieldType)] public CaseBase((TMainProp from, TMainProp? to) values) : base(values) => Initialize();
-        [NoTrim(FieldType)] public CaseBase((TMainProp? from, TMainProp? to) values) : base(values) => Initialize();
-        [NoTrim(FieldType)] public CaseBase(TMainProp from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
-        [NoTrim(FieldType)] public CaseBase((TMainProp? nully, TMainProp coalesced) from, TMainProp to) : base(from, to) => Initialize();
-        [NoTrim(FieldType)] public CaseBase((TMainProp? nully, TMainProp coalesced) from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase() : base() => Initialize();
+        [TrimWarn(FieldType)] public CaseBase(TMainProp value) : base(value) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase(TMainProp? value) : base(value) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase(TMainProp from, TMainProp to) : base(from, to) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase(TMainProp from, TMainProp? to) : base(from, to) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase(TMainProp? from, TMainProp to) : base(from, to) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase(TMainProp? from, TMainProp? to) : base(from, to) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase((TMainProp from, TMainProp to) values) : base(values) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase((TMainProp? from, TMainProp to) values) : base(values) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase((TMainProp from, TMainProp? to) values) : base(values) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase((TMainProp? from, TMainProp? to) values) : base(values) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase(TMainProp from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase((TMainProp? nully, TMainProp coalesced) from, TMainProp to) : base(from, to) => Initialize();
+        [TrimWarn(FieldType)] public CaseBase((TMainProp? nully, TMainProp coalesced) from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
         
-        [NoTrim(FieldType)]
+        [TrimWarn(FieldType)]
         private void Initialize() => AutoCreateProps();
     }
 }

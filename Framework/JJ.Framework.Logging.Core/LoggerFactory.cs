@@ -10,21 +10,21 @@ namespace JJ.Framework.Logging.Core
     {
         private static readonly ILogger _emptyLogger = new EmptyLogger();
         
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static ILogger CreateLoggerFromConfig(string sectionName = "")
         {
             RootLoggerConfig rootLoggerConfig = LoggerConfigFetcher.CreateLoggerConfig(sectionName);
             return CreateLogger(rootLoggerConfig);
         }
 
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static ILogger CreateLogger(RootLoggerXml rootLoggerXml)
         {
             RootLoggerConfig rootLoggerConfig = LoggerConfigFetcher.CreateLoggerConfig(rootLoggerXml);
             return CreateLogger(rootLoggerConfig);
         }
         
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         public static ILogger CreateLogger(RootLoggerConfig rootLoggerConfig)
         {
             if (rootLoggerConfig == null) throw new NullException(() => rootLoggerConfig);
@@ -40,7 +40,7 @@ namespace JJ.Framework.Logging.Core
             }
         }
 
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         private static ILogger CreateLogger(LoggerConfig loggerConfig)
         {
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
@@ -79,7 +79,7 @@ namespace JJ.Framework.Logging.Core
             return logger;
         }
 
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         private static ILogger CreateLogger_FromResolvedType(LoggerConfig loggerConfig)
         {
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
@@ -106,7 +106,7 @@ namespace JJ.Framework.Logging.Core
         private static readonly Lock _loggerTypeDictionaryLock = new();
         private static readonly Dictionary<string, Type> _loggerTypeDictionary = new();
 
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         private static Type GetLoggerType(string loggerType)
         {
             lock (_loggerTypeDictionaryLock)
@@ -130,7 +130,7 @@ namespace JJ.Framework.Logging.Core
             }
         }
         
-        [NoTrim(GetTypes)]
+        [TrimWarn(GetTypes)]
         private static Type? TryGetLoggerType_FromAssemblyName(string assemblyName)
         {
             // Try load assembly.
