@@ -131,7 +131,7 @@ namespace JJ.Framework.Testing.Legacy
 
         // ThrowsException Checks
 
-        [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
+        [Suppress("Trimmer", "IL2026", Justification = "Internally uses lambda without array init. " + ArrayInit)]
         public static void ThrowsException(Action statement, string expectedMessage)
         {
             try
@@ -147,7 +147,7 @@ namespace JJ.Framework.Testing.Legacy
             throw new Exception("An exception should have been raised.");
         }
 
-        [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
+        [Suppress("Trimmer", "IL2026", Justification = "Internally uses lambda without array init. " + ArrayInit)]
         public static void ThrowsException(Action statement, Type exceptionType)
         {
             try
@@ -163,7 +163,7 @@ namespace JJ.Framework.Testing.Legacy
             throw new Exception("An exception should have been raised.");
         }
 
-        [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
+        [Suppress("Trimmer", "IL2026", Justification = "Internally uses lambda without array init. " + ArrayInit)]
         public static void ThrowsException(Action statement, Type exceptionType, string expectedMessage)
         {
             try
