@@ -45,5 +45,5 @@ internal static class NoTrimReasons
 
     public const string Lambda = "JJ0011 - Lambda: Trimmer complains, because of usage in a lamda expression, not actual use of reflection." + DoWhatInstead;
 
-    public const string TypeLoaded = "JJ0012 - TypeLoaded: Trimming issue can be ignored, when Type loaded.";
+    public const string TypeLoaded = "JJ0012 - TypeLoaded: Trimming issue can be ignored, when Type loaded." + DoWhatInstead;
 }
