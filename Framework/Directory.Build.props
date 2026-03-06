@@ -315,6 +315,8 @@
     <NoWarn>$(NoWarn);IDE0034</NoWarn> <!--Simplify 'default' expression-->
     <NoWarn>$(NoWarn);IDE0057</NoWarn> <!--Use range operator-->
     <NoWarn>$(NoWarn);IDE0044</NoWarn> <!--Field read-only-->
+    <NoWarn>$(NoWarn);IDE0002</NoWarn> <!--Redundant static qualifier-->
+    <NoWarn>$(NoWarn);IDE0051</NoWarn> <!--Type member never used-->
   </PropertyGroup>
 
 </Project>

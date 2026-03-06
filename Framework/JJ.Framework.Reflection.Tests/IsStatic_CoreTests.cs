@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.Reflection.Legacy.Tests;
+﻿#pragma warning disable IDE0002 // Redundant static qualifier
+#pragma warning disable IDE0051 // Type member never used
+
+namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2075", Justification = TypeLoaded)]
 [TestClass]
