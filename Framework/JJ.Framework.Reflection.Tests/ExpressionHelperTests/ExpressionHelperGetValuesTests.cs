@@ -13,7 +13,6 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
     public class ExpressionHelperGetValuesTests
     {
         [TestMethod]
-      //[Suppress("Trimmer", "IL3050", Justification = ArrayInit)]
         public void Test_ExpressionHelpers_GetValues_ComplexExample()
         {
             ComplexItem item = new ComplexItem();
