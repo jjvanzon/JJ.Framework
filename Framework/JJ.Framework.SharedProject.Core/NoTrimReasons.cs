@@ -23,7 +23,7 @@ internal static class NoTrimReasons
         "JJ0007 - ArrayInit: Array.CreateInstance called internally. " +
         "Not a problem for trimmable code for .NET 9 and up, but can cause issues with lower .NET versions. " +
         "* You could pick an expression-free variant of the function if available (one without `() =>` notation). " +
-        "* You can also ignore the warning if your (lambda) expression does have array initialization in it." +
+        "* You can also Suppress the warning if your (lambda) expression does have array initialization in it." +
         "* NOTE: Your lambda expression can also have an array init unnoticed," +
         "  if you call anything with a variadic amount of arguments (`params`)." +
         "* You could also propagate this warning by annotating your method with: " +
