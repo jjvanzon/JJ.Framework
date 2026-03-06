@@ -192,6 +192,9 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             Type[] parameterTypes = { typeof(int), typeof(double) };
             Type[] typeArguments = { typeof(long), typeof(float) };
 
+            // Preserve after Code Trimming
+            var func = ReflectionCacheLegacyTests_HelperClass.Method_WithTypeArguments<long, float>;
+             
             return (type, methodName, parameterTypes, typeArguments);
         }
 
