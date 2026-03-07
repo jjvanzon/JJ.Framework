@@ -129,7 +129,8 @@ namespace JJ.Framework.Reflection.Legacy
         /// <inheritdoc cref="_getitemtype" />
         public static Type TryGetItemType([Dyn(Interfaces)] Type collectionType)
         {
-            if (collectionType == null) throw new NullException(() => collectionType);
+            // Changed to lambda-free variant for compability with code trimming.
+            if (collectionType == null) throw new ArgumentNullException(nameof(collectionType));
 
             lock (_itemTypeDictionaryLock)
             {

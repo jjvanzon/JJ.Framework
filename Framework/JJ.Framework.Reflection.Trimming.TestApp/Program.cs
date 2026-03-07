@@ -17,7 +17,8 @@ RunTests<ExpressionHelper_CoreTests>() &&
 RunTests<GetImplementations_CoreTests>() &&
 RunTests<IsAssignableTo_CoreTests>() &&
 RunTests<IsIndexer_CoreTests>() &&
-RunTests<IsStatic_CoreTests>();
+RunTests<IsStatic_CoreTests>() &&
+RunTests<ItemType_CoreTests>();
 
 WriteLine("Done.");
 
