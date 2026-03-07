@@ -13,6 +13,7 @@ RunTests<ExpressionHelperGetValueSimpleTests>() &&
 RunTests<ExpressionHelperGetValuesTests>() &&
 RunTests<ReflectionCacheLegacyExampleTests>() &&
 RunTests<ReflectionCacheLegacyTests>() &&
+RunTests<ExpressionHelper_CoreTests>() &&
 RunTests<GetImplementations_CoreTests>() &&
 RunTests<IsAssignableTo_CoreTests>() &&
 RunTests<IsIndexer_CoreTests>() &&
