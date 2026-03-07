@@ -1,6 +1,7 @@
 // ReSharper disable RedundantUsingDirective.Global
 global using Dyn = System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute;
 global using TrimWarn = System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute;
+global using AotWarn = System.Diagnostics.CodeAnalysis.RequiresDynamicCodeAttribute;
 global using NoTrim = System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute;
 global using Prio = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 global using Caller = System.Runtime.CompilerServices.CallerMemberNameAttribute;
