@@ -1,4 +1,6 @@
-﻿using JJ.Framework.PlatformCompatibility;
+﻿#pragma warning disable IDE0060 // Unused parameter
+
+using JJ.Framework.PlatformCompatibility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
