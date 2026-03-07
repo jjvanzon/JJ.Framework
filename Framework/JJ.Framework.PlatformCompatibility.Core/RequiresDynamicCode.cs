@@ -1,9 +1,8 @@
 // ReSharper disable UnusedType.Global
 
 // ncrunch: no coverage start
-#if NETSTANDARD2_0 || NETSTANDARD2_1 || NET5_0 || NET6_0
-
-using static System.AttributeTargets;
+//#if NETSTANDARD2_0 || NETSTANDARD2_1 || NETFRAMEWORK || NET5_0 || NET6_0
+#if !NET7_0_OR_GREATER
 
 namespace System.Diagnostics.CodeAnalysis;
 
