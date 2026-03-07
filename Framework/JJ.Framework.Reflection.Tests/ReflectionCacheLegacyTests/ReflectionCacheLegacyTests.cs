@@ -63,6 +63,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
 
         // GetMethod (With Type Arguments)
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_GetMethod_WithTypeArguments_ReturnsSomething()
         {
@@ -77,6 +79,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             AreEqual(method1, method2);
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_TryGetMethod_WithTypeArguments_ReturnsSomething()
         {
@@ -91,6 +95,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             AreEqual(method1, method2);
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_GetMethod_WithTypeArguments_ThrowsException_BecauseWrongName()
         {
@@ -106,6 +112,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
                 expectedMessage);
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_TryGetMethod_WithTypeArguments_ReturnsNull_BecauseWrongName()
         {
@@ -121,6 +129,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             IsNull(method2);
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_GetMethod_WithTypeArguments_ThrowsException_BecauseWrongParameterTypes()
         {
@@ -136,6 +146,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
                 expectedMessage);
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_TryGetMethod_WithTypeArguments_ReturnsNull_BecauseWrongParameterTypes()
         {
@@ -151,6 +163,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             IsNull(method2);
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_GetMethod_WithTypeArguments_ThrowsException_BecauseWrongNumberOfTypeArguments()
         {
@@ -166,6 +180,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
                 expectedMessage);
         }
 
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_TryGetMethod_WithTypeArguments_ReturnsNull_BecauseWrongNumberOfTypeArguments()
         {

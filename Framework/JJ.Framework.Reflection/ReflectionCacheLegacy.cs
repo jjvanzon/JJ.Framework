@@ -240,6 +240,8 @@ namespace JJ.Framework.Reflection.Legacy
 
         private readonly object _methodWithTypeArgumentsDictionaryLock = new();
 
+        [TrimWarn(GenericMethod)]
+        [AotWarn(GenericMethod)]
         public MethodInfo GetMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
@@ -256,6 +258,8 @@ namespace JJ.Framework.Reflection.Legacy
             return method;
         }
 
+        [TrimWarn(GenericMethod)]
+        [AotWarn(GenericMethod)]
         public MethodInfo? TryGetMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
@@ -284,10 +288,9 @@ namespace JJ.Framework.Reflection.Legacy
             }
         }
 
-        //[RequiresDynamicCode(GenericMethods)]
-        //[TrimWarn(GenericMethods)]
-        [Suppress("Trimmer", "IL2060", Justification = "Only closed generic methods that are used can be reflected; RequiresUnreferencedCode omitted.")]
-        [Suppress("Trimmer", "IL3050", Justification = "Only closed generic methods that are used can be reflected; RequiresDynamicCode omitted.")]
+
+        [TrimWarn(GenericMethod)]
+        [AotWarn(GenericMethod)]
         private MethodInfo? TryResolveGenericMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name, Ordinal))
@@ -488,45 +491,73 @@ namespace JJ.Framework.Reflection.Legacy
 
         // Generic Overloads
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ] , [ typeof(TArg1), typeof(TArg2) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
+        [AotWarn(GenericMethod)]
+        [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
