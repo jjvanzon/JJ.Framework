@@ -19,7 +19,8 @@ RunTests<IsAssignableTo_CoreTests>() &&
 RunTests<IsIndexer_CoreTests>() &&
 RunTests<IsStatic_CoreTests>() &&
 RunTests<ItemType_CoreTests>() &&
-RunTests<NullException_CoreTests>();
+RunTests<NullException_CoreTests>() &&
+RunTests<ReflectionCache_CoreTests>();
 
 WriteLine("Done.");
 

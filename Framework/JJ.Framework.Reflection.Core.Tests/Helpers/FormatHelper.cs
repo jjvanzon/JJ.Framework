@@ -1,6 +1,7 @@
-﻿namespace JJ.Framework.Reflection.Core.Tests.Helpers;
+﻿
+namespace JJ.Framework.Reflection.Core.Tests.Helpers;
 
-internal static class FormatHelper
+public static class FormatHelper
 {
     private static readonly CultureInfo _cultureInfo = GetCultureInfo("en-US");
 
