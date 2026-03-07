@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Reflection.Legacy" Version="0.250.5452" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.9.5452" />
+    <PackageReference Include="JJ.Framework.Reflection.Legacy" Version="0.250.5477" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.9.5477" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +16,7 @@
     <Compile Remove="..\JJ.Framework.Reflection.Tests\bin\**" />
     <Compile Include="..\JJ.Framework.Reflection.Trimming.TestApp\Program.cs" />
     <Compile Include="..\JJ.Framework.Reflection.Trimming.TestApp\UsingMore.cs" />
+    <Compile Include="..\JJ.Framework.Reflection.Trimming.TestApp\Untrimmer.cs" />
   </ItemGroup>
 
   <ItemGroup>
