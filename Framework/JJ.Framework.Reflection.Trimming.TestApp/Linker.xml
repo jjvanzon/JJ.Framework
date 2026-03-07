@@ -4,5 +4,8 @@
     <type fullname="Program" preserve="all">
       <method name="&lt;Main&gt;$" />
     </type>
+    <type fullname="JJ.Framework.Reflection.Legacy.Trimming.TestApp.Untrimmer" preserve="all">
+      <method name="Untrim" />
+    </type>
   </assembly>
 </linker>
