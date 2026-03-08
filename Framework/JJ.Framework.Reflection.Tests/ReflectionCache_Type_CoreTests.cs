@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Reflection.Legacy.Tests;
 
+[Suppress("Trimmer", "IL2026", Justification = GetTypes)]
 [TestClass]
-[Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
 public class ReflectionCache_Type_CoreTests
 {
     // GetTypeByShortName

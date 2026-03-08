@@ -1,8 +1,6 @@
 namespace JJ.Framework.Reflection.Legacy.Tests;
 
-//[Suppress("Trimmer", "IL2077", Justification = TypeLoaded)]
-//[Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
-//[Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
 public class ReflectionCache_Indexer_CoreTests_GenericOverload
 {
