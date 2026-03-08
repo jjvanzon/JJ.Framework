@@ -1,4 +1,4 @@
-namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests;
+namespace JJ.Framework.Reflection.Legacy.Tests;
 
 //[Suppress("Trimmer", "IL2077", Justification = TypeLoaded)]
 //[Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
