@@ -1,10 +1,10 @@
-﻿// Copied from legacy branch head ("the King")
-
-using static JJ.Framework.Common.Legacy.KeyHelper;
-
+﻿
+// Copied from legacy branch head ("the King")
 // ReSharper disable ChangeFieldTypeToSystemThreadingLock
 // ReSharper disable UseSymbolAlias
 // ReSharper disable CoVariantArrayConversion
+
+using static JJ.Framework.Common.Legacy.KeyHelper;
 
 namespace JJ.Framework.Reflection.Legacy
 {
@@ -287,7 +287,6 @@ namespace JJ.Framework.Reflection.Legacy
                 return method;
             }
         }
-
 
         [TrimWarn(GenericMethod)]
         [AotWarn(GenericMethod)]
