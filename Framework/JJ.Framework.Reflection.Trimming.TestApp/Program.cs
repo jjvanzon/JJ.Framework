@@ -20,7 +20,14 @@ RunTests<IsIndexer_CoreTests>() &&
 RunTests<IsStatic_CoreTests>() &&
 RunTests<ItemType_CoreTests>() &&
 RunTests<NullException_CoreTests>() &&
-RunTests<ReflectionCache_CoreTests>();
+RunTests<ReflectionCache_Constructor_CoreTests>() &&
+RunTests<ReflectionCache_Field_CoreTests>() &&
+RunTests<ReflectionCache_Indexer_CoreTests>() &&
+RunTests<ReflectionCache_Indexer_CoreTests_GenericOverload>() &&
+RunTests<ReflectionCache_Method_CoreTests>() &&
+RunTests<ReflectionCache_Method_CoreTests_GenericOverload>() &&
+RunTests<ReflectionCache_Property_CoreTests>() &&
+RunTests<ReflectionCache_Type_CoreTests>();
 
 WriteLine("Done.");
 
