@@ -370,7 +370,7 @@ public class ReflectionCache_CoreTests
     }
     
     [TestMethod]
-    public void ReflectionCache_GetMethod_Test_WithParameterTypes()
+    public void ReflectionCache_GetMethod_Test_WithArgTypes()
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
@@ -387,59 +387,6 @@ public class ReflectionCache_CoreTests
         ];
 
         foreach (var func in synonyms)
-        {
-            for (int i = 0; i < REPEATS; i++)
-            {
-                MethodInfo method2 = func();
-                AssertMethod2(method2);
-            }
-        }
-    }
-    
-    [TestMethod]
-    public void ReflectionCache_TryGetMethod_Test()
-    {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-
-        Func<MethodInfo>[] synonyms =
-        [
-            () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), "TestMethod"),
-            () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), "TestMethod"),
-            () => StaticReflectionCache .TryGetMethod(typeof(TestClass), "TestMethod"),
-            () => reflectionCacheLegacy .GetMethod   (typeof(TestClass), "TestMethod"),
-            () => reflectionCacheLegacy2.GetMethod   (typeof(TestClass), "TestMethod"),
-            () => StaticReflectionCache .GetMethod   (typeof(TestClass), "TestMethod"),
-        ];
-
-        foreach (var func in synonyms)
-        {
-            for (int i = 0; i < REPEATS; i++)
-            {
-                MethodInfo method = func();
-                AssertMethod(method);
-            }
-        }
-    }
-    
-    [TestMethod]
-    public void ReflectionCache_TryGetMethod_Test_WithParameterTypes()
-    {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-
-        // NOTE:It's pretty strict that you must supply parameter types.
-        Func<MethodInfo>[] synonyms2 =
-        [
-            () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
-            () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
-            () => StaticReflectionCache .TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
-            () => reflectionCacheLegacy .GetMethod   (typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
-            () => reflectionCacheLegacy2.GetMethod   (typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
-            () => StaticReflectionCache .GetMethod   (typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
-        ];
-
-        foreach (var func in synonyms2)
         {
             for (int i = 0; i < REPEATS; i++)
             {
@@ -522,6 +469,8 @@ public class ReflectionCache_CoreTests
         }
     }
     
+    // Method Assertion
+
     private static void AssertMethod(MethodInfo? method)
     {
         NotNull(method);
@@ -548,28 +497,97 @@ public class ReflectionCache_CoreTests
     // Indexers
     
     [TestMethod]
-    public void StaticReflectionCache_GetIndexer_Test()
+    public void ReflectionCache_GetIndexer_Test_1Arg()
     {
-        for (int i = 0; i < REPEATS; i++)
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Func<PropertyInfo>[] synonyms =
+        [
+            () => reflectionCacheLegacy .GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
+            () => reflectionCacheLegacy2.GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
+            () => StaticReflectionCache .GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
+            () => reflectionCacheLegacy .TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
+            () => reflectionCacheLegacy2.TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
+            () => StaticReflectionCache .TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
+        ];
+
+        foreach (var func in synonyms)
         {
-            PropertyInfo indexer = StaticReflectionCache.GetIndexer(typeof(ClassWithIndexers), typeof(int));
-            AssertIndexer1(indexer);
-             
-            PropertyInfo indexer2 = StaticReflectionCache.GetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string));
-            AssertIndexer2(indexer2);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                PropertyInfo indexer = func();
+                AssertIndexer1(indexer);
+            }
+        }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetIndexer_Test_2Arg()
+    {
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+
+        Func<PropertyInfo>[] synonyms =
+        [
+            () => reflectionCacheLegacy .GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => reflectionCacheLegacy2.GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => StaticReflectionCache .GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => reflectionCacheLegacy .TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => reflectionCacheLegacy2.TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => StaticReflectionCache .TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < REPEATS; i++)
+            {
+                PropertyInfo indexer2 = func();
+                AssertIndexer2(indexer2);
+            }
         }
     }
     
     [TestMethod]
-    public void StaticReflectionCache_TryGetIndexer_Test()
+    public void ReflectionCache_GetIndexer_NotFound_Throws()
     {
-        for (int i = 0; i < REPEATS; i++)
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Action[] synonyms =
+        [
+            () => StaticReflectionCache .GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
+            () => reflectionCacheLegacy .GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
+            () => reflectionCacheLegacy2.GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
+        ];
+
+        foreach (var action in synonyms)
         {
-            PropertyInfo indexer = StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int));
-            AssertIndexer1(indexer);
-            
-            PropertyInfo indexer2 = StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string));
-            AssertIndexer2(indexer2);
+            ThrowsExceptionContaining(action, "Indexer not found");
+        }
+    }
+    
+    [TestMethod]
+    public void ReflectionCache_TryGetIndexer_NotFound_ReturnsNull()
+    {
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Func<PropertyInfo>[] synonyms =
+        [
+            () => reflectionCacheLegacy .TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
+            () => reflectionCacheLegacy2.TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
+            () => StaticReflectionCache .TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < REPEATS; i++)
+            {
+                PropertyInfo indexer = func();
+                IsNull(() => indexer);
+            }
         }
     }
 
@@ -598,24 +616,6 @@ public class ReflectionCache_CoreTests
         IsNotNull(() => parameters[1]);
         AreEqual(typeof(int),    () => parameters[0].ParameterType);
         AreEqual(typeof(string), () => parameters[1].ParameterType);
-    }
-    
-    [TestMethod]
-    public void StaticReflectionCache_GetIndexer_NotFound_Throws()
-    {
-        ThrowsExceptionContaining(
-            () => StaticReflectionCache.GetIndexer(typeof(ClassWithoutIndexer), typeof(int)), 
-            "Indexer not found");
-    }
-    
-    [TestMethod]
-    public void StaticReflectionCache_TryGetIndexer_NotFound_ReturnsNull()
-    {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            PropertyInfo indexer = StaticReflectionCache.TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string));
-            IsNull(() => indexer);
-        }
     }
     
     // Constructor Tests
