@@ -66,7 +66,7 @@ namespace JJ.Framework.Reflection.Legacy
         private object _fieldsDictionaryLock = new object();
 
         /// <inheritdoc cref="_reflectioncache" />
-        public FieldInfo[] GetFields([Dyn(AllFields)] Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
+        public FieldInfo[] GetFields([Dyn(AllFields)] Type type) // FIX: Removed unused BindingFlags parameter
         {
             lock (_fieldsDictionaryLock)
             {
