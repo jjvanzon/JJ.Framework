@@ -1,0 +1,14 @@
+﻿<SolutionConfiguration>
+  <Settings>
+    <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
+    <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
+    <CustomBuildProperties>
+      <Value>IsNCrunch = True</Value>
+    </CustomBuildProperties>
+    <EnableRDI>False</EnableRDI>
+    <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
+    <RdiConfigured>True</RdiConfigured>
+    <SolutionConfigured>True</SolutionConfigured>
+  </Settings>
+</SolutionConfiguration>
