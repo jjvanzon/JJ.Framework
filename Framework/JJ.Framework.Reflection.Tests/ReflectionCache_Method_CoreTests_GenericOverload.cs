@@ -20,9 +20,18 @@ public class ReflectionCache_Method_CoreTests_GenericOverload
 
     private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
+    /// <summary>
+    /// Statically reference all the closed generic methods we're getting with reflection for the linker to pass.
+    /// </summary>
     internal static void Untrim()
     {
-        // TOOD: Statically reference all the closed generic methods we're getting with reflection for the linker to pass.
+        var func1 = HelperClass.Method_WithTypeArgs_1<long>;
+        var func2 = HelperClass.Method_WithTypeArgs_2<long, float>;
+        var func3 = HelperClass.Method_WithTypeArgs_3<long, float, short>;
+        var func4 = HelperClass.Method_WithTypeArgs_4<long, float, short, byte>;
+        var func5 = HelperClass.Method_WithTypeArgs_5<long, float, short, byte, char>;
+        var func6 = HelperClass.Method_WithTypeArgs_6<long, float, short, byte, char, decimal>;
+        var func7 = HelperClass.Method_WithTypeArgs_7<long, float, short, byte, char, decimal, bool>;
     }
 
     [TestMethod]
