@@ -122,6 +122,8 @@ namespace JJ.Framework.Reflection.Legacy
         [TrimWarn(GetTypes)]
         public IList<Type> GetTypesByShortName(string shortTypeName)
         {
+            if (IsNullOrWhiteSpace(shortTypeName)) throw new Exception(nameof(shortTypeName) + " is null or white space.");
+
             lock (_typeByShortNameDictionaryLock)
             {
                 Type[] types;
