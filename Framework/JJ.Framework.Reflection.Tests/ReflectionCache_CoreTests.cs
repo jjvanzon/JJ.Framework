@@ -200,52 +200,109 @@ public class ReflectionCache_CoreTests
     [TestMethod]
     public void StaticReflectionCache_GetField_Test()
     {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            FieldInfo field = StaticReflectionCache.GetField(typeof(TestClass), "_testField");
-            IsNotNull(() => field);
-            AreEqual("_testField", () => field.Name);
-            AreEqual(typeof(int), () => field.FieldType);
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
 
-            FieldInfo field2 = StaticReflectionCache.GetField(typeof(TestClass), "_testField2");
-            IsNotNull(() => field2);
-            AreEqual("_testField2", () => field2.Name);
-            AreEqual(typeof(string), () => field2.FieldType);
+        Func<string, FieldInfo>[] synonyms = 
+        [
+            name => reflectionCacheLegacy .GetField(typeof(TestClass), name),
+            name => reflectionCacheLegacy2.GetField(typeof(TestClass), name),
+            name => StaticReflectionCache .GetField   (typeof(TestClass), name),
+            name => StaticReflectionCache .GetField   (typeof(TestClass), name),
+            name => reflectionCacheLegacy .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheLegacy2.TryGetField(typeof(TestClass), name),
+            name => StaticReflectionCache .TryGetField(typeof(TestClass), name),
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < REPEATS; i++)
+            {
+                FieldInfo field = func("_testField");
+                IsNotNull(() => field);
+                AreEqual("_testField", () => field.Name);
+                AreEqual(typeof(int), () => field.FieldType);
+
+                FieldInfo field2 = func("_testField2");
+                IsNotNull(() => field2);
+                AreEqual("_testField2", () => field2.Name);
+                AreEqual(typeof(string), () => field2.FieldType);
+            }
         }
     }
     
     [TestMethod]
     public void StaticReflectionCache_TryGetField_Test()
     {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            FieldInfo field = StaticReflectionCache.TryGetField(typeof(TestClass), "_testField");
-            IsNotNull(() => field);
-            AreEqual("_testField", () => field.Name);
-            AreEqual(typeof(int), () => field.FieldType);
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
 
-            FieldInfo field2 = StaticReflectionCache.TryGetField(typeof(TestClass), "_testField2");
-            IsNotNull(() => field2);
-            AreEqual("_testField2", () => field2.Name);
-            AreEqual(typeof(string), () => field2.FieldType);
+        Func<string, FieldInfo>[] synonyms = 
+        [
+            name => reflectionCacheLegacy .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheLegacy2.TryGetField(typeof(TestClass), name),
+            name => StaticReflectionCache .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheLegacy .GetField(typeof(TestClass), name),
+            name => reflectionCacheLegacy2.GetField(typeof(TestClass), name),
+            name => StaticReflectionCache .GetField(typeof(TestClass), name),
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < REPEATS; i++)
+            {
+                FieldInfo field = func("_testField");
+                IsNotNull(() => field);
+                AreEqual("_testField", () => field.Name);
+                AreEqual(typeof(int), () => field.FieldType);
+
+                FieldInfo field2 = func("_testField2");
+                IsNotNull(() => field2);
+                AreEqual("_testField2", () => field2.Name);
+                AreEqual(typeof(string), () => field2.FieldType);
+            }
         }
     }
         
     [TestMethod]
     public void StaticReflectionCache_GetField_NotFound_Exception()
     {
-        ThrowsExceptionContaining(
-            () => StaticReflectionCache.GetField(typeof(TestClass), _nonExistentName), 
-            "Field", "not found");
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Action[] synonyms =
+        [
+            () => StaticReflectionCache .GetField(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy .GetField(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy2.GetField(typeof(TestClass), _nonExistentName),
+        ];
+
+        foreach (var action in synonyms)
+        {
+            ThrowsExceptionContaining(action, "Field", "not found");
+        }
     }
 
     [TestMethod]
     public void StaticReflectionCache_TryGetField_NotFound_ReturnsNull()
     {
-        for (int i = 0; i < REPEATS; i++)
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Func<FieldInfo>[] synonyms =
+        [
+            () => reflectionCacheLegacy .TryGetField(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy2.TryGetField(typeof(TestClass), _nonExistentName),
+            () => StaticReflectionCache .TryGetField(typeof(TestClass), _nonExistentName),
+        ];
+
+        foreach (var func in synonyms)
         {
-            FieldInfo field = StaticReflectionCache.TryGetField(typeof(TestClass), _nonExistentName);
-            IsNull(() => field);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                FieldInfo field = func();
+                IsNull(() => field);
+            }
         }
     }
     
@@ -253,21 +310,49 @@ public class ReflectionCache_CoreTests
     public void ReflectionCache_GetFields()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        
-        for (int i = 0; i < REPEATS; i++)
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Func<FieldInfo[]>[] synonyms =
+        [
+            () => reflectionCache       .GetFields(typeof(TestClass)),
+            () => reflectionCacheLegacy .GetFields(typeof(TestClass)),
+            () => reflectionCacheLegacy2.GetFields(typeof(TestClass)),
+            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL)
+        ];
+
+        foreach (var func in synonyms)
         {
-            FieldInfo[] fields = reflectionCache.GetFields(typeof(TestClass));
-            AssertFields(fields);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                FieldInfo[] fields = func();
+                AssertFields(fields);
+            }
         }
     }
     
     [TestMethod]
     public void StaticReflectionCache_GetFields()
     {
-        for (int i = 0; i < REPEATS; i++)
+        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Func<FieldInfo[]>[] synonyms =
+        [
+            () => reflectionCache       .GetFields(typeof(TestClass)),
+            () => reflectionCacheLegacy .GetFields(typeof(TestClass)),
+            () => reflectionCacheLegacy2.GetFields(typeof(TestClass)),
+            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL)
+        ];
+
+        foreach (var func in synonyms)
         {
-            FieldInfo[] fields = StaticReflectionCache.GetFields(typeof(TestClass), BINDING_FLAGS_ALL);
-            AssertFields(fields);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                FieldInfo[] fields = func();
+                AssertFields(fields);
+            }
         }
     }
     
