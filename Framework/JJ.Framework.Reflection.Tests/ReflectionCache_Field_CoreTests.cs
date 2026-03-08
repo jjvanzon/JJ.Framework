@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Reflection.Legacy.Tests;
+﻿
+namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [TestClass]
 [Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
@@ -24,7 +25,7 @@ public class ReflectionCache_Field_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo field = func("_testField");
                 IsNotNull(() => field);
@@ -59,7 +60,7 @@ public class ReflectionCache_Field_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo field = func("_testField");
                 IsNotNull(() => field);
@@ -82,9 +83,9 @@ public class ReflectionCache_Field_CoreTests
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetField(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy .GetField(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy2.GetField(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
+            () => StaticReflectionCache .GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy .GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.GetField(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -101,14 +102,14 @@ public class ReflectionCache_Field_CoreTests
 
         Func<FieldInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetField(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy2.TryGetField(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => StaticReflectionCache .TryGetField(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
+            () => reflectionCacheLegacy .TryGetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.TryGetField(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache .TryGetField(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo field = func();
                 IsNull(() => field);
@@ -136,7 +137,7 @@ public class ReflectionCache_Field_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo[] fields = func();
 

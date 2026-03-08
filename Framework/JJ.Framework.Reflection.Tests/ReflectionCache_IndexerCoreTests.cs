@@ -22,7 +22,7 @@ public class ReflectionCache_IndexerCoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo indexer = func();
                 AssertIndexer1(indexer);
@@ -49,7 +49,7 @@ public class ReflectionCache_IndexerCoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo indexer2 = func();
                 AssertIndexer2(indexer2);
@@ -91,7 +91,7 @@ public class ReflectionCache_IndexerCoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo indexer = func();
                 IsNull(() => indexer);

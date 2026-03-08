@@ -24,7 +24,7 @@ public class ReflectionCache_Method_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 MethodInfo method = func();
                 AssertMethod(method);
@@ -51,7 +51,7 @@ public class ReflectionCache_Method_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 MethodInfo method2 = func();
                 AssertMethod2(method2);
@@ -67,9 +67,9 @@ public class ReflectionCache_Method_CoreTests
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetMethod(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy .GetMethod(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy2.GetMethod(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
+            () => StaticReflectionCache .GetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy .GetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.GetMethod(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -86,14 +86,14 @@ public class ReflectionCache_Method_CoreTests
 
         Func<MethodInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => StaticReflectionCache .TryGetMethod(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
+            () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache .TryGetMethod(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 MethodInfo method = func();
                 IsNull(() => method);
@@ -118,7 +118,7 @@ public class ReflectionCache_Method_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 IList<MethodInfo> methods = func();
                 IsNotNull(() => methods);

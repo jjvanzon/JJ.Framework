@@ -25,7 +25,7 @@ public class ReflectionCache_Property_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo prop = func("TestProperty");
                 IsNotNull(() => prop);
@@ -48,9 +48,9 @@ public class ReflectionCache_Property_CoreTests
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetProperty(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName)
+            () => StaticReflectionCache .GetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), NonExistentName)
         ];
 
         foreach (var action in synonyms)
@@ -67,14 +67,14 @@ public class ReflectionCache_Property_CoreTests
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName),
-            () => StaticReflectionCache .TryGetProperty(typeof(TestClass), ReflectionCacheTestHelper.NonExistentName)
+            () => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache .TryGetProperty(typeof(TestClass), NonExistentName)
         ];
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo prop = func();
                 IsNull(() => prop);
@@ -102,7 +102,7 @@ public class ReflectionCache_Property_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 IList<PropertyInfo> properties = func();
 
@@ -137,7 +137,7 @@ public class ReflectionCache_Property_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 IDictionary<string, PropertyInfo> dictionary = func();
                 

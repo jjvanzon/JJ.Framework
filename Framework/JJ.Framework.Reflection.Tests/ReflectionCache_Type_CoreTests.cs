@@ -11,7 +11,7 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             Type type = reflectionCache.GetTypeByShortName("ReflectionCache_Type_CoreTests");
             IsNotNull(() => type);
@@ -24,10 +24,10 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             ThrowsExceptionContaining(
-                () => reflectionCache.GetTypeByShortName(ReflectionCacheTestHelper.NonExistentName),
+                () => reflectionCache.GetTypeByShortName(NonExistentName),
                 "Type with short name", "not found");
         }
     }
@@ -37,7 +37,7 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             Type type = reflectionCache.TryGetTypeByShortName("ReflectionCache_Type_CoreTests");
             IsNotNull(() => type);
@@ -50,9 +50,9 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
-            Type type = reflectionCache.TryGetTypeByShortName(ReflectionCacheTestHelper.NonExistentName);
+            Type type = reflectionCache.TryGetTypeByShortName(NonExistentName);
             IsNull(() => type);
         }
     }
@@ -62,7 +62,7 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             ThrowsExceptionContaining(
                 () => reflectionCache.GetTypeByShortName("DuplicateClass_13017ef1"),
@@ -75,9 +75,9 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
-            IList<Type> types = reflectionCache.GetTypesByShortName(ReflectionCacheTestHelper.NonExistentName);
+            IList<Type> types = reflectionCache.GetTypesByShortName(NonExistentName);
             
             IsNotNull(() => types);
             AreEqual(0, () => types.Count);
@@ -89,7 +89,7 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             IList<Type> types = reflectionCache.GetTypesByShortName("ReflectionCache_Type_CoreTests");
             
@@ -106,7 +106,7 @@ public class ReflectionCache_Type_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             IList<Type> types = reflectionCache.GetTypesByShortName("DuplicateClass_13017ef1");
 
