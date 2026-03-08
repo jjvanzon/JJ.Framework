@@ -1,5 +1,5 @@
-﻿
-// Copied from legacy branch head ("the King")
+﻿// Copied from legacy branch head ("the King")
+
 // ReSharper disable ChangeFieldTypeToSystemThreadingLock
 // ReSharper disable UseSymbolAlias
 // ReSharper disable CoVariantArrayConversion

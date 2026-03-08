@@ -196,6 +196,21 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             IsNull(method1);
             IsNull(method2);
         }
+        
+        [TestMethod]
+        public void Test_ReflectionCache_GetMethod_WithTypeArguments_MultipleMatches_Throws()
+        {
+            var reflectionCache = new ReflectionCacheLegacy();
+
+            Type type = typeof(AmbiguousHelper);
+            string methodName = nameof(AmbiguousHelper.AmbiguousMethod);
+            Type[] parameterTypes = { typeof(int) };
+            Type[] typeArguments = { typeof(long) };
+
+            ThrowsExceptionContaining(
+                () => reflectionCache.GetMethod(type, methodName, parameterTypes, typeArguments),
+                "multiple methods");
+        }
 
         // Helpers
 
@@ -219,5 +234,12 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
                $"with parameters ({Join(", ", parameterTypes.Select(x => $"{x.Name}"))}) " +
                $"in type '{type}'.";
 
+        // Helper for multiple generic methods with same parameter types but different arity
+        // to trigger the "multiple methods" error in TryResolveGenericMethod.
+        private static class AmbiguousHelper
+        {
+            public static void AmbiguousMethod<T>(int a) { }
+            public static void AmbiguousMethod<T, U>(int a) { }
+        }
     }
 }
