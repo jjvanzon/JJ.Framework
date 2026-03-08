@@ -1,8 +1,7 @@
 namespace JJ.Framework.Reflection.Legacy.Tests;
 
-//[Suppress("Trimmer", "IL2077", Justification = TypeLoaded)]
-//[Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
-//[Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
+[Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+[Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
 [TestClass]
 public class ReflectionCache_Method_CoreTests_GenericOverload
 {
@@ -20,6 +19,11 @@ public class ReflectionCache_Method_CoreTests_GenericOverload
     // ncrunch: no coverage end
 
     private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
+
+    internal static void Untrim()
+    {
+        // TOOD: Statically reference all the closed generic methods we're getting with reflection for the linker to pass.
+    }
 
     [TestMethod]
     public void Test_ReflectionCache_GetMethod_GenericOverload()

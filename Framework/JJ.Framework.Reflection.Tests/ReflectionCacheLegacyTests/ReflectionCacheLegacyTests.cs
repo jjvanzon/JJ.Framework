@@ -197,6 +197,8 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             IsNull(method2);
         }
         
+        [Suppress("Trimmer", "IL2026", Justification = GenericMethod)]
+        [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
         [TestMethod]
         public void Test_ReflectionCache_GetMethod_WithTypeArguments_MultipleMatches_Throws()
         {
