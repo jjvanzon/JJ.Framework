@@ -1,52 +1,58 @@
 ﻿// ReSharper disable UnusedMember.Local
 
+using static JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheTestHelper;
+
 namespace JJ.Framework.Reflection.Legacy.Tests;
+
+// ncrunch: no coverage start
+
+internal class TestClass
+{
+    private int    _testField;
+    private string _testField2 = "";
+    public  int    TestProperty  { get => _testField;  set => _testField = value; } 
+    public  string TestProperty2 { get => _testField2; set => _testField2 = value; }
+    public int TestMethod() => 0;
+    public string TestMethod2(int index, string text) => "";
+}
+
+internal class ClassWithIndexers
+{
+    public int this[int index] { get => default; set { } }
+    public int this[int index, string text] { get => default; set { } }
+}
+
+internal class ClassWithoutIndexer;
+
+internal class NoConstructorClass
+{
+    private NoConstructorClass() { }
+}
+
+internal class MultipleConstructorsClass
+{
+    public MultipleConstructorsClass() { }
+    public MultipleConstructorsClass(int i) { }
+}
+
+// ncrunch: no coverage end
+
+internal static class ReflectionCacheTestHelper
+{
+    /// <summary>
+    /// NOTE: Tested methods are run twice to hit cache retrieval.
+    /// </summary>
+    public const int Repeats = 2;
+    public static readonly string NonExistentName = Guid.NewGuid().ToString();
+}
+
+// TODO: Vary BindingFlags in tests
 
 [TestClass]
 [Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
-public class ReflectionCache_CoreTests
+public class ReflectionCache_Property_CoreTests
 {
-    private const int REPEATS = 2;
-    private string _nonExistentName = Guid.NewGuid().ToString();
-
-    // ncrunch: no coverage start
-    
-    private class TestClass
-    {
-        private int    _testField;
-        private string _testField2 = "";
-        public  int    TestProperty  { get => _testField;  set => _testField = value; } 
-        public  string TestProperty2 { get => _testField2; set => _testField2 = value; }
-        public int TestMethod() => 0;
-        public string TestMethod2(int index, string text) => "";
-    }
-
-    private class ClassWithIndexers
-    {
-        public int this[int index] { get => default; set { } }
-        public int this[int index, string text] { get => default; set { } }
-    }
-    
-    private class ClassWithoutIndexer;
-    
-    private class NoConstructorClass
-    {
-        private NoConstructorClass() { }
-    }
-    
-    private class MultipleConstructorsClass
-    {
-        public MultipleConstructorsClass() { }
-        public MultipleConstructorsClass(int i) { }
-    }
-
-    // ncrunch: no coverage end
-    
-    // NOTE: Tested methods are run twice to hit cache retrieval.
-    
     // Property
-
-    // TODO: Vary BindingFlags
 
     [TestMethod]
     public void ReflectionCache_GetProperty_Test()
@@ -67,7 +73,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo prop = func("TestProperty");
                 IsNotNull(() => prop);
@@ -90,9 +96,9 @@ public class ReflectionCache_CoreTests
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetProperty(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), _nonExistentName)
+            () => StaticReflectionCache .GetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), NonExistentName)
         ];
 
         foreach (var action in synonyms)
@@ -109,14 +115,14 @@ public class ReflectionCache_CoreTests
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), _nonExistentName),
-            () => StaticReflectionCache .TryGetProperty(typeof(TestClass), _nonExistentName)
+            () => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache .TryGetProperty(typeof(TestClass), NonExistentName)
         ];
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo prop = func();
                 IsNull(() => prop);
@@ -144,7 +150,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 IList<PropertyInfo> properties = func();
 
@@ -179,7 +185,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 IDictionary<string, PropertyInfo> dictionary = func();
                 
@@ -194,7 +200,12 @@ public class ReflectionCache_CoreTests
             }
         }
     }
-    
+}
+
+[TestClass]
+[Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
+public class ReflectionCache_Field_CoreTests
+{
     // Field
 
     [TestMethod]
@@ -215,7 +226,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo field = func("_testField");
                 IsNotNull(() => field);
@@ -229,6 +240,8 @@ public class ReflectionCache_CoreTests
             }
         }
     }
+
+    // TODO: Remove duplicate?
     
     [TestMethod]
     public void ReflectionCache_TryGetField_Test()
@@ -248,7 +261,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo field = func("_testField");
                 IsNotNull(() => field);
@@ -271,9 +284,9 @@ public class ReflectionCache_CoreTests
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetField(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy .GetField(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy2.GetField(typeof(TestClass), _nonExistentName),
+            () => StaticReflectionCache .GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy .GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.GetField(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -290,14 +303,14 @@ public class ReflectionCache_CoreTests
 
         Func<FieldInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetField(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy2.TryGetField(typeof(TestClass), _nonExistentName),
-            () => StaticReflectionCache .TryGetField(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy .TryGetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.TryGetField(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache .TryGetField(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo field = func();
                 IsNull(() => field);
@@ -325,7 +338,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 FieldInfo[] fields = func();
 
@@ -340,7 +353,12 @@ public class ReflectionCache_CoreTests
             }
         }
     }
+}
 
+[TestClass]
+[Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
+public class ReflectionCache_Methopd_CoreTests
+{
     // Method
     
     [TestMethod]
@@ -361,7 +379,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 MethodInfo method = func();
                 AssertMethod(method);
@@ -388,7 +406,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 MethodInfo method2 = func();
                 AssertMethod2(method2);
@@ -404,9 +422,9 @@ public class ReflectionCache_CoreTests
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetMethod(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy .GetMethod(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy2.GetMethod(typeof(TestClass), _nonExistentName),
+            () => StaticReflectionCache .GetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy .GetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.GetMethod(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -423,14 +441,14 @@ public class ReflectionCache_CoreTests
 
         Func<MethodInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), _nonExistentName),
-            () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), _nonExistentName),
-            () => StaticReflectionCache .TryGetMethod(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache .TryGetMethod(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 MethodInfo method = func();
                 IsNull(() => method);
@@ -455,7 +473,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 IList<MethodInfo> methods = func();
                 IsNotNull(() => methods);
@@ -493,9 +511,12 @@ public class ReflectionCache_CoreTests
         AreEqual(typeof(int),    () => parameters[0].ParameterType);
         AreEqual(typeof(string), () => parameters[1].ParameterType);
     }
-    
-    // Indexers
-    
+}
+
+[TestClass]
+[Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
+public class ReflectionCache_IndexerCoreTests
+{
     [TestMethod]
     public void ReflectionCache_GetIndexer_Test_1Arg()
     {
@@ -514,7 +535,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo indexer = func();
                 AssertIndexer1(indexer);
@@ -541,7 +562,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo indexer2 = func();
                 AssertIndexer2(indexer2);
@@ -583,7 +604,7 @@ public class ReflectionCache_CoreTests
 
         foreach (var func in synonyms)
         {
-            for (int i = 0; i < REPEATS; i++)
+            for (int i = 0; i < Repeats; i++)
             {
                 PropertyInfo indexer = func();
                 IsNull(() => indexer);
@@ -620,12 +641,18 @@ public class ReflectionCache_CoreTests
     
     // Constructor Tests
     
+}
+
+[TestClass]
+[Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
+public class ReflectionCache_Constructor_CoreTests
+{
     [TestMethod]
     public void ReflectionCache_GetConstructor_Single()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             ConstructorInfo constructor = reflectionCache.GetConstructor(typeof(TestClass));
             IsNotNull(() => constructor);
@@ -637,7 +664,7 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(Public | Instance);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             ThrowsExceptionContaining(
                 () => reflectionCache.GetConstructor(typeof(NoConstructorClass)), 
@@ -650,14 +677,19 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             ThrowsExceptionContaining(
                 () => reflectionCache.GetConstructor(typeof(MultipleConstructorsClass)), 
                 "Multiple constructors found");
         }
     }
-    
+}
+
+[TestClass]
+[Suppress("Trimmer", "IL2026", Justification = GetTypes + " " + ArrayInit)]
+public class ReflectionCache_Type_CoreTests
+{
     // GetTypeByShortName
     
     [TestMethod]
@@ -665,11 +697,11 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
-            Type type = reflectionCache.GetTypeByShortName("ReflectionCache_CoreTests");
+            Type type = reflectionCache.GetTypeByShortName("ReflectionCache_Type_CoreTests");
             IsNotNull(() => type);
-            AreEqual(typeof(ReflectionCache_CoreTests), () => type);
+            AreEqual(typeof(ReflectionCache_Type_CoreTests), () => type);
         }
     }
     
@@ -678,10 +710,10 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             ThrowsExceptionContaining(
-                () => reflectionCache.GetTypeByShortName(_nonExistentName),
+                () => reflectionCache.GetTypeByShortName(NonExistentName),
                 "Type with short name", "not found");
         }
     }
@@ -691,11 +723,11 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
-            Type type = reflectionCache.TryGetTypeByShortName("ReflectionCache_CoreTests");
+            Type type = reflectionCache.TryGetTypeByShortName("ReflectionCache_Type_CoreTests");
             IsNotNull(() => type);
-            AreEqual(typeof(ReflectionCache_CoreTests), () => type);
+            AreEqual(typeof(ReflectionCache_Type_CoreTests), () => type);
         }
     }
 
@@ -704,9 +736,9 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
-            Type type = reflectionCache.TryGetTypeByShortName(_nonExistentName);
+            Type type = reflectionCache.TryGetTypeByShortName(NonExistentName);
             IsNull(() => type);
         }
     }
@@ -716,7 +748,7 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             ThrowsExceptionContaining(
                 () => reflectionCache.GetTypeByShortName("DuplicateClass_13017ef1"),
@@ -729,9 +761,9 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
-            IList<Type> types = reflectionCache.GetTypesByShortName(_nonExistentName);
+            IList<Type> types = reflectionCache.GetTypesByShortName(NonExistentName);
             
             IsNotNull(() => types);
             AreEqual(0, () => types.Count);
@@ -743,14 +775,14 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
-            IList<Type> types = reflectionCache.GetTypesByShortName("ReflectionCache_CoreTests");
+            IList<Type> types = reflectionCache.GetTypesByShortName("ReflectionCache_Type_CoreTests");
             
             IsNotNull(  () => types);
             AreEqual(1, () => types.Count);
             IsNotNull(  () => types[0]);
-            AreEqual(typeof(ReflectionCache_CoreTests), () => types[0]);
+            AreEqual(typeof(ReflectionCache_Type_CoreTests), () => types[0]);
         }
     }
         
@@ -760,7 +792,7 @@ public class ReflectionCache_CoreTests
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        for (int i = 0; i < Repeats; i++)
         {
             IList<Type> types = reflectionCache.GetTypesByShortName("DuplicateClass_13017ef1");
 
