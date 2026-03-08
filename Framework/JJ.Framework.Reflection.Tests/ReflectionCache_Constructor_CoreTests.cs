@@ -8,24 +8,45 @@ public class ReflectionCache_Constructor_CoreTests
     public void ReflectionCache_GetConstructor_Single()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Func<ConstructorInfo>[] synonyms =
+        [
+            () => reflectionCache       .GetConstructor(typeof(TestClass)),
+            () => reflectionCacheLegacy .GetConstructor(typeof(TestClass)),
+            () => reflectionCacheLegacy2.GetConstructor(typeof(TestClass)),
+        ];
+
+        foreach (var func in synonyms)
         {
-            ConstructorInfo constructor = reflectionCache.GetConstructor(typeof(TestClass));
-            IsNotNull(() => constructor);
+            for (int i = 0; i < Repeats; i++)
+            {
+                ConstructorInfo constructor = func();
+                IsNotNull(() => constructor);
+            }
         }
     }
     
     [TestMethod]
     public void ReflectionCache_GetConstructor_None_Throws()
     {
+        // NOTE: Specific BindingFlags or it'l always finds the default constructor.
         var reflectionCache = new ReflectionCache(Public | Instance);
-        
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        var reflectionCacheLegacy = new ReflectionCacheLegacy(Public | Instance);
+
+        Action[] synonyms =
+        [
+            () => reflectionCache       .GetConstructor(typeof(NoConstructorClass)),
+            () => reflectionCacheLegacy .GetConstructor(typeof(NoConstructorClass)),
+        ];
+
+        foreach (var action in synonyms)
         {
-            ThrowsExceptionContaining(
-                () => reflectionCache.GetConstructor(typeof(NoConstructorClass)), 
-                "No constructor found");
+            for (int i = 0; i < Repeats; i++)
+            {
+                ThrowsExceptionContaining(action, "No constructor found");
+            }
         }
     }
     
@@ -33,12 +54,22 @@ public class ReflectionCache_Constructor_CoreTests
     public void ReflectionCache_GetConstructor_Multiple_Throws()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        
-        for (int i = 0; i < ReflectionCacheTestHelper.Repeats; i++)
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Action[] synonyms =
+        [
+            () => reflectionCache       .GetConstructor(typeof(MultipleConstructorsClass)),
+            () => reflectionCacheLegacy .GetConstructor(typeof(MultipleConstructorsClass)),
+            () => reflectionCacheLegacy2.GetConstructor(typeof(MultipleConstructorsClass)),
+        ];
+
+        foreach (var action in synonyms)
         {
-            ThrowsExceptionContaining(
-                () => reflectionCache.GetConstructor(typeof(MultipleConstructorsClass)), 
-                "Multiple constructors found");
+            for (int i = 0; i < Repeats; i++)
+            {
+                ThrowsExceptionContaining(action, "Multiple constructors found");
+            }
         }
     }
 }

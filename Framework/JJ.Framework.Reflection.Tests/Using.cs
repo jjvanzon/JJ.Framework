@@ -23,3 +23,4 @@ global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
 global using static JJ.Framework.Reflection.Legacy.ReflectionHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
+global using static JJ.Framework.Reflection.Legacy.Tests.CoreTestHelpers.ReflectionCacheTestHelper;
