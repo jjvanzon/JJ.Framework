@@ -44,117 +44,159 @@ public class ReflectionCache_CoreTests
     
     // NOTE: Tested methods are run twice to hit cache retrieval.
     
-    // Properties
+    // Property
+
+    // TODO: Vary BindingFlags
 
     [TestMethod]
     public void StaticReflectionCache_GetProperty_Test()
     {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            PropertyInfo field = StaticReflectionCache.GetProperty(typeof(TestClass), "TestProperty");
-            IsNotNull(() => field);
-            AreEqual("TestProperty", () => field.Name);
-            AreEqual(typeof(int), () => field.PropertyType);
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
 
-            PropertyInfo field2 = StaticReflectionCache.GetProperty(typeof(TestClass), "TestProperty2");
-            IsNotNull(() => field2);
-            AreEqual("TestProperty2", () => field2.Name);
-            AreEqual(typeof(string), () => field2.PropertyType);
-        }
-    }
-    
-    [TestMethod]
-    public void StaticReflectionCache_TryGetProperty_Test()
-    {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            PropertyInfo field = StaticReflectionCache.TryGetProperty(typeof(TestClass), "TestProperty");
-            IsNotNull(() => field);
-            AreEqual("TestProperty", () => field.Name);
-            AreEqual(typeof(int), () => field.PropertyType);
+        Func<string, PropertyInfo>[] synonyms = 
+        [
+            name => reflectionCacheLegacy .GetProperty   (typeof(TestClass), name),
+            name => reflectionCacheLegacy2.GetProperty   (typeof(TestClass), name),
+            name => StaticReflectionCache .GetProperty   (typeof(TestClass), name),
+            name => StaticReflectionCache .GetProperty   (typeof(TestClass), name),
+            name => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), name),
+            name => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), name),
+            name => StaticReflectionCache .TryGetProperty(typeof(TestClass), name),
+        ];
 
-            PropertyInfo field2 = StaticReflectionCache.TryGetProperty(typeof(TestClass), "TestProperty2");
-            IsNotNull(() => field2);
-            AreEqual("TestProperty2", () => field2.Name);
-            AreEqual(typeof(string), () => field2.PropertyType);
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < REPEATS; i++)
+            {
+                PropertyInfo prop = func("TestProperty");
+                IsNotNull(() => prop);
+                AreEqual("TestProperty", () => prop.Name);
+                AreEqual(typeof(int), () => prop.PropertyType);
+
+                PropertyInfo prop2 = func("TestProperty2");
+                IsNotNull(() => prop2);
+                AreEqual("TestProperty2", () => prop2.Name);
+                AreEqual(typeof(string), () => prop2.PropertyType);
+            }
         }
     }
         
     [TestMethod]
     public void StaticReflectionCache_GetProperty_NotFound_Exception()
     {
-        ThrowsExceptionContaining(
-            () => StaticReflectionCache.GetProperty(typeof(TestClass), _nonExistentName), 
-            "Property", "not found");
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Action[] synonyms =
+        [
+            () => StaticReflectionCache .GetProperty(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), _nonExistentName)
+        ];
+
+        foreach (var action in synonyms)
+        {
+            ThrowsExceptionContaining(action, "Property", "not found");
+        }
     }
 
     [TestMethod]
     public void StaticReflectionCache_TryGetProperty_NotFound_ReturnsNull()
     {
-        for (int i = 0; i < REPEATS; i++)
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Func<PropertyInfo>[] synonyms =
+        [
+            () => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), _nonExistentName),
+            () => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), _nonExistentName),
+            () => StaticReflectionCache .TryGetProperty(typeof(TestClass), _nonExistentName)
+        ];
+
+        foreach (var func in synonyms)
         {
-            PropertyInfo field = StaticReflectionCache.TryGetProperty(typeof(TestClass), _nonExistentName);
-            IsNull(() => field);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                PropertyInfo prop = func();
+                IsNull(() => prop);
+            }
         }
     }
+    
+    // Properties
     
     [TestMethod]
     public void ReflectionCache_GetProperties()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        Func<IList<PropertyInfo>>[] synonyms = 
+        [
+            () => reflectionCache       .GetProperties(typeof(TestClass)),
+            () => reflectionCacheLegacy .GetProperties(typeof(TestClass)),
+            () => reflectionCacheLegacy2.GetProperties(typeof(TestClass)),
+            () => StaticReflectionCache .GetProperties(typeof(TestClass)),
+            () => StaticReflectionCache .GetProperties(typeof(TestClass), BINDING_FLAGS_ALL)
+        ];
+
+        foreach (var func in synonyms)
         {
-            IList<PropertyInfo> properties = reflectionCache.GetProperties(typeof(TestClass));
-            AssertProperties(properties);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                IList<PropertyInfo> properties = func();
+
+                IsNotNull(  () => properties);
+                AreEqual(2, () => properties.Count);
+                IsNotNull(  () => properties[0]);
+                IsNotNull(  () => properties[1]);
+                AreEqual(typeof(int),     () => properties[0].PropertyType);
+                AreEqual(typeof(string),  () => properties[1].PropertyType);
+                AreEqual("TestProperty",  () => properties[0].Name);
+                AreEqual("TestProperty2", () => properties[1].Name);
+            }
         }
     }
-    
-    [TestMethod]
-    public void StaticReflectionCache_GetProperties()
-    {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            IList<PropertyInfo> properties = StaticReflectionCache.GetProperties(typeof(TestClass), BINDING_FLAGS_ALL);
-            AssertProperties(properties);
-        }
-    }
-    
-    private void AssertProperties(IList<PropertyInfo> properties)
-    {
-        IsNotNull(  () => properties);
-        AreEqual(2, () => properties.Count);
-        IsNotNull(  () => properties[0]);
-        IsNotNull(  () => properties[1]);
-        AreEqual(typeof(int),     () => properties[0].PropertyType);
-        AreEqual(typeof(string),  () => properties[1].PropertyType);
-        AreEqual("TestProperty",  () => properties[0].Name);
-        AreEqual("TestProperty2", () => properties[1].Name);
-    }
+
+    // PropertyDictionary
     
     [TestMethod]
     public void ReflectionCache_GetPropertyDictionary()
     {
+        // TODO: Expand
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
         
-        for (int i = 0; i < REPEATS; i++)
+        Func<IDictionary<string, PropertyInfo>>[] synonyms = 
+        [
+            () => reflectionCache       .GetPropertyDictionary(typeof(TestClass)),
+            () => reflectionCacheLegacy .GetPropertyDictionary(typeof(TestClass)),
+            () => reflectionCacheLegacy2.GetPropertyDictionary(typeof(TestClass)),
+        ];
+
+        foreach (var func in synonyms)
         {
-            IDictionary<string, PropertyInfo> dictionary = reflectionCache.GetPropertyDictionary(typeof(TestClass));
-            
-            IsNotNull(() => dictionary);
-            AreEqual(2, () => dictionary.Count);
-            IsTrue(() => dictionary.ContainsKey("TestProperty"));
-            IsTrue(() => dictionary.ContainsKey("TestProperty2"));
-            IsNotNull(() => dictionary["TestProperty"]);
-            IsNotNull(() => dictionary["TestProperty2"]);
-            AreEqual(typeof(int),    () => dictionary["TestProperty"].PropertyType);
-            AreEqual(typeof(string), () => dictionary["TestProperty2"].PropertyType);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                IDictionary<string, PropertyInfo> dictionary = func();
+                
+                IsNotNull(() => dictionary);
+                AreEqual(2, () => dictionary.Count);
+                IsTrue(() => dictionary.ContainsKey("TestProperty"));
+                IsTrue(() => dictionary.ContainsKey("TestProperty2"));
+                IsNotNull(() => dictionary["TestProperty"]);
+                IsNotNull(() => dictionary["TestProperty2"]);
+                AreEqual(typeof(int),    () => dictionary["TestProperty"].PropertyType);
+                AreEqual(typeof(string), () => dictionary["TestProperty2"].PropertyType);
+            }
         }
     }
     
     // Fields
 
-    
     [TestMethod]
     public void StaticReflectionCache_GetField_Test()
     {
