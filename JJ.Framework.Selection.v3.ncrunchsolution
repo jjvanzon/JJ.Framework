@@ -1,12 +1,5 @@
 ﻿<SolutionConfiguration>
   <Settings>
-    <!--
-    IMPORTANT: 
-    Trimming solution requires RunTrimTest.
-    Trimming solution does not use coverage metrics.
-    InstrumentOutputAssembly is for coverage metrics.
-    InstrumentOutputAssembly can make RunTrimTest fail.
-    -->
     <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
