@@ -3,5 +3,6 @@
     <HiddenComponentWarnings>
       <Value>CopyReferencedAssembliesToWorkspaceIsOn</Value>
     </HiddenComponentWarnings>
+    <InstrumentOutputAssembly>True</InstrumentOutputAssembly>
   </Settings>
 </ProjectConfiguration>
