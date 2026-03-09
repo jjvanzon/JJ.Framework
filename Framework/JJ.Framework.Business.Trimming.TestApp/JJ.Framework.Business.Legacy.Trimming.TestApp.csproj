@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
   </ItemGroup>
 
 </Project>
