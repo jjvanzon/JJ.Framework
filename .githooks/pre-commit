@@ -1,0 +1,14 @@
+#!/bin/sh
+# Git pre-commit hook: ensure BuildNum.xml is staged
+# Exit non-zero to stop the commit if BuildNum.xml is not staged.
+
+staged_files="$(git diff --cached --name-only)"
+
+# Check for BuildNum.xml anywhere in the staged paths
+echo "$staged_files" | grep -E '(^|/)BuildNum\.xml$' >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "Please generate a new BuildNum.xml before committing your code." >&2
+  exit 1
+fi
+
+exit 0
