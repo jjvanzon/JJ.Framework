@@ -5,4 +5,5 @@
       <method name="&lt;Main&gt;$" />
     </type>
   </assembly>
+  <assembly fullname="nCrunch.TestRuntime.DotNetCore" preserve="all" />
 </linker>
