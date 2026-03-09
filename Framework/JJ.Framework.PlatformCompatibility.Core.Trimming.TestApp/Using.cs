@@ -5,7 +5,6 @@ global using System.Text;
 global using JJ.Framework.Testing;
 global using JJ.Framework.PlatformCompatibility.Legacy;
 global using JJ.Framework.Common.Legacy;
-global using JJ.Framework.Business.Core;
 global using JJ.Framework.Testing.Core.MSTestless;
 global using JJ.Framework.PlatformCompatibility.Core.Tests;
 global using static System.Console;
