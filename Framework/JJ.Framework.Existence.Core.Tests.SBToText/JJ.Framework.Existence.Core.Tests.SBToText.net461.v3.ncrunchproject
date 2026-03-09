@@ -1,0 +1,7 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <HiddenComponentWarnings>
+      <Value>MSBuildLoggingIsImpactingBuildPerformance</Value>
+    </HiddenComponentWarnings>
+  </Settings>
+</ProjectConfiguration>

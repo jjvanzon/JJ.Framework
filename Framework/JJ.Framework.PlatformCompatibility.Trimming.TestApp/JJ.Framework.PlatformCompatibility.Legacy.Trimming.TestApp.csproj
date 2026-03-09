@@ -20,14 +20,15 @@
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO.Core\JJ.Framework.IO.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
   </ItemGroup>
   
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <!-- Gives problems with Reflection.Core, which doesn't guarantee trimming yet. -->
-  <!-- TODO: Somehow retain Program.cs as trimming root? -->
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
   </ItemGroup>
 </Project>

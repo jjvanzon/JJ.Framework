@@ -18,6 +18,7 @@
     <ProjectReference Include="..\JJ.Framework.Existence.Core.Tests.Helpers\JJ.Framework.Existence.Core.Tests.Helpers.csproj" />
     <ProjectReference Include="..\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
   </ItemGroup>
 
   <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
@@ -25,6 +26,7 @@
 
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
   </ItemGroup>
 
 </Project>

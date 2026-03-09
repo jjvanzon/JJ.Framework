@@ -2,6 +2,8 @@
   <Settings>
     <HiddenComponentWarnings>
       <Value>CopyReferencedAssembliesToWorkspaceIsOn</Value>
+      <Value>MSBuildLoggingIsImpactingBuildPerformance</Value>
     </HiddenComponentWarnings>
+    <InstrumentOutputAssembly>True</InstrumentOutputAssembly>
   </Settings>
 </ProjectConfiguration>

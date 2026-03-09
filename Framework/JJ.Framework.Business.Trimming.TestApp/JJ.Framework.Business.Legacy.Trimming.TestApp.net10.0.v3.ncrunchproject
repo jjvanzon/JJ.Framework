@@ -1,5 +1,8 @@
 ﻿<ProjectConfiguration>
   <Settings>
+    <HiddenComponentWarnings>
+      <Value>MSBuildLoggingIsImpactingBuildPerformance</Value>
+    </HiddenComponentWarnings>
     <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
   </Settings>
 </ProjectConfiguration>

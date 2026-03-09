@@ -16,10 +16,12 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
   </ItemGroup>
 
 </Project>
