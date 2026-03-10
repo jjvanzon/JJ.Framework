@@ -3,5 +3,6 @@
     <HiddenComponentWarnings>
       <Value>MSBuildLoggingIsImpactingBuildPerformance</Value>
     </HiddenComponentWarnings>
+    <InstrumentOutputAssembly>True</InstrumentOutputAssembly>
   </Settings>
 </ProjectConfiguration>
