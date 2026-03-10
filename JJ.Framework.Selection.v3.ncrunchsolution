@@ -223,6 +223,8 @@
       <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Tests.Helpers\JJ.Framework.Existence.Core.Tests.Helpers.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Existence.Core.Tests.Helpers\JJ.Framework.Existence.Core.Tests.Helpers.csproj:netstandard2.1</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <RdiConfigured>True</RdiConfigured>
