@@ -5,24 +5,73 @@
 public class ReflectionCache_Constructor_CoreTests
 {
     [TestMethod]
-    public void ReflectionCache_GetConstructor_SinglePublicInstance()
+    public void ReflectionCache_GetConstructor_PublicInstance_TestClass_NotThrows()
+        => AssertGetConstructorNotThrows(typeof(TestClass), Public | Instance);
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_BindingFlagsAll_TestClass_ThrowsMultiple()
+        => AssertGetConstructorThrows(typeof(TestClass), BINDING_FLAGS_ALL, "Multiple constructors found");
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_NonPublicInstance_TestClass_ThrowsNone()
+        => AssertGetConstructorThrows(typeof(TestClass), NonPublic | Instance, "No constructor found");
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_PublicInstance_SingleConstructorClass_NotThrows()
+        => AssertGetConstructorNotThrows(typeof(SingleConstructorClass), Public | Instance);
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_BindingFlagsAll_SingleConstructorClass_NotThrows()
+        => AssertGetConstructorNotThrows(typeof(SingleConstructorClass), BINDING_FLAGS_ALL);
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_NonPublicInstance_SingleConstructorClass_ThrowsNone()
+        => AssertGetConstructorThrows(typeof(SingleConstructorClass), NonPublic | Instance, "No constructor found");
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_PublicInstance_NoConstructorClass_ThrowsNone()
+        => AssertGetConstructorThrows(typeof(NoConstructorClass), Public | Instance, "No constructor found");
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_NonPublicInstance_NoConstructorClass_NotThrows()
+        => AssertGetConstructorNotThrows(typeof(NoConstructorClass), NonPublic | Instance);
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_PublicInstance_MultipleConstructorsClass_ThrowsMultiple()
+        => AssertGetConstructorThrows(typeof(MultipleConstructorsClass), Public | Instance, "Multiple constructors found");
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_BindingFlagsAll_MultipleConstructorsClass_ThrowsMultiple()
+        => AssertGetConstructorThrows(typeof(MultipleConstructorsClass), BINDING_FLAGS_ALL, "Multiple constructors found");
+
+    private static Func<ConstructorInfo>[] CreateGetConstructorFuncs([Dyn(AllConstructors)] Type type, BindingFlags flags)
     {
-        // Use explicit flags to select the instance constructor only.
-        var reflectionCache = new ReflectionCache(Public | Instance);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy(Public | Instance);
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCache = new ReflectionCache(flags);
+        var reflectionCacheLegacy = new ReflectionCacheLegacy(flags);
 
-        Func<ConstructorInfo>[] synonyms =
+        if (flags == BINDING_FLAGS_ALL)
+        {
+            var reflectionCacheLegacyDefault = new ReflectionCacheLegacy();
+            return
+            [
+                () => reflectionCache             .GetConstructor(type),
+                () => reflectionCacheLegacy       .GetConstructor(type),
+                () => reflectionCacheLegacyDefault.GetConstructor(type),
+            ];
+        }
+
+        return
         [
-            () => reflectionCache       .GetConstructor(typeof(TestClass)),
-            () => reflectionCacheLegacy .GetConstructor(typeof(TestClass)),
-            () => reflectionCacheLegacy2.GetConstructor(typeof(TestClass)),
-            () => reflectionCache       .GetConstructor(typeof(SingleConstructorClass)),
-            () => reflectionCacheLegacy .GetConstructor(typeof(SingleConstructorClass)),
-            () => reflectionCacheLegacy2.GetConstructor(typeof(SingleConstructorClass)),
+            () => reflectionCache      .GetConstructor(type),
+            () => reflectionCacheLegacy.GetConstructor(type),
         ];
+    }
 
-        foreach (var func in synonyms)
+    private static void AssertGetConstructorNotThrows([Dyn(AllConstructors)] Type type, BindingFlags flags)
+    {
+        Func<ConstructorInfo>[] funcs = CreateGetConstructorFuncs(type, flags);
+
+        foreach (var func in funcs)
         {
             for (int i = 0; i < Repeats; i++)
             {
@@ -32,94 +81,16 @@ public class ReflectionCache_Constructor_CoreTests
         }
     }
 
-    [TestMethod]
-    public void ReflectionCache_GetConstructor_AllFlags_MultipleConstructors_Throws()
+    private static void AssertGetConstructorThrows([Dyn(AllConstructors)] Type type, BindingFlags flags, string expectedText)
     {
-        // When using all flags, the type initializer (static constructor) is visible and
-        // the cache may find multiple constructors. Ensure that the appropriate exception is thrown.
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        Func<ConstructorInfo>[] funcs = CreateGetConstructorFuncs(type, flags);
 
-        Action[] synonyms =
-        [
-            () => reflectionCache       .GetConstructor(typeof(TestClass)),
-            () => reflectionCacheLegacy .GetConstructor(typeof(TestClass)),
-            () => reflectionCacheLegacy2.GetConstructor(typeof(TestClass)),
-        ];
-
-        foreach (var action in synonyms)
+        foreach (var func in funcs)
         {
             for (int i = 0; i < Repeats; i++)
             {
-                ThrowsExceptionContaining(action, "Multiple constructors found");
+                ThrowsExceptionContaining(() => func(), expectedText);
             }
         }
-    }
-    
-    [TestMethod]
-    public void ReflectionCache_GetConstructor_None_Throws()
-    {
-        // NOTE: Specific BindingFlags or it'l always finds the default constructor.
-        var reflectionCache = new ReflectionCache(Public | Instance);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy(Public | Instance);
-
-        Action[] synonyms =
-        [
-            () => reflectionCache       .GetConstructor(typeof(NoConstructorClass)),
-            () => reflectionCacheLegacy .GetConstructor(typeof(NoConstructorClass)),
-        ];
-
-        foreach (var action in synonyms)
-        {
-            for (int i = 0; i < Repeats; i++)
-            {
-                ThrowsExceptionContaining(action, "No constructor found");
-            }
-        }
-    }
-    
-    [TestMethod]
-    public void ReflectionCache_GetConstructor_Multiple_Throws()
-    {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-
-        Action[] synonyms =
-        [
-            () => reflectionCache       .GetConstructor(typeof(MultipleConstructorsClass)),
-            () => reflectionCacheLegacy .GetConstructor(typeof(MultipleConstructorsClass)),
-            () => reflectionCacheLegacy2.GetConstructor(typeof(MultipleConstructorsClass)),
-        ];
-
-        foreach (var action in synonyms)
-        {
-            for (int i = 0; i < Repeats; i++)
-            {
-                ThrowsExceptionContaining(action, "Multiple constructors found");
-            }
-        }
-    }
-
-    [TestMethod]
-    public void ReflectionCache_GetConstructor_DifferentFlags()
-    {
-        // Public|Instance: finds the one public instance constructor
-        var publicInstance = new ReflectionCacheLegacy(Public    | Instance);
-        IsNotNull(() => publicInstance.GetConstructor(typeof(SingleConstructorClass)));
-
-        // BINDING_FLAGS_ALL: still finds only one — SingleConstructorClass has no static constructor
-        var allFlags = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        IsNotNull(() => allFlags.GetConstructor(typeof(SingleConstructorClass)));
-
-        // NonPublic|Instance: no non-public constructor on SingleConstructorClass → throws
-        ThrowsExceptionContaining(
-            () => new ReflectionCacheLegacy(NonPublic | Instance).GetConstructor(typeof(SingleConstructorClass)),
-            "No constructor found");
-
-        // NonPublic|Instance: finds the private constructor on NoConstructorClass
-        var nonPublicInstance = new ReflectionCacheLegacy(NonPublic | Instance);
-        IsNotNull(() => nonPublicInstance.GetConstructor(typeof(NoConstructorClass)));
     }
 }
