@@ -17,6 +17,9 @@ public class ReflectionCache_Constructor_CoreTests
             () => reflectionCache       .GetConstructor(typeof(TestClass)),
             () => reflectionCacheLegacy .GetConstructor(typeof(TestClass)),
             () => reflectionCacheLegacy2.GetConstructor(typeof(TestClass)),
+            () => reflectionCache       .GetConstructor(typeof(SingleConstructorClass)),
+            () => reflectionCacheLegacy .GetConstructor(typeof(SingleConstructorClass)),
+            () => reflectionCacheLegacy2.GetConstructor(typeof(SingleConstructorClass)),
         ];
 
         foreach (var func in synonyms)
@@ -97,5 +100,26 @@ public class ReflectionCache_Constructor_CoreTests
                 ThrowsExceptionContaining(action, "Multiple constructors found");
             }
         }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_DifferentFlags()
+    {
+        // Public|Instance: finds the one public instance constructor
+        var publicInstance = new ReflectionCacheLegacy(Public    | Instance);
+        IsNotNull(() => publicInstance.GetConstructor(typeof(SingleConstructorClass)));
+
+        // BINDING_FLAGS_ALL: still finds only one — SingleConstructorClass has no static constructor
+        var allFlags = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        IsNotNull(() => allFlags.GetConstructor(typeof(SingleConstructorClass)));
+
+        // NonPublic|Instance: no non-public constructor on SingleConstructorClass → throws
+        ThrowsExceptionContaining(
+            () => new ReflectionCacheLegacy(NonPublic | Instance).GetConstructor(typeof(SingleConstructorClass)),
+            "No constructor found");
+
+        // NonPublic|Instance: finds the private constructor on NoConstructorClass
+        var nonPublicInstance = new ReflectionCacheLegacy(NonPublic | Instance);
+        IsNotNull(() => nonPublicInstance.GetConstructor(typeof(NoConstructorClass)));
     }
 }
