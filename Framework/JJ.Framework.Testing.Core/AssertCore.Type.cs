@@ -3,6 +3,8 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
+    // TODO: Add variants IsType<int>(myType). Sure it'd be like equality check for the type, but it gets the intent clear, just like IsTrue just checks equality to true. It's a syntax sugar / the syntax is expected to work, but currently doesn't.
+
     public static void IsType<TValue>(Type expected, TValue value, [ArgExpress(nameof(value))] string message = "")
     {
         var actual = CompileTimeType(value);
