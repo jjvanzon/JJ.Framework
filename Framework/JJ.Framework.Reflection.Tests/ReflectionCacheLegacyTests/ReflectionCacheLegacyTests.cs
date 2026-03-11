@@ -236,12 +236,18 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
                $"with parameters ({Join(", ", parameterTypes.Select(x => $"{x.Name}"))}) " +
                $"in type '{type}'.";
 
-        // Helper for multiple generic methods with same parameter types but different arity
-        // to trigger the "multiple methods" error in TryResolveGenericMethod.
+        // ncrunch: no coverage start
+        
+        /// <summary>
+        /// Helper for multiple generic methods with same parameter types but different arity
+        /// to trigger the "multiple methods" error in TryResolveGenericMethod.
+        /// </summary>
         private static class AmbiguousHelper
         {
             public static void AmbiguousMethod<T>(int a) { }
             public static void AmbiguousMethod<T, U>(int a) { }
         }
+
+        // ncrunch: no coverage end
     }
 }

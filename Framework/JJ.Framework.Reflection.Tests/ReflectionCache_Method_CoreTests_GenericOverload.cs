@@ -16,9 +16,6 @@ public class ReflectionCache_Method_CoreTests_GenericOverload
         public static bool Method_WithTypeArgs_6<T1, T2, T3, T4, T5, T6>() => throw new NotSupportedException();
         public static bool Method_WithTypeArgs_7<T1, T2, T3, T4, T5, T6, T7>() => throw new NotSupportedException();
     }
-    // ncrunch: no coverage end
-
-    private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
     /// <summary>
     /// Statically reference all the closed generic methods we're getting with reflection for the linker to pass.
@@ -33,6 +30,10 @@ public class ReflectionCache_Method_CoreTests_GenericOverload
         var func6 = HelperClass.Method_WithTypeArgs_6<long, float, short, byte, char, decimal>;
         var func7 = HelperClass.Method_WithTypeArgs_7<long, float, short, byte, char, decimal, bool>;
     }
+    
+    // ncrunch: no coverage end
+
+    private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
     [TestMethod]
     public void Test_ReflectionCache_GetMethod_GenericOverload()

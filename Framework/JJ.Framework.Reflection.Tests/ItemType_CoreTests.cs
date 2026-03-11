@@ -1,3 +1,5 @@
+﻿#pragma warning disable IDE0200
+
 ﻿namespace JJ.Framework.Reflection.Legacy.Tests;
 
 using static ReflectionHelper;

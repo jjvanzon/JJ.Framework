@@ -315,7 +315,7 @@ namespace JJ.Framework.Reflection.Legacy
                         $"parameter types {Join(", ", parameterTypes.Select(x => $"'{x.Name}'"))}.");
             }
         }
-       
+
         private bool ArgTypesMatch(MethodInfo openMethod, Type[] closedArgTypes)
         {
             Type[] openArgTypes = openMethod.GetParameters().Select(x => x.ParameterType).ToArray();
@@ -346,7 +346,7 @@ namespace JJ.Framework.Reflection.Legacy
             
             return true;
         }
-        
+
         // Methods
 
         private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new();
@@ -369,7 +369,7 @@ namespace JJ.Framework.Reflection.Legacy
                 return methods;
             }
         }
-
+                               
         // Types
 
         private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new();
@@ -405,7 +405,7 @@ namespace JJ.Framework.Reflection.Legacy
                         $"Found types:{Environment.NewLine}{Join(Environment.NewLine, types.Select(x => x.FullName))}");
             }
         }
-
+        
         [TrimWarn(GetTypes)]
         public IList<Type> GetTypesByShortName(string shortTypeName)
         {
@@ -436,6 +436,9 @@ namespace JJ.Framework.Reflection.Legacy
                                                                  string.Equals(x.FullName, trimmedName, stringComparison) ||
                                                                  string.Equals(x.AssemblyQualifiedName, trimmedName, stringComparison)));
                 }
+
+                // ncrunch: no coverage start
+
                 catch (ReflectionTypeLoadException)
                 {
                     // Ignore.
@@ -443,6 +446,8 @@ namespace JJ.Framework.Reflection.Legacy
                     // and why it says the assembly cannot be loaded (file not found),
                     // while it clearly is part of the app domain.
                 }
+
+                // ncrunch: no coverage end
             }
             types = list.ToArray();
 

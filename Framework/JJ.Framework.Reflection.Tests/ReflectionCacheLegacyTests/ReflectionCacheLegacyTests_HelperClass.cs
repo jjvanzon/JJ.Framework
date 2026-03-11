@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ncrunch: no coverage start
+
+using System;
 
 namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
 {
@@ -14,3 +16,5 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             => throw new NotSupportedException();
     }
 }
+
+// ncrunch: no coverage end
