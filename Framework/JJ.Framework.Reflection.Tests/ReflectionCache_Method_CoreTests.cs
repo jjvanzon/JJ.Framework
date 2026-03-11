@@ -39,16 +39,16 @@ public class ReflectionCache_Method_CoreTests
     }
 
     [TestMethod]
-    public void ReflectionCache_GetMethod_PublicInstance_TestMethod_NotThrows()
+    public void ReflectionCache_GetMethod_PublicInstance()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Instance);
 
         Func<MethodInfo>[] synonyms =
         [
-            () => new ReflectionCacheLegacy(Public | Instance).GetMethod(typeof(TestClass), "TestMethod"),
-            () => new ReflectionCacheLegacy(Public | Instance).GetMethod(typeof(TestClass), "TestMethod"),
-            () => StaticReflectionCache.GetMethod(typeof(TestClass), "TestMethod")
+            () => reflectionCacheLegacy .GetMethod(typeof(TestClass), "TestMethod"),
+            () => reflectionCacheLegacy2.GetMethod(typeof(TestClass), "TestMethod"),
+            () => StaticReflectionCache .GetMethod(typeof(TestClass), "TestMethod")
         ];
 
         foreach (var func in synonyms)
@@ -62,7 +62,7 @@ public class ReflectionCache_Method_CoreTests
     }
 
     [TestMethod]
-    public void ReflectionCache_GetMethod_PublicStatic_StaticTestMethod_NotThrows()
+    public void ReflectionCache_GetMethod_PublicStatic()
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy(Public | Static);
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Static);

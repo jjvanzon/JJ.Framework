@@ -155,8 +155,8 @@ public class ReflectionCache_Field_CoreTests
                 IsTrue(fields.Any(x => x.Name == "_testField"         ));
                 IsTrue(fields.Any(x => x.Name == "_testField2"        ));
                 IsTrue(fields.Any(x => x.Name == "_staticTestProperty"));
-                IsTrue(fields.Any(x => x.Name == "PublicTestField"    ));
-                IsTrue(fields.Any(x => x.Name == "PublicStaticField"  ));
+                IsTrue(fields.Any(x => x.Name == "_publicTestField"    ));
+                IsTrue(fields.Any(x => x.Name == "_publicStaticField"  ));
             }
         }
     }
@@ -197,8 +197,8 @@ public class ReflectionCache_Field_CoreTests
 
         IsNotNull(() => fields);
         AreEqual(1, () => fields.Length);
-        IsTrue(fields.Any(x => x.Name == "PublicTestField"));
-        IsTrue(!fields.Any(x => x.Name == "PublicStaticField"));
+        IsTrue(fields.Any(x => x.Name == "_publicTestField"));
+        IsTrue(!fields.Any(x => x.Name == "_publicStaticField"));
         IsTrue(!fields.Any(x => x.Name == "_testField"));
     }
 
@@ -219,8 +219,8 @@ public class ReflectionCache_Field_CoreTests
 
         IsTrue(nonPublicInstance.Any(x => x.Name == "_testField"         ));
         IsTrue(nonPublicInstance.Any(x => x.Name == "_testField2"        ));
-        IsTrue(publicInstance   .Any(x => x.Name == "PublicTestField"    ));
-        IsTrue(publicStatic     .Any(x => x.Name == "PublicStaticField"  ));
+        IsTrue(publicInstance   .Any(x => x.Name == "_publicTestField"    ));
+        IsTrue(publicStatic     .Any(x => x.Name == "_publicStaticField"  ));
         IsTrue(nonPublicStatic  .Any(x => x.Name == "_staticTestProperty"));
     }
 }

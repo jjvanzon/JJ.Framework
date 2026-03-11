@@ -7,8 +7,8 @@ internal class TestClass
     private int _testField;
     private string _testField2 = "";
     private static string _staticTestProperty = "";
-    public int PublicTestField;
-    public static int PublicStaticField;
+    public int _publicTestField;
+    public static int _publicStaticField;
     public int TestProperty { get => _testField; set => _testField = value; }
     public string TestProperty2 { get => _testField2; set => _testField2 = value; }
     public static string StaticTestProperty { get => _staticTestProperty; set => _staticTestProperty = value; }
