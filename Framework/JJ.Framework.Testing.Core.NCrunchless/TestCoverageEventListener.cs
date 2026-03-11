@@ -1,8 +1,9 @@
-﻿namespace nCrunch.TestRuntime.DotNetCore;
+﻿// ReSharper disable UnusedParameter.Global
+// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedType.Global
 
-/// <summary>
-/// Shim 
-/// </summary>
+namespace nCrunch.TestRuntime.DotNetCore;
+
 public class TestCoverageEventListener
 {
     public static void NCrunchMarkClassInstanceConstructed(int a, int b) { }
