@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Reflection.Legacy.Tests;
+﻿// ReSharper disable SimplifyLinqExpressionUseAll
+
+namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
@@ -128,6 +130,24 @@ public class ReflectionCache_Property_CoreTests
                 AreEqual("TestProperty2", () => properties[1].Name);
             }
         }
+    }
+    
+    [TestMethod]
+    public void ReflectionCache_GetProperties_DifferentFlags()
+    {
+        IList<PropertyInfo> instanceProps = new ReflectionCacheLegacy(Public | Instance).GetProperties(typeof(TestClass));
+        IList<PropertyInfo> staticProps   = new ReflectionCacheLegacy(Public | Static  ).GetProperties(typeof(TestClass));
+        IList<PropertyInfo> allProps      = new ReflectionCacheLegacy(BINDING_FLAGS_ALL ).GetProperties(typeof(TestClass));
+
+        AreEqual(2, () => instanceProps.Count);
+        AreEqual(1, () => staticProps  .Count);
+        AreEqual(3, () => allProps     .Count);
+
+        IsTrue( instanceProps.Any(x => x.Name == "TestProperty"      ));
+        IsTrue( instanceProps.Any(x => x.Name == "TestProperty2"     ));
+        IsTrue(!instanceProps.Any(x => x.Name == "StaticTestProperty"));
+        IsTrue( staticProps  .Any(x => x.Name == "StaticTestProperty"));
+        IsTrue(!staticProps  .Any(x => x.Name == "TestProperty"      ));
     }
 
     // PropertyDictionary

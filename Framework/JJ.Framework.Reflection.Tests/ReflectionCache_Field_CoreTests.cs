@@ -128,7 +128,7 @@ public class ReflectionCache_Field_CoreTests
     }
     
     // Fields
-    
+
     [TestMethod]
     public void ReflectionCache_GetFields()
     {
@@ -145,7 +145,9 @@ public class ReflectionCache_Field_CoreTests
             () => reflectionCacheLegacy .GetFields(typeof(TestClass)),
             () => reflectionCacheLegacy2.GetFields(typeof(TestClass)),
             () => reflectionCacheLegacy3.GetFields(typeof(TestClass)),
-          //() => StaticReflectionCache .GetFields(typeof(TestClass)), // Only does public instance fields
+            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
+            //() => StaticReflectionCache .GetFields(typeof(TestClass)), // Only does public instance fields
+            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
             () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
             () => StaticReflectionCache .GetFields(typeof(TestClass), NonPublic | Instance)
         ];
@@ -157,14 +159,35 @@ public class ReflectionCache_Field_CoreTests
                 FieldInfo[] fields = func();
 
                 IsNotNull(  () => fields);
-                AreEqual(2, () => fields.Length);
-                IsNotNull(  () => fields[0]);
-                IsNotNull(  () => fields[1]);
-                AreEqual(typeof(int),    () => fields[0].FieldType);
-                AreEqual(typeof(string), () => fields[1].FieldType);
-                AreEqual("_testField",   () => fields[0].Name);
-                AreEqual("_testField2",  () => fields[1].Name);
+                AreEqual(5, () => fields.Length);
+                IsTrue(fields.Any(x => x.Name == "_testField"         ));
+                IsTrue(fields.Any(x => x.Name == "_testField2"        ));
+                IsTrue(fields.Any(x => x.Name == "_staticTestProperty"));
+                IsTrue(fields.Any(x => x.Name == "PublicTestField"    ));
+                IsTrue(fields.Any(x => x.Name == "PublicStaticField"  ));
             }
         }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetFields_DifferentFlags()
+    {
+        FieldInfo[] nonPublicInstance = new ReflectionCacheLegacy(NonPublic | Instance).GetFields(typeof(TestClass));
+        FieldInfo[] publicInstance    = new ReflectionCacheLegacy(Public    | Instance).GetFields(typeof(TestClass));
+        FieldInfo[] publicStatic      = new ReflectionCacheLegacy(Public    | Static  ).GetFields(typeof(TestClass));
+        FieldInfo[] nonPublicStatic   = new ReflectionCacheLegacy(NonPublic | Static  ).GetFields(typeof(TestClass));
+        FieldInfo[] all               = new ReflectionCacheLegacy(BINDING_FLAGS_ALL   ).GetFields(typeof(TestClass));
+
+        AreEqual(2, () => nonPublicInstance.Length);
+        AreEqual(1, () => publicInstance   .Length);
+        AreEqual(1, () => publicStatic     .Length);
+        AreEqual(1, () => nonPublicStatic  .Length);
+        AreEqual(5, () => all              .Length);
+
+        IsTrue(nonPublicInstance.Any(x => x.Name == "_testField"         ));
+        IsTrue(nonPublicInstance.Any(x => x.Name == "_testField2"        ));
+        IsTrue(publicInstance   .Any(x => x.Name == "PublicTestField"    ));
+        IsTrue(publicStatic     .Any(x => x.Name == "PublicStaticField"  ));
+        IsTrue(nonPublicStatic  .Any(x => x.Name == "_staticTestProperty"));
     }
 }

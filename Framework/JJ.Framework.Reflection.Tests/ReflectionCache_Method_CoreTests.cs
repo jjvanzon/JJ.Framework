@@ -1,4 +1,5 @@
 ﻿// ReSharper disable RedundantArgumentDefaultValue
+// ReSharper disable SimplifyLinqExpressionUseAll
 
 namespace JJ.Framework.Reflection.Legacy.Tests;
 
@@ -147,6 +148,19 @@ public class ReflectionCache_Method_CoreTests
         }
     }
     
+    [TestMethod]
+    public void ReflectionCache_GetMethods_DifferentFlags()
+    {
+        IList<MethodInfo> instanceMethods = new ReflectionCacheLegacy(Public | Instance).GetMethods(typeof(TestClass));
+        IList<MethodInfo> staticMethods   = new ReflectionCacheLegacy(Public | Static  ).GetMethods(typeof(TestClass));
+
+        IsTrue( instanceMethods.Any(x => x.Name == "TestMethod"      ));
+        IsTrue( instanceMethods.Any(x => x.Name == "TestMethod2"     ));
+        IsTrue(!instanceMethods.Any(x => x.Name == "StaticTestMethod"));
+        IsTrue( staticMethods  .Any(x => x.Name == "StaticTestMethod"));
+        IsTrue(!staticMethods  .Any(x => x.Name == "TestMethod"      ));
+    }
+
     // Method Assertion
 
     private static void AssertMethod(MethodInfo? method)
