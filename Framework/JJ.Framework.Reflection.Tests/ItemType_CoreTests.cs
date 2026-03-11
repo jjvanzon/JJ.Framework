@@ -44,12 +44,13 @@ public class ItemType_CoreTests
         }
     }
 
-    // Local test properties to avoid interfering with other helpers
+    // ncrunch: no coverage start
     public int[] TestIntArray { get; set; }
     public List<int> TestIntList { get; set; }
     public IEnumerable<int> TestIntEnumerable { get; set; }
     public IList<DummyClass> TestDummyIList { get; set; }
     public List<DummyClass> TestDummyList { get; set; }
+    // ncrunch: no coverage end
 
     [Suppress("Trimmer", "IL2026", Justification = PropertyType)]
     [TestMethod]
