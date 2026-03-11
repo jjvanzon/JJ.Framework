@@ -6,14 +6,14 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 public class TypeExtensions_CoreTests
 {
     [TestMethod]
-    public void GetUnderlyingNullableType_ReturnsUnderlyingType()
+    public void Test_GetUnderlyingNullableType()
     {
         AreEqual(typeof(int), typeof(int?).GetUnderlyingNullableType());
         AreEqual(typeof(bool), typeof(bool?).GetUnderlyingNullableType());
     }
 
     [TestMethod]
-    public void IsReferenceType_Behavior()
+    public void Test_IsReferenceType()
     {
         IsTrue(typeof(string).IsReferenceType());
         IsTrue(typeof(object).IsReferenceType());
