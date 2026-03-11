@@ -1,5 +1,7 @@
-﻿global using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿global using System.Reflection;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.PlatformCompatibility.Legacy;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Testing.Legacy;
+global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
