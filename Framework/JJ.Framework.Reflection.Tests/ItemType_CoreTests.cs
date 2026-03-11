@@ -45,15 +45,15 @@ public class ItemType_CoreTests
     }
 
     // Local test properties to avoid interfering with other helpers
-    public int[] TestArray { get; set; }
-    public List<int> TestList { get; set; }
-    public IEnumerable<int> TestEnumerable { get; set; }
-    public IList<DummyClass> TestIListDummy { get; set; }
-    public List<DummyClass> TestListDummy { get; set; }
+    public int[] TestIntArray { get; set; }
+    public List<int> TestIntList { get; set; }
+    public IEnumerable<int> TestIntEnumerable { get; set; }
+    public IList<DummyClass> TestDummyIList { get; set; }
+    public List<DummyClass> TestDummyList { get; set; }
 
     [Suppress("Trimmer", "IL2026", Justification = PropertyType)]
     [TestMethod]
-    public void GetItemType_WithPropertyInfo()
+    public void GetItemType_FromCollectionProperty()
     {
         IList<Func<PropertyInfo, Type>> synonyms =
         [
@@ -62,34 +62,21 @@ public class ItemType_CoreTests
         ];
 
         var collType = typeof(ItemType_CoreTests);
-        PropertyInfo? prop1 = collType.GetProperty(nameof(TestArray));
-        ThrowIfNull(prop1);
-
-        PropertyInfo? prop2 = collType.GetProperty(nameof(TestList));
-        ThrowIfNull(prop2);
-
-        PropertyInfo? prop3 = collType.GetProperty(nameof(TestEnumerable));
-        ThrowIfNull(prop3);
-
-        PropertyInfo? prop4 = collType.GetProperty(nameof(TestIListDummy));
-        ThrowIfNull(prop4);
-
-        PropertyInfo? prop5 = collType.GetProperty(nameof(TestListDummy));
-        ThrowIfNull(prop5);
 
         IList<(PropertyInfo itemProp, Type itemType)> props =
         [
-            (prop1, typeof(int)),
-            (prop2, typeof(int)),
-            (prop3, typeof(int)),
-            (prop4, typeof(DummyClass)),
-            (prop5, typeof(DummyClass)),
+            ( collType.GetProperty("TestIntArray"     ), typeof(int       ) ),
+            ( collType.GetProperty("TestIntList"      ), typeof(int       ) ),
+            ( collType.GetProperty("TestIntEnumerable"), typeof(int       ) ),
+            ( collType.GetProperty("TestDummyIList"   ), typeof(DummyClass) ),
+            ( collType.GetProperty("TestDummyList"    ), typeof(DummyClass) ),
         ];
 
-        foreach (var (itemProp, itemType) in props)
+        foreach (var (itemProp, itemTypeExpected) in props)
         foreach (var getItemType in synonyms)
         {
-            AreEqual(itemType, getItemType(itemProp));
+            ThrowIfNull(itemProp);
+            AreEqual(itemTypeExpected, getItemType(itemProp));
         }
     }
 
