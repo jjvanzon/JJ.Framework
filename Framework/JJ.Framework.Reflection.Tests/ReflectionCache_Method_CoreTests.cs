@@ -37,6 +37,69 @@ public class ReflectionCache_Method_CoreTests
             }
         }
     }
+
+    [TestMethod]
+    public void ReflectionCache_GetMethod_PublicInstance_TestMethod_NotThrows()
+    {
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Instance);
+
+        Func<MethodInfo>[] synonyms =
+        [
+            () => new ReflectionCacheLegacy(Public | Instance).GetMethod(typeof(TestClass), "TestMethod"),
+            () => new ReflectionCacheLegacy(Public | Instance).GetMethod(typeof(TestClass), "TestMethod"),
+            () => StaticReflectionCache.GetMethod(typeof(TestClass), "TestMethod")
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < Repeats; i++)
+            {
+                MethodInfo method = func();
+                AssertMethod(method);
+            }
+        }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetMethod_PublicStatic_StaticTestMethod_NotThrows()
+    {
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy(Public | Static);
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Static);
+
+        Func<MethodInfo>[] synonyms =
+        [
+            () => new ReflectionCacheLegacy(Public | Static).GetMethod(typeof(TestClass), "StaticTestMethod"),
+            () => new ReflectionCacheLegacy(Public | Static).GetMethod(typeof(TestClass), "StaticTestMethod"),
+            () => StaticReflectionCache.GetMethod(typeof(TestClass), "StaticTestMethod")
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < Repeats; i++)
+            {
+                MethodInfo method = func();
+                NotNull(method);
+                AreEqual("StaticTestMethod", method.Name);
+            }
+        }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetMethod_FlagsMismatch_Throws()
+    {
+        Action[] actions =
+        [
+            () => new ReflectionCacheLegacy(Public | Instance).GetMethod(typeof(TestClass), "StaticTestMethod"),
+            () => new ReflectionCacheLegacy(Public | Static).GetMethod(typeof(TestClass), "TestMethod"),
+            () => new ReflectionCacheLegacy(NonPublic | Instance).GetMethod(typeof(TestClass), "TestMethod")
+        ];
+
+        foreach (var action in actions)
+        {
+            ThrowsExceptionContaining(action, "Method", "not found");
+        }
+    }
     
     [TestMethod]
     public void ReflectionCache_GetMethod_Test_WithArgTypes()

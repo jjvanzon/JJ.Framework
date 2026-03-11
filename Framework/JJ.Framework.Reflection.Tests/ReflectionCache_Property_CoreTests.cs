@@ -44,6 +44,71 @@ public class ReflectionCache_Property_CoreTests
             }
         }
     }
+
+    [TestMethod]
+    public void ReflectionCache_GetProperty_PublicInstance_TestProperty_NotThrows()
+    {
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Instance);
+
+        Func<PropertyInfo>[] synonyms =
+        [
+            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), "TestProperty"),
+            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), "TestProperty"),
+            () => StaticReflectionCache  .GetProperty(typeof(TestClass), "TestProperty")
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < Repeats; i++)
+            {
+                PropertyInfo prop = func();
+                IsNotNull(() => prop);
+                AreEqual("TestProperty", () => prop.Name);
+            }
+        }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetProperty_PublicStatic_StaticTestProperty_NotThrows()
+    {
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy(Public | Static);
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Static);
+
+        Func<PropertyInfo>[] synonyms =
+        [
+            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), "StaticTestProperty"),
+            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), "StaticTestProperty"),
+            () => StaticReflectionCache  .GetProperty(typeof(TestClass), "StaticTestProperty")
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < Repeats; i++)
+            {
+                PropertyInfo prop = func();
+                IsNotNull(() => prop);
+                AreEqual("StaticTestProperty", () => prop.Name);
+            }
+        }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetProperty_FlagsMismatch_Throws()
+    {
+        // Flags that don't match the property visibility should cause not found.
+        Action[] actions =
+        [
+            () => new ReflectionCacheLegacy(NonPublic | Instance).GetProperty(typeof(TestClass), "TestProperty"),
+            () => new ReflectionCacheLegacy(Public | Instance).GetProperty(typeof(TestClass), "StaticTestProperty"),
+            () => new ReflectionCacheLegacy(NonPublic | Static).GetProperty(typeof(TestClass), "StaticTestProperty")
+        ];
+
+        foreach (var action in actions)
+        {
+            ThrowsExceptionContaining(action, "Property", "not found");
+        }
+    }
         
     [TestMethod]
     public void ReflectionCache_GetProperty_NotFound_Exception()
