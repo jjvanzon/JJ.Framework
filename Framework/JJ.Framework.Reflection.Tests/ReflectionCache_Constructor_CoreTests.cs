@@ -5,7 +5,7 @@
 public class ReflectionCache_Constructor_CoreTests
 {
     [TestMethod]
-    public void ReflectionCache_GetConstructor_Single()
+    public void ReflectionCache_GetConstructor_SinglePublicInstance()
     {
         // Use explicit flags to select the instance constructor only.
         var reflectionCache = new ReflectionCache(Public | Instance);
