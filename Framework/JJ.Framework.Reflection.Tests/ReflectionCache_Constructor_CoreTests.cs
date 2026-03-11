@@ -7,9 +7,10 @@ public class ReflectionCache_Constructor_CoreTests
     [TestMethod]
     public void ReflectionCache_GetConstructor_Single()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        // Use explicit flags to select the instance constructor only.
+        var reflectionCache = new ReflectionCache(Public | Instance);
+        var reflectionCacheLegacy = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Instance);
 
         Func<ConstructorInfo>[] synonyms =
         [
@@ -24,6 +25,31 @@ public class ReflectionCache_Constructor_CoreTests
             {
                 ConstructorInfo constructor = func();
                 IsNotNull(() => constructor);
+            }
+        }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_AllFlags_MultipleConstructors_Throws()
+    {
+        // When using all flags, the type initializer (static constructor) is visible and
+        // the cache may find multiple constructors. Ensure that the appropriate exception is thrown.
+        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+
+        Action[] synonyms =
+        [
+            () => reflectionCache       .GetConstructor(typeof(TestClass)),
+            () => reflectionCacheLegacy .GetConstructor(typeof(TestClass)),
+            () => reflectionCacheLegacy2.GetConstructor(typeof(TestClass)),
+        ];
+
+        foreach (var action in synonyms)
+        {
+            for (int i = 0; i < Repeats; i++)
+            {
+                ThrowsExceptionContaining(action, "Multiple constructors found");
             }
         }
     }
