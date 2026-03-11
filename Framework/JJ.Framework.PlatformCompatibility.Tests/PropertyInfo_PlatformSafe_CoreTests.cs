@@ -1,3 +1,4 @@
+
 namespace JJ.Framework.PlatformCompatibility.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]

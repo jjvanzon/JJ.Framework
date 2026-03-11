@@ -2,10 +2,13 @@
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
+    <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
     <CustomBuildProperties>
       <Value>IsNCrunch = True</Value>
+      <Value>UseAppHost = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
+    <ImpactDetection>WatchText</ImpactDetection>
     <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
     <MetricsExclusionList>
       <Value>Framework\JJ.Framework.Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net10.0</Value>
@@ -96,5 +99,6 @@
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
+    <TerminateTestRunnerTasksOnExecutionComplete>False</TerminateTestRunnerTasksOnExecutionComplete>
   </Settings>
 </SolutionConfiguration>

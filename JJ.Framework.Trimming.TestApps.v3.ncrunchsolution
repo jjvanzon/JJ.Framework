@@ -1,13 +1,5 @@
 ﻿<SolutionConfiguration>
   <Settings>
-    <!--
-    IMPORTANT: 
-    Trimming solution requires RunTrimTest.
-    Trimming solution does not use coverage metrics.
-    InstrumentOutputAssembly is for coverage metrics.
-    InstrumentOutputAssembly can make RunTrimTest fail.
-    -->
-    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
     <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
@@ -16,6 +8,8 @@
       <Value>UseAppHost = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
+    <ImpactDetection>WatchText</ImpactDetection>
+    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
     <MetricsExclusionList>
       <Value>Demos\JJ.Demos.GetNames\JJ.Demos.GetNames.csproj</Value>
       <Value>Demos\JJ.Demos.GetNames.Tests\JJ.Demos.GetNames.Tests.csproj</Value>
@@ -513,5 +507,6 @@
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
+    <TerminateTestRunnerTasksOnExecutionComplete>False</TerminateTestRunnerTasksOnExecutionComplete>
   </Settings>
 </SolutionConfiguration>
