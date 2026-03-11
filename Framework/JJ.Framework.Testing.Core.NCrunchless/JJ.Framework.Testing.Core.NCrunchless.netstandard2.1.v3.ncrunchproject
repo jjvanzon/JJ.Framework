@@ -2,4 +2,5 @@
   <Settings>
     <IgnoreThisComponentCompletely>True</IgnoreThisComponentCompletely>
   </Settings>
+  <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
 </ProjectConfiguration>
