@@ -1,10 +1,9 @@
-﻿// ReSharper disable CheckNamespace
+﻿#pragma warning disable IDE1006 // Naming
+// ReSharper disable CheckNamespace
 // ReSharper disable UnusedType.Global
 // ReSharper disable IdentifierTypo
 
 // These are structs, so their syntax colorings are unobtrusive.
-
-using System;
 
 namespace JJ.Framework.Reflection.Legacy.docs;
 
@@ -14,9 +13,9 @@ namespace JJ.Framework.Reflection.Legacy.docs;
 /// </summary>
 public struct _getitemtype;
 
-/// <summary>
+/// <remarks>
 /// <para>
-/// Makes using reflection much faster in certain cases.
+/// These classes make using reflection much faster in certain cases.
 /// For instance the <c>GetProperties</c> method can be expensive,
 /// which is much faster through the <c>ReflectionCache</c> class.
 /// </para>
@@ -25,28 +24,63 @@ public struct _getitemtype;
 /// 
 /// <code>
 /// private static readonly ReflectionCache _reflectionCache 
-///     = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+///     = new ReflectionCache(Public | Instance);
 /// 
 /// PropertyInfo[] properties 
 ///     = _reflectionCache.GetProperties(typeof(MyClass));
 /// </code>
 /// 
-/// <para>You can also get other types of constructs in a fast way:</para>
+/// <para>
+/// You can get various types of constructs fast:
 ///
-/// - <c>Methods</c> <br/>
-/// - <c>Indexers</c> <br/>
-/// - <c>Fields</c> <br/>
-/// - <c>Constructor</c> <br/>
-/// - <c>GetTypeByShortName</c>
-/// 
-/// <para>In this version, some of the options may only be available in the <c>StaticReflectionCache</c> variant. That variant may perform slightly less fast.</para>
+/// <list type="bullet">
+///   <item><c>Methods</c></item>
+///   <item><c>Indexers</c></item>
+///   <item><c>Properties</c></item>
+///   <item><c>Fields</c></item>
+///   <item><c>Constructor</c></item>
+///   <item><c>GetTypeByShortName</c></item>
+/// </list>
+///
+/// There are <c>Get</c> and <c>TryGet</c> method variants (e.g. <c>GetField</c> and <c>TryGetField</c>).<br/>
+/// The <c>Try</c> variants can return <see langword="null"/> when not found.<br/>
+/// The <c>Get</c> methods always return an object, or otherwise they <see langword="throw" /> an <see cref="System.Exception" /> as a safety net.
+/// </para>
 ///
 /// <para>
-/// There are <c>Get</c> and <c>TryGet</c> methods (e.g. <c>GetField</c> and <c>TryGetField</c>).
-/// The <c>Try</c> variants can return null when not found. The <c>Get</c> methods always return an object, or otherwise they throw an exception as a safety net.
+/// Unfortunately, there is a tapestry of 3 legacy variants:
+///
+/// <list type="bullet">
+///   <item><see cref="ReflectionCache" />: A snapshot from <b>2015</b> (the <i>Ice Queen</i> version)</item>
+///   <item><see cref="StaticReflectionCache" />: More convenient, slightly slower and different set of features. Also from the <c>2015</c> <i>Ice Queen</i>.</item>
+///   <item><see cref="ReflectionCacheLegacy" />: <b>Newer</b> from <b>2018</b> unlike the name <c>Legacy</c> suggests (<i>King</i> version). Larger feature set, better performance.</item>
+/// </list>
+///
+/// A full replacement of these functions is coming (<i>Core</i> version), but is not ready yet. <br />
+/// Various software component still use these legacy variants as they've served us well.
 /// </para>
+/// </remarks>
+public struct _reflectioncacheshared;
+
+/// <summary>
+/// In this frozen version from 2015, some of the options may only be available in the <see cref="StaticReflectionCache" /> variant. That variant may perform slightly less fast.
 /// </summary>
+/// <inheritdoc cref="_reflectioncacheshared" />
 public struct _reflectioncache;
+
+/// <summary>
+/// Slightly faster than the <see cref="StaticReflectionCache" /> variant which is also from the 2015 Ice Queen version,
+/// but less functions and a bit less convenient in use.
+/// </summary>
+/// <inheritdoc cref="_reflectioncacheshared" />
+public struct _staticreflectioncache;
+
+/// <summary>
+/// This <see cref="ReflectionCacheLegacy" /> variant is a clone from the 2018-state of the <c>legacy</c> branch.<br/>
+/// It has more features than <see cref="ReflectionCache"/> which is from 2015 (the "Ice Queen" version).
+/// </summary>
+/// <inheritdoc cref="_reflectioncacheshared" />
+public struct _reflectioncachelegacy;
 
 /// <summary>
 /// <para>Superseded by .NET's own <c>ThrowIfNull</c>, but still used in several projects.</para>

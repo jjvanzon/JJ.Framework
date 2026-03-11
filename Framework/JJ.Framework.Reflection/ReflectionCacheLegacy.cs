@@ -8,8 +8,10 @@ using static JJ.Framework.Common.Legacy.KeyHelper;
 
 namespace JJ.Framework.Reflection.Legacy
 {
+    /// <inheritdoc cref="_reflectioncachelegacy" />
     public class ReflectionCacheLegacy(BindingFlags _bindingFlags)
     {
+    /// <inheritdoc cref="_reflectioncachelegacy" />
         public ReflectionCacheLegacy() : this(ReflectionHelper.BINDING_FLAGS_ALL) { }
         
         // Property
@@ -17,6 +19,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<(Type, string), PropertyInfo?> _propertyDictionary = new();
         private readonly object _propertyDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetProperty([Dyn(AllProperties)] Type type, string name)
         {
             PropertyInfo? property = TryGetProperty(type, name);
@@ -27,6 +30,7 @@ namespace JJ.Framework.Reflection.Legacy
             return property;
         }
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetProperty([Dyn(AllProperties)] Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
@@ -52,6 +56,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new();
         private readonly object _propertiesDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo[] GetProperties([Dyn(AllProperties)] Type type)
         {
             lock (_propertiesDictionaryLock)
@@ -74,6 +79,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new();
         private readonly object _propertyDictionaryDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public Dictionary<string, PropertyInfo> GetPropertyDictionary([Dyn(AllProperties)] Type type)
         {
             lock (_propertyDictionaryDictionaryLock)
@@ -97,6 +103,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<(Type, string), FieldInfo?> _fieldDictionary = new();
         private readonly object _fieldDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public FieldInfo GetField([Dyn(AllFields)] Type type, string name)
         {
             FieldInfo? field = TryGetField(type, name);
@@ -107,6 +114,7 @@ namespace JJ.Framework.Reflection.Legacy
             return field;
         }
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public FieldInfo? TryGetField([Dyn(AllFields)] Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
@@ -132,6 +140,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<Type, FieldInfo[]> _fieldsDictionary = new();
         private readonly object _fieldsDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public FieldInfo[] GetFields([Dyn(AllFields)] Type type)
         {
             lock (_fieldsDictionaryLock)
@@ -155,6 +164,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo?> _indexerDictionary = new();
         private readonly object _indexerDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer([Dyn(AllProperties)] Type type, params Type[] parameterTypes)
         {
             PropertyInfo? property = TryGetIndexer(type, parameterTypes);
@@ -165,6 +175,7 @@ namespace JJ.Framework.Reflection.Legacy
             return property;
         }
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer([Dyn(AllProperties)] Type type, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
@@ -200,6 +211,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo?> _methodDictionary = new();
         private readonly object _methodDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public MethodInfo GetMethod([Dyn(AllMethods)] Type type, string name, params Type[] parameterTypes)
         {
             MethodInfo? method = TryGetMethod(type, name, parameterTypes);
@@ -210,6 +222,7 @@ namespace JJ.Framework.Reflection.Legacy
             return method;
         }
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public MethodInfo? TryGetMethod([Dyn(AllMethods)] Type type, string name, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
@@ -240,6 +253,7 @@ namespace JJ.Framework.Reflection.Legacy
 
         private readonly object _methodWithTypeArgumentsDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [TrimWarn(GenericMethod)]
         [AotWarn(GenericMethod)]
         public MethodInfo GetMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
@@ -258,6 +272,7 @@ namespace JJ.Framework.Reflection.Legacy
             return method;
         }
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [TrimWarn(GenericMethod)]
         [AotWarn(GenericMethod)]
         public MethodInfo? TryGetMethod([Dyn(AllMethods)] Type type, string name, Type[] parameterTypes, Type[] typeArguments)
@@ -352,6 +367,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new();
         private readonly object _methodsDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public MethodInfo[] GetMethods([Dyn(AllMethods)] Type type)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
@@ -375,6 +391,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new();
         private readonly object _typeByShortNameDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [TrimWarn(GetTypes)]
         public Type GetTypeByShortName(string shortTypeName)
         {
@@ -386,6 +403,7 @@ namespace JJ.Framework.Reflection.Legacy
             return type;
         }
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [TrimWarn(GetTypes)]
         public Type? TryGetTypeByShortName(string shortTypeName)
         {
@@ -406,6 +424,7 @@ namespace JJ.Framework.Reflection.Legacy
             }
         }
         
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [TrimWarn(GetTypes)]
         public IList<Type> GetTypesByShortName(string shortTypeName)
         {
@@ -463,6 +482,7 @@ namespace JJ.Framework.Reflection.Legacy
         private readonly Dictionary<Type, ConstructorInfo> _constructorDictionary = new();
         private readonly object _constructorDictionaryLock = new();
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public ConstructorInfo GetConstructor([Dyn(AllConstructors)] Type type)
         {
             lock (_constructorDictionaryLock)
@@ -495,115 +515,143 @@ namespace JJ.Framework.Reflection.Legacy
 
         // Generic Overloads
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllMethods)] Type type, string name)
             => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ] , [ typeof(TArg1), typeof(TArg2) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         [AotWarn(GenericMethod)]
         [TrimWarn(GenericMethod)]
         public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllMethods)] Type type, string name)
             => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer<TArg1>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer<TArg1, TArg2>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer<TArg1, TArg2, TArg3>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllProperties)] Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer<TArg1>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer<TArg1, TArg2>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
 
+        /// <inheritdoc cref="_reflectioncachelegacy" />
         public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>([Dyn(AllProperties)] Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
     }
