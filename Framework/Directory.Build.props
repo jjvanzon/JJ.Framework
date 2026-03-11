@@ -52,7 +52,7 @@
     <IsInnerBuild Condition="'$(TargetFramework)'!=''">True</IsInnerBuild>
   </PropertyGroup>
 
-  <!-- Diagnostics -->
+  <!-- Diagnostics (Build Type) -->
   <Target Name="JJ_Framework_Vars1" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsNet48 = $(IsNet48) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" Importance="High" />
@@ -195,6 +195,11 @@
     <Delete Files="@(XmlsToDeletejj)" />
   </Target>
 
+  <!-- Diagnostics (Publish) -->
+  <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+    <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
+  </Target>
+
   <!-- Trim Test -->
 
   <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild"
@@ -237,7 +242,7 @@
       <TrimRunErrorText>$(MSBuildProjectName) > Exit Code $(TrimRunExitCode). $(TrimRunErrorText)</TrimRunErrorText>
     </PropertyGroup>
 
-    <!-- Diagnostics -->
+    <!-- Diagnostics (Trim Test) -->
     <PropertyGroup>
       <TrimmedExeExists>False</TrimmedExeExists>
       <TrimmedExeExists Condition="Exists('$(TrimmedExe)')">True</TrimmedExeExists>
@@ -263,11 +268,6 @@
   <PropertyGroup Condition="'$(TF_BUILD)'=='true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-
-  <!-- Diagnostics -->
-  <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
-  </Target>
 
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
