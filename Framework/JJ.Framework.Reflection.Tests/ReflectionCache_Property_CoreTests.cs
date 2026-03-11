@@ -97,21 +97,15 @@ public class ReflectionCache_Property_CoreTests
     public void ReflectionCache_GetProperties()
     {
         var reflectionCache  = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCache3 = new ReflectionCache(Public | Instance);
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
 
         Func<IList<PropertyInfo>>[] synonyms = 
         [
             () => reflectionCache       .GetProperties(typeof(TestClass)),
-            () => reflectionCache3      .GetProperties(typeof(TestClass)),
             () => reflectionCacheLegacy .GetProperties(typeof(TestClass)),
             () => reflectionCacheLegacy2.GetProperties(typeof(TestClass)),
-            () => reflectionCacheLegacy3.GetProperties(typeof(TestClass)),
-            () => StaticReflectionCache .GetProperties(typeof(TestClass)),
             () => StaticReflectionCache .GetProperties(typeof(TestClass), BINDING_FLAGS_ALL),
-            () => StaticReflectionCache .GetProperties(typeof(TestClass), Public | Instance)
         ];
 
         foreach (var func in synonyms)
@@ -121,13 +115,10 @@ public class ReflectionCache_Property_CoreTests
                 IList<PropertyInfo> properties = func();
 
                 IsNotNull(  () => properties);
-                AreEqual(2, () => properties.Count);
-                IsNotNull(  () => properties[0]);
-                IsNotNull(  () => properties[1]);
-                AreEqual(typeof(int),     () => properties[0].PropertyType);
-                AreEqual(typeof(string),  () => properties[1].PropertyType);
-                AreEqual("TestProperty",  () => properties[0].Name);
-                AreEqual("TestProperty2", () => properties[1].Name);
+                AreEqual(3, () => properties.Count);
+                IsTrue(properties.Any(x => x.Name == "TestProperty"));
+                IsTrue(properties.Any(x => x.Name == "TestProperty2"));
+                IsTrue(properties.Any(x => x.Name == "StaticTestProperty"));
             }
         }
     }
@@ -156,18 +147,14 @@ public class ReflectionCache_Property_CoreTests
     public void ReflectionCache_GetPropertyDictionary()
     {
         var reflectionCache  = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCache3 = new ReflectionCache(Public | Instance);
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
 
         Func<IDictionary<string, PropertyInfo>>[] synonyms = 
         [
             () => reflectionCache       .GetPropertyDictionary(typeof(TestClass)),
-            () => reflectionCache3      .GetPropertyDictionary(typeof(TestClass)),
             () => reflectionCacheLegacy .GetPropertyDictionary(typeof(TestClass)),
             () => reflectionCacheLegacy2.GetPropertyDictionary(typeof(TestClass)),
-            () => reflectionCacheLegacy3.GetPropertyDictionary(typeof(TestClass)),
         ];
 
         foreach (var func in synonyms)
@@ -177,14 +164,35 @@ public class ReflectionCache_Property_CoreTests
                 IDictionary<string, PropertyInfo> dictionary = func();
                 
                 IsNotNull(() => dictionary);
-                AreEqual(2, () => dictionary.Count);
+                AreEqual(3, () => dictionary.Count);
                 IsTrue(() => dictionary.ContainsKey("TestProperty"));
                 IsTrue(() => dictionary.ContainsKey("TestProperty2"));
+                IsTrue(() => dictionary.ContainsKey("StaticTestProperty"));
                 IsNotNull(() => dictionary["TestProperty"]);
                 IsNotNull(() => dictionary["TestProperty2"]);
+                IsNotNull(() => dictionary["StaticTestProperty"]);
                 AreEqual(typeof(int),    () => dictionary["TestProperty"].PropertyType);
                 AreEqual(typeof(string), () => dictionary["TestProperty2"].PropertyType);
+                AreEqual(typeof(string), () => dictionary["StaticTestProperty"].PropertyType);
             }
         }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetPropertyDictionary_DifferentFlags()
+    {
+        var instanceDict = new ReflectionCacheLegacy(Public | Instance).GetPropertyDictionary(typeof(TestClass));
+        var staticDict   = new ReflectionCacheLegacy(Public | Static  ).GetPropertyDictionary(typeof(TestClass));
+        var allDict      = new ReflectionCacheLegacy(BINDING_FLAGS_ALL).GetPropertyDictionary(typeof(TestClass));
+
+        AreEqual(2, () => instanceDict.Count);
+        AreEqual(1, () => staticDict.Count);
+        AreEqual(3, () => allDict.Count);
+
+        IsTrue( instanceDict.ContainsKey("TestProperty"));
+        IsTrue( instanceDict.ContainsKey("TestProperty2"));
+        IsTrue(!instanceDict.ContainsKey("StaticTestProperty"));
+        IsTrue( staticDict  .ContainsKey("StaticTestProperty"));
+        IsTrue(!staticDict  .ContainsKey("TestProperty"));
     }
 }
