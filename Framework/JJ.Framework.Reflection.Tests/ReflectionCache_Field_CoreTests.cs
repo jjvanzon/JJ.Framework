@@ -130,26 +130,18 @@ public class ReflectionCache_Field_CoreTests
     // Fields
 
     [TestMethod]
-    public void ReflectionCache_GetFields()
+    public void ReflectionCache_GetFields_AllFlags()
     {
         var reflectionCache  = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCache3 = new ReflectionCache(NonPublic | Instance);
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
 
         Func<FieldInfo[]>[] synonyms =
         [
             () => reflectionCache       .GetFields(typeof(TestClass)),
-            () => reflectionCache3      .GetFields(typeof(TestClass)),
             () => reflectionCacheLegacy .GetFields(typeof(TestClass)),
             () => reflectionCacheLegacy2.GetFields(typeof(TestClass)),
-            () => reflectionCacheLegacy3.GetFields(typeof(TestClass)),
             () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
-            //() => StaticReflectionCache .GetFields(typeof(TestClass)), // Only does public instance fields
-            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
-            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
-            () => StaticReflectionCache .GetFields(typeof(TestClass), NonPublic | Instance)
         ];
 
         foreach (var func in synonyms)
@@ -167,6 +159,47 @@ public class ReflectionCache_Field_CoreTests
                 IsTrue(fields.Any(x => x.Name == "PublicStaticField"  ));
             }
         }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetFields_NonPublicInstance()
+    {
+        var reflectionCache  = new ReflectionCache(NonPublic | Instance);
+        var reflectionCacheLegacy = new ReflectionCacheLegacy(NonPublic | Instance);
+
+        Func<FieldInfo[]>[] synonyms =
+        [
+            () => reflectionCache      .GetFields(typeof(TestClass)),
+            () => reflectionCacheLegacy.GetFields(typeof(TestClass)),
+            () => StaticReflectionCache.GetFields(typeof(TestClass), NonPublic | Instance)
+        ];
+
+        foreach (var func in synonyms)
+        {
+            for (int i = 0; i < Repeats; i++)
+            {
+                FieldInfo[] fields = func();
+
+                IsNotNull(  () => fields);
+                AreEqual(2, () => fields.Length);
+                IsTrue(fields.Any(x => x.Name == "_testField" ));
+                IsTrue(fields.Any(x => x.Name == "_testField2"));
+            }
+        }
+    }
+
+    [TestMethod]
+    public void ReflectionCache_GetFields_StaticReflectionCache_DefaultFlags_PublicInstanceOnly()
+    {
+        // NOTE: This is why StaticReflectionCache.GetFields(typeof(TestClass)) stayed outcommented in all-flags tests:
+        // default flags are Public | Instance, so it intentionally returns only public instance fields.
+        FieldInfo[] fields = StaticReflectionCache.GetFields(typeof(TestClass));
+
+        IsNotNull(() => fields);
+        AreEqual(1, () => fields.Length);
+        IsTrue(fields.Any(x => x.Name == "PublicTestField"));
+        IsTrue(!fields.Any(x => x.Name == "PublicStaticField"));
+        IsTrue(!fields.Any(x => x.Name == "_testField"));
     }
 
     [TestMethod]
