@@ -12,14 +12,17 @@ public class ReflectionCache_Field_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
 
         Func<string, FieldInfo>[] synonyms = 
         [
             name => reflectionCacheLegacy .GetField   (typeof(TestClass), name),
             name => reflectionCacheLegacy2.GetField   (typeof(TestClass), name),
+            name => reflectionCacheLegacy3.GetField   (typeof(TestClass), name),
             name => StaticReflectionCache .GetField   (typeof(TestClass), name),
             name => reflectionCacheLegacy .TryGetField(typeof(TestClass), name),
             name => reflectionCacheLegacy2.TryGetField(typeof(TestClass), name),
+            name => reflectionCacheLegacy3.TryGetField(typeof(TestClass), name),
             name => StaticReflectionCache .TryGetField(typeof(TestClass), name),
         ];
 
@@ -47,14 +50,17 @@ public class ReflectionCache_Field_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
 
         Func<string, FieldInfo>[] synonyms = 
         [
             name => reflectionCacheLegacy .TryGetField(typeof(TestClass), name),
             name => reflectionCacheLegacy2.TryGetField(typeof(TestClass), name),
+            name => reflectionCacheLegacy3.TryGetField(typeof(TestClass), name),
             name => StaticReflectionCache .TryGetField(typeof(TestClass), name),
             name => reflectionCacheLegacy .GetField   (typeof(TestClass), name),
             name => reflectionCacheLegacy2.GetField   (typeof(TestClass), name),
+            name => reflectionCacheLegacy3.GetField   (typeof(TestClass), name),
             name => StaticReflectionCache .GetField   (typeof(TestClass), name),
         ];
 
@@ -80,12 +86,14 @@ public class ReflectionCache_Field_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
 
         Action[] synonyms =
         [
             () => StaticReflectionCache .GetField(typeof(TestClass), NonExistentName),
             () => reflectionCacheLegacy .GetField(typeof(TestClass), NonExistentName),
             () => reflectionCacheLegacy2.GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy3.GetField(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -99,11 +107,13 @@ public class ReflectionCache_Field_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
 
         Func<FieldInfo>[] synonyms =
         [
             () => reflectionCacheLegacy .TryGetField(typeof(TestClass), NonExistentName),
             () => reflectionCacheLegacy2.TryGetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy3.TryGetField(typeof(TestClass), NonExistentName),
             () => StaticReflectionCache .TryGetField(typeof(TestClass), NonExistentName),
         ];
 
@@ -122,17 +132,22 @@ public class ReflectionCache_Field_CoreTests
     [TestMethod]
     public void ReflectionCache_GetFields()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCache  = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCache3 = new ReflectionCache(NonPublic | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
 
         Func<FieldInfo[]>[] synonyms =
         [
             () => reflectionCache       .GetFields(typeof(TestClass)),
+            () => reflectionCache3      .GetFields(typeof(TestClass)),
             () => reflectionCacheLegacy .GetFields(typeof(TestClass)),
             () => reflectionCacheLegacy2.GetFields(typeof(TestClass)),
-            //() => StaticReflectionCache .GetFields(typeof(TestClass)), // Only does public instance fields
-            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL)
+            () => reflectionCacheLegacy3.GetFields(typeof(TestClass)),
+          //() => StaticReflectionCache .GetFields(typeof(TestClass)), // Only does public instance fields
+            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
+            () => StaticReflectionCache .GetFields(typeof(TestClass), NonPublic | Instance)
         ];
 
         foreach (var func in synonyms)

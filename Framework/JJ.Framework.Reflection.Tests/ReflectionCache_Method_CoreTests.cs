@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Reflection.Legacy.Tests;
+﻿// ReSharper disable RedundantArgumentDefaultValue
+
+namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
@@ -11,14 +13,17 @@ public class ReflectionCache_Method_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
 
         Func<MethodInfo>[] synonyms =
         [
             () => reflectionCacheLegacy .GetMethod   (typeof(TestClass), "TestMethod"),
             () => reflectionCacheLegacy2.GetMethod   (typeof(TestClass), "TestMethod"),
+            () => reflectionCacheLegacy3.GetMethod   (typeof(TestClass), "TestMethod"),
             () => StaticReflectionCache .GetMethod   (typeof(TestClass), "TestMethod"),
             () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), "TestMethod"),
             () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), "TestMethod"),
+            () => reflectionCacheLegacy3.TryGetMethod(typeof(TestClass), "TestMethod"),
             () => StaticReflectionCache .TryGetMethod(typeof(TestClass), "TestMethod")
         ];
 
@@ -37,15 +42,18 @@ public class ReflectionCache_Method_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
 
         // NOTE:It's pretty strict that you must supply parameter types.
         Func<MethodInfo>[] synonyms =
         [
             () => reflectionCacheLegacy .GetMethod   (typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
             () => reflectionCacheLegacy2.GetMethod   (typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
+            () => reflectionCacheLegacy3.GetMethod   (typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
             () => StaticReflectionCache .GetMethod   (typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
             () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
             () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
+            () => reflectionCacheLegacy3.TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
             () => StaticReflectionCache .TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string)),
         ];
 
@@ -64,12 +72,14 @@ public class ReflectionCache_Method_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
 
         Action[] synonyms =
         [
             () => StaticReflectionCache .GetMethod(typeof(TestClass), NonExistentName),
             () => reflectionCacheLegacy .GetMethod(typeof(TestClass), NonExistentName),
             () => reflectionCacheLegacy2.GetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy3.GetMethod(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -83,11 +93,13 @@ public class ReflectionCache_Method_CoreTests
     {
         var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
 
         Func<MethodInfo>[] synonyms =
         [
             () => reflectionCacheLegacy .TryGetMethod(typeof(TestClass), NonExistentName),
             () => reflectionCacheLegacy2.TryGetMethod(typeof(TestClass), NonExistentName),
+            () => reflectionCacheLegacy3.TryGetMethod(typeof(TestClass), NonExistentName),
             () => StaticReflectionCache .TryGetMethod(typeof(TestClass), NonExistentName),
         ];
 
@@ -106,14 +118,17 @@ public class ReflectionCache_Method_CoreTests
     [TestMethod]
     public void ReflectionCache_GetMethods()
     {
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
+        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
         var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
 
         Func<IList<MethodInfo>>[] synonyms =
         [
             () => reflectionCacheLegacy .GetMethods(typeof(TestClass)),
             () => reflectionCacheLegacy2.GetMethods(typeof(TestClass)),
-            () => StaticReflectionCache .GetMethods(typeof(TestClass), BINDING_FLAGS_ALL)
+            () => reflectionCacheLegacy3.GetMethods(typeof(TestClass)),
+            () => StaticReflectionCache .GetMethods(typeof(TestClass), BINDING_FLAGS_ALL),
+            () => StaticReflectionCache .GetMethods(typeof(TestClass), Public | Instance)
         ];
 
         foreach (var func in synonyms)
