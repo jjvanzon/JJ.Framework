@@ -8,8 +8,6 @@ using static ReflectionHelper;
 [TestClass]
 public class ItemType_CoreTests
 {
-    public int[] TestColl { get; set; }
-
     [TestMethod]
     [Suppress("Trimmer", "IL2026", Justification = ObjectGetType)]
     public void ItemTypes_WithCollectionInstance()
@@ -46,6 +44,13 @@ public class ItemType_CoreTests
         }
     }
 
+    // Local test properties to avoid interfering with other helpers
+    public int[] TestArray { get; set; }
+    public List<int> TestList { get; set; }
+    public IEnumerable<int> TestEnumerable { get; set; }
+    public IList<DummyClass> TestIListDummy { get; set; }
+    public List<DummyClass> TestListDummy { get; set; }
+
     [Suppress("Trimmer", "IL2026", Justification = PropertyType)]
     [TestMethod]
     public void GetItemType_WithPropertyInfo()
@@ -56,12 +61,35 @@ public class ItemType_CoreTests
             x => x.GetItemType()
         ];
 
-        PropertyInfo? property = typeof(ItemType_CoreTests).GetProperty(nameof(TestColl));
-        ThrowIfNull(property);
+        var collType = typeof(ItemType_CoreTests);
+        PropertyInfo? prop1 = collType.GetProperty(nameof(TestArray));
+        ThrowIfNull(prop1);
 
+        PropertyInfo? prop2 = collType.GetProperty(nameof(TestList));
+        ThrowIfNull(prop2);
+
+        PropertyInfo? prop3 = collType.GetProperty(nameof(TestEnumerable));
+        ThrowIfNull(prop3);
+
+        PropertyInfo? prop4 = collType.GetProperty(nameof(TestIListDummy));
+        ThrowIfNull(prop4);
+
+        PropertyInfo? prop5 = collType.GetProperty(nameof(TestListDummy));
+        ThrowIfNull(prop5);
+
+        IList<(PropertyInfo itemProp, Type itemType)> props =
+        [
+            (prop1, typeof(int)),
+            (prop2, typeof(int)),
+            (prop3, typeof(int)),
+            (prop4, typeof(DummyClass)),
+            (prop5, typeof(DummyClass)),
+        ];
+
+        foreach (var (itemProp, itemType) in props)
         foreach (var getItemType in synonyms)
         {
-            AreEqual(typeof(int), getItemType(property));
+            AreEqual(itemType, getItemType(itemProp));
         }
     }
 
