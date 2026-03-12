@@ -27,7 +27,8 @@ RunTests<ReflectionCache_Indexer_CoreTests_GenericOverload>() &&
 RunTests<ReflectionCache_Method_CoreTests>() &&
 RunTests<ReflectionCache_Method_CoreTests_GenericOverload>() &&
 RunTests<ReflectionCache_Property_CoreTests>() &&
-RunTests<ReflectionCache_Type_CoreTests>();
+RunTests<ReflectionCache_Type_CoreTests>() &&
+RunTests<TypeExtensions_CoreTests>();
 
 WriteLine("Done.");
 
