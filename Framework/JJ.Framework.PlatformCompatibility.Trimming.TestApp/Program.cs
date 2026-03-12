@@ -3,6 +3,7 @@
 using JJ.Framework.PlatformCompatibility.Tests.Obsolete;
 var excludedTests = new[]
 {
+    typeof(CultureInfo_PlatformSafe_Obsolete_Tests),
     typeof(Encoding_PlatformSafe_Obsolete_Tests),
     typeof(PlatformExtensions_Obsolete_Tests),
     typeof(PlatformHelper_Obsolete_Tests)
