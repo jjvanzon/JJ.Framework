@@ -11,9 +11,6 @@
     <Compile Include="..\JJ.Framework.PlatformCompatibility.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.PlatformCompatibility.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.PlatformCompatibility.Tests\bin\**" />
-    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Tests\Using.cs" />
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Trimming.TestApp\Program.cs" />
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Trimming.TestApp\Using.cs" />
   </ItemGroup>
 
   <ItemGroup>
