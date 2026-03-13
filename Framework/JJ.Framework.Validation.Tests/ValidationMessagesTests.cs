@@ -1,3 +1,4 @@
+#pragma warning disable IDE0028 // Use collection initializer
 namespace JJ.Framework.Validation.Legacy.Tests;
 
 [TestClass]
@@ -27,17 +28,17 @@ public class ValidationMessagesTests
     public void Indexer_ReturnsCorrectMessage()
     {
         var messages = new ValidationMessages();
-        messages.Add("k", "t");
-        AreEqual("k", messages[0].PropertyKey);
-        AreEqual("t", messages[0].Text);
+        messages.Add("key", "text");
+        AreEqual("key", messages[0].PropertyKey);
+        AreEqual("text", messages[0].Text);
     }
 
     [TestMethod]
     public void GetEnumerator_IteratesAllMessages()
     {
         var messages = new ValidationMessages();
-        messages.Add("k1", "t1");
-        messages.Add("k2", "t2");
+        messages.Add("key1", "text1");
+        messages.Add("key2", "text2");
         AreEqual(2, messages.ToList().Count);
     }
 
@@ -46,8 +47,8 @@ public class ValidationMessagesTests
     {
         var target = new ValidationMessages();
         var source = new ValidationMessages();
-        source.Add("k1", "t1");
-        source.Add("k2", "t2");
+        source.Add("key1", "text1");
+        source.Add("key2", "text2");
         target.AddRange(source);
         AreEqual(2, target.Count);
     }
