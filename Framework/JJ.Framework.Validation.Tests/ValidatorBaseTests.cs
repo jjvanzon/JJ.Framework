@@ -53,13 +53,10 @@ public class ValidatorBaseTests
     [TestMethod]
     public void Execute_SubInstance_MergesMessages()
     {
-        IValidator parent = new ValidatorWithSubInstance("test");
-        IsFalse(parent.IsValid);
+        IValidator validator = new ValidatorWithSubInstance("test");
+        IsFalse(validator.IsValid);
 
-        IsNotNull(parent.ValidationMessages);
-        AreEqual(1, parent.ValidationMessages.Count); 
-        AreEqual("key", parent.ValidationMessages[0].PropertyKey);
-        AreEqual("error message", parent.ValidationMessages[0].Text);
+        AssertTypical(validator.ValidationMessages);
     }
 
     [TestMethod]
@@ -69,6 +66,11 @@ public class ValidatorBaseTests
         IValidator sub = new InvalidValidator("test");
         parent.Execute(sub, null); // NOTE: This is the only Execute overload that's public for some reason.
         IsFalse(parent.IsValid);
+
+        IsNotNull(parent.ValidationMessages);
+        AreEqual(1, parent.ValidationMessages.Count);
+        AreEqual("key", parent.ValidationMessages[0].PropertyKey);
+        AreEqual("error message", parent.ValidationMessages[0].Text);
     }
 
     [TestMethod]
@@ -77,6 +79,11 @@ public class ValidatorBaseTests
         EmptyValidator parent = new EmptyValidator("test"); // NOTE: Can't inject sub-validator on IValidator.
         IValidator sub = new InvalidValidator("test");
         parent.Execute(sub, "Prefix: ");
+        IsFalse(parent.IsValid);
+     
+        IsNotNull(parent.ValidationMessages);
+        AreEqual(1, parent.ValidationMessages.Count);
+        AreEqual("key", parent.ValidationMessages[0].PropertyKey);
         AreEqual("Prefix: error message", parent.ValidationMessages[0].Text);
     }
 
@@ -85,13 +92,22 @@ public class ValidatorBaseTests
     {
         IValidator validator = new ValidatorWithGenericSub("test");
         IsFalse(validator.IsValid);
+      
+        IsNotNull(validator.ValidationMessages);
         AreEqual(1, validator.ValidationMessages.Count);
+        AreEqual("key", validator.ValidationMessages[0].PropertyKey);
+        AreEqual("error message", validator.ValidationMessages[0].Text);
     }
 
     [TestMethod]
-    public void Execute_GenericSubValidator_AadsPrefix()
+    public void Execute_GenericSubValidator_AddsPrefix()
     {
         IValidator validator = new ValidatorWithGenericSub_WithPrefix("test");
+        IsFalse(validator.IsValid);
+
+        IsNotNull(validator.ValidationMessages);
+        AreEqual(1, validator.ValidationMessages.Count);
+        AreEqual("key", validator.ValidationMessages[0].PropertyKey);
         AreEqual("Pre: error message", validator.ValidationMessages[0].Text);
     }
 
@@ -100,10 +116,22 @@ public class ValidatorBaseTests
     {
         IValidator validator = new ValidatorWithSubWithType("test");
         IsFalse(validator.IsValid);
+        
+        IsNotNull(validator.ValidationMessages);
         AreEqual(1, validator.ValidationMessages.Count);
+        AreEqual("key", validator.ValidationMessages[0].PropertyKey);
+        AreEqual("error message", validator.ValidationMessages[0].Text);
     }
 
     [TestMethod]
     public void Execute_SubValidator_NullValidator_Throws()
         => Throws(() => new EmptyValidator("test").Execute(null, null), "validator");
+
+    private static void AssertTypical(ValidationMessages validationMessage)
+    {
+        IsNotNull(validationMessage);
+        AreEqual(1, validationMessage.Count); 
+        AreEqual("key", validationMessage[0].PropertyKey);
+        AreEqual("error message", validationMessage[0].Text);
+    }
 }
