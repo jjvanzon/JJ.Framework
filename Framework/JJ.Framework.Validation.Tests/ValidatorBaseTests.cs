@@ -14,6 +14,11 @@ public class ValidatorBaseTests
             => ValidationMessages.Add("key", "error message");
     }
 
+    private class ValidatorWithSubInstance(string obj) : ValidatorBase<string>(obj)
+    {
+        protected override void Execute() => Execute(new InvalidValidator(Object));
+    }
+
     private class ValidatorWithGenericSub(string obj) : ValidatorBase<string>(obj)
     {
         protected override void Execute() => Execute<InvalidValidator>();
@@ -44,6 +49,18 @@ public class ValidatorBaseTests
     [TestMethod]
     public void Verify_Throws_WhenInvalid()
         => Throws(() => new InvalidValidator("test").Verify(), "error message");
+
+    [TestMethod]
+    public void Execute_SubInstance_MergesMessages()
+    {
+        IValidator parent = new ValidatorWithSubInstance("test");
+        IsFalse(parent.IsValid);
+
+        IsNotNull(parent.ValidationMessages);
+        AreEqual(1, parent.ValidationMessages.Count); 
+        AreEqual("key", parent.ValidationMessages[0].PropertyKey);
+        AreEqual("error message", parent.ValidationMessages[0].Text);
+    }
 
     [TestMethod]
     public void Execute_InjectedSubValidator_MergesMessages()
