@@ -1,20 +1,29 @@
 // ReSharper disable UnusedMember.Local
 // ReSharper disable VirtualMemberCallInConstructor
 
+using static JJ.Framework.Validation.Legacy.Tests.FluentValidatorTests.Color;
+
 namespace JJ.Framework.Validation.Legacy.Tests;
 
 [TestClass]
 public class FluentValidatorTests
 {
-    private enum Color { Red = 1, Green = 2, Blue = 3 }
+    public enum Color { Red = 1, Green = 2, Blue = 3 }
 
-    private class SimpleModel { public string Name { get; set; } }
-
-    private class TestFluentValidator : FluentValidator<object>
+    private class SimpleModel 
     {
-        private readonly Action<TestFluentValidator> _impl;
+        public string Name { get; set; } 
+        public Color Color { get; set; }
+    }
 
-        public TestFluentValidator(object model, Action<TestFluentValidator> impl)
+    /// <summary>
+    /// Allows injecting the Execute method implementation.
+    /// </summary>
+    private class FluentValidatorWithDelegate : FluentValidator<object>
+    {
+        private readonly Action<FluentValidatorWithDelegate> _impl;
+
+        public FluentValidatorWithDelegate(object model, Action<FluentValidatorWithDelegate> impl)
             : base(model, postponeExecute: true)
         {
             _impl = impl;
@@ -24,13 +33,32 @@ public class FluentValidatorTests
         protected override void Execute() => _impl(this);
     }
 
-    private static TestFluentValidator Validate(object model, Action<TestFluentValidator> impl) => new (model, impl);
+    private static FluentValidatorWithDelegate Validate(object model, Action<FluentValidatorWithDelegate> impl) => new (model, impl);
+
+    private class ExampleValidator(SimpleModel obj) : FluentValidator<SimpleModel>(obj, postponeExecute: false)
+    {
+        protected override void Execute()
+        {
+            For(() => Object, "Simple Model").NotNull();
+            For(() => Object.Name, "Name").NotNullOrWhiteSpace();
+            For(() => Object.Color, "Color").In(Red, Green);
+
+            // TODO: Test `Is`, `IsNot` and all the other validation methods in one comprehensive example.
+            throw new NotImplementedException();
+        }
+    }
+
+    // Example
+
+    // TODO: Write tests using ExampleValidator.
 
     // NotNull
 
     [TestMethod]
     public void NotNull_Null_AddsMessage()
-        => IsFalse(Validate(model: null, validator => validator.For(null, "P", "P").NotNull()).IsValid);
+    {
+        IsFalse(Validate(model: null, validator => validator.For(null, "P", "P").NotNull()).IsValid);
+    }
 
     [TestMethod]
     public void NotNull_NotNull_NoMessage()
