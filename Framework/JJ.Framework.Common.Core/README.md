@@ -49,24 +49,12 @@ An extension to [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.F
         void MyMethod(int num, bool differentArg, OverloadByName ovl = default);
         ```
 
-After Upgrading
-===============
-
-Links to legacy dependencies may have changed. If you experience problems, these things might help:
-
-#### Option `1`
-- Do nothing. Everything works.
-#### Option `2`
-- Use the [`JJ.Framework.Common.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use [`JJ.Framework.Common`](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184).
-#### Option `3`
-- Install [`JJ.Framework.Common`](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
-
 Release Notes
 -------------
 
-|       |                                         |   |
-|-------|-----------------------------------------|---|
-| `3.7` | __Clash of the Booleans__               | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
+|              |       |                           |   |
+|--------------|-------|---------------------------|---|
+| `2026-02-17` | `3.7` | __Clash of the Booleans__ | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
 
 
 💬 Feedback

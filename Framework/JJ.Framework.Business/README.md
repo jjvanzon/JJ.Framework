@@ -27,13 +27,13 @@ Classes to support a business logic layer.
 Release Notes
 -------------
 
-|         |                    |     |
-|---------|--------------------|-----|
-| `0.250` | __Legacy Release__ | Release of historic version. Full test coverage. Features:
-|         |                    | `EntityStatusManager` and `GetListIsDirty`: 
-|         |                    | framework-agnostic `New`/`Deleted`/`Dirty` flagging.
-|         |                    | `ISideEffect` for keeping business logic units separated.
-|         |                    | Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
+|              |         |            |     |
+|--------------|---------|------------|-----|
+| `2026-02-23` | `0.250` | __Legacy__ | Release of historic version. Full test coverage. Features:
+|              |         |            | `EntityStatusManager` and `GetListIsDirty`: 
+|              |         |            | framework-agnostic `New`/`Deleted`/`Dirty` flagging.
+|              |         |            | `ISideEffect` for keeping business logic units separated.
+|              |         |            | Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
 
 💬 Feedback 
 ------------

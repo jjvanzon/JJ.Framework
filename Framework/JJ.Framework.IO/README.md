@@ -14,16 +14,16 @@ This library contains various file functions, functions for working with streams
 Release Notes
 --------------
 
-|         |               |     |
-|---------|---------------|-----|
-| `0.250` | __IO.Legacy__ | Full test coverage, and member docs.
-|         |               | Release of historic version.
-|         |               | Features:
-|         |               | `CsvReader`: lightweight streaming CSV reader
-|         |               | `StreamHelper`: converts between `Stream`, `byte[]` and `string`
-|         |               | `ReadStruct`/`WriteStruct`: simply read and write structs to streams
-|         |               | Bug fix: `CsvReader` preserves a trailing escaped quotes
-|         |               | Bug fix: `CsvReader` solved crash over trailing new line
+|              |         |            |     |
+|--------------|---------|------------|-----|
+| `2026-02-26` | `0.250` | __Legacy__ | Full test coverage, and member docs.
+|              |         |            | Release of historic version.
+|              |         |            | Features:
+|              |         |            | `CsvReader`: lightweight streaming CSV reader
+|              |         |            | `StreamHelper`: converts between `Stream`, `byte[]` and `string`
+|              |         |            | `ReadStruct`/`WriteStruct`: simply read and write structs to streams
+|              |         |            | Bug fix: `CsvReader` preserves a trailing escaped quotes
+|              |         |            | Bug fix: `CsvReader` solved crash over trailing new line
 
 
 💬 Feedback

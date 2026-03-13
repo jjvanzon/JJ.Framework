@@ -1,9 +1,7 @@
 JJ.Framework.Reflection.Legacy
 ==============================
 
-Version from `2015`, now upgraded to .NET 10, doc comments everywhere and compatible with code trimming and native compilation. 
-
-A different version from `2018` is [`JJ.Framework.Reflection`](https://www.nuget.org/packages/JJ.Framework.Reflection). It has a slightly larger set of helpers but officially only supports an older version of .NET.
+Version from `2015`, now upgraded to .NET 10, doc comments everywhere and compatible with code trimming and native compilation. A different version from `2018` is [`JJ.Framework.Reflection`](https://www.nuget.org/packages/JJ.Framework.Reflection). It has a slightly larger set of helpers but officially only supports an older version of .NET.
 
 
 These are extensions to the `System.Reflection` and `System.Linq.Expressions` namespaces. Work with expressions and reflection. Turn lambdas into text:
@@ -167,11 +165,11 @@ Various helper methods, but one of the most useful features is the `GetImplement
 Release Notes
 -------------
 
-|                 |                   |     |
-|-----------------|-------------------|-----|
-| `0.250.3271`    | __Initial__       | Release of legacy version from __2015__.
-| `0.250` / `4.0` | __Re-Release__    | __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
-|                 |                   | Trimming/AOT compatiblity, internal tooling improved: auto-run trim test each compilation and inside NCrunch.
+|              |              |                   |     |
+|--------------|--------------|-------------------|-----|
+| `2025-07-02` | `0.250.3271` | __Legacy__        | Released a version from __2015__.
+| `2026-03-13` | `0.250.5600` | __Re-Release__    | __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
+|              |              |                   | Trimming/AOT compatiblity, internal tooling improved: auto-run trim test each compilation and inside NCrunch.
 
 💬 Feedback
 ============

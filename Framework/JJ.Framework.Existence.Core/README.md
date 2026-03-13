@@ -91,47 +91,31 @@ Coming Soon
 - ultra-loose `Is` – `10.Is("10")` regardless of type, because how will we stay sane if `10` isn't `10`?
 
 
-After Upgrading
----------------
-
-Links to legacy dependencies may have changed. If you experience problems, these things might help:
-
-#### Option `1`
-- Do nothing. Everything works.
-#### Option `2`
-- Use the [`JJ.Framework.Common.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy) namespace where you currently use [`JJ.Framework.Common`](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184).
-#### Option `3`
-- Install [`JJ.Framework.Common`](https://www.nuget.org/packages/JJ.Framework.Common/0.250.3184) explicitly. You may need a downgrade to a `0.*` version.
-
-The same thing applies to 
-[`JJ.Framework.PlatformCompatibility.Legacy`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Legacy) vs [`JJ.Framework.PlatformCompatibility`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility/0.250.3184)
-
-
 Release Notes
 -------------
 
-|       |                                         |   |
-|-------|-----------------------------------------|---|
-| `2.5` | __Initial release__                     | -
-| `2.6` | __Flags__                               | `spaceMatters` flags everywhere 
-|       |                                         | `caseMatters` replaced `ignoreCase`  
-|       |                                         | `StringBulder`/`string` more combos possible  
-|       |                                         | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
-| `2.7` | __Version Lineages + IntelliSense__     | Improved separation of `Legacy` version lineages for a more stable package update.
-| `2.8` | __AOT, Trimming & Self-Contained Apps__ | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
-| `2.9` | __zeroMatters__                         | Flag when you consider `0` meaningful (not nully)
-| `3.0` | __.NET 10__                             | Upgraded with explicit support for `.NET 10`
-| `3.1` | __Less Prios__                          | Simplify overload picking removing some `[Prio]` attributes.
-|       |                                         | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
-| `3.2` | __Leading Flags - Coalesce__            | Flags at the beginning of the parameter list, now don't come with a performance penalty.
-| `3.3` | __Leading Flags - Contains__            | More notation options for flags for the `Contains` method
-| `3.4` | __Leading Flags - FilledIn__            | Support flags in front for the `FilledIn` method
-| `3.7` | __Clash of the Booleans__               | Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
-|       |                                         | Improved `Coalesce` resolution and performance for 4+ values and collections.
-|       |                                         | Added overloads for reduced clashes between `bool` flags and value lists.
-|       |                                         | Various non-critical renames for clarity and modularity.
-| `3.8` | __Business.Legacy__                     | Added project properties hardening code trimming and native compile compatibility.
-|       |                                         | During a release of another library: [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+|              |       |                              |   |
+|--------------|-------|------------------------------|---|
+| `2025-06-14` | `2.5` | __Initial release__          | -
+| `2025-06-24` | `2.6` | __Flags__                    | `spaceMatters` flags everywhere 
+|              |       |                              | `caseMatters` replaced `ignoreCase`  
+|              |       |                              | `StringBulder`/`string` more combos possible  
+|              |       |                              | `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+| `2025-07-02` | `2.7` | __Legacy Lineage__           | Improved separation of `Legacy` version lineages for a more stable package update. Expanded IntelliSense docs.
+| `2025-07-21` | `2.8` | __Trimmable Libs__           | Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps.
+| `2026-01-25` | `2.9` | __zeroMatters__              | Flag when you consider `0` meaningful (not nully)
+| `2026-01-27` | `3.0` | __.NET 10__                  | Upgraded with explicit support for `.NET 10`
+| `2026-01-28` | `3.1` | __Less Prios__               | Simplify overload picking removing some `[Prio]` attributes.
+|              |       |                              | Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
+| `2026-01-30` | `3.2` | __Leading Flags - Coalesce__ | Flags at the beginning of the parameter list, now don't come with a performance penalty.
+| `2026-01-31` | `3.3` | __Leading Flags - Contains__ | More notation options for flags for the `Contains` method
+| `2026-02-01` | `3.4` | __Leading Flags - FilledIn__ | Support flags in front for the `FilledIn` method
+| `2026-02-17` | `3.7` | __Clash of the Booleans__    | Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
+|              |       |                              | Improved `Coalesce` resolution and performance for 4+ values and collections.
+|              |       |                              | Added overloads for reduced clashes between `bool` flags and value lists.
+|              |       |                              | Various non-critical renames for clarity and modularity.
+| `2026-02-23` | `3.8` | __Business.Legacy__          | Added project properties hardening code trimming and native compile compatibility.
+|              |       |                              | During a release of another library: [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
 
 
 🐨 Mr. Koala
