@@ -10,6 +10,9 @@ namespace JJ.Framework.Validation.Legacy
 {
     internal static class PropertyKeyHelper
     {
+        #if !NET9_0_OR_GREATER
+        [TrimWarn(ArrayInit)]
+        #endif
         public static string GetPropertyKeyFromExpression(Expression<Func<object>> propertyKeyExpression)
         {
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression, true);

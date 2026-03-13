@@ -33,6 +33,9 @@ namespace JJ.Framework.Validation.Legacy
         /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
         /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
         /// </param>
+        #if !NET9_0_OR_GREATER
+        [TrimWarn(ArrayInit)]
+        #endif
         public FluentValidator<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName)
         {
             object value = ExpressionHelper.GetValue(propertyExpression);
