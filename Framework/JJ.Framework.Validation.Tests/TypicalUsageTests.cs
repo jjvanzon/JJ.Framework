@@ -1,5 +1,6 @@
 namespace JJ.Framework.Validation.Legacy.Tests;
-using static JJ.Framework.Validation.Legacy.Tests.TypicalUsageTests.Color;
+
+using static TypicalUsageTests.Color;
 
 [TestClass]
 public class TypicalUsageTests
@@ -54,6 +55,10 @@ public class TypicalUsageTests
     {
         IValidator validator = new TypicalValidator(null);
         IsFalse(validator.IsValid);
+        
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Simple Model", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Simple Model");
     }
 
     [TestMethod]
@@ -63,6 +68,10 @@ public class TypicalUsageTests
         model.Name = "";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
+        
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Name", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Name");
     }
 
     [TestMethod]
@@ -72,6 +81,10 @@ public class TypicalUsageTests
         model.Description = "42";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
+
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Description", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Description", "integer");
     }
 
     [TestMethod]
@@ -81,6 +94,10 @@ public class TypicalUsageTests
         model.Color = Blue;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
+
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Color", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Color");
     }
 
     [TestMethod]
@@ -90,6 +107,10 @@ public class TypicalUsageTests
         model.Status = "Inactive";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
+
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Status", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Status", "Active");
     }
 
     [TestMethod]
@@ -99,6 +120,10 @@ public class TypicalUsageTests
         model.Status = "Deleted";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
+
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Status", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Status", "Deleted");
     }
 
     [TestMethod]
@@ -108,6 +133,10 @@ public class TypicalUsageTests
         model.Score = 0;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
+
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Score", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Score", "zero");
     }
 
     [TestMethod]
@@ -117,5 +146,9 @@ public class TypicalUsageTests
         model.Score = 101;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
+
+        AreEqual(1, validator.ValidationMessages.Count);
+        Contains("Score", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Score", "100");
     }
 }
