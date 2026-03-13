@@ -218,6 +218,12 @@
       <Value>Framework\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Existence.Core.Tests.Helpers\JJ.Framework.Existence.Core.Tests.Helpers.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Existence.Core.Tests.Helpers\JJ.Framework.Existence.Core.Tests.Helpers.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net9.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <RdiConfigured>True</RdiConfigured>
