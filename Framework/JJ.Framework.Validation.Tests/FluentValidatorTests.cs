@@ -1,8 +1,6 @@
 // ReSharper disable UnusedMember.Local
 // ReSharper disable VirtualMemberCallInConstructor
 
-using static JJ.Framework.Validation.Legacy.Tests.FluentValidatorTests.Color;
-
 namespace JJ.Framework.Validation.Legacy.Tests;
 
 [TestClass]
@@ -13,10 +11,6 @@ public class FluentValidatorTests
     private class SimpleModel
     {
         public string Name        { get; set; }
-        public string Description { get; set; }
-        public Color  Color       { get; set; }
-        public string Status      { get; set; }
-        public int    Score       { get; set; }
     }
 
     /// <summary>
