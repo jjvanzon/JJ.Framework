@@ -4,7 +4,9 @@
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 
+#if !NET9_0_OR_GREATER
 [Suppress("Trimmer", "IL2026", Justification = WhenShowIndexerValues)]
+#endif
 [TestClass]
 public class ValidationMessagesTests
 {

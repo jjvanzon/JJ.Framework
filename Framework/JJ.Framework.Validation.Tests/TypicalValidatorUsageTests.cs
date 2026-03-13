@@ -1,9 +1,12 @@
 namespace JJ.Framework.Validation.Legacy.Tests;
 
-using static TypicalUsageTests.Color;
-[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
+using static TypicalValidatorUsageTests.Color;
+
+#if !NET9_0_OR_GREATER
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit + " " + WhenShowIndexerValues)]
+#endif
 [TestClass]
-public class TypicalUsageTests
+public class TypicalValidatorUsageTests
 {
     public enum Color { Red = 1, Green = 2, Blue = 3 }
 
@@ -15,7 +18,7 @@ public class TypicalUsageTests
         public string Status      { get; set; }
         public int    Score       { get; set; }
     }
-
+     
     private class TypicalValidator(SimpleModel obj) : FluentValidator<SimpleModel>(obj, postponeExecute: false)
     {
         protected override void Execute()

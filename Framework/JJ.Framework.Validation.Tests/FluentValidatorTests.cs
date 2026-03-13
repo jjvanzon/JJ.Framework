@@ -4,7 +4,9 @@
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 
-[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
+#if !NET9_0_OR_GREATER
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit + " " + WhenShowIndexerValues)]
+#endif
 [TestClass]
 public class FluentValidatorTests
 {
