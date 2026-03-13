@@ -1,6 +1,4 @@
-// ReSharper disable UnusedMember.Local
-// ReSharper disable VirtualMemberCallInConstructor
-// ReSharper disable PropertyCanBeMadeInitOnly.Local
+// ReSharper disable ExpressionIsAlwaysNull
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 
@@ -24,9 +22,10 @@ public class FluentValidatorTests
     {
         private readonly Action<TestValidator> _impl;
 
-        public TestValidator(Action<TestValidator> impl)
+        public TestValidator(Action<TestValidator>? impl = null)
             : base(null, postponeExecute: true)
         {
+            impl ??= _ => { };
             _impl = impl;
             Execute();
         }
@@ -187,6 +186,38 @@ public class FluentValidatorTests
     [TestMethod]
     public void IsEnumValue_EmptyString_NoMessage()
         => IsTrue(new TestValidator(validator => validator.For("", "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
+
+    // Escape guards (null/empty skips irrelevant checks)
+
+    /// <summary>
+    /// When the value is null, methods that would produce irrelevant messages bail out early.
+    /// E.g. if a name is missing, we don't also want to report it's not an integer.
+    /// </summary>
+    [TestMethod]
+    public void EmptyValue_SkipsIrrelevantChecks()
+    {
+        var validator = new TestValidator();
+
+        object? emptyScore = null;
+
+        validator.For(emptyScore, "TotalScore", "Total Score")
+                 .NotNull()
+                 .NotInteger()
+                 .In("Active", "Inactive", "Pending")
+                 .Is("Active")
+                 .IsNot("Deleted")
+                 .Above(0)
+                 .Min(1)
+                 .Max(100)
+                 .IsEnumValue<Color>();
+
+        IsFalse(validator.IsValid);
+        AreEqual(1, validator.ValidationMessages.Count);
+        IsNotNull(validator.ValidationMessages[0]);
+        AreEqual("TotalScore", validator.ValidationMessages[0].PropertyKey);
+        AreEqual("Total Score is required.", validator.ValidationMessages[0].Text);
+        Throws(() => validator.Verify(), "Total Score is required.");
+    }
 
     // For guard clauses
 
