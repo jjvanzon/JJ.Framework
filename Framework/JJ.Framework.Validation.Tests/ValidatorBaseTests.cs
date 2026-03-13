@@ -10,8 +10,7 @@ public class ValidatorBaseTests
 
     private class InvalidValidator(string obj) : ValidatorBase<string>(obj)
     {
-        protected override void Execute()
-            => ValidationMessages.Add("key", "error message");
+        protected override void Execute() => ValidationMessages.Add("key", "error message");
     }
 
     private class ValidatorWithSubInstance(string obj) : ValidatorBase<string>(obj)
@@ -35,42 +34,36 @@ public class ValidatorBaseTests
     }
 
     [TestMethod]
-    public void IsValid_True_WhenNoMessages()
-        => IsTrue(new EmptyValidator("test").IsValid);
+    public void IsValid_True_WhenNoMessages() => IsTrue(new EmptyValidator("test").IsValid);
 
     [TestMethod]
-    public void IsValid_False_WhenMessageAdded()
-        => IsFalse(new InvalidValidator("test").IsValid);
+    public void IsValid_False_WhenMessageAdded() => IsFalse(new InvalidValidator("test").IsValid);
 
     [TestMethod]
-    public void Verify_DoesNotThrow_WhenValid()
-        => new EmptyValidator("test").Verify();
+    public void Verify_DoesNotThrow_WhenValid() => new EmptyValidator("test").Verify();
 
     [TestMethod]
-    public void Verify_Throws_WhenInvalid()
-        => Throws(() => new InvalidValidator("test").Verify(), "error message");
+    public void Verify_Throws_WhenInvalid() => Throws(() => new InvalidValidator("test").Verify(), "error message");
 
     [TestMethod]
-    public void Execute_SubInstance_MergesMessages()
-    {
-        IValidator validator = new ValidatorWithSubInstance("test");
-        IsFalse(validator.IsValid);
+    public void Execute_SubInstance_MergesMessages() => AssertSingleError(new ValidatorWithSubInstance("test"));
 
-        AssertTypical(validator.ValidationMessages);
-    }
+    [TestMethod]
+    public void Execute_GenericSubValidator_MergesMessages() => AssertSingleError(new ValidatorWithGenericSub("test"));
 
+    [TestMethod]
+    public void Execute_GenericSubValidator_AddsPrefix() => AssertSingleError(new ValidatorWithGenericSub_WithPrefix("test"), "Pre: error message");
+
+    [TestMethod]
+    public void Execute_TypeSubValidator_MergesMessages() => AssertSingleError(new ValidatorWithSubWithType("test"));
+    
     [TestMethod]
     public void Execute_InjectedSubValidator_MergesMessages()
     {
         EmptyValidator parent = new EmptyValidator("test"); // NOTE: Can't inject sub-validator on IValidator.
         IValidator sub = new InvalidValidator("test");
         parent.Execute(sub, null); // NOTE: This is the only Execute overload that's public for some reason.
-        IsFalse(parent.IsValid);
-
-        IsNotNull(parent.ValidationMessages);
-        AreEqual(1, parent.ValidationMessages.Count);
-        AreEqual("key", parent.ValidationMessages[0].PropertyKey);
-        AreEqual("error message", parent.ValidationMessages[0].Text);
+        AssertSingleError(parent);
     }
 
     [TestMethod]
@@ -79,59 +72,20 @@ public class ValidatorBaseTests
         EmptyValidator parent = new EmptyValidator("test"); // NOTE: Can't inject sub-validator on IValidator.
         IValidator sub = new InvalidValidator("test");
         parent.Execute(sub, "Prefix: ");
-        IsFalse(parent.IsValid);
-     
-        IsNotNull(parent.ValidationMessages);
-        AreEqual(1, parent.ValidationMessages.Count);
-        AreEqual("key", parent.ValidationMessages[0].PropertyKey);
-        AreEqual("Prefix: error message", parent.ValidationMessages[0].Text);
-    }
-
-    [TestMethod]
-    public void Execute_GenericSubValidator_MergesMessages()
-    {
-        IValidator validator = new ValidatorWithGenericSub("test");
-        IsFalse(validator.IsValid);
-      
-        IsNotNull(validator.ValidationMessages);
-        AreEqual(1, validator.ValidationMessages.Count);
-        AreEqual("key", validator.ValidationMessages[0].PropertyKey);
-        AreEqual("error message", validator.ValidationMessages[0].Text);
-    }
-
-    [TestMethod]
-    public void Execute_GenericSubValidator_AddsPrefix()
-    {
-        IValidator validator = new ValidatorWithGenericSub_WithPrefix("test");
-        IsFalse(validator.IsValid);
-
-        IsNotNull(validator.ValidationMessages);
-        AreEqual(1, validator.ValidationMessages.Count);
-        AreEqual("key", validator.ValidationMessages[0].PropertyKey);
-        AreEqual("Pre: error message", validator.ValidationMessages[0].Text);
-    }
-
-    [TestMethod]
-    public void Execute_TypeSubValidator_MergesMessages()
-    {
-        IValidator validator = new ValidatorWithSubWithType("test");
-        IsFalse(validator.IsValid);
-        
-        IsNotNull(validator.ValidationMessages);
-        AreEqual(1, validator.ValidationMessages.Count);
-        AreEqual("key", validator.ValidationMessages[0].PropertyKey);
-        AreEqual("error message", validator.ValidationMessages[0].Text);
+        AssertSingleError(parent, "Prefix: error message");
     }
 
     [TestMethod]
     public void Execute_SubValidator_NullValidator_Throws()
         => Throws(() => new EmptyValidator("test").Execute(null, null), "validator");
 
-    private static void AssertTypical(ValidationMessages validationMessage)
+    private static void AssertSingleError(IValidator validator, string message = "error message")
     {
-        IsNotNull(validationMessage);
-        AreEqual(1, validationMessage.Count); 
-        AreEqual("key", validationMessage[0].PropertyKey);
-        AreEqual("error message", validationMessage[0].Text);
+        IsNotNull(validator);
+        IsFalse(validator.IsValid);
+        IsNotNull(validator.ValidationMessages);
+        AreEqual(1, validator.ValidationMessages.Count); 
+        AreEqual("key", validator.ValidationMessages[0].PropertyKey);
+        AreEqual(message, validator.ValidationMessages[0].Text);
     }
 }
