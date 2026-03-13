@@ -69,7 +69,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_ValidModel_IsValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         IValidator validator = new TypicalValidator(model);
         IsTrue(validator.IsValid);
     }
@@ -84,7 +84,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_EmptyName_NotValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         model.Name = "";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -93,7 +93,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_IntegerDescription_NotValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         model.Description = "42";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -102,7 +102,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_ColorNotInList_NotValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         model.Color = Blue;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -111,7 +111,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_StatusNotActive_NotValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         model.Status = "Inactive";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -120,7 +120,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_StatusDeleted_NotValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         model.Status = "Deleted";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -129,7 +129,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_ZeroScore_NotValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         model.Score = 0;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -138,7 +138,7 @@ public class FluentValidatorTests
     [TestMethod]
     public void TypicalValidator_ScoreTooHigh_NotValid()
     {
-        var model = ValidModel();
+        SimpleModel model = ValidModel();
         model.Score = 101;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
