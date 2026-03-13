@@ -20,12 +20,12 @@ public class FluentValidatorTests
     /// <summary>
     /// Allows injecting the Execute method implementation.
     /// </summary>
-    private class FluentValidatorWithDelegate : FluentValidator<object>
+    private class TestValidator : FluentValidator<object>
     {
-        private readonly Action<FluentValidatorWithDelegate> _impl;
+        private readonly Action<TestValidator> _impl;
 
-        public FluentValidatorWithDelegate(object model, Action<FluentValidatorWithDelegate> impl)
-            : base(model, postponeExecute: true)
+        public TestValidator(Action<TestValidator> impl)
+            : base(null, postponeExecute: true)
         {
             _impl = impl;
             Execute();
@@ -34,174 +34,169 @@ public class FluentValidatorTests
         protected override void Execute() => _impl(this);
     }
 
-    private static FluentValidatorWithDelegate Validate(object model, Action<FluentValidatorWithDelegate> impl) => new (model, impl);
-
-
     // NotNull
 
     [TestMethod]
-    public void NotNull_Null_AddsMessage()
-    {
-        IsFalse(Validate(model: null, validator => validator.For(null, "FirstName", "First Name").NotNull()).IsValid);
-    }
+    public void NotNull_Null_AddsMessage() 
+        => IsFalse(new TestValidator(validator => validator.For(null, "FirstName", "First Name").NotNull()).IsValid);
 
     [TestMethod]
     public void NotNull_NotNull_NoMessage()
-        => IsTrue(Validate(model: "Alice", validator => validator.For("Alice", "FirstName", "First Name").NotNull()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("Alice", "FirstName", "First Name").NotNull()).IsValid);
 
     // NotNullOrWhiteSpace
 
     [TestMethod]
     public void NotNullOrWhiteSpace_Null_AddsMessage()
-        => IsFalse(Validate(model: null, validator => validator.For(null, "FirstName", "First Name").NotNullOrWhiteSpace()).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(null, "FirstName", "First Name").NotNullOrWhiteSpace()).IsValid);
 
     [TestMethod]
     public void NotNullOrWhiteSpace_Whitespace_AddsMessage()
-        => IsFalse(Validate(model: "  ", validator => validator.For("  ", "FirstName", "First Name").NotNullOrWhiteSpace()).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For("  ", "FirstName", "First Name").NotNullOrWhiteSpace()).IsValid);
 
     [TestMethod]
     public void NotNullOrWhiteSpace_ValidString_NoMessage()
-        => IsTrue(Validate(model: "hello", validator => validator.For("hello", "FirstName", "First Name").NotNullOrWhiteSpace()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("hello", "FirstName", "First Name").NotNullOrWhiteSpace()).IsValid);
 
     // In
 
     [TestMethod]
     public void In_ValueInList_NoMessage()
-        => IsTrue(Validate(model: "Inactive", validator => validator.For("Inactive", "OrderStatus", "Order Status").In("Active", "Inactive", "Pending")).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("Inactive", "OrderStatus", "Order Status").In("Active", "Inactive", "Pending")).IsValid);
 
     [TestMethod]
     public void In_ValueNotInList_AddsMessage()
-        => IsFalse(Validate(model: "Deleted", validator => validator.For("Deleted", "OrderStatus", "Order Status").In("Active", "Inactive", "Pending")).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For("Deleted", "OrderStatus", "Order Status").In("Active", "Inactive", "Pending")).IsValid);
 
     [TestMethod]
     public void In_EmptyValue_NoMessage()
-        => IsTrue(Validate(model: "", validator => validator.For("", "OrderStatus", "Order Status").In("Active", "Inactive", "Pending")).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("", "OrderStatus", "Order Status").In("Active", "Inactive", "Pending")).IsValid);
 
     [TestMethod]
     public void In_NullPossibleValues_Throws()
-        => Throws(() => Validate(model: "Active", validator => validator.For("Active", "OrderStatus", "Order Status").In((object[])null)), "possibleValues");
+        => Throws(() => new TestValidator(validator => validator.For("Active", "OrderStatus", "Order Status").In((object[])null)), "possibleValues");
 
     // Is
 
     [TestMethod]
     public void Is_ValueMatches_NoMessage()
-        => IsTrue(Validate(model: "Active", validator => validator.For("Active", "OrderStatus", "Order Status").Is("Active")).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("Active", "OrderStatus", "Order Status").Is("Active")).IsValid);
 
     [TestMethod]
     public void Is_ValueMismatch_AddsMessage()
-        => IsFalse(Validate(model: "Deleted", validator => validator.For("Deleted", "OrderStatus", "Order Status").Is("Active")).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For("Deleted", "OrderStatus", "Order Status").Is("Active")).IsValid);
 
     [TestMethod]
     public void Is_EmptyString_NoMessage()
-        => IsTrue(Validate(model: "", validator => validator.For("", "OrderStatus", "Order Status").Is("Active")).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("", "OrderStatus", "Order Status").Is("Active")).IsValid);
 
     // IsNot
 
     [TestMethod]
     public void IsNot_ValueMismatch_NoMessage()
-        => IsTrue(Validate(model: "Inactive", validator => validator.For("Inactive", "OrderStatus", "Order Status").IsNot("Deleted")).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("Inactive", "OrderStatus", "Order Status").IsNot("Deleted")).IsValid);
 
     [TestMethod]
     public void IsNot_ValueMatches_AddsMessage()
-        => IsFalse(Validate(model: "Deleted", validator => validator.For("Deleted", "OrderStatus", "Order Status").IsNot("Deleted")).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For("Deleted", "OrderStatus", "Order Status").IsNot("Deleted")).IsValid);
 
     [TestMethod]
     public void IsNot_EmptyString_NoMessage()
-        => IsTrue(Validate(model: "", validator => validator.For("", "OrderStatus", "Order Status").IsNot("Deleted")).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("", "OrderStatus", "Order Status").IsNot("Deleted")).IsValid);
 
     // NotZero
 
     [TestMethod]
     public void NotZero_Zero_AddsMessage()
-        => IsFalse(Validate(model: 0, validator => validator.For(0, "TotalScore", "Total Score").NotZero()).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(0, "TotalScore", "Total Score").NotZero()).IsValid);
 
     [TestMethod]
     public void NotZero_NonZero_NoMessage()
-        => IsTrue(Validate(model: 50, validator => validator.For(50, "TotalScore", "Total Score").NotZero()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(50, "TotalScore", "Total Score").NotZero()).IsValid);
 
     // Above
 
     [TestMethod]
     public void Above_ValueAboveMin_NoMessage()
-        => IsTrue(Validate(model: 5, validator => validator.For(5, "TotalScore", "Total Score").Above(3)).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(5, "TotalScore", "Total Score").Above(3)).IsValid);
 
     [TestMethod]
     public void Above_ValueEqualsMin_AddsMessage()
-        => IsFalse(Validate(model: 3, validator => validator.For(3, "TotalScore", "Total Score").Above(3)).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(3, "TotalScore", "Total Score").Above(3)).IsValid);
 
     [TestMethod]
     public void Above_ValueBelowMin_AddsMessage()
-        => IsFalse(Validate(model: 1, validator => validator.For(1, "TotalScore", "Total Score").Above(3)).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(1, "TotalScore", "Total Score").Above(3)).IsValid);
 
     [TestMethod]
     public void Above_NullValue_NoMessage()
-        => IsTrue(Validate(model: null, validator => validator.For(null, "TotalScore", "Total Score").Above(3)).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(null, "TotalScore", "Total Score").Above(3)).IsValid);
 
     // Min
 
     [TestMethod]
     public void Min_ValueAtMin_NoMessage()
-        => IsTrue(Validate(model: 3, validator => validator.For(3, "TotalScore", "Total Score").Min(3)).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(3, "TotalScore", "Total Score").Min(3)).IsValid);
 
     [TestMethod]
     public void Min_ValueAboveMin_NoMessage()
-        => IsTrue(Validate(model: 5, validator => validator.For(5, "TotalScore", "Total Score").Min(3)).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(5, "TotalScore", "Total Score").Min(3)).IsValid);
 
     [TestMethod]
     public void Min_ValueBelowMin_AddsMessage()
-        => IsFalse(Validate(model: 1, validator => validator.For(1, "TotalScore", "Total Score").Min(3)).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(1, "TotalScore", "Total Score").Min(3)).IsValid);
 
     // Max
 
     [TestMethod]
     public void Max_ValueAtMax_NoMessage()
-        => IsTrue(Validate(model: 3, validator => validator.For(3, "TotalScore", "Total Score").Max(3)).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(3, "TotalScore", "Total Score").Max(3)).IsValid);
 
     [TestMethod]
     public void Max_ValueBelowMax_NoMessage()
-        => IsTrue(Validate(model: 1, validator => validator.For(1, "TotalScore", "Total Score").Max(3)).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(1, "TotalScore", "Total Score").Max(3)).IsValid);
 
     [TestMethod]
     public void Max_ValueAboveMax_AddsMessage()
-        => IsFalse(Validate(model: 5, validator => validator.For(5, "TotalScore", "Total Score").Max(3)).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(5, "TotalScore", "Total Score").Max(3)).IsValid);
 
     // NotInteger
 
     [TestMethod]
     public void NotInteger_IntegerString_AddsMessage()
-        => IsFalse(Validate(model: "42", validator => validator.For("42", "ItemDescription", "Item Description").NotInteger()).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For("42", "ItemDescription", "Item Description").NotInteger()).IsValid);
 
     [TestMethod]
     public void NotInteger_NonIntegerString_NoMessage()
-        => IsTrue(Validate(model: "hello", validator => validator.For("hello", "ItemDescription", "Item Description").NotInteger()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("hello", "ItemDescription", "Item Description").NotInteger()).IsValid);
 
     [TestMethod]
     public void NotInteger_EmptyString_NoMessage()
-        => IsTrue(Validate(model: "", validator => validator.For("", "ItemDescription", "Item Description").NotInteger()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("", "ItemDescription", "Item Description").NotInteger()).IsValid);
 
     // IsEnumValue
 
     [TestMethod]
     public void IsEnumValue_ValidValue_NoMessage()
-        => IsTrue(Validate(model: 1, validator => validator.For(1, "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(1, "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
 
     [TestMethod]
     public void IsEnumValue_InvalidValue_AddsMessage()
-        => IsFalse(Validate(model: 99, validator => validator.For(99, "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(99, "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
 
     [TestMethod]
     public void IsEnumValue_EmptyString_NoMessage()
-        => IsTrue(Validate(model: "", validator => validator.For("", "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("", "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
 
     // For guard clauses
 
     [TestMethod]
     public void For_NullPropertyKey_Throws()
-        => Throws(() => Validate(model: null, validator => validator.For(null, null, "name")), "propertyKey");
+        => Throws(() => new TestValidator(validator => validator.For(null, null, "name")), "propertyKey");
 
     [TestMethod]
     public void For_NullPropertyDisplayName_Throws()
-        => Throws(() => Validate(model: null, validator => validator.For(null, "key", null)), "propertyDisplayName");
+        => Throws(() => new TestValidator(validator => validator.For(null, "key", null)), "propertyDisplayName");
 
     // For with expression
 
@@ -209,13 +204,13 @@ public class FluentValidatorTests
     public void For_WithExpression_Null_AddsMessage()
     {
         var model = new SimpleModel(); // Name is null by default
-        IsFalse(Validate(model: null, validator => validator.For(() => model.Name, "Full Name").NotNull()).IsValid);
+        IsFalse(new TestValidator(validator => validator.For(() => model.Name, "Full Name").NotNull()).IsValid);
     }
 
     [TestMethod]
     public void For_WithExpression_NotNull_NoMessage()
     {
         var model = new SimpleModel { Name = "hello" };
-        IsTrue(Validate(model: null, validator => validator.For(() => model.Name, "Full Name").NotNull()).IsValid);
+        IsTrue(new TestValidator(validator => validator.For(() => model.Name, "Full Name").NotNull()).IsValid);
     }
 }
