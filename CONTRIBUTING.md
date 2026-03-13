@@ -21,6 +21,7 @@ __Contents__
 - [SQL Server](#sql-server)
 - [Internet Information Services (IIS)](#internet-information-services-iis)
 - [Trimmable Libs](#trimmable-libs)
+- [.NET Targeting](#net-targeting)
 - [Old Commits](#old-commits)
 
 
@@ -271,6 +272,58 @@ Solutions:
 * Use `[RequiresUnreferencedCode(...)]` on your member to propagate trimmability warning.
 * Use `[DynamicDependency(...)]` near code failing (at runtime) to retain a type after trimming.
 * Use `NoTrimReasons` there for standardization purposes.
+
+.NET Targeting
+--------------
+
+<h3>Test Projects</h3>
+
+Finished up test projects target:
+
+`net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461;netstandard2.1;netstandard2.0`
+
+Basically all of them.
+The test code compiled for `netstandard2.1;netstandard2.0` is never hit though,
+because those are interface-like .NET versions, as opposed to concrete .NET editions.
+
+
+<h3>Trimming Test Apps</h3>
+
+The Trimming.TestApp projects run for:
+
+`net10.0;net9.0;net8.0;net7.0;net6.0;net5.0`
+
+There is no trimming/aot to speak of before .NET 5 and neither is it applicable to .NET Standard.
+
+
+<h3>Libs</h3>
+
+The main library code itself is targeted as:
+
+`net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0`
+
+We left out `net5.0;net461`. This makes the tests for `net5.0;net461` hit the `netstandard2.1;netstandard2.0` libs.
+
+
+<h3>Concessions</h3>
+
+A concession is made here, that the libraries aren't explicitly compiled for `net5.0;net461`. 
+
+
+<h3>Alternatives</h3>
+
+We could add additional project variants to cover the rest of the .NETs.
+We could have tests for `net5.0;net461` that run on libs for `net5.0;net461`.
+
+Or the other way around: Support everything in the libs 
+(including `net5.0;net461;netstandard2.1;netstandard2.0`)
+but run a separate `.NetStandard` lib project with only `netstandard2.1;netstandard2.0` 
+and hit it with `.NetStandard.Tests` test projects running a whole spread of `net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461`.
+This would check if the library's .NET Standard compilations will work with any of that spread of .NET versions.
+
+That way the libs support everything, the main tests are run only for concrete .NET frameworks,
+and separate project variants hit .NET Standard situations in every possible way.
+
 
 Old Commits
 -----------
