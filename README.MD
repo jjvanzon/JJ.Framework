@@ -116,6 +116,8 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 |       |                                     | `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
 |       |                                     | Bug fix: `CsvReader` preserves a trailing escaped quotes
 |       |                                     | Bug fix: `CsvReader` solved crash over trailing new line
+| `4.0` | __Reflection.Legacy Re-Release__    | __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
+|       |                                     | Trimming/AOT compatiblity, internal tooling improved: auto-run trim test each compilation and inside NCrunch.
 
 💬 Feedback 
 ------------

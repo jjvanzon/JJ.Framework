@@ -164,6 +164,15 @@ Various helper methods, but one of the most useful features is the `GetImplement
 * `IsAssignableFrom` / `IsAssignableTo`
     * Similar to the original `Type.IsAssignableFrom`, but now also an `IsAssignableTo` variation, if you find that more intuitive.
 
+Release Notes
+-------------
+
+|                 |                   |     |
+|-----------------|-------------------|-----|
+| `0.250.3271`    | __Initial__       | Release of legacy version from __2015__.
+| `0.250` / `4.0` | __Re-Release__    | __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
+|                 |                   | Trimming/AOT compatiblity, internal tooling improved: auto-run trim test each compilation and inside NCrunch.
+
 💬 Feedback
 ============
 
