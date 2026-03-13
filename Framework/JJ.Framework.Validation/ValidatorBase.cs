@@ -92,7 +92,7 @@ namespace JJ.Framework.Validation.Legacy
         /// This overload only works when the sub-validator takes the same object as the parent validator,
         /// and if the sub-validator has no additional constructor parameters.
         /// </summary>
-        protected void Execute(Type validatorType, string messagePrefix)
+        protected void Execute([Dyn(PublicCtors)] Type validatorType, string messagePrefix)
         {
             IValidator validator = (IValidator)Activator.CreateInstance(validatorType, new object[] { Object });
             Execute(validator, messagePrefix);
