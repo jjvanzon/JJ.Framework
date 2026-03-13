@@ -8,7 +8,7 @@
       <Value>UseAppHost = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
-    <ImpactDetection>WatchText</ImpactDetection>
+    <ImpactDetection>CompareIL</ImpactDetection>
     <InstrumentOutputAssembly>True</InstrumentOutputAssembly>
     <MetricsExclusionList>
       <Value>Framework\JJ.Framework.Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net10.0</Value>
