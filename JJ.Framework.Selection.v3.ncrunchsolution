@@ -200,14 +200,6 @@
       <Value>Framework\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj:netstandard2.1</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net6.0</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net7.0</Value>
