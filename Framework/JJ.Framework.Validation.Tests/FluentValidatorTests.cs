@@ -202,6 +202,7 @@ public class FluentValidatorTests
 
         validator.For(emptyScore, "TotalScore", "Total Score")
                  .NotNull()
+                 .NotZero()
                  .NotInteger()
                  .In("Active", "Inactive", "Pending")
                  .Is("Active")
@@ -211,12 +212,69 @@ public class FluentValidatorTests
                  .Max(100)
                  .IsEnumValue<Color>();
 
-        IsFalse(validator.IsValid);
-        AreEqual(1, validator.ValidationMessages.Count);
+        IsFalse  (validator.IsValid);
+        NotNull  (validator.ValidationMessages);
+        AreEqual (1, validator.ValidationMessages.Count);
         IsNotNull(validator.ValidationMessages[0]);
+        AreEqual ("TotalScore", validator.ValidationMessages[0].PropertyKey);
+        AreEqual ("Total Score is required.", validator.ValidationMessages[0].Text);
+        Throws   (() => validator.Verify(), "Total Score is required.");
+    }
+
+    [TestMethod]
+    public void NonNullValue_ReportsMultipleMessages()
+    {
+        var validator = new TestValidator();
+
+        object value = 0;
+
+        validator.For(value, "TotalScore", "Total Score")
+                 .NotNull()
+                 .NotZero()
+                 .Above(0)
+                 .Min(1)
+                 .Max(100)
+                 .In("Active", "Inactive", "Pending")
+                 .Is("Active")
+                 .IsNot("Deleted")
+                 .NotInteger()
+                 .IsEnumValue<Color>();
+
+        IsFalse(validator.IsValid);
+        AreEqual(7, validator.ValidationMessages.Count);
+
         AreEqual("TotalScore", validator.ValidationMessages[0].PropertyKey);
         AreEqual("Total Score is required.", validator.ValidationMessages[0].Text);
-        Throws(() => validator.Verify(), "Total Score is required.");
+
+        AreEqual("TotalScore", validator.ValidationMessages[1].PropertyKey);
+        AreEqual("Total Score is not above 0.", validator.ValidationMessages[1].Text);
+
+        AreEqual("TotalScore", validator.ValidationMessages[2].PropertyKey);
+        AreEqual("Total Score must be at least 1.", validator.ValidationMessages[2].Text);
+
+        AreEqual("TotalScore", validator.ValidationMessages[3].PropertyKey);
+        AreEqual("Total Score should have one of the values: Active, Inactive, Pending.", validator.ValidationMessages[3].Text);
+
+        AreEqual("TotalScore", validator.ValidationMessages[4].PropertyKey);
+        AreEqual("Total Score should be Active.", validator.ValidationMessages[4].Text);
+
+        AreEqual("TotalScore", validator.ValidationMessages[5].PropertyKey);
+        AreEqual("Total Score cannot be an integer number.", validator.ValidationMessages[5].Text);
+
+        AreEqual("TotalScore", validator.ValidationMessages[6].PropertyKey);
+        AreEqual("Total Score does not have a valid value.", validator.ValidationMessages[6].Text);
+
+        // Verify() should throw an exception containing all messages in order.
+        Throws(() => validator.Verify(), """
+                                         Total Score is required.
+                                         Total Score is not above 0.
+                                         Total Score must be at least 1.
+                                         Total Score should have one of the values: Active, Inactive, Pending.
+                                         Total Score should be Active.
+                                         Total Score cannot be an integer number.
+                                         Total Score does not have a valid value.
+                                         """);
+
     }
 
     // For guard clauses
