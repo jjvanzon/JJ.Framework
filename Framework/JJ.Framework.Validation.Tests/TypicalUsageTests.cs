@@ -121,8 +121,9 @@ public class TypicalUsageTests
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
 
-        AreEqual(1, validator.ValidationMessages.Count);
+        AreEqual(2, validator.ValidationMessages.Count);
         Contains("Status", validator.ValidationMessages[0].Text);
+        Contains("Status", validator.ValidationMessages[1].Text);
         Throws(() => validator.Verify(), "Status", "Deleted");
     }
 
@@ -134,9 +135,15 @@ public class TypicalUsageTests
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
 
-        AreEqual(1, validator.ValidationMessages.Count);
+        AreEqual(3, validator.ValidationMessages.Count);
         Contains("Score", validator.ValidationMessages[0].Text);
-        Throws(() => validator.Verify(), "Score", "zero");
+        Contains("Score", validator.ValidationMessages[1].Text);
+        Contains("Score", validator.ValidationMessages[2].Text);
+        Throws(() => validator.Verify(), """
+                                         Score is required.
+                                         Score is not above 0.
+                                         Score must be at least 1.
+                                         """);
     }
 
     [TestMethod]
