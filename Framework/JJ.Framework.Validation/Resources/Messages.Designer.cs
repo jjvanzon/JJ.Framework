@@ -28,9 +28,11 @@ namespace JJ.Framework.Validation.Legacy.Resources {
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
+        // ncrunch: no coverage start
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Messages() {
         }
+        // ncrunch: no coverage end
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
@@ -46,6 +48,7 @@ namespace JJ.Framework.Validation.Legacy.Resources {
             }
         }
         
+        // ncrunch: no coverage start
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,6 +62,7 @@ namespace JJ.Framework.Validation.Legacy.Resources {
                 resourceCulture = value;
             }
         }
+        // ncrunch: no coverage end
         
         /// <summary>
         ///   Looks up a localized string similar to {0} cannot be {1}..
@@ -159,6 +163,8 @@ namespace JJ.Framework.Validation.Legacy.Resources {
             }
         }
         
+        // ncrunch: no coverage start
+
         /// <summary>
         ///   Looks up a localized string similar to THIS IS NOT A RESOURCE TEXT, but an instruction to programmers.
         ///The default language is not &quot;en-US&quot;, but something you could call &quot;en-US-tech&quot;.
@@ -169,5 +175,7 @@ namespace JJ.Framework.Validation.Legacy.Resources {
                 return ResourceManager.GetString("README", resourceCulture);
             }
         }
+
+        // ncrunch: no coverage end
     }
 }
