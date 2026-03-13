@@ -34,7 +34,7 @@ namespace JJ.Framework.Validation.Legacy
         /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
         /// </param>
         #if !NET9_0_OR_GREATER
-        [TrimWarn(ArrayInit)]
+        [TrimWarn(ArrayInit + " " + WhenShowIndexerValues)]
         #endif
         public FluentValidator<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName)
         {

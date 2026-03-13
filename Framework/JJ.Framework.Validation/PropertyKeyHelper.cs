@@ -11,7 +11,7 @@ namespace JJ.Framework.Validation.Legacy
     internal static class PropertyKeyHelper
     {
         #if !NET9_0_OR_GREATER
-        [TrimWarn(ArrayInit)]
+        [TrimWarn(WhenShowIndexerValues)]
         #endif
         public static string GetPropertyKeyFromExpression(Expression<Func<object>> propertyKeyExpression)
         {

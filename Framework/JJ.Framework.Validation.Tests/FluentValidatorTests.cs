@@ -1,8 +1,10 @@
 // ReSharper disable UnusedMember.Local
 // ReSharper disable VirtualMemberCallInConstructor
+// ReSharper disable PropertyCanBeMadeInitOnly.Local
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
 public class FluentValidatorTests
 {
@@ -10,7 +12,7 @@ public class FluentValidatorTests
 
     private class SimpleModel
     {
-        public string Name        { get; set; }
+        public string Name { get; set; }
     }
 
     /// <summary>

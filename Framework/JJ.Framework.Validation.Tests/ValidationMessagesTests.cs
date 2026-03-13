@@ -1,6 +1,10 @@
 #pragma warning disable IDE0028 // Use collection initializer
+// ReSharper disable UseObjectOrCollectionInitializer
+// ReSharper disable ReplaceAutoPropertyWithComputedProperty
+
 namespace JJ.Framework.Validation.Legacy.Tests;
 
+[Suppress("Trimmer", "IL2026", Justification = WhenShowIndexerValues)]
 [TestClass]
 public class ValidationMessagesTests
 {

@@ -1,7 +1,7 @@
 namespace JJ.Framework.Validation.Legacy.Tests;
 
 using static TypicalUsageTests.Color;
-
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
 public class TypicalUsageTests
 {
