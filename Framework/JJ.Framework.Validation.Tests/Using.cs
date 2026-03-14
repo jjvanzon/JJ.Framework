@@ -4,6 +4,7 @@ global using System.Collections;
 global using System.Globalization;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Validation.Legacy.Tests.Helpers;
+global using JJ.Framework.Validation.Legacy.Tests.Helpers.Resources;
 global using static System.Environment;
 global using static System.Globalization.CultureInfo;
 global using static System.Threading.Thread;
