@@ -1,9 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>JJ.Framework.Validation.Legacy</AssemblyName>
-    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <Description>Home-brewed rudimentary library for validation with a neat fluent notation. Published for legacy purposes.</Description>
+    <PackageTags>validation validator fluent fluentvalidator notnull above min max localization globalization in is notzero notinteger notnullorwhitespace isenumvalue validationmessages isvalid verify assert guard</PackageTags>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Validation</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Validation</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net10.0'">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0'">
+    <IsTrimmable>true</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>
