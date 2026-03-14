@@ -8,12 +8,10 @@ using JJ.Framework.Common;
 
 namespace JJ.Framework.Validation.Legacy
 {
+    /// <inheritdoc cref="_validatorbase" />
     public abstract class ValidatorBase<TRootObject> : IValidator
     {
-        /// <param name="postponeExecute">
-        /// When set to true, you can do initializations in your constructor
-        /// before Execute goes off. Then you have to call Execute from your own constructor.
-        /// </param>
+        /// <inheritdoc cref="_postponeexecute" />
         public ValidatorBase(TRootObject obj, bool postponeExecute = false)
         {
             Object = obj;
@@ -24,21 +22,23 @@ namespace JJ.Framework.Validation.Legacy
             }
         }
 
+        /// <inheritdoc cref="_object" />
         public TRootObject Object { get; private set; }
 
+        /// <inheritdoc cref="_execute" />
         protected abstract void Execute();
 
         private readonly ValidationMessages _validationMessages = new ValidationMessages();
+        /// <inheritdoc cref="_validationmessagesprop" />
         public ValidationMessages ValidationMessages { get { return _validationMessages; } }
 
+        /// <inheritdoc cref="_isvalid" />
         public bool IsValid
         {
             get { return ValidationMessages.Count == 0; }
         }
 
-        /// <summary>
-        /// Throws an exception if IsValid is false.
-        /// </summary>
+        /// <inheritdoc cref="_verify" />
         public void Verify()
         {
             if (ValidationMessages.Count > 0)
@@ -48,63 +48,44 @@ namespace JJ.Framework.Validation.Legacy
             }
         }
 
-        /// <summary> 
-        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
-        /// </summary>
+        /// <inheritdoc cref="_executesubvalidator" />
         protected void Execute(IValidator validator)
         {
             Execute(validator, null);
         }
 
-        /// <summary> 
-        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
-        /// This overload only works when the sub-validator takes the same object as the parent validator,
-        /// and if the sub-validator has no additional constructor parameters.
-        /// </summary>
+        /// <inheritdoc cref="_executesubvalidator" />
+        /// <inheritdoc cref="_executesameobject" />
         protected void Execute<[Dyn(PublicCtors)] TValidator>()
             where TValidator : ValidatorBase<TRootObject>
         {
             Execute(typeof(TValidator), null);
         }
 
-        /// <summary> 
-        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
-        /// This overload only works when the sub-validator takes the same object as the parent validator,
-        /// and if the sub-validator has no additional constructor parameters.
-        /// </summary>
+        /// <inheritdoc cref="_executesubvalidator" />
+        /// <inheritdoc cref="_executesameobject" />
         protected void Execute<[Dyn(PublicCtors)] TValidator>(string messagePrefix)
             where TValidator : ValidatorBase<TRootObject>
         {
             Execute(typeof(TValidator), messagePrefix);
         }
-        /// <summary> 
-        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
-        /// This overload only works when the sub-validator takes the same object as the parent validator,
-        /// and if the sub-validator has no additional constructor parameters.
-        /// </summary>
+        /// <inheritdoc cref="_executesubvalidator" />
+        /// <inheritdoc cref="_executesameobject" />
         protected void Execute([Dyn(PublicCtors)] Type validatorType)
         {
             Execute(validatorType, null);
         }
 
-        /// <summary> 
-        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
-        /// This overload only works when the sub-validator takes the same object as the parent validator,
-        /// and if the sub-validator has no additional constructor parameters.
-        /// </summary>
+        /// <inheritdoc cref="_executesubvalidator" />
+        /// <inheritdoc cref="_executesameobject" />
         protected void Execute([Dyn(PublicCtors)] Type validatorType, string messagePrefix)
         {
             IValidator validator = (IValidator)Activator.CreateInstance(validatorType, new object[] { Object });
             Execute(validator, messagePrefix);
         }
 
-        /// <summary>
-        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
-        /// </summary>
-        /// <param name="messagePrefix"> 
-        /// A message prefix can identify the parent object so that validation messages indicate 
-        /// what specific part of the object structure they are about. 
-        /// </param>
+        /// <inheritdoc cref="_executesubvalidator" />
+        /// <inheritdoc cref="_messageprefix" />
         public void Execute(IValidator validator, string messagePrefix)
         {
             if (validator == null) throw new NullException(() => validator);

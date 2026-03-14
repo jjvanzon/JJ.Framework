@@ -10,12 +10,10 @@ using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Validation.Legacy
 {
+    /// <inheritdoc cref="_fluentvalidator" />
     public abstract class FluentValidator<TRootObject> : ValidatorBase<TRootObject>
     {
-        /// <param name="postponeExecute">
-        /// When set to true, you can do initializations in your constructor
-        /// before Execute goes off. If so, then you have to call Execute in your own constructor.
-        /// </param>
+        /// <inheritdoc cref="_postponeexecute" />
         public FluentValidator(TRootObject obj, bool postponeExecute = false)
             : base(obj, postponeExecute)
         { }
@@ -24,15 +22,7 @@ namespace JJ.Framework.Validation.Legacy
         private string _propertyKey;
         private string _propertyDisplayName;
 
-        /// <summary>
-        /// Indicate which property value we are going to validate.
-        /// This name is used in validation messages and can best be set to a localized resource.
-        /// </summary>
-        /// <param name="propertyExpression">
-        /// Used to extract both the value and a property key.
-        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
-        /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
-        /// </param>
+        /// <inheritdoc cref="_for" />
         #if !NET9_0_OR_GREATER
         [TrimWarn(ArrayInit + " " + WhenShowIndexerValues)]
         #endif
@@ -45,17 +35,7 @@ namespace JJ.Framework.Validation.Legacy
             return For(value, propertyKey, propertyDisplayName);
         }
 
-        /// <summary>
-        /// Indicate which property value we are going to validate.
-        /// This name is used in validation messages and can best be set to a localized resource.
-        /// </summary>
-        /// <param name="propertyKey">
-        /// A technical key of the property we are going to validate.
-        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
-        /// </param>
-        /// <param name="propertyDisplayName">
-        /// Used in messages to indicate what property the validation message is about.
-        /// </param>
+        /// <inheritdoc cref="_for" />
         public FluentValidator<TRootObject> For(object value, string propertyKey, string propertyDisplayName)
         {
             if (propertyKey == null)
@@ -76,6 +56,7 @@ namespace JJ.Framework.Validation.Legacy
 
         // Nullability
 
+        /// <inheritdoc cref="_notnull" />
         public FluentValidator<TRootObject> NotNull()
         {
             if (_value == null)
@@ -86,6 +67,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
+        /// <inheritdoc cref="_notnullorwhitespace" />
         public FluentValidator<TRootObject> NotNullOrWhiteSpace()
         {
             string value = Convert.ToString(_value);
@@ -100,6 +82,7 @@ namespace JJ.Framework.Validation.Legacy
 
         // Equation
 
+        /// <inheritdoc cref="_invalues" />
         public FluentValidator<TRootObject> In(params object[] possibleValues)
         {
             if (possibleValues == null) throw new NullException(() => possibleValues);
@@ -121,6 +104,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
+        /// <inheritdoc cref="_isvalue" />
         public FluentValidator<TRootObject> Is<TValue>(TValue value)
         {
             string convertedValue = Convert.ToString(_value);
@@ -138,6 +122,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
+        /// <inheritdoc cref="_isnotvalue" />
         public FluentValidator<TRootObject> IsNot<TValue>(TValue value)
         {
             // TODO: The conversion to string seems weird here.
@@ -156,6 +141,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
+        /// <inheritdoc cref="_notzero" />
         public FluentValidator<TRootObject> NotZero()
         {
             if (Equals(_value, 0))
@@ -168,6 +154,7 @@ namespace JJ.Framework.Validation.Legacy
 
         // Comparison
 
+        /// <inheritdoc cref="_above" />
         public FluentValidator<TRootObject> Above<TValue>(TValue min)
             where TValue : IComparable
         {
@@ -186,6 +173,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
+        /// <inheritdoc cref="_minvalue" />
         public FluentValidator<TRootObject> Min<TValue>(TValue min)
             where TValue : IComparable
         {
@@ -204,6 +192,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
+        /// <inheritdoc cref="_maxvalue" />
         public FluentValidator<TRootObject> Max<TValue>(TValue max)
             where TValue : IComparable
         {
@@ -224,6 +213,7 @@ namespace JJ.Framework.Validation.Legacy
 
         // Type checks
 
+        /// <inheritdoc cref="_notinteger" />
         public FluentValidator<TRootObject> NotInteger()
         {
             string value = Convert.ToString(_value);
@@ -242,6 +232,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
+        /// <inheritdoc cref="_isenumvalue" />
         public FluentValidator<TRootObject> IsEnumValue<T>()
             #if NET5_0_OR_GREATER
             where T : struct, Enum

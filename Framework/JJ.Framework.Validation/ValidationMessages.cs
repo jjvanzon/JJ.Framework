@@ -10,16 +10,13 @@ using System.Text;
 
 namespace JJ.Framework.Validation.Legacy
 {
+    /// <inheritdoc cref="_validationmessages" />
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class ValidationMessages : IEnumerable<ValidationMessage>
     {
         private readonly List<ValidationMessage> _list = new List<ValidationMessage>();
 
-        /// <param name="propertyKeyExpression">
-        /// Used to extract the property key.
-        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
-        /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
-        /// </param>
+        /// <inheritdoc cref="_addmessage" />
         #if !NET9_0_OR_GREATER
         [TrimWarn(WhenShowIndexerValues)]
         #endif
@@ -29,16 +26,19 @@ namespace JJ.Framework.Validation.Legacy
             Add(propertyKey, message);
         }
 
+        /// <inheritdoc cref="_addmessage" />
         public void Add(string propertyKey, string message)
         {
             _list.Add(new ValidationMessage(propertyKey, message));
         }
 
+        /// <inheritdoc cref="_messagecount" />
         public int Count
         {
             get { return _list.Count; }
         }
 
+        /// <inheritdoc cref="_messageindexer" />
         public ValidationMessage this[int i]
         {
             get { return _list[i]; }
@@ -54,6 +54,7 @@ namespace JJ.Framework.Validation.Legacy
             return _list.GetEnumerator();
         }
 
+        /// <inheritdoc cref="_addrangemessages" />
         public void AddRange(IEnumerable<ValidationMessage> validationMessages)
         {
             _list.AddRange(validationMessages);
