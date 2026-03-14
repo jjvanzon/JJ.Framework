@@ -95,4 +95,18 @@ public class ValidationMessagesTests
         }
         AreEqual(2, count);
     }
+
+    [TestMethod]
+    public void DebuggerDisplay_ReturnsCorrectString()
+    {
+        var messages = new ValidationMessages();
+        messages.Add("key1", "text1");
+        messages.Add("key2", "text2");
+
+        var accessor = new Accessor(messages);
+        var debuggerDisplay = accessor.GetPropertyValue("DebuggerDisplay");
+
+        var expected = string.Join(NewLine, new[] { "key1: text1", "key2: text2" });
+        AreEqual(expected, debuggerDisplay);
+    }
 }

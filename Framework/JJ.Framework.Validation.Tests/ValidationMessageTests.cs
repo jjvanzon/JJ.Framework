@@ -26,4 +26,13 @@ public class ValidationMessageTests
     [TestMethod]
     public void Constructor_Throws_WhenTextIsEmpty()
         => Throws(() => new ValidationMessage("key", ""), "text");
+
+    [TestMethod]
+    public void DebuggerDisplay_ReturnsCorrectString()
+    {
+        var msg = new ValidationMessage("MyKey", "MyText");
+        var accessor = new Accessor(msg);
+        var debuggerDisplay = accessor.GetPropertyValue("DebuggerDisplay");
+        AreEqual("MyKey: MyText", debuggerDisplay);
+    }
 }
