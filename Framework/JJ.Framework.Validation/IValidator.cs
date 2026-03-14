@@ -8,7 +8,7 @@ namespace JJ.Framework.Validation.Legacy
     /// <inheritdoc cref="_ivalidator" />
     public interface IValidator
     {
-        /// <inheritdoc cref="_validationmessagesprop" />
+        /// <inheritdoc cref="_validationmessages" />
         ValidationMessages ValidationMessages { get; }
         /// <inheritdoc cref="_isvalid" />
         bool IsValid { get; }

@@ -16,7 +16,7 @@ namespace JJ.Framework.Validation.Legacy
     {
         private readonly List<ValidationMessage> _list = new List<ValidationMessage>();
 
-        /// <inheritdoc cref="_addmessage" />
+        /// <inheritdoc cref="_add" />
         #if !NET9_0_OR_GREATER
         [TrimWarn(WhenShowIndexerValues)]
         #endif
@@ -26,19 +26,19 @@ namespace JJ.Framework.Validation.Legacy
             Add(propertyKey, message);
         }
 
-        /// <inheritdoc cref="_addmessage" />
+        /// <inheritdoc cref="_add" />
         public void Add(string propertyKey, string message)
         {
             _list.Add(new ValidationMessage(propertyKey, message));
         }
 
-        /// <inheritdoc cref="_messagecount" />
+        /// <inheritdoc cref="_count" />
         public int Count
         {
             get { return _list.Count; }
         }
 
-        /// <inheritdoc cref="_messageindexer" />
+        /// <inheritdoc cref="_indexer" />
         public ValidationMessage this[int i]
         {
             get { return _list[i]; }
@@ -54,7 +54,7 @@ namespace JJ.Framework.Validation.Legacy
             return _list.GetEnumerator();
         }
 
-        /// <inheritdoc cref="_addrangemessages" />
+        /// <inheritdoc cref="_addrange" />
         public void AddRange(IEnumerable<ValidationMessage> validationMessages)
         {
             _list.AddRange(validationMessages);

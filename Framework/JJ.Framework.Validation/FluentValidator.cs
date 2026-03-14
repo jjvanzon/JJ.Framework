@@ -82,7 +82,7 @@ namespace JJ.Framework.Validation.Legacy
 
         // Equation
 
-        /// <inheritdoc cref="_invalues" />
+        /// <inheritdoc cref="_in" />
         public FluentValidator<TRootObject> In(params object[] possibleValues)
         {
             if (possibleValues == null) throw new NullException(() => possibleValues);
@@ -104,7 +104,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
-        /// <inheritdoc cref="_isvalue" />
+        /// <inheritdoc cref="_is" />
         public FluentValidator<TRootObject> Is<TValue>(TValue value)
         {
             string convertedValue = Convert.ToString(_value);
@@ -122,7 +122,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
-        /// <inheritdoc cref="_isnotvalue" />
+        /// <inheritdoc cref="_isnot" />
         public FluentValidator<TRootObject> IsNot<TValue>(TValue value)
         {
             // TODO: The conversion to string seems weird here.
@@ -173,7 +173,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
-        /// <inheritdoc cref="_minvalue" />
+        /// <inheritdoc cref="_min" />
         public FluentValidator<TRootObject> Min<TValue>(TValue min)
             where TValue : IComparable
         {
@@ -192,7 +192,7 @@ namespace JJ.Framework.Validation.Legacy
             return this;
         }
 
-        /// <inheritdoc cref="_maxvalue" />
+        /// <inheritdoc cref="_max" />
         public FluentValidator<TRootObject> Max<TValue>(TValue max)
             where TValue : IComparable
         {
