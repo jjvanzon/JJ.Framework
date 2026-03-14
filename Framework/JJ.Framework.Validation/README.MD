@@ -14,14 +14,23 @@ We use this framework to support our developments, and extend it on the fly, as 
 This framework is also kind of a proof that you do not need an external validation framework. You can easily do it yourself.
 
 Release Notes
---------------
+-------------
 
-|              |         |            |     |
-|--------------|---------|------------|-----|
-| `2026-03`    | `0.251` | __Legacy__ | Full test coverage, and member docs.
-|              |         |            | Release of historic version.
-|              |         |            | Features: `[...]`
+#### `2026-03`, `0.251` : __Legacy__
 
+- Release of historic version
+- Full test coverage
+- Member docs
+- Trimming/AOT support
+- .NET `10` -> `4.6.1`
+- .NET Standard `2.0` and `2.1`
+- `FluentValidator` syntax
+- `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
+- `NotNull`, `NotNullOrWhiteSpace`, `In`, `Is`, `IsNot`, `NotZero`, `Above`, `Min`, `Max`, `NotInteger`, `IsEnumValue`
+- `IValidator` / `ValidatorBase` members
+- `IsValid` (boo), `ValidationMessages`, `Verify()` (throws)
+- Sub-validators and message prefixes: `"Address: Street is required."`
+- Localization English (`en-US`) and Dutch (`nl-NL`)
 
 💬 Feedback
 ============
