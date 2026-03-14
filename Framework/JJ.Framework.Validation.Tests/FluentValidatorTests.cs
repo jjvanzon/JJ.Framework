@@ -1,5 +1,6 @@
 // ReSharper disable ExpressionIsAlwaysNull
 // ReSharper disable PropertyCanBeMadeInitOnly.Local
+// ReSharper disable UnusedMember.Global
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 

@@ -1,12 +1,28 @@
-using System.Globalization;
-using static System.Globalization.CultureInfo;
-using static System.Threading.Thread;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 
+#if !NET9_0_OR_GREATER
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit + " " + WhenShowIndexerValues)]
+#endif
 [TestClass]
 public class ValidationGlobalizationTests
 {
+    private class TestModel
+    {
+        public string Name  { get; set; }
+        public int    Score { get; set; }
+    }
+
+    private class AlwaysInvalidValidator(TestModel obj) : FluentValidator<TestModel>(obj)
+    {
+        protected override void Execute()
+        {
+            For(() => Object.Name,  "First Name").NotNull().NotNullOrWhiteSpace();
+            For(() => Object.Score, "Score"     ).NotZero();
+        }
+    }
+
     [TestMethod]
     public void Messages_Default()
     {
@@ -14,13 +30,10 @@ public class ValidationGlobalizationTests
         try
         {
             CurrentThread.CurrentUICulture = InvariantCulture;
-            var validator = new TestValidator(v => v
-                .For(null,  "Name",  "First Name").NotNull()
-                .For("  ", "Name",  "First Name").NotNullOrWhiteSpace()
-                .For(0,    "Score", "Score"      ).NotZero());
-            AreEqual("First Name is null.",               validator.ValidationMessages[0].Text);
+            IValidator validator = new AlwaysInvalidValidator(new TestModel());
+            AreEqual("First Name is null.",                validator.ValidationMessages[0].Text);
             AreEqual("First Name is null or white space.", validator.ValidationMessages[1].Text);
-            AreEqual("Score is zero.",                    validator.ValidationMessages[2].Text);
+            AreEqual("Score is zero.",                     validator.ValidationMessages[2].Text);
         }
         finally
         {
@@ -35,10 +48,7 @@ public class ValidationGlobalizationTests
         try
         {
             CurrentThread.CurrentUICulture = new("en-US");
-            var validator = new TestValidator(v => v
-                .For(null,  "Name",  "First Name").NotNull()
-                .For("  ", "Name",  "First Name").NotNullOrWhiteSpace()
-                .For(0,    "Score", "Score"      ).NotZero());
+            IValidator validator = new AlwaysInvalidValidator(new TestModel());
             AreEqual("First Name is required.", validator.ValidationMessages[0].Text);
             AreEqual("First Name is required.", validator.ValidationMessages[1].Text);
             AreEqual("Score is required.",      validator.ValidationMessages[2].Text);
@@ -56,10 +66,7 @@ public class ValidationGlobalizationTests
         try
         {
             CurrentThread.CurrentUICulture = new("nl-NL");
-            var validator = new TestValidator(v => v
-                .For(null,  "Name",  "First Name").NotNull()
-                .For("  ", "Name",  "First Name").NotNullOrWhiteSpace()
-                .For(0,    "Score", "Score"      ).NotZero());
+            IValidator validator = new AlwaysInvalidValidator(new TestModel());
             AreEqual("First Name is verplicht.", validator.ValidationMessages[0].Text);
             AreEqual("First Name is verplicht.", validator.ValidationMessages[1].Text);
             AreEqual("Score is verplicht.",      validator.ValidationMessages[2].Text);

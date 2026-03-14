@@ -1,9 +1,10 @@
 bool success = 
-RunTests<ValidationMessageTests>() &&
-RunTests<ValidationMessagesTests>() &&
-RunTests<ValidatorBaseTests>() &&
 RunTests<FluentValidatorTests>() &&
-RunTests<TypicalValidatorUsageTests>();
+RunTests<TypicalValidatorUsageTests>() &&
+RunTests<ValidationGlobalizationTests>() &&
+RunTests<ValidationMessagesTests>() &&
+RunTests<ValidationMessageTests>() &&
+RunTests<ValidatorBaseTests>();
 
 WriteLine("Done.");
 if (!success) Exit(1);
