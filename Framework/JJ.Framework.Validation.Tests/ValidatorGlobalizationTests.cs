@@ -4,7 +4,7 @@ namespace JJ.Framework.Validation.Legacy.Tests;
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit + " " + WhenShowIndexerValues)]
 #endif
 [TestClass]
-public class ValidationGlobalizationTests
+public class ValidatorGlobalizationTests
 {
     private static TestModel CreateInvalidModel() => new()
     {
