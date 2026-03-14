@@ -69,8 +69,9 @@ public struct _verify;
 /// <summary>
 /// Runs a sub-validator and merges its messages into this validator's results.
 /// </summary>
-/// <typeparam name="TValidator">The compile-time validator type used by the generic overloads. It is expected to be a
-/// <c>ValidatorBase&lt;TRootObject&gt;</c>-derived type that accepts the same root object as the current validator.</typeparam>
+/// <typeparam name="TValidator">Type for the generic <c>Execute</c> overloads. Must be a validator derived from
+/// <c>ValidatorBase&lt;TRootObject&gt;</c> that accepts the same root object as the caller. Use the generic overload
+/// when you want to run a specific sub-validator type.</typeparam>
 /// <param name="validatorType">The <see cref="Type"/> of the sub-validator to execute (used by reflection-based overloads).</param>
 /// <param name="messagePrefix">A prefix that is prepended to each message produced by the sub-validator to indicate context
 /// (for example, <c>"Address: "</c> so messages become <c>"Address: Street is required."</c>).</param>
