@@ -89,17 +89,17 @@ public class ValidatorGlobalizationTests
         {
             CurrentThread.CurrentUICulture = new("nl-NL");
             IValidator validator = new AlwaysInvalidValidator(CreateInvalidModel());
-            AreEqual("Name is verplicht.",                                    validator.ValidationMessages[0].Text);
-            AreEqual("Description is verplicht.",                             validator.ValidationMessages[1].Text);
-            AreEqual("Tag mag geen geheel getal zijn.",                       validator.ValidationMessages[2].Text);
-            AreEqual("Status moet een van de waardes Active, Inactive zijn.",  validator.ValidationMessages[3].Text);
-            AreEqual("Status moet Active zijn.",                              validator.ValidationMessages[4].Text);
-            AreEqual("Status mag niet Deleted zijn.",                         validator.ValidationMessages[5].Text);
-            AreEqual("Score is verplicht.",                                   validator.ValidationMessages[6].Text);
-            AreEqual("Score is niet hoger dan 0.",                            validator.ValidationMessages[7].Text);
-            AreEqual("Score moet minimaal 1 zijn.",                           validator.ValidationMessages[8].Text);
-            AreEqual("Level mag maximaal 50 zijn.",                           validator.ValidationMessages[9].Text);
-            AreEqual("Color heeft een niet-toegestane waarde.",               validator.ValidationMessages[10].Text);
+            AreEqual("Naam is verplicht.",                                       validator.ValidationMessages[0].Text);
+            AreEqual("Omschrijving is verplicht.",                               validator.ValidationMessages[1].Text);
+            AreEqual("Label mag geen geheel getal zijn.",                         validator.ValidationMessages[2].Text);
+            AreEqual("Status moet een van de waardes Active, Inactive zijn.",    validator.ValidationMessages[3].Text);
+            AreEqual("Status moet Active zijn.",                                 validator.ValidationMessages[4].Text);
+            AreEqual("Status mag niet Deleted zijn.",                            validator.ValidationMessages[5].Text);
+            AreEqual("Score is verplicht.",                                      validator.ValidationMessages[6].Text);
+            AreEqual("Score is niet hoger dan 0.",                               validator.ValidationMessages[7].Text);
+            AreEqual("Score moet minimaal 1 zijn.",                              validator.ValidationMessages[8].Text);
+            AreEqual("Niveau mag maximaal 50 zijn.",                             validator.ValidationMessages[9].Text);
+            AreEqual("Kleur heeft een niet-toegestane waarde.",                  validator.ValidationMessages[10].Text);
         }
         finally
         {
