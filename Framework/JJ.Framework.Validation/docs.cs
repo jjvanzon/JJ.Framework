@@ -61,14 +61,14 @@ public struct _execute;
 /// </summary>
 public struct _isvalid;
 
-/// <summary>
-/// Throws an exception listing all messages when validation has failed.
-/// </summary>
+/// <remarks>
+/// Listing all messages when validation has failed.
+/// </remarks>
 public struct _verify;
 
-/// <summary>
+/// <remarks>
 /// Runs a sub-validator and merges its messages into this validator's results.
-/// </summary>
+/// </remarks>
 /// <typeparam name="TValidator">Type for the generic <c>Execute</c> overloads. Must be a validator derived from
 /// <c>ValidatorBase&lt;TRootObject&gt;</c> that accepts the same root object as the caller. Use the generic overload
 /// when you want to run a specific sub-validator type.</typeparam>
@@ -79,10 +79,10 @@ public struct _executesub;
 
 // FluentValidator
 
-/// <summary>
+/// <remarks>
 /// Selects the property to validate next.
 /// Subsequent fluent calls (e.g. <c>NotNull</c>, <c>Min</c>) apply to this property.
-/// </summary>
+/// </remarks>
 /// <inheritdoc cref="_propertyexpression" />
 /// <inheritdoc cref="_propertykeyparam" />
 /// <param name="propertyDisplayName">

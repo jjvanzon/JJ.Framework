@@ -40,6 +40,7 @@ namespace JJ.Framework.Validation.Legacy
             get { return ValidationMessages.Count == 0; }
         }
 
+        /// <summary> Throws an exception if IsValid is false. </summary>
         /// <inheritdoc cref="_verify" />
         public void Verify()
         {
@@ -50,6 +51,9 @@ namespace JJ.Framework.Validation.Legacy
             }
         }
 
+        /// <summary> 
+        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
+        /// </summary>
         /// <inheritdoc cref="_executesub" />
         protected void Execute(IValidator validator)
         {
@@ -82,6 +86,13 @@ namespace JJ.Framework.Validation.Legacy
             Execute(validator, messagePrefix);
         }
 
+        /// <summary>
+        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
+        /// </summary>
+        /// <param name="messagePrefix"> 
+        /// A message prefix can identify the parent object so that validation messages indicate 
+        /// what specific part of the object structure they are about. 
+        /// </param>
         /// <inheritdoc cref="_executesub" />
         public void Execute(IValidator validator, string messagePrefix)
         {

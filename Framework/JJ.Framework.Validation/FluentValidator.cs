@@ -22,6 +22,12 @@ namespace JJ.Framework.Validation.Legacy
         private string _propertyKey;
         private string _propertyDisplayName;
 
+        /// <summary>
+        /// Indicates which property value we are going to validate.
+        /// </summary>
+        /// <param name="propertyDisplayName">
+        /// Used in messages to indicate what property the validation message is about.
+        /// </param>
         /// <inheritdoc cref="_for" />
         #if !NET9_0_OR_GREATER
         [TrimWarn(ArrayInit + " " + WhenShowIndexerValues)]
