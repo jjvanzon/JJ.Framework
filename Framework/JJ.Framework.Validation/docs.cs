@@ -11,16 +11,16 @@ namespace JJ.Framework.Validation.Legacy.docs;
 // Types
 
 /// <summary>
-/// Provides access to validation results:
-/// the collected messages, an overall pass/fail flag and a throw-on-failure helper.
+/// Provides access to validation results: the collected messages, an overall pass/fail flag
+/// and a helper to throw an aggregated exception when validation fails.
 /// </summary>
 public struct _ivalidator;
 
-/// <summary>
-/// Base class for building validators.
+/// <remarks>
+/// Base class for building validators. 
 /// Override <c>Execute</c> to define validation rules.
 /// Collects <see cref="ValidationMessage" /> entries and supports composing with sub-validators.
-/// </summary>
+/// </remarks>
 /// <inheritdoc cref="_postponeexecute" />
 public struct _validatorbase;
 
@@ -29,7 +29,7 @@ public struct _validatorbase;
 /// Call <c>For</c> to select a property, then chain checks such as
 /// <c>NotNull</c>, <c>Min</c>, <c>Max</c>, <c>In</c>, etc.
 /// </summary>
-/// <inheritdoc cref="_postponeexecute" />
+/// <inheritdoc cref="_validatorbase" />
 public struct _fluentvalidator;
 
 /// <summary>
@@ -39,15 +39,15 @@ public struct _fluentvalidator;
 public struct _validationmessage;
 
 /// <summary>
-/// The validation messages collected during execution of a validator.
+/// A collection of <see cref="ValidationMessage"/> objects produced by a validator.
 /// </summary>
 public struct _validationmessages;
 
 // ValidatorBase / IValidator
 
 /// <summary>
-/// // TODO: This is filler that adds no meaning.
 /// The object being validated.
+/// Exposed via the <c>Object</c> property.
 /// </summary>
 public struct _rootobject;
 
@@ -66,19 +66,14 @@ public struct _isvalid;
 /// </summary>
 public struct _verify;
 
+/// // TODO: Repeat doc for TValidator type argument.
+/// 
 /// <summary>
 /// Runs a sub-validator and merges its messages into this validator's results.
 /// </summary>
-/// <param name="validatorType">
-/// This overload requires the sub-validator to accept the same root object type
-/// and have no additional constructor parameters.
-/// // TODO: Repeat doc for TValidator type argument.
-/// </param>
-/// <param name="messagePrefix">
-/// // TODO: Bit too technical + An example could help.
-/// A prefix prepended to the sub-validator's messages,
-/// identifying which part of the object structure they relate to.
-/// </param>
+/// <param name="validatorType">The <see cref="Type"/> of the sub-validator to execute (used by reflection-based overloads).</param>
+/// <param name="messagePrefix">A prefix that is prepended to each message produced by the sub-validator to indicate context
+/// (for example, <c>"Address: "</c> so messages become <c>"Address: Street is required."</c>).</param>
 public struct _executesub;
 
 // FluentValidator
@@ -94,63 +89,84 @@ public struct _executesub;
 /// </param>
 public struct _for;
 
-// TODO: "Fails" it too vague here. Make it more clear what the effect is. You could use a 2nd-level inheritdoc to describe that and use the <remarks> tag in that.
+
+/// <remarks>
+/// Adds a value to the ValidationMessages when the validation fails.
+/// The IsValid will return False and the Verify method will throw an exception if there are any ValidationMessages.
+/// </remarks>
+public struct _validatormethod;
 
 /// <summary>
 /// Fails when the value is <see langword="null" />.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _notnull;
 
 /// <summary>
 /// Fails when the value is <see langword="null" />, empty or contains only white-space characters.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _notnullorwhitespace;
 
 /// <summary>
 /// Fails when the value is not one of the specified allowed values.
+/// Useful for checking that a value is one of an explicit set (for example, enum-like choices).
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _in;
 
 /// <summary>
-/// Fails when the value does not equal the specified value.
+/// Fails when the selected property's value does not equal the specified expected value.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _is;
 
 /// <summary>
-/// Fails when the value equals the specified value.
-/// // TODO: The functional effect of the string comparison should be described here, since it's relevant to the user. (Don't elaborate the implementation, talk about the effect.)
+/// Fails when the selected property's value equals the specified forbidden value.
+/// Use this to forbid a particular literal (for example, <c>"Deleted"</c> in a status field).
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _isnot;
 
 /// <summary>
-/// Fails when the value is zero.
+/// Fails when the selected property's value equals zero.
+/// Useful for numeric fields where zero is not an acceptable value.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _notzero;
 
 /// <summary>
-/// Fails when the value is not strictly greater than the specified minimum.
+/// Fails when the selected property's value is not strictly greater than the specified minimum.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _above;
 
 /// <summary>
-/// Fails when the value is less than the specified minimum (inclusive lower bound).
+/// Fails when the value is less than the specified minimum.
+/// The minimum is an inclusive lower bound for valid values.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _min;
 
 /// <summary>
-/// Fails when the value exceeds the specified maximum (inclusive upper bound).
+/// Fails when the selected property's value exceeds the specified maximum.
+/// The maximum is an inclusive upper bound for valid values.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _max;
 
 /// <summary>
 /// Fails when the value can be parsed as an integer.
 /// Use to reject whole-number input where a non-integer is expected.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _notinteger;
 
 /// <summary>
-/// Fails when the value does not correspond to a defined member of the specified enum type.
+/// Fails when the selected property's value does not match any defined member
+/// of the specified enum type.
 /// </summary>
+/// <inheritdoc cref="_validatormethod" />
 public struct _isenumvalue;
 
 // ValidationMessage members
@@ -191,7 +207,7 @@ public struct _addrange;
 
 
 /// <summary>
-/// // TODO: Write something for the ValidationMessages.GetEnumerator.
+/// Returns an enumerator that iterates through the validation messages.
 /// </summary>
 public struct _getenumerator;
 
