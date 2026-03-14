@@ -189,6 +189,12 @@ public struct _indexer;
 /// </summary>
 public struct _addrange;
 
+
+/// <summary>
+/// // TODO: Write something for the ValidationMessages.GetEnumerator.
+/// </summary>
+public struct _getenumerator;
+
 // Parameters
 
 /// <param name="postponeExecute">

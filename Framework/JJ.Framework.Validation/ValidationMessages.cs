@@ -44,11 +44,13 @@ namespace JJ.Framework.Validation.Legacy
             get { return _list[i]; }
         }
 
+        /// <inheritdoc cref="_getenumerator" />
         public IEnumerator<ValidationMessage> GetEnumerator()
         {
             return _list.GetEnumerator();
         }
 
+        /// <inheritdoc cref="_getenumerator" />
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _list.GetEnumerator();
