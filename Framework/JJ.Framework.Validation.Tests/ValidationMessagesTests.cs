@@ -58,4 +58,41 @@ public class ValidationMessagesTests
         target.AddRange(source);
         AreEqual(2, target.Count);
     }
+
+    [TestMethod]
+    public void GetEnumerator_Untyped()
+    {
+        var messages = new ValidationMessages();
+        messages.Add("key1", "text1");
+        messages.Add("key2", "text2");
+
+        IEnumerable untypedEnumerable = messages;
+
+        var count = 0;
+        foreach (object item in untypedEnumerable) 
+        {
+            IsNotNull(item);
+            AreEqual(typeof(ValidationMessage), item.GetType());
+            count++;
+        }
+        AreEqual(2, count);
+    }
+
+    [TestMethod]
+    public void GetEnumerator_Typed()
+    {
+        var messages = new ValidationMessages();
+        messages.Add("key1", "text1");
+        messages.Add("key2", "text2");
+
+        IEnumerable<ValidationMessage> typedEnumerable = messages;
+
+        var count = 0;
+        foreach (ValidationMessage item in typedEnumerable) 
+        { 
+            IsNotNull(item);
+            count++;
+        }
+        AreEqual(2, count);
+    }
 }
