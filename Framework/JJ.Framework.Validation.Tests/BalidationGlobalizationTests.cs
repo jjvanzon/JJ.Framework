@@ -6,7 +6,7 @@ using static System.Threading.Thread;
 namespace JJ.Framework.Validation.Legacy.Tests;
 
 [TestClass]
-public class GlobalizationTests
+public class ValidationGlobalizationTests
 {
     private static readonly CultureInfo _enUS = new ("en-US");
     private static readonly CultureInfo _nlNL = new ("nl-NL");
@@ -43,7 +43,7 @@ public class GlobalizationTests
     // en-US – friendlier messages
 
     [TestMethod]
-    public void NotNull_EnUS_IsRequiredMessage()
+    public void Globalization_EnUS_IsRequiredMessage()
         => AreEqual("First Name is required.", GetMessageFromValidator(_enUS, v => v.For(null, "Name", "First Name").NotNull()));
 
     [TestMethod]
