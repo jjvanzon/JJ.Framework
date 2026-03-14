@@ -1,6 +1,6 @@
 // ReSharper disable VirtualMemberCallInConstructor
 
-namespace JJ.Framework.Validation.Legacy.Tests;
+namespace JJ.Framework.Validation.Legacy.Tests.Helpers;
 
 /// <summary>
 /// Allows injecting the Execute method implementation.

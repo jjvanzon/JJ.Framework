@@ -1,7 +1,6 @@
 // ReSharper disable ExpressionIsAlwaysNull
-namespace JJ.Framework.Validation.Legacy.Tests;
 
-using static TypicalValidatorUsageTests.Color;
+namespace JJ.Framework.Validation.Legacy.Tests;
 
 #if !NET9_0_OR_GREATER
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit + " " + WhenShowIndexerValues)]
@@ -9,18 +8,7 @@ using static TypicalValidatorUsageTests.Color;
 [TestClass]
 public class TypicalValidatorUsageTests
 {
-    public enum Color { Red = 1, Green = 2, Blue = 3 }
-
-    private class SimpleModel
-    {
-        public string Name        { get; set; }
-        public string Description { get; set; }
-        public Color  Color       { get; set; }
-        public string Status      { get; set; }
-        public int    Score       { get; set; }
-    }
-    
-    private class TypicalValidator(SimpleModel obj) : FluentValidator<SimpleModel>(obj, postponeExecute: false)
+    private class TypicalValidator(TestModel obj) : FluentValidator<TestModel>(obj, postponeExecute: false)
     {
         protected override void Execute()
         {
@@ -30,14 +18,14 @@ public class TypicalValidatorUsageTests
             {
                 For(() => Object.Name, "Name").NotNullOrWhiteSpace();
                 For(() => Object.Description, "Description").NotInteger();
-                For(() => Object.Color, "Color").In(Red, Green).IsEnumValue<Color>();
+                For(() => Object.Color, "Color").In(Red, Green).IsEnumValue<ColorEnum>();
                 For(() => Object.Status, "Status").Is("Active").IsNot("Deleted");
                 For(() => Object.Score, "Score").NotZero().Above(0).Min(1).Max(100);
             }
         }
     }
 
-    private static SimpleModel CreateValidModel() => new() 
+    private static TestModel CreateValidModel() => new() 
     {
         Name        = "Alice",
         Description = "A lovely person",
@@ -50,7 +38,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_ValidModel_IsValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         IValidator validator = new TypicalValidator(model);
         IsTrue(validator.IsValid);
     }
@@ -72,7 +60,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_EmptyName_NotValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         model.Name = "";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -87,7 +75,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_IntegerDescription_NotValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         model.Description = "42";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -102,7 +90,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_ColorNotInList_NotValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         model.Color = Blue;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -117,7 +105,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_StatusNotActive_NotValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         model.Status = "Inactive";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -132,7 +120,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_StatusDeleted_NotValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         model.Status = "Deleted";
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -148,7 +136,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_ZeroScore_NotValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         model.Score = 0;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -169,7 +157,7 @@ public class TypicalValidatorUsageTests
     public void TypicalValidator_ScoreTooHigh_NotValid()
     {
         // Use
-        SimpleModel model = CreateValidModel();
+        TestModel model = CreateValidModel();
         model.Score = 101;
         IValidator validator = new TypicalValidator(model);
         IsFalse(validator.IsValid);
@@ -203,7 +191,7 @@ public class TypicalValidatorUsageTests
                  .Above(0)
                  .Min(1)
                  .Max(100)
-                 .IsEnumValue<Color>();
+                 .IsEnumValue<ColorEnum>();
 
         IsFalse  (validator.IsValid);
         NotNull  (validator.ValidationMessages);
@@ -231,7 +219,7 @@ public class TypicalValidatorUsageTests
                  .Is("Active")
                  .IsNot("Deleted")
                  .NotInteger()
-                 .IsEnumValue<Color>();
+                 .IsEnumValue<ColorEnum>();
 
         IsFalse(validator.IsValid);
         AreEqual(7, validator.ValidationMessages.Count);
@@ -257,7 +245,6 @@ public class TypicalValidatorUsageTests
         AreEqual("TotalScore", validator.ValidationMessages[6].PropertyKey);
         AreEqual("Total Score does not have a valid value.", validator.ValidationMessages[6].Text);
 
-        // Verify() should throw an exception containing all messages in order.
         Throws(() => validator.Verify(), """
                                          Total Score is required.
                                          Total Score is not above 0.

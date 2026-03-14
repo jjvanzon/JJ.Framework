@@ -1,6 +1,3 @@
-// ReSharper disable UnusedAutoPropertyAccessor.Local
-// ReSharper disable UnusedMember.Local
-
 namespace JJ.Framework.Validation.Legacy.Tests;
 
 #if !NET9_0_OR_GREATER
@@ -9,19 +6,6 @@ namespace JJ.Framework.Validation.Legacy.Tests;
 [TestClass]
 public class ValidationGlobalizationTests
 {
-    private enum Color { Red = 1, Green = 2, Blue = 3 }
-
-    private class TestModel
-    {
-        public string Name        { get; set; }
-        public string Description { get; set; }
-        public string Tag         { get; set; }
-        public string Status      { get; set; }
-        public int    Score       { get; set; }
-        public int    Level       { get; set; }
-        public Color  Color       { get; set; }
-    }
-
     private static TestModel CreateInvalidModel() => new()
     {
         Description = "  ",
@@ -40,7 +24,7 @@ public class ValidationGlobalizationTests
             For(() => Object.Status,      "Status"     ).In("Active", "Inactive").Is("Active").IsNot("Deleted");
             For(() => Object.Score,       "Score"      ).NotZero().Above(0).Min(1);
             For(() => Object.Level,       "Level"      ).Max(50);
-            For(() => Object.Color,       "Color"      ).IsEnumValue<Color>();
+            For(() => Object.Color,       "Color"      ).IsEnumValue<ColorEnum>();
         }
     }
 

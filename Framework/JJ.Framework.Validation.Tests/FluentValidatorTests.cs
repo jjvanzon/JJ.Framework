@@ -1,6 +1,4 @@
 // ReSharper disable ExpressionIsAlwaysNull
-// ReSharper disable PropertyCanBeMadeInitOnly.Local
-// ReSharper disable UnusedMember.Global
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 
@@ -10,13 +8,6 @@ namespace JJ.Framework.Validation.Legacy.Tests;
 [TestClass]
 public class FluentValidatorTests
 {
-    public enum Color { Red = 1, Green = 2, Blue = 3 }
-
-    private class SimpleModel
-    {
-        public string Name { get; set; }
-    }
-
     // NotNull
 
     [TestMethod]
@@ -161,15 +152,15 @@ public class FluentValidatorTests
 
     [TestMethod]
     public void IsEnumValue_ValidValue_NoMessage()
-        => IsTrue(new TestValidator(validator => validator.For(1, "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For(1, "FavoriteColor", "Favorite Color").IsEnumValue<ColorEnum>()).IsValid);
 
     [TestMethod]
     public void IsEnumValue_InvalidValue_AddsMessage()
-        => IsFalse(new TestValidator(validator => validator.For(99, "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
+        => IsFalse(new TestValidator(validator => validator.For(99, "FavoriteColor", "Favorite Color").IsEnumValue<ColorEnum>()).IsValid);
 
     [TestMethod]
     public void IsEnumValue_EmptyString_NoMessage()
-        => IsTrue(new TestValidator(validator => validator.For("", "FavoriteColor", "Favorite Color").IsEnumValue<Color>()).IsValid);
+        => IsTrue(new TestValidator(validator => validator.For("", "FavoriteColor", "Favorite Color").IsEnumValue<ColorEnum>()).IsValid);
 
     // For guard clauses
 

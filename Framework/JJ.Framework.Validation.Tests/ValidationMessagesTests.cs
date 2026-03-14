@@ -1,6 +1,5 @@
 #pragma warning disable IDE0028 // Use collection initializer
 // ReSharper disable UseObjectOrCollectionInitializer
-// ReSharper disable ReplaceAutoPropertyWithComputedProperty
 
 namespace JJ.Framework.Validation.Legacy.Tests;
 
@@ -10,8 +9,6 @@ namespace JJ.Framework.Validation.Legacy.Tests;
 [TestClass]
 public class ValidationMessagesTests
 {
-    private class MyModel { public string Name { get; } = "Value"; }
-
     [TestMethod]
     public void Add_ByKey_IncrementsCount()
     {
@@ -24,7 +21,7 @@ public class ValidationMessagesTests
     public void Add_ByExpression_ExtractsPropertyKey()
     {
         var messages = new ValidationMessages();
-        var model = new MyModel();
+        var model = new SimpleModel();
         messages.Add(() => model.Name, "error");
         AreEqual("Name", messages[0].PropertyKey);
         AreEqual("error", messages[0].Text);
