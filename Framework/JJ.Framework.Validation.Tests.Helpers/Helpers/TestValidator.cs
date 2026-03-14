@@ -5,7 +5,7 @@ namespace JJ.Framework.Validation.Legacy.Tests.Helpers;
 /// <summary>
 /// Allows injecting the Execute method implementation.
 /// </summary>
-internal class TestValidator : FluentValidator<object>
+public class TestValidator : FluentValidator<object>
 {
     private readonly Action<TestValidator> _impl;
 

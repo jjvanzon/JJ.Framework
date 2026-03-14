@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Version>0.250.$(BuildNum)</Version>
@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj" />
     <ProjectReference Include="..\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
@@ -24,6 +25,7 @@
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
     <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
+    <TrimmerRootAssembly Include="JJ.Framework.Validation.Legacy.Tests.Helpers" />
   </ItemGroup>
 
 </Project>

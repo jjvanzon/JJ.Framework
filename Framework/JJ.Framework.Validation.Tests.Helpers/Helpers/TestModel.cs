@@ -1,7 +1,7 @@
 // ReSharper disable PropertyCanBeMadeInitOnly.Global
 namespace JJ.Framework.Validation.Legacy.Tests.Helpers;
 
-internal class TestModel
+public class TestModel
 {
     public string    Name        { get; set; }
     public string    Description { get; set; }
