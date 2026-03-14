@@ -103,10 +103,10 @@ public class ValidationMessagesTests
         messages.Add("key1", "text1");
         messages.Add("key2", "text2");
 
-        var accessor = new Accessor(messages);
+        var accessor = new Accessor(messages, typeof(ValidationMessages));
         var debuggerDisplay = accessor.GetPropertyValue("DebuggerDisplay");
 
-        var expected = string.Join(NewLine, new[] { "key1: text1", "key2: text2" });
+        var expected = "key1: text1" + NewLine + "key2: text2";
         AreEqual(expected, debuggerDisplay);
     }
 }

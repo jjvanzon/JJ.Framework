@@ -31,7 +31,7 @@ public class ValidationMessageTests
     public void DebuggerDisplay_ReturnsCorrectString()
     {
         var msg = new ValidationMessage("MyKey", "MyText");
-        var accessor = new Accessor(msg);
+        var accessor = new Accessor(msg, typeof(ValidationMessage));
         var debuggerDisplay = accessor.GetPropertyValue("DebuggerDisplay");
         AreEqual("MyKey: MyText", debuggerDisplay);
     }
