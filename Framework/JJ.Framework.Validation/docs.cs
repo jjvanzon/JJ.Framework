@@ -66,11 +66,11 @@ public struct _isvalid;
 /// </summary>
 public struct _verify;
 
-/// // TODO: Repeat doc for TValidator type argument.
-/// 
 /// <summary>
 /// Runs a sub-validator and merges its messages into this validator's results.
 /// </summary>
+/// <typeparam name="TValidator">The compile-time validator type used by the generic overloads. It is expected to be a
+/// <c>ValidatorBase&lt;TRootObject&gt;</c>-derived type that accepts the same root object as the current validator.</typeparam>
 /// <param name="validatorType">The <see cref="Type"/> of the sub-validator to execute (used by reflection-based overloads).</param>
 /// <param name="messagePrefix">A prefix that is prepended to each message produced by the sub-validator to indicate context
 /// (for example, <c>"Address: "</c> so messages become <c>"Address: Street is required."</c>).</param>
@@ -88,7 +88,6 @@ public struct _executesub;
 /// A human-readable name shown in validation messages. Best set to a localized resource.
 /// </param>
 public struct _for;
-
 
 /// <remarks>
 /// Adds a value to the ValidationMessages when the validation fails.
