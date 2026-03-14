@@ -1,3 +1,5 @@
+using JJ.Framework.Validation.Legacy.Tests.Resources;
+
 namespace JJ.Framework.Validation.Legacy.Tests;
 
 #if !NET9_0_OR_GREATER
@@ -18,13 +20,13 @@ public class ValidatorGlobalizationTests
     {
         protected override void Execute()
         {
-            For(() => Object.Name,        "Name"       ).NotNull();
-            For(() => Object.Description, "Description").NotNullOrWhiteSpace();
-            For(() => Object.Tag,         "Tag"        ).NotInteger();
-            For(() => Object.Status,      "Status"     ).In("Active", "Inactive").Is("Active").IsNot("Deleted");
-            For(() => Object.Score,       "Score"      ).NotZero().Above(0).Min(1);
-            For(() => Object.Level,       "Level"      ).Max(50);
-            For(() => Object.Color,       "Color"      ).IsEnumValue<ColorEnum>();
+            For(() => Object.Name,        PropertyNames.Name       ).NotNull();
+            For(() => Object.Description, PropertyNames.Description).NotNullOrWhiteSpace();
+            For(() => Object.Tag,         PropertyNames.Tag        ).NotInteger();
+            For(() => Object.Status,      PropertyNames.Status     ).In("Active", "Inactive").Is("Active").IsNot("Deleted");
+            For(() => Object.Score,       PropertyNames.Score      ).NotZero().Above(0).Min(1);
+            For(() => Object.Level,       PropertyNames.Level      ).Max(50);
+            For(() => Object.Color,       PropertyNames.Color      ).IsEnumValue<ColorEnum>();
         }
     }
 

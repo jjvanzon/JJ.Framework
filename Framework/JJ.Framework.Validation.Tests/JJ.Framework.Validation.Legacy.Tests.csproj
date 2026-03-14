@@ -7,6 +7,19 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Resources\PropertyNames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropertyNames.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\PropertyNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PropertyNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
