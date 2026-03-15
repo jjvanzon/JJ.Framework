@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <linker>
-  <assembly fullname="JJ.Framework.IO.Legacy.Package.Trimming.TestApp">
+  <assembly fullname="JJ.Framework.Validation.Legacy.Package.Trimming.TestApp">
     <type fullname="Program" preserve="all">
       <method name="&lt;Main&gt;$" />
     </type>
