@@ -5,7 +5,7 @@ Historic release for compatibility with older projects from `2015`, now upgraded
 
 Contains a class `FluentValidator`. It offers a neat fluent notation:
 
-	For(() => Thing.Value).NotNull().MaxLength(100);
+	For(() => Thing.Value).NotNull().Max(100);
 
 If you separate validations from the rest of your code and turn them into validator classes, your business rules may become better maintainable. The validation messages are dry pairs of keys and message texts, which makes the output of the validations easily integratable with any other system. The set of fluent methods might be incomplete, but we just add things at the time we need it.
 
@@ -18,19 +18,16 @@ Release Notes
 
 #### `2026-03`, `0.251` : __Legacy__
 
-- Release of historic version
-- Full test coverage
-- Member docs
-- Trimming/AOT support
-- .NET `10` -> `4.6.1`
-- .NET Standard `2.0` and `2.1`
-- `FluentValidator` syntax
-- `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
+- Historic version + full test coverage / IntelliSense docs / code trimming / native AOT support
+- .NET `10`, `9`, `8`, `7`, `6`, `5`, `4.6.1` / .NET Standard `2.0`, `2.1`
+- `FluentValidator` syntax:  
+  `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
 - `NotNull`, `NotNullOrWhiteSpace`, `In`, `Is`, `IsNot`, `NotZero`, `Above`, `Min`, `Max`, `NotInteger`, `IsEnumValue`
-- `IValidator` / `ValidatorBase` members
-- `IsValid` (boo), `ValidationMessages`, `Verify()` (throws)
-- Sub-validators and message prefixes: `"Address: Street is required."`
-- Localization English (`en-US`) and Dutch (`nl-NL`)
+- `IValidator` / `ValidatorBase` members:  
+  `IsValid` (boo), `ValidationMessages`, `Verify()` (throws)
+- Sub-validators and message prefixes:  
+  `"Address: Street is required."`
+- Localization: English (`en-US`) and Dutch (`nl-NL`)
 
 💬 Feedback
 ============
