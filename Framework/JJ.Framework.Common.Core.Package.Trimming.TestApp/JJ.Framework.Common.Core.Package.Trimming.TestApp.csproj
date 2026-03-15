@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common.Core" Version="4.1.5697" />
+    <PackageReference Include="JJ.Framework.Common.Core" Version="4.1.5705" />
     <PackageReference Include="JJ.Framework.Common.Core.Tests.Helpers" Version="3.7.4872" />
-    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.251.5697" />
+    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.251.5705" />
     <PackageReference Include="JJ.Framework.IO.Core" Version="4.1.5697" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.251.5697" />
