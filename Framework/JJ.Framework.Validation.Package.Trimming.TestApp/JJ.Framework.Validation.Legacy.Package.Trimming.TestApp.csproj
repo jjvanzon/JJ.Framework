@@ -19,11 +19,12 @@
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
   </ItemGroup>
 
-  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
-  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj" />
   </ItemGroup>
+
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
