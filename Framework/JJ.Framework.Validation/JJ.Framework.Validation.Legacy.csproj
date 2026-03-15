@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.250.$(BuildNum)</Version>
+    <Version>0.251.$(BuildNum)</Version>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Description>Home-brewed rudimentary library for validation with a neat fluent notation. Published for legacy purposes.</Description>
     <PackageTags>validation validator fluent fluentvalidator notnull above min max localization globalization in is notzero notinteger notnullorwhitespace isenumvalue validationmessages isvalid verify assert guard</PackageTags>

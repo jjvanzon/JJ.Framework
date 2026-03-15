@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <RootNamespace>JJ.Framework.Validation.Legacy.Tests.Helpers</RootNamespace>
-    <Version>0.250.$(BuildNum)</Version>
+    <Version>0.251.$(BuildNum)</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="Resources\DispayNames.Designer.cs">

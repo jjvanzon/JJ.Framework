@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>4.0.$(BuildNum)</Version>
+    <Version>4.1.$(BuildNum)</Version>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
   </PropertyGroup>
