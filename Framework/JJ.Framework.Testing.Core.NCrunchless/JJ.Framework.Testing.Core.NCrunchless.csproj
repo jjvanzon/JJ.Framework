@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Version>4.1.$(BuildNum)</Version>
     <!-- Produce an assembly with the exact name expected by the runtime -->
     <AssemblyName>nCrunch.TestRuntime.DotNetCore</AssemblyName>
+    <PackageId>JJ.Framework.Testing.Core.NCrunchless</PackageId>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>$(NoWarn);CS1591</NoWarn> <!--Missing doc lenience-->
   </PropertyGroup>
