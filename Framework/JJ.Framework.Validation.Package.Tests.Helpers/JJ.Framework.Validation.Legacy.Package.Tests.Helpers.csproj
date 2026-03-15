@@ -1,29 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
-    <!--<RootNamespace>JJ.Framework.Validation.Legacy.Tests.Helpers</RootNamespace>-->
+    <RootNamespace>JJ.Framework.Validation.Legacy.Tests.Helpers</RootNamespace>
     <Version>0.251.$(BuildNum)</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="..\JJ.Framework.Validation.Tests.Helpers\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\JJ.Framework.Validation.Tests.Helpers\**\*.resx" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Validation.Tests.Helpers\obj\**" />
     <Compile Remove="..\JJ.Framework.Validation.Tests.Helpers\bin\**" />
   </ItemGroup>
-
-  <!--<ItemGroup>
-    <Compile Update="..\JJ.Framework.Validation.Tests.Helpers\Resources\DispayNames.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DispayNames.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="..\JJ.Framework.Validation.Tests.Helpers\Resources\DispayNames.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DispayNames.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.251.5697" />
