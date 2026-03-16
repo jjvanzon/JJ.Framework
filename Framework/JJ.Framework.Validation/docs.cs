@@ -131,23 +131,9 @@ public struct _isvalid;
 /// </summary>
 public struct _verify;
 
-// TODO: Example code with comments became a bit dense. Let's spread that ifo across the _executeivalidator docs structs and onward.
-
-
-/// <remarks>
+/// <summary>
 /// Runs a sub-validator and merges its messages into this validator's results.
-/// 
-/// <code>
-/// // By instance (sub-object differs from the root):
-/// Execute(new AddressValidator(Object.Address), "Address: ");
-/// // By generic type (sub-validator shares the same root object):
-/// Execute&lt;AddressValidator&gt;();
-/// Execute&lt;AddressValidator&gt;("Address: "); // with message prefix
-/// // By Type (runtime-resolved, same as generic):
-/// Execute(typeof(AddressValidator));
-/// </code>
-/// 
-/// </remarks>
+/// </summary>
 /// <typeparam name="TValidator">
 /// Type for the generic <c>Execute</c> overloads. Must be a validator derived from
 /// <c>ValidatorBase&lt;TRootObject&gt;</c> that accepts the same root object as the caller. Use the generic overload
@@ -162,21 +148,69 @@ public struct _verify;
 /// </param>
 public struct _executesub;
 
+/// <remarks>
+/// This overload runs a sub-validator by instance.
+/// 
+/// <code>
+/// Execute(new AddressValidator(Object.Address));
+/// </code>
+/// 
+/// </remarks>
 /// <inheritdoc cref="_executesub" />
 public struct _executeivalidator;
 
+/// <remarks>
+/// This overload runs a sub-validator by generic type.
+/// 
+/// <code>
+/// Execute&lt;AddressValidator&gt;();
+/// </code>
+/// 
+/// </remarks>
 /// <inheritdoc cref="_executesub" />
 public struct _executetvalidator;
 
+/// <remarks>
+/// This overload runs a sub-validator by generic type with a message prefix.
+/// 
+/// <code>
+/// Execute&lt;AddressValidator&gt;("Address: ");
+/// </code>
+/// 
+/// </remarks>
 /// <inheritdoc cref="_executesub" />
 public struct _executetvalidatorwithprefix;
 
+/// <remarks>
+/// This overload runs a sub-validator by <see cref="Type"/>.
+/// 
+/// <code>
+/// Execute(typeof(AddressValidator));
+/// </code>
+/// 
+/// </remarks>
 /// <inheritdoc cref="_executesub" />
 public struct _executevalidatortype;
 
+/// <remarks>
+/// This overload runs a sub-validator by <see cref="Type"/> with a message prefix.
+/// 
+/// <code>
+/// Execute(typeof(AddressValidator), "Address: ");
+/// </code>
+/// 
+/// </remarks>
 /// <inheritdoc cref="_executesub" />
 public struct _executevalidatortypewithprefix;
 
+/// <remarks>
+/// This overload runs a sub-validator by instance with a message prefix.
+/// 
+/// <code>
+/// Execute(new AddressValidator(Object.Address), "Address: ");
+/// </code>
+/// 
+/// </remarks>
 /// <inheritdoc cref="_executesub" />
 public struct _executeivalidatorwithprefix;
 
