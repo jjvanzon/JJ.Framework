@@ -240,7 +240,9 @@ public struct _executeivalidatorwithprefix;
 /// <param name="propertyDisplayName">
 /// A human-readable name shown in validation messages. Best set to a localized resource.
 /// </param>
-/// <inheritdoc cref="_propertykeyparam" />
+/// <param name="propertyKey">
+/// Technical key identifying the property this message relates to (e.g. for MVC UI binding).
+/// </param>
 public struct _for;
 
 /// <remarks>
@@ -451,7 +453,9 @@ public struct _messagetext;
 /// Expression from which the property key is extracted.
 /// The root is excluded, e.g. <c>() =&gt; MyObject.MyProperty</c> produces key <c>"MyProperty"</c>.
 /// </param>
-/// <inheritdoc cref="_propertykeyparam" />
+/// <param name="propertyKey">
+/// Technical key identifying the property this message relates to (e.g. for MVC UI binding).
+/// </param>
 public struct _add;
 
 /// <summary>
@@ -477,14 +481,10 @@ public struct _getenumerator;
 
 // Parameters
 
-/// <param name="propertyKey">
-/// Technical key identifying the property this message relates to (e.g. for MVC UI binding).
-/// </param>
-public struct _propertykeyparam;
-
 /// <param name="postponeExecute">
-/// When <see langword="true" />, <c>Execute</c> is not called by the base constructor,
-/// letting your subclass constructor initialize state first.
+/// When <c>postponeExecute</c> is set to <see langword="true" />,
+/// <c>Execute</c> is not called immediately by the base constructor.
+/// This lets your subclass constructor initialize fields and other things..
 /// You must then call <c>Execute</c> from your own constructor.
 /// </param>
 public struct _postponeexecute;
