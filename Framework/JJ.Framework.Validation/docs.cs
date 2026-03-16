@@ -45,11 +45,7 @@ public struct _ivalidator;
 /// new OrderValidator(order).Verify();
 /// </code>
 /// </remarks>
-/// <param name="postponeExecute">
-/// When <see langword="true" />, <c>Execute</c> is not called by the base constructor,
-/// letting your subclass constructor initialize state first.
-/// You must then call <c>Execute</c> from your own constructor.
-/// </param>
+/// <inheritdoc cref="_postponeexecute" />
 public struct _validatorbase;
 
 /// <summary>
@@ -78,6 +74,7 @@ public struct _validatorbase;
 /// </code>
 /// 
 /// </summary>
+/// <inheritdoc cref="_postponeexecute" />
 public struct _fluentvalidator;
 
 /// <summary>
@@ -240,10 +237,10 @@ public struct _executeivalidatorwithprefix;
 /// The root of the expression is excluded from the key,
 /// e.g. <c>() =&gt; MyObject.MyProperty</c> produces key <c>"MyProperty"</c>.
 /// </param>
-/// <inheritdoc cref="_propertykeyparam" />
 /// <param name="propertyDisplayName">
 /// A human-readable name shown in validation messages. Best set to a localized resource.
 /// </param>
+/// <inheritdoc cref="_propertykeyparam" />
 public struct _for;
 
 /// <remarks>
@@ -485,3 +482,9 @@ public struct _getenumerator;
 /// </param>
 public struct _propertykeyparam;
 
+/// <param name="postponeExecute">
+/// When <see langword="true" />, <c>Execute</c> is not called by the base constructor,
+/// letting your subclass constructor initialize state first.
+/// You must then call <c>Execute</c> from your own constructor.
+/// </param>
+public struct _postponeexecute;
