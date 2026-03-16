@@ -167,7 +167,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
 - Trimming/AOT compatiblity, internal tooling improved: auto-run trim test each compilation and inside NCrunch.
 
-#### `2026-03-15`, `0.251` : __Validation.Legacy__
+#### `2026-03-15` , `0.251` : __Validation.Legacy__
 
 - [`JJ.Framework.Validation.Legacy`](https://www.nuget.org/packages/JJ.Framework.Validation.Legacy)
 - Historic version + full test coverage / IntelliSense docs / code trimming / native AOT support
