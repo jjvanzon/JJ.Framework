@@ -65,10 +65,12 @@ public struct _validatorbase;
 ///     {
 ///         For(() =&gt; Object, "Order")
 ///             .NotNull();
-///         For(() =&gt; Object.Name, "Name")
-///             .NotNullOrWhiteSpace();
-///         For(() =&gt; Object.Amount, "Amount")
+/// 
+///         For(() =&gt; Object.Amount, StringResources.Amount)
 ///             .Min(1).Max(10000);
+/// 
+///         For(Object.Name, "Name", "Full Name")
+///             .NotNullOrWhiteSpace();
 ///     }
 /// }
 /// 
@@ -221,8 +223,15 @@ public struct _executeivalidatorwithprefix;
 /// Subsequent fluent calls (e.g. <c>NotNull</c>, <c>Min</c>) apply to this property.
 /// 
 /// <code>
-/// For(() =&gt; Object.Name, "Name").NotNullOrWhiteSpace();
-/// For(() =&gt; Object.Price, "Price").Min(0).Max(9999);
+/// 
+/// For(() =&gt; Object.Price, "Price")
+///     .Min(0).Max(9999);
+/// 
+/// For(Object, "Order", StringResources.Order)
+///     .NotNullOrWhiteSpace();
+/// 
+/// For(Object.Name, "Name", "Full Name")
+///     .NotNullOrWhiteSpace();
 /// </code>
 /// 
 /// </remarks>
