@@ -52,9 +52,9 @@ An extension to [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.F
 Release Notes
 -------------
 
-|              |       |                           |   |
-|--------------|-------|---------------------------|---|
-| `2026-02-17` | `3.7` | __Clash of the Booleans__ | `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
+#### `2026-02-17` | `3.7` : __Clash of the Booleans__ 
+
+- `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
 
 
 💬 Feedback

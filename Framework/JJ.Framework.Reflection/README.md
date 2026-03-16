@@ -165,11 +165,17 @@ Various helper methods, but one of the most useful features is the `GetImplement
 Release Notes
 -------------
 
-|              |              |                   |     |
-|--------------|--------------|-------------------|-----|
-| `2025-07-02` | `0.250.3271` | __Legacy__        | Released a version from __2015__.
-| `2026-03-13` | `0.250.5600` | __Re-Release__    | __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
-|              |              |                   | Trimming/AOT compatiblity, internal tooling improved: auto-run trim test each compilation and inside NCrunch.
+#### `2025-07-02` | `0.250`/`2.7` : __Legacy__
+
+- Released a version from __2015__.
+
+#### `2026-03-13` | `0.250`/`4.0` : __Re-Release__
+
+- __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
+- Trimming/AOT compatiblity.
+- Auto-run trim test:
+- upon build
+- and inside NCrunch.
 
 💬 Feedback
 ============
