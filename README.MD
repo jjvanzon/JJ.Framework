@@ -167,22 +167,19 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
 - Trimming/AOT compatiblity, internal tooling improved: auto-run trim test each compilation and inside NCrunch.
 
-#### `2026-03`, `0.251` : __Validation.Legacy__
+#### `2026-03-15`, `0.251` : __Validation.Legacy__
 
 - [`Validation.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Validation) to 
-- Release of historic version
-- Full test coverage
-- Member docs
-- Trimming/AOT support
-- .NET `10` -> `4.6.1`
-- .NET Standard `2.0` and `2.1`
-- `FluentValidator` syntax
-- `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
+- Historic version + full test coverage / IntelliSense docs / code trimming / native AOT support
+- .NET `10`, `9`, `8`, `7`, `6`, `5`, `4.6.1` / .NET Standard `2.0`, `2.1`
+- `FluentValidator` syntax:  
+  `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
 - `NotNull`, `NotNullOrWhiteSpace`, `In`, `Is`, `IsNot`, `NotZero`, `Above`, `Min`, `Max`, `NotInteger`, `IsEnumValue`
-- `IValidator` / `ValidatorBase` members
-- `IsValid` (boo), `ValidationMessages`, `Verify()` (throws)
-- Sub-validators and message prefixes: `"Address: Street is required."`
-- Localization English (`en-US`) and Dutch (`nl-NL`)
+- `IValidator` / `ValidatorBase` members:  
+  `IsValid` (boo), `ValidationMessages`, `Verify()` (throws)
+- Sub-validators and message prefixes:  
+  `"Address: Street is required."`
+- Localization: English (`en-US`) and Dutch (`nl-NL`)
 
 💬 Feedback 
 ------------

@@ -16,7 +16,7 @@ This framework is also kind of a proof that you do not need an external validati
 Release Notes
 -------------
 
-#### `2026-03`, `0.251` : __Legacy__
+#### `2026-03-15`, `0.251` : __Legacy__
 
 - Historic version + full test coverage / IntelliSense docs / code trimming / native AOT support
 - .NET `10`, `9`, `8`, `7`, `6`, `5`, `4.6.1` / .NET Standard `2.0`, `2.1`
