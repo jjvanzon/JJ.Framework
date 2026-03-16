@@ -13,6 +13,14 @@ namespace JJ.Framework.Validation.Legacy.docs;
 /// <summary>
 /// Provides validation results: the collected messages: <see cref="IValidator.ValidationMessages" />, an overall pass/fail flag: <see cref="IValidator.IsValid" />
 /// and a helper to throw an aggregated exception when validation fails: <see cref="IValidator.Verify" />.
+/// 
+/// <code>
+/// IValidator validator = new OrderValidator(order);
+/// if (!validator.IsValid)
+///     foreach (var msg in validator.ValidationMessages)
+///         Console.WriteLine(msg.Text);
+/// validator.Verify();
+/// </code>
 /// </summary>
 public struct _ivalidator;
 
@@ -20,6 +28,17 @@ public struct _ivalidator;
 /// Base class for building validators. 
 /// Override <c>Execute</c> to define validation rules.
 /// Collects <see cref="ValidationMessage" /> entries and supports composing with sub-validators.
+/// <code>
+/// class OrderValidator(Order order) : ValidatorBase&lt;Order&gt;(order)
+/// {
+///     protected override void Execute()
+///     {
+///         if (Object == null) { ValidationMessages.Add("Order", "Order is required."); return; }
+///         if (Object.Amount &lt;= 0) ValidationMessages.Add("Amount", "Amount must be positive.");
+///     }
+/// }
+/// new OrderValidator(order).Verify();
+/// </code>
 /// </remarks>
 /// <param name="postponeExecute">
 /// When <see langword="true" />, <c>Execute</c> is not called by the base constructor,
@@ -32,6 +51,24 @@ public struct _validatorbase;
 /// A validator with a fluent API.
 /// Call <c>For</c> to select a property, then chain checks such as
 /// <c>NotNull</c>, <c>Min</c>, <c>Max</c>, <c>In</c>, etc.
+/// 
+/// <code>
+/// class OrderValidator(Order order) 
+///     : FluentValidator&lt;Order&gt;(order)
+/// {
+///     protected override void Execute()
+///     {
+///         For(() =&gt; Object, "Order")
+///             .NotNull();
+///         For(() =&gt; Object.Name, "Name")
+///             .NotNullOrWhiteSpace();
+///         For(() =&gt; Object.Amount, "Amount")
+///             .Min(1).Max(10000);
+///     }
+/// }
+/// 
+/// new OrderValidator(order).Verify();
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatorbase" />
 public struct _fluentvalidator;
@@ -50,8 +87,10 @@ public struct _validationmessages;
 // ValidatorBase / IValidator
 
 /// <summary>
-/// The object being validated.
-/// Exposed via the <c>Object</c> property.
+/// the <c>Object</c> property is meant to store the object being validated.
+/// The base classes do nothing with it.
+/// It's expected to be used in the Execute method as a root object to validate.
+/// This to enforce the style of passing something for the validator to validate.
 /// </summary>
 public struct _rootobject;
 
@@ -62,17 +101,37 @@ public struct _execute;
 
 /// <summary>
 /// <see langword="true" /> when no validation messages were produced.
+/// 
+/// <code>
+/// if (!validator.IsValid)
+///     foreach (var msg in validator.ValidationMessages)
+///         Console.WriteLine(msg.Text);
+/// </code>
 /// </summary>
 public struct _isvalid;
 
 /// <summary>
 /// Throws an exception if IsValid is false,
 /// listing all the validation messages.
+/// 
+/// <code>
+/// new OrderValidator(order).Verify();
+/// </code>
 /// </summary>
 public struct _verify;
 
 /// <remarks>
 /// Runs a sub-validator and merges its messages into this validator's results.
+/// 
+/// <code>
+/// // By instance (sub-object differs from the root):
+/// Execute(new AddressValidator(Object.Address), "Address: ");
+/// // By generic type (sub-validator shares the same root object):
+/// Execute&lt;AddressValidator&gt;();
+/// Execute&lt;AddressValidator&gt;("Address: "); // with message prefix
+/// // By Type (runtime-resolved, same as generic):
+/// Execute(typeof(AddressValidator));
+/// </code>
 /// </remarks>
 /// <typeparam name="TValidator">
 /// Type for the generic <c>Execute</c> overloads. Must be a validator derived from
@@ -93,6 +152,13 @@ public struct _executesub;
 /// <remarks>
 /// Selects the property to validate next.
 /// Subsequent fluent calls (e.g. <c>NotNull</c>, <c>Min</c>) apply to this property.
+/// 
+/// <code>
+/// For(() =&gt; Object.Name,  "Name" )
+///     .NotNullOrWhiteSpace();
+/// For(() =&gt; Object.Price, "Price")
+///     .Min(0).Max(9999);
+/// </code>
 /// </remarks>
 /// <param name="propertyExpression">
 /// Expression from which both the value and a property key are extracted.
@@ -113,12 +179,20 @@ public struct _validatormethod;
 
 /// <summary>
 /// Checks if the value is <see langword="null" />.
+/// 
+/// <code>
+/// For(() =&gt; Object.Customer, "Customer").NotNull();
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _notnull;
 
 /// <summary>
 /// Checks if the value is <see langword="null" />, empty or contains only white-space characters.
+/// 
+/// <code>
+/// For(() =&gt; Object.Name, "Name").NotNullOrWhiteSpace();
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _notnullorwhitespace;
@@ -126,12 +200,22 @@ public struct _notnullorwhitespace;
 /// <summary>
 /// Checks if the value is not one of the specified allowed values.
 /// Useful for checking that a value is one of an explicit set (for example, enum-like choices).
+/// 
+/// <code>
+/// For(() =&gt; Object.Status, "Status")
+///     .In("Active", "Inactive", "Pending");
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _in;
 
 /// <summary>
 /// Checks if the selected property's value does not equal the specified expected value.
+/// 
+/// <code>
+/// // requires Object.Status == "Active"
+/// For(() =&gt; Object.Status, "Status").Is("Active");
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _is;
@@ -139,6 +223,11 @@ public struct _is;
 /// <summary>
 /// Checks if the selected property's value equals the specified forbidden value.
 /// Use this to forbid a particular literal (for example, <c>"Deleted"</c> in a status field).
+/// 
+/// <code>
+/// // forbids Object.Status == "Deleted"
+/// For(() =&gt; Object.Status, "Status").IsNot("Deleted");
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _isnot;
@@ -146,12 +235,20 @@ public struct _isnot;
 /// <summary>
 /// Checks if the selected property's value equals zero.
 /// Useful for numeric fields where zero is not an acceptable value.
+/// 
+/// <code>
+/// For(() =&gt; Object.Quantity, "Quantity").NotZero();
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _notzero;
 
 /// <summary>
 /// Checks if the selected property's value is not strictly greater than the specified minimum.
+/// 
+/// <code>
+/// For(() =&gt; Object.Score, "Score").Above(0);
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _above;
@@ -159,6 +256,10 @@ public struct _above;
 /// <summary>
 /// Checks if the value is less than the specified minimum.
 /// The minimum is an inclusive lower bound for valid values.
+/// 
+/// <code>
+/// For(() =&gt; Object.Score, "Score").Min(1);
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _min;
@@ -166,6 +267,10 @@ public struct _min;
 /// <summary>
 /// Checks if the selected property's value exceeds the specified maximum.
 /// The maximum is an inclusive upper bound for valid values.
+/// 
+/// <code>
+/// For(() =&gt; Object.Score, "Score").Max(100);
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _max;
@@ -173,6 +278,11 @@ public struct _max;
 /// <summary>
 /// Checks if the value can be parsed as an integer.
 /// Use to reject whole-number input where a non-integer is expected.
+/// 
+/// <code>
+/// // Passes for "hello", fails for "42":
+/// For(() =&gt; Object.Description, "Description").NotInteger();
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _notinteger;
@@ -180,6 +290,11 @@ public struct _notinteger;
 /// <summary>
 /// Checks if the selected property's value does not match any defined member
 /// of the specified enum type.
+/// 
+/// <code>
+/// For(() =&gt; Object.Color, "Color")
+///     .IsEnumValue&lt;ColorEnum&gt;();
+/// </code>
 /// </summary>
 /// <inheritdoc cref="_validatormethod" />
 public struct _isenumvalue;
@@ -200,6 +315,11 @@ public struct _messagetext;
 
 /// <summary>
 /// Adds a validation message to the collection.
+/// 
+/// <code>
+/// ValidationMessages.Add("Name", "Name is required.");
+/// ValidationMessages.Add(() =&gt; Object.Name, "Name is required.");
+/// </code>
 /// </summary>
 /// <param name="propertyKeyExpression">
 /// Expression from which the property key is extracted.
