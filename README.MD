@@ -169,7 +169,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 #### `2026-03-15`, `0.251` : __Validation.Legacy__
 
-- [`Validation.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Validation) to 
+- [`Validation.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Validation)
 - Historic version + full test coverage / IntelliSense docs / code trimming / native AOT support
 - .NET `10`, `9`, `8`, `7`, `6`, `5`, `4.6.1` / .NET Standard `2.0`, `2.1`
 - `FluentValidator` syntax:  
