@@ -53,32 +53,33 @@ namespace JJ.Framework.Validation.Legacy
         /// <summary> 
         /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
         /// </summary>
-        /// <inheritdoc cref="_executesub" />
+        /// <inheritdoc cref="_executeivalidator" />
         protected void Execute(IValidator validator)
         {
             Execute(validator, null);
         }
 
-        /// <inheritdoc cref="_executesub" />
+        /// <inheritdoc cref="_executetvalidator" />
         protected void Execute<[Dyn(PublicCtors)] TValidator>()
             where TValidator : ValidatorBase<TRootObject>
         {
             Execute(typeof(TValidator), null);
         }
 
-        /// <inheritdoc cref="_executesub" />
+        /// <inheritdoc cref="_executetvalidatorwithprefix" />
         protected void Execute<[Dyn(PublicCtors)] TValidator>(string messagePrefix)
             where TValidator : ValidatorBase<TRootObject>
         {
             Execute(typeof(TValidator), messagePrefix);
         }
-        /// <inheritdoc cref="_executesub" />
+
+        /// <inheritdoc cref="_executevalidatortype" />
         protected void Execute([Dyn(PublicCtors)] Type validatorType)
         {
             Execute(validatorType, null);
         }
 
-        /// <inheritdoc cref="_executesub" />
+        /// <inheritdoc cref="_executevalidatortypewithprefix" />
         protected void Execute([Dyn(PublicCtors)] Type validatorType, string messagePrefix)
         {
             IValidator validator = (IValidator)Activator.CreateInstance(validatorType, new object[] { Object });
@@ -92,7 +93,7 @@ namespace JJ.Framework.Validation.Legacy
         /// A message prefix can identify the parent object so that validation messages indicate 
         /// what specific part of the object structure they are about. 
         /// </param>
-        /// <inheritdoc cref="_executesub" />
+        /// <inheritdoc cref="_executeivalidatorwithprefix" />
         public void Execute(IValidator validator, string messagePrefix)
         {
             if (validator == null) throw new NullException(() => validator);

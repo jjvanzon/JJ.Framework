@@ -17,10 +17,15 @@ namespace JJ.Framework.Validation.Legacy.docs;
 /// <code>
 /// IValidator validator = new OrderValidator(order);
 /// if (!validator.IsValid)
+/// {
 ///     foreach (var msg in validator.ValidationMessages)
+///     {
 ///         Console.WriteLine(msg.Text);
+///     }
+/// }
 /// validator.Verify();
 /// </code>
+/// 
 /// </summary>
 public struct _ivalidator;
 
@@ -48,7 +53,7 @@ public struct _ivalidator;
 public struct _validatorbase;
 
 /// <summary>
-/// A validator with a fluent API.
+/// Base class for validators with a fluent API.
 /// Call <c>For</c> to select a property, then chain checks such as
 /// <c>NotNull</c>, <c>Min</c>, <c>Max</c>, <c>In</c>, etc.
 /// 
@@ -69,8 +74,8 @@ public struct _validatorbase;
 /// 
 /// new OrderValidator(order).Verify();
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatorbase" />
 public struct _fluentvalidator;
 
 /// <summary>
@@ -95,7 +100,8 @@ public struct _validationmessages;
 public struct _rootobject;
 
 /// <summary>
-/// Override to define the validation rules for this validator.
+/// Override this method in a derived FluentValidator (or ValidatorBase)
+/// to define the validation rules for this validator.
 /// </summary>
 public struct _execute;
 
@@ -104,9 +110,14 @@ public struct _execute;
 /// 
 /// <code>
 /// if (!validator.IsValid)
+/// {
 ///     foreach (var msg in validator.ValidationMessages)
+///     {
 ///         Console.WriteLine(msg.Text);
+///     }
+/// }
 /// </code>
+/// 
 /// </summary>
 public struct _isvalid;
 
@@ -120,6 +131,9 @@ public struct _isvalid;
 /// </summary>
 public struct _verify;
 
+// TODO: Example code with comments became a bit dense. Let's spread that ifo across the _executeivalidator docs structs and onward.
+
+
 /// <remarks>
 /// Runs a sub-validator and merges its messages into this validator's results.
 /// 
@@ -132,6 +146,7 @@ public struct _verify;
 /// // By Type (runtime-resolved, same as generic):
 /// Execute(typeof(AddressValidator));
 /// </code>
+/// 
 /// </remarks>
 /// <typeparam name="TValidator">
 /// Type for the generic <c>Execute</c> overloads. Must be a validator derived from
@@ -147,6 +162,24 @@ public struct _verify;
 /// </param>
 public struct _executesub;
 
+/// <inheritdoc cref="_executesub" />
+public struct _executeivalidator;
+
+/// <inheritdoc cref="_executesub" />
+public struct _executetvalidator;
+
+/// <inheritdoc cref="_executesub" />
+public struct _executetvalidatorwithprefix;
+
+/// <inheritdoc cref="_executesub" />
+public struct _executevalidatortype;
+
+/// <inheritdoc cref="_executesub" />
+public struct _executevalidatortypewithprefix;
+
+/// <inheritdoc cref="_executesub" />
+public struct _executeivalidatorwithprefix;
+
 // FluentValidator
 
 /// <remarks>
@@ -154,11 +187,10 @@ public struct _executesub;
 /// Subsequent fluent calls (e.g. <c>NotNull</c>, <c>Min</c>) apply to this property.
 /// 
 /// <code>
-/// For(() =&gt; Object.Name,  "Name" )
-///     .NotNullOrWhiteSpace();
-/// For(() =&gt; Object.Price, "Price")
-///     .Min(0).Max(9999);
+/// For(() =&gt; Object.Name, "Name").NotNullOrWhiteSpace();
+/// For(() =&gt; Object.Price, "Price").Min(0).Max(9999);
 /// </code>
+/// 
 /// </remarks>
 /// <param name="propertyExpression">
 /// Expression from which both the value and a property key are extracted.
@@ -175,7 +207,7 @@ public struct _for;
 /// Adds a value to the ValidationMessages when the validation fails.
 /// The IsValid will return False and the Verify method will throw an exception if there are any ValidationMessages.
 /// </remarks>
-public struct _validatormethod;
+public struct _validationmethod;
 
 /// <summary>
 /// Checks if the value is <see langword="null" />.
@@ -183,8 +215,9 @@ public struct _validatormethod;
 /// <code>
 /// For(() =&gt; Object.Customer, "Customer").NotNull();
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _notnull;
 
 /// <summary>
@@ -193,8 +226,9 @@ public struct _notnull;
 /// <code>
 /// For(() =&gt; Object.Name, "Name").NotNullOrWhiteSpace();
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _notnullorwhitespace;
 
 /// <summary>
@@ -205,19 +239,20 @@ public struct _notnullorwhitespace;
 /// For(() =&gt; Object.Status, "Status")
 ///     .In("Active", "Inactive", "Pending");
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _in;
 
 /// <summary>
-/// Checks if the selected property's value does not equal the specified expected value.
+/// Requires that the property has a specific value.
 /// 
 /// <code>
-/// // requires Object.Status == "Active"
 /// For(() =&gt; Object.Status, "Status").Is("Active");
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _is;
 
 /// <summary>
@@ -225,11 +260,11 @@ public struct _is;
 /// Use this to forbid a particular literal (for example, <c>"Deleted"</c> in a status field).
 /// 
 /// <code>
-/// // forbids Object.Status == "Deleted"
 /// For(() =&gt; Object.Status, "Status").IsNot("Deleted");
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _isnot;
 
 /// <summary>
@@ -239,8 +274,9 @@ public struct _isnot;
 /// <code>
 /// For(() =&gt; Object.Quantity, "Quantity").NotZero();
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _notzero;
 
 /// <summary>
@@ -249,8 +285,9 @@ public struct _notzero;
 /// <code>
 /// For(() =&gt; Object.Score, "Score").Above(0);
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _above;
 
 /// <summary>
@@ -260,8 +297,9 @@ public struct _above;
 /// <code>
 /// For(() =&gt; Object.Score, "Score").Min(1);
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _min;
 
 /// <summary>
@@ -271,8 +309,9 @@ public struct _min;
 /// <code>
 /// For(() =&gt; Object.Score, "Score").Max(100);
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _max;
 
 /// <summary>
@@ -283,8 +322,9 @@ public struct _max;
 /// // Passes for "hello", fails for "42":
 /// For(() =&gt; Object.Description, "Description").NotInteger();
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _notinteger;
 
 /// <summary>
@@ -295,8 +335,9 @@ public struct _notinteger;
 /// For(() =&gt; Object.Color, "Color")
 ///     .IsEnumValue&lt;ColorEnum&gt;();
 /// </code>
+/// 
 /// </summary>
-/// <inheritdoc cref="_validatormethod" />
+/// <inheritdoc cref="_validationmethod" />
 public struct _isenumvalue;
 
 // ValidationMessage members
@@ -320,6 +361,9 @@ public struct _messagetext;
 /// ValidationMessages.Add("Name", "Name is required.");
 /// ValidationMessages.Add(() =&gt; Object.Name, "Name is required.");
 /// </code>
+/// 
+/// Instead of above syntax, prefer fluent methods like <c>.NotNull()</c> where available..
+/// See <see cref="FluentValidator{TRootObject}">FluentValidator</see>.
 /// </summary>
 /// <param name="propertyKeyExpression">
 /// Expression from which the property key is extracted.
