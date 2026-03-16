@@ -103,7 +103,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - Flag when you consider `0` meaningful (not nully)
 
-#### `2026-01-27` , `3.0`/`0.250` : __.NET 10__
+#### `2026-01-27` | `3.0`/`0.250` : __.NET 10__
 
 - Upgraded with explicit support for `.NET 10`
 
