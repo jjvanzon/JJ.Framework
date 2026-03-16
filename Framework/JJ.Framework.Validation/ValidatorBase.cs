@@ -11,7 +11,7 @@ namespace JJ.Framework.Validation.Legacy
     /// <inheritdoc cref="_validatorbase" />
     public abstract class ValidatorBase<TRootObject> : IValidator
     {
-        /// <inheritdoc cref="_postponeexecute" />
+        /// <inheritdoc cref="_validatorbase" />
         public ValidatorBase(TRootObject obj, bool postponeExecute = false)
         {
             Object = obj;
@@ -31,17 +31,16 @@ namespace JJ.Framework.Validation.Legacy
         /// <inheritdoc cref="_validationmessages" />
         private readonly ValidationMessages _validationMessages = new ValidationMessages();
 
-        /// <inheritdoc cref="_validationmessages" />
+        /// <inheritdoc />
         public ValidationMessages ValidationMessages { get { return _validationMessages; } }
 
-        /// <inheritdoc cref="_isvalid" />
+        /// <inheritdoc />
         public bool IsValid
         {
             get { return ValidationMessages.Count == 0; }
         }
 
-        /// <summary> Throws an exception if IsValid is false. </summary>
-        /// <inheritdoc cref="_verify" />
+        /// <inheritdoc />
         public void Verify()
         {
             if (ValidationMessages.Count > 0)

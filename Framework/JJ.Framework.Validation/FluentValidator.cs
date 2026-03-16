@@ -13,12 +13,13 @@ namespace JJ.Framework.Validation.Legacy
     /// <inheritdoc cref="_fluentvalidator" />
     public abstract class FluentValidator<TRootObject> : ValidatorBase<TRootObject>
     {
-        /// <inheritdoc cref="_postponeexecute" />
+        /// <inheritdoc cref="_fluentvalidator" />
         public FluentValidator(TRootObject obj, bool postponeExecute = false)
             : base(obj, postponeExecute)
         { }
 
         private object _value;
+        /// <inheritdoc cref="_propertykey" />
         private string _propertyKey;
         private string _propertyDisplayName;
 
