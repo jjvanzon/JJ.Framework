@@ -256,7 +256,11 @@ public struct _validationmethod;
 /// Checks if the value is <see langword="null" />.
 /// 
 /// <code>
-/// For(() =&gt; Object.Customer, "Customer").NotNull();
+/// For(() =&gt; Object.Customer, "Customer")
+///     .NotNull();
+///
+/// For(Object.BillingAddress, "BillingAddress", DisplayNames.BillingAddress)
+///     .NotNull();
 /// </code>
 /// 
 /// </summary>
@@ -267,7 +271,11 @@ public struct _notnull;
 /// Checks if the value is <see langword="null" />, empty or contains only white-space characters.
 /// 
 /// <code>
-/// For(() =&gt; Object.Name, "Name").NotNullOrWhiteSpace();
+/// For(() =&gt; Object.Name, DisplayNames.FullName)
+///     .NotNullOrWhiteSpace();
+///
+/// For(Object.Name, nameof(Object.Name), "Full Name")
+///     .NotNullOrWhiteSpace();
 /// </code>
 /// 
 /// </summary>
@@ -279,7 +287,9 @@ public struct _notnullorwhitespace;
 /// Useful for checking that a value is one of an explicit set (for example, enum-like choices).
 /// 
 /// <code>
-/// For(() =&gt; Object.Status, "Status")
+/// For(() =&gt; Object.OrderStatus, "Order Status")
+///     .In("Active", "Inactive", "Pending");
+/// For(Object.Status, nameof(Object.Status), DisplayNames.Status)
 ///     .In("Active", "Inactive", "Pending");
 /// </code>
 /// 
@@ -291,7 +301,11 @@ public struct _in;
 /// Requires that the property has a specific value.
 /// 
 /// <code>
-/// For(() =&gt; Object.Status, "Status").Is("Active");
+/// For(() =&gt; Object.Status, "Order Status")
+///     .Is("Active");
+/// 
+/// For(Object.OrderStatus, "OrderStatus", DisplayNames.OrderStatus)
+///     .Is("Active");
 /// </code>
 /// 
 /// </summary>
@@ -303,7 +317,11 @@ public struct _is;
 /// Use this to forbid a particular literal (for example, <c>"Deleted"</c> in a status field).
 /// 
 /// <code>
-/// For(() =&gt; Object.Status, "Status").IsNot("Deleted");
+/// For(() =&gt; Object.OrderStatus, DisplayNames.OrderStatus)
+///     .IsNot("Deleted");
+/// 
+/// For(Object.OrderStatus, "OrderStatus", "Order Status")
+///     .IsNot("InProgress");
 /// </code>
 /// 
 /// </summary>
@@ -315,7 +333,11 @@ public struct _isnot;
 /// Useful for numeric fields where zero is not an acceptable value.
 /// 
 /// <code>
-/// For(() =&gt; Object.Quantity, "Quantity").NotZero();
+/// For(() =&gt; Object.Quantity, StringResources.Quantity)
+///     .NotZero();
+/// 
+/// For(Object.Amount, "Amount", "Total Amount")
+///     .NotZero();
 /// </code>
 /// 
 /// </summary>
@@ -326,7 +348,11 @@ public struct _notzero;
 /// Checks if the selected property's value is not strictly greater than the specified minimum.
 /// 
 /// <code>
-/// For(() =&gt; Object.Score, "Score").Above(0);
+/// For(() =&gt; Object.CreditScore, DisplayNames.CreditScore)
+///     .Above(0);
+/// 
+/// For(Object.CreditScore, nameof(Object.CreditScore), "Credit Score")
+///     .Above(0);
 /// </code>
 /// 
 /// </summary>
@@ -338,7 +364,11 @@ public struct _above;
 /// The minimum is an inclusive lower bound for valid values.
 /// 
 /// <code>
-/// For(() =&gt; Object.Score, "Score").Min(1);
+/// For(() =&gt; Object.CreditScore, "Credit Score")
+///     .Min(1);
+/// 
+/// For(Object.CreditScore, "CreditScore", DisplayNames.CreditScore)
+///     .Min(1);
 /// </code>
 /// 
 /// </summary>
@@ -350,7 +380,11 @@ public struct _min;
 /// The maximum is an inclusive upper bound for valid values.
 /// 
 /// <code>
-/// For(() =&gt; Object.Score, "Score").Max(100);
+/// For(() =&gt; Object.CreditScore, "Credit Score")
+///     .Max(100);
+/// 
+/// For(Object.CreditScore, nameof(Object.CreditScore), "Credit Score")
+///     .Max(100);
 /// </code>
 /// 
 /// </summary>
@@ -363,7 +397,11 @@ public struct _max;
 /// 
 /// <code>
 /// // Passes for "hello", fails for "42":
-/// For(() =&gt; Object.Description, "Description").NotInteger();
+/// For(() =&gt; Object.SerialNumber, "Serial Number")
+///     .NotInteger();
+/// 
+/// For(Object.SerialNumber, "SerialNumber", DisplayNames.SerialNumber)
+///     .NotInteger();
 /// </code>
 /// 
 /// </summary>
@@ -377,6 +415,9 @@ public struct _notinteger;
 /// <code>
 /// For(() =&gt; Object.Color, "Color")
 ///     .IsEnumValue&lt;ColorEnum&gt;();
+/// 
+/// For(Object.PaymentMethod, "PaymentMethod", DisplayNames.PaymentMethod)
+///     .IsEnumValue&lt;PaymentMethodEnum&gt;();
 /// </code>
 /// 
 /// </summary>
