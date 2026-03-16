@@ -398,10 +398,10 @@ public struct _max;
 /// 
 /// <code>
 /// // Passes for "hello", fails for "42":
-/// For(() =&gt; Object.SerialNumber, "Serial Number")
+/// For(() =&gt; Object.SerialNumber, DisplayNames.SerialNumber)
 ///     .NotInteger();
 /// 
-/// For(Object.SerialNumber, "SerialNumber", DisplayNames.SerialNumber)
+/// For(Object.SerialNumber, "SerialNumber", Serial Number")
 ///     .NotInteger();
 /// </code>
 /// 
