@@ -289,7 +289,8 @@ public struct _notnullorwhitespace;
 /// <code>
 /// For(() =&gt; Object.OrderStatus, "Order Status")
 ///     .In("Active", "Inactive", "Pending");
-/// For(Object.Status, nameof(Object.Status), DisplayNames.Status)
+/// 
+/// For(Object.Status, "Status", DisplayNames.Status)
 ///     .In("Active", "Inactive", "Pending");
 /// </code>
 /// 
@@ -446,7 +447,7 @@ public struct _messagetext;
 /// ValidationMessages.Add(() =&gt; Object.Name, "Name is required.");
 /// </code>
 /// 
-/// Instead of above syntax, prefer fluent methods like <c>.NotNull()</c> where available..
+/// Instead of above syntax, prefer fluent methods like <c>.NotNull()</c> where available.
 /// See <see cref="FluentValidator{TRootObject}">FluentValidator</see>.
 /// </summary>
 /// <param name="propertyKeyExpression">
