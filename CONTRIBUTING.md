@@ -5,6 +5,7 @@
 
 __Contents__
 
+- [First Off](#first-off)
 - [Architecture](#architecture)
 - [Legacy](#legacy)
 - [Mutations](#mutations)
@@ -23,6 +24,12 @@ __Contents__
 - [Trimmable Libs](#trimmable-libs)
 - [.NET Targeting](#net-targeting)
 - [Old Commits](#old-commits)
+
+
+First Off
+---------
+
+Please run `install-git-hooks.cmd`. It'll set a pre-commit hook that'll warn you when you've not included a new `BuildNum.xml`, which you can generate automatically by compiling the solution.
 
 
 Architecture
