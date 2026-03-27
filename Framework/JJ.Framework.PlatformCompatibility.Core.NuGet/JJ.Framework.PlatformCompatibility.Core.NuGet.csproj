@@ -7,14 +7,12 @@
     <PackageTags>platform-compatibility;shim;source-package;buildTransitive;internal</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core.NuGet</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core.NuGet</PackageProjectUrl>
-    <!--<IncludeBuildOutput>false</IncludeBuildOutput>-->
-    <!--<NoDefaultCompileItems>true</NoDefaultCompileItems>-->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoDefaultCompileItems>true</NoDefaultCompileItems>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <IncludeSymbols>false</IncludeSymbols>
+    <NuspecFile>JJ.Framework.PlatformCompatibility.Core.NuGet.nuspec</NuspecFile>
+    <NuspecProperties>version=$(Version)</NuspecProperties>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="buildTransitive\JJ.Framework.PlatformCompatibility.Core.NuGet.targets" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core.NuGet.targets" />
-
-    <None Include="..\JJ.Framework.PlatformCompatibility.Core\*.cs" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core\" />
-  </ItemGroup>
 </Project>
