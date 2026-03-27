@@ -162,6 +162,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Leg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests.Helpers", "Framework\JJ.Framework.Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj", "{766D56F7-0939-4D87-4BCE-FD950548C753}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.NuGet", "Framework\JJ.Framework.PlatformCompatibility.Core.NuGet\JJ.Framework.PlatformCompatibility.Core.NuGet.csproj", "{B863292C-8406-5E54-EC47-981C87EE9790}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -428,6 +430,10 @@ Global
 		{766D56F7-0939-4D87-4BCE-FD950548C753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{766D56F7-0939-4D87-4BCE-FD950548C753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{766D56F7-0939-4D87-4BCE-FD950548C753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B863292C-8406-5E54-EC47-981C87EE9790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B863292C-8406-5E54-EC47-981C87EE9790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B863292C-8406-5E54-EC47-981C87EE9790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B863292C-8406-5E54-EC47-981C87EE9790}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

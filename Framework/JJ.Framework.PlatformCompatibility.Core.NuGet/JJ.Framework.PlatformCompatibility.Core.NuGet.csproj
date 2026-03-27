@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>4.1.$(BuildNum)</Version>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>JJ.Framework.PlatformCompatibility.Core.NuGet</PackageId>
+    <Description>Source-only NuGet package that injects JJ.Framework platform compatibility shims into consuming projects as internal source files.</Description>
+    <PackageTags>platform-compatibility;shim;source-package;buildTransitive;internal</PackageTags>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core.NuGet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core.NuGet</PackageProjectUrl>
+    <!--<IncludeBuildOutput>false</IncludeBuildOutput>-->
+    <!--<NoDefaultCompileItems>true</NoDefaultCompileItems>-->
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="buildTransitive\JJ.Framework.PlatformCompatibility.Core.NuGet.targets" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core.NuGet.targets" />
+
+    <None Include="..\JJ.Framework.PlatformCompatibility.Core\*.cs" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core\" />
+  </ItemGroup>
+</Project>

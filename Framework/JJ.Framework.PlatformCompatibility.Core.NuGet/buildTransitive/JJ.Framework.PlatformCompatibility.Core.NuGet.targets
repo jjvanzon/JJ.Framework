@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)JJ.Framework.PlatformCompatibility.Core\*.cs"
+             Link="JJ.Framework.PlatformCompatibility.Core\%(Filename)%(Extension)"
+             Visible="false" />
+  </ItemGroup>
+</Project>
