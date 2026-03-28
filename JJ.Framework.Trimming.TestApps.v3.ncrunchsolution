@@ -2,6 +2,7 @@
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
+    <BuildLogVerbosity>Minimal</BuildLogVerbosity>
     <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
     <CustomBuildProperties>
       <Value>IsNCrunch = True</Value>
@@ -9,7 +10,7 @@
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
     <ImpactDetection>WatchText</ImpactDetection>
-    <InstrumentOutputAssembly>False</InstrumentOutputAssembly>
+    <InstrumentOutputAssembly>True</InstrumentOutputAssembly>
     <MetricsExclusionList>
       <Value>Demos\JJ.Demos.GetNames\JJ.Demos.GetNames.csproj</Value>
       <Value>Demos\JJ.Demos.GetNames.Tests\JJ.Demos.GetNames.Tests.csproj</Value>
