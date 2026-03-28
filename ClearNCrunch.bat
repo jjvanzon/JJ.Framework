@@ -2,21 +2,8 @@
 
 echo Clearing NCrunch caches (will only remove cache folders, not .ncrunchproject/.ncrunchsolution files)...
 
-rem ------------------------------------------------------------------
-rem Remove solution-level NCrunch cache directories in the repo root.
-rem These are typically folders created by NCrunch (often start with underscore
-rem or ".ncrunch"). We only target directories so "*.ncrunchproject" and
-rem "*.ncrunchsolution" files are not affected.
-rem ------------------------------------------------------------------
-rem Include more permissive patterns for temp caches (matches variants like nCrunchTemp, nCrunchTemp_123, etc.)
-for /d /r %%D in ("*_NCrunch*" "_ncrunch*" "*.ncrunch*" "ncrunch_*" "_nCrunch*") do (
-  echo Deleting "%%~fD"
-  echo "COLD RUN. NOTHING DELETED FOR NOW. VERIFY VALIDITY FIRST."
-  REM rd /s /q "%%~fD"
-)
-
 rem Also look for NCrunch-generated files (e.g. nCrunchTemp_*.csproj.user) and report them.
-for /r %%F in ("nCrunchTemp_*.*") do (
+for /r %%F in ("nCrunchTemp_*.*" ".NCrunch*") do (
   echo Deleting "%%~fF"
   del "%%~fF"
 )

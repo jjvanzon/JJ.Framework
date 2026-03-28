@@ -11,8 +11,6 @@ TestResults
 *.Backup.tmp
 
 # NCrunch
-#*.ncrunchproject
-#*.ncrunchsolution
 nCrunchTemp*.*
 .NCrunch*
 NCrunch*.xml

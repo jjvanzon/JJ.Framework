@@ -1,0 +1,13 @@
+
+rem ------------------------------------------------------------------
+rem Remove solution-level NCrunch cache directories in the repo root.
+rem These are typically folders created by NCrunch (often start with underscore
+rem or ".ncrunch"). We only target directories so "*.ncrunchproject" and
+rem "*.ncrunchsolution" files are not affected.
+rem ------------------------------------------------------------------
+rem Include more permissive patterns for temp caches (matches variants like nCrunchTemp, nCrunchTemp_123, etc.)
+for /d /r %%D in ("*_NCrunch*" "_ncrunch*" "*.ncrunch*" "ncrunch_*" "_nCrunch*") do (
+  echo Deleting "%%~fD"
+  echo "COLD RUN. NOT DELETED. VERIFY VALIDITY FIRST."
+  REM rd /s /q "%%~fD"
+)
