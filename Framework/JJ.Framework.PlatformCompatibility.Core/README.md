@@ -17,29 +17,31 @@ It's only a limited selection, in support of the `JJ` projects.
 Argument Checks
 ---------------
 
-Newer `.NETs` added shorthand throws directly onto the exception types:
+Newer `.NETs` added shorthand `throws` which aren't there yet in some older `.NET` versions:
 
-- `ArgumentNullException.ThrowIfNull` - backported for pre `.NET 6`.
-- `ArgumentException.ThrowIfNullOrWhiteSpace` - backported for pre `.NET 8`.
+- `ThrowIfNull`
+- `ThrowIfNullOrWhiteSpace`
 
 Language Features
 -----------------
 
-A few language keywords that older compilers don't support without a stub type somewhere:
+A few language keywords that older `.NET` versions don't support without a stub type somewhere:
 
 - `[RequiredMember]` - needed for the `required` keyword on older targets.
-- `[CallerArgumentExpression]` - needed to pass the original expression text of an argument into a method. Pre `.NET 5`.
-- `[OverloadResolutionPriority]` - hints to the compiler which overload to prefer, when there's ambiguity. Pre `.NET 9`.
+- `[CallerArgumentExpression]` - needed to extract the text of the expression of how the argument is passed.
+- `[OverloadResolutionPriority]` - hints to the compiler which overload to prefer, when there's ambiguity.
+- `IsExternalInit` - needed for `init`-only setters.
 - `[CompilerFeatureRequired]` - lets a type signal it relies on a specific compiler feature.
-- `IsExternalInit` - needed for `init`-only setters on `.NET Framework` and `.NET Standard`.
 
 Nullability
 -----------
 
-The nullability attributes live in `System.Diagnostics.CodeAnalysis`. On older platforms they might be missing:
+The nullability attributes might be missing on older platforms:
 
 - `[NotNull]` - tells the compiler a value won't come out `null`.
-- `[NotNullWhen]` - same, but only when the method returns a particular `bool`.
+- `[NotNullWhen]` - same, but only when the method returns a particular Boolean value.
+
+As `PlatformCompatibility.Core` makes sure they're there, the compiler knows what to do with them, and the nullability intents are used, even for older .NET versions.
 
 Trimming / AOT
 --------------
@@ -55,9 +57,9 @@ When publishing with trimming or native compilation (AOT), the compiler needs hi
 Threading
 ---------
 
-- `Lock` - a new type introduced in `.NET 9` for more efficient locking, backported so the same locking pattern compiles on older targets too.
+- `Lock` - a new type introduced for more efficient locking, backported so the same locking pattern compiles on older targets too.
 
 Utilities
 ---------
 
-- `HashCode` - `HashCode.Combine(...)` for `.NET Framework` and `.NET Standard 2.0`, which don't have it built in.
+- `HashCode` - `HashCode.Combine(...)` for older `.NET` versions that don't have it built in.
