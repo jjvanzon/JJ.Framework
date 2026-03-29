@@ -1,8 +1,7 @@
 JJ.Framework.PlatformCompatibility.Core
 =======================================
 
-Shims that mimic new features for old `.NETs`, so new code can compile for older tech.
-
+Shims that mimic new features for old `.NETs`, so new code can compile for older tech.  
 It's internal tooling in support of the `JJ` projects and only supports a limited selection.
 
 Background
