@@ -12,7 +12,10 @@
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <IncludeSymbols>false</IncludeSymbols>
-    <NuspecFile>JJ.Framework.PlatformCompatibility.Core.nuspec</NuspecFile>
-    <NuspecProperties>version=$(Version)</NuspecProperties>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="buildTransitive\JJ.Framework.PlatformCompatibility.Core.targets" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core.targets" />
+    <None Include="*.cs" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core\" />
+  </ItemGroup>
 </Project>
