@@ -24,7 +24,7 @@
     <Compile Include="..\JJ.Framework.Existence.Core.Trimming.TestApp.Bool\UsingMore.cs" />
   </ItemGroup>
 
-  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
@@ -32,3 +32,4 @@
   </ItemGroup>
 
 </Project>
+

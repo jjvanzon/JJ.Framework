@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>0.251.$(BuildNum)</Version>
     <!-- .NET targeting is good for single-exe deployment verification, but omits hitting .NET Standard 2.1 code with .NET 5 tests. -->
@@ -22,7 +22,7 @@
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 
-  <Import Project="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems" Label="Shared" />
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
 </Project>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ce2bf11f-d06a-4ea3-9dd6-fdda12705f83</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>JJ.Framework.PlatformCompatibility.Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\CallerArgumentExpression.cs" Link="JJ.Framework.PlatformCompatibility.Core\CallerArgumentExpression.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\docs.cs" Link="JJ.Framework.PlatformCompatibility.Core\docs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\DynamicallyAccessedMembers.cs" Link="JJ.Framework.PlatformCompatibility.Core\DynamicallyAccessedMembers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\DynamicallyAccessedMemberTypes.cs" Link="JJ.Framework.PlatformCompatibility.Core\DynamicallyAccessedMemberTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\ArgumentExceptionSupport.cs" Link="JJ.Framework.PlatformCompatibility.Core\ArgumentExceptionSupport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\ArgumentNullExceptionSupport.cs" Link="JJ.Framework.PlatformCompatibility.Core\ArgumentNullExceptionSupport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\DynamicDependency.cs" Link="JJ.Framework.PlatformCompatibility.Core\DynamicDependency.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\HashCode.cs" Link="JJ.Framework.PlatformCompatibility.Core\HashCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\IsExternalInit.cs" Link="JJ.Framework.PlatformCompatibility.Core\IsExternalInit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\Lock.cs" Link="JJ.Framework.PlatformCompatibility.Core\Lock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\NotNull.cs" Link="JJ.Framework.PlatformCompatibility.Core\NotNull.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\NotNullWhen.cs" Link="JJ.Framework.PlatformCompatibility.Core\NotNullWhen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\OverloadResolutionPriority.cs" Link="JJ.Framework.PlatformCompatibility.Core\OverloadResolutionPriority.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\CompilerFeatureRequired.cs" Link="JJ.Framework.PlatformCompatibility.Core\CompilerFeatureRequired.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\RequiredMember.cs" Link="JJ.Framework.PlatformCompatibility.Core\RequiredMember.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\RequiresDynamicCode.cs" Link="JJ.Framework.PlatformCompatibility.Core\RequiresDynamicCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\RequiresUnreferencedCode.cs" Link="JJ.Framework.PlatformCompatibility.Core\RequiresUnreferencedCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\UnconditionalSuppressMessage.cs" Link="JJ.Framework.PlatformCompatibility.Core\UnconditionalSuppressMessage.cs" />
+  </ItemGroup>
+</Project>

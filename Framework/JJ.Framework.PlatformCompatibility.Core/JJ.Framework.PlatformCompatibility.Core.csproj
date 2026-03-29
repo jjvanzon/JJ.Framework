@@ -2,17 +2,17 @@
   <PropertyGroup>
     <Version>4.1.$(BuildNum)</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>JJ.Framework.PlatformCompatibility.Core.NuGet</PackageId>
+    <PackageId>JJ.Framework.PlatformCompatibility.Core</PackageId>
     <Description>Source-only NuGet package that injects JJ.Framework platform compatibility shims into consuming projects as internal source files.</Description>
     <PackageTags>platform-compatibility;shim;source-package;buildTransitive;internal</PackageTags>
-    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core.NuGet</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core.NuGet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</PackageProjectUrl>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <NoDefaultCompileItems>true</NoDefaultCompileItems>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <IncludeSymbols>false</IncludeSymbols>
-    <NuspecFile>JJ.Framework.PlatformCompatibility.Core.NuGet.nuspec</NuspecFile>
+    <NuspecFile>JJ.Framework.PlatformCompatibility.Core.nuspec</NuspecFile>
     <NuspecProperties>version=$(Version)</NuspecProperties>
   </PropertyGroup>
 </Project>

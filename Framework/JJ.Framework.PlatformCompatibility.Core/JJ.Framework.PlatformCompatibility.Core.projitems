@@ -1,31 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
-    <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>ce2bf11f-d06a-4ea3-9dd6-fdda12705f83</SharedGUID>
-  </PropertyGroup>
-  <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>JJ.Framework.PlatformCompatibility.Core</Import_RootNamespace>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)CallerArgumentExpression.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)docs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DynamicallyAccessedMembers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DynamicallyAccessedMemberTypes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ArgumentExceptionSupport.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ArgumentNullExceptionSupport.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DynamicDependency.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HashCode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IsExternalInit.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Lock.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NotNull.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NotNullWhen.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)OverloadResolutionPriority.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CompilerFeatureRequired.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RequiredMember.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RequiresDynamicCode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RequiresUnreferencedCode.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UnconditionalSuppressMessage.cs" />
-  </ItemGroup>
+  <Import Project="..\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" />
 </Project>
