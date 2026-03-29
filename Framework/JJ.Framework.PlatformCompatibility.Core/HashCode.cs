@@ -4,15 +4,20 @@
 
 #if NETFRAMEWORK || NETSTANDARD2_0
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
+
 namespace System;
 
+/// <inheritdoc cref="_hashcode" />
 internal struct HashCode
 {
     private const int PRIME_LIKE_SEED = -2128831035; // same bits as 0x811C9DC5
     private const int PRIME_MULTIPLIER = 16777619;
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1>(T1 v1) => v1?.GetHashCode() ?? 0;
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1, T2>(T1 v1, T2 v2)
     {
         unchecked
@@ -24,6 +29,7 @@ internal struct HashCode
         }
     }
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1, T2, T3>(T1 v1, T2 v2, T3 v3)
     {
         unchecked
@@ -36,6 +42,7 @@ internal struct HashCode
         }
     }
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1, T2, T3, T4>(T1 v1, T2 v2, T3 v3, T4 v4)
     {
         unchecked
@@ -49,6 +56,7 @@ internal struct HashCode
         }
     }
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1, T2, T3, T4, T5>(T1 v1, T2 v2, T3 v3, T4 v4, T5 v5)
     {
         unchecked
@@ -63,6 +71,7 @@ internal struct HashCode
         }
     }
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1, T2, T3, T4, T5, T6>(T1 v1, T2 v2, T3 v3, T4 v4, T5 v5, T6 v6)
     {
         unchecked
@@ -78,6 +87,7 @@ internal struct HashCode
         }
     }
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1, T2, T3, T4, T5, T6, T7>(T1 v1, T2 v2, T3 v3, T4 v4, T5 v5, T6 v6, T7 v7)
     {
         unchecked
@@ -94,6 +104,7 @@ internal struct HashCode
         }
     }
 
+    /// <inheritdoc cref="_hashcode" />
     public static int Combine<T1, T2, T3, T4, T5, T6, T7, T8>(T1 v1, T2 v2, T3 v3, T4 v4, T5 v5, T6 v6, T7 v7, T8 v8)
     {
         unchecked

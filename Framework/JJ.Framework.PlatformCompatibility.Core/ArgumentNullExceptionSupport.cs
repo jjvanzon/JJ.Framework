@@ -5,6 +5,7 @@
 
 // ncrunch: no coverage start
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
@@ -12,10 +13,12 @@ using static System.String;
 
 namespace JJ.Framework.PlatformCompatibility.Core;
 
+/// <inheritdoc cref="_argumentnullexceptionsupport" />
 internal static class ArgumentNullExceptionSupport
 {
     #if !NET6_0_OR_GREATER
 
+    /// <inheritdoc cref="_argumentnullexceptionsupport" />
     public static void ThrowIfNull([System.Diagnostics.CodeAnalysis.NotNull] object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
         if (argument == null) throw new ArgumentNullException(expression);

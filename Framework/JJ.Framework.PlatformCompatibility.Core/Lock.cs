@@ -5,8 +5,11 @@
 
 #if !NET9_0_OR_GREATER
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
+
 namespace System.Threading;
 
+/// <inheritdoc cref="_lock" />
 internal sealed class Lock
 {
     public readonly ref struct Scope : System.IDisposable

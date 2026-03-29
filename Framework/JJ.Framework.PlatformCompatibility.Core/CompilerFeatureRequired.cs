@@ -3,8 +3,11 @@
 // ncrunch: no coverage start
 #if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
+
 namespace System.Runtime.CompilerServices;
 
+/// <inheritdoc cref="_compilerfeaturerequired" />
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = false)]
 internal class CompilerFeatureRequiredAttribute(string featureName) : Attribute
 {

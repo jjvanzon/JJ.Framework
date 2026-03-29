@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Version>4.1.$(BuildNum)</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Internal support for JJ projects. Shims mimic new features for old .NETs, so new code can compile for older tech.</Description>
+    <Description>Internal support for JJ projects. Shims that mimic new features for old .NETs, so new code can compile for older tech.</Description>
     <PackageTags>stub shim platform stubs compatibility shims tfm</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</PackageProjectUrl>

@@ -8,8 +8,11 @@
 
 #if !NET5_0_OR_GREATER
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
+
 namespace System.Runtime.CompilerServices;
 
+/// <inheritdoc cref="_callerargumentexpression" />
 internal class CallerArgumentExpressionAttribute(string parameterName) : Attribute
 {
     public string ParameterName { get; } = parameterName;

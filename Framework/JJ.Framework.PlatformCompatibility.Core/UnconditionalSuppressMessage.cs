@@ -3,8 +3,11 @@
 // ncrunch: no coverage start
 #if !NET5_0_OR_GREATER
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
+
 namespace System.Diagnostics.CodeAnalysis;
 
+/// <inheritdoc cref="_unconditionalsuppressmessage" />
 [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
 internal sealed class UnconditionalSuppressMessageAttribute(string category, string checkId) : Attribute
 {

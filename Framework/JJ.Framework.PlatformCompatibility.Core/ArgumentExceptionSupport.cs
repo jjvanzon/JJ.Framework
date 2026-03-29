@@ -6,6 +6,7 @@
 
 // ncrunch: no coverage start
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
@@ -13,10 +14,12 @@ using static System.String;
 
 namespace JJ.Framework.PlatformCompatibility.Core;
 
+/// <inheritdoc cref="_argumentexceptionsupport" />
 internal static class ArgumentExceptionSupport
 {
     #if !NET8_0_OR_GREATER
 
+    /// <inheritdoc cref="_argumentexceptionsupport" />
     public static void ThrowIfNullOrWhiteSpace([System.Diagnostics.CodeAnalysis.NotNull] string? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
         if (argument == null)

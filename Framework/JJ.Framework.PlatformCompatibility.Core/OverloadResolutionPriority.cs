@@ -6,8 +6,11 @@
 // ncrunch: no coverage start
 #if !NET9_0_OR_GREATER
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
+
 namespace System.Runtime.CompilerServices;
 
+/// <inheritdoc cref="_overloadresolutionpriority" />
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Property, Inherited = false)]
 internal class OverloadResolutionPriorityAttribute(int priority) : Attribute
 {
