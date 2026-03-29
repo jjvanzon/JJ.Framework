@@ -3,16 +3,14 @@ JJ.Framework.PlatformCompatibility.Core
 
 Shims that mimic new features for old `.NETs`, so new code can compile for older tech.
 
+It's internal tooling in support of the `JJ` projects and only supports a limited selection.
 
 Background
 ----------
 
 When you want a single code base to compile on both old and new `.NETs`, you run into trouble. Things like `init`, `required` and nullability attributes: they just aren't there on older targets.
 
-These shims step in silently: on platforms that already have the real thing, they stay out of the way. On older ones, they provide just enough of a stub so the compiler stops complaining. Sometimes the behavior may be a no-op, but at least it compiles and things keep working.
-
-It's only a limited selection, in support of the `JJ` projects.
-
+These shims step in silently: on platforms that already have the real thing, they stay out of the way. On older ones, they provide just enough so the compiler stops complaining. Sometimes the behavior may be a no-op, but at least it compiles and things keep working.
 
 Argument Checks
 ---------------
@@ -25,7 +23,7 @@ Newer `.NETs` added shorthand `throws` which aren't there yet in some older `.NE
 Language Features
 -----------------
 
-A few language keywords that older `.NET` versions don't support without a stub type somewhere:
+A few language keywords that older `.NET` versions don't support without a stub somewhere:
 
 - `[RequiredMember]` - needed for the `required` keyword on older targets.
 - `[CallerArgumentExpression]` - needed to extract the text of the expression of how the argument is passed.
@@ -36,7 +34,7 @@ A few language keywords that older `.NET` versions don't support without a stub 
 Nullability
 -----------
 
-The nullability attributes might be missing on older platforms:
+Nullability attributes might be missing on older platforms:
 
 - `[NotNull]` - tells the compiler a value won't come out `null`.
 - `[NotNullWhen]` - same, but only when the method returns a particular Boolean value.
@@ -48,7 +46,8 @@ Trimming / AOT
 
 When publishing with trimming or native compilation (AOT), the compiler needs hints about what to keep. These attributes carry those hints. On platforms that don't know them yet, the shims provide the same code at least compiles:
 
-- `[DynamicallyAccessedMembers]` / `[DynamicallyAccessedMemberTypes]`
+- `[DynamicallyAccessedMembers]`
+- `[DynamicallyAccessedMemberTypes]`
 - `[DynamicDependency]`
 - `[RequiresUnreferencedCode]`
 - `[RequiresDynamicCode]`
@@ -57,7 +56,7 @@ When publishing with trimming or native compilation (AOT), the compiler needs hi
 Threading
 ---------
 
-- `Lock` - a new type introduced for more efficient locking, backported so the same locking pattern compiles on older targets too.
+- `Lock` - a new type introduced for more efficient locking, backported so the same locking pattern compiles on older targets.
 
 Utilities
 ---------
