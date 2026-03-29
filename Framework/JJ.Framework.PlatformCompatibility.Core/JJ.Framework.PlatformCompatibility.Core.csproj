@@ -2,8 +2,8 @@
   <PropertyGroup>
     <Version>4.1.$(BuildNum)</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Internal support for JJ projects. Shims mimicking new features for old .NETs, so new code can compile for older tech.</Description>
-    <PackageTags>tfm shim compatibility shims</PackageTags>
+    <Description>Internal support for JJ projects. Shims mimic new features for old .NETs, so new code can compile for older tech.</Description>
+    <PackageTags>stub shim platform stubs compatibility shims tfm</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</PackageProjectUrl>
   </PropertyGroup>
@@ -11,5 +11,9 @@
   <ItemGroup>
     <None Include="buildTransitive\JJ.Framework.PlatformCompatibility.Core.targets" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core.targets" />
     <None Include="*.cs" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 </Project>
