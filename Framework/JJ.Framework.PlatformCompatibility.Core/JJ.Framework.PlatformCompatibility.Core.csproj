@@ -2,21 +2,10 @@
   <PropertyGroup>
     <Version>4.1.$(BuildNum)</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <!--<PackageId>JJ.Framework.PlatformCompatibility.Core</PackageId>-->
-    <Description>
-      Shims that mimic new features for old .NET versions, so new code can compile for older tech. 
-      Internal support for JJ projects.
-    </Description>
+    <Description>Internal support for JJ projects. Shims mimicking new features for old .NETs, so new code can compile for older tech.</Description>
     <PackageTags>tfm shim compatibility shims</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</PackageProjectUrl>
-    <!--
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <NoDefaultCompileItems>true</NoDefaultCompileItems>
-    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-    <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <IncludeSymbols>false</IncludeSymbols>
-    -->
   </PropertyGroup>
 
   <ItemGroup>
