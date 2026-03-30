@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class ExceptionSupport_Shim_Tests_Base
+public class ExceptionSupport_TestBase
 {
     public void Test_ExceptionSupport_PlatformStub()
     {

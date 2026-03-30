@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class HashCode_Shim_Tests_Base
+public class HashCode_TestBase
 {
     public void Test_HashCode_PlatformStub()
     {

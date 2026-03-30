@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class OverloadResolutionPriority_Shim_Tests_Base
+public class OverloadResolutionPriority_TestBase
 {
     // OverloadResolutionPriority
     

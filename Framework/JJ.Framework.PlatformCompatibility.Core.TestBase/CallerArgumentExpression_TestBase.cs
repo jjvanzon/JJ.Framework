@@ -9,7 +9,7 @@
 
 namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class CallerArgumentExpression_Shim_Tests_Base
+public class CallerArgumentExpression_TestBase
 {
     public void Test_CallerArgumentExpression_PlatformStub()
     {

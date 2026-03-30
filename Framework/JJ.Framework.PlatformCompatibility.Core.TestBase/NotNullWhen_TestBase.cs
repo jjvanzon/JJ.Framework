@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class NotNullWhen_Shim_Tests_Base
+public class NotNullWhen_TestBase
 {
     public void Test_NotNullWhen_PlatformStub()
     {
