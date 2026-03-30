@@ -11,6 +11,8 @@ When you want a single code base to compile on both old and new `.NETs`, you run
 
 These shims step in silently: on platforms that already have the real thing, they stay out of the way. On older ones, they provide just enough so the compiler stops complaining. Sometimes the behavior may be a no-op, but at least it compiles and things keep working.
 
+The following shims have been added:
+
 Argument Checks
 ---------------
 
