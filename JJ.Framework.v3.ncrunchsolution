@@ -273,13 +273,6 @@
       <Value>Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Legacy.Tests.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Xml\JJ.Framework.Persistence.Legacy.Xml.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Legacy.Xml.Linq.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj:net461</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj:net10.0</Value>
