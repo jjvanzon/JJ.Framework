@@ -5,18 +5,14 @@
 // ReSharper disable UseSymbolAlias
 // ReSharper disable EntityNameCapturedOnly.Local
 // ReSharper disable UnusedVariable
+// ReSharper disable UnusedMember.Local
 
 namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-[TestClass]
 public class PlatformCompatibility_Core_Tests_Base
 {
-    // TODO: Remove attributes here?
-
-
     // CallerArgumentExpression
     
-    [TestMethod]
     public void Test_CallerArgumentExpression_PlatformStub()
     {
         var attribute = new CallerArgumentExpressionAttribute("name");
@@ -33,7 +29,6 @@ public class PlatformCompatibility_Core_Tests_Base
 
     // ExceptionSupport
     
-    [TestMethod]
     public void Test_ExceptionSupport_PlatformStub()
     {
         const string? nullText = null;
@@ -47,7 +42,6 @@ public class PlatformCompatibility_Core_Tests_Base
     
     // HashCode
     
-    [TestMethod]
     public void Test_HashCode_PlatformStub()
     {
         int hashCode1 =  HashCode.Combine(1);
@@ -78,7 +72,6 @@ public class PlatformCompatibility_Core_Tests_Base
     
     // NotNullWhen
     
-    [TestMethod]
     public void Test_NotNullWhen_PlatformStub()
     {
         var attr = new NotNullWhenAttribute(true);
@@ -108,7 +101,6 @@ public class PlatformCompatibility_Core_Tests_Base
     
     // OverloadResolutionPriority
     
-    [TestMethod]
     public void Test_PlatformStub_OverloadResolutionPriority_Create()
     {
         var prio1Attribute = new OverloadResolutionPriorityAttribute(1);
@@ -118,7 +110,6 @@ public class PlatformCompatibility_Core_Tests_Base
         AreEqual(0, prio0Attribute.Priority);
     }
     
-    [TestMethod]
     public void Test_PlatformStub_OverloadResolutionPriority_Implicit()
     {
         AreEqual("Overload(A,B)", Overload("A", "B"));
@@ -129,7 +120,6 @@ public class PlatformCompatibility_Core_Tests_Base
     // ReSharper disable once MethodOverloadWithOptionalParameter
     private string Overload(string text1, string text2 = "C") => $"Overload({text1},{text2})";
     
-    [TestMethod]
     public void Test_PlatformStub_OverloadResolutionPriority_Explicit()
     {
         AreEqual("WithPrios(A,B)", WithPrios("A", "B"));
