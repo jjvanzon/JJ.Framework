@@ -1,6 +1,9 @@
+#pragma warning disable IDE0051 // Unused member
+// ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedType.Global
 
 // ncrunch: no coverage start
+
 #if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -18,4 +21,5 @@ internal class CompilerFeatureRequiredAttribute(string featureName) : Attribute
 }
 
 #endif
+
 // ncrunch: no coverage end

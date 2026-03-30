@@ -1,6 +1,5 @@
 ﻿// ReSharper disable UnusedType.Global
-
-// ncrunch: no coverage start
+// ReSharper disable UnusedMember.Global
 
 #if NETFRAMEWORK || NETSTANDARD2_0
 
@@ -125,4 +124,3 @@ internal struct HashCode
 
 #endif
 
-// ncrunch: no coverage end

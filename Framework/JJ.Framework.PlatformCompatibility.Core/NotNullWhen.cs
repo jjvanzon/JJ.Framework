@@ -1,6 +1,6 @@
 ﻿// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 
-// ncrunch: no coverage start
 #if NETFRAMEWORK || NETSTANDARD2_0
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -15,4 +15,3 @@ internal sealed class NotNullWhenAttribute(bool returnValue) : Attribute
 }
 
 #endif
-// ncrunch: no coverage end

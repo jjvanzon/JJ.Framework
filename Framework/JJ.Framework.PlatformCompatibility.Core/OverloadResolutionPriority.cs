@@ -3,7 +3,6 @@
 // ReSharper disable UnuzedType.Local
 // ReSharper disable UnusedType.Global
 
-// ncrunch: no coverage start
 #if !NET9_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -18,4 +17,3 @@ internal class OverloadResolutionPriorityAttribute(int priority) : Attribute
 }
 
 #endif
-// ncrunch: no coverage end
