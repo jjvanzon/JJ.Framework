@@ -1,4 +1,8 @@
-﻿namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
+﻿#pragma warning disable CS0219 // Unused variable
+
+// ReSharper disable UnusedVariable
+
+namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
 public class NotNullWhen_TestBase
 {
@@ -12,7 +16,7 @@ public class NotNullWhen_TestBase
         const string? @null = null;
         
         if (!CheckNotNull(nullyFilled))
-            // ncrunch: no coverage start
+        // ncrunch: no coverage start
         {
             const string num = nullyFilled; // Compiles: Successfully promoted to non-null.
             NoNullRet(nullyFilled);

@@ -3,8 +3,6 @@
 // ReSharper disable UseSymbolAlias
 // ReSharper disable UnusedType.Global
 
-// ncrunch: no coverage start
-
 using JJ.Framework.PlatformCompatibility.Core.docs;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -21,10 +19,9 @@ internal static class ArgumentNullExceptionSupport
     /// <inheritdoc cref="_argumentnullexceptionsupport" />
     public static void ThrowIfNull([System.Diagnostics.CodeAnalysis.NotNull] object? argument, [CallerArgumentExpression(nameof(argument))] string expression = "")
     {
-        if (argument == null) throw new ArgumentNullException(expression);
+        if (argument == null) 
+            throw new ArgumentNullException(expression);
     }
 
     #endif
 }
-
-// ncrunch: no coverage end
