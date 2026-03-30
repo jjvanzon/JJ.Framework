@@ -9,10 +9,8 @@
 
 namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public partial class PlatformCompatibility_Core_Tests_Base
+public class CallerArgumentExpression_Shim_Tests_Base
 {
-    // CallerArgumentExpression
-    
     public void Test_CallerArgumentExpression_PlatformStub()
     {
         var attribute = new CallerArgumentExpressionAttribute("name");
@@ -28,10 +26,8 @@ public partial class PlatformCompatibility_Core_Tests_Base
     }
 }
 
-public partial class PlatformCompatibility_Core_Tests_Base
+public class ExceptionSupport_Shim_Tests_Base
 {
-    // ExceptionSupport
-    
     public void Test_ExceptionSupport_PlatformStub()
     {
         const string? nullText = null;
@@ -44,10 +40,8 @@ public partial class PlatformCompatibility_Core_Tests_Base
     }
 }
 
-public partial class PlatformCompatibility_Core_Tests_Base
+public class HashCode_Shim_Tests_Base
 {
-    // HashCode
-    
     public void Test_HashCode_PlatformStub()
     {
         int hashCode1 =  HashCode.Combine(1);
@@ -77,10 +71,8 @@ public partial class PlatformCompatibility_Core_Tests_Base
     }
 }
 
-public partial class PlatformCompatibility_Core_Tests_Base
+public class NotNullWhen_Shim_Tests_Base
 {
-    // NotNullWhen
-    
     public void Test_NotNullWhen_PlatformStub()
     {
         var attr = new NotNullWhenAttribute(true);
@@ -109,7 +101,7 @@ public partial class PlatformCompatibility_Core_Tests_Base
     private bool CheckIsNull([NotNullWhen(false)] string? text) => text == null;
 }
 
-public partial class PlatformCompatibility_Core_Tests_Base
+public class OverloadResolutionPriority_Shim_Tests_Base
 {
     // OverloadResolutionPriority
     
