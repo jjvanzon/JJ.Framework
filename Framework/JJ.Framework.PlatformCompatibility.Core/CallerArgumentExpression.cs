@@ -1,6 +1,5 @@
 ﻿// ReSharper disable UnusedType.Global
-
-// ncrunch: no coverage start
+// ReSharper disable UnusedMember.Global
 
 // Stub is also needed to compile code for .NET Standard 2.1,
 // while all its supported frameworks already define it. (Even .NET 5 who officially does not.)
@@ -19,5 +18,3 @@ internal class CallerArgumentExpressionAttribute(string parameterName) : Attribu
 }
 
 #endif
-
-// ncrunch: no coverage end

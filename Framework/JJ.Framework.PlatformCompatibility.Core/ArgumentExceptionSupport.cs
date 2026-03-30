@@ -4,8 +4,6 @@
 // ReSharper disable UseSymbolAlias
 // ReSharper disable UnusedType.Global
 
-// ncrunch: no coverage start
-
 using JJ.Framework.PlatformCompatibility.Core.docs;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -37,5 +35,3 @@ internal static class ArgumentExceptionSupport
     
     #endif
 }
-
-// ncrunch: no coverage end
