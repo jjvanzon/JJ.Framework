@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+namespace JJ.Framework.PlatformCompatibility.Tests;
 
 [TestClass]
 public class PlatformCompatibility_Stream_Core_Tests

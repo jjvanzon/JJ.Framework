@@ -4,7 +4,7 @@
 using System.Reflection;
 using JetBrains.Annotations;
 
-namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+namespace JJ.Framework.PlatformCompatibility.Tests;
 
 [TestClass]
 public sealed class PlatformCompatibility_MemberType_Core_Tests

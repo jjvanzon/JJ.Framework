@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+﻿namespace JJ.Framework.PlatformCompatibility.Tests;
 
 [TestClass]
 public class PlatformCompatibility_Tuple_Core_Tests

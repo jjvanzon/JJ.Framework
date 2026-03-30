@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InvokeAsExtensionMember
-namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+namespace JJ.Framework.PlatformCompatibility.Tests;
 
 [TestClass]
 public sealed class PlatformCompatibility_Encoding_Core_Tests
@@ -12,7 +12,7 @@ public sealed class PlatformCompatibility_Encoding_Core_Tests
         foreach (var encoding in new [] { Encoding.UTF8, Encoding.Unicode, Encoding.UTF32 })
         {
             // Arrange
-            string expected  = "Test Encoding";
+            const string expected = "Test Encoding";
             byte[] bytes     = encoding.GetBytes(expected);
             int    byteCount = bytes.Length;
             

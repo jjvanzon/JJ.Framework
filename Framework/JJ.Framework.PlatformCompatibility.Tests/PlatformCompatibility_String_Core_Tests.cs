@@ -1,5 +1,5 @@
 ﻿// ReSharper disable PossibleMultipleEnumeration
-namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+namespace JJ.Framework.PlatformCompatibility.Tests;
 
 [TestClass]
 public class PlatformCompatibility_String_Core_Tests
@@ -8,9 +8,9 @@ public class PlatformCompatibility_String_Core_Tests
     public void PlatformCompatibility_String_IsNullOrWhiteSpace_Core_Test()
     {
         string? nullString = null;
-        string  emptyString = "";
-        string  whiteSpaceString = "   ";
-        string  nonWhiteSpaceString = "abc";
+        const string  emptyString = "";
+        const string  whiteSpaceString = "   ";
+        const string  nonWhiteSpaceString = "abc";
         
         IsTrue (string.IsNullOrWhiteSpace(nullString));
         IsTrue (string.IsNullOrWhiteSpace(emptyString));

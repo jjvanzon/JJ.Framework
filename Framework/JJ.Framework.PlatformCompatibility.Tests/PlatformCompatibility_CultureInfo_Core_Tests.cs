@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+namespace JJ.Framework.PlatformCompatibility.Tests;
 
 [TestClass]
 public sealed class PlatformCompatibility_CultureInfo_Core_Tests

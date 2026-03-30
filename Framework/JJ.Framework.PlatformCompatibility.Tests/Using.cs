@@ -1,7 +1,13 @@
-﻿global using System.Reflection;
+﻿global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Reflection;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.PlatformCompatibility.Legacy;
 global using JJ.Framework.Reflection.Legacy;
+global using JJ.Framework.Testing;
 global using JJ.Framework.Testing.Legacy;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
+global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
+global using static JJ.Framework.Testing.Core.AssertCore;
