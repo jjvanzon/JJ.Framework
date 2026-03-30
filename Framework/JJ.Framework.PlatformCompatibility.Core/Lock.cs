@@ -1,8 +1,6 @@
 ﻿#pragma warning disable IDE0001 // Redundant qualifier
 // ReSharper disable UnusedType.Global
 
-// ncrunch: no coverage start
-
 #if !NET9_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -21,5 +19,3 @@ internal sealed class Lock
 }
 
 #endif
-
-// ncrunch: no coverage end
