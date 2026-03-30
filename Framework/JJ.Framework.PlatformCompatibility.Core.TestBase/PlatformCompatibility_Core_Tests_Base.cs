@@ -9,7 +9,7 @@
 
 namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class PlatformCompatibility_Core_Tests_Base
+public partial class PlatformCompatibility_Core_Tests_Base
 {
     // CallerArgumentExpression
     
@@ -26,7 +26,10 @@ public class PlatformCompatibility_Core_Tests_Base
     {
         AreEqual("i", expr);
     }
+}
 
+public partial class PlatformCompatibility_Core_Tests_Base
+{
     // ExceptionSupport
     
     public void Test_ExceptionSupport_PlatformStub()
@@ -39,7 +42,10 @@ public class PlatformCompatibility_Core_Tests_Base
         ThrowsExceptionContaining<ArgumentException    >(() => ThrowIfNullOrWhiteSpace(emptyText), "emptyText", "empty");
         ThrowsExceptionContaining<ArgumentException    >(() => ThrowIfNullOrWhiteSpace(spaceText), "spaceText", "space");
     }
-    
+}
+
+public partial class PlatformCompatibility_Core_Tests_Base
+{
     // HashCode
     
     public void Test_HashCode_PlatformStub()
@@ -69,7 +75,10 @@ public class PlatformCompatibility_Core_Tests_Base
         IsTrue(hashCode7 != 0);
         IsTrue(hashCode8 != 0);
     }
-    
+}
+
+public partial class PlatformCompatibility_Core_Tests_Base
+{
     // NotNullWhen
     
     public void Test_NotNullWhen_PlatformStub()
@@ -98,7 +107,10 @@ public class PlatformCompatibility_Core_Tests_Base
     
     private bool CheckNotNull([NotNullWhen(true)] string? text) => text != null;
     private bool CheckIsNull([NotNullWhen(false)] string? text) => text == null;
-    
+}
+
+public partial class PlatformCompatibility_Core_Tests_Base
+{
     // OverloadResolutionPriority
     
     public void Test_PlatformStub_OverloadResolutionPriority_Create()
