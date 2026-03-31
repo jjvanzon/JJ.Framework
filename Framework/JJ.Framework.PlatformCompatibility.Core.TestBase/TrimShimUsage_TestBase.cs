@@ -36,11 +36,19 @@ public class TrimShimUsage_TestBase
         AreEqual(2048, (int)PublicEvents);
         AreEqual(4096, (int)NonPublicEvents);
         AreEqual(-1,   (int)All);
-        IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
 
         #if !NET5_0
         AreEqual(8192, (int)Interfaces);
         #endif
+
+        #if NET5_0_OR_GREATER && !NET10_0
+        AreEqual(AllProperties, PublicProperties | NonPublicProperties);
+        AreEqual(AllFields, PublicFields | NonPublicFields);
+        AreEqual(AllConstructors, PublicConstructors | NonPublicConstructors);
+        AreEqual(AllMethods, PublicMethods | NonPublicMethods);
+        #endif
+
+        IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
     }
 
     // RequiresUnreferencedCode / 'TrimWarn'

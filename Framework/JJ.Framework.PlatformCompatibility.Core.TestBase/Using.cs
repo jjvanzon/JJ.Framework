@@ -13,3 +13,4 @@ global using static System.ArgumentNullException;
 global using static JJ.Framework.PlatformCompatibility.Core.ArgumentExceptionSupport;
 // ReSharper disable once RedundantUsingDirective.Global
 global using static JJ.Framework.PlatformCompatibility.Core.ArgumentNullExceptionSupport;
+global using static JJ.Framework.PlatformCompatibility.Core.DynamicallyAccessedMemberTypesSupport;

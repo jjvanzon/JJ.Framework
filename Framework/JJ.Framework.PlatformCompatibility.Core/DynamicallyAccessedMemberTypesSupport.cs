@@ -1,3 +1,5 @@
+#pragma warning disable IDE0005 // Unused Using
+
 using System.Diagnostics.CodeAnalysis;
 using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 
