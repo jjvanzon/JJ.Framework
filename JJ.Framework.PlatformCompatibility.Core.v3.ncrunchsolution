@@ -6,7 +6,7 @@
       <Value>IsNCrunch = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
-    <MaxNumberOfProcessingThreads>16</MaxNumberOfProcessingThreads>
+    <MaxNumberOfProcessingThreads>12</MaxNumberOfProcessingThreads>
     <MetricsExclusionList>
       <Value>Framework\JJ.Framework.Build\JJ.Framework.Build.csproj</Value>
       <Value>Framework\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj:net10.0</Value>
