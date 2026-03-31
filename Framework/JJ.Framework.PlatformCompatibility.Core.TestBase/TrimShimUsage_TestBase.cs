@@ -21,6 +21,7 @@ public class TrimShimUsage_TestBase
 
     public void Test_DynamicallyAccessedMemberTypes()
     {
+        // Basic
         AreEqual(0,    (int)None);
         AreEqual(1,    (int)PublicParameterlessConstructor);
         AreEqual(3,    (int)PublicConstructors);
@@ -37,10 +38,28 @@ public class TrimShimUsage_TestBase
         AreEqual(4096, (int)NonPublicEvents);
         AreEqual(-1,   (int)All);
 
+        // WithInherited
+        AreEqual((int)NonPublicConstructors | 0x4000,   (int)NonPublicConstructorsWithInherited);
+        AreEqual((int)NonPublicMethods      | 0x8000,   (int)NonPublicMethodsWithInherited     );
+        AreEqual((int)NonPublicFields       | 0x10000,  (int)NonPublicFieldsWithInherited      );
+        AreEqual((int)NonPublicNestedTypes  | 0x20000,  (int)NonPublicNestedTypesWithInherited );
+        AreEqual((int)NonPublicProperties   | 0x40000,  (int)NonPublicPropertiesWithInherited  );
+        AreEqual((int)NonPublicEvents       | 0x80000,  (int)NonPublicEventsWithInherited      );
+        AreEqual((int)PublicConstructors    | 0x100000, (int)PublicConstructorsWithInherited   );
+        AreEqual((int)PublicNestedTypes     | 0x200000, (int)PublicNestedTypesWithInherited    );
+
+        // All
+        AreEqual(PublicConstructorsWithInherited | NonPublicConstructorsWithInherited, AllConstructors);
+        AreEqual(PublicMethods | NonPublicMethodsWithInherited,                        AllMethods);
+        AreEqual(PublicFields | NonPublicFieldsWithInherited,                          AllFields);
+        AreEqual(PublicNestedTypesWithInherited | NonPublicNestedTypesWithInherited,   AllNestedTypes);
+        AreEqual(PublicProperties | NonPublicPropertiesWithInherited,                  AllProperties);
+        AreEqual(PublicEvents | NonPublicEventsWithInherited,                          AllEvents);
+
+        // Platform-Dependent
         #if !NET5_0
         AreEqual(8192, (int)Interfaces);
         #endif
-
         #if NET5_0_OR_GREATER && !NET10_0
         AreEqual(AllProperties, PublicProperties | NonPublicProperties);
         AreEqual(AllFields, PublicFields | NonPublicFields);
@@ -48,6 +67,7 @@ public class TrimShimUsage_TestBase
         AreEqual(AllMethods, PublicMethods | NonPublicMethods);
         #endif
 
+        // Flag Inclusion
         IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
     }
 
