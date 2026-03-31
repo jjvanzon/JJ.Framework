@@ -1,6 +1,10 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <CustomBuildProperties>
+      <Value>UseAppHost = True</Value>
+      <Value>IsNCrunch = True</Value>
+    </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
     <MaxNumberOfProcessingThreads>8</MaxNumberOfProcessingThreads>
     <MetricsExclusionList>
