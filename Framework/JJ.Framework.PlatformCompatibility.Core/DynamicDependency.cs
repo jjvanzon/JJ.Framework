@@ -50,7 +50,6 @@ internal sealed class DynamicDependencyAttribute : Attribute
     public Type? Type { get; }
     public string? TypeName { get; }
     public string? AssemblyName { get; }
-    public string? Condition { get; set; }
 }
 
 #endif
