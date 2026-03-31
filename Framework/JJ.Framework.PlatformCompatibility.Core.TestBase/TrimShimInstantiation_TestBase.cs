@@ -1,6 +1,6 @@
 namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class TrimShim_TestBase
+public class TrimShimInstantiation_TestBase
 {
     public void Test_DynamicallyAccessedMembers()
     {

@@ -7,4 +7,5 @@
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Tests/JJ.Framework.PlatformCompatibility.Core.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp/JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj" />
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" Id="1beb8e62-fcb0-4b88-b142-23e720d5bacc" />
 </Solution>

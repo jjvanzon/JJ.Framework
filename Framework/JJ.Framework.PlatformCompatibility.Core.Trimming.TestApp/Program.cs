@@ -1,5 +1,6 @@
 ﻿bool success = 
-RunTests<TrimShim_Tests>() &&
+RunTests<TrimShimInstantiation_Tests>() &&
+RunTests<TrimShimUsage_Tests>() &&
 RunTests<CallerArgumentExpression_Tests>() &&
 RunTests<ExceptionSupport_Tests>() &&
 RunTests<HashCode_Tests>() &&

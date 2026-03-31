@@ -1,9 +1,9 @@
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
-public class TrimShim_Tests
+public class TrimShimUsage_Tests
 {
-    private readonly TrimShim_TestBase _testBase = new();
+    private readonly TrimShimUsage_TestBase _testBase = new();
 
     [TestMethod]
     public void Test_DynamicallyAccessedMembers() => _testBase.Test_DynamicallyAccessedMembers();
