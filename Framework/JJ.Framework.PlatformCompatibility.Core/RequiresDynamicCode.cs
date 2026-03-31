@@ -10,7 +10,9 @@ namespace System.Diagnostics.CodeAnalysis;
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Class, Inherited = false)]
 internal sealed class RequiresDynamicCodeAttribute(string message) : Attribute
 {
+    /// <inheritdoc cref="_requiresdynamiccode" />
     public string Message { get; } = message;
+    /// <inheritdoc cref="_requiresdynamiccode" />
     public string? Url { get; set; }
 }
 

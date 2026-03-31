@@ -45,10 +45,15 @@ internal sealed class DynamicDependencyAttribute : Attribute
         AssemblyName = assemblyName;
     }
 
+    /// <inheritdoc cref="_dynamicdependency" />
     public string? MemberSignature { get; }
+    /// <inheritdoc cref="_dynamicdependency" />
     public DynamicallyAccessedMemberTypes MemberTypes { get; }
+    /// <inheritdoc cref="_dynamicdependency" />
     public Type? Type { get; }
+    /// <inheritdoc cref="_dynamicdependency" />
     public string? TypeName { get; }
+    /// <inheritdoc cref="_dynamicdependency" />
     public string? AssemblyName { get; }
 }
 
