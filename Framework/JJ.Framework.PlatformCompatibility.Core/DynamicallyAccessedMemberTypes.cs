@@ -39,7 +39,7 @@ internal enum DynamicallyAccessedMemberTypes
     AllNestedTypes                     = 0b001000100000000110000000,
     AllProperties                      = 0b000001000000011000000000,
     AllEvents                          = 0b000010000001100000000000,
-    All                                = -0b00000000000000000000001
+    All                                = -0b00000000000000000000001,
 }
 
 #endif

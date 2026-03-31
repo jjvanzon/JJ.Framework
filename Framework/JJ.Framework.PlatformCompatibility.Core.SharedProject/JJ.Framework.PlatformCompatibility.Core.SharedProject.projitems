@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\docs.cs" Link="docs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\DynamicallyAccessedMembers.cs" Link="DynamicallyAccessedMembers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\DynamicallyAccessedMemberTypes.cs" Link="DynamicallyAccessedMemberTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\DynamicallyAccessedMemberTypesSupport.cs" Link="DynamicallyAccessedMemberTypesSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\ArgumentExceptionSupport.cs" Link="ArgumentExceptionSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\ArgumentNullExceptionSupport.cs" Link="ArgumentNullExceptionSupport.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\JJ.Framework.PlatformCompatibility.Core\DynamicDependency.cs" Link="DynamicDependency.cs" />

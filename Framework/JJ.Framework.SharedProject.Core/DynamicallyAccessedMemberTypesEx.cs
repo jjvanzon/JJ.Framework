@@ -14,25 +14,12 @@ internal static class DynamicallyAccessedMemberTypesEx
     // Aliases
     
     /// <inheritdoc cref="_properties" />
-    public const DynamicallyAccessedMemberTypes AllProps = AllProperties;
+    public const DynamicallyAccessedMemberTypes AllProps = PublicProperties | NonPublicProperties | (DynamicallyAccessedMemberTypes)0x40000;
     public const DynamicallyAccessedMemberTypes NonPublicProps = NonPublicProperties;
-    public const DynamicallyAccessedMemberTypes Intf = Interfaces;
+    public const DynamicallyAccessedMemberTypes Intf = (DynamicallyAccessedMemberTypes)0x2000;
     public const DynamicallyAccessedMemberTypes New = PublicParameterlessConstructor;
     public const DynamicallyAccessedMemberTypes PublicCtors = PublicConstructors;
     public const DynamicallyAccessedMemberTypes Ctors = AllCtors;
     public const DynamicallyAccessedMemberTypes AllCtors = PublicConstructors | NonPublicConstructors;
-    public const DynamicallyAccessedMemberTypes PropsFieldsMethods = AllProperties | AllFields | AllMethods;
-
-    // Platform Support
-
-    #if NET5_0
-    public const DynamicallyAccessedMemberTypes Interfaces = (DynamicallyAccessedMemberTypes)8192;
-    #endif
-    #if NET5_0_OR_GREATER && !NET10_0
-    /// <inheritdoc cref="_properties" />
-    public const DynamicallyAccessedMemberTypes AllProperties = PublicProperties | NonPublicProperties;
-    public const DynamicallyAccessedMemberTypes AllFields = PublicFields | NonPublicFields;
-    public const DynamicallyAccessedMemberTypes AllConstructors = PublicConstructors | NonPublicConstructors;
-    public const DynamicallyAccessedMemberTypes AllMethods = PublicMethods | NonPublicMethods;
-    #endif
+    public const DynamicallyAccessedMemberTypes PropsFieldsMethods = AllProps | PublicFields | NonPublicFields | (DynamicallyAccessedMemberTypes)0x10000 | PublicMethods | NonPublicMethods | (DynamicallyAccessedMemberTypes)0x8000;
 }

@@ -13,4 +13,5 @@ global using static System.ArgumentException;
 global using static System.ArgumentNullException;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
+global using static JJ.Framework.PlatformCompatibility.Core.DynamicallyAccessedMemberTypesSupport;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
