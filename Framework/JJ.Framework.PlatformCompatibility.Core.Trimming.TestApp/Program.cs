@@ -1,5 +1,5 @@
 ﻿bool success = 
-RunTests<AotShims_Tests>() &&
+RunTests<TrimShim_Tests>() &&
 RunTests<CallerArgumentExpression_Tests>() &&
 RunTests<ExceptionSupport_Tests>() &&
 RunTests<HashCode_Tests>() &&

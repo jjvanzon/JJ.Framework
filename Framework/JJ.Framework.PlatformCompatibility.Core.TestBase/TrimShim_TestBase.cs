@@ -1,14 +1,14 @@
 namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
-public class AotShims_TestBase
+public class TrimShim_TestBase
 {
-    public void Test_DynamicallyAccessedMembers_PlatformStub()
+    public void Test_DynamicallyAccessedMembers()
     {
         var attr = new DynamicallyAccessedMembersAttribute(PublicMethods);
         AreEqual(PublicMethods, attr.MemberTypes);
     }
 
-    public void Test_DynamicallyAccessedMemberTypes_PlatformStub()
+    public void Test_DynamicallyAccessedMemberTypes()
     {
         AreEqual(0,  (int)None);
         AreEqual(1,  (int)PublicParameterlessConstructor);
@@ -18,21 +18,21 @@ public class AotShims_TestBase
         IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
     }
 
-    public void Test_RequiresUnreferencedCode_PlatformStub()
+    public void Test_RequiresUnreferencedCode()
     {
         var attr = new RequiresUnreferencedCodeAttribute("message") { Url = "https://example.com" };
         AreEqual("message",             attr.Message);
         AreEqual("https://example.com", attr.Url);
     }
 
-    public void Test_RequiresDynamicCode_PlatformStub()
+    public void Test_RequiresDynamicCode()
     {
         var attr = new RequiresDynamicCodeAttribute("message") { Url = "https://example.com" };
         AreEqual("message",             attr.Message);
         AreEqual("https://example.com", attr.Url);
     }
 
-    public void Test_DynamicDependency_PlatformStub()
+    public void Test_DynamicDependency()
     {
         var attr1 = new DynamicDependencyAttribute("MemberSig");
         AreEqual("MemberSig", attr1.MemberSignature);
@@ -56,7 +56,7 @@ public class AotShims_TestBase
         AreEqual("AssemblyName", attr5.AssemblyName);
     }
 
-    public void Test_UnconditionalSuppressMessage_PlatformStub()
+    public void Test_UnconditionalSuppressMessage()
     {
         var attr = new UnconditionalSuppressMessageAttribute("category", "checkId")
         {
