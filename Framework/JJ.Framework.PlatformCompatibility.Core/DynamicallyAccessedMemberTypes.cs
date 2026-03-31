@@ -24,13 +24,10 @@ internal enum DynamicallyAccessedMemberTypes
     NonPublicProperties                = 0b000000000000010000000000,
     PublicEvents                       = 0b000000000000100000000000,
     NonPublicEvents                    = 0b000000000001000000000000,
-  //Interfaces                         = 0b000000000010000000000000,
     AllConstructors                    = 0b000100000100000000000111,
     AllMethods                         = 0b000000001000000000011000,
     AllFields                          = 0b000000010000000001100000,
-    AllNestedTypes                     = 0b001000100000000110000000,
     AllProperties                      = 0b000001000000011000000000,
-    AllEvents                          = 0b000010000001100000000000,
     All                                = -0b00000000000000000000001,
 }
 

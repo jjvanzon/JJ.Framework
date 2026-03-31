@@ -36,6 +36,7 @@ public class TrimShimUsage_TestBase
         AreEqual(1024, (int)NonPublicProperties);
         AreEqual(2048, (int)PublicEvents);
         AreEqual(4096, (int)NonPublicEvents);
+        AreEqual(8192, (int)Interfaces);
         AreEqual(-1,   (int)All);
 
         // WithInherited
@@ -49,23 +50,12 @@ public class TrimShimUsage_TestBase
         AreEqual((int)PublicNestedTypes     | 0x200000, (int)PublicNestedTypesWithInherited    );
 
         // All
-        AreEqual(PublicConstructorsWithInherited | NonPublicConstructorsWithInherited, AllConstructors);
-        AreEqual(PublicMethods | NonPublicMethodsWithInherited,                        AllMethods);
-        AreEqual(PublicFields | NonPublicFieldsWithInherited,                          AllFields);
-        AreEqual(PublicNestedTypesWithInherited | NonPublicNestedTypesWithInherited,   AllNestedTypes);
-        AreEqual(PublicProperties | NonPublicPropertiesWithInherited,                  AllProperties);
-        AreEqual(PublicEvents | NonPublicEventsWithInherited,                          AllEvents);
-
-        // Platform-Dependent
-        #if !NET5_0
-        AreEqual(8192, (int)Interfaces);
-        #endif
-        #if NET5_0_OR_GREATER && !NET10_0
-        AreEqual(AllProperties, PublicProperties | NonPublicProperties);
-        AreEqual(AllFields, PublicFields | NonPublicFields);
-        AreEqual(AllConstructors, PublicConstructors | NonPublicConstructors);
-        AreEqual(AllMethods, PublicMethods | NonPublicMethods);
-        #endif
+        AreEqual((int)(PublicFields                     | NonPublicFieldsWithInherited),       (int)AllFields      );
+        AreEqual((int)(PublicProperties                 | NonPublicPropertiesWithInherited),   (int)AllProperties  );
+        AreEqual((int)(PublicMethods                    | NonPublicMethodsWithInherited),      (int)AllMethods     );
+        AreEqual((int)(PublicConstructorsWithInherited  | NonPublicConstructorsWithInherited), (int)AllConstructors);
+        AreEqual((int)(PublicEvents                     | NonPublicEventsWithInherited),       (int)AllEvents      );
+        AreEqual((int)(PublicNestedTypesWithInherited   | NonPublicNestedTypesWithInherited),  (int)AllNestedTypes );
 
         // Flag Inclusion
         IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
