@@ -4,18 +4,18 @@ public class AotShims_TestBase
 {
     public void Test_DynamicallyAccessedMembers_PlatformStub()
     {
-        var attr = new DynamicallyAccessedMembersAttribute(DynamicallyAccessedMemberTypes.PublicMethods);
-        AreEqual(DynamicallyAccessedMemberTypes.PublicMethods, attr.MemberTypes);
+        var attr = new DynamicallyAccessedMembersAttribute(PublicMethods);
+        AreEqual(PublicMethods, attr.MemberTypes);
     }
 
     public void Test_DynamicallyAccessedMemberTypes_PlatformStub()
     {
-        AreEqual(0,  (int)DynamicallyAccessedMemberTypes.None);
-        AreEqual(1,  (int)DynamicallyAccessedMemberTypes.PublicParameterlessConstructor);
-        AreEqual(3,  (int)DynamicallyAccessedMemberTypes.PublicConstructors);
-        AreEqual(8,  (int)DynamicallyAccessedMemberTypes.PublicMethods);
-        AreEqual(-1, (int)DynamicallyAccessedMemberTypes.All);
-        IsTrue(DynamicallyAccessedMemberTypes.PublicConstructors.HasFlag(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor));
+        AreEqual(0,  (int)None);
+        AreEqual(1,  (int)PublicParameterlessConstructor);
+        AreEqual(3,  (int)PublicConstructors);
+        AreEqual(8,  (int)PublicMethods);
+        AreEqual(-1, (int)All);
+        IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
     }
 
     public void Test_RequiresUnreferencedCode_PlatformStub()
@@ -46,12 +46,12 @@ public class AotShims_TestBase
         AreEqual("TypeName",     attr3.TypeName);
         AreEqual("AssemblyName", attr3.AssemblyName);
 
-        var attr4 = new DynamicDependencyAttribute(DynamicallyAccessedMemberTypes.PublicMethods, typeof(string));
-        AreEqual(DynamicallyAccessedMemberTypes.PublicMethods, attr4.MemberTypes);
+        var attr4 = new DynamicDependencyAttribute(PublicMethods, typeof(string));
+        AreEqual(PublicMethods, attr4.MemberTypes);
         AreEqual(typeof(string), attr4.Type);
 
-        var attr5 = new DynamicDependencyAttribute(DynamicallyAccessedMemberTypes.PublicMethods, "TypeName", "AssemblyName");
-        AreEqual(DynamicallyAccessedMemberTypes.PublicMethods, attr5.MemberTypes);
+        var attr5 = new DynamicDependencyAttribute(PublicMethods, "TypeName", "AssemblyName");
+        AreEqual(PublicMethods, attr5.MemberTypes);
         AreEqual("TypeName",     attr5.TypeName);
         AreEqual("AssemblyName", attr5.AssemblyName);
     }
