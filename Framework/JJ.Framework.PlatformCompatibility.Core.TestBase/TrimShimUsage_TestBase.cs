@@ -10,7 +10,7 @@ public class TrimShimUsage_TestBase
         IsTrue(prop != null);
     }
 
-    private static PropertyInfo? GetPublicProp([Dyn(PublicProperties)] Type type, string name)
+    private static PropertyInfo? GetPublicProp([DynamicallyAccessedMembers(PublicProperties)] Type type, string name)
         => type.GetProperty(name, BindingFlags.Public | BindingFlags.Instance);
 
     private class SampleForDam { public string Prop { get; } = ""; }
@@ -31,51 +31,54 @@ public class TrimShimUsage_TestBase
         AreEqual(1024, (int)NonPublicProperties);
         AreEqual(2048, (int)PublicEvents);
         AreEqual(4096, (int)NonPublicEvents);
-        AreEqual(8192, (int)Interfaces);
         AreEqual(-1,   (int)All);
         IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
+
+        #if !NET5_0
+        AreEqual(8192, (int)Interfaces);
+        #endif
     }
 
-    [Suppress("Trimming", "IL2026", Justification = "Testing the attribute.")]
-    [NoTrim(PublicMethods, typeof(SampleForTrimWarn))]
+    [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Testing the attribute.")]
+    [DynamicDependency(PublicMethods, typeof(SampleForRequiresUnreferencedCode))]
     public void Test_RequiresUnreferencedCode()
     {
-        var attr = typeof(SampleForTrimWarn)
-            .GetMethod(nameof(SampleForTrimWarn.Method))!
+        var attr = typeof(SampleForRequiresUnreferencedCode)
+            .GetMethod(nameof(SampleForRequiresUnreferencedCode.Method))!
             .GetCustomAttribute<RequiresUnreferencedCodeAttribute>()!;
         AreEqual("reason", attr.Message);
     }
 
-    private class SampleForTrimWarn
+    private class SampleForRequiresUnreferencedCode
     {
-        [TrimWarn("reason")] public static void Method() { }
+        [RequiresUnreferencedCode("reason")] public static void Method() { }
     }
 
-    [Suppress("AOT", "IL3050", Justification = "Testing the attribute.")]
-    [NoTrim(PublicMethods, typeof(SampleForAotWarn))]
+    [UnconditionalSuppressMessage("AOT", "IL3050", Justification = "Testing the attribute.")]
+    [DynamicDependency(PublicMethods, typeof(SampleForRequiresDynamicCode))]
     public void Test_RequiresDynamicCode()
     {
-        var attr = typeof(SampleForAotWarn)
-            .GetMethod(nameof(SampleForAotWarn.Method))!
+        var attr = typeof(SampleForRequiresDynamicCode)
+            .GetMethod(nameof(SampleForRequiresDynamicCode.Method))!
             .GetCustomAttribute<RequiresDynamicCodeAttribute>()!;
         AreEqual("reason", attr.Message);
     }
 
-    private class SampleForAotWarn
+    private class SampleForRequiresDynamicCode
     {
-        [AotWarn("reason")] public static void Method() { }
+        [RequiresDynamicCode("reason")] public static void Method() { }
     }
 
-    [NoTrim(PublicMethods, typeof(SampleForNoTrim))]
+    [DynamicDependency(PublicMethods, typeof(SampleForDynamicDependency))]
     public void Test_DynamicDependency()
     {
-        var method = typeof(SampleForNoTrim).GetMethod(nameof(SampleForNoTrim.Method));
+        var method = typeof(SampleForDynamicDependency).GetMethod(nameof(SampleForDynamicDependency.Method));
         IsTrue(method != null);
     }
 
-    private class SampleForNoTrim { public void Method() { } }
+    private class SampleForDynamicDependency { public void Method() { } }
 
-    [NoTrim(PublicMethods, typeof(SampleForSuppress))]
+    [DynamicDependency(PublicMethods, typeof(SampleForSuppress))]
     public void Test_UnconditionalSuppressMessage()
     {
         var attr = typeof(SampleForSuppress)
@@ -87,7 +90,7 @@ public class TrimShimUsage_TestBase
 
     private class SampleForSuppress
     {
-        [Suppress("Trimming", "IL2026", Justification = "Safe here.")] public static void Method() { }
+        [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Safe here.")] public static void Method() { }
     }
 }
 
