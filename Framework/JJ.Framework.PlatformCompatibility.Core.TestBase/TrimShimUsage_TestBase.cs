@@ -15,7 +15,7 @@ public class TrimShimUsage_TestBase
     private static PropertyInfo? GetPublicProp([DynamicallyAccessedMembers(PublicProperties)] Type type, string name)
         => type.GetProperty(name, BindingFlags.Public | BindingFlags.Instance);
 
-    private class SampleForDynMem { public string Prop { get; } = ""; }
+    private class SampleForDynMem { public string Prop { get; } = ""; } // ncrunch: no coverage
 
     // DynamicallyAccessedMemberTypes
 
@@ -65,7 +65,7 @@ public class TrimShimUsage_TestBase
 
     private class SampleForRequiresUnreferencedCode
     {
-        [RequiresUnreferencedCode("reason")] public static void Method() { }
+        [RequiresUnreferencedCode("reason")] public static void Method() { } // ncrunch: no coverage
     }
 
     // RequiresDynamicCode / 'AotWarn'
@@ -82,7 +82,7 @@ public class TrimShimUsage_TestBase
 
     private class SampleForRequiresDynamicCode
     {
-        [RequiresDynamicCode("reason")] public static void Method() { }
+        [RequiresDynamicCode("reason")] public static void Method() { } // ncrunch: no coverage
     }
 
     // DynamicDependency / 'NoTrim'
@@ -94,7 +94,7 @@ public class TrimShimUsage_TestBase
         IsTrue(method != null);
     }
 
-    private class SampleForDynamicDependency { public void Method() { } }
+    private class SampleForDynamicDependency { public void Method() { } } // ncrunch: no coverage
 
     // UnconditionalSuppressMessage / 'Suppress'
 
@@ -110,7 +110,7 @@ public class TrimShimUsage_TestBase
 
     private class SampleForSuppress
     {
-        [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Safe here.")] public static void Method() { }
+        [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Safe here.")] public static void Method() { } // ncrunch: no coverage
     }
 }
 
