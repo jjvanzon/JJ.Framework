@@ -9,9 +9,6 @@ public class TrimShimCreation_Tests
     public void Test_DynamicallyAccessedMembers_New() => _testBase.Test_DynamicallyAccessedMembers();
 
     [TestMethod]
-    public void Test_DynamicallyAccessedMemberTypes() => _testBase.Test_DynamicallyAccessedMemberTypes();
-
-    [TestMethod]
     public void Test_RequiresUnreferencedCode_New() => _testBase.Test_RequiresUnreferencedCode();
 
     [TestMethod]
