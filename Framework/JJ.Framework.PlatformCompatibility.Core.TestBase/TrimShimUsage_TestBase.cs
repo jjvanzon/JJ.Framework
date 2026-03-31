@@ -4,16 +4,20 @@ namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
 public class TrimShimUsage_TestBase
 {
+    // DynamicallyAccessedMembers / 'Dyn'
+
     public void Test_DynamicallyAccessedMembers()
     {
-        var prop = GetPublicProp(typeof(SampleForDam), nameof(SampleForDam.Prop));
+        var prop = GetPublicProp(typeof(SampleForDynMem), nameof(SampleForDynMem.Prop));
         IsTrue(prop != null);
     }
 
     private static PropertyInfo? GetPublicProp([DynamicallyAccessedMembers(PublicProperties)] Type type, string name)
         => type.GetProperty(name, BindingFlags.Public | BindingFlags.Instance);
 
-    private class SampleForDam { public string Prop { get; } = ""; }
+    private class SampleForDynMem { public string Prop { get; } = ""; }
+
+    // DynamicallyAccessedMemberTypes
 
     public void Test_DynamicallyAccessedMemberTypes()
     {
@@ -39,6 +43,8 @@ public class TrimShimUsage_TestBase
         #endif
     }
 
+    // RequiresUnreferencedCode / 'TrimWarn'
+
     [UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Testing the attribute.")]
     [DynamicDependency(PublicMethods, typeof(SampleForRequiresUnreferencedCode))]
     public void Test_RequiresUnreferencedCode()
@@ -53,6 +59,8 @@ public class TrimShimUsage_TestBase
     {
         [RequiresUnreferencedCode("reason")] public static void Method() { }
     }
+
+    // RequiresDynamicCode / 'AotWarn'
 
     [UnconditionalSuppressMessage("AOT", "IL3050", Justification = "Testing the attribute.")]
     [DynamicDependency(PublicMethods, typeof(SampleForRequiresDynamicCode))]
@@ -69,6 +77,8 @@ public class TrimShimUsage_TestBase
         [RequiresDynamicCode("reason")] public static void Method() { }
     }
 
+    // DynamicDependency / 'NoTrim'
+
     [DynamicDependency(PublicMethods, typeof(SampleForDynamicDependency))]
     public void Test_DynamicDependency()
     {
@@ -77,6 +87,8 @@ public class TrimShimUsage_TestBase
     }
 
     private class SampleForDynamicDependency { public void Method() { } }
+
+    // UnconditionalSuppressMessage / 'Suppress'
 
     [DynamicDependency(PublicMethods, typeof(SampleForSuppress))]
     public void Test_UnconditionalSuppressMessage()
