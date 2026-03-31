@@ -1,6 +1,5 @@
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-// ncrunch: no coverage start
 #if !NET5_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -15,4 +14,3 @@ internal class RequiresUnreferencedCodeAttribute(string message) : Attribute
 }
 
 #endif
-// ncrunch: no coverage end

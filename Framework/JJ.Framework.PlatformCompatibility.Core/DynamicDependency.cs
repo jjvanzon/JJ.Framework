@@ -1,6 +1,5 @@
 // ReSharper disable UnusedType.Global
 
-// ncrunch: no coverage start
 #if !NET5_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -55,4 +54,3 @@ internal sealed class DynamicDependencyAttribute : Attribute
 }
 
 #endif
-// ncrunch: no coverage end

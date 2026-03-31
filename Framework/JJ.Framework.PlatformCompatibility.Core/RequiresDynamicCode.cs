@@ -1,6 +1,5 @@
 // ReSharper disable UnusedType.Global
 
-// ncrunch: no coverage start
 #if !NET7_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -16,4 +15,3 @@ internal sealed class RequiresDynamicCodeAttribute(string message) : Attribute
 }
 
 #endif
-// ncrunch: no coverage end
