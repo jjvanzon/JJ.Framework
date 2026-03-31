@@ -22,43 +22,40 @@ public class TrimShimUsage_TestBase
     public void Test_DynamicallyAccessedMemberTypes()
     {
         // Basic
-        AreEqual(0,    (int)None);
-        AreEqual(1,    (int)PublicParameterlessConstructor);
-        AreEqual(3,    (int)PublicConstructors);
-        AreEqual(4,    (int)NonPublicConstructors);
-        AreEqual(8,    (int)PublicMethods);
-        AreEqual(16,   (int)NonPublicMethods);
-        AreEqual(32,   (int)PublicFields);
-        AreEqual(64,   (int)NonPublicFields);
-        AreEqual(128,  (int)PublicNestedTypes);
-        AreEqual(256,  (int)NonPublicNestedTypes);
-        AreEqual(512,  (int)PublicProperties);
-        AreEqual(1024, (int)NonPublicProperties);
-        AreEqual(2048, (int)PublicEvents);
-        AreEqual(4096, (int)NonPublicEvents);
-        AreEqual(8192, (int)Interfaces);
-        AreEqual(-1,   (int)All);
+        AreEqual(0,       (int)None                              );
+        AreEqual(1,       (int)PublicParameterlessConstructor    );
+        AreEqual(3,       (int)PublicConstructors                );
+        AreEqual(4,       (int)NonPublicConstructors             );
+        AreEqual(8,       (int)PublicMethods                     );
+        AreEqual(16,      (int)NonPublicMethods                  );
+        AreEqual(32,      (int)PublicFields                      );
+        AreEqual(64,      (int)NonPublicFields                   );
+        AreEqual(128,     (int)PublicNestedTypes                 );
+        AreEqual(256,     (int)NonPublicNestedTypes              );
+        AreEqual(512,     (int)PublicProperties                  );
+        AreEqual(1024,    (int)NonPublicProperties               );
+        AreEqual(2048,    (int)PublicEvents                      );
+        AreEqual(4096,    (int)NonPublicEvents                   );
+        AreEqual(8192,    (int)Interfaces                        );
+        AreEqual(-1,      (int)All                               );
 
         // WithInherited
-        AreEqual((int)NonPublicConstructors | 0x4000,   (int)NonPublicConstructorsWithInherited);
-        AreEqual((int)NonPublicMethods      | 0x8000,   (int)NonPublicMethodsWithInherited     );
-        AreEqual((int)NonPublicFields       | 0x10000,  (int)NonPublicFieldsWithInherited      );
-        AreEqual((int)NonPublicNestedTypes  | 0x20000,  (int)NonPublicNestedTypesWithInherited );
-        AreEqual((int)NonPublicProperties   | 0x40000,  (int)NonPublicPropertiesWithInherited  );
-        AreEqual((int)NonPublicEvents       | 0x80000,  (int)NonPublicEventsWithInherited      );
-        AreEqual((int)PublicConstructors    | 0x100000, (int)PublicConstructorsWithInherited   );
-        AreEqual((int)PublicNestedTypes     | 0x200000, (int)PublicNestedTypesWithInherited    );
+        AreEqual(16388,   (int)NonPublicConstructorsWithInherited);
+        AreEqual(32784,   (int)NonPublicMethodsWithInherited     );
+        AreEqual(65600,   (int)NonPublicFieldsWithInherited      );
+        AreEqual(131328,  (int)NonPublicNestedTypesWithInherited );
+        AreEqual(263168,  (int)NonPublicPropertiesWithInherited  );
+        AreEqual(528384,  (int)NonPublicEventsWithInherited      );
+        AreEqual(1048579, (int)PublicConstructorsWithInherited   );
+        AreEqual(2097280, (int)PublicNestedTypesWithInherited    );
 
         // All
-        AreEqual((int)(PublicFields                     | NonPublicFieldsWithInherited),       (int)AllFields      );
-        AreEqual((int)(PublicProperties                 | NonPublicPropertiesWithInherited),   (int)AllProperties  );
-        AreEqual((int)(PublicMethods                    | NonPublicMethodsWithInherited),      (int)AllMethods     );
-        AreEqual((int)(PublicConstructorsWithInherited  | NonPublicConstructorsWithInherited), (int)AllConstructors);
-        AreEqual((int)(PublicEvents                     | NonPublicEventsWithInherited),       (int)AllEvents      );
-        AreEqual((int)(PublicNestedTypesWithInherited   | NonPublicNestedTypesWithInherited),  (int)AllNestedTypes );
-
-        // Flag Inclusion
-        IsTrue(PublicConstructors.HasFlag(PublicParameterlessConstructor));
+        AreEqual(65632,   (int)AllFields                         );
+        AreEqual(263680,  (int)AllProperties                     );
+        AreEqual(32792,   (int)AllMethods                        );
+        AreEqual(1064967, (int)AllConstructors                   );
+        AreEqual(530432,  (int)AllEvents                         );
+        AreEqual(2228608, (int)AllNestedTypes                    );
     }
 
     // RequiresUnreferencedCode / 'TrimWarn'
