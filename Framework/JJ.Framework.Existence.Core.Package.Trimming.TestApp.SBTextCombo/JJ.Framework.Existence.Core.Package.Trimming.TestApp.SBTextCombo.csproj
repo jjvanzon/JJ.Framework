@@ -10,10 +10,7 @@
     <PackageReference Include="JJ.Framework.Existence.Core.Tests.Helpers" Version="3.7.4872" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.251.5697" />
-  </ItemGroup>
-
-  <ItemGroup>
-    
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.5864" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,7 +22,6 @@
     <Compile Remove="..\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBTextCombo\Using.cs" />
   </ItemGroup>
 
-  <Import Project="..\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />

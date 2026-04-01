@@ -14,13 +14,9 @@
     <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.251.5729" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
     <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.5864" />
   </ItemGroup>
 
-  <ItemGroup>
-    
-  </ItemGroup>
-
-  <Import Project="..\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 </Project>
 
