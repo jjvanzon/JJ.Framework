@@ -3,14 +3,18 @@
 [TestClass]
 public class OverloadResolutionPriority_Tests
 {
-    private readonly OverloadResolutionPriority_TestBase _testBase = new();
+    [TestMethod]
+    public void Test_PlatformStub_OverloadResolutionPriority_Create()
+        => new OverloadResolutionPriority_TestBase()
+            .Test_PlatformStub_OverloadResolutionPriority_Create();
 
     [TestMethod]
-    public void Test_PlatformStub_OverloadResolutionPriority_Create() => _testBase.Test_PlatformStub_OverloadResolutionPriority_Create();
-
-    [TestMethod]
-    public void Test_PlatformStub_OverloadResolutionPriority_Implicit() => _testBase.Test_PlatformStub_OverloadResolutionPriority_Implicit();
+    public void Test_PlatformStub_OverloadResolutionPriority_Implicit()
+        => new OverloadResolutionPriority_TestBase()
+            .Test_PlatformStub_OverloadResolutionPriority_Implicit();
     
     [TestMethod]
-    public void Test_PlatformStub_OverloadResolutionPriority_Explicit() => _testBase.Test_PlatformStub_OverloadResolutionPriority_Explicit();
+    public void Test_PlatformStub_OverloadResolutionPriority_Explicit() 
+        => new OverloadResolutionPriority_TestBase()
+            .Test_PlatformStub_OverloadResolutionPriority_Explicit();
 }

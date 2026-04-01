@@ -3,20 +3,28 @@ namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 [TestClass]
 public class TrimShimCreation_Tests
 {
-    private readonly TrimShimCreation_TestBase _testBase = new();
+    [TestMethod]
+    public void Test_DynamicallyAccessedMembers_New() 
+        => new TrimShimCreation_TestBase()
+            .Test_DynamicallyAccessedMembers();
 
     [TestMethod]
-    public void Test_DynamicallyAccessedMembers_New() => _testBase.Test_DynamicallyAccessedMembers();
+    public void Test_RequiresUnreferencedCode_New()
+        => new TrimShimCreation_TestBase()
+            .Test_RequiresUnreferencedCode();
 
     [TestMethod]
-    public void Test_RequiresUnreferencedCode_New() => _testBase.Test_RequiresUnreferencedCode();
+    public void Test_RequiresDynamicCode_New() 
+        => new TrimShimCreation_TestBase()
+            .Test_RequiresDynamicCode();
 
     [TestMethod]
-    public void Test_RequiresDynamicCode_New() => _testBase.Test_RequiresDynamicCode();
+    public void Test_DynamicDependency_New() 
+        => new TrimShimCreation_TestBase()
+            .Test_DynamicDependency();
 
     [TestMethod]
-    public void Test_DynamicDependency_New() => _testBase.Test_DynamicDependency();
-
-    [TestMethod]
-    public void Test_UnconditionalSuppressMessage_New() => _testBase.Test_UnconditionalSuppressMessage();
+    public void Test_UnconditionalSuppressMessage_New()
+        => new TrimShimCreation_TestBase()
+            .Test_UnconditionalSuppressMessage();
 }

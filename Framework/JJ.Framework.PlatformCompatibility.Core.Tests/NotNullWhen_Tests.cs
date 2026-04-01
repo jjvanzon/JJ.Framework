@@ -3,8 +3,8 @@
 [TestClass]
 public class NotNullWhen_Tests
 {
-    private readonly NotNullWhen_TestBase _testBase = new();
-
     [TestMethod]
-    public void Test_NotNullWhen_PlatformStub() => _testBase.Test_NotNullWhen_PlatformStub();
+    public void Test_NotNullWhen_PlatformStub()
+        => new NotNullWhen_TestBase()
+            .Test_NotNullWhen_PlatformStub();
 }

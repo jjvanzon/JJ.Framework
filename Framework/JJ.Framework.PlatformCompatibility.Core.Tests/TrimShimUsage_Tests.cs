@@ -3,23 +3,33 @@ namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 [TestClass]
 public class TrimShimUsage_Tests
 {
-    private readonly TrimShimUsage_TestBase _testBase = new();
+    [TestMethod]
+    public void Test_DynamicallyAccessedMembers() 
+        => new TrimShimUsage_TestBase()
+            .Test_DynamicallyAccessedMembers();
 
     [TestMethod]
-    public void Test_DynamicallyAccessedMembers() => _testBase.Test_DynamicallyAccessedMembers();
+    public void Test_DynamicallyAccessedMemberTypes() 
+        => new TrimShimUsage_TestBase()
+            .Test_DynamicallyAccessedMemberTypes();
 
     [TestMethod]
-    public void Test_DynamicallyAccessedMemberTypes() => _testBase.Test_DynamicallyAccessedMemberTypes();
+    public void Test_RequiresUnreferencedCode()
+        => new TrimShimUsage_TestBase()
+            .Test_RequiresUnreferencedCode();
 
     [TestMethod]
-    public void Test_RequiresUnreferencedCode() => _testBase.Test_RequiresUnreferencedCode();
+    public void Test_RequiresDynamicCode() 
+        => new TrimShimUsage_TestBase()
+            .Test_RequiresDynamicCode();
 
     [TestMethod]
-    public void Test_RequiresDynamicCode() => _testBase.Test_RequiresDynamicCode();
+    public void Test_DynamicDependency() 
+        => new TrimShimUsage_TestBase()
+            .Test_DynamicDependency();
 
     [TestMethod]
-    public void Test_DynamicDependency() => _testBase.Test_DynamicDependency();
-
-    [TestMethod]
-    public void Test_UnconditionalSuppressMessage() => _testBase.Test_UnconditionalSuppressMessage();
+    public void Test_UnconditionalSuppressMessage() 
+        => new TrimShimUsage_TestBase()
+            .Test_UnconditionalSuppressMessage();
 }
