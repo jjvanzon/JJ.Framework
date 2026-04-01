@@ -1,16 +1,5 @@
-global using System;
-global using System.Collections.Generic;
-global using System.Linq;
-global using System.Text;
-global using JJ.Framework.Testing;
-global using JJ.Framework.PlatformCompatibility.Legacy;
-global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Testing.Core.MSTestless;
 global using JJ.Framework.PlatformCompatibility.Core.Tests;
 global using static System.Console;
 global using static System.Environment;
-global using static JJ.Framework.Testing.Legacy.AssertHelper;
-global using static JJ.Framework.Testing.Core.AssertCore;
-global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
-global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Testing.Core.TestRunner;

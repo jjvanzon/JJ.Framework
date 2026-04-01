@@ -37,14 +37,17 @@ public static partial class AssertCore
     private const string ObsoleteObjectArg
         = "Overload unworkable. Here the argument is object? and the return type info from the argument is lost.";
 
+    // ReSharper disable once UnusedMember.Local
     [Obsolete(ObsoleteTExpectedArg, true)]
     private static void IsType<TExpected>(TExpected value, [ArgExpress(nameof(value))] string message = "") 
         => throw new NotSupportedException(ObsoleteTExpectedArg);
     
+    // ReSharper disable once UnusedMember.Local
     [Obsolete(ObsoleteTExpectedArg, true)]
     private static void NotType<TExpected>(TExpected value, [ArgExpress(nameof(value))] string message = "") 
         => throw new NotSupportedException(ObsoleteTExpectedArg);
         
+    // ReSharper disable once UnusedMember.Local
     [Obsolete(ObsoleteObjectArg, true)]
     private static void NotType<TExpected>(object? value, [ArgExpress(nameof(value))] string message = "") 
         => throw new NotSupportedException(ObsoleteObjectArg);

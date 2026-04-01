@@ -30,6 +30,7 @@ public class OverloadResolutionPriority_TestBase
         AreEqual("WithPrios(A,C)", WithPrios("A"));
     }
     
+    // ReSharper disable once UnusedMember.Local
     private string WithPrios(string text) => $"WithPrios({text})"; // ncrunch: no coverage
     [OverloadResolutionPriority(1)]
     private string WithPrios(string text1, string text2 = "C") => $"WithPrios({text1},{text2})";

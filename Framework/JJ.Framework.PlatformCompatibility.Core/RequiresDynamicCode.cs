@@ -1,4 +1,6 @@
 // ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
+// ReSharper disable ClassNeverInstantiated.Global
 
 #if !NET7_0_OR_GREATER
 

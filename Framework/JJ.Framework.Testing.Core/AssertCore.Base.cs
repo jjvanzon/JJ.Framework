@@ -26,18 +26,21 @@ public static partial class AssertCore
         Check(expected, actual, message, condition, methodName);
     }
 
+    // ReSharper disable once UnusedMember.Local
     private static void Check<T>(
         T expected, T actual, 
         Func<T, T, bool> condition,
         [Caller] string methodName = "")
         => Check(expected, actual, "", () => condition(expected, actual), methodName);
     
+    // ReSharper disable once UnusedMember.Local
     private static void Check<T>(
         T expected, T actual, string message,
         Func<T, T, bool> condition, 
         [Caller] string methodName = "")
         => Check(expected, actual, message, () => condition(expected, actual), methodName);
     
+    // ReSharper disable once UnusedMember.Local
     private static void Check<T>(
         T expected, T actual, 
         Func<T, bool> condition, [Caller] string methodName = "")
@@ -48,12 +51,14 @@ public static partial class AssertCore
         Func<T, bool> condition, [Caller] string methodName = "")
         => Check(expected, actual, message, () => condition(actual), methodName);
         
+    // ReSharper disable once UnusedMember.Local
     private static void Check<T>(
         T expected, T actual, 
         Func<bool> condition,
         [Caller] string methodName = "")
         => Check(expected, actual, "", () => condition(), methodName);
 
+    // ReSharper disable once UnusedMember.Local
     private static void Check<T>(
         T expected, string message,
         Func<bool> condition, [Caller] string methodName = "")
@@ -66,6 +71,7 @@ public static partial class AssertCore
         }
     }
 
+    // ReSharper disable once UnusedMember.Local
     private static void Check<T>(
         T expected, T actual, string message,
         Func<bool> condition, [Caller] string methodName = "")
@@ -78,13 +84,18 @@ public static partial class AssertCore
         }
     }
 
-    private static void Check(Func<bool> condition, [Caller] string methodName = "")
+    // ReSharper disable once UnusedMember.Local
+    private static void Check(
+        Func<bool> condition, [Caller] string methodName = "")
         => Check(condition(), "", methodName);
 
-    private static void Check(bool condition, [Caller] string methodName = "")
+    // ReSharper disable once UnusedMember.Local
+    private static void Check(
+        bool condition, [Caller] string methodName = "")
         => Check(condition, "", methodName);
 
-    private static void Check(bool condition, string message, [Caller] string methodName = "")
+    private static void Check(
+        bool condition, string message, [Caller] string methodName = "")
     {
         if (!condition)
         {

@@ -121,6 +121,7 @@ namespace JJ.Framework.Testing.Core
             return NullyLevel.Filled;
         }
         
+        // ReSharper disable once UnusedMember.Local
         private NullyLevel GetNullyLevel(T value)
         {
             if (Equals(value, default(T)))

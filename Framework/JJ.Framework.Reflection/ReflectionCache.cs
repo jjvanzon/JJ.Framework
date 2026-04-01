@@ -167,7 +167,7 @@ namespace JJ.Framework.Reflection.Legacy
         /// <inheritdoc cref="_reflectioncache" />
         public ConstructorInfo GetConstructor([Dyn(AllConstructors)] Type type)
         {
-            lock (_constructorDictionary)
+            lock (_constructorDictionaryLock) // MODIFIED: Used lock variable instead of dictionary itself.
             {
                 ConstructorInfo constructor;
                 if (_constructorDictionary.TryGetValue(type, out constructor))

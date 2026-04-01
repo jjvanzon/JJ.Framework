@@ -38,6 +38,7 @@ namespace JJ.Framework.Business.Tests
 
         // ncrunch: no coverage start
 
+        // ReSharper disable once UnusedMember.Local
         [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
         private bool MustSetLastModifiedByUser(Entity entity, EntityStatusManager statusManager)
         {

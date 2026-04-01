@@ -1,4 +1,6 @@
 #pragma warning disable IDE0005 // Unused Using
+// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 
 using System.Diagnostics.CodeAnalysis;
 using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;

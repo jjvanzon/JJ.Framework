@@ -1,4 +1,5 @@
 ﻿// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 #pragma warning disable IDE0051 // Member never used
 
 namespace JJ.Framework.SharedProject.Core;

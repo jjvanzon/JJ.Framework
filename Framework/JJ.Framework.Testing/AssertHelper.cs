@@ -61,6 +61,7 @@ namespace JJ.Framework.Testing.Legacy
             ExpectedActualCheck((actual) => Object.Equals(expected, actual), "AreEqual", expected, actualExpression);
         }
 
+        // ReSharper disable once UnusedMember.Global
         #if !NET9_0_OR_GREATER
         [TrimWarn(ArrayInit)]
         #endif
@@ -218,6 +219,7 @@ namespace JJ.Framework.Testing.Legacy
 
         // Normalized Methods
 
+        // ReSharper disable once UnusedMember.Local
         private static void ExpectedActualCheck<T>(bool condition, string methodName, T expected, T actual, string message = "")
         {
             if (!condition)
@@ -242,6 +244,7 @@ namespace JJ.Framework.Testing.Legacy
             }
         }
 
+        // ReSharper disable once UnusedMember.Local
         private static void Check(bool condition, string methodName, string message)
         {
             if (!condition)
@@ -297,6 +300,7 @@ namespace JJ.Framework.Testing.Legacy
                     message);
         }
 
+        // ReSharper disable once UnusedMember.Local
         private static string GetAssertFailFailedMessage(string message)
         {
             return
