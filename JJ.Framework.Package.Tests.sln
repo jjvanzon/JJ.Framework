@@ -27,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Leg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests", "Framework\JJ.Framework.Existence.Core.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.csproj", "{D589D511-228E-937F-4AC8-0009AFCE0BAC}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.PlatformCompatibility.Core", "Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.shproj", "{CE2BF11F-D06A-4EA3-9DD6-FDDA12705F83}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.SharedProject.Core", "Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.shproj", "{1BEB8E62-FCB0-4B88-B142-23E720D5BACC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
@@ -98,6 +96,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Tests.Helpers", "Framework\JJ.Framework.Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj", "{85130D7A-3454-6885-FA14-A273896DD1AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.Validation.Package.Trimming.TestApp\JJ.Framework.Validation.Legacy.Package.Trimming.TestApp.csproj", "{8A0929B0-DF87-2DFA-7DB4-2FC18CEBCDFD}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.PlatformCompatibility.Core.SharedProject", "Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj", "{E275CA1F-E6B3-4F2E-BFF3-C1C24982F009}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -316,12 +316,12 @@ Global
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cb1f6004-f221-0653-c14b-0ee228d7c2c0}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{cc3b8993-e4e5-f3fe-a190-a1929fd2376b}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cc3b8993-e4e5-f3fe-a190-a1929fd2376b}*SharedItemsImports = 5
-		Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.projitems*{ce2bf11f-d06a-4ea3-9dd6-fdda12705f83}*SharedItemsImports = 13
 		Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{cff53df3-2b38-5fb0-9505-e8457ed869af}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cff53df3-2b38-5fb0-9505-e8457ed869af}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{d589d511-228e-937f-4ac8-0009afce0bac}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
+		Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{e275ca1f-e6b3-4f2e-bff3-c1c24982f009}*SharedItemsImports = 13
 		Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{e683fc9e-4d98-57ce-eec2-f90eeaf2a262}*SharedItemsImports = 5
 		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e683fc9e-4d98-57ce-eec2-f90eeaf2a262}*SharedItemsImports = 5
 		Framework\JJ.Framework.PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{e6893427-6fe9-b2c3-b8ee-00fd5b68483a}*SharedItemsImports = 5
