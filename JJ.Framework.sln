@@ -230,7 +230,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Core.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Tests", "Framework\JJ.Framework.IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj", "{A10CD5E0-DBBF-9A3C-86A7-334545E5AC3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Tests", "Framework\JJ.Framework.IO.Legacy.Tests\JJ.Framework.IO.Legacy.Tests.csproj", "{E4DCA5B3-C676-A9E8-BF90-B01325A31235}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Tests", "Framework\JJ.Framework.IO.Tests\JJ.Framework.IO.Legacy.Tests.csproj", "{E4DCA5B3-C676-A9E8-BF90-B01325A31235}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests", "Framework\JJ.Framework.Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj", "{12D0D60F-420D-4B26-8B98-22F0A53E62E0}"
 EndProject
@@ -260,7 +260,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText", "Framework\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj", "{F342916F-CBE7-AE4C-D1DE-DB738CFFB8ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Trimming.TestApp", "Framework\JJ.Framework.IO.Legacy.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj", "{409358C6-FD72-ABD0-F200-275DFBDE5D93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Trimming.TestApp", "Framework\JJ.Framework.IO.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj", "{409358C6-FD72-ABD0-F200-275DFBDE5D93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp", "Framework\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj", "{D124F133-8486-ECAC-054C-C8FAE35F21FD}"
 EndProject

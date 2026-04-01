@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.IO.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.IO.Legacy.Tests\bin\**" />
+    <Compile Include="..\JJ.Framework.IO.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.IO.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.IO.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
