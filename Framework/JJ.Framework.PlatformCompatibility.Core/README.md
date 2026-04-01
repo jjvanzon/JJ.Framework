@@ -63,3 +63,17 @@ Utilities
 ---------
 
 - `HashCode` - `HashCode.Combine(...)` for older `.NET` versions that don't have it built in.
+
+Release Notes
+--------------
+
+#### `2026-04-01` | `4.4`/`0.252` : __Initial Release__
+
+- Run new code on older .NETs
+- Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
+- Full test coverage and member docs
+
+💬 Feedback
+============
+
+Got feedback or questions? You can reach me [here.](https://jjvanzon.github.io/#-how-to-reach-me)

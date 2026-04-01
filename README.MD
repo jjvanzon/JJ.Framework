@@ -184,6 +184,16 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
   `"Address: Street is required."`
 - Localization: English (`en-US`) and Dutch (`nl-NL`)
 
+#### `2026-04-01` | `4.4`/`0.252` : __PlatformCompatibility.Core Initial__ , __Validation.Legacy Docs__
+
+- [`JJ.Framework.PlatformCompatibility.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core)
+- Run new code on older .NETs
+- Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
+- Full test coverage and member docs
+- [`JJ.Framework.Validation.Legacy`](https://www.nuget.org/packages/JJ.Framework.Validation.Legacy)
+- More IntelliSense popups
+- Reworked README
+
 💬 Feedback 
 ------------
 
