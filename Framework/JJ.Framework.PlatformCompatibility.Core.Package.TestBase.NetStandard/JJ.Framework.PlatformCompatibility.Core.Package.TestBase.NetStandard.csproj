@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+    <Version>4.4.$(BuildNum)</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.TestBase\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Core.TestBase\obj\**" />
+    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Core.TestBase\bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.5864" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
+    <!-- Needed? Remove? -->
+    <PackageReference Include="JJ.Framework.Common.Core" Version="4.1.5729" />
+  </ItemGroup>
+
+  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+</Project>
