@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <RootNamespace>JJ.Framework.Validation.Legacy.Tests.Helpers</RootNamespace>
-    <Version>0.251.$(BuildNum)</Version>
+    <Version>0.252.$(BuildNum)</Version>
   </PropertyGroup>
 
   <ItemGroup>
