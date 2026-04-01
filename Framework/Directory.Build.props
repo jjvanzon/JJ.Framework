@@ -39,6 +39,8 @@
     <IsTest>False</IsTest>
     <IsTest Condition="$(MSBuildProjectName.EndsWith('.Tests'))">True</IsTest>
     <IsTest Condition="$(MSBuildProjectName.Contains('.Tests.'))">True</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.EndsWith('.TestBase'))">True</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.Contains('.TestBase.'))">True</IsTest>
     <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
     <IsNet5>$(TargetFramework.Equals('net5.0'))</IsNet5>
     <IsNet6>$(TargetFramework.Equals('net6.0'))</IsNet6>
