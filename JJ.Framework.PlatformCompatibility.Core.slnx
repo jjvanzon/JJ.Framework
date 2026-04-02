@@ -3,7 +3,6 @@
     <File Path="JJ.Framework.PlatformCompatibility.Core.v3.ncrunchsolution" />
   </Folder>
   <Project Path="Framework/JJ.Framework.Build/JJ.Framework.Build.csproj" />
-  <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard/JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard.csproj" />
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Package.TestBase/JJ.Framework.PlatformCompatibility.Core.Package.TestBase.csproj" />
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard/JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard.csproj" />
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Package.Tests/JJ.Framework.PlatformCompatibility.Core.Package.Tests.csproj" />
@@ -14,4 +13,5 @@
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Tests/JJ.Framework.PlatformCompatibility.Core.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp/JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj" />
   <Project Path="Framework/JJ.Framework.PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
+  <Project Path="Framework/PlatformCompatibility.Core.Package.TestBase.NetStandard/JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard.csproj" />
 </Solution>
