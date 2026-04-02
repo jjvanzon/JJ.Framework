@@ -26,5 +26,9 @@
     <Compile Remove="..\JJ.Framework.Existence.Core.Tests.ValuesToText\bin\**" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
 </Project>
 

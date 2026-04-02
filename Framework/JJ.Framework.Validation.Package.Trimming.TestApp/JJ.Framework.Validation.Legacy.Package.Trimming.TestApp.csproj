@@ -30,5 +30,9 @@
     <TrimmerRootDescriptor Include="Linker.xml" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
 </Project>
 

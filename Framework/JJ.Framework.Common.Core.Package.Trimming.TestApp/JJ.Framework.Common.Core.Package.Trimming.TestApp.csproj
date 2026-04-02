@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\JJ.Framework.Common.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Common.Core.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Common.Core.Tests\bin\**" />
+    <Compile Include="..\JJ.Framework.Common.Core.Trimming.TestApp\Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="JJ.Framework.Common.Core" Version="4.1.5729" />
     <PackageReference Include="JJ.Framework.Common.Core.Tests.Helpers" Version="3.7.4872" />
     <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.251.5729" />
@@ -16,14 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="..\JJ.Framework.Common.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.Common.Core.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.Common.Core.Tests\bin\**" />
-    <Compile Include="..\JJ.Framework.Common.Core.Trimming.TestApp\Program.cs" />
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 
   <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

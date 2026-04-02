@@ -34,4 +34,8 @@
     <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
 </Project>
