@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <!-- Already referenced in TestBase. Remove? -->
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.5864" />
   </ItemGroup>
 
   <ItemGroup>
