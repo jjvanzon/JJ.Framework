@@ -12,6 +12,16 @@
   <Project Path="Framework/PlatformCompatibility.Core.Tests/JJ.Framework.PlatformCompatibility.Core.Tests.csproj" />
   <Project Path="Framework/PlatformCompatibility.Core.Trimming.TestApp/JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj" />
   <Project Path="Framework/PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.Collections.Core/JJ.Framework.Collections.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.Common.Core/JJ.Framework.Common.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.Common/JJ.Framework.Common.Legacy.csproj" />
+  <Project Path="Framework/JJ.Framework.Exceptions.Core/JJ.Framework.Exceptions.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.Existence.Core/JJ.Framework.Existence.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.PlatformCompatibility/JJ.Framework.PlatformCompatibility.Legacy.csproj" />
+  <Project Path="Framework/JJ.Framework.Reflection.Core/JJ.Framework.Reflection.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.Reflection/JJ.Framework.Reflection.Legacy.csproj" />
+  <Project Path="Framework/JJ.Framework.Testing.Core/JJ.Framework.Testing.Core.csproj" />
+  <Project Path="Framework/JJ.Framework.Testing/JJ.Framework.Testing.Legacy.csproj" />
   <Project Path="Framework/PlatformCompatibility.Core.Package.TestBase.NetStandard/JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard.csproj" />
   <Project Path="Framework/PlatformCompatibility.Core.Package.Tests.NetStandard/JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard.csproj" />
 </Solution>
