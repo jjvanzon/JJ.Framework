@@ -103,7 +103,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard", "Framework\PlatformCompatibility.Core.Package.TestBase.NetStandard\JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard.csproj", "{9779E68C-118D-7D5B-82B0-17DFAD0AB87C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard", "Framework\JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard\JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard.csproj", "{D563C5A3-CF5F-C884-3ABA-15B6A59678DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard", "Framework\PlatformCompatibility.Core.Package.Tests.NetStandard\JJ.Framework.PlatformCompatibility.Core.Package.Tests.NetStandard.csproj", "{D563C5A3-CF5F-C884-3ABA-15B6A59678DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{9A0CCAB9-4303-13B4-2371-F1B97FF5B728}"
 EndProject
