@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PlatformCompatibility.Core.TestBase.NetStandard\JJ.Framework.PlatformCompatibility.Core.TestBase.NetStandard.csproj" />
+    <ProjectReference Include="..\PlatformCompatibility.Core.TestBase.Standard\JJ.Framework.PlatformCompatibility.Core.TestBase.Standard.csproj" />
   </ItemGroup>
 </Project>
 

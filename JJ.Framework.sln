@@ -280,9 +280,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.TestBase", "Framework\PlatformCompatibility.Core.TestBase\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj", "{2FD49AC8-B0C3-73DA-7530-DBB3D45CA822}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.TestBase.NetStandard", "Framework\PlatformCompatibility.Core.TestBase.NetStandard\JJ.Framework.PlatformCompatibility.Core.TestBase.NetStandard.csproj", "{B513A3BB-8FAA-1F2B-1EA0-DFBAE50DA6DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.TestBase.Standard", "Framework\PlatformCompatibility.Core.TestBase.Standard\JJ.Framework.PlatformCompatibility.Core.TestBase.Standard.csproj", "{B513A3BB-8FAA-1F2B-1EA0-DFBAE50DA6DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Tests.NetStandard", "Framework\PlatformCompatibility.Core.Tests.NetStandard\JJ.Framework.PlatformCompatibility.Core.Tests.NetStandard.csproj", "{8A0DB9CE-54A6-DCAF-0175-E9C015F50648}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Tests.Standard", "Framework\PlatformCompatibility.Core.Tests.Standard\JJ.Framework.PlatformCompatibility.Core.Tests.Standard.csproj", "{8A0DB9CE-54A6-DCAF-0175-E9C015F50648}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
