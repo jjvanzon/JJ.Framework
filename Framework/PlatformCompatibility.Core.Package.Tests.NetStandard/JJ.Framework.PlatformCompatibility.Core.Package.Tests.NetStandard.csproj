@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Core.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.PlatformCompatibility.Core.Tests\bin\**" />
+    <Compile Include="..\PlatformCompatibility.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\PlatformCompatibility.Core.Tests\obj\**" />
+    <Compile Remove="..\PlatformCompatibility.Core.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>

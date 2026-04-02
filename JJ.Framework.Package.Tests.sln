@@ -97,9 +97,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Leg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.Validation.Package.Trimming.TestApp\JJ.Framework.Validation.Legacy.Package.Trimming.TestApp.csproj", "{8A0929B0-DF87-2DFA-7DB4-2FC18CEBCDFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.TestBase", "Framework\JJ.Framework.PlatformCompatibility.Core.Package.TestBase\JJ.Framework.PlatformCompatibility.Core.Package.TestBase.csproj", "{23225E45-B476-42D2-9B3C-6994D879BB10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.TestBase", "Framework\PlatformCompatibility.Core.Package.TestBase\JJ.Framework.PlatformCompatibility.Core.Package.TestBase.csproj", "{23225E45-B476-42D2-9B3C-6994D879BB10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Core.Package.Tests\JJ.Framework.PlatformCompatibility.Core.Package.Tests.csproj", "{644047C0-219D-6C8D-34F5-0D6D87A516E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.Tests", "Framework\PlatformCompatibility.Core.Package.Tests\JJ.Framework.PlatformCompatibility.Core.Package.Tests.csproj", "{644047C0-219D-6C8D-34F5-0D6D87A516E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard", "Framework\PlatformCompatibility.Core.Package.TestBase.NetStandard\JJ.Framework.PlatformCompatibility.Core.Package.TestBase.NetStandard.csproj", "{9779E68C-118D-7D5B-82B0-17DFAD0AB87C}"
 EndProject

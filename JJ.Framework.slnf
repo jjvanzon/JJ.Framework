@@ -47,13 +47,6 @@
       "Framework\\JJ.Framework.Logging.Core\\JJ.Framework.Logging.Core.csproj",
       "Framework\\JJ.Framework.Mathematics.Tests\\JJ.Framework.Mathematics.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Mathematics\\JJ.Framework.Mathematics.Legacy.csproj",
-      "Framework\\JJ.Framework.PlatformCompatibility.Core.SharedProject\\JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj",
-      "Framework\\JJ.Framework.PlatformCompatibility.Core.TestBase.NetStandard\\JJ.Framework.PlatformCompatibility.Core.TestBase.NetStandard.csproj",
-      "Framework\\JJ.Framework.PlatformCompatibility.Core.TestBase\\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj",
-      "Framework\\JJ.Framework.PlatformCompatibility.Core.Tests.NetStandard\\JJ.Framework.PlatformCompatibility.Core.Tests.NetStandard.csproj",
-      "Framework\\JJ.Framework.PlatformCompatibility.Core.Tests\\JJ.Framework.PlatformCompatibility.Core.Tests.csproj",
-      "Framework\\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp\\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj",
-      "Framework\\JJ.Framework.PlatformCompatibility.Core\\JJ.Framework.PlatformCompatibility.Core.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Tests\\JJ.Framework.PlatformCompatibility.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility.Trimming.TestApp\\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.PlatformCompatibility\\JJ.Framework.PlatformCompatibility.Legacy.csproj",
@@ -72,7 +65,13 @@
       "Framework\\JJ.Framework.Validation.Tests\\JJ.Framework.Validation.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Validation.Trimming.TestApp\\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj",
       "Framework\\JJ.Framework.Validation\\JJ.Framework.Validation.Legacy.csproj",
-      "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj"
+      "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj",
+      "Framework\\PlatformCompatibility.Core.SharedProject\\JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj",
+      "Framework\\PlatformCompatibility.Core.TestBase.NetStandard\\JJ.Framework.PlatformCompatibility.Core.TestBase.NetStandard.csproj",
+      "Framework\\PlatformCompatibility.Core.TestBase\\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj",
+      "Framework\\PlatformCompatibility.Core.Tests.NetStandard\\JJ.Framework.PlatformCompatibility.Core.Tests.NetStandard.csproj",
+      "Framework\\PlatformCompatibility.Core.Trimming.TestApp\\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj",
+      "Framework\\PlatformCompatibility.Core\\JJ.Framework.PlatformCompatibility.Core.csproj"
     ]
   }
 }

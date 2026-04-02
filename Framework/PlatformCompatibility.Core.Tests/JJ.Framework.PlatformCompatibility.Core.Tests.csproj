@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Core.TestBase\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
+    <ProjectReference Include="..\PlatformCompatibility.Core.TestBase\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
   </ItemGroup>
 
 </Project>
