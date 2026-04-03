@@ -2,7 +2,7 @@ global using System;
 global using JJ.Framework.PlatformCompatibility.Core.Tests;
 global using static JJ.Framework.Testing.Core.TestRunner;
 global using static System.Console;
-//global using JJ.Framework.PlatformCompatibility.Core.TestBase;
+global using JJ.Framework.PlatformCompatibility.Core.TestBase;
 
 // ReSharper disable RedundantUsingDirective.Global
 global using Microsoft.VisualStudio.TestTools.UnitTesting;

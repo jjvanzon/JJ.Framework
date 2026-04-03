@@ -1,4 +1,3 @@
-
 bool success =
 RunTests<CallerArgumentExpression_Tests>() &&
 RunTests<ExceptionSupport_Tests>() &&

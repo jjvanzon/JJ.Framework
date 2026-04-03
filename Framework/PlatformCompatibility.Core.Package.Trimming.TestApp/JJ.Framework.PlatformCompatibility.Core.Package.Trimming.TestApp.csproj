@@ -28,5 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+    <ProjectReference Include="..\Testing.MSTestless\JJ.Framework.Testing.MSTestless.csproj" />
   </ItemGroup>
 </Project>
