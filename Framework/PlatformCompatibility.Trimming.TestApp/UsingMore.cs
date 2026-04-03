@@ -3,7 +3,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using JJ.Framework.PlatformCompatibility.Tests;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Core;
-global using JJ.Framework.Testing.Core.MSTestless;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static System.Console;
 global using static System.Environment;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;

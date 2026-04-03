@@ -1,4 +1,4 @@
-﻿global using JJ.Framework.Testing.Core.MSTestless;
+﻿global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Existence.Core.Bool.Tests;
 global using JJ.Framework.Existence.Core.Tests.Helpers.docs;
 global using static System.Console;

@@ -17,6 +17,7 @@
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
+    <ProjectReference Include="..\Testing.MSTestless\JJ.Framework.Testing.MSTestless.csproj" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

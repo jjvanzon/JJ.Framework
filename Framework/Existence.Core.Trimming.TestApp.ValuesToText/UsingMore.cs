@@ -1,4 +1,4 @@
-﻿global using JJ.Framework.Testing.Core.MSTestless;
+﻿global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Existence.Core.ValuesToText.Tests;
 global using static System.Console;
 global using static System.Environment;

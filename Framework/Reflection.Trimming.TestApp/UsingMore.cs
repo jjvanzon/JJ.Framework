@@ -1,4 +1,4 @@
-﻿global using JJ.Framework.Testing.Core.MSTestless;
+﻿global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Legacy.Tests;
 global using JJ.Framework.Reflection.Tests.AccessorTests;
 global using JJ.Framework.Reflection.Tests.ExpressionHelperTests;
