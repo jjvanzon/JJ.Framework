@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <linker>
-  <assembly fullname="JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText">
+  <assembly fullname="JJ.Framework.Existence.Core.Package.TrimTests.ValuesToText">
     <type fullname="Program" preserve="all">
       <method name="&lt;Main&gt;$" />
     </type>
