@@ -16,15 +16,15 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
+    <ProjectReference Include="..\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
-    <ProjectReference Include="..\JJ.Framework.IO.Core\JJ.Framework.IO.Core.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
+    <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <ProjectReference Include="..\IO.Core\JJ.Framework.IO.Core.csproj" />
+    <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
   </ItemGroup>
   
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
-  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <!-- Gives problems with Reflection.Core, which doesn't guarantee trimming yet. -->
   <ItemGroup>

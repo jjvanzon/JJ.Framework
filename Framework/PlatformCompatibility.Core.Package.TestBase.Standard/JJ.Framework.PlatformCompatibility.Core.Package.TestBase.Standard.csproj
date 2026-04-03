@@ -15,5 +15,5 @@
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
   </ItemGroup>
 
-  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 </Project>

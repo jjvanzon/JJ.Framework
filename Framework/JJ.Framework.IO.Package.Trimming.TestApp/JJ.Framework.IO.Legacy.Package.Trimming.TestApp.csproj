@@ -19,7 +19,7 @@
     <Compile Include="..\JJ.Framework.IO.Trimming.TestApp\UsingMore.cs" />
   </ItemGroup>
 
-  <Import Project="..\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />

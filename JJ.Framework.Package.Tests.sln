@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Package.Tests", "Framework\JJ.Framework.Common.Package.Tests\JJ.Framework.Common.Legacy.Package.Tests.csproj", "{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Tests", "Framework\JJ.Framework.Common.Core.Package.Tests\JJ.Framework.Common.Core.Package.Tests.csproj", "{E1D2C9C1-3A2F-81F8-4776-9FB6F9983FAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Tests", "Framework\Common.Core.Package.Tests\JJ.Framework.Common.Core.Package.Tests.csproj", "{E1D2C9C1-3A2F-81F8-4776-9FB6F9983FAB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,31 +25,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Tests", "Framework\JJ.Framework.Reflection.Package.Tests\JJ.Framework.Reflection.Legacy.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests", "Framework\JJ.Framework.Existence.Core.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.csproj", "{D589D511-228E-937F-4AC8-0009AFCE0BAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests", "Framework\Existence.Core.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.csproj", "{D589D511-228E-937F-4AC8-0009AFCE0BAC}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.SharedProject.Core", "Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.shproj", "{1BEB8E62-FCB0-4B88-B142-23E720D5BACC}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.SharedProject.Core", "Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.shproj", "{1BEB8E62-FCB0-4B88-B142-23E720D5BACC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Legacy.Package.Tests.csproj", "{70B4D771-007B-8549-1264-60818D52BB25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBTextCombo", "Framework\JJ.Framework.Existence.Core.Package.Tests.SBTextCombo\JJ.Framework.Existence.Core.Package.Tests.SBTextCombo.csproj", "{05CCB395-852D-64E3-F586-B553AF7179AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBTextCombo", "Framework\Existence.Core.Package.Tests.SBTextCombo\JJ.Framework.Existence.Core.Package.Tests.SBTextCombo.csproj", "{05CCB395-852D-64E3-F586-B553AF7179AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBs", "Framework\JJ.Framework.Existence.Core.Package.Tests.SBs\JJ.Framework.Existence.Core.Package.Tests.SBs.csproj", "{7DCA52BE-7214-EBF8-55E3-FBD84D98D48C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBs", "Framework\Existence.Core.Package.Tests.SBs\JJ.Framework.Existence.Core.Package.Tests.SBs.csproj", "{7DCA52BE-7214-EBF8-55E3-FBD84D98D48C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Text", "Framework\JJ.Framework.Existence.Core.Package.Tests.Text\JJ.Framework.Existence.Core.Package.Tests.Text.csproj", "{8621A65B-4E1D-31F5-F341-BB10A06E9628}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Text", "Framework\Existence.Core.Package.Tests.Text\JJ.Framework.Existence.Core.Package.Tests.Text.csproj", "{8621A65B-4E1D-31F5-F341-BB10A06E9628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBToText", "Framework\JJ.Framework.Existence.Core.Package.Tests.SBToText\JJ.Framework.Existence.Core.Package.Tests.SBToText.csproj", "{82CCE832-CD76-9828-22C2-325CEB12D7AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBToText", "Framework\Existence.Core.Package.Tests.SBToText\JJ.Framework.Existence.Core.Package.Tests.SBToText.csproj", "{82CCE832-CD76-9828-22C2-325CEB12D7AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.BoolToText", "Framework\JJ.Framework.Existence.Core.Package.Tests.BoolToText\JJ.Framework.Existence.Core.Package.Tests.BoolToText.csproj", "{20C98D85-2FA3-5081-8DFA-A9C0FCEFD78B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.BoolToText", "Framework\Existence.Core.Package.Tests.BoolToText\JJ.Framework.Existence.Core.Package.Tests.BoolToText.csproj", "{20C98D85-2FA3-5081-8DFA-A9C0FCEFD78B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Bool", "Framework\JJ.Framework.Existence.Core.Package.Tests.Bool\JJ.Framework.Existence.Core.Package.Tests.Bool.csproj", "{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Bool", "Framework\Existence.Core.Package.Tests.Bool\JJ.Framework.Existence.Core.Package.Tests.Bool.csproj", "{86F5CDA3-F56C-8DB9-DD8D-099AC59E75AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.ValuesToText", "Framework\JJ.Framework.Existence.Core.Package.Tests.ValuesToText\JJ.Framework.Existence.Core.Package.Tests.ValuesToText.csproj", "{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.ValuesToText", "Framework\Existence.Core.Package.Tests.ValuesToText\JJ.Framework.Existence.Core.Package.Tests.ValuesToText.csproj", "{E6893427-6FE9-B2C3-B8EE-00FD5B68483A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Values", "Framework\JJ.Framework.Existence.Core.Package.Tests.Values\JJ.Framework.Existence.Core.Package.Tests.Values.csproj", "{75CBA8C3-C2CB-4877-D2FA-959C596EFCF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Values", "Framework\Existence.Core.Package.Tests.Values\JJ.Framework.Existence.Core.Package.Tests.Values.csproj", "{75CBA8C3-C2CB-4877-D2FA-959C596EFCF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Collections", "Framework\JJ.Framework.Existence.Core.Package.Tests.Collections\JJ.Framework.Existence.Core.Package.Tests.Collections.csproj", "{B9C7C51D-3AF4-3068-5E17-6F15A4459325}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Collections", "Framework\Existence.Core.Package.Tests.Collections\JJ.Framework.Existence.Core.Package.Tests.Collections.csproj", "{B9C7C51D-3AF4-3068-5E17-6F15A4459325}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Package.Tests", "Framework\JJ.Framework.Business.Package.Tests\JJ.Framework.Business.Legacy.Package.Tests.csproj", "{AB65AD56-81C6-A931-D28D-4245F792981F}"
 EndProject
@@ -59,37 +59,37 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Leg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj", "{8CFFF9A3-19C7-AFA7-1DAC-47D7676905B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Trimming.TestApp", "Framework\JJ.Framework.Common.Core.Package.Trimming.TestApp\JJ.Framework.Common.Core.Package.Trimming.TestApp.csproj", "{43EF981B-37EB-B529-4527-F5552AB2E092}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Trimming.TestApp", "Framework\Common.Core.Package.Trimming.TestApp\JJ.Framework.Common.Core.Package.Trimming.TestApp.csproj", "{43EF981B-37EB-B529-4527-F5552AB2E092}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp\JJ.Framework.Existence.Core.Package.Trimming.TestApp.csproj", "{B62623AE-8F44-8F08-0170-89B61B0384AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp", "Framework\Existence.Core.Package.Trimming.TestApp\JJ.Framework.Existence.Core.Package.Trimming.TestApp.csproj", "{B62623AE-8F44-8F08-0170-89B61B0384AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Bool", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Bool.csproj", "{F1DA08A5-BE47-D0E6-DA92-EF41D4921845}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Bool", "Framework\Existence.Core.Package.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Bool.csproj", "{F1DA08A5-BE47-D0E6-DA92-EF41D4921845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.BoolToText", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.BoolToText.csproj", "{FD88FDD6-A595-D242-F0B4-EAF9B8EC0257}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.BoolToText", "Framework\Existence.Core.Package.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.BoolToText.csproj", "{FD88FDD6-A595-D242-F0B4-EAF9B8EC0257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Collections", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Collections.csproj", "{3F6B8725-08D2-C6D1-67A1-FF1C2284A7A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Collections", "Framework\Existence.Core.Package.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Collections.csproj", "{3F6B8725-08D2-C6D1-67A1-FF1C2284A7A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBs", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBs.csproj", "{6A8F6EA6-BEA4-355E-4E8C-855BD2D71EE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBs", "Framework\Existence.Core.Package.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBs.csproj", "{6A8F6EA6-BEA4-355E-4E8C-855BD2D71EE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBTextCombo", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBTextCombo.csproj", "{CC3B8993-E4E5-F3FE-A190-A1929FD2376B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBTextCombo", "Framework\Existence.Core.Package.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBTextCombo.csproj", "{CC3B8993-E4E5-F3FE-A190-A1929FD2376B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBToText", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBToText.csproj", "{1E6ACCBD-A3A9-A65D-FAB1-45F4D9E24FA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBToText", "Framework\Existence.Core.Package.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.SBToText.csproj", "{1E6ACCBD-A3A9-A65D-FAB1-45F4D9E24FA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Text", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Text.csproj", "{87709CA5-32C8-046D-2752-457E6D281B2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Text", "Framework\Existence.Core.Package.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Text.csproj", "{87709CA5-32C8-046D-2752-457E6D281B2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Values", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Values.csproj", "{E683FC9E-4D98-57CE-EEC2-F90EEAF2A262}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.Values", "Framework\Existence.Core.Package.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Package.Trimming.TestApp.Values.csproj", "{E683FC9E-4D98-57CE-EEC2-F90EEAF2A262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText", "Framework\JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText.csproj", "{22F6C264-3569-55F3-48D3-89FC8DFF67E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText", "Framework\Existence.Core.Package.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText.csproj", "{22F6C264-3569-55F3-48D3-89FC8DFF67E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj", "{C1FD2B8C-EC11-A29F-0BBC-F61CC4A5434C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Package.Tests", "Framework\JJ.Framework.IO.Core.Package.Tests\JJ.Framework.IO.Core.Package.Tests.csproj", "{CB1F6004-F221-0653-C14B-0EE228D7C2C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Package.Tests", "Framework\IO.Core.Package.Tests\JJ.Framework.IO.Core.Package.Tests.csproj", "{CB1F6004-F221-0653-C14B-0EE228D7C2C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Package.Tests", "Framework\JJ.Framework.IO.Package.Tests\JJ.Framework.IO.Legacy.Package.Tests.csproj", "{C298B291-5F4F-9988-ACBD-B0CBE3DF584A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.IO.Package.Trimming.TestApp\JJ.Framework.IO.Legacy.Package.Trimming.TestApp.csproj", "{1409A34D-82F1-560F-4734-9DF8BA3DAC9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.Tests.Helpers", "Framework\JJ.Framework.Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj", "{A740C190-EA9B-492B-4721-B3EBF0FFC70F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.Tests.Helpers", "Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj", "{A740C190-EA9B-492B-4721-B3EBF0FFC70F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Tests", "Framework\JJ.Framework.Validation.Package.Tests\JJ.Framework.Validation.Legacy.Package.Tests.csproj", "{CFF53DF3-2B38-5FB0-9505-E8457ED869AF}"
 EndProject
@@ -629,37 +629,37 @@ Global
 		SolutionGuid = {8B958E8C-E60A-4645-9565-A8B8F94E2F5A}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1409a34d-82f1-560f-4734-9df8ba3dac9b}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1beb8e62-fcb0-4b88-b142-23e720d5bacc}*SharedItemsImports = 13
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1e6accbd-a3a9-a65d-fab1-45f4d9e24fa4}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{22f6c264-3569-55f3-48d3-89fc8dff67e7}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{23225e45-b476-42d2-9b3c-6994d879bb10}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{2f40987d-dd95-159a-f6b1-5c32f4cbf021}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{3f6b8725-08d2-c6d1-67a1-ff1c2284a7a0}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{43ef981b-37eb-b529-4527-f5552ab2e092}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{644047c0-219d-6c8d-34f5-0d6d87a516e5}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{6a8f6ea6-bea4-355e-4e8c-855bd2d71ee5}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{70b4d771-007b-8549-1264-60818d52bb25}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{7dca52be-7214-ebf8-55e3-fbd84d98d48c}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{85130d7a-3454-6885-fa14-a273896dd1aa}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8621a65b-4e1d-31f5-f341-bb10a06e9628}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{87709ca5-32c8-046d-2752-457e6d281b2c}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8a0929b0-df87-2dfa-7db4-2fc18cebcdfd}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8a8a1b44-7b1a-1ecb-ced8-4205b14911b6}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8cfff9a3-19c7-afa7-1dac-47d7676905b8}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{9779e68c-118d-7d5b-82b0-17dfad0ab87c}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{ab65ad56-81c6-a931-d28d-4245f792981f}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{b62623ae-8f44-8f08-0170-89b61b0384aa}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{b87272a8-0d42-a99c-7b90-31d9c4feb06c}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{c1fd2b8c-ec11-a29f-0bbc-f61cc4a5434c}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{c298b291-5f4f-9988-acbd-b0cbe3df584a}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cb1f6004-f221-0653-c14b-0ee228d7c2c0}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cc3b8993-e4e5-f3fe-a190-a1929fd2376b}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cff53df3-2b38-5fb0-9505-e8457ed869af}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{d563c5a3-cf5f-c884-3aba-15b6a59678da}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e683fc9e-4d98-57ce-eec2-f90eeaf2a262}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{f1da08a5-be47-d0e6-da92-ef41d4921845}*SharedItemsImports = 5
-		Framework\JJ.Framework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{fd88fdd6-a595-d242-f0b4-eaf9b8ec0257}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1409a34d-82f1-560f-4734-9df8ba3dac9b}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1beb8e62-fcb0-4b88-b142-23e720d5bacc}*SharedItemsImports = 13
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1e6accbd-a3a9-a65d-fab1-45f4d9e24fa4}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{22f6c264-3569-55f3-48d3-89fc8dff67e7}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{23225e45-b476-42d2-9b3c-6994d879bb10}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{2f40987d-dd95-159a-f6b1-5c32f4cbf021}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{3f6b8725-08d2-c6d1-67a1-ff1c2284a7a0}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{43ef981b-37eb-b529-4527-f5552ab2e092}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{644047c0-219d-6c8d-34f5-0d6d87a516e5}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{6a8f6ea6-bea4-355e-4e8c-855bd2d71ee5}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{70b4d771-007b-8549-1264-60818d52bb25}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{7dca52be-7214-ebf8-55e3-fbd84d98d48c}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{85130d7a-3454-6885-fa14-a273896dd1aa}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8621a65b-4e1d-31f5-f341-bb10a06e9628}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{87709ca5-32c8-046d-2752-457e6d281b2c}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8a0929b0-df87-2dfa-7db4-2fc18cebcdfd}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8a8a1b44-7b1a-1ecb-ced8-4205b14911b6}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{8cfff9a3-19c7-afa7-1dac-47d7676905b8}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{9779e68c-118d-7d5b-82b0-17dfad0ab87c}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{ab65ad56-81c6-a931-d28d-4245f792981f}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{b62623ae-8f44-8f08-0170-89b61b0384aa}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{b87272a8-0d42-a99c-7b90-31d9c4feb06c}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{c1fd2b8c-ec11-a29f-0bbc-f61cc4a5434c}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{c298b291-5f4f-9988-acbd-b0cbe3df584a}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cb1f6004-f221-0653-c14b-0ee228d7c2c0}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cc3b8993-e4e5-f3fe-a190-a1929fd2376b}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{cff53df3-2b38-5fb0-9505-e8457ed869af}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{d563c5a3-cf5f-c884-3aba-15b6a59678da}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e1d2c9c1-3a2f-81f8-4776-9fb6f9983fab}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{e683fc9e-4d98-57ce-eec2-f90eeaf2a262}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{f1da08a5-be47-d0e6-da92-ef41d4921845}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{fd88fdd6-a595-d242-f0b4-eaf9b8ec0257}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>3.9.$(BuildNum)</Version>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Business.Core" Version="3.9.5376" />
+    <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.250.5376" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="3.9.5376" />
+  </ItemGroup>
+
+  <ItemGroup>
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Business.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Business.Core.Tests\obj\**" />
+    <Compile Remove="..\Business.Core.Tests\bin\**" />
+    <Compile Include="..\Business.Core.Trimming.TestApp\Program.cs" />
+    <Compile Include="..\Business.Core.Trimming.TestApp\UsingMore.cs" />
+  </ItemGroup>
+
+  <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+  </ItemGroup>
+
+</Project>
+

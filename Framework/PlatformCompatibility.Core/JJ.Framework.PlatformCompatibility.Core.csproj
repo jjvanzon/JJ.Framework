@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>4.4.$(BuildNum)</Version>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461;netstandard2.0;netstandard2.1</TargetFrameworks>
     <Description>Internal support for JJ projects. Shims that mimic new features for old .NETs, so new code can compile for older tech.</Description>
     <PackageTags>stub shim platform stubs compatibility shims tfm</PackageTags>
-    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility.Core</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
