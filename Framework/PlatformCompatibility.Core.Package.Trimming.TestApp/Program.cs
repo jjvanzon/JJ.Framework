@@ -1,5 +1,3 @@
-using JJ.Framework.Testing.Core;
-using static System.Console;
 
 bool success =
 RunTests<CallerArgumentExpression_Tests>() &&
