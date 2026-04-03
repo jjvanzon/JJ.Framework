@@ -5,6 +5,7 @@
   <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup>
   <Import Project="BuildNum.xml" 
           Condition="'$(IsNCrunch)'!='True' And
+                     '$(Configuration)'=='Release' And
                      !$(MSBuildProjectName.EndsWith('.Tests')) And
                      !$(MSBuildProjectName.Contains('.Tests.')) And
                      !$(MSBuildProjectName.Contains('Trimming.TestApp')) And
@@ -207,8 +208,11 @@
   <!-- Trim Test -->
 
   <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild"
+          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!=''">
+    <!--
           Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!='' And
                    ('$(IsNCrunch)'=='True' Or '$(Configuration)'=='Release')">
+    -->
 
     <!-- Helper Vars -->
     <PropertyGroup>
