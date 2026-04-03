@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj" />
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+    <ProjectReference Include="..\Testing.MSTestless\JJ.Framework.Testing.MSTestless.csproj" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
@@ -32,4 +33,5 @@
   </ItemGroup>
 
 </Project>
+
 
