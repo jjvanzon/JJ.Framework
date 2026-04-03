@@ -1,12 +1,14 @@
 ﻿// ReSharper disable UnusedMember.Global
 
-namespace JJ.Framework.Testing.Core.MSTestless;
+namespace Microsoft.VisualStudio.TestTools.UnitTesting;
 
 /// <inheritdoc cref="_testclass" />
 [AttributeUsage(AttributeTargets.Class)]
 public class TestClassAttribute : Attribute
 {
-    /// <inheritdoc cref="_gettestmethodattribute" />
+    /// <summary>
+    /// Gets the test method attribute for the specified test method.
+    /// </summary>
     public virtual TestMethodAttribute? GetTestMethodAttribute(TestMethodAttribute? testMethodAttribute) 
         => testMethodAttribute;
 }

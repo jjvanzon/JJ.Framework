@@ -2,7 +2,7 @@
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
-namespace JJ.Framework.Testing.Core.MSTestless;
+namespace Microsoft.VisualStudio.TestTools.UnitTesting;
 
 /// <inheritdoc cref="_testmethod" />
 [AttributeUsage(AttributeTargets.Method)]

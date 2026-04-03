@@ -1,6 +1,9 @@
 ﻿// ReSharper disable DuplicatedSequentialIfBodies
 // ReSharper disable ConvertIfStatementToSwitchStatement
-namespace JJ.Framework.Testing.Core.MSTestless;
+using System;
+using System.Linq;
+
+namespace Microsoft.VisualStudio.TestTools.UnitTesting;
 
 public class CollectionAssert
 {
@@ -31,14 +34,14 @@ public class CollectionAssert
 
     private static string Format<T>(T[]? expected, T[]? actual)
     {
-        return $"Expected: {Format(expected)}, Actual: {Join(", ", actual ?? [ ])}";
+        return $"Expected: {Format(expected)}, Actual: {Format(actual)}";
     }
 
     private static string Format<T>(T[]? arr)
     {
         if (arr == null) return "<null>";
         if (arr.Length == 0) return "<empty>";
-        if (arr.Length <= MaxItemsToShow) return "[" + Join(", ", arr) + "]";
-        return "[" + Join(", ", arr.Take(MaxItemsToShow)) + ", ...]";
+        if (arr.Length <= MaxItemsToShow) return "[" + string.Join(", ", arr) + "]";
+        return "[" + string.Join(", ", arr.Take(MaxItemsToShow)) + ", ...]";
     }
 }
