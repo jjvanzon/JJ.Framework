@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -135,19 +135,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Configuration.Net48\JJ.Framework.Configuration.Net48.csproj">
+    <ProjectReference Include="..\Configuration.Net48\JJ.Framework.Configuration.Net48.csproj">
       <Project>{37a1cde4-c375-41a2-8268-664edb2d02e4}</Project>
       <Name>JJ.Framework.Configuration.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj">
+    <ProjectReference Include="..\Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj">
       <Project>{09619aa6-8e88-4487-bf2c-942c414d69ae}</Project>
       <Name>JJ.Framework.Persistence.Net48.EntityFramework5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
+    <ProjectReference Include="..\Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
       <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
       <Name>JJ.Framework.Persistence.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj">
+    <ProjectReference Include="..\Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj">
       <Project>{0714682c-e14a-4ceb-8b44-1d755050edf3}</Project>
       <Name>JJ.Framework.Persistence.Net48.NHibernate</Name>
     </ProjectReference>

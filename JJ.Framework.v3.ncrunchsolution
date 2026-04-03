@@ -23,8 +23,8 @@
       <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:net9.0</Value>
       <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:netstandard2.0</Value>
       <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:netstandard2.1</Value>
-      <Value>Framework\JJ.Framework.Configuration.Net48\JJ.Framework.Configuration.Net48.csproj</Value>
-      <Value>Framework\JJ.Framework.Configuration.Net48.Tests\JJ.Framework.Configuration.Net48.Tests.csproj</Value>
+      <Value>Framework\Configuration.Net48\JJ.Framework.Configuration.Net48.csproj</Value>
+      <Value>Framework\Configuration.Net48.Tests\JJ.Framework.Configuration.Net48.Tests.csproj</Value>
       <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:net8.0</Value>
       <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:net9.0</Value>
       <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:netstandard2.0</Value>
@@ -86,12 +86,12 @@
       <Value>Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Legacy.Xml.Linq.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Legacy.Xml.Linq.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Legacy.Xml.Linq.csproj:netstandard2.1</Value>
-      <Value>Framework\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj</Value>
-      <Value>Framework\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj</Value>
-      <Value>Framework\JJ.Framework.Persistence.Net48.Memory\JJ.Framework.Persistence.Net48.Memory.csproj</Value>
-      <Value>Framework\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj</Value>
-      <Value>Framework\JJ.Framework.Persistence.Net48.SqlClient\JJ.Framework.Persistence.Net48.SqlClient.csproj</Value>
-      <Value>Framework\JJ.Framework.Persistence.Net48.Tests\JJ.Framework.Persistence.Net48.Tests.csproj</Value>
+      <Value>Framework\Persistence.Net48\JJ.Framework.Persistence.Net48.csproj</Value>
+      <Value>Framework\Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj</Value>
+      <Value>Framework\Persistence.Net48.Memory\JJ.Framework.Persistence.Net48.Memory.csproj</Value>
+      <Value>Framework\Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj</Value>
+      <Value>Framework\Persistence.Net48.SqlClient\JJ.Framework.Persistence.Net48.SqlClient.csproj</Value>
+      <Value>Framework\Persistence.Net48.Tests\JJ.Framework.Persistence.Net48.Tests.csproj</Value>
       <Value>Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.Legacy.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.Legacy.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.Legacy.csproj:netstandard2.0</Value>
@@ -112,7 +112,7 @@
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net7.0-windows</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net8.0-windows</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net9.0-windows</Value>
-      <Value>Framework\JJ.Framework.Presentation.WinForms.Net48\JJ.Framework.Presentation.WinForms.Net48.csproj</Value>
+      <Value>Framework\Presentation.WinForms.Net48\JJ.Framework.Presentation.WinForms.Net48.csproj</Value>
       <Value>Framework\JJ.Framework.Security\JJ.Framework.Security.Legacy.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Security\JJ.Framework.Security.Legacy.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Security\JJ.Framework.Security.Legacy.csproj:netstandard2.0</Value>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -69,7 +69,7 @@
       <Project>{e6c03d2a-d150-4473-9439-d300746a1390}</Project>
       <Name>Puzzle.NPersist.Framework.NET 3.5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
+    <ProjectReference Include="..\Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
       <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
       <Name>JJ.Framework.Persistence.Net48</Name>
     </ProjectReference>
