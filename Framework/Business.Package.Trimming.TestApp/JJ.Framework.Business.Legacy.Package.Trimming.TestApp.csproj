@@ -9,7 +9,7 @@
     <Compile Include="..\JJ.Framework.Business.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Business.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Business.Tests\bin\**" />
-    <Compile Include="..\JJ.Framework.Business.Trimming.TestApp\Program.cs" />
+    <Compile Include="..\Business.Trimming.TestApp\Program.cs" />
   </ItemGroup>
 
   <ItemGroup>

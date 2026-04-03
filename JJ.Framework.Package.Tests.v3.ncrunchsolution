@@ -17,12 +17,12 @@
       <Value>Framework\Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net7.0</Value>
       <Value>Framework\Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net8.0</Value>
       <Value>Framework\Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
       <Value>Framework\Existence.Core.Package.Trimming.TestApp\JJ.Framework.Existence.Core.Package.Trimming.TestApp.csproj:net10.0</Value>
       <Value>Framework\Existence.Core.Package.Trimming.TestApp\JJ.Framework.Existence.Core.Package.Trimming.TestApp.csproj:net5.0</Value>
       <Value>Framework\Existence.Core.Package.Trimming.TestApp\JJ.Framework.Existence.Core.Package.Trimming.TestApp.csproj:net6.0</Value>
@@ -83,18 +83,18 @@
       <Value>Framework\Existence.Core.Package.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText.csproj:net7.0</Value>
       <Value>Framework\Existence.Core.Package.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText.csproj:net8.0</Value>
       <Value>Framework\Existence.Core.Package.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net5.0</Value>
+      <Value>Framework\PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net6.0</Value>
+      <Value>Framework\PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net7.0</Value>
+      <Value>Framework\PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net8.0</Value>
+      <Value>Framework\PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj:net9.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <RdiConfigured>True</RdiConfigured>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "JJ.Framework.Reflection.Legacy.Trimming.TestApp": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -15,8 +15,8 @@
     <Compile Include="..\JJ.Framework.IO.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.IO.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.IO.Tests\bin\**" />
-    <Compile Include="..\JJ.Framework.IO.Trimming.TestApp\Program.cs" />
-    <Compile Include="..\JJ.Framework.IO.Trimming.TestApp\UsingMore.cs" />
+    <Compile Include="..\IO.Trimming.TestApp\Program.cs" />
+    <Compile Include="..\IO.Trimming.TestApp\UsingMore.cs" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

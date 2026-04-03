@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Package.Tests", "Framework\JJ.Framework.Common.Package.Tests\JJ.Framework.Common.Legacy.Package.Tests.csproj", "{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Package.Tests", "Framework\Common.Package.Tests\JJ.Framework.Common.Legacy.Package.Tests.csproj", "{B7F3DA79-FB91-9491-81DD-CF205CE9CA0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Tests", "Framework\Common.Core.Package.Tests\JJ.Framework.Common.Core.Package.Tests.csproj", "{E1D2C9C1-3A2F-81F8-4776-9FB6F9983FAB}"
 EndProject
@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		RunTrimTests.bat = RunTrimTests.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Tests", "Framework\JJ.Framework.Reflection.Package.Tests\JJ.Framework.Reflection.Legacy.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Tests", "Framework\Reflection.Package.Tests\JJ.Framework.Reflection.Legacy.Package.Tests.csproj", "{2F40987D-DD95-159A-F6B1-5C32F4CBF021}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests", "Framework\Existence.Core.Package.Tests\JJ.Framework.Existence.Core.Package.Tests.csproj", "{D589D511-228E-937F-4AC8-0009AFCE0BAC}"
 EndProject
@@ -31,7 +31,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.SharedProject.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Tests", "Framework\JJ.Framework.PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Legacy.Package.Tests.csproj", "{70B4D771-007B-8549-1264-60818D52BB25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Tests", "Framework\PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Legacy.Package.Tests.csproj", "{70B4D771-007B-8549-1264-60818D52BB25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.SBTextCombo", "Framework\Existence.Core.Package.Tests.SBTextCombo\JJ.Framework.Existence.Core.Package.Tests.SBTextCombo.csproj", "{05CCB395-852D-64E3-F586-B553AF7179AD}"
 EndProject
@@ -51,13 +51,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Tests.Collections", "Framework\Existence.Core.Package.Tests.Collections\JJ.Framework.Existence.Core.Package.Tests.Collections.csproj", "{B9C7C51D-3AF4-3068-5E17-6F15A4459325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Package.Tests", "Framework\JJ.Framework.Business.Package.Tests\JJ.Framework.Business.Legacy.Package.Tests.csproj", "{AB65AD56-81C6-A931-D28D-4245F792981F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Package.Tests", "Framework\Business.Package.Tests\JJ.Framework.Business.Legacy.Package.Tests.csproj", "{AB65AD56-81C6-A931-D28D-4245F792981F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.Common.Package.Trimming.TestApp\JJ.Framework.Common.Legacy.Package.Trimming.TestApp.csproj", "{B87272A8-0D42-A99C-7B90-31D9C4FEB06C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Package.Trimming.TestApp", "Framework\Common.Package.Trimming.TestApp\JJ.Framework.Common.Legacy.Package.Trimming.TestApp.csproj", "{B87272A8-0D42-A99C-7B90-31D9C4FEB06C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj", "{8A8A1B44-7B1A-1ECB-CED8-4205B14911B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp", "Framework\Reflection.Package.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Package.Trimming.TestApp.csproj", "{8A8A1B44-7B1A-1ECB-CED8-4205B14911B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj", "{8CFFF9A3-19C7-AFA7-1DAC-47D7676905B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Legacy.Package.Trimming.TestApp", "Framework\Business.Package.Trimming.TestApp\JJ.Framework.Business.Legacy.Package.Trimming.TestApp.csproj", "{8CFFF9A3-19C7-AFA7-1DAC-47D7676905B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core.Package.Trimming.TestApp", "Framework\Common.Core.Package.Trimming.TestApp\JJ.Framework.Common.Core.Package.Trimming.TestApp.csproj", "{43EF981B-37EB-B529-4527-F5552AB2E092}"
 EndProject
@@ -81,21 +81,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText", "Framework\Existence.Core.Package.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Package.Trimming.TestApp.ValuesToText.csproj", "{22F6C264-3569-55F3-48D3-89FC8DFF67E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj", "{C1FD2B8C-EC11-A29F-0BBC-F61CC4A5434C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp", "Framework\PlatformCompatibility.Package.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Package.Trimming.TestApp.csproj", "{C1FD2B8C-EC11-A29F-0BBC-F61CC4A5434C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Core.Package.Tests", "Framework\IO.Core.Package.Tests\JJ.Framework.IO.Core.Package.Tests.csproj", "{CB1F6004-F221-0653-C14B-0EE228D7C2C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Package.Tests", "Framework\JJ.Framework.IO.Package.Tests\JJ.Framework.IO.Legacy.Package.Tests.csproj", "{C298B291-5F4F-9988-ACBD-B0CBE3DF584A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Package.Tests", "Framework\IO.Package.Tests\JJ.Framework.IO.Legacy.Package.Tests.csproj", "{C298B291-5F4F-9988-ACBD-B0CBE3DF584A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.IO.Package.Trimming.TestApp\JJ.Framework.IO.Legacy.Package.Trimming.TestApp.csproj", "{1409A34D-82F1-560F-4734-9DF8BA3DAC9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Package.Trimming.TestApp", "Framework\IO.Package.Trimming.TestApp\JJ.Framework.IO.Legacy.Package.Trimming.TestApp.csproj", "{1409A34D-82F1-560F-4734-9DF8BA3DAC9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core.Tests.Helpers", "Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj", "{A740C190-EA9B-492B-4721-B3EBF0FFC70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Tests", "Framework\JJ.Framework.Validation.Package.Tests\JJ.Framework.Validation.Legacy.Package.Tests.csproj", "{CFF53DF3-2B38-5FB0-9505-E8457ED869AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Tests", "Framework\Validation.Package.Tests\JJ.Framework.Validation.Legacy.Package.Tests.csproj", "{CFF53DF3-2B38-5FB0-9505-E8457ED869AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Tests.Helpers", "Framework\JJ.Framework.Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj", "{85130D7A-3454-6885-FA14-A273896DD1AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Tests.Helpers", "Framework\Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj", "{85130D7A-3454-6885-FA14-A273896DD1AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Trimming.TestApp", "Framework\JJ.Framework.Validation.Package.Trimming.TestApp\JJ.Framework.Validation.Legacy.Package.Trimming.TestApp.csproj", "{8A0929B0-DF87-2DFA-7DB4-2FC18CEBCDFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Package.Trimming.TestApp", "Framework\Validation.Package.Trimming.TestApp\JJ.Framework.Validation.Legacy.Package.Trimming.TestApp.csproj", "{8A0929B0-DF87-2DFA-7DB4-2FC18CEBCDFD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Package.TestBase", "Framework\PlatformCompatibility.Core.Package.TestBase\JJ.Framework.PlatformCompatibility.Core.Package.TestBase.csproj", "{23225E45-B476-42D2-9B3C-6994D879BB10}"
 EndProject
