@@ -8,7 +8,7 @@
                      '$(Configuration)'=='Release' And
                      !$(MSBuildProjectName.EndsWith('.Tests')) And
                      !$(MSBuildProjectName.Contains('.Tests.')) And
-                     !$(MSBuildProjectName.Contains('Trimming.TestApp')) And
+                     !$(MSBuildProjectName.Contains('TrimTests')) And
                      Exists('BuildNum.xml')" />
 
   <!-- Project Properties -->
@@ -42,7 +42,7 @@
     <IsTest Condition="$(MSBuildProjectName.Contains('.Tests.'))">True</IsTest>
     <IsTest Condition="$(MSBuildProjectName.EndsWith('.TestBase'))">True</IsTest>
     <IsTest Condition="$(MSBuildProjectName.Contains('.TestBase.'))">True</IsTest>
-    <IsTrimTest>$(MSBuildProjectName.Contains('Trimming.TestApp'))</IsTrimTest>
+    <IsTrimTest>$(MSBuildProjectName.Contains('TrimTests'))</IsTrimTest>
     <IsNet5>$(TargetFramework.Equals('net5.0'))</IsNet5>
     <IsNet6>$(TargetFramework.Equals('net6.0'))</IsNet6>
     <IsNet7>$(TargetFramework.Equals('net7.0'))</IsNet7>
