@@ -22,7 +22,6 @@
     <Compile Remove="..\Existence.Core.Tests.Bool\obj\**" />
     <Compile Remove="..\Existence.Core.Tests.Bool\bin\**" />
     <Compile Include="..\Existence.Core.TrimTests.Bool\Program.cs" />
-    <Compile Include="..\Existence.Core.TrimTests.Bool\UsingMore.cs" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

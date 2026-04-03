@@ -10,7 +10,6 @@
     <Compile Remove="..\JJ.Framework.Validation.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Validation.Tests\bin\**" />
     <Compile Include="..\Validation.TrimTests\Program.cs" />
-    <Compile Include="..\Validation.TrimTests\UsingMore.cs" />
   </ItemGroup>
 
   <ItemGroup>

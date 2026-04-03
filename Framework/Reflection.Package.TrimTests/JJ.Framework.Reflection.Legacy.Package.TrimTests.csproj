@@ -16,7 +16,6 @@
     <Compile Remove="..\JJ.Framework.Reflection.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Reflection.Tests\bin\**" />
     <Compile Include="..\Reflection.TrimTests\Program.cs" />
-    <Compile Include="..\Reflection.TrimTests\UsingMore.cs" />
     <Compile Include="..\Reflection.TrimTests\Untrimmer.cs" />
   </ItemGroup>
 

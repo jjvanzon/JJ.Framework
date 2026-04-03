@@ -18,7 +18,6 @@
     <Compile Remove="..\Existence.Core.Tests.SBTextCombo\obj\**" />
     <Compile Remove="..\Existence.Core.Tests.SBTextCombo\bin\**" />
     <Compile Include="..\Existence.Core.TrimTests.SBTextCombo\Program.cs" />
-    <Compile Include="..\Existence.Core.TrimTests.SBTextCombo\UsingMore.cs" />
     <Compile Remove="..\Existence.Core.Package.TrimTests.SBTextCombo\Using.cs" />
   </ItemGroup>
 
