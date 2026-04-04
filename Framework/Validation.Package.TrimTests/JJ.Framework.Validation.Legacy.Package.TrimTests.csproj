@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Validation.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.Validation.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.Validation.Tests\bin\**" />
+    <Compile Include="..\Validation.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Validation.Tests\obj\**" />
+    <Compile Remove="..\Validation.Tests\bin\**" />
     <Compile Include="..\Validation.TrimTests\Program.cs" />
   </ItemGroup>
 

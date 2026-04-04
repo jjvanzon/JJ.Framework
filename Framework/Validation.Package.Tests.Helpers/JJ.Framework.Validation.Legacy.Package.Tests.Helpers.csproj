@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Validation.Tests.Helpers\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\JJ.Framework.Validation.Tests.Helpers\**\*.resx" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.Validation.Tests.Helpers\obj\**" />
-    <Compile Remove="..\JJ.Framework.Validation.Tests.Helpers\bin\**" />
+    <Compile Include="..\Validation.Tests.Helpers\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Validation.Tests.Helpers\**\*.resx" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Validation.Tests.Helpers\obj\**" />
+    <Compile Remove="..\Validation.Tests.Helpers\bin\**" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.5864" />
   </ItemGroup>
 

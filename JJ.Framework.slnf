@@ -2,6 +2,7 @@
   "solution": {
     "path": "JJ.Framework.sln",
     "projects": [
+      "Framework\\Build\\JJ.Framework.Build.csproj",
       "Framework\\Business.TrimTests\\JJ.Framework.Business.Legacy.TrimTests.csproj",
       "Framework\\Collections.Core\\JJ.Framework.Collections.Core.csproj",
       "Framework\\Common.Core.Tests.Helpers\\JJ.Framework.Common.Core.Tests.Helpers.csproj",
@@ -36,7 +37,6 @@
       "Framework\\IO.Core.Tests\\JJ.Framework.IO.Core.Tests.csproj",
       "Framework\\IO.Core\\JJ.Framework.IO.Core.csproj",
       "Framework\\IO.TrimTests\\JJ.Framework.IO.Legacy.TrimTests.csproj",
-      "Framework\\JJ.Framework.Build\\JJ.Framework.Build.csproj",
       "Framework\\JJ.Framework.Business.Tests\\JJ.Framework.Business.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Business\\JJ.Framework.Business.Legacy.csproj",
       "Framework\\JJ.Framework.Common.Tests\\JJ.Framework.Common.Legacy.Tests.csproj",
@@ -51,8 +51,6 @@
       "Framework\\JJ.Framework.Reflection.Tests\\JJ.Framework.Reflection.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Reflection\\JJ.Framework.Reflection.Legacy.csproj",
       "Framework\\JJ.Framework.Testing\\JJ.Framework.Testing.Legacy.csproj",
-      "Framework\\JJ.Framework.Validation.Tests.Helpers\\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj",
-      "Framework\\JJ.Framework.Validation.Tests\\JJ.Framework.Validation.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Validation\\JJ.Framework.Validation.Legacy.csproj",
       "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj",
       "Framework\\Logging.Core\\JJ.Framework.Logging.Core.csproj",
@@ -72,6 +70,8 @@
       "Framework\\Testing.Core.NCrunchless\\JJ.Framework.Testing.Core.NCrunchless.csproj",
       "Framework\\Testing.Core\\JJ.Framework.Testing.Core.csproj",
       "Framework\\Text.Core\\JJ.Framework.Text.Core.csproj",
+      "Framework\\Validation.Tests.Helpers\\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj",
+      "Framework\\Validation.Tests\\JJ.Framework.Validation.Legacy.Tests.csproj",
       "Framework\\Validation.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj"
     ]
   }

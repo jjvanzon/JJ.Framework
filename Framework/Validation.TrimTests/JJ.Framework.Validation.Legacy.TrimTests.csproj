@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Validation.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.Validation.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.Validation.Tests\bin\**" />
+    <Compile Include="..\Validation.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Validation.Tests\obj\**" />
+    <Compile Remove="..\Validation.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj" />
+    <ProjectReference Include="..\Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj" />
     <ProjectReference Include="..\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
