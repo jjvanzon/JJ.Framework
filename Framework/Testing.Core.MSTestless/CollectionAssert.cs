@@ -1,7 +1,5 @@
 ﻿// ReSharper disable DuplicatedSequentialIfBodies
 // ReSharper disable ConvertIfStatementToSwitchStatement
-using System;
-using System.Linq;
 
 namespace Microsoft.VisualStudio.TestTools.UnitTesting;
 
