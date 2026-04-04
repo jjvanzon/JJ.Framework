@@ -16,6 +16,7 @@
     <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.251.5729" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.5864" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.5992" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
@@ -27,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
-    <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
   </ItemGroup>
 </Project>
 
