@@ -20,7 +20,6 @@
     <Compile Remove="..\Business.Core.Tests\obj\**" />
     <Compile Remove="..\Business.Core.Tests\bin\**" />
     <Compile Include="..\Business.Core.TrimTests\Program.cs" />
-    <Compile Include="..\Business.Core.TrimTests\UsingMore.cs" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

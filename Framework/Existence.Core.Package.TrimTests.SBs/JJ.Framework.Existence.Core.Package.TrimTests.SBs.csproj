@@ -22,7 +22,6 @@
     <Compile Remove="..\Existence.Core.Tests.SBs\obj\**" />
     <Compile Remove="..\Existence.Core.Tests.SBs\bin\**" />
     <Compile Include="..\Existence.Core.TrimTests.SBs\Program.cs" />
-    <Compile Include="..\Existence.Core.TrimTests.SBs\UsingMore.cs" />
     <Compile Remove="..\Existence.Core.Package.TrimTests.SBs\Using.cs" />
   </ItemGroup>
 

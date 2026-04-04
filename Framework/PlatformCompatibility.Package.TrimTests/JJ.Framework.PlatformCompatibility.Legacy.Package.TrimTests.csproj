@@ -19,7 +19,6 @@
     <Compile Remove="..\JJ.Framework.PlatformCompatibility.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.PlatformCompatibility.Tests\bin\**" />
     <Compile Include="..\PlatformCompatibility.TrimTests\Program.cs" />
-    <Compile Include="..\PlatformCompatibility.TrimTests\UsingMore.cs" />
   </ItemGroup>
       
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

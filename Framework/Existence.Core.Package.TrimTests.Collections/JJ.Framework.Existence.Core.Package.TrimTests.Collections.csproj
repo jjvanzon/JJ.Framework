@@ -18,7 +18,6 @@
     <Compile Remove="..\Existence.Core.Tests.Collections\obj\**" />
     <Compile Remove="..\Existence.Core.Tests.Collections\bin\**" />
     <Compile Include="..\Existence.Core.TrimTests.Collections\Program.cs" />
-    <Compile Include="..\Existence.Core.TrimTests.Collections\UsingMore.cs" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

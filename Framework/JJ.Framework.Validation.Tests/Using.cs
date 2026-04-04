@@ -3,13 +3,16 @@ global using System.Linq;
 global using System.Collections;
 global using System.Globalization;
 global using JJ.Framework.Reflection.Legacy;
+global using JJ.Framework.Validation.Legacy.Tests;
 global using JJ.Framework.Validation.Legacy.Tests.Helpers;
 global using JJ.Framework.Validation.Legacy.Tests.Helpers.Resources;
+global using static System.Console;
 global using static System.Environment;
 global using static System.Globalization.CultureInfo;
 global using static System.Threading.Thread;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Validation.Legacy.Tests.Helpers.ColorEnum;
+global using static JJ.Framework.Testing.Core.TestRunner;
 
 // ReSharper disable once RedundantUsingDirective.Global
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
