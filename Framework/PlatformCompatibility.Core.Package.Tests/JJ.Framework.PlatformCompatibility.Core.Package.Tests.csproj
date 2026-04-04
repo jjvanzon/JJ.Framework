@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PlatformCompatibility.Core.Package.TestBase\JJ.Framework.PlatformCompatibility.Core.Package.TestBase.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

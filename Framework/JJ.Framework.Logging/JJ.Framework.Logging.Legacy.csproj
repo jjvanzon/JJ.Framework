@@ -4,6 +4,6 @@
     <Version>0.252.$(BuildNum)</Version>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 </Project>

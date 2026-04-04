@@ -21,7 +21,7 @@
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 </Project>
 

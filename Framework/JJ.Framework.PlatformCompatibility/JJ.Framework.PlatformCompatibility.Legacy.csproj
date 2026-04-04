@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

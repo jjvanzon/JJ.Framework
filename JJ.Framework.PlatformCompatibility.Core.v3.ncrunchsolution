@@ -8,7 +8,7 @@
     <EnableRDI>False</EnableRDI>
     <MaxNumberOfProcessingThreads>12</MaxNumberOfProcessingThreads>
     <MetricsExclusionList>
-      <Value>Framework\JJ.Framework.Build\JJ.Framework.Build.csproj</Value>
+      <Value>Framework\Build\JJ.Framework.Build.csproj</Value>
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:net10.0</Value>
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:net8.0</Value>
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:net9.0</Value>

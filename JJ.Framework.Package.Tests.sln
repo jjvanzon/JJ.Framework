@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JJ.Framework.SharedProject.Core", "Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.shproj", "{1BEB8E62-FCB0-4B88-B142-23E720D5BACC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy.Package.Tests", "Framework\PlatformCompatibility.Package.Tests\JJ.Framework.PlatformCompatibility.Legacy.Package.Tests.csproj", "{70B4D771-007B-8549-1264-60818D52BB25}"
 EndProject

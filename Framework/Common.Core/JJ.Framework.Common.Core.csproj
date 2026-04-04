@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
   </ItemGroup>
   

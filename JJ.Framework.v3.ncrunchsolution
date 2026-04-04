@@ -230,7 +230,7 @@
       <Value>Framework\Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net6.0</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.Build\JJ.Framework.Build.csproj</Value>
+      <Value>Framework\Build\JJ.Framework.Build.csproj</Value>
       <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:net10.0</Value>
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:net10.0</Value>
       <Value>Framework\Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net10.0</Value>

@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.5992" />
   </ItemGroup>
 </Project>

@@ -180,7 +180,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.MD = README.MD
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\JJ.Framework.Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Framework\Build\JJ.Framework.Build.csproj", "{F8FECB2B-336D-B64F-A0B6-3602918E48A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Legacy", "Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj", "{D180E171-03BE-86A4-3F4E-FF3DD95A0797}"
 EndProject

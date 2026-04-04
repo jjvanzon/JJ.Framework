@@ -5,6 +5,6 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 </Project>

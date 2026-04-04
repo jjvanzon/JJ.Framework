@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.5992" />
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
