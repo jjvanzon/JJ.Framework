@@ -29,7 +29,7 @@ Release Notes
   `"Address: Street is required."`
 - Localization: English (`en-US`) and Dutch (`nl-NL`)
 
-#### `2026-04-01` | `0.252`/`4.4` : __Docs__
+#### `2026-04-04` | `0.252`/`4.4` : __Docs__
 
 - More IntelliSense popups
 - Reworked README

@@ -67,7 +67,7 @@ Utilities
 Release Notes
 --------------
 
-#### `2026-04-01` | `4.4`/`0.252` : __Initial__
+#### `2026-04-04` | `4.4`/`0.252` : __Initial__
 
 - Run new code on older .NETs
 - Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
