@@ -8,7 +8,7 @@ public static class Assert
     /// <inheritdoc cref="_areequal" />
     public static void AreEqual<T>(T? expected, T? actual)
     {
-        if (!EqualityComparer<T>.Default.Equals(expected, actual))
+        if (!EqualityComparer<T>.Default.Equals(expected!, actual!))
         {
             throw new Exception($"Assert.AreEqual failed. Expected: {expected}, Actual: {actual}");
         }

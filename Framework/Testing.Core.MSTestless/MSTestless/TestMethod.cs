@@ -17,7 +17,7 @@ public class TestMethodAttribute : Attribute
     /// <inheritdoc cref="_testmethod" />
     public string? DisplayName { get; }
 
-    /// <inheritdoc cref="_testmethodexecute" />
+    /// <inheritdoc cref="_testmethod" />
     public virtual void Execute(object testMethod) => throw new NotSupportedException("Not supported in MSTestless.");
     //public virtual TestResult[] Execute(ITestMethod testMethod) => [testMethod.Invoke(null)];
 }

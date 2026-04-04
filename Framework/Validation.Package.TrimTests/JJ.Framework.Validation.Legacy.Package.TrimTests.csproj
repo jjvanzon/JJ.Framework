@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj" />
-    <ProjectReference Include="..\Testing.MSTestless\JJ.Framework.Testing.MSTestless.csproj" />
+    <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 
