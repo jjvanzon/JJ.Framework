@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <linker>
-  <assembly fullname="JJ.Framework.Reflection.Legacy.Trimming.TestApp">
+  <assembly fullname="JJ.Framework.Reflection.Legacy.TrimTests">
     <type fullname="Program" preserve="all">
       <method name="&lt;Main&gt;$" />
     </type>
-    <type fullname="JJ.Framework.Reflection.Legacy.Trimming.TestApp.Untrimmer" preserve="all">
+    <type fullname="JJ.Framework.Reflection.Legacy.TrimTests.Untrimmer" preserve="all">
       <method name="Untrim" />
     </type>
   </assembly>
