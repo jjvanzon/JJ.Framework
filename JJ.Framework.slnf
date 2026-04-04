@@ -68,9 +68,9 @@
       "Framework\\Reflection.Core\\JJ.Framework.Reflection.Core.csproj",
       "Framework\\Reflection.TrimTests\\JJ.Framework.Reflection.Legacy.TrimTests.csproj",
       "Framework\\SharedProject.Core\\JJ.Framework.SharedProject.Core.shproj",
+      "Framework\\Testing.Core.MSTestless\\JJ.Framework.Testing.Core.MSTestless.csproj",
       "Framework\\Testing.Core.NCrunchless\\JJ.Framework.Testing.Core.NCrunchless.csproj",
       "Framework\\Testing.Core\\JJ.Framework.Testing.Core.csproj",
-      "Framework\\Testing.MSTestless\\JJ.Framework.Testing.MSTestless.csproj",
       "Framework\\Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\Validation.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj"
     ]
