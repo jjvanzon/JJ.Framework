@@ -18,8 +18,9 @@
 
 ## Legacy Test Upgrades
 - Expand for full code coverage.
-    - Avoid changing legacy code.
-    - Add or extend matching `*_CoreTests.cs`s in `*.Legacy.Tests.csproj`s
+- Functionally meaningful
+- Avoid changing legacy code.
+- Add or extend matching `*_CoreTests.cs`s in `*.Legacy.Tests.csproj`s
 - Project properties:
     - Main lib TFMs: `net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0`
     - Test proj TFMs: `net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461`
