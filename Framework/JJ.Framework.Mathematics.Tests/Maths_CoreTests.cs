@@ -178,14 +178,14 @@ public class Maths_CoreTests
     [TestMethod]
     public void Log_BaseNegative_Undefined()
     {
-        Throws(() => Log( 1, 1), "base", "negative");
-        Throws(() => Log( 2, 1), "base", "negative");
-        Throws(() => Log( 3, 1), "base", "negative");
-        Throws(() => Log( 4, 1), "base", "negative");
-        Throws(() => Log( 5, 1), "base", "negative");
-        Throws(() => Log( 8, 1), "base", "negative");
-        Throws(() => Log(10, 1), "base", "negative");
-        Throws(() => Log(16, 1), "base", "negative");
+        Throws(() => Log( 1,  -1), "base", "negative");
+        Throws(() => Log( 2,  -2), "base", "negative");
+        Throws(() => Log( 3,  -3), "base", "negative");
+        Throws(() => Log( 4,  -4), "base", "negative");
+        Throws(() => Log( 5,  -5), "base", "negative");
+        Throws(() => Log( 8,  -8), "base", "negative");
+        Throws(() => Log(10, -10), "base", "negative");
+        Throws(() => Log(16, -16), "base", "negative");
     }
 
     [TestMethod]
