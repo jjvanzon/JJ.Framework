@@ -1,4 +1,7 @@
-﻿using System;
+﻿// ReSharper disable RedundantUsingDirective
+// ReSharper disable CheckNamespace
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Testing;
 
