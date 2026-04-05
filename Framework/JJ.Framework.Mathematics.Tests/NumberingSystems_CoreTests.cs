@@ -16,7 +16,7 @@ public class NumberingSystems_CoreTests
         
         // X=0, Y=1, Z=2 in base 3
         // XYZ = 0*3² + 1*3¹ + 2*3⁰ = 0 + 3 + 2 = 5
-        Assert.AreEqual(5, result);
+        AreEqual(5, result);
     }
 
     [TestMethod]
@@ -26,7 +26,7 @@ public class NumberingSystems_CoreTests
         
         // b=1, a=0 in base 2
         // bab = 1*2² + 0*2¹ + 1*2⁰ = 4 + 0 + 1 = 5
-        Assert.AreEqual(5, result);
+        AreEqual(5, result);
     }
 
     [TestMethod]
@@ -36,7 +36,7 @@ public class NumberingSystems_CoreTests
         string converted = ToBase(123, digitChars);
         int result = FromBase(converted, 5, digitChars);
         
-        Assert.AreEqual(123, result);
+        AreEqual(123, result);
     }
 
     // FromBase (with char range)
@@ -49,7 +49,7 @@ public class NumberingSystems_CoreTests
         // Base is 'e' - 'a' + 1 = 5
         // a=0, c=2, e=4 in base 5
         // ace = 0*5² + 2*5¹ + 4*5⁰ = 0 + 10 + 4 = 14
-        Assert.AreEqual(14, result);
+        AreEqual(14, result);
     }
 
     [TestMethod]
@@ -59,7 +59,7 @@ public class NumberingSystems_CoreTests
         
         // Base is '9' - '0' + 1 = 10
         // 248 in base 10 = 248
-        Assert.AreEqual(248, result);
+        AreEqual(248, result);
     }
 
     [TestMethod]
@@ -69,7 +69,7 @@ public class NumberingSystems_CoreTests
         
         // Base is '1' - '0' + 1 = 2
         // 101 in binary = 1*4 + 0*2 + 1*1 = 5
-        Assert.AreEqual(5, result);
+        AreEqual(5, result);
     }
 
     [TestMethod]
@@ -80,7 +80,7 @@ public class NumberingSystems_CoreTests
         // Base is 'E' - 'A' + 1 = 5
         // A=0, C=2, E=4 in base 5
         // ACE = 0*5² + 2*5¹ + 4*5⁰ = 0 + 10 + 4 = 14
-        Assert.AreEqual(14, result);
+        AreEqual(14, result);
     }
 
     [TestMethod]
@@ -90,6 +90,6 @@ public class NumberingSystems_CoreTests
         string converted = ToBase(original, 16, 'A');
         int result = FromBase(converted, 'A', 'P');
         
-        Assert.AreEqual(original, result);
+        AreEqual(original, result);
     }
 }
