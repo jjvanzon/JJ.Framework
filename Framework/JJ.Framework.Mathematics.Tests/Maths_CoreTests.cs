@@ -136,11 +136,8 @@ public class Maths_CoreTests
         AreEqual(0, Math.Floor(Math .Pow(10, -3)));
     }
 
-    // TODO: Where did all this talk about division come from?
-    // n ^ -e = 1 / n ^ e, so the negative exponent is a reciprocal.
-
     /// <summary>
-    /// 1 * 1 * 1 * ... is always 1. Flipping it (1/1) is still 1.
+    /// 1 * 1 * 1 * ... is always 1, even with a negative exponent.
     /// </summary>
     [TestMethod]
     public void Pow_Base1_NegativeExponent_Returns1()
@@ -154,8 +151,7 @@ public class Maths_CoreTests
     }
 
     /// <summary>
-    /// -1 * -1 = 1. Negative powers are repeated division (-1/-1) 
-    /// and it's still 1.
+    /// (-1) * (-1) = 1, and that doesn't change with a negative exponent.
     /// </summary>
     [TestMethod]
     public void Pow_BaseNeg1_NegativeEvenExponent_Returns1()
@@ -167,7 +163,7 @@ public class Maths_CoreTests
     }
 
     /// <summary>
-    /// (-1) * (-1) * (-1) = -1. Flipping it (1/-1) is still -1.
+    /// (-1) * (-1) * (-1) = -1, and that doesn't change with a negative exponent.
     /// </summary>
     [TestMethod]
     public void Pow_BaseNeg1_NegativeOddExponent_ReturnsNeg1()
@@ -179,7 +175,7 @@ public class Maths_CoreTests
     }
 
     /// <summary>
-    /// 0 * 0 * 0 * ... is always 0. Flipping it (1/0) is dividing by zero.
+    /// 0 * 0 * 0 * ... is always 0, and a negative exponent means dividing by zero.
     /// </summary>
     [TestMethod]
     public void Pow_Base0_NegativeExponent_DivideByZero()
@@ -288,8 +284,7 @@ public class Maths_CoreTests
     }
 
     /// <summary>
-    /// Anything to the power of 0 is 1.
-    /// Log of 1 is 0 because no factors.
+    /// Anything to the power of 0 is 1. Log of 1 is 0 because no factors.
     /// </summary>
     [TestMethod]
     public void Log_OfOne_Returns0()
