@@ -32,6 +32,11 @@ namespace JJ.Framework.Mathematics.Legacy
         /// </summary>
         public static int Log(int value, int n)
         {
+            if (value == 0)
+                throw new Exception("value cannot be 0.");
+            if (n == 0)
+                throw new Exception("Base (n) cannot be 0.");
+
             int temp = value;
             int i = 0;
             while (temp >= n)

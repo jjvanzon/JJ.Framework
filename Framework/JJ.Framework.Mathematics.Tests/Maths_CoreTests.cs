@@ -107,15 +107,21 @@ public class Maths_CoreTests
     }
     
     [TestMethod]
-    public void Log_Int32MaxValue_Base2_Returns30_BecauseFloored()
+    public void Log_Int32MaxValue_Base2_Returns30_Not32_BecauseFlooredAndSign()
     {
         AreEqual(30, Log(int.MaxValue, 2));
+    }
+
+    
+    [TestMethod]
+    public void Log_Base1_Weird()
+    {
+        //AreEqual(0, Log(1, 1));
     }
 
     [TestMethod]
     public void Log_OfOne_Returns0()
     {
-        AreEqual(0, Log(1, 1));
         AreEqual(0, Log(1, 2));
         AreEqual(0, Log(1, 3));
         AreEqual(0, Log(1, 4));
@@ -126,21 +132,27 @@ public class Maths_CoreTests
     }
     
     [TestMethod]
-    public void Log_OfZero_Returns0_Apparently()
+    public void Log_OfZero_Undefined()
     {
-        AreEqual(0, Log(0, 1));
-        AreEqual(0, Log(0, 2));
-        AreEqual(0, Log(0, 3));
-        AreEqual(0, Log(0, 4));
-        AreEqual(0, Log(0, 5));
-        AreEqual(0, Log(0, 8));
-        AreEqual(0, Log(0, 10));
-        AreEqual(0, Log(0, 16));
+        Throws(() => Log(0,  1), "value", "0");
+        Throws(() => Log(0,  2), "value", "0");
+        Throws(() => Log(0,  3), "value", "0");
+        Throws(() => Log(0,  4), "value", "0");
+        Throws(() => Log(0,  5), "value", "0");
+        Throws(() => Log(0,  8), "value", "0");
+        Throws(() => Log(0, 10), "value", "0");
+        Throws(() => Log(0, 16), "value", "0");
     }
 
     [TestMethod]
-    public void Log_Base0_WithPositiveValue_ThrowsDivideByZeroException()
+    public void Log_Base0_Undefined()
     {
-        Throws<DivideByZeroException>(() => Log(10, 0));
+        Throws(() => Log( 2, 0), "base", "0");
+        Throws(() => Log( 3, 0), "base", "0");
+        Throws(() => Log( 4, 0), "base", "0");
+        Throws(() => Log( 5, 0), "base", "0");
+        Throws(() => Log( 8, 0), "base", "0");
+        Throws(() => Log(10, 0), "base", "0");
+        Throws(() => Log(16, 0), "base", "0");
     }
 }
