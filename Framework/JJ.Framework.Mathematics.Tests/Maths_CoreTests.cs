@@ -114,24 +114,6 @@ public class Maths_CoreTests
 
     
     [TestMethod]
-    public void Log_Base1_Weird()
-    {
-        //AreEqual(0, Log(1, 1));
-    }
-
-    [TestMethod]
-    public void Log_OfOne_Returns0()
-    {
-        AreEqual(0, Log(1, 2));
-        AreEqual(0, Log(1, 3));
-        AreEqual(0, Log(1, 4));
-        AreEqual(0, Log(1, 5));
-        AreEqual(0, Log(1, 8));
-        AreEqual(0, Log(1, 10));
-        AreEqual(0, Log(1, 16));
-    }
-    
-    [TestMethod]
     public void Log_OfZero_Undefined()
     {
         Throws(() => Log(0,  1), "value", "0");
@@ -145,6 +127,30 @@ public class Maths_CoreTests
     }
 
     [TestMethod]
+    public void Log_OfOne_Returns0()
+    {
+        AreEqual(0, Log(1, 2));
+        AreEqual(0, Log(1, 3));
+        AreEqual(0, Log(1, 4));
+        AreEqual(0, Log(1, 5));
+        AreEqual(0, Log(1, 8));
+        AreEqual(0, Log(1, 10));
+        AreEqual(0, Log(1, 16));
+    }
+
+    [TestMethod]
+    public void Log_OfNegative_Undefined()
+    {
+        Throws(() => Log(-2,  2), "value", "negative");
+        Throws(() => Log(-3,  3), "value", "negative");
+        Throws(() => Log(-4,  4), "value", "negative");
+        Throws(() => Log(-5,  5), "value", "negative");
+        Throws(() => Log(-6,  8), "value", "negative");
+        Throws(() => Log(-7, 10), "value", "negative");
+        Throws(() => Log(-8, 16), "value", "negative");
+    }
+
+    [TestMethod]
     public void Log_Base0_Undefined()
     {
         Throws(() => Log( 2, 0), "base", "0");
@@ -154,5 +160,43 @@ public class Maths_CoreTests
         Throws(() => Log( 8, 0), "base", "0");
         Throws(() => Log(10, 0), "base", "0");
         Throws(() => Log(16, 0), "base", "0");
+    }
+        
+    [TestMethod]
+    public void Log_Base1_Undefined()
+    {
+        Throws(() => Log( 1, 1), "base", "1");
+        Throws(() => Log( 2, 1), "base", "1");
+        Throws(() => Log( 3, 1), "base", "1");
+        Throws(() => Log( 4, 1), "base", "1");
+        Throws(() => Log( 5, 1), "base", "1");
+        Throws(() => Log( 8, 1), "base", "1");
+        Throws(() => Log(10, 1), "base", "1");
+        Throws(() => Log(16, 1), "base", "1");
+    }
+        
+    [TestMethod]
+    public void Log_BaseNegative_Undefined()
+    {
+        Throws(() => Log( 1, 1), "base", "negative");
+        Throws(() => Log( 2, 1), "base", "negative");
+        Throws(() => Log( 3, 1), "base", "negative");
+        Throws(() => Log( 4, 1), "base", "negative");
+        Throws(() => Log( 5, 1), "base", "negative");
+        Throws(() => Log( 8, 1), "base", "negative");
+        Throws(() => Log(10, 1), "base", "negative");
+        Throws(() => Log(16, 1), "base", "negative");
+    }
+
+    [TestMethod]
+    public void Log_AllNegative_Undefined()
+    {
+        Throws(() => Log(-2,  -2), "negative");
+        Throws(() => Log(-3,  -3), "negative");
+        Throws(() => Log(-4,  -4), "negative");
+        Throws(() => Log(-5,  -5), "negative");
+        Throws(() => Log(-6,  -8), "negative");
+        Throws(() => Log(-7, -10), "negative");
+        Throws(() => Log(-8, -16), "negative");
     }
 }

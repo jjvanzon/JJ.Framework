@@ -1,4 +1,5 @@
 ﻿// ReSharper disable RedundantUsingDirective
+// ReSharper disable ConvertIfStatementToSwitchStatement
 
 using System;
 using System.Collections.Generic;
@@ -32,11 +33,13 @@ namespace JJ.Framework.Mathematics.Legacy
         /// </summary>
         public static int Log(int value, int n)
         {
-            if (value == 0)
-                throw new Exception("value cannot be 0.");
-            if (n == 0)
-                throw new Exception("Base (n) cannot be 0.");
-
+            if (value <= 0)
+                throw new Exception("Log value cannot be 0, because 0 isn't a power of anything. " +
+                                    "Log value cannot be negative for integers - nothing raise to a power is a negative number.");
+            if (n < 2)
+                throw new Exception("Base (n) cannot be 0, because any power of 0 is 0 and does not evaluate for other integers. " +
+                                    "Base (n) cannot be 1, because any power of 1 is 1 and does not evaluate for other integers. " +
+                                    "Base (n) cannot be negative - because then the sign flips back and forth and is not very well behaved.");
             int temp = value;
             int i = 0;
             while (temp >= n)
