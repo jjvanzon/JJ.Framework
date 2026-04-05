@@ -1,4 +1,4 @@
-<SolutionConfiguration>
+﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
@@ -186,35 +186,35 @@
       <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:net9.0</Value>
       <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:netstandard2.0</Value>
       <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:netstandard2.1</Value>
-      <Value>Framework\Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\Common.Core.TrimTests\JJ.Framework.Common.Core.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Common.Core.TrimTests\JJ.Framework.Common.Core.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Common.Core.TrimTests\JJ.Framework.Common.Core.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Common.Core.TrimTests\JJ.Framework.Common.Core.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Common.Core.TrimTests\JJ.Framework.Common.Core.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Common.TrimTests\JJ.Framework.Common.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Common.TrimTests\JJ.Framework.Common.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Common.TrimTests\JJ.Framework.Common.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Common.TrimTests\JJ.Framework.Common.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Common.TrimTests\JJ.Framework.Common.Legacy.TrimTests.csproj:net9.0</Value>
       <Value>Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:net8.0</Value>
       <Value>Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:net9.0</Value>
       <Value>Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:netstandard2.0</Value>
       <Value>Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:netstandard2.1</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests\JJ.Framework.Existence.Core.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests\JJ.Framework.Existence.Core.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests\JJ.Framework.Existence.Core.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests\JJ.Framework.Existence.Core.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests\JJ.Framework.Existence.Core.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\PlatformCompatibility.TrimTests\JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\PlatformCompatibility.TrimTests\JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\PlatformCompatibility.TrimTests\JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\PlatformCompatibility.TrimTests\JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\PlatformCompatibility.TrimTests\JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj:net9.0</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net461</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net5.0</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net6.0</Value>
@@ -223,17 +223,17 @@
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net9.0</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:netstandard2.0</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:netstandard2.1</Value>
-      <Value>Framework\Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\Reflection.TrimTests\JJ.Framework.Reflection.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Reflection.TrimTests\JJ.Framework.Reflection.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Reflection.TrimTests\JJ.Framework.Reflection.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Reflection.TrimTests\JJ.Framework.Reflection.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Reflection.TrimTests\JJ.Framework.Reflection.Legacy.TrimTests.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net6.0</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net7.0</Value>
       <Value>Framework\Build\JJ.Framework.Build.csproj</Value>
       <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:net10.0</Value>
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:net10.0</Value>
-      <Value>Framework\Common.Core.Trimming.TestApp\JJ.Framework.Common.Core.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\Common.Core.TrimTests\JJ.Framework.Common.Core.TrimTests.csproj:net10.0</Value>
       <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:net10.0</Value>
       <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj:net10.0</Value>
@@ -245,11 +245,11 @@
       <Value>Framework\JJ.Framework.Xml.Linq.Tests\JJ.Framework.Xml.Linq.Legacy.Tests.csproj:net10.0</Value>
       <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Security\JJ.Framework.Security.Legacy.csproj:net10.0</Value>
-      <Value>Framework\Reflection.Trimming.TestApp\JJ.Framework.Reflection.Legacy.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Common.Trimming.TestApp\JJ.Framework.Common.Legacy.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\Reflection.TrimTests\JJ.Framework.Reflection.Legacy.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Common.TrimTests\JJ.Framework.Common.Legacy.TrimTests.csproj:net10.0</Value>
       <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:net10.0</Value>
       <Value>Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests\JJ.Framework.Existence.Core.TrimTests.csproj:net10.0</Value>
       <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:net10.0</Value>
       <Value>Framework\Logging.Core\JJ.Framework.Logging.Core.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Logging\JJ.Framework.Logging.Legacy.csproj:net10.0</Value>
@@ -269,166 +269,166 @@
       <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net10.0-windows</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net10.0</Value>
-      <Value>Framework\PlatformCompatibility.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Legacy.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\PlatformCompatibility.Core.Trimming.TestApp\JJ.Framework.PlatformCompatibility.Core.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.SBTextCombo.Trimming.TestApp.csproj:net10.0</Value>
+      <Value>Framework\PlatformCompatibility.TrimTests\JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.SBTextCombo.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.SBTextCombo.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.SBTextCombo.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.SBTextCombo.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.SBTextCombo.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.SBTextCombo.TrimTests.csproj:net10.0</Value>
       <Value>Framework\Existence.Core.Tests.Helpers\JJ.Framework.Existence.Core.Tests.Helpers.csproj:netstandard2.1</Value>
       <Value>Framework\Existence.Core.Tests.Helpers\JJ.Framework.Existence.Core.Tests.Helpers.csproj:netstandard2.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.SBs.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.SBs.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.SBs.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.SBs.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.SBs.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.SBs.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Text.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Text.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Text.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Text.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Text.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Text.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.SBToText.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.BoolToText.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Bool.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Values.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Values.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Values.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Values.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Values.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Values.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.ValuesToText.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Collections.Trimming.TestApp\JJ.Framework.Existence.Core.Collections.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Collections.Trimming.TestApp\JJ.Framework.Existence.Core.Collections.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Collections.Trimming.TestApp\JJ.Framework.Existence.Core.Collections.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Collections.Trimming.TestApp\JJ.Framework.Existence.Core.Collections.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Collections.Trimming.TestApp\JJ.Framework.Existence.Core.Collections.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Collections.Trimming.TestApp\JJ.Framework.Existence.Core.Collections.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Bool.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.BoolToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.SBs.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.SBTextCombo.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.SBToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Text.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Values.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.ValuesToText.Trimming.TestApp\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Bool\JJ.Framework.Existence.Core.Trimming.TestApp.Bool.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.BoolToText\JJ.Framework.Existence.Core.Trimming.TestApp.BoolToText.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Collections\JJ.Framework.Existence.Core.Trimming.TestApp.Collections.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBs\JJ.Framework.Existence.Core.Trimming.TestApp.SBs.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBTextCombo\JJ.Framework.Existence.Core.Trimming.TestApp.SBTextCombo.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.SBToText\JJ.Framework.Existence.Core.Trimming.TestApp.SBToText.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Text\JJ.Framework.Existence.Core.Trimming.TestApp.Text.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.Values\JJ.Framework.Existence.Core.Trimming.TestApp.Values.csproj:net9.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net10.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net5.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net6.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net7.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net8.0</Value>
-      <Value>Framework\Existence.Core.Trimming.TestApp.ValuesToText\JJ.Framework.Existence.Core.Trimming.TestApp.ValuesToText.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.SBs.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.SBs.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.SBs.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.SBs.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.SBs.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.SBs.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.Text.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.Text.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.Text.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.Text.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.Text.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.Text.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.SBToText.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.SBToText.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.SBToText.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.SBToText.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.SBToText.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.SBToText.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.BoolToText.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.BoolToText.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.BoolToText.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.BoolToText.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.BoolToText.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.BoolToText.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.Bool.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.Bool.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.Bool.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.Bool.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.Bool.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.Bool.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.Values.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.Values.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.Values.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.Values.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.Values.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.Values.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.ValuesToText.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.ValuesToText.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.ValuesToText.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.ValuesToText.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.ValuesToText.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.ValuesToText.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.Collections.TrimTests\JJ.Framework.Existence.Core.Collections.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.Collections.TrimTests\JJ.Framework.Existence.Core.Collections.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.Collections.TrimTests\JJ.Framework.Existence.Core.Collections.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.Collections.TrimTests\JJ.Framework.Existence.Core.Collections.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.Collections.TrimTests\JJ.Framework.Existence.Core.Collections.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.Collections.TrimTests\JJ.Framework.Existence.Core.Collections.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.Bool.TrimTests\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.BoolToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.SBs.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.SBTextCombo.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.SBToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.Text.TrimTests\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.Values.TrimTests\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.ValuesToText.TrimTests\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Bool\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Bool\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Bool\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Bool\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Bool\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Bool\JJ.Framework.Existence.Core.TrimTests.Bool.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.BoolToText\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.BoolToText\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.BoolToText\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.BoolToText\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.BoolToText\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.BoolToText\JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Collections\JJ.Framework.Existence.Core.TrimTests.Collections.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Collections\JJ.Framework.Existence.Core.TrimTests.Collections.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Collections\JJ.Framework.Existence.Core.TrimTests.Collections.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Collections\JJ.Framework.Existence.Core.TrimTests.Collections.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Collections\JJ.Framework.Existence.Core.TrimTests.Collections.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Collections\JJ.Framework.Existence.Core.TrimTests.Collections.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBs\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBs\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBs\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBs\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBs\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBs\JJ.Framework.Existence.Core.TrimTests.SBs.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBTextCombo\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBTextCombo\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBTextCombo\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBTextCombo\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBTextCombo\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBTextCombo\JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBToText\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBToText\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBToText\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBToText\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBToText\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.SBToText\JJ.Framework.Existence.Core.TrimTests.SBToText.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Text\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Text\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Text\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Text\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Text\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Text\JJ.Framework.Existence.Core.TrimTests.Text.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Values\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Values\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Values\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Values\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Values\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.Values\JJ.Framework.Existence.Core.TrimTests.Values.csproj:net9.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.ValuesToText\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net10.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.ValuesToText\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net5.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.ValuesToText\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net6.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.ValuesToText\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net7.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.ValuesToText\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net8.0</Value>
+      <Value>Framework\Existence.Core.TrimTests.ValuesToText\JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj:net9.0</Value>
@@ -453,23 +453,18 @@
       <Value>Framework\Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net7.0</Value>
       <Value>Framework\Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net8.0</Value>
       <Value>Framework\Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net9.0</Value>
-      <Value>Framework\Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Business.Core.Trimming.TestApp\JJ.Framework.Business.Core.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Business.Trimming.TestApp\JJ.Framework.Business.Legacy.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\Business.Core.TrimTests\JJ.Framework.Business.Core.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Business.Core.TrimTests\JJ.Framework.Business.Core.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Business.Core.TrimTests\JJ.Framework.Business.Core.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Business.Core.TrimTests\JJ.Framework.Business.Core.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Business.Core.TrimTests\JJ.Framework.Business.Core.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Business.Core.TrimTests\JJ.Framework.Business.Core.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Business.TrimTests\JJ.Framework.Business.Legacy.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Business.TrimTests\JJ.Framework.Business.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Business.TrimTests\JJ.Framework.Business.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Business.TrimTests\JJ.Framework.Business.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Business.TrimTests\JJ.Framework.Business.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Business.TrimTests\JJ.Framework.Business.Legacy.TrimTests.csproj:net9.0</Value>
       <Value>Framework\IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net10.0</Value>
       <Value>Framework\IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net461</Value>
       <Value>Framework\IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net5.0</Value>
@@ -484,18 +479,18 @@
       <Value>Framework\Business.Core.Tests\JJ.Framework.Business.Core.Tests.csproj:net7.0</Value>
       <Value>Framework\Business.Core.Tests\JJ.Framework.Business.Core.Tests.csproj:net8.0</Value>
       <Value>Framework\Business.Core.Tests\JJ.Framework.Business.Core.Tests.csproj:net9.0</Value>
-      <Value>Framework\IO.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\IO.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\IO.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\IO.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\IO.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\IO.Trimming.TestApp\JJ.Framework.IO.Legacy.Trimming.TestApp.csproj:net9.0</Value>
-      <Value>Framework\Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net10.0</Value>
-      <Value>Framework\Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net5.0</Value>
-      <Value>Framework\Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net6.0</Value>
-      <Value>Framework\Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net7.0</Value>
-      <Value>Framework\Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net8.0</Value>
-      <Value>Framework\Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj:net9.0</Value>
+      <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\Validation.TrimTests\JJ.Framework.Validation.Legacy.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Validation.TrimTests\JJ.Framework.Validation.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Validation.TrimTests\JJ.Framework.Validation.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Validation.TrimTests\JJ.Framework.Validation.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Validation.TrimTests\JJ.Framework.Validation.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Validation.TrimTests\JJ.Framework.Validation.Legacy.TrimTests.csproj:net9.0</Value>
       <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj</Value>
       <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj:net461</Value>
       <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj:net5.0</Value>
@@ -732,6 +727,21 @@
       <Value>Framework\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net9.0</Value>
       <Value>Framework\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:netstandard2.0</Value>
       <Value>Framework\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:netstandard2.1</Value>
+      <Value>Framework\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj:net10.0</Value>
+      <Value>Framework\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj:net8.0</Value>
+      <Value>Framework\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj:net9.0</Value>
+      <Value>Framework\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj:netstandard2.0</Value>
+      <Value>Framework\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj:netstandard2.1</Value>
+      <Value>Framework\Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj:net6.0\..</Value>
+      <Value>Framework\Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj:net7.0\..</Value>
+      <Value>Framework\Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj:net8.0\..</Value>
+      <Value>Framework\Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj:netstandard2.0\..</Value>
+      <Value>Framework\Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj:netstandard2.1\..</Value>
+      <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net461\..</Value>
+      <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net5.0\..</Value>
+      <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net6.0\..</Value>
+      <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net7.0\..</Value>
+      <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net8.0\..</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
