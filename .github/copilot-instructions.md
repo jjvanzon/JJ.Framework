@@ -8,6 +8,8 @@
 - Use file-scoped namespace.
 - Prefer global usings in `Usings.cs`.
 - Use parameter name `x` for short lambdas.
+- Use file-scoped namespaces and `using static` imports for methods (e.g., `using static NumberingSystems;` and `using static AssertCore;`).
+- Use collection expressions `[]` instead of `new[]`.
 
 ## Docs
 - Keep documentation tone friendly and accessible.
@@ -15,6 +17,7 @@
 
 ## Tests
 - Prefer `AssertCore` over `Assert` (using static in Usings.cs).
+- Use parameterized assertions without `Assert.` prefix (e.g., `AreEqual` not `Assert.AreEqual`).
 - Ensure tests reflect intended mathematical behavior/specification, not merely current implementation behavior.
 
 ## Legacy Tests
