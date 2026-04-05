@@ -137,9 +137,10 @@ public class Maths_CoreTests
     }
 
     // TODO: Where did all this talk about division come from?
+    // n ^ -e = 1 / n ^ e, so the negative exponent is a reciprocal.
 
     /// <summary>
-    /// 1 to any power is 1, so 1 divided by 1 is still 1.
+    /// 1 * 1 * 1 * ... is always 1. Flipping it (1/1) is still 1.
     /// </summary>
     [TestMethod]
     public void Pow_Base1_NegativeExponent_Returns1()
@@ -153,7 +154,8 @@ public class Maths_CoreTests
     }
 
     /// <summary>
-    /// (-1) to an even power is 1, so 1 divided by 1 is 1.
+    /// -1 * -1 = 1. Negative powers are repeated division (-1/-1) 
+    /// and it's still 1.
     /// </summary>
     [TestMethod]
     public void Pow_BaseNeg1_NegativeEvenExponent_Returns1()
@@ -165,7 +167,7 @@ public class Maths_CoreTests
     }
 
     /// <summary>
-    /// (-1) to an odd power is -1, so 1 divided by -1 is -1.
+    /// (-1) * (-1) * (-1) = -1. Flipping it (1/-1) is still -1.
     /// </summary>
     [TestMethod]
     public void Pow_BaseNeg1_NegativeOddExponent_ReturnsNeg1()
@@ -177,7 +179,7 @@ public class Maths_CoreTests
     }
 
     /// <summary>
-    /// 0 to any power is 0, so 1 divided by 0 is division by zero.
+    /// 0 * 0 * 0 * ... is always 0. Flipping it (1/0) is dividing by zero.
     /// </summary>
     [TestMethod]
     public void Pow_Base0_NegativeExponent_DivideByZero()
@@ -330,10 +332,8 @@ public class Maths_CoreTests
         IsTrue(IsNaN(Math .Log(-8, 16)));
     }
 
-    // TODO: Summary vague.
-
     /// <summary>
-    /// 0 to any power is 0, so log base 0 only evaluates for 0 itself.
+    /// 0 * 0 * 0 * ... is always 0. You can never reach 2, 3, 4, etc.
     /// </summary>
     [TestMethod]
     public void Log_Base0_Undefined()
@@ -354,10 +354,8 @@ public class Maths_CoreTests
         IsTrue(IsNaN(Math .Log(16, 0)));
     }
 
-    // TODO: Summary vague.
-
     /// <summary>
-    /// 1 to any power is 1, so log base 1 only evaluates for 1 itself.
+    /// 1 * 1 * 1 * ... is always 1. You can never reach 2, 3, 4, etc.
     /// </summary>
     [TestMethod]
     public void Log_Base1_Undefined()
@@ -404,10 +402,9 @@ public class Maths_CoreTests
         IsTrue(IsNaN(Math .Log(16, -16)));
     }
 
-    // TODO: Comment isn't really true. Negatives play differently together.
-
     /// <summary>
-    /// Both value and base negative: undefined for the same reasons as each individually.
+    /// Negative bases and values can sometimes work together (e.g. (-2) ^ 1 = -2),
+    /// but this integer version rejects them, same as .NET's Math.Log.
     /// </summary>
     [TestMethod]
     public void Log_AllNegative_Undefined()
