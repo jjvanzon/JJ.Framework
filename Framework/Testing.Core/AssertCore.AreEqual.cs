@@ -22,6 +22,8 @@ public static partial class AssertCore
     public static void AreNotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "")
         => Check(expected, actual, message, () => !Equals(expected, actual));
     
+    // TODO: Add/replace with non-lambda variants of AreEqual with delta.
+
     /// <inheritdoc cref="_deltadirection" />
     #if !NET9_0_OR_GREATER
     [TrimWarn(ArrayInit)]
