@@ -34,8 +34,11 @@ public class Maths_CoreTests
         AreEqual(0, Pow(0, 5));
     }
 
+    /// <summary>
+    /// Anything to the power of 0 is 1.
+    /// </summary>
     [TestMethod]
-    public void Pow_Exponent0_Returns1_Apparently()
+    public void Pow_Exponent0_Returns1()
     {
         AreEqual(1, Pow(1, 0));
         AreEqual(1, Pow(2, 0));
@@ -84,7 +87,35 @@ public class Maths_CoreTests
         AreEqual(0, Pow( 3, -1));
         AreEqual(0, Pow( 5, -2));
         AreEqual(0, Pow(10, -3));
-        AreEqual(0, Pow( 0, -1));
+    }
+
+    [TestMethod]
+    public void Pow_Base1_NegativeExponent_Returns1()
+    {
+        AreEqual(1, Pow(1, -1));
+        AreEqual(1, Pow(1, -2));
+        AreEqual(1, Pow(1, -5));
+    }
+
+    [TestMethod]
+    public void Pow_BaseNeg1_NegativeEvenExponent_Returns1()
+    {
+        AreEqual(1, Pow(-1, -2));
+        AreEqual(1, Pow(-1, -4));
+    }
+
+    [TestMethod]
+    public void Pow_BaseNeg1_NegativeOddExponent_ReturnsNeg1()
+    {
+        AreEqual(-1, Pow(-1, -1));
+        AreEqual(-1, Pow(-1, -3));
+    }
+
+    [TestMethod]
+    public void Pow_Base0_NegativeExponent_DivideByZero()
+    {
+        Throws(() => Pow(0, -1));
+        Throws(() => Pow(0, -2));
     }
 
     // Log

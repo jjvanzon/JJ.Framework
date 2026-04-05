@@ -11,12 +11,11 @@ namespace JJ.Framework.Mathematics.Legacy
     public static class Maths
     {
         /// <summary>
-        /// Integer variation of the Math.Pow function,
-        /// that only works for non-negative exponents.
+        /// Integer variation of the Math.Pow function.
         /// </summary>
         public static int Pow(int n, int e)
         {
-            if (e < 0) return 0; // Negative exponent becomes a fraction, floored to 0.
+            if (e < 0) return NegExp(n, e);
 
             // I doubt this is actually faster than just using the standard Math.Pow that takes double.
             int x = 1;
@@ -27,6 +26,35 @@ namespace JJ.Framework.Mathematics.Legacy
             return x;
         }
 
+        private static int NegExp(int n, int exp)
+        {
+            if (n == 0)
+                throw new DivideByZeroException();
+
+            if (n == 1)
+                return 1;
+
+            if (n > 0) 
+            { 
+                // Postive integer with negative exponent
+                // becomes a fraction => floored to 0.
+                return 0;
+            }
+
+            // Negative number flips powers between pos and neg.
+            //if (n < 0)
+            {
+                if (exp % 2 == 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
         /// <summary>
         /// Integer variation of the Math.Log function.
         /// It will only return integers,
@@ -35,13 +63,8 @@ namespace JJ.Framework.Mathematics.Legacy
         /// </summary>
         public static int Log(int value, int n)
         {
-            if (value <= 0)
-                throw new Exception("Log value cannot be 0, because 0 isn't a power of anything. " +
-                                    "Log value cannot be negative for integers - nothing raise to a power is a negative number.");
-            if (n < 2)
-                throw new Exception("Base (n) cannot be 0, because any power of 0 is 0 and does not evaluate for other integers. " +
-                                    "Base (n) cannot be 1, because any power of 1 is 1 and does not evaluate for other integers. " +
-                                    "Base (n) cannot be negative - because then the sign flips back and forth and is not very well behaved.");
+            AssertUndefined(value, n);
+
             int temp = value;
             int i = 0;
             while (temp >= n)
@@ -50,6 +73,17 @@ namespace JJ.Framework.Mathematics.Legacy
                 i++;
             }
             return i;
+        }
+
+        private static void AssertUndefined(int value, int @base)
+        {
+            if (value <= 0)
+                throw new Exception("Log value cannot be 0, because 0 isn't a power of anything. " +
+                                    "Log value cannot be negative for integers - nothing raise to a power is a negative number.");
+            if (@base < 2)
+                throw new Exception("Base (n) cannot be 0, because any power of 0 is 0 and does not evaluate for other integers. " +
+                                    "Base (n) cannot be 1, because any power of 1 is 1 and does not evaluate for other integers. " +
+                                    "Base (n) cannot be negative - because then the sign flips back and forth and is not very well behaved.");
         }
     }
 }
