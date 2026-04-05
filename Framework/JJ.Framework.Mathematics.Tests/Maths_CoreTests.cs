@@ -34,6 +34,22 @@ public class Maths_CoreTests
         AreEqual(0, Pow(0, 5));
     }
 
+    [TestMethod]
+    public void Pow_Exponent0_Returns1()
+    {
+        AreEqual(1, Pow(1, 0));
+        AreEqual(1, Pow(2, 0));
+        AreEqual(1, Pow(3, 0));
+        AreEqual(1, Pow(4, 0));
+        AreEqual(1, Pow(5, 0));
+    }
+    
+    [TestMethod]
+    public void Pow_0ToThe0_Apparently1()
+    {
+        AreEqual(1, Pow(0, 0));
+    }
+
     // Log
 
     [TestMethod]
