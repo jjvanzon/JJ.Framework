@@ -1,15 +1,14 @@
-// ReSharper disable CheckNamespace
-
-using static System.Double;
-
 #pragma warning disable IDE0130 // Namespace != folder
+// ReSharper disable CheckNamespace
 
 namespace JJ.Framework.Mathematics.Tests;
 
+using static Double;
+
 /// <summary>
-/// Maths in the JJ.Framework int-based variant.
-/// Math is .NET's own, usually based on doubles.
-/// Results between both of them are evaluated and compared.
+/// <c>Maths</c> in the JJ.Framework int-based variant.
+/// <c>Math</c> is .NET's own, usually based on doubles.
+/// Results between both of them are evaluated and compared for consistency.
 /// </summary>
 [TestClass]
 public class Maths_CoreTests
@@ -62,6 +61,9 @@ public class Maths_CoreTests
         AreEqual(1, Math .Pow(5, 0));
     }
     
+    /// <summary>
+    /// 0 ^ 0 is conventionally 1, though mathematically debatable.
+    /// </summary>
     [TestMethod]
     public void Pow_0ToThe0_Apparently1()
     {
@@ -69,6 +71,9 @@ public class Maths_CoreTests
         AreEqual(1, Math .Pow(0, 0));
     }
 
+    /// <summary>
+    /// A negative times a negative is positive, so even powers of negatives are positive.
+    /// </summary>
     [TestMethod]
     public void Pow_NegativeBase_EvenExponent_ReturnsPositive()
     {
@@ -82,6 +87,9 @@ public class Maths_CoreTests
         AreEqual(25, Math .Pow(-5, 2));
     }
 
+    /// <summary>
+    /// Odd powers of negatives stay negative.
+    /// </summary>
     [TestMethod]
     public void Pow_NegativeBase_OddExponent_ReturnsNegative()
     {
@@ -93,6 +101,9 @@ public class Maths_CoreTests
         AreEqual(-125, Math .Pow(-5, 3));
     }
 
+    /// <summary>
+    /// Anything to the power of 0 is 1, even negatives.
+    /// </summary>
     [TestMethod]
     public void Pow_NegativeBase_Exponent0_Returns1()
     {
@@ -108,6 +119,10 @@ public class Maths_CoreTests
         AreEqual(1, Math .Pow(-10, 0));
     }
 
+    /// <summary>
+    /// A negative exponent flips to a fraction (e.g. 2 ^ -1 = 1/2).
+    /// For integers that rounds down to 0.
+    /// </summary>
     [TestMethod]
     public void Pow_NegativeExponent_ReturnsFractionFlooredTo0()
     {
@@ -121,6 +136,11 @@ public class Maths_CoreTests
         AreEqual(0, Math.Floor(Math .Pow(10, -3)));
     }
 
+    // TODO: Where did all this talk about division come from?
+
+    /// <summary>
+    /// 1 to any power is 1, so 1 divided by 1 is still 1.
+    /// </summary>
     [TestMethod]
     public void Pow_Base1_NegativeExponent_Returns1()
     {
@@ -132,6 +152,9 @@ public class Maths_CoreTests
         AreEqual(1, Math .Pow(1, -5));
     }
 
+    /// <summary>
+    /// (-1) to an even power is 1, so 1 divided by 1 is 1.
+    /// </summary>
     [TestMethod]
     public void Pow_BaseNeg1_NegativeEvenExponent_Returns1()
     {
@@ -141,6 +164,9 @@ public class Maths_CoreTests
         AreEqual(1, Math .Pow(-1, -4));
     }
 
+    /// <summary>
+    /// (-1) to an odd power is -1, so 1 divided by -1 is -1.
+    /// </summary>
     [TestMethod]
     public void Pow_BaseNeg1_NegativeOddExponent_ReturnsNeg1()
     {
@@ -150,6 +176,9 @@ public class Maths_CoreTests
         AreEqual(-1, Math .Pow(-1, -3));
     }
 
+    /// <summary>
+    /// 0 to any power is 0, so 1 divided by 0 is division by zero.
+    /// </summary>
     [TestMethod]
     public void Pow_Base0_NegativeExponent_DivideByZero()
     {
@@ -232,6 +261,9 @@ public class Maths_CoreTests
     }
 
     
+    /// <summary>
+    /// 0 isn't a power of anything.
+    /// </summary>
     [TestMethod]
     public void Log_OfZero_Undefined()
     {
@@ -253,6 +285,10 @@ public class Maths_CoreTests
         IsTrue(IsInfinity(Math .Log(0, 16)));
     }
 
+    /// <summary>
+    /// Anything to the power of 0 is 1.
+    /// Log of 1 is 0 because no factors.
+    /// </summary>
     [TestMethod]
     public void Log_OfOne_Returns0()
     {
@@ -272,6 +308,9 @@ public class Maths_CoreTests
         AreEqual(0, Math .Log(1, 16));
     }
 
+    /// <summary>
+    /// No positive integer base raised to a power yields a negative.
+    /// </summary>
     [TestMethod]
     public void Log_OfNegative_Undefined()
     {
@@ -291,6 +330,11 @@ public class Maths_CoreTests
         IsTrue(IsNaN(Math .Log(-8, 16)));
     }
 
+    // TODO: Summary vague.
+
+    /// <summary>
+    /// 0 to any power is 0, so log base 0 only evaluates for 0 itself.
+    /// </summary>
     [TestMethod]
     public void Log_Base0_Undefined()
     {
@@ -309,7 +353,12 @@ public class Maths_CoreTests
         Throws(() => Maths.Log(16, 0), "base", "0");
         IsTrue(IsNaN(Math .Log(16, 0)));
     }
-        
+
+    // TODO: Summary vague.
+
+    /// <summary>
+    /// 1 to any power is 1, so log base 1 only evaluates for 1 itself.
+    /// </summary>
     [TestMethod]
     public void Log_Base1_Undefined()
     {
@@ -331,6 +380,9 @@ public class Maths_CoreTests
         IsTrue(IsNaN(Math .Log(16, 1)));
     }
         
+    /// <summary>
+    /// Negative bases flip sign each power, making logarithms ill-defined.
+    /// </summary>
     [TestMethod]
     public void Log_BaseNegative_Undefined()
     {
@@ -352,6 +404,11 @@ public class Maths_CoreTests
         IsTrue(IsNaN(Math .Log(16, -16)));
     }
 
+    // TODO: Comment isn't really true. Negatives play differently together.
+
+    /// <summary>
+    /// Both value and base negative: undefined for the same reasons as each individually.
+    /// </summary>
     [TestMethod]
     public void Log_AllNegative_Undefined()
     {
