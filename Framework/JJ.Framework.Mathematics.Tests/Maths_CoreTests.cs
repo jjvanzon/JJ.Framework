@@ -35,7 +35,7 @@ public class Maths_CoreTests
     }
 
     [TestMethod]
-    public void Pow_Exponent0_Returns1()
+    public void Pow_Exponent0_Returns1_Apparently()
     {
         AreEqual(1, Pow(1, 0));
         AreEqual(1, Pow(2, 0));
@@ -104,5 +104,43 @@ public class Maths_CoreTests
     public void Log_Base16_ExactPower_ReturnsPower()
     {
         AreEqual(3, Log(4096, 16));
+    }
+    
+    [TestMethod]
+    public void Log_Int32MaxValue_Base2_Returns30_BecauseFloored()
+    {
+        AreEqual(30, Log(int.MaxValue, 2));
+    }
+
+    [TestMethod]
+    public void Log_OfOne_Returns0()
+    {
+        AreEqual(0, Log(1, 1));
+        AreEqual(0, Log(1, 2));
+        AreEqual(0, Log(1, 3));
+        AreEqual(0, Log(1, 4));
+        AreEqual(0, Log(1, 5));
+        AreEqual(0, Log(1, 8));
+        AreEqual(0, Log(1, 10));
+        AreEqual(0, Log(1, 16));
+    }
+    
+    [TestMethod]
+    public void Log_OfZero_Returns0_Apparently()
+    {
+        AreEqual(0, Log(0, 1));
+        AreEqual(0, Log(0, 2));
+        AreEqual(0, Log(0, 3));
+        AreEqual(0, Log(0, 4));
+        AreEqual(0, Log(0, 5));
+        AreEqual(0, Log(0, 8));
+        AreEqual(0, Log(0, 10));
+        AreEqual(0, Log(0, 16));
+    }
+
+    [TestMethod]
+    public void Log_Base0_WithPositiveValue_ThrowsDivideByZeroException()
+    {
+        Throws<DivideByZeroException>(() => Log(10, 0));
     }
 }
