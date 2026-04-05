@@ -1,9 +1,16 @@
+#pragma warning disable IDE0130
+#pragma warning disable IDE0002
+
 namespace JJ.Framework.Mathematics.Tests;
+
+using static Randomizer;
 
 [TestClass]
 public class RandomizerCoreTests
 {
-    private const int REPEATS = 100;
+    private const int REPEATS = 1000;
+
+    // GetInt32
 
     [TestMethod]
     public void GetInt32_WithoutParameters_ReturnsValueInFullRangeExceptMaxValue()
@@ -43,16 +50,27 @@ public class RandomizerCoreTests
     }
 
     [TestMethod]
+    public void GetInt32_WithInt32MaxValue_Minus1Succeeds()
+    {
+        for (int i = 0; i < REPEATS; i++)
+        {
+            Randomizer.GetInt32(0, int.MaxValue - 1);
+        }
+    }
+
+    [TestMethod]
     public void GetInt32_WithInt32MaxValue_ThrowsOverflowException()
     {
         Throws<OverflowException>(() => Randomizer.GetInt32(0, int.MaxValue));
     }
 
+    // GetRandomItem
+
     [TestMethod]
     public void GetRandomItem_WithEmptyCollection_ThrowsException()
     {
         int[] items = [];
-        Throws(() => Randomizer.GetRandomItem(items));
+        Throws(() => GetRandomItem(items));
     }
 
     [TestMethod]
@@ -62,7 +80,7 @@ public class RandomizerCoreTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int val = Randomizer.GetRandomItem(items);
+            int val = GetRandomItem(items);
             AreEqual(123, val);
         }
     }
@@ -74,7 +92,7 @@ public class RandomizerCoreTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int val = Randomizer.GetRandomItem(items);
+            int val = GetRandomItem(items);
             IsTrue(items.Contains(val));
         }
     }
