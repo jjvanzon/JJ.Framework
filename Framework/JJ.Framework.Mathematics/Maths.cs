@@ -79,7 +79,7 @@ namespace JJ.Framework.Mathematics.Legacy
         {
             if (value <= 0)
                 throw new Exception("Log value cannot be 0, because 0 isn't a power of anything. " +
-                                    "Log value cannot be negative for integers - nothing raise to a power is a negative number.");
+                                    "Log value cannot be negative for integers - nothing raise to a power is a negative number."); // Not true: The  log -2 of -2 is 1. But most results are complex.
             if (@base < 2)
                 throw new Exception("Base (n) cannot be 0, because any power of 0 is 0 and does not evaluate for other integers. " +
                                     "Base (n) cannot be 1, because any power of 1 is 1 and does not evaluate for other integers. " +
