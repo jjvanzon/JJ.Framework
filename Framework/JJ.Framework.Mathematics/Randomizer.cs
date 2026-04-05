@@ -1,4 +1,8 @@
-﻿using System;
+﻿// ReSharper disable RedundantUsingDirective
+// ReSharper disable ArrangeObjectCreationWhenTypeEvident
+// ReSharper disable IntroduceOptionalParameters.Global
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +47,7 @@ namespace JJ.Framework.Mathematics.Legacy
 
         public static T GetRandomItem<T>(IEnumerable<T> collection)
         {
+            // ReSharper disable PossibleMultipleEnumeration
             int count = collection.Count();
             if (count == 0)
             {
@@ -51,6 +56,7 @@ namespace JJ.Framework.Mathematics.Legacy
 
             int index = Randomizer.GetInt32(count - 1);
             return collection.ElementAt(index);
+            // ReSharper restore PossibleMultipleEnumeration
         }
     }
 }

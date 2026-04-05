@@ -1,12 +1,12 @@
-#pragma warning disable IDE0130
-#pragma warning disable IDE0002
+#pragma warning disable IDE0130 // Namespace != folder
+#pragma warning disable IDE0002 // Redundant qualifier
 
 namespace JJ.Framework.Mathematics.Tests;
 
 using static Randomizer;
 
 [TestClass]
-public class RandomizerCoreTests
+public class Randomizer_CoreTests
 {
     private const int REPEATS = 1000;
 
@@ -50,7 +50,7 @@ public class RandomizerCoreTests
     }
 
     [TestMethod]
-    public void GetInt32_WithInt32MaxValue_Minus1Succeeds()
+    public void GetInt32_WithInt32MaxValueMinus1_Succeeds()
     {
         for (int i = 0; i < REPEATS; i++)
         {
