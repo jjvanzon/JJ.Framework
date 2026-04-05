@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 #pragma warning disable IDE0130 // Namespace != folder
 #pragma warning disable IDE0002 // Redundant qualifier
 

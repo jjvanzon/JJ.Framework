@@ -283,16 +283,23 @@ Solutions:
 .NET Targeting
 --------------
 
+<h3>Libs</h3>
+
+The main library code is targeted as:
+
+`net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0`
+
+We left out `net5.0;net461`. This makes the tests for `net5.0;net461` hit the `netstandard2.1;netstandard2.0` libs.
+
 <h3>Test Projects</h3>
 
 Finished up test projects target:
 
-`net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461;netstandard2.1;netstandard2.0`
+`net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461`
 
 Basically all of them.
 The test code compiled for `netstandard2.1;netstandard2.0` is never hit though,
 because those are interface-like .NET versions, as opposed to concrete .NET editions.
-
 
 <h3>Trimming Test Apps</h3>
 
@@ -301,16 +308,6 @@ The Trimming.TestApp projects run for:
 `net10.0;net9.0;net8.0;net7.0;net6.0;net5.0`
 
 There is no trimming/aot to speak of before .NET 5 and neither is it applicable to .NET Standard.
-
-
-<h3>Libs</h3>
-
-The main library code itself is targeted as:
-
-`net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0`
-
-We left out `net5.0;net461`. This makes the tests for `net5.0;net461` hit the `netstandard2.1;netstandard2.0` libs.
-
 
 <h3>Concessions</h3>
 
