@@ -8,6 +8,32 @@ using static Maths;
 [TestClass]
 public class Maths_CoreTests
 {
+    // Pow
+
+    [TestMethod]
+    public void Pow_Base3_Exponent4_Returns81()
+    {
+        AreEqual(81, Pow(3, 4));
+    }
+
+    [TestMethod]
+    public void Pow_Base10_Exponent3_Returns1000()
+    {
+        AreEqual(1000, Pow(10, 3));
+    }
+
+    [TestMethod]
+    public void Pow_Base1_AnyPositiveExponent_Returns1()
+    {
+        AreEqual(1, Pow(1, 7));
+    }
+
+    [TestMethod]
+    public void Pow_Base0_PositiveExponent_Returns0()
+    {
+        AreEqual(0, Pow(0, 5));
+    }
+
     // Log
 
     [TestMethod]
