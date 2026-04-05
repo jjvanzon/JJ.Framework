@@ -1,4 +1,8 @@
-﻿using JJ.Framework.Reflection;
+﻿#pragma warning disable IDE0005 // Unused usings
+#pragma warning disable IDE0300 // Use collection expressions
+// ReSharper disable RedundantExplicitArrayCreation
+
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;

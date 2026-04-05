@@ -17,7 +17,7 @@
 - Prefer `AssertCore` over `Assert` (using static in Usings.cs).
 - Ensure tests reflect intended mathematical behavior/specification, not merely current implementation behavior.
 
-## Legacy Test Upgrades
+## Legacy Tests
 - Expand for full code coverage.
 - Avoid changing legacy code.
 - Only critical, local fixes.
