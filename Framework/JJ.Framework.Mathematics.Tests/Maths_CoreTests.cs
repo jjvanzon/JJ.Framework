@@ -50,6 +50,43 @@ public class Maths_CoreTests
         AreEqual(1, Pow(0, 0));
     }
 
+    [TestMethod]
+    public void Pow_NegativeBase_EvenExponent_ReturnsPositive()
+    {
+        AreEqual(4, Pow(-2, 2));
+        AreEqual(16, Pow(-2, 4));
+        AreEqual(9, Pow(-3, 2));
+        AreEqual(25, Pow(-5, 2));
+    }
+
+    [TestMethod]
+    public void Pow_NegativeBase_OddExponent_ReturnsNegative()
+    {
+        AreEqual(-8, Pow(-2, 3));
+        AreEqual(-27, Pow(-3, 3));
+        AreEqual(-125, Pow(-5, 3));
+    }
+
+    [TestMethod]
+    public void Pow_NegativeBase_Exponent0_Returns1()
+    {
+        AreEqual(1, Pow(-1, 0));
+        AreEqual(1, Pow(-2, 0));
+        AreEqual(1, Pow(-3, 0));
+        AreEqual(1, Pow(-5, 0));
+        AreEqual(1, Pow(-10, 0));
+    }
+
+    [TestMethod]
+    public void Pow_NegativeExponent_ReturnsFractionFlooredTo0()
+    {
+        AreEqual(0, Pow( 2, -1));
+        AreEqual(0, Pow( 3, -1));
+        AreEqual(0, Pow( 5, -2));
+        AreEqual(0, Pow(10, -3));
+        AreEqual(0, Pow( 0, -1));
+    }
+
     // Log
 
     [TestMethod]

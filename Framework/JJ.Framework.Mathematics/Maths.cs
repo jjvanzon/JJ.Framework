@@ -16,6 +16,8 @@ namespace JJ.Framework.Mathematics.Legacy
         /// </summary>
         public static int Pow(int n, int e)
         {
+            if (e < 0) return 0; // Negative exponent becomes a fraction, floored to 0.
+
             // I doubt this is actually faster than just using the standard Math.Pow that takes double.
             int x = 1;
             for (int i = 0; i < e; i++)
