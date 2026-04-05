@@ -1,76 +1,81 @@
-using System;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+namespace JJ.Framework.Mathematics.Tests;
 
-namespace JJ.Framework.Mathematics.Tests
+[TestClass]
+public class RandomizerCoreTests
 {
-    [TestClass]
-    public class RandomizerCoreTests
+    private const int REPEATS = 100;
+
+    [TestMethod]
+    public void GetInt32_WithoutParameters_ReturnsValueInFullRangeExceptMaxValue()
     {
-        [TestMethod]
-        public void GetInt32_WithoutParameters_ReturnsValueInFullRangeExceptMaxValue()
+        for (int i = 0; i < REPEATS; i++)
         {
-            int value = Randomizer.GetInt32();
-
-            Assert.IsTrue(value >= int.MinValue);
-            Assert.IsTrue(value <= int.MaxValue - 1);
+            int val = Randomizer.GetInt32();
+            IsTrue(val <= int.MaxValue - 1);
         }
+    }
 
-        [TestMethod]
-        public void GetInt32_WithMax_ReturnsValueInRangeIncludingMax()
+    [TestMethod]
+    public void GetInt32_WithMax_ReturnsValueInRangeIncludingMax()
+    {
+        const int max = 10;
+
+        for (int i = 0; i < REPEATS; i++)
         {
-            int max = 10;
-
-            int value = Randomizer.GetInt32(max);
-
-            Assert.IsTrue(value >= 0);
-            Assert.IsTrue(value <= max);
+            int val = Randomizer.GetInt32(max);
+            IsTrue(val >= 0);
+            IsTrue(val <= max);
         }
+    }
 
-        [TestMethod]
-        public void GetInt32_WithMinAndMax_ReturnsValueInInclusiveRange()
+    [TestMethod]
+    public void GetInt32_WithMinAndMax_ReturnsValueInInclusiveRange()
+    {
+        const int min = -5;
+        const int max = 5;
+
+        for (int i = 0; i < REPEATS; i++)
         {
-            int min = -5;
-            int max = 5;
-
-            int value = Randomizer.GetInt32(min, max);
-
-            Assert.IsTrue(value >= min);
-            Assert.IsTrue(value <= max);
+            int val = Randomizer.GetInt32(min, max);
+            IsTrue(val >= min);
+            IsTrue(val <= max);
         }
+    }
 
-        [TestMethod]
-        public void GetInt32_WithInt32MaxValue_ThrowsOverflowException()
+    [TestMethod]
+    public void GetInt32_WithInt32MaxValue_ThrowsOverflowException()
+    {
+        Throws<OverflowException>(() => Randomizer.GetInt32(0, int.MaxValue));
+    }
+
+    [TestMethod]
+    public void GetRandomItem_WithEmptyCollection_ThrowsException()
+    {
+        int[] items = [];
+        Throws(() => Randomizer.GetRandomItem(items));
+    }
+
+    [TestMethod]
+    public void GetRandomItem_WithSingleItem_ReturnsThatItem()
+    {
+        int[] items = [ 123 ];
+
+        for (int i = 0; i < REPEATS; i++)
         {
-            Assert.ThrowsException<OverflowException>(() => Randomizer.GetInt32(0, int.MaxValue));
+            int val = Randomizer.GetRandomItem(items);
+            AreEqual(123, val);
         }
+    }
 
-        [TestMethod]
-        public void GetRandomItem_WithEmptyCollection_ThrowsException()
+    [TestMethod]
+    public void GetRandomItem_WithMultipleItems_ReturnsItemFromCollection()
+    {
+        int[] items = [ 10, 20, 30, 40 ];
+
+        for (int i = 0; i < REPEATS; i++)
         {
-            int[] items = Array.Empty<int>();
-
-            Assert.ThrowsException<Exception>(() => Randomizer.GetRandomItem(items));
-        }
-
-        [TestMethod]
-        public void GetRandomItem_WithSingleItem_ReturnsThatItem()
-        {
-            int[] items = { 123 };
-
-            int value = Randomizer.GetRandomItem(items);
-
-            Assert.AreEqual(123, value);
-        }
-
-        [TestMethod]
-        public void GetRandomItem_WithMultipleItems_ReturnsItemFromCollection()
-        {
-            int[] items = { 10, 20, 30, 40 };
-
-            int value = Randomizer.GetRandomItem(items);
-
-            Assert.IsTrue(items.Contains(value));
+            int val = Randomizer.GetRandomItem(items);
+            IsTrue(items.Contains(val));
         }
     }
 }

@@ -9,5 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
+    <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 </Project>
