@@ -197,10 +197,11 @@ public class NumberingSystems_CoreTests
         const int original = 123456789;
 
         // .NET Base64 (bytes -> text -> bytes)
-        byte[] bytes;
+        string toBase64_JJ = ToBase(original, 64, _digitsBase64);
+        byte[] bytes_DotNet;
         unchecked
         {
-            bytes =
+            bytes_DotNet =
             [
                 (byte)(original >> 24),
                 (byte)(original >> 16),
@@ -208,19 +209,21 @@ public class NumberingSystems_CoreTests
                 (byte)original
             ];
         }
-        string dotNetBase64 = Convert.ToBase64String(bytes);
-        byte[] decodedBytes = Convert.FromBase64String(dotNetBase64);
-        int dotNetDecoded =
-            (decodedBytes[0] << 24) |
-            (decodedBytes[1] << 16) |
-            (decodedBytes[2] << 8) |
-            decodedBytes[3];
+        string toBase64_Net = Convert.ToBase64String(bytes_DotNet);
+        AreEqual(toBase64_Net, toBase64_JJ);
+
+        int toInt_JJ = FromBase(toBase64_JJ, 64, _digitsBase64);
+        byte[] decodedBytes_Net = Convert.FromBase64String(toBase64_Net);
+        int toInt_Net =
+            (decodedBytes_Net[0] << 24) |
+            (decodedBytes_Net[1] << 16) |
+            (decodedBytes_Net[2] << 8) |
+            decodedBytes_Net[3];
+        AreEqual(toInt_Net, toInt_JJ);
 
         // Custom base-64 (number -> text -> number)
-        string customBase64 = ToBase(original, 64, _digitsBase64);
-        int customDecoded = FromBase(customBase64, 64, _digitsBase64);
 
-        AreEqual(original, dotNetDecoded);
-        AreEqual(original, customDecoded);
+        AreEqual(original, toInt_Net);
+        AreEqual(original, toInt_JJ);
     }
 }
