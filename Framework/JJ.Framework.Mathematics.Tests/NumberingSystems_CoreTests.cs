@@ -33,6 +33,28 @@ public class NumberingSystems_CoreTests
         AreEqual(395, result);
     }
 
+    // FromBase (exception cases)
+
+    [TestMethod]
+    public void FromBase_WithDefaultDigits_InvalidCharacter_Throws()
+    {
+        Throws(
+            () => FromBase("1@", b: 16),
+            typeof(Exception),
+            "Invalid digit",
+            "@");
+    }
+
+    [TestMethod]
+    public void Known_Limitation_FromBase_WithDefaultDigits_BaseAbove36_CharacterBeyondZ_Throws()
+    {
+        Throws(
+            () => FromBase("{", b: 37),
+            typeof(Exception),
+            "Invalid digit",
+            "{");
+    }
+
     // FromBase (with digit chars)
 
     [TestMethod]
