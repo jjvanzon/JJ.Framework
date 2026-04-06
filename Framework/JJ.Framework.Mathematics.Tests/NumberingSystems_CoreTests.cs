@@ -165,4 +165,62 @@ public class NumberingSystems_CoreTests
         // ?>:; = 5*6^3 + 4*6^2 + 0*6^1 + 1*6^0 = 1080 + 144 + 0 + 1 = 1225
         AreEqual(1225, result);
     }
+
+    // Base 64
+
+    private static readonly char[] _digitsBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".ToCharArray();
+
+    [TestMethod]
+    public void FromBase_WithDigitChars_Base64StandardAlphabet()
+    {
+        int result = FromBase("/+", b: 64, _digitsBase64);
+
+        // /=63, +=62 in base 64
+        // /+ = 63*64^1 + 62*64^0 = 4032 + 62 = 4094
+        AreEqual(4094, result);
+    }
+
+    [TestMethod]
+    public void FromBase_WithDigitChars_Base64StandardAlphabet_RoundTripToBase()
+    {
+        int num = 123456789;
+
+        string base64String = ToBase(num, 64, _digitsBase64);
+        int convertedBack = FromBase(base64String, 64, _digitsBase64);
+
+        AreEqual(num, convertedBack);
+    }
+
+    [TestMethod]
+    public void Base64_DotNetAndCustom_SideBySide()
+    {
+        const int original = 123456789;
+
+        // .NET Base64 (bytes -> text -> bytes)
+        byte[] bytes;
+        unchecked
+        {
+            bytes =
+            [
+                (byte)(original >> 24),
+                (byte)(original >> 16),
+                (byte)(original >> 8),
+                (byte)original
+            ];
+        }
+        string dotNetBase64 = Convert.ToBase64String(bytes);
+        byte[] decodedBytes = Convert.FromBase64String(dotNetBase64);
+        int dotNetDecoded =
+            (decodedBytes[0] << 24) |
+            (decodedBytes[1] << 16) |
+            (decodedBytes[2] << 8) |
+            decodedBytes[3];
+
+        // Custom base-64 (number -> text -> number)
+        string customBase64 = ToBase(original, 64, _digitsBase64);
+        int customDecoded = FromBase(customBase64, 64, _digitsBase64);
+
+        AreEqual(original, dotNetDecoded);
+        AreEqual(original, customDecoded);
+    }
 }
