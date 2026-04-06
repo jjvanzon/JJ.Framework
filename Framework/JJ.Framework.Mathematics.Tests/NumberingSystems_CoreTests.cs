@@ -97,11 +97,11 @@ public class NumberingSystems_CoreTests
     public void FromBase_WithDigitChars_RoundTripSpecialChars()
     {
         char[] digitChars = ['@', '#', '!', '$', '%', '^', '&', '*'];
-        int original = 12345;
-        string converted = ToBase(original, digitChars);
-        int result = FromBase(converted, 8, digitChars);
-
-        AreEqual(original, result);
+        const int input = 0b_111_000_110_001;
+        string toBase = ToBase(input, digitChars);
+        AreEqual("*@&#", toBase);
+        int fromBase = FromBase(toBase, 8, digitChars);
+        AreEqual(input, fromBase);
     }
 
     // FromBase (with char range)
@@ -151,11 +151,11 @@ public class NumberingSystems_CoreTests
     [TestMethod]
     public void FromBase_WithCharCodeRange_RoundTripToBase()
     {
-        const int original = 456;
-        string converted = ToBase(original, 16, 'A');
-        int result = FromBase(converted, 'A', 'P');
-        
-        AreEqual(original, result);
+        const int input = 0x4872;
+        string toBase = ToBase(input, b: 16, 'A');
+        AreEqual("EIHC", toBase);
+        int fromBase = FromBase(toBase, 'A', 'P');
+        AreEqual(input, fromBase);
     }
 
     [TestMethod]
@@ -184,7 +184,7 @@ public class NumberingSystems_CoreTests
     }
 
     [TestMethod]
-    public void FromBase_WithDigitChars_Base64StandardAlphabet_RoundTripToBase()
+    public void FromBase_WithDigitChars_Base64Roundtrip()
     {
         int num = 123456789;
 
@@ -217,7 +217,7 @@ public class NumberingSystems_CoreTests
     [DataRow(0b00000101_01010101_01010101_10101010)]
     [DataRow(123456789)]
     [DataTestMethod]
-    public void ToBase64_DotNetAndCustom_SideBySide(int inputInt)
+    public void ToBase64_DotNetAndJJFramework_SideBySide(int inputInt)
     {
         //int inputInt = GetBase64InputInt();
         byte[] inputBytes = IntToBytes(inputInt);
@@ -251,7 +251,7 @@ public class NumberingSystems_CoreTests
     [DataRow("AAAAZA==")]
     [DataRow("AAAZAA==")]
     [DataTestMethod]
-    public void FromBase64_DotNetAndCustom_SideBySide(string inputBase64)
+    public void FromBase64_DotNetAndJJFramework_SideBySide(string inputBase64)
     {
         // Call .NET
         byte[] bytes_Net = FromBase64String(inputBase64);
