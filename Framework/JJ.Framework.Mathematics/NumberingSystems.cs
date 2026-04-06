@@ -1,6 +1,9 @@
 ﻿#pragma warning disable IDE0005 // Unused usings
 #pragma warning disable IDE0300 // Use collection expressions
+#pragma warning disable IDE0049 // Use keyword
+#pragma warning disable IDE0200 // Use method group
 // ReSharper disable RedundantExplicitArrayCreation
+// ReSharper disable UseStringInterpolation
 
 using JJ.Framework.Reflection;
 using System;
@@ -63,6 +66,7 @@ namespace JJ.Framework.Mathematics.Legacy
 
             for (int i = digitCount - 1; i >= 0; i--)
             {
+                // ReSharper disable once RedundantOverflowCheckingContext
                 checked
                 {
                     int digit = number % b;
