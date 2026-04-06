@@ -21,7 +21,7 @@ public class NumberingSystems_CoreTests
     }
 
     [TestMethod]
-    public void FromBase_WithDigitChars_ArrowCharacters()
+    public void FromBase_WithDigitChars_Arrows()
     {
         char[] digitChars = [ '↓', '↑', '←', '→'];
         int result = FromBase("←↑↓←", b: 4, digitChars);
@@ -105,5 +105,16 @@ public class NumberingSystems_CoreTests
         int result = FromBase(converted, 'A', 'P');
         
         AreEqual(original, result);
+    }
+
+    [TestMethod]
+    public void FromBase_WithCharCodeRange_PunctuationRange()
+    {
+        int result = FromBase("?>:;", ':', '?');
+
+        // Base is '?' - ':' + 1 = 6
+        // :=0, ;=1, <=2, ==3, >=4, ?=5 in base 6
+        // ?>:; = 5*6^3 + 4*6^2 + 0*6^1 + 1*6^0 = 1080 + 144 + 0 + 1 = 1225
+        AreEqual(1225, result);
     }
 }
