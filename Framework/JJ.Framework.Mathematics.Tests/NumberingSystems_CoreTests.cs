@@ -4,9 +4,35 @@ namespace JJ.Framework.Mathematics.Tests;
 
 using static NumberingSystems;
 
+/// <summary>
+/// Limited addition to NumberingSystemTests,
+/// adding coverage where missing in the originals.
+/// </summary>
 [TestClass]
 public class NumberingSystems_CoreTests
 {
+    // FromBase (with default digits)
+
+    [TestMethod]
+    public void FromBase_WithDefaultDigits_LowercaseHex()
+    {
+        int result = FromBase("ff", b: 16);
+
+        // f=15 in base 16
+        // ff = 15*16^1 + 15*16^0 = 240 + 15 = 255
+        AreEqual(255, result);
+    }
+
+    [TestMethod]
+    public void FromBase_WithDefaultDigits_LowercaseBase36()
+    {
+        int result = FromBase("az", b: 36);
+
+        // a=10, z=35 in base 36
+        // az = 10*36^1 + 35*36^0 = 360 + 35 = 395
+        AreEqual(395, result);
+    }
+
     // FromBase (with digit chars)
 
     [TestMethod]

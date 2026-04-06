@@ -1,4 +1,10 @@
-﻿using System;
+﻿#pragma warning disable IDE0005 // Redundant using
+#pragma warning disable IDE0130 // Namespace != folder
+#pragma warning disable IDE0300 // Use collection expression
+// ReSharper disable UnusedVariable
+// ReSharper disable RedundantExplicitArrayCreation
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Mathematics.Tests
