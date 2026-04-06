@@ -1,4 +1,7 @@
+using JJ.Framework.Common.Legacy;
+
 #pragma warning disable IDE0130 // Namespace != folder
+#pragma warning disable IDE0048 // Paranthesize precedence
 
 namespace JJ.Framework.Mathematics.Tests;
 
@@ -191,39 +194,113 @@ public class NumberingSystems_CoreTests
         AreEqual(num, convertedBack);
     }
 
-    [TestMethod]
-    public void Base64_DotNetAndCustom_SideBySide()
+    // .NET Base64 encodes raw bytes in 6-bit groups (with '=' padding),
+    // It's chopping the number up, basically.
+    // Int = 32 bit.
+    // .NET serializer sees bits:
+    // [0,5], [6,11], [12,17], [18,23], [24,29], [30-31] + 4 bits left + "=="
+    // Each part becomes a digit.
+    //
+    // How does that different from JJ.Famework?
+    // Internally it calls GetDigitValues.
+    // The above are the .NET's digit values sort of.
+    // If you first shift the number 4 bits left <<.
+    // So first 4 bits of input number can't be set (they fall off)
+    // JJ.Framework can only handle positive numbers (signed ints)
+    // So the first bit can't be set.
+    // So in total the first 5 bits can't be set, or they cause trouble
+
+
+    [DataRow(0b00000000_00000000_00000000_00000000)]
+    [DataRow(0b00000000_00000000_00000000_00000001)]
+    [DataRow(0b00000111_11111111_11111111_11111111)]
+    [DataRow(0b00000101_01010101_01010101_10101010)]
+    [DataRow(123456789)]
+    [DataTestMethod]
+    public void ToBase64_DotNetAndCustom_SideBySide(int inputInt)
     {
-        const int original = 123456789;
+        //int inputInt = GetBase64InputInt();
+        byte[] inputBytes = IntToBytes(inputInt);
 
-        // .NET Base64 (bytes -> text -> bytes)
-        string toBase64_JJ = ToBase(original, 64, _digitsBase64);
-        byte[] bytes_DotNet;
-        unchecked
-        {
-            bytes_DotNet =
-            [
-                (byte)(original >> 24),
-                (byte)(original >> 16),
-                (byte)(original >> 8),
-                (byte)original
-            ];
-        }
-        string toBase64_Net = Convert.ToBase64String(bytes_DotNet);
+        // Manhandle JJ.Framework input.
+        // 6-bit blocks leave .NET serializer with 4 extra bits at the right
+        int inputIntShifted = inputInt;
+        inputIntShifted <<= 4;
+        
+        // Convert, our dear JJ.Framework...
+        var toBase64_JJ = ToBase(inputIntShifted, _digitsBase64);
+
+        // Manhandle JJ.Framework output.
+        // .NET loves to end with ==
+        toBase64_JJ += "==";
+        // Lead with A's (the 0's of base 64)
+        toBase64_JJ = toBase64_JJ.PadLeft(8, 'A'); 
+
+        // Do your thing .NET...
+        string toBase64_Net = ToBase64String(inputBytes);
+
+        // Now they agree, sort of.
         AreEqual(toBase64_Net, toBase64_JJ);
+    }
 
-        int toInt_JJ = FromBase(toBase64_JJ, 64, _digitsBase64);
-        byte[] decodedBytes_Net = Convert.FromBase64String(toBase64_Net);
-        int toInt_Net =
-            (decodedBytes_Net[0] << 24) |
-            (decodedBytes_Net[1] << 16) |
-            (decodedBytes_Net[2] << 8) |
-            decodedBytes_Net[3];
-        AreEqual(toInt_Net, toInt_JJ);
+    [DataRow("AAAAAA==")] // 0
+    [DataRow("AAAAAQ==")] // 1 but shifted left 4 bits = 16
+    [DataRow("AAAAAR==")]
+    [DataRow("AAAAAS==")]
+    [DataRow("AAAAAT==")]
+    [DataRow("AAAAZA==")]
+    [DataRow("AAAZAA==")]
+    [DataTestMethod]
+    public void FromBase64_DotNetAndCustom_SideBySide(string inputBase64)
+    {
+        // Call .NET
+        byte[] bytes_Net = FromBase64String(inputBase64);
+        var fromBase_Net = BytesToInt(bytes_Net);
 
-        // Custom base-64 (number -> text -> number)
+        // Manhandle input for JJ.Framework:
+        // .NET loves to end with ==
+        inputBase64 = inputBase64.CutRight("==");
 
-        AreEqual(original, toInt_Net);
-        AreEqual(original, toInt_JJ);
+        // Call JJ.Framework
+        int fromBase_JJ = FromBase(inputBase64, 64, _digitsBase64);
+
+        // Manhandle output of JJ.Framework:
+        // 6-bit blocks leave .NET serializer with 4 extra bits at the right,
+        // to be ignored by JJ.Framework.
+        fromBase_JJ >>= 4;
+
+        AreEqual(fromBase_Net, fromBase_JJ);
+    }
+
+    private static byte[] IntToBytes(int input)
+    {
+        /*
+        // Alteredinput itself:
+        int val0 = input >> 24;
+        int val1 = input << 8 >> 24;
+        int val2 = input << 16 >> 24;
+        int val3 = input << 24 >> 24;
+        */
+
+        int val0 = (input & 0b_01111111_00000000_00000000_00000000) >> 24;
+        int val1 = (input & 0b_00000000_11111111_00000000_00000000) >> 16;
+        int val2 = (input & 0b_00000000_00000000_11111111_00000000) >> 8;
+        int val3 = (input & 0b_00000000_00000000_00000000_11111111);
+
+        var byte0 = (byte)val0;
+        var byte1 = (byte)val1;
+        var byte2 = (byte)val2;
+        var byte3 = (byte)val3;
+
+        byte[] bytes = [byte0, byte1, byte2, byte3];
+        return bytes;
+    }
+
+    private static int BytesToInt(byte[] bytes)
+    {
+        return (bytes[0] << 24) |
+               (bytes[1] << 16) |
+               (bytes[2] << 8) |
+               bytes[3];
     }
 }
