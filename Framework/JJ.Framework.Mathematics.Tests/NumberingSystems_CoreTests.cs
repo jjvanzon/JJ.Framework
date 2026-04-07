@@ -259,6 +259,7 @@ public class NumberingSystems_CoreTests
     [DataRow("AAAAAT==")]
     [DataRow("AAAAZA==")]
     [DataRow("AAAZAA==")]
+    [DataRow("A/bG5d==")]
     [DataTestMethod]
     public void FromBase64_DotNetAndJJFramework_SideBySide(string input)
     {
