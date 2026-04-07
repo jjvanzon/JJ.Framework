@@ -9,9 +9,12 @@ namespace System.Diagnostics.CodeAnalysis;
 
 /// <inheritdoc cref="_notnullwhen" />
 [AttributeUsage(AttributeTargets.Parameter)]
-internal sealed class NotNullWhenAttribute(bool returnValue) : Attribute
+internal sealed class NotNullWhenAttribute : Attribute
 {
-    public bool ReturnValue { get; } = returnValue;
+    /// <inheritdoc cref="_notnullwhen" />
+    public NotNullWhenAttribute(bool returnValue) => ReturnValue = returnValue;
+
+    public bool ReturnValue { get; }
 }
 
 #endif
