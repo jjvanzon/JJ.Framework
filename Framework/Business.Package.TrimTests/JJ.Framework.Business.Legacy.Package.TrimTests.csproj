@@ -16,7 +16,7 @@
     <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.252.6001" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.5992" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.6056" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

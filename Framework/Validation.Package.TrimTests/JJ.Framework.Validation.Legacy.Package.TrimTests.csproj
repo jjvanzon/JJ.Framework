@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="4.1.5698" />
+    <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="4.4.6056" />
     <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.252.6001" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.5992" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.6056" />
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 
