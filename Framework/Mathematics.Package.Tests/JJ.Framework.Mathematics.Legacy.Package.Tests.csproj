@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="JJ.Framework.Mathematics.Legacy" Version="0.252.6056" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.5.6066" />
     <PackageReference Include="MSTest" Version="3.7.3" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
   </ItemGroup>
