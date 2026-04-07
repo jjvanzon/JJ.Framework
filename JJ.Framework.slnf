@@ -54,6 +54,7 @@
       "Framework\\JJ.Framework.Validation\\JJ.Framework.Validation.Legacy.csproj",
       "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj",
       "Framework\\Logging.Core\\JJ.Framework.Logging.Core.csproj",
+      "Framework\\Mathematics.TrimTests\\JJ.Framework.Mathematics.Legacy.TrimTests.csproj",
       "Framework\\PlatformCompatibility.Core.SharedProject\\JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj",
       "Framework\\PlatformCompatibility.Core.TestBase.Standard\\JJ.Framework.PlatformCompatibility.Core.TestBase.Standard.csproj",
       "Framework\\PlatformCompatibility.Core.TestBase\\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj",

@@ -284,6 +284,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Core.MSTestless", "Framework\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj", "{F1AED104-9754-CF7B-5930-6C3C8E88A3DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics.Legacy.TrimTests", "Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj", "{64442208-E7A8-7FEE-4B99-25E297DDC204}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1770,6 +1772,18 @@ Global
 		{F1AED104-9754-CF7B-5930-6C3C8E88A3DC}.Release|x64.Build.0 = Release|Any CPU
 		{F1AED104-9754-CF7B-5930-6C3C8E88A3DC}.Release|x86.ActiveCfg = Release|Any CPU
 		{F1AED104-9754-CF7B-5930-6C3C8E88A3DC}.Release|x86.Build.0 = Release|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Debug|x64.Build.0 = Debug|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Debug|x86.Build.0 = Debug|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Release|x64.ActiveCfg = Release|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Release|x64.Build.0 = Release|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Release|x86.ActiveCfg = Release|Any CPU
+		{64442208-E7A8-7FEE-4B99-25E297DDC204}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1900,6 +1914,7 @@ Global
 		{8A0DB9CE-54A6-DCAF-0175-E9C015F50648} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{2421FA9C-80B3-713A-419A-A75FCCBDEC08} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{F1AED104-9754-CF7B-5930-6C3C8E88A3DC} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{64442208-E7A8-7FEE-4B99-25E297DDC204} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
@@ -1948,6 +1963,8 @@ Global
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{59ddc853-62af-4f86-a803-3d4dd491e978}*SharedItemsImports = 5
 		Framework\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{639f2304-2ab3-46fa-8da9-af1b3f50fc66}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{639f2304-2ab3-46fa-8da9-af1b3f50fc66}*SharedItemsImports = 5
+		Framework\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{64442208-e7a8-7fee-4b99-25e297ddc204}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{64442208-e7a8-7fee-4b99-25e297ddc204}*SharedItemsImports = 5
 		Framework\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{6b2e7c43-22de-5d3a-47ef-8afb3c8f3f1f}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{6b2e7c43-22de-5d3a-47ef-8afb3c8f3f1f}*SharedItemsImports = 5
 		Framework\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems*{6b83c0e7-f039-448a-99aa-1b989ef96273}*SharedItemsImports = 5
