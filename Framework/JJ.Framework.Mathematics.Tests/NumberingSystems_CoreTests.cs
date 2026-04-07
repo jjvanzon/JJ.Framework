@@ -1,5 +1,3 @@
-using JJ.Framework.Common.Legacy;
-
 #pragma warning disable IDE0130 // Namespace != folder
 #pragma warning disable IDE0048 // Paranthesize precedence
 
@@ -219,28 +217,39 @@ public class NumberingSystems_CoreTests
     [DataTestMethod]
     public void ToBase64_DotNetAndJJFramework_SideBySide(int inputInt)
     {
-        //int inputInt = GetBase64InputInt();
+        Log(inputInt);
+
         byte[] inputBytes = IntToBytes(inputInt);
+
+        LogBytes(inputBytes);
 
         // Manhandle JJ.Framework input.
         // 6-bit blocks leave .NET serializer with 4 extra bits at the right
         int inputIntShifted = inputInt;
         inputIntShifted <<= 4;
-        
+
+        Log(inputIntShifted);
+
         // Convert, our dear JJ.Framework...
-        var toBase64_JJ = ToBase(inputIntShifted, _digitsBase64);
+        string toBase64_JJ = ToBase(inputIntShifted, _digitsBase64);
+
+        Log(toBase64_JJ);
 
         // Manhandle JJ.Framework output.
         // .NET loves to end with ==
-        toBase64_JJ += "==";
+        string toBase64_JJ_Formatted = toBase64_JJ + "==";
         // Lead with A's (the 0's of base 64)
-        toBase64_JJ = toBase64_JJ.PadLeft(8, 'A'); 
+        toBase64_JJ_Formatted = toBase64_JJ_Formatted.PadLeft(8, 'A'); 
+
+        Log(toBase64_JJ_Formatted);
 
         // Do your thing .NET...
         string toBase64_Net = ToBase64String(inputBytes);
 
+        Log(toBase64_Net);
+
         // Now they agree, sort of.
-        AreEqual(toBase64_Net, toBase64_JJ);
+        AreEqual(toBase64_Net, toBase64_JJ_Formatted);
     }
 
     [DataRow("AAAAAA==")] // 0
@@ -251,25 +260,39 @@ public class NumberingSystems_CoreTests
     [DataRow("AAAAZA==")]
     [DataRow("AAAZAA==")]
     [DataTestMethod]
-    public void FromBase64_DotNetAndJJFramework_SideBySide(string inputBase64)
+    public void FromBase64_DotNetAndJJFramework_SideBySide(string input)
     {
+        Log(input);
+
         // Call .NET
-        byte[] bytes_Net = FromBase64String(inputBase64);
-        var fromBase_Net = BytesToInt(bytes_Net);
+        byte[] dotNet_Bytes = FromBase64String(input);
+
+        LogBytes(dotNet_Bytes);
+
+        int dotNet_Num = BytesToInt(dotNet_Bytes);
+
+        Log(dotNet_Num);
 
         // Manhandle input for JJ.Framework:
         // .NET loves to end with ==
-        inputBase64 = inputBase64.CutRight("==");
+        string inputNoPad = input.CutRight("==");
+
+        Log(inputNoPad);
 
         // Call JJ.Framework
-        int fromBase_JJ = FromBase(inputBase64, 64, _digitsBase64);
+        int jj_FromBase = FromBase(inputNoPad, 64, _digitsBase64);
+
+        Log(jj_FromBase);
 
         // Manhandle output of JJ.Framework:
         // 6-bit blocks leave .NET serializer with 4 extra bits at the right,
         // to be ignored by JJ.Framework.
-        fromBase_JJ >>= 4;
+        int jj_FromBase_ShiftBack = jj_FromBase;
+        jj_FromBase_ShiftBack >>= 4;
 
-        AreEqual(fromBase_Net, fromBase_JJ);
+        Log(jj_FromBase_ShiftBack);
+
+        AreEqual(dotNet_Num, jj_FromBase_ShiftBack);
     }
 
     private static byte[] IntToBytes(int input)
@@ -302,5 +325,24 @@ public class NumberingSystems_CoreTests
                (bytes[1] << 16) |
                (bytes[2] << 8) |
                bytes[3];
+    }
+
+    private static void Log<T>(T x, [ArgExpress("x")] string argExpress = "")
+    {
+        Trace.WriteLine(argExpress + ": " + x);
+    }
+
+    private static void LogBytes(byte[] inputBytes, [ArgExpress(nameof(inputBytes))] string argExpress = "")
+    {
+        if (inputBytes == null) 
+        {
+            Trace.WriteLine(argExpress + ": <null>");
+        }
+        else
+        {
+            Trace.WriteLine(
+                $"{argExpress}[{inputBytes.Length}] = [ {string.Join(", ", inputBytes)} ]");
+
+        }
     }
 }
