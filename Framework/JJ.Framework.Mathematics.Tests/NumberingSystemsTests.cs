@@ -3,6 +3,7 @@
 #pragma warning disable IDE0300 // Use collection expression
 // ReSharper disable UnusedVariable
 // ReSharper disable RedundantExplicitArrayCreation
+// ReSharper disable ConvertToConstant.Local
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

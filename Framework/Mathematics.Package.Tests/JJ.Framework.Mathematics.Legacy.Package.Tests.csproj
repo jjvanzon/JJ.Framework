@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>0.252.$(BuildNum)</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Mathematics.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Mathematics.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Mathematics.Tests\bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Mathematics.Legacy" Version="0.252.6056" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.1.5697" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
+  </ItemGroup>
+
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
+</Project>
+
