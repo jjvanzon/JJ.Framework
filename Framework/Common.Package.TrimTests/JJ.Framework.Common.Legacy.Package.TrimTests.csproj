@@ -12,7 +12,6 @@
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <Compile Include="..\JJ.Framework.Common.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Common.Tests\obj\**" />
@@ -26,12 +25,9 @@
     <TrimmerRootDescriptor Include="Linker.xml" />
   </ItemGroup>
 
-
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.4.5992" />
   </ItemGroup>
 </Project>
-
-
 

@@ -15,7 +15,6 @@
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
   </ItemGroup>
 
-  
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
@@ -30,7 +29,6 @@
     <EmbeddedResource Include="..\Common.Core.Tests\TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
     <EmbeddedResource Include="..\Common.Core.Tests\TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
   </ItemGroup>
-
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />

@@ -17,7 +17,6 @@
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <Compile Include="..\Existence.Core.Tests.Text\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Existence.Core.Tests.Text\obj\**" />
@@ -25,7 +24,6 @@
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
-
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />

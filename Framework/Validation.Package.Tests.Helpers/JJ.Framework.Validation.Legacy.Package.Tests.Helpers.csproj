@@ -17,7 +17,6 @@
     <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.252.6001" />
   </ItemGroup>
 
-      
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>

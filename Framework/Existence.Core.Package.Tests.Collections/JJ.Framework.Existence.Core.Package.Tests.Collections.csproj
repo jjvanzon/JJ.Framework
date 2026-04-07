@@ -16,15 +16,11 @@
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
   </ItemGroup>
 
-  
   <ItemGroup>
     <Compile Include="..\Existence.Core.Tests.Collections\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Existence.Core.Tests.Collections\obj\**" />
     <Compile Remove="..\Existence.Core.Tests.Collections\bin\**" />
   </ItemGroup>
-
-      
-
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />

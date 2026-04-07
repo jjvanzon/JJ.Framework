@@ -22,8 +22,6 @@
     <Compile Remove="..\Existence.Core.Tests.Bool\bin\**" />
   </ItemGroup>
 
-
-
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
