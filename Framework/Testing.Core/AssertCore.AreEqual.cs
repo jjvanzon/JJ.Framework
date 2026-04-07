@@ -22,28 +22,25 @@ public static partial class AssertCore
     public static void AreNotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "")
         => Check(expected, actual, message, () => !Equals(expected, actual));
     
-    // TODO: Add/replace with non-lambda variants of AreEqual with delta.
-
     /// <inheritdoc cref="_deltadirection" />
-    #if !NET9_0_OR_GREATER
-    [TrimWarn(ArrayInit)]
-    #endif
-    public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
+    public static void AreEqual(
+        int expected, int actual, int delta, 
+        DeltaDirectionEnum direction = DeltaDirectionEnum.None, [ArgExpress(nameof(actual))] string actualExpression = "")
     {
         // Allow negatives to trigger Downward direction automatically
         if (delta < 0 && direction == default) direction = Down;
 
         if (direction == DeltaDirectionEnum.None)
         {
-            Check(expected, actualExpression, actual => Abs(actual - expected) <= delta);
+            Check(expected, actual, actualExpression, actual => Abs(actual - expected) <= delta);
         }
         else if (direction == Up)
         {
-            Check(expected, actualExpression, actual => actual - expected >= 0 && Abs(actual - expected) <= delta);   
+            Check(expected, actual, actualExpression, actual => actual - expected >= 0 && Abs(actual - expected) <= delta);   
         }
         else if (direction == Down)
         {
-            Check(expected, actualExpression, actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta));   
+            Check(expected, actual, actualExpression, actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta));   
         }
         else
         {
@@ -52,25 +49,24 @@ public static partial class AssertCore
     }
       
     /// <inheritdoc cref="_deltadirection" />
-    #if !NET9_0_OR_GREATER
-    [TrimWarn(ArrayInit)]
-    #endif
-    public static void AreEqual(double expected, Expression<Func<double>> actualExpression, double delta, DeltaDirectionEnum direction = DeltaDirectionEnum.None)
+    public static void AreEqual(
+        double expected, double actual, double delta, 
+        DeltaDirectionEnum direction = DeltaDirectionEnum.None, [ArgExpress(nameof(actual))] string actualExpression = "")
     {
         // Allow negatives to trigger Downward direction automatically
         if (delta < 0 && direction == default) direction = Down;
 
         if (direction == DeltaDirectionEnum.None)
         {
-            Check(expected, actualExpression, actual => Abs(actual - expected) <= delta);
+            Check(expected, actual, actualExpression, actual => Abs(actual - expected) <= delta);
         }
         else if (direction == Up)
         {
-            Check(expected, actualExpression, actual => actual - expected >= 0 && Abs(actual - expected) <= delta);   
+            Check(expected, actual, actualExpression, actual => actual - expected >= 0 && Abs(actual - expected) <= delta);   
         }
         else if (direction == Down)
         {
-            Check(expected, actualExpression, actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta));   
+            Check(expected, actual, actualExpression, actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta));   
         }
         else
         {

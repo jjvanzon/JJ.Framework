@@ -95,12 +95,12 @@ public class AssertHelperCore_DeltaDirection_Tests
     [TestMethod]
     public void AreEqual_DeltaDirection_EdgeCases()
     {
-        ThrowsException(
-            () => AreEqual(10, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
+        Throws(
+            () => AreEqual(10, 7, delta: 3, (DeltaDirectionEnum)(-1)), 
             "DeltaDirectionEnum value: '-1' is not supported." );
 
-        ThrowsException(
-            () => AreEqual(10.1, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
+        Throws(
+            () => AreEqual(10.1, 7, delta: 3, (DeltaDirectionEnum)(-1)), 
             "DeltaDirectionEnum value: '-1' is not supported." );
     }
     
@@ -108,13 +108,13 @@ public class AssertHelperCore_DeltaDirection_Tests
     
     private void AssertDeltaDirection(DeltaDirectionEnum direction, int expected, int delta, int[] passingCases, int[] failingCases)
     {
-        passingCases.ForEach(value =>                       AreEqual(expected, () => value, delta, direction));
-        failingCases.ForEach(value => ThrowsException(() => AreEqual(expected, () => value, delta, direction)));
+        passingCases.ForEach(value =>              AreEqual(expected, value, delta, direction));
+        failingCases.ForEach(value => Throws(() => AreEqual(expected, value, delta, direction)));
     }
 
     private void AssertDeltaDirection(DeltaDirectionEnum direction, double expected, double delta, double[] passingCases, double[] failingCases)
     {
-        passingCases.ForEach(value =>                       AreEqual(expected, () => value, delta, direction));
-        failingCases.ForEach(value => ThrowsException(() => AreEqual(expected, () => value, delta, direction)));
+        passingCases.ForEach(value =>              AreEqual(expected, value, delta, direction));
+        failingCases.ForEach(value => Throws(() => AreEqual(expected, value, delta, direction)));
     }
 }
