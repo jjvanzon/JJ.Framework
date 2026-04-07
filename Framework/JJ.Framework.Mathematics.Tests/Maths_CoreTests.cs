@@ -203,6 +203,7 @@ public class Maths_CoreTests
     }
 
     [TestMethod]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     public void Log_ExactPower_ReturnsPower()
     {
         AreEqual(3,       Maths.Log(1000, 10));

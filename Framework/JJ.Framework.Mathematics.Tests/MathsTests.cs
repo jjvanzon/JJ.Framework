@@ -8,6 +8,7 @@ using JJ.Framework.Testing;
 namespace JJ.Framework.Mathematics.Tests
 {
     [TestClass]
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     public class MathsTests
     {
         [TestMethod]

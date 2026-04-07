@@ -184,7 +184,7 @@ public class NumberingSystems_CoreTests
     [TestMethod]
     public void FromBase_WithDigitChars_Base64Roundtrip()
     {
-        int num = 123456789;
+        const int num = 123456789;
 
         string base64String = ToBase(num, 64, _digitsBase64);
         int convertedBack = FromBase(base64String, 64, _digitsBase64);
