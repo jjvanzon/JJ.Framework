@@ -5,7 +5,7 @@
 // ReSharper disable RedundantExplicitArrayCreation
 // ReSharper disable UseStringInterpolation
 
-using JJ.Framework.Reflection;
+//using JJ.Framework.Reflection; // MODIFIED: Removed dependency
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,7 +105,9 @@ namespace JJ.Framework.Mathematics.Legacy
         /// </summary>
         public static string ToBase(int number, char[] digitChars)
         {
-            if (digitChars == null) throw new NullException(() => digitChars);
+            // MODIFIED: Removes dependency from JJ.Framework.Reflection.
+          //if (digitChars == null) throw new NullException(() => digitChars);
+            if (digitChars == null) throw new ArgumentNullException(nameof(digitChars));
             int b = digitChars.Length;
             string result = ToBase(number, b, digitChars);
             return result;
@@ -117,7 +119,9 @@ namespace JJ.Framework.Mathematics.Legacy
         /// </summary>
         public static string ToBase(int number, int b, char[] digitChars)
         {
-            if (digitChars == null) throw new NullException(() => digitChars);
+            // MODIFIED: Removes dependency from JJ.Framework.Reflection.
+          //if (digitChars == null) throw new NullException(() => digitChars);
+            if (digitChars == null) throw new ArgumentNullException(nameof(digitChars));
             if (digitChars.Length < b) throw new ArgumentException("digitChars.Length must have at least b elements.");
 
             int[] digitValues = GetDigitValues(number, b);
@@ -166,7 +170,9 @@ namespace JJ.Framework.Mathematics.Legacy
         {
             if (String.IsNullOrEmpty(input)) throw new ArgumentException("input cannot be null or empty.");
             if (b < 2) throw new ArgumentException("b must be 2 or higher.");
-            if (charToDigitValueDelegate == null) throw new NullException(() => charToDigitValueDelegate);
+            // MODIFIED: Removes dependency from JJ.Framework.Reflection.
+          //if (charToDigitValueDelegate == null) throw new NullException(() => charToDigitValueDelegate);
+            if (charToDigitValueDelegate == null) throw new ArgumentNullException(nameof(charToDigitValueDelegate));
 
             int result = 0;
             int pow = 1;
@@ -367,7 +373,9 @@ namespace JJ.Framework.Mathematics.Legacy
         /// </summary>
         public static int FromLetterSequence(string input, int b, char firstChar = 'A')
         {
-            if (String.IsNullOrEmpty(input)) throw new NullException(() => input);
+            // MODIFIED: Removes dependency from JJ.Framework.Reflection.
+          //if (String.IsNullOrEmpty(input)) throw new NullException(() => input);
+            if (String.IsNullOrEmpty(input)) throw new ArgumentNullException(nameof(input));
 
             int value = FromBase(input, b, firstChar);
 
