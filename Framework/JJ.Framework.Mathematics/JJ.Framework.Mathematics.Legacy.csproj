@@ -2,8 +2,13 @@
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.252.$(BuildNum)</Version>
+    <PackageTags>mathematics math maths number bases random randomizer helpers
+			hex spread-sheet-column-letters digits</PackageTags>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Mathematics</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Mathematics</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>

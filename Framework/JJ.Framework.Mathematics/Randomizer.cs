@@ -1,4 +1,5 @@
-﻿// ReSharper disable RedundantUsingDirective
+﻿#pragma warning disable IDE0002 // Redundant qualifier
+// ReSharper disable RedundantUsingDirective
 // ReSharper disable ArrangeObjectCreationWhenTypeEvident
 // ReSharper disable IntroduceOptionalParameters.Global
 

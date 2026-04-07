@@ -34,7 +34,7 @@ public struct _getrandomitem;
 
 /// <summary>
 /// <list type="bullet">
-///   <item><c>Pow</c> with integers</item>
+///   <item><c>Pow</c>: Integer variation of the <c>Math.Pow</c> function.</item>
 ///   <item><c>Log</c> with integers: It will only return integers, but will prevent rounding errors such as 1000 log 10 = 2.99999999996.</item>
 /// </list>
 /// </summary>

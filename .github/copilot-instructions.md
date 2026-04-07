@@ -14,6 +14,9 @@
 ## Docs
 - Keep documentation tone friendly and accessible.
 - Centralize XML documentation into small unobtrusive `struct` entries in `docs.cs` and use `<inheritdoc cref="_..." />` in implementation files.
+- Add `README.md` in the same folder as the csproj.
+- Set `<GenerateDocumentationFile>` in csproj
+- Add `<PackageTags>`, `<Description>`, `<RepositoryUrl>`, `<PackageProjectUrl>` to csproj
 
 ## Tests
 - Prefer `AssertCore` over `Assert` (using static in Usings.cs).
