@@ -2,6 +2,7 @@
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable once CheckNamespace
 namespace Microsoft.VisualStudio.TestTools.UnitTesting;
 
 /// <inheritdoc cref="_testmethod" />
@@ -19,5 +20,4 @@ public class TestMethodAttribute : Attribute
 
     /// <inheritdoc cref="_testmethod" />
     public virtual void Execute(object testMethod) => throw new NotSupportedException("Not supported in MSTestless.");
-    //public virtual TestResult[] Execute(ITestMethod testMethod) => [testMethod.Invoke(null)];
 }
