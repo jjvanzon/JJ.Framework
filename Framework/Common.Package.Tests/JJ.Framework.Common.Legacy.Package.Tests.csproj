@@ -10,10 +10,7 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    
-  </ItemGroup>
-
+  
   <ItemGroup>
     <Compile Include="..\JJ.Framework.Common.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Common.Tests\obj\**" />

@@ -16,10 +16,7 @@
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
   </ItemGroup>
 
-  <ItemGroup>
-    
-  </ItemGroup>
-
+  
   <ItemGroup>
     <Compile Include="..\Existence.Core.Tests.BoolToText\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Existence.Core.Tests.BoolToText\obj\**" />

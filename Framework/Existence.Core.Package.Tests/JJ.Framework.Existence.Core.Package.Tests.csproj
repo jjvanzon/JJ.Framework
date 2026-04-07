@@ -14,10 +14,7 @@
 
   </ItemGroup>
 
-  <ItemGroup>
-    
-  </ItemGroup>
-
+  
 
   <ItemGroup>
     <Compile Include="..\Existence.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />

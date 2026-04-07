@@ -12,10 +12,7 @@
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.4.6001" />
   </ItemGroup>
 
-  <ItemGroup>
-    
-  </ItemGroup>
-
+  
   <ItemGroup>
     <Compile Include="..\JJ.Framework.Common.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Common.Tests\obj\**" />
