@@ -1,4 +1,8 @@
-﻿using System;
+﻿// ReSharper disable RedundantUsingDirective
+// ReSharper disable UnusedVariable
+// ReSharper disable RedundantCast
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
@@ -80,7 +84,7 @@ namespace JJ.Demos.ReflectionCache.Tests
         //private static Dictionary<Type, PropertyInfo[]> _propertyDictionary =
         //           new Dictionary<Type, PropertyInfo[]>();
 
-        private static object _propertyDictionaryLock = new object();
+        //private static object _propertyDictionaryLock = new object(); // UNUSED
 
         private static PropertyInfo[] GetCachedProperties(Type type)
         {

@@ -1,4 +1,11 @@
-﻿using JJ.Framework.Reflection;
+﻿// ReSharper disable RedundantUsingDirective
+// ReSharper disable UnusedMember.Local
+// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable ArrangeObjectCreationWhenTypeEvident
+// ReSharper disable UsageOfDefaultStructEquality
+
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
