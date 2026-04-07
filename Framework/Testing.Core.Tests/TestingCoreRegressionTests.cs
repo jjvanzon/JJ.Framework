@@ -21,11 +21,13 @@ public class TestingCore_Case_FromTemplate_ChangesNullPropsToZeroes_Regression_T
 
         public Case((int?, int?) init, (int?, int?) val) : base(init, val) { }
 
+        /*
         public Case(((int?, int?) nully, (int?, int?) coalesce) init, ( int?, int?) val) : base(init, val) { }
         public Case(( int?, int?) init, ((int?, int?) nully, (int?, int?) coalesce) val ) : base(init, val) { }
 
         public Case(((int?, int?) nully, (int?, int?) coalesce) init,
                     ((int?, int?) nully, (int?, int?) coalesce) val ) : base(init, val) { }
+        */
     }
 
     static CaseCollection<Case> Cases { get; } = new CaseCollection<Case>();

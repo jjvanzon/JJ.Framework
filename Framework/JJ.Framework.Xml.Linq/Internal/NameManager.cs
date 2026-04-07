@@ -310,6 +310,8 @@ namespace JJ.Framework.Xml.Linq.Legacy.Internal
             return null;
         }
 
+        // TODO: Odd that it isn't used.
+        // ReSharper disable once UnusedMember.Local
         private XName TryGetCustomArrayItemXName(Type sourceItemType)
         {
             string name = TryGetCustomArrayItemName(sourceItemType);

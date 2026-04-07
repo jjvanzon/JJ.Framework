@@ -1,4 +1,8 @@
-﻿using JJ.Framework.IO;
+﻿#pragma warning disable IDE0005 // Unused using
+#pragma warning disable IDE0051 // Unused type
+// ReSharper disable RedundantUsingDirective
+
+using JJ.Framework.IO;
 using JJ.Framework.Xml.Linq;
 using System;
 using System.Collections.Generic;
@@ -19,6 +23,8 @@ namespace JJ.Framework.Soap
     public class SoapClient
     {
         private const string HTTP_METHOD_POST = "POST";
+        // TODO: Odd that it's never used
+        // ReSharper disable once UnusedMember.Local
         private const string DEFAULT_NAMESPACE_NAME = "http://tempuri.org/";
 
         private string _url;
