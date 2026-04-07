@@ -13,6 +13,7 @@ using System.Text;
 
 namespace JJ.Framework.Mathematics.Legacy
 {
+    /// <inheritdoc cref="_numberingsystems" />
     public static class NumberingSystems
     {
         // The general formula for a digit value is:

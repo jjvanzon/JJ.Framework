@@ -9,6 +9,7 @@ using System.Text;
 
 namespace JJ.Framework.Mathematics.Legacy
 {
+    /// <inheritdoc cref="_randomizer" />
     public static class Randomizer
     {
         private static Random _random = new Random();
@@ -45,6 +46,7 @@ namespace JJ.Framework.Mathematics.Legacy
             }
         }
 
+        /// <inheritdoc cref="_getrandomitem" />
         public static T GetRandomItem<T>(IEnumerable<T> collection)
         {
             // ReSharper disable PossibleMultipleEnumeration

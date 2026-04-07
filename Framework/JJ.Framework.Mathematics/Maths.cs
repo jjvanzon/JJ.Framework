@@ -8,6 +8,7 @@ using System.Text;
 
 namespace JJ.Framework.Mathematics.Legacy
 {
+    /// <inheritdoc cref="_maths" />
     public static class Maths
     {
         /// <summary>
