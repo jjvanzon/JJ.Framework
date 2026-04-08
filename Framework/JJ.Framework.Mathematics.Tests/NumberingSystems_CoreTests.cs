@@ -336,14 +336,15 @@ public class NumberingSystems_CoreTests
     private static void LogBytes(byte[] inputBytes, [ArgExpress(nameof(inputBytes))] string argExpress = "")
     {
         if (inputBytes == null) 
+        // ncrunch: no coverage start
         {
             Trace.WriteLine(argExpress + ": <null>");
         }
+        // ncrunch: no coverage end
         else
         {
             Trace.WriteLine(
                 $"{argExpress}[{inputBytes.Length}] = [ {string.Join(", ", inputBytes)} ]");
-
         }
     }
 }

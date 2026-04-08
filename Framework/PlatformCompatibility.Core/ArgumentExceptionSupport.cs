@@ -3,6 +3,7 @@
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseSymbolAlias
 // ReSharper disable UnusedType.Global
+// ReSharper disable RedundantNameQualifier
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
 using System;

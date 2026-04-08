@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0001 // Redundant qualifier
 // ReSharper disable UnusedType.Global
+// ReSharper disable RedundantNameQualifier
 
 #if !NET9_0_OR_GREATER
 

@@ -742,6 +742,18 @@
       <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net6.0\..</Value>
       <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net7.0\..</Value>
       <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net8.0\..</Value>
+      <Value>Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net10.0\..</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net461\..</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net5.0\..</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net6.0\..</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net7.0\..</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net8.0\..</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>

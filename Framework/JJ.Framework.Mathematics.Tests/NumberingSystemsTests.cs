@@ -4,6 +4,8 @@
 // ReSharper disable UnusedVariable
 // ReSharper disable RedundantExplicitArrayCreation
 // ReSharper disable ConvertToConstant.Local
+// ReSharper disable RedundantUsingDirective
+// ReSharper disable UseCollectionExpression
 
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
