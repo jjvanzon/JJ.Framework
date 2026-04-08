@@ -163,7 +163,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 #### `2026-03-13` | `4.0`/`0.250` : __Reflection.Legacy Re-Release__
 
 - __2018__ variant of `ReflectionCacheLegacy` moved from 
-- [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to 
+- [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Reflection.Core) to 
 - [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
 - Trimming/AOT compatiblity.
 - Auto-run trim test 
@@ -186,13 +186,26 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 #### `2026-04-04` | `4.4`/`0.252` : __PlatformCompatibility.Core Initial__ , __Validation.Legacy Docs__
 
-- [`JJ.Framework.PlatformCompatibility.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility.Core)
+- [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
 - Run new code on older .NETs
 - Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
 - Full test coverage and member docs
 - [`JJ.Framework.Validation.Legacy`](https://www.nuget.org/packages/JJ.Framework.Validation.Legacy)
 - More IntelliSense popups
 - Reworked README
+
+#### `2026-04-08` | `4.5`/`0.253` : __Math Legacy__ 
+
+- [`JJ.Framework.Mathematics.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Mathematics)
+- Integer-based `Pow` and `Log`, `GetRandomItem` and `Randomizer.GetInt32`, number base converter.
+- 100% test coverage, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
+- Fix: `Pow` and `Log` edge-cases
+- Fix: Removed dependency on [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+- [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
+- Removed lambda from delta-based `AreEqual` (trim-friendly)
+- [`JJ.Framework.Testing.Core.MSTestless`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core.MSTestless)
+- Added stubs for data-driven tests.
+- Improved Testing Architecture
 
 💬 Feedback 
 ------------

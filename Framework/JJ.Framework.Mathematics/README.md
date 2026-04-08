@@ -11,7 +11,7 @@ A newer extended version is [`JJ.Framework.Mathematics`](https://www.nuget.org/p
 
 This legacy release contains the following features:
 
-## Maths
+## Maths Helper
 
 Class extending the `Math` helpers from `.NET` with:
 
@@ -39,6 +39,18 @@ Class extending the `Math` helpers from `.NET` with:
 * `ToLetterSequence` / `FromLetterSequence`
 	* Does spread-sheet-style letter sequences. This is not the same as a base-26 numbering system. After the range A-Z is depleted, the next value is 'AA',
 	which is equivalent to 00, so you basically start counting at 0 again, but you get 26 for free.
+
+Release Notes
+--------------
+
+#### `2026-04-08` | `0.253`/`4.5` : __Legacy__ 
+
+- Legacy release with the following features:
+- Integer-based `Pow` and `Log`, `GetRandomItem` and `Randomizer.GetInt32`, number base converter.
+- 100% test coverage, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
+- Fix: `Pow` and `Log` edge-cases
+- Fix: Removed dependency on [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+
 
 💬 Feedback
 ============

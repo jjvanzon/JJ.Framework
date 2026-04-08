@@ -4,6 +4,8 @@
 #pragma warning disable IDE0200 // Use method group
 // ReSharper disable RedundantExplicitArrayCreation
 // ReSharper disable UseStringInterpolation
+// ReSharper disable UseCollectionExpression
+// ReSharper disable RedundantUsingDirective
 
 //using JJ.Framework.Reflection; // MODIFIED: Removed dependency
 using System;

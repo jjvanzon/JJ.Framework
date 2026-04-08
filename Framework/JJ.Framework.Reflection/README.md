@@ -171,7 +171,7 @@ Release Notes
 
 #### `2026-03-13` | `0.250`/`4.0` : __Re-Release__
 
-- __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
+- __2018__ variant of `ReflectionCacheLegacy` moved from [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Reflection.Core) to [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
 - Trimming/AOT compatiblity.
 - Auto-run trim test:
 - upon build

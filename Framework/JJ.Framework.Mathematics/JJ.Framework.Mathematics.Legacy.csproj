@@ -3,7 +3,7 @@
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.253.$(BuildNum)</Version>
     <Description>Legacy math helpers for JJ projects</Description>
-    <PackageTags>mathematics math maths number bases random randomizer helpers hex spread-sheet-column-letters digits pow log power logarithm</PackageTags>
+    <PackageTags>pow log number bases randomizer random helpers hex spread-sheet-column-letters mathematics digits power maths logarithm numberbases math </PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Mathematics</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Mathematics</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
