@@ -22,7 +22,7 @@ __Contents__
 - [SQL Server](#sql-server)
 - [Internet Information Services (IIS)](#internet-information-services-iis)
 - [Trimmable Libs](#trimmable-libs)
-- [.NET Targeting](#net-targeting)
+- [.NET Multi-Targeting](#net-multi-targeting)
 - [Old Commits](#old-commits)
 
 
@@ -280,8 +280,8 @@ Solutions:
 * Use `[DynamicDependency(...)]` near code failing (at runtime) to retain a type after trimming.
 * Use `NoTrimReasons` there for standardization purposes.
 
-.NET Targeting
---------------
+.NET Multi-Targeting
+--------------------
 
 <h3>Libs</h3>
 
@@ -297,9 +297,7 @@ Finished up test projects target:
 
 `net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461`
 
-Basically all of them.
-The test code compiled for `netstandard2.1;netstandard2.0` is never hit though,
-because those are interface-like .NET versions, as opposed to concrete .NET editions.
+Basically all of them (except `netstandard2.1;netstandard2.0` which are interface-like .NET versions, as opposed to concrete .NET editions).
 
 <h3>Trimming Test Apps</h3>
 
@@ -312,7 +310,6 @@ There is no trimming/aot to speak of before .NET 5 and neither is it applicable 
 <h3>Concessions</h3>
 
 A concession is made here, that the libraries aren't explicitly compiled for `net5.0;net461`. 
-
 
 <h3>Alternatives</h3>
 
