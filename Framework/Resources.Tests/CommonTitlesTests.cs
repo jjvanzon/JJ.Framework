@@ -1,5 +1,5 @@
+namespace JJ.Framework.ResourceStrings.Legacy.Tests;
 
-namespace JJ.Framework.Presentation.Resources.Tests;
 [TestClass]
 public class CommonTitlesTests
 {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JJ.Framework.Presentation.Resources.Legacy {
+namespace JJ.Framework.ResourceStrings.Legacy {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace JJ.Framework.Presentation.Resources.Legacy {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class CommonTitles {
@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.Resources.Legacy {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Presentation.Resources.Legacy.CommonTitles", typeof(CommonTitles).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.ResourceStrings.Legacy.CommonTitles", typeof(CommonTitles).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

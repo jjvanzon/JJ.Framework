@@ -1,4 +1,4 @@
-﻿// Copied from legacy branch head ("the King")
+﻿// Ported from "The King": legacy branch HEAD
 
 // ReSharper disable ChangeFieldTypeToSystemThreadingLock
 // ReSharper disable UseSymbolAlias

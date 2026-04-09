@@ -1,4 +1,4 @@
-namespace JJ.Framework.Presentation.Resources.Tests;
+namespace JJ.Framework.ResourceStrings.Legacy.Tests;
 
 [TestClass]
 public class CommonTitlesFormatterTests
