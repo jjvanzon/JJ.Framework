@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>0.253.$(BuildNum)</Version>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj" />
+  </ItemGroup>
+</Project>
