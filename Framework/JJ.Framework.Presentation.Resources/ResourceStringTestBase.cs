@@ -26,22 +26,27 @@ namespace JJ.Framework.ResourceStrings.Legacy
     /// Some of those requirements might seem quite specific for how our ResourceFormatter classes are structured.
     /// But having this base class for tests, would allow testing integrity of
     /// some other resource formatters the same way JJ.Framework.ResourceStrings would do things.
+    ///
+    /// <code>
+    /// An implementation might look something like:
+    /// [TestClass]
+    /// public class CommonResourceFormatterTests : ResourceFormatterTestsBase
+    /// {
+    ///   public CommonResourceFormatterTests()
+    ///     : base(
+    ///         typeof(CommonResourceFormatter),
+    ///         knownCultureNames: [ "pl-PL", "nl-NL", "en-US" ],
+    ///         unknownCultureName: "zh-CN") { }
     /// 
-    /// <para> An implementation might look something like: </para>
-    /// <para> [TestClass] </para>
-    /// <para> public class CommonResourceFormatterTests : ResourceFormatterTestsBase </para>
-    /// <para> { </para>
-    /// <para> public CommonResourceFormatterTests() </para>
-    /// <para> : base(typeof(CommonResourceFormatter), </para>
-    /// <para> knownCultureNames: new[] { "pl-PL", "nl-NL", "en-US" }, </para>
-    /// <para> unknownCultureName: "zh-CN") { } </para>
-    /// <para> [TestMethod] </para>
-    /// <para> public void Test_CommonResourceFormatter_AllPublicMembers_ReturnText_ForKnownCultures() </para>
-    /// <para> =&gt; base.Test_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures(); </para>
-    /// <para> [TestMethod] </para>
-    /// <para> public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS() </para>
-    /// <para> =&gt; base.Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS(); </para>
-    /// <para> } </para>
+    ///   [TestMethod]
+    ///   public void Test_CommonResourceFormatter_AllPublicMembers_ReturnText_ForKnownCultures()
+    ///     =&gt; base.Test_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures();
+    /// 
+    ///   [TestMethod]
+    ///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
+    ///     =&gt; base.Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS();
+    /// }
+    /// </code>
     /// </summary>
     public abstract class ResourceStringTestBase
     {

@@ -24,23 +24,31 @@ internal static class AssertHelper
     public static void AreEqual<T>(T expected, Func<T> actualFunc, [ArgExpress(nameof(actualFunc))] string name = "")
     {
         T actual = actualFunc();
-
         if (!Equals(expected, actual))
         {
-           throw new Exception($"AreEqual failed. Expected: '{expected}'. Actual: '{actual}'. Tested: {name}");
+           throw new Exception($"AreEqual assertion failed. Tested: {name}. Expected: '{expected}'. Actual: '{actual}'");
         }
     }
 
     /// <inheritdoc cref="_portedstubs" />
-    public static void NotNullOrWhiteSpace(Func<string> actualFunc, string name)
+    public static void NotNullOrWhiteSpace(Func<string> actualFunc, [ArgExpress(nameof(actualFunc))] string name = "")
     {
-        throw new NotImplementedException();
+        string actual = actualFunc();
+        if (string.IsNullOrWhiteSpace(actual))
+        {
+            throw new Exception($"NotNullOrWhiteSpace assertion failed. Tested: {name}");
+        }
     }
 
     /// <inheritdoc cref="_portedstubs" />
-    public static void IsOfType<T>(Func<object> actualFunc, object name)
+    public static void IsOfType<T>(Func<object> objFunc, [ArgExpress(nameof(objFunc))] string name = "")
     {
-        throw new NotImplementedException();
+        Type actual = objFunc?.Invoke()?.GetType();
+        Type expected = typeof(T);
+        if (expected != actual)
+        {
+           throw new Exception($"IsOfType assertion failed. Tested: {name}. Expected: '{expected}'. Actual: '{actual}'");
+        }
     }
 }
 
@@ -48,20 +56,16 @@ internal static class AssertHelper
 internal static class ReflectionExtensions
 {
     /// <inheritdoc cref="_portedstubs" />
-    public static object GetValue(this PropertyInfo prop)
-    {
-        throw new NotImplementedException();
-    }
+    public static object GetValue(this PropertyInfo prop) => prop.GetValue(null);
 
     public static object Invoke(this MethodBase method, object[] parameters)
     {
         throw new NotImplementedException();
     }
 
-    public static bool IsProperty(this MethodBase method)
-    {
-        throw new NotImplementedException();
-    }
+    public static bool IsProperty(this MethodBase method) 
+        => method.Name.StartsWith("get_") ||
+           method.Name.StartsWith("set_");
 }
 
 internal class UnexpectedTypeException : Exception

@@ -1,15 +1,26 @@
 namespace JJ.Framework.ResourceStrings.Legacy.Tests;
 
 [TestClass]
-public class CommonTitlesTests
+public class CommonTitlesTests() : ResourceStringTestBase(typeof(CommonTitles), ["en-US", "nl-NL"], "de-DE")
 {
+
+    [TestMethod]
+    public void Test_CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
+        => Test_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures();
+    
+    /*
+    [TestMethod]
+    public void Test_CommonTitles_UnknownCulture_DefaultsToEnUS() 
+        => Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS();
+    */
+
     [TestMethod]
     public void ResourceManager_IsNotNull()
     {
         var resourceManager = CommonTitles.ResourceManager;
         IsNotNull(resourceManager);
     }
-    
+
     [TestMethod]
     public void CommonTitles_InvariantCulture()
     {
