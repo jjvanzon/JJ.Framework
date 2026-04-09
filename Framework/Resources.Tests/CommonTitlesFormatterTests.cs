@@ -1,17 +1,33 @@
 namespace JJ.Framework.ResourceStrings.Legacy.Tests;
 
 [TestClass]
-public class CommonTitlesFormatterTests
+public class CommonTitlesFormatterTests() 
+    : ResourceStringTester(
+        typeof(CommonTitlesFormatter),
+        @default: "",
+        known: ["en-US", "nl-NL"],
+        unknown: "de-DE")
 {
+    
     [TestMethod]
-    public void EntityCount_WithEntityName_ReturnsFormattedString()
+    public void CommonTitlesFormatter_AllPublicStatics_ReturnText_ForKnownCultures() 
+        => Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures();
+    
+    [TestMethod]
+    public void CommonTitlesFormatter_UnknownCulture_DefaultsToEnUS() 
+        => Test_Resources_UnknownCulture_UsesDefaultCulture();
+
+    // TODO: Vary culture
+
+    [TestMethod]
+    public void CommonTitlesFormatter_EntityCount_WithEntityName_ReturnsFormattedString()
     {
         string result = CommonTitlesFormatter.EntityCount("Items");
         AreEqual("Number of Items", result);
     }
 
     [TestMethod]
-    public void EntityCount_WithSingleCharacter_ReturnsFormattedString()
+    public void CommonTitlesFormatter_EntityCount_WithSingleCharacter_ReturnsFormattedString()
     {
         string result = CommonTitlesFormatter.EntityCount("X");
         AreEqual("Number of X", result);

@@ -1,50 +1,51 @@
 namespace JJ.Framework.ResourceStrings.Legacy.Tests;
 
-[TestClass]
-public class CommonTitlesTests() : ResourceStringTestBase(typeof(CommonTitles), ["en-US", "nl-NL"], "de-DE")
-{
+using static CommonTitles;
 
+[TestClass]
+public class CommonTitlesTests() 
+    : ResourceStringTester(
+        typeof(CommonTitles), 
+        known: ["en-US", "nl-NL"], 
+        unknown: "de-DE", 
+        @default: "")
+{
     [TestMethod]
-    public void Test_CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
+    public void CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
         => Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures();
     
-    /*
     [TestMethod]
-    public void Test_CommonTitles_UnknownCulture_DefaultsToEnUS() 
-        => Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS();
-    */
+    public void CommonTitles_UnknownCulture_DefaultsToEnUS() 
+        => Test_Resources_UnknownCulture_UsesDefaultCulture();
 
     [TestMethod]
-    public void ResourceManager_IsNotNull()
-    {
-        var resourceManager = CommonTitles.ResourceManager;
-        IsNotNull(resourceManager);
-    }
+    public void CommonTitles_ResourceManager_IsNotNull() 
+        => IsNotNull(ResourceManager);
 
     [TestMethod]
-    public void CommonTitles_InvariantCulture()
+    public void CommonTitles_CheckExactText_InvariantCulture()
     {
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
         {
             CurrentThread.CurrentUICulture = InvariantCulture;
-            AreEqual("Add",            CommonTitles.Add);
-            AreEqual("Cancel",         CommonTitles.Cancel);
-            AreEqual("Delete",         CommonTitles.Delete);
-            AreEqual("Edit",           CommonTitles.Edit);
-            AreEqual("Number of {0}",  CommonTitles.EntityCount);
-            AreEqual("ID",             CommonTitles.ID);
-            AreEqual("Language",       CommonTitles.Language);
-            AreEqual("LogIn",          CommonTitles.LogIn);
-            AreEqual("LogOut",         CommonTitles.LogOut);
-            AreEqual("New",            CommonTitles.New);
-            AreEqual("No",             CommonTitles.No);
-            AreEqual("None",           CommonTitles.None);
-            AreEqual("NotAuthorized",  CommonTitles.NotAuthorized);
-            AreEqual("Remove",         CommonTitles.Remove);
-            AreEqual("Save",           CommonTitles.Save);
-            AreEqual("Search",         CommonTitles.Search);
-            AreEqual("Yes",            CommonTitles.Yes);
+            AreEqual("Add",           Add);
+            AreEqual("Cancel",        Cancel);
+            AreEqual("Delete",        Delete);
+            AreEqual("Edit",          Edit);
+            AreEqual("Number of {0}", EntityCount);
+            AreEqual("ID",            ID);
+            AreEqual("Language",      Language);
+            AreEqual("LogIn",         LogIn);
+            AreEqual("LogOut",        LogOut);
+            AreEqual("New",           New);
+            AreEqual("No",            No);
+            AreEqual("None",          None);
+            AreEqual("NotAuthorized", NotAuthorized);
+            AreEqual("Remove",        Remove);
+            AreEqual("Save",          Save);
+            AreEqual("Search",        Search);
+            AreEqual("Yes",           Yes);
         }
         finally
         {
@@ -53,29 +54,29 @@ public class CommonTitlesTests() : ResourceStringTestBase(typeof(CommonTitles), 
     }
     
     [TestMethod]
-    public void CommonTitles_enUS()
+    public void CommonTitles_CheckExactText_enUS()
     {
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
         {
             CurrentThread.CurrentUICulture = new("en-US");
-            AreEqual("Add",            CommonTitles.Add);
-            AreEqual("Cancel",         CommonTitles.Cancel);
-            AreEqual("Delete",         CommonTitles.Delete);
-            AreEqual("Edit",           CommonTitles.Edit);
-            AreEqual("Number of {0}",  CommonTitles.EntityCount);
-            AreEqual("ID",             CommonTitles.ID);
-            AreEqual("Language",       CommonTitles.Language);
-            AreEqual("Log In",         CommonTitles.LogIn);
-            AreEqual("Log Out",        CommonTitles.LogOut);
-            AreEqual("New",            CommonTitles.New);
-            AreEqual("No",             CommonTitles.No);
-            AreEqual("None",           CommonTitles.None);
-            AreEqual("Not Authorized", CommonTitles.NotAuthorized);
-            AreEqual("Remove",         CommonTitles.Remove);
-            AreEqual("Save",           CommonTitles.Save);
-            AreEqual("Search",         CommonTitles.Search);
-            AreEqual("Yes",            CommonTitles.Yes);
+            AreEqual("Add",            Add);
+            AreEqual("Cancel",         Cancel);
+            AreEqual("Delete",         Delete);
+            AreEqual("Edit",           Edit);
+            AreEqual("Number of {0}",  EntityCount);
+            AreEqual("ID",             ID);
+            AreEqual("Language",       Language);
+            AreEqual("Log In",         LogIn);
+            AreEqual("Log Out",        LogOut);
+            AreEqual("New",            New);
+            AreEqual("No",             No);
+            AreEqual("None",           None);
+            AreEqual("Not Authorized", NotAuthorized);
+            AreEqual("Remove",         Remove);
+            AreEqual("Save",           Save);
+            AreEqual("Search",         Search);
+            AreEqual("Yes",            Yes);
         }
         finally
         {
@@ -84,29 +85,29 @@ public class CommonTitlesTests() : ResourceStringTestBase(typeof(CommonTitles), 
     }
 
     [TestMethod]
-    public void CommonTitles_nlNL()
+    public void CommonTitles_CheckExactText_nlNL()
     {
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
         {
             CurrentThread.CurrentUICulture = new("nl-NL");
-            AreEqual("Toevoegen",       CommonTitles.Add);
-            AreEqual("Annuleren",       CommonTitles.Cancel);
-            AreEqual("Verwijderen",     CommonTitles.Delete);
-            AreEqual("Bewerken",        CommonTitles.Edit);
-            AreEqual("Aantal {0}",      CommonTitles.EntityCount);
-            AreEqual("ID",              CommonTitles.ID);
-            AreEqual("Taal",            CommonTitles.Language);
-            AreEqual("Inloggen",        CommonTitles.LogIn);
-            AreEqual("Uitloggen",       CommonTitles.LogOut);
-            AreEqual("Nieuw",           CommonTitles.New);
-            AreEqual("Nee",             CommonTitles.No);
-            AreEqual("Geen",            CommonTitles.None);
-            AreEqual("Niet gemachtigd", CommonTitles.NotAuthorized);
-            AreEqual("Verwijderen",     CommonTitles.Remove);
-            AreEqual("Opslaan",         CommonTitles.Save);
-            AreEqual("Zoeken",          CommonTitles.Search);
-            AreEqual("Ja",              CommonTitles.Yes);
+            AreEqual("Toevoegen",       Add);
+            AreEqual("Annuleren",       Cancel);
+            AreEqual("Verwijderen",     Delete);
+            AreEqual("Bewerken",        Edit);
+            AreEqual("Aantal {0}",      EntityCount);
+            AreEqual("ID",              ID);
+            AreEqual("Taal",            Language);
+            AreEqual("Inloggen",        LogIn);
+            AreEqual("Uitloggen",       LogOut);
+            AreEqual("Nieuw",           New);
+            AreEqual("Nee",             No);
+            AreEqual("Geen",            None);
+            AreEqual("Niet gemachtigd", NotAuthorized);
+            AreEqual("Verwijderen",     Remove);
+            AreEqual("Opslaan",         Save);
+            AreEqual("Zoeken",          Search);
+            AreEqual("Ja",              Yes);
         }
         finally
         {
