@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Utilities.FileNameFilter.Tests
 {
     [TestClass]
-    public class JJ_Utilities_FileNameFilter_ResourceFormatter_Tests : ResourceFormatterTestsBase
+    public class JJ_Utilities_FileNameFilter_ResourceFormatter_Tests : ResourceStringTestBase
     {
         public JJ_Utilities_FileNameFilter_ResourceFormatter_Tests()
             : base(typeof(ResourceFormatter),

@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Utilities.FileDeduplication.Tests
 {
     [TestClass]
-    public class JJ_Utilities_FileDeduplication_ResourceFormatter_Tests : ResourceFormatterTestsBase
+    public class JJ_Utilities_FileDeduplication_ResourceFormatter_Tests : ResourceStringTestBase
     {
         public JJ_Utilities_FileDeduplication_ResourceFormatter_Tests()
             : base(typeof(ResourceFormatter), 

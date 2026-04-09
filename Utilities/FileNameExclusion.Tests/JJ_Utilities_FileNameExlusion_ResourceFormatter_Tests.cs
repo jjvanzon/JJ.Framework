@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Utilities.FileNameExclusion.Tests
 {
     [TestClass]
-    public class JJ_Utilities_FileNameExclusion_ResourceFormatter_Tests : ResourceFormatterTestsBase
+    public class JJ_Utilities_FileNameExclusion_ResourceFormatter_Tests : ResourceStringTestBase
     {
         public JJ_Utilities_FileNameExclusion_ResourceFormatter_Tests()
             : base(typeof(ResourceFormatter),

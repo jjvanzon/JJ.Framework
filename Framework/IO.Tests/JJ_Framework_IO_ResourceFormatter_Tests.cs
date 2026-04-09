@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.IO.Tests
 {
     [TestClass]
-    public class JJ_Framework_IO_ResourceFormatter_Tests : ResourceFormatterTestsBase
+    public class JJ_Framework_IO_ResourceFormatter_Tests : ResourceStringTestBase
     {
         public JJ_Framework_IO_ResourceFormatter_Tests()
             : base(typeof(ResourceFormatter), 

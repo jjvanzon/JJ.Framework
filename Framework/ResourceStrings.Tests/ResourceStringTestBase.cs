@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using JJ.Framework.Common;
-using JJ.Framework.Exceptions.TypeChecking;
-using JJ.Framework.Reflection;
-using JJ.Framework.Testing;
-
-// ReSharper disable SuggestVarOrType_Elsewhere
+﻿// ReSharper disable SuggestVarOrType_Elsewhere
 // ReSharper disable UnusedVariable
+
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 
 namespace JJ.Framework.ResourceStrings.Tests
@@ -40,30 +31,30 @@ namespace JJ.Framework.ResourceStrings.Tests
     /// <para> =&gt; base.Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS(); </para>
     /// <para> } </para>
     /// </summary>
-    public abstract class ResourceFormatterTestsBase
+    public abstract class ResourceStringTestBase
     {
         private readonly IList<MemberInfo> _membersToTest;
         private readonly IList<string> _knownCultureNames;
         private readonly string _unusedCultureName;
 
-        /// <inheritdoc cref="ResourceFormatterTestsBase" />
-        public ResourceFormatterTestsBase(Type resourceFormatterType, string[] knownCultureNames, string unknownCultureName)
+        /// <inheritdoc cref="ResourceStringTestBase" />
+        public ResourceStringTestBase(Type resourceClass, string[] knownCultureNames, string unknownCultureName)
         {
-            if (resourceFormatterType == null) throw new ArgumentNullException(nameof(resourceFormatterType));
+            if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
             _knownCultureNames = knownCultureNames ?? throw new ArgumentNullException(nameof(knownCultureNames));
             _unusedCultureName = unknownCultureName;
-            _membersToTest = GetMembersToTest(resourceFormatterType);
+            _membersToTest = GetMembersToTest(resourceClass);
         }
 
         protected void Test_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures()
         {
-            CultureInfo originalCultureInfo = CultureHelper.GetCurrentCulture();
+            CultureInfo originalCultureInfo = GetCurrentCulture();
 
             try
             {
                 foreach (string cultureName in _knownCultureNames)
                 {
-                    CultureHelper.SetCurrentCultureName(cultureName);
+                    SetCurrentCultureName(cultureName);
 
                     foreach (MemberInfo memberToTest in _membersToTest)
                     {
@@ -73,13 +64,13 @@ namespace JJ.Framework.ResourceStrings.Tests
             }
             finally
             {
-                CultureHelper.SetCurrentCulture(originalCultureInfo);
+                SetCurrentCulture(originalCultureInfo);
             }
         }
 
         protected void Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
         {
-            CultureInfo originalCultureInfo = CultureHelper.GetCurrentCulture();
+            CultureInfo originalCultureInfo = GetCurrentCulture();
 
             try
             {
@@ -87,10 +78,10 @@ namespace JJ.Framework.ResourceStrings.Tests
 
                 foreach (MemberInfo memberToTest in _membersToTest)
                 {
-                    CultureHelper.SetCurrentCultureName(defaultCultureName);
+                    SetCurrentCultureName(defaultCultureName);
                     string expected = AssertResourceText(memberToTest);
 
-                    CultureHelper.SetCurrentCultureName(_unusedCultureName);
+                    SetCurrentCultureName(_unusedCultureName);
                     string actual = AssertResourceText(memberToTest);
 
                     AssertHelper.AreEqual(expected, () => actual, memberToTest.Name);
@@ -98,17 +89,17 @@ namespace JJ.Framework.ResourceStrings.Tests
             }
             finally
             {
-                CultureHelper.SetCurrentCulture(originalCultureInfo);
+                SetCurrentCulture(originalCultureInfo);
             }
         }
 
         // Helpers
 
-        private IList<MemberInfo> GetMembersToTest(Type resourceFormatterType)
+        private IList<MemberInfo> GetMembersToTest(Type resourceClass)
         {
-            var propertiesToTest = resourceFormatterType.GetProperties(BindingFlags.Static | BindingFlags.Public);
-            var methodsToTest = resourceFormatterType.GetMethods(BindingFlags.Static | BindingFlags.Public)
-                                                     .Where(x => !x.IsProperty());
+            var propertiesToTest = resourceClass.GetProperties(BindingFlags.Static | BindingFlags.Public);
+            var methodsToTest = resourceClass.GetMethods(BindingFlags.Static | BindingFlags.Public)
+                                             .Where(x => !x.IsProperty());
             var membersToTest = propertiesToTest.Union<MemberInfo>(methodsToTest).OrderBy(x => x.Name).ToArray();
             return membersToTest;
         }
