@@ -2,18 +2,10 @@
 
 // ReSharper disable SuggestVarOrType_Elsewhere
 // ReSharper disable UnusedVariable
-// ReSharper disable RedundantUsingDirective
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-//using JJ.Framework.Common;
-//using JJ.Framework.Exceptions.TypeChecking;
-//using JJ.Framework.Reflection;
-//using JJ.Framework.Testing;
+using static System.StringComparison;
+
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
 
 namespace JJ.Framework.ResourceStrings.Legacy
 {
@@ -40,7 +32,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
     /// 
     ///   [TestMethod]
     ///   public void Test_CommonResourceFormatter_AllPublicMembers_ReturnText_ForKnownCultures()
-    ///     =&gt; base.Test_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures();
+    ///     =&gt; base.Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures();
     /// 
     ///   [TestMethod]
     ///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
@@ -63,31 +55,50 @@ namespace JJ.Framework.ResourceStrings.Legacy
             _membersToTest = GetMembersToTest(resourceFormatterType);
         }
 
-        protected void Test_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures()
+        protected void Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures()
         {
-            CultureInfo originalCultureInfo = CultureHelper.GetCurrentCulture();
+            CultureInfo originalCultureInfo = GetCurrentCulture();
 
             try
             {
                 foreach (string cultureName in _knownCultureNames)
                 {
-                    CultureHelper.SetCurrentCultureName(cultureName);
+                    SetCurrentCultureName(cultureName);
 
                     foreach (MemberInfo memberToTest in _membersToTest)
                     {
-                        string resourceText = AssertResourceText(memberToTest);
+                        if (!IsExcluded(memberToTest))
+                        {
+                            string resourceText = AssertResourceText(memberToTest);
+                        }
                     }
                 }
             }
             finally
             {
-                CultureHelper.SetCurrentCulture(originalCultureInfo);
+                SetCurrentCulture(originalCultureInfo);
             }
+        }
+
+        protected virtual bool IsExcluded(MemberInfo memberToTest)
+        {
+            ThrowIfNull(memberToTest);
+
+            if (string.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            if (string.Equals(memberToTest.Name, "ResourceManager", OrdinalIgnoreCase))
+            {
+                return true;
+            }
+            return false;
         }
 
         protected void Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
         {
-            CultureInfo originalCultureInfo = CultureHelper.GetCurrentCulture();
+            CultureInfo originalCultureInfo = GetCurrentCulture();
 
             try
             {
@@ -95,10 +106,10 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
                 foreach (MemberInfo memberToTest in _membersToTest)
                 {
-                    CultureHelper.SetCurrentCultureName(defaultCultureName);
+                    SetCurrentCultureName(defaultCultureName);
                     string expected = AssertResourceText(memberToTest);
 
-                    CultureHelper.SetCurrentCultureName(_unusedCultureName);
+                    SetCurrentCultureName(_unusedCultureName);
                     string actual = AssertResourceText(memberToTest);
 
                     AssertHelper.AreEqual(expected, () => actual, memberToTest.Name);
@@ -106,7 +117,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
             }
             finally
             {
-                CultureHelper.SetCurrentCulture(originalCultureInfo);
+                SetCurrentCulture(originalCultureInfo);
             }
         }
 

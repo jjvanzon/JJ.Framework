@@ -6,7 +6,7 @@ public class CommonTitlesTests() : ResourceStringTestBase(typeof(CommonTitles), 
 
     [TestMethod]
     public void Test_CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
-        => Test_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures();
+        => Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures();
     
     /*
     [TestMethod]
