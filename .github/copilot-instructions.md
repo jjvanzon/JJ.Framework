@@ -11,13 +11,6 @@
 - Use file-scoped namespaces and `using static` imports for methods (e.g., `using static NumberingSystems;` and `using static AssertCore;`).
 - Use collection expressions `[]` instead of `new[]`.
 
-## Docs
-- Keep documentation tone friendly and accessible.
-- Centralize XML documentation into small unobtrusive `struct` entries in `docs.cs` and use `<inheritdoc cref="_..." />` in implementation files.
-- Add `README.md` in the same folder as the csproj.
-- Set `<GenerateDocumentationFile>` in csproj
-- Add `<PackageTags>`, `<Description>`, `<RepositoryUrl>`, `<PackageProjectUrl>` to csproj
-
 ## Tests
 - Prefer `AssertCore` over `Assert` (using static in Usings.cs).
 - Use parameterized assertions without `Assert.` prefix (e.g., `AreEqual` not `Assert.AreEqual`).
@@ -34,3 +27,10 @@
 - Project properties:
     - Main lib TFMs: `net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0`.
     - Test proj TFMs: `net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461`.
+
+## Docs
+- Keep documentation tone friendly and accessible.
+- Centralize XML documentation into small unobtrusive `struct` entries in `docs.cs` and use `<inheritdoc cref="_..." />` in implementation files.
+- Add `README.md` in the same folder as the csproj.
+- Set `<GenerateDocumentationFile>` in csproj
+- Add `<PackageTags>`, `<Description>`, `<RepositoryUrl>`, `<PackageProjectUrl>` to csproj
