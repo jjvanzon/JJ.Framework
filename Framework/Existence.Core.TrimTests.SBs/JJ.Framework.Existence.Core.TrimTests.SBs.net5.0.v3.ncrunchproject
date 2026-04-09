@@ -1,8 +1,0 @@
-﻿<ProjectConfiguration>
-  <Settings>
-    <HiddenComponentWarnings>
-      <Value>MSBuildLoggingIsImpactingBuildPerformance</Value>
-      <Value>CopyReferencedAssembliesToWorkspaceIsOn</Value>
-    </HiddenComponentWarnings>
-  </Settings>
-</ProjectConfiguration>
