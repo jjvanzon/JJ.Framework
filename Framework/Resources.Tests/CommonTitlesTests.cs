@@ -1,149 +1,105 @@
-namespace JJ.Framework.Presentation.Resources.Tests
+
+namespace JJ.Framework.Presentation.Resources.Tests;
+[TestClass]
+public class CommonTitlesTests
 {
-    [TestClass]
-    public class CommonTitlesTests
+    [TestMethod]
+    public void ResourceManager_IsNotNull()
     {
-        [TestMethod]
-        public void Add_ReturnsExpectedValue()
+        var resourceManager = CommonTitles.ResourceManager;
+        IsNotNull(resourceManager);
+    }
+    
+    [TestMethod]
+    public void CommonTitles_InvariantCulture()
+    {
+        CultureInfo saved = CurrentThread.CurrentUICulture;
+        try
         {
-            string result = CommonTitles.Add;
-            Assert.AreEqual("Add", result);
-            Assert.IsNotNull(result);
+            CurrentThread.CurrentUICulture = InvariantCulture;
+            AreEqual("Add",            CommonTitles.Add);
+            AreEqual("Cancel",         CommonTitles.Cancel);
+            AreEqual("Delete",         CommonTitles.Delete);
+            AreEqual("Edit",           CommonTitles.Edit);
+            AreEqual("Number of {0}",  CommonTitles.EntityCount);
+            AreEqual("ID",             CommonTitles.ID);
+            AreEqual("Language",       CommonTitles.Language);
+            AreEqual("LogIn",          CommonTitles.LogIn);
+            AreEqual("LogOut",         CommonTitles.LogOut);
+            AreEqual("New",            CommonTitles.New);
+            AreEqual("No",             CommonTitles.No);
+            AreEqual("None",           CommonTitles.None);
+            AreEqual("NotAuthorized",  CommonTitles.NotAuthorized);
+            AreEqual("Remove",         CommonTitles.Remove);
+            AreEqual("Save",           CommonTitles.Save);
+            AreEqual("Search",         CommonTitles.Search);
+            AreEqual("Yes",            CommonTitles.Yes);
         }
-
-        [TestMethod]
-        public void Cancel_ReturnsExpectedValue()
+        finally
         {
-            string result = CommonTitles.Cancel;
-            Assert.AreEqual("Cancel", result);
-            Assert.IsNotNull(result);
+            CurrentThread.CurrentUICulture = saved;
         }
-
-        [TestMethod]
-        public void Delete_ReturnsExpectedValue()
+    }
+    
+    [TestMethod]
+    public void CommonTitles_enUS()
+    {
+        CultureInfo saved = CurrentThread.CurrentUICulture;
+        try
         {
-            string result = CommonTitles.Delete;
-            Assert.AreEqual("Delete", result);
-            Assert.IsNotNull(result);
+            CurrentThread.CurrentUICulture = new("en-US");
+            AreEqual("Add",            CommonTitles.Add);
+            AreEqual("Cancel",         CommonTitles.Cancel);
+            AreEqual("Delete",         CommonTitles.Delete);
+            AreEqual("Edit",           CommonTitles.Edit);
+            AreEqual("Number of {0}",  CommonTitles.EntityCount);
+            AreEqual("ID",             CommonTitles.ID);
+            AreEqual("Language",       CommonTitles.Language);
+            AreEqual("Log In",         CommonTitles.LogIn);
+            AreEqual("Log Out",        CommonTitles.LogOut);
+            AreEqual("New",            CommonTitles.New);
+            AreEqual("No",             CommonTitles.No);
+            AreEqual("None",           CommonTitles.None);
+            AreEqual("Not Authorized", CommonTitles.NotAuthorized);
+            AreEqual("Remove",         CommonTitles.Remove);
+            AreEqual("Save",           CommonTitles.Save);
+            AreEqual("Search",         CommonTitles.Search);
+            AreEqual("Yes",            CommonTitles.Yes);
         }
-
-        [TestMethod]
-        public void Edit_ReturnsExpectedValue()
+        finally
         {
-            string result = CommonTitles.Edit;
-            Assert.AreEqual("Edit", result);
-            Assert.IsNotNull(result);
+            CurrentThread.CurrentUICulture = saved;
         }
+    }
 
-        [TestMethod]
-        public void EntityCount_ReturnsExpectedTemplate()
+    [TestMethod]
+    public void CommonTitles_nlNL()
+    {
+        CultureInfo saved = CurrentThread.CurrentUICulture;
+        try
         {
-            string result = CommonTitles.EntityCount;
-            Assert.AreEqual("Number of {0}", result);
-            Assert.IsNotNull(result);
+            CurrentThread.CurrentUICulture = new("nl-NL");
+            AreEqual("Toevoegen",       CommonTitles.Add);
+            AreEqual("Annuleren",       CommonTitles.Cancel);
+            AreEqual("Verwijderen",     CommonTitles.Delete);
+            AreEqual("Bewerken",        CommonTitles.Edit);
+            AreEqual("Aantal {0}",      CommonTitles.EntityCount);
+            AreEqual("ID",              CommonTitles.ID);
+            AreEqual("Taal",            CommonTitles.Language);
+            AreEqual("Inloggen",        CommonTitles.LogIn);
+            AreEqual("Uitloggen",       CommonTitles.LogOut);
+            AreEqual("Nieuw",           CommonTitles.New);
+            AreEqual("Nee",             CommonTitles.No);
+            AreEqual("Geen",            CommonTitles.None);
+            AreEqual("Niet gemachtigd", CommonTitles.NotAuthorized);
+            AreEqual("Verwijderen",     CommonTitles.Remove);
+            AreEqual("Opslaan",         CommonTitles.Save);
+            AreEqual("Zoeken",          CommonTitles.Search);
+            AreEqual("Ja",              CommonTitles.Yes);
         }
-
-        [TestMethod]
-        public void ID_ReturnsExpectedValue()
+        finally
         {
-            string result = CommonTitles.ID;
-            Assert.AreEqual("ID", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Language_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.Language;
-            Assert.AreEqual("Language", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void LogIn_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.LogIn;
-            Assert.AreEqual("LogIn", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void LogOut_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.LogOut;
-            Assert.AreEqual("LogOut", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void New_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.New;
-            Assert.AreEqual("New", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void No_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.No;
-            Assert.AreEqual("No", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void None_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.None;
-            Assert.AreEqual("None", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void NotAuthorized_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.NotAuthorized;
-            Assert.AreEqual("NotAuthorized", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Remove_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.Remove;
-            Assert.AreEqual("Remove", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Save_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.Save;
-            Assert.AreEqual("Save", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Search_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.Search;
-            Assert.AreEqual("Search", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Yes_ReturnsExpectedValue()
-        {
-            string result = CommonTitles.Yes;
-            Assert.AreEqual("Yes", result);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void ResourceManager_IsNotNull()
-        {
-            var resourceManager = CommonTitles.ResourceManager;
-            Assert.IsNotNull(resourceManager);
+            CurrentThread.CurrentUICulture = saved;
         }
     }
 }

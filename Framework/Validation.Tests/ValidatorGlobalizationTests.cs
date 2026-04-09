@@ -30,7 +30,7 @@ public class ValidatorGlobalizationTests
     }
 
     [TestMethod]
-    public void Messages_Default()
+    public void Messages_InvariantCulture()
     {
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
@@ -56,7 +56,7 @@ public class ValidatorGlobalizationTests
     }
 
     [TestMethod]
-    public void Messages_EnUS()
+    public void Messages_enUS()
     {
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
@@ -82,7 +82,7 @@ public class ValidatorGlobalizationTests
     }
 
     [TestMethod]
-    public void Messages_NlNL()
+    public void Messages_nlNL()
     {
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
