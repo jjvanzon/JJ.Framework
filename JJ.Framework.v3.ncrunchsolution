@@ -51,10 +51,6 @@
       <Value>Framework\Mathematics.Core\JJ.Framework.Mathematics.Core.csproj:net9.0</Value>
       <Value>Framework\Mathematics.Core\JJ.Framework.Mathematics.Core.csproj:netstandard2.0</Value>
       <Value>Framework\Mathematics.Core\JJ.Framework.Mathematics.Core.csproj:netstandard2.1</Value>
-      <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj:netstandard2.1</Value>
@@ -102,10 +98,6 @@
       <Value>Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.Legacy.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.Net48.csproj</Value>
       <Value>Framework\JJ.Framework.Presentation.Mvc.Tests\JJ.Framework.Presentation.Mvc.Net48.Tests.csproj</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net461</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net5.0-windows</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net6.0-windows</Value>
@@ -256,7 +248,6 @@
       <Value>Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Legacy.Diagnostics.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Logging.Tests\JJ.Framework.Logging.Legacy.Tests.csproj:net10.0</Value>
       <Value>Framework\Mathematics.Core\JJ.Framework.Mathematics.Core.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.Memory\JJ.Framework.Persistence.Legacy.Memory.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net10.0</Value>
@@ -266,7 +257,6 @@
       <Value>Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Legacy.Xml.Linq.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Presentation.JavaScript\JJ.Framework.Presentation.JavaScript.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.Legacy.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net10.0-windows</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net10.0</Value>
       <Value>Framework\PlatformCompatibility.TrimTests\JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj:net10.0</Value>
