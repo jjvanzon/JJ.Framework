@@ -28,9 +28,13 @@ namespace JJ.Framework.ResourceStrings.Legacy {
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
+        // ncrunch: no coverage start
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal CommonTitles() {
         }
+
+        // ncrunch: no coverage end
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
@@ -46,6 +50,8 @@ namespace JJ.Framework.ResourceStrings.Legacy {
             }
         }
         
+        // ncrunch: no coverage start
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -60,6 +66,8 @@ namespace JJ.Framework.ResourceStrings.Legacy {
             }
         }
         
+        // ncrunch: no coverage end
+
         /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
