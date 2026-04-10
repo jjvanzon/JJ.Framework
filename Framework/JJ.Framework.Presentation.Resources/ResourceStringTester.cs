@@ -146,12 +146,12 @@ namespace JJ.Framework.ResourceStrings.Legacy
         {
             if (memberToTest == null) throw new ArgumentNullException(nameof(memberToTest));
 
-            if (String.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
+            if (string.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
             {
                 return true;
             }
-
-            if (String.Equals(memberToTest.Name, "ResourceManager", OrdinalIgnoreCase))
+          
+            if (string.Equals(memberToTest.Name, "ResourceManager", OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -165,10 +165,10 @@ namespace JJ.Framework.ResourceStrings.Legacy
             switch (member)
             {
                 case PropertyInfo prop:
-                    return AssertResourceText(prop);
+                    return AssertResourceProp(prop);
 
                 case MethodInfo method:
-                    return AssertResourceText(method);
+                    return AssertResourceMethod(method);
 
                 default:
                     throw new UnexpectedTypeException(() => member); // ncrunch: no coverage
@@ -178,7 +178,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
         /// <summary>
         /// Aims to assert that the property is of type string and what it might return would not be null or white space.
         /// </summary>
-        private static string AssertResourceText(PropertyInfo prop)
+        private static string AssertResourceProp(PropertyInfo prop)
         {
             object val = prop.GetValue();
             IsOfType<string>(() => val, prop.Name);
@@ -193,7 +193,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
         /// it is callable with all parameters null,
         /// and what it might return would not be null or white space.
         /// </summary>
-        private static string AssertResourceText(MethodInfo method)
+        private static string AssertResourceMethod(MethodInfo method)
         {
             // Supplying nulls for the parameters. Reflection seemed to turn those nulls into defaults,
             // making it work for int and decimal parameters too, which was convenient.
