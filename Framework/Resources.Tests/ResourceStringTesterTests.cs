@@ -47,6 +47,43 @@ public class ResourceStringTesterTests
         tester.Assert_UnknownCulture_UsesDefaultCulture();
     }
 
+    // Member Exclusion (IsExcluded)
+
+    [TestMethod]
+    public void ResourceStringTester_ExcludedMember_Skipped()
+    {
+        var tester = new Tester_WithExclusion(typeof(Stub_WithProblematic));
+        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    }
+
+    [TestMethod]
+    public void ResourceStringTester_WithoutExclusion_ProblematicMember_Throws()
+        => Throws(
+            () => AssertAllMembers(typeof(Stub_WithProblematic)),
+            "Problematic");
+
+    // Member Selection (SelectMembersToTest)
+
+    [TestMethod]
+    public void ResourceStringTester_CustomSelection_SelectsSpecificMembers()
+    {
+        var tester = new Tester_WithCustomSelection(typeof(Stub_WithProblematic));
+        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    }
+
+    // Custom Test Values (CreateTestValue)
+
+    [TestMethod]
+    public void ResourceStringTester_CustomTestValue_AppearsInResult()
+    {
+        var tester = new Tester_WithCustomTestValue(typeof(Stub_CustomType));
+        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    }
+
+    [TestMethod]
+    public void ResourceStringTester_UnsupportedType_SkipsContainmentCheck()
+        => AssertAllMembers(typeof(Stub_CustomType));
+
     // Helpers
 
     private static void AssertAllMembers(Type stubType)
@@ -57,6 +94,40 @@ public class ResourceStringTesterTests
 
     private static ResourceStringTester CreateTester(Type stubType)
         => new(stubType, known: ["nl-NL"], unknown: "de-DE", @default: "en-US");
+
+    // Tester Subclasses
+
+    private class Tester_WithExclusion(Type type)
+        : ResourceStringTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US")
+    {
+        protected override bool IsExcluded(MemberInfo memberToTest)
+            => memberToTest.Name == "Problematic" || base.IsExcluded(memberToTest);
+    }
+
+    private class Tester_WithCustomSelection(Type type)
+        : ResourceStringTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US")
+    {
+        protected override IList<MemberInfo> SelectMembersToTest(Type resourceClass)
+            => base.SelectMembersToTest(resourceClass)
+                   .Where(x => x.Name.StartsWith("Good"))
+                   .ToArray();
+    }
+
+    private class Tester_WithCustomTestValue(Type type)
+        : ResourceStringTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US")
+    {
+        protected override object CreateTestValue(Type parameterType, int index)
+            => parameterType == typeof(CustomId)
+                ? new CustomId(42 + index)
+                : base.CreateTestValue(parameterType, index);
+    }
+
+    // Custom Type
+
+    private class CustomId(int value)
+    {
+        public override string ToString() => $"ID-{value}";
+    }
 
     // Stubs
 
@@ -82,19 +153,30 @@ public class ResourceStringTesterTests
 
     private static class Stub_VariousTypes
     {
-        public static string WithString(string p)    => $"V:{p}";
-        public static string WithInt(int p)          => $"V:{p}";
-        public static string WithLong(long p)        => $"V:{p}";
-        public static string WithShort(short p)      => $"V:{p}";
-        public static string WithByte(byte p)        => $"V:{p}";
-        public static string WithDecimal(decimal p)  => $"V:{p}";
-        public static string WithDouble(double p)    => $"V:{p}";
-        public static string WithFloat(float p)      => $"V:{p}";
-        public static string WithBool(bool p)        => $"V:{p}";
+        public static string WithString (string  val) => $"V:{val}";
+        public static string WithInt    (int     val) => $"V:{val}";
+        public static string WithLong   (long    val) => $"V:{val}";
+        public static string WithShort  (short   val) => $"V:{val}";
+        public static string WithByte   (byte    val) => $"V:{val}";
+        public static string WithDecimal(decimal val) => $"V:{val}";
+        public static string WithDouble (double  val) => $"V:{val}";
+        public static string WithFloat  (float   val) => $"V:{val}";
+        public static string WithBool   (bool    val) => $"V:{val}";
     }
 
     private static class Stub_MissingParam
     {
         public static string Bad(string name) => "Static text";
+    }
+
+    private static class Stub_WithProblematic
+    {
+        public static string Good() => "Hello";
+        public static string Problematic() => "";
+    }
+
+    private static class Stub_CustomType
+    {
+        public static string Format(CustomId id) => $"Value: {id}";
     }
 }
