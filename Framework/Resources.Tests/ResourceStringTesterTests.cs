@@ -84,6 +84,36 @@ public class ResourceStringTesterTests
     public void ResourceStringTester_UnsupportedType_SkipsContainmentCheck()
         => AssertAllMembers(typeof(Stub_CustomType));
 
+    // Direct Instantiation (Base Class Usage Without Inheritance)
+
+    [TestMethod]
+    public void ResourceStringTester_DirectInstance_MethodsWork()
+    {
+        var tester = CreateTester(typeof(Stub_ZeroParams));
+        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    }
+
+    [TestMethod]
+    public void ResourceStringTester_DirectInstance_WithParameters_ContainmentWorks()
+    {
+        var tester = CreateTester(typeof(Stub_OneParam));
+        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    }
+
+    [TestMethod]
+    public void ResourceStringTester_DirectInstance_ExcludesDefaultMembers()
+    {
+        var tester = CreateTester(typeof(Stub_PropertyBased));
+        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    }
+
+    [TestMethod]
+    public void ResourceStringTester_DirectInstance_MixedMembersWork()
+    {
+        var tester = CreateTester(typeof(Stub_MixedMembers));
+        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    }
+
     // Helpers
 
     private static void AssertAllMembers(Type resourceClass)
@@ -150,6 +180,19 @@ public class ResourceStringTesterTests
     private static class Stub_CustomType
     {
         public static string Format(CustomId id) => $"Value: {id}";
+    }
+
+    private static class Stub_PropertyBased
+    {
+        public static string Title { get; } = "Main Title";
+        public static string Description { get; } = "A description";
+    }
+
+    private static class Stub_MixedMembers
+    {
+        public static string Title { get; } = "Title";
+        public static string GetGreeting(string name) => $"Hello {name}";
+        public static string GetMessage() => "A message";
     }
 
     // Tester Subclasses
