@@ -11,11 +11,11 @@ public class CommonTitlesFormatterTests()
     
     [TestMethod]
     public void CommonTitlesFormatter_AllPublicStatics_ReturnText_ForKnownCultures() 
-        => Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures();
+        => Assert_AllPublicStatics_ReturnText_ForKnownCultures();
     
     [TestMethod]
     public void CommonTitlesFormatter_UnknownCulture_DefaultsToEnUS() 
-        => Test_Resources_UnknownCulture_UsesDefaultCulture();
+        => Assert_UnknownCulture_UsesDefaultCulture();
 
     // TODO: Vary culture
 

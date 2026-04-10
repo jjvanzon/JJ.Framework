@@ -1,13 +1,6 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
-// ReSharper disable SuggestVarOrType_Elsewhere
 // ReSharper disable UnusedVariable
-
-using System.Diagnostics;
-using static System.Reflection.BindingFlags;
-using static System.StringComparison;
-using static JJ.Framework.ResourceStrings.Legacy.AssertHelper;
-
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 
 namespace JJ.Framework.ResourceStrings.Legacy
@@ -25,7 +18,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
     /// <code>
     /// An implementation might look something like:
     /// [TestClass]
-    /// public class CommonResourceFormatterTests : ResourceFormatterTestsBase
+    /// public class CommonResourceFormatterTests : ResourceStringTester
     /// {
     ///   public CommonResourceFormatterTests()
     ///     : base(
@@ -36,17 +29,17 @@ namespace JJ.Framework.ResourceStrings.Legacy
     /// 
     ///   [TestMethod]
     ///   public void Test_CommonResourceFormatter_AllPublicMembers_ReturnText_ForKnownCultures()
-    ///     =&gt; base.Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures();
+    ///     =&gt; base.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
     /// 
     ///   [TestMethod]
     ///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
-    ///     =&gt; base.Test_ResourceFormatter_UnknownCulture_DefaultsToEnUS();
+    ///     =&gt; base.Assert_UnknownCulture_UsesDefaultCulture();
     /// }
     /// </code>
     /// </summary>
     public class ResourceStringTester
     {
-        private readonly IList<MemberInfo> _membersToTest;
+        private readonly Type _resourceClass;
         private readonly string _defaultCultureName;
         private readonly string[] _knownCultureNames;
         private readonly string _unknownCultureName;
@@ -57,11 +50,11 @@ namespace JJ.Framework.ResourceStrings.Legacy
         public ResourceStringTester
             (Type resourceClass, string[] known, string unknown, string @default)
         {
-            if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
+            _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));
             _defaultCultureName = @default ?? "";
             _knownCultureNames = PopulateKnownCultureNames(@default, known);
             _unknownCultureName = unknown ?? "";
-            _membersToTest = GetMembersToTest(resourceClass);
+            
         }
 
         private static string[] PopulateKnownCultureNames(string @default, string[] known)
@@ -80,8 +73,10 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
         // Test
 
-        public void Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures()
+        public void Assert_AllPublicStatics_ReturnText_ForKnownCultures()
         {
+            IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
+
             CultureInfo saved = GetCurrentCulture();
 
             try
@@ -91,7 +86,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
                     SetCurrentCultureName(cultureName);
                     LogCulture(cultureName);
 
-                    foreach (MemberInfo memberToTest in _membersToTest)
+                    foreach (MemberInfo memberToTest in membersToTest)
                     {
                         string resourceText = AssertResourceText(memberToTest);
                     }
@@ -103,13 +98,15 @@ namespace JJ.Framework.ResourceStrings.Legacy
             }
         }
 
-        public void Test_Resources_UnknownCulture_UsesDefaultCulture()
+        public void Assert_UnknownCulture_UsesDefaultCulture()
         {
+            IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
+
             CultureInfo saved = GetCurrentCulture();
 
             try
             {
-                foreach (MemberInfo memberToTest in _membersToTest)
+                foreach (MemberInfo memberToTest in membersToTest)
                 {
                     SetCurrentCultureName(_defaultCultureName);
                     string expected = AssertResourceText(memberToTest);
@@ -128,7 +125,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
         // Select
 
-        private IList<MemberInfo> GetMembersToTest(Type resourceClass)
+        protected virtual IList<MemberInfo> SelectMembersToTest(Type resourceClass)
         {
             if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
 

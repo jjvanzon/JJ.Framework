@@ -12,11 +12,11 @@ public class CommonTitlesTests()
 {
     [TestMethod]
     public void CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
-        => Test_Resources_AllPublicStatics_ReturnText_ForKnownCultures();
+        => Assert_AllPublicStatics_ReturnText_ForKnownCultures();
     
     [TestMethod]
     public void CommonTitles_UnknownCulture_DefaultsToEnUS() 
-        => Test_Resources_UnknownCulture_UsesDefaultCulture();
+        => Assert_UnknownCulture_UsesDefaultCulture();
 
     [TestMethod]
     public void CommonTitles_ResourceManager_IsNotNull() 

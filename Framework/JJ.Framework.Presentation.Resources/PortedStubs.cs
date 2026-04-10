@@ -39,7 +39,8 @@ internal static class AssertHelper
     /// <inheritdoc cref="_portedstubs" />
     public static void IsOfType<T>(Func<object> objFunc, [ArgExpress(nameof(objFunc))] string name = "")
     {
-        Type actual = objFunc?.Invoke()?.GetType();
+        //Type actual = objFunc?.Invoke()?.GetType();
+        Type actual = objFunc.Invoke().GetType();
         Type expected = typeof(T);
         if (expected != actual) throw new Exception($"IsOfType assertion failed. Tested: {name}. Expected: '{expected}'. Actual: '{actual}'");
     }
@@ -51,21 +52,21 @@ internal static class ReflectionExtensions
     /// <inheritdoc cref="_portedstubs" />
     public static object GetValue(this PropertyInfo prop)
     {
-        ThrowIfNull(prop);
+        //ThrowIfNull(prop);
         return prop.GetValue(null);
     }
 
     public static object Invoke(this MethodBase method, object[] parameters)
     {
-        ThrowIfNull(method);
-        ThrowIfNull(parameters);
+        //ThrowIfNull(method);
+        //ThrowIfNull(parameters);
         return method.Invoke(null, parameters);
     }
 
     public static bool IsProperty(this MethodBase method)
     {
-        ThrowIfNull(method);
-        ThrowIfNull(method.Name);
+        //ThrowIfNull(method);
+        //ThrowIfNull(method.Name);
         return method.Name.StartsWith("get_") ||
                method.Name.StartsWith("set_");
     }
@@ -76,7 +77,8 @@ internal class UnexpectedTypeException : Exception
     // ncrunch: no coverage start
     public UnexpectedTypeException(Func<object> func, [ArgExpress(nameof(func))] string name = "")
     {
-        string typeName = func?.Invoke()?.GetType().Name ?? "<null>";
+        //string typeName = func?.Invoke()?.GetType().Name ?? "<null>";
+        string typeName = func.Invoke()?.GetType().Name ?? "<null>";
         Message = $"{name} has an unexpected type: {typeName}.";
     }
 

@@ -75,6 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="$(IsCore) And !$(IsTest) And !$(IsTrimTest)">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
   </PropertyGroup>
 
