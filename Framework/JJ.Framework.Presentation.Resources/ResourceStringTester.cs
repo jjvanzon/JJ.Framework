@@ -1,6 +1,7 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
 // ReSharper disable UnusedVariable
+
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 
 namespace JJ.Framework.ResourceStrings.Legacy
@@ -145,12 +146,12 @@ namespace JJ.Framework.ResourceStrings.Legacy
         {
             if (memberToTest == null) throw new ArgumentNullException(nameof(memberToTest));
 
-            if (string.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
+            if (String.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
             {
                 return true;
             }
 
-            if (string.Equals(memberToTest.Name, "ResourceManager", OrdinalIgnoreCase))
+            if (String.Equals(memberToTest.Name, "ResourceManager", OrdinalIgnoreCase))
             {
                 return true;
             }
@@ -211,36 +212,29 @@ namespace JJ.Framework.ResourceStrings.Legacy
         private static void LogCulture(string cultureName)
         {
             Trace.WriteLine("");
-            Trace.WriteLine($"{FormatCultureName(cultureName)}:");
+            Trace.WriteLine($"{FormatCulture(cultureName)}:");
             Trace.WriteLine("");
         }
 
-        private static string FormatCultureName(string cultureName)
-        {
-            if (string.IsNullOrEmpty(cultureName)) 
-            {
-                return "Invariant culture";
-            }
-            return cultureName;
-        }
+        private static void LogProp(PropertyInfo prop, string text) 
+            => Trace.WriteLine($"Prop {prop.Name} = {FormatText(text)} ({FormatCulture()})");
 
-        private static void LogProp(PropertyInfo prop, string text)
-        {
-            Trace.WriteLine($"Prop {prop.Name} = \"{text}\" ({FormatCultureName(GetCurrentCulture()?.Name)})");
-            //Trace.WriteLine(@$"Prop {prop.Name} = ""{text}""");
-        }
+        private static void LogMethod(MethodInfo method, string text) 
+            => Trace.WriteLine($"Method {FormatMethod(method)} => {FormatText(text)} ({FormatCulture()})");
 
-        private static void LogMethod(MethodInfo method, string text)
-        {
-            Trace.WriteLine($"Method {method.Name}({string.Join(", ", method.GetParameters().Select(x => x.Name))}) => \"{text}\" ({FormatCultureName(GetCurrentCulture()?.Name)})");
-            //Trace.WriteLine(@$"Prop {prop.Name} = ""{text}""");
-        }
+        private static string FormatText(string text) 
+            => @"""" + text + @"""";
 
-        /*
-        private static void LogEmptyLine()
-        { 
-            Trace.WriteLine("");
-        }
-        */
+        private static string FormatMethod(MethodInfo method) 
+            => $"{method?.Name}({FormatParameters(method)})";
+
+        private static string FormatParameters(MethodInfo method) 
+            => Join(", ", method?.GetParameters().Select(x => x.Name) ?? []);
+
+        private static string FormatCulture() 
+            => FormatCulture(GetCurrentCulture()?.Name);
+        
+        private static string FormatCulture(string cultureName) 
+            => !IsNullOrEmpty(cultureName) ? cultureName : "Invariant culture";
     }
 }

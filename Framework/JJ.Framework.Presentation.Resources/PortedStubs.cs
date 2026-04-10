@@ -13,7 +13,7 @@ internal static class CultureHelper
     }
 
     /// <inheritdoc cref="_portedstubs" />
-    public static void SetCurrentCultureName(string cultureName) => SetCurrentCulture(new CultureInfo(cultureName));
+    public static void SetCurrentCultureName(string cultureName) => SetCurrentCulture(GetCultureInfo(cultureName));
     
     /// <inheritdoc cref="_portedstubs" />
     public static CultureInfo GetCurrentCulture() => CurrentThread.CurrentCulture;
@@ -39,7 +39,6 @@ internal static class AssertHelper
     /// <inheritdoc cref="_portedstubs" />
     public static void IsOfType<T>(Func<object> objFunc, [ArgExpress(nameof(objFunc))] string name = "")
     {
-        //Type actual = objFunc?.Invoke()?.GetType();
         Type actual = objFunc.Invoke().GetType();
         Type expected = typeof(T);
         if (expected != actual) throw new Exception($"IsOfType assertion failed. Tested: {name}. Expected: '{expected}'. Actual: '{actual}'");
@@ -52,36 +51,37 @@ internal static class ReflectionExtensions
     /// <inheritdoc cref="_portedstubs" />
     public static object GetValue(this PropertyInfo prop)
     {
-        //ThrowIfNull(prop);
         return prop.GetValue(null);
     }
 
+    /// <inheritdoc cref="_portedstubs" />
     public static object Invoke(this MethodBase method, object[] parameters)
     {
-        //ThrowIfNull(method);
-        //ThrowIfNull(parameters);
         return method.Invoke(null, parameters);
     }
 
+    /// <inheritdoc cref="_portedstubs" />
     public static bool IsProperty(this MethodBase method)
     {
-        //ThrowIfNull(method);
-        //ThrowIfNull(method.Name);
         return method.Name.StartsWith("get_") ||
                method.Name.StartsWith("set_");
     }
 }
 
+/// <inheritdoc cref="_portedstubs" />
 internal class UnexpectedTypeException : Exception
 {
     // ncrunch: no coverage start
+
+    /// <inheritdoc cref="_portedstubs" />
     public UnexpectedTypeException(Func<object> func, [ArgExpress(nameof(func))] string name = "")
     {
-        //string typeName = func?.Invoke()?.GetType().Name ?? "<null>";
         string typeName = func.Invoke()?.GetType().Name ?? "<null>";
         Message = $"{name} has an unexpected type: {typeName}.";
     }
 
+    /// <inheritdoc cref="_portedstubs" />
     public override string Message { get; }
+
     // ncrunch: no coverage end
 }
