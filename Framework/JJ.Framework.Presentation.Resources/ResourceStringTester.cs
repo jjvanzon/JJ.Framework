@@ -158,8 +158,6 @@ namespace JJ.Framework.ResourceStrings.Legacy
             return false;
         }
 
-        // Assert
-
         /// <summary>
         /// Creates a test value for a parameter of the given type.
         /// Override to support additional parameter types.
@@ -180,6 +178,8 @@ namespace JJ.Framework.ResourceStrings.Legacy
                 _                => null
             };
         }
+       
+        // Assert
 
         private string AssertResourceText(MemberInfo member)
         {
@@ -215,11 +215,13 @@ namespace JJ.Framework.ResourceStrings.Legacy
         /// </summary>
         private string AssertResourceMethod(MethodInfo method)
         {
-            ParameterInfo[] methodParams = method.GetParameters();
-            var args = new object[methodParams.Length];
+            ParameterInfo[] parameters = method.GetParameters();
+            var args = new object[parameters.Length];
 
-            for (int i = 0; i < methodParams.Length; i++)
-                args[i] = CreateTestValue(methodParams[i].ParameterType, i);
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                args[i] = CreateTestValue(parameters[i].ParameterType, i);
+            }
 
             object ret = method.Invoke(args);
             IsOfType<string>(() => ret, method.Name);
@@ -229,11 +231,13 @@ namespace JJ.Framework.ResourceStrings.Legacy
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) continue;
-                string fragment = args[i].ToString();
-                if (!text.Contains(fragment))
+                string argString = args[i].ToString();
+                if (!text.Contains(argString))
+                {
                     throw new Exception(
-                        $"Method {method.Name}: parameter '{methodParams[i].Name}' " +
-                        $"value \"{fragment}\" not found in result \"{text}\".");
+                        $"Method {method.Name}: parameter '{parameters[i].Name}' " +
+                        $"value \"{argString}\" not found in result \"{text}\".");
+                }
             }
 
             LogMethod(method, args, text);
