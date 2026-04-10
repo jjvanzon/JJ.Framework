@@ -160,7 +160,28 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
         // Assert
 
-        private static string AssertResourceText(MemberInfo member)
+        /// <summary>
+        /// Creates a test value for a parameter of the given type.
+        /// Override to support additional parameter types.
+        /// </summary>
+        protected virtual object CreateTestValue(Type parameterType, int index)
+        {
+            return Type.GetTypeCode(parameterType) switch
+            {
+                TypeCode.String  => $"Param{index}",
+                TypeCode.Int32   => 101 + index,
+                TypeCode.Int64   => 101L + index,
+                TypeCode.Int16   => (short)(101 + index),
+                TypeCode.Byte    => (byte)(101 + index),
+                TypeCode.Decimal => 101m + index,
+                TypeCode.Double  => 101d + index,
+                TypeCode.Single  => 101f + index,
+                TypeCode.Boolean => index % 2 == 0,
+                _                => null
+            };
+        }
+
+        private string AssertResourceText(MemberInfo member)
         {
             switch (member)
             {
@@ -189,21 +210,33 @@ namespace JJ.Framework.ResourceStrings.Legacy
         }
 
         /// <summary>
-        /// Aims to assert that the method is of type string,
-        /// it is callable with all parameters null,
-        /// and what it might return would not be null or white space.
+        /// Asserts that the method returns a non-empty string
+        /// and that each supplied test value appears in the result.
         /// </summary>
-        private static string AssertResourceMethod(MethodInfo method)
+        private string AssertResourceMethod(MethodInfo method)
         {
-            // Supplying nulls for the parameters. Reflection seemed to turn those nulls into defaults,
-            // making it work for int and decimal parameters too, which was convenient.
-            int parameterCount = method.GetParameters().Length;
-            var parameters = new object[parameterCount];
-            object ret = method.Invoke(parameters);
+            ParameterInfo[] methodParams = method.GetParameters();
+            var args = new object[methodParams.Length];
+
+            for (int i = 0; i < methodParams.Length; i++)
+                args[i] = CreateTestValue(methodParams[i].ParameterType, i);
+
+            object ret = method.Invoke(args);
             IsOfType<string>(() => ret, method.Name);
             var text = (string)ret;
             NotNullOrWhiteSpace(() => text, method.Name);
-            LogMethod(method, text);
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i] == null) continue;
+                string fragment = args[i].ToString();
+                if (!text.Contains(fragment))
+                    throw new Exception(
+                        $"Method {method.Name}: parameter '{methodParams[i].Name}' " +
+                        $"value \"{fragment}\" not found in result \"{text}\".");
+            }
+
+            LogMethod(method, args, text);
             return text;
         }
 
@@ -219,19 +252,16 @@ namespace JJ.Framework.ResourceStrings.Legacy
         private static void LogProp(PropertyInfo prop, string text) 
             => Trace.WriteLine($"Prop {prop.Name} = {FormatText(text)} ({FormatCulture()})");
 
-        private static void LogMethod(MethodInfo method, string text) 
-            => Trace.WriteLine($"Method {FormatMethod(method)} => {FormatText(text)} ({FormatCulture()})");
+        private static void LogMethod(MethodInfo method, object[] args, string text) 
+            => Trace.WriteLine($"Method {FormatMethod(method, args)} => {FormatText(text)} ({FormatCulture()})");
 
         private static string FormatText(string text) 
             => @"""" + text + @"""";
 
-        private static string FormatMethod(MethodInfo method) 
-            => $"{method?.Name}({FormatParameters(method)})";
+        private static string FormatMethod(MethodInfo method, object[] args) 
+            => $"{method?.Name}({Join(", ", args.Select(x => x?.ToString() ?? "null"))})";
 
-        private static string FormatParameters(MethodInfo method) 
-            => Join(", ", method?.GetParameters().Select(x => x.Name) ?? []);
-
-        private static string FormatCulture() 
+        private static string FormatCulture()
             => FormatCulture(GetCurrentCulture()?.Name);
         
         private static string FormatCulture(string cultureName) 
