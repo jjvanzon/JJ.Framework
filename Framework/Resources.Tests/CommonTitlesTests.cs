@@ -10,6 +10,9 @@ public class CommonTitlesTests()
         unknown: "de-DE", 
         @default: "")
 {
+    private static readonly CultureInfo _enUS = GetCultureInfo("en-US");
+    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
+
     [TestMethod]
     public void CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
         => Assert_AllPublicStatics_ReturnText_ForKnownCultures();
@@ -59,7 +62,7 @@ public class CommonTitlesTests()
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
         {
-            CurrentThread.CurrentUICulture = new("en-US");
+            CurrentThread.CurrentUICulture = _enUS;
             AreEqual("Add",            Add);
             AreEqual("Cancel",         Cancel);
             AreEqual("Delete",         Delete);
@@ -90,7 +93,7 @@ public class CommonTitlesTests()
         CultureInfo saved = CurrentThread.CurrentUICulture;
         try
         {
-            CurrentThread.CurrentUICulture = new("nl-NL");
+            CurrentThread.CurrentUICulture = _nlNL;
             AreEqual("Toevoegen",       Add);
             AreEqual("Annuleren",       Cancel);
             AreEqual("Verwijderen",     Delete);

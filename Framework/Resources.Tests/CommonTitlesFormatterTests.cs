@@ -1,5 +1,7 @@
 namespace JJ.Framework.ResourceStrings.Legacy.Tests;
 
+using static CommonTitlesFormatter;
+
 [TestClass]
 public class CommonTitlesFormatterTests() 
     : ResourceStringTester(
@@ -8,7 +10,9 @@ public class CommonTitlesFormatterTests()
         known: ["en-US", "nl-NL"],
         unknown: "de-DE")
 {
-    
+    private static readonly CultureInfo _enUS = GetCultureInfo("en-US");
+    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
+
     [TestMethod]
     public void CommonTitlesFormatter_AllPublicStatics_ReturnText_ForKnownCultures() 
         => Assert_AllPublicStatics_ReturnText_ForKnownCultures();
@@ -17,40 +21,57 @@ public class CommonTitlesFormatterTests()
     public void CommonTitlesFormatter_UnknownCulture_DefaultsToEnUS() 
         => Assert_UnknownCulture_UsesDefaultCulture();
 
-    // TODO: Vary culture
-
     [TestMethod]
-    public void CommonTitlesFormatter_EntityCount_WithEntityName_ReturnsFormattedString()
+    public void CommonTitlesFormatter_CheckExactTexts_InvariantCulture()
     {
-        string result = CommonTitlesFormatter.EntityCount("Items");
-        AreEqual("Number of Items", result);
+        CultureInfo saved = CurrentThread.CurrentUICulture;
+        try
+        {
+            CurrentThread.CurrentUICulture = InvariantCulture;
+            AreEqual("Number of Items", EntityCount("Items"));
+            AreEqual("Number of X",     EntityCount("X"    ));
+            AreEqual("Number of ",      EntityCount(""     ));
+            AreEqual("Number of ",      EntityCount(null   ));
+        }
+        finally
+        {
+            CurrentThread.CurrentUICulture = saved;
+        }
     }
 
     [TestMethod]
-    public void CommonTitlesFormatter_EntityCount_WithSingleCharacter_ReturnsFormattedString()
+    public void CommonTitlesFormatter_CheckExactTexts_enUS()
     {
-        string result = CommonTitlesFormatter.EntityCount("X");
-        AreEqual("Number of X", result);
+        CultureInfo saved = CurrentThread.CurrentUICulture;
+        try
+        {
+            CurrentThread.CurrentUICulture = _enUS;
+            AreEqual("Number of Items", EntityCount("Items"));
+            AreEqual("Number of X",     EntityCount("X"    ));
+            AreEqual("Number of ",      EntityCount(""     ));
+            AreEqual("Number of ",      EntityCount(null   ));
+        }
+        finally
+        {
+            CurrentThread.CurrentUICulture = saved;
+        }
     }
 
     [TestMethod]
-    public void EntityCount_WithLongEntityName_ReturnsFormattedString()
+    public void CommonTitlesFormatter_CheckExactTexts_nlNL()
     {
-        string result = CommonTitlesFormatter.EntityCount("VeryLongEntityNameForTesting");
-        AreEqual("Number of VeryLongEntityNameForTesting", result);
-    }
-
-    [TestMethod]
-    public void EntityCount_WithEmptyString_ReturnsFormattedString()
-    {
-        string result = CommonTitlesFormatter.EntityCount("");
-        AreEqual("Number of ", result);
-    }
-
-    [TestMethod]
-    public void EntityCount_WithNull_ReturnsFormattedString()
-    {
-        string result = CommonTitlesFormatter.EntityCount(null);
-        AreEqual("Number of ", result);
+        CultureInfo saved = CurrentThread.CurrentUICulture;
+        try
+        {
+            CurrentThread.CurrentUICulture = _nlNL;
+            AreEqual("Aantal Items", EntityCount("Items"));
+            AreEqual("Aantal X",     EntityCount("X"    ));
+            AreEqual("Aantal ",      EntityCount(""     ));
+            AreEqual("Aantal ",      EntityCount(null   ));
+        }
+        finally
+        {
+            CurrentThread.CurrentUICulture = saved;
+        }
     }
 }
