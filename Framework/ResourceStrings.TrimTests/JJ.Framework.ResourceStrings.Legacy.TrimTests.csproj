@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>0.253.$(BuildNum)</Version>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\ResourceStrings.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\ResourceStrings.Tests\obj\**" />
+    <Compile Remove="..\ResourceStrings.Tests\bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj" />
+    <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
+    <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
+  </ItemGroup>
+
+</Project>
+

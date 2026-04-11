@@ -1,7 +1,7 @@
 #pragma warning disable IDE0130 // Namespace != folder
 // ReSharper disable CheckNamespace
 
-namespace JJ.Framework.Mathematics.Tests;
+namespace JJ.Framework.Mathematics.Legacy.Tests;
 
 using static Double;
 

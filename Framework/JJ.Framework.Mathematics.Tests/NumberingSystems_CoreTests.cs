@@ -1,7 +1,7 @@
 #pragma warning disable IDE0130 // Namespace != folder
 #pragma warning disable IDE0048 // Paranthesize precedence
 
-namespace JJ.Framework.Mathematics.Tests;
+namespace JJ.Framework.Mathematics.Legacy.Tests;
 
 using static NumberingSystems;
 
