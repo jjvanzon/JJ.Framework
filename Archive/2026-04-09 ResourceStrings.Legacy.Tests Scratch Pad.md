@@ -172,3 +172,131 @@ internal class Untrimmer
         => new StringResourceTester<ResourceClass_ThreeParams>(
             known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertUnknownCulture();
 ```
+
+
+```cs
+
+        [Suppress("Trimmer", "IL2070", Justification = "Constructor optional")]
+        private static bool TypeIsStatic(Type type) 
+            => type.IsAbstract && 
+               type.IsSealed &&
+               type.GetConstructors().Length == 0;
+
+
+    // Non-static stubs for StringResourceTester<T> (static types can't be type arguments)
+
+    /*
+    public class GenericStub_1Arg
+    {
+        public static string Greet(string name) => $"Hello {name}";
+    }
+
+    public class GenericStub_Mixed
+    {
+        public static string Title => "Title";
+        public static string Greeting(string name) => "Hello " + name;
+        public static string Message() => "A message";
+    }
+
+    public class GenericStub_3Args
+    {
+        public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
+    }
+    */
+
+
+    // Constructors, Generic and NoLog Options
+
+    [TestMethod]
+    public void StringResourceTester_Constructor_Syntaxes_NoLog_SuppressesTraceOutput()
+    {
+        var testers = new StringResourceTester[]
+        {
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                     
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                     
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new (typeof(ResourceClass_InstanceWithInterface), new ResourceClass_InstanceWithInterface(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new (typeof(ResourceClass_InstanceWithInterface), new ResourceClass_InstanceWithInterface(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>( 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>( 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true)
+        };
+
+        foreach (var tester in testers)
+        {
+            string trace = CaptureTrace(tester.AssertAllMembers);
+            AreEqual("", trace);
+        }
+    }
+
+    [TestMethod]
+    public void StringResourceTester_Constructor_Syntaxes_WithLog_ProducesTraceOutput()
+    {
+        var testers = new StringResourceTester[]
+        {
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                     
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                    
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new (typeof(ResourceClass_InstanceWithInterface), new ResourceClass_InstanceWithInterface(),
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new (typeof(ResourceClass_InstanceWithInterface), new ResourceClass_InstanceWithInterface(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(),
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(),
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false)
+        };
+
+        foreach (var tester in testers)
+        {
+            string trace = CaptureTrace(tester.AssertAllMembers);
+            NotNullOrWhiteSpace(trace);
+        }
+    }
+
+    // Parameter Counts
+
+    [TestMethod]
+    public void StringResourceTester_Instance_0Args_ReturnsText() 
+        => CreateDefaultTester(typeof(ResourceClass_0Arg_Static)).AssertAllMembers();
+
+    [TestMethod]
+    public void StringResourceTester_Instance_1Arg_AppearsInResult() 
+        => CreateDefaultTester(typeof(ResourceClass_1Arg_StaticInstantiable)).AssertAllMembers();
+
+    [TestMethod]
+    public void StringResourceTester_Instance_2Args_AppearInResult() 
+        => CreateDefaultTester(typeof(ResourceClass_2Arg_Static)).AssertAllMembers();
+
+    [TestMethod]
+    public void StringResourceTester_Instance_3Args_AppearInResult() 
+        => CreateDefaultTester(typeof(ResourceClass_3Arg_StaticInstantiable)).AssertAllMembers();
+
+
+    // Unknown Culture Fallback (param handling)
+
+    [TestMethod]
+    public void StringResourceTester_UnknownCulture_ParamHandling()
+        => CreateDefaultTester(typeof(ResourceClass_3Arg_StaticInstantiable)).AssertUnknownCulture();
+```

@@ -7,6 +7,6 @@ internal static class Untrimmer
 {
     public static void Untrim()
     {
-        StringResourceTesterTests.ResourceClass_0Arg_Instance x = new();
+        //StringResourceTesterTests.ResourceClass_0Arg_Instance x = new();
     }
 }

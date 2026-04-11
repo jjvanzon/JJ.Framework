@@ -13,30 +13,26 @@ namespace JJ.Framework.StringResources.Legacy
             T resourceObject,
             string[] known, string unknown, string @default, NoLog nolog)
             : base(typeof(T), resourceObject, known, unknown, @default, nolog)
-        {
-        }
+        { }
 
         // ReSharper disable once UnusedParameter.Local
         /// <inheritdoc cref="StringResourceTester{T}" />
         public StringResourceTester(
             string[] known, string unknown, string @default, NoLog nolog)
             : base(typeof(T), known, unknown, @default, nolog)
-        {
-        }
+        { }
 
         /// <inheritdoc cref="StringResourceTester{T}" />
         public StringResourceTester(
             string[] known, string unknown, string @default, bool nolog = default)
             : base(typeof(T), known, unknown, @default, nolog)
-        {
-        }
+        { }
 
         /// <inheritdoc cref="StringResourceTester{T}" />
         public StringResourceTester(
             T resourceObject,
             string[] known, string unknown, string @default, bool nolog = default)
             : base(typeof(T), resourceObject, known, unknown, @default, nolog)
-        {
-        }
+        { }
     }
 }
