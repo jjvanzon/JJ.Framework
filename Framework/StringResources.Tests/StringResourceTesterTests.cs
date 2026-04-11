@@ -10,37 +10,37 @@ public class StringResourceTesterTests
 
     [TestMethod]
     public void StringResourceTester_Instance_0Args_ReturnsText() 
-        => CreateTester(typeof(ResourceClass_ZeroParams)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_ZeroParams)).AssertAllMembers();
 
     [TestMethod]
     public void StringResourceTester_Instance_1Arg_AppearsInResult() 
-        => CreateTester(typeof(ResourceClass_OneParam)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_OneParam)).AssertAllMembers();
 
     [TestMethod]
     public void StringResourceTester_Instance_2Args_AppearInResult() 
-        => CreateTester(typeof(ResourceClass_TwoParams)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_TwoParams)).AssertAllMembers();
 
     [TestMethod]
     public void StringResourceTester_Instance_3Args_AppearInResult() 
-        => CreateTester(typeof(ResourceClass_ThreeParams)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_ThreeParams)).AssertAllMembers();
 
     // Parameter Types
 
     [TestMethod]
     public void StringResourceTester_Instance_VariousParamTypes_AppearInResult() 
-        => CreateTester(typeof(ResourceClass_VariousTypes)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_VariousTypes)).AssertAllMembers();
 
     // Mixed Props and Methods
 
     [TestMethod]
     public void StringResourceTester_Instance_MixedMembersWork() 
-        => CreateTester(typeof(ResourceClass_MixedMembers)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_MixedMembers)).AssertAllMembers();
 
     // Unknown Culture Fallback (param handling)
 
     [TestMethod]
     public void StringResourceTester_UnknownCulture_ParamHandling()
-        => CreateTester(typeof(ResourceClass_ThreeParams)).AssertUnknownCulture();
+        => CreateDefaultTester(typeof(ResourceClass_ThreeParams)).AssertUnknownCulture();
 
     // Member Selection
 
@@ -58,20 +58,19 @@ public class StringResourceTesterTests
     
     [TestMethod]
     public void StringResourceTester_MissingArgVal_Throws()
-        => Throws(() => CreateTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(), "not found in result");
+        => Throws(() => CreateDefaultTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(), "not found in result");
 
     [TestMethod]
     public void StringResourceTester_WithoutExclusion_ProblematicMember_Throws()
-        => Throws(() => CreateTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(), "Problematic");
+        => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(), "Problematic");
     
-    // TODO: Oops, error hiding.
     [TestMethod]
     public void StringResourceTester_UnsupportedType_SkipsContainmentCheck() 
-        => CreateTester(typeof(ResourceClass_CustomType)).AssertAllMembers();
+        => Throws(() => CreateDefaultTester(typeof(ResourceClass_CustomType)).AssertAllMembers(), "not", "generate parameter", "of type");
 
     // Helpers
 
-    private StringResourceTester CreateTester([Dyn(PubProps|PubMethods)] Type resourceClass)
+    private StringResourceTester CreateDefaultTester([Dyn(PubProps|PubMethods)] Type resourceClass)
         => new(resourceClass, known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
 
     // Resource Classes
