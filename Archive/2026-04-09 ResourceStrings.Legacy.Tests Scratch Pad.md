@@ -131,3 +131,44 @@ internal class Untrimmer
         AreEqual("", trace);
     }
 ```
+
+
+```cs
+
+    // Generic StringResourceTester<T>
+
+    [TestMethod]
+    public void StringResourceTesterOfT_StaticMembers()
+        => new StringResourceTester<ResourceClass_OneParam>(
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
+
+    [TestMethod]
+    public void StringResourceTesterOfT_MixedMembers()
+        => new StringResourceTester<ResourceClass_MixedMembers>(
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
+
+    [TestMethod]
+    public void StringResourceTesterOfT_WithResourceObject()
+    {
+        var resourceObject = new InstanceResources();
+
+        new StringResourceTester<InstanceResources>(
+            resourceObject,
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
+    }
+
+    [TestMethod]
+    public void StringResourceTesterOfT_NoLog_SuppressesTraceOutput()
+    {
+        string trace = CaptureTrace(
+            () => new StringResourceTester<ResourceClass_OneParam>(
+                known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog).AssertAllMembers());
+
+        AreEqual("", trace);
+    }
+
+    [TestMethod]
+    public void StringResourceTesterOfT_UnknownCulture()
+        => new StringResourceTester<ResourceClass_ThreeParams>(
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertUnknownCulture();
+```

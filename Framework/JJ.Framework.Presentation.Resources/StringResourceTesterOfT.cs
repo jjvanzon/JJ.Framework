@@ -10,7 +10,7 @@ namespace JJ.Framework.StringResources.Legacy
         // ReSharper disable once UnusedParameter.Local
         /// <inheritdoc cref="StringResourceTester{T}" />
         public StringResourceTester(
-            object resourceObject,
+            T resourceObject,
             string[] known, string unknown, string @default, NoLog nolog)
             : base(typeof(T), resourceObject, known, unknown, @default, nolog)
         {
@@ -33,7 +33,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         /// <inheritdoc cref="StringResourceTester{T}" />
         public StringResourceTester(
-            object resourceObject,
+            T resourceObject,
             string[] known, string unknown, string @default, bool nolog = default)
             : base(typeof(T), resourceObject, known, unknown, @default, nolog)
         {

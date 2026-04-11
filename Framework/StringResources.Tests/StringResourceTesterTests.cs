@@ -29,7 +29,7 @@ public class StringResourceTesterTests
 
     [TestMethod]
     public void StringResourceTester_Instance_VariousParamTypes_AppearInResult() 
-        => CreateDefaultTester(typeof(ResourceClass_VariousTypes)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_VariousArgTypes)).AssertAllMembers();
 
     // Mixed Props and Methods
 
@@ -58,13 +58,11 @@ public class StringResourceTesterTests
     public void StringResourceTester_UnknownCulture_ParamHandling()
         => CreateDefaultTester(typeof(ResourceClass_ThreeParams)).AssertUnknownCulture();
 
-    // Member Selection
+    // Customization
 
     [TestMethod]
     public void StringResourceTester_Inheritance_MemberInclusion()
         => new InheritedTester_MemberInclusion().AssertAllMembers();
-
-    // Custom Value Supplier/Formatter
 
     [TestMethod]
     public void StringResourceTester_Inheritance_CustomTestValue_AppearsInResult() 
@@ -84,10 +82,10 @@ public class StringResourceTesterTests
     public void StringResourceTester_UnsupportedType_Throws() 
         => Throws(() => CreateDefaultTester(typeof(ResourceClass_CustomType)).AssertAllMembers(), "could not", "generate", "value for parameter");
 
-    // NoLog Option
+    // Constructors, Generic and NoLog Options
 
     [TestMethod]
-    public void StringResourceTester_NoLog_SuppressesTraceOutput()
+    public void StringResourceTester_Constructor_Syntaxes_NoLog_SuppressesTraceOutput()
     {
         var testers = new StringResourceTester[]
         {
@@ -98,6 +96,18 @@ public class StringResourceTesterTests
             new (typeof(InstanceResources), new InstanceResources(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
             new (typeof(InstanceResources), new InstanceResources(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new StringResourceTester<ResourceClass_OneParam>( 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new StringResourceTester<ResourceClass_OneParam>( 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new StringResourceTester<ResourceClass_OneParam>(new(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new StringResourceTester<ResourceClass_OneParam>(new(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true)
         };
 
@@ -109,7 +119,7 @@ public class StringResourceTesterTests
     }
 
     [TestMethod]
-    public void StringResourceTester_WithLog_ProducesTraceOutput()
+    public void StringResourceTester_Constructor_Syntaxes_WithLog_ProducesTraceOutput()
     {
         var testers = new StringResourceTester[]
         {
@@ -120,6 +130,18 @@ public class StringResourceTesterTests
             new (typeof(InstanceResources), new InstanceResources(),
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
             new (typeof(InstanceResources), new InstanceResources(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new StringResourceTester<ResourceClass_OneParam>(
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new StringResourceTester<ResourceClass_OneParam>(
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new StringResourceTester<ResourceClass_OneParam>(new(),
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new StringResourceTester<ResourceClass_OneParam>(new(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(),
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false)
         };
 
@@ -129,43 +151,6 @@ public class StringResourceTesterTests
             NotNullOrWhiteSpace(trace);
         }
     }
-
-    // Generic StringResourceTester<T>
-
-    [TestMethod]
-    public void StringResourceTesterOfT_StaticMembers()
-        => new StringResourceTester<GenericStub_OneParam>(
-            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
-
-    [TestMethod]
-    public void StringResourceTesterOfT_MixedMembers()
-        => new StringResourceTester<GenericStub_Mixed>(
-            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
-
-    [TestMethod]
-    public void StringResourceTesterOfT_WithResourceObject()
-    {
-        var resourceObject = new InstanceResources();
-
-        new StringResourceTester<InstanceResources>(
-            resourceObject,
-            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
-    }
-
-    [TestMethod]
-    public void StringResourceTesterOfT_NoLog_SuppressesTraceOutput()
-    {
-        string trace = CaptureTrace(
-            () => new StringResourceTester<GenericStub_OneParam>(
-                known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog).AssertAllMembers());
-
-        AreEqual("", trace);
-    }
-
-    [TestMethod]
-    public void StringResourceTesterOfT_UnknownCulture()
-        => new StringResourceTester<GenericStub_ThreeParams>(
-            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertUnknownCulture();
 
     // Helpers
 
@@ -196,7 +181,7 @@ public class StringResourceTesterTests
         public static string Greet() => "Hello";
     }
 
-    private static class ResourceClass_OneParam
+    private class ResourceClass_OneParam
     {
         public static string Greet(string name) => $"Hello {name}";
     }
@@ -206,12 +191,12 @@ public class StringResourceTesterTests
         public static string Format(string label, int count) => $"{label}: {count}";
     }
 
-    private static class ResourceClass_ThreeParams
+    private class ResourceClass_ThreeParams
     {
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
-    private static class ResourceClass_VariousTypes
+    private static class ResourceClass_VariousArgTypes
     {
         public static string WithString  (string   val) => $"Value:{val}";
         public static string WithInt     (int      val) => $"Value:{val}";
@@ -246,7 +231,7 @@ public class StringResourceTesterTests
         public static string Format(CustomArgType id) => $"Value: {id}";
     }
 
-    private static class ResourceClass_MixedMembers
+    private class ResourceClass_MixedMembers
     {
         public static string Title => "Title";
         public static string Greeting(string name) => "Hello " + name;
@@ -267,6 +252,7 @@ public class StringResourceTesterTests
 
     // Non-static stubs for StringResourceTester<T> (static types can't be type arguments)
 
+    /*
     private class GenericStub_OneParam
     {
         public static string Greet(string name) => $"Hello {name}";
@@ -283,6 +269,7 @@ public class StringResourceTesterTests
     {
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
+    */
 
     // Inherited Testers
 
