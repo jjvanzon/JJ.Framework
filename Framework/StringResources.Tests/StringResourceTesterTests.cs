@@ -5,6 +5,8 @@ namespace JJ.Framework.StringResources.Legacy.Tests;
 [TestClass]
 public class StringResourceTesterTests
 {
+    // Parameter Counts / Static/Instance / Constructors
+
     [TestMethod]
     public void StringResourceTesters_ReturnText_WithArgsInResult()
     {
@@ -36,8 +38,48 @@ public class StringResourceTesterTests
     // Parameter Types
 
     [TestMethod]
-    public void StringResourceTester_Instance_VariousArgTypes_AppearInResult() 
-        => CreateDefaultTester(typeof(ResourceClass_VariousArgTypes_Static)).AssertAllMembers();
+    public void StringResourceTester_VariousArgTypes_AppearInResult_Static()
+    {
+        var testers = ConstructTesters(typeof(ResourceClass_VariousArgTypes_Static));
+        foreach (var tester in testers)
+        {
+            tester.AssertAllMembers();
+            //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
+        }
+    }
+
+    [TestMethod]
+    public void StringResourceTester_VariousArgTypes_AppearInResult_Instance()
+    {
+        var testers = ConstructTesters<ResourceClass_VariousArgTypes_Instance>(new());
+        foreach (var tester in testers)
+        {
+            tester.AssertAllMembers();
+            //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
+        }
+    }
+
+    [TestMethod]
+    public void StringResourceTester_VariousArgTypes_AppearInResult_StaticInstantiable()
+    {
+        {
+            var testers = ConstructTesters<ResourceClass_VariousArgTypes_StaticInstantiable>();
+            foreach (var tester in testers)
+            {
+                tester.AssertAllMembers();
+                //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
+            }
+        }
+        {
+            var testers = ConstructTesters<ResourceClass_VariousArgTypes_StaticInstantiable>(new());
+            foreach (var tester in testers)
+            {
+                tester.AssertAllMembers();
+                //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
+            }
+        }
+    }
+
 
     // Mixed Props and Methods
 
@@ -305,6 +347,44 @@ public class StringResourceTesterTests
     }
 
     private static class ResourceClass_VariousArgTypes_Static
+    {
+        public static string WithString  (string   val) => $"Value:{val}";
+        public static string WithInt     (int      val) => $"Value:{val}";
+        public static string WithLong    (long     val) => $"Value:{val}";
+        public static string WithShort   (short    val) => $"Value:{val}";
+        public static string WithByte    (byte     val) => $"Value:{val}";
+        public static string WithDecimal (decimal  val) => $"Value:{val}";
+        public static string WithDouble  (double   val) => $"Value:{val}";
+        public static string WithFloat   (float    val) => $"Value:{val}";
+        public static string WithBool    (bool     val) => $"Value:{val}";
+        public static string WithChar    (char     val) => $"Value:{val}";
+        public static string WithDateTime(DateTime val) => $"Value:{val}";
+        public static string WithSByte   (sbyte    val) => $"Value:{val}";
+        public static string WithUInt16  (ushort   val) => $"Value:{val}";
+        public static string WithUInt32  (uint     val) => $"Value:{val}";
+        public static string WithUInt64  (ulong    val) => $"Value:{val}";
+    }
+
+    private class ResourceClass_VariousArgTypes_Instance
+    {
+        public string WithString  (string   val) => $"Value:{val}";
+        public string WithInt     (int      val) => $"Value:{val}";
+        public string WithLong    (long     val) => $"Value:{val}";
+        public string WithShort   (short    val) => $"Value:{val}";
+        public string WithByte    (byte     val) => $"Value:{val}";
+        public string WithDecimal (decimal  val) => $"Value:{val}";
+        public string WithDouble  (double   val) => $"Value:{val}";
+        public string WithFloat   (float    val) => $"Value:{val}";
+        public string WithBool    (bool     val) => $"Value:{val}";
+        public string WithChar    (char     val) => $"Value:{val}";
+        public string WithDateTime(DateTime val) => $"Value:{val}";
+        public string WithSByte   (sbyte    val) => $"Value:{val}";
+        public string WithUInt16  (ushort   val) => $"Value:{val}";
+        public string WithUInt32  (uint     val) => $"Value:{val}";
+        public string WithUInt64  (ulong    val) => $"Value:{val}";
+    }
+
+    private class ResourceClass_VariousArgTypes_StaticInstantiable
     {
         public static string WithString  (string   val) => $"Value:{val}";
         public static string WithInt     (int      val) => $"Value:{val}";
