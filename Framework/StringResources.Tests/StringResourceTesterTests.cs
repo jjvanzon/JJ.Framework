@@ -5,6 +5,10 @@ namespace JJ.Framework.StringResources.Legacy.Tests;
 [TestClass]
 public class StringResourceTesterTests
 {
+    private static readonly string[] _known = [ "", "nl-NL" ];
+    private const string _unknow = "de-DE";
+    private const string _default = "en-US";
+
     // Parameter Counts / Static/Instance / Constructors
 
     [TestMethod]
@@ -96,7 +100,7 @@ public class StringResourceTesterTests
 
         StringResourceTester resourceTester = new (
             typeof(ResourceClass_WithInterface), resourceObject, 
-            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
+            _known, _unknow, _default);
 
         resourceTester.AssertAllMembers();
     }
@@ -144,9 +148,9 @@ public class StringResourceTesterTests
             Trace.Listeners.Remove(listener);
         }
     }
-    
+
     private StringResourceTester CreateDefaultTester([Dyn(PubPropMethod)] Type resourceClass)
-        => new(resourceClass, known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
+        => new(resourceClass, _known, _unknow, _default);
 
     private StringResourceTester[] ConstructTesters()
     {
@@ -230,58 +234,58 @@ public class StringResourceTesterTests
 
     private StringResourceTester[] ConstructTesters([Dyn(PubPropMethod)] Type type) =>
     [
-        new StringResourceTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-        new StringResourceTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+        new StringResourceTester(type, _known, _unknow, _default),
+        new StringResourceTester(type, _known, _unknow, _default, nolog: false),
     ];
 
     private StringResourceTester[] ConstructTesters<[Dyn(PubPropMethod)] TResourceClass>() =>
     [
-        new StringResourceTester<TResourceClass>(known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-        new StringResourceTester<TResourceClass>(known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+        new StringResourceTester<TResourceClass>(_known, _unknow, _default),
+        new StringResourceTester<TResourceClass>(_known, _unknow, _default, nolog: false),
     ];
 
     private StringResourceTester[] ConstructTesters([Dyn(PubPropMethod)] Type type, object obj) =>
     [
-        new StringResourceTester(type, obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-        new StringResourceTester(type, obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+        new StringResourceTester(type, obj, _known, _unknow, _default),
+        new StringResourceTester(type, obj, _known, _unknow, _default, nolog: false),
     ];
 
     private StringResourceTester[] ConstructTesters<[Dyn(PubPropMethod)] TResourceClass>(TResourceClass obj) =>
     [
-        new StringResourceTester(typeof(TResourceClass), obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-        new StringResourceTester(typeof(TResourceClass), obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false)
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default),
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: false),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: false),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: false)
     ];
 
     private StringResourceTester[] ConstructTestersNoLog([Dyn(PubPropMethod)] Type type) =>
     [
-        new StringResourceTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-        new StringResourceTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+        new StringResourceTester(type, _known, _unknow, _default, nolog),
+        new StringResourceTester(type, _known, _unknow, _default, nolog: true),
     ];
 
     private StringResourceTester[] ConstructTestersNoLog<[Dyn(PubPropMethod)] TResourceClass>() =>
     [
-        new StringResourceTester<TResourceClass>(known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-        new StringResourceTester<TResourceClass>(known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+        new StringResourceTester<TResourceClass>(_known, _unknow, _default, nolog),
+        new StringResourceTester<TResourceClass>(_known, _unknow, _default, nolog: true),
     ];
 
     private StringResourceTester[] ConstructTestersNoLog([Dyn(PubPropMethod)] Type type, object obj) =>
     [
-        new StringResourceTester(type, obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-        new StringResourceTester(type, obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+        new StringResourceTester(type, obj, _known, _unknow, _default, nolog),
+        new StringResourceTester(type, obj, _known, _unknow, _default, nolog: true),
     ];
 
     private StringResourceTester[] ConstructTestersNoLog<[Dyn(PubPropMethod)] TResourceClass>(TResourceClass obj) =>
     [
-        new StringResourceTester(typeof(TResourceClass), obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-        new StringResourceTester(typeof(TResourceClass), obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-        new StringResourceTester       <TResourceClass> (obj, known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true)
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog),
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: true),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: true),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog),
+        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: true)
     ];
 
     // Resource Classes
@@ -443,7 +447,7 @@ public class StringResourceTesterTests
     private class InheritedTester_MemberInclusion()
         : StringResourceTester(
             typeof(ResourceClass_WithProblematic), 
-            known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
+            known: ["nl-NL", ""], _unknow, _default)
     {
         protected override bool Include(MemberInfo memberToTest)
         {
@@ -455,7 +459,7 @@ public class StringResourceTesterTests
     private class InheritedTester_WithCustomGetArg()
         : StringResourceTester(
             typeof(ResourceClass_CustomType), 
-            known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
+            known: ["nl-NL", ""], _unknow, _default)
     {
         protected override object GetArg(ParameterInfo param)
         {
