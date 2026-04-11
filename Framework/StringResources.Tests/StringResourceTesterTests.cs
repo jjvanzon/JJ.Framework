@@ -4,78 +4,78 @@
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
 [TestClass]
-public class ResourceStringTesterTests
+public class StringResourceTesterTests
 {
     // Parameter Counts
 
     [TestMethod]
-    public void ResourceStringTester_Instance_0Args_ReturnsText() 
+    public void StringResourceTester_Instance_0Args_ReturnsText() 
         => CreateTester(typeof(ResourceClass_ZeroParams)).AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_Instance_1Arg_AppearsInResult() 
+    public void StringResourceTester_Instance_1Arg_AppearsInResult() 
         => CreateTester(typeof(ResourceClass_OneParam)).AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_Instance_2Args_AppearInResult() 
+    public void StringResourceTester_Instance_2Args_AppearInResult() 
         => CreateTester(typeof(ResourceClass_TwoParams)).AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_Instance_3Args_AppearInResult() 
+    public void StringResourceTester_Instance_3Args_AppearInResult() 
         => CreateTester(typeof(ResourceClass_ThreeParams)).AssertAllMembers();
 
     // Parameter Types
 
     [TestMethod]
-    public void ResourceStringTester_Instance_VariousParamTypes_AppearInResult() 
+    public void StringResourceTester_Instance_VariousParamTypes_AppearInResult() 
         => CreateTester(typeof(ResourceClass_VariousTypes)).AssertAllMembers();
 
     // Mixed Props and Methods
 
     [TestMethod]
-    public void ResourceStringTester_Instance_MixedMembersWork() 
+    public void StringResourceTester_Instance_MixedMembersWork() 
         => CreateTester(typeof(ResourceClass_MixedMembers)).AssertAllMembers();
 
     // Unknown Culture Fallback (param handling)
 
     [TestMethod]
-    public void ResourceStringTester_UnknownCulture_ParamHandling()
+    public void StringResourceTester_UnknownCulture_ParamHandling()
         => CreateTester(typeof(ResourceClass_ThreeParams)).AssertUnknownCulture();
 
     // Member Selection
 
     [TestMethod]
-    public void ResourceStringTester_Inheritance_ExcludedMember_Skipped()
+    public void StringResourceTester_Inheritance_ExcludedMember_Skipped()
         => new InheritedTester_WithExclusion().AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_Inheritance_CustomSelection_SelectsSpecificMembers() 
+    public void StringResourceTester_Inheritance_CustomSelection_SelectsSpecificMembers() 
         => new InheritedTester_WithCustomSelection().AssertAllMembers();
 
     // Custom Value Supplier/Formatter
 
     [TestMethod]
-    public void ResourceStringTester_Inheritance_CustomTestValue_AppearsInResult() 
+    public void StringResourceTester_Inheritance_CustomTestValue_AppearsInResult() 
         => new InheritedTester_WithCustomGetArg().AssertAllMembers();
 
     // Failure Cases
     
     [TestMethod]
-    public void ResourceStringTester_MissingArgVal_Throws()
+    public void StringResourceTester_MissingArgVal_Throws()
         => Throws(() => CreateTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(), "not found in result");
 
     [TestMethod]
-    public void ResourceStringTester_WithoutExclusion_ProblematicMember_Throws()
+    public void StringResourceTester_WithoutExclusion_ProblematicMember_Throws()
         => Throws(() => CreateTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(), "Problematic");
     
     // TODO: Oops, error hiding.
     [TestMethod]
-    public void ResourceStringTester_UnsupportedType_SkipsContainmentCheck() 
+    public void StringResourceTester_UnsupportedType_SkipsContainmentCheck() 
         => CreateTester(typeof(ResourceClass_CustomType)).AssertAllMembers();
 
     // Helpers
 
-    private ResourceStringTester CreateTester([Dyn(PubProps|PubMethods)] Type resourceClass)
+    private StringResourceTester CreateTester([Dyn(PubProps|PubMethods)] Type resourceClass)
         => new(resourceClass, known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
 
     // Resource Classes
@@ -139,7 +139,7 @@ public class ResourceStringTesterTests
     // Inherited Testers
 
     private class InheritedTester_WithExclusion()
-        : ResourceStringTester(
+        : StringResourceTester(
             typeof(ResourceClass_WithProblematic), 
             known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
@@ -151,7 +151,7 @@ public class ResourceStringTesterTests
     }
 
     private class InheritedTester_WithCustomSelection()
-        : ResourceStringTester(
+        : StringResourceTester(
             typeof(ResourceClass_WithProblematic), 
             known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
@@ -162,7 +162,7 @@ public class ResourceStringTesterTests
     }
 
     private class InheritedTester_WithCustomGetArg()
-        : ResourceStringTester(
+        : StringResourceTester(
             typeof(ResourceClass_CustomType), 
             known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {

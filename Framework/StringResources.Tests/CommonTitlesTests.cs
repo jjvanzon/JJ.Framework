@@ -4,7 +4,7 @@ using static CommonTitles;
 
 [TestClass]
 public class CommonTitlesTests() 
-    : ResourceStringTester(
+    : StringResourceTester(
         typeof(CommonTitles), 
         known: ["en-US", "nl-NL"], 
         unknown: "de-DE", 

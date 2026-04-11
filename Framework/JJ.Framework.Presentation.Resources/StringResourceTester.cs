@@ -19,7 +19,7 @@ namespace JJ.Framework.StringResources.Legacy
     /// <code>
     /// An implementation might look something like:
     /// [TestClass]
-    /// public class CommonResourceFormatterTests : ResourceStringTester
+    /// public class CommonResourceFormatterTests : StringResourceTester
     /// {
     ///   public CommonResourceFormatterTests()
     ///     : base(
@@ -38,7 +38,7 @@ namespace JJ.Framework.StringResources.Legacy
     /// }
     /// </code>
     /// </summary>
-    public class ResourceStringTester
+    public class StringResourceTester
     {
         [Dyn(PubProps|PubMethods)] 
         private readonly Type _resourceClass;
@@ -48,8 +48,8 @@ namespace JJ.Framework.StringResources.Legacy
 
         // Init
 
-        /// <inheritdoc cref="ResourceStringTester" />
-        public ResourceStringTester
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester
             ([Dyn(PubProps|PubMethods)] Type resourceClass, string[] known, string unknown, string @default)
         {
             _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));

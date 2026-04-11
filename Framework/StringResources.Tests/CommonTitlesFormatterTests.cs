@@ -4,7 +4,7 @@ using static CommonTitlesFormatter;
 
 [TestClass]
 public class CommonTitlesFormatterTests() 
-    : ResourceStringTester(
+    : StringResourceTester(
         typeof(CommonTitlesFormatter),
         @default: "",
         known: ["en-US", "nl-NL"],
