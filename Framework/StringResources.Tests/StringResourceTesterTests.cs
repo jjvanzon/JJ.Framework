@@ -39,7 +39,7 @@ public class StringResourceTesterTests
     // Instance Resource Object
 
     [TestMethod]
-    public void StringResourceTester_InstanceResourceClassWithInterface()
+    public void StringResourceTester_InstanceResourceClass_WithInterface()
     {
         IResources resourceObject = new ResourceClass_InstanceWithInterface();
 
@@ -80,7 +80,7 @@ public class StringResourceTesterTests
         => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(), "Problematic");
     
     [TestMethod]
-    public void StringResourceTester_UnsupportedType_SkipsContainmentCheck() 
+    public void StringResourceTester_UnsupportedType_Throws() 
         => Throws(() => CreateDefaultTester(typeof(ResourceClass_CustomType)).AssertAllMembers(), "could not", "generate", "value for parameter");
 
     // Helpers

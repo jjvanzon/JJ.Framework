@@ -289,7 +289,9 @@ namespace JJ.Framework.StringResources.Legacy
 
         private void Log(string message)
         {
-            if (!_loggingEnabled) return;
+            if (!_loggingEnabled)
+                return;
+
             Trace.WriteLine(message);
         }
 
@@ -297,7 +299,7 @@ namespace JJ.Framework.StringResources.Legacy
             => @"""" + text + @"""";
 
         private static string FormatMethod(MethodInfo method, object[] args) 
-            => $"{method?.Name}({Join(", ", args.Select(x => FormatArg(x)))})";
+            => $"{method?.Name}({Join(", ", args.Select(FormatArg))})";
 
         private static string FormatArg(object arg)
         {
