@@ -1,5 +1,6 @@
 // ReSharper disable UnusedMember.Local
 // ReSharper disable UnusedParameter.Local
+// ReSharper disable UnusedMember.Global
 
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
@@ -129,6 +130,43 @@ public class StringResourceTesterTests
         }
     }
 
+    // Generic StringResourceTester<T>
+
+    [TestMethod]
+    public void StringResourceTesterOfT_StaticMembers()
+        => new StringResourceTester<GenericStub_OneParam>(
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
+
+    [TestMethod]
+    public void StringResourceTesterOfT_MixedMembers()
+        => new StringResourceTester<GenericStub_Mixed>(
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
+
+    [TestMethod]
+    public void StringResourceTesterOfT_WithResourceObject()
+    {
+        var resourceObject = new InstanceResources();
+
+        new StringResourceTester<InstanceResources>(
+            resourceObject,
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertAllMembers();
+    }
+
+    [TestMethod]
+    public void StringResourceTesterOfT_NoLog_SuppressesTraceOutput()
+    {
+        string trace = CaptureTrace(
+            () => new StringResourceTester<GenericStub_OneParam>(
+                known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog).AssertAllMembers());
+
+        AreEqual("", trace);
+    }
+
+    [TestMethod]
+    public void StringResourceTesterOfT_UnknownCulture()
+        => new StringResourceTester<GenericStub_ThreeParams>(
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US").AssertUnknownCulture();
+
     // Helpers
 
     private StringResourceTester CreateDefaultTester([Dyn(PubProps|PubMethods)] Type resourceClass)
@@ -225,6 +263,25 @@ public class StringResourceTesterTests
     {
         string Title { get; }
         string Greeting(string name);
+    }
+
+    // Non-static stubs for StringResourceTester<T> (static types can't be type arguments)
+
+    private class GenericStub_OneParam
+    {
+        public static string Greet(string name) => $"Hello {name}";
+    }
+
+    private class GenericStub_Mixed
+    {
+        public static string Title => "Title";
+        public static string Greeting(string name) => "Hello " + name;
+        public static string Message() => "A message";
+    }
+
+    private class GenericStub_ThreeParams
+    {
+        public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
     // Inherited Testers
