@@ -36,6 +36,21 @@ public class StringResourceTesterTests
     public void StringResourceTester_Instance_MixedMembersWork() 
         => CreateDefaultTester(typeof(ResourceClass_MixedMembers)).AssertAllMembers();
 
+    // Instance Resource Object
+
+    [TestMethod]
+    public void StringResourceTester_InstanceResourceClassWithInterface()
+    {
+        IResources resourceObject = new ResourceClass_InstanceWithInterface();
+
+        StringResourceTester resourceTester = new (
+            typeof(ResourceClass_InstanceWithInterface), resourceObject, 
+            known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
+
+        resourceTester.AssertAllMembers();
+    }
+
+
     // Unknown Culture Fallback (param handling)
 
     [TestMethod]
@@ -133,8 +148,20 @@ public class StringResourceTesterTests
     private static class ResourceClass_MixedMembers
     {
         public static string Title => "Title";
-        public static string GetGreeting(string name) => $"Hello {name}";
-        public static string GetMessage() => "A message";
+        public static string Greeting(string name) => "Hello " + name;
+        public static string Message() => "A message";
+    }
+
+    private class ResourceClass_InstanceWithInterface : IResources
+    {
+        public string Title => "Title";
+        public string Greeting(string name) => "Hello " + name;
+    }
+
+    private interface IResources
+    {
+        string Title { get; }
+        string Greeting(string name);
     }
 
     // Inherited Testers
