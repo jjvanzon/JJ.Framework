@@ -756,6 +756,18 @@
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\StringResources.TrimTests\JJ.Framework.StringResources.Legacy.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\StringResources.TrimTests\JJ.Framework.StringResources.Legacy.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\StringResources.TrimTests\JJ.Framework.StringResources.Legacy.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\StringResources.TrimTests\JJ.Framework.StringResources.Legacy.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\StringResources.TrimTests\JJ.Framework.StringResources.Legacy.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\StringResources.TrimTests\JJ.Framework.StringResources.Legacy.TrimTests.csproj:net9.0</Value>
+      <Value>Framework\StringResources.Tests\JJ.Framework.StringResources.Legacy.Tests.csproj:net461\..</Value>
+      <Value>Framework\StringResources.Tests\JJ.Framework.StringResources.Legacy.Tests.csproj:net5.0\..</Value>
+      <Value>Framework\StringResources.Tests\JJ.Framework.StringResources.Legacy.Tests.csproj:net6.0\..</Value>
+      <Value>Framework\StringResources.Tests\JJ.Framework.StringResources.Legacy.Tests.csproj:net7.0\..</Value>
+      <Value>Framework\StringResources.Tests\JJ.Framework.StringResources.Legacy.Tests.csproj:net8.0\..</Value>
+      <Value>Framework\StringResources.Tests\JJ.Framework.StringResources.Legacy.Tests.csproj:net9.0\..</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
