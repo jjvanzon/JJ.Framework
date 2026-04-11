@@ -70,7 +70,7 @@ public class StringResourceTesterTests
         => new InheritedTester_WithCustomGetArg().AssertAllMembers();
 
     // Failure Cases
-    
+
     [TestMethod]
     public void StringResourceTester_MissingArgVal_Throws()
         => Throws(() => CreateDefaultTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(), "not found in result");
@@ -78,15 +78,72 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_WithoutExclusion_ProblematicMember_Throws()
         => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(), "Problematic");
-    
+
     [TestMethod]
     public void StringResourceTester_UnsupportedType_Throws() 
         => Throws(() => CreateDefaultTester(typeof(ResourceClass_CustomType)).AssertAllMembers(), "could not", "generate", "value for parameter");
+
+    // NoLog Option
+
+    [TestMethod]
+    public void StringResourceTester_NoLog_SuppressesTraceOutput()
+    {
+        var tester = new StringResourceTester(
+            typeof(ResourceClass_OneParam),
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog);
+
+        string trace = CaptureTrace(() => tester.AssertAllMembers());
+
+        AreEqual("", trace);
+    }
+
+    [TestMethod]
+    public void StringResourceTester_Default_ProducesTraceOutput()
+    {
+        var tester = new StringResourceTester(
+            typeof(ResourceClass_OneParam),
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US");
+
+        string trace = CaptureTrace(() => tester.AssertAllMembers());
+
+        NotNullOrWhiteSpace(trace);
+    }
+
+    [TestMethod]
+    public void StringResourceTester_NoLog_WithResourceObject_SuppressesTraceOutput()
+    {
+        IResources resourceObject = new ResourceClass_InstanceWithInterface();
+
+        var tester = new StringResourceTester(
+            typeof(ResourceClass_InstanceWithInterface), resourceObject,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog);
+
+        string trace = CaptureTrace(() => tester.AssertAllMembers());
+
+        AreEqual("", trace);
+    }
 
     // Helpers
 
     private StringResourceTester CreateDefaultTester([Dyn(PubProps|PubMethods)] Type resourceClass)
         => new(resourceClass, known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
+
+    private static string CaptureTrace(Action action)
+    {
+        using var writer = new StringWriter();
+        var listener = new TextWriterTraceListener(writer);
+        Trace.Listeners.Add(listener);
+        try
+        {
+            action();
+            Trace.Flush();
+            return writer.ToString().Trim();
+        }
+        finally
+        {
+            Trace.Listeners.Remove(listener);
+        }
+    }
 
     // Resource Classes
 

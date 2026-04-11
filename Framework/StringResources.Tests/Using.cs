@@ -1,3 +1,4 @@
+global using System.Diagnostics;
 global using System.Globalization;
 global using System.Reflection;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,3 +10,4 @@ global using JJ.Framework.StringResources.Legacy.Tests;
 global using static System.Console;
 global using static System.Environment;
 global using static JJ.Framework.Testing.Core.TestRunner;
+global using static JJ.Framework.StringResources.Legacy.NoLog;
