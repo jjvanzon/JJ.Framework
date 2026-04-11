@@ -168,21 +168,21 @@ namespace JJ.Framework.StringResources.Legacy
         {
             return Type.GetTypeCode(parameterType) switch
             {
+                TypeCode.Int32    =>          101  + index,
+                TypeCode.Int64    =>          101l + index,
+                TypeCode.Decimal  =>          101m + index,
+                TypeCode.Double   =>          101d + index,
+                TypeCode.Single   =>          101f + index,
+                TypeCode.Int16    =>  (short)(101  + index),
+                TypeCode.Byte     =>   (byte)(101  + index),
+                TypeCode.Char     =>   (char)(101  + index),
+                TypeCode.SByte    =>  (sbyte)(101  + index),
+                TypeCode.UInt16   => (ushort)(101  + index),
+                TypeCode.UInt32   =>   (uint)(101  + index),
+                TypeCode.UInt64   =>  (ulong)(101  + index),
                 TypeCode.Boolean  => index % 2 == 0,
                 TypeCode.String   => $"Param{index}",
-                TypeCode.Int32    => 101 + index,
-                TypeCode.Int64    => 101L + index,
-                TypeCode.Int16    => (short)(101 + index),
-                TypeCode.Byte     => (byte)(101 + index),
-                TypeCode.Decimal  => 101m + index,
-                TypeCode.Double   => 101d + index,
-                TypeCode.Single   => 101f + index,
-                TypeCode.Char     => (char)(101 + index),
                 TypeCode.DateTime => new DateTime(2000 + index, 1, 1),
-                TypeCode.SByte    => (char)index,
-                TypeCode.UInt16   => 101 + index,
-                TypeCode.UInt32   => 101 + index,
-                TypeCode.UInt64   => 101 + index,
                 _ => throw new Exception(
                     $"Could not automatically generate parameter value of type '{parameterType?.Name}'. " +
                     $"Override Include or GetArg to include/exclude members or to provide a value.")

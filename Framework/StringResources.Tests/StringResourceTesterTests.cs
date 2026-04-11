@@ -97,15 +97,21 @@ public class StringResourceTesterTests
 
     private static class ResourceClass_VariousTypes
     {
-        public static string WithString (string  val) => $"Value:{val}";
-        public static string WithInt    (int     val) => $"Value:{val}";
-        public static string WithLong   (long    val) => $"Value:{val}";
-        public static string WithShort  (short   val) => $"Value:{val}";
-        public static string WithByte   (byte    val) => $"Value:{val}";
-        public static string WithDecimal(decimal val) => $"Value:{val}";
-        public static string WithDouble (double  val) => $"Value:{val}";
-        public static string WithFloat  (float   val) => $"Value:{val}";
-        public static string WithBool   (bool    val) => $"Value:{val}";
+        public static string WithString  (string   val) => $"Value:{val}";
+        public static string WithInt     (int      val) => $"Value:{val}";
+        public static string WithLong    (long     val) => $"Value:{val}";
+        public static string WithShort   (short    val) => $"Value:{val}";
+        public static string WithByte    (byte     val) => $"Value:{val}";
+        public static string WithDecimal (decimal  val) => $"Value:{val}";
+        public static string WithDouble  (double   val) => $"Value:{val}";
+        public static string WithFloat   (float    val) => $"Value:{val}";
+        public static string WithBool    (bool     val) => $"Value:{val}";
+        public static string WithChar    (char     val) => $"Value:{val}";
+        public static string WithDateTime(DateTime val) => $"Value:{val}";
+        public static string WithSByte   (sbyte    val) => $"Value:{val}";
+        public static string WithUInt16  (ushort   val) => $"Value:{val}";
+        public static string WithUInt32  (uint     val) => $"Value:{val}";
+        public static string WithUInt64  (ulong    val) => $"Value:{val}";
     }
 
     private static class ResourceClass_MissingParam
