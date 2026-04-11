@@ -9,3 +9,4 @@ global using static System.Reflection.BindingFlags;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.StringResources.Legacy.CultureHelper;
 global using static JJ.Framework.StringResources.Legacy.AssertHelper;
+global using static JJ.Framework.StringResources.Legacy.NoLog;

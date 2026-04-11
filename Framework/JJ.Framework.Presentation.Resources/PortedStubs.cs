@@ -1,4 +1,6 @@
-﻿// ReSharper disable ConvertToExtensionBlock
+﻿// Ported from "The King": legacy branch HEAD
+
+// ReSharper disable ConvertToExtensionBlock
 
 namespace JJ.Framework.StringResources.Legacy;
 

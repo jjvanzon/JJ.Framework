@@ -1,8 +1,7 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
-// ReSharper disable UnusedVariable
-
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.StringResources.Legacy
 {
@@ -40,17 +39,18 @@ namespace JJ.Framework.StringResources.Legacy
     /// </summary>
     public class StringResourceTester
     {
-        [Dyn(PubProps|PubMethods)] 
+        [Dyn(PubProps|PubMethods)]
         private readonly Type _resourceClass;
         private readonly object? _resourceObject;
         private readonly string _defaultCultureName;
         private readonly string[] _knownCultureNames;
         private readonly string _unknownCultureName;
+        private readonly bool _loggingEnabled;
 
         public StringResourceTester(
             [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject, 
-            string[] known, string unknown, string @default)
-            : this(resourceClass, known, unknown, @default)
+            string[] known, string unknown, string @default, NoLog nolog = dolog)
+            : this(resourceClass, known, unknown, @default, nolog)
         {
             _resourceObject = resourceObject ?? throw new ArgumentNullException(nameof(resourceObject));
         }
@@ -59,13 +59,15 @@ namespace JJ.Framework.StringResources.Legacy
 
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester
-            ([Dyn(PubProps|PubMethods)] Type resourceClass, string[] known, string unknown, string @default)
+            ([Dyn(PubProps|PubMethods)] Type resourceClass, 
+                string[] known, string unknown, string @default, NoLog nolog = dolog)
         {
             _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));
             _defaultCultureName = @default ?? "";
             _knownCultureNames = PopulateKnownCultureNames(@default, known);
             _unknownCultureName = unknown ?? "";
-            
+            _loggingEnabled = true;
+            if (nolog == NoLog.nolog) _loggingEnabled = false;
         }
 
         private static string[] PopulateKnownCultureNames(string @default, string[] known)
@@ -272,24 +274,44 @@ namespace JJ.Framework.StringResources.Legacy
 
         // Log
 
-        private static void LogCulture(string cultureName)
+        private void LogCulture(string cultureName)
         {
-            Trace.WriteLine("");
-            Trace.WriteLine($"{FormatCulture(cultureName)}:");
-            Trace.WriteLine("");
+            Log("");
+            Log($"{FormatCulture(cultureName)}:");
+            Log("");
         }
 
-        private static void LogProp(PropertyInfo prop, string text) 
-            => Trace.WriteLine($"Prop {prop.Name} = {FormatText(text)} ({FormatCulture()})");
+        private void LogProp(PropertyInfo prop, string text) 
+            => Log($"Prop {prop.Name} = {FormatText(text)} ({FormatCulture()})");
 
-        private static void LogMethod(MethodInfo method, object[] args, string text) 
-            => Trace.WriteLine($"Method {FormatMethod(method, args)} => {FormatText(text)} ({FormatCulture()})");
+        private void LogMethod(MethodInfo method, object[] args, string text) 
+            => Log($"Method {FormatMethod(method, args)} => {FormatText(text)} ({FormatCulture()})");
+
+        private void Log(string message)
+        {
+            if (!_loggingEnabled) return;
+            Trace.WriteLine(message);
+        }
 
         private static string FormatText(string text) 
             => @"""" + text + @"""";
 
         private static string FormatMethod(MethodInfo method, object[] args) 
-            => $"{method?.Name}({Join(", ", args.Select(x => x?.ToString() ?? "null"))})";
+            => $"{method?.Name}({Join(", ", args.Select(x => FormatArg(x)))})";
+
+        private static string FormatArg(object arg)
+        {
+            if (arg == null) return "null";
+            if (arg is string)
+            {
+                return @"""" + arg + @"""";
+            }
+            if (arg is char)
+            {
+                return $"'{arg}'";
+            }
+            return $"{arg}";
+        }
 
         private static string FormatCulture()
             => FormatCulture(GetCurrentCulture()?.Name);
