@@ -14,16 +14,13 @@ public class CommonTitlesTests()
     private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
 
     [TestMethod]
-    public void CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
-        => AssertAllMembers();
+    public void CommonTitles_AllMembers_ReturnText() => AssertAllMembers();
     
     [TestMethod]
-    public void CommonTitles_UnknownCulture_DefaultsToEnUS() 
-        => AssertUnknownCulture();
+    public void CommonTitles_UnknownCulture_DefaultsToEnUS() => AssertUnknownCulture();
 
     [TestMethod]
-    public void CommonTitles_ResourceManager_IsNotNull() 
-        => IsNotNull(ResourceManager);
+    public void CommonTitles_ResourceManager_IsNotNull() => IsNotNull(ResourceManager);
 
     [TestMethod]
     public void CommonTitles_CheckExactText_InvariantCulture()

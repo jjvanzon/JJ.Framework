@@ -45,29 +45,53 @@ namespace JJ.Framework.StringResources.Legacy
         private readonly string _defaultCultureName;
         private readonly string[] _knownCultureNames;
         private readonly string _unknownCultureName;
-        private readonly bool _loggingEnabled;
-
-        public StringResourceTester(
-            [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject, 
-            string[] known, string unknown, string @default, NoLog nolog = dolog)
-            : this(resourceClass, known, unknown, @default, nolog)
-        {
-            _resourceObject = resourceObject ?? throw new ArgumentNullException(nameof(resourceObject));
-        }
+        private readonly bool _nolog;
 
         // Init
 
+        // ReSharper disable once UnusedParameter.Local
         /// <inheritdoc cref="StringResourceTester" />
-        public StringResourceTester
-            ([Dyn(PubProps|PubMethods)] Type resourceClass, 
-                string[] known, string unknown, string @default, NoLog nolog = dolog)
+        public StringResourceTester(
+            [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject, 
+            string[] known, string unknown, string @default, NoLog nolog)
+            : this(
+                resourceClass, resourceObject, 
+                known, unknown, @default, nolog: true)
+        {
+        }
+
+        // ReSharper disable once UnusedParameter.Local
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            [Dyn(PubProps|PubMethods)] Type resourceClass, 
+            string[] known, string unknown, string @default, NoLog nolog)
+            : this(
+                resourceClass, resourceObject: null, 
+                known, unknown, @default, nolog: true)
+        {
+        }
+
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            [Dyn(PubProps|PubMethods)] Type resourceClass,
+            string[] known, string unknown, string @default, bool nolog = default)
+            : this(
+                resourceClass, resourceObject: null, 
+                known, unknown, @default, nolog)
+        {
+        }
+
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject,
+            string[] known, string unknown, string @default, bool nolog = default)
         {
             _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));
+            _resourceObject = resourceObject;
             _defaultCultureName = @default ?? "";
             _knownCultureNames = PopulateKnownCultureNames(@default, known);
             _unknownCultureName = unknown ?? "";
-            _loggingEnabled = true;
-            if (nolog == NoLog.nolog) _loggingEnabled = false;
+            _nolog = nolog;
         }
 
         private static string[] PopulateKnownCultureNames(string @default, string[] known)
@@ -289,7 +313,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         private void Log(string message)
         {
-            if (!_loggingEnabled)
+            if (_nolog)
                 return;
 
             Trace.WriteLine(message);
