@@ -66,7 +66,7 @@ public class StringResourceTesterTests
     
     [TestMethod]
     public void StringResourceTester_UnsupportedType_SkipsContainmentCheck() 
-        => Throws(() => CreateDefaultTester(typeof(ResourceClass_CustomType)).AssertAllMembers(), "not", "generate parameter", "of type");
+        => Throws(() => CreateDefaultTester(typeof(ResourceClass_CustomType)).AssertAllMembers(), "could not", "generate", "value for parameter");
 
     // Helpers
 
@@ -156,14 +156,14 @@ public class StringResourceTesterTests
             typeof(ResourceClass_CustomType), 
             known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
-        protected override object GetArg(Type parameterType, int index)
+        protected override object GetArg(ParameterInfo param)
         {
-            if (parameterType == typeof(CustomArgType))
+            if (param.ParameterType == typeof(CustomArgType))
             {
-                return new CustomArgType(42 + index);
+                return new CustomArgType(42 + param.Position);
             }
 
-            return base.GetArg(parameterType, index);
+            return base.GetArg(param);
         }
     }
 

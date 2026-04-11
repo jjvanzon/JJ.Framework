@@ -42,9 +42,18 @@ namespace JJ.Framework.StringResources.Legacy
     {
         [Dyn(PubProps|PubMethods)] 
         private readonly Type _resourceClass;
+        private readonly object? _resourceObject;
         private readonly string _defaultCultureName;
         private readonly string[] _knownCultureNames;
         private readonly string _unknownCultureName;
+
+        public StringResourceTester(
+            [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject, 
+            string[] known, string unknown, string @default)
+            : this(resourceClass, known, unknown, @default)
+        {
+            _resourceObject = resourceObject ?? throw new ArgumentNullException(nameof(resourceObject));
+        }
 
         // Init
 
@@ -131,9 +140,9 @@ namespace JJ.Framework.StringResources.Legacy
         {
             if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
 
-            var props = resourceClass.GetProperties(Static | Public);
+            var props = resourceClass.GetProperties(Static | Instance | Public);
 
-            var methods = resourceClass.GetMethods(Static | Public)
+            var methods = resourceClass.GetMethods(Static | Instance | Public)
                                        .Where(x => !x.IsProperty());
 
             var members = props.Union<MemberInfo>(methods)
@@ -142,10 +151,15 @@ namespace JJ.Framework.StringResources.Legacy
                                .ToArray();
             return members;
         }
-              
+        
         protected virtual bool Include(MemberInfo memberToTest)
         {
             if (memberToTest == null) throw new ArgumentNullException(nameof(memberToTest));
+           
+            if (memberToTest.DeclaringType == typeof(object))
+            {
+                return false;
+            }
 
             if (string.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
             {
@@ -164,27 +178,29 @@ namespace JJ.Framework.StringResources.Legacy
         /// Creates a test value for a parameter of the given type.
         /// Override to support additional parameter types.
         /// </summary>
-        protected virtual object GetArg(Type parameterType, int index)
+        protected virtual object GetArg(ParameterInfo param)
         {
-            return Type.GetTypeCode(parameterType) switch
+            if (param == null) throw new ArgumentNullException(nameof(param));
+
+            return Type.GetTypeCode(param.ParameterType) switch
             {
-                TypeCode.Int32    =>          101  + index,
-                TypeCode.Int64    =>          101l + index,
-                TypeCode.Decimal  =>          101m + index,
-                TypeCode.Double   =>          101d + index,
-                TypeCode.Single   =>          101f + index,
-                TypeCode.Int16    =>  (short)(101  + index),
-                TypeCode.Byte     =>   (byte)(101  + index),
-                TypeCode.Char     =>   (char)(101  + index),
-                TypeCode.SByte    =>  (sbyte)(101  + index),
-                TypeCode.UInt16   => (ushort)(101  + index),
-                TypeCode.UInt32   =>   (uint)(101  + index),
-                TypeCode.UInt64   =>  (ulong)(101  + index),
-                TypeCode.Boolean  => index % 2 == 0,
-                TypeCode.String   => $"Param{index}",
-                TypeCode.DateTime => new DateTime(2000 + index, 1, 1),
+                TypeCode.Int32    =>          101  + param.Position,
+                TypeCode.Int64    =>          101l + param.Position,
+                TypeCode.Decimal  =>          101m + param.Position,
+                TypeCode.Double   =>          101d + param.Position,
+                TypeCode.Single   =>          101f + param.Position,
+                TypeCode.Int16    =>  (short)(101  + param.Position),
+                TypeCode.Byte     =>   (byte)(101  + param.Position),
+                TypeCode.Char     =>   (char)(101  + param.Position),
+                TypeCode.SByte    =>  (sbyte)(101  + param.Position),
+                TypeCode.UInt16   => (ushort)(101  + param.Position),
+                TypeCode.UInt32   =>   (uint)(101  + param.Position),
+                TypeCode.UInt64   =>  (ulong)(101  + param.Position),
+                TypeCode.Boolean  => param.Position % 2 == 0,
+                TypeCode.String   => $"arg{param.Position}",
+                TypeCode.DateTime => new DateTime(2000 + param.Position, 1, 1),
                 _ => throw new Exception(
-                    $"Could not automatically generate parameter value of type '{parameterType?.Name}'. " +
+                    $"Could not automatically generate value for parameter '{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
                     $"Override Include or GetArg to include/exclude members or to provide a value.")
             };
         }
@@ -209,9 +225,9 @@ namespace JJ.Framework.StringResources.Legacy
         /// <summary>
         /// Aims to assert that the property is of type string and what it might return would not be null or white space.
         /// </summary>
-        private static string AssertResourceProp(PropertyInfo prop)
+        private string AssertResourceProp(PropertyInfo prop)
         {
-            object val = prop.GetValue();
+            object val = prop.GetValue(_resourceObject);
             IsOfType<string>(() => val, prop.Name);
             var text = (string)val;
             NotNullOrWhiteSpace(() => text, prop.Name);
@@ -230,19 +246,19 @@ namespace JJ.Framework.StringResources.Legacy
 
             for (int i = 0; i < parameters.Length; i++)
             {
-                args[i] = GetArg(parameters[i].ParameterType, i);
+                args[i] = GetArg(parameters[i]);
             }
 
-            object ret = method.Invoke(args);
+            object ret = method.Invoke(_resourceObject, args);
             IsOfType<string>(() => ret, method.Name);
-            var text = (string)ret;
+            string text = (string)ret;
             NotNullOrWhiteSpace(() => text, method.Name);
 
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) continue;
                 string argString = args[i].ToString();
-                if (!text.Contains(argString))
+                if (!text!.Contains(argString))
                 {
                     throw new Exception(
                         $"Method {method.Name}: parameter '{parameters[i].Name}' " +

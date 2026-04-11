@@ -98,4 +98,22 @@ internal class Untrimmer
                    .ToArray();
     }
 
+
+    if (string.Equals(memberToTest.Name, "Equals", OrdinalIgnoreCase))
+    {
+        return false;
+    }
+
+    /// <inheritdoc cref="_portedstubs" />
+    public static object GetValue(this PropertyInfo prop)
+    {
+        return prop.GetValue(null);
+    }
+
+    /// <inheritdoc cref="_portedstubs" />
+    public static object Invoke(this MethodBase method, object[] parameters)
+    {
+        return method.Invoke(null, parameters);
+    }
+
 ```

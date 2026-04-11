@@ -49,18 +49,6 @@ internal static class AssertHelper
 internal static class ReflectionExtensions
 {
     /// <inheritdoc cref="_portedstubs" />
-    public static object GetValue(this PropertyInfo prop)
-    {
-        return prop.GetValue(null);
-    }
-
-    /// <inheritdoc cref="_portedstubs" />
-    public static object Invoke(this MethodBase method, object[] parameters)
-    {
-        return method.Invoke(null, parameters);
-    }
-
-    /// <inheritdoc cref="_portedstubs" />
     public static bool IsProperty(this MethodBase method)
     {
         return method.Name.StartsWith("get_") ||
