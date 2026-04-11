@@ -1,7 +1,7 @@
 // ReSharper disable UnusedMember.Local
 // ReSharper disable UnusedParameter.Local
 
-namespace JJ.Framework.ResourceStrings.Legacy.Tests;
+namespace JJ.Framework.StringResources.Legacy.Tests;
 
 [TestClass]
 public class ResourceStringTesterTests

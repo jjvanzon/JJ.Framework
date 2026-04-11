@@ -1,11 +1,11 @@
 ﻿global using System.Reflection;
 global using System.Globalization;
 global using System.Diagnostics;
-global using JJ.Framework.ResourceStrings.Legacy.docs;
+global using JJ.Framework.StringResources.Legacy.docs;
 global using static System.StringComparison;
 global using static System.String;
 global using static System.Threading.Thread;
 global using static System.Reflection.BindingFlags;
 global using static System.Globalization.CultureInfo;
-global using static JJ.Framework.ResourceStrings.Legacy.CultureHelper;
-global using static JJ.Framework.ResourceStrings.Legacy.AssertHelper;
+global using static JJ.Framework.StringResources.Legacy.CultureHelper;
+global using static JJ.Framework.StringResources.Legacy.AssertHelper;

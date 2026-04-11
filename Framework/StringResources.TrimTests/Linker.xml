@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <linker>
-  <assembly fullname="JJ.Framework.ResourceStrings.Legacy.TrimTests">
+  <assembly fullname="JJ.Framework.StringResources.Legacy.TrimTests">
     <type fullname="Program" preserve="all">
       <method name="&lt;Main&gt;$" />
     </type>

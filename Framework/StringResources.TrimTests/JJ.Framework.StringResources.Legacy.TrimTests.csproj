@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\ResourceStrings.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\ResourceStrings.Tests\obj\**" />
-    <Compile Remove="..\ResourceStrings.Tests\bin\**" />
+    <Compile Include="..\StringResources.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\StringResources.Tests\obj\**" />
+    <Compile Remove="..\StringResources.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
     <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />

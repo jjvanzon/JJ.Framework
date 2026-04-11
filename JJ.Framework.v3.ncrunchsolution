@@ -744,13 +744,13 @@
       <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net6.0\..</Value>
       <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net7.0\..</Value>
       <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net8.0\..</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj:net10.0\..</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj:net6.0\..</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj:net7.0\..</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj:net8.0\..</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj:net9.0\..</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj:netstandard2.0\..</Value>
-      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj:netstandard2.1\..</Value>
+      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj:net10.0\..</Value>
+      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj:net6.0\..</Value>
+      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj:net7.0\..</Value>
+      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj:net8.0\..</Value>
+      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj:net9.0\..</Value>
+      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj:netstandard2.0\..</Value>
+      <Value>Framework\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj:netstandard2.1\..</Value>
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net9.0</Value>

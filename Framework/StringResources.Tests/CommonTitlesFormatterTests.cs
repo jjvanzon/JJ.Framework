@@ -1,4 +1,4 @@
-namespace JJ.Framework.ResourceStrings.Legacy.Tests;
+namespace JJ.Framework.StringResources.Legacy.Tests;
 
 using static CommonTitlesFormatter;
 

@@ -3,7 +3,7 @@
 // ReSharper disable CheckNamespace
 // ReSharper disable UnusedType.Global
 
-namespace JJ.Framework.ResourceStrings.Legacy.docs;
+namespace JJ.Framework.StringResources.Legacy.docs;
 
 /// <summary>
 /// Ported stubs prevent making more changes than necessary and prevent porting more code

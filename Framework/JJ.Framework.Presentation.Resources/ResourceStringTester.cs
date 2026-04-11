@@ -4,17 +4,17 @@
 
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 
-namespace JJ.Framework.ResourceStrings.Legacy
+namespace JJ.Framework.StringResources.Legacy
 {
     /// <summary>
     /// This class can be used as a base class for unit tests to run on a Resources or ResourceFormatter class.
-    /// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.ResourceStrings.
+    /// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.StringResources.
     /// That means, that each public static member of the ResourceFormatter class returns a string.
     /// That string may not be null or white space. The test can switch to different cultures and repeat the checks.
     /// An unused culture is currently assumed to fall back to a default culture en-US.
     /// Some of those requirements might seem quite specific for how our ResourceFormatter classes are structured.
     /// But having this base class for tests, would allow testing integrity of
-    /// some other resource formatters the same way JJ.Framework.ResourceStrings would do things.
+    /// some other resource formatters the same way JJ.Framework.StringResources would do things.
     ///
     /// <code>
     /// An implementation might look something like:

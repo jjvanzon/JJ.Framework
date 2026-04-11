@@ -1,6 +1,6 @@
 ﻿// ReSharper disable ConvertToExtensionBlock
 
-namespace JJ.Framework.ResourceStrings.Legacy;
+namespace JJ.Framework.StringResources.Legacy;
 
 /// <inheritdoc cref="_portedstubs" />
 internal static class CultureHelper

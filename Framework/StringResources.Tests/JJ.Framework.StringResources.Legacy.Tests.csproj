@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Presentation.Resources\JJ.Framework.ResourceStrings.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
   
