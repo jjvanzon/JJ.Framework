@@ -41,10 +41,10 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_InstanceResourceClass_WithInterface()
     {
-        IResources resourceObject = new ResourceClass_InstanceWithInterface();
+        IResources resourceObject = new InstanceResources();
 
         StringResourceTester resourceTester = new (
-            typeof(ResourceClass_InstanceWithInterface), resourceObject, 
+            typeof(InstanceResources), resourceObject, 
             known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
 
         resourceTester.AssertAllMembers();
@@ -88,39 +88,45 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_NoLog_SuppressesTraceOutput()
     {
-        var tester = new StringResourceTester(
-            typeof(ResourceClass_OneParam),
-            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog);
+        var testers = new StringResourceTester[]
+        {
+            new (typeof(ResourceClass_OneParam),                     
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new (typeof(ResourceClass_OneParam),                     
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+            new (typeof(InstanceResources), new InstanceResources(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+            new (typeof(InstanceResources), new InstanceResources(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true)
+        };
 
-        string trace = CaptureTrace(() => tester.AssertAllMembers());
-
-        AreEqual("", trace);
+        foreach (var tester in testers)
+        {
+            string trace = CaptureTrace(tester.AssertAllMembers);
+            AreEqual("", trace);
+        }
     }
 
     [TestMethod]
-    public void StringResourceTester_Default_ProducesTraceOutput()
+    public void StringResourceTester_WithLog_ProducesTraceOutput()
     {
-        var tester = new StringResourceTester(
-            typeof(ResourceClass_OneParam),
-            known: ["nl-NL"], unknown: "de-DE", @default: "en-US");
+        var testers = new StringResourceTester[]
+        {
+            new (typeof(ResourceClass_OneParam),                     
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new (typeof(ResourceClass_OneParam),                    
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+            new (typeof(InstanceResources), new InstanceResources(),
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+            new (typeof(InstanceResources), new InstanceResources(), 
+                 known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false)
+        };
 
-        string trace = CaptureTrace(() => tester.AssertAllMembers());
-
-        NotNullOrWhiteSpace(trace);
-    }
-
-    [TestMethod]
-    public void StringResourceTester_NoLog_WithResourceObject_SuppressesTraceOutput()
-    {
-        IResources resourceObject = new ResourceClass_InstanceWithInterface();
-
-        var tester = new StringResourceTester(
-            typeof(ResourceClass_InstanceWithInterface), resourceObject,
-            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog);
-
-        string trace = CaptureTrace(() => tester.AssertAllMembers());
-
-        AreEqual("", trace);
+        foreach (var tester in testers)
+        {
+            string trace = CaptureTrace(tester.AssertAllMembers);
+            NotNullOrWhiteSpace(trace);
+        }
     }
 
     // Helpers
@@ -209,7 +215,7 @@ public class StringResourceTesterTests
         public static string Message() => "A message";
     }
 
-    private class ResourceClass_InstanceWithInterface : IResources
+    private class InstanceResources : IResources
     {
         public string Title => "Title";
         public string Greeting(string name) => "Hello " + name;

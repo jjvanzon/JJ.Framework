@@ -116,4 +116,18 @@ internal class Untrimmer
         return method.Invoke(null, parameters);
     }
 
+
+    [TestMethod]
+    public void StringResourceTester_NoLog_WithResourceObject_SuppressesTraceOutput()
+    {
+        IResources resourceObject = new InstanceResources();
+
+        var tester = new StringResourceTester(
+            typeof(InstanceResources), resourceObject,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog);
+
+        string trace = CaptureTrace(tester.AssertAllMembers);
+
+        AreEqual("", trace);
+    }
 ```
