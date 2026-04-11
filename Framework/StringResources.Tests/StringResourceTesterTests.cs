@@ -1,29 +1,39 @@
-// ReSharper disable UnusedMember.Local
-// ReSharper disable UnusedParameter.Local
-// ReSharper disable UnusedMember.Global
-
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
 [TestClass]
 public class StringResourceTesterTests
 {
+    [TestMethod]
+    public void StringResourceTester_Tests()
+    {
+        StringResourceTester[] testers = CreateTesters();
+        foreach (var tester in testers)
+        {
+            string trace1 = CaptureTrace(tester.AssertAllMembers);
+            NotNullOrWhiteSpace(trace1);
+
+            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
+            NotNullOrWhiteSpace(trace2);
+        }
+    }
+
     // Parameter Counts
 
     [TestMethod]
     public void StringResourceTester_Instance_0Args_ReturnsText() 
-        => CreateDefaultTester(typeof(ResourceClass_ZeroParams)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_0ArgMethod_Static)).AssertAllMembers();
 
     [TestMethod]
     public void StringResourceTester_Instance_1Arg_AppearsInResult() 
-        => CreateDefaultTester(typeof(ResourceClass_OneParam)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_1Arg_StaticInstantiable)).AssertAllMembers();
 
     [TestMethod]
     public void StringResourceTester_Instance_2Args_AppearInResult() 
-        => CreateDefaultTester(typeof(ResourceClass_TwoParams)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_2Args)).AssertAllMembers();
 
     [TestMethod]
     public void StringResourceTester_Instance_3Args_AppearInResult() 
-        => CreateDefaultTester(typeof(ResourceClass_ThreeParams)).AssertAllMembers();
+        => CreateDefaultTester(typeof(ResourceClass_3Args)).AssertAllMembers();
 
     // Parameter Types
 
@@ -56,7 +66,7 @@ public class StringResourceTesterTests
 
     [TestMethod]
     public void StringResourceTester_UnknownCulture_ParamHandling()
-        => CreateDefaultTester(typeof(ResourceClass_ThreeParams)).AssertUnknownCulture();
+        => CreateDefaultTester(typeof(ResourceClass_3Args)).AssertUnknownCulture();
 
     // Customization
 
@@ -89,25 +99,25 @@ public class StringResourceTesterTests
     {
         var testers = new StringResourceTester[]
         {
-            new (typeof(ResourceClass_OneParam),                     
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                     
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-            new (typeof(ResourceClass_OneParam),                     
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                     
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
             new (typeof(InstanceResources), new InstanceResources(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
             new (typeof(InstanceResources), new InstanceResources(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
-            new StringResourceTester<ResourceClass_OneParam>( 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>( 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-            new StringResourceTester<ResourceClass_OneParam>( 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>( 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
-            new StringResourceTester<ResourceClass_OneParam>(new(), 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-            new StringResourceTester<ResourceClass_OneParam>(new(), 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
-            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(), 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
-            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(), 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true)
         };
 
@@ -123,25 +133,25 @@ public class StringResourceTesterTests
     {
         var testers = new StringResourceTester[]
         {
-            new (typeof(ResourceClass_OneParam),                     
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                     
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-            new (typeof(ResourceClass_OneParam),                    
+            new (typeof(ResourceClass_1Arg_StaticInstantiable),                    
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
             new (typeof(InstanceResources), new InstanceResources(),
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
             new (typeof(InstanceResources), new InstanceResources(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
-            new StringResourceTester<ResourceClass_OneParam>(
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-            new StringResourceTester<ResourceClass_OneParam>(
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
-            new StringResourceTester<ResourceClass_OneParam>(new(),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(),
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-            new StringResourceTester<ResourceClass_OneParam>(new(), 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
-            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(),
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(),
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
-            new StringResourceTester<ResourceClass_OneParam>(new ResourceClass_OneParam(), 
+            new StringResourceTester<ResourceClass_1Arg_StaticInstantiable>(new ResourceClass_1Arg_StaticInstantiable(), 
                  known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false)
         };
 
@@ -154,7 +164,7 @@ public class StringResourceTesterTests
 
     // Helpers
 
-    private StringResourceTester CreateDefaultTester([Dyn(PubProps|PubMethods)] Type resourceClass)
+    private StringResourceTester CreateDefaultTester([Dyn(PubPropMethod)] Type resourceClass)
         => new(resourceClass, known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
 
     private static string CaptureTrace(Action action)
@@ -174,29 +184,175 @@ public class StringResourceTesterTests
         }
     }
 
+    private StringResourceTester[] CreateTesters()
+    {
+        var list = new List<StringResourceTester>(32);
+
+        //list.AddRange(CreateTesters_WithTypeArg    <ResourceClass_0Arg_StaticInstantiable>());
+        //list.AddRange(CreateTesters_WithType(typeof(ResourceClass_0Arg_StaticInstantiable)));
+        //list.AddRange(CreateTesters_WithTypeArgAndObj(new ResourceClass_0Arg_StaticInstantiable()));
+        //list.AddRange(CreateTesters_WithTypeAndObj(typeof(ResourceClass_0Arg_StaticInstantiable), new ResourceClass_0Arg_StaticInstantiable()));
+        //list.AddRange(CreateTesters_WithObj (new    ResourceClass_0Arg_StaticInstantiable()));
+
+        list.AddRange(CreateTesters_WithTypeArg    <ResourceClass_0Arg_Instance>());
+        //list.AddRange(CreateTesters_WithType(typeof(ResourceClass_0Arg_Instance)));
+        //list.AddRange(CreateTesters_WithObj (new    ResourceClass_0Arg_Instance()));
+
+        //list.AddRange(CreateTesters_WithTypeArg    <ResourceClass_1Arg_Instance>());
+        //list.AddRange(CreateTesters_WithType(typeof(ResourceClass_1Arg_Instance)));
+        //list.AddRange(CreateTesters_WithObj (new    ResourceClass_1Arg_Instance()));
+
+        //list.AddRange(CreateTesters_WithType(typeof(ResourceClass_1Arg_Static)));
+
+        //list.AddRange(CreateTesters_WithTypeArg    <ResourceClass_1Arg_StaticInstantiable>());
+        //list.AddRange(CreateTesters_WithType(typeof(ResourceClass_1Arg_StaticInstantiable)));
+        //list.AddRange(CreateTesters_WithObj (new    ResourceClass_1Arg_StaticInstantiable()));
+
+        //list.AddRange(CreateTesters_WithType(typeof(ResourceClass_2Args)));
+        return list.ToArray();
+    }
+
+    private StringResourceTester[] CreateTesters_WithType([Dyn(PubPropMethod)] Type type) =>
+    [
+        new (type,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+
+        new (type, 
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+    ];
+
+    private StringResourceTester[] CreateTesters_WithTypeArg<[Dyn(PubPropMethod)] TResourceClass>() =>
+    [
+        new StringResourceTester<TResourceClass>(
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+
+        new StringResourceTester<TResourceClass>(
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+    ];
+
+    /*
+    private StringResourceTester[] CreateTesters_WithObj(object obj) =>
+    [
+        new (obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+
+        new (obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+    ];
+    */
+
+    private StringResourceTester[] CreateTesters_WithTypeAndObj([Dyn(PubPropMethod)] Type type, object obj) =>
+    [
+        new (type, obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+
+        new (type, obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+    ];
+
+    private StringResourceTester[] CreateTesters_WithTypeArgAndObj<[Dyn(PubPropMethod)] TResourceClass>(TResourceClass obj) =>
+    [
+        new (typeof(TResourceClass), obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+
+        new (typeof(TResourceClass), obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+
+        new StringResourceTester<TResourceClass>(obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+
+        new StringResourceTester<TResourceClass>(obj, 
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false),
+
+        new StringResourceTester<TResourceClass>(obj,
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US"),
+
+        new StringResourceTester<TResourceClass>(obj, 
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: false)
+    ];
+    
+    private StringResourceTester[] CreateTesters_WithType_NoLog<[Dyn(PubPropMethod)] TResourceClass>() =>
+    [
+        new (typeof(TResourceClass),                     
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+
+        new (typeof(TResourceClass),                    
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+
+        new StringResourceTester<TResourceClass>(
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+
+        new StringResourceTester<TResourceClass>(
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+    ];
+
+    private StringResourceTester[] CreateTesters_WithObj_NoLog<[Dyn(PubPropMethod)] TResourceClass>() 
+        where TResourceClass : new() =>
+    [
+        new (typeof(TResourceClass), new TResourceClass(),
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+
+        new (typeof(TResourceClass), new TResourceClass(), 
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+
+        new StringResourceTester<TResourceClass>(new(),
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+
+        new StringResourceTester<TResourceClass>(new(), 
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true),
+
+        new StringResourceTester<TResourceClass>(new TResourceClass(),
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog),
+
+        new StringResourceTester<TResourceClass>(new TResourceClass(), 
+            known: ["nl-NL"], unknown: "de-DE", @default: "en-US", nolog: true)
+    ];
+
+
     // Resource Classes
 
-    private static class ResourceClass_ZeroParams
+    public static class ResourceClass_0ArgMethod_Static
     {
         public static string Greet() => "Hello";
     }
 
-    private class ResourceClass_OneParam
+    public class ResourceClass_0Arg_StaticInstantiable
+    {
+        public static string Greet() => "Hello";
+    }
+
+    public class ResourceClass_0Arg_Instance
+    {
+        public string Greet() => "Hello";
+    }
+
+    public static class ResourceClass_1Arg_Static
     {
         public static string Greet(string name) => $"Hello {name}";
     }
 
-    private static class ResourceClass_TwoParams
+    public class ResourceClass_1Arg_Instance
+    {
+        public string Greet(string name) => $"Hello {name}";
+    }
+
+    //public class ResourceClass_1Arg_StaticMethod_InstanceClass
+    public class ResourceClass_1Arg_StaticInstantiable
+    {
+        public static string Greet(string name) => $"Hello {name}";
+    }
+
+    public static class ResourceClass_2Args
     {
         public static string Format(string label, int count) => $"{label}: {count}";
     }
 
-    private class ResourceClass_ThreeParams
+    public class ResourceClass_3Args
     {
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
-    private static class ResourceClass_VariousArgTypes
+    public static class ResourceClass_VariousArgTypes
     {
         public static string WithString  (string   val) => $"Value:{val}";
         public static string WithInt     (int      val) => $"Value:{val}";
@@ -215,36 +371,36 @@ public class StringResourceTesterTests
         public static string WithUInt64  (ulong    val) => $"Value:{val}";
     }
 
-    private static class ResourceClass_MissingParam
+    public static class ResourceClass_MissingParam
     {
         public static string Bad(string name) => "Static text";
     }
 
-    private static class ResourceClass_WithProblematic
+    public static class ResourceClass_WithProblematic
     {
         public static string Good() => "Hello";
         public static string Problematic() => "";
     }
 
-    private static class ResourceClass_CustomType
+    public static class ResourceClass_CustomType
     {
         public static string Format(CustomArgType id) => $"Value: {id}";
     }
 
-    private class ResourceClass_MixedMembers
+    public class ResourceClass_MixedMembers
     {
         public static string Title => "Title";
         public static string Greeting(string name) => "Hello " + name;
         public static string Message() => "A message";
     }
 
-    private class InstanceResources : IResources
+    public class InstanceResources : IResources
     {
         public string Title => "Title";
         public string Greeting(string name) => "Hello " + name;
     }
 
-    private interface IResources
+    public interface IResources
     {
         string Title { get; }
         string Greeting(string name);
@@ -253,19 +409,19 @@ public class StringResourceTesterTests
     // Non-static stubs for StringResourceTester<T> (static types can't be type arguments)
 
     /*
-    private class GenericStub_OneParam
+    public class GenericStub_1Arg
     {
         public static string Greet(string name) => $"Hello {name}";
     }
 
-    private class GenericStub_Mixed
+    public class GenericStub_Mixed
     {
         public static string Title => "Title";
         public static string Greeting(string name) => "Hello " + name;
         public static string Message() => "A message";
     }
 
-    private class GenericStub_ThreeParams
+    public class GenericStub_3Args
     {
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
@@ -301,7 +457,7 @@ public class StringResourceTesterTests
         }
     }
 
-    private class CustomArgType(int id)
+    public class CustomArgType(int id)
     {
         public override string ToString() => $"ID-{id}";
     }

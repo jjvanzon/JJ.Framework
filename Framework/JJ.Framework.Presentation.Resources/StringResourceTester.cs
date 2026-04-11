@@ -1,7 +1,10 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
+#pragma warning disable IDE0016 // Join null check with assignment
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 // ReSharper disable UnusedVariable
+
+using static JJ.Framework.Reflection.Legacy.ReflectionHelper;
 
 namespace JJ.Framework.StringResources.Legacy
 {
@@ -52,49 +55,102 @@ namespace JJ.Framework.StringResources.Legacy
         // ReSharper disable once UnusedParameter.Local
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester(
-            [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject, 
-            string[] known, string unknown, string @default, NoLog nolog)
-            : this(
-                resourceClass, resourceObject, 
-                known, unknown, @default, nolog: true)
-        {
-        }
-
-        // ReSharper disable once UnusedParameter.Local
-        /// <inheritdoc cref="StringResourceTester" />
-        public StringResourceTester(
             [Dyn(PubProps|PubMethods)] Type resourceClass, 
             string[] known, string unknown, string @default, NoLog nolog)
             : this(
                 resourceClass, resourceObject: null, 
                 known, unknown, @default, nolog: true)
-        {
-        }
+        { }
+       
+        // ReSharper disable once UnusedParameter.Local
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            object resourceObject, 
+            string[] known, string unknown, string @default, NoLog nolog)
+            : this(
+                resourceClass: null, resourceObject, 
+                known, unknown, @default, nolog: true)
+        { }
+
+        // ReSharper disable once UnusedParameter.Local
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            [Dyn(PubProps|PubMethods)] Type? resourceClass, object? resourceObject, 
+            string[] known, string unknown, string @default, NoLog nolog)
+            : this(
+                resourceClass, resourceObject, 
+                known, unknown, @default, nolog: true)
+        { }
 
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester(
             [Dyn(PubProps|PubMethods)] Type resourceClass,
             string[] known, string unknown, string @default, bool nolog = default)
             : this(
-                resourceClass, resourceObject: null, 
+                resourceClass, null, 
                 known, unknown, @default, nolog)
-        {
-        }
+        { }
 
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester(
-            [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject,
+            object resourceObject,
+            string[] known, string unknown, string @default, bool nolog = default)
+            : this(
+                null, resourceObject, 
+                known, unknown, @default, nolog)
+        { }
+
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            [Dyn(PubProps|PubMethods)] Type? resourceClass, object? resourceObject,
             string[] known, string unknown, string @default, bool nolog = default)
         {
-            _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));
-            _resourceObject = resourceObject;
+            _resourceClass = InitResourceClass(resourceClass, resourceObject);
+            _resourceObject = InitResourceObject(resourceClass, resourceObject);
             _defaultCultureName = @default ?? "";
-            _knownCultureNames = PopulateKnownCultureNames(@default, known);
+            _knownCultureNames = InitKnownCultureNames(@default, known);
             _unknownCultureName = unknown ?? "";
             _nolog = nolog;
         }
 
-        private static string[] PopulateKnownCultureNames(string @default, string[] known)
+        [Suppress("Trimmer", "IL2073", Justification = ObjectGetType)]
+        [return:Dyn(PubProps|PubMethods)] 
+        private static Type InitResourceClass([Dyn(PubProps|PubMethods)] Type? resourceClass, object? resourceObject)
+        {
+            if (resourceClass != null) return resourceClass;
+            return resourceObject?.GetType();
+        }
+
+        [Suppress("Trimmer", "IL2067", Justification = "Constructor optional")]
+        private static object InitResourceObject(Type resourceClass, object? resourceObject)
+        {
+            if (resourceObject != null) return resourceObject;
+
+            if (resourceClass == null) 
+            {
+                throw new Exception($"If {nameof(resourceObject)} is null, {nameof(resourceClass)} can't.");
+            }
+
+            if (TypeIsStatic(resourceClass)) return null;
+
+            //try 
+            {
+                resourceObject = Activator.CreateInstance(resourceClass);
+            } 
+            //catch 
+            {
+                /*ignored*/ 
+            }
+            return resourceObject;
+        }
+
+        [Suppress("Trimmer", "IL2070", Justification = "Constructor optional")]
+        private static bool TypeIsStatic(Type type) 
+            => type.IsAbstract && 
+               type.IsSealed &&
+               type.GetConstructors().Length == 0;
+
+        private static string[] InitKnownCultureNames(string @default, string[] known)
         {
             if (known == null) throw new ArgumentNullException(nameof(known));
 
@@ -253,7 +309,8 @@ namespace JJ.Framework.StringResources.Legacy
         /// </summary>
         private string AssertResourceProp(PropertyInfo prop)
         {
-            object val = prop.GetValue(_resourceObject);
+            object? resourceObject = !IsStatic(prop) ? _resourceObject : null;
+            object val = prop.GetValue(resourceObject);
             IsOfType<string>(() => val, prop.Name);
             var text = (string)val;
             NotNullOrWhiteSpace(() => text, prop.Name);
@@ -267,6 +324,15 @@ namespace JJ.Framework.StringResources.Legacy
         /// </summary>
         private string AssertResourceMethod(MethodInfo method)
         {
+            object? resourceObject = !method.IsStatic ? _resourceObject : null;
+
+            if (!method.IsStatic && _resourceObject == null)
+            {
+                throw new Exception(
+                    $"Method '{method.Name}' of type '{method.DeclaringType?.Name}' " +
+                    $"is not static and requires an instance.");
+            }
+
             ParameterInfo[] parameters = method.GetParameters();
             var args = new object[parameters.Length];
 
@@ -275,7 +341,7 @@ namespace JJ.Framework.StringResources.Legacy
                 args[i] = GetArg(parameters[i]);
             }
 
-            object ret = method.Invoke(_resourceObject, args);
+            object ret = method.Invoke(resourceObject, args);
             IsOfType<string>(() => ret, method.Name);
             string text = (string)ret;
             NotNullOrWhiteSpace(() => text, method.Name);
@@ -283,7 +349,7 @@ namespace JJ.Framework.StringResources.Legacy
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) continue;
-                string argString = args[i].ToString();
+                string argString = $"{args[i]}";
                 if (!text!.Contains(argString))
                 {
                     throw new Exception(
