@@ -45,12 +45,8 @@ public class StringResourceTesterTests
     // Member Selection
 
     [TestMethod]
-    public void StringResourceTester_Inheritance_ExcludedMember_Skipped()
-        => new InheritedTester_WithExclusion().AssertAllMembers();
-
-    [TestMethod]
-    public void StringResourceTester_Inheritance_CustomSelection_SelectsSpecificMembers() 
-        => new InheritedTester_WithCustomSelection().AssertAllMembers();
+    public void StringResourceTester_Inheritance_MemberInclusion()
+        => new InheritedTester_MemberInclusion().AssertAllMembers();
 
     // Custom Value Supplier/Formatter
 
@@ -102,15 +98,15 @@ public class StringResourceTesterTests
 
     private static class ResourceClass_VariousTypes
     {
-        public static string WithString (string  val) => $"V:{val}";
-        public static string WithInt    (int     val) => $"V:{val}";
-        public static string WithLong   (long    val) => $"V:{val}";
-        public static string WithShort  (short   val) => $"V:{val}";
-        public static string WithByte   (byte    val) => $"V:{val}";
-        public static string WithDecimal(decimal val) => $"V:{val}";
-        public static string WithDouble (double  val) => $"V:{val}";
-        public static string WithFloat  (float   val) => $"V:{val}";
-        public static string WithBool   (bool    val) => $"V:{val}";
+        public static string WithString (string  val) => $"Value:{val}";
+        public static string WithInt    (int     val) => $"Value:{val}";
+        public static string WithLong   (long    val) => $"Value:{val}";
+        public static string WithShort  (short   val) => $"Value:{val}";
+        public static string WithByte   (byte    val) => $"Value:{val}";
+        public static string WithDecimal(decimal val) => $"Value:{val}";
+        public static string WithDouble (double  val) => $"Value:{val}";
+        public static string WithFloat  (float   val) => $"Value:{val}";
+        public static string WithBool   (bool    val) => $"Value:{val}";
     }
 
     private static class ResourceClass_MissingParam
@@ -138,27 +134,16 @@ public class StringResourceTesterTests
 
     // Inherited Testers
 
-    private class InheritedTester_WithExclusion()
+    private class InheritedTester_MemberInclusion()
         : StringResourceTester(
             typeof(ResourceClass_WithProblematic), 
             known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
-        protected override bool IsExcluded(MemberInfo memberToTest)
+        protected override bool Include(MemberInfo memberToTest)
         {
-            if (memberToTest.Name == "Problematic") return true;
-            return base.IsExcluded(memberToTest);
+            if (memberToTest.Name == "Problematic") return false;
+            return base.Include(memberToTest);
         }
-    }
-
-    private class InheritedTester_WithCustomSelection()
-        : StringResourceTester(
-            typeof(ResourceClass_WithProblematic), 
-            known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
-    {
-        protected override IList<MemberInfo> SelectMembersToTest([Dyn(PubProps|PubMethods)] Type resourceClass)
-            => base.SelectMembersToTest(resourceClass)
-                   .Where(x => x.Name.StartsWith("Good"))
-                   .ToArray();
     }
 
     private class InheritedTester_WithCustomGetArg()

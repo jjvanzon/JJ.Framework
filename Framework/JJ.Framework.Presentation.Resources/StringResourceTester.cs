@@ -125,9 +125,9 @@ namespace JJ.Framework.StringResources.Legacy
             }
         }
 
-        // Select
+        // Selection
 
-        protected virtual IList<MemberInfo> SelectMembersToTest([Dyn(PubProps|PubMethods)] Type resourceClass)
+        private IList<MemberInfo> SelectMembersToTest([Dyn(PubProps|PubMethods)] Type resourceClass)
         {
             if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
 
@@ -137,26 +137,27 @@ namespace JJ.Framework.StringResources.Legacy
                                        .Where(x => !x.IsProperty());
 
             var members = props.Union<MemberInfo>(methods)
-                               .Where(x => !IsExcluded(x))
+                               .Where(x => Include(x))
                                .OrderBy(x => x.Name)
                                .ToArray();
             return members;
         }
               
-        protected virtual bool IsExcluded(MemberInfo memberToTest)
+        protected virtual bool Include(MemberInfo memberToTest)
         {
             if (memberToTest == null) throw new ArgumentNullException(nameof(memberToTest));
 
             if (string.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
             {
-                return true;
+                return false;
             }
           
             if (string.Equals(memberToTest.Name, "ResourceManager", OrdinalIgnoreCase))
             {
-                return true;
+                return false;
             }
-            return false;
+
+            return true;
         }
 
         /// <summary>

@@ -82,4 +82,20 @@ internal class Untrimmer
     }
 }
 
+
+    [TestMethod]
+    public void StringResourceTester_Inheritance_CustomSelection_SelectsSpecificMembers() 
+        => new InheritedTester_WithCustomSelection().AssertAllMembers();
+
+    private class InheritedTester_WithCustomSelection()
+        : StringResourceTester(
+            typeof(ResourceClass_WithProblematic), 
+            known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
+    {
+        protected override IList<MemberInfo> SelectMembersToTest([Dyn(PubProps|PubMethods)] Type resourceClass)
+            => base.SelectMembersToTest(resourceClass)
+                   .Where(x => x.Name.StartsWith("Good"))
+                   .ToArray();
+    }
+
 ```
