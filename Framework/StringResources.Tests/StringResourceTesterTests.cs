@@ -211,6 +211,9 @@ public class StringResourceTesterTests
         list.AddRange(ConstructTestersNoLog       <ResourceClass_1Arg_Instance>(new()));
         list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_1Arg_Instance), new ResourceClass_1Arg_Instance()));
 
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_2Arg_Instance>(new()));
+        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_2Arg_Instance), new ResourceClass_2Arg_Instance()));
+
         list.AddRange(ConstructTestersNoLog       <ResourceClass_3Arg_Instance>(new()));
         list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_3Arg_Instance), new ResourceClass_3Arg_Instance()));
 
@@ -223,6 +226,11 @@ public class StringResourceTesterTests
         list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_1Arg_StaticInstantiable)));
         list.AddRange(ConstructTestersNoLog       <ResourceClass_1Arg_StaticInstantiable> (new()));
         list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_1Arg_StaticInstantiable), new ResourceClass_1Arg_StaticInstantiable()));
+
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_2Arg_StaticInstantiable>());
+        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_2Arg_StaticInstantiable)));
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_2Arg_StaticInstantiable> (new()));
+        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_2Arg_StaticInstantiable), new ResourceClass_2Arg_StaticInstantiable()));
 
         list.AddRange(ConstructTestersNoLog       <ResourceClass_3Arg_StaticInstantiable>());
         list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_3Arg_StaticInstantiable)));
@@ -256,8 +264,6 @@ public class StringResourceTesterTests
         new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: false),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: false),
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default),
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: false)
     ];
 
     private StringResourceTester[] ConstructTestersNoLog([Dyn(PubPropMethod)] Type type) =>
@@ -284,8 +290,6 @@ public class StringResourceTesterTests
         new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: true),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: true),
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog),
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: true)
     ];
 
     // Resource Classes
