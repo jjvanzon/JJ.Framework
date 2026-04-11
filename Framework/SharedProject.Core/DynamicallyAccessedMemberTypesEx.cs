@@ -17,6 +17,8 @@ internal static class DynamicallyAccessedMemberTypesEx
 
     /// <inheritdoc cref="_properties" />
     public const DynamicallyAccessedMemberTypes AllProps = AllProperties;
+    public const DynamicallyAccessedMemberTypes PubProps = PublicProperties;
+    public const DynamicallyAccessedMemberTypes PubMethods = PublicMethods;
     public const DynamicallyAccessedMemberTypes NonPublicProps = NonPublicProperties;
     public const DynamicallyAccessedMemberTypes Intf = Interfaces;
     public const DynamicallyAccessedMemberTypes New = PublicParameterlessConstructor;

@@ -62,4 +62,24 @@
         public static string Title { get; } = "Main Title";
         public static string Description { get; } = "A description";
     }
+
+```
+
+```xml
+    <type fullname="JJ.Framework.ResourceStrings.Legacy.Tests.Untrimmer" preserve="all">
+      <method name="Untrim" />
+    </type>
+```
+
+```cs
+namespace JJ.Framework.ResourceStrings.Legacy.Tests;
+
+internal class Untrimmer
+{
+    public static void Untrim()
+    {
+        
+    }
+}
+
 ```

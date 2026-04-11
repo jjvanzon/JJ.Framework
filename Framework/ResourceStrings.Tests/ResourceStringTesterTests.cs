@@ -21,19 +21,19 @@ public class ResourceStringTesterTests
         => CreateTester(typeof(ResourceClass_TwoParams)).AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_DirectInstance_3Args_AppearInResult() 
+    public void ResourceStringTester_Instance_3Args_AppearInResult() 
         => CreateTester(typeof(ResourceClass_ThreeParams)).AssertAllMembers();
 
     // Parameter Types
 
     [TestMethod]
-    public void ResourceStringTester_DirectInstance_VariousParamTypes_AppearInResult() 
+    public void ResourceStringTester_Instance_VariousParamTypes_AppearInResult() 
         => CreateTester(typeof(ResourceClass_VariousTypes)).AssertAllMembers();
 
     // Mixed Props and Methods
 
     [TestMethod]
-    public void ResourceStringTester_DirectInstance_MixedMembersWork() 
+    public void ResourceStringTester_Instance_MixedMembersWork() 
         => CreateTester(typeof(ResourceClass_MixedMembers)).AssertAllMembers();
 
     // Unknown Culture Fallback (param handling)
@@ -55,22 +55,18 @@ public class ResourceStringTesterTests
     // Custom Value Supplier/Formatter
 
     [TestMethod]
-    public void ResourceStringTester_WithInheritance_CustomTestValue_AppearsInResult() 
+    public void ResourceStringTester_Inheritance_CustomTestValue_AppearsInResult() 
         => new InheritedTester_WithCustomGetArg().AssertAllMembers();
 
     // Failure Cases
     
     [TestMethod]
-    public void ResourceStringTester_MissingParam_Throws()
-        => Throws(
-            () => CreateTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(),
-            "not found in result");
+    public void ResourceStringTester_MissingArgVal_Throws()
+        => Throws(() => CreateTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(), "not found in result");
 
     [TestMethod]
     public void ResourceStringTester_WithoutExclusion_ProblematicMember_Throws()
-        => Throws(
-            () => CreateTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(),
-            "Problematic");
+        => Throws(() => CreateTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(), "Problematic");
     
     // TODO: Oops, error hiding.
     [TestMethod]
@@ -79,7 +75,7 @@ public class ResourceStringTesterTests
 
     // Helpers
 
-    private ResourceStringTester CreateTester(Type resourceClass)
+    private ResourceStringTester CreateTester([Dyn(PubProps|PubMethods)] Type resourceClass)
         => new(resourceClass, known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
 
     // Resource Classes
@@ -159,7 +155,7 @@ public class ResourceStringTesterTests
             typeof(ResourceClass_WithProblematic), 
             known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
-        protected override IList<MemberInfo> SelectMembersToTest(Type resourceClass)
+        protected override IList<MemberInfo> SelectMembersToTest([Dyn(PubProps|PubMethods)] Type resourceClass)
             => base.SelectMembersToTest(resourceClass)
                    .Where(x => x.Name.StartsWith("Good"))
                    .ToArray();

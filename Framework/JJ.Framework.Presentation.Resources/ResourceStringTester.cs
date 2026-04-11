@@ -40,6 +40,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
     /// </summary>
     public class ResourceStringTester
     {
+        [Dyn(PubProps|PubMethods)] 
         private readonly Type _resourceClass;
         private readonly string _defaultCultureName;
         private readonly string[] _knownCultureNames;
@@ -49,7 +50,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
         /// <inheritdoc cref="ResourceStringTester" />
         public ResourceStringTester
-            (Type resourceClass, string[] known, string unknown, string @default)
+            ([Dyn(PubProps|PubMethods)] Type resourceClass, string[] known, string unknown, string @default)
         {
             _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));
             _defaultCultureName = @default ?? "";
@@ -126,7 +127,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
         // Select
 
-        protected virtual IList<MemberInfo> SelectMembersToTest(Type resourceClass)
+        protected virtual IList<MemberInfo> SelectMembersToTest([Dyn(PubProps|PubMethods)] Type resourceClass)
         {
             if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
 
