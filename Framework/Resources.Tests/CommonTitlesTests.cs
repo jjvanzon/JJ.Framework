@@ -15,11 +15,11 @@ public class CommonTitlesTests()
 
     [TestMethod]
     public void CommonTitles_AllPublicMembers_ReturnText_ForKnownCultures() 
-        => Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+        => AssertAllMembers();
     
     [TestMethod]
     public void CommonTitles_UnknownCulture_DefaultsToEnUS() 
-        => Assert_UnknownCulture_UsesDefaultCulture();
+        => AssertUnknownCulture();
 
     [TestMethod]
     public void CommonTitles_ResourceManager_IsNotNull() 

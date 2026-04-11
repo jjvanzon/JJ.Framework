@@ -15,11 +15,11 @@ public class CommonTitlesFormatterTests()
 
     [TestMethod]
     public void CommonTitlesFormatter_AllPublicStatics_ReturnText_ForKnownCultures() 
-        => Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+        => AssertAllMembers();
     
     [TestMethod]
     public void CommonTitlesFormatter_UnknownCulture_DefaultsToEnUS() 
-        => Assert_UnknownCulture_UsesDefaultCulture();
+        => AssertUnknownCulture();
 
     [TestMethod]
     public void CommonTitlesFormatter_CheckExactTexts_InvariantCulture()

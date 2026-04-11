@@ -9,151 +9,102 @@ public class ResourceStringTesterTests
     // Parameter Counts
 
     [TestMethod]
-    public void ResourceStringTester_ZeroParams_ReturnsText()
-        => AssertAllMembers(typeof(Stub_ZeroParams));
+    public void ResourceStringTester_Instance_0Args_ReturnsText() 
+        => CreateTester(typeof(ResourceClass_ZeroParams)).AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_OneParam_AppearsInResult()
-        => AssertAllMembers(typeof(Stub_OneParam));
+    public void ResourceStringTester_Instance_1Arg_AppearsInResult() 
+        => CreateTester(typeof(ResourceClass_OneParam)).AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_TwoMixedParams_AppearInResult()
-        => AssertAllMembers(typeof(Stub_TwoParams));
+    public void ResourceStringTester_Instance_2Args_AppearInResult() 
+        => CreateTester(typeof(ResourceClass_TwoParams)).AssertAllMembers();
 
     [TestMethod]
-    public void ResourceStringTester_ThreeParams_AppearInResult()
-        => AssertAllMembers(typeof(Stub_ThreeParams));
+    public void ResourceStringTester_DirectInstance_3Args_AppearInResult() 
+        => CreateTester(typeof(ResourceClass_ThreeParams)).AssertAllMembers();
 
     // Parameter Types
 
     [TestMethod]
-    public void ResourceStringTester_VariousParamTypes_AppearInResult()
-        => AssertAllMembers(typeof(Stub_VariousTypes));
+    public void ResourceStringTester_DirectInstance_VariousParamTypes_AppearInResult() 
+        => CreateTester(typeof(ResourceClass_VariousTypes)).AssertAllMembers();
 
-    // Containment Failure
+    // Mixed Props and Methods
 
     [TestMethod]
-    public void ResourceStringTester_MissingParam_Throws()
-        => Throws(
-            () => AssertAllMembers(typeof(Stub_MissingParam)),
-            "not found in result");
+    public void ResourceStringTester_DirectInstance_MixedMembersWork() 
+        => CreateTester(typeof(ResourceClass_MixedMembers)).AssertAllMembers();
 
     // Unknown Culture Fallback (param handling)
 
     [TestMethod]
     public void ResourceStringTester_UnknownCulture_ParamHandling()
-    {
-        var tester = CreateTester(typeof(Stub_ThreeParams));
-        tester.Assert_UnknownCulture_UsesDefaultCulture();
-    }
+        => CreateTester(typeof(ResourceClass_ThreeParams)).AssertUnknownCulture();
 
-    // Member Exclusion (IsExcluded)
+    // Member Selection
 
     [TestMethod]
-    public void ResourceStringTester_ExcludedMember_Skipped()
-    {
-        var tester = new Tester_WithExclusion(typeof(Stub_WithProblematic));
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
+    public void ResourceStringTester_Inheritance_ExcludedMember_Skipped()
+        => new InheritedTester_WithExclusion().AssertAllMembers();
+
+    [TestMethod]
+    public void ResourceStringTester_Inheritance_CustomSelection_SelectsSpecificMembers() 
+        => new InheritedTester_WithCustomSelection().AssertAllMembers();
+
+    // Custom Value Supplier/Formatter
+
+    [TestMethod]
+    public void ResourceStringTester_WithInheritance_CustomTestValue_AppearsInResult() 
+        => new InheritedTester_WithCustomGetArg().AssertAllMembers();
+
+    // Failure Cases
+    
+    [TestMethod]
+    public void ResourceStringTester_MissingParam_Throws()
+        => Throws(
+            () => CreateTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(),
+            "not found in result");
 
     [TestMethod]
     public void ResourceStringTester_WithoutExclusion_ProblematicMember_Throws()
         => Throws(
-            () => AssertAllMembers(typeof(Stub_WithProblematic)),
+            () => CreateTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(),
             "Problematic");
-
-    // Member Selection (SelectMembersToTest)
-
+    
+    // TODO: Oops, error hiding.
     [TestMethod]
-    public void ResourceStringTester_CustomSelection_SelectsSpecificMembers()
-    {
-        var tester = new Tester_WithCustomSelection(typeof(Stub_WithProblematic));
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
-
-    // Custom Test Values (CreateTestValue)
-
-    [TestMethod]
-    public void ResourceStringTester_CustomTestValue_AppearsInResult()
-    {
-        var tester = new Tester_WithCustomTestValue(typeof(Stub_CustomType));
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
-
-    [TestMethod]
-    public void ResourceStringTester_UnsupportedType_SkipsContainmentCheck()
-        => AssertAllMembers(typeof(Stub_CustomType));
-
-    // Direct Instantiation (Base Class Usage Without Inheritance)
-
-    [TestMethod]
-    public void ResourceStringTester_DirectInstance_MethodsWork()
-    {
-        var tester = CreateTester(typeof(Stub_ZeroParams));
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
-
-    [TestMethod]
-    public void ResourceStringTester_DirectInstance_WithParameters_ContainmentWorks()
-    {
-        var tester = CreateTester(typeof(Stub_OneParam));
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
-
-    [TestMethod]
-    public void ResourceStringTester_DirectInstance_ExcludesDefaultMembers()
-    {
-        var tester = CreateTester(typeof(Stub_PropertyBased));
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
-
-    [TestMethod]
-    public void ResourceStringTester_DirectInstance_MixedMembersWork()
-    {
-        var tester = CreateTester(typeof(Stub_MixedMembers));
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
+    public void ResourceStringTester_UnsupportedType_SkipsContainmentCheck() 
+        => CreateTester(typeof(ResourceClass_CustomType)).AssertAllMembers();
 
     // Helpers
 
-    private static void AssertAllMembers(Type resourceClass)
-    {
-        var tester = CreateTester(resourceClass);
-        tester.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
-    }
-
-    private static ResourceStringTester CreateTester(Type stubType)
-        => new(stubType, known: ["nl-NL"], unknown: "de-DE", @default: "en-US");
-
-    /// <summary> Custom Type </summary>
-    private class CustomId(int value)
-    {
-        public override string ToString() => $"ID-{value}";
-    }
+    private ResourceStringTester CreateTester(Type resourceClass)
+        => new(resourceClass, known: ["", "nl-NL"], unknown: "de-DE", @default: "en-US");
 
     // Resource Classes
 
-    private static class Stub_ZeroParams
+    private static class ResourceClass_ZeroParams
     {
         public static string Greet() => "Hello";
     }
 
-    private static class Stub_OneParam
+    private static class ResourceClass_OneParam
     {
         public static string Greet(string name) => $"Hello {name}";
     }
 
-    private static class Stub_TwoParams
+    private static class ResourceClass_TwoParams
     {
         public static string Format(string label, int count) => $"{label}: {count}";
     }
 
-    private static class Stub_ThreeParams
+    private static class ResourceClass_ThreeParams
     {
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
-    private static class Stub_VariousTypes
+    private static class ResourceClass_VariousTypes
     {
         public static string WithString (string  val) => $"V:{val}";
         public static string WithInt    (int     val) => $"V:{val}";
@@ -166,46 +117,47 @@ public class ResourceStringTesterTests
         public static string WithBool   (bool    val) => $"V:{val}";
     }
 
-    private static class Stub_MissingParam
+    private static class ResourceClass_MissingParam
     {
         public static string Bad(string name) => "Static text";
     }
 
-    private static class Stub_WithProblematic
+    private static class ResourceClass_WithProblematic
     {
         public static string Good() => "Hello";
         public static string Problematic() => "";
     }
 
-    private static class Stub_CustomType
+    private static class ResourceClass_CustomType
     {
-        public static string Format(CustomId id) => $"Value: {id}";
+        public static string Format(CustomArgType id) => $"Value: {id}";
     }
 
-    private static class Stub_PropertyBased
+    private static class ResourceClass_MixedMembers
     {
-        public static string Title { get; } = "Main Title";
-        public static string Description { get; } = "A description";
-    }
-
-    private static class Stub_MixedMembers
-    {
-        public static string Title { get; } = "Title";
+        public static string Title => "Title";
         public static string GetGreeting(string name) => $"Hello {name}";
         public static string GetMessage() => "A message";
     }
 
-    // Tester Subclasses
+    // Inherited Testers
 
-    private class Tester_WithExclusion(Type type)
-        : ResourceStringTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US")
+    private class InheritedTester_WithExclusion()
+        : ResourceStringTester(
+            typeof(ResourceClass_WithProblematic), 
+            known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
         protected override bool IsExcluded(MemberInfo memberToTest)
-            => memberToTest.Name == "Problematic" || base.IsExcluded(memberToTest);
+        {
+            if (memberToTest.Name == "Problematic") return true;
+            return base.IsExcluded(memberToTest);
+        }
     }
 
-    private class Tester_WithCustomSelection(Type type)
-        : ResourceStringTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US")
+    private class InheritedTester_WithCustomSelection()
+        : ResourceStringTester(
+            typeof(ResourceClass_WithProblematic), 
+            known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
         protected override IList<MemberInfo> SelectMembersToTest(Type resourceClass)
             => base.SelectMembersToTest(resourceClass)
@@ -213,12 +165,24 @@ public class ResourceStringTesterTests
                    .ToArray();
     }
 
-    private class Tester_WithCustomTestValue(Type type)
-        : ResourceStringTester(type, known: ["nl-NL"], unknown: "de-DE", @default: "en-US")
+    private class InheritedTester_WithCustomGetArg()
+        : ResourceStringTester(
+            typeof(ResourceClass_CustomType), 
+            known: ["nl-NL", ""], unknown: "de-DE", @default: "en-US")
     {
-        protected override object CreateTestValue(Type parameterType, int index)
-            => parameterType == typeof(CustomId)
-                ? new CustomId(42 + index)
-                : base.CreateTestValue(parameterType, index);
+        protected override object GetArg(Type parameterType, int index)
+        {
+            if (parameterType == typeof(CustomArgType))
+            {
+                return new CustomArgType(42 + index);
+            }
+
+            return base.GetArg(parameterType, index);
+        }
+    }
+
+    private class CustomArgType(int id)
+    {
+        public override string ToString() => $"ID-{id}";
     }
 }

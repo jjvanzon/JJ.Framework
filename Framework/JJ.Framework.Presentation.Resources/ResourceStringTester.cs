@@ -74,7 +74,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
         // Test
 
-        public void Assert_AllPublicStatics_ReturnText_ForKnownCultures()
+        public void AssertAllMembers()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
 
@@ -99,7 +99,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
             }
         }
 
-        public void Assert_UnknownCulture_UsesDefaultCulture()
+        public void AssertUnknownCulture()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
 
@@ -162,7 +162,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
         /// Creates a test value for a parameter of the given type.
         /// Override to support additional parameter types.
         /// </summary>
-        protected virtual object CreateTestValue(Type parameterType, int index)
+        protected virtual object GetArg(Type parameterType, int index)
         {
             return Type.GetTypeCode(parameterType) switch
             {
@@ -220,7 +220,7 @@ namespace JJ.Framework.ResourceStrings.Legacy
 
             for (int i = 0; i < parameters.Length; i++)
             {
-                args[i] = CreateTestValue(parameters[i].ParameterType, i);
+                args[i] = GetArg(parameters[i].ParameterType, i);
             }
 
             object ret = method.Invoke(args);
