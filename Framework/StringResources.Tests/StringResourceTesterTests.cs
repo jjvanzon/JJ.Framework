@@ -110,7 +110,7 @@ public class StringResourceTesterTests
 
     [TestMethod]
     public void StringResourceTester_Inheritance_MemberInclusion()
-        => new InheritedTester_MemberInclusion().AssertAllMembers();
+        => new InheritedTester_ExcludesProblematic().AssertAllMembers();
 
     [TestMethod]
     public void StringResourceTester_Inheritance_CustomTestValue_AppearsInResult() 
@@ -135,18 +135,19 @@ public class StringResourceTesterTests
     private static string CaptureTrace(Action action)
     {
         using var writer = new StringWriter();
-        var listener = new TextWriterTraceListener(writer);
+        using var listener = new TextWriterTraceListener(writer);
         Trace.Listeners.Add(listener);
         try
         {
             action();
             Trace.Flush();
-            return writer.ToString().Trim();
         }
         finally
         {
             Trace.Listeners.Remove(listener);
         }
+
+        return writer.ToString().Trim();
     }
 
     private StringResourceTester CreateDefaultTester([Dyn(PubPropMethod)] Type resourceClass)
@@ -155,44 +156,13 @@ public class StringResourceTesterTests
     private StringResourceTester[] ConstructTesters()
     {
         var list = new List<StringResourceTester>(32);
-        
-        list.AddRange(ConstructTesters(typeof(ResourceClass_0Arg_Static)));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_1Arg_Static)));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_2Arg_Static)));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_3Arg_Static)));
-
-        list.AddRange(ConstructTesters       <ResourceClass_0Arg_Instance> (new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_0Arg_Instance), new ResourceClass_0Arg_Instance()));
-
-        list.AddRange(ConstructTesters       <ResourceClass_1Arg_Instance>(new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_1Arg_Instance), new ResourceClass_1Arg_Instance()));
-
-        list.AddRange(ConstructTesters       <ResourceClass_2Arg_Instance>(new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_2Arg_Instance), new ResourceClass_2Arg_Instance()));
-
-        list.AddRange(ConstructTesters       <ResourceClass_3Arg_Instance>(new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_3Arg_Instance), new ResourceClass_3Arg_Instance()));
-
-        list.AddRange(ConstructTesters       <ResourceClass_0Arg_StaticInstantiable>());
-        list.AddRange(ConstructTesters(typeof(ResourceClass_0Arg_StaticInstantiable)));
-        list.AddRange(ConstructTesters       <ResourceClass_0Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_0Arg_StaticInstantiable), new ResourceClass_0Arg_StaticInstantiable()));
-
-        list.AddRange(ConstructTesters       <ResourceClass_1Arg_StaticInstantiable>());
-        list.AddRange(ConstructTesters(typeof(ResourceClass_1Arg_StaticInstantiable)));
-        list.AddRange(ConstructTesters       <ResourceClass_1Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_1Arg_StaticInstantiable), new ResourceClass_1Arg_StaticInstantiable()));
-
-        list.AddRange(ConstructTesters       <ResourceClass_2Arg_StaticInstantiable>());
-        list.AddRange(ConstructTesters(typeof(ResourceClass_2Arg_StaticInstantiable)));
-        list.AddRange(ConstructTesters       <ResourceClass_2Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_2Arg_StaticInstantiable), new ResourceClass_2Arg_StaticInstantiable()));
-
-        list.AddRange(ConstructTesters       <ResourceClass_3Arg_StaticInstantiable>());
-        list.AddRange(ConstructTesters(typeof(ResourceClass_3Arg_StaticInstantiable)));
-        list.AddRange(ConstructTesters       <ResourceClass_3Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_3Arg_StaticInstantiable), new ResourceClass_3Arg_StaticInstantiable()));
-
+        list.AddRange(ConstructTesters(typeof(ResourceClass_Static)));
+        list.AddRange(ConstructTesters       <ResourceClass_Instance> (new()));
+        list.AddRange(ConstructTesters(typeof(ResourceClass_Instance), new ResourceClass_Instance()));
+        list.AddRange(ConstructTesters       <ResourceClass_StaticInstantiable>());
+        list.AddRange(ConstructTesters(typeof(ResourceClass_StaticInstantiable)));
+        list.AddRange(ConstructTesters       <ResourceClass_StaticInstantiable> (new()));
+        list.AddRange(ConstructTesters(typeof(ResourceClass_StaticInstantiable), new ResourceClass_StaticInstantiable()));
         return list.ToArray();
     }
 
@@ -200,42 +170,13 @@ public class StringResourceTesterTests
     {
         var list = new List<StringResourceTester>(32);
         
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_0Arg_Static)));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_1Arg_Static)));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_2Arg_Static)));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_3Arg_Static)));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_0Arg_Instance> (new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_0Arg_Instance), new ResourceClass_0Arg_Instance()));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_1Arg_Instance>(new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_1Arg_Instance), new ResourceClass_1Arg_Instance()));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_2Arg_Instance>(new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_2Arg_Instance), new ResourceClass_2Arg_Instance()));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_3Arg_Instance>(new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_3Arg_Instance), new ResourceClass_3Arg_Instance()));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_0Arg_StaticInstantiable>());
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_0Arg_StaticInstantiable)));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_0Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_0Arg_StaticInstantiable), new ResourceClass_0Arg_StaticInstantiable()));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_1Arg_StaticInstantiable>());
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_1Arg_StaticInstantiable)));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_1Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_1Arg_StaticInstantiable), new ResourceClass_1Arg_StaticInstantiable()));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_2Arg_StaticInstantiable>());
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_2Arg_StaticInstantiable)));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_2Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_2Arg_StaticInstantiable), new ResourceClass_2Arg_StaticInstantiable()));
-
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_3Arg_StaticInstantiable>());
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_3Arg_StaticInstantiable)));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_3Arg_StaticInstantiable> (new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_3Arg_StaticInstantiable), new ResourceClass_3Arg_StaticInstantiable()));
+        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_Static)));
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_Instance> (new()));
+        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_Instance), new ResourceClass_Instance()));
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_StaticInstantiable>());
+        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_StaticInstantiable)));
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_StaticInstantiable> (new()));
+        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_StaticInstantiable), new ResourceClass_StaticInstantiable()));
 
         return list.ToArray();
     }
@@ -294,63 +235,27 @@ public class StringResourceTesterTests
 
     // Resource Classes
 
-    private static class ResourceClass_0Arg_Static
+    private static class ResourceClass_Static
     {
         public static string Greet() => "Hello";
-    }
-
-    private class ResourceClass_0Arg_Instance
-    {
-        public string Greet() => "Hello";
-    }
-
-    private class ResourceClass_0Arg_StaticInstantiable
-    {
-        public static string Greet() => "Hello";
-    }
-
-    private static class ResourceClass_1Arg_Static
-    {
         public static string Greet(string name) => $"Hello {name}";
-    }
-
-    private class ResourceClass_1Arg_Instance
-    {
-        public string Greet(string name) => $"Hello {name}";
-    }
-
-    private class ResourceClass_1Arg_StaticInstantiable
-    {
-        public static string Greet(string name) => $"Hello {name}";
-    }
-
-    private static class ResourceClass_2Arg_Static
-    {
         public static string Format(string label, int count) => $"{label}: {count}";
-    }
-
-    private class ResourceClass_2Arg_Instance
-    {
-        public string Format(string label, int count) => $"{label}: {count}";
-    }
-
-    private class ResourceClass_2Arg_StaticInstantiable
-    {
-        public static string Format(string label, int count) => $"{label}: {count}";
-    }
-
-    private static class ResourceClass_3Arg_Static
-    {
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
-    private class ResourceClass_3Arg_Instance
+    private class ResourceClass_Instance
     {
+        public string Greet() => "Hello";
+        public string Greet(string name) => $"Hello {name}";
+        public string Format(string label, int count) => $"{label}: {count}";
         public string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
-    private class ResourceClass_3Arg_StaticInstantiable
+    private class ResourceClass_StaticInstantiable
     {
+        public static string Greet() => "Hello";
+        public static string Greet(string name) => $"Hello {name}";
+        public static string Format(string label, int count) => $"{label}: {count}";
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
@@ -419,7 +324,7 @@ public class StringResourceTesterTests
     private static class ResourceClass_WithProblematic
     {
         public static string Good() => "Hello";
-        public static string Problematic() => "";
+        public static int Problematic() => 0;
     }
 
     private static class ResourceClass_CustomType
@@ -448,7 +353,7 @@ public class StringResourceTesterTests
 
     // Inherited Testers
 
-    private class InheritedTester_MemberInclusion()
+    private class InheritedTester_ExcludesProblematic()
         : StringResourceTester(
             typeof(ResourceClass_WithProblematic), 
             known: ["nl-NL", ""], _unknow, _default)
