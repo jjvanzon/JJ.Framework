@@ -202,7 +202,7 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_UnsupportedArgType_Throws()
     {
-        var tester = new StringResourceTester<ResourceClass_CustomType>(_known, _unknow, _default);
+        var tester = new StringResourceTester<ResourceClass_CustomArgType>(_known, _unknow, _default);
         Throws(() => tester.AssertAllMembers(), "could not", "generate", "value for parameter");
     }
 
@@ -319,9 +319,10 @@ public class StringResourceTesterTests
         public static string IsEmpty() => "";
     }
 
-    private class ResourceClass_CustomType
+    private class ResourceClass_CustomArgType
     {
-        public static string Format(CustomArgType id) => $"Value: {id}";
+        public static string WithID(CustomArgType id) => $"Value: {id}";
+        public static string SayMyName(string name) => name;
     }
 
     private class ResourceClass_WithUnresolvedPlaceholder
@@ -406,7 +407,7 @@ public class StringResourceTesterTests
     }
 
     private class InheritedTester_WithCustomGetArg()
-        : StringResourceTester(typeof(ResourceClass_CustomType), _known, _unknow, _default)
+        : StringResourceTester(typeof(ResourceClass_CustomArgType), _known, _unknow, _default)
     {
         protected override object GetArg(ParameterInfo param)
         {
