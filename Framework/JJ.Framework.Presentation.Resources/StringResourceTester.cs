@@ -2,9 +2,8 @@
 
 #pragma warning disable IDE0016 // Join null check with assignment
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
+#pragma warning disable IDE0060 // nolog param "unused"
 // ReSharper disable UnusedVariable
-
-using static JJ.Framework.Reflection.Legacy.ReflectionHelper;
 
 namespace JJ.Framework.StringResources.Legacy
 {
@@ -293,18 +292,28 @@ namespace JJ.Framework.StringResources.Legacy
                 args[i] = GetArg(parameters[i]);
             }
 
-            // Call method, check result
+            // Call method, basic result check
             object ret = method.Invoke(!method.IsStatic ? _resourceObject : null, args);
             IsOfType<string>(() => ret, method.Name);
             string text = (string)ret;
             NotNullOrWhiteSpace(() => text, method.Name);
+
+            // Log result
+            LogMethod(method, args, text);
+
+            // Check for unresolved placeholders
+            if (IsMatch(text!, @"\{\d+(?::[^}]*)?\}"))
+            {
+                throw new Exception(
+                    $"Method '{method.Name}' returned unresolved placeholders: \"{text}\".");
+            }
 
             // Check placeholders were returned
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) continue;
                 string argString = $"{args[i]}";
-                if (!text!.Contains(argString))
+                if (!text.Contains(argString))
                 {
                     throw new Exception(
                         $"Method {method.Name}: parameter '{parameters[i].Name}' " +
@@ -312,7 +321,6 @@ namespace JJ.Framework.StringResources.Legacy
                 }
             }
 
-            LogMethod(method, args, text);
             return text;
         }
 

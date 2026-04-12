@@ -206,6 +206,34 @@ public class StringResourceTesterTests
         Throws(() => tester.AssertAllMembers(), "could not", "generate", "value for parameter");
     }
 
+    [TestMethod]
+    public void StringResourceTester_UnresolvedPlaceholder_Throws()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithUnresolvedPlaceholder>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+    }
+
+    [TestMethod]
+    public void StringResourceTester_UnresolvedPlaceholder_StandardFormatSpecifier_Throws()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithUnresolvedPlaceholder_StandardFormatSpecifier>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+    }
+
+    [TestMethod]
+    public void StringResourceTester_UnresolvedPlaceholder_CustomFormatString_Throws()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithUnresolvedPlaceholder_CustomFormatString>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+    }
+
+    [TestMethod]
+    public void StringResourceTester_MultiplePlaceholdersOneUnresolved_Throws()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithMultiplePlaceholdersOneUnresolved>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+    }
+
     // Resource Classes
 
     private class ResourceClass
@@ -273,6 +301,26 @@ public class StringResourceTesterTests
         public static string Format(CustomArgType id) => $"Value: {id}";
     }
 
+    private class ResourceClass_WithUnresolvedPlaceholder
+    {
+        public static string Bad(string arg) => "Value: {0}";
+    }
+
+    private class ResourceClass_WithUnresolvedPlaceholder_StandardFormatSpecifier
+    {
+        public static string Bad(decimal amount) => "Amount: {0:C}";
+    }
+
+    private class ResourceClass_WithUnresolvedPlaceholder_CustomFormatString
+    {
+        public static string Bad(decimal amount) => "Amount: {0:0.00###}";
+    }
+
+    private class ResourceClass_WithMultiplePlaceholdersOneUnresolved
+    {
+        public static string Bad(string name, string action) => "Hello " + name + ", {1}";
+    }
+
     private class ResourceClass_MixedMembers
     {
         public static string Title => "Titel";
@@ -286,6 +334,7 @@ public class StringResourceTesterTests
         public string Open { get; init; } = "Openen";
 
         public string Count(string entityName) => "Aantal " + entityName;
+        // ReSharper disable once MethodOverloadWithOptionalParameter
         public string Delete(string entityName = "") => entityName + " verwijderen";
         public string Delete() => "Verwijderen";
         public string Close() => "Sluiten";
