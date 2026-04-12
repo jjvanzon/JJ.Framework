@@ -1,10 +1,10 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
-// ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 #pragma warning disable IDE0016 // Join null check with assignment
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 #pragma warning disable IDE0060 // nolog param "unused"
 // ReSharper disable UnusedVariable
+// ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 
 namespace JJ.Framework.StringResources.Legacy
 {
@@ -227,7 +227,8 @@ namespace JJ.Framework.StringResources.Legacy
                 _ => throw new Exception(
                     $"Could not automatically generate value for parameter " +
                     $"'{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
-                    $"Override Include or GetArg to include/exclude members or to provide a value explicitly.")
+                    $"Override Include or to include/exclude members or " +
+                    $"override GetArg to provide a value explicitly.")
             };
         }
        
@@ -309,7 +310,7 @@ namespace JJ.Framework.StringResources.Legacy
 
             return text;
         }
-
+       
         // Helpers
 
         private object? TryGetResourceObject(bool isStatic, MemberInfo member)
