@@ -314,4 +314,37 @@ internal class Untrimmer
                     $"Method '{method.Name}' from '{method.DeclaringType?.Name}' requires an object. " +
                     $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
             }
+
+ && param.ParameterType == typeof(object)
+            if (string.Equals(param.Member.Name, "NotFound_WithItemName_ID_AndListName", OrdinalIgnoreCase)
+            {
+            }
+```
+
+```cs
+/// <inheritdoc cref="_portedstubs" />
+internal static class AssertHelper
+{
+    /// <inheritdoc cref="_portedstubs" />
+    public static void AreEqual<T>(T expected, Func<T> actualFunc, [ArgExpress(nameof(actualFunc))] string name = "")
+    {
+        T actual = actualFunc();
+        if (!Equals(expected, actual)) throw new Exception($"AreEqual assertion failed. Tested: {name}. Expected: '{expected}'. Actual: '{actual}'");
+    }
+
+    /// <inheritdoc cref="_portedstubs" />
+    public static void NotNullOrWhiteSpace(Func<string> actualFunc, [ArgExpress(nameof(actualFunc))] string name = "")
+    {
+        string actual = actualFunc();
+        if (string.IsNullOrWhiteSpace(actual)) throw new Exception($"NotNullOrWhiteSpace assertion failed. Tested: {name}");
+    }
+
+    /// <inheritdoc cref="_portedstubs" />
+    public static void IsOfType<T>(Func<object> objFunc, [ArgExpress(nameof(objFunc))] string name = "")
+    {
+        Type actual = objFunc.Invoke().GetType();
+        Type expected = typeof(T);
+        if (expected != actual) throw new Exception($"IsOfType assertion failed. Tested: {name}. Expected: '{expected}'. Actual: '{actual}'");
+    }
+}
 ```

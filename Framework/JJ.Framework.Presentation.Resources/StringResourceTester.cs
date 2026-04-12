@@ -1,5 +1,6 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
+#pragma warning disable CS0078 // The 'l' suffix is easily confused with the digit '1'
 #pragma warning disable IDE0016 // Join null check with assignment
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 #pragma warning disable IDE0060 // nolog param "unused"
@@ -151,7 +152,10 @@ namespace JJ.Framework.StringResources.Legacy
                     SetCurrentCultureName(_unknownCultureName);
                     string actual = AssertResourceText(memberToTest);
 
-                    AreEqual(expected, () => actual, memberToTest.Name);
+                    if (!string.Equals(expected, actual, OrdinalIgnoreCase))
+                    {
+                        throw new Exception($"Member {memberToTest.Name} is '{actual}' but '{expected}' was expected.");
+                    }
                 }
             }
             finally
@@ -210,18 +214,18 @@ namespace JJ.Framework.StringResources.Legacy
 
             return Type.GetTypeCode(param.ParameterType) switch
             {
-                TypeCode.Int32   =>          101  + param.Position,
-                TypeCode.Int64   =>          101l + param.Position,
-                TypeCode.Decimal =>          101m + param.Position,
-                TypeCode.Double  =>          101d + param.Position,
-                TypeCode.Single  =>          101f + param.Position,
-                TypeCode.Int16   =>  (short)(101  + param.Position),
-                TypeCode.Byte    =>   (byte)(101  + param.Position),
-                TypeCode.Char    =>   (char)(101  + param.Position),
-                TypeCode.SByte   =>  (sbyte)(101  + param.Position),
-                TypeCode.UInt16  => (ushort)(101  + param.Position),
-                TypeCode.UInt32  =>   (uint)(101  + param.Position),
-                TypeCode.UInt64  =>  (ulong)(101  + param.Position),
+                TypeCode.Int32   =>          100  + param.Position,
+                TypeCode.Int64   =>          100l + param.Position,
+                TypeCode.Decimal =>          100m + param.Position,
+                TypeCode.Double  =>          100d + param.Position,
+                TypeCode.Single  =>          100f + param.Position,
+                TypeCode.Int16   =>  (short)(100  + param.Position),
+                TypeCode.Byte    =>   (byte)(100  + param.Position),
+                TypeCode.Char    =>   (char)(100  + param.Position),
+                TypeCode.SByte   =>  (sbyte)(100  + param.Position),
+                TypeCode.UInt16  => (ushort)(100  + param.Position),
+                TypeCode.UInt32  =>   (uint)(100  + param.Position),
+                TypeCode.UInt64  =>  (ulong)(100  + param.Position),
                 TypeCode.Boolean => param.Position % 2 == 0,
                 TypeCode.String  => $"arg{param.Position}",
                 _ => throw new Exception(
@@ -255,11 +259,9 @@ namespace JJ.Framework.StringResources.Legacy
         private string AssertResourceProp(PropertyInfo prop)
         {
             var isStatic = IsStatic(prop);
-            object obj = TryGetResourceObject(isStatic, prop);
+            object? obj = TryGetResourceObject(isStatic, prop);
             object val = prop.GetValue(obj);
-            IsOfType<string>(() => val, prop.Name);
-            var text = (string)val;
-            NotNullOrWhiteSpace(() => text, prop.Name);
+            string text = AssertReturnsText(prop, val);
             LogProp(prop, text);
             return text;
         }
@@ -270,7 +272,7 @@ namespace JJ.Framework.StringResources.Legacy
         /// </summary>
         private string AssertResourceMethod(MethodInfo method)
         {
-            // Generate parameters
+            // Generate arguments
             ParameterInfo[] parameters = method.GetParameters();
             var args = new object[parameters.Length];
             for (int i = 0; i < parameters.Length; i++)
@@ -279,11 +281,9 @@ namespace JJ.Framework.StringResources.Legacy
             }
 
             // Call method, basic result check
-            object obj = TryGetResourceObject(method.IsStatic, method);
-            object ret = method.Invoke(obj, args);
-            IsOfType<string>(() => ret, method.Name);
-            string text = (string)ret;
-            NotNullOrWhiteSpace(() => text, method.Name);
+            object? obj = TryGetResourceObject(method.IsStatic, method);
+            object ret = method.Invoke(obj, args) ?? "";
+            string text = AssertReturnsText(method, ret);
 
             // Log result
             LogMethod(method, args, text);
@@ -292,10 +292,10 @@ namespace JJ.Framework.StringResources.Legacy
             if (IsMatch(text!, "{\\d+(:[^}]+)?}"))
             {
                 throw new Exception(
-                    $"Method '{method.Name}' returned unresolved placeholders: \"{text}\".");
+                    $"Method {method.Name} returned unresolved placeholders: \"{text}\".");
             }
             
-            // Check args are in string
+            // Check args are in text
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) continue;
@@ -310,7 +310,26 @@ namespace JJ.Framework.StringResources.Legacy
 
             return text;
         }
-       
+
+        private static string AssertReturnsText(MemberInfo member, object ret)
+        {
+            var returnType = ret.GetType();
+            if (returnType != typeof(string))
+            {
+                throw new Exception(
+                    $"'{member.Name}' from '{member.DeclaringType?.Name}' " +
+                    $"should return string but instead it returned: '{returnType}'");
+            }
+
+            var text = (string)ret;
+            if (IsNullOrWhiteSpace(text)) 
+            {
+                throw new Exception(member.Name + " is null or white space.");
+            }
+
+            return text;
+        }
+
         // Helpers
 
         private object? TryGetResourceObject(bool isStatic, MemberInfo member)
@@ -320,8 +339,8 @@ namespace JJ.Framework.StringResources.Legacy
             if (_resourceObject == null)
             {
                 throw new Exception(
-                    $"'{member.Name}' from '{member.DeclaringType?.Name}' requires an object. " +
-                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
+                    $"'{member.Name}' from '{member.DeclaringType?.Name}' " +
+                    $"requires an object. Please pass one to the '{nameof(StringResourceTester)}' constructor.");
             }
 
             return _resourceObject;

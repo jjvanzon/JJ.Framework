@@ -9,7 +9,6 @@ public class StringResourceTesterTests
     private const string _unknow = "de-DE";
     private const string _default = "en-US";
 
-    
     [TestMethod]
     public void StringResourceTester_ReturnText_WithArgsInResult()
     {
@@ -69,7 +68,6 @@ public class StringResourceTesterTests
         var tester = new StringResourceTester<ResourceClass_VariousArgTypes>(_known, _unknow, _default);
         tester.AssertAllMembers();
     }
-
 
     // Mixed Props and Methods
 
@@ -189,14 +187,14 @@ public class StringResourceTesterTests
     public void StringResourceTester_WithoutExclusion_WrongTypeMember_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithWrongType>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "WrongType", "IsOfType assertion failed");
+        Throws(() => tester.AssertAllMembers(), "WrongType", "should return string");
     }
 
     [TestMethod]
     public void StringResourceTester_WithoutExclusion_EmptyString_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithEmpty>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "IsEmpty", "NotNullOrWhiteSpace assertion failed");
+        Throws(() => tester.AssertAllMembers(), "IsEmpty", "null or white space");
     }
 
     [TestMethod]
