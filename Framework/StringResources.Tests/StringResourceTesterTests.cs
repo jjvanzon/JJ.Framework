@@ -13,10 +13,11 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_ReturnText_WithArgsInResult()
     {
-        var tester1 = new StringResourceTester(typeof(ResourceClass), _known, _unknow, _default);
-        tester1.AssertAllMembers();
+        var tester = new StringResourceTester(typeof(ResourceClass), _known, _unknow, _default);
+        tester.AssertAllMembers();
 
-        var testerWithInstance = new StringResourceTester(typeof(ResourceClass), new ResourceClass(), _known, _unknow, _default);
+        var obj = new ResourceClass();
+        var testerWithInstance = new StringResourceTester(typeof(ResourceClass), obj, _known, _unknow, _default);
         testerWithInstance.AssertAllMembers();
     }
 
@@ -93,9 +94,9 @@ public class StringResourceTesterTests
     // Customization
 
     [TestMethod]
-    public void StringResourceTester_MemberExclusion_PreventsError()
+    public void StringResourceTester_MemberExclusion_PreventsErrors()
     {
-        new InheritedTester_ExcludesWrongType().AssertAllMembers();
+        new InheritedTester_ExcludesProblematicType().AssertAllMembers();
         new InheritedTester_ExcludesEmpty().AssertAllMembers();
     }
 
@@ -198,13 +199,21 @@ public class StringResourceTesterTests
     }
 
     [TestMethod]
-    public void StringResourceTester_UnsupportedType_Throws()
+    public void StringResourceTester_UnsupportedArgType_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_CustomType>(_known, _unknow, _default);
         Throws(() => tester.AssertAllMembers(), "could not", "generate", "value for parameter");
     }
 
     // Resource Classes
+
+    private class ResourceClass
+    {
+        public static string Greet() => "Hello";
+        public static string Greet(string name) => $"Hello {name}";
+        public static string Format(string label, int count) => $"{label}: {count}";
+        public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
+    }
 
     private static class ResourceClass_Static
     {
@@ -220,14 +229,6 @@ public class StringResourceTesterTests
         public string Greet(string name) => $"Hello {name}";
         public string Format(string label, int count) => $"{label}: {count}";
         public string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
-    }
-
-    private class ResourceClass
-    {
-        public static string Greet() => "Hello";
-        public static string Greet(string name) => $"Hello {name}";
-        public static string Format(string label, int count) => $"{label}: {count}";
-        public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
     private class ResourceClass_VariousArgTypes
@@ -292,7 +293,7 @@ public class StringResourceTesterTests
 
     // Inherited Testers
 
-    private class InheritedTester_ExcludesWrongType()
+    private class InheritedTester_ExcludesProblematicType()
         : StringResourceTester(typeof(ResourceClass_WithWrongType), _known, _unknow, _default)
     {
         protected override bool Include(MemberInfo memberToTest)
