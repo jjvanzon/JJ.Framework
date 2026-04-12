@@ -256,7 +256,7 @@
     <value>{0} o identyfikatorze {1} nie znaleziono.</value>
   </data>
   <data name="NotFound_WithType_AndName" xml:space="preserve">
-    <value>Nie znaleziono {1} {1}.</value>
+    <value>Nie znaleziono {0} {1}.</value>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>

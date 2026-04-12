@@ -6,7 +6,7 @@ using JJ.Framework.ResourceStrings.Tests;
 namespace JJ.Framework.IO.Tests
 {
     [TestClass]
-    public class JJ_Framework_IO_ResourceFormatter_Tests : ResourceStringTester
+    public class JJ_Framework_IO_ResourceFormatter_Tests : StringResourceTester
     {
         public JJ_Framework_IO_ResourceFormatter_Tests()
             : base(typeof(ResourceFormatter), 
@@ -16,10 +16,10 @@ namespace JJ.Framework.IO.Tests
 
         [TestMethod]
         public void Test_JJ_Framework_IO_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures()
-            => base.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+            => base.AssertAllMembers();
 
         [TestMethod]
         public void Test_JJ_Framework_IO_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
-            => base.Assert_UnknownCulture_UsesDefaultCulture();
+            => base.AssertUnknownCulture();
     }
 }

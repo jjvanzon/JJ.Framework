@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Utilities.FileNameExclusion.Tests
 {
     [TestClass]
-    public class JJ_Utilities_FileNameExclusion_ResourceFormatter_Tests : ResourceStringTester
+    public class JJ_Utilities_FileNameExclusion_ResourceFormatter_Tests : StringResourceTester
     {
         public JJ_Utilities_FileNameExclusion_ResourceFormatter_Tests()
             : base(typeof(ResourceFormatter),
@@ -16,10 +16,10 @@ namespace JJ.Utilities.FileNameExclusion.Tests
 
         [TestMethod]
         public void Test_JJ_Utilities_FileNameExclusion_ResourceFormatter_AllPublicStatics_ReturnText_ForKnownCultures()
-            => base.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+            => base.AssertAllMembers();
 
         [TestMethod]
         public void Test_JJ_Utilities_FileNameExclusion_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
-            => base.Assert_UnknownCulture_UsesDefaultCulture();
+            => base.AssertUnknownCulture();
     }
 }

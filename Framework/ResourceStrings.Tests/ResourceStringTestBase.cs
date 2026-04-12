@@ -1,26 +1,28 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
-// ReSharper disable UnusedVariable
-
-
+#pragma warning disable CS0078 // The 'l' suffix is easily confused with the digit '1'
+#pragma warning disable IDE0016 // Join null check with assignment
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
+#pragma warning disable IDE0060 // nolog param "unused"
+// ReSharper disable UnusedVariable
+// ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 
 namespace JJ.Framework.ResourceStrings.Tests
 {
     /// <summary>
     /// This class can be used as a base class for unit tests to run on a Resources or ResourceFormatter class.
-    /// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.ResourceStrings.
+    /// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.StringResources.
     /// That means, that each public static member of the ResourceFormatter class returns a string.
     /// That string may not be null or white space. The test can switch to different cultures and repeat the checks.
     /// An unused culture is currently assumed to fall back to a default culture en-US.
     /// Some of those requirements might seem quite specific for how our ResourceFormatter classes are structured.
     /// But having this base class for tests, would allow testing integrity of
-    /// some other resource formatters the same way JJ.Framework.ResourceStrings would do things.
+    /// some other resource formatters the same way JJ.Framework.StringResources would do things.
     ///
     /// <code>
     /// An implementation might look something like:
     /// [TestClass]
-    /// public class CommonResourceFormatterTests : ResourceStringTester
+    /// public class CommonResourceFormatterTests : StringResourceTester
     /// {
     ///   public CommonResourceFormatterTests()
     ///     : base(
@@ -30,36 +32,70 @@ namespace JJ.Framework.ResourceStrings.Tests
     ///         unknown: "zh-CN") { }
     /// 
     ///   [TestMethod]
-    ///   public void Test_CommonResourceFormatter_AllPublicMembers_ReturnText_ForKnownCultures()
-    ///     =&gt; base.Assert_AllPublicStatics_ReturnText_ForKnownCultures();
+    ///   public void Test_CommonResourceFormatter_AssertResources_ReturnText_ForKnownCultures()
+    ///     =&gt; base.AssertAllMembers();
     /// 
     ///   [TestMethod]
     ///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
-    ///     =&gt; base.Assert_UnknownCulture_UsesDefaultCulture();
+    ///     =&gt; base.AssertUnknownCulture();
     /// }
     /// </code>
     /// </summary>
-    public class ResourceStringTester
+    public class StringResourceTester
     {
-        private readonly IList<MemberInfo> _membersToTest;
+        /*[Dyn(PubPropMethod)]*/
+        private readonly Type _resourceClass;
+        private readonly object? _resourceObject;
         private readonly string _defaultCultureName;
         private readonly string[] _knownCultureNames;
         private readonly string _unknownCultureName;
+        private readonly bool _nolog;
 
         // Init
 
-        /// <inheritdoc cref="ResourceStringTester" />
-        public ResourceStringTester
-            (Type resourceClass, string[] known, string unknown, string @default)
+        // ReSharper disable once UnusedParameter.Local
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            /*[Dyn(PubPropMethod)]*/ Type resourceClass, 
+            string[] known, string unknown, string @default, NoLog nolog)
+            : this(
+                resourceClass, resourceObject: null, 
+                known, unknown, @default, nolog: true)
+        { }
+
+        // ReSharper disable once UnusedParameter.Local
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            /*[Dyn(PubPropMethod)]*/ Type resourceClass, object resourceObject, 
+            string[] known, string unknown, string @default, NoLog nolog)
+            : this(
+                resourceClass, resourceObject, 
+                known, unknown, @default, nolog: true)
+        { }
+
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            /*[Dyn(PubPropMethod)]*/ Type resourceClass,
+            string[] known, string unknown, string @default, bool nolog = default)
+            : this(
+                resourceClass, null, 
+                known, unknown, @default, nolog)
+        { }
+
+        /// <inheritdoc cref="StringResourceTester" />
+        public StringResourceTester(
+            /*[Dyn(PubPropMethod)]*/ Type resourceClass, object? resourceObject,
+            string[] known, string unknown, string @default, bool nolog = default)
         {
-            if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
+            _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));
+            _resourceObject = resourceObject;
             _defaultCultureName = @default ?? "";
-            _knownCultureNames = PopulateKnownCultureNames(@default, known);
+            _knownCultureNames = InitKnownCultureNames(@default, known);
             _unknownCultureName = unknown ?? "";
-            _membersToTest = SelectMembersToTest(resourceClass);
+            _nolog = nolog;
         }
 
-        private static string[] PopulateKnownCultureNames(string @default, string[] known)
+        private static string[] InitKnownCultureNames(string @default, string[] known)
         {
             if (known == null) throw new ArgumentNullException(nameof(known));
 
@@ -75,8 +111,10 @@ namespace JJ.Framework.ResourceStrings.Tests
 
         // Test
 
-        public void Assert_AllPublicStatics_ReturnText_ForKnownCultures()
+        public void AssertAllMembers()
         {
+            IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
+
             CultureInfo saved = GetCurrentCulture();
 
             try
@@ -86,7 +124,7 @@ namespace JJ.Framework.ResourceStrings.Tests
                     SetCurrentCultureName(cultureName);
                     LogCulture(cultureName);
 
-                    foreach (MemberInfo memberToTest in _membersToTest)
+                    foreach (MemberInfo memberToTest in membersToTest)
                     {
                         string resourceText = AssertResourceText(memberToTest);
                     }
@@ -98,13 +136,15 @@ namespace JJ.Framework.ResourceStrings.Tests
             }
         }
 
-        public void Assert_UnknownCulture_UsesDefaultCulture()
+        public void AssertUnknownCulture()
         {
+            IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
+
             CultureInfo saved = GetCurrentCulture();
 
             try
             {
-                foreach (MemberInfo memberToTest in _membersToTest)
+                foreach (MemberInfo memberToTest in membersToTest)
                 {
                     SetCurrentCultureName(_defaultCultureName);
                     string expected = AssertResourceText(memberToTest);
@@ -121,49 +161,89 @@ namespace JJ.Framework.ResourceStrings.Tests
             }
         }
 
-        // Select
+        // Selection
 
-        protected virtual IList<MemberInfo> SelectMembersToTest(Type resourceClass)
+        private IList<MemberInfo> SelectMembersToTest(/*[Dyn(PubPropMethod)]*/ Type resourceClass)
         {
-            var props = resourceClass.GetProperties(Static | Public);
+            if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
 
-            var methods = resourceClass.GetMethods(Static | Public)
+            var props = resourceClass.GetProperties(Static | Instance | Public);
+
+            var methods = resourceClass.GetMethods(Static | Instance | Public)
                                        .Where(x => !x.IsProperty());
 
             var members = props.Union<MemberInfo>(methods)
-                               .Where(x => !IsExcluded(x))
+                               .Where(x => Include(x))
                                .OrderBy(x => x.Name)
                                .ToArray();
             return members;
         }
-              
-        protected virtual bool IsExcluded(MemberInfo memberToTest)
+        
+        protected virtual bool Include(MemberInfo memberToTest)
         {
             if (memberToTest == null) throw new ArgumentNullException(nameof(memberToTest));
+           
+            if (memberToTest.DeclaringType == typeof(object))
+            {
+                return false;
+            }
 
             if (string.Equals(memberToTest.Name, "Culture", OrdinalIgnoreCase))
             {
-                return true;
+                return false;
             }
-
+          
             if (string.Equals(memberToTest.Name, "ResourceManager", OrdinalIgnoreCase))
             {
-                return true;
+                return false;
             }
-            return false;
+
+            return true;
         }
 
+        /// <summary>
+        /// Creates a test value for a parameter of the given type.
+        /// Override to support additional parameter types.
+        /// </summary>
+        protected virtual object GetArg(ParameterInfo param)
+        {
+            if (param == null) throw new ArgumentNullException(nameof(param));
+
+            return Type.GetTypeCode(param.ParameterType) switch
+            {
+                TypeCode.Int32   =>          100  + param.Position,
+                TypeCode.Int64   =>          100l + param.Position,
+                TypeCode.Decimal =>          100m + param.Position,
+                TypeCode.Double  =>          100d + param.Position,
+                TypeCode.Single  =>          100f + param.Position,
+                TypeCode.Int16   =>  (short)(100  + param.Position),
+                TypeCode.Byte    =>   (byte)(100  + param.Position),
+                TypeCode.Char    =>   (char)(100  + param.Position),
+                TypeCode.SByte   =>  (sbyte)(100  + param.Position),
+                TypeCode.UInt16  => (ushort)(100  + param.Position),
+                TypeCode.UInt32  =>   (uint)(100  + param.Position),
+                TypeCode.UInt64  =>  (ulong)(100  + param.Position),
+                TypeCode.Boolean => param.Position % 2 == 0,
+                TypeCode.String  => $"arg{param.Position}",
+                _ => throw new Exception(
+                    $"Could not automatically generate value for parameter " +
+                    $"'{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
+                    $"Override Include or to include/exclude members or " +
+                    $"override GetArg to provide a value explicitly.")
+            };
+        }
+       
         // Assert
 
-        private static string AssertResourceText(MemberInfo member)
+        private string AssertResourceText(MemberInfo member)
         {
             switch (member)
             {
                 case PropertyInfo prop:
-                    return AssertResourceText(prop);
+                    return AssertResourceProp(prop);
 
                 case MethodInfo method:
-                    return AssertResourceText(method);
+                    return AssertResourceMethod(method);
 
                 default:
                     throw new UnexpectedTypeException(() => member); // ncrunch: no coverage
@@ -173,9 +253,11 @@ namespace JJ.Framework.ResourceStrings.Tests
         /// <summary>
         /// Aims to assert that the property is of type string and what it might return would not be null or white space.
         /// </summary>
-        private static string AssertResourceText(PropertyInfo prop)
+        private string AssertResourceProp(PropertyInfo prop)
         {
-            object val = prop.GetValue();
+            var isStatic = prop.IsStatic();
+            object obj = TryGetResourceObject(isStatic, prop);
+            object val = prop.GetValue(obj);
             IsOfType<string>(() => val, prop.Name);
             var text = (string)val;
             NotNullOrWhiteSpace(() => text, prop.Name);
@@ -184,59 +266,115 @@ namespace JJ.Framework.ResourceStrings.Tests
         }
 
         /// <summary>
-        /// Aims to assert that the method is of type string,
-        /// it is callable with all parameters null,
-        /// and what it might return would not be null or white space.
+        /// Asserts that the method returns a non-empty string
+        /// and that each supplied test value appears in the result.
         /// </summary>
-        private static string AssertResourceText(MethodInfo method)
+        private string AssertResourceMethod(MethodInfo method)
         {
-            // Supplying nulls for the parameters. Reflection seemed to turn those nulls into defaults,
-            // making it work for int and decimal parameters too, which was convenient.
-            int parameterCount = method.GetParameters().Length;
-            var parameters = new object[parameterCount];
-            object ret = method.Invoke(parameters);
+            // Generate parameters
+            ParameterInfo[] parameters = method.GetParameters();
+            var args = new object[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+            {
+                args[i] = GetArg(parameters[i]);
+            }
+
+            // Call method, basic result check
+            object obj = TryGetResourceObject(method.IsStatic, method);
+            object ret = method.Invoke(obj, args);
             IsOfType<string>(() => ret, method.Name);
-            var text = (string)ret;
+            string text = (string)ret;
             NotNullOrWhiteSpace(() => text, method.Name);
-            LogMethod(method, text);
+
+            // Log result
+            LogMethod(method, args, text);
+
+            // Check unresolved placeholders
+            if (IsMatch(text!, "{\\d+(:[^}]+)?}"))
+            {
+                throw new Exception(
+                    $"Method '{method.Name}' returned unresolved placeholders: \"{text}\".");
+            }
+            
+            // Check args are in string
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i] == null) continue;
+                string argString = $"{args[i]}";
+                if (!text.Contains(argString))
+                {
+                    throw new Exception(
+                        $"Method {method.Name}: parameter '{parameters[i].Name}' " +
+                        $"value \"{argString}\" not found in result \"{text}\".");
+                }
+            }
+
             return text;
+        }
+       
+        // Helpers
+
+        private object? TryGetResourceObject(bool isStatic, MemberInfo member)
+        {
+            if (isStatic) return null;
+
+            if (_resourceObject == null)
+            {
+                throw new Exception(
+                    $"'{member.Name}' from '{member.DeclaringType?.Name}' requires an object. " +
+                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
+            }
+
+            return _resourceObject;
         }
 
         // Log
 
-        private static void LogCulture(string cultureName)
+        private void LogCulture(string cultureName)
         {
-            Trace.WriteLine("");
-            Trace.WriteLine($"{FormatCultureName(cultureName)}:");
-            Trace.WriteLine("");
+            Log("");
+            Log($"{FormatCulture(cultureName)}:");
+            Log("");
         }
 
-        private static string FormatCultureName(string cultureName)
+        private void LogProp(PropertyInfo prop, string text) 
+            => Log($"Prop {prop.Name} = {FormatText(text)} ({FormatCulture()})");
+
+        private void LogMethod(MethodInfo method, object[] args, string text) 
+            => Log($"Method {FormatMethod(method, args)} => {FormatText(text)} ({FormatCulture()})");
+
+        private void Log(string message)
         {
-            if (string.IsNullOrEmpty(cultureName)) 
+            if (_nolog)
+                return;
+
+            Trace.WriteLine(message);
+        }
+
+        private static string FormatText(string text) 
+            => @"""" + text + @"""";
+
+        private static string FormatMethod(MethodInfo method, object[] args) 
+            => $"{method?.Name}({Join(", ", args.Select(FormatArg))})";
+
+        private static string FormatArg(object arg)
+        {
+            if (arg == null) return "null";
+            if (arg is string)
             {
-                return "Invariant culture";
+                return @"""" + arg + @"""";
             }
-            return cultureName;
+            if (arg is char)
+            {
+                return $"'{arg}'";
+            }
+            return $"{arg}";
         }
 
-        private static void LogProp(PropertyInfo prop, string text)
-        {
-            Trace.WriteLine($"Prop {prop.Name} = \"{text}\" ({FormatCultureName(GetCurrentCulture()?.Name)})");
-            //Trace.WriteLine(@$"Prop {prop.Name} = ""{text}""");
-        }
-
-        private static void LogMethod(MethodInfo method, string text)
-        {
-            Trace.WriteLine($"Method {method.Name}({string.Join(", ", method.GetParameters().Select(x => x.Name))}) => \"{text}\" ({FormatCultureName(GetCurrentCulture()?.Name)})");
-            //Trace.WriteLine(@$"Prop {prop.Name} = ""{text}""");
-        }
-
-        /*
-        private static void LogEmptyLine()
-        { 
-            Trace.WriteLine("");
-        }
-        */
+        private static string FormatCulture()
+            => FormatCulture(GetCurrentCulture()?.Name);
+        
+        private static string FormatCulture(string cultureName) 
+            => !IsNullOrEmpty(cultureName) ? cultureName : "Invariant culture";
     }
 }
