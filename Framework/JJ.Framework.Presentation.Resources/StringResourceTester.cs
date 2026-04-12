@@ -302,12 +302,12 @@ namespace JJ.Framework.StringResources.Legacy
             LogMethod(method, args, text);
 
             // Check for unresolved placeholders
-            if (IsMatch(text!, @"\{\d+(?::[^}]*)?\}"))
+            if (IsMatch(text!, "{\\d+(:[^}]+)?}"))
             {
                 throw new Exception(
                     $"Method '{method.Name}' returned unresolved placeholders: \"{text}\".");
             }
-
+            
             // Check placeholders were returned
             for (int i = 0; i < args.Length; i++)
             {
