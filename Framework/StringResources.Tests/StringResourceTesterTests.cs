@@ -109,8 +109,11 @@ public class StringResourceTesterTests
     // Customization
 
     [TestMethod]
-    public void StringResourceTester_Inheritance_MemberInclusion()
-        => new InheritedTester_ExcludesProblematic().AssertAllMembers();
+    public void StringResourceTester_Inheritance_MemberExclusion()
+    {
+        new InheritedTester_ExcludesWrongType().AssertAllMembers();
+        new InheritedTester_ExcludesEmpty().AssertAllMembers();
+    }
 
     [TestMethod]
     public void StringResourceTester_Inheritance_CustomTestValue_AppearsInResult() 
@@ -123,8 +126,13 @@ public class StringResourceTesterTests
         => Throws(() => CreateDefaultTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(), "not found in result");
 
     [TestMethod]
-    public void StringResourceTester_WithoutExclusion_ProblematicMember_Throws()
-        => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithProblematic)).AssertAllMembers(), "Problematic");
+    public void StringResourceTester_WithoutExclusion_WrongTypeMember_Throws()
+        => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithWrongType)).AssertAllMembers(), "WrongType", "IsOfType assertion failed");
+
+
+    [TestMethod]
+    public void StringResourceTester_WithoutExclusion_EmptyString_Throws()
+        => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithEmpty)).AssertAllMembers(), "IsEmpty", "NotNullOrWhiteSpace assertion failed");
 
     [TestMethod]
     public void StringResourceTester_UnsupportedType_Throws() 
@@ -157,12 +165,9 @@ public class StringResourceTesterTests
     {
         var list = new List<StringResourceTester>(32);
         list.AddRange(ConstructTesters(typeof(ResourceClass_Static)));
-        list.AddRange(ConstructTesters       <ResourceClass_Instance> (new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_Instance), new ResourceClass_Instance()));
+        list.AddRange(ConstructTesters       <ResourceClass_Instance>(new()));
         list.AddRange(ConstructTesters       <ResourceClass_StaticInstantiable>());
-        list.AddRange(ConstructTesters(typeof(ResourceClass_StaticInstantiable)));
-        list.AddRange(ConstructTesters       <ResourceClass_StaticInstantiable> (new()));
-        list.AddRange(ConstructTesters(typeof(ResourceClass_StaticInstantiable), new ResourceClass_StaticInstantiable()));
+        list.AddRange(ConstructTesters       <ResourceClass_StaticInstantiable>(new()));
         return list.ToArray();
     }
 
@@ -171,12 +176,9 @@ public class StringResourceTesterTests
         var list = new List<StringResourceTester>(32);
         
         list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_Static)));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_Instance> (new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_Instance), new ResourceClass_Instance()));
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_Instance>(new()));
         list.AddRange(ConstructTestersNoLog       <ResourceClass_StaticInstantiable>());
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_StaticInstantiable)));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_StaticInstantiable> (new()));
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_StaticInstantiable), new ResourceClass_StaticInstantiable()));
+        list.AddRange(ConstructTestersNoLog       <ResourceClass_StaticInstantiable>(new()));
 
         return list.ToArray();
     }
@@ -189,22 +191,18 @@ public class StringResourceTesterTests
 
     private StringResourceTester[] ConstructTesters<[Dyn(PubPropMethod)] TResourceClass>() =>
     [
-        new StringResourceTester<TResourceClass>(_known, _unknow, _default),
-        new StringResourceTester<TResourceClass>(_known, _unknow, _default, nolog: false),
-    ];
-
-    private StringResourceTester[] ConstructTesters([Dyn(PubPropMethod)] Type type, object obj) =>
-    [
-        new StringResourceTester(type, obj, _known, _unknow, _default),
-        new StringResourceTester(type, obj, _known, _unknow, _default, nolog: false),
+        new StringResourceTester       <TResourceClass> (_known, _unknow, _default),
+        new StringResourceTester       <TResourceClass> (_known, _unknow, _default, nolog: false),
+        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default),
+        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default, nolog: false),
     ];
 
     private StringResourceTester[] ConstructTesters<[Dyn(PubPropMethod)] TResourceClass>(TResourceClass obj) =>
     [
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default),
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: false),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: false),
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default),
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: false),
     ];
 
     private StringResourceTester[] ConstructTestersNoLog([Dyn(PubPropMethod)] Type type) =>
@@ -215,22 +213,18 @@ public class StringResourceTesterTests
 
     private StringResourceTester[] ConstructTestersNoLog<[Dyn(PubPropMethod)] TResourceClass>() =>
     [
-        new StringResourceTester<TResourceClass>(_known, _unknow, _default, nolog),
-        new StringResourceTester<TResourceClass>(_known, _unknow, _default, nolog: true),
-    ];
-
-    private StringResourceTester[] ConstructTestersNoLog([Dyn(PubPropMethod)] Type type, object obj) =>
-    [
-        new StringResourceTester(type, obj, _known, _unknow, _default, nolog),
-        new StringResourceTester(type, obj, _known, _unknow, _default, nolog: true),
+        new StringResourceTester       <TResourceClass> (_known, _unknow, _default, nolog),
+        new StringResourceTester       <TResourceClass> (_known, _unknow, _default, nolog: true),
+        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default, nolog),
+        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default, nolog: true),
     ];
 
     private StringResourceTester[] ConstructTestersNoLog<[Dyn(PubPropMethod)] TResourceClass>(TResourceClass obj) =>
     [
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog),
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: true),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog),
         new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: true),
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog),
+        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: true),
     ];
 
     // Resource Classes
@@ -321,10 +315,16 @@ public class StringResourceTesterTests
         public static string Bad(string name) => "Static text";
     }
 
-    private static class ResourceClass_WithProblematic
+    private static class ResourceClass_WithWrongType
     {
         public static string Good() => "Hello";
-        public static int Problematic() => 0;
+        public static int WrongType() => 0;
+    }
+
+    private static class ResourceClass_WithEmpty
+    {
+        public static string Good() => "Hello";
+        public static string IsEmpty() => "";
     }
 
     private static class ResourceClass_CustomType
@@ -353,22 +353,36 @@ public class StringResourceTesterTests
 
     // Inherited Testers
 
-    private class InheritedTester_ExcludesProblematic()
-        : StringResourceTester(
-            typeof(ResourceClass_WithProblematic), 
-            known: ["nl-NL", ""], _unknow, _default)
+    private class InheritedTester_ExcludesWrongType()
+        : StringResourceTester(typeof(ResourceClass_WithWrongType), _known, _unknow, _default)
     {
         protected override bool Include(MemberInfo memberToTest)
         {
-            if (memberToTest.Name == "Problematic") return false;
+            if (memberToTest.Name == "WrongType")
+            {
+                return false;
+            }
+
+            return base.Include(memberToTest);
+        }
+    }
+
+    private class InheritedTester_ExcludesEmpty()
+        : StringResourceTester(typeof(ResourceClass_WithEmpty), _known, _unknow, _default)
+    {
+        protected override bool Include(MemberInfo memberToTest)
+        {
+            if (memberToTest.Name == "IsEmpty")
+            {
+                return false;
+            }
+
             return base.Include(memberToTest);
         }
     }
 
     private class InheritedTester_WithCustomGetArg()
-        : StringResourceTester(
-            typeof(ResourceClass_CustomType), 
-            known: ["nl-NL", ""], _unknow, _default)
+        : StringResourceTester(typeof(ResourceClass_CustomType), _known, _unknow, _default)
     {
         protected override object GetArg(ParameterInfo param)
         {

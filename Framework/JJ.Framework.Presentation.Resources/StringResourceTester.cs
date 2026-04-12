@@ -42,7 +42,7 @@ namespace JJ.Framework.StringResources.Legacy
     /// </summary>
     public class StringResourceTester
     {
-        [Dyn(PubProps|PubMethods)]
+        [Dyn(PubPropMethod)]
         private readonly Type _resourceClass;
         private readonly object? _resourceObject;
         private readonly string _defaultCultureName;
@@ -55,7 +55,7 @@ namespace JJ.Framework.StringResources.Legacy
         // ReSharper disable once UnusedParameter.Local
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester(
-            [Dyn(PubProps|PubMethods)] Type resourceClass, 
+            [Dyn(PubPropMethod)] Type resourceClass, 
             string[] known, string unknown, string @default, NoLog nolog)
             : this(
                 resourceClass, resourceObject: null, 
@@ -65,7 +65,7 @@ namespace JJ.Framework.StringResources.Legacy
         // ReSharper disable once UnusedParameter.Local
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester(
-            [Dyn(PubProps|PubMethods)] Type resourceClass, object resourceObject, 
+            [Dyn(PubPropMethod)] Type resourceClass, object resourceObject, 
             string[] known, string unknown, string @default, NoLog nolog)
             : this(
                 resourceClass, resourceObject, 
@@ -74,7 +74,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester(
-            [Dyn(PubProps|PubMethods)] Type resourceClass,
+            [Dyn(PubPropMethod)] Type resourceClass,
             string[] known, string unknown, string @default, bool nolog = default)
             : this(
                 resourceClass, null, 
@@ -83,7 +83,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         /// <inheritdoc cref="StringResourceTester" />
         public StringResourceTester(
-            [Dyn(PubProps|PubMethods)] Type resourceClass, object? resourceObject,
+            [Dyn(PubPropMethod)] Type resourceClass, object? resourceObject,
             string[] known, string unknown, string @default, bool nolog = default)
         {
             _resourceClass = resourceClass ?? throw new ArgumentNullException(nameof(resourceClass));
@@ -162,7 +162,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         // Selection
 
-        private IList<MemberInfo> SelectMembersToTest([Dyn(PubProps|PubMethods)] Type resourceClass)
+        private IList<MemberInfo> SelectMembersToTest([Dyn(PubPropMethod)] Type resourceClass)
         {
             if (resourceClass == null) throw new ArgumentNullException(nameof(resourceClass));
 
