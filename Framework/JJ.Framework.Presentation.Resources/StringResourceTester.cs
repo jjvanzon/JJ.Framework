@@ -254,15 +254,7 @@ namespace JJ.Framework.StringResources.Legacy
         private string AssertResourceProp(PropertyInfo prop)
         {
             var isStatic = IsStatic(prop);
-
-            if (!isStatic && _resourceObject == null)
-            {
-                throw new Exception(
-                    $"Property '{prop.Name}' from '{prop.DeclaringType?.Name}' requires an object. " +
-                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
-            }
-
-            object? obj = !isStatic ? _resourceObject : null;
+            object obj = TryGetResourceObject(isStatic, prop);
             object val = prop.GetValue(obj);
             IsOfType<string>(() => val, prop.Name);
             var text = (string)val;
@@ -277,14 +269,6 @@ namespace JJ.Framework.StringResources.Legacy
         /// </summary>
         private string AssertResourceMethod(MethodInfo method)
         {
-            // Guard
-            if (!method.IsStatic && _resourceObject == null)
-            {
-                throw new Exception(
-                    $"Method '{method.Name}' from '{method.DeclaringType?.Name}' requires an object. " +
-                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
-            }
-
             // Generate parameters
             ParameterInfo[] parameters = method.GetParameters();
             var args = new object[parameters.Length];
@@ -294,7 +278,8 @@ namespace JJ.Framework.StringResources.Legacy
             }
 
             // Call method, basic result check
-            object ret = method.Invoke(!method.IsStatic ? _resourceObject : null, args);
+            object obj = TryGetResourceObject(method.IsStatic, method);
+            object ret = method.Invoke(obj, args);
             IsOfType<string>(() => ret, method.Name);
             string text = (string)ret;
             NotNullOrWhiteSpace(() => text, method.Name);
@@ -323,6 +308,22 @@ namespace JJ.Framework.StringResources.Legacy
             }
 
             return text;
+        }
+
+        // Helpers
+
+        private object? TryGetResourceObject(bool isStatic, MemberInfo member)
+        {
+            if (isStatic) return null;
+
+            if (_resourceObject == null)
+            {
+                throw new Exception(
+                    $"'{member.Name}' from '{member.DeclaringType?.Name}' requires an object. " +
+                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
+            }
+
+            return _resourceObject;
         }
 
         // Log

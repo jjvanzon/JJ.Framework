@@ -307,4 +307,11 @@ internal class Untrimmer
 
                             //TypeCode.DateTime => new DateTime(2000 + param.Position, 1, 1), // Culture dependent = too much variance.
 
+
+            if (!isStatic && _resourceObject == null)
+            {
+                throw new Exception(
+                    $"Method '{method.Name}' from '{method.DeclaringType?.Name}' requires an object. " +
+                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
+            }
 ```
