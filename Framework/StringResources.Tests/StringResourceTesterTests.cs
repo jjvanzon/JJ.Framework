@@ -234,6 +234,20 @@ public class StringResourceTesterTests
         Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
     }
 
+    [TestMethod]
+    public void StringResourceTester_InstanceProperty_WithoutObject_Throws()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithInstanceProperty>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "requires an object", "Please pass one to the", "constructor");
+    }
+
+    [TestMethod]
+    public void StringResourceTester_InstanceMethod_WithoutObject_Throws()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithInstanceMethod>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "requires an object", "Please pass one to the", "constructor");
+    }
+
     // Resource Classes
 
     private class ResourceClass
@@ -281,6 +295,16 @@ public class StringResourceTesterTests
     private class ResourceClass_ArgNotUsed
     {
         public static string Bad(string arg) => "Static text";
+    }
+
+    private class ResourceClass_WithInstanceProperty
+    {
+        public string Title => "Title"; // ncrunch: no coverage
+    }
+
+    private class ResourceClass_WithInstanceMethod
+    {
+        public string Greet() => "Hello"; // ncrunch: no coverage
     }
 
     private class ResourceClass_WithWrongType
