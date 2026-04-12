@@ -227,7 +227,7 @@ namespace JJ.Framework.StringResources.Legacy
                 TypeCode.DateTime => new DateTime(2000 + param.Position, 1, 1),
                 _ => throw new Exception(
                     $"Could not automatically generate value for parameter '{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
-                    $"Override Include or GetArg to include/exclude members or to provide a value.")
+                    $"Override Include or GetArg to include/exclude members or to provide a value explicitly.")
             };
         }
        
@@ -253,7 +253,16 @@ namespace JJ.Framework.StringResources.Legacy
         /// </summary>
         private string AssertResourceProp(PropertyInfo prop)
         {
-            object? obj = !IsStatic(prop) ? _resourceObject : null;
+            var isStatic = IsStatic(prop);
+
+            if (!isStatic && _resourceObject == null)
+            {
+                throw new Exception(
+                    $"Property '{prop.Name}' from '{prop.DeclaringType?.Name}' requires an object. " +
+                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
+            }
+
+            object? obj = !isStatic ? _resourceObject : null;
             object val = prop.GetValue(obj);
             IsOfType<string>(() => val, prop.Name);
             var text = (string)val;
@@ -272,8 +281,8 @@ namespace JJ.Framework.StringResources.Legacy
             if (!method.IsStatic && _resourceObject == null)
             {
                 throw new Exception(
-                    $"Method '{method.Name}' of type '{method.DeclaringType?.Name}' " +
-                    $"is not static and requires an instance.");
+                    $"Method '{method.Name}' from '{method.DeclaringType?.Name}' requires an object. " +
+                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
             }
 
             // Generate parameters
