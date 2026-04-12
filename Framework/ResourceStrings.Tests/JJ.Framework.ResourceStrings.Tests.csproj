@@ -54,11 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonResourceFormatterTests.cs" />
-    <Compile Include="NoLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringResourceTester.cs" />
-    <Compile Include="StringResourceTesterOfT.cs" />
-    <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">

@@ -72,9 +72,9 @@
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ResourceStrings.Tests\JJ.Framework.ResourceStrings.Tests.csproj">
-      <Project>{b26b8089-81f0-4e8e-9ce6-21cf9bc24b24}</Project>
-      <Name>JJ.Framework.ResourceStrings.Tests</Name>
+    <ProjectReference Include="..\ResourceStrings\JJ.Framework.ResourceStrings.csproj">
+      <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
+      <Name>JJ.Framework.ResourceStrings</Name>
     </ProjectReference>
     <ProjectReference Include="..\Testing\JJ.Framework.Testing.csproj">
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>

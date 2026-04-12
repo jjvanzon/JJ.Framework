@@ -1,4 +1,4 @@
-namespace JJ.Framework.ResourceStrings.Tests;
+namespace JJ.Framework.ResourceStrings;
 
 /// <summary>
 /// Generic syntax sugar over <see cref="StringResourceTester"/>

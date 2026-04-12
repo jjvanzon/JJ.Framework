@@ -1,5 +1,6 @@
 ﻿// ReSharper disable RedundantBaseQualifier
 
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.ResourceStrings.Tests

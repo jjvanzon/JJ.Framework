@@ -7,7 +7,7 @@
 // ReSharper disable UnusedVariable
 // ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 
-namespace JJ.Framework.ResourceStrings.Tests
+namespace JJ.Framework.ResourceStrings
 {
     /// <summary>
     /// This class can be used as a base class for unit tests to run on a Resources or ResourceFormatter class.
@@ -152,7 +152,10 @@ namespace JJ.Framework.ResourceStrings.Tests
                     SetCurrentCultureName(_unknownCultureName);
                     string actual = AssertResourceText(memberToTest);
 
-                    AreEqual(expected, () => actual, memberToTest.Name);
+                    if (!string.Equals(expected, actual, OrdinalIgnoreCase))
+                    {
+                        throw new Exception($"Member {memberToTest.Name} is '{actual}' but '{expected}' was expected.");
+                    }
                 }
             }
             finally
@@ -256,11 +259,9 @@ namespace JJ.Framework.ResourceStrings.Tests
         private string AssertResourceProp(PropertyInfo prop)
         {
             var isStatic = prop.IsStatic();
-            object obj = TryGetResourceObject(isStatic, prop);
+            object? obj = TryGetResourceObject(isStatic, prop);
             object val = prop.GetValue(obj);
-            IsOfType<string>(() => val, prop.Name);
-            var text = (string)val;
-            NotNullOrWhiteSpace(() => text, prop.Name);
+            string text = AssertReturnsText(prop, val);
             LogProp(prop, text);
             return text;
         }
@@ -271,7 +272,7 @@ namespace JJ.Framework.ResourceStrings.Tests
         /// </summary>
         private string AssertResourceMethod(MethodInfo method)
         {
-            // Generate parameters
+            // Generate arguments
             ParameterInfo[] parameters = method.GetParameters();
             var args = new object[parameters.Length];
             for (int i = 0; i < parameters.Length; i++)
@@ -280,11 +281,9 @@ namespace JJ.Framework.ResourceStrings.Tests
             }
 
             // Call method, basic result check
-            object obj = TryGetResourceObject(method.IsStatic, method);
-            object ret = method.Invoke(obj, args);
-            IsOfType<string>(() => ret, method.Name);
-            string text = (string)ret;
-            NotNullOrWhiteSpace(() => text, method.Name);
+            object? obj = TryGetResourceObject(method.IsStatic, method);
+            object ret = method.Invoke(obj, args) ?? "";
+            string text = AssertReturnsText(method, ret);
 
             // Log result
             LogMethod(method, args, text);
@@ -293,10 +292,10 @@ namespace JJ.Framework.ResourceStrings.Tests
             if (IsMatch(text!, "{\\d+(:[^}]+)?}"))
             {
                 throw new Exception(
-                    $"Method '{method.Name}' returned unresolved placeholders: \"{text}\".");
+                    $"Method {method.Name} returned unresolved placeholders: \"{text}\".");
             }
             
-            // Check args are in string
+            // Check args are in text
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) continue;
@@ -311,7 +310,26 @@ namespace JJ.Framework.ResourceStrings.Tests
 
             return text;
         }
-       
+
+        private static string AssertReturnsText(MemberInfo member, object ret)
+        {
+            var returnType = ret.GetType();
+            if (returnType != typeof(string))
+            {
+                throw new Exception(
+                    $"'{member.Name}' from '{member.DeclaringType?.Name}' " +
+                    $"should return string but instead it returned: '{returnType}'");
+            }
+
+            var text = (string)ret;
+            if (IsNullOrWhiteSpace(text)) 
+            {
+                throw new Exception(member.Name + " is null or white space.");
+            }
+
+            return text;
+        }
+
         // Helpers
 
         private object? TryGetResourceObject(bool isStatic, MemberInfo member)
@@ -321,8 +339,8 @@ namespace JJ.Framework.ResourceStrings.Tests
             if (_resourceObject == null)
             {
                 throw new Exception(
-                    $"'{member.Name}' from '{member.DeclaringType?.Name}' requires an object. " +
-                    $"Please pass one to the '{nameof(StringResourceTester)}' constructor.");
+                    $"'{member.Name}' from '{member.DeclaringType?.Name}' " +
+                    $"requires an object. Please pass one to the '{nameof(StringResourceTester)}' constructor.");
             }
 
             return _resourceObject;

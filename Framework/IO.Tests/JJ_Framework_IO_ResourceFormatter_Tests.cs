@@ -1,7 +1,7 @@
 ﻿#pragma warning disable IDE0002 // Simplify Member Access
 // ReSharper disable RedundantBaseQualifier
 
-using JJ.Framework.ResourceStrings.Tests;
+using JJ.Framework.ResourceStrings;
 
 namespace JJ.Framework.IO.Tests
 {
