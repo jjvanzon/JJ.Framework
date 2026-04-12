@@ -1,5 +1,6 @@
 // ReSharper disable RedundantTypeArgumentsOfMethod
-#pragma warning disable IDE0090 // Preferred new-style
+//#pragma warning disable IDE0090 // Preferred new-style
+
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
 [TestClass]
@@ -9,102 +10,72 @@ public class StringResourceTesterTests
     private const string _unknow = "de-DE";
     private const string _default = "en-US";
 
-    // Parameter Counts / Static/Instance / Constructors
+    // Static / Instance
 
     [TestMethod]
     public void StringResourceTesters_ReturnText_WithArgsInResult()
     {
-        StringResourceTester[] testers = ConstructTesters();
-        foreach (var tester in testers)
-        {
-            string trace1 = CaptureTrace(tester.AssertAllMembers);
-            NotNullOrWhiteSpace(trace1);
+        StringResourceTester[] testers = 
+        [
+            new (typeof(ResourceClass_Static), _known, _unknow, _default),
+            new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default),
+            new (typeof(ResourceClass_StaticInstantiable), _known, _unknow, _default),
+            new (typeof(ResourceClass_StaticInstantiable), new ResourceClass_StaticInstantiable(), _known, _unknow, _default),
+        ];
 
-            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
-            NotNullOrWhiteSpace(trace2);
-        }
-    }
-
-    [TestMethod]
-    public void StringResourceTesters_ReturnText_WithArgsInResult_NoLog()
-    {
-        StringResourceTester[] testers = ConstructTestersNoLog();
-        foreach (var tester in testers)
-        {
-            string trace1 = CaptureTrace(tester.AssertAllMembers);
-            AreEqual("", trace1);
-
-            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
-            AreEqual("", trace2);
-        }
-    }
-
-    // Parameter Types
-
-    [TestMethod]
-    public void StringResourceTester_VariousArgTypes_AppearInResult_Static()
-    {
-        var testers = ConstructTesters(typeof(ResourceClass_VariousArgTypes_Static));
         foreach (var tester in testers)
         {
             tester.AssertAllMembers();
-            //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
+            tester.AssertUnknownCulture();
         }
     }
 
+    // Generic Syntax
+
+
     [TestMethod]
-    public void StringResourceTester_VariousArgTypes_AppearInResult_Instance()
+    public void StringResourceTesters_Generic()
     {
-        var testers = ConstructTesters<ResourceClass_VariousArgTypes_Instance>(new());
+        StringResourceTester[] testers = 
+        [
+            new StringResourceTester<ResourceClass_Instance>(new(), _known, _unknow, _default),
+            new StringResourceTester<ResourceClass_StaticInstantiable>(_known, _unknow, _default),
+            new StringResourceTester<ResourceClass_StaticInstantiable>(new(), _known, _unknow, _default),
+        ];
+
         foreach (var tester in testers)
         {
             tester.AssertAllMembers();
-            //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
+            tester.AssertUnknownCulture();
         }
     }
 
+    // Arg Types
+
     [TestMethod]
-    public void StringResourceTester_VariousArgTypes_AppearInResult_StaticInstantiable()
+    public void StringResourceTester_VariousArgTypes_AppearInResult()
     {
-        {
-            var testers = ConstructTesters<ResourceClass_VariousArgTypes_StaticInstantiable>();
-            foreach (var tester in testers)
-            {
-                tester.AssertAllMembers();
-                //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
-            }
-        }
-        {
-            var testers = ConstructTesters<ResourceClass_VariousArgTypes_StaticInstantiable>(new());
-            foreach (var tester in testers)
-            {
-                tester.AssertAllMembers();
-                //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
-            }
-        }
+        var tester = new StringResourceTester<ResourceClass_VariousArgTypes>(_known, _unknow, _default);
+        tester.AssertAllMembers();
+        //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
     }
 
 
     // Mixed Props and Methods
 
     [TestMethod]
-    public void StringResourceTester_Instance_MixedMembersWork() 
-        => CreateDefaultTester(typeof(ResourceClass_MixedMembers_StaticInstantiable)).AssertAllMembers();
+    public void StringResourceTester_MixedMembersWork() 
+        => new StringResourceTester<ResourceClass_MixedMembers>(_known, _unknow, _default).AssertAllMembers();
 
-    // Resource Object with Interface
+    // Resources behind Interfac
 
     [TestMethod]
-    public void StringResourceTester_InstanceResourceClass_WithInterface()
+    public void StringResourceTester_ResourceClass_WithInterface()
     {
-        IResources resourceObject = new ResourceClass_WithInterface();
-
-        StringResourceTester resourceTester = new (
-            typeof(ResourceClass_WithInterface), resourceObject, 
-            _known, _unknow, _default);
-
-        resourceTester.AssertAllMembers();
+        IResources obj = new ResourceClass_WithInterface();
+        var tester = new StringResourceTester(typeof(ResourceClass_WithInterface), obj, _known, _unknow, _default);
+        tester.AssertAllMembers();
     }
-
 
     // Customization
 
@@ -116,27 +87,90 @@ public class StringResourceTesterTests
     }
 
     [TestMethod]
-    public void StringResourceTester_Inheritance_CustomTestValue_AppearsInResult() 
-        => new InheritedTester_WithCustomGetArg().AssertAllMembers();
+    public void StringResourceTester_Inheritance_CustomTestValue_AppearsInResult()
+    {
+        new InheritedTester_WithCustomGetArg().AssertAllMembers();
+    }
+    
+    // Log / No Log Constructors
+
+    [TestMethod]
+    public void StringResourceTesters_NoLog()
+    {
+        StringResourceTester[] testers = 
+        [
+            new (typeof(ResourceClass_Static), _known, _unknow, _default, nolog),
+            new (typeof(ResourceClass_Static), _known, _unknow, _default, nolog: true),
+            new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default, nolog),
+            new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default, nolog: true),
+            new StringResourceTester<ResourceClass_Instance> (new(), _known, _unknow, _default, nolog),
+            new StringResourceTester<ResourceClass_Instance> (new(), _known, _unknow, _default, nolog: true),
+        ];
+
+        foreach (var tester in testers)
+        {
+            string trace1 = CaptureTrace(tester.AssertAllMembers);
+            AreEqual("", trace1);
+
+            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
+            AreEqual("", trace2);
+        }
+    }
+
+    [TestMethod]
+    public void StringResourceTesters_HaveLogs()
+    {
+
+        StringResourceTester[] testers =
+        [
+            new (typeof(ResourceClass_Static), _known, _unknow, _default),
+            new (typeof(ResourceClass_Static), _known, _unknow, _default, nolog: false),
+            new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default),
+            new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default, nolog: false),
+            new StringResourceTester<ResourceClass_Instance>(new(), _known, _unknow, _default),
+            new StringResourceTester<ResourceClass_Instance>(new(), _known, _unknow, _default, nolog: false),
+        ];
+
+        foreach (var tester in testers)
+        {
+            string trace1 = CaptureTrace(tester.AssertAllMembers);
+            NotNullOrWhiteSpace(trace1);
+
+            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
+            NotNullOrWhiteSpace(trace2);
+        }
+
+    }
 
     // Failure Cases
 
     [TestMethod]
     public void StringResourceTester_MissingArgVal_Throws()
-        => Throws(() => CreateDefaultTester(typeof(ResourceClass_MissingParam)).AssertAllMembers(), "not found in result");
+    {
+        var tester = new StringResourceTester<ResourceClass_MissingParam>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "not found in result");
+    }
 
     [TestMethod]
     public void StringResourceTester_WithoutExclusion_WrongTypeMember_Throws()
-        => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithWrongType)).AssertAllMembers(), "WrongType", "IsOfType assertion failed");
-
+    {
+        var tester = new StringResourceTester<ResourceClass_WithWrongType>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "WrongType", "IsOfType assertion failed");
+    }
 
     [TestMethod]
     public void StringResourceTester_WithoutExclusion_EmptyString_Throws()
-        => Throws(() => CreateDefaultTester(typeof(ResourceClass_WithEmpty)).AssertAllMembers(), "IsEmpty", "NotNullOrWhiteSpace assertion failed");
+    {
+        var tester = new StringResourceTester<ResourceClass_WithEmpty>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "IsEmpty", "NotNullOrWhiteSpace assertion failed");
+    }
 
     [TestMethod]
-    public void StringResourceTester_UnsupportedType_Throws() 
-        => Throws(() => CreateDefaultTester(typeof(ResourceClass_CustomType)).AssertAllMembers(), "could not", "generate", "value for parameter");
+    public void StringResourceTester_UnsupportedType_Throws()
+    {
+        var tester = new StringResourceTester<ResourceClass_CustomType>(_known, _unknow, _default);
+        Throws(() => tester.AssertAllMembers(), "could not", "generate", "value for parameter");
+    }
 
     // Helpers
 
@@ -157,75 +191,6 @@ public class StringResourceTesterTests
 
         return writer.ToString().Trim();
     }
-
-    private StringResourceTester CreateDefaultTester([Dyn(PubPropMethod)] Type resourceClass)
-        => new(resourceClass, _known, _unknow, _default);
-
-    private StringResourceTester[] ConstructTesters()
-    {
-        var list = new List<StringResourceTester>(32);
-        list.AddRange(ConstructTesters(typeof(ResourceClass_Static)));
-        list.AddRange(ConstructTesters       <ResourceClass_Instance>(new()));
-        list.AddRange(ConstructTesters       <ResourceClass_StaticInstantiable>());
-        list.AddRange(ConstructTesters       <ResourceClass_StaticInstantiable>(new()));
-        return list.ToArray();
-    }
-
-    private StringResourceTester[] ConstructTestersNoLog()
-    {
-        var list = new List<StringResourceTester>(32);
-        
-        list.AddRange(ConstructTestersNoLog(typeof(ResourceClass_Static)));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_Instance>(new()));
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_StaticInstantiable>());
-        list.AddRange(ConstructTestersNoLog       <ResourceClass_StaticInstantiable>(new()));
-
-        return list.ToArray();
-    }
-
-    private StringResourceTester[] ConstructTesters([Dyn(PubPropMethod)] Type type) =>
-    [
-        new StringResourceTester(type, _known, _unknow, _default),
-        new StringResourceTester(type, _known, _unknow, _default, nolog: false),
-    ];
-
-    private StringResourceTester[] ConstructTesters<[Dyn(PubPropMethod)] TResourceClass>() =>
-    [
-        new StringResourceTester       <TResourceClass> (_known, _unknow, _default),
-        new StringResourceTester       <TResourceClass> (_known, _unknow, _default, nolog: false),
-        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default),
-        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default, nolog: false),
-    ];
-
-    private StringResourceTester[] ConstructTesters<[Dyn(PubPropMethod)] TResourceClass>(TResourceClass obj) =>
-    [
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default),
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: false),
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default),
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: false),
-    ];
-
-    private StringResourceTester[] ConstructTestersNoLog([Dyn(PubPropMethod)] Type type) =>
-    [
-        new StringResourceTester(type, _known, _unknow, _default, nolog),
-        new StringResourceTester(type, _known, _unknow, _default, nolog: true),
-    ];
-
-    private StringResourceTester[] ConstructTestersNoLog<[Dyn(PubPropMethod)] TResourceClass>() =>
-    [
-        new StringResourceTester       <TResourceClass> (_known, _unknow, _default, nolog),
-        new StringResourceTester       <TResourceClass> (_known, _unknow, _default, nolog: true),
-        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default, nolog),
-        new StringResourceTester(typeof(TResourceClass), _known, _unknow, _default, nolog: true),
-    ];
-
-    private StringResourceTester[] ConstructTestersNoLog<[Dyn(PubPropMethod)] TResourceClass>(TResourceClass obj) =>
-    [
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog),
-        new StringResourceTester       <TResourceClass> (obj, _known, _unknow, _default, nolog: true),
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog),
-        new StringResourceTester(typeof(TResourceClass), obj, _known, _unknow, _default, nolog: true),
-    ];
 
     // Resource Classes
 
@@ -253,7 +218,7 @@ public class StringResourceTesterTests
         public static string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
-    private static class ResourceClass_VariousArgTypes_Static
+    private class ResourceClass_VariousArgTypes
     {
         public static string WithString  (string   val) => $"Value:{val}";
         public static string WithInt     (int      val) => $"Value:{val}";
@@ -272,67 +237,29 @@ public class StringResourceTesterTests
         public static string WithUInt64  (ulong    val) => $"Value:{val}";
     }
 
-    private class ResourceClass_VariousArgTypes_Instance
-    {
-        public string WithString  (string   val) => $"Value:{val}";
-        public string WithInt     (int      val) => $"Value:{val}";
-        public string WithLong    (long     val) => $"Value:{val}";
-        public string WithShort   (short    val) => $"Value:{val}";
-        public string WithByte    (byte     val) => $"Value:{val}";
-        public string WithDecimal (decimal  val) => $"Value:{val}";
-        public string WithDouble  (double   val) => $"Value:{val}";
-        public string WithFloat   (float    val) => $"Value:{val}";
-        public string WithBool    (bool     val) => $"Value:{val}";
-        public string WithChar    (char     val) => $"Value:{val}";
-        public string WithDateTime(DateTime val) => $"Value:{val}";
-        public string WithSByte   (sbyte    val) => $"Value:{val}";
-        public string WithUInt16  (ushort   val) => $"Value:{val}";
-        public string WithUInt32  (uint     val) => $"Value:{val}";
-        public string WithUInt64  (ulong    val) => $"Value:{val}";
-    }
-
-    private class ResourceClass_VariousArgTypes_StaticInstantiable
-    {
-        public static string WithString  (string   val) => $"Value:{val}";
-        public static string WithInt     (int      val) => $"Value:{val}";
-        public static string WithLong    (long     val) => $"Value:{val}";
-        public static string WithShort   (short    val) => $"Value:{val}";
-        public static string WithByte    (byte     val) => $"Value:{val}";
-        public static string WithDecimal (decimal  val) => $"Value:{val}";
-        public static string WithDouble  (double   val) => $"Value:{val}";
-        public static string WithFloat   (float    val) => $"Value:{val}";
-        public static string WithBool    (bool     val) => $"Value:{val}";
-        public static string WithChar    (char     val) => $"Value:{val}";
-        public static string WithDateTime(DateTime val) => $"Value:{val}";
-        public static string WithSByte   (sbyte    val) => $"Value:{val}";
-        public static string WithUInt16  (ushort   val) => $"Value:{val}";
-        public static string WithUInt32  (uint     val) => $"Value:{val}";
-        public static string WithUInt64  (ulong    val) => $"Value:{val}";
-    }
-
-    private static class ResourceClass_MissingParam
+    private class ResourceClass_MissingParam
     {
         public static string Bad(string name) => "Static text";
     }
 
-    private static class ResourceClass_WithWrongType
+    private class ResourceClass_WithWrongType
     {
         public static string Good() => "Hello";
         public static int WrongType() => 0;
     }
 
-    private static class ResourceClass_WithEmpty
+    private class ResourceClass_WithEmpty
     {
         public static string Good() => "Hello";
         public static string IsEmpty() => "";
     }
 
-    private static class ResourceClass_CustomType
+    private class ResourceClass_CustomType
     {
         public static string Format(CustomArgType id) => $"Value: {id}";
     }
 
-    private class ResourceClass_MixedMembers_StaticInstantiable
+    private class ResourceClass_MixedMembers
     {
         public static string Title => "Title";
         public static string Greeting(string name) => "Hello " + name;
