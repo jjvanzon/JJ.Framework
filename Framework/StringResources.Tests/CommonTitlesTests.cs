@@ -1,11 +1,13 @@
+#pragma warning disable IDE0002 // Redundant qualifier
+// ReSharper disable RedundantBaseQualifier
+
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
 using static CommonTitles;
 
 [TestClass]
 public class CommonTitlesTests() 
-    : StringResourceTester(
-        typeof(CommonTitles), 
+    : StringResourceTester<CommonTitles>(
         known: ["en-US", "nl-NL"], 
         unknown: "de-DE", 
         @default: "")
@@ -14,13 +16,13 @@ public class CommonTitlesTests()
     private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
 
     [TestMethod]
-    public void CommonTitles_AllMembers_ReturnText() => AssertAllMembers();
+    public void CommonTitles_AllMembers_ReturnText() => base.AssertAllMembers();
     
     [TestMethod]
-    public void CommonTitles_UnknownCulture_DefaultsToEnUS() => AssertUnknownCulture();
+    public void CommonTitles_UnknownCulture_DefaultsToEnUS() => base.AssertUnknownCulture();
 
     [TestMethod]
-    public void CommonTitles_ResourceManager_IsNotNull() => IsNotNull(ResourceManager);
+    public void CommonTitles_ResourceManager_IsNotNull() => IsNotNull(CommonTitles.ResourceManager);
 
     [TestMethod]
     public void CommonTitles_CheckExactText_InvariantCulture()

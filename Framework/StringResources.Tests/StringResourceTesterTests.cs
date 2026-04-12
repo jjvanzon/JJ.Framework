@@ -1,5 +1,4 @@
-// ReSharper disable RedundantTypeArgumentsOfMethod
-//#pragma warning disable IDE0090 // Preferred new-style
+#pragma warning disable IDE0200 // Convert to method group
 
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
@@ -10,44 +9,55 @@ public class StringResourceTesterTests
     private const string _unknow = "de-DE";
     private const string _default = "en-US";
 
+    
+    [TestMethod]
+    public void StringResourceTester_ReturnText_WithArgsInResult()
+    {
+        var tester1 = new StringResourceTester(typeof(ResourceClass), _known, _unknow, _default);
+        tester1.AssertAllMembers();
+
+        var testerWithInstance = new StringResourceTester(typeof(ResourceClass), new ResourceClass(), _known, _unknow, _default);
+        testerWithInstance.AssertAllMembers();
+    }
+
     // Static / Instance
 
     [TestMethod]
-    public void StringResourceTesters_ReturnText_WithArgsInResult()
+    public void StringResourceTester_Static()
     {
-        StringResourceTester[] testers = 
-        [
-            new (typeof(ResourceClass_Static), _known, _unknow, _default),
-            new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default),
-            new (typeof(ResourceClass_StaticInstantiable), _known, _unknow, _default),
-            new (typeof(ResourceClass_StaticInstantiable), new ResourceClass_StaticInstantiable(), _known, _unknow, _default),
-        ];
+        var tester = new StringResourceTester(typeof(ResourceClass_Static), _known, _unknow, _default);
+        tester.AssertAllMembers();
+    }
 
-        foreach (var tester in testers)
-        {
-            tester.AssertAllMembers();
-            tester.AssertUnknownCulture();
-        }
+    [TestMethod]
+    public void StringResourceTester_Instance()
+    {
+        var obj = new ResourceClass_Instance();
+        var tester = new StringResourceTester(typeof(ResourceClass_Instance), obj, _known, _unknow, _default);
+        tester.AssertAllMembers();
     }
 
     // Generic Syntax
 
+    [TestMethod]
+    public void StringResourceTester_GenericSyntax()
+    {
+        var tester = new StringResourceTester<ResourceClass>(_known, _unknow, _default);
+        tester.AssertAllMembers();
+
+        var testerWithInstance =
+            new StringResourceTester<ResourceClass>(new(), _known, _unknow, _default);
+
+        testerWithInstance.AssertAllMembers();
+    }
+    
+    // Unknown Culture Fallback
 
     [TestMethod]
-    public void StringResourceTesters_Generic()
+    public void StringResourceTester_UnknownCulture_FallsBackToDefault()
     {
-        StringResourceTester[] testers = 
-        [
-            new StringResourceTester<ResourceClass_Instance>(new(), _known, _unknow, _default),
-            new StringResourceTester<ResourceClass_StaticInstantiable>(_known, _unknow, _default),
-            new StringResourceTester<ResourceClass_StaticInstantiable>(new(), _known, _unknow, _default),
-        ];
-
-        foreach (var tester in testers)
-        {
-            tester.AssertAllMembers();
-            tester.AssertUnknownCulture();
-        }
+        var tester = new StringResourceTester<ResourceClass>(_known, _unknow, _default);
+        tester.AssertUnknownCulture();
     }
 
     // Arg Types
@@ -57,22 +67,25 @@ public class StringResourceTesterTests
     {
         var tester = new StringResourceTester<ResourceClass_VariousArgTypes>(_known, _unknow, _default);
         tester.AssertAllMembers();
-        //tester.AssertUnknownCulture(); // TODO: DateTime formatting differences
     }
 
 
     // Mixed Props and Methods
 
     [TestMethod]
-    public void StringResourceTester_MixedMembersWork() 
-        => new StringResourceTester<ResourceClass_MixedMembers>(_known, _unknow, _default).AssertAllMembers();
+    public void StringResourceTester_MixedMembersWork()
+    {
+        var tester = new StringResourceTester<ResourceClass_MixedMembers>(_known, _unknow, _default);
+        tester.AssertAllMembers();
+    }
 
-    // Resources behind Interfac
+    // Resources behind Interface
 
     [TestMethod]
     public void StringResourceTester_ResourceClass_WithInterface()
     {
         IResources obj = new ResourceClass_WithInterface();
+        // TODO: Generic syntax cannot be used.
         var tester = new StringResourceTester(typeof(ResourceClass_WithInterface), obj, _known, _unknow, _default);
         tester.AssertAllMembers();
     }
@@ -80,14 +93,14 @@ public class StringResourceTesterTests
     // Customization
 
     [TestMethod]
-    public void StringResourceTester_Inheritance_MemberExclusion()
+    public void StringResourceTester_MemberExclusion_PreventsError()
     {
         new InheritedTester_ExcludesWrongType().AssertAllMembers();
         new InheritedTester_ExcludesEmpty().AssertAllMembers();
     }
 
     [TestMethod]
-    public void StringResourceTester_Inheritance_CustomTestValue_AppearsInResult()
+    public void StringResourceTester_CustomGetArg_AppearsInResult()
     {
         new InheritedTester_WithCustomGetArg().AssertAllMembers();
     }
@@ -95,7 +108,7 @@ public class StringResourceTesterTests
     // Log / No Log Constructors
 
     [TestMethod]
-    public void StringResourceTesters_NoLog()
+    public void StringResourceTesters_NoLog_CreatesNoTrace()
     {
         StringResourceTester[] testers = 
         [
@@ -118,7 +131,7 @@ public class StringResourceTesterTests
     }
 
     [TestMethod]
-    public void StringResourceTesters_HaveLogs()
+    public void StringResourceTesters_WithLog_CreatesTrace()
     {
 
         StringResourceTester[] testers =
@@ -141,14 +154,33 @@ public class StringResourceTesterTests
         }
 
     }
+    
+    private static string CaptureTrace(Action action)
+    {
+        using var writer = new StringWriter();
+        using var listener = new TextWriterTraceListener(writer);
+        Trace.Listeners.Add(listener);
+        try
+        {
+            action();
+            Trace.Flush();
+        }
+        finally
+        {
+            Trace.Listeners.Remove(listener);
+        }
+
+        return writer.ToString().Trim();
+    }
 
     // Failure Cases
 
     [TestMethod]
-    public void StringResourceTester_MissingArgVal_Throws()
+    public void StringResourceTester_ArgNotUsed_Throws()
     {
-        var tester = new StringResourceTester<ResourceClass_MissingParam>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "not found in result");
+        var tester = new StringResourceTester<ResourceClass_ArgNotUsed>(_known, _unknow, _default);
+        // TOOD: Make error message easier to read.
+        Throws(() => tester.AssertAllMembers(), "arg", "not found in result");
     }
 
     [TestMethod]
@@ -172,26 +204,6 @@ public class StringResourceTesterTests
         Throws(() => tester.AssertAllMembers(), "could not", "generate", "value for parameter");
     }
 
-    // Helpers
-
-    private static string CaptureTrace(Action action)
-    {
-        using var writer = new StringWriter();
-        using var listener = new TextWriterTraceListener(writer);
-        Trace.Listeners.Add(listener);
-        try
-        {
-            action();
-            Trace.Flush();
-        }
-        finally
-        {
-            Trace.Listeners.Remove(listener);
-        }
-
-        return writer.ToString().Trim();
-    }
-
     // Resource Classes
 
     private static class ResourceClass_Static
@@ -210,7 +222,7 @@ public class StringResourceTesterTests
         public string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
 
-    private class ResourceClass_StaticInstantiable
+    private class ResourceClass
     {
         public static string Greet() => "Hello";
         public static string Greet(string name) => $"Hello {name}";
@@ -237,9 +249,9 @@ public class StringResourceTesterTests
         public static string WithUInt64  (ulong    val) => $"Value:{val}";
     }
 
-    private class ResourceClass_MissingParam
+    private class ResourceClass_ArgNotUsed
     {
-        public static string Bad(string name) => "Static text";
+        public static string Bad(string arg) => "Static text";
     }
 
     private class ResourceClass_WithWrongType
