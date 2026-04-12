@@ -76,7 +76,7 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_MixedMembersWork()
     {
-        var tester = new StringResourceTester<ResourceClass_MixedMembers>(_known, _unknow, _default);
+        var tester = new StringResourceTester<ResourceClass_MixedMembers>(new(), _known, _unknow, _default);
         tester.AssertAllMembers();
     }
 
@@ -117,6 +117,8 @@ public class StringResourceTesterTests
             new (typeof(ResourceClass_Static), _known, _unknow, _default, nolog: true),
             new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default, nolog),
             new (typeof(ResourceClass_Instance), new ResourceClass_Instance(), _known, _unknow, _default, nolog: true),
+            new StringResourceTester<ResourceClass>(_known, _unknow, _default, nolog),
+            new StringResourceTester<ResourceClass>(_known, _unknow, _default, nolog: true),
             new StringResourceTester<ResourceClass_Instance> (new(), _known, _unknow, _default, nolog),
             new StringResourceTester<ResourceClass_Instance> (new(), _known, _unknow, _default, nolog: true),
         ];
@@ -134,7 +136,6 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTesters_WithLog_CreatesTrace()
     {
-
         StringResourceTester[] testers =
         [
             new (typeof(ResourceClass_Static), _known, _unknow, _default),
@@ -274,9 +275,20 @@ public class StringResourceTesterTests
 
     private class ResourceClass_MixedMembers
     {
-        public static string Title => "Title";
-        public static string Greeting(string name) => "Hello " + name;
-        public static string Message() => "A message";
+        public static string Title => "Titel";
+        public static string Edit { get; set; } = "Bewerken";
+
+        public static string Greeting(string name) => "Hallo " + name;
+        public static string References(int count) => count + " verwijzingen";
+        public static string Message() => "Een bericht";
+
+        public string New => "Nieuw";
+        public string Open { get; init; } = "Openen";
+
+        public string Count(string entityName) => "Aantal " + entityName;
+        public string Delete(string entityName = "") => entityName + " verwijderen";
+        public string Delete() => "Verwijderen";
+        public string Close() => "Sluiten";
     }
 
     private class ResourceClass_WithInterface : IResources
