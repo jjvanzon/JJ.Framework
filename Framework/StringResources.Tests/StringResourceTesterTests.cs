@@ -272,7 +272,6 @@ public class StringResourceTesterTests
         public static string WithFloat   (float    val) => $"Value:{val}";
         public static string WithBool    (bool     val) => $"Value:{val}";
         public static string WithChar    (char     val) => $"Value:{val}";
-        public static string WithDateTime(DateTime val) => $"Value:{val}";
         public static string WithSByte   (sbyte    val) => $"Value:{val}";
         public static string WithUInt16  (ushort   val) => $"Value:{val}";
         public static string WithUInt32  (uint     val) => $"Value:{val}";

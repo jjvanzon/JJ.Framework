@@ -1,5 +1,6 @@
 ﻿// Ported from "The King": legacy branch HEAD
 
+// ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 #pragma warning disable IDE0016 // Join null check with assignment
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 #pragma warning disable IDE0060 // nolog param "unused"
@@ -209,23 +210,23 @@ namespace JJ.Framework.StringResources.Legacy
 
             return Type.GetTypeCode(param.ParameterType) switch
             {
-                TypeCode.Int32    =>          101  + param.Position,
-                TypeCode.Int64    =>          101l + param.Position,
-                TypeCode.Decimal  =>          101m + param.Position,
-                TypeCode.Double   =>          101d + param.Position,
-                TypeCode.Single   =>          101f + param.Position,
-                TypeCode.Int16    =>  (short)(101  + param.Position),
-                TypeCode.Byte     =>   (byte)(101  + param.Position),
-                TypeCode.Char     =>   (char)(101  + param.Position),
-                TypeCode.SByte    =>  (sbyte)(101  + param.Position),
-                TypeCode.UInt16   => (ushort)(101  + param.Position),
-                TypeCode.UInt32   =>   (uint)(101  + param.Position),
-                TypeCode.UInt64   =>  (ulong)(101  + param.Position),
-                TypeCode.Boolean  => param.Position % 2 == 0,
-                TypeCode.String   => $"arg{param.Position}",
-                TypeCode.DateTime => new DateTime(2000 + param.Position, 1, 1),
+                TypeCode.Int32   =>          101  + param.Position,
+                TypeCode.Int64   =>          101l + param.Position,
+                TypeCode.Decimal =>          101m + param.Position,
+                TypeCode.Double  =>          101d + param.Position,
+                TypeCode.Single  =>          101f + param.Position,
+                TypeCode.Int16   =>  (short)(101  + param.Position),
+                TypeCode.Byte    =>   (byte)(101  + param.Position),
+                TypeCode.Char    =>   (char)(101  + param.Position),
+                TypeCode.SByte   =>  (sbyte)(101  + param.Position),
+                TypeCode.UInt16  => (ushort)(101  + param.Position),
+                TypeCode.UInt32  =>   (uint)(101  + param.Position),
+                TypeCode.UInt64  =>  (ulong)(101  + param.Position),
+                TypeCode.Boolean => param.Position % 2 == 0,
+                TypeCode.String  => $"arg{param.Position}",
                 _ => throw new Exception(
-                    $"Could not automatically generate value for parameter '{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
+                    $"Could not automatically generate value for parameter " +
+                    $"'{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
                     $"Override Include or GetArg to include/exclude members or to provide a value explicitly.")
             };
         }
@@ -301,14 +302,14 @@ namespace JJ.Framework.StringResources.Legacy
             // Log result
             LogMethod(method, args, text);
 
-            // Check for unresolved placeholders
+            // Check unresolved placeholders
             if (IsMatch(text!, "{\\d+(:[^}]+)?}"))
             {
                 throw new Exception(
                     $"Method '{method.Name}' returned unresolved placeholders: \"{text}\".");
             }
             
-            // Check placeholders were returned
+            // Check args are in string
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == null) continue;

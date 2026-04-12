@@ -300,3 +300,11 @@ internal class Untrimmer
     public void StringResourceTester_UnknownCulture_ParamHandling()
         => CreateDefaultTester(typeof(ResourceClass_3Arg_StaticInstantiable)).AssertUnknownCulture();
 ```
+
+
+```cs
+        public static string WithDateTime(DateTime val) => $"Value:{val}";
+
+                            //TypeCode.DateTime => new DateTime(2000 + param.Position, 1, 1), // Culture dependent = too much variance.
+
+```
