@@ -348,3 +348,10 @@ internal static class AssertHelper
     }
 }
 ```
+
+```cs
+    <type fullname="JJ.Framework.StringResources.Legacy.TrimTests.Untrimmer" preserve="all">
+      <method name="Untrim" />
+    </type>
+
+```
