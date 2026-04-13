@@ -1,4 +1,6 @@
 #pragma warning disable IDE0200 // Convert to method group
+// ReSharper disable ClassNeverInstantiated.Local
+// ReSharper disable UnusedMember.Local
 
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
@@ -292,6 +294,7 @@ public class StringResourceTesterTests
 
     private class ResourceClass_ArgNotUsed
     {
+        // ReSharper disable once UnusedParameter.Local
         public static string Bad(string arg) => "Static text";
     }
 
@@ -325,21 +328,25 @@ public class StringResourceTesterTests
 
     private class ResourceClass_WithUnresolvedPlaceholder
     {
+        // ReSharper disable once UnusedParameter.Local
         public static string Bad(string arg) => "Value: {0}";
     }
 
     private class ResourceClass_WithUnresolvedPlaceholder_StandardFormatSpecifier
     {
+        // ReSharper disable once UnusedParameter.Local
         public static string Bad(decimal amount) => "Amount: {0:C}";
     }
 
     private class ResourceClass_WithUnresolvedPlaceholder_CustomFormatString
     {
+        // ReSharper disable once UnusedParameter.Local
         public static string Bad(decimal amount) => "Amount: {0:0.00###}";
     }
 
     private class ResourceClass_WithMultiplePlaceholdersOneUnresolved
     {
+        // ReSharper disable once UnusedParameter.Local
         public static string Bad(string name, string action) => "Hello " + name + ", {1}";
     }
 
@@ -353,7 +360,7 @@ public class StringResourceTesterTests
         public static string Message() => "Een bericht";
 
         public string New => "Nieuw";
-        public string Open { get; init; } = "Openen";
+        public string Open { get; set; } = "Openen";
 
         public string Count(string entityName) => "Aantal " + entityName;
         // ReSharper disable once MethodOverloadWithOptionalParameter
