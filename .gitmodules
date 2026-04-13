@@ -1,0 +1,4 @@
+[submodule "JJs-Reference-Architecture"]
+	path = JJs-Reference-Architecture
+	url = https://github.com/jjvanzon/JJs-Reference-Architecture.git
+	branch = master
