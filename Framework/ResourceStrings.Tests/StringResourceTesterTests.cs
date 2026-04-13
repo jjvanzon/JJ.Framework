@@ -1,5 +1,6 @@
-// ReSharper disable ClassNeverInstantiated.Local
 #pragma warning disable IDE0200 // Convert to method group
+// ReSharper disable ClassNeverInstantiated.Local
+// ReSharper disable UnusedMember.Local
 
 namespace JJ.Framework.ResourceStrings.Tests;
 
