@@ -115,7 +115,7 @@ public class AccessorCoreTests_Indexers
         var obj = new MyClass_WithOverloads();
         var accessor = new MyAccessor_WithOverloads(obj);
         
-        ThrowsExceptionContaining(
+        Throws(
             () => { int number = accessor[null]; },
             "No indexer found");
     }
@@ -176,8 +176,8 @@ public class AccessorCoreTests_Indexers
         // With null int
         // (resolution not possible)
         int? nullNum = null;
-        ThrowsExceptionContaining(() => accessor[6, nullNum]      , "No indexer found");
-        ThrowsExceptionContaining(() => accessor[6, nullNum] = "*", "No indexer found");
+        Throws(() => accessor[6, nullNum]      , "No indexer found");
+        Throws(() => accessor[6, nullNum] = "*", "No indexer found");
         
         // With string
         AreEqual("70test" , accessor[7, "test"]);
@@ -192,8 +192,8 @@ public class AccessorCoreTests_Indexers
         // With null string
         // (resolution not possible)
         string? nullText = null;
-        ThrowsExceptionContaining(() => accessor[9, nullText]      , "No indexer found");
-        ThrowsExceptionContaining(() => accessor[9, nullText] = "*", "No indexer found");
+        Throws(() => accessor[9, nullText]      , "No indexer found");
+        Throws(() => accessor[9, nullText] = "*", "No indexer found");
     }
 
     [TestMethod]
@@ -214,8 +214,8 @@ public class AccessorCoreTests_Indexers
         // With null int
         // (resolution not possible)
         int? nullNum = null;
-        ThrowsExceptionContaining(() => accessor.Get([ 6, nullNum ]     ), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Set([ 6, nullNum ], "*"), "No indexer found");
+        Throws(() => accessor.Get([ 6, nullNum ]     ), "No indexer found");
+        Throws(() => accessor.Set([ 6, nullNum ], "*"), "No indexer found");
 
         // With string
         AreEqual("70test" , accessor.Get([ 7, "test" ])); accessor.Set([ 7, "test" ], "70test*");
@@ -230,8 +230,8 @@ public class AccessorCoreTests_Indexers
         // With null string
         // (resolution not possible)
         string? nullText = null;
-        ThrowsExceptionContaining(() => accessor.Get([ 9, nullText ]     ), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Set([ 9, nullText ], "*"), "No indexer found");
+        Throws(() => accessor.Get([ 9, nullText ]     ), "No indexer found");
+        Throws(() => accessor.Set([ 9, nullText ], "*"), "No indexer found");
     }
 
     [TestMethod]
@@ -274,12 +274,12 @@ public class AccessorCoreTests_Indexers
         AreEqual("" ,                   accessor.Get([  9, nullNum ],     [ null       , typeof(int?) ])); accessor.Set([ 9, nullNum ], "*", [ null, typeof(int?) ]);
         AreEqual("*",                   accessor.Get([  9, nullNum ],     [ null       , typeof(int?) ])); 
         // (Ambiguities: exceptions)
-        ThrowsExceptionContaining(() => accessor.Get([ 10, nullNum ],     [ null       , null         ]), "No indexer found"); 
-        ThrowsExceptionContaining(() => accessor.Set([ 10, nullNum ], "", [ null       , null         ]), "No indexer found"); 
-        ThrowsExceptionContaining(() => accessor.Get([ 11, nullNum ],     [ null                      ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Set([ 11, nullNum ], "", [ null                      ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Get([ 12, nullNum ],     [                           ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Set([ 12, nullNum ], "", [                           ]), "No indexer found");
+        Throws(() => accessor.Get([ 10, nullNum ],     [ null       , null         ]), "No indexer found"); 
+        Throws(() => accessor.Set([ 10, nullNum ], "", [ null       , null         ]), "No indexer found"); 
+        Throws(() => accessor.Get([ 11, nullNum ],     [ null                      ]), "No indexer found");
+        Throws(() => accessor.Set([ 11, nullNum ], "", [ null                      ]), "No indexer found");
+        Throws(() => accessor.Get([ 12, nullNum ],     [                           ]), "No indexer found");
+        Throws(() => accessor.Set([ 12, nullNum ], "", [                           ]), "No indexer found");
 
         // With string
         // (No ambiguity from values: arg type spec optional)
@@ -316,12 +316,12 @@ public class AccessorCoreTests_Indexers
         AreEqual("220" ,                accessor.Get([ 22, nullText ],     [ null       , typeof(string) ])); accessor.Set([ 22, nullText ], "220*", [ null, typeof(string) ]);
         AreEqual("220*",                accessor.Get([ 22, nullText ],     [ null       , typeof(string) ])); 
         // (Ambiguities: exceptions)
-        ThrowsExceptionContaining(() => accessor.Get([ 23, nullText ],     [ null       , null            ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Set([ 23, nullText ], "", [ null       , null            ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Get([ 24, nullText ],     [ null                         ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Set([ 24, nullText ], "", [ null                         ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Get([ 25, nullText ],     [                              ]), "No indexer found");
-        ThrowsExceptionContaining(() => accessor.Set([ 25, nullText ], "", [                              ]), "No indexer found");
+        Throws(() => accessor.Get([ 23, nullText ],     [ null       , null            ]), "No indexer found");
+        Throws(() => accessor.Set([ 23, nullText ], "", [ null       , null            ]), "No indexer found");
+        Throws(() => accessor.Get([ 24, nullText ],     [ null                         ]), "No indexer found");
+        Throws(() => accessor.Set([ 24, nullText ], "", [ null                         ]), "No indexer found");
+        Throws(() => accessor.Get([ 25, nullText ],     [                              ]), "No indexer found");
+        Throws(() => accessor.Set([ 25, nullText ], "", [                              ]), "No indexer found");
     }
 
     [TestMethod]

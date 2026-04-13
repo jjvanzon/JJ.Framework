@@ -42,11 +42,11 @@ public class ExpressionHelper_CoreTests
     {
         int number1 = 1;
         
-        ThrowsExceptionContaining(
+        Throws(
             () => GetText(() => number1 == 1), 
             "cannot be", "from", "Equal");
         
-        ThrowsExceptionContaining(
+        Throws(
             () => GetValue(() => number1 == 1), 
             "cannot be", "from", "Equal");
     }
@@ -56,11 +56,11 @@ public class ExpressionHelper_CoreTests
     {
         int number1 = 1;
         
-        ThrowsExceptionContaining(
+        Throws(
             () => GetText(() => (object)(number1 == 1)), 
             "cannot be", "from", "Equal");
         
-        ThrowsExceptionContaining(
+        Throws(
             () => GetValue(() => (object)(number1 == 1)), 
             "cannot be", "from", "Equal");
     }
@@ -69,7 +69,7 @@ public class ExpressionHelper_CoreTests
     public void GetValue_ArrayIndex_NodeType_NotSupported()
     {
         int[] array = [ 1, 2, 3 ];
-        ThrowsExceptionContaining(
+        Throws(
             () => GetValue(() => array[GetInt()]),
             "Call", "not supported");
     }
@@ -78,7 +78,7 @@ public class ExpressionHelper_CoreTests
     //[TestMethod]
     //public void GetValue_Member_NodeType_NotSupported()
     //{
-    //    ThrowsExceptionContaining(
+    //    Throws(
     //        () => GetValue(() => Event),
     //        "Event", "not supported");
     //}
@@ -86,24 +86,24 @@ public class ExpressionHelper_CoreTests
     [TestMethod]
     public void ExpressionHelper_ArrayLength_NodeType_NotSupported()
     {
-        ThrowsExceptionContaining(
+        Throws(
             () => GetText(() => GetArray().Length),
             "cannot be", "from", "Call");
 
-        ThrowsExceptionContaining(
+        Throws(
             () => GetValue(() => GetArray().Length),
             "cannot be", "from", "Call");
     }
     
     [TestMethod]
     public void GetMember_NodeType_NotSupportedException() 
-        => ThrowsExceptionContaining(
+        => Throws(
             () => GetMember(() => 1), 
             "cannot be", "from", "Constant");
     
     [TestMethod]
     public void GetMethodCallInfo_NodeType_NotSupportedException() 
-        => ThrowsExceptionContaining(
+        => Throws(
             () => GetMethodCallInfo(() => 1),
             "cannot be", "from", "Constant.");
     

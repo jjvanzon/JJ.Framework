@@ -46,11 +46,11 @@ public class CollectionExtensionsCoreTests
     {
         {
             IEnumerable<int>? enumerable = null;
-            ThrowsExceptionContaining(() => enumerable.ForEach(x => x++), "enumerable", "cannot be null");
+            Throws(() => enumerable.ForEach(x => x++), "enumerable", "cannot be null");
         }
         {
             IEnumerable<int> enumerable = [ 1, 2, 3 ];
-            ThrowsExceptionContaining(() => enumerable.ForEach(null), "action", "cannot be null");
+            Throws(() => enumerable.ForEach(null), "action", "cannot be null");
         }
     }
 
@@ -101,7 +101,7 @@ public class CollectionExtensionsCoreTests
     {
         int[]? nullColl = null;
         int item = 1;
-        ThrowsExceptionContaining(() => nullColl.Except(item).ToArray(), "enumerable", "cannot be null");
+        Throws(() => nullColl.Except(item).ToArray(), "enumerable", "cannot be null");
     }
 
     [TestMethod]
@@ -109,8 +109,8 @@ public class CollectionExtensionsCoreTests
     {
         int[]? nullColl = null;
         int[] coll = [ 1, 2, 3 ];
-        ThrowsExceptionContaining(() => nullColl.Except(coll, distinct: false).ToArray(), "source", "cannot be null");
-        ThrowsExceptionContaining(() => coll.Except(nullColl, distinct: false).ToArray(), "input", "cannot be null");
+        Throws(() => nullColl.Except(coll, distinct: false).ToArray(), "source", "cannot be null");
+        Throws(() => coll.Except(nullColl, distinct: false).ToArray(), "input", "cannot be null");
     }
     
     [TestMethod]
@@ -134,8 +134,8 @@ public class CollectionExtensionsCoreTests
     {
         int[]? nullColl = null;
         int item = 1;
-        ThrowsExceptionContaining(() => nullColl.Union(item).ToArray(), "first" , "cannot be null");
-        ThrowsExceptionContaining(() => item.Union(nullColl).ToArray(), "second", "cannot be null");
+        Throws(() => nullColl.Union(item).ToArray(), "first" , "cannot be null");
+        Throws(() => item.Union(nullColl).ToArray(), "second", "cannot be null");
     }
     
     [TestMethod]
@@ -164,9 +164,9 @@ public class CollectionExtensionsCoreTests
         Func<Item, int>[]? nullDelegateCollection = null;
         Func<Item, int>? nullDelegate = null;
         
-        ThrowsExceptionContaining(() => nullCollection.Distinct(x => x.Number     ).ToArray(), "enumerable", "cannot be null");
-        ThrowsExceptionContaining(() => collection.Distinct(nullDelegateCollection).ToArray(), "keys", "cannot be null");
-        ThrowsExceptionContaining(() => collection.Distinct(nullDelegate          ).ToArray(), "keys", "contains nulls");
+        Throws(() => nullCollection.Distinct(x => x.Number     ).ToArray(), "enumerable", "cannot be null");
+        Throws(() => collection.Distinct(nullDelegateCollection).ToArray(), "keys", "cannot be null");
+        Throws(() => collection.Distinct(nullDelegate          ).ToArray(), "keys", "contains nulls");
     }
     
     [TestMethod]
@@ -229,8 +229,8 @@ public class CollectionExtensionsCoreTests
     {
         IList<int>? nullList = null;
         IList<int> list = [ 1, 2, 3 ];
-        ThrowsExceptionContaining(() => nullList.AddRange(list), "collection", "cannot be null");
-        ThrowsExceptionContaining(() => list.AddRange(nullList), "items", "cannot be null");
+        Throws(() => nullList.AddRange(list), "collection", "cannot be null");
+        Throws(() => list.AddRange(nullList), "items", "cannot be null");
     }
     
     [TestMethod]
@@ -247,6 +247,6 @@ public class CollectionExtensionsCoreTests
     public void Add_WithParams_NullExceptions_Core_Test()
     {
         IList<int>? nullList = null;
-        ThrowsExceptionContaining(() => nullList.Add(1, 2, 3), "collection", "cannot be null");
+        Throws(() => nullList.Add(1, 2, 3), "collection", "cannot be null");
     }
 }

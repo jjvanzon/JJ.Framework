@@ -101,7 +101,7 @@ public class ItemType_CoreTests
         foreach (Type type in types)
         foreach (var getItemType in funcs)
         {
-            ThrowsExceptionContaining(() => getItemType(type), "has no item type.");
+            Throws(() => getItemType(type), "has no item type.");
         }
     }
 

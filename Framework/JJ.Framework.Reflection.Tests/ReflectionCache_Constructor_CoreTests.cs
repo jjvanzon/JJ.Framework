@@ -89,7 +89,7 @@ public class ReflectionCache_Constructor_CoreTests
         {
             for (int i = 0; i < Repeats; i++)
             {
-                ThrowsExceptionContaining(() => func(), expectedText);
+                Throws(() => func(), expectedText);
             }
         }
     }

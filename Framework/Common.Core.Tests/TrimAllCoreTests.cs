@@ -25,7 +25,7 @@ public class TrimAllCoreTests
     {
         IEnumerable<string>? nullCollection = null;
         
-        ThrowsExceptionContaining(
+        Throws(
             () => nullCollection.TrimAll(),
             "Value cannot be null.", "Parameter", "values");
     }

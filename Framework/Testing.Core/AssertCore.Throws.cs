@@ -4,12 +4,12 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
-    // ThrowsException Checks
+    // Throws (Containing)
 
-    public static void ThrowsExceptionContaining(Func<object?> statement, params string[] expectedTexts)
-        => ThrowsExceptionContaining(() => { statement(); }, expectedTexts);
+    public static void Throws(Func<object?> statement, params string[] expectedTexts)
+        => Throws(() => { statement(); }, expectedTexts);
 
-    public static void ThrowsExceptionContaining(Action statement, params string[] expectedTexts)
+    public static void Throws(Action statement, params string[] expectedTexts)
     {
         if (statement == null) throw new NullException(() => statement);
         if (expectedTexts == null) throw new NullException(() => expectedTexts);
@@ -31,10 +31,10 @@ public static partial class AssertCore
         throw new Exception("An exception should have occurred.");
     }
     
-    public static void ThrowsExceptionContaining(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
-        => ThrowsExceptionContaining(() => { statement(); }, exceptionType, expectedTexts);
+    public static void Throws(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
+        => Throws(() => { statement(); }, exceptionType, expectedTexts);
 
-    public static void ThrowsExceptionContaining(Action statement, Type exceptionType, params string[] expectedTexts)
+    public static void Throws(Action statement, Type exceptionType, params string[] expectedTexts)
     {
         if (statement == null) throw new NullException(() => statement);
         if (exceptionType == null) throw new NullException(() => exceptionType);
@@ -59,12 +59,21 @@ public static partial class AssertCore
         throw new Exception("An exception should have occurred.");
     }
 
-    public static void ThrowsExceptionContaining<TException>(Func<object?> statement, params string[] expectedTexts)
-        => ThrowsExceptionContaining(statement, typeof(TException), expectedTexts);
+    public static void Throws<TException>(Func<object?> statement, params string[] expectedTexts)
+        => Throws(statement, typeof(TException), expectedTexts);
 
-    public static void ThrowsExceptionContaining<TException>(Action statement, params string[] expectedTexts)
-        => ThrowsExceptionContaining(statement, typeof(TException), expectedTexts);
+    public static void Throws<TException>(Action statement, params string[] expectedTexts)
+        => Throws(statement, typeof(TException), expectedTexts);
+
+    public static void ThrowsExceptionOnOtherThread(Func<object?> statement)
+        => AssertHelper.ThrowsExceptionOnOtherThread(() => statement());
     
+    public static void ThrowsOnOtherThread(Func<object?> statement)
+        => AssertCore.ThrowsExceptionOnOtherThread(statement);
+    
+    public static void ThrowsOnOtherThread(Action statement)
+        => AssertHelper.ThrowsExceptionOnOtherThread(statement);
+
     // Overloads with Func
     
     // (extends Action variants, avoids shadow by MSTest)
@@ -86,53 +95,4 @@ public static partial class AssertCore
 
     public static void ThrowsException<ExceptionType>(Func<object?> statement, string expectedMessage)
         => AssertHelper.ThrowsException<ExceptionType>(() => statement(), expectedMessage);
-    
-    public static void ThrowsExceptionOnOtherThread(Func<object?> statement)
-        => AssertHelper.ThrowsExceptionOnOtherThread(() => statement());
-
-    // Shorthand Synonyms
-
-    // (Does not map one-to-one. Maps to preferred variants.)
-
-    public static void Throws(Func<object?> statement)
-        => AssertCore.ThrowsException(statement);
-
-    public static void Throws(Action statement)
-        => AssertHelper.ThrowsException(statement);
-        
-    public static void Throws(Func<object?> statement, params string[] expectedTexts)
-        => AssertCore.ThrowsExceptionContaining(statement, expectedTexts);
-        
-    public static void Throws(Action statement, params string[] expectedTexts)
-        => AssertCore.ThrowsExceptionContaining(statement, expectedTexts);
-    
-    public static void Throws(Func<object?> statement, Type exceptionType)
-        => AssertCore.ThrowsException(statement, exceptionType);
-    
-    public static void Throws(Action statement, Type exceptionType)
-        => AssertHelper.ThrowsException(statement, exceptionType);
-
-    public static void Throws(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
-        => AssertCore.ThrowsExceptionContaining(statement, exceptionType, expectedTexts);
-
-    public static void Throws(Action statement, Type exceptionType, params string[] expectedTexts)
-        => AssertCore.ThrowsExceptionContaining(statement, exceptionType, expectedTexts);
-    
-    public static void Throws<ExceptionType>(Func<object?> statement)
-        => AssertCore.ThrowsException<ExceptionType>(statement);
-    
-    public static void Throws<ExceptionType>(Action statement)
-        => AssertHelper.ThrowsException<ExceptionType>(statement);
-
-    public static void Throws<ExceptionType>(Func<object?> statement, params string[] expectedTexts)
-        => AssertCore.ThrowsExceptionContaining<ExceptionType>(statement, expectedTexts);
-
-    public static void Throws<ExceptionType>(Action statement, params string[] expectedTexts)
-        => AssertCore.ThrowsExceptionContaining<ExceptionType>(statement, expectedTexts);
-    
-    public static void ThrowsOnOtherThread(Func<object?> statement)
-        => AssertCore.ThrowsExceptionOnOtherThread(statement);
-    
-    public static void ThrowsOnOtherThread(Action statement)
-        => AssertHelper.ThrowsExceptionOnOtherThread(statement);
 }

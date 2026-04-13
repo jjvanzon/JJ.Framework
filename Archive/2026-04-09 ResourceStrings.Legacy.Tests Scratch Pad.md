@@ -355,3 +355,46 @@ internal static class AssertHelper
     </type>
 
 ```
+
+```cs
+
+    // Shorthand Synonyms
+
+    // (Does not map one-to-one. Maps to preferred variants.)
+
+    //public static void Throws(Func<object?> statement)
+        //=> AssertCore.ThrowsException(statement);
+
+    //public static void Throws(Action statement)
+        //=> AssertHelper.ThrowsException(statement);
+        
+    //public static void Throws(Func<object?> statement, params string[] expectedTexts)
+        //=> AssertCore.Throws(statement, expectedTexts);
+        
+    //public static void Throws(Action statement, params string[] expectedTexts)
+        //=> AssertCore.Throws(statement, expectedTexts);
+    
+    //public static void Throws(Func<object?> statement, Type exceptionType)
+        //=> AssertCore.ThrowsException(statement, exceptionType);
+    
+    //public static void Throws(Action statement, Type exceptionType)
+        //=> AssertHelper.ThrowsException(statement, exceptionType);
+
+    //public static void Throws(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
+        //=> AssertCore.Throws(statement, exceptionType, expectedTexts);
+
+    //public static void Throws(Action statement, Type exceptionType, params string[] expectedTexts)
+        //=> AssertCore.Throws(statement, exceptionType, expectedTexts);
+    
+    //public static void Throws<ExceptionType>(Func<object?> statement)
+        //=> AssertCore.ThrowsException<ExceptionType>(statement);
+    
+    //public static void Throws<ExceptionType>(Action statement)
+        //=> AssertHelper.ThrowsException<ExceptionType>(statement);
+
+    //public static void Throws<ExceptionType>(Func<object?> statement, params string[] expectedTexts)
+        //=> AssertCore.Throws<ExceptionType>(statement, expectedTexts);
+
+    //public static void Throws<ExceptionType>(Action statement, params string[] expectedTexts)
+        //=> AssertCore.Throws<ExceptionType>(statement, expectedTexts);
+```

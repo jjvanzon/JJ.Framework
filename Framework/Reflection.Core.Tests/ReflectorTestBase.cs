@@ -57,7 +57,7 @@ public abstract class ReflectorTestBase
     
     protected void ThrowsNotFound(Func<object?> func)
     {
-        ThrowsExceptionContaining(func, "not found");
+        Throws(func, "not found");
     }
     
     protected class MyType : MyBase

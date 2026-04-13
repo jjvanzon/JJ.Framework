@@ -98,7 +98,7 @@ public class ReflectionCache_Field_CoreTests
 
         foreach (var action in synonyms)
         {
-            ThrowsExceptionContaining(action, "Field", "not found");
+            Throws(action, "Field", "not found");
         }
     }
 

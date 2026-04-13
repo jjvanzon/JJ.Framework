@@ -52,10 +52,10 @@ public class SplitWithQuotationCoreTests
     [TestMethod]
     public void SplitWithQuotation_NoSeparator_ThrowsException()
     {
-        ThrowsExceptionContaining<ArgumentNullException>(() => "1234".SplitWithQuotation(null, '"'), "separator", "cannot be null");
+        Throws<ArgumentNullException>(() => "1234".SplitWithQuotation(null, '"'), "separator", "cannot be null");
         
         // "" is not technically null, but it calls it that in the error anyway.
-        ThrowsExceptionContaining<ArgumentNullException>(() => "1234".SplitWithQuotation("", '"'), "separator", "cannot be null");
+        Throws<ArgumentNullException>(() => "1234".SplitWithQuotation("", '"'), "separator", "cannot be null");
         
         // Space is fine though.
         "1234".SplitWithQuotation(" ", '"');

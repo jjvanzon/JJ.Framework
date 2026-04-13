@@ -72,7 +72,7 @@ public class ReflectionCache_Indexer_CoreTests
 
         foreach (var action in synonyms)
         {
-            ThrowsExceptionContaining(action, "Indexer not found");
+            Throws(action, "Indexer not found");
         }
     }
     

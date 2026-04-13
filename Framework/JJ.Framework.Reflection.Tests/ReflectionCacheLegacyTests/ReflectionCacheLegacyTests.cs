@@ -209,7 +209,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
             Type[] parameterTypes = { typeof(int) };
             Type[] typeArguments = { typeof(long) };
 
-            ThrowsExceptionContaining(
+            Throws(
                 () => reflectionCache.GetMethod(type, methodName, parameterTypes, typeArguments),
                 "multiple methods");
         }

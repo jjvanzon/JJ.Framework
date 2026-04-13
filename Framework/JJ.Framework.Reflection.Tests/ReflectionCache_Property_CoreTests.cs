@@ -107,7 +107,7 @@ public class ReflectionCache_Property_CoreTests
 
         foreach (var action in actions)
         {
-            ThrowsExceptionContaining(action, "Property", "not found");
+            Throws(action, "Property", "not found");
         }
     }
         
@@ -128,7 +128,7 @@ public class ReflectionCache_Property_CoreTests
 
         foreach (var action in synonyms)
         {
-            ThrowsExceptionContaining(action, "Property", "not found");
+            Throws(action, "Property", "not found");
         }
     }
 

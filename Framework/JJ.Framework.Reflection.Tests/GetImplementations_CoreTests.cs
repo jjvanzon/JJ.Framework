@@ -33,7 +33,7 @@ public class GetImplementations_CoreTests
              
     [TestMethod]
     public void TryGetImplementation_Multiple_Exception() 
-        => ThrowsExceptionContaining(
+        => Throws(
             () => GetImplementation<IInterface2>(Assembly),
             "Multiple implementations", "found");
     
@@ -41,7 +41,7 @@ public class GetImplementations_CoreTests
     
     [TestMethod]
     public void GetImplementation_NotFound_Exception() 
-        => ThrowsExceptionContaining(
+        => Throws(
             () => GetImplementation<IInterfaceNone>(Assembly),
             "No implementation", "found");
     
@@ -55,7 +55,7 @@ public class GetImplementations_CoreTests
         
     [TestMethod]
     public void GetImplementation_Multiple_Exception() 
-        => ThrowsExceptionContaining(
+        => Throws(
             () => GetImplementation<IInterface2>(Assembly),
             "Multiple implementations", "found");
     

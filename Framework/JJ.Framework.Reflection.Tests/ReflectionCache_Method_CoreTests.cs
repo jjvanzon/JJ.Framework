@@ -97,7 +97,7 @@ public class ReflectionCache_Method_CoreTests
 
         foreach (var action in actions)
         {
-            ThrowsExceptionContaining(action, "Method", "not found");
+            Throws(action, "Method", "not found");
         }
     }
     
@@ -148,7 +148,7 @@ public class ReflectionCache_Method_CoreTests
 
         foreach (var action in synonyms)
         {
-            ThrowsExceptionContaining(action, "Method", "not found");
+            Throws(action, "Method", "not found");
         }
     }
     

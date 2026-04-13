@@ -113,8 +113,8 @@ public class AccessorCoreTests_GetSet
     {
         var obj = new MyClass();
         var accessor = new AccessorCore(obj);
-        ThrowsExceptionContaining(() => accessor.Get("DoesNotExist"    ), "Property or field", "DoesNotExist", "not found");
-        ThrowsExceptionContaining(() => accessor.Set("DoesNotExist", 10), "Property or field", "DoesNotExist", "not found");
+        Throws(() => accessor.Get("DoesNotExist"    ), "Property or field", "DoesNotExist", "not found");
+        Throws(() => accessor.Set("DoesNotExist", 10), "Property or field", "DoesNotExist", "not found");
     }
     
     private class Accessor_WithCallerMemberName_AndTypeArg_WithInheritance(MyClass obj) : AccessorCore(obj), IMyAccessor

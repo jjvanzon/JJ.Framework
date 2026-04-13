@@ -49,7 +49,7 @@ public class ReflectionCache_Type_CoreTests
         {
             for (int i = 0; i < Repeats; i++)
             {
-                ThrowsExceptionContaining(action, "Type with short name", "not found");
+                Throws(action, "Type with short name", "not found");
             }
         }
     }
@@ -121,7 +121,7 @@ public class ReflectionCache_Type_CoreTests
         {
             for (int i = 0; i < Repeats; i++)
             {
-                ThrowsExceptionContaining(action, "Type with short name", "multiple");
+                Throws(action, "Type with short name", "multiple");
             }
         }
     }
@@ -231,7 +231,7 @@ public class ReflectionCache_Type_CoreTests
 
         foreach (var action in synonyms)
         {
-            ThrowsExceptionContaining(action, "null");
+            Throws(action, "null");
         }
     }
 }
