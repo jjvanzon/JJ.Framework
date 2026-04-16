@@ -1,3 +1,8 @@
 ﻿namespace JJ.Framework.StringResources.Legacy;
 
-public enum NoLog { nolog = 1 }
+/// <inheritdoc cref="_nolog" />
+public enum NoLog
+{
+    /// <inheritdoc cref="_nolog" />
+    nolog = 1
+}

@@ -111,6 +111,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         // Test
 
+        /// <inheritdoc cref="_assertallmembers" />
         public void AssertAllMembers()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
@@ -136,6 +137,7 @@ namespace JJ.Framework.StringResources.Legacy
             }
         }
 
+        /// <inheritdoc cref="_assertunknownculture" />
         public void AssertUnknownCulture()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
@@ -182,6 +184,7 @@ namespace JJ.Framework.StringResources.Legacy
             return members;
         }
         
+        /// <inheritdoc cref="_include" />
         protected virtual bool Include(MemberInfo memberToTest)
         {
             if (memberToTest == null) throw new ArgumentNullException(nameof(memberToTest));

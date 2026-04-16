@@ -15,3 +15,34 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 /// </summary>
 /// <param name="actualFunc">Is Expression&lt;Func&lt;T&gt;&gt; in legacy code. Func here for syntax compatibility.</param>
 public struct _portedstubs;
+
+/// <summary>
+/// Formats <see cref="JJ.Framework.StringResources.Legacy.CommonTitles"/> resources
+/// by filling in placeholders with supplied arguments.
+/// </summary>
+/// <param name="entityNamePlural">The plural display name of the entity type.</param>
+public struct _commontitlesformatter;
+
+/// <summary>
+/// Sentinel enum used to select a constructor overload
+/// that suppresses diagnostic trace output.
+/// </summary>
+public struct _nolog;
+
+/// <summary>
+/// Asserts every public property and method of the resource class
+/// returns a non-empty string for each known culture.
+/// </summary>
+public struct _assertallmembers;
+
+/// <summary>
+/// Asserts that an unknown culture falls back
+/// to the default culture for every resource member.
+/// </summary>
+public struct _assertunknownculture;
+
+/// <summary>
+/// Determines whether a member should be included in the resource test.
+/// Override to exclude additional members.
+/// </summary>
+public struct _include;
