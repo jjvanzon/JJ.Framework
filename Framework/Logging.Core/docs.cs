@@ -1,4 +1,5 @@
-﻿// ReSharper disable UnusedType.Global
+﻿#pragma warning disable IDE1006 // Naming Styles
+// ReSharper disable UnusedType.Global
 // ReSharper disable IdentifierTypo
 // ReSharper disable CheckNamespace
 
@@ -25,13 +26,15 @@ public struct _loggerexcludedcategories;
 public struct _loggerformat;
 
 /// <summary>
-/// Specifies the logger type. Options include:<br/>
-/// - LoggerEnum values (e.g., Console, DebugOutput).<br/>
-/// - Assembly name containing an ILogger implementation.<br/>
-/// - Full .NET Type string indicating an implementation of ILogger.
+/// Specifies the logger type. Options include:
+/// <list type="bullet">
+/// <item>LoggerEnum values (e.g., Console, DebugOutput).</item>
+/// <item>Assembly name containing an ILogger implementation.</item>
+/// <item>Full .NET Type string indicating an implementation of ILogger.</item>
+/// </list>
 /// </summary>
 public struct _loggertype;
 
-/// <remarks>Semi-colon separated.</remarks>
-/// <inheritdoc cref="docs._loggertype" />
+/// <inheritdoc cref="_loggertype" />
+/// <remarks>Multiple values allowed separated by semi-colons.</remarks>
 public struct _loggertypes;
