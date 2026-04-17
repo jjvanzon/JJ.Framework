@@ -5,42 +5,12 @@
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 #pragma warning disable IDE0060 // nolog param "unused"
 // ReSharper disable UnusedVariable
+// ReSharper disable UnusedParameter.Local
 // ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 
 namespace JJ.Framework.StringResources.Legacy
 {
-    /// <summary>
-    /// This class can be used as a base class for unit tests to run on a Resources or ResourceFormatter class.
-    /// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.StringResources.
-    /// That means, that each public static member of the ResourceFormatter class returns a string.
-    /// That string may not be null or white space. The test can switch to different cultures and repeat the checks.
-    /// An unused culture is currently assumed to fall back to a default culture en-US.
-    /// Some of those requirements might seem quite specific for how our ResourceFormatter classes are structured.
-    /// But having this base class for tests, would allow testing integrity of
-    /// some other resource formatters the same way JJ.Framework.StringResources would do things.
-    ///
-    /// <code>
-    /// An implementation might look something like:
-    /// [TestClass]
-    /// public class CommonResourceFormatterTests : StringResourceTester
-    /// {
-    ///   public CommonResourceFormatterTests()
-    ///     : base(
-    ///         typeof(CommonResourceFormatter),
-    ///         @default: "en-US",
-    ///         known: [ "pl-PL", "nl-NL" ],
-    ///         unknown: "zh-CN") { }
-    /// 
-    ///   [TestMethod]
-    ///   public void Test_CommonResourceFormatter_AssertResources_ReturnText_ForKnownCultures()
-    ///     =&gt; base.AssertAllMembers();
-    /// 
-    ///   [TestMethod]
-    ///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
-    ///     =&gt; base.AssertUnknownCulture();
-    /// }
-    /// </code>
-    /// </summary>
+    /// <inheritdoc cref="_stringresourcetester" />
     public class StringResourceTester
     {
         [Dyn(PubPropMethod)]
@@ -53,8 +23,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         // Init
 
-        // ReSharper disable once UnusedParameter.Local
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             [Dyn(PubPropMethod)] Type resourceClass, 
             string[] known, string unknown, string @default, NoLog nolog)
@@ -63,8 +32,7 @@ namespace JJ.Framework.StringResources.Legacy
                 known, unknown, @default, nolog: true)
         { }
 
-        // ReSharper disable once UnusedParameter.Local
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             [Dyn(PubPropMethod)] Type resourceClass, object resourceObject, 
             string[] known, string unknown, string @default, NoLog nolog)
@@ -73,7 +41,7 @@ namespace JJ.Framework.StringResources.Legacy
                 known, unknown, @default, nolog: true)
         { }
 
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             [Dyn(PubPropMethod)] Type resourceClass,
             string[] known, string unknown, string @default, bool nolog = default)
@@ -82,7 +50,7 @@ namespace JJ.Framework.StringResources.Legacy
                 known, unknown, @default, nolog)
         { }
 
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             [Dyn(PubPropMethod)] Type resourceClass, object? resourceObject,
             string[] known, string unknown, string @default, bool nolog = default)

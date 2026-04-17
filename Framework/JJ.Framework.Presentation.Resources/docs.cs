@@ -6,6 +6,40 @@
 namespace JJ.Framework.StringResources.Legacy.docs;
 
 /// <summary>
+/// This class can be used as a base class for unit tests to run on a Resources or ResourceFormatter class.
+/// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.StringResources.
+/// That means, that each public static member of the ResourceFormatter class returns a string.
+/// That string may not be null or white space. The test can switch to different cultures and repeat the checks.
+/// An unused culture is currently assumed to fall back to a default culture en-US.
+/// Some of those requirements might seem quite specific for how our ResourceFormatter classes are structured.
+/// But having this base class for tests, would allow testing integrity of
+/// some other resource formatters the same way JJ.Framework.StringResources would do things.
+///
+/// <code>
+/// An implementation might look something like:
+/// [TestClass]
+/// public class CommonResourceFormatterTests : StringResourceTester
+/// {
+///   public CommonResourceFormatterTests()
+///     : base(
+///         typeof(CommonResourceFormatter),
+///         @default: "en-US",
+///         known: [ "pl-PL", "nl-NL" ],
+///         unknown: "zh-CN") { }
+/// 
+///   [TestMethod]
+///   public void Test_CommonResourceFormatter_AssertResources_ReturnText_ForKnownCultures()
+///     =&gt; base.AssertAllMembers();
+/// 
+///   [TestMethod]
+///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
+///     =&gt; base.AssertUnknownCulture();
+/// }
+/// </code>
+/// </summary>
+public struct _stringresourcetester;
+
+/// <summary>
 /// Ported stubs prevent making more changes than necessary and prevent porting more code
 /// than necessary by copying tiny bits of dependency code here,
 /// and keeping those internal.
