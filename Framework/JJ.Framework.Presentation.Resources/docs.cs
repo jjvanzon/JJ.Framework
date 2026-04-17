@@ -9,8 +9,8 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 /// <summary>
 /// Base class for testing that every resource member returns a non-empty string
 /// across known cultures, and that unknown cultures fall back to the default.
-/// </summary>
-/// <remarks>
+/// For methods with parameters, it also verifies that placeholders are resolved
+/// and that each argument appears in the resulting string.
 /// <code>
 /// [TestClass]
 /// public class MyResourceTests() 
@@ -19,14 +19,14 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 ///     known: ["pl-PL", "nl-NL"], 
 ///     unknown: "zh-CN", @default: "en-US")
 /// {
-///     [TestMethod] 
-///     public void All() => AssertAllMembers();
-///    
-///     [TestMethod] 
-///     public void Unknown() => AssertUnknownCulture();
+///   [TestMethod] 
+///   public void All() => AssertAllMembers();
+///  
+///   [TestMethod] 
+///   public void Unknown() => AssertUnknownCulture();
 /// }
 /// </code>
-/// </remarks>
+/// </summary>
 /// <param name="resourceClass">
 /// The resource or formatter type whose public members will be tested.
 /// </param>
