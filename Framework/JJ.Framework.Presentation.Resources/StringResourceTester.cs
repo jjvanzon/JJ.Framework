@@ -124,7 +124,8 @@ namespace JJ.Framework.StringResources.Legacy
 
                     if (!string.Equals(expected, actual, OrdinalIgnoreCase))
                     {
-                        throw new Exception($"Member {memberToTest.Name} is '{actual}' but '{expected}' was expected.");
+                        throw new Exception(
+                            $"Member {memberToTest.Name} is '{actual}' but '{expected}' was expected.");
                     }
                 }
             }
@@ -197,10 +198,9 @@ namespace JJ.Framework.StringResources.Legacy
                 TypeCode.Boolean => param.Position % 2 == 0,
                 TypeCode.String  => $"arg{param.Position}",
                 _ => throw new Exception(
-                    $"Could not automatically generate value for parameter " +
-                    $"'{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
-                    $"Override Include or to include/exclude members or " +
-                    $"override GetArg to provide a value explicitly.")
+                    $"Failed to generate value for parameter " +
+                    $"'{param.Name}' of type '{param.ParameterType.Name}' for method '{param.Member.Name}'. " +
+                    $"Override Include or GetArg to include/exclude members or to provide a value explicitly.")
             };
         }
        
@@ -256,7 +256,7 @@ namespace JJ.Framework.StringResources.Legacy
             if (IsMatch(text!, "{\\d+(:[^}]+)?}"))
             {
                 throw new Exception(
-                    $"Method {method.Name} returned unresolved placeholders: \"{text}\".");
+                    $"{FormatMethod(method, args)} has unresolved placeholders: \"{text}\".");
             }
             
             // Check args are in text
@@ -267,8 +267,8 @@ namespace JJ.Framework.StringResources.Legacy
                 if (!text.Contains(argString))
                 {
                     throw new Exception(
-                        $"Method {method.Name}: parameter '{parameters[i].Name}' " +
-                        $"value \"{argString}\" not found in result \"{text}\".");
+                        $"Parameter {parameters[i].Name} = \"{argString}\" not found in text \"{text}\" " +
+                        $"returned by method {FormatMethod(method, args)}.");
                 }
             }
 

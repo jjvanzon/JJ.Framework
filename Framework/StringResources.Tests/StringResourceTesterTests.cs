@@ -181,8 +181,7 @@ public class StringResourceTesterTests
     public void StringResourceTester_ArgNotUsed_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_ArgNotUsed>(_known, _unknow, _default);
-        // TOOD: Make error message easier to read.
-        Throws(() => tester.AssertAllMembers(), "arg", "not found in result");
+        Throws(() => tester.AssertAllMembers(), "arg", "not found in text");
     }
 
     [TestMethod]
@@ -203,7 +202,7 @@ public class StringResourceTesterTests
     public void StringResourceTester_UnsupportedArgType_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_CustomArgType>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "could not", "generate", "value for parameter");
+        Throws(() => tester.AssertAllMembers(), "failed to generate value for parameter");
     }
 
     [TestMethod]
