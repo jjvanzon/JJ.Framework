@@ -63,7 +63,9 @@ public struct _stringresourcetesteroft;
 /// This way StringResourceTestBase can be ported
 /// with minimal changes and prevent future merge conflicts.
 /// </summary>
-/// <param name="actualFunc">Is Expression&lt;Func&lt;T&gt;&gt; in legacy code. Func here for syntax compatibility.</param>
+/// <param name="actualFunc">
+/// Is Expression&lt;Func&lt;T&gt;&gt; in legacy code. Func here for syntax compatibility.
+/// </param>
 public struct _portedstubs;
 
 /// <summary>
@@ -84,24 +86,25 @@ public struct _entitycount;
 public struct _nolog;
 
 /// <summary>
-/// Checks that every public member returns a non-empty string for each known culture.
+/// Checks that every public member returns a filled text for each known culture.
 /// </summary>
 public struct _assertallmembers;
 
 /// <summary>
-/// Checks that an unknown culture falls back to the default culture for every member.
+/// Checks that an unknown culture uses the default culture for every member's text.
 /// </summary>
 public struct _assertunknownculture;
 
 /// <summary>
-/// Decides whether a member is included in the test.
+/// Decides whether a member is included in the test.<br/>
+/// <c>Culture</c> and <c>ResourceManager</c> are skipped by default.
 /// Override to skip additional members.
 /// </summary>
 public struct _include;
 
 /// <summary>
-/// Creates a dummy argument value for the given parameter type
-/// so a resource formatter method can be invoked reflectively.
+/// Creates a dummy argument value to fill in a parameter
+/// to pass to a resource method.
 /// Override to handle custom parameter types.
 /// </summary>
 public struct _getarg;
@@ -119,7 +122,7 @@ public struct _assertresourceprop;
 /// <summary>
 /// Invokes a resource method with generated arguments,
 /// checks that it returns a non-empty string,
-/// that no placeholders remain unresolved,
+/// that placeholders are resolved,
 /// and that each argument appears in the result.
 /// </summary>
 public struct _assertresourcemethod;
@@ -130,7 +133,7 @@ public struct _assertresourcemethod;
 public struct _assertreturnstext;
 
 /// <summary>
-/// Returns the resource object for instance members,
+/// Helper that returns the resource object for instance members,
 /// or <c>null</c> for static members.
 /// </summary>
 public struct _trygetresourceobject;
