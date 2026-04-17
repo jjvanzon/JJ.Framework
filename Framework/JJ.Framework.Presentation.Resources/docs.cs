@@ -1,4 +1,5 @@
-﻿#pragma warning disable IDE0130 // Namespace != folder
+﻿#pragma warning disable CS1574, CS1584, CS1581, CS1580 // Cannot find cref
+#pragma warning disable IDE0130 // Namespace != folder
 #pragma warning disable IDE1006 // Naming rules
 // ReSharper disable CheckNamespace
 // ReSharper disable UnusedType.Global
@@ -12,32 +13,47 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 /// <remarks>
 /// <code>
 /// [TestClass]
-/// public class CommonResourceFormatterTests : StringResourceTester
+/// public class MyResourceTests() 
+///   : StringResourceTester(
+///     typeof(MyResources), 
+///     known: ["pl-PL", "nl-NL"], 
+///     unknown: "zh-CN", @default: "en-US")
 /// {
-///   public CommonResourceFormatterTests()
-///     : base(
-///         typeof(CommonResourceFormatter),
-///         @default: "en-US",
-///         known: [ "pl-PL", "nl-NL" ],
-///         unknown: "zh-CN") { }
-/// 
-///   [TestMethod]
-///   public void Test_AssertResources_ReturnText_ForKnownCultures()
-///     =&gt; base.AssertAllMembers();
-/// 
-///   [TestMethod]
-///   public void Test_UnknownCulture_DefaultsToEnUS()
-///     =&gt; base.AssertUnknownCulture();
+///     [TestMethod] 
+///     public void All() => AssertAllMembers();
+///    
+///     [TestMethod] 
+///     public void Unknown() => AssertUnknownCulture();
 /// }
 /// </code>
 /// </remarks>
-/// <param name="resourceClass">The resource or formatter type whose public members will be tested.</param>
-/// <param name="resourceObject">Instance to invoke non-static members on. Pass <c>null</c> for static-only classes.</param>
-/// <param name="known">Culture names (e.g. "nl-NL") that have their own translations.</param>
-/// <param name="unknown">A culture name with no translations, expected to fall back to <paramref name="default"/>.</param>
-/// <param name="default">The default culture name (typically "en-US").</param>
-/// <param name="nolog">Suppresses <see cref="System.Diagnostics.Trace"/> output during the test run.</param>
+/// <param name="resourceClass">
+/// The resource or formatter type whose public members will be tested.
+/// </param>
+/// <param name="resourceObject">
+/// Instance to invoke non-static members on. Pass <c>null</c> for static-only classes.
+/// </param>
+/// <param name="known">
+/// Culture names e.g. [ "en-US", "nl-NL"] that have their own translations.
+/// </param>
+/// <param name="unknown">
+/// A culture name with no translations, expected to fall back to <paramref name="@default"/>.
+/// </param>
+/// <param name="default">
+/// The default culture name, typically "en-US" or "" (invariant culture).
+/// Automatically considered one of <paramref name="known"/> cultures
+/// </param>
+/// <param name="nolog">
+/// Suppresses <see cref="Trace"/> output during the test run.
+/// </param>
 public struct _stringresourcetester;
+
+/// <summary>
+/// Generic syntax sugar over <see cref="StringResourceTester"/>
+/// so you can write <c>new StringResourceTester&lt;MyResources&gt;(...)</c>
+/// instead of <c>new StringResourceTester(typeof(MyResources), ...)</c>.
+/// </summary>
+public struct _stringresourcetesteroft;
 
 /// <summary>
 /// Ported stubs prevent making more changes than necessary and prevent porting more code
