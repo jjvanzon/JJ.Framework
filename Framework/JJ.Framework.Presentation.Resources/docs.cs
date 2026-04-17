@@ -6,17 +6,11 @@
 namespace JJ.Framework.StringResources.Legacy.docs;
 
 /// <summary>
-/// This class can be used as a base class for unit tests to run on a Resources or ResourceFormatter class.
-/// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.StringResources.
-/// That means, that each public static member of the ResourceFormatter class returns a string.
-/// That string may not be null or white space. The test can switch to different cultures and repeat the checks.
-/// An unused culture is currently assumed to fall back to a default culture en-US.
-/// Some of those requirements might seem quite specific for how our ResourceFormatter classes are structured.
-/// But having this base class for tests, would allow testing integrity of
-/// some other resource formatters the same way JJ.Framework.StringResources would do things.
-///
+/// Base class for testing that every resource member returns a non-empty string
+/// across known cultures, and that unknown cultures fall back to the default.
+/// </summary>
+/// <remarks>
 /// <code>
-/// An implementation might look something like:
 /// [TestClass]
 /// public class CommonResourceFormatterTests : StringResourceTester
 /// {
@@ -28,15 +22,21 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 ///         unknown: "zh-CN") { }
 /// 
 ///   [TestMethod]
-///   public void Test_CommonResourceFormatter_AssertResources_ReturnText_ForKnownCultures()
+///   public void Test_AssertResources_ReturnText_ForKnownCultures()
 ///     =&gt; base.AssertAllMembers();
 /// 
 ///   [TestMethod]
-///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
+///   public void Test_UnknownCulture_DefaultsToEnUS()
 ///     =&gt; base.AssertUnknownCulture();
 /// }
 /// </code>
-/// </summary>
+/// </remarks>
+/// <param name="resourceClass">The resource or formatter type whose public members will be tested.</param>
+/// <param name="resourceObject">Instance to invoke non-static members on. Pass <c>null</c> for static-only classes.</param>
+/// <param name="known">Culture names (e.g. "nl-NL") that have their own translations.</param>
+/// <param name="unknown">A culture name with no translations, expected to fall back to <paramref name="default"/>.</param>
+/// <param name="default">The default culture name (typically "en-US").</param>
+/// <param name="nolog">Suppresses <see cref="System.Diagnostics.Trace"/> output during the test run.</param>
 public struct _stringresourcetester;
 
 /// <summary>
@@ -51,32 +51,70 @@ public struct _stringresourcetester;
 public struct _portedstubs;
 
 /// <summary>
-/// Formats <see cref="JJ.Framework.StringResources.Legacy.CommonTitles"/> resources
+/// Formats <see cref="CommonTitles"/> resources
 /// by filling in placeholders with supplied arguments.
 /// </summary>
-/// <param name="entityNamePlural">The plural display name of the entity type.</param>
 public struct _commontitlesformatter;
 
 /// <summary>
-/// Sentinel enum used to select a constructor overload
-/// that suppresses diagnostic trace output.
+/// Returns a formatted "{0} count" string for a given entity name.
+/// </summary>
+/// <param name="entityNamePlural">The plural display name of the entity type.</param>
+public struct _entitycount;
+
+/// <summary>
+/// Marker enum to pick a constructor overload that turns off trace logging.
 /// </summary>
 public struct _nolog;
 
 /// <summary>
-/// Asserts every public property and method of the resource class
-/// returns a non-empty string for each known culture.
+/// Checks that every public member returns a non-empty string for each known culture.
 /// </summary>
 public struct _assertallmembers;
 
 /// <summary>
-/// Asserts that an unknown culture falls back
-/// to the default culture for every resource member.
+/// Checks that an unknown culture falls back to the default culture for every member.
 /// </summary>
 public struct _assertunknownculture;
 
 /// <summary>
-/// Determines whether a member should be included in the resource test.
-/// Override to exclude additional members.
+/// Decides whether a member is included in the test.
+/// Override to skip additional members.
 /// </summary>
 public struct _include;
+
+/// <summary>
+/// Creates a dummy argument value for the given parameter type
+/// so a resource formatter method can be invoked reflectively.
+/// Override to handle custom parameter types.
+/// </summary>
+public struct _getarg;
+
+/// <summary>
+/// Dispatches to the property or method assertion based on member type.
+/// </summary>
+public struct _assertresourcetext;
+
+/// <summary>
+/// Asserts that a resource property returns a non-empty string.
+/// </summary>
+public struct _assertresourceprop;
+
+/// <summary>
+/// Invokes a resource method with generated arguments,
+/// checks that it returns a non-empty string,
+/// that no placeholders remain unresolved,
+/// and that each argument appears in the result.
+/// </summary>
+public struct _assertresourcemethod;
+
+/// <summary>
+/// Verifies that the returned value is a non-empty string.
+/// </summary>
+public struct _assertreturnstext;
+
+/// <summary>
+/// Returns the resource object for instance members,
+/// or <c>null</c> for static members.
+/// </summary>
+public struct _trygetresourceobject;

@@ -175,10 +175,7 @@ namespace JJ.Framework.StringResources.Legacy
             return true;
         }
 
-        /// <summary>
-        /// Creates a test value for a parameter of the given type.
-        /// Override to support additional parameter types.
-        /// </summary>
+        /// <inheritdoc cref="_getarg" />
         protected virtual object GetArg(ParameterInfo param)
         {
             if (param == null) throw new ArgumentNullException(nameof(param));
@@ -209,6 +206,7 @@ namespace JJ.Framework.StringResources.Legacy
        
         // Assert
 
+        /// <inheritdoc cref="_assertresourcetext" />
         private string AssertResourceText(MemberInfo member)
         {
             switch (member)
@@ -224,9 +222,7 @@ namespace JJ.Framework.StringResources.Legacy
             }
         }
 
-        /// <summary>
-        /// Aims to assert that the property is of type string and what it might return would not be null or white space.
-        /// </summary>
+        /// <inheritdoc cref="_assertresourceprop" />
         private string AssertResourceProp(PropertyInfo prop)
         {
             var isStatic = IsStatic(prop);
@@ -237,10 +233,7 @@ namespace JJ.Framework.StringResources.Legacy
             return text;
         }
 
-        /// <summary>
-        /// Asserts that the method returns a non-empty string
-        /// and that each supplied test value appears in the result.
-        /// </summary>
+        /// <inheritdoc cref="_assertresourcemethod" />
         private string AssertResourceMethod(MethodInfo method)
         {
             // Generate arguments
@@ -282,6 +275,7 @@ namespace JJ.Framework.StringResources.Legacy
             return text;
         }
 
+        /// <inheritdoc cref="_assertreturnstext" />
         private static string AssertReturnsText(MemberInfo member, object ret)
         {
             var returnType = ret.GetType();
@@ -303,6 +297,7 @@ namespace JJ.Framework.StringResources.Legacy
 
         // Helpers
 
+        /// <inheritdoc cref="_trygetresourceobject" />
         private object? TryGetResourceObject(bool isStatic, MemberInfo member)
         {
             if (isStatic) return null;
