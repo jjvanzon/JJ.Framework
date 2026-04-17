@@ -62,6 +62,13 @@ public class StringResourceTesterTests
         tester.AssertUnknownCulture();
     }
 
+    [TestMethod]
+    public void StringResourceTester_UnknownCulture_FailureIsThrownWhenUnknownCultureIsLocalized()
+    {
+        var tester = new StringResourceTester<ResourceClass_CultureSpecific>(_known, _unknow, _default);
+        Throws(() => tester.AssertUnknownCulture(), "is", "was expected");
+    }
+
     // Arg Types
 
     [TestMethod]
@@ -372,6 +379,18 @@ public class StringResourceTesterTests
     {
         public string Title => "Title";
         public string Greeting(string name) => "Hello " + name;
+    }
+
+    private class ResourceClass_CultureSpecific
+    {
+        // Returns different text based on current culture, simulating a resource
+        // that has been localized for the unknown culture when it shouldn't be.
+        public static string Greeting() => 
+            Thread.CurrentThread.CurrentUICulture.Name switch
+            {
+                "de-DE" => "Hallo",
+                _ => "Hello"
+            };
     }
 
     private interface IResources
