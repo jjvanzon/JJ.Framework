@@ -125,7 +125,7 @@ namespace JJ.Framework.StringResources.Legacy
                     if (!string.Equals(expected, actual, OrdinalIgnoreCase))
                     {
                         throw new Exception(
-                            $"Member {memberToTest.Name} is '{actual}' but '{expected}' was expected.");
+                            $"{memberToTest.Name} should return '{expected}', but instead returned '{actual}'.");
                     }
                 }
             }

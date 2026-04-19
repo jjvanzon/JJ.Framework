@@ -56,10 +56,31 @@ public class StringResourceTesterTests
     // Unknown Culture Fallback
 
     [TestMethod]
-    public void StringResourceTester_UnknownCulture_FallsBackToDefault()
+    public void StringResourceTester_UnknownCulture_FallsBackToDefault_DoesNotCrash()
     {
         var tester = new StringResourceTester<ResourceClass>(_known, _unknow, _default);
         tester.AssertUnknownCulture();
+    }
+
+    [TestMethod]
+    public void StringResourceTester_UnknownCulture_FallsBackToDefault_Succeeds()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithFallbackIssue>(
+            new(), known: [ "nl-NL" ], unknown: "de-DE", @default: "");
+
+        tester.AssertUnknownCulture();
+    }
+
+    [TestMethod]
+    public void StringResourceTester_UnknownCulture_FallbackFailsAsExpected()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithFallbackIssue>(
+            new(), known: [ "nl-NL" ], unknown: "de-DE", @default: "en-US");
+
+        Throws(
+            tester.AssertUnknownCulture, 
+            "MyProblemCase should return 'My problem case'", 
+            "but instead returned 'MyProblemCase'");
     }
 
     // Arg Types
@@ -271,6 +292,18 @@ public class StringResourceTesterTests
         public string Greet(string name) => $"Hello {name}";
         public string Format(string label, int count) => $"{label}: {count}";
         public string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
+    }
+
+    
+    private class ResourceClass_WithFallbackIssue
+    {
+        public string MyProblemCase 
+            => CurrentThread.CurrentUICulture.Name switch
+            {
+                "nl-NL" => "Mijn probleemgeval",
+                "en-US" => "My problem case",
+                _ => "MyProblemCase"
+            };
     }
 
     private class ResourceClass_VariousArgTypes
