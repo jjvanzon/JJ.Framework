@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>0.253.$(BuildNum)</Version>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\StringResources.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\StringResources.Tests\obj\**" />
+    <Compile Remove="..\StringResources.Tests\bin\**" />
+    <Compile Include="..\StringResources.TrimTests\Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.253.6188" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.5.6068" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.5.6073" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.5.6068" />
+  </ItemGroup>
+
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+  </ItemGroup>
+</Project>
+

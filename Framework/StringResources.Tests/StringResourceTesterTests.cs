@@ -300,7 +300,7 @@ public class StringResourceTesterTests
         public string MyProblemCase 
             => CurrentThread.CurrentUICulture.Name switch
             {
-                "nl-NL" => "Mijn probleemgeval",
+                "nl-NL" => "Mijn probleemgeval", // ncrunch: no coverage
                 "en-US" => "My problem case",
                 _ => "MyProblemCase"
             };
