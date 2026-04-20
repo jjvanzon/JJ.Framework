@@ -67,7 +67,7 @@ public struct _stringresourcetesteroft;
 /// <param name="actualFunc">
 /// Is Expression&lt;Func&lt;T&gt;&gt; in legacy code. Func here for syntax compatibility.
 /// </param>
-public struct _portedstubs;
+internal struct _portedstubs;
 
 /// <summary>
 /// Formats <see cref="CommonTitles"/> resources
@@ -113,12 +113,12 @@ public struct _getarg;
 /// <summary>
 /// Dispatches to the property or method assertion based on member type.
 /// </summary>
-public struct _assertresourcetext;
+internal struct _assertresourcetext;
 
 /// <summary>
 /// Asserts that a resource property returns a non-empty string.
 /// </summary>
-public struct _assertresourceprop;
+internal struct _assertresourceprop;
 
 /// <summary>
 /// Invokes a resource method with generated arguments,
@@ -126,15 +126,15 @@ public struct _assertresourceprop;
 /// that placeholders are resolved,
 /// and that each argument appears in the result.
 /// </summary>
-public struct _assertresourcemethod;
+internal struct _assertresourcemethod;
 
 /// <summary>
 /// Verifies that the returned value is a non-empty string.
 /// </summary>
-public struct _assertreturnstext;
+internal struct _assertreturnstext;
 
 /// <summary>
 /// Helper that returns the resource object for instance members,
 /// or <c>null</c> for static members.
 /// </summary>
-public struct _trygetresourceobject;
+internal struct _trygetresourceobject;
