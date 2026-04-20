@@ -293,7 +293,6 @@ public class StringResourceTesterTests
         public string Format(string label, int count) => $"{label}: {count}";
         public string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
     }
-
     
     private class ResourceClass_WithFallbackIssue
     {
