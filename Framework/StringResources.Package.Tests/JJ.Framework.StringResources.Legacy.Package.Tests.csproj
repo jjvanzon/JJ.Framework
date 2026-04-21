@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <Version>0.253.$(BuildNum)</Version>
@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.253.6188" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.5.6068" />
+    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.253.6194" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.5.6194" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.5.6073" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.5.6194" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
