@@ -167,23 +167,14 @@
   </PropertyGroup>
 
   <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-
     <MSBuild Condition="'$(IsNCrunch)'!='True'" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true" />
 
     <MSBuild Condition="'$(IsNCrunch)'=='True' And ($(IsNet9) Or $(IsNet10))" Targets="Publish"
-             Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishSingleFile=true;PublishReadyToRun=true">
-    </MSBuild>
+             Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishSingleFile=true;PublishReadyToRun=true" />
 
     <MSBuild Condition="'$(IsNCrunch)'=='True' And $(IsNet8)" Targets="Publish"
-             Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishReadyToRun=true">
-    </MSBuild>
-
-    <!--<MSBuild Condition="'$(IsNCrunch)'=='True' And ($(IsNet6) Or $(IsNet7))" Targets="Publish" 
-             Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishSingleFile=true;PublishReadyToRun=true" />
-
-    <MSBuild Condition="'$(IsNCrunch)'=='True' And $(IsNet5)" Targets="Publish" 
-             Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishSingleFile=true;PublishReadyToRun=false" />-->
+             Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishReadyToRun=true" />
   </Target>
   
   <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(PublishDir)'!=''">
@@ -261,8 +252,6 @@
     <Message Text="$(MSBuildProjectName) > ExitCode = $(TrimRunExitCode)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > HasError = $(TrimRunHasError)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > Exception = $(TrimRunException)" Importance="High" />
-    <!--<Message Text="$(MSBuildProjectName) > EXCEPTION TEXT NOT EXTRACTED!" Condition="$(TrimRunHasError) And '$(TrimRunException)'==''" Importance="High" />-->
-    <!--<Message Text="$(MSBuildProjectName) > OutputJoined = $(TrimRunOutputJoined)" Importance="High" />-->
 
     <!-- Failure => Error List -->
     <Error Condition="$(TrimRunHasError)" Text="$(TrimRunErrorText)" />
