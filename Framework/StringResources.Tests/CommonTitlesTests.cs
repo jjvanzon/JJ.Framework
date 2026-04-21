@@ -19,7 +19,7 @@ public class CommonTitlesTests()
     public void CommonTitles_AllMembers_ReturnText() => base.AssertAllMembers();
     
     [TestMethod]
-    public void CommonTitles_UnknownCulture_DefaultsToEnUS() => base.AssertUnknownCulture();
+    public void CommonTitles_UnknownCulture_DefaultsToEnUS() => base.AssertUnknownCultureFallback();
 
     [TestMethod]
     public void CommonTitles_ResourceManager_IsNotNull() => IsNotNull(CommonTitles.ResourceManager);

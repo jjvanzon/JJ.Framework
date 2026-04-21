@@ -23,7 +23,7 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 ///   public void All() => AssertAllMembers();
 ///  
 ///   [TestMethod] 
-///   public void Unknown() => AssertUnknownCulture();
+///   public void Unknown() => AssertUnknownCultureFallback();
 /// }
 /// </code>
 /// </remarks>
@@ -94,7 +94,7 @@ public struct _assertallmembers;
 /// <summary>
 /// Checks that an unknown culture uses the default culture for every member's text.
 /// </summary>
-public struct _assertunknownculture;
+public struct _assertunknownculturefallback;
 
 /// <summary>
 /// Decides whether a member is included in the test.<br/>

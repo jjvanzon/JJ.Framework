@@ -11,7 +11,7 @@ public class MyResourceTests()
     public void All() => AssertAllMembers();
     
     [TestMethod] 
-    public void Unknown() => AssertUnknownCulture();
+    public void Unknown() => AssertUnknownCultureFallback();
 }
 
 public class MyResources

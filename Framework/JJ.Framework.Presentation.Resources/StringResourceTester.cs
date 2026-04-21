@@ -105,8 +105,8 @@ namespace JJ.Framework.StringResources.Legacy
             }
         }
 
-        /// <inheritdoc cref="_assertunknownculture" />
-        public void AssertUnknownCulture()
+        /// <inheritdoc cref="_assertunknownculturefallback" />
+        public void AssertUnknownCultureFallback()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
 

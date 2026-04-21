@@ -19,7 +19,7 @@ public class CommonTitlesFormatterTests()
     
     [TestMethod]
     public void CommonTitlesFormatter_UnknownCulture_DefaultsToEnUS() 
-        => AssertUnknownCulture();
+        => AssertUnknownCultureFallback();
 
     [TestMethod]
     public void CommonTitlesFormatter_CheckExactTexts_InvariantCulture()

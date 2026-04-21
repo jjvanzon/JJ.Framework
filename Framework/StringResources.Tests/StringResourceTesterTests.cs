@@ -59,7 +59,7 @@ public class StringResourceTesterTests
     public void StringResourceTester_UnknownCulture_FallsBackToDefault_DoesNotCrash()
     {
         var tester = new StringResourceTester<ResourceClass>(_known, _unknow, _default);
-        tester.AssertUnknownCulture();
+        tester.AssertUnknownCultureFallback();
     }
 
     [TestMethod]
@@ -68,7 +68,7 @@ public class StringResourceTesterTests
         var tester = new StringResourceTester<ResourceClass_WithFallbackIssue>(
             new(), known: [ "nl-NL" ], unknown: "de-DE", @default: "");
 
-        tester.AssertUnknownCulture();
+        tester.AssertUnknownCultureFallback();
     }
 
     [TestMethod]
@@ -78,7 +78,7 @@ public class StringResourceTesterTests
             new(), known: [ "nl-NL" ], unknown: "de-DE", @default: "en-US");
 
         Throws(
-            tester.AssertUnknownCulture, 
+            tester.AssertUnknownCultureFallback, 
             "MyProblemCase should return 'My problem case'", 
             "but instead returned 'MyProblemCase'");
     }
@@ -149,7 +149,7 @@ public class StringResourceTesterTests
             string trace1 = CaptureTrace(tester.AssertAllMembers);
             AreEqual("", trace1);
 
-            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
+            string trace2 = CaptureTrace(tester.AssertUnknownCultureFallback);
             AreEqual("", trace2);
         }
     }
@@ -172,7 +172,7 @@ public class StringResourceTesterTests
             string trace1 = CaptureTrace(tester.AssertAllMembers);
             NotNullOrWhiteSpace(trace1);
 
-            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
+            string trace2 = CaptureTrace(tester.AssertUnknownCultureFallback);
             NotNullOrWhiteSpace(trace2);
         }
 
