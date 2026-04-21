@@ -1,0 +1,25 @@
+<Project>
+  <!-- Helper Variables -->
+  <PropertyGroup>
+    <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
+    <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
+    <IsNet48>$(MSBuildProjectName.Contains('Net48'))</IsNet48>
+    <IsTest>False</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.EndsWith('.Tests'))">True</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.Contains('.Tests.'))">True</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.EndsWith('.TestBase'))">True</IsTest>
+    <IsTest Condition="$(MSBuildProjectName.Contains('.TestBase.'))">True</IsTest>
+    <IsTrimTest>$(MSBuildProjectName.Contains('TrimTests'))</IsTrimTest>
+    <IsNet5>$(TargetFramework.Equals('net5.0'))</IsNet5>
+    <IsNet6>$(TargetFramework.Equals('net6.0'))</IsNet6>
+    <IsNet7>$(TargetFramework.Equals('net7.0'))</IsNet7>
+    <IsNet8>$(TargetFramework.Equals('net8.0'))</IsNet8>
+    <IsNet9>$(TargetFramework.Equals('net9.0'))</IsNet9>
+    <IsNet10>$(TargetFramework.Equals('net10.0'))</IsNet10>
+    <IsOuterBuild>True</IsOuterBuild>
+    <IsOuterBuild Condition="'$(TargetFramework)'!=''">False</IsOuterBuild>
+    <IsInnerBuild>False</IsInnerBuild>
+    <IsInnerBuild Condition="'$(TargetFramework)'!=''">True</IsInnerBuild>
+  </PropertyGroup>
+</Project>
+

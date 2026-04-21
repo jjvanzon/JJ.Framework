@@ -10,6 +10,10 @@
                      !$(MSBuildProjectName.Contains('.Tests.')) And
                      !$(MSBuildProjectName.Contains('TrimTests')) And
                      Exists('BuildNum.xml')" />
+  
+  <!-- Helper Variables -->
+
+  <Import Project="Vars.xml" />
 
   <!-- Project Properties -->
   
@@ -31,37 +35,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <!-- Helper Variables -->
-
-  <PropertyGroup>
-    <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
-    <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
-    <IsNet48>$(MSBuildProjectName.Contains('Net48'))</IsNet48>
-    <IsTest>False</IsTest>
-    <IsTest Condition="$(MSBuildProjectName.EndsWith('.Tests'))">True</IsTest>
-    <IsTest Condition="$(MSBuildProjectName.Contains('.Tests.'))">True</IsTest>
-    <IsTest Condition="$(MSBuildProjectName.EndsWith('.TestBase'))">True</IsTest>
-    <IsTest Condition="$(MSBuildProjectName.Contains('.TestBase.'))">True</IsTest>
-    <IsTrimTest>$(MSBuildProjectName.Contains('TrimTests'))</IsTrimTest>
-    <IsNet5>$(TargetFramework.Equals('net5.0'))</IsNet5>
-    <IsNet6>$(TargetFramework.Equals('net6.0'))</IsNet6>
-    <IsNet7>$(TargetFramework.Equals('net7.0'))</IsNet7>
-    <IsNet8>$(TargetFramework.Equals('net8.0'))</IsNet8>
-    <IsNet9>$(TargetFramework.Equals('net9.0'))</IsNet9>
-    <IsNet10>$(TargetFramework.Equals('net10.0'))</IsNet10>
-    <IsOuterBuild>True</IsOuterBuild>
-    <IsOuterBuild Condition="'$(TargetFramework)'!=''">False</IsOuterBuild>
-    <IsInnerBuild>False</IsInnerBuild>
-    <IsInnerBuild Condition="'$(TargetFramework)'!=''">True</IsInnerBuild>
-  </PropertyGroup>
-
   <!-- Diagnostics (Build Type) -->
   <Target Name="JJ_Framework_Vars1" BeforeTargets="Build">
     <Message Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsNet48 = $(IsNet48) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" Importance="High" />
     <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" Importance="High" />
     <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9) | IsNet10 = $(IsNet10)" Importance="High" />
   </Target>
-  
+
+  <!-- Tame NCrunch -->
+  <!--
+  <PropertyGroup Condition="'$(IsNCrunch)'=='True' And $(IsOuterBuild) And !$(IsNet48)">
+    <TargetFrameworks>net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsTest)">net10.0;net461</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsTrimTest)">net10.0;net5.0</TargetFrameworks>
+  </PropertyGroup>
+  -->
+
   <!-- Packaging -->
 
   <PropertyGroup Condition="!$(IsTest) And !$(IsTrimTest)">
