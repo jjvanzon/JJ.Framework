@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>4.5.$(BuildNum)</Version>
+    <Version>4.6.$(BuildNum)</Version>
     <!-- Produce an assembly with the exact name expected by the runtime -->
     <AssemblyName>nCrunch.TestRuntime.DotNetCore</AssemblyName>
     <PackageId>JJ.Framework.Testing.Core.NCrunchless</PackageId>

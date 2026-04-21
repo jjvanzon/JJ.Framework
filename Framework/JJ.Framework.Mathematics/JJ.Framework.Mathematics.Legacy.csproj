@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.253.$(BuildNum)</Version>
+    <Version>0.254.$(BuildNum)</Version>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Description>Legacy math helpers for JJ projects</Description>
     <PackageTags>pow log number bases randomizer random helpers hex mathematics digits power maths logarithm numberbases math spread-sheet-column-letters</PackageTags>
