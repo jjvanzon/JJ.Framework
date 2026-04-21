@@ -80,7 +80,7 @@ namespace JJ.Framework.StringResources.Legacy
         // Test
 
         /// <inheritdoc cref="_assertallmembers" />
-        public void AssertAllMembers()
+        public void AssertResourceMembers()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
 
@@ -106,7 +106,7 @@ namespace JJ.Framework.StringResources.Legacy
         }
 
         /// <inheritdoc cref="_assertunknownculturefallback" />
-        public void AssertUnknownCultureFallback()
+        public void AssertCultureFallback()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
 

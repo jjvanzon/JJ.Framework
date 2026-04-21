@@ -8,10 +8,10 @@ public class MyResourceTests()
     unknown: "zh-CN", @default: "en-US")
 {
     [TestMethod] 
-    public void All() => AssertAllMembers();
+    public void All() => AssertResourceMembers();
     
     [TestMethod] 
-    public void Unknown() => AssertUnknownCultureFallback();
+    public void Unknown() => AssertCultureFallback();
 }
 
 public class MyResources

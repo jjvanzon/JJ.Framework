@@ -16,10 +16,10 @@ public class CommonTitlesTests()
     private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
 
     [TestMethod]
-    public void CommonTitles_AllMembers_ReturnText() => base.AssertAllMembers();
+    public void CommonTitles_AllMembers_ReturnText() => base.AssertResourceMembers();
     
     [TestMethod]
-    public void CommonTitles_UnknownCulture_DefaultsToEnUS() => base.AssertUnknownCultureFallback();
+    public void CommonTitles_UnknownCulture_DefaultsToEnUS() => base.AssertCultureFallback();
 
     [TestMethod]
     public void CommonTitles_ResourceManager_IsNotNull() => IsNotNull(CommonTitles.ResourceManager);
