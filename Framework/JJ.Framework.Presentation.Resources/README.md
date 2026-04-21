@@ -5,7 +5,7 @@ A small set of shared UI text resources and a helper for testing them.
 
 It includes a few common titles, such as `Add`, `Cancel`, `Delete`, `Save`, `Search`, and `Yes` / `No`, with Dutch and US English translations.
 
-It also includes a useful helper for verifying the integrity of your string resources.
+In short, the tester checks that resource members return useful text, work in the cultures you list, fall back to the default culture when needed, and still format placeholder-based strings correctly.
 
 Example:
 
