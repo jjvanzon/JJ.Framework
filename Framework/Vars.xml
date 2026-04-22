@@ -1,5 +1,4 @@
 <Project>
-  <!-- Helper Variables -->
   <PropertyGroup>
     <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
     <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>

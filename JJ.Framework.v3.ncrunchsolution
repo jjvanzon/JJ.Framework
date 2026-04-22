@@ -1,9 +1,5 @@
 ﻿<SolutionConfiguration>
   <Settings>
-    <AdditionalFilesToIncludeForSolution>
-      <Value>Framework\TargetFrameworks.xml</Value>
-      <Value>Framework\Vars.xml</Value>
-    </AdditionalFilesToIncludeForSolution>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
     <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>

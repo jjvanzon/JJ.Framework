@@ -1,7 +1,7 @@
 <Project>
   <Import Project="Vars.xml" />
   <Import Project="TargetFrameworks.xml" />
-  
+
   <!-- BuildNum -->
   
   <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup>
