@@ -1,7 +1,6 @@
 <Project>
   <!-- Helper Variables -->
   <PropertyGroup>
-    <VarsLoaded>True</VarsLoaded>
     <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
     <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
     <IsNet48>$(MSBuildProjectName.Contains('Net48'))</IsNet48>

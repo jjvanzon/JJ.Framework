@@ -1,5 +1,5 @@
 <Project>
-  <Import Project="Vars.xml" Condition="'$(VarsLoaded)'!='True'" />
+  <Import Project="Vars.xml" />
   
   <!-- BuildNum -->
   
