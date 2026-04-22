@@ -1,19 +1,12 @@
 <Project>
+  <Import Project="Vars.xml" Condition="'$(VarsLoaded)'!='True'" />
   
   <!-- BuildNum -->
   
   <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup>
   <Import Project="BuildNum.xml" 
-          Condition="'$(IsNCrunch)'!='True' And
-                     '$(Configuration)'=='Release' And
-                     !$(MSBuildProjectName.EndsWith('.Tests')) And
-                     !$(MSBuildProjectName.Contains('.Tests.')) And
-                     !$(MSBuildProjectName.Contains('TrimTests')) And
-                     Exists('BuildNum.xml')" />
-  
-  <!-- Helper Variables -->
-
-  <Import Project="Vars.xml" />
+          Condition="'$(Configuration)'=='Release' And Exists('BuildNum.xml') And
+                     !$(IsTest) And !$(IsTrimTest) And !$(IsNCrunch)" />
 
   <!-- Project Properties -->
   
@@ -41,15 +34,6 @@
     <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild)" Importance="High" />
     <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9) | IsNet10 = $(IsNet10)" Importance="High" />
   </Target>
-
-  <!-- Tame NCrunch -->
-  <!--
-  <PropertyGroup Condition="'$(IsNCrunch)'=='True' And $(IsOuterBuild) And !$(IsNet48)">
-    <TargetFrameworks>net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsTest)">net10.0;net461</TargetFrameworks>
-    <TargetFrameworks Condition="$(IsTrimTest)">net10.0;net5.0</TargetFrameworks>
-  </PropertyGroup>
-  -->
 
   <!-- Packaging -->
 
@@ -156,13 +140,13 @@
   </PropertyGroup>
 
   <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
-    <MSBuild Condition="'$(IsNCrunch)'!='True'" Targets="Publish" 
+    <MSBuild Condition="!$(IsNCrunch)" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true" />
 
-    <MSBuild Condition="'$(IsNCrunch)'=='True' And ($(IsNet9) Or $(IsNet10))" Targets="Publish"
+    <MSBuild Condition="$(IsNCrunch) And ($(IsNet9) Or $(IsNet10))" Targets="Publish"
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishSingleFile=true;PublishReadyToRun=true" />
 
-    <MSBuild Condition="'$(IsNCrunch)'=='True' And $(IsNet8)" Targets="Publish"
+    <MSBuild Condition="$(IsNCrunch) And $(IsNet8)" Targets="Publish"
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishReadyToRun=true" />
   </Target>
   
@@ -190,7 +174,7 @@
 
   <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild"
           Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!='' And
-                   ('$(IsNCrunch)'=='True' Or '$(Configuration)'=='Release')">
+                   ($(IsNCrunch) Or '$(Configuration)'=='Release')">
           <!--Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!=''">-->
 
     <!-- Helper Vars -->

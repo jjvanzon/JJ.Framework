@@ -1,6 +1,7 @@
 <Project>
   <!-- Helper Variables -->
   <PropertyGroup>
+    <VarsLoaded>True</VarsLoaded>
     <IsCore>$(MSBuildProjectName.Contains('Core'))</IsCore>
     <IsLegacy>$(MSBuildProjectName.Contains('Legacy'))</IsLegacy>
     <IsNet48>$(MSBuildProjectName.Contains('Net48'))</IsNet48>
@@ -20,6 +21,9 @@
     <IsOuterBuild Condition="'$(TargetFramework)'!=''">False</IsOuterBuild>
     <IsInnerBuild>False</IsInnerBuild>
     <IsInnerBuild Condition="'$(TargetFramework)'!=''">True</IsInnerBuild>
+    <!-- Turn IsNCrunch String into a proper Boolean-->
+    <IsNCrunch Condition="'$(IsNCrunch)'!='True'">False</IsNCrunch>
+    <IsNCrunch Condition="'$(IsNCrunch)'=='True'">True</IsNCrunch>
   </PropertyGroup>
 </Project>
 

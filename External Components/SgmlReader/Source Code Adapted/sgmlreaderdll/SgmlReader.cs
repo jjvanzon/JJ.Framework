@@ -1,4 +1,12 @@
+#pragma warning disable CS0162 // Unreachable code detected
+#pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
+// ReSharper disable RedundantUsingDirective
 // ReSharper disable UnusedVariable
+// ReSharper disable FieldCanBeMadeReadOnly.Local
+// ReSharper disable ArrangeTypeMemberModifiers
+// ReSharper disable ConvertToConstant.Local
+// ReSharper disable StringCompareIsCultureSpecific.3
+// ReSharper disable ArrangeThisQualifier
 
 /*
 * 
