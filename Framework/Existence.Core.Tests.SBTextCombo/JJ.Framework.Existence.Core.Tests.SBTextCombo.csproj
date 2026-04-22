@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>4.6.$(BuildNum)</Version>
-    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <None Include="JJ.Framework.Existence.Core.Tests.SBTextCombo.netstandard2.0.v3.ncrunchproject" />
