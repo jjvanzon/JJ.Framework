@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks Condition="$(IsNCrunch) And $(IsTest)">net10.0;net461</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsNCrunch) And $(IsTest)">net10.0;net5.0;net461</TargetFrameworks>
   </PropertyGroup>
-  <Import Project="..\TargetFrameworks.xml" />
 
   <PropertyGroup>
     <Version>0.254.$(BuildNum)</Version>

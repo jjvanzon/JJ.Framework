@@ -1,5 +1,5 @@
 <Project>
- <PropertyGroup>
+ <PropertyGroup Condition="'$(TargetFrameworks)'=='' And !$(IsNet48)">
     <TargetFrameworks Condition="!$(IsNCrunch) And $(IsTest)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <TargetFrameworks Condition="!$(IsNCrunch) And $(IsTrimTest)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
     <TargetFrameworks Condition="!$(IsNCrunch) And !$(IsTest) And !$(IsTrimTest)">net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
