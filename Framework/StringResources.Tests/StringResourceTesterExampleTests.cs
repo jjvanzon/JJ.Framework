@@ -14,6 +14,4 @@ public class MyResourceTests()
     public void Unknown() => AssertCultureFallback();
 }
 
-public class MyResources
-{
-}
+public class MyResources;
