@@ -5,7 +5,7 @@ A small set of shared UI text resources and a helper for testing them.
 
 It includes a few common titles, such as `Add`, `Cancel`, `Delete`, `Save`, `Search`, and `Yes` / `No`, with __Dutch__ and __US English__ translations.
 
-In short, the tester checks that resource members return useful text, work in the cultures you list, fall back to the default culture when needed, and still format placeholder-based strings correctly.
+The tester checks that resource members return useful text, work in the cultures you list, fall back to the default culture when needed, and still format placeholder-based strings correctly.
 
 Example:
 
@@ -23,7 +23,7 @@ tester.AssertUnknownCultureFallback();
 Release Notes
 -------------
 
-#### `2026-04-23` | `0.254`/`4.6` : __String Resource Legacy + Integrity Checker + Assert.Throws Syntax__
+#### `2026-04-23` | `0.254`/`4.6` : __Legacy + Integrity Checker + Assert.Throws Syntax__
 
 - [`JJ.Framework.StringResources.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Presentation.Resources)
 - `2015`: Limited set of reusable string resources
@@ -37,6 +37,7 @@ Release Notes
 - Wide .NET version compatibility, Trimming/AOT support, IntelliSense docs, 100% test coverage
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
 - `Throws` methods syntax shorter
+
 
 💬 Feedback
 ============
