@@ -48,9 +48,7 @@ public class StringResourceTesterTests
         var tester = new StringResourceTester<ResourceClass>(_known, _unknow, _default);
         tester.AssertResourceMembers();
 
-        var testerWithInstance =
-            new StringResourceTester<ResourceClass>(new(), _known, _unknow, _default);
-
+        var testerWithInstance = new StringResourceTester<ResourceClass>(new(), _known, _unknow, _default);
         testerWithInstance.AssertResourceMembers();
     }
     
@@ -127,9 +125,9 @@ public class StringResourceTesterTests
             var tester = new StringResourceTester(typeof(ResourceClass_WithInterface), obj, _known, _unknow, _default);
             tester.AssertResourceMembers();
         }
+        // Does compile: Too weakly typed
         {
-            IResources obj = new ResourceClass_WithInterface();
-            // TODO: Does compile
+            //IResources obj = new ResourceClass_WithInterface();
             //var tester = new StringResourceTester<ResourceClass_WithInterface>(obj, _known, _unknow, _default);
             //tester.AssertResourceMembers();
         }
