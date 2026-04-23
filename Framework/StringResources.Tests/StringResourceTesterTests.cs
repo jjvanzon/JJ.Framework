@@ -1,4 +1,5 @@
 #pragma warning disable IDE0200 // Convert to method group
+// ReSharper disable PropertyCanBeMadeInitOnly.Local
 // ReSharper disable ClassNeverInstantiated.Local
 // ReSharper disable UnusedMember.Local
 
@@ -106,10 +107,38 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_ResourceClass_WithInterface()
     {
-        IResources obj = new ResourceClass_WithInterface();
-        // TODO: Generic syntax cannot be used.
-        var tester = new StringResourceTester(typeof(ResourceClass_WithInterface), obj, _known, _unknow, _default);
-        tester.AssertResourceMembers();
+        {
+            IResources obj = new ResourceClass_WithInterface();
+            var tester = new StringResourceTester<IResources>(obj, _known, _unknow, _default);
+            tester.AssertResourceMembers();
+        }
+        {
+            IResources obj = new ResourceClass_WithInterface();
+            var tester = new StringResourceTester(typeof(IResources), obj, _known, _unknow, _default);
+            tester.AssertResourceMembers();
+        }
+        {
+            var obj = new ResourceClass_WithInterface();
+            var tester = new StringResourceTester<ResourceClass_WithInterface>(obj, _known, _unknow, _default);
+            tester.AssertResourceMembers();
+        }
+        {
+            IResources obj = new ResourceClass_WithInterface();
+            var tester = new StringResourceTester(typeof(ResourceClass_WithInterface), obj, _known, _unknow, _default);
+            tester.AssertResourceMembers();
+        }
+        {
+            IResources obj = new ResourceClass_WithInterface();
+            // TODO: Does compile
+            //var tester = new StringResourceTester<ResourceClass_WithInterface>(obj, _known, _unknow, _default);
+            //tester.AssertResourceMembers();
+        }
+        // Unavailable: obj.GetType() not AOT-friendly.
+        {
+            //IResources obj = new ResourceClass_WithInterface();
+            //var tester = new StringResourceTester(obj, _known, _unknow, _default);
+            //tester.AssertResourceMembers();
+        }
     }
 
     // Customization
