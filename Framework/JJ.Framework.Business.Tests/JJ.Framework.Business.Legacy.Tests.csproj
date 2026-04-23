@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup Condition="$(IsNCrunch)"><TargetFrameworks>net10.0;net5.0;net461</TargetFrameworks></PropertyGroup>
 
   <PropertyGroup>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks>
     <Version>0.254.$(BuildNum)</Version>
   </PropertyGroup>
 

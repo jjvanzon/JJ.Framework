@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net10.0;net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>4.6.$(BuildNum)</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
   </PropertyGroup>
