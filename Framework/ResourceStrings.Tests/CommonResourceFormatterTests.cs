@@ -1,8 +1,5 @@
 ﻿// ReSharper disable RedundantBaseQualifier
 
-using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace JJ.Framework.ResourceStrings.Tests
 {
     [TestClass]
@@ -16,11 +13,11 @@ namespace JJ.Framework.ResourceStrings.Tests
 
         [TestMethod]
         public void Test_CommonResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures()
-            => base.AssertAllMembers();
+            => base.AssertResourceMembers();
 
         [TestMethod]
         public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS() 
-            => base.AssertUnknownCulture();
+            => base.AssertCultureFallback();
 
         protected override object GetArg(ParameterInfo param)
         {

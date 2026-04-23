@@ -1,46 +1,16 @@
-﻿// Ported from "The King": legacy branch HEAD
+﻿// Shared from "The King": legacy branch HEAD
 
 #pragma warning disable CS0078 // The 'l' suffix is easily confused with the digit '1'
 #pragma warning disable IDE0016 // Join null check with assignment
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 #pragma warning disable IDE0060 // nolog param "unused"
 // ReSharper disable UnusedVariable
+// ReSharper disable UnusedParameter.Local
 // ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 
 namespace JJ.Framework.ResourceStrings
 {
-    /// <summary>
-    /// This class can be used as a base class for unit tests to run on a Resources or ResourceFormatter class.
-    /// That ResourceFormatter would be be structured like CommonResourceFormatter from JJ.Framework.StringResources.
-    /// That means, that each public static member of the ResourceFormatter class returns a string.
-    /// That string may not be null or white space. The test can switch to different cultures and repeat the checks.
-    /// An unused culture is currently assumed to fall back to a default culture en-US.
-    /// Some of those requirements might seem quite specific for how our ResourceFormatter classes are structured.
-    /// But having this base class for tests, would allow testing integrity of
-    /// some other resource formatters the same way JJ.Framework.StringResources would do things.
-    ///
-    /// <code>
-    /// An implementation might look something like:
-    /// [TestClass]
-    /// public class CommonResourceFormatterTests : StringResourceTester
-    /// {
-    ///   public CommonResourceFormatterTests()
-    ///     : base(
-    ///         typeof(CommonResourceFormatter),
-    ///         @default: "en-US",
-    ///         known: [ "pl-PL", "nl-NL" ],
-    ///         unknown: "zh-CN") { }
-    /// 
-    ///   [TestMethod]
-    ///   public void Test_CommonResourceFormatter_AssertResources_ReturnText_ForKnownCultures()
-    ///     =&gt; base.AssertAllMembers();
-    /// 
-    ///   [TestMethod]
-    ///   public void Test_CommonResourceFormatter_UnknownCulture_DefaultsToEnUS()
-    ///     =&gt; base.AssertUnknownCulture();
-    /// }
-    /// </code>
-    /// </summary>
+    /// <inheritdoc cref="_stringresourcetester" />
     public class StringResourceTester
     {
         /*[Dyn(PubPropMethod)]*/
@@ -53,8 +23,7 @@ namespace JJ.Framework.ResourceStrings
 
         // Init
 
-        // ReSharper disable once UnusedParameter.Local
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             /*[Dyn(PubPropMethod)]*/ Type resourceClass, 
             string[] known, string unknown, string @default, NoLog nolog)
@@ -63,8 +32,7 @@ namespace JJ.Framework.ResourceStrings
                 known, unknown, @default, nolog: true)
         { }
 
-        // ReSharper disable once UnusedParameter.Local
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             /*[Dyn(PubPropMethod)]*/ Type resourceClass, object resourceObject, 
             string[] known, string unknown, string @default, NoLog nolog)
@@ -73,7 +41,7 @@ namespace JJ.Framework.ResourceStrings
                 known, unknown, @default, nolog: true)
         { }
 
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             /*[Dyn(PubPropMethod)]*/ Type resourceClass,
             string[] known, string unknown, string @default, bool nolog = default)
@@ -82,7 +50,7 @@ namespace JJ.Framework.ResourceStrings
                 known, unknown, @default, nolog)
         { }
 
-        /// <inheritdoc cref="StringResourceTester" />
+        /// <inheritdoc cref="_stringresourcetester" />
         public StringResourceTester(
             /*[Dyn(PubPropMethod)]*/ Type resourceClass, object? resourceObject,
             string[] known, string unknown, string @default, bool nolog = default)
@@ -111,7 +79,8 @@ namespace JJ.Framework.ResourceStrings
 
         // Test
 
-        public void AssertAllMembers()
+        /// <inheritdoc cref="_assertallmembers" />
+        public void AssertResourceMembers()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
 
@@ -136,7 +105,8 @@ namespace JJ.Framework.ResourceStrings
             }
         }
 
-        public void AssertUnknownCulture()
+        /// <inheritdoc cref="_assertunknownculturefallback" />
+        public void AssertCultureFallback()
         {
             IList<MemberInfo> membersToTest = SelectMembersToTest(_resourceClass);
 
@@ -154,7 +124,8 @@ namespace JJ.Framework.ResourceStrings
 
                     if (!string.Equals(expected, actual, OrdinalIgnoreCase))
                     {
-                        throw new Exception($"Member {memberToTest.Name} is '{actual}' but '{expected}' was expected.");
+                        throw new Exception(
+                            $"{memberToTest.Name} should return '{expected}', but instead returned '{actual}'.");
                     }
                 }
             }
@@ -182,6 +153,7 @@ namespace JJ.Framework.ResourceStrings
             return members;
         }
         
+        /// <inheritdoc cref="_include" />
         protected virtual bool Include(MemberInfo memberToTest)
         {
             if (memberToTest == null) throw new ArgumentNullException(nameof(memberToTest));
@@ -204,10 +176,7 @@ namespace JJ.Framework.ResourceStrings
             return true;
         }
 
-        /// <summary>
-        /// Creates a test value for a parameter of the given type.
-        /// Override to support additional parameter types.
-        /// </summary>
+        /// <inheritdoc cref="_getarg" />
         protected virtual object GetArg(ParameterInfo param)
         {
             if (param == null) throw new ArgumentNullException(nameof(param));
@@ -229,15 +198,15 @@ namespace JJ.Framework.ResourceStrings
                 TypeCode.Boolean => param.Position % 2 == 0,
                 TypeCode.String  => $"arg{param.Position}",
                 _ => throw new Exception(
-                    $"Could not automatically generate value for parameter " +
-                    $"'{param.ParameterType.Name} {param.Name}' of method '{param.Member.Name}'. " +
-                    $"Override Include or to include/exclude members or " +
-                    $"override GetArg to provide a value explicitly.")
+                    $"Failed to generate value for parameter " +
+                    $"'{param.Name}' of type '{param.ParameterType.Name}' for method '{param.Member.Name}'. " +
+                    $"Override Include or GetArg to include/exclude members or to provide a value explicitly.")
             };
         }
        
         // Assert
 
+        /// <inheritdoc cref="_assertresourcetext" />
         private string AssertResourceText(MemberInfo member)
         {
             switch (member)
@@ -253,9 +222,7 @@ namespace JJ.Framework.ResourceStrings
             }
         }
 
-        /// <summary>
-        /// Aims to assert that the property is of type string and what it might return would not be null or white space.
-        /// </summary>
+        /// <inheritdoc cref="_assertresourceprop" />
         private string AssertResourceProp(PropertyInfo prop)
         {
             var isStatic = prop.IsStatic();
@@ -266,10 +233,7 @@ namespace JJ.Framework.ResourceStrings
             return text;
         }
 
-        /// <summary>
-        /// Asserts that the method returns a non-empty string
-        /// and that each supplied test value appears in the result.
-        /// </summary>
+        /// <inheritdoc cref="_assertresourcemethod" />
         private string AssertResourceMethod(MethodInfo method)
         {
             // Generate arguments
@@ -292,7 +256,7 @@ namespace JJ.Framework.ResourceStrings
             if (IsMatch(text!, "{\\d+(:[^}]+)?}"))
             {
                 throw new Exception(
-                    $"Method {method.Name} returned unresolved placeholders: \"{text}\".");
+                    $"{FormatMethod(method, args)} has unresolved placeholders: \"{text}\".");
             }
             
             // Check args are in text
@@ -303,14 +267,15 @@ namespace JJ.Framework.ResourceStrings
                 if (!text.Contains(argString))
                 {
                     throw new Exception(
-                        $"Method {method.Name}: parameter '{parameters[i].Name}' " +
-                        $"value \"{argString}\" not found in result \"{text}\".");
+                        $"Parameter {parameters[i].Name} = \"{argString}\" not found in text \"{text}\" " +
+                        $"returned by method {FormatMethod(method, args)}.");
                 }
             }
 
             return text;
         }
 
+        /// <inheritdoc cref="_assertreturnstext" />
         private static string AssertReturnsText(MemberInfo member, object ret)
         {
             var returnType = ret.GetType();
@@ -332,6 +297,7 @@ namespace JJ.Framework.ResourceStrings
 
         // Helpers
 
+        /// <inheritdoc cref="_trygetresourceobject" />
         private object? TryGetResourceObject(bool isStatic, MemberInfo member)
         {
             if (isStatic) return null;

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonResourceFormatter.cs" />
+    <Compile Include="docs.cs" />
     <Compile Include="NoLog.cs" />
     <Compile Include="ResourceFormatterHelper.cs" />
     <Compile Include="CommonResources.Designer.cs">

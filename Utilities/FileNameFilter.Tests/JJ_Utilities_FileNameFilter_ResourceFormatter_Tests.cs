@@ -17,10 +17,10 @@ namespace JJ.Utilities.FileNameFilter.Tests
 
         [TestMethod]
         public void Test_JJ_Utilities_FileNameFilter_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures()
-            => base.AssertAllMembers();
+            => base.AssertResourceMembers();
 
         [TestMethod]
         public void Test_JJ_Utilities_FileNameFilter_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
-            => base.AssertUnknownCulture();
+            => base.AssertCultureFallback();
     }
 }

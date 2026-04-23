@@ -16,10 +16,10 @@ namespace JJ.Utilities.FileNameExclusion.Tests
 
         [TestMethod]
         public void Test_JJ_Utilities_FileNameExclusion_ResourceFormatter_AllPublicStatics_ReturnText_ForKnownCultures()
-            => base.AssertAllMembers();
+            => base.AssertResourceMembers();
 
         [TestMethod]
         public void Test_JJ_Utilities_FileNameExclusion_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
-            => base.AssertUnknownCulture();
+            => base.AssertCultureFallback();
     }
 }

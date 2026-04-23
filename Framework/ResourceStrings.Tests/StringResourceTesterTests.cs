@@ -15,11 +15,11 @@ public class StringResourceTesterTests
     public void StringResourceTester_ReturnText_WithArgsInResult()
     {
         var tester = new StringResourceTester(typeof(ResourceClass), _known, _unknow, _default);
-        tester.AssertAllMembers();
+        tester.AssertResourceMembers();
 
         var obj = new ResourceClass();
         var testerWithInstance = new StringResourceTester(typeof(ResourceClass), obj, _known, _unknow, _default);
-        testerWithInstance.AssertAllMembers();
+        testerWithInstance.AssertResourceMembers();
     }
 
     // Static / Instance
@@ -28,7 +28,7 @@ public class StringResourceTesterTests
     public void StringResourceTester_Static()
     {
         var tester = new StringResourceTester(typeof(ResourceClass_Static), _known, _unknow, _default);
-        tester.AssertAllMembers();
+        tester.AssertResourceMembers();
     }
 
     [TestMethod]
@@ -36,7 +36,7 @@ public class StringResourceTesterTests
     {
         var obj = new ResourceClass_Instance();
         var tester = new StringResourceTester(typeof(ResourceClass_Instance), obj, _known, _unknow, _default);
-        tester.AssertAllMembers();
+        tester.AssertResourceMembers();
     }
 
     // Generic Syntax
@@ -45,21 +45,42 @@ public class StringResourceTesterTests
     public void StringResourceTester_GenericSyntax()
     {
         var tester = new StringResourceTester<ResourceClass>(_known, _unknow, _default);
-        tester.AssertAllMembers();
+        tester.AssertResourceMembers();
 
         var testerWithInstance =
             new StringResourceTester<ResourceClass>(new(), _known, _unknow, _default);
 
-        testerWithInstance.AssertAllMembers();
+        testerWithInstance.AssertResourceMembers();
     }
     
     // Unknown Culture Fallback
 
     [TestMethod]
-    public void StringResourceTester_UnknownCulture_FallsBackToDefault()
+    public void StringResourceTester_UnknownCulture_FallsBackToDefault_DoesNotCrash()
     {
         var tester = new StringResourceTester<ResourceClass>(_known, _unknow, _default);
-        tester.AssertUnknownCulture();
+        tester.AssertCultureFallback();
+    }
+
+    [TestMethod]
+    public void StringResourceTester_UnknownCulture_FallsBackToDefault_Succeeds()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithFallbackIssue>(
+            new(), known: [ "nl-NL" ], unknown: "de-DE", @default: "");
+
+        tester.AssertCultureFallback();
+    }
+
+    [TestMethod]
+    public void StringResourceTester_UnknownCulture_FallbackFailsAsExpected()
+    {
+        var tester = new StringResourceTester<ResourceClass_WithFallbackIssue>(
+            new(), known: [ "nl-NL" ], unknown: "de-DE", @default: "en-US");
+
+        Throws(
+            tester.AssertCultureFallback, 
+            "MyProblemCase should return 'My problem case'", 
+            "but instead returned 'MyProblemCase'");
     }
 
     // Arg Types
@@ -68,7 +89,7 @@ public class StringResourceTesterTests
     public void StringResourceTester_VariousArgTypes_AppearInResult()
     {
         var tester = new StringResourceTester<ResourceClass_VariousArgTypes>(_known, _unknow, _default);
-        tester.AssertAllMembers();
+        tester.AssertResourceMembers();
     }
 
     // Mixed Props and Methods
@@ -77,7 +98,7 @@ public class StringResourceTesterTests
     public void StringResourceTester_MixedMembersWork()
     {
         var tester = new StringResourceTester<ResourceClass_MixedMembers>(new(), _known, _unknow, _default);
-        tester.AssertAllMembers();
+        tester.AssertResourceMembers();
     }
 
     // Resources behind Interface
@@ -88,7 +109,7 @@ public class StringResourceTesterTests
         IResources obj = new ResourceClass_WithInterface();
         // TODO: Generic syntax cannot be used.
         var tester = new StringResourceTester(typeof(ResourceClass_WithInterface), obj, _known, _unknow, _default);
-        tester.AssertAllMembers();
+        tester.AssertResourceMembers();
     }
 
     // Customization
@@ -96,14 +117,14 @@ public class StringResourceTesterTests
     [TestMethod]
     public void StringResourceTester_MemberExclusion_PreventsErrors()
     {
-        new InheritedTester_ExcludesProblematicType().AssertAllMembers();
-        new InheritedTester_ExcludesEmpty().AssertAllMembers();
+        new InheritedTester_ExcludesProblematicType().AssertResourceMembers();
+        new InheritedTester_ExcludesEmpty().AssertResourceMembers();
     }
 
     [TestMethod]
     public void StringResourceTester_CustomGetArg_AppearsInResult()
     {
-        new InheritedTester_WithCustomGetArg().AssertAllMembers();
+        new InheritedTester_WithCustomGetArg().AssertResourceMembers();
     }
     
     // Log / No Log Constructors
@@ -125,10 +146,10 @@ public class StringResourceTesterTests
 
         foreach (var tester in testers)
         {
-            string trace1 = CaptureTrace(tester.AssertAllMembers);
+            string trace1 = CaptureTrace(tester.AssertResourceMembers);
             AreEqual("", trace1);
 
-            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
+            string trace2 = CaptureTrace(tester.AssertCultureFallback);
             AreEqual("", trace2);
         }
     }
@@ -148,10 +169,10 @@ public class StringResourceTesterTests
 
         foreach (var tester in testers)
         {
-            string trace1 = CaptureTrace(tester.AssertAllMembers);
+            string trace1 = CaptureTrace(tester.AssertResourceMembers);
             NotNullOrWhiteSpace(() => trace1);
 
-            string trace2 = CaptureTrace(tester.AssertUnknownCulture);
+            string trace2 = CaptureTrace(tester.AssertCultureFallback);
             NotNullOrWhiteSpace(() => trace2);
         }
 
@@ -181,71 +202,70 @@ public class StringResourceTesterTests
     public void StringResourceTester_ArgNotUsed_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_ArgNotUsed>(_known, _unknow, _default);
-        // TOOD: Make error message easier to read.
-        Throws(() => tester.AssertAllMembers(), "arg", "not found in result");
+        Throws(() => tester.AssertResourceMembers(), "arg", "not found in text");
     }
 
     [TestMethod]
     public void StringResourceTester_WithoutExclusion_WrongTypeMember_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithWrongType>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "WrongType", "should return string");
+        Throws(() => tester.AssertResourceMembers(), "WrongType", "should return string");
     }
 
     [TestMethod]
     public void StringResourceTester_WithoutExclusion_EmptyString_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithEmpty>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "IsEmpty", "null or white space");
+        Throws(() => tester.AssertResourceMembers(), "IsEmpty", "null or white space");
     }
 
     [TestMethod]
     public void StringResourceTester_UnsupportedArgType_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_CustomArgType>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "could not", "generate", "value for parameter");
+        Throws(() => tester.AssertResourceMembers(), "failed to generate value for parameter");
     }
 
     [TestMethod]
     public void StringResourceTester_UnresolvedPlaceholder_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithUnresolvedPlaceholder>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+        Throws(() => tester.AssertResourceMembers(), "unresolved placeholders");
     }
 
     [TestMethod]
     public void StringResourceTester_UnresolvedPlaceholder_StandardFormatSpecifier_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithUnresolvedPlaceholder_StandardFormatSpecifier>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+        Throws(() => tester.AssertResourceMembers(), "unresolved placeholders");
     }
 
     [TestMethod]
     public void StringResourceTester_UnresolvedPlaceholder_CustomFormatString_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithUnresolvedPlaceholder_CustomFormatString>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+        Throws(() => tester.AssertResourceMembers(), "unresolved placeholders");
     }
 
     [TestMethod]
     public void StringResourceTester_MultiplePlaceholdersOneUnresolved_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithMultiplePlaceholdersOneUnresolved>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "unresolved placeholders");
+        Throws(() => tester.AssertResourceMembers(), "unresolved placeholders");
     }
 
     [TestMethod]
     public void StringResourceTester_InstanceProperty_WithoutObject_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithInstanceProperty>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "requires an object", "Please pass one to the", "constructor");
+        Throws(() => tester.AssertResourceMembers(), "requires an object", "Please pass one to the", "constructor");
     }
 
     [TestMethod]
     public void StringResourceTester_InstanceMethod_WithoutObject_Throws()
     {
         var tester = new StringResourceTester<ResourceClass_WithInstanceMethod>(_known, _unknow, _default);
-        Throws(() => tester.AssertAllMembers(), "requires an object", "Please pass one to the", "constructor");
+        Throws(() => tester.AssertResourceMembers(), "requires an object", "Please pass one to the", "constructor");
     }
 
     // Resource Classes
@@ -272,6 +292,17 @@ public class StringResourceTesterTests
         public string Greet(string name) => $"Hello {name}";
         public string Format(string label, int count) => $"{label}: {count}";
         public string Format(string label, int count, decimal rate) => $"{label}: {count} @ {rate}";
+    }
+    
+    private class ResourceClass_WithFallbackIssue
+    {
+        public string MyProblemCase 
+            => CurrentThread.CurrentUICulture.Name switch
+            {
+                "nl-NL" => "Mijn probleemgeval", // ncrunch: no coverage
+                "en-US" => "My problem case",
+                _ => "MyProblemCase"
+            };
     }
 
     private class ResourceClass_VariousArgTypes

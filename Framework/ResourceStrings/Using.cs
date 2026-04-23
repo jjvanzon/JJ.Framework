@@ -6,6 +6,7 @@ global using System.Reflection;
 global using System.Diagnostics;
 global using JJ.Framework.Reflection;
 global using JJ.Framework.Exceptions.TypeChecking;
+global using JJ.Framework.StringResources.Legacy.docs;
 global using static System.String;
 global using static System.StringComparison;
 global using static System.Reflection.BindingFlags;

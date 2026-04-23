@@ -16,10 +16,10 @@ namespace JJ.Utilities.FileDeduplication.Tests
 
         [TestMethod]
         public void Test_JJ_Utilities_FileDeduplication_ResourceFormatter_AllPublicStatics_ReturnText_ForKnownCultures()
-            => base.AssertAllMembers();
+            => base.AssertResourceMembers();
 
         [TestMethod]
         public void Test_JJ_Utilities_FileDeduplication_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
-            => base.AssertUnknownCulture();
+            => base.AssertCultureFallback();
     }
 }

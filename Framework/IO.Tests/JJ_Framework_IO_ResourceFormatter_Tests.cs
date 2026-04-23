@@ -16,10 +16,10 @@ namespace JJ.Framework.IO.Tests
 
         [TestMethod]
         public void Test_JJ_Framework_IO_ResourceFormatter_AllPublicStaticMembers_ReturnText_ForKnownCultures()
-            => base.AssertAllMembers();
+            => base.AssertResourceMembers();
 
         [TestMethod]
         public void Test_JJ_Framework_IO_ResourceFormatter_UnknownCulture_DefaultsToEnUS()
-            => base.AssertUnknownCulture();
+            => base.AssertCultureFallback();
     }
 }
