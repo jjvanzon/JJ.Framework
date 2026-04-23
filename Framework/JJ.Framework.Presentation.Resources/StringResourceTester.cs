@@ -1,4 +1,4 @@
-﻿// Ported from "The King": legacy branch HEAD
+﻿// Shared from "The King": legacy branch HEAD
 
 #pragma warning disable CS0078 // The 'l' suffix is easily confused with the digit '1'
 #pragma warning disable IDE0016 // Join null check with assignment
