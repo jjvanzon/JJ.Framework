@@ -209,7 +209,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 #### `2026-04-23` | `4.6`/`0.254` : StringResources Legacy
 
-__+ Integrity Checker + Assert.Throws Syntax__
+*+ Integrity Checker + Assert.Throws Syntax*
 
 - [`JJ.Framework.StringResources.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Presentation.Resources)
 - `2015`: Limited set of reusable string resources
