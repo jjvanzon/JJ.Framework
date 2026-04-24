@@ -1,7 +1,7 @@
 JJ.Framework.StringResources.Legacy
 ===================================
 
-A small set of reusable texts for button and such + a helper to test their integrity.
+A small set of reusable texts for button and such + a helper to verify their integrity.
 
 It includes common titles, such as `Add`, `Cancel`, `Delete`, `Save`, `Search`, and `Yes` / `No`, with `Dutch` and `US English` translations.
 
@@ -26,13 +26,13 @@ Release Notes
 #### `2026-04-23` | `0.254`/`4.6` : __Legacy + Integrity Checker__
 
 - `2015`: Limited set of reusable string resources
-- `2021`: Reusable `StringResourceTester` verifies integrity
+- `2020`: Reusable `StringResourceTester` verifies integrity
 - `2026`: Extensions:
 - Placeholder verification
-- Optional trace logging
 - Both resource and formatter classes supported
 - Static and instance members
 - Free to chose fallback culture
+- Optional trace logging
 - Wide .NET version compatibility, Trimming/AOT support
 - IntelliSense docs, 100% test coverage
 
