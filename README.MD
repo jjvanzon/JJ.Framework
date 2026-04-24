@@ -207,7 +207,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - Added stubs for data-driven tests.
 - Improved Testing Architecture
 
-#### `2026-04-23` | `4.6`/`0.254`
+#### `2026-04-23` | `4.6`/`0.254` :
 
 __StringResources Legacy + Integrity Checker + Assert.Throws Syntax__
 

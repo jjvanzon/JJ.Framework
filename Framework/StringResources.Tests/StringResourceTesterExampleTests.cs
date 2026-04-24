@@ -14,4 +14,20 @@ public class MyResourceTests()
     public void Unknown() => AssertCultureFallback();
 }
 
+[TestClass]
+public class MyResourceTests2
+{
+    [TestMethod]
+    public void MyTestMethod()
+    {
+        var tester = new StringResourceTester<MyResources>(
+            known: ["nl-NL", "pl-PL"],
+            unknown: "de-DE",
+            @default: "en-US");
+        
+        tester.AssertResourceMembers();
+        tester.AssertCultureFallback();
+    }
+}
+
 public class MyResources;

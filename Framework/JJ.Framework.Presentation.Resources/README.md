@@ -1,11 +1,11 @@
 JJ.Framework.StringResources.Legacy
 ===================================
 
-A small set of reusable button texts and such and a helper for testing them.
+A small set of reusable texts for button and such + a helper to test their integrity.
 
 It includes common titles, such as `Add`, `Cancel`, `Delete`, `Save`, `Search`, and `Yes` / `No`, with `Dutch` and `US English` translations.
 
-The tester checks that resource members return any text, work in the cultures you list, fall back to the default culture when needed, and format placeholder-based strings correctly.
+The tester checks that resource members return any text, work in the cultures you list, fall back to the default culture when needed, and correctly format placeholder-based strings.
 
 Example:
 
@@ -15,8 +15,8 @@ var tester = new StringResourceTester<MyResources>(
     unknown: "de-DE",
     @default: "en-US");
 
-tester.AssertAllMembers();
-tester.AssertUnknownCultureFallback();
+tester.AssertResourceMembers();
+tester.AssertCultureFallback();
 ```
 
 
