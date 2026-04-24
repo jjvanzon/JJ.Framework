@@ -23,12 +23,11 @@ tester.AssertUnknownCultureFallback();
 Release Notes
 -------------
 
-#### `2026-04-23` | `0.254`/`4.6` : __Legacy + Integrity Checker + Assert.Throws Syntax__
+#### `2026-04-23` | `0.254`/`4.6` : __Legacy + Integrity Checker__
 
-- [`JJ.Framework.StringResources.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Presentation.Resources)
 - `2015`: Limited set of reusable string resources
 - `2021`: Reusable `StringResourceTester` verifies integrity
-- `2026`: Extensions
+- `2026`: Extensions:
 - Placeholder verification
 - Optional trace logging
 - Both resource and formatter classes supported
@@ -36,8 +35,6 @@ Release Notes
 - Free to chose fallback culture
 - Wide .NET version compatibility, Trimming/AOT support
 - IntelliSense docs, 100% test coverage
-- [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
-- `Throws` methods syntax shorter
 
 
 💬 Feedback
