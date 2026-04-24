@@ -29,7 +29,7 @@ Release Notes
 - `2020`: Reusable tester verifying integrity
 - `2026`: Extensions:
 - Placeholder verification
-- Both resource and formatter classes
+- Resource and formatter classes
 - Static and instance members
 - Free to chose fallback culture
 - Optional trace logging
