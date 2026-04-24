@@ -213,10 +213,10 @@ __StringResources Legacy + Integrity Checker + Assert.Throws Syntax__
 
 - [`JJ.Framework.StringResources.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Presentation.Resources)
 - `2015`: Limited set of reusable string resources
-- `2020`: Reusable `StringResourceTester` verifies integrity
+- `2020`: Reusable tester verifying integrity
 - `2026`: Extensions:
 - Placeholder verification
-- Both resource and formatter classes supported
+- Both resource and formatter classes
 - Static and instance members
 - Free to chose fallback culture
 - Optional trace logging
