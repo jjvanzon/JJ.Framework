@@ -33,6 +33,7 @@ Release Notes
 - Static and instance members
 - Free to chose fallback culture
 - Optional trace logging
+- Customization options
 - Wide .NET version compatibility, Trimming/AOT support
 - IntelliSense docs, 100% test coverage
 

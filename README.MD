@@ -220,6 +220,7 @@ __StringResources Legacy + Integrity Checker + Assert.Throws Syntax__
 - Static and instance members
 - Free to chose fallback culture
 - Optional trace logging
+- Customization options
 - Wide .NET version compatibility, Trimming/AOT support
 - IntelliSense docs, 100% test coverage
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
