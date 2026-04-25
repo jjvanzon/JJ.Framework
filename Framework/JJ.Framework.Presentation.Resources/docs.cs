@@ -7,7 +7,7 @@
 namespace JJ.Framework.StringResources.Legacy.docs;
 
 /// <remarks>
-/// Base class for testing that every resource member returns a non-empty string
+/// Tests that every resource member returns a non-empty string
 /// across known cultures, and that unknown cultures fall back to the default.
 /// For methods with parameters, it also verifies that placeholders are resolved
 /// and that each argument appears in the resulting string.
@@ -20,18 +20,20 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 ///     unknown: "zh-CN", @default: "en-US")
 /// {
 ///   [TestMethod] 
-///   public void All() => AssertAllMembers();
-///  
+///   public void All() => AssertResourceMembers();
+///   
 ///   [TestMethod] 
-///   public void Unknown() => AssertUnknownCultureFallback();
+///   public void Unknown() => AssertCultureFallback();
 /// }
 /// </code>
 /// </remarks>
 /// <param name="resourceClass">
-/// The resource or formatter type whose public members will be tested.
+/// The resource or formatter class whose public members will be tested.
 /// </param>
 /// <param name="resourceObject">
-/// Instance to invoke non-static members on. Pass <c>null</c> for static-only classes.
+/// Instance needed in case non-static members are used.
+/// You can pass <c>null</c> for static-only classes.
+/// Or leave it out.
 /// </param>
 /// <param name="known">
 /// Culture names e.g. [ "en-US", "nl-NL"] that have their own translations.
@@ -40,8 +42,8 @@ namespace JJ.Framework.StringResources.Legacy.docs;
 /// A culture name with no translations, expected to fall back to <paramref name="@default"/>.
 /// </param>
 /// <param name="default">
-/// The default culture name, typically "en-US" or "" (invariant culture).
-/// Automatically considered one of <paramref name="known"/> cultures
+/// Typically "en-US" or "" (the invariant culture), used for unknown cultures.<br/>
+/// You do not need to add this to the <paramref name="known"/> cultures; it is known by default.
 /// </param>
 /// <param name="nolog">
 /// Suppresses <see cref="Trace"/> output during the test run.
@@ -57,7 +59,7 @@ public struct _stringresourcetester;
 public struct _stringresourcetesteroft;
 
 /// <summary>
-/// Ported stubs prevent making more changes than necessary and prevent porting more code
+/// Ported stubs prevent making more changes and porting more code
 /// than necessary by copying tiny bits of dependency code here,
 /// and keeping those internal.
 ///
@@ -76,9 +78,12 @@ internal struct _portedstubs;
 public struct _commontitlesformatter;
 
 /// <summary>
-/// Returns a formatted "{0} count" string for a given entity name.
+/// Returns text like "Amount of {0}" e.g., "Amount of Items".
+/// The last word "Items" is free to vary.
 /// </summary>
-/// <param name="entityNamePlural">The plural display name of the entity type.</param>
+/// <param name="entityNamePlural">
+/// Plural name of the item. E.g., "Items", "Documents", "Thingies"...
+/// </param>
 public struct _entitycount;
 
 /// <summary>

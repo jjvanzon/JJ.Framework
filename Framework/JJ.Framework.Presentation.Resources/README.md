@@ -23,7 +23,7 @@ tester.AssertCultureFallback();
 Release Notes
 -------------
 
-#### `2026-04-23` | `0.254`/`4.6` : __Legacy + Integrity Checker__
+#### `2026-04-25` | `0.254`/`4.6` : __Legacy + Integrity Checker__
 
 - `2015`: Limited set of reusable string resources
 - `2020`: Reusable tester verifying integrity

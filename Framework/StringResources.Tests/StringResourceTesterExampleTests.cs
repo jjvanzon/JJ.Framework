@@ -7,11 +7,11 @@ public class MyResourceTests()
     known: ["pl-PL", "nl-NL"], 
     unknown: "zh-CN", @default: "en-US")
 {
-    [TestMethod] 
-    public void All() => AssertResourceMembers();
-    
-    [TestMethod] 
-    public void Unknown() => AssertCultureFallback();
+  [TestMethod] 
+  public void All() => AssertResourceMembers();
+  
+  [TestMethod] 
+  public void Unknown() => AssertCultureFallback();
 }
 
 [TestClass]
