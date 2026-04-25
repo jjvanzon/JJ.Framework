@@ -12,6 +12,8 @@ public class MyResourceTests()
   
   [TestMethod] 
   public void Unknown() => AssertCultureFallback();
+
+  public class MyResources;
 }
 
 [TestClass]
@@ -28,6 +30,35 @@ public class MyResourceTests2
         tester.AssertResourceMembers();
         tester.AssertCultureFallback();
     }
+
+    public class MyResources;
 }
 
-public class MyResources;
+
+[TestClass]
+public class MyResourceTests3
+{
+    [TestMethod]
+    public void MyTestMethod()
+    {
+
+var tester = new StringResourceTester<MyResourceFormatter>(
+    known: ["nl-NL", "pl-PL"],
+    unknown: "de-DE",
+    @default: "en-US");
+
+tester.AssertResourceMembers();
+tester.AssertCultureFallback();
+
+    }
+
+class MyResourceFormatter
+{
+    public static string Greet(string name) => string.Format(MyResources.Greet, name);
+}
+
+public class MyResources
+{
+    public static string Greet => "Hello {0}";
+}
+}
