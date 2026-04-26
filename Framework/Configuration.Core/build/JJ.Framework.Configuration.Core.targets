@@ -13,22 +13,36 @@
           Condition="'$(TargetFrameworkIdentifier)' != '.NETFramework'
                      And Exists('$(MSBuildProjectDirectory)\app.config')">
 
-    <ItemGroup>
-      <!-- The primary output config (matches the assembly name, e.g. MyApp.dll.config) -->
-      <_AppConfigDestinations Include="$(TargetDir)$(TargetFileName).config" />
-      <!-- testhost used by dotnet test / VSTest -->
-      <_AppConfigDestinations Include="$(TargetDir)testhost.dll.config" />
-      <!-- nCrunch task-runner config -->
-      <_AppConfigDestinations Include="$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" />
-    </ItemGroup>
+    <PropertyGroup>
+      <SourceConfig>$(MSBuildProjectDirectory)\app.config</SourceConfig>
+      <!-- Config with assembly name, e.g. MyApp.dll.config -->
+      <AssemblyNameConfig>$(TargetDir)$(TargetFileName).config</AssemblyNameConfig>
+      <!-- For MSTest / VSTest / dotnet test -->
+      <TestHostConfig>$(TargetDir)testhost.dll.config</TestHostConfig>
+      <!-- For nCrunch -->
+      <NCrunchConfig>$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config</NCrunchConfig>
+    </PropertyGroup>
 
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\app.config"
-          DestinationFiles="@(_AppConfigDestinations)"
+    <Message Text="Copy '$(SourceConfig)' -> '$(AssemblyNameConfig)'" Importance="High" />
+
+    <Copy SourceFiles="$(SourceConfig)"
+          DestinationFiles="$(AssemblyNameConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
-    <Message Text="JJ.Framework.Configuration.Core: copied app.config → @(_AppConfigDestinations, ', ')"
-             Importance="normal" />
+    <Message Text="Copy '$(SourceConfig)' -> '$(TestHostConfig)'" Importance="High" />
+
+    <Copy SourceFiles="$(SourceConfig)"
+          DestinationFiles="$(TestHostConfig)"
+          SkipUnchangedFiles="true"
+          OverwriteReadOnlyFiles="true" />
+
+    <Message Text="Copy '$(SourceConfig)' -> '$(NCrunchConfig)'" Importance="High" />
+
+    <Copy SourceFiles="$(SourceConfig)"
+          DestinationFiles="$(NCrunchConfig)"
+          SkipUnchangedFiles="true"
+          OverwriteReadOnlyFiles="true" />
 
   </Target>
 </Project>
