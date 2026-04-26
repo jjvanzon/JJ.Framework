@@ -1,0 +1,34 @@
+<!--
+  Automatically copies app.config to the output directory under the names that
+  System.Configuration.ConfigurationManager and common test hosts expect,
+  so consuming projects get legacy System.Configuration support with zero effort.
+
+  Only runs for non-.NET-Framework TFMs (SDK-style projects targeting net5.0+,
+  netstandard*, etc.) where the SDK does NOT auto-copy app.config.
+  Skipped entirely when no app.config is present in the project directory.
+-->
+<Project>
+  <Target Name="JJ_CopyAppConfigForLegacySystemConfiguration"
+          AfterTargets="Build"
+          Condition="'$(TargetFrameworkIdentifier)' != '.NETFramework'
+                     And Exists('$(MSBuildProjectDirectory)\app.config')">
+
+    <ItemGroup>
+      <!-- The primary output config (matches the assembly name, e.g. MyApp.dll.config) -->
+      <_AppConfigDestinations Include="$(TargetDir)$(TargetFileName).config" />
+      <!-- testhost used by dotnet test / VSTest -->
+      <_AppConfigDestinations Include="$(TargetDir)testhost.dll.config" />
+      <!-- nCrunch task-runner config -->
+      <_AppConfigDestinations Include="$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" />
+    </ItemGroup>
+
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\app.config"
+          DestinationFiles="@(_AppConfigDestinations)"
+          SkipUnchangedFiles="true"
+          OverwriteReadOnlyFiles="true" />
+
+    <Message Text="JJ.Framework.Configuration.Core: copied app.config → @(_AppConfigDestinations, ', ')"
+             Importance="normal" />
+
+  </Target>
+</Project>
