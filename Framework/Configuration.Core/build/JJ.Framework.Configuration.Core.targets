@@ -1,34 +1,29 @@
 <!--
   Automatically copies app.config to the output directory under the names that
   System.Configuration.ConfigurationManager and common test hosts expect,
-  so consuming projects get legacy System.Configuration support with zero effort.
+  so consuming projects get legacy System.Configuration support without the hassle.
+  Multiple source .config file names are supported to accomodate different (legacy and half-solved) situations:
+  "app.config", "web.config", "{AssemblyName}.dll.config", "testhost.dll.config".
 -->
 
 <Project TreatAsLocalProperty="
-         AppConfig;AppConfigExists;
-         WebConfig;WebConfigExists;
+         AppConfig;WebConfig;SourceAssemblyNameConfig;SourceTestHostConfig;
          SourceConfig;SourceConfigExists;
          DestAssemblyNameConfig;DestTestHostConfig;DestNCrunchConfig">
   <Target Name="JJ_CopyConfig" AfterTargets="Build" Condition="'$(TargetFileName)'!=''">
 
     <PropertyGroup>
       <AppConfig>$(MSBuildProjectDirectory)\app.config</AppConfig>
-      <AppConfigExists>False</AppConfigExists>
-      <AppConfigExists Condition="Exists('$(AppConfig)')">True</AppConfigExists>
-      
       <WebConfig>$(MSBuildProjectDirectory)\web.config</WebConfig>
-      <WebConfigExists>False</WebConfigExists>
-      <WebConfigExists Condition="Exists('$(WebConfig)')">True</WebConfigExists>
-      
       <SourceAssemblyNameConfig>$(MSBuildProjectDirectory)\$(TargetFileName).config</SourceAssemblyNameConfig>
-      <SourceAssemblyNameConfigExists>False</SourceAssemblyNameConfigExists>
-      <SourceAssemblyNameConfigExists Condition="Exists('$(SourceAssemblyNameConfig)')">True</SourceAssemblyNameConfigExists>
+      <SourceTestHostConfig>$(MSBuildProjectDirectory)\testhost.dll.config</SourceTestHostConfig>
       
-      <SourceConfig Condition="$(SourceAssemblyNameConfigExists)">$(SourceAssemblyNameConfigConfig)</SourceConfig>
-      <SourceConfig Condition="$(WebConfigExists)">$(WebConfig)</SourceConfig>
-      <SourceConfig Condition="$(AppConfigExists)">$(AppConfig)</SourceConfig>
+      <SourceConfig Condition="Exists('$(SourceTestHostConfig)')">$(SourceTestHostConfig)</SourceConfig>
+      <SourceConfig Condition="Exists('$(SourceAssemblyNameConfig)')">$(SourceAssemblyNameConfig)</SourceConfig>
+      <SourceConfig Condition="Exists('$(WebConfig)')">$(WebConfig)</SourceConfig>
+      <SourceConfig Condition="Exists('$(AppConfig)')">$(AppConfig)</SourceConfig>
       <SourceConfigExists>False</SourceConfigExists>
-      <SourceConfigExists Condition="Exists('$(SourceConfig)')">True</SourceConfigExists>
+      <SourceConfigExists Condition="'$(SourceConfig)'!=''">True</SourceConfigExists>
       
       <DestAssemblyNameConfig>$(TargetDir)$(TargetFileName).config</DestAssemblyNameConfig> <!-- E.g., MyNamespace.MyApp.dll.config.-->
       <DestTestHostConfig>$(TargetDir)testhost.dll.config</DestTestHostConfig> <!-- For MSTest / VSTest / dotnet test -->
