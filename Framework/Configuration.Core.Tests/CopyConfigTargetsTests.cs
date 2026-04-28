@@ -63,7 +63,7 @@ public class CopyConfigTargetsTests
     [TestMethod]
     public void JJ_CopyConfig_WhenAppConfig_CopiesConfigToOutput()
     {
-        var (outDir, _) = BuildTempProject(sourceFiles: [("app.config", "app.config")]);
+        var outDir = BuildTempProject(sourceFiles: [("app.config", "app.config")]);
 
         IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
         IsTrue(File.Exists(Path.Combine(outDir, "testhost.dll.config")));
@@ -73,7 +73,7 @@ public class CopyConfigTargetsTests
     [TestMethod]
     public void JJ_CopyConfig_WhenWebConfig_CopiesConfigToOutput()
     {
-        var (outDir, _) = BuildTempProject(sourceFiles: [("web.config", "web.config")]);
+        var outDir = BuildTempProject(sourceFiles: [("web.config", "web.config")]);
 
         IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
     }
@@ -81,7 +81,7 @@ public class CopyConfigTargetsTests
     [TestMethod]
     public void JJ_CopyConfig_WhenAssemblyNameConfig_CopiesConfigToOutput()
     {
-        var (outDir, _) = BuildTempProject(sourceFiles: [("TestAssembly.dll.config", "assembly")]);
+        var outDir = BuildTempProject(sourceFiles: [("TestAssembly.dll.config", "assembly")]);
 
         IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
     }
@@ -89,7 +89,7 @@ public class CopyConfigTargetsTests
     [TestMethod]
     public void JJ_CopyConfig_WhenTesthostConfig_CopiesConfigToOutput()
     {
-        var (outDir, _) = BuildTempProject(sourceFiles: [("testhost.dll.config", "testhost")]);
+        string outDir = BuildTempProject(sourceFiles: [("testhost.dll.config", "testhost")]);
 
         IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
     }
@@ -97,68 +97,12 @@ public class CopyConfigTargetsTests
     [TestMethod]
     public void JJ_CopyConfig_WhenNoConfig_DoesNotCopyAnything()
     {
-        var (outDir, _) = BuildTempProject(sourceFiles: []);
+        string outDir = BuildTempProject(sourceFiles: []);
 
         IsFalse(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
     }
 
-    /*
-    [TestMethod]
-    public void JJ_CopyConfig_WhenAppConfigAndTesthostConfig_UsesTesthostConfigAsSource()
-    {
-        // testhost.dll.config has highest priority.
-        var (outDir, _) = BuildTempProject(sourceFiles:
-        [
-            ("app.config", "app"),
-            ("testhost.dll.config", "testhost")
-        ]);
-
-        var content = File.ReadAllText(Path.Combine(outDir, "TestAssembly.dll.config"));
-        IsTrue(content.Contains("testhost"), $"Expected 'testhost' content but got: {content}");
-    }
-
-    [TestMethod]
-    public void JJ_CopyConfig_WhenAppConfigAndWebConfig_UsesAppConfigAsSource()
-    {
-        // app.config has higher priority than web.config.
-        var (outDir, _) = BuildTempProject(sourceFiles:
-        [
-            ("web.config", "web"),
-            ("app.config", "app")
-        ]);
-
-        var content = File.ReadAllText(Path.Combine(outDir, "TestAssembly.dll.config"));
-        IsTrue(content.Contains(">app<"), $"Expected 'app' content but got: {content}");
-    }
-    */
-
-    /*
-    [TestMethod]
-    public void JJ_CopyConfig_WhenMultipleConfigsExist_EmitsWarning()
-    {
-        var (_, buildOutput) = BuildTempProject(sourceFiles:
-        [
-            ("app.config", "app"),
-            ("web.config", "web")
-        ]);
-
-        IsTrue(buildOutput.Contains("Multiple config source files found"),
-            $"Expected warning about multiple configs. Build output:\n{buildOutput}");
-    }
-
-    [TestMethod]
-    public void JJ_CopyConfig_WhenSingleConfigExists_DoesNotEmitWarning()
-    {
-        var (_, buildOutput) = BuildTempProject(sourceFiles: [("app.config", "app")]);
-
-        IsFalse(buildOutput.Contains("Multiple config source files found"),
-            $"Unexpected warning about multiple configs. Build output:\n{buildOutput}");
-    }
-    */
-
-    // -------------------------------------------------------------------------
     // Helpers
-    // -------------------------------------------------------------------------
 
     /// <summary>
     /// Creates a temp project with the given source config files, builds it,
@@ -166,8 +110,8 @@ public class CopyConfigTargetsTests
     /// sourceFiles: list of (fileName, sourceLabel) — label goes into the value attribute
     /// so tests can verify which file was copied.
     /// </summary>
-    static (string outDir, string buildOutput) BuildTempProject(
-        IEnumerable<(string fileName, string sourceLabel)> sourceFiles)
+    static string BuildTempProject(
+        IEnumerable<(string fileName, string configValue)> sourceFiles)
     {
         var tempDir = Path.Combine(Path.GetTempPath(), "JJ.CopyConfigTests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(tempDir);
@@ -184,17 +128,17 @@ public class CopyConfigTargetsTests
             File.WriteAllText(Path.Combine(tempDir, fileName), content);
         }
 
+        // TODO: Use current TFM running with.
         const string tfm = "net8.0";
         var outDir = Path.Combine(tempDir, "bin", "Debug", tfm);
 
-        var buildOutput = RunDotnetBuild(tempDir);
-        return (outDir, buildOutput);
+        RunProcess(tempDir);
+        return outDir;
     }
 
-    static string RunDotnetBuild(string workingDir)
+    static string RunProcess(string workingDir)
     {
-        var dotnet = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "dotnet.exe" : "dotnet";
-        var psi = new ProcessStartInfo(dotnet, "build --nologo -v:normal")
+        var psi = new ProcessStartInfo("dotnet", "build --nologo -v:normal")
         {
             WorkingDirectory = workingDir,
             RedirectStandardOutput = true,
