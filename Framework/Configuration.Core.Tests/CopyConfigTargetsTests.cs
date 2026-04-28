@@ -1,161 +1,181 @@
 using System.Diagnostics;
-using System.Runtime.InteropServices;
+using static System.IO.File;
 
 namespace JJ.Framework.Configuration.Core.Tests;
 
-/// <summary>
-/// Integration tests for JJ.Framework.Configuration.Core.targets.
-/// Each test builds a minimal temp project that imports the targets file and asserts
-/// on which file ends up copied to the output directory and whether a warning is emitted.
-/// </summary>
+/// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
 [TestClass]
 public class CopyConfigTargetsTests
 {
-    // Relative path from this file's project root to the .targets file.
-    static readonly string TargetsRelativePath =
-        Path.Combine("..", "Configuration.Core", "build", "JJ.Framework.Configuration.Core.targets");
+    private const string _assemblyConfigFileName = "TestAssembly.dll.config";
+    private const string _testhostConfigFileName = "testhost.dll.config";
+    private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
 
-    static string TargetsAbsolutePath => Path.GetFullPath(
-        Path.Combine(TestProjectDirectory, TargetsRelativePath));
+    private static readonly string _csprojContent         = BuildCsProjContent();
+    private static readonly string _appConfigContent      = BuildConfigContent("app");
+    private static readonly string _webConfigContent      = BuildConfigContent("web");
+    private static readonly string _assemblyConfigContent = BuildConfigContent("assembly");
+    private static readonly string _testHostConfigContent = BuildConfigContent("testhost");
+    private const           string _dummyCsFileContent    = "// Dummy";
 
-    // Locate the test project directory by walking up from the test assembly output.
-    static string TestProjectDirectory
+
+    private string _tempProjDir                  = "";
+    private string _outDir                       = "";
+    private string _csprojFilePath               = "";
+    private string _dummyCsFilePath              = "";
+    private string _appConfigFilePath            = "";
+    private string _webConfigFilePath            = "";
+    private string _sourceAssemblyConfigFilePath = "";
+    private string _sourceTestHostConfigFilePath = "";
+    private string _destAssemblyConfigFilePath   = "";
+    private string _destTestHostConfigFilePath   = "";
+    private string _destNCrunchConfigFilePath    = "";
+
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        get
-        {
-            var dir = AppContext.BaseDirectory;
-            while (dir != null)
-            {
-                if (Directory.GetFiles(dir, "*.csproj").Length > 0)
-                    return dir;
-                dir = Path.GetDirectoryName(dir);
-            }
-            throw new InvalidOperationException("Could not locate test project directory.");
-        }
+        _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.CopyConfigTests", Guid.NewGuid().ToString("N"));
+        _outDir                       = Path.Combine(_tempProjDir, "out");
+        _csprojFilePath               = Path.Combine(_tempProjDir, "TestAssembly.csproj");
+        _dummyCsFilePath              = Path.Combine(_tempProjDir, "Placeholder.cs");
+        _appConfigFilePath            = Path.Combine(_tempProjDir, "app.config");
+        _webConfigFilePath            = Path.Combine(_tempProjDir, "web.config");
+        _sourceAssemblyConfigFilePath = Path.Combine(_tempProjDir, "TestAssembly.dll.config");
+        _sourceTestHostConfigFilePath = Path.Combine(_tempProjDir, "testhost.dll.config");
+        _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
+        _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
+        _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
+        CreateTempDir();
+        WriteCsproj();
+        WritePlaceholder();
     }
 
-    const string MinimalCsprojTemplate =
-        """
-        <Project Sdk="Microsoft.NET.Sdk">
-          <PropertyGroup>
-            <TargetFramework>net8.0</TargetFramework>
-            <AssemblyName>TestAssembly</AssemblyName>
-            <Nullable>enable</Nullable>
-          </PropertyGroup>
-          <Import Project="{TargetsPath}" />
-        </Project>
-        """;
-
-    const string SampleConfigContent =
-        """
-        <?xml version="1.0" encoding="utf-8"?>
-        <configuration>
-          <appSettings>
-            <add key="source" value="{SourceLabel}" />
-          </appSettings>
-        </configuration>
-        """;
-
-    // -------------------------------------------------------------------------
     // Tests
-    // -------------------------------------------------------------------------
 
     [TestMethod]
     public void JJ_CopyConfig_WhenAppConfig_CopiesConfigToOutput()
     {
-        var outDir = BuildTempProject(sourceFiles: [("app.config", "app.config")]);
+        WriteAppConfig();
+        DotnetBuild();
 
-        IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
-        IsTrue(File.Exists(Path.Combine(outDir, "testhost.dll.config")));
-        IsTrue(File.Exists(Path.Combine(outDir, "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config")));
+        IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
     }
 
     [TestMethod]
     public void JJ_CopyConfig_WhenWebConfig_CopiesConfigToOutput()
     {
-        var outDir = BuildTempProject(sourceFiles: [("web.config", "web.config")]);
-
-        IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
+        WriteWebConfig();
+        DotnetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
     }
 
     [TestMethod]
     public void JJ_CopyConfig_WhenAssemblyNameConfig_CopiesConfigToOutput()
     {
-        var outDir = BuildTempProject(sourceFiles: [("TestAssembly.dll.config", "assembly")]);
-
-        IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
+        WriteAssemblyConfig();
+        DotnetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
     }
 
     [TestMethod]
     public void JJ_CopyConfig_WhenTesthostConfig_CopiesConfigToOutput()
     {
-        string outDir = BuildTempProject(sourceFiles: [("testhost.dll.config", "testhost")]);
-
-        IsTrue(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
+        WriteTesthostConfig();
+        DotnetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
     }
 
     [TestMethod]
-    public void JJ_CopyConfig_WhenNoConfig_DoesNotCopyAnything()
+    public void JJ_CopyConfig_WhenNoConfig_DoesNotCopyConfig()
     {
-        string outDir = BuildTempProject(sourceFiles: []);
-
-        IsFalse(File.Exists(Path.Combine(outDir, "TestAssembly.dll.config")));
+        DotnetBuild();
+        IsFalse(Exists(_destAssemblyConfigFilePath));
     }
 
-    // Helpers
-
-    /// <summary>
-    /// Creates a temp project with the given source config files, builds it,
-    /// and returns (outputDirectory, buildOutput).
-    /// sourceFiles: list of (fileName, sourceLabel) — label goes into the value attribute
-    /// so tests can verify which file was copied.
-    /// </summary>
-    static string BuildTempProject(
-        IEnumerable<(string fileName, string configValue)> sourceFiles)
+    [TestMethod]
+    public void JJ_CopyConfig_WhenAppConfigAndWebConfig_AppConfigWins()
     {
-        var tempDir = Path.Combine(Path.GetTempPath(), "JJ.CopyConfigTests", Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(tempDir);
+        WriteAppConfig();
+        WriteWebConfig();
+        DotnetBuild();
+        IsTrue(ReadAllText(_destAssemblyConfigFilePath).Contains("value=\"app\""));
+    }
 
-        var csproj = MinimalCsprojTemplate.Replace("{TargetsPath}", TargetsAbsolutePath.Replace("\\", "/"));
-        File.WriteAllText(Path.Combine(tempDir, "TestAssembly.csproj"), csproj);
+    [TestMethod]
+    public void JJ_CopyConfig_WhenAppConfigAndTesthostConfig_AppConfigWins()
+    {
+        WriteAppConfig();
+        WriteTesthostConfig();
+        DotnetBuild();
+        IsTrue(ReadAllText(_destAssemblyConfigFilePath).Equals(_appConfigContent));
+    }
 
-        // Minimal class so SDK project compiles.
-        File.WriteAllText(Path.Combine(tempDir, "Placeholder.cs"), "// placeholder");
+    // Setup methods
 
-        foreach (var (fileName, sourceLabel) in sourceFiles)
+    private void CreateTempDir()       => Directory.CreateDirectory(_tempProjDir);
+    private void WriteCsproj()         => WriteAllText(_csprojFilePath,               _csprojContent        );
+    private void WritePlaceholder()    => WriteAllText(_dummyCsFilePath,              _dummyCsFileContent   );
+    private void WriteAppConfig()      => WriteAllText(_appConfigFilePath,            _appConfigContent     );
+    private void WriteWebConfig()      => WriteAllText(_webConfigFilePath,            _webConfigContent     );
+    private void WriteAssemblyConfig() => WriteAllText(_sourceAssemblyConfigFilePath, _assemblyConfigContent);
+    private void WriteTesthostConfig() => WriteAllText(_sourceTestHostConfigFilePath, _testHostConfigContent);
+
+    private void DotnetBuild()
+    {
+        var psi = new ProcessStartInfo("dotnet", $"build --nologo -o \"{_outDir}\"")
         {
-            var content = SampleConfigContent.Replace("{SourceLabel}", sourceLabel);
-            File.WriteAllText(Path.Combine(tempDir, fileName), content);
+            WorkingDirectory       = _tempProjDir,
+            RedirectStandardOutput = true,
+            RedirectStandardError  = true,
+            UseShellExecute        = false,
+            CreateNoWindow         = true
+        };
+        using var proc = Process.Start(psi) ?? throw new InvalidOperationException("dotnet build process failed to start.");
+        proc.WaitForExit();
+        if (proc.ExitCode != 0)
+            throw new InvalidOperationException($"dotnet build failed (exit {proc.ExitCode}).");
+    }
+
+    // Static helpers
+    
+    private static string BuildConfigContent(string configValue) =>
+        $"""
+        <?xml version="1.0" encoding="utf-8"?>
+        <configuration>
+          <appSettings>
+            <add key="source" value="{configValue}" />
+          </appSettings>
+        </configuration>
+        """;
+
+    private static string BuildCsProjContent()
+    {
+        string? testProjDir = AppContext.BaseDirectory;
+        while (!Directory.GetFiles(testProjDir, "*.csproj").Any())
+        {
+            testProjDir = Path.GetDirectoryName(testProjDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
         }
 
-        // TODO: Use current TFM running with.
-        const string tfm = "net8.0";
-        var outDir = Path.Combine(tempDir, "bin", "Debug", tfm);
+        string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
 
-        RunProcess(tempDir);
-        return outDir;
-    }
+        string buildTargetsFilePath = Path.Combine(mainProjDir, "build", "JJ.Framework.Configuration.Core.targets");
+        buildTargetsFilePath = Path.GetFullPath(buildTargetsFilePath);
+        buildTargetsFilePath = buildTargetsFilePath.Replace("\\", "/");
 
-    static string RunProcess(string workingDir)
-    {
-        var psi = new ProcessStartInfo("dotnet", "build --nologo -v:normal")
-        {
-            WorkingDirectory = workingDir,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            UseShellExecute = false,
-            CreateNoWindow = true
-        };
+        string content =
+            $"""
+            <Project Sdk="Microsoft.NET.Sdk">
+              <PropertyGroup>
+                <TargetFramework>net8.0</TargetFramework>
+                <AssemblyName>TestAssembly</AssemblyName>
+              </PropertyGroup>
+              <Import Project="{buildTargetsFilePath}" />
+            </Project>
+            """;
 
-        using var proc = Process.Start(psi) ?? throw new InvalidOperationException("Failed to start dotnet build.");
-        var stdout = proc.StandardOutput.ReadToEnd();
-        var stderr = proc.StandardError.ReadToEnd();
-        proc.WaitForExit();
-
-        if (proc.ExitCode != 0 && !stdout.Contains("warning") && !stderr.Contains("warning"))
-            throw new InvalidOperationException(
-                $"dotnet build failed (exit {proc.ExitCode}).\nSTDOUT:\n{stdout}\nSTDERR:\n{stderr}");
-
-        return stdout + stderr;
+        return content;
     }
 }
