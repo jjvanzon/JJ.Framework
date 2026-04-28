@@ -2,44 +2,42 @@
   Automatically copies app.config to the output directory under the names that
   System.Configuration.ConfigurationManager and common test hosts expect,
   so consuming projects get legacy System.Configuration support with zero effort.
-
-  Only runs for non-.NET-Framework TFMs (SDK-style projects targeting net5.0+,
-  netstandard*, etc.) where the SDK does NOT auto-copy app.config.
-  Skipped entirely when no app.config is present in the project directory.
 -->
-<Project>
-  <Target Name="JJ_CopyAppConfigForLegacySystemConfiguration"
-          AfterTargets="Build"
-          Condition="'$(TargetFrameworkIdentifier)' != '.NETFramework'
-                     And Exists('$(MSBuildProjectDirectory)\app.config')">
+
+<Project TreatAsLocalProperty="AppConfig;AppConfigExists;AssemblyNameConfig;TestHostConfig;NCrunchConfig">
+  <Target Name="JJ_CopyConfig" AfterTargets="Build" Condition="'$(TargetFileName)'!=''">
 
     <PropertyGroup>
-      <SourceConfig>$(MSBuildProjectDirectory)\app.config</SourceConfig>
-      <!-- Config with assembly name, e.g. MyApp.dll.config -->
-      <AssemblyNameConfig>$(TargetDir)$(TargetFileName).config</AssemblyNameConfig>
-      <!-- For MSTest / VSTest / dotnet test -->
-      <TestHostConfig>$(TargetDir)testhost.dll.config</TestHostConfig>
-      <!-- For nCrunch -->
+      <AppConfig>$(MSBuildProjectDirectory)\app.config</AppConfig>
+      <AppConfigExists>False</AppConfigExists>
+      <AppConfigExists Condition="Exists('$(MSBuildProjectDirectory)\app.config')">True</AppConfigExists>
+      <AssemblyNameConfig>$(TargetDir)$(TargetFileName).config</AssemblyNameConfig> <!-- Config with assembly name, e.g. MyApp.dll.config -->
+      <TestHostConfig>$(TargetDir)testhost.dll.config</TestHostConfig> <!-- For MSTest / VSTest / dotnet test -->
       <NCrunchConfig>$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config</NCrunchConfig>
     </PropertyGroup>
 
-    <Message Text="Copy '$(SourceConfig)' -> '$(AssemblyNameConfig)'" Importance="High" />
+    <Message Condition="!$(AppConfigExists)" Text="$(MSBuildProjectName) > No app.config to copy ($(AppConfig))" Importance="High" />
+    
+    <Message Condition="$(AppConfigExists)" Text="$(MSBuildProjectName) > Copy '$(AppConfig)' -> '$(AssemblyNameConfig)'" Importance="High" />
 
-    <Copy SourceFiles="$(SourceConfig)"
+    <Copy Condition="$(AppConfigExists)"
+          SourceFiles="$(AppConfig)"
           DestinationFiles="$(AssemblyNameConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
-    <Message Text="Copy '$(SourceConfig)' -> '$(TestHostConfig)'" Importance="High" />
+    <Message Condition="$(AppConfigExists)" Text="$(MSBuildProjectName) > Copy '$(AppConfig)' -> '$(TestHostConfig)'" Importance="High" />
 
-    <Copy SourceFiles="$(SourceConfig)"
+    <Copy Condition="$(AppConfigExists)"
+          SourceFiles="$(AppConfig)"
           DestinationFiles="$(TestHostConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
-    <Message Text="Copy '$(SourceConfig)' -> '$(NCrunchConfig)'" Importance="High" />
+    <Message Condition="$(AppConfigExists)" Text="$(MSBuildProjectName) > Copy '$(AppConfig)' -> '$(NCrunchConfig)'" Importance="High" />
 
-    <Copy SourceFiles="$(SourceConfig)"
+    <Copy Condition="$(AppConfigExists)"
+          SourceFiles="$(AppConfig)"
           DestinationFiles="$(NCrunchConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
