@@ -3,7 +3,7 @@ JJ.Framework.Configuration.Core
 
 The `System.Configuration` component is deprecated in `.NET Core` and `.NET 5`, which is quite inconvenient.
 
-People may say you have to do a painful migration to `JSON` file for configurations.
+The first tip you get, is to do a painful migration to `JSON` files.
 
 But the usual alternative is referencing a package called [`System.Configuration.ConfigurationManager`](https://www.nuget.org/packages/System.Configuration.ConfigurationManager/11.0.0-preview.3.26207.106).
 
@@ -25,7 +25,13 @@ It copies your `app.config` to the output `bin` with the following file names:
   For `NCrunch` to find your config.
 
 
+JJ.Framework.Configuration.Legacy
+---------------------------------
 
-`[ TODO: Document other purpose of JJ.Framework.Configuration.Core ]`
 
-`[ TODO: Reference JJ.Framework.Configuration(.Legacy) ]`
+This `.Core` variant accompanies a [`.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration), that can map config XML to C# objects much simpler than the standard way offered by .NET `System.Configuration`.
+
+CustomConfigurationManagerCore Class
+------------------------------------
+
+Offers a `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, `null` is returned, instead of a crash. (Complements the null-intolerant version from [`JJ.Framework.Configuration.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration)).
