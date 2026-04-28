@@ -4,41 +4,60 @@
   so consuming projects get legacy System.Configuration support with zero effort.
 -->
 
-<Project TreatAsLocalProperty="AppConfig;AppConfigExists;AssemblyNameConfig;TestHostConfig;NCrunchConfig">
+<Project TreatAsLocalProperty="
+         AppConfig;AppConfigExists;
+         WebConfig;WebConfigExists;
+         SourceConfig;SourceConfigExists;
+         DestAssemblyNameConfig;DestTestHostConfig;DestNCrunchConfig">
   <Target Name="JJ_CopyConfig" AfterTargets="Build" Condition="'$(TargetFileName)'!=''">
 
     <PropertyGroup>
       <AppConfig>$(MSBuildProjectDirectory)\app.config</AppConfig>
       <AppConfigExists>False</AppConfigExists>
-      <AppConfigExists Condition="Exists('$(MSBuildProjectDirectory)\app.config')">True</AppConfigExists>
-      <AssemblyNameConfig>$(TargetDir)$(TargetFileName).config</AssemblyNameConfig> <!-- Config with assembly name, e.g. MyApp.dll.config -->
-      <TestHostConfig>$(TargetDir)testhost.dll.config</TestHostConfig> <!-- For MSTest / VSTest / dotnet test -->
-      <NCrunchConfig>$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config</NCrunchConfig>
+      <AppConfigExists Condition="Exists('$(AppConfig)')">True</AppConfigExists>
+      
+      <WebConfig>$(MSBuildProjectDirectory)\web.config</WebConfig>
+      <WebConfigExists>False</WebConfigExists>
+      <WebConfigExists Condition="Exists('$(WebConfig)')">True</WebConfigExists>
+      
+      <SourceAssemblyNameConfig>$(MSBuildProjectDirectory)\$(TargetFileName).config</SourceAssemblyNameConfig>
+      <SourceAssemblyNameConfigExists>False</SourceAssemblyNameConfigExists>
+      <SourceAssemblyNameConfigExists Condition="Exists('$(SourceAssemblyNameConfig)')">True</SourceAssemblyNameConfigExists>
+      
+      <SourceConfig Condition="$(SourceAssemblyNameConfigExists)">$(SourceAssemblyNameConfigConfig)</SourceConfig>
+      <SourceConfig Condition="$(WebConfigExists)">$(WebConfig)</SourceConfig>
+      <SourceConfig Condition="$(AppConfigExists)">$(AppConfig)</SourceConfig>
+      <SourceConfigExists>False</SourceConfigExists>
+      <SourceConfigExists Condition="Exists('$(SourceConfig)')">True</SourceConfigExists>
+      
+      <DestAssemblyNameConfig>$(TargetDir)$(TargetFileName).config</DestAssemblyNameConfig> <!-- E.g., MyNamespace.MyApp.dll.config.-->
+      <DestTestHostConfig>$(TargetDir)testhost.dll.config</DestTestHostConfig> <!-- For MSTest / VSTest / dotnet test -->
+      <DestNCrunchConfig>$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config</DestNCrunchConfig>
     </PropertyGroup>
 
-    <Message Condition="!$(AppConfigExists)" Text="$(MSBuildProjectName) > No app.config to copy ($(AppConfig))" Importance="High" />
+    <Message Condition="!$(SourceConfigExists)" Text="$(MSBuildProjectName) > No config to copy ($(MSBuildProjectDirectory))" Importance="High" />
     
-    <Message Condition="$(AppConfigExists)" Text="$(MSBuildProjectName) > Copy '$(AppConfig)' -> '$(AssemblyNameConfig)'" Importance="High" />
+    <Message Condition="$(SourceConfigExists)" Text="$(MSBuildProjectName) > Copy '$(SourceConfig)' -> '$(DestAssemblyNameConfig)'" Importance="High" />
 
-    <Copy Condition="$(AppConfigExists)"
-          SourceFiles="$(AppConfig)"
-          DestinationFiles="$(AssemblyNameConfig)"
+    <Copy Condition="$(SourceConfigExists)"
+          SourceFiles="$(SourceConfig)"
+          DestinationFiles="$(DestAssemblyNameConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
-    <Message Condition="$(AppConfigExists)" Text="$(MSBuildProjectName) > Copy '$(AppConfig)' -> '$(TestHostConfig)'" Importance="High" />
+    <Message Condition="$(SourceConfigExists)" Text="$(MSBuildProjectName) > Copy '$(SourceConfig)' -> '$(DestTestHostConfig)'" Importance="High" />
 
-    <Copy Condition="$(AppConfigExists)"
-          SourceFiles="$(AppConfig)"
-          DestinationFiles="$(TestHostConfig)"
+    <Copy Condition="$(SourceConfigExists)"
+          SourceFiles="$(SourceConfig)"
+          DestinationFiles="$(DestTestHostConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
-    <Message Condition="$(AppConfigExists)" Text="$(MSBuildProjectName) > Copy '$(AppConfig)' -> '$(NCrunchConfig)'" Importance="High" />
+    <Message Condition="$(SourceConfigExists)" Text="$(MSBuildProjectName) > Copy '$(SourceConfig)' -> '$(DestNCrunchConfig)'" Importance="High" />
 
-    <Copy Condition="$(AppConfigExists)"
-          SourceFiles="$(AppConfig)"
-          DestinationFiles="$(NCrunchConfig)"
+    <Copy Condition="$(SourceConfigExists)"
+          SourceFiles="$(SourceConfig)"
+          DestinationFiles="$(DestNCrunchConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
