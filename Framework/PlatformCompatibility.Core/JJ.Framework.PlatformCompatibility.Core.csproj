@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="*.cs" Pack="true" PackagePath="build\JJ.Framework.PlatformCompatibility.Core\" />
+    <None Include="buildTransitive\JJ.Framework.PlatformCompatibility.Core.targets" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core.targets" />
+    <None Include="*.cs" Pack="true" PackagePath="buildTransitive\JJ.Framework.PlatformCompatibility.Core\" />
   </ItemGroup>
 
   <ItemGroup>
