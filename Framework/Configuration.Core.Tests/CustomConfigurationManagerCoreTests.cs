@@ -10,8 +10,9 @@ public class CustomConfigurationManagerCoreTests
     {
         var section = CustomConfigurationManagerCore.TryGetSection<TestConfigurationSection>(SectionName);
 
-        AreEqual(42, section?.IntValue);
-        AreEqual("hello", section?.StringValue);
+        IsNotNull(section);
+        AreEqual(42, section.IntValue);
+        AreEqual("hello", section.StringValue);
     }
 
     [TestMethod]
