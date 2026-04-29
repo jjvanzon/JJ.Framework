@@ -1,11 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>0.254.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
   
-  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net10.0'">
-    <IsAotCompatible>true</IsAotCompatible>
+  <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
+    <IsAotCompatible>True</IsAotCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IsNet6) Or $(IsNet7)">
+    <IsTrimmable>True</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>

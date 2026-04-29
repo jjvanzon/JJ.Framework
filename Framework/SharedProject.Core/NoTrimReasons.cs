@@ -11,7 +11,9 @@ internal static class NoTrimReasons
         @"* Use [UnconditionalSuppressMessage(""Trimmer"", ""IL..."", Justification = ""..."")] to ignore warning if expected types are loaded. " +
         "* Use Type parameter if available. " +
         "* Use [RequiresUnreferencedCode(...)] on your member to propagate trimmability warning. " +
-        "* Use [DynamicDependency(...)] near code failing (at runtime) to retain a type after trimming.";
+        "* Use [DynamicDependency(...)] near code failing (at runtime) to retain a type after trimming. ";
+    // TODO: Add explicit trim prevention options: TrimmerRootAssembly and Linker.xml to tips in DoWhatInstead.
+    // Or an explicit reference in an Untrimmer class, untrimemd in Linker.xml.
 
     public const string GetTypesAnd = "JJ0002 - ASSEMBLY GET TYPES called internally. Types might be removed in case of trimming. ";
     public const string GetTypes = GetTypesAnd + DoWhatInstead;
@@ -59,9 +61,15 @@ internal static class NoTrimReasons
     public const string TypeLoaded = TypeLoadedAnd + DoWhatInstead;
 
     public const string GenericMethodAnd = 
-        "JJ0013 - GENERIC METHOD: Reflection could attempt to construct a generic method, that should exist at compile-time instead. " +
+        "JJ0013 - GENERIC METHOD: Reflection could attempt to construct a generic method, " +
+        "that should exist at compile-time.  " +
         "Compile it in by referencing your method like: " +
         "var func = MyMethod<int, string>; That way it can be found with reflection at run-time. " +
         "Each combination with type arguments that is used, needs an explicit reference. ";
     public const string GenericMethod = GenericMethodAnd + DoWhatInstead;
+
+    public const string GenericListAnd = 
+        "JJ0014 - GENERIC LIST: Reflection could attempt to construct a generic list, " +
+        "which should exist at compile time. Make sure the List<T> is loaded possibly by referencing it with explicit item type included by referencing it in code somewhere e.g. List<MyItem>? list = null; ";
+    public const string GenericList = GenericListAnd + DoWhatInstead;
 }

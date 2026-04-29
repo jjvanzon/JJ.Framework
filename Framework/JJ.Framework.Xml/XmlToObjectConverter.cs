@@ -82,6 +82,7 @@ namespace JJ.Framework.Xml.Legacy
         { }
 
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public TDestObject Convert(byte[] data)
         {
             string text = Encoding.UTF8.GetString(data);
@@ -89,6 +90,7 @@ namespace JJ.Framework.Xml.Legacy
         }
 
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public TDestObject Convert(string text)
         {
             var doc = new XmlDocument();
@@ -97,6 +99,7 @@ namespace JJ.Framework.Xml.Legacy
         }
 
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public TDestObject Convert(XmlDocument document)
         {
             XmlElement rootElement = document.DocumentElement;
@@ -104,6 +107,7 @@ namespace JJ.Framework.Xml.Legacy
         }
 
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public TDestObject Convert(XmlElement sourceElement)
         {
             TDestObject destObject = new TDestObject();
@@ -117,6 +121,7 @@ namespace JJ.Framework.Xml.Legacy
         /// to fill in the properties.
         /// </summary>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         private void ConvertProperties(XmlElement sourceParentElement, object destParentObject)
         {
             foreach (PropertyInfo destProperty in StaticReflectionCache.GetProperties(destParentObject.GetType()))
@@ -135,6 +140,7 @@ namespace JJ.Framework.Xml.Legacy
         /// This also counts if an XML array has items of a composite type.
         /// </summary>
         [TrimWarn(PropertyType)]
+        [AotWarn(GenericList)]
         private void ConvertProperty(XmlElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
         {
             NodeTypeEnum nodeType = DetermineNodeType(destChildProperty);
@@ -222,6 +228,7 @@ namespace JJ.Framework.Xml.Legacy
         /// Recursive calls might be made. Nullability is checked.
         /// </summary>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         private void ConvertElementFromParent(XmlElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
         {
             string sourceChildElementName = GetElementNameForProperty(destChildProperty);
@@ -257,6 +264,7 @@ namespace JJ.Framework.Xml.Legacy
         /// </summary>
         /// <param name="sourceElement">not nullable</param>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         private void ConvertElement(XmlElement sourceElement, object destParentObject, PropertyInfo destProperty)
         {
             Type destPropertyType = destProperty.PropertyType;
@@ -273,6 +281,7 @@ namespace JJ.Framework.Xml.Legacy
         /// </summary>
         /// <param name="sourceElement">not nullable</param>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         private object ConvertElement(XmlElement sourceElement, Type destType)
         {
             object destValue;
@@ -306,6 +315,7 @@ namespace JJ.Framework.Xml.Legacy
         /// </summary>
         /// <param name="sourceElement">not nullable</param>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         private object ConvertCompositeElement(XmlElement sourceElement, [Dyn(New)] Type destType)
         {
             // Create new object
@@ -483,6 +493,7 @@ namespace JJ.Framework.Xml.Legacy
         /// </summary>
         /// <param name="sourceParentElement">The parent of the XML Array element.</param>
         [TrimWarn(PropertyType)]
+        [AotWarn(GenericList)]
         private void ConvertXmlArrayFromParent(XmlElement sourceParentElement, object destParentObject, PropertyInfo destCollectionProperty)
         {
             XmlElement sourceArrayXmlElement = TryGetSourceArrayXmlElement(sourceParentElement, destCollectionProperty);
@@ -507,6 +518,7 @@ namespace JJ.Framework.Xml.Legacy
         /// and a recursive call to ConvertProperties is made to convert each property of the composite type.
         /// </summary>
         [TrimWarn(PropertyType)]
+        [AotWarn(GenericList)]
         private void ConvertXmlArrayItems(IList<XmlElement> sourceXmlArrayItems, object destParentObject, PropertyInfo destCollectionProperty)
         {
             Type destCollectionType = destCollectionProperty.PropertyType;
@@ -538,6 +550,7 @@ namespace JJ.Framework.Xml.Legacy
         /// and a recursive call to ConvertProperties is made to convert each property of the composite type.
         /// </summary>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         private IList ConvertXmlArrayItemsToArray(IList<XmlElement> sourceXmlArrayItems, [Dyn(PublicCtors | Interfaces)] Type destCollectionType)
         {
             int count = sourceXmlArrayItems.Count;
@@ -564,6 +577,7 @@ namespace JJ.Framework.Xml.Legacy
         /// and a recursive call to ConvertProperties is made to convert each property of the composite type.
         /// </summary>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         private IList ConvertXmlArrayItemsToList(IList<XmlElement> sourceXmlArrayItems, [Dyn(Interfaces)] Type destCollectionType)
         {
             int count = sourceXmlArrayItems.Count;

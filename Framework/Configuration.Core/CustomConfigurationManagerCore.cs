@@ -10,6 +10,7 @@ namespace JJ.Framework.Configuration.Core
     {
         /// <inheritdoc cref="_trygetsection"/>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public static T? TryGetSection<[Dyn(AllProperties)] T>(Assembly assembly)
             where T: new()
         {
@@ -29,6 +30,7 @@ namespace JJ.Framework.Configuration.Core
         
         /// <inheritdoc cref="_trygetsection"/>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public static T? TryGetSection<[Dyn(AllProperties)] T>(string sectionName)
             where T: new()
         {
@@ -48,6 +50,7 @@ namespace JJ.Framework.Configuration.Core
         
         /// <inheritdoc cref="_trygetsection"/>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public static T? TryGetSection<[Dyn(AllProperties)] T>()
             where T: class, new()
         {

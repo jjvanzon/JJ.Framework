@@ -1,9 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Version>0.254.$(BuildNum)</Version>
     <OutputType>Exe</OutputType>
+    <!--<TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>-->
+    <TargetFrameworks>net10.0</TargetFrameworks>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TrimmerSingleWarn>False</TrimmerSingleWarn> 
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
+    <IsAotCompatible>True</IsAotCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IsNet6) Or $(IsNet7)">
+    <IsTrimmable>True</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +45,8 @@
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
     <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
+    <TrimmerRootAssembly Include="System.Configuration.ConfigurationManager" />
+    <TrimmerRootAssembly Include="System.Private.Xml" />
   </ItemGroup>
 
 </Project>

@@ -13,6 +13,7 @@ namespace JJ.Framework.Configuration.Legacy
     public static class CustomConfigurationManager
     {
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public static T GetSection<[Dyn(AllProperties)] T>()
             where T : new()
         {
@@ -21,6 +22,7 @@ namespace JJ.Framework.Configuration.Legacy
         }
 
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public static T GetSection<[Dyn(AllProperties)] T>(Assembly assembly)
             where T : new()
         {
@@ -32,6 +34,7 @@ namespace JJ.Framework.Configuration.Legacy
         private static Dictionary<string, object> _sectionDictionary = new Dictionary<string, object>();
 
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+        [AotWarn(GenericList)]
         public static T GetSection<[Dyn(AllProperties)] T>(string sectionName)
             where T : new()
         {

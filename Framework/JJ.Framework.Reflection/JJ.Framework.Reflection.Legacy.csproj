@@ -9,11 +9,11 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   
-  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0' Or '$(TargetFramework)'=='net9.0' Or '$(TargetFramework)'=='net10.0'">
-    <IsAotCompatible>true</IsAotCompatible>
+  <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
+    <IsAotCompatible>True</IsAotCompatible>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0' Or '$(TargetFramework)'=='net7.0'">
-    <IsTrimmable>true</IsTrimmable>
+  <PropertyGroup Condition="$(IsNet6) Or $(IsNet7)">
+    <IsTrimmable>True</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>
