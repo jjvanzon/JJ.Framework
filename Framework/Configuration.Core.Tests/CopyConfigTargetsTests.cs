@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using static System.IO.File;
+using static System.String;
 
 namespace JJ.Framework.Configuration.Core.Tests;
 
@@ -57,42 +58,61 @@ public class CopyConfigTargetsTests
     public void JJ_CopyConfig_WhenAppConfig_CopiesConfigToOutput()
     {
         WriteAppConfig();
-        DotnetBuild();
-
+        DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
         IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destNCrunchConfigFilePath));
     }
 
     [TestMethod]
     public void JJ_CopyConfig_WhenWebConfig_CopiesConfigToOutput()
     {
         WriteWebConfig();
-        DotnetBuild();
+        DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_webConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_webConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_webConfigContent, ReadAllText(_destNCrunchConfigFilePath));
     }
 
     [TestMethod]
     public void JJ_CopyConfig_WhenAssemblyNameConfig_CopiesConfigToOutput()
     {
         WriteAssemblyConfig();
-        DotnetBuild();
+        DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_assemblyConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_assemblyConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_assemblyConfigContent, ReadAllText(_destNCrunchConfigFilePath));
     }
 
     [TestMethod]
-    public void JJ_CopyConfig_WhenTesthostConfig_CopiesConfigToOutput()
+    public void JJ_CopyConfig_WhenTestHostConfig_CopiesConfigToOutput()
     {
         WriteTesthostConfig();
-        DotnetBuild();
+        DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_testHostConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_testHostConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_testHostConfigContent, ReadAllText(_destNCrunchConfigFilePath));
     }
 
     [TestMethod]
     public void JJ_CopyConfig_WhenNoConfig_DoesNotCopyConfig()
     {
-        DotnetBuild();
+        DotNetBuild();
         IsFalse(Exists(_destAssemblyConfigFilePath));
+        IsFalse(Exists(_destTestHostConfigFilePath));
+        IsFalse(Exists(_destNCrunchConfigFilePath));
     }
 
     [TestMethod]
@@ -100,8 +120,13 @@ public class CopyConfigTargetsTests
     {
         WriteAppConfig();
         WriteWebConfig();
-        DotnetBuild();
-        IsTrue(ReadAllText(_destAssemblyConfigFilePath).Contains("value=\"app\""));
+        DotNetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destNCrunchConfigFilePath));
     }
 
     [TestMethod]
@@ -109,11 +134,16 @@ public class CopyConfigTargetsTests
     {
         WriteAppConfig();
         WriteTesthostConfig();
-        DotnetBuild();
-        IsTrue(ReadAllText(_destAssemblyConfigFilePath).Equals(_appConfigContent));
+        DotNetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_appConfigContent, ReadAllText(_destNCrunchConfigFilePath));
     }
 
-    // Setup methods
+    // Helpers
 
     private void CreateTempDir()       => Directory.CreateDirectory(_tempProjDir);
     private void WriteCsproj()         => WriteAllText(_csprojFilePath,               _csprojContent        );
@@ -123,23 +153,38 @@ public class CopyConfigTargetsTests
     private void WriteAssemblyConfig() => WriteAllText(_sourceAssemblyConfigFilePath, _assemblyConfigContent);
     private void WriteTesthostConfig() => WriteAllText(_sourceTestHostConfigFilePath, _testHostConfigContent);
 
-    private void DotnetBuild()
+    private void DotNetBuild()
     {
-        var psi = new ProcessStartInfo("dotnet", $"build --nologo -o \"{_outDir}\"")
+        const string fileName = "dotnet";
+        string arguments = $"build --nologo -o \"{_outDir}\"";
+        using var process = Process.Start(new ProcessStartInfo
         {
+            FileName               = fileName,
+            Arguments              = arguments,
             WorkingDirectory       = _tempProjDir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
             UseShellExecute        = false,
             CreateNoWindow         = true
-        };
-        using var proc = Process.Start(psi) ?? throw new InvalidOperationException("dotnet build process failed to start.");
-        proc.WaitForExit();
-        if (proc.ExitCode != 0)
-            throw new InvalidOperationException($"dotnet build failed (exit {proc.ExitCode}).");
-    }
+        })!;
 
-    // Static helpers
+        process.WaitForExit();
+
+        bool hasExitCode = process.ExitCode != 0;
+        string output = process.StandardOutput.ReadToEnd();
+        string error = process.StandardError.ReadToEnd();
+        bool hasErrorText = !IsNullOrWhiteSpace(error);
+        bool hasErrorInOutput = output.Contains("[error]");
+        bool hasError = hasExitCode || hasErrorInOutput; // Don't consider error text, which has welcome messages and such in it these days.
+
+        if (hasError)
+        {
+            throw new Exception(
+                $"{fileName} {arguments} failed " +
+                $"{new { hasExitCode, hasErrorText, hasErrorInOutput }}: " +
+                $"Exit code {process.ExitCode} {error} {output}");
+        }
+    }
     
     private static string BuildConfigContent(string configValue) =>
         $"""
@@ -165,6 +210,7 @@ public class CopyConfigTargetsTests
         buildTargetsFilePath = Path.GetFullPath(buildTargetsFilePath);
         buildTargetsFilePath = buildTargetsFilePath.Replace("\\", "/");
 
+        // TODO: TargetFramework should be the current one.
         string content =
             $"""
             <Project Sdk="Microsoft.NET.Sdk">
