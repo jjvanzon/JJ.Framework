@@ -48,14 +48,14 @@ echo copy "$(ProjectDir)app.config" "$(TargetDir)nCrunch.TaskRunner.DotNetCore.2
      copy "$(ProjectDir)app.config" "$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config"
 ```
 
-This can help if one of your environment's tooling expects a different file name. Adjust the script's source and destination file names accordingly.
+This can help if your environment's tooling expects a different file name. Adjust the script's source and destination file names accordingly.
 
 JJ.Framework.Configuration.Legacy
 ---------------------------------
 
-This `.Core` variant accompanies a [`.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration) variant, that can map config `XML` to `C#` objects much simpler than the standard way offered by .NET `System.Configuration`.
+This `.Core` variant accompanies a `JJ.Framework.Configuration`[`.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration) variant, that can map config `XML` to `C#` objects much simpler than the standard way offered by .NET `System.Configuration`.
 
 CustomConfigurationManagerCore Class
 ------------------------------------
 
-Offers a `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, `null` is returned, instead of a crash. (Complements the null-intolerant version from [`JJ.Framework.Configuration.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration)).
+Offers a `TryGetSection` method that complements `GetSection` (from [`JJ.Framework.Configuration.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration)) but now when the configuration section is not found, `null` is returned, instead an exception being thrown.
