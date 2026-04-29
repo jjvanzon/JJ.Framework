@@ -17,24 +17,22 @@ public class CopyConfigTargetsTests
     private static readonly string _webConfigContent      = BuildConfigContent("web");
     private static readonly string _assemblyConfigContent = BuildConfigContent("assembly");
     private static readonly string _testHostConfigContent = BuildConfigContent("testhost");
-    private const           string _dummyCsFileContent    = "// Dummy";
+    private const           string _dummyCsFileContent    = "// Dummy Code";
 
 
-    private string _tempProjDir                  = "";
-    private string _outDir                       = "";
-    private string _csprojFilePath               = "";
-    private string _dummyCsFilePath              = "";
-    private string _appConfigFilePath            = "";
-    private string _webConfigFilePath            = "";
-    private string _sourceAssemblyConfigFilePath = "";
-    private string _sourceTestHostConfigFilePath = "";
-    private string _destAssemblyConfigFilePath   = "";
-    private string _destTestHostConfigFilePath   = "";
-    private string _destNCrunchConfigFilePath    = "";
+    private readonly string _tempProjDir;
+    private readonly string _outDir;
+    private readonly string _csprojFilePath;
+    private readonly string _dummyCsFilePath;
+    private readonly string _appConfigFilePath;
+    private readonly string _webConfigFilePath;
+    private readonly string _sourceAssemblyConfigFilePath;
+    private readonly string _sourceTestHostConfigFilePath;
+    private readonly string _destAssemblyConfigFilePath;
+    private readonly string _destTestHostConfigFilePath;
+    private readonly string _destNCrunchConfigFilePath;
 
-
-    [TestInitialize]
-    public void TestInitialize()
+    public CopyConfigTargetsTests()
     {
         _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.CopyConfigTests", Guid.NewGuid().ToString("N"));
         _outDir                       = Path.Combine(_tempProjDir, "out");

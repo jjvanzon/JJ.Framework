@@ -11,6 +11,7 @@
       "Framework\\Common.Core\\JJ.Framework.Common.Core.csproj",
       "Framework\\Common.TrimTests\\JJ.Framework.Common.Legacy.TrimTests.csproj",
       "Framework\\Configuration.Core.Tests\\JJ.Framework.Configuration.Core.Tests.csproj",
+      "Framework\\Configuration.Core.TrimTests\\JJ.Framework.Configuration.Core.TrimTests.csproj",
       "Framework\\Configuration.Core\\JJ.Framework.Configuration.Core.csproj",
       "Framework\\Exceptions.Core\\JJ.Framework.Exceptions.Core.csproj",
       "Framework\\Existence.Core.Tests.BoolToText\\JJ.Framework.Existence.Core.Tests.BoolToText.csproj",
