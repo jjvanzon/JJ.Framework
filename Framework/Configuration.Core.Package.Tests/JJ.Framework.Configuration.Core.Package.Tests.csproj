@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>4.6.$(BuildNum)</Version>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6282" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6282" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6282" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Configuration.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Include="..\Configuration.Core.Tests\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Configuration.Core.Tests\obj\**" />
+    <Compile Remove="..\Configuration.Core.Tests\bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
+</Project>
