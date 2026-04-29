@@ -10,7 +10,7 @@
     <EmbeddedResource Include="..\Validation.Tests.Helpers\**\*.resx" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Validation.Tests.Helpers\obj\**" />
     <Compile Remove="..\Validation.Tests.Helpers\bin\**" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6251" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6280" />
   </ItemGroup>
 
   <ItemGroup>
