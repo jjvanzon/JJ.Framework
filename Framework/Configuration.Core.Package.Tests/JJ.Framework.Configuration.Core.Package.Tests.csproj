@@ -5,6 +5,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6289" />
     <PackageReference Include="MSTest" Version="3.7.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
     <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6282" />
@@ -14,12 +15,16 @@
 
   <ItemGroup>
     <Compile Include="..\Configuration.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <None Include="..\Configuration.Core.Tests\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Configuration.Core.Tests\obj\**" />
     <Compile Remove="..\Configuration.Core.Tests\bin\**" />
+    <None Include="..\Configuration.Core.Tests\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Remove="..\Configuration.Core.Tests\obj\**\*.config" />
+    <None Remove="..\Configuration.Core.Tests\bin\**\*.config" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
+
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 </Project>

@@ -710,6 +710,7 @@ Global
 		SolutionGuid = {8B958E8C-E60A-4645-9565-A8B8F94E2F5A}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{10f385eb-8f6b-5f5e-802e-75d176f2ae36}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1409a34d-82f1-560f-4734-9df8ba3dac9b}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1beb8e62-fcb0-4b88-b142-23e720d5bacc}*SharedItemsImports = 13
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1e6accbd-a3a9-a65d-fab1-45f4d9e24fa4}*SharedItemsImports = 5
