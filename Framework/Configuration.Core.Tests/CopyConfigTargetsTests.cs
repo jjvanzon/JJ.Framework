@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using static System.IO.File;
 using static System.String;
@@ -198,11 +199,10 @@ public class CopyConfigTargetsTests
     private static string BuildCsProjContent()
     {
         string targetFramework = GetCurrentTargetFrameworkMoniker();
-        string? localTargetsPath = TryGetLocalBuildTargetsFilePath();
 
-        string configImport = localTargetsPath != null
-            ? $"  <Import Project=\"{localTargetsPath}\" />"
-            : $"  <ItemGroup><PackageReference Include=\"JJ.Framework.Configuration.Core\" Version=\"{GetInstalledPackageVersion()}\" /></ItemGroup>";
+        string configImport = IsPackageTestsProject()
+            ? $"  <ItemGroup><PackageReference Include=\"JJ.Framework.Configuration.Core\" Version=\"{GetReferencedPackageVersion()}\" /></ItemGroup>"
+            : $"  <Import Project=\"{GetBuildTargetsFilePath()}\" />";
 
         return
             $"""
@@ -216,45 +216,33 @@ public class CopyConfigTargetsTests
             """;
     }
 
-    /// <summary> Returns the local .targets file path when running in source mode; null when running from a package reference. </summary>
-    private static string? TryGetLocalBuildTargetsFilePath()
+    /// <summary> True when running inside the *.Package.Tests project (package-reference mode). </summary>
+    private static bool IsPackageTestsProject()
+        => Assembly.GetExecutingAssembly().GetName().Name?.EndsWith(".Package.Tests", StringComparison.Ordinal) ?? false;
+
+    /// <summary> Returns the version of JJ.Framework.Configuration.Core already loaded in the current process. </summary>
+    private static string GetReferencedPackageVersion()
     {
-        string dir = AppContext.BaseDirectory;
-        while (true)
-        {
-            if (Directory.GetFiles(dir, "*.csproj").Any())
-            {
-                string candidate = Path.GetFullPath(
-                    Path.Combine(dir, "..", "Configuration.Core", "build", "JJ.Framework.Configuration.Core.targets"));
-                return File.Exists(candidate) ? candidate.Replace("\\", "/") : null;
-            }
-            string? parent = Path.GetDirectoryName(dir);
-            if (parent == null || parent == dir) return null;
-            dir = parent;
-        }
+        var assembly = typeof(CustomConfigurationManagerCore).Assembly;
+        var version  = assembly.GetName().Version
+                       ?? throw new InvalidOperationException("Could not read version from JJ.Framework.Configuration.Core assembly.");
+        return $"{version.Major}.{version.Minor}.{version.Build}";
     }
 
-    /// <summary> Finds the highest installed version of JJ.Framework.Configuration.Core in the NuGet global-packages cache. </summary>
-    private static string GetInstalledPackageVersion()
+    private static string GetBuildTargetsFilePath()
     {
-        string globalPackages = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            ".nuget", "packages", "jj.framework.configuration.core");
+        string? testProjDir = AppContext.BaseDirectory;
+        while (!Directory.GetFiles(testProjDir, "*.csproj").Any())
+        {
+            testProjDir = Path.GetDirectoryName(testProjDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
+        }
 
-        if (!Directory.Exists(globalPackages))
-            throw new InvalidOperationException(
-                $"NuGet package 'JJ.Framework.Configuration.Core' not found in global packages cache at: {globalPackages}");
+        string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
 
-        string[] versionDirs = Directory.GetDirectories(globalPackages);
-        if (versionDirs.Length == 0)
-            throw new InvalidOperationException(
-                $"No versions of 'JJ.Framework.Configuration.Core' found in: {globalPackages}");
-
-        // Pick the highest version folder (simple lexicographic ordering works for semver-like numeric segments here).
-        return versionDirs
-            .Select(d => Path.GetFileName(d)!)
-            .OrderByDescending(v => v)
-            .First();
+        string filePath = Path.Combine(mainProjDir, "build", "JJ.Framework.Configuration.Core.targets");
+        filePath = Path.GetFullPath(filePath);
+        filePath = filePath.Replace("\\", "/");
+        return filePath;
     }
 
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
