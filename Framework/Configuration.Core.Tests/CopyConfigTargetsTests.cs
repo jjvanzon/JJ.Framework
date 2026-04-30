@@ -1,8 +1,3 @@
-using System.Diagnostics;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using static System.IO.File;
-using static System.String;
 
 namespace JJ.Framework.Configuration.Core.Tests;
 
@@ -200,9 +195,9 @@ public class CopyConfigTargetsTests
     {
         string targetFramework = GetCurrentTargetFrameworkMoniker();
 
-        string configImport = IsPackageTestsProject()
-            ? $"  <ItemGroup><PackageReference Include=\"JJ.Framework.Configuration.Core\" Version=\"{GetReferencedPackageVersion()}\" /></ItemGroup>"
-            : $"  <Import Project=\"{GetBuildTargetsFilePath()}\" />";
+        string import = IsPackageTestsProject()
+            ? $"<ItemGroup><PackageReference Include=\"JJ.Framework.Configuration.Core\" Version=\"{GetReferencedPackageVersion()}\" /></ItemGroup>"
+            : $"<Import Project=\"{GetBuildTargetsFilePath()}\" />";
 
         return
             $"""
@@ -211,14 +206,14 @@ public class CopyConfigTargetsTests
                 <TargetFramework>{targetFramework}</TargetFramework>
                 <AssemblyName>TestAssembly</AssemblyName>
               </PropertyGroup>
-              {configImport}
+              {import}
             </Project>
             """;
     }
 
     /// <summary> True when running inside the *.Package.Tests project (package-reference mode). </summary>
     private static bool IsPackageTestsProject()
-        => Assembly.GetExecutingAssembly().GetName().Name?.EndsWith(".Package.Tests", StringComparison.Ordinal) ?? false;
+        => Assembly.GetExecutingAssembly().GetName().Name?.EndsWith(".Package.Tests", Ordinal) ?? false;
 
     /// <summary> Returns the version of JJ.Framework.Configuration.Core already loaded in the current process. </summary>
     private static string GetReferencedPackageVersion()
@@ -248,7 +243,7 @@ public class CopyConfigTargetsTests
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
     private static string GetCurrentTargetFrameworkMoniker()
     {
-        if (RuntimeInformation.FrameworkDescription.StartsWith(".NET Framework", StringComparison.OrdinalIgnoreCase))
+        if (RuntimeInformation.FrameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
             return "net461";
 
         Version v = Environment.Version;
