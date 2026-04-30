@@ -125,7 +125,7 @@ public class CopyConfigTargetsTests
     }
 
     [TestMethod]
-    public void JJ_CopyConfig_WhenAppConfigAndTesthostConfig_AppConfigWins()
+    public void JJ_CopyConfig_WhenAppConfigAndTesthostConfig_AppConfigWinsForAssembly_TesthostConfigWinsForTestHosts()
     {
         WriteAppConfig();
         WriteTesthostConfig();
@@ -133,9 +133,51 @@ public class CopyConfigTargetsTests
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
         IsTrue(Exists(_destNCrunchConfigFilePath));
-        AreEqual(_appConfigContent, ReadAllText(_destAssemblyConfigFilePath));
-        AreEqual(_appConfigContent, ReadAllText(_destTestHostConfigFilePath));
-        AreEqual(_appConfigContent, ReadAllText(_destNCrunchConfigFilePath));
+        AreEqual(_appConfigContent,      ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_testHostConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_testHostConfigContent, ReadAllText(_destNCrunchConfigFilePath));
+    }
+
+    [TestMethod]
+    public void JJ_CopyConfig_WhenWebConfigAndTesthostConfig_WebConfigWinsForAssembly_TesthostConfigWinsForTestHosts()
+    {
+        WriteWebConfig();
+        WriteTesthostConfig();
+        DotNetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_webConfigContent,      ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_testHostConfigContent, ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_testHostConfigContent, ReadAllText(_destNCrunchConfigFilePath));
+    }
+
+    [TestMethod]
+    public void JJ_CopyConfig_WhenAppConfigAndAssemblyNameConfig_AssemblyNameConfigWinsForAssembly_AppConfigWinsForTestHosts()
+    {
+        WriteAppConfig();
+        WriteAssemblyConfig();
+        DotNetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_assemblyConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_appConfigContent,      ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_appConfigContent,      ReadAllText(_destNCrunchConfigFilePath));
+    }
+
+    [TestMethod]
+    public void JJ_CopyConfig_WhenWebConfigAndAssemblyNameConfig_AssemblyNameConfigWinsForAssembly_WebConfigWinsForTestHosts()
+    {
+        WriteWebConfig();
+        WriteAssemblyConfig();
+        DotNetBuild();
+        IsTrue(Exists(_destAssemblyConfigFilePath));
+        IsTrue(Exists(_destTestHostConfigFilePath));
+        IsTrue(Exists(_destNCrunchConfigFilePath));
+        AreEqual(_assemblyConfigContent, ReadAllText(_destAssemblyConfigFilePath));
+        AreEqual(_webConfigContent,      ReadAllText(_destTestHostConfigFilePath));
+        AreEqual(_webConfigContent,      ReadAllText(_destNCrunchConfigFilePath));
     }
 
     // Helpers
@@ -226,30 +268,10 @@ public class CopyConfigTargetsTests
 
     private static string GetBuildTargetsFilePath()
     {
-        const int maxLoops = 100;
-        int counter = 0;
-
-        string? baseDir = AppContext.BaseDirectory;
-        string? parentDir = baseDir;
-        while (!Directory.GetFiles(parentDir, "*.csproj").Any())
-        {
-            parentDir = Path.GetDirectoryName(parentDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
-
-            counter++;
-            if (counter > maxLoops)
-            // ncrunch: no coverage start
-        {
-                throw new Exception(
-                    $"Upward search for directory with a csproj might have infinite recursion. " +
-                    $"{new { counter, maxLoops, baseDir, parentDir }}"); 
-            }
-            // ncrunch: no coverage end
-        }
-        string? testProjDir = parentDir;
-
-        string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
-
-        string filePath = Path.Combine(mainProjDir, "build", "JJ.Framework.Configuration.Core.targets");
+        // AppContext.BaseDirectory is bin\(config)\(tfm)\ — three levels inside the project dir.
+        string filePath = Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..", "..", "Configuration.Core", "build", "JJ.Framework.Configuration.Core.targets");
         filePath = Path.GetFullPath(filePath);
         filePath = filePath.Replace("\\", "/");
         return filePath;
