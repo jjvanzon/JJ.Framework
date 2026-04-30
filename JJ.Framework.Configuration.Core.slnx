@@ -6,6 +6,7 @@
   <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
   <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   <Project Path="Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj" />
+  <Project Path="Framework/Configuration.Core.Package.Tests/JJ.Framework.Configuration.Core.Package.Tests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
   <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
