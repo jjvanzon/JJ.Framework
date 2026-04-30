@@ -226,11 +226,26 @@ public class CopyConfigTargetsTests
 
     private static string GetBuildTargetsFilePath()
     {
-        string? testProjDir = AppContext.BaseDirectory;
-        while (!Directory.GetFiles(testProjDir, "*.csproj").Any())
+        const int maxLoops = 100;
+        int counter = 0;
+
+        string? baseDir = AppContext.BaseDirectory;
+        string? parentDir = baseDir;
+        while (!Directory.GetFiles(parentDir, "*.csproj").Any())
         {
-            testProjDir = Path.GetDirectoryName(testProjDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
+            parentDir = Path.GetDirectoryName(parentDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
+
+            counter++;
+            if (counter > maxLoops)
+            // ncrunch: no coverage start
+        {
+                throw new Exception(
+                    $"Upward search for directory with a csproj might have infinite recursion. " +
+                    $"{new { counter, maxLoops, baseDir, parentDir }}"); 
+            }
+            // ncrunch: no coverage end
         }
+        string? testProjDir = parentDir;
 
         string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
 
