@@ -196,17 +196,7 @@ public class CopyConfigTargetsTests
 
     private static string BuildCsProjContent()
     {
-        string? testProjDir = AppContext.BaseDirectory;
-        while (!Directory.GetFiles(testProjDir, "*.csproj").Any())
-        {
-            testProjDir = Path.GetDirectoryName(testProjDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
-        }
-
-        string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
-
-        string buildTargetsFilePath = Path.Combine(mainProjDir, "build", "JJ.Framework.Configuration.Core.targets");
-        buildTargetsFilePath = Path.GetFullPath(buildTargetsFilePath);
-        buildTargetsFilePath = buildTargetsFilePath.Replace("\\", "/");
+        var buildTargetsFilePath = GetBuildTargetsFilePath();
 
         // TODO: TargetFramework should be the current one.
         string content =
@@ -221,5 +211,21 @@ public class CopyConfigTargetsTests
             """;
 
         return content;
+    }
+
+    private static string GetBuildTargetsFilePath()
+    {
+        string? testProjDir = AppContext.BaseDirectory;
+        while (!Directory.GetFiles(testProjDir, "*.csproj").Any())
+        {
+            testProjDir = Path.GetDirectoryName(testProjDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
+        }
+
+        string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
+
+        string filePath = Path.Combine(mainProjDir, "build", "JJ.Framework.Configuration.Core.targets");
+        filePath = Path.GetFullPath(filePath);
+        filePath = filePath.Replace("\\", "/");
+        return filePath;
     }
 }
