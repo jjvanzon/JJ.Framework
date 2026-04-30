@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using static System.IO.File;
 using static System.String;
 
@@ -196,36 +197,73 @@ public class CopyConfigTargetsTests
 
     private static string BuildCsProjContent()
     {
-        var buildTargetsFilePath = GetBuildTargetsFilePath();
+        string targetFramework = GetCurrentTargetFrameworkMoniker();
+        string? localTargetsPath = TryGetLocalBuildTargetsFilePath();
 
-        // TODO: TargetFramework should be the current one.
-        string content =
+        string configImport = localTargetsPath != null
+            ? $"  <Import Project=\"{localTargetsPath}\" />"
+            : $"  <ItemGroup><PackageReference Include=\"JJ.Framework.Configuration.Core\" Version=\"{GetInstalledPackageVersion()}\" /></ItemGroup>";
+
+        return
             $"""
             <Project Sdk="Microsoft.NET.Sdk">
               <PropertyGroup>
-                <TargetFramework>net8.0</TargetFramework>
+                <TargetFramework>{targetFramework}</TargetFramework>
                 <AssemblyName>TestAssembly</AssemblyName>
               </PropertyGroup>
-              <Import Project="{buildTargetsFilePath}" />
+              {configImport}
             </Project>
             """;
-
-        return content;
     }
 
-    private static string GetBuildTargetsFilePath()
+    /// <summary> Returns the local .targets file path when running in source mode; null when running from a package reference. </summary>
+    private static string? TryGetLocalBuildTargetsFilePath()
     {
-        string? testProjDir = AppContext.BaseDirectory;
-        while (!Directory.GetFiles(testProjDir, "*.csproj").Any())
+        string dir = AppContext.BaseDirectory;
+        while (true)
         {
-            testProjDir = Path.GetDirectoryName(testProjDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
+            if (Directory.GetFiles(dir, "*.csproj").Any())
+            {
+                string candidate = Path.GetFullPath(
+                    Path.Combine(dir, "..", "Configuration.Core", "build", "JJ.Framework.Configuration.Core.targets"));
+                return File.Exists(candidate) ? candidate.Replace("\\", "/") : null;
+            }
+            string? parent = Path.GetDirectoryName(dir);
+            if (parent == null || parent == dir) return null;
+            dir = parent;
         }
+    }
 
-        string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
+    /// <summary> Finds the highest installed version of JJ.Framework.Configuration.Core in the NuGet global-packages cache. </summary>
+    private static string GetInstalledPackageVersion()
+    {
+        string globalPackages = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+            ".nuget", "packages", "jj.framework.configuration.core");
 
-        string filePath = Path.Combine(mainProjDir, "build", "JJ.Framework.Configuration.Core.targets");
-        filePath = Path.GetFullPath(filePath);
-        filePath = filePath.Replace("\\", "/");
-        return filePath;
+        if (!Directory.Exists(globalPackages))
+            throw new InvalidOperationException(
+                $"NuGet package 'JJ.Framework.Configuration.Core' not found in global packages cache at: {globalPackages}");
+
+        string[] versionDirs = Directory.GetDirectories(globalPackages);
+        if (versionDirs.Length == 0)
+            throw new InvalidOperationException(
+                $"No versions of 'JJ.Framework.Configuration.Core' found in: {globalPackages}");
+
+        // Pick the highest version folder (simple lexicographic ordering works for semver-like numeric segments here).
+        return versionDirs
+            .Select(d => Path.GetFileName(d)!)
+            .OrderByDescending(v => v)
+            .First();
+    }
+
+    /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
+    private static string GetCurrentTargetFrameworkMoniker()
+    {
+        if (RuntimeInformation.FrameworkDescription.StartsWith(".NET Framework", StringComparison.OrdinalIgnoreCase))
+            return "net461";
+
+        Version v = Environment.Version;
+        return $"net{v.Major}.{v.Minor}";
     }
 }
