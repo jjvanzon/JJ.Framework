@@ -20,6 +20,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  
+ <ItemGroup>
+    <EmbeddedResource Include="..\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj" Link="TestResources\JJ.Framework.Configuration.Core.Tests.csproj" />
+    <EmbeddedResource Include="..\Configuration.Core.Tests\*.config" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core.Tests\*.cs" Link="TestResources\%(Filename)%(Extension)" />
+  </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
