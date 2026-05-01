@@ -9,14 +9,8 @@ public class CopyConfigTargetsTests
     private const string _testhostConfigFileName = "testhost.dll.config";
     private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
 
-    private static readonly string _csprojContent         = BuildCsProjContent();
-    private static readonly string _appConfigContent      = BuildConfigContent("app");
-    private static readonly string _webConfigContent      = BuildConfigContent("web");
-    private static readonly string _assemblyConfigContent = BuildConfigContent("assembly");
-    private static readonly string _testHostConfigContent = BuildConfigContent("testhost");
-    private const           string _dummyCsFileContent    = "// Dummy Code";
 
-
+    private readonly string _thisProjDir;
     private readonly string _tempProjDir;
     private readonly string _outDir;
     private readonly string _csprojFilePath;
@@ -28,9 +22,17 @@ public class CopyConfigTargetsTests
     private readonly string _destAssemblyConfigFilePath;
     private readonly string _destTestHostConfigFilePath;
     private readonly string _destNCrunchConfigFilePath;
+    
+    private        readonly string _csprojContent;
+    private static readonly string _appConfigContent      = BuildConfigContent("app");
+    private static readonly string _webConfigContent      = BuildConfigContent("web");
+    private static readonly string _assemblyConfigContent = BuildConfigContent("assembly");
+    private static readonly string _testHostConfigContent = BuildConfigContent("testhost");
+    private const           string _dummyCsFileContent    = "// Dummy Code";
 
     public CopyConfigTargetsTests()
     {
+        _thisProjDir                  = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
         _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.CopyConfigTests", Guid.NewGuid().ToString("N"));
         _outDir                       = Path.Combine(_tempProjDir, "out");
         _csprojFilePath               = Path.Combine(_tempProjDir, "TestAssembly.csproj");
@@ -42,6 +44,7 @@ public class CopyConfigTargetsTests
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
+        _csprojContent                = BuildCsProjContent();
         CreateTempDir();
         WriteCsproj();
         WritePlaceholder();
@@ -233,12 +236,13 @@ public class CopyConfigTargetsTests
         </configuration>
         """;
 
-    private static string BuildCsProjContent()
+    private string BuildCsProjContent()
     {
         string targetFramework = GetCurrentTargetFrameworkMoniker();
+        string? packageReferenceTag = TryGetPackageReferenceTag();
 
-        string import = IsPackageTestsProject()
-            ? $"<ItemGroup><PackageReference Include=\"JJ.Framework.Configuration.Core\" Version=\"{GetReferencedPackageVersion()}\" /></ItemGroup>"
+        string import = (packageReferenceTag != null) 
+            ? $"<ItemGroup>{packageReferenceTag}</ItemGroup>"
             : $"<Import Project=\"{GetBuildTargetsFilePath()}\" />";
 
         return
@@ -253,28 +257,27 @@ public class CopyConfigTargetsTests
             """;
     }
 
-    /// <summary> True when running inside the *.Package.Tests project (package-reference mode). </summary>
-    private static bool IsPackageTestsProject()
-        => Assembly.GetExecutingAssembly().GetName().Name?.EndsWith(".Package.Tests", Ordinal) ?? false;
-
-    /// <summary> Returns the version of JJ.Framework.Configuration.Core already loaded in the current process. </summary>
-    private static string GetReferencedPackageVersion()
-    {
-        var assembly = typeof(CustomConfigurationManagerCore).Assembly;
-        var version  = assembly.GetName().Version
-                       ?? throw new InvalidOperationException("Could not read version from JJ.Framework.Configuration.Core assembly.");
-        return $"{version.Major}.{version.Minor}.{version.Build}";
-    }
-
-    private static string GetBuildTargetsFilePath()
+    /// <summary> Returns the &lt;PackageReference&gt; tag for JJ.Framework.Configuration.Core from the current test project's .csproj, or null if not found. </summary>
+    private string? TryGetPackageReferenceTag()
     {
         // AppContext.BaseDirectory is bin\(config)\(tfm)\ — three levels inside the project dir.
-        string filePath = Path.Combine(
-            AppContext.BaseDirectory,
-            "..", "..", "..", "..", "Configuration.Core", "build", "JJ.Framework.Configuration.Core.targets");
-        filePath = Path.GetFullPath(filePath);
-        filePath = filePath.Replace("\\", "/");
-        return filePath;
+        string[] csproj  = Directory.GetFiles(_thisProjDir, "*.csproj");
+        if (csproj.Length == 0)
+            throw new InvalidOperationException($"No .csproj found in: {_thisProjDir}");
+
+        var doc = XDocument.Load(csproj[0]);
+        var ns  = doc.Root!.Name.Namespace;
+
+        return doc.Descendants(ns + "PackageReference")
+                  .FirstOrDefault(x => string.Equals(x.Attribute("Include") ?.Value, "JJ.Framework.Configuration.Core", OrdinalIgnoreCase))
+                  ?.ToString();
+    }
+
+    private string GetBuildTargetsFilePath()
+    {
+        string targetsPath = Path.Combine(_thisProjDir, "..", "Configuration.Core", "build", "JJ.Framework.Configuration.Core.targets");
+        targetsPath = Path.GetFullPath(targetsPath);
+        return targetsPath.Replace("\\", "/");
     }
 
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>

@@ -1,6 +1,7 @@
 global using System.Diagnostics;
 global using System.Reflection;
 global using System.Runtime.InteropServices;
+global using System.Xml.Linq;
 global using JJ.Framework.Configuration.Core.Tests.Settings;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static System.IO.File;
