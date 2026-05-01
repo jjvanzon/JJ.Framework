@@ -21,9 +21,9 @@
     </None>
   </ItemGroup>
 
-  <!-- Simulate what NuGet consumers get automatically via the build/ convention. -->
-  <Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />
-
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+  <!-- Simulate what NuGet consumers get automatically via the build/ convention. -->
+  <Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />
 </Project>
