@@ -1,4 +1,5 @@
 global using System.Diagnostics;
+global using System.Text;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static System.IO.File;
 global using static System.String;

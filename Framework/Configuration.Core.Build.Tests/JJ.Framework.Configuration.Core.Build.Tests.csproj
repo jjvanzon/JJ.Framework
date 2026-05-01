@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks>
     <Version>4.6.$(BuildNum)</Version>
@@ -22,13 +22,15 @@
   </ItemGroup>
   
  <ItemGroup>
-    <EmbeddedResource Include="..\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj" Link="TestResources\JJ.Framework.Configuration.Core.Tests.csproj" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.dll.config" Link="TestResources\JJ.Framework.Configuration.Core.Tests.dll.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests\app.config" Link="TestResources\app.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests\web.config" Link="TestResources\web.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests\testhost.dll.config" Link="TestResources\testhost.dll.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" Link="TestResources\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests\*.cs" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\JJ.Framework.Configuration.Core.Test.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Core.Test.Dummy.csproj" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\JJ.Framework.Configuration.Core.Test.Dummy.dll.config" Link="TestResources\JJ.Framework.Configuration.Core.Test.Dummy.dll.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\app.config" Link="TestResources\app.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\web.config" Link="TestResources\web.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\testhost.dll.config" Link="TestResources\testhost.dll.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" Link="TestResources\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
+    <!--<EmbeddedResource Include="..\Directory.Build.props" Link="TestResources\Directory.Build.props" />-->
+    <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" Link="TestResources\JJ.Framework.Configuration.Core.targets" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

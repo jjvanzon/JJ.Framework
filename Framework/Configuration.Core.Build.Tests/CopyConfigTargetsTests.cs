@@ -4,19 +4,27 @@ namespace JJ.Framework.Configuration.Core.Tests;
 [TestClass]
 public class CopyConfigTargetsTests
 {
-    private const string _assemblyConfigFileName = "TestAssembly.dll.config";
+    private const int CommandTimeOutSeconds = 60;
+
+    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Test.Dummy.csproj";
+    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Test.Dummy.dll.config";
+    private const string _targetsFileName        = "JJ.Framework.Configuration.Core.targets";
+    private const string _dummyCsFileName        = "DummyTests.cs";
     private const string _testhostConfigFileName = "testhost.dll.config";
     private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
 
-    //private static readonly string _csprojContent         = GetResource("JJ.Framework.Configuration.Core.Tests.csproj");
-    private static readonly string _csprojContent         = BuildCsProjContent();
+    private static readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
+    private static readonly string _dummyCsFileContent    = GetResource(_dummyCsFileName);
+    private static readonly string _targetsFileContent    = GetResource(_targetsFileName);
+    private static readonly string _assemblyConfigContent = GetResource(_assemblyConfigFileName);
     private static readonly string _appConfigContent      = GetResource("app.config");
     private static readonly string _webConfigContent      = GetResource("web.config");
-    private static readonly string _assemblyConfigContent = BuildConfigContent("assembly");
     private static readonly string _testHostConfigContent = GetResource("testhost.dll.config");
-    private const           string _dummyCsFileContent    = "// Dummy Code";
+
 
     private readonly string _tempProjDir;
+    private readonly string _targetsDir;
+    private readonly string _targetsFilePath;
     private readonly string _outDir;
     private readonly string _csprojFilePath;
     private readonly string _dummyCsFilePath;
@@ -30,22 +38,26 @@ public class CopyConfigTargetsTests
 
     public CopyConfigTargetsTests()
     {
-        _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.CopyConfigTests", Guid.NewGuid().ToString("N"));
-        _outDir                       = Path.Combine(_tempProjDir, "out");
-        _csprojFilePath               = Path.Combine(_tempProjDir, "TestAssembly.csproj");
-        _dummyCsFilePath              = Path.Combine(_tempProjDir, "Placeholder.cs");
+        _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.Tests", Guid.NewGuid().ToString("N"));
+        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", "net10.0");
+        _targetsDir                   = Path.GetFullPath(Path.Combine(_tempProjDir, "..", "Configuration.Core", "build"));
+        _csprojFilePath               = Path.Combine(_tempProjDir, _dummyCsprojFileName);
+        _targetsFilePath              = Path.Combine(_targetsDir, _targetsFileName);
+        _dummyCsFilePath              = Path.Combine(_tempProjDir, _dummyCsFileName);
         _appConfigFilePath            = Path.Combine(_tempProjDir, "app.config");
         _webConfigFilePath            = Path.Combine(_tempProjDir, "web.config");
-        _sourceAssemblyConfigFilePath = Path.Combine(_tempProjDir, "TestAssembly.dll.config");
-        _sourceTestHostConfigFilePath = Path.Combine(_tempProjDir, "testhost.dll.config");
+        _sourceAssemblyConfigFilePath = Path.Combine(_tempProjDir, _assemblyConfigFileName);
+        _sourceTestHostConfigFilePath = Path.Combine(_tempProjDir, _testhostConfigFileName);
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
         CreateTempDir();
+        CreateTargetsDir();
         WriteCsproj();
-        WritePlaceholder();
+        WriteDummyCsFile();
+        WriteTargetsFile();
     }
-    
+
     private static string GetResource(string fileName) 
         => GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", fileName);
 
@@ -143,8 +155,10 @@ public class CopyConfigTargetsTests
     // Helpers
 
     private void CreateTempDir()       => Directory.CreateDirectory(_tempProjDir);
+    private void CreateTargetsDir()    => Directory.CreateDirectory(_targetsDir);
     private void WriteCsproj()         => WriteAllText(_csprojFilePath,               _csprojContent        );
-    private void WritePlaceholder()    => WriteAllText(_dummyCsFilePath,              _dummyCsFileContent   );
+    private void WriteTargetsFile()    => WriteAllText(_targetsFilePath,              _targetsFileContent   );
+    private void WriteDummyCsFile()    => WriteAllText(_dummyCsFilePath,              _dummyCsFileContent   );
     private void WriteAppConfig()      => WriteAllText(_appConfigFilePath,            _appConfigContent     );
     private void WriteWebConfig()      => WriteAllText(_webConfigFilePath,            _webConfigContent     );
     private void WriteAssemblyConfig() => WriteAllText(_sourceAssemblyConfigFilePath, _assemblyConfigContent);
@@ -153,7 +167,7 @@ public class CopyConfigTargetsTests
     private void DotNetBuild()
     {
         const string fileName = "dotnet";
-        string arguments = $"build --nologo -o \"{_outDir}\"";
+        string arguments = "build";
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
@@ -165,11 +179,34 @@ public class CopyConfigTargetsTests
             CreateNoWindow         = true
         })!;
 
+        var outputSB = new StringBuilder();
+        var errorSB = new StringBuilder();
+        process.OutputDataReceived += (_, e) => outputSB.AppendLine(e.Data ?? "");
+        process.ErrorDataReceived += (_, e) => errorSB.AppendLine(e.Data ?? "");
+        process.BeginOutputReadLine();
+        process.BeginErrorReadLine();
+       
+        if (!process.WaitForExit(CommandTimeOutSeconds * 1000))
+        // ncrunch: no coverage start
+        {
+            // TODO: Add Shim to JJ.Framework.
+            #if !NET5_0_OR_GREATER
+            process.Kill();
+            #else
+            process.Kill(entireProcessTree: true);
+            #endif
+            throw new TimeoutException($"{fileName} {arguments} timed out after {CommandTimeOutSeconds}s");
+        }
+        // ncrunch: no coverage end
+
+        // .NET may flush async after WaitForExit(int); call the parameterless overload.
         process.WaitForExit();
 
+        var output = outputSB.ToString().TrimEnd();
+        var error = errorSB.ToString().Trim();        //string output = process.StandardOutput.ReadToEnd();
+        //string error = process.StandardError.ReadToEnd();
+
         bool hasExitCode = process.ExitCode != 0;
-        string output = process.StandardOutput.ReadToEnd();
-        string error = process.StandardError.ReadToEnd();
         bool hasErrorText = !IsNullOrWhiteSpace(error);
         bool hasErrorInOutput = output.Contains("[error]");
         bool hasError = hasExitCode || hasErrorInOutput; // Don't consider error text, which has welcome messages and such in it these days.
@@ -181,50 +218,5 @@ public class CopyConfigTargetsTests
                 $"{new { hasExitCode, hasErrorText, hasErrorInOutput }}: " +
                 $"Exit code {process.ExitCode} {error} {output}");
         }
-    }
-    
-    private static string BuildConfigContent(string configValue) =>
-        $"""
-        <?xml version="1.0" encoding="utf-8"?>
-        <configuration>
-          <appSettings>
-            <add key="source" value="{configValue}" />
-          </appSettings>
-        </configuration>
-        """;
-
-    private static string BuildCsProjContent()
-    {
-        var buildTargetsFilePath = GetBuildTargetsFilePath();
-
-        // TODO: TargetFramework should be the current one.
-        string content =
-            $"""
-            <Project Sdk="Microsoft.NET.Sdk">
-              <PropertyGroup>
-                <TargetFramework>net8.0</TargetFramework>
-                <AssemblyName>TestAssembly</AssemblyName>
-              </PropertyGroup>
-              <Import Project="{buildTargetsFilePath}" />
-            </Project>
-            """;
-
-        return content;
-    }
-
-    private static string GetBuildTargetsFilePath()
-    {
-        string? testProjDir = AppContext.BaseDirectory;
-        while (!Directory.GetFiles(testProjDir, "*.csproj").Any())
-        {
-            testProjDir = Path.GetDirectoryName(testProjDir) ?? throw new InvalidOperationException("Could not locate test project directory.");
-        }
-
-        string mainProjDir = Path.Combine(testProjDir, "..", "Configuration.Core");
-
-        string filePath = Path.Combine(mainProjDir, "build", "JJ.Framework.Configuration.Core.targets");
-        filePath = Path.GetFullPath(filePath);
-        filePath = filePath.Replace("\\", "/");
-        return filePath;
     }
 }
