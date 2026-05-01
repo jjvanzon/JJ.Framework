@@ -8,13 +8,13 @@ public class CopyConfigTargetsTests
     private const string _testhostConfigFileName = "testhost.dll.config";
     private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
 
+    //private static readonly string _csprojContent         = GetResource("JJ.Framework.Configuration.Core.Tests.csproj");
     private static readonly string _csprojContent         = BuildCsProjContent();
-    private static readonly string _appConfigContent      = BuildConfigContent("app");
-    private static readonly string _webConfigContent      = BuildConfigContent("web");
+    private static readonly string _appConfigContent      = GetResource("app.config");
+    private static readonly string _webConfigContent      = GetResource("web.config");
     private static readonly string _assemblyConfigContent = BuildConfigContent("assembly");
-    private static readonly string _testHostConfigContent = BuildConfigContent("testhost");
+    private static readonly string _testHostConfigContent = GetResource("testhost.dll.config");
     private const           string _dummyCsFileContent    = "// Dummy Code";
-
 
     private readonly string _tempProjDir;
     private readonly string _outDir;
@@ -45,6 +45,9 @@ public class CopyConfigTargetsTests
         WriteCsproj();
         WritePlaceholder();
     }
+    
+    private static string GetResource(string fileName) 
+        => GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", fileName);
 
     // Tests
 
