@@ -116,6 +116,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.StringResource
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Core.Package.Tests", "Framework\Configuration.Core.Package.Tests\JJ.Framework.Configuration.Core.Package.Tests.csproj", "{10F385EB-8F6B-5F5E-802E-75D176F2AE36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Core.Build.Package.Tests", "Framework\Configuration.Core.Build.Package.Tests\JJ.Framework.Configuration.Core.Build.Package.Tests.csproj", "{471564C1-EBD6-ADC4-29CD-C10745881AEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -702,6 +704,18 @@ Global
 		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|x64.Build.0 = Release|Any CPU
 		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|x86.ActiveCfg = Release|Any CPU
 		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|x86.Build.0 = Release|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Debug|x64.Build.0 = Debug|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Debug|x86.Build.0 = Debug|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Release|x64.ActiveCfg = Release|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Release|x64.Build.0 = Release|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Release|x86.ActiveCfg = Release|Any CPU
+		{471564C1-EBD6-ADC4-29CD-C10745881AEF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -720,6 +734,7 @@ Global
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{2f40987d-dd95-159a-f6b1-5c32f4cbf021}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{3f6b8725-08d2-c6d1-67a1-ff1c2284a7a0}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{43ef981b-37eb-b529-4527-f5552ab2e092}*SharedItemsImports = 5
+		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{471564c1-ebd6-adc4-29cd-c10745881aef}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{4928feac-5268-7f59-4f09-46215a53657b}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{644047c0-219d-6c8d-34f5-0d6d87a516e5}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{6a8f6ea6-bea4-355e-4e8c-855bd2d71ee5}*SharedItemsImports = 5
