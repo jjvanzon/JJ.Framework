@@ -4,11 +4,17 @@
   so consuming projects get legacy System.Configuration support without the hassle.
   Multiple source .config file names are supported to accomodate different (legacy and half-solved) situations:
   "app.config", "web.config", "{AssemblyName}.dll.config", "testhost.dll.config".
+
+  Per-destination source resolution (later assignment wins):
+  - SourceForAssembly  → {AssemblyName}.dll.config : app > web > assembly
+  - SourceForTestHost  → testhost.dll.config, nCrunch : app > web > testhost
+  This lets projects that already split their config into separate named files keep both respected.
 -->
 
 <Project TreatAsLocalProperty="
          AppConfig;WebConfig;SourceAssemblyNameConfig;SourceTestHostConfig;
-         SourceConfig;SourceConfigExists;
+         SourceForAssembly;SourceForAssemblyExists;
+         SourceForTestHost;SourceForTestHostExists;
          DestAssemblyNameConfig;DestTestHostConfig;DestNCrunchConfig">
   <Target Name="JJ_CopyConfig" AfterTargets="Build" Condition="'$(TargetFileName)'!=''">
 
@@ -17,41 +23,50 @@
       <WebConfig>$(MSBuildProjectDirectory)\web.config</WebConfig>
       <SourceAssemblyNameConfig>$(MSBuildProjectDirectory)\$(TargetFileName).config</SourceAssemblyNameConfig>
       <SourceTestHostConfig>$(MSBuildProjectDirectory)\testhost.dll.config</SourceTestHostConfig>
-      
-      <SourceConfig Condition="Exists('$(SourceTestHostConfig)')">$(SourceTestHostConfig)</SourceConfig>
-      <SourceConfig Condition="Exists('$(SourceAssemblyNameConfig)')">$(SourceAssemblyNameConfig)</SourceConfig>
-      <SourceConfig Condition="Exists('$(WebConfig)')">$(WebConfig)</SourceConfig>
-      <SourceConfig Condition="Exists('$(AppConfig)')">$(AppConfig)</SourceConfig>
-      <SourceConfigExists>False</SourceConfigExists>
-      <SourceConfigExists Condition="'$(SourceConfig)'!=''">True</SourceConfigExists>
-      
+
+      <!-- SourceForAssembly: {AssemblyName}.dll.config wins; app.config is the common fallback. -->
+      <SourceForAssembly Condition="Exists('$(SourceTestHostConfig)')">$(SourceTestHostConfig)</SourceForAssembly>
+      <SourceForAssembly Condition="Exists('$(WebConfig)')">$(WebConfig)</SourceForAssembly>
+      <SourceForAssembly Condition="Exists('$(AppConfig)')">$(AppConfig)</SourceForAssembly>
+      <SourceForAssembly Condition="Exists('$(SourceAssemblyNameConfig)')">$(SourceAssemblyNameConfig)</SourceForAssembly>
+      <SourceForAssemblyExists>False</SourceForAssemblyExists>
+      <SourceForAssemblyExists Condition="'$(SourceForAssembly)'!=''">True</SourceForAssemblyExists>
+
+      <!-- SourceForTestHost: testhost.dll.config wins; app.config is the common fallback. -->
+      <SourceForTestHost Condition="Exists('$(SourceAssemblyNameConfig)')">$(SourceAssemblyNameConfig)</SourceForTestHost>
+      <SourceForTestHost Condition="Exists('$(WebConfig)')">$(WebConfig)</SourceForTestHost>
+      <SourceForTestHost Condition="Exists('$(AppConfig)')">$(AppConfig)</SourceForTestHost>
+      <SourceForTestHost Condition="Exists('$(SourceTestHostConfig)')">$(SourceTestHostConfig)</SourceForTestHost>
+      <SourceForTestHostExists>False</SourceForTestHostExists>
+      <SourceForTestHostExists Condition="'$(SourceForTestHost)'!=''">True</SourceForTestHostExists>
+
       <DestAssemblyNameConfig>$(TargetDir)$(TargetFileName).config</DestAssemblyNameConfig> <!-- E.g., MyNamespace.MyApp.dll.config.-->
       <DestTestHostConfig>$(TargetDir)testhost.dll.config</DestTestHostConfig> <!-- For MSTest / VSTest / dotnet test -->
       <DestNCrunchConfig>$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config</DestNCrunchConfig>
     </PropertyGroup>
 
-    <Message Condition="!$(SourceConfigExists)" Text="$(MSBuildProjectName) > No config to copy ($(MSBuildProjectDirectory))" Importance="High" />
-    
-    <Message Condition="$(SourceConfigExists)" Text="$(MSBuildProjectName) > Copy '$(SourceConfig)' -> '$(DestAssemblyNameConfig)'" Importance="High" />
+    <Message Condition="!$(SourceForAssemblyExists) And !$(SourceForTestHostExists)" Text="$(MSBuildProjectName) > No config to copy ($(MSBuildProjectDirectory))" Importance="High" />
 
-    <Copy Condition="$(SourceConfigExists)"
-          SourceFiles="$(SourceConfig)"
+    <Message Condition="$(SourceForAssemblyExists)" Text="$(MSBuildProjectName) > Copy '$(SourceForAssembly)' -> '$(DestAssemblyNameConfig)'" Importance="High" />
+
+    <Copy Condition="$(SourceForAssemblyExists)"
+          SourceFiles="$(SourceForAssembly)"
           DestinationFiles="$(DestAssemblyNameConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
-    <Message Condition="$(SourceConfigExists)" Text="$(MSBuildProjectName) > Copy '$(SourceConfig)' -> '$(DestTestHostConfig)'" Importance="High" />
+    <Message Condition="$(SourceForTestHostExists)" Text="$(MSBuildProjectName) > Copy '$(SourceForTestHost)' -> '$(DestTestHostConfig)'" Importance="High" />
 
-    <Copy Condition="$(SourceConfigExists)"
-          SourceFiles="$(SourceConfig)"
+    <Copy Condition="$(SourceForTestHostExists)"
+          SourceFiles="$(SourceForTestHost)"
           DestinationFiles="$(DestTestHostConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
 
-    <Message Condition="$(SourceConfigExists)" Text="$(MSBuildProjectName) > Copy '$(SourceConfig)' -> '$(DestNCrunchConfig)'" Importance="High" />
+    <Message Condition="$(SourceForTestHostExists)" Text="$(MSBuildProjectName) > Copy '$(SourceForTestHost)' -> '$(DestNCrunchConfig)'" Importance="High" />
 
-    <Copy Condition="$(SourceConfigExists)"
-          SourceFiles="$(SourceConfig)"
+    <Copy Condition="$(SourceForTestHostExists)"
+          SourceFiles="$(SourceForTestHost)"
           DestinationFiles="$(DestNCrunchConfig)"
           SkipUnchangedFiles="true"
           OverwriteReadOnlyFiles="true" />
