@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>4.6.$(BuildNum)</Version>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6289" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6282" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6282" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6282" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Configuration.Core.Build.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Configuration.Core.Build.Tests\obj\**" />
+    <Compile Remove="..\Configuration.Core.Build.Tests\bin\**" />
+    <None Include="..\Configuration.Core.Build.Tests\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Remove="..\Configuration.Core.Build.Tests\obj\**\*.config" />
+    <None Remove="..\Configuration.Core.Build.Tests\bin\**\*.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
+
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+</Project>
