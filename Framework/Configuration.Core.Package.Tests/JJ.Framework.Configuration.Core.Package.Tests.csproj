@@ -3,15 +3,6 @@
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <Version>4.6.$(BuildNum)</Version>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6282" />
-    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6282" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6289" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6282" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\Configuration.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
@@ -20,6 +11,26 @@
     <None Include="..\Configuration.Core.Tests\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <None Remove="..\Configuration.Core.Tests\obj\**\*.config" />
     <None Remove="..\Configuration.Core.Tests\bin\**\*.config" />
+  </ItemGroup>
+
+ <ItemGroup>
+    <EmbeddedResource Include="..\Configuration.Core.Package.Test.Dummy\JJ.Framework.Configuration.Core.Test.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Core.Test.Dummy.csproj" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\JJ.Framework.Configuration.Core.Test.Dummy.dll.config" Link="TestResources\JJ.Framework.Configuration.Core.Test.Dummy.dll.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\app.config" Link="TestResources\app.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\web.config" Link="TestResources\web.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\testhost.dll.config" Link="TestResources\testhost.dll.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" Link="TestResources\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" />
+    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" Link="TestResources\JJ.Framework.Configuration.Core.targets" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6282" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6282" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6289" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6282" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,7 +13,8 @@
     <File Path="Framework/TargetFrameworks.xml" />
     <File Path="Framework/Vars.xml" />
   </Folder>
-  <Project Path="Framework/Configuration.Core.Build.Tests/JJ.Framework.Configuration.Core.Build.Tests.csproj" />
+  <Project Path="Framework/Configuration.Core.Package.Test.Dummy/JJ.Framework.Configuration.Core.Package.Test.Dummy.csproj" />
+  <Project Path="Framework/Configuration.Core.Package.Tests/JJ.Framework.Configuration.Core.Package.Tests.csproj" />
   <Project Path="Framework/Configuration.Core.Test.Dummy/JJ.Framework.Configuration.Core.Test.Dummy.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
