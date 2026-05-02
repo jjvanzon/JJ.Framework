@@ -24,5 +24,6 @@
     <None Include="..\Configuration.Core.Test.Dummy\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <None Remove="..\Configuration.Core.Test.Dummy\obj\**\*.config" />
     <None Remove="..\Configuration.Core.Test.Dummy\bin\**\*.config" />
+    <None Remove="..\Configuration.Core.Test.Dummy\app.config" />
   </ItemGroup>
 </Project>
