@@ -2,7 +2,7 @@ namespace JJ.Framework.Configuration.Core.Tests;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
 [TestClass]
-public class CopyConfigTargetsTests
+public class CopyConfigTargetsTests : IDisposable
 {
     private const int CommandTimeOutSeconds = 60;
 
@@ -38,7 +38,7 @@ public class CopyConfigTargetsTests
 
     public CopyConfigTargetsTests()
     {
-        _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.Tests", Guid.NewGuid().ToString("N"));
+        _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.TestRuns", Path.GetRandomFileName().Replace(".", ""));
         _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", "net10.0");
         _targetsDir                   = Path.GetFullPath(Path.Combine(_tempProjDir, "..", "Configuration.Core", "build"));
         _csprojFilePath               = Path.Combine(_tempProjDir, _dummyCsprojFileName);
@@ -60,6 +60,33 @@ public class CopyConfigTargetsTests
 
     private static string GetResource(string fileName) 
         => GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", fileName);
+
+    
+    /// <summary>
+    /// Deletes the isolated temp folder and all its contents.
+    /// </summary>
+    internal void Cleanup()
+    {
+        try
+        {
+            if (Directory.Exists(_tempProjDir))
+            {
+                Directory.Delete(_tempProjDir, recursive: true);
+            }
+        }
+        catch
+        {
+            // Ignore
+        }
+    }
+
+    void IDisposable.Dispose()
+    {
+        Cleanup();
+        GC.SuppressFinalize(this);
+    }
+
+    ~CopyConfigTargetsTests() => Cleanup(); // ncrunch: no coverage
 
     // Tests
 
