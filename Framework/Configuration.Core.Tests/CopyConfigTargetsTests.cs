@@ -48,7 +48,7 @@ public class CopyConfigTargetsTests : IDisposable
         _webConfigFilePath            = Path.Combine(_tempProjDir, "web.config");
         _sourceAssemblyConfigFilePath = Path.Combine(_tempProjDir, _assemblyConfigFileName);
         _sourceTestHostConfigFilePath = Path.Combine(_tempProjDir, _testhostConfigFileName);
-        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", "net10.0");
+        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", GetTargetFramework());
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
@@ -195,7 +195,7 @@ public class CopyConfigTargetsTests : IDisposable
     private void DotNetBuild()
     {
         const string fileName = "dotnet";
-        string arguments = "build";
+        string arguments = $"build -p:TargetFramework={GetTargetFramework()}";
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
@@ -240,11 +240,23 @@ public class CopyConfigTargetsTests : IDisposable
         bool hasError = hasExitCode || hasErrorInOutput; // Don't consider error text, which has welcome messages and such in it these days.
 
         if (hasError)
+        // ncrunch: no coverage start
         {
             throw new Exception(
                 $"{fileName} {arguments} failed " +
                 $"{new { hasExitCode, hasErrorText, hasErrorInOutput }}: " +
                 $"Exit code {process.ExitCode} {error} {output}");
         }
+        // ncrunch: no coverage end
+    }
+
+    /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
+    private static string GetTargetFramework()
+    {
+        if (RuntimeInformation.FrameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
+            return "net461";
+
+        Version v = Environment.Version;
+        return $"net{v.Major}.{v.Minor}";
     }
 }
