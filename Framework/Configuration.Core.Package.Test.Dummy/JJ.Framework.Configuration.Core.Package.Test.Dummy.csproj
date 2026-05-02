@@ -1,23 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- TODO: Include net461 once we can update from Dev-Feed to a version that can handle it. -->
-    <!--<TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>-->
-    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <Version>4.6.0</Version>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  
-  <ItemGroup>
+
+    <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6311" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6323" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)'!='net461'">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>
-
-  <ItemGroup>
+  
+    <ItemGroup>
     <Compile Include="..\Configuration.Core.Test.Dummy\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Configuration.Core.Test.Dummy\obj\**" />
     <Compile Remove="..\Configuration.Core.Test.Dummy\bin\**" />

@@ -1,9 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>0.254.$(BuildNum)</Version>
-    <!--<TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0;net461</TargetFrameworks>-->
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <!--<TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0;net461</TargetFrameworks>-->
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
@@ -20,9 +18,11 @@
     <ProjectReference Include="..\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj" />
   </ItemGroup>
   
-  <!--<ItemGroup Condition="'$(TargetFramework)'!='net461'">-->
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" PrivateAssets="all" />
+    <!-- PrivateAssets="all" prevents leakage upstream
+         conflicting with classic System.Configuration (.NET Framework / pre-.NET5 builds). -->
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" 
+                      PrivateAssets="all" />
   </ItemGroup>
   
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
