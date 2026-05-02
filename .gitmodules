@@ -2,3 +2,7 @@
 	path = JJs-Reference-Architecture
 	url = https://github.com/jjvanzon/JJs-Reference-Architecture.git
 	branch = master
+[submodule "JJ.AutoIncrementVersion.Test.SubModule"]
+	path = JJ.AutoIncrementVersion.Test.SubModule
+	url = https://github.com/jjvanzon/JJ.AutoIncrementVersion.Test.git
+	branch = main
