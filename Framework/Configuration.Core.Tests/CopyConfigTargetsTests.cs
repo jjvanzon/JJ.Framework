@@ -6,8 +6,8 @@ public class CopyConfigTargetsTests : IDisposable
 {
     private const int CommandTimeOutSeconds = 60;
 
-    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Test.Dummy.csproj";
-    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Test.Dummy.dll.config";
+    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Test.Dummy" + ".csproj";
+    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Test.Dummy" + ".dll.config";
     private const string _targetsFileName        = "JJ.Framework.Configuration.Core.targets";
     private const string _dummyCsFileName        = "DummyTests.cs";
     private const string _testhostConfigFileName = "testhost.dll.config";
@@ -21,11 +21,10 @@ public class CopyConfigTargetsTests : IDisposable
     private static readonly string _webConfigContent      = GetResource("web.config");
     private static readonly string _testHostConfigContent = GetResource("testhost.dll.config");
 
-
+    private readonly string _tempSolutionDir;
     private readonly string _tempProjDir;
     private readonly string _targetsDir;
     private readonly string _targetsFilePath;
-    private readonly string _outDir;
     private readonly string _csprojFilePath;
     private readonly string _dummyCsFilePath;
     private readonly string _appConfigFilePath;
@@ -33,13 +32,14 @@ public class CopyConfigTargetsTests : IDisposable
     private readonly string _sourceAssemblyConfigFilePath;
     private readonly string _sourceTestHostConfigFilePath;
     private readonly string _destAssemblyConfigFilePath;
+    private readonly string _outDir;
     private readonly string _destTestHostConfigFilePath;
     private readonly string _destNCrunchConfigFilePath;
 
     public CopyConfigTargetsTests()
     {
-        _tempProjDir                  = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.TestRuns", Path.GetRandomFileName().Replace(".", ""));
-        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", "net10.0");
+        _tempSolutionDir              = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.TestRuns", Path.GetRandomFileName().Replace(".", ""));
+        _tempProjDir                  = Path.Combine(_tempSolutionDir, "Configuration.Core.Test.Dummy");
         _targetsDir                   = Path.GetFullPath(Path.Combine(_tempProjDir, "..", "Configuration.Core", "build"));
         _csprojFilePath               = Path.Combine(_tempProjDir, _dummyCsprojFileName);
         _targetsFilePath              = Path.Combine(_targetsDir, _targetsFileName);
@@ -48,6 +48,7 @@ public class CopyConfigTargetsTests : IDisposable
         _webConfigFilePath            = Path.Combine(_tempProjDir, "web.config");
         _sourceAssemblyConfigFilePath = Path.Combine(_tempProjDir, _assemblyConfigFileName);
         _sourceTestHostConfigFilePath = Path.Combine(_tempProjDir, _testhostConfigFileName);
+        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", "net10.0");
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
@@ -69,9 +70,9 @@ public class CopyConfigTargetsTests : IDisposable
     {
         try
         {
-            if (Directory.Exists(_tempProjDir))
+            if (Directory.Exists(_tempSolutionDir))
             {
-                Directory.Delete(_tempProjDir, recursive: true);
+                Directory.Delete(_tempSolutionDir, recursive: true);
             }
         }
         catch
