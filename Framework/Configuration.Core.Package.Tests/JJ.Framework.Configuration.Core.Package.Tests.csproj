@@ -14,18 +14,15 @@
   </ItemGroup>
 
  <ItemGroup>
-    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.cs" 
-                      Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.config" 
-                      Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" 
-                      Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Core.Package.Tests.Dummy\JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj"
-                      Link="TestResources\JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
+    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.config" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core.Package.Tests.Dummy\JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
     <None Remove="..\Configuration.Core.Tests\app.config" />
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="JJ.Framework.Compilation.Core" Version="4.6.6335" />
     <PackageReference Include="MSTest" Version="3.7.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
     <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6323" />
@@ -36,7 +33,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
-    <ProjectReference Include="..\Compilation.Core\JJ.Framework.Compilation.Core.csproj" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
