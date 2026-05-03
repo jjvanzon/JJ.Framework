@@ -195,7 +195,9 @@ public class CopyConfigTargetsTests : IDisposable
     private void DotNetBuild()
     {
         const string fileName = "dotnet";
-        string arguments = $"build -p:TargetFramework={GetTargetFramework()}";
+        // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
+        //string arguments = $"build -p:TargetFramework={GetTargetFramework()}";
+        string arguments = $"build";
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
