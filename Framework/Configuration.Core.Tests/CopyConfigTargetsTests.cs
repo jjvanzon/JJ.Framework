@@ -1,10 +1,12 @@
+using JJ.Framework.Compilation.Core;
+
 namespace JJ.Framework.Configuration.Core.Tests;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
 [TestClass]
 public class CopyConfigTargetsTests : IDisposable
 {
-    private const int CommandTimeOutSeconds = 60;
+    private const int BuildTimeOutSeconds = 60;
 
     private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Tests.Dummy.csproj";
     private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Tests.Dummy.dll.config";
@@ -48,7 +50,7 @@ public class CopyConfigTargetsTests : IDisposable
         _webConfigFilePath            = Path.Combine(_tempProjDir, "web.config");
         _sourceAssemblyConfigFilePath = Path.Combine(_tempProjDir, _assemblyConfigFileName);
         _sourceTestHostConfigFilePath = Path.Combine(_tempProjDir, _testhostConfigFileName);
-        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", GetTargetFramework());
+        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", DotNet.RunningTargetFramework);
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
@@ -61,7 +63,6 @@ public class CopyConfigTargetsTests : IDisposable
 
     private static string GetResource(string fileName) 
         => GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", fileName);
-
     
     /// <summary>
     /// Deletes the isolated temp folder and all its contents.
@@ -191,75 +192,5 @@ public class CopyConfigTargetsTests : IDisposable
     private void WriteWebConfig()      => WriteAllText(_webConfigFilePath,            _webConfigContent     );
     private void WriteAssemblyConfig() => WriteAllText(_sourceAssemblyConfigFilePath, _assemblyConfigContent);
     private void WriteTesthostConfig() => WriteAllText(_sourceTestHostConfigFilePath, _testHostConfigContent);
-
-    private void DotNetBuild()
-    {
-        const string fileName = "dotnet";
-        // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
-        //string arguments = $"build -p:TargetFramework={GetTargetFramework()}";
-        string arguments = $"build";
-        using var process = Process.Start(new ProcessStartInfo
-        {
-            FileName               = fileName,
-            Arguments              = arguments,
-            WorkingDirectory       = _tempProjDir,
-            RedirectStandardOutput = true,
-            RedirectStandardError  = true,
-            UseShellExecute        = false,
-            CreateNoWindow         = true
-        })!;
-
-        var outputSB = new StringBuilder();
-        var errorSB = new StringBuilder();
-        process.OutputDataReceived += (_, e) => outputSB.AppendLine(e.Data ?? "");
-        process.ErrorDataReceived += (_, e) => errorSB.AppendLine(e.Data ?? "");
-        process.BeginOutputReadLine();
-        process.BeginErrorReadLine();
-       
-        string timeOutMessage = "";
-        if (!process.WaitForExit(CommandTimeOutSeconds * 1000))
-        // ncrunch: no coverage start
-        {
-            // TODO: Add Shim to JJ.Framework.
-            #if !NET5_0_OR_GREATER
-            process.Kill();
-            #else
-            process.Kill(entireProcessTree: true);
-            #endif
-            timeOutMessage = $"{fileName} {arguments} timed out after {CommandTimeOutSeconds}s";
-        }
-        // ncrunch: no coverage end
-
-        // .NET may flush async after WaitForExit(int); call the parameterless overload.
-        process.WaitForExit();
-
-        var output = outputSB.ToString().TrimEnd();
-        var error = errorSB.ToString().Trim();       
-
-        bool hasExitCode = process.ExitCode != 0;
-        bool hasErrorText = !IsNullOrWhiteSpace(error);
-        bool hasErrorInOutput = output.Contains("[error]");
-        bool hasTimeOut = !IsNullOrWhiteSpace(timeOutMessage);
-        bool hasError = hasExitCode || hasErrorInOutput | hasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
-
-        if (!hasError) return;
-
-        // ncrunch: no coverage start
-        throw new Exception(
-            $"{fileName} {arguments} failed " +
-            $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut }}: " +
-            $"{timeOutMessage} " +
-            $"Exit code {process.ExitCode} {error} {output}");
-        // ncrunch: no coverage end
-    }
-
-    /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
-    private static string GetTargetFramework()
-    {
-        if (RuntimeInformation.FrameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
-            return "net461";
-
-        Version v = Environment.Version;
-        return $"net{v.Major}.{v.Minor}";
-    }
+    private void DotNetBuild()         => DotNet.Build(_tempProjDir, BuildTimeOutSeconds);
 }
