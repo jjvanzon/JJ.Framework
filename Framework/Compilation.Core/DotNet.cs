@@ -6,21 +6,34 @@ public static class DotNet
 
     // TODO: Dir could be optional, if you e.g. specify csproj in the arguments.
     // TODO: Args is a bit leaky, but not sure I want to abstract it so rigorously now.
+    // TODO: Options pattern
 
     public static string Build(string dir) => Build(dir, "", DefaultTimeOutSeconds);
     public static string Build(string dir, string args) => Build(dir, args, DefaultTimeOutSeconds);
     public static string Build(string dir, int timeOutSeconds) => Build(dir, "", timeOutSeconds);
     public static string Build(string dir, string args, int timeOutSeconds)
     {
+        return DotNet.Execute(dir, "build " + args, timeOutSeconds);
+    }
+
+    public static string MSBuild(string dir) => MSBuild(dir, "", DefaultTimeOutSeconds);
+    public static string MSBuild(string dir, string args) => MSBuild(dir, args, DefaultTimeOutSeconds);
+    public static string MSBuild(string dir, int timeOutSeconds) => MSBuild(dir, "", timeOutSeconds);
+    public static string MSBuild(string dir, string args, int timeOutSeconds)
+    {
+        return DotNet.Execute(dir, "msbuild " + args, timeOutSeconds);
+    }
+
+    public static string Execute(string dir, string args, int timeOutSeconds)
+    {
         ThrowIf(IsNullOrWhiteSpace(dir));
 
         const string fileName = "dotnet";
-        string fullArgs = "build " + args;
 
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
-            Arguments              = fullArgs,
+            Arguments              = args,
             WorkingDirectory       = dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
@@ -44,7 +57,7 @@ public static class DotNet
             #else
             process.Kill(entireProcessTree: true);
             #endif
-            timeOutMessage = $"{fileName} {fullArgs} timed out after {timeOutSeconds}s";
+            timeOutMessage = $"{fileName} {args} timed out after {timeOutSeconds}s";
         }
 
         // .NET may flush async after WaitForExit(int); call the parameterless overload.
@@ -72,7 +85,7 @@ public static class DotNet
         }
 
         throw new Exception(
-            $"{fileName} {fullArgs} failed " +
+            $"{fileName} {args} failed " +
             $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut }}: " +
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
