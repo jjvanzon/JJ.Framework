@@ -1,5 +1,4 @@
-﻿
-namespace JJ.Framework.Compilation.Core;
+﻿namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
@@ -8,16 +7,14 @@ public static class DotNet
     // TODO: Dir could be optional, if you e.g. specify csproj in the arguments.
     // TODO: Args is a bit leaky, but not sure I want to abstract it so rigorously now.
 
-    public static void Build(string dir) => Build(dir, "", DefaultTimeOutSeconds);
-    public static void Build(string dir, string args) => Build(dir, args, DefaultTimeOutSeconds);
-    public static void Build(string dir, int timeOutSeconds) => Build(dir, "", timeOutSeconds);
-    public static void Build(string dir, string args, int timeOutSeconds)
+    public static string Build(string dir) => Build(dir, "", DefaultTimeOutSeconds);
+    public static string Build(string dir, string args) => Build(dir, args, DefaultTimeOutSeconds);
+    public static string Build(string dir, int timeOutSeconds) => Build(dir, "", timeOutSeconds);
+    public static string Build(string dir, string args, int timeOutSeconds)
     {
         ThrowIf(IsNullOrWhiteSpace(dir));
 
         const string fileName = "dotnet";
-        // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
-        //string arguments = $"build -p:TargetFramework={GetTargetFramework()}";
         string fullArgs = "build " + args;
 
         using var process = Process.Start(new ProcessStartInfo
@@ -40,7 +37,6 @@ public static class DotNet
        
         string timeOutMessage = "";
         if (!process.WaitForExit(timeOutSeconds * 1000))
-        // ncrunch: no coverage start
         {
             // TODO: Add Shim to JJ.Framework.
             #if !NET5_0_OR_GREATER
@@ -50,7 +46,6 @@ public static class DotNet
             #endif
             timeOutMessage = $"{fileName} {fullArgs} timed out after {timeOutSeconds}s";
         }
-        // ncrunch: no coverage end
 
         // .NET may flush async after WaitForExit(int); call the parameterless overload.
         process.WaitForExit();
@@ -60,19 +55,27 @@ public static class DotNet
 
         bool hasExitCode = process.ExitCode != 0;
         bool hasErrorText = !IsNullOrWhiteSpace(error);
+        bool hasOutput = !IsNullOrWhiteSpace(output);
         bool hasErrorInOutput = output.Contains("[error]");
         bool hasTimeOut = !IsNullOrWhiteSpace(timeOutMessage);
         bool hasError = hasExitCode || hasErrorInOutput | hasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
 
-        if (!hasError) return;
+        if (!hasError) 
+        {
+            string result = 
+                Join(NewLine,
+                     hasExitCode  ? $"Exit Code = {process.ExitCode}" : "",
+                     hasErrorText ? $"Error = {error}" : "",
+                     hasOutput    ? $"Output = {output}" : "");
 
-        // ncrunch: no coverage start
+            return result;
+        }
+
         throw new Exception(
             $"{fileName} {fullArgs} failed " +
             $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut }}: " +
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
-        // ncrunch: no coverage end
     }
     
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>

@@ -192,5 +192,11 @@ public class CopyConfigTargetsTests : IDisposable
     private void WriteWebConfig()      => WriteAllText(_webConfigFilePath,            _webConfigContent     );
     private void WriteAssemblyConfig() => WriteAllText(_sourceAssemblyConfigFilePath, _assemblyConfigContent);
     private void WriteTesthostConfig() => WriteAllText(_sourceTestHostConfigFilePath, _testHostConfigContent);
-    private void DotNetBuild()         => DotNet.Build(_tempProjDir, BuildTimeOutSeconds);
+
+    private void DotNetBuild()
+    {
+        // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
+        //string args = $"-p:TargetFramework={GetTargetFramework()}";
+        DotNet.Build(_tempProjDir, BuildTimeOutSeconds);
+    }
 }
