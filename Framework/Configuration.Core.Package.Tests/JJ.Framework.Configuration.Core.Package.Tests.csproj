@@ -16,12 +16,13 @@
  <ItemGroup>
     <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.cs" 
                       Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.config" 
+    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.config"
                       Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" 
                       Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Core.Package.Tests.Dummy\JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj"
+    <EmbeddedResource Include="..\Configuration.Core.Package.Tests.Dummy\JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj" 
                       Link="TestResources\JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
+    <None Remove="..\Configuration.Core.Tests\app.config" />
   </ItemGroup>
   
   <ItemGroup>
