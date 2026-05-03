@@ -6,8 +6,8 @@ public class CopyConfigTargetsTests : IDisposable
 {
     private const int CommandTimeOutSeconds = 60;
 
-    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Test.Dummy" + ".csproj";
-    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Test.Dummy" + ".dll.config";
+    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Tests.Dummy.csproj";
+    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Tests.Dummy.dll.config";
     private const string _targetsFileName        = "JJ.Framework.Configuration.Core.targets";
     private const string _dummyCsFileName        = "DummyTests.cs";
     private const string _testhostConfigFileName = "testhost.dll.config";
@@ -39,7 +39,7 @@ public class CopyConfigTargetsTests : IDisposable
     public CopyConfigTargetsTests()
     {
         _tempSolutionDir              = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.TestRuns", Path.GetRandomFileName().Replace(".", ""));
-        _tempProjDir                  = Path.Combine(_tempSolutionDir, "Configuration.Core.Test.Dummy");
+        _tempProjDir                  = Path.Combine(_tempSolutionDir, "Configuration.Core.Tests.Dummy");
         _targetsDir                   = Path.GetFullPath(Path.Combine(_tempProjDir, "..", "Configuration.Core", "build"));
         _csprojFilePath               = Path.Combine(_tempProjDir, _dummyCsprojFileName);
         _targetsFilePath              = Path.Combine(_targetsDir, _targetsFileName);

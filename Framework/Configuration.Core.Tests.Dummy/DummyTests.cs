@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Configuration.Core.Test.Dummy;
+namespace JJ.Framework.Configuration.Core.Tests.Dummy;
 
 [TestClass]
 public class DummyTests

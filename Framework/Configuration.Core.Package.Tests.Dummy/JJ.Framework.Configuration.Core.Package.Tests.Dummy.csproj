@@ -16,12 +16,12 @@
   </ItemGroup>
   
     <ItemGroup>
-    <Compile Include="..\Configuration.Core.Test.Dummy\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\Configuration.Core.Test.Dummy\obj\**" />
-    <Compile Remove="..\Configuration.Core.Test.Dummy\bin\**" />
-    <None Include="..\Configuration.Core.Test.Dummy\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <None Remove="..\Configuration.Core.Test.Dummy\obj\**\*.config" />
-    <None Remove="..\Configuration.Core.Test.Dummy\bin\**\*.config" />
-    <None Remove="..\Configuration.Core.Test.Dummy\app.config" />
+    <Compile Include="..\Configuration.Core.Tests.Dummy\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Configuration.Core.Tests.Dummy\obj\**" />
+    <Compile Remove="..\Configuration.Core.Tests.Dummy\bin\**" />
+    <None Include="..\Configuration.Core.Tests.Dummy\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Remove="..\Configuration.Core.Tests.Dummy\obj\**\*.config" />
+    <None Remove="..\Configuration.Core.Tests.Dummy\bin\**\*.config" />
+    <None Remove="..\Configuration.Core.Tests.Dummy\app.config" />
   </ItemGroup>
 </Project>

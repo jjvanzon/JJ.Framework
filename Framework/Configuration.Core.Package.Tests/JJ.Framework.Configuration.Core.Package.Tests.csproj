@@ -14,14 +14,14 @@
   </ItemGroup>
 
  <ItemGroup>
-    <EmbeddedResource Include="..\Configuration.Core.Package.Test.Dummy\JJ.Framework.Configuration.Core.Package.Test.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Core.Test.Dummy.csproj" />
-    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\JJ.Framework.Configuration.Core.Test.Dummy.dll.config" Link="TestResources\JJ.Framework.Configuration.Core.Test.Dummy.dll.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\app.config" Link="TestResources\app.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\web.config" Link="TestResources\web.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\testhost.dll.config" Link="TestResources\testhost.dll.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" Link="TestResources\nCrunch.TaskRunner.DotNetCore.20.x64.dll.config" />
-    <EmbeddedResource Include="..\Configuration.Core.Test.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" Link="TestResources\JJ.Framework.Configuration.Core.targets" />
+    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.cs" 
+                      Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core.Tests.Dummy\*.config" 
+                      Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" 
+                      Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Core.Package.Tests.Dummy\JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj"
+                      Link="TestResources\JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
   </ItemGroup>
   
   <ItemGroup>
