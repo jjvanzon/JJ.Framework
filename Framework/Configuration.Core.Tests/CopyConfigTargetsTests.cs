@@ -214,6 +214,7 @@ public class CopyConfigTargetsTests : IDisposable
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
        
+        string timeOutMessage = "";
         if (!process.WaitForExit(CommandTimeOutSeconds * 1000))
         // ncrunch: no coverage start
         {
@@ -223,7 +224,7 @@ public class CopyConfigTargetsTests : IDisposable
             #else
             process.Kill(entireProcessTree: true);
             #endif
-            throw new TimeoutException($"{fileName} {arguments} timed out after {CommandTimeOutSeconds}s");
+            timeOutMessage = $"{fileName} {arguments} timed out after {CommandTimeOutSeconds}s";
         }
         // ncrunch: no coverage end
 
@@ -231,22 +232,22 @@ public class CopyConfigTargetsTests : IDisposable
         process.WaitForExit();
 
         var output = outputSB.ToString().TrimEnd();
-        var error = errorSB.ToString().Trim();        //string output = process.StandardOutput.ReadToEnd();
-        //string error = process.StandardError.ReadToEnd();
+        var error = errorSB.ToString().Trim();       
 
         bool hasExitCode = process.ExitCode != 0;
         bool hasErrorText = !IsNullOrWhiteSpace(error);
         bool hasErrorInOutput = output.Contains("[error]");
-        bool hasError = hasExitCode || hasErrorInOutput; // Don't consider error text, which has welcome messages and such in it these days.
+        bool hasTimeOut = !IsNullOrWhiteSpace(timeOutMessage);
+        bool hasError = hasExitCode || hasErrorInOutput | hasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
 
-        if (hasError)
+        if (!hasError) return;
+
         // ncrunch: no coverage start
-        {
-            throw new Exception(
-                $"{fileName} {arguments} failed " +
-                $"{new { hasExitCode, hasErrorText, hasErrorInOutput }}: " +
-                $"Exit code {process.ExitCode} {error} {output}");
-        }
+        throw new Exception(
+            $"{fileName} {arguments} failed " +
+            $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut }}: " +
+            $"{timeOutMessage} " +
+            $"Exit code {process.ExitCode} {error} {output}");
         // ncrunch: no coverage end
     }
 
