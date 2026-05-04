@@ -7,6 +7,9 @@ public record struct DotNetOptions
     public const int DEFAULT_TIME_OUT_SECONDS = 180;
 
     public string Dir { get; init; } = "";
+    /// <summary> E.g., "build", "add", "msbuild" </summary>
+    public string Command { get; init; } = "";
+    public string File { get; init; } = "";
     public string Args { get; init; } = "";
     public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
 }

@@ -7,6 +7,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
+    <ProjectReference Include="..\Existence.Core\JJ.Framework.Existence.Core.csproj" />
   </ItemGroup>
   
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

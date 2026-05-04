@@ -1,54 +1,26 @@
-﻿#pragma warning disable IDE0002
+﻿using static JJ.Framework.Existence.Core.FilledInHelper;
+
+#pragma warning disable IDE0002
 
 namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    //public record Options
-    //{
-    //    public const int DEFAULT_TIME_OUT_SECONDS = 180;
-    
-    //    public string Dir { get; init; } = "";
-    //    public string Args { get; init; } = "";
-    //    public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
-    //}
-
-    //private const int DefaultTimeOutSeconds = 180;
-
-    // TODO: Dir could be optional, if you e.g. specify csproj in the arguments.
-    // TODO: Args is a bit leaky, but not sure I want to abstract it so rigorously now.
-    // TODO: Options pattern
-
-    //public static string Build(string dir) => Build(dir, "", DefaultTimeOutSeconds);
-    //public static string Build(string dir, string args) => Build(dir, args, DefaultTimeOutSeconds);
-    //public static string Build(string dir, int timeOutSeconds) => Build(dir, "", timeOutSeconds);
-    //public static string Build(string dir, string args, int timeOutSeconds)
-    public static string Build(DotNetOptions options)
-    {
-        return DotNet.Exe(options with { Args = "build " + options.Args });
-    }
-
-    //public static string MSBuild(string dir) => MSBuild(dir, "", DefaultTimeOutSeconds);
-    //public static string MSBuild(string dir, string args) => MSBuild(dir, args, DefaultTimeOutSeconds);
-    //public static string MSBuild(string dir, int timeOutSeconds) => MSBuild(dir, "", timeOutSeconds);
-    //public static string MSBuild(string dir, string args, int timeOutSeconds)
-    public static string MSBuild(DotNetOptions options)
-    {
-        return DotNet.Exe(options with { Args = "msbuild " + options.Args });
-    }
+    public static string Build  (DotNetOptions options) => DotNet.Exe(options with { Command = "build"   });
+    public static string MSBuild(DotNetOptions options) => DotNet.Exe(options with { Command = "msbuild" });
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
     public static string Exe(DotNetOptions options)
     {
-        ThrowIf(IsNullOrWhiteSpace(options.Dir));
-
         const string fileName = "dotnet";
+
+        string args = FormatArgs(options);
 
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
-            Arguments              = options.Args,
+            Arguments              = args,
             WorkingDirectory       = options.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
@@ -79,14 +51,14 @@ public static class DotNet
         process.WaitForExit();
 
         var output = outputSB.ToString().TrimEnd();
-        var error = errorSB.ToString().Trim();       
+        var error  = errorSB .ToString().Trim();       
 
-        bool hasExitCode = process.ExitCode != 0;
-        bool hasErrorText = !IsNullOrWhiteSpace(error);
-        bool hasOutput = !IsNullOrWhiteSpace(output);
+        bool hasTimeOut       = Has(timeOutMessage);
+        bool hasExitCode      = Has(process.ExitCode);
+        bool hasErrorText     = Has(error);
+        bool hasOutput        = Has(output);
         bool hasErrorInOutput = output.Contains("[error]");
-        bool hasTimeOut = !IsNullOrWhiteSpace(timeOutMessage);
-        bool hasError = hasExitCode || hasErrorInOutput | hasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
+        bool hasError         = hasExitCode || hasErrorInOutput | hasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
 
         if (!hasError) 
         {
@@ -105,6 +77,12 @@ public static class DotNet
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
     }
+
+    private static string FormatArgs(DotNetOptions options)
+    {
+       var formattedFile = Has(options.File) ? @"""" + options.File + @"""" : "";
+       return options.Command + " " + formattedFile + " " + options.Args;
+    }
     
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
@@ -115,8 +93,8 @@ public static class DotNet
             if (RuntimeInformation.FrameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
                 return "net461";
 
-            Version v = Environment.Version;
-            return $"net{v.Major}.{v.Minor}";
+            Version ver = Environment.Version;
+            return $"net{ver.Major}.{ver.Minor}";
         }
     }
 

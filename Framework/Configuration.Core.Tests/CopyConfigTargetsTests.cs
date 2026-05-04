@@ -199,8 +199,7 @@ public class CopyConfigTargetsTests : IDisposable
 
     private void DotNetBuild()
     {
-        // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
-        //string args = $"-p:TargetFramework={GetTargetFramework()}";
+        //string args = $"-p:TargetFramework={GetTargetFramework()}"; // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
         DotNet.Build(_dotNetOptions);
     }
 }
