@@ -6,26 +6,31 @@ namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    public static string Build    (DotNetOptions opt) => DotNet.Exe("build",   opt);
-    public static string Restore  (DotNetOptions opt) => DotNet.Exe("restore", opt);
-    public static string MSBuild  (DotNetOptions opt) => DotNet.Exe("msbuild", opt);
-    public static string MSRebuild(DotNetOptions opt) => DotNet.Exe("msbuild", opt with { Args = opt.Args + " /t:Rebuild" });
+    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe("build",                   args, opt);
+    public static string Build    (             DotNetOptions opt) => DotNet.Exe("build",                         opt);
+    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                 args, opt);
+    public static string Restore  (             DotNetOptions opt) => DotNet.Exe("restore",                       opt);
+    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe("msbuild",                 args, opt);
+    public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                       opt);
+    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe("msbuild", "/t:Rebuild " + args, opt);
+    public static string MSRebuild(             DotNetOptions opt) => DotNet.Exe("msbuild", "/t:Rebuild",         opt);
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
     /// <param name="command">E.g., "build", "add", "msbuild"</param>
     /// <param name="opt"></param>
-    public static string Exe(string command, DotNetOptions opt)
+    public static string Exe(string command, DotNetOptions opt) => Exe(command, "", opt);
+    public static string Exe(string command, string args, DotNetOptions opt)
     {
         const string fileName = "dotnet";
 
-        string args = FormatArgs(command, opt);
+        string fullArgs = FormatArgs(command, args, opt);
 
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
-            Arguments              = args,
+            Arguments              = fullArgs,
             WorkingDirectory       = opt.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
@@ -83,11 +88,12 @@ public static class DotNet
             $"Exit code {process.ExitCode} {error} {output}");
     }
 
-    public static string FormatArgs(string command, DotNetOptions opt)
+    public static string FormatArgs(string command, DotNetOptions opt) => FormatArgs(command, "", opt);
+    public static string FormatArgs(string command, string args, DotNetOptions opt)
     {
        ThrowIf(IsNullOrWhiteSpace(command));
-       string formattedFile = Has(opt.File) ? @"""" + opt.File + @"""" : "";
-       return Join(" ", command, formattedFile, opt.Args);
+       string formattedFile = Has(opt.File) ? '"' + opt.File + '"' : "";
+       return Join(" ", command, formattedFile, opt.Args, args);
     }
     
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
