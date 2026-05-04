@@ -4,6 +4,8 @@ public record struct DotNetOptions
 {
     public DotNetOptions() { }
 
+    public static DotNetOptions Default { get; } = new();
+
     public const int DEFAULT_TIME_OUT_SECONDS = 180;
 
     public string Dir { get; init; } = "";

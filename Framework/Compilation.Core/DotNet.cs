@@ -6,21 +6,33 @@ namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe("build",                   args, opt);
+    public static string Build    (                              ) => DotNet.Exe("build"                             );
     public static string Build    (             DotNetOptions opt) => DotNet.Exe("build",                         opt);
-    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                 args, opt);
+    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe("build",                   args, opt);
+    public static string Build    (string args                   ) => DotNet.Exe("build",                   args     );
+
+    public static string Restore  (                              ) => DotNet.Exe("restore"                           );
     public static string Restore  (             DotNetOptions opt) => DotNet.Exe("restore",                       opt);
-    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe("msbuild",                 args, opt);
+    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                 args, opt);
+    public static string Restore  (string args                   ) => DotNet.Exe("restore",                 args     );
+
+    public static string MSBuild  (                              ) => DotNet.Exe("msbuild"                           );
     public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                       opt);
-    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe("msbuild", "/t:Rebuild " + args, opt);
+    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe("msbuild",                 args, opt);
+    public static string MSBuild  (string args                   ) => DotNet.Exe("msbuild",                 args     );
+
+    public static string MSRebuild(                              ) => DotNet.Exe("msbuild", "/t:Rebuild"             );
     public static string MSRebuild(             DotNetOptions opt) => DotNet.Exe("msbuild", "/t:Rebuild",         opt);
+    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe("msbuild", "/t:Rebuild " + args, opt);
+    public static string MSRebuild(string args                   ) => DotNet.Exe("msbuild", "/t:Rebuild " + args     );
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
     /// <param name="command">E.g., "build", "add", "msbuild"</param>
-    /// <param name="opt"></param>
-    public static string Exe(string command, DotNetOptions opt) => Exe(command, "", opt);
+    public static string Exe(string command                                ) => Exe(command, "", DotNetOptions.Default);
+    public static string Exe(string command,              DotNetOptions opt) => Exe(command, "", opt);
+    public static string Exe(string command, string args                   ) => Exe(command, args, DotNetOptions.Default);
     public static string Exe(string command, string args, DotNetOptions opt)
     {
         const string fileName = "dotnet";
