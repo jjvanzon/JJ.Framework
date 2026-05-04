@@ -6,22 +6,27 @@ namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    public static string Build  (DotNetOptions options) => DotNet.Exe(options with { Command = "build"   });
-    public static string MSBuild(DotNetOptions options) => DotNet.Exe(options with { Command = "msbuild" });
+    public static string Build    (DotNetOptions opt) => DotNet.Exe("build",   opt);
+    public static string Restore  (DotNetOptions opt) => DotNet.Exe("restore", opt);
+    public static string MSBuild  (DotNetOptions opt) => DotNet.Exe("msbuild", opt);
+    public static string MSRebuild(DotNetOptions opt) => DotNet.Exe("msbuild", opt with { Args = opt.Args + " /t:Rebuild" });
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
-    public static string Exe(DotNetOptions options)
+
+    /// <param name="command">E.g., "build", "add", "msbuild"</param>
+    /// <param name="opt"></param>
+    public static string Exe(string command, DotNetOptions opt)
     {
         const string fileName = "dotnet";
 
-        string args = FormatArgs(options);
+        string args = FormatArgs(command, opt);
 
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
             Arguments              = args,
-            WorkingDirectory       = options.Dir,
+            WorkingDirectory       = opt.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
             UseShellExecute        = false,
@@ -36,7 +41,7 @@ public static class DotNet
         process.BeginErrorReadLine();
        
         string timeOutMessage = "";
-        if (!process.WaitForExit(options.TimeOutSec * 1000))
+        if (!process.WaitForExit(opt.TimeOutSec * 1000))
         {
             // TODO: Add Shim to JJ.Framework.
             #if !NET5_0_OR_GREATER
@@ -44,7 +49,7 @@ public static class DotNet
             #else
             process.Kill(entireProcessTree: true);
             #endif
-            timeOutMessage = $"{fileName} {options.Args} timed out after {options.TimeOutSec}s";
+            timeOutMessage = $"{fileName} {opt.Args} timed out after {opt.TimeOutSec}s";
         }
 
         // .NET may flush async after WaitForExit(int); call the parameterless overload.
@@ -72,16 +77,17 @@ public static class DotNet
         }
 
         throw new Exception(
-            $"{fileName} {options.Args} failed " +
-            $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut }}: " +
+            $"{fileName} {opt.Args} failed " +
+            $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut, args }}: " +
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
     }
 
-    private static string FormatArgs(DotNetOptions options)
+    public static string FormatArgs(string command, DotNetOptions opt)
     {
-       var formattedFile = Has(options.File) ? @"""" + options.File + @"""" : "";
-       return options.Command + " " + formattedFile + " " + options.Args;
+       ThrowIf(IsNullOrWhiteSpace(command));
+       string formattedFile = Has(opt.File) ? @"""" + opt.File + @"""" : "";
+       return Join(" ", command, formattedFile, opt.Args);
     }
     
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
