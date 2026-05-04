@@ -13,7 +13,7 @@ public static class DotNet
     public static string Build(string dir, int timeOutSeconds) => Build(dir, "", timeOutSeconds);
     public static string Build(string dir, string args, int timeOutSeconds)
     {
-        return DotNet.Execute(dir, "build " + args, timeOutSeconds);
+        return DotNet.Exe(dir, "build " + args, timeOutSeconds);
     }
 
     public static string MSBuild(string dir) => MSBuild(dir, "", DefaultTimeOutSeconds);
@@ -21,10 +21,12 @@ public static class DotNet
     public static string MSBuild(string dir, int timeOutSeconds) => MSBuild(dir, "", timeOutSeconds);
     public static string MSBuild(string dir, string args, int timeOutSeconds)
     {
-        return DotNet.Execute(dir, "msbuild " + args, timeOutSeconds);
+        return DotNet.Exe(dir, "msbuild " + args, timeOutSeconds);
     }
 
-    public static string Execute(string dir, string args, int timeOutSeconds)
+    // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
+    // Maybe the returned info should just implicitly convert to string, for syntax sugar.
+    public static string Exe(string dir, string args, int timeOutSeconds)
     {
         ThrowIf(IsNullOrWhiteSpace(dir));
 
