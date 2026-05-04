@@ -1,42 +1,55 @@
-﻿namespace JJ.Framework.Compilation.Core;
+﻿#pragma warning disable IDE0002
+
+namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    private const int DefaultTimeOutSeconds = 180;
+    //public record Options
+    //{
+    //    public const int DEFAULT_TIME_OUT_SECONDS = 180;
+    
+    //    public string Dir { get; init; } = "";
+    //    public string Args { get; init; } = "";
+    //    public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
+    //}
+
+    //private const int DefaultTimeOutSeconds = 180;
 
     // TODO: Dir could be optional, if you e.g. specify csproj in the arguments.
     // TODO: Args is a bit leaky, but not sure I want to abstract it so rigorously now.
     // TODO: Options pattern
 
-    public static string Build(string dir) => Build(dir, "", DefaultTimeOutSeconds);
-    public static string Build(string dir, string args) => Build(dir, args, DefaultTimeOutSeconds);
-    public static string Build(string dir, int timeOutSeconds) => Build(dir, "", timeOutSeconds);
-    public static string Build(string dir, string args, int timeOutSeconds)
+    //public static string Build(string dir) => Build(dir, "", DefaultTimeOutSeconds);
+    //public static string Build(string dir, string args) => Build(dir, args, DefaultTimeOutSeconds);
+    //public static string Build(string dir, int timeOutSeconds) => Build(dir, "", timeOutSeconds);
+    //public static string Build(string dir, string args, int timeOutSeconds)
+    public static string Build(DotNetOptions options)
     {
-        return DotNet.Exe(dir, "build " + args, timeOutSeconds);
+        return DotNet.Exe(options with { Args = "build " + options.Args });
     }
 
-    public static string MSBuild(string dir) => MSBuild(dir, "", DefaultTimeOutSeconds);
-    public static string MSBuild(string dir, string args) => MSBuild(dir, args, DefaultTimeOutSeconds);
-    public static string MSBuild(string dir, int timeOutSeconds) => MSBuild(dir, "", timeOutSeconds);
-    public static string MSBuild(string dir, string args, int timeOutSeconds)
+    //public static string MSBuild(string dir) => MSBuild(dir, "", DefaultTimeOutSeconds);
+    //public static string MSBuild(string dir, string args) => MSBuild(dir, args, DefaultTimeOutSeconds);
+    //public static string MSBuild(string dir, int timeOutSeconds) => MSBuild(dir, "", timeOutSeconds);
+    //public static string MSBuild(string dir, string args, int timeOutSeconds)
+    public static string MSBuild(DotNetOptions options)
     {
-        return DotNet.Exe(dir, "msbuild " + args, timeOutSeconds);
+        return DotNet.Exe(options with { Args = "msbuild " + options.Args });
     }
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
-    public static string Exe(string dir, string args, int timeOutSeconds)
+    public static string Exe(DotNetOptions options)
     {
-        ThrowIf(IsNullOrWhiteSpace(dir));
+        ThrowIf(IsNullOrWhiteSpace(options.Dir));
 
         const string fileName = "dotnet";
 
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
-            Arguments              = args,
-            WorkingDirectory       = dir,
+            Arguments              = options.Args,
+            WorkingDirectory       = options.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
             UseShellExecute        = false,
@@ -51,7 +64,7 @@ public static class DotNet
         process.BeginErrorReadLine();
        
         string timeOutMessage = "";
-        if (!process.WaitForExit(timeOutSeconds * 1000))
+        if (!process.WaitForExit(options.TimeOutSec * 1000))
         {
             // TODO: Add Shim to JJ.Framework.
             #if !NET5_0_OR_GREATER
@@ -59,7 +72,7 @@ public static class DotNet
             #else
             process.Kill(entireProcessTree: true);
             #endif
-            timeOutMessage = $"{fileName} {args} timed out after {timeOutSeconds}s";
+            timeOutMessage = $"{fileName} {options.Args} timed out after {options.TimeOutSec}s";
         }
 
         // .NET may flush async after WaitForExit(int); call the parameterless overload.
@@ -87,7 +100,7 @@ public static class DotNet
         }
 
         throw new Exception(
-            $"{fileName} {args} failed " +
+            $"{fileName} {options.Args} failed " +
             $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut }}: " +
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");

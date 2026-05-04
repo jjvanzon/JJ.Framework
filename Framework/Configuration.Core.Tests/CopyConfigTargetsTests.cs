@@ -6,7 +6,7 @@ namespace JJ.Framework.Configuration.Core.Tests;
 [TestClass]
 public class CopyConfigTargetsTests : IDisposable
 {
-    private const int BuildTimeOutSeconds = 60;
+    private const int BuildTimeOutSec = 60;
 
     private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Tests.Dummy.csproj";
     private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Tests.Dummy.dll.config";
@@ -23,6 +23,7 @@ public class CopyConfigTargetsTests : IDisposable
     private static readonly string _webConfigContent      = GetResource("web.config");
     private static readonly string _testHostConfigContent = GetResource("testhost.dll.config");
 
+    private readonly DotNetOptions _dotNetOptions;
     private readonly string _tempSolutionDir;
     private readonly string _tempProjDir;
     private readonly string _targetsDir;
@@ -54,6 +55,9 @@ public class CopyConfigTargetsTests : IDisposable
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
+
+        _dotNetOptions = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec };
+
         CreateTempDir();
         CreateTargetsDir();
         WriteCsproj();
@@ -197,6 +201,6 @@ public class CopyConfigTargetsTests : IDisposable
     {
         // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
         //string args = $"-p:TargetFramework={GetTargetFramework()}";
-        DotNet.Build(_tempProjDir, BuildTimeOutSeconds);
+        DotNet.Build(_dotNetOptions);
     }
 }
