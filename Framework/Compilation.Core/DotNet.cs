@@ -125,11 +125,10 @@ public static class DotNet
 
     private static string FormatAutoRestore(bool autoRestore, string command)
     {
-        if (autoRestore) return "";
-        // TODO: Perhaps an inclusive filter ie better. Now weird switch applied to each and every command.
-        if (command.Is("restore")) return ""; 
-        // TODO: This might work for dotnet build, but not so sure about msbuild
-        return "--no-restore";
+        if (command.Is("restore")) return "";
+        //if (command.Is("add")) return ""; // ?? Needed
+        if (command.Is("msbuild")) return autoRestore ? "-restore" : "";
+        return autoRestore ? "" : "--no-restore";
     }
 
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
