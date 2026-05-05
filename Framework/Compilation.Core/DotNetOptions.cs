@@ -11,5 +11,6 @@ public record struct DotNetOptions
     public string Dir { get; init; } = "";
     public string File { get; init; } = "";
     public string Args { get; init; } = "";
+    public bool AutoRestore { get; init; }
     public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
 }

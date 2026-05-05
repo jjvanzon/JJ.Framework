@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0002 // Simplify member access
 
+using JJ.Framework.Existence.Core;
 using static JJ.Framework.Existence.Core.FilledInHelper;
 
 
@@ -107,14 +108,26 @@ public static class DotNet
             $"Exit code {process.ExitCode} {error} {output}");
     }
 
-    //public static string FormatArgs(string command, DotNetOptions opt) => FormatArgs(command, "", opt);
     public static string FormatArgs(string command, string args, DotNetOptions opt)
     {
-       ThrowIf(IsNullOrWhiteSpace(command));
-       string formattedFile = Has(opt.File) ? '"' + opt.File + '"' : "";
-       return Join(" ", command, formattedFile, opt.Args, args);
+        ThrowIf(IsNullOrWhiteSpace(command));
+        string formattedFile = FormatFile(opt.File);
+        string formattedAutoRestore = FormatAutoRestore(opt.AutoRestore, command);
+        return Join(" ", command, formattedFile, formattedAutoRestore, opt.Args, args);
     }
-    
+
+    private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
+
+    private static string FormatAutoRestore(bool autoRestore, string command)
+    {
+        // TODO: This might work for dotnet build, but not so sure about msbuild
+        string text = "--no-restore";
+        if (autoRestore) text = "";
+        // TODO: Perhaps an inclusive filter ie better. Now weird switch applied to each and every command.
+        if (command.Is("restore")) text = ""; 
+        return text;
+    }
+
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
     {
