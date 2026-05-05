@@ -95,7 +95,7 @@ public static class DotNet
 
         throw new Exception(
             $"{fileName} {opt.Args} failed " +
-            $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut, args }}: " +
+            $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut, fullArgs }}: " +
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
     }
