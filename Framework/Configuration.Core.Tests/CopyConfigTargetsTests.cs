@@ -200,8 +200,7 @@ public class CopyConfigTargetsTests : IDisposable
     private void DotNetBuild()
     {
         DotNet.Restore(_options);
-        string args = $"-p:TargetFramework={DotNet.RunningTargetFramework}"; // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
+        string args = $"-p:TargetFramework={DotNet.RunningTargetFramework}";
         DotNet.Build(args, _options);
-        //DotNet.Build(_options);
     }
 }
