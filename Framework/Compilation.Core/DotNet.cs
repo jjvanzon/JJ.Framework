@@ -21,7 +21,7 @@ public static class DotNet
     public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver),              opt);
     public static string InstallPackage(string id, string ver, string args                   ) => DotNet.Exe("add", PackArg(id, ver) + " " + args     );
     public static string InstallPackage(string id, string ver, string args, DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver) + " " + args, opt);
-    private static string PackArg(string id, string ver) => $"package {id} --ver {ver}";
+    private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
 
     public static string MSBuild  (                              ) => DotNet.Exe("msbuild"                           );
     public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                       opt);
