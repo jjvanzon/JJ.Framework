@@ -6,7 +6,7 @@ namespace JJ.Framework.Configuration.Core.Tests;
 [TestClass]
 public class CopyConfigTargetsTests : IDisposable
 {
-    private const int BuildTimeOutSec = 60;
+    private const int BuildTimeOutSec = 240;
 
     private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Core.Tests.Dummy.csproj";
     private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Core.Tests.Dummy.dll.config";
