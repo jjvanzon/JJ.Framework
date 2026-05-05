@@ -1,4 +1,5 @@
 global using System.Runtime.InteropServices;
+global using System.Text.RegularExpressions;
 global using JJ.Framework.Configuration.Core.Tests.Settings;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static System.StringComparison;

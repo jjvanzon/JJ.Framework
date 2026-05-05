@@ -25,3 +25,9 @@ Compilation.Core Scratch Pad
     //public static string MSBuild(string dir, int timeOutSeconds) => MSBuild(dir, "", timeOutSeconds);
     //public static string MSBuild(string dir, string args, int timeOutSeconds)
 ```
+
+
+```xml
+    <!--<TargetFrameworks Condition="'$(IsNCrunch)'=='True'">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
+    <!--<TargetFrameworks>net10.0</TargetFrameworks>-->
+```

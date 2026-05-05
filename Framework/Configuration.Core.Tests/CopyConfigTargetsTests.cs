@@ -15,7 +15,7 @@ public class CopyConfigTargetsTests : IDisposable
     private const string _testhostConfigFileName = "testhost.dll.config";
     private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
 
-    private static readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
+    private readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
     private static readonly string _dummyCsFileContent    = GetResource(_dummyCsFileName);
     private static readonly string _targetsFileContent    = GetResource(_targetsFileName);
     private static readonly string _assemblyConfigContent = GetResource(_assemblyConfigFileName);
@@ -55,6 +55,8 @@ public class CopyConfigTargetsTests : IDisposable
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
+
+        _csprojContent = PatchTargetFramework(_csprojContent);
 
         _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec };
 
@@ -197,10 +199,19 @@ public class CopyConfigTargetsTests : IDisposable
     private void WriteAssemblyConfig() => WriteAllText(_sourceAssemblyConfigFilePath, _assemblyConfigContent);
     private void WriteTesthostConfig() => WriteAllText(_sourceTestHostConfigFilePath, _testHostConfigContent);
 
+    /// <summary>
+    /// Replacing TargetFramework(s) in the content avoids tooling issues with -p:TargetFrameworks= overrides.
+    /// </summary>
+    private static string PatchTargetFramework(string csprojContent)
+    {
+        csprojContent = Regex.Replace(csprojContent, "<TargetFrameworks>[^<]*</TargetFrameworks>", $"<TargetFramework>{DotNet.RunningTargetFramework}</TargetFramework>");
+        csprojContent = Regex.Replace(csprojContent, "<TargetFramework>[^<]*</TargetFramework>",  $"<TargetFramework>{DotNet.RunningTargetFramework}</TargetFramework>");
+        return csprojContent;
+    }
+
     private void DotNetBuild()
     {
         DotNet.Restore(_options);
-        string args = $"-p:TargetFrameworks={DotNet.RunningTargetFramework}";
-        DotNet.Build(args, _options);
+        DotNet.Build(_options);
     }
 }
