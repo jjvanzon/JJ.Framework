@@ -1,6 +1,7 @@
-﻿using static JJ.Framework.Existence.Core.FilledInHelper;
+﻿#pragma warning disable IDE0002 // Simplify member access
 
-#pragma warning disable IDE0002
+using static JJ.Framework.Existence.Core.FilledInHelper;
+
 
 namespace JJ.Framework.Compilation.Core;
 
@@ -15,6 +16,12 @@ public static class DotNet
     public static string Restore  (             DotNetOptions opt) => DotNet.Exe("restore",                       opt);
     public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                 args, opt);
     public static string Restore  (string args                   ) => DotNet.Exe("restore",                 args     );
+
+    public static string InstallPackage(string id, string ver                                ) => DotNet.Exe("add", PackArg(id, ver)                  );
+    public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver),              opt);
+    public static string InstallPackage(string id, string ver, string args                   ) => DotNet.Exe("add", PackArg(id, ver) + " " + args     );
+    public static string InstallPackage(string id, string ver, string args, DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver) + " " + args, opt);
+    private static string PackArg(string id, string ver) => $"package {id} --ver {ver}";
 
     public static string MSBuild  (                              ) => DotNet.Exe("msbuild"                           );
     public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                       opt);
@@ -100,7 +107,7 @@ public static class DotNet
             $"Exit code {process.ExitCode} {error} {output}");
     }
 
-    public static string FormatArgs(string command, DotNetOptions opt) => FormatArgs(command, "", opt);
+    //public static string FormatArgs(string command, DotNetOptions opt) => FormatArgs(command, "", opt);
     public static string FormatArgs(string command, string args, DotNetOptions opt)
     {
        ThrowIf(IsNullOrWhiteSpace(command));
