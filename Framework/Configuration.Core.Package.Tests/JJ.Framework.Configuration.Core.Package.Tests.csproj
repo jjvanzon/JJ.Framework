@@ -22,13 +22,17 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Compilation.Core" Version="4.6.6354" />
+    <PackageReference Include="JJ.Framework.Compilation.Core" Version="4.6.6358" />
     <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6358" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6358" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6358" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6358" />
+  </ItemGroup>
+
+  <!--<ItemGroup Condition="'$(TargetFramework)'!='net461'">-->
+  <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6323" />
-    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6323" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6289" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6282" />
   </ItemGroup>
 
   <ItemGroup>
