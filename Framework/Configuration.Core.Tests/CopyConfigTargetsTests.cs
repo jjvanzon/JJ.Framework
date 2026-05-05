@@ -23,7 +23,7 @@ public class CopyConfigTargetsTests : IDisposable
     private static readonly string _webConfigContent      = GetResource("web.config");
     private static readonly string _testHostConfigContent = GetResource("testhost.dll.config");
 
-    private readonly DotNetOptions _dotNetOptions;
+    private readonly DotNetOptions _options;
     private readonly string _tempSolutionDir;
     private readonly string _tempProjDir;
     private readonly string _targetsDir;
@@ -56,7 +56,7 @@ public class CopyConfigTargetsTests : IDisposable
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
 
-        _dotNetOptions = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec };
+        _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec };
 
         CreateTempDir();
         CreateTargetsDir();
@@ -199,7 +199,9 @@ public class CopyConfigTargetsTests : IDisposable
 
     private void DotNetBuild()
     {
-        //string args = $"-p:TargetFramework={GetTargetFramework()}"; // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
-        DotNet.Build(_dotNetOptions);
+        DotNet.Restore(_options);
+        string args = $"-p:TargetFramework={DotNet.RunningTargetFramework}"; // Seems to give time-outs in CI during/after restore. Execute restore first separately for all TFMs?
+        DotNet.Build(args, _options);
+        //DotNet.Build(_options);
     }
 }
