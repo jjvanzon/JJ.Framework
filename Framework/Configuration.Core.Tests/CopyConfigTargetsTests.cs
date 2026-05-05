@@ -204,7 +204,7 @@ public class CopyConfigTargetsTests : IDisposable
     /// </summary>
     private static string PatchTargetFramework(string csprojContent)
     {
-        csprojContent = Regex.Replace(csprojContent, "<TargetFrameworks>[^<]*</TargetFrameworks>", $"<TargetFramework>{DotNet.RunningTargetFramework}</TargetFramework>");
+        csprojContent = Regex.Replace(csprojContent, "<TargetFrameworks>[^<]*</TargetFrameworks>", $"<TargetFrameworks>{DotNet.RunningTargetFramework}</TargetFrameworks>");
         csprojContent = Regex.Replace(csprojContent, "<TargetFramework>[^<]*</TargetFramework>",  $"<TargetFramework>{DotNet.RunningTargetFramework}</TargetFramework>");
         return csprojContent;
     }
