@@ -54,9 +54,13 @@ public static class DotNet
             WorkingDirectory       = opt.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
+            RedirectStandardInput  = true,
             UseShellExecute        = false,
             CreateNoWindow         = true
         })!;
+
+        // Close stdin immediately so the process never blocks waiting for user input.
+        process.StandardInput.Close();
 
         var outputSB = new StringBuilder();
         var errorSB = new StringBuilder();
