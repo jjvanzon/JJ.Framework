@@ -1,6 +1,9 @@
 ﻿<SolutionConfiguration>
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <CustomBuildProperties>
+      <Value>IsNCrunch = True</Value>
+    </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
