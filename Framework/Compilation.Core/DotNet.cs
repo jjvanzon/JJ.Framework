@@ -38,8 +38,8 @@ public static class DotNet
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
     /// <param name="command">E.g., "build", "add", "msbuild"</param>
-    public static string Exe(string command                                ) => Exe(command, "", DotNetOptions.Default);
-    public static string Exe(string command,              DotNetOptions opt) => Exe(command, "", opt);
+    public static string Exe(string command                                ) => Exe(command, "",   DotNetOptions.Default);
+    public static string Exe(string command,              DotNetOptions opt) => Exe(command, "",   opt);
     public static string Exe(string command, string args                   ) => Exe(command, args, DotNetOptions.Default);
     public static string Exe(string command, string args, DotNetOptions opt)
     {
@@ -113,19 +113,23 @@ public static class DotNet
         ThrowIf(IsNullOrWhiteSpace(command));
         string formattedFile = FormatFile(opt.File);
         string formattedAutoRestore = FormatAutoRestore(opt.AutoRestore, command);
-        return Join(" ", command, formattedFile, formattedAutoRestore, opt.Args, args);
+        // HACK: auto-restore put at the end to try and make `add package` work.
+        // Problem with that is that it sort of destroys the overriding possibility
+        // with `opt.Args` and then `args`.
+        // TODO: Make specific FormatArgs for package add/remove?
+        return Join(" ", command, formattedFile, opt.Args, args, formattedAutoRestore);
+        //return Join(" ", command, formattedFile, formattedAutoRestore, opt.Args, args);
     }
 
     private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
 
     private static string FormatAutoRestore(bool autoRestore, string command)
     {
-        // TODO: This might work for dotnet build, but not so sure about msbuild
-        string text = "--no-restore";
-        if (autoRestore) text = "";
+        if (autoRestore) return "";
         // TODO: Perhaps an inclusive filter ie better. Now weird switch applied to each and every command.
-        if (command.Is("restore")) text = ""; 
-        return text;
+        if (command.Is("restore")) return ""; 
+        // TODO: This might work for dotnet build, but not so sure about msbuild
+        return "--no-restore";
     }
 
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
