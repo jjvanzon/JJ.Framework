@@ -4,6 +4,7 @@
     <Version>4.6.0</Version>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <LangVersion>latest</LangVersion>
+    <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <ItemGroup>
