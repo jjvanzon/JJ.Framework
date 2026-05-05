@@ -4,6 +4,7 @@ namespace JJ.Framework.Configuration.Core.Tests;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
 [TestClass]
+[DoNotParallelize]
 public class CopyConfigTargetsTests : IDisposable
 {
     private const int BuildTimeOutSec = 240;
