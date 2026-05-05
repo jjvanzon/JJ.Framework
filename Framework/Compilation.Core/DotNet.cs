@@ -127,6 +127,7 @@ public static class DotNet
     {
         if (command.Is("restore")) return "";
         //if (command.Is("add")) return ""; // ?? Needed
+        if (command.Is("remove")) return ""; // Wouldn't it only apply to packages instead of removing other things?
         if (command.Is("msbuild")) return autoRestore ? "-restore" : "";
         return autoRestore ? "" : "--no-restore";
     }
