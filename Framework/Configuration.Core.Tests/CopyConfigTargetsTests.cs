@@ -200,7 +200,7 @@ public class CopyConfigTargetsTests : IDisposable
     private void DotNetBuild()
     {
         DotNet.Restore(_options);
-        string args = $"-p:TargetFramework={DotNet.RunningTargetFramework}";
+        string args = $"-p:TargetFrameworks={DotNet.RunningTargetFramework}";
         DotNet.Build(args, _options);
     }
 }
