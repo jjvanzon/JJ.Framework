@@ -119,7 +119,7 @@ public static class DotNet
         ThrowIf(IsNullOrWhiteSpace(command));
         string formattedFile    = FormatFile(opt.File);
         string formattedRestore = FormatAutoRestore(opt.AutoRestore, command);
-        string formattedConf    = FormatConfiguration(opt.Configuration, command);
+        string formattedConf    = FormatConf(opt.Conf, command);
         string[] elements = [ command, formattedFile, formattedConf, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
@@ -136,11 +136,11 @@ public static class DotNet
         return autoRestore ? "" : "--no-restore";
     }
 
-    private static string FormatConfiguration(string configuration, string command)
+    private static string FormatConf(string conf, string command)
     {
-        if (!Has(configuration)) return "";
-        if (command.Is("build")) return "-c " + configuration;
-        if (command.Is("msbuild")) return "/p:Configuration=" + configuration;
+        if (!Has(conf)) return "";
+        if (command.Is("build")) return "-c " + conf;
+        if (command.Is("msbuild")) return "/p:Configuration=" + conf;
         return "";
     }
 

@@ -10,8 +10,8 @@ public record struct DotNetOptions
 
     public string Dir { get; init; } = "";
     public string File { get; init; } = "";
-    /// <summary> Typically "Release" or "Debug", and "" for default behavior. </summary>
-    public string Configuration { get; init; } = "";
+    /// <summary> Build configuration. Typically "Release" or "Debug", and "" for default behavior. </summary>
+    public string Conf { get; init; } = "";
     public string Args { get; init; } = "";
     public bool AutoRestore { get; init; }
     public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
