@@ -115,7 +115,8 @@ public static class DotNet
         string formattedFile      = FormatFile(opt.File);
         string formattedRestore   = FormatAutoRestore(opt.AutoRestore, command);
         string formattedBuildConf = FormatBuildConf(opt.BuildConf, command);
-        string[] elements = [ command, formattedFile, formattedBuildConf, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
+        string formattedVerbosity = FormatVerbosity(opt.Verbosity, command);
+        string[] elements = [ command, formattedFile, formattedBuildConf, formattedVerbosity, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
     }
@@ -134,11 +135,19 @@ public static class DotNet
     private static string FormatBuildConf(string buildConf, string command)
     {
         if (!Has(buildConf)) return "";
-        if (command.Is("build")) return "-c " + buildConf;
-        if (command.Is("msbuild")) return "/p:Configuration=" + buildConf;
+        if (command.Is("build")) return $"-c {buildConf}";
+        if (command.Is("msbuild")) return $"/p:Configuration={buildConf}";
         return "";
     }
     
+    private static string FormatVerbosity(DotNetVerbosity verbosity, string command)
+    {
+        if (verbosity == default) return "";
+        if (command.Is("build")) return $"--verbosity {verbosity}";
+        if (command.Is("msbuild")) return $"-verbosity:{verbosity}";
+        return "";
+    }
+
     private static string PackArg(string id) => $"package {id}";
     private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
 

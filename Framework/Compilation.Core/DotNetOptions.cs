@@ -13,6 +13,8 @@ public record struct DotNetOptions
     /// <summary> Build configuration. Typically "Release" or "Debug", and "" for default behavior. </summary>
     public string BuildConf { get; init; } = "";
     public string Args { get; init; } = "";
+
+    public DotNetVerbosity Verbosity { get; init; }
     public bool AutoRestore { get; init; }
     public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
 }
