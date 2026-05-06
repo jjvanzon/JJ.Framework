@@ -57,7 +57,8 @@ public class CopyConfigTargetsTests : IDisposable
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
 
-        _csprojContent = PatchTargetFramework(_csprojContent);
+        // This seems to cause time-outs.
+        //_csprojContent = PatchTargetFramework(_csprojContent);
 
         _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec };
 
