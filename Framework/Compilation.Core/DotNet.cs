@@ -147,17 +147,36 @@ public static class DotNet
     private static string PackArg(string id) => $"package {id}";
     private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
 
-    /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
+    /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
     {
         get 
         {
-            // TODO: This is not reusable; limited to .NET 4.6.1
-            if (RuntimeInformation.FrameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
-                return "net461";
+            string frameworkDescription = RuntimeInformation.FrameworkDescription;
+            if (!frameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
+            {
+                Version ver = Environment.Version;
+                return $"net{ver.Major}.{ver.Minor}";
+            }
 
-            Version ver = Environment.Version;
-            return $"net{ver.Major}.{ver.Minor}";
+            // GetCallingAssembly() returns the caller's assembly (e.g. the test project built for net461),
+            // not this library's assembly (which targets netstandard2.0).
+            var targetFrameworkAttribs = GetCallingAssembly()
+                .GetCustomAttributes<TargetFrameworkAttribute>()
+                .ToArray();
+            
+            ThrowIf(targetFrameworkAttribs.Length != 1);
+
+            // ".NETFramework,Version=v4.6.1" => "net461"
+            const string prefix = ".NETFramework,Version=v";
+            string frameworkName = targetFrameworkAttribs[0].FrameworkName;
+            if (frameworkName.StartsWith(prefix, OrdinalIgnoreCase))
+            {
+                string ver = frameworkName.CutLeft(prefix.Length).Replace(".", "");
+                return "net" + ver;
+            }
+
+            throw new Exception($"{nameof(RunningTargetFramework)} could not be resolved from {new {frameworkDescription, frameworkName}}.");
         }
     }
 

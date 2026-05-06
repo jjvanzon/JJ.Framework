@@ -39,3 +39,24 @@ Compilation.Core Scratch Pad
         // TODO: Make specific FormatArgs for package add/remove?
         //return Join(" ", command, formattedFile, formattedAutoRestore, opt.Args, args);
 ```
+
+
+```cs
+            //string ver = desc.CutLeft(".NET Framework ").CutRightUntil(".").CutRightUntil(".").Replace(".", "");
+                //return "net" + ver;
+```
+
+```cs
+                //string ver = desc.CutLeft(".NET Framework ").CutRightUntil(".").CutRightUntil(".").Replace(".", "");
+                //return "net" + ver;
+
+                //var match = Match(tfm, @"Version=v(\d+)\.(\d+)(?:\.(\d+))?");
+                //if (match.Success)
+                //{
+                //    string major = match.Groups[1].Value;
+                //    string minor = match.Groups[2].Value;
+                //    string patch = match.Groups[3].Value;
+                //    string version = string.IsNullOrEmpty(patch) ? $"{major}{minor}" : $"{major}{minor}{patch}";
+                //    return "net" + version;
+                //}
+```
