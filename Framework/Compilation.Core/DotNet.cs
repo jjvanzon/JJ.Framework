@@ -111,29 +111,37 @@ public static class DotNet
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
     }
+    
+    // TODO: Sanitization?
 
-    public static string FormatArgs(string command, string args, DotNetOptions opt)
+    private static string FormatArgs(string command, string args, DotNetOptions opt)
     {
         ThrowIf(IsNullOrWhiteSpace(command));
-        string formattedFile = FormatFile(opt.File);
-        string formattedAutoRestore = FormatAutoRestore(opt.AutoRestore, command);
-        // HACK: auto-restore put at the end to try and make `add package` work.
-        // Problem with that is that it sort of destroys the overriding possibility
-        // with `opt.Args` and then `args`.
-        // TODO: Make specific FormatArgs for package add/remove?
-        return Join(" ", command, formattedFile, opt.Args, args, formattedAutoRestore);
-        //return Join(" ", command, formattedFile, formattedAutoRestore, opt.Args, args);
+        string formattedFile    = FormatFile(opt.File);
+        string formattedRestore = FormatAutoRestore(opt.AutoRestore, command);
+        string formattedConf    = FormatConfiguration(opt.Configuration, command);
+        string[] elements = [ command, formattedFile, formattedConf, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
+        string ret = Join(" ", elements.Where(FilledIn));
+        return ret; 
     }
 
     private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
 
     private static string FormatAutoRestore(bool autoRestore, string command)
     {
-        if (command.Is("add")) return ""; // ?? Needed
+        if (command.Is("add"))     return ""; // Needed?
         if (command.Is("restore")) return "";
-        if (command.Is("remove")) return ""; // Wouldn't it only apply to packages instead of removing other things?
+        if (command.Is("remove"))  return ""; // Wouldn't this exclusion only apply to packages instead of removing other things?
         if (command.Is("msbuild")) return autoRestore ? "-restore" : "";
         return autoRestore ? "" : "--no-restore";
+    }
+
+    private static string FormatConfiguration(string configuration, string command)
+    {
+        if (!Has(configuration)) return "";
+        if (command.Is("build")) return "-c " + configuration;
+        if (command.Is("msbuild")) return "/p:Configuration=" + configuration;
+        return "";
     }
 
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>

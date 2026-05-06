@@ -31,3 +31,12 @@ Compilation.Core Scratch Pad
     <!--<TargetFrameworks Condition="'$(IsNCrunch)'=='True'">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <!--<TargetFrameworks>net10.0</TargetFrameworks>-->
 ```
+
+
+```cs
+        // HACK: auto-restore put at the end makes `add package` work.
+        // Problem with that is that it sort of destroys the overriding possibility
+        // with `opt.Args` and then `args`.
+        // TODO: Make specific FormatArgs for package add/remove?
+        //return Join(" ", command, formattedFile, formattedAutoRestore, opt.Args, args);
+```
