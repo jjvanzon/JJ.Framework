@@ -10,6 +10,7 @@
       "Framework\\Common.Core.TrimTests\\JJ.Framework.Common.Core.TrimTests.csproj",
       "Framework\\Common.Core\\JJ.Framework.Common.Core.csproj",
       "Framework\\Common.TrimTests\\JJ.Framework.Common.Legacy.TrimTests.csproj",
+      "Framework\\Compilation.Core.Tests\\JJ.Framework.Compilation.Core.Tests.csproj",
       "Framework\\Compilation.Core\\JJ.Framework.Compilation.Core.csproj",
       "Framework\\Configuration.Core.Tests.Dummy\\JJ.Framework.Configuration.Core.Tests.Dummy.csproj",
       "Framework\\Configuration.Core.Tests\\JJ.Framework.Configuration.Core.Tests.csproj",
