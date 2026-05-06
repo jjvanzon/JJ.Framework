@@ -54,13 +54,13 @@ public static class DotNet
             WorkingDirectory       = opt.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
-            RedirectStandardInput  = true,
+            //RedirectStandardInput  = true,
             UseShellExecute        = false,
             CreateNoWindow         = true
         })!;
 
         // Close stdin immediately so the process never blocks waiting for user input.
-        process.StandardInput.Close();
+        //process.StandardInput.Close();
 
         var outputSB = new StringBuilder();
         var errorSB = new StringBuilder();
@@ -129,8 +129,8 @@ public static class DotNet
 
     private static string FormatAutoRestore(bool autoRestore, string command)
     {
+        if (command.Is("add")) return ""; // ?? Needed
         if (command.Is("restore")) return "";
-        //if (command.Is("add")) return ""; // ?? Needed
         if (command.Is("remove")) return ""; // Wouldn't it only apply to packages instead of removing other things?
         if (command.Is("msbuild")) return autoRestore ? "-restore" : "";
         return autoRestore ? "" : "--no-restore";
