@@ -16,7 +16,7 @@ public class CopyConfigTargetsTests : IDisposable
     private const string _testhostConfigFileName = "testhost.dll.config";
     private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
 
-    private readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
+    private        readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
     private static readonly string _dummyCsFileContent    = GetResource(_dummyCsFileName);
     private static readonly string _targetsFileContent    = GetResource(_targetsFileName);
     private static readonly string _assemblyConfigContent = GetResource(_assemblyConfigFileName);
