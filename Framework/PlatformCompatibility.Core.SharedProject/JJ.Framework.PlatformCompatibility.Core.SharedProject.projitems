@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\NotNull.cs" Link="NotNull.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\NotNullWhen.cs" Link="NotNullWhen.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\OverloadResolutionPriority.cs" Link="OverloadResolutionPriority.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\ProcessSupport.cs" Link="OverloadResolutionPriority.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\CompilerFeatureRequired.cs" Link="CompilerFeatureRequired.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\RequiredMember.cs" Link="RequiredMember.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\RequiresDynamicCode.cs" Link="RequiresDynamicCode.cs" />

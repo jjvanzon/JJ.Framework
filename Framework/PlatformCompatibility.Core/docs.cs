@@ -111,3 +111,11 @@ public struct _requiresunreferencedcode;
 /// Suppresses an analysis warning unconditionally, even after trimming.
 /// </summary>
 public struct _unconditionalsuppressmessage;
+
+/// <summary>
+/// Platform shim for <c>Process.Kill</c> 
+/// to support the <c>entireProcessTree</c> parameter
+/// Doesn't actually kill entire process tree, just the process itself.
+/// so code can compile for pre-.NET5 along with .NET5+ code.
+/// </summary>
+public struct _kill;

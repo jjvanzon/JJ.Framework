@@ -72,15 +72,10 @@ public static class DotNet
         string timeOutMessage = "";
         if (!process.WaitForExit(opt.TimeOutSec * 1000))
         {
-            // TODO: Add Shim to JJ.Framework.
-            #if !NET5_0_OR_GREATER
-            process.Kill();
-            #else
             process.Kill(entireProcessTree: true);
-            #endif
             timeOutMessage = $"{fileName} {opt.Args} timed out after {opt.TimeOutSec}s";
         }
-
+        
         // .NET may flush async after WaitForExit(int); call the parameterless overload.
         process.WaitForExit();
 

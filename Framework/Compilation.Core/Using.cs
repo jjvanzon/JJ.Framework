@@ -11,6 +11,6 @@ global using static System.Environment;
 global using static System.Reflection.Assembly;
 global using static System.String;
 global using static System.StringComparison;
-global using static System.Text.RegularExpressions.Regex;
 global using static JJ.Framework.Exceptions.Core.Throw;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
+global using JJ.Framework.PlatformCompatibility.Core;

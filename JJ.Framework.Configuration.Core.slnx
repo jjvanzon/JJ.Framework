@@ -18,6 +18,13 @@
   <Project Path="Framework/Configuration.Core.Package.Tests.Dummy/JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj" />
   <Project Path="Framework/Configuration.Core.Package.Tests/JJ.Framework.Configuration.Core.Package.Tests.csproj" />
   <Project Path="Framework/Configuration.Core.Tests.Dummy/JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
+  <Project Path="Framework/PlatformCompatibility.Core.SharedProject/JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj" Id="e275ca1f-e6b3-4f2e-bff3-c1c24982f009" />
+  <Project Path="Framework/PlatformCompatibility.Core.TestBase.Standard/JJ.Framework.PlatformCompatibility.Core.TestBase.Standard.csproj" />
+  <Project Path="Framework/PlatformCompatibility.Core.TestBase/JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
+  <Project Path="Framework/PlatformCompatibility.Core.Tests.Standard/JJ.Framework.PlatformCompatibility.Core.Tests.Standard.csproj" />
+  <Project Path="Framework/PlatformCompatibility.Core.Tests/JJ.Framework.PlatformCompatibility.Core.Tests.csproj" />
+  <Project Path="Framework/PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
+  <Project Path="Framework/SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" Id="1beb8e62-fcb0-4b88-b142-23e720d5bacc" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
   <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
