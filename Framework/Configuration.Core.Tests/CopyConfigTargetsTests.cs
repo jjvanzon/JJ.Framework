@@ -52,7 +52,7 @@ public class CopyConfigTargetsTests : IDisposable
         _webConfigFilePath            = Path.Combine(_tempProjDir, "web.config");
         _sourceAssemblyConfigFilePath = Path.Combine(_tempProjDir, _assemblyConfigFileName);
         _sourceTestHostConfigFilePath = Path.Combine(_tempProjDir, _testhostConfigFileName);
-        _outDir                       = Path.Combine(_tempProjDir, "bin", "Debug", DotNet.RunningTargetFramework);
+        _outDir                       = Path.Combine(_tempProjDir, "bin", "Release", DotNet.RunningTargetFramework);
         _destAssemblyConfigFilePath   = Path.Combine(_outDir, _assemblyConfigFileName);
         _destTestHostConfigFilePath   = Path.Combine(_outDir, _testhostConfigFileName);
         _destNCrunchConfigFilePath    = Path.Combine(_outDir, _ncrunchConfigFileName);
@@ -60,7 +60,7 @@ public class CopyConfigTargetsTests : IDisposable
         // This seems to cause time-outs.
         //_csprojContent = PatchTargetFramework(_csprojContent);
 
-        _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec };
+        _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec, Conf = "Release" };
 
         CreateTempDir();
         CreateTargetsDir();
