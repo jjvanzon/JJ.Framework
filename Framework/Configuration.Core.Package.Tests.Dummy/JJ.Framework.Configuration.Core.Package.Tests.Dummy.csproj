@@ -9,7 +9,7 @@
 
     <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6374" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6379" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)'!='net461'">
