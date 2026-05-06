@@ -32,7 +32,6 @@ Compilation.Core Scratch Pad
     <!--<TargetFrameworks>net10.0</TargetFrameworks>-->
 ```
 
-
 ```cs
         // HACK: auto-restore put at the end makes `add package` work.
         // Problem with that is that it sort of destroys the overriding possibility

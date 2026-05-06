@@ -60,7 +60,7 @@ public class CopyConfigTargetsTests : IDisposable
         // This seems to cause time-outs.
         //_csprojContent = PatchTargetFramework(_csprojContent);
 
-        _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec, Conf = "Release" };
+        _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec, BuildConf = "Release" };
 
         CreateTempDir();
         CreateTargetsDir();
