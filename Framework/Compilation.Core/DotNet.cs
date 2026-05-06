@@ -14,11 +14,15 @@ public static class DotNet
     public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                 args, opt);
     public static string Restore  (string args                   ) => DotNet.Exe("restore",                 args     );
 
-    public static string InstallPackage(string id, string ver                                ) => DotNet.Exe("add", PackArg(id, ver)                  );
-    public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver),              opt);
-    public static string InstallPackage(string id, string ver, string args                   ) => DotNet.Exe("add", PackArg(id, ver) + " " + args     );
+    public static string InstallPackage(string id, string ver                                ) => DotNet.Exe("add", PackArg(id, ver));
+    public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver), opt);
+    public static string InstallPackage(string id, string ver, string args                   ) => DotNet.Exe("add", PackArg(id, ver) + " " + args);
     public static string InstallPackage(string id, string ver, string args, DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver) + " " + args, opt);
-    private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
+
+    public static string UninstallPackage(string id                                ) => DotNet.Exe("remove", PackArg(id));
+    public static string UninstallPackage(string id,              DotNetOptions opt) => DotNet.Exe("remove", PackArg(id), opt);
+    public static string UninstallPackage(string id, string args                   ) => DotNet.Exe("remove", PackArg(id) + " " + args);
+    public static string UninstallPackage(string id, string args, DotNetOptions opt) => DotNet.Exe("remove", PackArg(id) + " " + args, opt);
 
     public static string MSBuild  (                              ) => DotNet.Exe("msbuild"                           );
     public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                       opt);
@@ -139,6 +143,9 @@ public static class DotNet
         if (command.Is("msbuild")) return "/p:Configuration=" + conf;
         return "";
     }
+    
+    private static string PackArg(string id) => $"package {id}";
+    private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
 
     /// <summary> Returns the TFM string matching the currently-executing runtime, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
