@@ -153,7 +153,7 @@ public static class DotNet
         get 
         {
             string frameworkDescription = RuntimeInformation.FrameworkDescription;
-            if (!frameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
+            if (!frameworkDescription.StartsWith(".NET Framework", Ordinal))
             {
                 Version ver = Environment.Version;
                 return $"net{ver.Major}.{ver.Minor}";
@@ -161,16 +161,15 @@ public static class DotNet
 
             // GetCallingAssembly() returns the caller's assembly (e.g. the test project built for net461),
             // not this library's assembly (which targets netstandard2.0).
-            var targetFrameworkAttribs = GetCallingAssembly()
-                .GetCustomAttributes<TargetFrameworkAttribute>()
-                .ToArray();
+            var targetFrameworkAttribs = 
+                GetCallingAssembly().GetCustomAttributes<TargetFrameworkAttribute>().ToArray();
             
             ThrowIf(targetFrameworkAttribs.Length != 1);
 
             // ".NETFramework,Version=v4.6.1" => "net461"
             const string prefix = ".NETFramework,Version=v";
             string frameworkName = targetFrameworkAttribs[0].FrameworkName;
-            if (frameworkName.StartsWith(prefix, OrdinalIgnoreCase))
+            if (frameworkName.StartsWith(prefix, Ordinal))
             {
                 string ver = frameworkName.CutLeft(prefix.Length).Replace(".", "");
                 return "net" + ver;
