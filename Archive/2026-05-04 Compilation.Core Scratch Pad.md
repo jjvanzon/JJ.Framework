@@ -47,8 +47,15 @@ Compilation.Core Scratch Pad
 ```
 
 ```cs
+
+
+            if (targetFrameworkAttr?.FrameworkName == null)
+            {
+            }
+
                 //string ver = desc.CutLeft(".NET Framework ").CutRightUntil(".").CutRightUntil(".").Replace(".", "");
                 //return "net" + ver;
+
 
                 //var match = Match(tfm, @"Version=v(\d+)\.(\d+)(?:\.(\d+))?");
                 //if (match.Success)
@@ -59,4 +66,31 @@ Compilation.Core Scratch Pad
                 //    string version = string.IsNullOrEmpty(patch) ? $"{major}{minor}" : $"{major}{minor}{patch}";
                 //    return "net" + version;
                 //}
+
+            // ".NETCoreApp,Version=v8.0" → "net8.0"
+            //else if (tfm.StartsWith(".NETCoreApp", OrdinalIgnoreCase) || tfm.StartsWith(".NET", OrdinalIgnoreCase))
+            //{
+            //    var match = Match(tfm, @"Version=v(\d+)\.(\d+)");
+            //    if (match.Success)
+            //    {
+            //        string major = match.Groups[1].Value;
+            //        string minor = match.Groups[2].Value;
+            //        return $"net{major}.{minor}";
+            //    }
+            //}
+
+            // Fallback: parse from runtime description
+            //if (frameworkDescription.StartsWith(".NET Framework", OrdinalIgnoreCase))
+            //{
+            //    var match = Match(frameworkDescription, @"\.NET\s+Framework\s+(\d+)\.(\d+)(?:\.(\d+))?");
+            //    if (match.Success)
+            //    {
+            //        string major = match.Groups[1].Value;
+            //        string minor = match.Groups[2].Value;
+            //        string patch = match.Groups[3].Value;
+            //        string version = string.IsNullOrEmpty(patch) ? $"{major}{minor}" : $"{major}{minor}{patch}";
+            //        return "net" + version;
+            //    }
+            //    return "net461";
+            //}
 ```

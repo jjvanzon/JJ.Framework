@@ -4,15 +4,30 @@ namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    public static string Build    (                              ) => DotNet.Exe("build"                             );
-    public static string Build    (             DotNetOptions opt) => DotNet.Exe("build",                         opt);
-    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe("build",                   args, opt);
-    public static string Build    (string args                   ) => DotNet.Exe("build",                   args     );
+    public static string Build    (                              ) => DotNet.Exe("build"                                   );
+    public static string Build    (             DotNetOptions opt) => DotNet.Exe("build",                               opt);
+    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe("build",                         args, opt);
+    public static string Build    (string args                   ) => DotNet.Exe("build",                         args     );
 
-    public static string Restore  (                              ) => DotNet.Exe("restore"                           );
-    public static string Restore  (             DotNetOptions opt) => DotNet.Exe("restore",                       opt);
-    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                 args, opt);
-    public static string Restore  (string args                   ) => DotNet.Exe("restore",                 args     );
+    public static string MSBuild  (                              ) => DotNet.Exe("msbuild"                                 );
+    public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                             opt);
+    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe("msbuild",                       args, opt);
+    public static string MSBuild  (string args                   ) => DotNet.Exe("msbuild",                       args     );
+
+    public static string Rebuild  (                              ) => DotNet.Exe("build",   Re("build")                    );
+    public static string Rebuild  (             DotNetOptions opt) => DotNet.Exe("build",   Re("build"),                opt);
+    public static string Rebuild  (string args, DotNetOptions opt) => DotNet.Exe("build",   Re("build")   + " " + args, opt);
+    public static string Rebuild  (string args                   ) => DotNet.Exe("build",   Re("build")   + " " + args     );
+
+    public static string MSRebuild(                              ) => DotNet.Exe("msbuild", Re("msbuild")                  );
+    public static string MSRebuild(             DotNetOptions opt) => DotNet.Exe("msbuild", Re("msbuild"),              opt);
+    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe("msbuild", Re("msbuild") + " " + args, opt);
+    public static string MSRebuild(string args                   ) => DotNet.Exe("msbuild", Re("msbuild") + " " + args     );
+
+    public static string Restore  (                              ) => DotNet.Exe("restore"                                 );
+    public static string Restore  (             DotNetOptions opt) => DotNet.Exe("restore",                             opt);
+    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                       args, opt);
+    public static string Restore  (string args                   ) => DotNet.Exe("restore",                       args     );
 
     public static string InstallPackage(string id, string ver                                ) => DotNet.Exe("add", PackArg(id, ver));
     public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver), opt);
@@ -23,16 +38,6 @@ public static class DotNet
     public static string UninstallPackage(string id,              DotNetOptions opt) => DotNet.Exe("remove", PackArg(id), opt);
     public static string UninstallPackage(string id, string args                   ) => DotNet.Exe("remove", PackArg(id) + " " + args);
     public static string UninstallPackage(string id, string args, DotNetOptions opt) => DotNet.Exe("remove", PackArg(id) + " " + args, opt);
-
-    public static string MSBuild  (                              ) => DotNet.Exe("msbuild"                           );
-    public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                       opt);
-    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe("msbuild",                 args, opt);
-    public static string MSBuild  (string args                   ) => DotNet.Exe("msbuild",                 args     );
-
-    public static string MSRebuild(                              ) => DotNet.Exe("msbuild", "/t:Rebuild"             );
-    public static string MSRebuild(             DotNetOptions opt) => DotNet.Exe("msbuild", "/t:Rebuild",         opt);
-    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe("msbuild", "/t:Rebuild " + args, opt);
-    public static string MSRebuild(string args                   ) => DotNet.Exe("msbuild", "/t:Rebuild " + args     );
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
@@ -156,6 +161,12 @@ public static class DotNet
 
     private static string PackArg(string id) => $"package {id}";
     private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
+    private static string Re(string command)
+    {
+        if (command.Is("build")) return "--no-incremental";
+        if (command.Is("msbuild")) return "/t:Rebuild";
+        return "";
+    }
 
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
