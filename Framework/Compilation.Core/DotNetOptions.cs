@@ -14,7 +14,15 @@ public record struct DotNetOptions
     public string BuildConf { get; init; } = "";
     public string Args { get; init; } = "";
 
+    /// <summary>
+    /// <para>Verbosity is passed to the build processes executed in this helper.</para>
+    /// Plus:<br/>
+    /// - <c>Diagnostic</c> or <c>Detailed</c> will log all build output.<br/>
+    /// - <c>Normal</c> and <c>Minimal</c> will only check silently for errors internally.<br/>
+    /// - <c>Quiet</c> won't work, because it'll swallow diagnostics used by the logic.
+    /// </summary>
     public DotNetVerbosity Verbosity { get; init; }
     public bool AutoRestore { get; init; }
     public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
+    public Action<string> Log { get; init; } = _ => { };
 }

@@ -14,3 +14,4 @@ global using static System.StringComparison;
 global using static JJ.Framework.Exceptions.Core.Throw;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using JJ.Framework.PlatformCompatibility.Core;
+global using static JJ.Framework.Compilation.Core.DotNetVerbosity;

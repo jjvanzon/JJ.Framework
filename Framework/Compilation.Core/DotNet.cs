@@ -97,6 +97,11 @@ public static class DotNet
                      hasErrorText ? $"Error = {error}" : "",
                      hasOutput    ? $"Output = {output}" : "");
 
+            if (opt.Verbosity.In(Diagnostic, Detailed))
+            {
+                opt.Log(output);
+            }
+
             return result;
         }
 
@@ -107,7 +112,8 @@ public static class DotNet
             $"Exit code {process.ExitCode} {error} {output}");
     }
     
-    // TODO: Sanitization?
+    // TODO: Move to separate utility class
+    // TODO: Sanitization
 
     private static string FormatArgs(string command, string args, DotNetOptions opt)
     {
