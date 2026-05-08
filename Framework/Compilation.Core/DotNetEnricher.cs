@@ -7,8 +7,8 @@ internal static class DotNetEnricher
         info.Command     = Has(info.Command) ? info.Command : FormatCommand(info.CommandEnum);
 
         info.CommandEnum = info.CommandEnum
-                                .Coalesce(TryGetCommandEnum(info.Command, info.IsRebuild))
-                                .Coalesce(TryGetCommandEnum(info.Command, info.Args));
+                               .Coalesce(TryGetCommandEnum(info.Command, info.IsRebuild))
+                               .Coalesce(TryGetCommandEnum(info.Command, info.Args));
 
         info.IsRebuild   = Has(info.IsRebuild) ? info.IsRebuild : IsRebuild(info.Command, info.Args);
     }
@@ -22,4 +22,21 @@ internal static class DotNetEnricher
         uninstallpackage => "remove",
         _ => ""
     };
+
+    public static DotNetCommandEnum TryGetCommandEnum(string command, string args)
+    {
+        return TryGetCommandEnum(command, IsRebuild(command, args));
+    }
+
+    public static DotNetCommandEnum TryGetCommandEnum(string command, bool isRebuild)
+    {
+        if (command.Is("build"))   return isRebuild ? rebuild : build;
+        if (command.Is("msbuild")) return isRebuild ? msrebuild : msbuild;
+        if (command.Is("restore")) return restore;
+        // TODO: Assumptive (but true, for now?)
+        if (command.Is("add"))     return installpackage; 
+        if (command.Is("remove"))  return uninstallpackage;
+        return default;
+        
+    }
 }

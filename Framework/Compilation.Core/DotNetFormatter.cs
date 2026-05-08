@@ -5,9 +5,9 @@ internal static class DotNetFormatter
     public static string FormatArgs(DotNetCommandInfo info, DotNetOptions opt)
     {
         string formattedFile      = FormatFile(opt.File);
-        string formattedRestore   = FormatAutoRestore(opt.AutoRestore, info.Command);
-        string formattedBuildConf = FormatBuildConf(opt.BuildConf, info.Command);
-        string formattedVerbosity = FormatVerbosity(opt.Verbosity, info.Command);
+        string formattedRestore   = TryFormatAutoRestore(opt.AutoRestore, info.CommandEnum);
+        string formattedBuildConf = TryFormatBuildConf  (opt.BuildConf,   info.CommandEnum);
+        string formattedVerbosity = TryFormatVerbosity  (opt.Verbosity,   info.CommandEnum);
         string[] elements = [ info.Command, formattedFile, formattedBuildConf, formattedVerbosity, opt.Args, info.Args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
@@ -15,28 +15,26 @@ internal static class DotNetFormatter
 
     private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
 
-    private static string FormatAutoRestore(bool autoRestore, string command)
+    private static string TryFormatAutoRestore(bool autoRestore, DotNetCommandEnum commandEnum)
     {
-        if (command.Is("add"))     return ""; // Needed?
-        if (command.Is("restore")) return "";
-        if (command.Is("remove"))  return ""; // Wouldn't this exclusion only apply to packages instead of removing other things?
-        if (command.Is("msbuild")) return autoRestore ? "-restore" : "";
-        return autoRestore ? "" : "--no-restore";
-    }
-
-    private static string FormatBuildConf(string buildConf, string command)
-    {
-        if (!Has(buildConf)) return "";
-        if (command.Is("build")) return $"-c {buildConf}";
-        if (command.Is("msbuild")) return $"/p:Configuration={buildConf}";
+        if (commandEnum is build or rebuild) return autoRestore ? "" : "--no-restore";
+        if (commandEnum is msbuild or msrebuild) return autoRestore ? "-restore" : "";
         return "";
     }
 
-    private static string FormatVerbosity(DotNetVerbosity verbosity, string command)
+    private static string TryFormatBuildConf(string buildConf, DotNetCommandEnum commandEnum)
+    {
+        if (!Has(buildConf)) return "";
+        if (commandEnum is build or rebuild) return $"-c {buildConf}";
+        if (commandEnum is msbuild or msrebuild) return $"/p:Configuration={buildConf}";
+        return "";
+    }
+
+    private static string TryFormatVerbosity(DotNetVerbosity verbosity, DotNetCommandEnum commandEnum)
     {
         if (verbosity == default) return "";
-        if (command.Is("build")) return $"--verbosity {verbosity}";
-        if (command.Is("msbuild")) return $"-verbosity:{verbosity}";
+        if (commandEnum is build or rebuild) return $"--verbosity {verbosity}";
+        if (commandEnum is msbuild or msrebuild) return $"-verbosity:{verbosity}";
         return "";
     }
 
@@ -64,23 +62,6 @@ internal static class DotNetFormatter
         if (command == rebuild  ) return REBUILD_ARG_DOT_NET;
         if (command == msrebuild) return REBUILD_ARG_MS_BUILD;
         return "";
-    }
-
-    public static DotNetCommandEnum TryGetCommandEnum(string command, string args)
-    {
-        return TryGetCommandEnum(command, IsRebuild(command, args));
-    }
-
-    public static DotNetCommandEnum TryGetCommandEnum(string command, bool isRebuild)
-    {
-        if (command.Is("build"))   return isRebuild ? rebuild : build;
-        if (command.Is("msbuild")) return isRebuild ? msrebuild : msbuild;
-        if (command.Is("restore")) return restore;
-        // TODO: Assumptive (but true, for now?)
-        if (command.Is("add"))     return installpackage; 
-        if (command.Is("remove"))  return uninstallpackage;
-        return default;
-        
     }
 
     //public static bool IsMSBuild(DotNetCommand command) 
