@@ -6,8 +6,6 @@ public record struct DotNetOptions
 
     public static DotNetOptions Default { get; } = new();
 
-    public const int DEFAULT_TIME_OUT_SECONDS = 180;
-
     public string Dir { get; init; } = "";
     public string File { get; init; } = "";
     /// <summary> Build configuration. Typically "Release" or "Debug", and "" for default behavior. </summary>
@@ -23,6 +21,10 @@ public record struct DotNetOptions
     /// </summary>
     public DotNetVerbosity Verbosity { get; init; }
     public bool AutoRestore { get; init; }
-    public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SECONDS;
-    public Action<string> Log { get; init; } = _ => { };
+    
+    private const int DEFAULT_TIME_OUT_SEC = 180;
+    public int TimeOutSec { get; init; } = DEFAULT_TIME_OUT_SEC;
+
+    internal static readonly Action<string> NullLog = _ => { };
+    public Action<string> Log { get; init; } = NullLog;
 }

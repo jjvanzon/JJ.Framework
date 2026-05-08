@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using JJ.Framework.Compilation.Core;
 
 namespace JJ.Framework.Configuration.Core.Tests;
@@ -60,7 +61,13 @@ public class CopyConfigTargetsTests : IDisposable
         // This seems to cause time-outs.
         //_csprojContent = PatchTargetFramework(_csprojContent);
 
-        _options = new DotNetOptions { Dir = _tempProjDir, TimeOutSec = BuildTimeOutSec, BuildConf = "Release" };
+        _options = new DotNetOptions
+        {
+            Dir = _tempProjDir,
+            TimeOutSec = BuildTimeOutSec, 
+            BuildConf = "Release",
+            Log = Log
+        };
 
         CreateTempDir();
         CreateTargetsDir();
@@ -68,6 +75,8 @@ public class CopyConfigTargetsTests : IDisposable
         WriteDummyCsFile();
         WriteTargetsFile();
     }
+
+    private void Log(string message) => Trace.WriteLine(message);
 
     private static string GetResource(string fileName) 
         => GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", fileName);

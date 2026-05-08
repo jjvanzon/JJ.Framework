@@ -1,4 +1,6 @@
-﻿#pragma warning disable IDE0002 // Simplify member access
+﻿using static JJ.Framework.Compilation.Core.DotNetOptions;
+
+#pragma warning disable IDE0002 // Simplify member access
 
 namespace JJ.Framework.Compilation.Core;
 
@@ -43,11 +45,16 @@ public static class DotNet
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
     /// <param name="command">E.g., "build", "add", "msbuild"</param>
-    public static string Exe(string command                                ) => Exe(command, "",   DotNetOptions.Default);
+    public static string Exe(string command                                ) => Exe(command, "",   Default);
     public static string Exe(string command,              DotNetOptions opt) => Exe(command, "",   opt);
-    public static string Exe(string command, string args                   ) => Exe(command, args, DotNetOptions.Default);
+    public static string Exe(string command, string args                   ) => Exe(command, args, Default);
     public static string Exe(string command, string args, DotNetOptions opt)
     {
+        ThrowIfNull(command);
+        ThrowIfNull(args);
+
+        LogCommand(command, args, opt);
+
         const string fileName = "dotnet";
 
         string fullArgs = FormatArgs(command, args, opt);
@@ -116,7 +123,34 @@ public static class DotNet
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
     }
-    
+
+    private static void LogCommand(string command, string args, DotNetOptions opt)
+    {
+        if (opt.Log == NullLog) return;
+        if (opt.Verbosity == Quiet) return;
+
+        if (command.Is("build") || command.Is("msbuild"))
+        {
+            var rebuildArg = Re("msbuild");
+            var isRebuild = args.Contains(rebuildArg, OrdinalIgnoreCase);
+            string extraArgs = args.Replace(rebuildArg, "").Trim();
+            string formattedExtraArgs = Has(extraArgs) ? " with " + extraArgs : "";
+            
+            if (isRebuild)
+            {
+                opt.Log("Rebuild " + opt.BuildConf + formattedExtraArgs);
+            }
+            else
+            {
+                opt.Log("Build " + opt.BuildConf + formattedExtraArgs);
+            }
+        }
+
+        if (command.Is("restore")) opt.Log("Restore");
+        if (command.Is("add")) opt.Log("Install package");
+        if (command.Is("remove")) opt.Log("Uninstall package");
+    }
+
     // TODO: Move to separate utility class
     // TODO: Sanitization
 
@@ -161,11 +195,18 @@ public static class DotNet
 
     private static string PackArg(string id) => $"package {id}";
     private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
+
     private static string Re(string command)
     {
         if (command.Is("build")) return "--no-incremental";
         if (command.Is("msbuild")) return "/t:Rebuild";
         return "";
+    }
+
+    private static bool IsRebuild(string args)
+    {
+        var rebuildArg = Re("msbuild");
+        return args.Contains(rebuildArg, OrdinalIgnoreCase);
     }
 
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
