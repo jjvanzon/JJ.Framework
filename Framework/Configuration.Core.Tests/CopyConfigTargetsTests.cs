@@ -111,6 +111,10 @@ public class CopyConfigTargetsTests : IDisposable
     public void JJ_CopyConfig_WhenAppConfig_CopiesConfigToOutput()
     {
         WriteAppConfig();
+        IsTrue(Exists(_appConfigFilePath));
+        IsFalse(Exists(_webConfigFilePath));
+        IsFalse(Exists(_sourceAssemblyConfigFilePath));
+        IsFalse(Exists(_sourceTestHostConfigFilePath));
         DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
@@ -124,6 +128,10 @@ public class CopyConfigTargetsTests : IDisposable
     public void JJ_CopyConfig_WhenWebConfig_CopiesConfigToOutput()
     {
         WriteWebConfig();
+        IsFalse(Exists(_appConfigFilePath));
+        IsTrue(Exists(_webConfigFilePath));
+        IsFalse(Exists(_sourceAssemblyConfigFilePath));
+        IsFalse(Exists(_sourceTestHostConfigFilePath));
         DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
@@ -137,6 +145,10 @@ public class CopyConfigTargetsTests : IDisposable
     public void JJ_CopyConfig_WhenAssemblyNameConfig_CopiesConfigToOutput()
     {
         WriteAssemblyConfig();
+        IsFalse(Exists(_appConfigFilePath));
+        IsFalse(Exists(_webConfigFilePath));
+        IsTrue(Exists(_sourceAssemblyConfigFilePath));
+        IsFalse(Exists(_sourceTestHostConfigFilePath));
         DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
@@ -150,6 +162,10 @@ public class CopyConfigTargetsTests : IDisposable
     public void JJ_CopyConfig_WhenTestHostConfig_CopiesConfigToOutput()
     {
         WriteTesthostConfig();
+        IsFalse(Exists(_appConfigFilePath));
+        IsFalse(Exists(_webConfigFilePath));
+        IsFalse(Exists(_sourceAssemblyConfigFilePath));
+        IsTrue(Exists(_sourceTestHostConfigFilePath));
         DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
@@ -162,6 +178,10 @@ public class CopyConfigTargetsTests : IDisposable
     [TestMethod]
     public void JJ_CopyConfig_WhenNoConfig_DoesNotCopyConfig()
     {
+        IsFalse(Exists(_appConfigFilePath));
+        IsFalse(Exists(_webConfigFilePath));
+        IsFalse(Exists(_sourceAssemblyConfigFilePath));
+        IsFalse(Exists(_sourceTestHostConfigFilePath));
         DotNetBuild();
         IsFalse(Exists(_destAssemblyConfigFilePath));
         IsFalse(Exists(_destTestHostConfigFilePath));
@@ -173,6 +193,10 @@ public class CopyConfigTargetsTests : IDisposable
     {
         WriteAppConfig();
         WriteWebConfig();
+        IsTrue(Exists(_appConfigFilePath));
+        IsTrue(Exists(_webConfigFilePath));
+        IsFalse(Exists(_sourceAssemblyConfigFilePath));
+        IsFalse(Exists(_sourceTestHostConfigFilePath));
         DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
@@ -187,6 +211,10 @@ public class CopyConfigTargetsTests : IDisposable
     {
         WriteAppConfig();
         WriteTesthostConfig();
+        IsTrue(Exists(_appConfigFilePath));
+        IsFalse(Exists(_webConfigFilePath));
+        IsFalse(Exists(_sourceAssemblyConfigFilePath));
+        IsTrue(Exists(_sourceTestHostConfigFilePath));
         DotNetBuild();
         IsTrue(Exists(_destAssemblyConfigFilePath));
         IsTrue(Exists(_destTestHostConfigFilePath));
