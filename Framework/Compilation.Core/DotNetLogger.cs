@@ -6,11 +6,12 @@ internal static class DotNetLogger
     {
         if (opt.Log == NullLog) return;
         if (opt.Verbosity == Quiet) return;
-        opt.Log(GetMessage(command, args));
+        string message = GetMessage(command, args);
+        if (Has(message)) opt.Log(message);
     }
 
     private static string GetMessage(string command, string args) 
-        => GetCommandEnum(command, args) switch
+        => TryGetCommandEnum(command, args) switch
         {
             build   or msbuild   => "Build" + FormatArgs(args),
             rebuild or msrebuild => "Rebuild" + FormatArgs(args),

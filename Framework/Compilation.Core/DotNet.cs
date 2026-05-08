@@ -29,39 +29,39 @@ public static class DotNet
     public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe(restore,   args, opt);
     public static string Restore  (string args                   ) => DotNet.Exe(restore,   args     );
 
-    public static string InstallPackage(string id, string ver                                ) => DotNet.Exe(installpackage, PackArg(id, ver));
-    public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver), opt);
-    public static string InstallPackage(string id, string ver, string args                   ) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args);
-    public static string InstallPackage(string id, string ver, string args, DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args, opt);
+    public static string InstallPackage  (string id, string ver                                ) => DotNet.Exe(installpackage, PackArg(id, ver));
+    public static string InstallPackage  (string id, string ver,              DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver), opt);
+    public static string InstallPackage  (string id, string ver, string args                   ) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args);
+    public static string InstallPackage  (string id, string ver, string args, DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args, opt);
 
-    public static string UninstallPackage(string id                                ) => DotNet.Exe(uninstallpackage, PackArg(id)                  );
-    public static string UninstallPackage(string id,              DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id),              opt);
-    public static string UninstallPackage(string id, string args                   ) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args     );
-    public static string UninstallPackage(string id, string args, DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args, opt);
+    public static string UninstallPackage(string id                                            ) => DotNet.Exe(uninstallpackage, PackArg(id));
+    public static string UninstallPackage(string id,                          DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id), opt);
+    public static string UninstallPackage(string id,             string args                   ) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args);
+    public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args, opt);
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command                                ) => Exe(command, ReArg(command), DefaultOptions);
+    public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => Exe(command, ReArg(command), opt);
+    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) }, opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args                   ) => Exe(command, ReArg(command) + " " + args, DefaultOptions);
+    public static string Exe(DotNetCommandEnum command, string args                   ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) + " " + args }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => Exe(FormatCommandEnum(command), ReArg(command) + " " + args, opt);
+    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) + " " + args }, opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string        command                                ) => Exe(command, "", DefaultOptions);
+    public static string Exe(string            command                                ) => DotNet.Exe(new DotNetCommandInfo { Command = command }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string        command,              DotNetOptions opt) => Exe(command, "", opt);
+    public static string Exe(string            command,              DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { Command = command }, opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string        command, string args                   ) => Exe(command, args, DefaultOptions);
+    public static string Exe(string            command, string args                   ) => DotNet.Exe(new DotNetCommandInfo { Command = command, Args = args }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string        command, string args, DotNetOptions opt) => Exe(new DotNetCommandInfo() { Command = command, Args = args }, opt);
+    public static string Exe(string            command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { Command = command, Args = args }, opt);
     /// <inheritdoc cref="_exe" />
     internal static string Exe(DotNetCommandInfo info, DotNetOptions opt)
     {
-        EnrichInfo(info);
+        Enrich(info);
 
         // Temporary for triansition to DTO-like structure.
         string command = info.Command;

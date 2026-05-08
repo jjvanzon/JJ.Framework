@@ -4,27 +4,17 @@ internal static class DotNetFormatter
 {
     // TODO: Sanitization
 
-    public static string FormatCommandEnum(DotNetCommandEnum enumVal)
-    {
-        string text = TryFormatCommandEnum(enumVal);
-
-        if (text.IsNully())
-        {
-            throw new Exception($"Cannot derive command text from {nameof(DotNetCommandEnum)} enum {enumVal}");
-        }
-
-        return text;
-    }
-
-    public static string TryFormatCommandEnum(DotNetCommandEnum enumVal) => enumVal switch
-    {
-        build or rebuild => "build",
-        msbuild or msrebuild => "msbuild",
-        restore => "restore",
-        installpackage => "add",
-        uninstallpackage => "remove",
-        _ => ""
-    };
+    //public static string FormatCommandEnum(DotNetCommandEnum enumVal)
+    //{
+    //    string text = TryFormatCommandEnum(enumVal);
+    //
+    //    if (text.IsNully())
+    //    {
+    //        throw new Exception($"Cannot derive command text from {nameof(DotNetCommandEnum)} enum {enumVal}");
+    //    }
+    //
+    //    return text;
+    //}
 
     public static string FormatArgs(string command, string args, DotNetOptions opt)
     {
@@ -91,15 +81,15 @@ internal static class DotNetFormatter
         return "";
     }
 
-    public static DotNetCommandEnum GetCommandEnum(string command, string args)
-    {
-        DotNetCommandEnum commandEnum = TryGetCommandEnum(command, args);
-        if (!Has(commandEnum))
-        {
-            throw new Exception($"Cannot derive DotNetCommand enum from {new { command, args }}");
-        }
-        return commandEnum;
-    }
+    //public static DotNetCommandEnum GetCommandEnum(string command, string args)
+    //{
+    //    DotNetCommandEnum commandEnum = TryGetCommandEnum(command, args);
+    //    if (!Has(commandEnum))
+    //    {
+    //        throw new Exception($"Cannot derive DotNetCommand enum from {new { command, args }}");
+    //    }
+    //    return commandEnum;
+    //}
 
     public static DotNetCommandEnum TryGetCommandEnum(string command, string args)
     {
