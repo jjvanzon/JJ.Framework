@@ -74,7 +74,8 @@ public static class DotNet
 
         const string fileName = "dotnet";
 
-        string fullArgs = FormatArgs(command, args, opt);
+        //string fullArgs = FormatArgs(command, args, opt);
+        string fullArgs = FormatArgs(info, opt);
 
         using var process = Process.Start(new ProcessStartInfo
         {

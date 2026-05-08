@@ -16,21 +16,32 @@ internal static class DotNetFormatter
     //    return text;
     //}
 
-    public static string FormatArgs(string command, string args, DotNetOptions opt)
+    public static string FormatArgs(DotNetCommandInfo info, DotNetOptions opt)
     {
-        ThrowIf(IsNullOrWhiteSpace(command));
         string formattedFile      = FormatFile(opt.File);
-        string formattedRestore   = FormatAutoRestore(opt.AutoRestore, command);
-        string formattedBuildConf = FormatBuildConf(opt.BuildConf, command);
-        string formattedVerbosity = FormatVerbosity(opt.Verbosity, command);
-        string[] elements = [ command, formattedFile, formattedBuildConf, formattedVerbosity, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
+        string formattedRestore   = FormatAutoRestore(opt.AutoRestore, info.Command);
+        string formattedBuildConf = FormatBuildConf(opt.BuildConf, info.Command);
+        string formattedVerbosity = FormatVerbosity(opt.Verbosity, info.Command);
+        string[] elements = [ info.Command, formattedFile, formattedBuildConf, formattedVerbosity, opt.Args, info.Args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
     }
 
-    public static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
+    //public static string FormatArgs(string command, string args, DotNetOptions opt)
+    //{
+    //    ThrowIf(IsNullOrWhiteSpace(command));
+    //    string formattedFile      = FormatFile(opt.File);
+    //    string formattedRestore   = FormatAutoRestore(opt.AutoRestore, command);
+    //    string formattedBuildConf = FormatBuildConf(opt.BuildConf, command);
+    //    string formattedVerbosity = FormatVerbosity(opt.Verbosity, command);
+    //    string[] elements = [ command, formattedFile, formattedBuildConf, formattedVerbosity, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
+    //    string ret = Join(" ", elements.Where(FilledIn));
+    //    return ret; 
+    //}
 
-    public static string FormatAutoRestore(bool autoRestore, string command)
+    private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
+
+    private static string FormatAutoRestore(bool autoRestore, string command)
     {
         if (command.Is("add"))     return ""; // Needed?
         if (command.Is("restore")) return "";
@@ -39,15 +50,15 @@ internal static class DotNetFormatter
         return autoRestore ? "" : "--no-restore";
     }
 
-    public static string FormatBuildConf(string buildConf, string command)
+    private static string FormatBuildConf(string buildConf, string command)
     {
         if (!Has(buildConf)) return "";
         if (command.Is("build")) return $"-c {buildConf}";
         if (command.Is("msbuild")) return $"/p:Configuration={buildConf}";
         return "";
     }
-    
-    public static string FormatVerbosity(DotNetVerbosity verbosity, string command)
+
+    private static string FormatVerbosity(DotNetVerbosity verbosity, string command)
     {
         if (verbosity == default) return "";
         if (command.Is("build")) return $"--verbosity {verbosity}";
