@@ -1,6 +1,4 @@
-﻿using static JJ.Framework.Compilation.Core.DotNetOptions;
-
-#pragma warning disable IDE0002 // Simplify member access
+﻿#pragma warning disable IDE0002 // Simplify member access
 
 namespace JJ.Framework.Compilation.Core;
 
@@ -153,63 +151,6 @@ public static class DotNet
         if (command.Is("remove")) opt.Log("Uninstall package");
     }
 
-    // TODO: Move to separate utility class
-    // TODO: Sanitization
-
-    private static string FormatArgs(string command, string args, DotNetOptions opt)
-    {
-        ThrowIf(IsNullOrWhiteSpace(command));
-        string formattedFile      = FormatFile(opt.File);
-        string formattedRestore   = FormatAutoRestore(opt.AutoRestore, command);
-        string formattedBuildConf = FormatBuildConf(opt.BuildConf, command);
-        string formattedVerbosity = FormatVerbosity(opt.Verbosity, command);
-        string[] elements = [ command, formattedFile, formattedBuildConf, formattedVerbosity, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
-        string ret = Join(" ", elements.Where(FilledIn));
-        return ret; 
-    }
-
-    private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
-
-    private static string FormatAutoRestore(bool autoRestore, string command)
-    {
-        if (command.Is("add"))     return ""; // Needed?
-        if (command.Is("restore")) return "";
-        if (command.Is("remove"))  return ""; // Wouldn't this exclusion only apply to packages instead of removing other things?
-        if (command.Is("msbuild")) return autoRestore ? "-restore" : "";
-        return autoRestore ? "" : "--no-restore";
-    }
-
-    private static string FormatBuildConf(string buildConf, string command)
-    {
-        if (!Has(buildConf)) return "";
-        if (command.Is("build")) return $"-c {buildConf}";
-        if (command.Is("msbuild")) return $"/p:Configuration={buildConf}";
-        return "";
-    }
-    
-    private static string FormatVerbosity(DotNetVerbosity verbosity, string command)
-    {
-        if (verbosity == default) return "";
-        if (command.Is("build")) return $"--verbosity {verbosity}";
-        if (command.Is("msbuild")) return $"-verbosity:{verbosity}";
-        return "";
-    }
-
-    private static string PackArg(string id) => $"package {id}";
-    private static string PackArg(string id, string ver) => $"package {id} --version {ver}";
-
-    private static string Re(string command)
-    {
-        if (command.Is("build")) return "--no-incremental";
-        if (command.Is("msbuild")) return "/t:Rebuild";
-        return "";
-    }
-
-    private static bool IsRebuild(string args)
-    {
-        var rebuildArg = Re("msbuild");
-        return args.Contains(rebuildArg, OrdinalIgnoreCase);
-    }
 
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
