@@ -19,3 +19,4 @@ global using static JJ.Framework.Compilation.Core.DotNetVerbosity;
 global using static JJ.Framework.Compilation.Core.DotNetCommand;
 global using static JJ.Framework.Compilation.Core.DotNetOptions;
 global using static JJ.Framework.Compilation.Core.DotNetFormatter;
+global using static JJ.Framework.Compilation.Core.DotNetLogger;
