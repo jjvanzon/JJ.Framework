@@ -57,8 +57,13 @@ public static class DotNet
     /// <inheritdoc cref="_exe" />
     public static string Exe(string        command, string args                   ) => Exe(command, args, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string        command, string args, DotNetOptions opt)
+    public static string Exe(string        command, string args, DotNetOptions opt) => Exe(new DotNetCommandInfo() { Command = command, Args = args }, opt);
+    public static string Exe(DotNetCommandInfo info, DotNetOptions opt)
     {
+        // Temporary for triansition to DTO-like structure.
+        string command = info.Command;
+        string args = info.Args;
+
         ThrowIfNull(command);
         ThrowIfNull(args);
 
