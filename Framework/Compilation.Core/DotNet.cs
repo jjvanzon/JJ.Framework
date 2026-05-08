@@ -1,52 +1,65 @@
-﻿#pragma warning disable IDE0002 // Simplify member access
+﻿
+#pragma warning disable IDE0002 // Simplify member access
 
 namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    public static string Build    (                              ) => DotNet.Exe("build"                                   );
-    public static string Build    (             DotNetOptions opt) => DotNet.Exe("build",                               opt);
-    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe("build",                         args, opt);
-    public static string Build    (string args                   ) => DotNet.Exe("build",                         args     );
+    public static string Build    (                              ) => DotNet.Exe(build               );
+    public static string Build    (             DotNetOptions opt) => DotNet.Exe(build,           opt);
+    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe(build,     args, opt);
+    public static string Build    (string args                   ) => DotNet.Exe(build,     args     );
 
-    public static string MSBuild  (                              ) => DotNet.Exe("msbuild"                                 );
-    public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe("msbuild",                             opt);
-    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe("msbuild",                       args, opt);
-    public static string MSBuild  (string args                   ) => DotNet.Exe("msbuild",                       args     );
+    public static string MSBuild  (                              ) => DotNet.Exe(msbuild             );
+    public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe(msbuild,         opt);
+    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe(msbuild,   args, opt);
+    public static string MSBuild  (string args                   ) => DotNet.Exe(msbuild,   args     );
 
-    public static string Rebuild  (                              ) => DotNet.Exe("build",   Re("build")                    );
-    public static string Rebuild  (             DotNetOptions opt) => DotNet.Exe("build",   Re("build"),                opt);
-    public static string Rebuild  (string args, DotNetOptions opt) => DotNet.Exe("build",   Re("build")   + " " + args, opt);
-    public static string Rebuild  (string args                   ) => DotNet.Exe("build",   Re("build")   + " " + args     );
+    public static string Rebuild  (                              ) => DotNet.Exe(rebuild             );
+    public static string Rebuild  (             DotNetOptions opt) => DotNet.Exe(rebuild,         opt);
+    public static string Rebuild  (string args, DotNetOptions opt) => DotNet.Exe(rebuild,   args, opt);
+    public static string Rebuild  (string args                   ) => DotNet.Exe(rebuild,   args     );
 
-    public static string MSRebuild(                              ) => DotNet.Exe("msbuild", Re("msbuild")                  );
-    public static string MSRebuild(             DotNetOptions opt) => DotNet.Exe("msbuild", Re("msbuild"),              opt);
-    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe("msbuild", Re("msbuild") + " " + args, opt);
-    public static string MSRebuild(string args                   ) => DotNet.Exe("msbuild", Re("msbuild") + " " + args     );
+    public static string MSRebuild(                              ) => DotNet.Exe(msrebuild           );
+    public static string MSRebuild(             DotNetOptions opt) => DotNet.Exe(msrebuild,       opt);
+    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe(msrebuild, args, opt);
+    public static string MSRebuild(string args                   ) => DotNet.Exe(msrebuild, args     );
 
-    public static string Restore  (                              ) => DotNet.Exe("restore"                                 );
-    public static string Restore  (             DotNetOptions opt) => DotNet.Exe("restore",                             opt);
-    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe("restore",                       args, opt);
-    public static string Restore  (string args                   ) => DotNet.Exe("restore",                       args     );
+    public static string Restore  (                              ) => DotNet.Exe(restore             );
+    public static string Restore  (             DotNetOptions opt) => DotNet.Exe(restore,         opt);
+    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe(restore,   args, opt);
+    public static string Restore  (string args                   ) => DotNet.Exe(restore,   args     );
 
-    public static string InstallPackage(string id, string ver                                ) => DotNet.Exe("add", PackArg(id, ver));
-    public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver), opt);
-    public static string InstallPackage(string id, string ver, string args                   ) => DotNet.Exe("add", PackArg(id, ver) + " " + args);
-    public static string InstallPackage(string id, string ver, string args, DotNetOptions opt) => DotNet.Exe("add", PackArg(id, ver) + " " + args, opt);
+    public static string InstallPackage(string id, string ver                                ) => DotNet.Exe(installpackage, PackArg(id, ver));
+    public static string InstallPackage(string id, string ver,              DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver), opt);
+    public static string InstallPackage(string id, string ver, string args                   ) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args);
+    public static string InstallPackage(string id, string ver, string args, DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args, opt);
 
-    public static string UninstallPackage(string id                                ) => DotNet.Exe("remove", PackArg(id));
-    public static string UninstallPackage(string id,              DotNetOptions opt) => DotNet.Exe("remove", PackArg(id), opt);
-    public static string UninstallPackage(string id, string args                   ) => DotNet.Exe("remove", PackArg(id) + " " + args);
-    public static string UninstallPackage(string id, string args, DotNetOptions opt) => DotNet.Exe("remove", PackArg(id) + " " + args, opt);
+    public static string UninstallPackage(string id                                ) => DotNet.Exe(uninstallpackage, PackArg(id)                  );
+    public static string UninstallPackage(string id,              DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id),              opt);
+    public static string UninstallPackage(string id, string args                   ) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args     );
+    public static string UninstallPackage(string id, string args, DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args, opt);
 
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
-    /// <param name="command">E.g., "build", "add", "msbuild"</param>
-    public static string Exe(string command                                ) => Exe(command, "",   Default);
-    public static string Exe(string command,              DotNetOptions opt) => Exe(command, "",   opt);
-    public static string Exe(string command, string args                   ) => Exe(command, args, Default);
-    public static string Exe(string command, string args, DotNetOptions opt)
+
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(DotNetCommand command                                ) => Exe(FormatCommand(command), ReArg(command)                  );
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(DotNetCommand command,              DotNetOptions opt) => Exe(FormatCommand(command), ReArg(command),              opt);
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(DotNetCommand command, string args                   ) => Exe(FormatCommand(command), ReArg(command) + " " + args     );
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(DotNetCommand command, string args, DotNetOptions opt) => Exe(FormatCommand(command), ReArg(command) + " " + args, opt);
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(string        command                                ) => Exe(command, "", DefaultOptions);
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(string        command,              DotNetOptions opt) => Exe(command, "", opt);
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(string        command, string args                   ) => Exe(command, args, DefaultOptions);
+    /// <inheritdoc cref="_exe" />
+    public static string Exe(string        command, string args, DotNetOptions opt)
     {
         ThrowIfNull(command);
         ThrowIfNull(args);
@@ -129,7 +142,7 @@ public static class DotNet
 
         if (command.Is("build") || command.Is("msbuild"))
         {
-            var rebuildArg = Re("msbuild");
+            var rebuildArg = ReArg("msbuild");
             var isRebuild = args.Contains(rebuildArg, OrdinalIgnoreCase);
             string extraArgs = args.Replace(rebuildArg, "").Trim();
             string formattedExtraArgs = Has(extraArgs) ? " with " + extraArgs : "";

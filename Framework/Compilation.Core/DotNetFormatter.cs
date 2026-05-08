@@ -4,6 +4,16 @@ internal static class DotNetFormatter
 {
     // TODO: Sanitization
 
+    public static string FormatCommand(DotNetCommand command) => command switch
+    {
+        build or rebuild => "build",
+        msbuild or msrebuild => "msbuild",
+        restore => "restore",
+        installpackage => "add",
+        uninstallpackage => "remove",
+        _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
+    };
+
     public static string FormatArgs(string command, string args, DotNetOptions opt)
     {
         ThrowIf(IsNullOrWhiteSpace(command));
@@ -46,16 +56,44 @@ internal static class DotNetFormatter
     public static string PackArg(string id) => $"package {id}";
     public static string PackArg(string id, string ver) => $"package {id} --version {ver}";
 
-    public static string Re(string command)
+    public const string REBUILD_ARG_MS_BUILD = "/t:Rebuild";
+    public const string REBUILD_ARG_DOT_NET = "--no-incremental";
+
+    public static string ReArg(string command)
     {
-        if (command.Is("build")) return "--no-incremental";
-        if (command.Is("msbuild")) return "/t:Rebuild";
+        if (command.Is("build"  )) return REBUILD_ARG_DOT_NET;
+        if (command.Is("msbuild")) return REBUILD_ARG_MS_BUILD;
         return "";
     }
 
-    public static bool IsRebuild(string args)
+    public static string ReArg(DotNetCommand command)
     {
-        var rebuildArg = Re("msbuild");
-        return args.Contains(rebuildArg, OrdinalIgnoreCase);
+        if (command == rebuild  ) return REBUILD_ARG_DOT_NET;
+        if (command == msrebuild) return REBUILD_ARG_MS_BUILD;
+        return "";
     }
+
+    //public static bool IsMSBuild(DotNetCommand command) 
+    //    => command == msbuild || command == msrebuild;
+
+    //public static string Re(bool re)
+    //{
+    //    if (re)
+    //    if (command.Is("build")) return "--no-incremental";
+    //    if (command.Is("msbuild")) return "/t:Rebuild";
+    //    return "";
+    //}
+
+    //public static bool IsRebuild(DotNetCommand command)
+    //{
+    //    if (command == rebuild) return true;
+    //    if (command == msrebuild) return true;
+    //    return false;
+    //}
+
+    //public static bool IsRebuild(string args)
+    //{
+    //    var rebuildArg = ReArg("msbuild");
+    //    return args.Contains(rebuildArg, OrdinalIgnoreCase);
+    //}
 }

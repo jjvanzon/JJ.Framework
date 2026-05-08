@@ -4,7 +4,7 @@ public record struct DotNetOptions
 {
     public DotNetOptions() { }
 
-    public static DotNetOptions Default { get; } = new();
+    public static DotNetOptions DefaultOptions { get; } = new();
 
     public string Dir { get; init; } = "";
     public string File { get; init; } = "";
