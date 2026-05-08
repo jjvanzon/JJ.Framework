@@ -39,9 +39,6 @@ public static class DotNet
     public static string UninstallPackage(string id,             string args                   ) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args);
     public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args, opt);
 
-    // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
-    // Maybe the returned info should just implicitly convert to string, for syntax sugar.
-
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
@@ -62,19 +59,9 @@ public static class DotNet
     internal static string Exe(DotNetCommandInfo info, DotNetOptions opt)
     {
         Enrich(info);
-
-        // Temporary for triansition to DTO-like structure.
-        //string command = info.Command;
-        //string args = info.Args;
-
-        //ThrowIfNull(command);
-        //ThrowIfNull(args);
-
         Log(info, opt);
 
         const string fileName = "dotnet";
-
-        //string fullArgs = FormatArgs(command, args, opt);
         string fullArgs = FormatArgs(info, opt);
 
         using var process = Process.Start(new ProcessStartInfo
@@ -84,13 +71,10 @@ public static class DotNet
             WorkingDirectory       = opt.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
-            //RedirectStandardInput  = true,
             UseShellExecute        = false,
             CreateNoWindow         = true
         })!;
 
-        // Close stdin immediately so the process never blocks waiting for user input.
-        //process.StandardInput.Close();
 
         var outputSB = new StringBuilder();
         var errorSB = new StringBuilder();

@@ -10,14 +10,6 @@ internal static class DotNetLogger
         if (Has(message)) opt.Log(message);
     }
 
-    //public static void LogCommand(string command, string args, DotNetOptions opt)
-    //{
-    //    if (opt.Log == NullLog) return;
-    //    if (opt.Verbosity == Quiet) return;
-    //    string message = GetMessage(command, args);
-    //    if (Has(message)) opt.Log(message);
-    //}
-
     private static string GetMessage(string command, string args) 
         => TryGetCommandEnum(command, args) switch
         {

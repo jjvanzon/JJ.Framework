@@ -2,20 +2,6 @@
 
 internal static class DotNetFormatter
 {
-    // TODO: Sanitization
-
-    //public static string FormatCommandEnum(DotNetCommandEnum enumVal)
-    //{
-    //    string text = TryFormatCommandEnum(enumVal);
-    //
-    //    if (text.IsNully())
-    //    {
-    //        throw new Exception($"Cannot derive command text from {nameof(DotNetCommandEnum)} enum {enumVal}");
-    //    }
-    //
-    //    return text;
-    //}
-
     public static string FormatArgs(DotNetCommandInfo info, DotNetOptions opt)
     {
         string formattedFile      = FormatFile(opt.File);
@@ -26,18 +12,6 @@ internal static class DotNetFormatter
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
     }
-
-    //public static string FormatArgs(string command, string args, DotNetOptions opt)
-    //{
-    //    ThrowIf(IsNullOrWhiteSpace(command));
-    //    string formattedFile      = FormatFile(opt.File);
-    //    string formattedRestore   = FormatAutoRestore(opt.AutoRestore, command);
-    //    string formattedBuildConf = FormatBuildConf(opt.BuildConf, command);
-    //    string formattedVerbosity = FormatVerbosity(opt.Verbosity, command);
-    //    string[] elements = [ command, formattedFile, formattedBuildConf, formattedVerbosity, opt.Args, args, formattedRestore ]; // HACK: auto-restore put at the end makes `add package` work.
-    //    string ret = Join(" ", elements.Where(FilledIn));
-    //    return ret; 
-    //}
 
     private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
 
@@ -91,16 +65,6 @@ internal static class DotNetFormatter
         if (command == msrebuild) return REBUILD_ARG_MS_BUILD;
         return "";
     }
-
-    //public static DotNetCommandEnum GetCommandEnum(string command, string args)
-    //{
-    //    DotNetCommandEnum commandEnum = TryGetCommandEnum(command, args);
-    //    if (!Has(commandEnum))
-    //    {
-    //        throw new Exception($"Cannot derive DotNetCommand enum from {new { command, args }}");
-    //    }
-    //    return commandEnum;
-    //}
 
     public static DotNetCommandEnum TryGetCommandEnum(string command, string args)
     {
