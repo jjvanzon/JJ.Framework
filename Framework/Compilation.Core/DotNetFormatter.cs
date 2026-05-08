@@ -4,14 +4,26 @@ internal static class DotNetFormatter
 {
     // TODO: Sanitization
 
-    public static string FormatCommand(DotNetCommand command) => command switch
+    public static string FormatCommandEnum(DotNetCommandEnum enumVal)
+    {
+        string text = TryFormatCommandEnum(enumVal);
+
+        if (text.IsNully())
+        {
+            throw new Exception($"Cannot derive command text from {nameof(DotNetCommandEnum)} enum {enumVal}");
+        }
+
+        return text;
+    }
+
+    public static string TryFormatCommandEnum(DotNetCommandEnum enumVal) => enumVal switch
     {
         build or rebuild => "build",
         msbuild or msrebuild => "msbuild",
         restore => "restore",
         installpackage => "add",
         uninstallpackage => "remove",
-        _ => throw new ArgumentOutOfRangeException(nameof(command), command, null)
+        _ => ""
     };
 
     public static string FormatArgs(string command, string args, DotNetOptions opt)
@@ -72,16 +84,16 @@ internal static class DotNetFormatter
 
     // Enum Helpers
 
-    public static string ReArg(DotNetCommand command)
+    public static string ReArg(DotNetCommandEnum command)
     {
         if (command == rebuild  ) return REBUILD_ARG_DOT_NET;
         if (command == msrebuild) return REBUILD_ARG_MS_BUILD;
         return "";
     }
 
-    public static DotNetCommand GetCommandEnum(string command, string args)
+    public static DotNetCommandEnum GetCommandEnum(string command, string args)
     {
-        DotNetCommand commandEnum = TryGetCommandEnum(command, args);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum(command, args);
         if (!Has(commandEnum))
         {
             throw new Exception($"Cannot derive DotNetCommand enum from {new { command, args }}");
@@ -89,12 +101,17 @@ internal static class DotNetFormatter
         return commandEnum;
     }
 
-    public static DotNetCommand TryGetCommandEnum(string command, string args)
+    public static DotNetCommandEnum TryGetCommandEnum(string command, string args)
     {
-        if (command.Is("build"))   return IsRebuild(command, args) ? rebuild : build;
-        if (command.Is("msbuild")) return IsRebuild(command, args) ? msrebuild : msbuild;
+        return TryGetCommandEnum(command, IsRebuild(command, args));
+    }
+
+    public static DotNetCommandEnum TryGetCommandEnum(string command, bool isRebuild)
+    {
+        if (command.Is("build"))   return isRebuild ? rebuild : build;
+        if (command.Is("msbuild")) return isRebuild ? msrebuild : msbuild;
         if (command.Is("restore")) return restore;
-        // Assumptive (but true, for now?)
+        // TODO: Assumptive (but true, for now?)
         if (command.Is("add"))     return installpackage; 
         if (command.Is("remove"))  return uninstallpackage;
         return default;

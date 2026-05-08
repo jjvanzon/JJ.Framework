@@ -19,4 +19,4 @@ public struct _exe;
 /// look like a parameter name and sort of like a flag attribute in HTML,
 /// and also to not clash with actual method names.
 /// </summary>
-public struct _dotnetcommand;
+public struct _dotnetcommandenum;

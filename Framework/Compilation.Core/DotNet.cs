@@ -43,13 +43,13 @@ public static class DotNet
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command                                ) => Exe(command, ReArg(command), DefaultOptions);
+    public static string Exe(DotNetCommandEnum command                                ) => Exe(command, ReArg(command), DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command,              DotNetOptions opt) => Exe(command, ReArg(command), opt);
+    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => Exe(command, ReArg(command), opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command, string args                   ) => Exe(command, ReArg(command) + " " + args, DefaultOptions);
+    public static string Exe(DotNetCommandEnum command, string args                   ) => Exe(command, ReArg(command) + " " + args, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command, string args, DotNetOptions opt) => Exe(FormatCommand(command), ReArg(command) + " " + args, opt);
+    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => Exe(FormatCommandEnum(command), ReArg(command) + " " + args, opt);
     /// <inheritdoc cref="_exe" />
     public static string Exe(string        command                                ) => Exe(command, "", DefaultOptions);
     /// <inheritdoc cref="_exe" />
@@ -58,8 +58,11 @@ public static class DotNet
     public static string Exe(string        command, string args                   ) => Exe(command, args, DefaultOptions);
     /// <inheritdoc cref="_exe" />
     public static string Exe(string        command, string args, DotNetOptions opt) => Exe(new DotNetCommandInfo() { Command = command, Args = args }, opt);
-    public static string Exe(DotNetCommandInfo info, DotNetOptions opt)
+    /// <inheritdoc cref="_exe" />
+    internal static string Exe(DotNetCommandInfo info, DotNetOptions opt)
     {
+        EnrichInfo(info);
+
         // Temporary for triansition to DTO-like structure.
         string command = info.Command;
         string args = info.Args;

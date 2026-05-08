@@ -1,11 +1,12 @@
 ﻿namespace JJ.Framework.Compilation.Core;
-public record struct DotNetCommandInfo
+
+internal class DotNetCommandInfo
 {
-    public DotNetCommand CommandEnum { get; init; }
-    public string Command { get ; init; }
-    public bool IsRebuild { get; init; }
-    public string PackageID { get; init; }
-    public string PackageVer { get; init; }
-    public string Args { get; init; }
+    public DotNetCommandEnum CommandEnum { get; set; }
+    public string Command { get ; set; } = "";
+    public bool IsRebuild { get; set; }
+    public string PackageID { get; set; } = "";
+    public string PackageVer { get; set; } = "";
+    public string Args { get; set; } = "";
 }
 

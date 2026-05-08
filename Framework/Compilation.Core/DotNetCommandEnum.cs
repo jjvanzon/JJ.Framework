@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-/// <inheritdoc cref="_dotnetcommand" />
-public enum DotNetCommand
+/// <inheritdoc cref="_dotnetcommandenum" />
+public enum DotNetCommandEnum
 {
     // ReSharper disable once UnusedMember.Global
     undefined,
