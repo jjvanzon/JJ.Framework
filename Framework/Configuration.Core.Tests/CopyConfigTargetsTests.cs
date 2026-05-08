@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using JJ.Framework.Compilation.Core;
-
 namespace JJ.Framework.Configuration.Core.Tests;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
@@ -66,6 +63,7 @@ public class CopyConfigTargetsTests : IDisposable
             Dir = _tempProjDir,
             TimeOutSec = BuildTimeOutSec, 
             BuildConf = "Release",
+            //Verbosity = Detailed,
             Log = Log
         };
 

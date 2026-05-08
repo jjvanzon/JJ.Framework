@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace JJ.Framework.Configuration.Core.Tests.Settings;
+namespace JJ.Framework.Configuration.Core.Tests;
 
 public class TestConfigurationSection
 {
