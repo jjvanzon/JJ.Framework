@@ -64,13 +64,13 @@ public static class DotNet
         Enrich(info);
 
         // Temporary for triansition to DTO-like structure.
-        string command = info.Command;
-        string args = info.Args;
+        //string command = info.Command;
+        //string args = info.Args;
 
-        ThrowIfNull(command);
-        ThrowIfNull(args);
+        //ThrowIfNull(command);
+        //ThrowIfNull(args);
 
-        LogCommand(command, args, opt);
+        Log(info, opt);
 
         const string fileName = "dotnet";
 

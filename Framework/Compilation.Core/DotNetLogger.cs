@@ -2,13 +2,21 @@
 
 internal static class DotNetLogger
 {
-    public static void LogCommand(string command, string args, DotNetOptions opt)
+    public static void Log(DotNetCommandInfo info, DotNetOptions opt)
     {
         if (opt.Log == NullLog) return;
         if (opt.Verbosity == Quiet) return;
-        string message = GetMessage(command, args);
+        string message = GetMessage(info.Command, info.Args);
         if (Has(message)) opt.Log(message);
     }
+
+    //public static void LogCommand(string command, string args, DotNetOptions opt)
+    //{
+    //    if (opt.Log == NullLog) return;
+    //    if (opt.Verbosity == Quiet) return;
+    //    string message = GetMessage(command, args);
+    //    if (Has(message)) opt.Log(message);
+    //}
 
     private static string GetMessage(string command, string args) 
         => TryGetCommandEnum(command, args) switch
