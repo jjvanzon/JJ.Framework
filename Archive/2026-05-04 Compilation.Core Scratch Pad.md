@@ -94,3 +94,59 @@ Compilation.Core Scratch Pad
             //    return "net461";
             //}
 ```
+
+```cs
+
+    private static void LogCommand(string command, string args, DotNetOptions opt)
+    {
+        if (opt.Log == NullLog) return;
+        if (opt.Verbosity == Quiet) return;
+    
+        if (command.Is("build") || command.Is("msbuild"))
+        {
+            var rebuildArg = ReArg(command);
+            var isRebuild = args.Contains(rebuildArg, OrdinalIgnoreCase);
+            string extraArgs = args.Replace(rebuildArg, "").Trim();
+            string formattedExtraArgs = Has(extraArgs) ? " with " + extraArgs : "";
+            
+            if (isRebuild)
+            {
+                //opt.Log("Rebuild " + opt.BuildConf + formattedExtraArgs);
+                opt.Log("Rebuild" + formattedExtraArgs);
+            }
+            else
+            {
+                //opt.Log("Build " + opt.BuildConf + formattedExtraArgs);
+                opt.Log("Build" + formattedExtraArgs);
+            }
+        }
+    
+        if (command.Is("restore")) opt.Log("Restore");
+        if (command.Is("add")) opt.Log("Install package");
+        if (command.Is("remove")) opt.Log("Uninstall package");
+    }
+
+
+        DotNetCommand commandEnum = GetCommandEnum(command, args);
+        switch (commandEnum)
+        {
+            case build: case msbuild:
+                opt.Log("Build" + FormatArgsForLog(args));
+                break;
+            case rebuild: case msrebuild:
+                opt.Log("Rebuild" + FormatArgsForLog(args));
+                break;
+            case restore:
+                opt.Log("Restore");
+                break;
+            case installpackage:
+                opt.Log("Install package");
+                break;
+            case uninstallpackage:
+                opt.Log("Uninstall package");
+                break;
+            case undefined:
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+```

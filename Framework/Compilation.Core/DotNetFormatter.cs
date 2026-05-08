@@ -66,11 +66,39 @@ internal static class DotNetFormatter
         return "";
     }
 
+    public static string StripReArg(string args) 
+        => args.Replace(REBUILD_ARG_DOT_NET, "")
+               .Replace(REBUILD_ARG_MS_BUILD, "");
+
+    // Enum Helpers
+
     public static string ReArg(DotNetCommand command)
     {
         if (command == rebuild  ) return REBUILD_ARG_DOT_NET;
         if (command == msrebuild) return REBUILD_ARG_MS_BUILD;
         return "";
+    }
+
+    public static DotNetCommand GetCommandEnum(string command, string args)
+    {
+        DotNetCommand commandEnum = TryGetCommandEnum(command, args);
+        if (!Has(commandEnum))
+        {
+            throw new Exception($"Cannot derive DotNetCommand enum from {new { command, args }}");
+        }
+        return commandEnum;
+    }
+
+    public static DotNetCommand TryGetCommandEnum(string command, string args)
+    {
+        if (command.Is("build"))   return IsRebuild(command, args) ? rebuild : build;
+        if (command.Is("msbuild")) return IsRebuild(command, args) ? msrebuild : msbuild;
+        if (command.Is("restore")) return restore;
+        // Assumptive but true (for now)
+        if (command.Is("add"))     return installpackage; 
+        if (command.Is("remove"))  return uninstallpackage;
+        return default;
+        
     }
 
     //public static bool IsMSBuild(DotNetCommand command) 
@@ -91,9 +119,9 @@ internal static class DotNetFormatter
     //    return false;
     //}
 
-    //public static bool IsRebuild(string args)
-    //{
-    //    var rebuildArg = ReArg("msbuild");
-    //    return args.Contains(rebuildArg, OrdinalIgnoreCase);
-    //}
+    public static bool IsRebuild(string command, string args)
+    {
+        var rebuildArg = ReArg(command);
+        return args.Contains(rebuildArg, OrdinalIgnoreCase);
+    }
 }

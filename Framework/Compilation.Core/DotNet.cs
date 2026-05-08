@@ -45,11 +45,11 @@ public static class DotNet
 
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command                                ) => Exe(FormatCommand(command), ReArg(command)                  );
+    public static string Exe(DotNetCommand command                                ) => Exe(command, ReArg(command), DefaultOptions  );
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command,              DotNetOptions opt) => Exe(FormatCommand(command), ReArg(command),              opt);
+    public static string Exe(DotNetCommand command,              DotNetOptions opt) => Exe(command, ReArg(command),              opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command, string args                   ) => Exe(FormatCommand(command), ReArg(command) + " " + args     );
+    public static string Exe(DotNetCommand command, string args                   ) => Exe(command, ReArg(command) + " " + args, DefaultOptions);
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommand command, string args, DotNetOptions opt) => Exe(FormatCommand(command), ReArg(command) + " " + args, opt);
     /// <inheritdoc cref="_exe" />
@@ -134,36 +134,30 @@ public static class DotNet
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
     }
-
+    
     private static void LogCommand(string command, string args, DotNetOptions opt)
     {
         if (opt.Log == NullLog) return;
         if (opt.Verbosity == Quiet) return;
-
-        if (command.Is("build") || command.Is("msbuild"))
-        {
-            var rebuildArg = ReArg("msbuild");
-            var isRebuild = args.Contains(rebuildArg, OrdinalIgnoreCase);
-            string extraArgs = args.Replace(rebuildArg, "").Trim();
-            string formattedExtraArgs = Has(extraArgs) ? " with " + extraArgs : "";
-            
-            if (isRebuild)
-            {
-                //opt.Log("Rebuild " + opt.BuildConf + formattedExtraArgs);
-                opt.Log("Rebuild" + formattedExtraArgs);
-            }
-            else
-            {
-                //opt.Log("Build " + opt.BuildConf + formattedExtraArgs);
-                opt.Log("Build" + formattedExtraArgs);
-            }
-        }
-
-        if (command.Is("restore")) opt.Log("Restore");
-        if (command.Is("add")) opt.Log("Install package");
-        if (command.Is("remove")) opt.Log("Uninstall package");
+        opt.Log(GetLogMessage(command, args));
     }
 
+    private static string GetLogMessage(string command, string args) 
+        => GetCommandEnum(command, args) switch
+        {
+            build   or msbuild   => "Build" + FormatArgsForLog(args),
+            rebuild or msrebuild => "Rebuild" + FormatArgsForLog(args),
+            restore              => "Restore",
+            installpackage       => "Install package",
+            uninstallpackage     => "Uninstall package",
+            _ => ""
+        };
+
+    private static string FormatArgsForLog(string args)
+    {
+        args = StripReArg(args);
+        return Has(args) ? " with " + args : "";
+    }
 
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
