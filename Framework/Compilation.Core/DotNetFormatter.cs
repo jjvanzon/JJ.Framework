@@ -94,7 +94,7 @@ internal static class DotNetFormatter
         if (command.Is("build"))   return IsRebuild(command, args) ? rebuild : build;
         if (command.Is("msbuild")) return IsRebuild(command, args) ? msrebuild : msbuild;
         if (command.Is("restore")) return restore;
-        // Assumptive but true (for now)
+        // Assumptive (but true, for now?)
         if (command.Is("add"))     return installpackage; 
         if (command.Is("remove"))  return uninstallpackage;
         return default;

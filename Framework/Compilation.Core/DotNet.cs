@@ -42,11 +42,10 @@ public static class DotNet
     // TODO: Variant that returns extended info (split Error and Output and ExitCode etc.)
     // Maybe the returned info should just implicitly convert to string, for syntax sugar.
 
-
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command                                ) => Exe(command, ReArg(command), DefaultOptions  );
+    public static string Exe(DotNetCommand command                                ) => Exe(command, ReArg(command), DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommand command,              DotNetOptions opt) => Exe(command, ReArg(command),              opt);
+    public static string Exe(DotNetCommand command,              DotNetOptions opt) => Exe(command, ReArg(command), opt);
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommand command, string args                   ) => Exe(command, ReArg(command) + " " + args, DefaultOptions);
     /// <inheritdoc cref="_exe" />
