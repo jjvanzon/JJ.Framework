@@ -6,21 +6,21 @@ internal static class DotNetLogger
     {
         if (opt.Log == NullLog) return;
         if (opt.Verbosity == Quiet) return;
-        opt.Log(GetLogMessage(command, args));
+        opt.Log(GetMessage(command, args));
     }
 
-    private static string GetLogMessage(string command, string args) 
+    private static string GetMessage(string command, string args) 
         => GetCommandEnum(command, args) switch
         {
-            build   or msbuild   => "Build" + FormatArgsForLog(args),
-            rebuild or msrebuild => "Rebuild" + FormatArgsForLog(args),
+            build   or msbuild   => "Build" + FormatArgs(args),
+            rebuild or msrebuild => "Rebuild" + FormatArgs(args),
             restore              => "Restore",
             installpackage       => "Install package",
             uninstallpackage     => "Uninstall package",
             _ => ""
         };
 
-    private static string FormatArgsForLog(string args)
+    private static string FormatArgs(string args)
     {
         args = StripReArg(args);
         return Has(args) ? " with " + args : "";
