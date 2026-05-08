@@ -138,11 +138,13 @@ public static class DotNet
             
             if (isRebuild)
             {
-                opt.Log("Rebuild " + opt.BuildConf + formattedExtraArgs);
+                //opt.Log("Rebuild " + opt.BuildConf + formattedExtraArgs);
+                opt.Log("Rebuild" + formattedExtraArgs);
             }
             else
             {
-                opt.Log("Build " + opt.BuildConf + formattedExtraArgs);
+                //opt.Log("Build " + opt.BuildConf + formattedExtraArgs);
+                opt.Log("Build" + formattedExtraArgs);
             }
         }
 
