@@ -34,10 +34,10 @@ public static class DotNet
     public static string InstallPackage  (string id, string ver, string args                   ) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args);
     public static string InstallPackage  (string id, string ver, string args, DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args, opt);
 
-    public static string UninstallPackage(string id                                            ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) }, DefaultOptions);
-    public static string UninstallPackage(string id,                          DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) }, opt);
-    public static string UninstallPackage(string id,             string args                   ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) + " " + args }, DefaultOptions);
-    public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) + " " + args }, opt);
+    public static string UninstallPackage(string id                                            ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id }, DefaultOptions);
+    public static string UninstallPackage(string id,                          DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id }, opt);
+    public static string UninstallPackage(string id,             string args                   ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = args }, DefaultOptions);
+    public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = args }, opt);
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetInfo(command), DefaultOptions);
