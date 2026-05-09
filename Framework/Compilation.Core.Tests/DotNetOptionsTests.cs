@@ -4,25 +4,23 @@ namespace JJ.Framework.Compilation.Core.Tests;
 public class DotNetOptionsTests
 {
     [TestMethod]
-    public void Constructor_Default_InitializesExpectedDefaults()
+    public void DotNetOptions_Constructor_InitializedDefaults()
     {
-        var options = new DotNetOptions();
-
-        AreEqual("", options.Dir);
-        AreEqual("", options.File);
-        AreEqual("", options.BuildConf);
-        AreEqual("", options.Args);
-        AreEqual(Normal, options.Verbosity);
-        IsFalse(options.AutoRestore);
-        AreEqual(180, options.TimeOutSec);
-        IsNotNull(options.Log);
+        var opt = new DotNetOptions();
+        AreEqual ("",     opt.Dir        );
+        AreEqual ("",     opt.File       );
+        AreEqual ("",     opt.BuildConf  );
+        AreEqual ("",     opt.Args       );
+        AreEqual (Normal, opt.Verbosity  );
+        IsFalse  (        opt.AutoRestore);
+        AreEqual (180,    opt.TimeOutSec );
+        IsNotNull(        opt.Log        );
     }
 
     [TestMethod]
     public void Constructor_DefaultLog_CanBeInvoked()
     {
-        var options = new DotNetOptions();
-
-        options.Log("hello");
+        var opt = new DotNetOptions();
+        opt.Log("hello");
     }
 }

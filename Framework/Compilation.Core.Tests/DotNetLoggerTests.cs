@@ -3,136 +3,127 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class DotNetLoggerTests
 {
+    // TODO: This tests 2 thing: minimallogging and how the args get logged.
     [TestMethod]
-    public void Log_WithMinimalVerbosity_LogsShortMessage()
+    public void Tes_Log_Minimal()
     {
-        string message = "";
-        var info = new DotNetInfo(build) { Args = "--nologo" };
-        var options = new DotNetOptions { Verbosity = Minimal, Log = x => message = x };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = build, Args = "--nologo" };
+        var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
-        Log(info, "build --nologo", options);
+        Log(info, "build --nologo", opt);
 
-        AreEqual("Build with --nologo", message);
+        AreEqual("Build with --nologo", msg);
     }
 
     [TestMethod]
-    public void Log_WithNormalVerbosity_LogsCommandLine()
+    public void Test_Log_NormalVerbosity()
     {
-        string message = "";
-        var info = new DotNetInfo(restore);
-        var options = new DotNetOptions { Verbosity = Normal, Log = x => message = x };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = restore};
+        var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "restore", options);
+        Log(info, "restore", opt);
 
-        IsTrue(message.StartsWith("Restore:"));
-        IsTrue(message.Contains("dotnet restore"));
+        IsTrue(msg.StartsWith("Restore:"));
+        IsTrue(msg.Contains("dotnet restore"));
     }
 
     [TestMethod]
-    public void Log_WithQuietVerbosity_DoesNotLog()
+    public void Test_Log_Quiet()
     {
-        bool invoked = false;
-        var info = new DotNetInfo(build);
-        var options = new DotNetOptions { Verbosity = Quiet, Log = _ => invoked = true };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = build };
+        var opt = new DotNetOptions { Verbosity = Quiet, Log = x => msg = x };
 
-        Log(info, "build", options);
+        Log(info, "arg", opt);
 
-        IsFalse(invoked);
+        NullOrEmpty(msg);
     }
 
     [TestMethod]
-    public void Log_WithDetailedVerbosity_LogsDetailedLayout()
+    public void Test_Log_Detailed()
     {
-        string message = "";
-        var info = new DotNetInfo(build);
-        var options = new DotNetOptions { Verbosity = Detailed, Log = x => message = x };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = build };
+        var opt = new DotNetOptions { Verbosity = Detailed, Log = x => msg = x };
 
-        Log(info, "build", options);
+        Log(info, "build", opt);
 
-        IsTrue(message.StartsWith(NewLine));
-        IsTrue(message.Contains("Build"));
-        IsTrue(message.Contains("dotnet build"));
+        IsTrue(msg.StartsWith(NewLine));
+        IsTrue(msg.Contains("Build"));
+        IsTrue(msg.Contains("dotnet build"));
     }
 
     [TestMethod]
-    public void Log_WithDiagnosticVerbosity_UsesDetailedLayout()
+    public void Test_Log_Diagnostic()
     {
-        string message = "";
-        var info = new DotNetInfo(restore);
-        var options = new DotNetOptions { Verbosity = Diagnostic, Log = x => message = x };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = restore };
+        var opt = new DotNetOptions { Verbosity = Diagnostic, Log = x => msg = x };
 
-        Log(info, "restore", options);
+        Log(info, "restore", opt);
 
-        IsTrue(message.Contains("Restore"));
-        IsTrue(message.Contains("dotnet restore"));
+        IsTrue(msg.Contains("Restore"));
+        IsTrue(msg.Contains("dotnet restore"));
     }
 
     [TestMethod]
-    public void Log_WithNullLog_DoesNotThrow()
+    public void Test_Log_UnknownCommand_DoesNotLog()
     {
-        var info = new DotNetInfo(build);
-        var options = new DotNetOptions { Verbosity = Normal };
+        string msg = "";
+        var info = new DotNetInfo { Command = "MyCmd" };
+        var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
-        Log(info, "build", options);
+        Log(info, "arg", opt);
+        IsNullOrEmpty(msg);
     }
 
     [TestMethod]
-    public void Log_WithUnknownCommandAndNoArgs_DoesNotInvokeLogger()
+    public void Test_Log_MSBuild_UsesBuildCaption()
     {
-        bool invoked = false;
-        var info = new DotNetInfo(undefined);
-        var options = new DotNetOptions { Verbosity = Minimal, Log = _ => invoked = true };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = msbuild };
+        var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "", options);
+        Log(info, "msbuild", opt);
 
-        IsFalse(invoked);
+        IsTrue(msg.StartsWith("Build:"));
     }
 
     [TestMethod]
-    public void Log_WithMSBuildCommand_UsesBuildCaption()
+    public void Test_Log_MSRebuild_UsesRebuildCaption()
     {
-        string message = "";
-        var info = new DotNetInfo(msbuild);
-        var options = new DotNetOptions { Verbosity = Normal, Log = x => message = x };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = msrebuild };
+        var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "msbuild", options);
+        Log(info, "msbuild /t:Rebuild", opt);
 
-        IsTrue(message.StartsWith("Build:"));
+        IsTrue(msg.StartsWith("Rebuild:"));
     }
 
     [TestMethod]
-    public void Log_WithMSRebuildCommand_UsesRebuildCaption()
+    public void Test_Log_InstallPackage()
     {
-        string message = "";
-        var info = new DotNetInfo(msrebuild);
-        var options = new DotNetOptions { Verbosity = Normal, Log = x => message = x };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = installpackage };
+        var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "msbuild /t:Rebuild", options);
+        Log(info, "add package X", opt);
 
-        IsTrue(message.StartsWith("Rebuild:"));
+        IsTrue(msg.StartsWith("Install package:"));
     }
 
     [TestMethod]
-    public void Log_WithInstallPackageCommand_UsesInstallCaption()
+    public void Test_Log_UninstallPackage()
     {
-        string message = "";
-        var info = new DotNetInfo(installpackage);
-        var options = new DotNetOptions { Verbosity = Normal, Log = x => message = x };
+        string msg = "";
+        var info = new DotNetInfo { CommandEnum = uninstallpackage };
+        var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "add package X", options);
+        Log(info, "remove package X", opt);
 
-        IsTrue(message.StartsWith("Install package:"));
-    }
-
-    [TestMethod]
-    public void Log_WithUninstallPackageCommand_UsesUninstallCaption()
-    {
-        string message = "";
-        var info = new DotNetInfo(uninstallpackage);
-        var options = new DotNetOptions { Verbosity = Normal, Log = x => message = x };
-
-        Log(info, "remove package X", options);
-
-        IsTrue(message.StartsWith("Uninstall package:"));
+        IsTrue(msg.StartsWith("Uninstall package:"));
     }
 }
