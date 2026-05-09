@@ -6,7 +6,7 @@ public class RunningTargetFrameworkTests
     [TestMethod]
     public void RunningTargetFramework_WhenNet48_ReturnsNet48()
     {
-        #if NET48 && !NCRUNCH
+        #if NET48
         AreEqual("net48", DotNet.RunningTargetFramework);
         #endif
     }
