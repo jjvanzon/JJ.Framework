@@ -2,6 +2,8 @@
 
 internal static class DotNetLogger
 {
+    private static readonly string e = NewLine;
+
     public static void Log(DotNetInfo info, string fullArgs, DotNetOptions opt)
     {
         if (opt.Log == NullLog) return;
@@ -21,13 +23,15 @@ internal static class DotNetLogger
         => FormatCommand(info.CommandEnum) + FormatArgs(info.Args);
 
     private static string GetMessageNormal(DotNetInfo info, string fullArgs) 
-        => FormatCommand(info.CommandEnum) + $": dotnet {fullArgs}";
+        => e +
+           $"{FormatCommand(info.CommandEnum)}:" + e +
+           $"dotnet {fullArgs}";
 
     private static string GetMessageDetailed(DotNetInfo info, string fullArgs) 
-        => NewLine + 
-           FormatCommand(info.CommandEnum) + NewLine + 
-           "-----" + NewLine + 
-           $"dotnet {fullArgs}" + NewLine;
+        => e + 
+           FormatCommand(info.CommandEnum) + e + 
+           "-----" + e + 
+           $"dotnet {fullArgs}" + e;
 
     private static string FormatCommand(DotNetCommandEnum command) => command switch
     {
