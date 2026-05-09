@@ -89,10 +89,10 @@ public static class DotNet
     internal static string Exe(DotNetInfo info, DotNetOptions opt = default)
     {
         Enrich(info);
-        Log(info, opt);
+        string fullArgs = FormatArgs(info, opt);
+        Log(info, fullArgs, opt);
 
         const string fileName = "dotnet";
-        string fullArgs = FormatArgs(info, opt);
 
         using var process = Process.Start(new ProcessStartInfo
         {

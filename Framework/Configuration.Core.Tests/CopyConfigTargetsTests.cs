@@ -63,7 +63,7 @@ public class CopyConfigTargetsTests : IDisposable
             Dir = _tempProjDir,
             TimeOutSec = BuildTimeOutSec, 
             BuildConf = "Release",
-            //Verbosity = Detailed,
+            Verbosity = Diagnostic,
             Log = Log
         };
 
@@ -249,6 +249,6 @@ public class CopyConfigTargetsTests : IDisposable
     private void DotNetBuild()
     {
         DotNet.Restore(_options);
-        DotNet.Build(_options);
+        DotNet.MSBuild(_options);
     }
 }
