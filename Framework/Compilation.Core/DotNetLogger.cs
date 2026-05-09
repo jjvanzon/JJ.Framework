@@ -11,13 +11,13 @@ internal static class DotNetLogger
         if (Has(message)) opt.Log(message);
     }
 
-    private static string GetMessage(DotNetVerbosity verbosity, DotNetInfo info, string fullArgs)
+    private static string GetMessage(DotNetVerbosity verbosity, DotNetInfo info, string fullArgs) => verbosity switch
     {
-        if (verbosity == Quiet) return "";
-        if (verbosity == Minimal) return GetMessageMinimal(info);
-        if (verbosity == Normal) return GetMessageNormal(info, fullArgs);
-        return GetMessageDetailed(info, fullArgs);
-    }
+        Quiet   => "",
+        Minimal => GetMessageMinimal(info),
+        Normal  => GetMessageNormal(info, fullArgs),
+        _       => GetMessageDetailed(info, fullArgs)
+    };
 
     private static string GetMessageMinimal(DotNetInfo info)
         => FormatCommand(info.CommandEnum) + FormatArgs(info.Args);
