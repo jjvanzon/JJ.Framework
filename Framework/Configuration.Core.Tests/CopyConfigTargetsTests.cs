@@ -63,7 +63,7 @@ public class CopyConfigTargetsTests : IDisposable
             Dir = _tempProjDir,
             TimeOutSec = BuildTimeOutSec, 
             BuildConf = "Release",
-            Verbosity = Detailed,
+            Verbosity = Minimal,
             Log = Log
         };
 

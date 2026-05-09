@@ -23,15 +23,16 @@ internal static class DotNetLogger
         => FormatCommand(info.CommandEnum) + FormatArgs(info.Args);
 
     private static string GetMessageNormal(DotNetInfo info, string fullArgs) 
-        => e +
-           $"{FormatCommand(info.CommandEnum)}:" + e +
-           $"dotnet {fullArgs}";
+        => $"{FormatCommand(info.CommandEnum)}:" + e +
+           $"dotnet {fullArgs}" + e
+           ;
 
     private static string GetMessageDetailed(DotNetInfo info, string fullArgs) 
         => e + 
            FormatCommand(info.CommandEnum) + e + 
            "-----" + e + 
-           $"dotnet {fullArgs}" + e;
+           $"dotnet {fullArgs}" + e
+           ;
 
     private static string FormatCommand(DotNetCommandEnum command) => command switch
     {
