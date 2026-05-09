@@ -13,12 +13,13 @@ internal static class DotNetFormatter
         string formattedBuildConf   = TryFormatBuildConf  (opt.BuildConf,   info.CommandEnum);
         string formattedVerbosity   = TryFormatVerbosity  (opt.Verbosity,   info.CommandEnum);
         string formattedRebuildArg  = TryFormatRebuildArg (info.IsRebuild,  info.CommandEnum);
-        string formattedPackageID   = TryFormatPackageID  (info.PackageID);
+        string formattedPackageID   = TryFormatPackageID  (info.ID);
+        string formattedPackageVer  = TryFormatPackageVer (info.Ver);
         string[] elements = 
         [
             info.Command, formattedFile, 
             formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
-            formattedPackageID,
+            formattedPackageID, formattedPackageVer,
             opt.Args, info.Args, formattedAutoRestore // HACK: auto-restore put at the end makes `add package` work.
         ]; 
         string ret = Join(" ", elements.Where(FilledIn));
@@ -60,14 +61,20 @@ internal static class DotNetFormatter
 
     private static string TryFormatPackageID(string id)
     {
-        if (!Has(id)) return "";
+        if (id.IsNully()) return "";
         return $"package {id}";
+    }
+
+    private static string TryFormatPackageVer(string ver)
+    {
+        if (ver.IsNully()) return "";
+        return $"--version {ver}";
     }
 
     public static string StripReArg(string args) 
         => args.Replace(REBUILD_ARG_DOT_NET, "")
                .Replace(REBUILD_ARG_MS_BUILD, "");
 
-    public static string PackArg(string id) => $"package {id}";
-    public static string PackArg(string id, string ver) => $"package {id} --version {ver}";
+    //public static string PackArg(string id) => $"package {id}";
+    //public static string PackArg(string id, string ver) => $"package {id} --version {ver}";
 }
