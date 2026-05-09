@@ -2,16 +2,23 @@
 
 internal static class DotNetFormatter
 {
-    public static string FormatArgs(DotNetCommandInfo info, DotNetOptions opt)
+    public const string REBUILD_ARG_MS_BUILD = "/t:Rebuild";
+    public const string REBUILD_ARG_DOT_NET = "--no-incremental";
+
+
+    public static string FormatArgs(DotNetInfo info, DotNetOptions opt)
     {
         string formattedFile        = FormatFile(opt.File);
         string formattedAutoRestore = TryFormatAutoRestore(opt.AutoRestore, info.CommandEnum);
         string formattedBuildConf   = TryFormatBuildConf  (opt.BuildConf,   info.CommandEnum);
         string formattedVerbosity   = TryFormatVerbosity  (opt.Verbosity,   info.CommandEnum);
-        string formattedRebuildArg  = TryFormatRebuildArg    (info.IsRebuild,  info.CommandEnum);
+        string formattedRebuildArg  = TryFormatRebuildArg (info.IsRebuild,  info.CommandEnum);
+        string formattedPackageID   = TryFormatPackageID  (info.PackageID);
         string[] elements = 
         [
-            info.Command, formattedFile, formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
+            info.Command, formattedFile, 
+            formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
+            formattedPackageID,
             opt.Args, info.Args, formattedAutoRestore // HACK: auto-restore put at the end makes `add package` work.
         ]; 
         string ret = Join(" ", elements.Where(FilledIn));
@@ -51,8 +58,11 @@ internal static class DotNetFormatter
         return "";
     }
 
-    public const string REBUILD_ARG_MS_BUILD = "/t:Rebuild";
-    public const string REBUILD_ARG_DOT_NET = "--no-incremental";
+    private static string TryFormatPackageID(string id)
+    {
+        if (!Has(id)) return "";
+        return $"package {id}";
+    }
 
     public static string StripReArg(string args) 
         => args.Replace(REBUILD_ARG_DOT_NET, "")

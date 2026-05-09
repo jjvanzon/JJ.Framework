@@ -1,7 +1,11 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-internal class DotNetCommandInfo
+internal class DotNetInfo
 {
+    public DotNetInfo() { }
+    public DotNetInfo(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
+    public DotNetInfo(string command) => Command = command;
+
     public DotNetCommandEnum CommandEnum { get; set; }
     public string Command { get ; set; } = "";
     public bool IsRebuild { get; set; }

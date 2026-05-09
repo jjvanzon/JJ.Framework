@@ -2,7 +2,7 @@
 
 internal static class DotNetLogger
 {
-    public static void Log(DotNetCommandInfo info, DotNetOptions opt)
+    public static void Log(DotNetInfo info, DotNetOptions opt)
     {
         if (opt.Log == NullLog) return;
         if (opt.Verbosity == Quiet) return;
@@ -10,7 +10,7 @@ internal static class DotNetLogger
         if (Has(message)) opt.Log(message);
     }
 
-    private static string GetMessage(DotNetCommandInfo info) 
+    private static string GetMessage(DotNetInfo info) 
         => info.CommandEnum switch
         {
             build   or msbuild   => "Build" + FormatArgs(info.Args),

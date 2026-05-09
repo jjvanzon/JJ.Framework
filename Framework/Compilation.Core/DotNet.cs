@@ -34,29 +34,29 @@ public static class DotNet
     public static string InstallPackage  (string id, string ver, string args                   ) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args);
     public static string InstallPackage  (string id, string ver, string args, DotNetOptions opt) => DotNet.Exe(installpackage, PackArg(id, ver) + " " + args, opt);
 
-    public static string UninstallPackage(string id                                            ) => DotNet.Exe(uninstallpackage, PackArg(id));
-    public static string UninstallPackage(string id,                          DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id), opt);
-    public static string UninstallPackage(string id,             string args                   ) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args);
-    public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args, opt);
+    public static string UninstallPackage(string id                                            ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) }, DefaultOptions);
+    public static string UninstallPackage(string id,                          DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) }, opt);
+    public static string UninstallPackage(string id,             string args                   ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) + " " + args }, DefaultOptions);
+    public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { PackageID = id, Args = PackArg(id) + " " + args }, opt);
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command }, DefaultOptions);
+    public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetInfo(command), DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command }, opt);
+    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command), opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args                   ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = args }, DefaultOptions);
+    public static string Exe(DotNetCommandEnum command, string args                   ) => DotNet.Exe(new DotNetInfo(command) { Args = args }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = args }, opt);
+    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command                                ) => DotNet.Exe(new DotNetCommandInfo { Command = command }, DefaultOptions);
+    public static string Exe(string            command                                ) => DotNet.Exe(new DotNetInfo(command), DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command,              DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { Command = command }, opt);
+    public static string Exe(string            command,              DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command), opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command, string args                   ) => DotNet.Exe(new DotNetCommandInfo { Command = command, Args = args }, DefaultOptions);
+    public static string Exe(string            command, string args                   ) => DotNet.Exe(new DotNetInfo(command) { Args = args }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { Command = command, Args = args }, opt);
+    public static string Exe(string            command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
     /// <inheritdoc cref="_exe" />
-    internal static string Exe(DotNetCommandInfo info, DotNetOptions opt)
+    internal static string Exe(DotNetInfo info, DotNetOptions opt)
     {
         Enrich(info);
         Log(info, opt);
