@@ -6,6 +6,7 @@ public record struct DotNetOptions
 
     private const int DEFAULT_TIME_OUT_SEC = 180;
     internal static readonly Action<string> NullLog = _ => { };
+    public static readonly DotNetOptions DefaultOptions = new();
 
     public string          Dir         { get; init; } = "";
     public string          File        { get; init; } = "";

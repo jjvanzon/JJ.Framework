@@ -88,6 +88,11 @@ public static class DotNet
     /// <inheritdoc cref="_exe" />
     internal static string Exe(DotNetInfo info, DotNetOptions opt = default)
     {
+        if (opt == default) 
+        {
+            opt = DefaultOptions;
+        }
+
         Enrich(info);
         string fullArgs = FormatArgs(info, opt);
         Log(info, fullArgs, opt);
