@@ -62,4 +62,98 @@ public class DotNetArgBuilderTests
 
         AreEqual("add package Newtonsoft.Json --version 13.0.3 --prerelease", args);
     }
+
+    [TestMethod]
+    public void FormatArgs_WithNoFile_DoesNotAddQuotedFile()
+    {
+        var info = new DotNetInfo(DotNetCommandEnum.build) { Command = "build" };
+
+        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+
+        AreEqual("build --no-restore", args);
+    }
+
+    [TestMethod]
+    public void FormatArgs_WithBuildAndAutoRestoreTrue_DoesNotAddNoRestoreFlag()
+    {
+        var info = new DotNetInfo(DotNetCommandEnum.build) { Command = "build" };
+        var options = new DotNetOptions { AutoRestore = true };
+
+        string args = DotNetArgBuilder.FormatArgs(info, options);
+
+        AreEqual("build", args);
+    }
+
+    [TestMethod]
+    public void FormatArgs_WithMSBuildAndAutoRestoreFalse_DoesNotAddRestoreFlag()
+    {
+        var info = new DotNetInfo(DotNetCommandEnum.msbuild) { Command = "msbuild" };
+        var options = new DotNetOptions { AutoRestore = false };
+
+        string args = DotNetArgBuilder.FormatArgs(info, options);
+
+        AreEqual("msbuild", args);
+    }
+
+    [TestMethod]
+    public void FormatArgs_WithBuildAndIsRebuild_AddsDotNetRebuildArgument()
+    {
+        var info = new DotNetInfo(DotNetCommandEnum.rebuild)
+        {
+            Command = "build",
+            IsRebuild = true
+        };
+
+        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+
+        AreEqual("build --no-incremental --no-restore", args);
+    }
+
+    [TestMethod]
+    public void FormatArgs_WithRestore_IgnoresBuildConfVerbosityAndRebuild()
+    {
+        var info = new DotNetInfo(DotNetCommandEnum.restore)
+        {
+            Command = "restore",
+            IsRebuild = true
+        };
+        var options = new DotNetOptions
+        {
+            BuildConf = "Release",
+            Verbosity = DotNetVerbosity.Detailed,
+            AutoRestore = false
+        };
+
+        string args = DotNetArgBuilder.FormatArgs(info, options);
+
+        AreEqual("restore", args);
+    }
+
+    [TestMethod]
+    public void FormatArgs_WithInstallPackageWithoutVersion_OmitsVersionSegment()
+    {
+        var info = new DotNetInfo(DotNetCommandEnum.installpackage)
+        {
+            Command = "add",
+            ID = "Serilog"
+        };
+
+        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+
+        AreEqual("add package Serilog", args);
+    }
+
+    [TestMethod]
+    public void FormatArgs_WithNoPackageID_OmitsPackageSegment()
+    {
+        var info = new DotNetInfo(DotNetCommandEnum.installpackage)
+        {
+            Command = "add",
+            Ver = "1.2.3"
+        };
+
+        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+
+        AreEqual("add --version 1.2.3", args);
+    }
 }
