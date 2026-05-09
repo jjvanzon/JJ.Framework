@@ -4,7 +4,7 @@ internal static class DotNetLogger
 {
     private static readonly string e = NewLine;
 
-    public static void Log(DotNetInfo info, string fullArgs, DotNetOptions opt)
+    public static void Log(DotNetInfo info, DotNetOptions opt, string fullArgs)
     {
         if (opt.Log == NullLog) return;
         string message = GetMessage(opt.Verbosity, info, fullArgs);

@@ -11,7 +11,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = build, Args = "--nologo" };
         var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
-        Log(info, "build --nologo", opt);
+        Log(info, opt, fullArgs: "build --nologo");
 
         AreEqual("Build with --nologo", msg);
     }
@@ -23,7 +23,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = restore};
         var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "restore", opt);
+        Log(info, opt, fullArgs: "restore");
 
         IsTrue(msg.StartsWith("Restore:"));
         IsTrue(msg.Contains("dotnet restore"));
@@ -36,7 +36,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = build };
         var opt = new DotNetOptions { Verbosity = Quiet, Log = x => msg = x };
 
-        Log(info, "arg", opt);
+        Log(info, opt, fullArgs: "arg");
 
         NullOrEmpty(msg);
     }
@@ -48,8 +48,9 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = build };
         var opt = new DotNetOptions { Verbosity = Detailed, Log = x => msg = x };
 
-        Log(info, "build", opt);
+        Log(info, opt, fullArgs: "build");
 
+        // TODO: Might as well assert the entire string instead of just parts of it.
         IsTrue(msg.StartsWith(NewLine));
         IsTrue(msg.Contains("Build"));
         IsTrue(msg.Contains("dotnet build"));
@@ -62,7 +63,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = restore };
         var opt = new DotNetOptions { Verbosity = Diagnostic, Log = x => msg = x };
 
-        Log(info, "restore", opt);
+        Log(info, opt, fullArgs: "restore");
 
         IsTrue(msg.Contains("Restore"));
         IsTrue(msg.Contains("dotnet restore"));
@@ -75,7 +76,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { Command = "MyCmd" };
         var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
-        Log(info, "arg", opt);
+        Log(info, opt, fullArgs: "arg");
         IsNullOrEmpty(msg);
     }
 
@@ -86,7 +87,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = msbuild };
         var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "msbuild", opt);
+        Log(info, opt, fullArgs: "msbuild");
 
         IsTrue(msg.StartsWith("Build:"));
     }
@@ -98,7 +99,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = msrebuild };
         var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "msbuild /t:Rebuild", opt);
+        Log(info, opt, fullArgs: "msbuild /t:Rebuild");
 
         IsTrue(msg.StartsWith("Rebuild:"));
     }
@@ -110,7 +111,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = installpackage };
         var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "add package X", opt);
+        Log(info, opt, fullArgs: "add package X");
 
         IsTrue(msg.StartsWith("Install package:"));
     }
@@ -122,7 +123,7 @@ public class DotNetLoggerTests
         var info = new DotNetInfo { CommandEnum = uninstallpackage };
         var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, "remove package X", opt);
+        Log(info, opt, fullArgs: "remove package X");
 
         IsTrue(msg.StartsWith("Uninstall package:"));
     }

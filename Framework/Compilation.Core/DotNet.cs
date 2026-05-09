@@ -95,7 +95,7 @@ public static class DotNet
 
         Enrich(info);
         string fullArgs = FormatArgs(info, opt);
-        Log(info, fullArgs, opt);
+        Log(info, opt, fullArgs);
 
         const string fileName = "dotnet";
 
