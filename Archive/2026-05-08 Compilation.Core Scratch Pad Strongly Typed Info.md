@@ -101,3 +101,43 @@ public static void LogCommand(string command, string args, DotNetOptions opt)
         return "";
     }
 ```
+
+More
+----
+
+`DotNetEnricher.cs`
+
+```cs
+
+        //info.IsRebuild   = info.IsRebuild
+        //                       .Coalesce(IsRebuild(info.CommandEnum))
+        //                       .Coalesce(IsRebuild(info.Command, info.Args));
+
+                               //.Coalesce(TryGetCommandEnum(info.Command, info.Args));
+```
+
+`DotNetFormatter`
+
+```cs
+
+    // Enum Helpers
+
+    public static string ReArg(DotNetCommandEnum command)
+    {
+        if (command == rebuild  ) return REBUILD_ARG_DOT_NET;
+        if (command == msrebuild) return REBUILD_ARG_MS_BUILD;
+        return "";
+    }
+
+    //public static bool IsMSBuild(DotNetCommand command) 
+    //    => command == msbuild || command == msrebuild;
+
+    //public static string Re(bool re)
+    //{
+    //    if (re)
+    //    if (command.Is("build")) return "--no-incremental";
+    //    if (command.Is("msbuild")) return "/t:Rebuild";
+    //    return "";
+    //}
+
+```

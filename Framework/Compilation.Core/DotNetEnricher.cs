@@ -4,13 +4,9 @@ internal static class DotNetEnricher
 {
     public static void Enrich(DotNetCommandInfo info)
     {
+        info.IsRebuild   = info.IsRebuild || IsRebuild(info.CommandEnum) || IsRebuild(info.Command, info.Args);
         info.Command     = Has(info.Command) ? info.Command : FormatCommand(info.CommandEnum);
-
-        info.CommandEnum = info.CommandEnum
-                               .Coalesce(TryGetCommandEnum(info.Command, info.IsRebuild))
-                               .Coalesce(TryGetCommandEnum(info.Command, info.Args));
-
-        info.IsRebuild   = Has(info.IsRebuild) ? info.IsRebuild : IsRebuild(info.Command, info.Args);
+        info.CommandEnum = Has(info.CommandEnum) ? info.CommandEnum : TryGetCommandEnum(info.Command, info.IsRebuild);
     }
 
     public static string FormatCommand(DotNetCommandEnum val) => val switch
@@ -37,6 +33,22 @@ internal static class DotNetEnricher
         if (command.Is("add"))     return installpackage; 
         if (command.Is("remove"))  return uninstallpackage;
         return default;
-        
+    }
+
+    private static bool IsRebuild(DotNetCommandEnum command)
+        => command is rebuild or msrebuild;
+
+    private static bool IsRebuild(string command, string args)
+    {
+        var rebuildArg = ReArg(command);
+        var isRebuild = Has(rebuildArg) && args.Contains(rebuildArg, OrdinalIgnoreCase);
+        return isRebuild;
+    }
+
+    private static string ReArg(string command)
+    {
+        if (command.Is("build"  )) return REBUILD_ARG_DOT_NET;
+        if (command.Is("msbuild")) return REBUILD_ARG_MS_BUILD;
+        return "";
     }
 }

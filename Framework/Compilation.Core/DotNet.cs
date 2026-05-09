@@ -40,13 +40,13 @@ public static class DotNet
     public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(uninstallpackage, PackArg(id) + " " + args, opt);
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) }, DefaultOptions);
+    public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) }, opt);
+    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command }, opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args                   ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) + " " + args }, DefaultOptions);
+    public static string Exe(DotNetCommandEnum command, string args                   ) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = args }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = ReArg(command) + " " + args }, opt);
+    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetCommandInfo { CommandEnum = command, Args = args }, opt);
     /// <inheritdoc cref="_exe" />
     public static string Exe(string            command                                ) => DotNet.Exe(new DotNetCommandInfo { Command = command }, DefaultOptions);
     /// <inheritdoc cref="_exe" />
