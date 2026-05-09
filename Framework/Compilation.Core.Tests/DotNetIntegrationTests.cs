@@ -6,7 +6,7 @@ public class DotNetIntegrationTests
     private static readonly DotNetOptions _safeOptions = new()
     {
         Log = _ => { },
-        Verbosity = DotNetVerbosity.Minimal
+        Verbosity = Minimal
     };
 
     [TestMethod]
@@ -25,7 +25,7 @@ public class DotNetIntegrationTests
         string result = DotNet.Exe("--version", new DotNetOptions
         {
             Log = x => logMessage = x,
-            Verbosity = DotNetVerbosity.Normal
+            Verbosity = Normal
         });
 
         IsTrue(result.Contains("Output ="));
@@ -57,7 +57,7 @@ public class DotNetIntegrationTests
     [TestMethod]
     public void DotNetRestore_WithHelpArgs_ReturnsOutput()
     {
-        string result = DotNet.Restore("--help", _safeOptions);
+        string result = Restore("--help", _safeOptions);
 
         IsTrue(result.Contains("Output ="));
     }
@@ -65,14 +65,14 @@ public class DotNetIntegrationTests
     [TestMethod]
     public void DotNetRestore_WithHelpArgsWithoutOptions_ReturnsOutput()
     {
-        string result = DotNet.Restore("--help");
+        string result = Restore("--help");
         IsTrue(result.Contains("Output ="));
     }
 
     [TestMethod]
     public void DotNetBuild_WithHelpArgs_ReturnsOutput()
     {
-        string result = DotNet.Build("--help", _safeOptions);
+        string result = Build("--help", _safeOptions);
 
         IsTrue(result.Contains("Output ="));
     }
@@ -80,7 +80,7 @@ public class DotNetIntegrationTests
     [TestMethod]
     public void DotNetBuild_WithHelpArgsWithoutOptions_ReturnsOutput()
     {
-        string result = DotNet.Build("--help");
+        string result = Build("--help");
         IsTrue(result.Contains("Output ="));
     }
 }

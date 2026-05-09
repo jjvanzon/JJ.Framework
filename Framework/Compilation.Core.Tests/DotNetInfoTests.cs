@@ -6,9 +6,9 @@ public class DotNetInfoTests
     [TestMethod]
     public void Constructor_WithCommandEnum_SetsCommandEnum()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.restore);
+        var info = new DotNetInfo(restore);
 
-        AreEqual(DotNetCommandEnum.restore, info.CommandEnum);
+        AreEqual(restore, info.CommandEnum);
         AreEqual("", info.Command);
         IsFalse(info.IsRebuild);
         AreEqual("", info.ID);

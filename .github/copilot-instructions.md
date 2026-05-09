@@ -7,6 +7,7 @@
 ## Code Style
 - Use file-scoped namespace.
 - Prefer global usings in `Usings.cs`.
+- Prefer using global using static more often across the codebase.
 - Use parameter name `x` for short lambdas.
 - Use file-scoped namespaces and `using static` imports for methods (e.g., `using static NumberingSystems;` and `using static AssertCore;`).
 - Use collection expressions `[]` instead of `new[]`.

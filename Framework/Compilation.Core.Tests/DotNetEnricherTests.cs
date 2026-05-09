@@ -6,12 +6,12 @@ public class DotNetEnricherTests
     [TestMethod]
     public void Enrich_WithRebuildEnum_MapsToBuildCommandAndKeepsRebuildFlag()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.rebuild);
+        var info = new DotNetInfo(rebuild);
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("build", info.Command);
-        AreEqual(DotNetCommandEnum.rebuild, info.CommandEnum);
+        AreEqual(rebuild, info.CommandEnum);
         IsTrue(info.IsRebuild);
     }
 
@@ -24,17 +24,17 @@ public class DotNetEnricherTests
             Args = "/t:Rebuild"
         };
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("msbuild", info.Command);
-        AreEqual(DotNetCommandEnum.msrebuild, info.CommandEnum);
+        AreEqual(msrebuild, info.CommandEnum);
         IsTrue(info.IsRebuild);
     }
 
     [TestMethod]
     public void TryGetCommandEnum_WithUnknownCommand_ReturnsDefault()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("unknown", isRebuild: false);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("unknown", isRebuild: false);
 
         AreEqual(default, commandEnum);
     }
@@ -48,68 +48,68 @@ public class DotNetEnricherTests
             Args = "--no-incremental"
         };
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("build", info.Command);
-        AreEqual(DotNetCommandEnum.rebuild, info.CommandEnum);
+        AreEqual(rebuild, info.CommandEnum);
         IsTrue(info.IsRebuild);
     }
 
     [TestMethod]
     public void Enrich_WithBuildEnum_SetsBuildCommandAndEnum()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.build);
+        var info = new DotNetInfo(build);
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("build", info.Command);
-        AreEqual(DotNetCommandEnum.build, info.CommandEnum);
+        AreEqual(build, info.CommandEnum);
         IsFalse(info.IsRebuild);
     }
 
     [TestMethod]
     public void Enrich_WithMSBuildEnum_SetsMSBuildCommandAndEnum()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.msbuild);
+        var info = new DotNetInfo(msbuild);
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("msbuild", info.Command);
-        AreEqual(DotNetCommandEnum.msbuild, info.CommandEnum);
+        AreEqual(msbuild, info.CommandEnum);
         IsFalse(info.IsRebuild);
     }
 
     [TestMethod]
     public void Enrich_WithRestoreEnum_SetsRestoreCommandAndEnum()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.restore);
+        var info = new DotNetInfo(restore);
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("restore", info.Command);
-        AreEqual(DotNetCommandEnum.restore, info.CommandEnum);
+        AreEqual(restore, info.CommandEnum);
     }
 
     [TestMethod]
     public void Enrich_WithInstallPackageEnum_SetsAddCommand()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.installpackage);
+        var info = new DotNetInfo(installpackage);
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("add", info.Command);
-        AreEqual(DotNetCommandEnum.installpackage, info.CommandEnum);
+        AreEqual(installpackage, info.CommandEnum);
     }
 
     [TestMethod]
     public void Enrich_WithUninstallPackageEnum_SetsRemoveCommand()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.uninstallpackage);
+        var info = new DotNetInfo(uninstallpackage);
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("remove", info.Command);
-        AreEqual(DotNetCommandEnum.uninstallpackage, info.CommandEnum);
+        AreEqual(uninstallpackage, info.CommandEnum);
     }
 
     [TestMethod]
@@ -120,7 +120,7 @@ public class DotNetEnricherTests
             Command = "custom"
         };
 
-        DotNetEnricher.Enrich(info);
+        Enrich(info);
 
         AreEqual("custom", info.Command);
         AreEqual(default, info.CommandEnum);
@@ -130,56 +130,56 @@ public class DotNetEnricherTests
     [TestMethod]
     public void TryGetCommandEnum_WithBuildAndNoRebuild_ReturnsBuild()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("build", isRebuild: false);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("build", isRebuild: false);
 
-        AreEqual(DotNetCommandEnum.build, commandEnum);
+        AreEqual(build, commandEnum);
     }
 
     [TestMethod]
     public void TryGetCommandEnum_WithBuildAndRebuild_ReturnsRebuild()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("build", isRebuild: true);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("build", isRebuild: true);
 
-        AreEqual(DotNetCommandEnum.rebuild, commandEnum);
+        AreEqual(rebuild, commandEnum);
     }
 
     [TestMethod]
     public void TryGetCommandEnum_WithMSBuildAndNoRebuild_ReturnsMSBuild()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("msbuild", isRebuild: false);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("msbuild", isRebuild: false);
 
-        AreEqual(DotNetCommandEnum.msbuild, commandEnum);
+        AreEqual(msbuild, commandEnum);
     }
 
     [TestMethod]
     public void TryGetCommandEnum_WithMSBuildAndRebuild_ReturnsMSRebuild()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("msbuild", isRebuild: true);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("msbuild", isRebuild: true);
 
-        AreEqual(DotNetCommandEnum.msrebuild, commandEnum);
+        AreEqual(msrebuild, commandEnum);
     }
 
     [TestMethod]
     public void TryGetCommandEnum_WithRestore_ReturnsRestore()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("restore", isRebuild: false);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("restore", isRebuild: false);
 
-        AreEqual(DotNetCommandEnum.restore, commandEnum);
+        AreEqual(restore, commandEnum);
     }
 
     [TestMethod]
     public void TryGetCommandEnum_WithAdd_ReturnsInstallPackage()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("add", isRebuild: false);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("add", isRebuild: false);
 
-        AreEqual(DotNetCommandEnum.installpackage, commandEnum);
+        AreEqual(installpackage, commandEnum);
     }
 
     [TestMethod]
     public void TryGetCommandEnum_WithRemove_ReturnsUninstallPackage()
     {
-        DotNetCommandEnum commandEnum = DotNetEnricher.TryGetCommandEnum("remove", isRebuild: false);
+        DotNetCommandEnum commandEnum = TryGetCommandEnum("remove", isRebuild: false);
 
-        AreEqual(DotNetCommandEnum.uninstallpackage, commandEnum);
+        AreEqual(uninstallpackage, commandEnum);
     }
 }

@@ -12,7 +12,7 @@ public class DotNetOptionsTests
         AreEqual("", options.File);
         AreEqual("", options.BuildConf);
         AreEqual("", options.Args);
-        AreEqual(DotNetVerbosity.Normal, options.Verbosity);
+        AreEqual(Normal, options.Verbosity);
         IsFalse(options.AutoRestore);
         AreEqual(180, options.TimeOutSec);
         IsNotNull(options.Log);

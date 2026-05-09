@@ -6,7 +6,7 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithBuildAndOptions_FormatsDotNetArguments()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.build)
+        var info = new DotNetInfo(build)
         {
             Command = "build",
             Args = "--nologo"
@@ -16,12 +16,12 @@ public class DotNetArgBuilderTests
         {
             File = "MySolution.sln",
             BuildConf = "Release",
-            Verbosity = DotNetVerbosity.Diagnostic,
+            Verbosity = Diagnostic,
             AutoRestore = false,
             Args = "-p:Foo=Bar"
         };
 
-        string args = DotNetArgBuilder.FormatArgs(info, options);
+        string args = FormatArgs(info, options);
 
         AreEqual("build \"MySolution.sln\" -c Release --verbosity Diagnostic -p:Foo=Bar --nologo --no-restore", args);
     }
@@ -29,7 +29,7 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithMSRebuild_UsesMSBuildSpecificArguments()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.msrebuild)
+        var info = new DotNetInfo(msrebuild)
         {
             Command = "msbuild",
             IsRebuild = true
@@ -38,11 +38,11 @@ public class DotNetArgBuilderTests
         var options = new DotNetOptions
         {
             BuildConf = "Debug",
-            Verbosity = DotNetVerbosity.Minimal,
+            Verbosity = Minimal,
             AutoRestore = true
         };
 
-        string args = DotNetArgBuilder.FormatArgs(info, options);
+        string args = FormatArgs(info, options);
 
         AreEqual("msbuild /p:Configuration=Debug /t:Rebuild -verbosity:Minimal -restore", args);
     }
@@ -50,7 +50,7 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithInstallPackage_FormatsPackageSegments()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.installpackage)
+        var info = new DotNetInfo(installpackage)
         {
             Command = "add",
             ID = "Newtonsoft.Json",
@@ -58,7 +58,7 @@ public class DotNetArgBuilderTests
             Args = "--prerelease"
         };
 
-        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+        string args = FormatArgs(info, new DotNetOptions());
 
         AreEqual("add package Newtonsoft.Json --version 13.0.3 --prerelease", args);
     }
@@ -66,9 +66,9 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithNoFile_DoesNotAddQuotedFile()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.build) { Command = "build" };
+        var info = new DotNetInfo(build) { Command = "build" };
 
-        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+        string args = FormatArgs(info, new DotNetOptions());
 
         AreEqual("build --no-restore", args);
     }
@@ -76,10 +76,10 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithBuildAndAutoRestoreTrue_DoesNotAddNoRestoreFlag()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.build) { Command = "build" };
+        var info = new DotNetInfo(build) { Command = "build" };
         var options = new DotNetOptions { AutoRestore = true };
 
-        string args = DotNetArgBuilder.FormatArgs(info, options);
+        string args = FormatArgs(info, options);
 
         AreEqual("build", args);
     }
@@ -87,10 +87,10 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithMSBuildAndAutoRestoreFalse_DoesNotAddRestoreFlag()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.msbuild) { Command = "msbuild" };
+        var info = new DotNetInfo(msbuild) { Command = "msbuild" };
         var options = new DotNetOptions { AutoRestore = false };
 
-        string args = DotNetArgBuilder.FormatArgs(info, options);
+        string args = FormatArgs(info, options);
 
         AreEqual("msbuild", args);
     }
@@ -98,13 +98,13 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithBuildAndIsRebuild_AddsDotNetRebuildArgument()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.rebuild)
+        var info = new DotNetInfo(rebuild)
         {
             Command = "build",
             IsRebuild = true
         };
 
-        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+        string args = FormatArgs(info, new DotNetOptions());
 
         AreEqual("build --no-incremental --no-restore", args);
     }
@@ -112,7 +112,7 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithRestore_IgnoresBuildConfVerbosityAndRebuild()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.restore)
+        var info = new DotNetInfo(restore)
         {
             Command = "restore",
             IsRebuild = true
@@ -120,11 +120,11 @@ public class DotNetArgBuilderTests
         var options = new DotNetOptions
         {
             BuildConf = "Release",
-            Verbosity = DotNetVerbosity.Detailed,
+            Verbosity = Detailed,
             AutoRestore = false
         };
 
-        string args = DotNetArgBuilder.FormatArgs(info, options);
+        string args = FormatArgs(info, options);
 
         AreEqual("restore", args);
     }
@@ -132,13 +132,13 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithInstallPackageWithoutVersion_OmitsVersionSegment()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.installpackage)
+        var info = new DotNetInfo(installpackage)
         {
             Command = "add",
             ID = "Serilog"
         };
 
-        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+        string args = FormatArgs(info, new DotNetOptions());
 
         AreEqual("add package Serilog", args);
     }
@@ -146,13 +146,13 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_WithNoPackageID_OmitsPackageSegment()
     {
-        var info = new DotNetInfo(DotNetCommandEnum.installpackage)
+        var info = new DotNetInfo(installpackage)
         {
             Command = "add",
             Ver = "1.2.3"
         };
 
-        string args = DotNetArgBuilder.FormatArgs(info, new DotNetOptions());
+        string args = FormatArgs(info, new DotNetOptions());
 
         AreEqual("add --version 1.2.3", args);
     }
