@@ -19,11 +19,6 @@ internal static class DotNetEnricher
         _ => ""
     };
 
-    //public static DotNetCommandEnum TryGetCommandEnum(string command, string args)
-    //{
-    //    return TryGetCommandEnum(command, IsRebuild(command, args));
-    //}
-
     public static DotNetCommandEnum TryGetCommandEnum(string command, bool isRebuild)
     {
         if (command.Is("build"))   return isRebuild ? rebuild : build;

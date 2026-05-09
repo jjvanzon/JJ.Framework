@@ -5,7 +5,6 @@ internal static class DotNetFormatter
     public const string REBUILD_ARG_MS_BUILD = "/t:Rebuild";
     public const string REBUILD_ARG_DOT_NET = "--no-incremental";
 
-
     public static string FormatArgs(DotNetInfo info, DotNetOptions opt)
     {
         string formattedFile        = FormatFile(opt.File);
@@ -70,11 +69,4 @@ internal static class DotNetFormatter
         if (ver.IsNully()) return "";
         return $"--version {ver}";
     }
-
-    public static string StripReArg(string args) 
-        => args.Replace(REBUILD_ARG_DOT_NET, "")
-               .Replace(REBUILD_ARG_MS_BUILD, "");
-
-    //public static string PackArg(string id) => $"package {id}";
-    //public static string PackArg(string id, string ver) => $"package {id} --version {ver}";
 }

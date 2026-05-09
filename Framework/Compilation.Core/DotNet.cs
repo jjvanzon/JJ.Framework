@@ -29,32 +29,62 @@ public static class DotNet
     public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe(restore,   args, opt);
     public static string Restore  (string args                   ) => DotNet.Exe(restore,   args     );
 
-    public static string InstallPackage  (string id, string ver                                ) => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver });
-    public static string InstallPackage  (string id, string ver,              DotNetOptions opt) => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver }, opt);
-    public static string InstallPackage  (string id, string ver, string args                   ) => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args });
-    public static string InstallPackage  (string id, string ver, string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args }, opt);
+    public static string InstallPackage(string id, string ver)
+        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver });
 
-    public static string UninstallPackage(string id                                            ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id });
-    public static string UninstallPackage(string id,                          DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id }, opt);
-    public static string UninstallPackage(string id,             string args                   ) => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args });
-    public static string UninstallPackage(string id,             string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args }, opt);
+    public static string InstallPackage(string id, string ver, DotNetOptions opt)
+        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver }, opt);
+
+    public static string InstallPackage(string id, string ver, string args) 
+        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args });
+
+    public static string InstallPackage(string id, string ver, string args, DotNetOptions opt)
+        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args }, opt);
+
+    public static string UninstallPackage(string id) 
+        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id });
+
+    public static string UninstallPackage(string id, DotNetOptions opt)
+        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id }, opt);
+
+    public static string UninstallPackage(string id, string args)
+        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args });
+
+    public static string UninstallPackage(string id, string args, DotNetOptions opt)
+        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args }, opt);
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command                                ) => DotNet.Exe(new DotNetInfo(command));
+    public static string Exe(DotNetCommandEnum command) 
+        => DotNet.Exe(new DotNetInfo(command));
+
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command,              DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command), opt);
+    public static string Exe(DotNetCommandEnum command, DotNetOptions opt) 
+        => DotNet.Exe(new DotNetInfo(command), opt);
+
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args                   ) => DotNet.Exe(new DotNetInfo(command) { Args = args });
+    public static string Exe(DotNetCommandEnum command, string args)
+        => DotNet.Exe(new DotNetInfo(command) { Args = args });
+
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
+    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt)
+        => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
+
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command                                ) => DotNet.Exe(new DotNetInfo(command));
+    public static string Exe(string command) 
+        => DotNet.Exe(new DotNetInfo(command));
+
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command,              DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command), opt);
+    public static string Exe(string command, DotNetOptions opt) 
+        => DotNet.Exe(new DotNetInfo(command), opt);
+
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command, string args                   ) => DotNet.Exe(new DotNetInfo(command) { Args = args });
+    public static string Exe(string command, string args) 
+        => DotNet.Exe(new DotNetInfo(command) { Args = args });
+
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string            command, string args, DotNetOptions opt) => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
+    public static string Exe(string command, string args, DotNetOptions opt)
+        => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
+
     /// <inheritdoc cref="_exe" />
     internal static string Exe(DotNetInfo info, DotNetOptions opt = default)
     {

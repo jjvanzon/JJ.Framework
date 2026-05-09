@@ -141,3 +141,40 @@ More
     //}
 
 ```
+
+More:
+
+```cs
+    //public static DotNetCommandEnum TryGetCommandEnum(string command, string args)
+    //{
+    //    return TryGetCommandEnum(command, IsRebuild(command, args));
+    //}
+
+    public static string StripReArg(string args) 
+        => args.Replace(REBUILD_ARG_DOT_NET, "")
+               .Replace(REBUILD_ARG_MS_BUILD, "");
+
+    //public static string PackArg(string id) => $"package {id}";
+    //public static string PackArg(string id, string ver) => $"package {id} --version {ver}";
+
+
+        //=> GetCommandDisplayName(info.CommandEnum);
+    //private static string GetMessageDetailed(DotNetInfo info, string fullArgs)
+
+    private static string GetMessage(DotNetVerbosity verbosity, DotNetInfo info, string fullArgs) 
+    {
+        switch (verbosity)
+        {
+            case Quiet:
+                return "";
+            case Minimal:
+                return GetMessageMinimal(info);
+            case Normal:
+            case Detailed:
+            case Diagnostic:
+                return GetMessageNormal(info, fullArgs);
+            default:
+                throw new Exception($"Unsupported {nameof(DotNetVerbosity)} '{verbosity}'");
+        }
+    }
+```
