@@ -41,14 +41,18 @@ public class DotNetIntegrationTests
     }
 
     [TestMethod]
-    public void DotNetExe_WithCommandAndEmptyArgsWithoutOptions_ThrowsNullReferenceException()
+    public void DotNetExe_WithCommandAndEmptyArgsWithoutOptions_ReturnsOutput()
     {
-        Throws<NullReferenceException>(() => DotNet.Exe("--version", ""));
+        string result = DotNet.Exe("--version", "");
+        IsTrue(result.Contains("Output ="));
     }
 
     [TestMethod]
-    public void DotNetExe_WithCommandOnlyWithoutOptions_ThrowsNullReferenceException()
-        => Throws<NullReferenceException>(() => DotNet.Exe("--version"));
+    public void DotNetExe_WithCommandOnlyWithoutOptions_ReturnsOutput()
+    {
+        string result = DotNet.Exe("--version");
+        IsTrue(result.Contains("Output ="));
+    }
 
     [TestMethod]
     public void DotNetRestore_WithHelpArgs_ReturnsOutput()
@@ -59,8 +63,11 @@ public class DotNetIntegrationTests
     }
 
     [TestMethod]
-    public void DotNetRestore_WithHelpArgsWithoutOptions_ThrowsNullReferenceException()
-        => Throws<NullReferenceException>(() => DotNet.Restore("--help"));
+    public void DotNetRestore_WithHelpArgsWithoutOptions_ReturnsOutput()
+    {
+        string result = DotNet.Restore("--help");
+        IsTrue(result.Contains("Output ="));
+    }
 
     [TestMethod]
     public void DotNetBuild_WithHelpArgs_ReturnsOutput()
@@ -71,6 +78,9 @@ public class DotNetIntegrationTests
     }
 
     [TestMethod]
-    public void DotNetBuild_WithHelpArgsWithoutOptions_ThrowsNullReferenceException()
-        => Throws<NullReferenceException>(() => DotNet.Build("--help"));
+    public void DotNetBuild_WithHelpArgsWithoutOptions_ReturnsOutput()
+    {
+        string result = DotNet.Build("--help");
+        IsTrue(result.Contains("Output ="));
+    }
 }

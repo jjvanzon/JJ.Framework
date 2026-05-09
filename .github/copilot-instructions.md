@@ -15,6 +15,7 @@
 - Prefer `AssertCore` over `Assert` (using static in Usings.cs).
 - Use parameterized assertions without `Assert.` prefix (e.g., `AreEqual` not `Assert.AreEqual`).
 - Ensure tests reflect intended mathematical behavior/specification, not merely current implementation behavior.
+- Do not hide defects by changing tests to expect current erroneous behavior; tests should indicate real errors even if they fail.
 
 ## Legacy Tests
 - Expand for full code coverage.
@@ -32,5 +33,5 @@
 - Keep documentation tone friendly and accessible.
 - Centralize XML documentation into small unobtrusive `struct` entries in `docs.cs` and use `<inheritdoc cref="_..." />` in implementation files.
 - Add `README.md` in the same folder as the csproj.
-- Set `<GenerateDocumentationFile>` in csproj
-- Add `<PackageTags>`, `<Description>`, `<RepositoryUrl>`, `<PackageProjectUrl>` to csproj
+- Set `<GenerateDocumentationFile>` in csproj.
+- Add `<PackageTags>`, `<Description>`, `<RepositoryUrl>`, `<PackageProjectUrl>` to csproj.
