@@ -77,22 +77,25 @@ public class DotNetArgBuilderTests
     [TestMethod] public void FormatArgs_InstallPackage()
     {
         var info = new DotNetInfo(installpackage) { Command = "add", ID = "Newtonsoft.Json", Ver = "13.0.3", Args = "--prerelease" };
+
         AreEqual("add package Newtonsoft.Json --version 13.0.3 --prerelease", FormatArgs(info, DefaultOptions));
     }
 
     [TestMethod] public void FormatArgs_InstallPackage_NoVersion()
     {
         var info = new DotNetInfo(installpackage) { Command = "add", ID = "Serilog", Ver = "", Args = "" };
+
         AreEqual("add package Serilog", FormatArgs(info, DefaultOptions));
     }
 
     [TestMethod] public void FormatArgs_InstallPackage_NoID()
     {
         var info = new DotNetInfo(installpackage) { Command = "add", ID = "", Ver = "1.2.3", Args = "" };
+
         AreEqual("add --version 1.2.3", FormatArgs(info, DefaultOptions));
     }
 
-    // TODO: remove package test
+    // TODO: `remove package` tests
 
     // TODO: Commands not in the DotNetCommandEnum.
 }
