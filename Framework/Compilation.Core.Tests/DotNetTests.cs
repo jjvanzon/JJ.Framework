@@ -20,7 +20,6 @@ public class DotNetTests : IDisposable
 
     // TODO: Make all tests no-op unless TargetFramework matches (`#if NET8_0`)
 
-
     // Minimal project targeting net8.0 (broadly available SDK; no external packages needed).
     private const string CsprojContent = """
         <Project Sdk="Microsoft.NET.Sdk">
@@ -88,97 +87,54 @@ public class DotNetTests : IDisposable
     // Helpers
 
     /// <summary>Returns the path to the built dll for the given configuration (Debug or Release).</summary>
-    private string BuildOutput(string conf) => Combine(_tempDir, "bin", conf, "net8.0", "Temp.dll");
+    private string DllFilePath(string conf) => Combine(_tempDir, "bin", conf, "net8.0", "Temp.dll");
 
-    private string AssetsFile => Combine(_tempDir, "obj", "project.assets.json");
+    private string AssetsFilePath => Combine(_tempDir, "obj", "project.assets.json");
 
-    /// <summary>Asserts result contains "Output =" (dotnet produced stdout) and an expected keyword.</summary>
-    private static void AssertOutput(string result, string keyword)
+    /// <summary>Asserts result contains "Output =" (dotnet produced stdout) and an expected text in output.</summary>
+    private static void AssertTextOut(string result, string expectedInOutput)
     {
         NotNullOrWhiteSpace(result);
         IsTrue(result.Contains("Output ="), $"Expected 'Output =' in: {result}");
-        IsTrue(result.Contains(keyword),    $"Expected '{keyword}' in: {result}");
+        IsTrue(result.Contains(expectedInOutput), $"Expected '{expectedInOutput}' in: {result}");
     }
 
-    private void AssertAssetsFile()           => IsTrue(FileExists(AssetsFile),          $"Expected assets file: {AssetsFile}");
-    private void AssertBuildOutput(string conf = "Release") => IsTrue(FileExists(BuildOutput(conf)), $"Expected build output: {BuildOutput(conf)}");
+    private void AssertAssetsFile() 
+        => IsTrue(FileExists(AssetsFilePath), $"Expected assets file: {AssetsFilePath}");
+
+    private void AssertDllExists(string conf = "Release") 
+        => IsTrue(FileExists(DllFilePath(conf)), $"Expected build output: {DllFilePath(conf)}");
 
     private static bool FileExists(string path)      => System.IO.File.Exists(path);
     private static bool DirectoryExists(string path) => System.IO.Directory.Exists(path);
-
-    // Exe: string command overloads
-    // --version requires no project and always emits stdout with the SDK version number.
-
-    [TestMethod]
-    public void Test_Exe_String()
-    {
-        string result = DotNet.Exe("--version");
-        AssertOutput(result, "Output =");
-        // The SDK version number looks like "8.0.xxx" or "10.0.xxx".
-        IsTrue(result.Contains('.'), $"Expected a version number in: {result}");
-    }
-
-    [TestMethod]
-    public void Test_Exe_String_Args()
-    {
-        // Pass --list-sdks as the command; lists installed SDKs, reliable stdout with no project needed.
-        string result = DotNet.Exe("--list-sdks", "");
-        AssertOutput(result, "Output =");
-    }
-
-    [TestMethod]
-    public void Test_Exe_String_Opt()
-    {
-        string logged = "";
-        var opt = new DotNetOptions { Log = x => logged = x, Verbosity = Normal };
-        string result = DotNet.Exe("--version", opt);
-        AssertOutput(result, "Output =");
-        // Normal verbosity logs the invocation line.
-        IsTrue(logged.Contains("dotnet"), $"Expected log to mention dotnet, got: {logged}");
-    }
-
-    [TestMethod]
-    public void Test_Exe_String_Args_Opt()
-    {
-        string result = DotNet.Exe("--list-sdks", "", new DotNetOptions { Log = _ => { } });
-        AssertOutput(result, "Output =");
-    }
-
-    // Exe: enum command overloads
-
-    // Restore output says "up-to-date" when already restored; look for "restore" (case-insensitive substring).
-    [TestMethod] public void Test_Exe_Enum()          => InTempDir(() => AssertOutput(DotNet.Exe(restore),               "restore"));
-    [TestMethod] public void Test_Exe_Enum_Args()     => InTempDir(() => AssertOutput(DotNet.Exe(restore, "--no-cache"), "restore"));
-    [TestMethod] public void Test_Exe_Enum_Opt()      =>                 AssertOutput(DotNet.Exe(restore, _optNoFile),   "restore");
-    [TestMethod] public void Test_Exe_Enum_Args_Opt() =>                 AssertOutput(DotNet.Exe(restore, "--no-cache", _optNoFile), "restore");
 
     // Restore
 
     [TestMethod]
     public void Test_Restore()
     {
-        InTempDir(() => AssertOutput(Restore(), "restore"));
+        InTempDir(() => AssertTextOut(Restore(), expectedInOutput: "restore"));
         AssertAssetsFile();
     }
 
     [TestMethod]
     public void Test_Restore_Args()
     {
-        InTempDir(() => AssertOutput(Restore("--no-cache"), "restore"));
+        InTempDir(() => AssertTextOut(Restore("--no-cache"), expectedInOutput: "restore"));
         AssertAssetsFile();
     }
 
     [TestMethod]
     public void Test_Restore_Opt()
     {
-        AssertOutput(Restore(_optNoFile), "restore");
+        AssertTextOut(Restore(_optNoFile), expectedInOutput: "restore");
         AssertAssetsFile();
     }
 
     [TestMethod]
     public void Test_Restore_Args_Opt()
     {
-        AssertOutput(Restore("--no-cache", _optNoFile), "restore");
+        AssertTextOut(Restore("--no-cache", _optNoFile), expectedInOutput: "restore");
         AssertAssetsFile();
     }
 
@@ -187,29 +143,29 @@ public class DotNetTests : IDisposable
     [TestMethod]
     public void Test_Build()
     {
-        InTempDir(() => AssertOutput(Build(), "Build succeeded"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(Build(), expectedInOutput: "Build succeeded"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_Build_Args()
     {
-        InTempDir(() => AssertOutput(Build("--no-incremental"), "Build succeeded"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(Build("--no-incremental"), expectedInOutput: "Build succeeded"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_Build_Opt()
     {
-        AssertOutput(Build(_opt), "Build succeeded");
-        AssertBuildOutput();
+        AssertTextOut(Build(_opt), expectedInOutput: "Build succeeded");
+        AssertDllExists();
     }
 
     [TestMethod]
     public void Test_Build_Args_Opt()
     {
-        AssertOutput(Build("--no-incremental", _opt), "Build succeeded");
-        AssertBuildOutput();
+        AssertTextOut(Build("--no-incremental", _opt), expectedInOutput: "Build succeeded");
+        AssertDllExists();
     }
 
     // Rebuild
@@ -217,29 +173,29 @@ public class DotNetTests : IDisposable
     [TestMethod]
     public void Test_Rebuild()
     {
-        InTempDir(() => AssertOutput(Rebuild(), "Build succeeded"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(Rebuild(), expectedInOutput: "Build succeeded"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_Rebuild_Args()
     {
-        InTempDir(() => AssertOutput(Rebuild("--no-incremental"), "Build succeeded"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(Rebuild("--no-incremental"), expectedInOutput: "Build succeeded"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_Rebuild_Opt()
     {
-        AssertOutput(Rebuild(_opt), "Build succeeded");
-        AssertBuildOutput();
+        AssertTextOut(Rebuild(_opt), expectedInOutput: "Build succeeded");
+        AssertDllExists();
     }
 
     [TestMethod]
     public void Test_Rebuild_Args_Opt()
     {
-        AssertOutput(Rebuild("--no-incremental", _opt), "Build succeeded");
-        AssertBuildOutput();
+        AssertTextOut(Rebuild("--no-incremental", _opt), expectedInOutput: "Build succeeded");
+        AssertDllExists();
     }
 
     // MSBuild
@@ -248,29 +204,29 @@ public class DotNetTests : IDisposable
     [TestMethod]
     public void Test_MSBuild()
     {
-        InTempDir(() => AssertOutput(MSBuild(), "Temp"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(MSBuild(), expectedInOutput: "Temp"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_MSBuild_Args()
     {
-        InTempDir(() => AssertOutput(MSBuild("/p:TreatWarningsAsErrors=false"), "Temp"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(MSBuild("/p:TreatWarningsAsErrors=false"), expectedInOutput: "Temp"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_MSBuild_Opt()
     {
-        AssertOutput(MSBuild(_opt), "Temp");
-        AssertBuildOutput();
+        AssertTextOut(MSBuild(_opt), expectedInOutput: "Temp");
+        AssertDllExists();
     }
 
     [TestMethod]
     public void Test_MSBuild_Args_Opt()
     {
-        AssertOutput(MSBuild("/p:TreatWarningsAsErrors=false", _opt), "Temp");
-        AssertBuildOutput();
+        AssertTextOut(MSBuild("/p:TreatWarningsAsErrors=false", _opt), expectedInOutput: "Temp");
+        AssertDllExists();
     }
 
     // MSRebuild
@@ -278,29 +234,29 @@ public class DotNetTests : IDisposable
     [TestMethod]
     public void Test_MSRebuild()
     {
-        InTempDir(() => AssertOutput(MSRebuild(), "Temp"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(MSRebuild(), expectedInOutput: "Temp"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_MSRebuild_Args()
     {
-        InTempDir(() => AssertOutput(MSRebuild("/p:TreatWarningsAsErrors=false"), "Temp"));
-        AssertBuildOutput("Debug"); // no-option overload defaults to Debug
+        InTempDir(() => AssertTextOut(MSRebuild("/p:TreatWarningsAsErrors=false"), expectedInOutput: "Temp"));
+        AssertDllExists("Debug"); // no-option overload defaults to Debug
     }
 
     [TestMethod]
     public void Test_MSRebuild_Opt()
     {
-        AssertOutput(MSRebuild(_opt), "Temp");
-        AssertBuildOutput();
+        AssertTextOut(MSRebuild(_opt), expectedInOutput: "Temp");
+        AssertDllExists();
     }
 
     [TestMethod]
     public void Test_MSRebuild_Args_Opt()
     {
-        AssertOutput(MSRebuild("/p:TreatWarningsAsErrors=false", _opt), "Temp");
-        AssertBuildOutput();
+        AssertTextOut(MSRebuild("/p:TreatWarningsAsErrors=false", _opt), expectedInOutput: "Temp");
+        AssertDllExists();
     }
 
     // InstallPackage
@@ -309,7 +265,7 @@ public class DotNetTests : IDisposable
     [TestMethod]
     public void Test_InstallPackage()
     {
-        InTempDir(() => AssertOutput(InstallPackage(PackageId, PackageVer), PackageId));
+        InTempDir(() => AssertTextOut(InstallPackage(PackageId, PackageVer), expectedInOutput: PackageId));
         IsTrue(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
@@ -317,20 +273,20 @@ public class DotNetTests : IDisposable
     public void Test_InstallPackage_Args()
     {
         // Pass empty args; --no-restore would skip adding to csproj which defeats the purpose.
-        InTempDir(() => AssertOutput(InstallPackage(PackageId, PackageVer, ""), PackageId));
+        InTempDir(() => AssertTextOut(InstallPackage(PackageId, PackageVer, ""), expectedInOutput: PackageId));
     }
 
     [TestMethod]
     public void Test_InstallPackage_Opt()
     {
-        AssertOutput(InstallPackage(PackageId, PackageVer, _optNoFile), PackageId);
+        AssertTextOut(InstallPackage(PackageId, PackageVer, _optNoFile), expectedInOutput: PackageId);
         IsTrue(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
     [TestMethod]
     public void Test_InstallPackage_Args_Opt()
     {
-        AssertOutput(InstallPackage(PackageId, PackageVer, "--no-restore", _optNoFile), PackageId);
+        AssertTextOut(InstallPackage(PackageId, PackageVer, "--no-restore", _optNoFile), expectedInOutput: PackageId);
     }
 
     // UninstallPackage
@@ -341,7 +297,7 @@ public class DotNetTests : IDisposable
     public void Test_UninstallPackage()
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
-        InTempDir(() => AssertOutput(UninstallPackage(PackageId), PackageId));
+        InTempDir(() => AssertTextOut(UninstallPackage(PackageId), expectedInOutput: PackageId));
         IsFalse(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
@@ -350,14 +306,14 @@ public class DotNetTests : IDisposable
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
         // Pass empty string as extra args; --no-restore is not a valid flag for dotnet remove package.
-        InTempDir(() => AssertOutput(UninstallPackage(PackageId, ""), PackageId));
+        InTempDir(() => AssertTextOut(UninstallPackage(PackageId, ""), expectedInOutput: PackageId));
     }
 
     [TestMethod]
     public void UninstallPackage_Opt()
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
-        AssertOutput(UninstallPackage(PackageId, _optNoFile), PackageId);
+        AssertTextOut(UninstallPackage(PackageId, _optNoFile), expectedInOutput: PackageId);
         IsFalse(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
@@ -366,6 +322,56 @@ public class DotNetTests : IDisposable
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
         // Pass empty string as extra args; --no-restore is not a valid flag for dotnet remove package.
-        AssertOutput(UninstallPackage(PackageId, "", _optNoFile), PackageId);
+        AssertTextOut(UninstallPackage(PackageId, "", _optNoFile), expectedInOutput: PackageId);
     }
+
+    // Exe: string command overloads
+    // --version requires no project and always emits stdout with the SDK version number.
+
+    [TestMethod]
+    public void Test_Exe_String()
+    {
+        string result = DotNet.Exe("--version");
+        AssertTextOut(result, "Output =");
+        // The SDK version number looks like "8.0.xxx" or "10.0.xxx".
+        IsTrue(result.Contains('.'), $"Expected a version number in: {result}");
+    }
+
+    [TestMethod]
+    public void Test_Exe_String_Args()
+    {
+        // Pass --list-sdks as the command; lists installed SDKs, reliable stdout with no project needed.
+        string result = DotNet.Exe("--list-sdks", "");
+        AssertTextOut(result, "Output =");
+    }
+
+    [TestMethod]
+    public void Test_Exe_String_Opt()
+    {
+        string logged = "";
+        var opt = new DotNetOptions { Log = x => logged = x, Verbosity = Normal };
+        string result = DotNet.Exe("--version", opt);
+        AssertTextOut(result, "Output =");
+        // Normal verbosity logs the invocation line.
+        IsTrue(logged.Contains("dotnet"), $"Expected log to mention dotnet, got: {logged}");
+    }
+
+    [TestMethod]
+    public void Test_Exe_String_Args_Opt()
+    {
+        string result = DotNet.Exe("--list-sdks", "", new DotNetOptions { Log = _ => { } });
+        AssertTextOut(result, "Output =");
+    }
+
+    // Exe: enum command overloads
+
+    // Restore output says "up-to-date" when already restored; look for "restore" (case-insensitive substring).
+    [TestMethod] public void Test_Exe_Enum()          
+        => InTempDir(() => AssertTextOut(Exe(restore),                           expectedInOutput: "restore"));
+    [TestMethod] public void Test_Exe_Enum_Args()    
+        => InTempDir(() => AssertTextOut(Exe(restore, "--no-cache"),             expectedInOutput: "restore"));
+    [TestMethod] public void Test_Exe_Enum_Opt()      
+        =>                 AssertTextOut(Exe(restore,               _optNoFile), expectedInOutput: "restore");
+    [TestMethod] public void Test_Exe_Enum_Args_Opt() 
+        =>                 AssertTextOut(Exe(restore, "--no-cache", _optNoFile), expectedInOutput: "restore");
 }
