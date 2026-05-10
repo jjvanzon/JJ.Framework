@@ -14,7 +14,6 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [DoNotParallelize]
 public class DotNetTests : IDisposable
 {
-    private const string TargetFramework = "net8.0";
     private const int    TimeOutSec = 240;
     private const string PackageId  = "Newtonsoft.Json";
     private const string PackageVer = "13.0.3";
@@ -22,13 +21,14 @@ public class DotNetTests : IDisposable
     // TODO: Make all tests no-op unless TargetFramework matches (`#if NET8_0`)
 
     // Minimal project targeting net8.0 (broadly available SDK; no external packages needed).
-    private const string CsprojContent = $"""
+    private static string CsprojContent(string targetFramework) => $"""
         <Project Sdk="Microsoft.NET.Sdk">
           <PropertyGroup>
             <OutputType>Exe</OutputType>
-            <TargetFramework>{TargetFramework}</TargetFramework>
+            <TargetFramework>{targetFramework}</TargetFramework>
             <Nullable>enable</Nullable>
             <ImplicitUsings>enable</ImplicitUsings>
+            <LangVersion>latest</LangVersion>
           </PropertyGroup>
         </Project>
         """;
@@ -45,14 +45,23 @@ public class DotNetTests : IDisposable
 
     public DotNetTests()
     {
+        //const string TargetFramework = "net8.0";
+        string targetFramework = RunningTargetFramework;
+        // HACK: Temporarily prevent .NET 4x failyre.
+        if (targetFramework.StartsWith("net4"))
+        {
+            targetFramework = "net8.0";
+        }
+        
         _tempDir          = Combine(GetTempPath(), "JJ.Framework.Compilation.Core.TestRuns", GetRandomFileName().Replace(".", ""));
         _csprojPath       = Combine(_tempDir, "Temp.csproj");
-        _outputDllDebug   = Combine(_tempDir, "bin", "Debug",   TargetFramework, "Temp.dll");
-        _outputDllRelease = Combine(_tempDir, "bin", "Release", TargetFramework, "Temp.dll");
+        _outputDllDebug   = Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
+        _outputDllRelease = Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
         _assetsFilePath   = Combine(_tempDir, "obj", "project.assets.json");
         
+
         CreateDirectory(_tempDir);
-        WriteAllText(_csprojPath, CsprojContent);
+        WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Combine(_tempDir, "Program.cs"), ProgramContent);
 
         // TODO: Different types of options aren't tested.
@@ -85,8 +94,8 @@ public class DotNetTests : IDisposable
     // Helpers
 
     private void AssertAssetsFile() => IsTrue(File.Exists(_assetsFilePath),   "Expected assets file: "  + _assetsFilePath  );
-    private void AssertReleaseDll() => IsTrue(File.Exists(_outputDllRelease), "Expected build output: " + _outputDllRelease);
-    private void AssertDebugDll  () => IsTrue(File.Exists(_outputDllDebug),   "Expected build output: " + _outputDllDebug  );
+    private void AssertReleaseDll() => IsTrue(File.Exists(_outputDllRelease), "Expected DLL file path: " + _outputDllRelease);
+    private void AssertDebugDll  () => IsTrue(File.Exists(_outputDllDebug),   "Expected DLL file path: " + _outputDllDebug  );
 
     /// <summary>Asserts result contains "Output =" (dotnet produced stdout) and an expected text in output.</summary>
     private static void AssertOutputText(string outputText, string expectedInOutput)
