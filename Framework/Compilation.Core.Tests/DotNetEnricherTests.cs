@@ -3,42 +3,45 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class DotNetEnricherTests
 {
-    // Enum-based input: command and rebuild flag are derived from the enum
+    private const bool re = true;
 
-    [TestMethod] public void Enrich_BuildEnum()            => EnrichEnum(build,            "build",   false);
-    [TestMethod] public void Enrich_RebuildEnum()          => EnrichEnum(rebuild,           "build",   true );
-    [TestMethod] public void Enrich_MSBuildEnum()          => EnrichEnum(msbuild,           "msbuild", false);
-    [TestMethod] public void Enrich_MSRebuildEnum()        => EnrichEnum(msrebuild,         "msbuild", true );
-    [TestMethod] public void Enrich_RestoreEnum()          => EnrichEnum(restore,           "restore", false);
-    [TestMethod] public void Enrich_InstallPackageEnum()   => EnrichEnum(installpackage,    "add",     false);
-    [TestMethod] public void Enrich_UninstallPackageEnum() => EnrichEnum(uninstallpackage,  "remove",  false);
+    [TestMethod] public void Enrich_BuildEnum()            => TestEnrich(input: build,            expect:     "build"  );
+    [TestMethod] public void Enrich_RebuildEnum()          => TestEnrich(input: rebuild,          expect: re, "build"  );
+    [TestMethod] public void Enrich_MSBuildEnum()          => TestEnrich(input: msbuild,          expect:     "msbuild");
+    [TestMethod] public void Enrich_MSRebuildEnum()        => TestEnrich(input: msrebuild,        expect: re, "msbuild");
+    [TestMethod] public void Enrich_RestoreEnum()          => TestEnrich(input: restore,          expect:     "restore");
+    [TestMethod] public void Enrich_InstallPackageEnum()   => TestEnrich(input: installpackage,   expect:     "add"    );
+    [TestMethod] public void Enrich_UninstallPackageEnum() => TestEnrich(input: uninstallpackage, expect:     "remove" );
 
-    static void EnrichEnum(DotNetCommandEnum inputEnum, string expectedCommand, bool expectedIsRebuild)
+    private static void TestEnrich(DotNetCommandEnum input, string expect) => TestEnrich(input, default, expect);
+    private static void TestEnrich(DotNetCommandEnum input, bool expect, string command)
     {
-        var info = new DotNetInfo(inputEnum);
+        bool isRebuild = expect;
+        var info = new DotNetInfo(input);
         Enrich(info);
-        AreEqual(expectedCommand,   info.Command);
-        AreEqual(inputEnum,         info.CommandEnum);
-        AreEqual(expectedIsRebuild, info.IsRebuild);
+        AreEqual(input,     info.CommandEnum);
+        AreEqual(command,   info.Command);
+        AreEqual(isRebuild, info.IsRebuild);
     }
 
-    // String-based input: enum is resolved from the command string (and rebuild args)
+    [TestMethod] public void Enrich_BuildCommand()           => TestEnrich(input: "build",                     expect:     build           );
+    [TestMethod] public void Enrich_BuildCommand_Rebuild()   => TestEnrich(input: "build", "--no-incremental", expect: re, rebuild         );
+    [TestMethod] public void Enrich_MSBuildCommand()         => TestEnrich(input: "msbuild",                   expect:     msbuild         );
+    [TestMethod] public void Enrich_MSBuildCommand_Rebuild() => TestEnrich(input: "msbuild", "/t:Rebuild",     expect: re, msrebuild       );
+    [TestMethod] public void Enrich_RestoreCommand()         => TestEnrich(input: "restore",                   expect:     restore         );
+    [TestMethod] public void Enrich_AddCommand()             => TestEnrich(input: "add",                       expect:     installpackage  );
+    [TestMethod] public void Enrich_RemoveCommand()          => TestEnrich(input: "remove",                    expect:     uninstallpackage);
+    [TestMethod] public void Enrich_UnknownCommand()         => TestEnrich(input: "custom",                    expect:     undefined       );
 
-    [TestMethod] public void Enrich_BuildCommand()              => EnrichCommand("build",   "",                 build,           false);
-    [TestMethod] public void Enrich_BuildCommand_Rebuild()      => EnrichCommand("build",   "--no-incremental", rebuild,         true );
-    [TestMethod] public void Enrich_MSBuildCommand()            => EnrichCommand("msbuild", "",                 msbuild,         false);
-    [TestMethod] public void Enrich_MSBuildCommand_Rebuild()    => EnrichCommand("msbuild", "/t:Rebuild",       msrebuild,       true );
-    [TestMethod] public void Enrich_RestoreCommand()            => EnrichCommand("restore", "",                 restore,         false);
-    [TestMethod] public void Enrich_AddCommand()                => EnrichCommand("add",     "",                 installpackage,  false);
-    [TestMethod] public void Enrich_RemoveCommand()             => EnrichCommand("remove",  "",                 uninstallpackage,false);
-    [TestMethod] public void Enrich_UnknownCommand()            => EnrichCommand("custom",  "",                 default,         false);
-
-    static void EnrichCommand(string command, string args, DotNetCommandEnum expectedEnum, bool expectedIsRebuild)
+    private static void TestEnrich(string input, DotNetCommandEnum expect) => TestEnrich(input, "", false, expect);
+    private static void TestEnrich(string input, bool expect, DotNetCommandEnum @enum) => TestEnrich(input, "", expect, @enum);
+    private static void TestEnrich(string input, string args, bool expect, DotNetCommandEnum @enum)
     {
-        var info = new DotNetInfo { Command = command, Args = args };
+        bool isRebuild = expect;
+        var info = new DotNetInfo { Command = input, Args = args };
         Enrich(info);
-        AreEqual(command,           info.Command);
-        AreEqual(expectedEnum,      info.CommandEnum);
-        AreEqual(expectedIsRebuild, info.IsRebuild);
+        AreEqual(input,     info.Command);
+        AreEqual(@enum,     info.CommandEnum);
+        AreEqual(isRebuild, info.IsRebuild);
     }
 }
