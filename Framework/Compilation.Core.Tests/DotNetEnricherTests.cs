@@ -1,3 +1,5 @@
+// ReSharper disable ConvertToConstant.Local
+
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
@@ -43,5 +45,43 @@ public class DotNetEnricherTests
         AreEqual(input,     info.Command);
         AreEqual(@enum,     info.CommandEnum);
         AreEqual(isRebuild, info.IsRebuild);
+    }
+
+    // Already-filled values are retained (not overwritten by enrichment)
+
+    [TestMethod]
+    public void Enrich_RetainsExistingCommand_EvenInConflict()
+    {
+        var conflicting = installpackage;
+        var info = new DotNetInfo { Command = "build", CommandEnum = conflicting };
+
+        Enrich(info);
+
+        AreEqual("build",     info.Command    );
+        AreEqual(conflicting, info.CommandEnum);
+    }
+
+    [TestMethod]
+    public void Enrich_RetainsExistingCommandEnum_EvenInConflict()
+    {
+        var conflicting = "add";
+        var info = new DotNetInfo { CommandEnum = restore, Command = conflicting };
+
+        Enrich(info);
+
+        AreEqual(restore,     info.CommandEnum);
+        AreEqual(conflicting, info.Command    );
+    }
+
+    [TestMethod]
+    public void Enrich_RetainsIsRebuildTrue_EvenInConflict()
+    {
+        var conflicting = uninstallpackage;
+        var info = new DotNetInfo { IsRebuild = true, CommandEnum = conflicting };
+
+        Enrich(info);
+
+        IsTrue  (             info.IsRebuild  );
+        AreEqual(conflicting, info.CommandEnum);
     }
 }
