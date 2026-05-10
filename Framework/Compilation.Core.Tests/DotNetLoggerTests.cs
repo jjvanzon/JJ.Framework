@@ -50,7 +50,14 @@ public class DotNetLoggerTests
 
         Log(info, opt, fullArgs: "restore");
 
-        AreEqual("Restore:" + NewLine + "dotnet restore" + NewLine, msg);
+        const string expected = 
+        """
+        Restore:
+        dotnet restore
+
+        """;
+
+        AreEqual(expected, msg);
     }
 
     [TestMethod]
@@ -62,12 +69,16 @@ public class DotNetLoggerTests
 
         Log(info, opt, fullArgs: "build");
 
-        // TODO: Might as well assert the entire message (start) instead of just parts of it.
-        IsTrue(msg.StartsWith(NewLine));
-        IsTrue(msg.Contains("Build"));
-        IsTrue(msg.Contains("dotnet build"));
+        IsTrue(msg.StartsWith(
+        """
+        
+        Build
+        -----
+        dotnet build
+        
+        """));
 
-        // Note: Build output logged separately in DotNet.Exe method.
+        // Note: Build output logged separately
     }
 
     [TestMethod]
@@ -79,11 +90,17 @@ public class DotNetLoggerTests
 
         Log(info, opt, fullArgs: "restore");
 
-        // TODO: Might as well assert the entire message (start) instead of just parts of it.
-        IsTrue(msg.Contains("Restore"));
-        IsTrue(msg.Contains("dotnet restore"));
+        IsTrue(msg.StartsWith(
+        """
 
-        // Note: Build output logged separately in DotNet.Exe method.
+        Restore
+        -----
+        dotnet restore
+
+        """
+        ));
+
+        // Note: Build output logged separately.
     }
 
     // Various Commands
@@ -139,13 +156,15 @@ public class DotNetLoggerTests
     // Edge-Cases
 
     [TestMethod]
-    public void Test_Log_UnknownCommand_DoesNotLog()
+    public void Test_Log_UnknownCommand_DoesNotLog_Cleanly()
     {
         string msg = "";
         var info = new DotNetInfo { Command = "MyCmd" };
         var opt = new DotNetOptions { Log = x => msg = x };
 
         Log(info, opt, fullArgs: "arg");
-        IsNullOrEmpty(msg);
+
+        AreEqual("", msg);
+        //IsNullOrEmpty(msg);
     }
 }
