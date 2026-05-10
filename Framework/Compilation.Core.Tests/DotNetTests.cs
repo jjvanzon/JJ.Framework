@@ -1,3 +1,7 @@
+using static System.IO.Directory;
+using static System.IO.File;
+using static System.IO.Path;
+
 namespace JJ.Framework.Compilation.Core.Tests;
 
 /// <summary>
@@ -14,7 +18,9 @@ public class DotNetTests : IDisposable
     private const string PackageId  = "Newtonsoft.Json";
     private const string PackageVer = "13.0.3";
 
-    // Minimal project: no external NuGet packages, so build works without an explicit restore.
+    // TODO: Make all tests no-op unless TargetFramework matches (`#if NET8_0`)
+
+    // Minimal project: no external NuGet packages.
     private const string CsprojContent = """
         <Project Sdk="Microsoft.NET.Sdk">
           <PropertyGroup>
@@ -35,12 +41,12 @@ public class DotNetTests : IDisposable
 
     public DotNetTests()
     {
-        _tempDir    = Path.Combine(Path.GetTempPath(), "JJ.Framework.Compilation.Core.TestRuns", Path.GetRandomFileName().Replace(".", ""));
-        _csprojPath = Path.Combine(_tempDir, "Temp.csproj");
+        _tempDir    = Combine(GetTempPath(), "JJ.Framework.Compilation.Core.TestRuns", GetRandomFileName().Replace(".", ""));
+        _csprojPath = Combine(_tempDir, "Temp.csproj");
 
-        Directory.CreateDirectory(_tempDir);
-        File.WriteAllText(_csprojPath,                          CsprojContent);
-        File.WriteAllText(Path.Combine(_tempDir, "Program.cs"), ProgramContent);
+        CreateDirectory(_tempDir);
+        WriteAllText(_csprojPath, CsprojContent);
+        WriteAllText(Combine(_tempDir, "Program.cs"), ProgramContent);
 
         _opt = new DotNetOptions
         {
@@ -54,7 +60,7 @@ public class DotNetTests : IDisposable
         _optNoFile = _opt with { File = "" };
 
         // Restore once so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
-        DotNet.Restore(_optNoFile);
+        Restore(_optNoFile);
     }
 
     void IDisposable.Dispose() => Cleanup();
@@ -62,7 +68,7 @@ public class DotNetTests : IDisposable
 
     private void Cleanup()
     {
-        try { if (Directory.Exists(_tempDir)) Directory.Delete(_tempDir, recursive: true); }
+        try { if (Directory.Exists(_tempDir)) Delete(_tempDir, recursive: true); }
         catch { /* ignore */ }
     }
 
@@ -72,96 +78,97 @@ public class DotNetTests : IDisposable
     /// </summary>
     private void InTempDir(Action action)
     {
-        string saved = Directory.GetCurrentDirectory();
-        Directory.SetCurrentDirectory(_tempDir);
-        try   { action(); }
-        finally { Directory.SetCurrentDirectory(saved); }
+        string saved = GetCurrentDirectory();
+
+        SetCurrentDirectory(_tempDir);
+        try
+        { 
+            action(); 
+        }
+        finally 
+        { 
+            SetCurrentDirectory(saved); 
+        }
     }
 
-    // -- Exe: string command overloads --
+    // Exe: string command overloads
     // (use --version: needs no project, always produces stdout)
 
-    [TestMethod] public void Exe_String()             => IsTrue(Exe("--version").Contains("Output ="));
-    [TestMethod] public void Exe_String_Args()        => IsTrue(Exe("--version", "").Contains("Output ="));
+    [TestMethod] public void Exe_String()                   => IsTrue(DotNet.Exe("--version").Contains("Output ="));
+    [TestMethod] public void Exe_String_Args()              => IsTrue(DotNet.Exe("--version", "").Contains("Output ="));
     [TestMethod] public void Exe_String_Opt()
     {
         string logged = "";
-        IsTrue(Exe("--version", new DotNetOptions { Log = x => logged = x, Verbosity = Normal }).Contains("Output ="));
+        IsTrue(DotNet.Exe("--version", new DotNetOptions { Log = x => logged = x, Verbosity = Normal }).Contains("Output ="));
         IsTrue(logged.Contains("dotnet --version"));
     }
-    [TestMethod] public void Exe_String_Args_Opt()    => IsTrue(Exe("--version", "", new DotNetOptions { Log = _ => { } }).Contains("Output ="));
+    [TestMethod] public void Exe_String_Args_Opt()    => IsTrue(DotNet.Exe("--version", "", new DotNetOptions { Log = _ => { } }).Contains("Output ="));
 
-    // -- Exe: enum command overloads --
+    // TODO: "" as args is not very "testy".
+    // TODO: Do check output for an expected piece of info, indicating success.
 
-    [TestMethod] public void Exe_Enum()              => InTempDir(() => IsNotNull(Exe(restore)));
-    [TestMethod] public void Exe_Enum_Args()         => InTempDir(() => IsNotNull(Exe(restore, "")));
-    [TestMethod] public void Exe_Enum_Opt()          => IsNotNull(Exe(restore, _optNoFile));
-    [TestMethod] public void Exe_Enum_Args_Opt()     => IsNotNull(Exe(restore, "", _optNoFile));
+    // Exe: enum command overloads
 
-    // -- Restore overloads --
+    [TestMethod] public void Exe_Enum()                     => InTempDir(() => NotNullOrWhiteSpace(DotNet.Exe(restore)));
+    [TestMethod] public void Exe_Enum_Args()                => InTempDir(() => NotNullOrWhiteSpace(DotNet.Exe(restore, "")));
+    [TestMethod] public void Exe_Enum_Opt()                 =>                 NotNullOrWhiteSpace(DotNet.Exe(restore, _optNoFile));
+    [TestMethod] public void Exe_Enum_Args_Opt()            =>                 NotNullOrWhiteSpace(DotNet.Exe(restore, "", _optNoFile));
+                                                            
+    [TestMethod] public void Test_Restore()                 => InTempDir(() => NotNullOrWhiteSpace(Restore()));
+    [TestMethod] public void Test_Restore_Args()            => InTempDir(() => NotNullOrWhiteSpace(Restore("")));
+    [TestMethod] public void Test_Restore_Opt()             =>                 NotNullOrWhiteSpace(Restore(_optNoFile));
+    [TestMethod] public void Test_Restore_Args_Opt()        =>                 NotNullOrWhiteSpace(Restore("", _optNoFile));
+                                                            
+    [TestMethod] public void Test_Build()                   => InTempDir(() => NotNullOrWhiteSpace(Build()));
+    [TestMethod] public void Test_Build_Args()              => InTempDir(() => NotNullOrWhiteSpace(Build("")));
+    [TestMethod] public void Test_Build_Opt()               =>                 NotNullOrWhiteSpace(Build(_opt));
+    [TestMethod] public void Test_Build_Args_Opt()          =>                 NotNullOrWhiteSpace(Build("", _opt));
+                                                            
+    [TestMethod] public void Test_Rebuild()                 => InTempDir(() => NotNullOrWhiteSpace(Rebuild()));
+    [TestMethod] public void Test_Rebuild_Args()            => InTempDir(() => NotNullOrWhiteSpace(Rebuild("")));
+    [TestMethod] public void Test_Rebuild_Opt()             =>                 NotNullOrWhiteSpace(Rebuild(_opt));
+    [TestMethod] public void Test_Rebuild_Args_Opt()        =>                 NotNullOrWhiteSpace(Rebuild("", _opt));
+                                                            
+    [TestMethod] public void Test_MSBuild()                 => InTempDir(() => NotNullOrWhiteSpace(MSBuild()));
+    [TestMethod] public void Test_MSBuild_Args()            => InTempDir(() => NotNullOrWhiteSpace(MSBuild("")));
+    [TestMethod] public void Test_MSBuild_Opt()             =>                 NotNullOrWhiteSpace(MSBuild(_opt));
+    [TestMethod] public void Test_MSBuild_Args_Opt()        =>                 NotNullOrWhiteSpace(MSBuild("", _opt));
+                                                            
+    [TestMethod] public void Test_MSRebuild()               => InTempDir(() => NotNullOrWhiteSpace(MSRebuild()));
+    [TestMethod] public void Test_MSRebuild_Args()          => InTempDir(() => NotNullOrWhiteSpace(MSRebuild("")));
+    [TestMethod] public void Test_MSRebuild_Opt()           =>                 NotNullOrWhiteSpace(MSRebuild(_opt));
+    [TestMethod] public void Test_MSRebuild_Args_Opt()      =>                 NotNullOrWhiteSpace(MSRebuild("", _opt));
 
-    [TestMethod] public void Restore_()              => InTempDir(() => IsNotNull(DotNet.Restore()));
-    [TestMethod] public void Restore_Args()          => InTempDir(() => IsNotNull(DotNet.Restore("")));
-    [TestMethod] public void Restore_Opt()           => IsNotNull(DotNet.Restore(_optNoFile));
-    [TestMethod] public void Restore_Args_Opt()      => IsNotNull(DotNet.Restore("", _optNoFile));
+    [TestMethod] public void Test_InstallPackage()          => InTempDir(() => NotNullOrWhiteSpace(InstallPackage(PackageId, PackageVer)));
+    [TestMethod] public void Test_InstallPackage_Args()     => InTempDir(() => NotNullOrWhiteSpace(InstallPackage(PackageId, PackageVer, "")));
+    [TestMethod] public void Test_InstallPackage_Opt()      =>                 NotNullOrWhiteSpace(InstallPackage(PackageId, PackageVer, _optNoFile));
+    [TestMethod] public void Test_InstallPackage_Args_Opt() =>                 NotNullOrWhiteSpace(InstallPackage(PackageId, PackageVer, "", _optNoFile));
 
-    // -- Build overloads --
-    // (project has no external packages so --no-restore is safe)
+    // UninstallPackage overloads
 
-    [TestMethod] public void Build_()                => InTempDir(() => IsNotNull(DotNet.Build()));
-    [TestMethod] public void Build_Args()            => InTempDir(() => IsNotNull(DotNet.Build("")));
-    [TestMethod] public void Build_Opt()             => IsNotNull(DotNet.Build(_opt));
-    [TestMethod] public void Build_Args_Opt()        => IsNotNull(DotNet.Build("", _opt));
-
-    // -- Rebuild overloads --
-
-    [TestMethod] public void Rebuild_()              => InTempDir(() => IsNotNull(DotNet.Rebuild()));
-    [TestMethod] public void Rebuild_Args()          => InTempDir(() => IsNotNull(DotNet.Rebuild("")));
-    [TestMethod] public void Rebuild_Opt()           => IsNotNull(DotNet.Rebuild(_opt));
-    [TestMethod] public void Rebuild_Args_Opt()      => IsNotNull(DotNet.Rebuild("", _opt));
-
-    // -- MSBuild overloads --
-
-    [TestMethod] public void MSBuild_()              => InTempDir(() => IsNotNull(DotNet.MSBuild()));
-    [TestMethod] public void MSBuild_Args()          => InTempDir(() => IsNotNull(DotNet.MSBuild("")));
-    [TestMethod] public void MSBuild_Opt()           => IsNotNull(DotNet.MSBuild(_opt));
-    [TestMethod] public void MSBuild_Args_Opt()      => IsNotNull(DotNet.MSBuild("", _opt));
-
-    // -- MSRebuild overloads --
-
-    [TestMethod] public void MSRebuild_()            => InTempDir(() => IsNotNull(DotNet.MSRebuild()));
-    [TestMethod] public void MSRebuild_Args()        => InTempDir(() => IsNotNull(DotNet.MSRebuild("")));
-    [TestMethod] public void MSRebuild_Opt()         => IsNotNull(DotNet.MSRebuild(_opt));
-    [TestMethod] public void MSRebuild_Args_Opt()    => IsNotNull(DotNet.MSRebuild("", _opt));
-
-    // -- InstallPackage overloads --
-
-    [TestMethod] public void InstallPackage_()           => InTempDir(() => IsNotNull(DotNet.InstallPackage(PackageId, PackageVer)));
-    [TestMethod] public void InstallPackage_Args()       => InTempDir(() => IsNotNull(DotNet.InstallPackage(PackageId, PackageVer, "")));
-    [TestMethod] public void InstallPackage_Opt()        => IsNotNull(DotNet.InstallPackage(PackageId, PackageVer, _optNoFile));
-    [TestMethod] public void InstallPackage_Args_Opt()   => IsNotNull(DotNet.InstallPackage(PackageId, PackageVer, "", _optNoFile));
-
-    // -- UninstallPackage overloads --
     // (each test installs first since each instance gets a fresh temp project)
 
     [TestMethod] public void UninstallPackage_()
     {
-        DotNet.InstallPackage(PackageId, PackageVer, _optNoFile);
-        InTempDir(() => IsNotNull(DotNet.UninstallPackage(PackageId)));
+        InstallPackage(PackageId, PackageVer, _optNoFile);
+        InTempDir(() => NotNullOrWhiteSpace(UninstallPackage(PackageId)));
     }
+
     [TestMethod] public void UninstallPackage_Args()
     {
-        DotNet.InstallPackage(PackageId, PackageVer, _optNoFile);
-        InTempDir(() => IsNotNull(DotNet.UninstallPackage(PackageId, "")));
+        InstallPackage(PackageId, PackageVer, _optNoFile);
+        InTempDir(() => NotNullOrWhiteSpace(UninstallPackage(PackageId, "")));
     }
+
     [TestMethod] public void UninstallPackage_Opt()
     {
-        DotNet.InstallPackage(PackageId, PackageVer, _optNoFile);
-        IsNotNull(DotNet.UninstallPackage(PackageId, _optNoFile));
+        InstallPackage(PackageId, PackageVer, _optNoFile);
+        NotNullOrWhiteSpace(UninstallPackage(PackageId, _optNoFile));
     }
+
     [TestMethod] public void UninstallPackage_Args_Opt()
     {
-        DotNet.InstallPackage(PackageId, PackageVer, _optNoFile);
-        IsNotNull(DotNet.UninstallPackage(PackageId, "", _optNoFile));
+        InstallPackage(PackageId, PackageVer, _optNoFile);
+        NotNullOrWhiteSpace(UninstallPackage(PackageId, "", _optNoFile));
     }
 }
