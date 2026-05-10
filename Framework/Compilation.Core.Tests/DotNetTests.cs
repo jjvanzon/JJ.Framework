@@ -55,6 +55,8 @@ public class DotNetTests : IDisposable
         WriteAllText(_csprojPath, CsprojContent);
         WriteAllText(Combine(_tempDir, "Program.cs"), ProgramContent);
 
+        // TODO: Different types of options aren't tested.
+        // TODO: Logging isn't used nor tested.
         _opt = new DotNetOptions
         {
             Dir        = _tempDir,
@@ -82,9 +84,9 @@ public class DotNetTests : IDisposable
 
     // Helpers
 
-    private void AssertAssetsFile() => IsTrue(File.Exists(_assetsFilePath), $"Expected assets file:  {_assetsFilePath  }");
-    private void AssertReleaseDll() => IsTrue(File.Exists(_outputDllRelease), $"Expected build output: {_outputDllRelease}");
-    private void AssertDebugDll  () => IsTrue(File.Exists(_outputDllDebug), $"Expected build output: {_outputDllDebug  }");
+    private void AssertAssetsFile() => IsTrue(File.Exists(_assetsFilePath),   "Expected assets file: "  + _assetsFilePath  );
+    private void AssertReleaseDll() => IsTrue(File.Exists(_outputDllRelease), "Expected build output: " + _outputDllRelease);
+    private void AssertDebugDll  () => IsTrue(File.Exists(_outputDllDebug),   "Expected build output: " + _outputDllDebug  );
 
     /// <summary>Asserts result contains "Output =" (dotnet produced stdout) and an expected text in output.</summary>
     private static void AssertOutputText(string outputText, string expectedInOutput)
