@@ -1,4 +1,4 @@
-namespace JJ.Framework.Compilation.Core.Tests;
+namespace JJ.Framework.Compilation.Core.Tests.Accessors;
 
 internal static class DotNetEnricherAccessor
 {

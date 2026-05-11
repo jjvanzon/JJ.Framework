@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>4.6.$(BuildNum)</Version>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Compilation.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Compilation.Core.Tests\obj\**" />
+    <Compile Remove="..\Compilation.Core.Tests\bin\**" />
+    <Compile Include="..\Compilation.Core.TrimTests\Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Compilation.Core" Version="4.6.6472" />
+    <PackageReference Include="JJ.Framework.Reflection.Core" Version="4.6.6472" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6472" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.6.6472" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+  </ItemGroup>
+</Project>
+

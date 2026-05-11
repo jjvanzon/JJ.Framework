@@ -298,6 +298,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Compilation.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Compilation.Core.Tests", "Framework\Compilation.Core.Tests\JJ.Framework.Compilation.Core.Tests.csproj", "{6E27C691-3435-43C6-2782-23C64EF6A173}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Compilation.Core.TrimTests", "Framework\Compilation.Core.TrimTests\JJ.Framework.Compilation.Core.TrimTests.csproj", "{4473FCD0-A114-EDEF-04BA-A27A938978DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1856,6 +1858,18 @@ Global
 		{6E27C691-3435-43C6-2782-23C64EF6A173}.Release|x64.Build.0 = Release|Any CPU
 		{6E27C691-3435-43C6-2782-23C64EF6A173}.Release|x86.ActiveCfg = Release|Any CPU
 		{6E27C691-3435-43C6-2782-23C64EF6A173}.Release|x86.Build.0 = Release|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Debug|x64.Build.0 = Debug|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Debug|x86.Build.0 = Debug|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Release|x64.ActiveCfg = Release|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Release|x64.Build.0 = Release|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Release|x86.ActiveCfg = Release|Any CPU
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1992,6 +2006,7 @@ Global
 		{4AB094CD-9714-A173-3934-13F7284B7509} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{BD071C6C-CA75-B7BE-652C-D9B7BB76DEE4} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{6E27C691-3435-43C6-2782-23C64EF6A173} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{4473FCD0-A114-EDEF-04BA-A27A938978DD} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}

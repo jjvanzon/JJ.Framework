@@ -1,4 +1,3 @@
-using static JJ.Framework.Compilation.Core.DotNetOptions;
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
