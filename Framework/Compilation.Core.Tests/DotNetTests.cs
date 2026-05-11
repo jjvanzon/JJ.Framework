@@ -11,7 +11,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 /// child dotnet process finds the temp project without an explicit Dir in options.
 /// </summary>
 [TestClass]
-[DoNotParallelize]
+//[DoNotParallelize]
 public class DotNetTests : IDisposable
 {
     private const int    TimeOutSec = 240;
@@ -47,11 +47,8 @@ public class DotNetTests : IDisposable
     {
         //const string TargetFramework = "net8.0";
         string targetFramework = RunningTargetFramework;
-        // HACK: Temporarily prevent .NET 4x failyre.
-        if (targetFramework.StartsWith("net4"))
-        {
-            targetFramework = "net8.0";
-        }
+        // HACK: Temporarily prevent .NET 4x failure.
+        if (targetFramework.StartsWith("net4")) targetFramework = "net8.0";
         
         _tempDir          = Combine(GetTempPath(), "JJ.Framework.Compilation.Core.TestRuns", GetRandomFileName().Replace(".", ""));
         _csprojPath       = Combine(_tempDir, "Temp.csproj");
@@ -59,7 +56,6 @@ public class DotNetTests : IDisposable
         _outputDllRelease = Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
         _assetsFilePath   = Combine(_tempDir, "obj", "project.assets.json");
         
-
         CreateDirectory(_tempDir);
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Combine(_tempDir, "Program.cs"), ProgramContent);
@@ -78,7 +74,7 @@ public class DotNetTests : IDisposable
         _optNoFile = _opt with { File = "" };
 
         // Restore once so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
-        // TODO: This influences test results beyond regular usage.
+        // TODO: This influences test results beyond regular usage?
         Restore(_optNoFile);
     }
 
