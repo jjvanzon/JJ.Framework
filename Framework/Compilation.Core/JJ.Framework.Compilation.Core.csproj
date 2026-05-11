@@ -10,12 +10,7 @@
     <ProjectReference Include="..\Existence.Core\JJ.Framework.Existence.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>JJ.Framework.Compilation.Core.Tests</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
-  
+
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 </Project>

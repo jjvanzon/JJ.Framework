@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Compilation.Core\JJ.Framework.Compilation.Core.csproj" />
+    <ProjectReference Include="..\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 </Project>

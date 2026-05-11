@@ -6,7 +6,7 @@ public class DotNetInfoTests
     [TestMethod]
     public void Constructor_WithCommandEnum_SetsCommandEnum()
     {
-        var info = new DotNetInfo(restore);
+        var info = new DotNetInfoAccessor(restore);
         AreEqual(restore, info.CommandEnum);
         AreEqual("", info.Command);
         AreEqual("", info.ID);
@@ -18,7 +18,7 @@ public class DotNetInfoTests
     [TestMethod]
     public void Constructor_WithCommandString_SetsCommand()
     {
-        var info = new DotNetInfo("custom");
+        var info = new DotNetInfoAccessor("custom");
         AreEqual("custom", info.Command);
         AreEqual(default, info.CommandEnum);
     }
@@ -26,7 +26,7 @@ public class DotNetInfoTests
     [TestMethod]
     public void Constructor_Default_InitializesEmptyProperties()
     {
-        var info = new DotNetInfo();
+        var info = new DotNetInfoAccessor();
         AreEqual(default, info.CommandEnum);
         AreEqual("", info.Command);
         AreEqual("", info.ID);
