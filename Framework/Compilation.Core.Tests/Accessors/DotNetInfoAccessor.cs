@@ -26,25 +26,25 @@ internal class DotNetInfoAccessor
 
     public string Command
     {
-        get => _accessor.Get<string>() ?? "";
+        get => _accessor.Get<string>()!;
         set => _accessor.Set(value);
     }
 
     public string ID
     {
-        get => _accessor.Get<string>() ?? "";
+        get => _accessor.Get<string>()!;
         set => _accessor.Set(value);
     }
 
     public string Ver
     {
-        get => _accessor.Get<string>() ?? "";
+        get => _accessor.Get<string>()!;
         set => _accessor.Set(value);
     }
 
     public string Args
     {
-        get => _accessor.Get<string>() ?? "";
+        get => _accessor.Get<string>()!;
         set => _accessor.Set(value);
     }
 

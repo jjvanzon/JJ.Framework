@@ -11,7 +11,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 /// child dotnet process finds the temp project without an explicit Dir in options.
 /// </summary>
 [TestClass]
-//[DoNotParallelize]
+[DoNotParallelize]
 public class DotNetTests : IDisposable
 {
     private const int    TimeOutSec = 240;
