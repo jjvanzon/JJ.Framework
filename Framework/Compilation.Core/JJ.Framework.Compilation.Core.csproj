@@ -4,12 +4,18 @@
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
   </PropertyGroup>
+
+  <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
+    <IsAotCompatible>True</IsAotCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IsNet6) Or $(IsNet7)">
+    <IsTrimmable>True</IsTrimmable>
+  </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
     <ProjectReference Include="..\Existence.Core\JJ.Framework.Existence.Core.csproj" />
   </ItemGroup>
-
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
