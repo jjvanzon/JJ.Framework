@@ -120,6 +120,9 @@ public class DotNetTests : IDisposable
     public void Test_Restore()
     {
         InTempDir(() => AssertOutputText(Restore(), expectedInOutput: "restore"));
+        // TODO: Do in separate test methods for separate temp dir
+        InTempDir(() => AssertOutputText(DotNet.Exe(restore), expectedInOutput: "restore"));
+        InTempDir(() => AssertOutputText(DotNet.Exe("restore"), expectedInOutput: "restore"));
         AssertAssetsFile();
     }
 

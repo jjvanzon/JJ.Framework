@@ -434,6 +434,9 @@ public partial class AccessorCore
 
     // Super Magic Resolvers
     
+    // TODO: Split between one that uses the GenericMethod construction and one that does not
+    //  (without typeArgs)
+
     [TrimWarn(BasesAnd + GenericMethod), AotWarn(GenericMethod)]
     private MethodInfo ResolveMethod(
         string name,

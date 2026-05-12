@@ -4,6 +4,9 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class DotNetArgBuilderTests
 {
+    // TODO: Info where both command string and command enum are specified are never used internally.
+    //  So these tests are not representative.
+
     // dotnet build style
 
     [TestMethod]
