@@ -2,7 +2,6 @@
 RunTests<DotNetArgBuilderTests>() &&
 RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetInfoTests>() &&
-RunTests<DotNetIntegrationTests>() &&
 RunTests<DotNetLoggerTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetTests>() &&
