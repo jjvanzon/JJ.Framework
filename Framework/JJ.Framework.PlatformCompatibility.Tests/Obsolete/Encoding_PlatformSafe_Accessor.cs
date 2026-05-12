@@ -13,6 +13,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
             = new AccessorCore(Type.GetType("JJ.Framework.PlatformCompatibility.Legacy.Obsolete.Encoding_PlatformSafe, " +
                                             "JJ.Framework.PlatformCompatibility.Legacy"));
 
+        [Suppress("Aot", "IL3050", Justification = GenericMethod)]
         public static string GetString_PlatformSafe(this Encoding encoding, byte[] bytes)
             => _accessor.Call(() => GetString_PlatformSafe(encoding, bytes));
     }

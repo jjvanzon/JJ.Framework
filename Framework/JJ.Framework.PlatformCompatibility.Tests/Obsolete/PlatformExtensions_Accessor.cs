@@ -10,6 +10,7 @@ using JJ.Framework.Reflection.Core;
 namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 {
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
+    [Suppress("Aot", "IL3050", Justification = GenericMethod)]
     internal static class PlatformExtensions_Accessor
     {
         private static readonly AccessorCore _accessor
