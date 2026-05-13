@@ -7,31 +7,40 @@ internal static class DotNetArgBuilder
 
     public static string FormatArgs(DotNetInfo info, DotNetOptions opt)
     {
-        string formattedFile        = FormatFile(opt.File);
-        string formattedAutoRestore = TryFormatAutoRestore(opt.AutoRestore, info.CommandEnum);
-        string formattedBuildConf   = TryFormatBuildConf  (opt.BuildConf,   info.CommandEnum);
-        string formattedVerbosity   = TryFormatVerbosity  (opt.Verbosity,   info.CommandEnum);
-        string formattedRebuildArg  = TryFormatRebuildArg (info.IsRebuild,  info.CommandEnum);
-        string formattedPackageID   = TryFormatPackageID  (info.ID);
-        string formattedPackageVer  = TryFormatPackageVer (info.Ver);
+        string formattedFile            = TryFormatFile           (opt.File);
+        string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,   info.CommandEnum);
+        string formattedRebuildArg      = TryFormatRebuildArg     (info.IsRebuild,  info.CommandEnum);
+        string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,   info.CommandEnum);
+        string formattedPackageID       = TryFormatPackageID      (info.ID);
+        string formattedPackageVer      = TryFormatPackageVer     (info.Ver);
+        string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore, info.CommandEnum);
+        string formattedParallelRestore = TryFormatParallelRestore(opt.ParallelRestore, info.CommandEnum);
         string[] elements = 
         [
             info.Command, formattedFile, 
             formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
             formattedPackageID, formattedPackageVer,
+            formattedParallelRestore,
             opt.Args, info.Args, formattedAutoRestore // HACK: auto-restore put at the end makes `add package` work.
         ]; 
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
     }
 
-    private static string FormatFile(string file) => Has(file) ? '"' + file + '"' : "";
+    private static string TryFormatFile(string file) => Has(file) ? '"' + file + '"' : "";
 
     private static string TryFormatAutoRestore(bool autoRestore, DotNetCommandEnum commandEnum)
     {
         if (commandEnum is build or rebuild) return autoRestore ? "" : "--no-restore";
         if (commandEnum is msbuild or msrebuild) return autoRestore ? "-restore" : "";
         return "";
+    }
+
+    private static string TryFormatParallelRestore(bool parallelRestore, DotNetCommandEnum commandEnum)
+    {
+        if (parallelRestore) return "";
+        if (commandEnum != restore) return "";
+        return "--disable-parallel";
     }
 
     private static string TryFormatBuildConf(string buildConf, DotNetCommandEnum commandEnum)
