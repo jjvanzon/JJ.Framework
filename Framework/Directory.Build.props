@@ -173,11 +173,7 @@
 
   <!-- Trim Test -->
 
-  <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild"
-          Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!='' And
-                   ($(IsNCrunch) Or '$(Configuration)'=='Release')">
-          <!--Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(PublishDir)'!=''">-->
-
+  <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild" Condition="$(TrimTestEnabled) And '$(PublishDir)'!=''">
     <!-- Helper Vars -->
     <PropertyGroup>
       <TrimmedExe>$(PublishDir)\$(MSBuildProjectName).exe</TrimmedExe>
