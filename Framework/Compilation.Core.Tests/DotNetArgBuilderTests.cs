@@ -63,13 +63,24 @@ public class DotNetArgBuilderTests
         AreEqual("msbuild", FormatArgs(info, opt));
     }
 
-    // restore ignores build options
+    // restore
+
+    // TODO: Package doesn't contain new functionality yet, due to CI blockage.
 
     [TestMethod]
     public void FormatArgs_Restore_IgnoresOptions()
     {
         var info = new DotNetInfoAccessor(restore) { Command = "restore", IsRebuild = true };
         var opt  = new DotNetOptions { BuildConf = "Release", Verbosity = Detailed, AutoRestore = false };
+
+        AreEqual("restore --disable-parallel", FormatArgs(info, opt));
+    }
+
+    [TestMethod]
+    public void FormatArgs_Restore_WithoutParallel()
+    {
+        var info = new DotNetInfoAccessor(restore) { Command = "restore", IsRebuild = true };
+        var opt  = new DotNetOptions { ParallelRestore = false };
 
         AreEqual("restore", FormatArgs(info, opt));
     }
