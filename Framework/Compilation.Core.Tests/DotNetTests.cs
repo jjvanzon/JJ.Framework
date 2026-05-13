@@ -118,135 +118,73 @@ public class DotNetTests : IDisposable
 
     // Restore
 
-    [TestMethod]
-    public void Test_Restore_ByMethod()
+    private void TestRestore(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(Restore(), expectedInOutput: "restore"));
-        AssertAssetsFile();
+        InTempDir(() =>
+        {
+            AssertOutputText(call(), "restore");
+            AssertAssetsFile();
+        });
     }
 
-    [TestMethod]
-    public void Test_Restore_ByEnum()
-    {
-        InTempDir(() => AssertOutputText(DotNet.Exe(restore), expectedInOutput: "restore"));
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_ByString()
-    {
-        InTempDir(() => AssertOutputText(DotNet.Exe("restore"), expectedInOutput: "restore"));
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_ByMethod_WithArgs()
-    {
-        InTempDir(() => AssertOutputText(Restore("--no-cache"), expectedInOutput: "restore"));
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_ByEnum_WithArgs()
-    {
-        InTempDir(() => AssertOutputText(DotNet.Exe(restore, "--no-cache"), expectedInOutput: "restore"));
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_ByString_WithArgs()
-    {
-        InTempDir(() => AssertOutputText(DotNet.Exe("restore", "--no-cache"), expectedInOutput: "restore"));
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_Method_WithOpt()
-    {
-        AssertOutputText(Restore(_optNoFile), expectedInOutput: "restore");
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_CommandEnum_WithOpt()
-    {
-        AssertOutputText(DotNet.Exe(restore, _optNoFile), expectedInOutput: "restore");
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_CommandString_WithOpt()
-    {
-        AssertOutputText(DotNet.Exe("restore", _optNoFile), expectedInOutput: "restore");
-        AssertAssetsFile();
-    }
-
-    [TestMethod]
-    public void Test_Restore_Args_Opt()
-    {
-        AssertOutputText(Restore("--no-cache", _optNoFile), expectedInOutput: "restore");
-        AssertAssetsFile();
-    }
+    [TestMethod] public void Test_Restore_ByMethod()                => TestRestore(() => Restore());
+    [TestMethod] public void Test_Restore_ByMethod_WithOpt()        => TestRestore(() => Restore(_optNoFile));
+    [TestMethod] public void Test_Restore_ByMethod_WithArgs()       => TestRestore(() => Restore("--no-cache"));
+    [TestMethod] public void Test_Restore_ByMethod_WithArgsAndOpt() => TestRestore(() => Restore("--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum()                  => TestRestore(() => DotNet.Exe(restore));
+    [TestMethod] public void Test_Restore_ByEnum_WithOpt()          => TestRestore(() => DotNet.Exe(restore, _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum_WithArgs()         => TestRestore(() => DotNet.Exe(restore, "--no-cache"));
+    [TestMethod] public void Test_Restore_ByEnum_WithArgsAndOpt()   => TestRestore(() => DotNet.Exe(restore, "--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByString()                => TestRestore(() => DotNet.Exe("restore"));
+    [TestMethod] public void Test_Restore_ByString_WithOpt()        => TestRestore(() => DotNet.Exe("restore", _optNoFile));
+    [TestMethod] public void Test_Restore_ByString_WithArgs()       => TestRestore(() => DotNet.Exe("restore", "--no-cache"));
+    [TestMethod] public void Test_Restore_ByString_WithArgsAndOpt() => TestRestore(() => DotNet.Exe("restore", "--no-cache", _optNoFile));
 
     // Build
 
-    [TestMethod]
-    public void Test_Build()
+    public void TestBuild_Debug(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(Build(), expectedInOutput: "Build succeeded"));
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
         AssertDebugDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod]
-    public void Test_Build_Args()
+    public void TestBuild_Release(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(Build("--no-incremental"), expectedInOutput: "Build succeeded"));
-        AssertDebugDll(); // no-option overload defaults to Debug
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
+        AssertReleaseDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod]
-    public void Test_Build_Opt()
-    {
-        AssertOutputText(Build(_opt), expectedInOutput: "Build succeeded");
-        AssertReleaseDll();
-    }
-
-    [TestMethod]
-    public void Test_Build_Args_Opt()
-    {
-        AssertOutputText(Build("--no-incremental", _opt), expectedInOutput: "Build succeeded");
-        AssertReleaseDll();
-    }
+    [TestMethod] public void Test_Build_ByMethod()                => TestBuild_Debug  (() => Build());
+    [TestMethod] public void Test_Build_ByMethod_WithOpt()        => TestBuild_Release(() => Build(_opt));
+    [TestMethod] public void Test_Build_ByMethod_WithArgs()       => TestBuild_Debug  (() => Build("--no-incremental"));
+    [TestMethod] public void Test_Build_ByMethod_WithArgsAndOpt() => TestBuild_Release(() => Build("--no-incremental", _opt));
+    [TestMethod] public void Test_Build_ByEnum()                  => TestBuild_Debug  (() => DotNet.Exe(build));
+    [TestMethod] public void Test_Build_ByEnum_WithOpt()          => TestBuild_Release(() => DotNet.Exe(build, _opt));
+    [TestMethod] public void Test_Build_ByEnum_WithArgs()         => TestBuild_Debug  (() => DotNet.Exe(build, "--no-incremental"));
+    [TestMethod] public void Test_Build_ByEnum_WithArgsAndOpt()   => TestBuild_Release(() => DotNet.Exe(build, "--no-incremental", _opt));
+    [TestMethod] public void Test_Build_ByString()                => TestBuild_Debug  (() => DotNet.Exe("build"));
+    [TestMethod] public void Test_Build_ByString_WithOpt()        => TestBuild_Release(() => DotNet.Exe("build", _opt));
+    [TestMethod] public void Test_Build_ByString_WithArgs()       => TestBuild_Debug  (() => DotNet.Exe("build", "--no-incremental"));
+    [TestMethod] public void Test_Build_ByString_WithArgsAndOpt() => TestBuild_Release(() => DotNet.Exe("build", "--no-incremental", _opt));
 
     // Rebuild
 
-    [TestMethod]
-    public void Test_Rebuild()
+    public void TestRebuild_Debug(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(Rebuild(), expectedInOutput: "Build succeeded"));
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
         AssertDebugDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod]
-    public void Test_Rebuild_Args()
+    public void TestRebuild_Release(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(Rebuild("--no-incremental"), expectedInOutput: "Build succeeded"));
-        AssertDebugDll(); // no-option overload defaults to Debug
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
+        AssertReleaseDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod]
-    public void Test_Rebuild_Opt()
-    {
-        AssertOutputText(Rebuild(_opt), expectedInOutput: "Build succeeded");
-        AssertReleaseDll();
-    }
-
-    [TestMethod]
-    public void Test_Rebuild_Args_Opt()
-    {
-        AssertOutputText(Rebuild("--no-incremental", _opt), expectedInOutput: "Build succeeded");
-        AssertReleaseDll();
-    }
+    [TestMethod] public void Test_Rebuild()          => TestRebuild_Debug  (() => Rebuild());
+    [TestMethod] public void Test_Rebuild_Args()     => TestRebuild_Debug  (() => Rebuild("--no-incremental"));
+    [TestMethod] public void Test_Rebuild_Opt()      => TestRebuild_Release(() => Rebuild(_opt));
+    [TestMethod] public void Test_Rebuild_Args_Opt() => TestRebuild_Release(() => Rebuild("--no-incremental", _opt));
 
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
