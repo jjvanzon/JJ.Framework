@@ -77,10 +77,10 @@ public class DotNetArgBuilderTests
     }
 
     [TestMethod]
-    public void FormatArgs_Restore_WithoutParallel()
+    public void FormatArgs_Restore_Parallel()
     {
         var info = new DotNetInfoAccessor(restore) { Command = "restore", IsRebuild = true };
-        var opt  = new DotNetOptions { ParallelRestore = false };
+        var opt  = new DotNetOptions { ParallelRestore = true };
 
         AreEqual("restore", FormatArgs(info, opt));
     }
