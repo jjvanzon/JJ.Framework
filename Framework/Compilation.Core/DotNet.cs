@@ -53,6 +53,8 @@ public static class DotNet
     public static string UninstallPackage(string id, string args, DotNetOptions opt)
         => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args }, opt);
 
+    // TODO: Full blown DotNetExe synonym method.
+
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommandEnum command) 
         => DotNet.Exe(new DotNetInfo(command));

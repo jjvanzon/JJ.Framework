@@ -117,26 +117,65 @@ public class DotNetTests : IDisposable
     // Restore
 
     [TestMethod]
-    public void Test_Restore()
+    public void Test_Restore_ByMethod()
     {
         InTempDir(() => AssertOutputText(Restore(), expectedInOutput: "restore"));
-        // TODO: Do in separate test methods for separate temp dir
+        AssertAssetsFile();
+    }
+
+    [TestMethod]
+    public void Test_Restore_ByEnum()
+    {
         InTempDir(() => AssertOutputText(DotNet.Exe(restore), expectedInOutput: "restore"));
+        AssertAssetsFile();
+    }
+
+    [TestMethod]
+    public void Test_Restore_ByString()
+    {
         InTempDir(() => AssertOutputText(DotNet.Exe("restore"), expectedInOutput: "restore"));
         AssertAssetsFile();
     }
 
     [TestMethod]
-    public void Test_Restore_Args()
+    public void Test_Restore_ByMethod_WithArgs()
     {
         InTempDir(() => AssertOutputText(Restore("--no-cache"), expectedInOutput: "restore"));
         AssertAssetsFile();
     }
 
     [TestMethod]
-    public void Test_Restore_Opt()
+    public void Test_Restore_ByEnum_WithArgs()
+    {
+        InTempDir(() => AssertOutputText(DotNet.Exe(restore, "--no-cache"), expectedInOutput: "restore"));
+        AssertAssetsFile();
+    }
+
+    [TestMethod]
+    public void Test_Restore_ByString_WithArgs()
+    {
+        InTempDir(() => AssertOutputText(DotNet.Exe("restore", "--no-cache"), expectedInOutput: "restore"));
+        AssertAssetsFile();
+    }
+
+    [TestMethod]
+    public void Test_Restore_Method_WithOpt()
     {
         AssertOutputText(Restore(_optNoFile), expectedInOutput: "restore");
+        AssertAssetsFile();
+    }
+
+    [TestMethod]
+    public void Test_Restore_CommandEnum_WithOpt()
+    {
+        AssertOutputText(DotNet.Exe(restore, _optNoFile), expectedInOutput: "restore");
+        AssertAssetsFile();
+    }
+
+    [TestMethod]
+    public void Test_Restore_CommandString_WithOpt()
+    {
+        AssertOutputText(DotNet.Exe("restore", _optNoFile), expectedInOutput: "restore");
         AssertAssetsFile();
     }
 
@@ -322,7 +361,7 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod]
-    public void UninstallPackage_Opt()
+    public void Test_UninstallPackage_Opt()
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
         AssertOutputText(UninstallPackage(PackageId, _optNoFile), expectedInOutput: PackageId);
@@ -330,7 +369,7 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod]
-    public void UninstallPackage_Args_Opt()
+    public void Test_UninstallPackage_Args_Opt()
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
         // Pass empty string as extra args; --no-restore is not a valid flag for dotnet remove package.
