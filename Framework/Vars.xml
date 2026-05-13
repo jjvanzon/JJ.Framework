@@ -22,9 +22,8 @@
     <!-- Turn IsNCrunch String into a proper Boolean-->
     <IsNCrunch Condition="'$(IsNCrunch)'!='True'">False</IsNCrunch>
     <IsNCrunch Condition="'$(IsNCrunch)'=='True'">True</IsNCrunch>
-    <TrimTestEnabled>False</TrimTestEnabled>
-    <TrimTestEnabled Condition="$(IsTrimTest) And $(IsInnerBuild) And 
-                               ($(IsNCrunch) Or '$(Configuration)'=='Release')">True</TrimTestEnabled>
+    <AutoStartTrimTest>False</AutoStartTrimTest>
+    <AutoStartTrimTest Condition="$(IsTrimTest) And $(IsInnerBuild) And 
+                                  ($(IsNCrunch) Or '$(Configuration)'=='Release')">True</AutoStartTrimTest>
   </PropertyGroup>
 </Project>
-
