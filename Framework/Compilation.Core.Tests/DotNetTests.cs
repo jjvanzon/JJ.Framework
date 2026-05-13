@@ -29,6 +29,8 @@ public class DotNetTests : IDisposable
             <Nullable>enable</Nullable>
             <ImplicitUsings>enable</ImplicitUsings>
             <LangVersion>latest</LangVersion>
+            <!--The target framework 'net7.0' is out of support-->
+            <NoWarn>$(NoWarn);NETSDK1138</NoWarn>
           </PropertyGroup>
         </Project>
         """;
