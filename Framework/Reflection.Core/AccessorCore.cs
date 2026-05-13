@@ -43,6 +43,7 @@ public partial class AccessorCore
         ThrowIfNull(constructArgs);
         var constructorTypes = TypesFromObjects(constructArgs);
         ConstructorInfo? constructor = type.GetConstructor(constructorTypes);
+        if (Has(constructArgs)) ThrowIfNull(constructor);
         return constructor?.Invoke(constructArgs.ToArray());
     }
 
