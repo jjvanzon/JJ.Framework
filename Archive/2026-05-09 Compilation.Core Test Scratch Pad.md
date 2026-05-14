@@ -35,3 +35,11 @@ private static void TestEnrichEnum(DotNetCommandEnum input, (string command, boo
     [TestMethod] public void Test_Exe_Enum_Args_Opt() 
         =>                 AssertOutputText(DotNet.Exe(restore, "--no-cache", _optNoFile), expectedInOutput: "restore");
 ```
+
+
+```cs
+    //[NoTrim("Command",         typeof(DotNetInfoAccessor))]
+    //[NoTrim("FormatArgs",  typeof(DotNetArgBuilderAccessor))]
+    //[NoTrim("Enrich",      typeof(DotNetEnricherAccessor))]
+    //[NoTrim("Log",         typeof(DotNetLoggerAccessor))]
+```

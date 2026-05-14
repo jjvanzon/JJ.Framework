@@ -23,6 +23,7 @@
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
     <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
+    <TrimmerRootAssembly Include="JJ.Framework.Compilation.Core.TrimTests" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
