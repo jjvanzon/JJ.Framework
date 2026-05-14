@@ -15,10 +15,8 @@ namespace JJ.Framework.Compilation.Core.Tests;
 public class DotNetTests : IDisposable
 {
     private const int    TimeOutSec = 240;
-    private const string PackageId  = "Newtonsoft.Json";
-    private const string PackageVer = "13.0.3";
-
-    // TODO: Make all tests no-op unless TargetFramework matches (`#if NET8_0`)
+    private const string PackId  = "Newtonsoft.Json";
+    private const string PackVer = "13.0.3";
 
     // Minimal project targeting net8.0 (broadly available SDK; no external packages needed).
     private static string CsprojContent(string targetFramework) => $"""
@@ -127,18 +125,18 @@ public class DotNetTests : IDisposable
         });
     }
 
-    [TestMethod] public void Test_Restore_ByMethod()                => TestRestore(() => Restore());
-    [TestMethod] public void Test_Restore_ByMethod_WithOpt()        => TestRestore(() => Restore(_optNoFile));
-    [TestMethod] public void Test_Restore_ByMethod_WithArgs()       => TestRestore(() => Restore("--no-cache"));
-    [TestMethod] public void Test_Restore_ByMethod_WithArgsAndOpt() => TestRestore(() => Restore("--no-cache", _optNoFile));
-    [TestMethod] public void Test_Restore_ByEnum()                  => TestRestore(() => DotNet.Exe(restore));
-    [TestMethod] public void Test_Restore_ByEnum_WithOpt()          => TestRestore(() => DotNet.Exe(restore, _optNoFile));
-    [TestMethod] public void Test_Restore_ByEnum_WithArgs()         => TestRestore(() => DotNet.Exe(restore, "--no-cache"));
-    [TestMethod] public void Test_Restore_ByEnum_WithArgsAndOpt()   => TestRestore(() => DotNet.Exe(restore, "--no-cache", _optNoFile));
-    [TestMethod] public void Test_Restore_ByString()                => TestRestore(() => DotNet.Exe("restore"));
-    [TestMethod] public void Test_Restore_ByString_WithOpt()        => TestRestore(() => DotNet.Exe("restore", _optNoFile));
-    [TestMethod] public void Test_Restore_ByString_WithArgs()       => TestRestore(() => DotNet.Exe("restore", "--no-cache"));
-    [TestMethod] public void Test_Restore_ByString_WithArgsAndOpt() => TestRestore(() => DotNet.Exe("restore", "--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByMethod()          => TestRestore(() => Restore());
+    [TestMethod] public void Test_Restore_ByMethod_Opt()      => TestRestore(() => Restore(_optNoFile));
+    [TestMethod] public void Test_Restore_ByMethod_Args()     => TestRestore(() => Restore("--no-cache"));
+    [TestMethod] public void Test_Restore_ByMethod_Args_Opt() => TestRestore(() => Restore("--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum()            => TestRestore(() => DotNet.Exe(restore));
+    [TestMethod] public void Test_Restore_ByEnum_Opt()        => TestRestore(() => DotNet.Exe(restore, _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum_Args()       => TestRestore(() => DotNet.Exe(restore, "--no-cache"));
+    [TestMethod] public void Test_Restore_ByEnum_Args_Opt()   => TestRestore(() => DotNet.Exe(restore, "--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByName()            => TestRestore(() => DotNet.Exe("restore"));
+    [TestMethod] public void Test_Restore_ByName_Opt()        => TestRestore(() => DotNet.Exe("restore", _optNoFile));
+    [TestMethod] public void Test_Restore_ByName_Args()       => TestRestore(() => DotNet.Exe("restore", "--no-cache"));
+    [TestMethod] public void Test_Restore_ByName_Args_Opt()   => TestRestore(() => DotNet.Exe("restore", "--no-cache", _optNoFile));
 
     // Build
 
@@ -154,18 +152,18 @@ public class DotNetTests : IDisposable
         AssertReleaseDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod] public void Test_Build_ByMethod()                => TestBuild_Debug  (() => Build());
-    [TestMethod] public void Test_Build_ByMethod_WithOpt()        => TestBuild_Release(() => Build(_opt));
-    [TestMethod] public void Test_Build_ByMethod_WithArgs()       => TestBuild_Debug  (() => Build("--no-incremental"));
-    [TestMethod] public void Test_Build_ByMethod_WithArgsAndOpt() => TestBuild_Release(() => Build("--no-incremental", _opt));
-    [TestMethod] public void Test_Build_ByEnum()                  => TestBuild_Debug  (() => DotNet.Exe(build));
-    [TestMethod] public void Test_Build_ByEnum_WithOpt()          => TestBuild_Release(() => DotNet.Exe(build, _opt));
-    [TestMethod] public void Test_Build_ByEnum_WithArgs()         => TestBuild_Debug  (() => DotNet.Exe(build, "--no-incremental"));
-    [TestMethod] public void Test_Build_ByEnum_WithArgsAndOpt()   => TestBuild_Release(() => DotNet.Exe(build, "--no-incremental", _opt));
-    [TestMethod] public void Test_Build_ByString()                => TestBuild_Debug  (() => DotNet.Exe("build"));
-    [TestMethod] public void Test_Build_ByString_WithOpt()        => TestBuild_Release(() => DotNet.Exe("build", _opt));
-    [TestMethod] public void Test_Build_ByString_WithArgs()       => TestBuild_Debug  (() => DotNet.Exe("build", "--no-incremental"));
-    [TestMethod] public void Test_Build_ByString_WithArgsAndOpt() => TestBuild_Release(() => DotNet.Exe("build", "--no-incremental", _opt));
+    [TestMethod] public void Test_Build_ByMethod()          => TestBuild_Debug  (() => Build());
+    [TestMethod] public void Test_Build_ByMethod_Opt()      => TestBuild_Release(() => Build(_opt));
+    [TestMethod] public void Test_Build_ByMethod_Args()     => TestBuild_Debug  (() => Build("--no-incremental"));
+    [TestMethod] public void Test_Build_ByMethod_Args_Opt() => TestBuild_Release(() => Build("--no-incremental", _opt));
+    [TestMethod] public void Test_Build_ByEnum()            => TestBuild_Debug  (() => DotNet.Exe(build));
+    [TestMethod] public void Test_Build_ByEnum_Opt()        => TestBuild_Release(() => DotNet.Exe(build, _opt));
+    [TestMethod] public void Test_Build_ByEnum_Args()       => TestBuild_Debug  (() => DotNet.Exe(build, "--no-incremental"));
+    [TestMethod] public void Test_Build_ByEnum_Args_Opt()   => TestBuild_Release(() => DotNet.Exe(build, "--no-incremental", _opt));
+    [TestMethod] public void Test_Build_ByName()            => TestBuild_Debug  (() => DotNet.Exe("build"));
+    [TestMethod] public void Test_Build_ByName_Opt()        => TestBuild_Release(() => DotNet.Exe("build", _opt));
+    [TestMethod] public void Test_Build_ByName_Args()       => TestBuild_Debug  (() => DotNet.Exe("build", "--no-incremental"));
+    [TestMethod] public void Test_Build_ByName_Args_Opt()   => TestBuild_Release(() => DotNet.Exe("build", "--no-incremental", _opt));
 
     // Rebuild
 
@@ -196,7 +194,7 @@ public class DotNetTests : IDisposable
     private void TestMSBuild_Debug(Func<string> call)
     {
         InTempDir(() => AssertOutputText(call(), expectedInOutput: "Temp"));
-        AssertDebugDll(); // no-option overload defaults to Debug
+        AssertDebugDll();
     }
 
     private void TestMSBuild_Release(Func<string> call)
@@ -205,10 +203,18 @@ public class DotNetTests : IDisposable
         AssertReleaseDll();
     }
 
-    [TestMethod] public void Test_MSBuild()          => TestMSBuild_Debug  (() => MSBuild());
-    [TestMethod] public void Test_MSBuild_Args()     => TestMSBuild_Debug  (() => MSBuild("/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSBuild_Opt()      => TestMSBuild_Release(() => MSBuild(_opt));
-    [TestMethod] public void Test_MSBuild_Args_Opt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSBuild_ByMethod()          => TestMSBuild_Debug  (() => MSBuild());
+    [TestMethod] public void Test_MSBuild_ByMethod_Args()     => TestMSBuild_Debug  (() => MSBuild("/p:TreatWarningsAsErrors=false"));
+    [TestMethod] public void Test_MSBuild_ByMethod_Opt()      => TestMSBuild_Release(() => MSBuild(_opt));
+    [TestMethod] public void Test_MSBuild_ByMethod_Args_Opt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSBuild_ByEnum()            => TestMSBuild_Debug  (() => DotNet.Exe(msbuild));
+    [TestMethod] public void Test_MSBuild_ByEnum_Args()       => TestMSBuild_Debug  (() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false"));
+    [TestMethod] public void Test_MSBuild_ByEnum_Opt()        => TestMSBuild_Release(() => DotNet.Exe(msbuild, _opt));
+    [TestMethod] public void Test_MSBuild_ByEnum_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSBuild_ByName()            => TestMSBuild_Debug  (() => DotNet.Exe("msbuild"));
+    [TestMethod] public void Test_MSBuild_ByName_Args()       => TestMSBuild_Debug  (() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false"));
+    [TestMethod] public void Test_MSBuild_ByName_Opt()        => TestMSBuild_Release(() => DotNet.Exe("msbuild", _opt));
+    [TestMethod] public void Test_MSBuild_ByName_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false", _opt));
 
     // MSRebuild
 
@@ -224,59 +230,62 @@ public class DotNetTests : IDisposable
         AssertReleaseDll();
     }
 
-    [TestMethod] public void Test_MSRebuild()          => TestMSRebuild_Debug  (() => MSRebuild());
-    [TestMethod] public void Test_MSRebuild_Args()     => TestMSRebuild_Debug  (() => MSRebuild("/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSRebuild_Opt()      => TestMSRebuild_Release(() => MSRebuild(_opt));
-    [TestMethod] public void Test_MSRebuild_Args_Opt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSRebuild_ByMethod()          => TestMSRebuild_Debug  (() => MSRebuild());
+    [TestMethod] public void Test_MSRebuild_ByMethod_Args()     => TestMSRebuild_Debug  (() => MSRebuild("/p:TreatWarningsAsErrors=false"));
+    [TestMethod] public void Test_MSRebuild_ByMethod_Opt()      => TestMSRebuild_Release(() => MSRebuild(_opt));
+    [TestMethod] public void Test_MSRebuild_ByMethod_Args_Opt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSRebuild_ByEnum()            => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild));
+    [TestMethod] public void Test_MSRebuild_ByEnum_Args()       => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false"));
+    [TestMethod] public void Test_MSRebuild_ByEnum_Opt()        => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, _opt));
+    [TestMethod] public void Test_MSRebuild_ByEnum_Args_Opt()   => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false", _opt));
     
     // TODO: How about testing what happens if a build actually fails?
 
     // InstallPackage
 
-    private void TestInstallPackage_InTempDir(Func<string> call)
+    private void TestInstallPack_ChDir(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackageId));
-        IsTrue(ReadAllText(_csprojPath).Contains(PackageId));
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackId));
+        IsTrue(ReadAllText(_csprojPath).Contains(PackId));
     }
 
-    private void TestInstallPackage_WithOptions(Func<string> call)
+    private void TestInstallPack(Func<string> call)
     {
-        AssertOutputText(call(), expectedInOutput: PackageId);
-        IsTrue(ReadAllText(_csprojPath).Contains(PackageId));
+        AssertOutputText(call(), expectedInOutput: PackId);
+        IsTrue(ReadAllText(_csprojPath).Contains(PackId));
     }
 
-    [TestMethod] public void Test_InstallPackage()          => TestInstallPackage_InTempDir(() => InstallPackage(PackageId, PackageVer));
-    [TestMethod] public void Test_InstallPackage_Args()     => TestInstallPackage_InTempDir(() => InstallPackage(PackageId, PackageVer, ""));
-    [TestMethod] public void Test_InstallPackage_Opt()      => TestInstallPackage_WithOptions(() => InstallPackage(PackageId, PackageVer, _optNoFile));
-    [TestMethod] public void Test_InstallPackage_Args_Opt() => TestInstallPackage_WithOptions(() => InstallPackage(PackageId, PackageVer, "--no-restore", _optNoFile));
+    [TestMethod] public void Test_InstallPackage_ByMethod()          => TestInstallPack_ChDir(() => InstallPackage(PackId, PackVer));
+    [TestMethod] public void Test_InstallPackage_ByMethod_Args()     => TestInstallPack_ChDir(() => InstallPackage(PackId, PackVer, ""));
+    [TestMethod] public void Test_InstallPackage_ByMethod_Opt()      => TestInstallPack      (() => InstallPackage(PackId, PackVer, _optNoFile));
+    [TestMethod] public void Test_InstallPackage_ByMethod_Args_Opt() => TestInstallPack      (() => InstallPackage(PackId, PackVer, "--no-restore", _optNoFile));
+    // Enum and name won't work unless you specify id and ver as args.
 
     // UninstallPackage
-    // Each test installs first since each instance gets a fresh temp project.
-    // After uninstall the csproj should no longer reference the package.
 
-    private void TestUninstallPackage_InTempDir(Func<string> call)
+    private void TestUninstallPack_ChDir(Func<string> call)
     {
-        InstallPackage(PackageId, PackageVer, _optNoFile);
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackageId));
-        IsFalse(ReadAllText(_csprojPath).Contains(PackageId));
+        InstallPackage(PackId, PackVer, _optNoFile);
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackId));
+        IsFalse(ReadAllText(_csprojPath).Contains(PackId));
     }
 
-    private void TestUninstallPackage_WithOptions(Func<string> call)
+    private void TestUninstallPack(Func<string> call)
     {
-        InstallPackage(PackageId, PackageVer, _optNoFile);
-        AssertOutputText(call(), expectedInOutput: PackageId);
-        IsFalse(ReadAllText(_csprojPath).Contains(PackageId));
+        InstallPackage(PackId, PackVer, _optNoFile);
+        AssertOutputText(call(), expectedInOutput: PackId);
+        IsFalse(ReadAllText(_csprojPath).Contains(PackId));
     }
 
-    [TestMethod] public void Test_UninstallPackage()          => TestUninstallPackage_InTempDir(() => UninstallPackage(PackageId));
-    [TestMethod] public void Test_UninstallPackage_Args()     => TestUninstallPackage_InTempDir(() => UninstallPackage(PackageId, ""));
-    [TestMethod] public void Test_UninstallPackage_Opt()      => TestUninstallPackage_WithOptions(() => UninstallPackage(PackageId, _optNoFile));
-    [TestMethod] public void Test_UninstallPackage_Args_Opt() => TestUninstallPackage_WithOptions(() => UninstallPackage(PackageId, "", _optNoFile));
+    [TestMethod] public void Test_UninstallPackage()          => TestUninstallPack_ChDir(() => UninstallPackage(PackId));
+    [TestMethod] public void Test_UninstallPackage_Args()     => TestUninstallPack_ChDir(() => UninstallPackage(PackId, ""));
+    [TestMethod] public void Test_UninstallPackage_Opt()      => TestUninstallPack      (() => UninstallPackage(PackId, _optNoFile));
+    [TestMethod] public void Test_UninstallPackage_Args_Opt() => TestUninstallPack      (() => UninstallPackage(PackId, "", _optNoFile));
+    // Enum and name won't work unless you specify id and ver as args.
 
     // Exe: string command overloads
     // --version requires no project and always emits stdout with the SDK version number.
 
-    // TODO: Test string variants of "known" commands
     // TODO: Test empty command, but -- parameter in arg.
 
     private static void TestExeStringOutput(Func<string> call) => AssertOutputText(call(), "Output =");
