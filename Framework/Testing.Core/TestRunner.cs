@@ -41,7 +41,7 @@ public static class TestRunner
         bool success = true;
         NotNull(testClasses);
 
-        var loop = Parallel.ForEach(testClasses, testClass =>
+        var loop = Parallel.ForEach(testClasses.ToArray(), testClass =>
         {
             success &= RunTests(testClass);
         });
@@ -70,7 +70,7 @@ public static class TestRunner
 
         var opt = GetParallelOptions(testClass);
 
-        var loop = Parallel.ForEach(methods, opt, method =>
+        var loop = Parallel.ForEach(methods.ToArray(), opt, method =>
         {
             success &= RunTest(testClass, method);
         });
