@@ -6,6 +6,7 @@
 namespace JJ.Framework.StringResources.Legacy.Tests;
 
 [TestClass]
+[DoNotParallelize] // TraceLogging gets mangled otherwise.
 public class StringResourceTesterTests
 {
     private static readonly string[] _known = [ "", "nl-NL" ];

@@ -15,8 +15,8 @@ namespace JJ.Framework.Compilation.Core.Tests;
 public class DotNetTests : IDisposable
 {
     private const int    TimeOutSec = 240;
-    private const string PackId  = "Newtonsoft.Json";
-    private const string PackVer = "13.0.3";
+    private const string PackId  = "JJ.Framework.Common.Core";
+    private const string PackVer = "4.6.6251";
 
     // Minimal project targeting net8.0 (broadly available SDK; no external packages needed).
     private static string CsprojContent(string targetFramework) => $"""
