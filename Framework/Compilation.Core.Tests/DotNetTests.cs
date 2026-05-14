@@ -50,7 +50,7 @@ public class DotNetTests : IDisposable
         // HACK: Temporarily prevent .NET 4x failure.
         if (targetFramework.StartsWith("net4")) targetFramework = "net8.0";
         
-        _tempDir          = Combine(GetTempPath(), "JJ.Framework.Compilation.Core.TestRuns", Guid.NewGuid().ToString()); // Guid.NewGuid().ToString("x"));// GetRandomFileName().Replace(".", ""));
+        _tempDir          = Combine(GetTempPath(), "JJ.CompilationCoreTests", GetRandomFileName().Replace(".", "")); //Guid.NewGuid().ToString());
         _csprojPath       = Combine(_tempDir, "Temp.csproj");
         _outputDllDebug   = Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
         _outputDllRelease = Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
@@ -112,39 +112,47 @@ public class DotNetTests : IDisposable
     {
         lock (_tempDirLock)
         {
-            //string saved = GetCurrentDirectory();
-            //try 
+            string saved = GetCurrentDirectory();
+            try 
             { 
                 SetCurrentDirectory(_tempDir);
                 action(); 
             }
-            //finally
+            finally
             {
-                //SetCurrentDirectory(saved);
+                // Error tolerance: previous cur dir may be deleted any time.
+                try { if (Directory.Exists(saved)) SetCurrentDirectory(saved); }
+                catch { /* ignore */ }
             }
         }
     }
 
     // Restore
 
-    private void TestRestore(Func<string> call) => InTempDir(() =>
+    private void TestRestore(Func<string> call)
+    {
+        AssertOutputText(call(), "restore");
+        AssertAssetsFile();
+    }
+
+    private void TestRestore_ChDir(Func<string> call) => InTempDir(() =>
     {
         AssertOutputText(call(), "restore");
         AssertAssetsFile();
     });
 
-    [TestMethod] public void Test_Restore_ByMethod()          => TestRestore(() => Restore());
-    [TestMethod] public void Test_Restore_ByMethod_Opt()      => TestRestore(() => Restore(_optNoFile));
-    [TestMethod] public void Test_Restore_ByMethod_Args()     => TestRestore(() => Restore("--no-cache"));
-    [TestMethod] public void Test_Restore_ByMethod_Args_Opt() => TestRestore(() => Restore("--no-cache", _optNoFile));
-    [TestMethod] public void Test_Restore_ByEnum()            => TestRestore(() => DotNet.Exe(restore));
-    [TestMethod] public void Test_Restore_ByEnum_Opt()        => TestRestore(() => DotNet.Exe(restore, _optNoFile));
-    [TestMethod] public void Test_Restore_ByEnum_Args()       => TestRestore(() => DotNet.Exe(restore, "--no-cache"));
-    [TestMethod] public void Test_Restore_ByEnum_Args_Opt()   => TestRestore(() => DotNet.Exe(restore, "--no-cache", _optNoFile));
-    [TestMethod] public void Test_Restore_ByName()            => TestRestore(() => DotNet.Exe("restore"));
-    [TestMethod] public void Test_Restore_ByName_Opt()        => TestRestore(() => DotNet.Exe("restore", _optNoFile));
-    [TestMethod] public void Test_Restore_ByName_Args()       => TestRestore(() => DotNet.Exe("restore", "--no-cache"));
-    [TestMethod] public void Test_Restore_ByName_Args_Opt()   => TestRestore(() => DotNet.Exe("restore", "--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByMethod()          => TestRestore_ChDir(() => Restore());
+    [TestMethod] public void Test_Restore_ByMethod_Opt()      => TestRestore      (() => Restore(_optNoFile));
+    [TestMethod] public void Test_Restore_ByMethod_Args()     => TestRestore_ChDir(() => Restore("--no-cache"));
+    [TestMethod] public void Test_Restore_ByMethod_Args_Opt() => TestRestore      (() => Restore("--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum()            => TestRestore_ChDir(() => DotNet.Exe(restore));
+    [TestMethod] public void Test_Restore_ByEnum_Opt()        => TestRestore      (() => DotNet.Exe(restore, _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum_Args()       => TestRestore_ChDir(() => DotNet.Exe(restore, "--no-cache"));
+    [TestMethod] public void Test_Restore_ByEnum_Args_Opt()   => TestRestore      (() => DotNet.Exe(restore, "--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByName()            => TestRestore_ChDir(() => DotNet.Exe("restore"));
+    [TestMethod] public void Test_Restore_ByName_Opt()        => TestRestore      (() => DotNet.Exe("restore", _optNoFile));
+    [TestMethod] public void Test_Restore_ByName_Args()       => TestRestore_ChDir(() => DotNet.Exe("restore", "--no-cache"));
+    [TestMethod] public void Test_Restore_ByName_Args_Opt()   => TestRestore      (() => DotNet.Exe("restore", "--no-cache", _optNoFile));
 
     // Build
 
@@ -188,12 +196,12 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_Rebuild_ByMethod()          => TestRebuild_Debug  (() => Rebuild());
-    [TestMethod] public void Test_Rebuild_ByMethod_Args()     => TestRebuild_Debug  (() => Rebuild("--no-incremental"));
     [TestMethod] public void Test_Rebuild_ByMethod_Opt()      => TestRebuild_Release(() => Rebuild(_opt));
+    [TestMethod] public void Test_Rebuild_ByMethod_Args()     => TestRebuild_Debug  (() => Rebuild("--no-incremental"));
     [TestMethod] public void Test_Rebuild_ByMethod_Args_Opt() => TestRebuild_Release(() => Rebuild("--no-incremental", _opt));
     [TestMethod] public void Test_Rebuild_ByEnum()            => TestRebuild_Debug  (() => DotNet.Exe(rebuild));
-    [TestMethod] public void Test_Rebuild_ByEnum_Args()       => TestRebuild_Debug  (() => DotNet.Exe(rebuild, "--no-incremental"));
     [TestMethod] public void Test_Rebuild_ByEnum_Opt()        => TestRebuild_Release(() => DotNet.Exe(rebuild, _opt));
+    [TestMethod] public void Test_Rebuild_ByEnum_Args()       => TestRebuild_Debug  (() => DotNet.Exe(rebuild, "--no-incremental"));
     [TestMethod] public void Test_Rebuild_ByEnum_Args_Opt()   => TestRebuild_Release(() => DotNet.Exe(rebuild, "--no-incremental", _opt));
 
     // MSBuild
@@ -212,16 +220,16 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_MSBuild_ByMethod()          => TestMSBuild_Debug  (() => MSBuild());
-    [TestMethod] public void Test_MSBuild_ByMethod_Args()     => TestMSBuild_Debug  (() => MSBuild("/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSBuild_ByMethod_Opt()      => TestMSBuild_Release(() => MSBuild(_opt));
+    [TestMethod] public void Test_MSBuild_ByMethod_Args()     => TestMSBuild_Debug  (() => MSBuild("/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSBuild_ByMethod_Args_Opt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", _opt));
     [TestMethod] public void Test_MSBuild_ByEnum()            => TestMSBuild_Debug  (() => DotNet.Exe(msbuild));
-    [TestMethod] public void Test_MSBuild_ByEnum_Args()       => TestMSBuild_Debug  (() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSBuild_ByEnum_Opt()        => TestMSBuild_Release(() => DotNet.Exe(msbuild, _opt));
+    [TestMethod] public void Test_MSBuild_ByEnum_Args()       => TestMSBuild_Debug  (() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSBuild_ByEnum_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false", _opt));
     [TestMethod] public void Test_MSBuild_ByName()            => TestMSBuild_Debug  (() => DotNet.Exe("msbuild"));
-    [TestMethod] public void Test_MSBuild_ByName_Args()       => TestMSBuild_Debug  (() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSBuild_ByName_Opt()        => TestMSBuild_Release(() => DotNet.Exe("msbuild", _opt));
+    [TestMethod] public void Test_MSBuild_ByName_Args()       => TestMSBuild_Debug  (() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSBuild_ByName_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false", _opt));
 
     // MSRebuild
@@ -239,12 +247,12 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_MSRebuild_ByMethod()          => TestMSRebuild_Debug  (() => MSRebuild());
-    [TestMethod] public void Test_MSRebuild_ByMethod_Args()     => TestMSRebuild_Debug  (() => MSRebuild("/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSRebuild_ByMethod_Opt()      => TestMSRebuild_Release(() => MSRebuild(_opt));
+    [TestMethod] public void Test_MSRebuild_ByMethod_Args()     => TestMSRebuild_Debug  (() => MSRebuild("/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSRebuild_ByMethod_Args_Opt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", _opt));
     [TestMethod] public void Test_MSRebuild_ByEnum()            => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild));
-    [TestMethod] public void Test_MSRebuild_ByEnum_Args()       => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSRebuild_ByEnum_Opt()        => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, _opt));
+    [TestMethod] public void Test_MSRebuild_ByEnum_Args()       => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false"));
     [TestMethod] public void Test_MSRebuild_ByEnum_Args_Opt()   => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false", _opt));
     
     // TODO: How about testing what happens if a build actually fails?
