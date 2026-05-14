@@ -2,6 +2,8 @@
 
 
 using static System.Console;
+using static System.StringComparison;
+
 // ReSharper disable AccessToModifiedClosure
 
 namespace JJ.Framework.Testing.Core;
@@ -12,14 +14,10 @@ public static class TestRunner
     // Is
    
     public static bool IsTestClass(Type type)
-        => NotNull(type).GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("TestClass"));
+        => NotNull(type).GetCustomAttributes().Any(x => x.GetType().Name.Equals("TestClassAttribute", Ordinal));
 
     public static bool IsTestMethod(MethodInfo method) 
-        => NotNull(method).GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("TestMethod"));
-
-    // TODO: Use this to stop parallelism, but also on assembly and method level, they can be defined.
-    private static bool DoesNotParallelize(Type type)
-        => NotNull(type).GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("DoNotParallelize"));
+        => NotNull(method).GetCustomAttributes().Any(x => x.GetType().Name.Equals("TestMethodAttribute", Ordinal));
 
     // Get
 
@@ -34,6 +32,7 @@ public static class TestRunner
     }
 
     // Run
+ 
 
     [TrimWarn(GetTypes)] public static bool RunTests() => RunTests(GetCallingAssembly());
     [TrimWarn(GetTypes)] public static bool RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
@@ -69,7 +68,9 @@ public static class TestRunner
         bool success = true;
         ThrowIfNull(methods);
 
-        var loop = Parallel.ForEach(methods, method =>
+        var opt = GetParallelOptions(testClass);
+
+        var loop = Parallel.ForEach(methods, opt, method =>
         {
             success &= RunTest(testClass, method);
         });
@@ -104,4 +105,23 @@ public static class TestRunner
         ThrowIfNull(instance);
         return instance;
     }
+
+    // Parallelism
+
+    private static ParallelOptions GetParallelOptions(Type type)
+    {
+        if (DoNotParallelize(type)) 
+        {
+            return new ParallelOptions { MaxDegreeOfParallelism = 1 };
+        }
+
+        return new();
+    }
+
+    private static bool DoNotParallelize(Assembly assembly)
+        => NotNull(assembly).GetCustomAttributes().Any(x => x.GetType().Name.Equals("DoNotParallelizeAttribute", Ordinal));
+
+    private static bool DoNotParallelize(Type type)
+        => NotNull(type).GetCustomAttributes().Any(x => x.GetType().Name.Equals("DoNotParallelizeAttribute", Ordinal)) ||
+           DoNotParallelize(type.Assembly);
 }
