@@ -2,6 +2,7 @@
 
 
 using static System.Console;
+// ReSharper disable AccessToModifiedClosure
 
 namespace JJ.Framework.Testing.Core;
 
@@ -15,6 +16,10 @@ public static class TestRunner
 
     public static bool IsTestMethod(MethodInfo method) 
         => NotNull(method).GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("TestMethod"));
+
+    // TODO: Use this to stop parallelism, but also on assembly and method level, they can be defined.
+    private static bool DoesNotParallelize(Type type)
+        => NotNull(type).GetCustomAttributes().Any(x => x.GetType().Name.StartsWith("DoNotParallelize"));
 
     // Get
 
@@ -32,15 +37,19 @@ public static class TestRunner
 
     [TrimWarn(GetTypes)] public static bool RunTests() => RunTests(GetCallingAssembly());
     [TrimWarn(GetTypes)] public static bool RunTests(Assembly assembly) => RunTests(GetTestClasses(assembly));
-
     [TrimWarn(TypeColl)] public static bool RunTests(ICollection<Type> testClasses)
     {
+        bool success = true;
         NotNull(testClasses);
-        foreach (var testClass in testClasses)
+
+        var loop = Parallel.ForEach(testClasses, testClass =>
         {
-            if (!RunTests(testClass)) return false;
-        }
-        return true;
+            success &= RunTests(testClass);
+        });
+
+        success &= loop.IsCompleted;
+
+        return success;
     }
 
 
@@ -55,20 +64,19 @@ public static class TestRunner
         return true;
     }
 
-    //public static void RunTests(ICollection<MethodInfo> methods)
-    //    => NotNull(methods).ForEach(x => RunTest(x, result));
-
-    //public static void RunTest(MethodInfo method) 
-    //    => RunTest(NotNull(method.DeclaringType), method, result);
-
     private static bool RunTests([Dyn(New| PublicMethods)] Type testClass, ICollection<MethodInfo> methods)
     {
+        bool success = true;
         ThrowIfNull(methods);
-        foreach (var method in methods)
+
+        var loop = Parallel.ForEach(methods, method =>
         {
-            if (!RunTest(testClass, method)) return false;
-        }
-        return true;
+            success &= RunTest(testClass, method);
+        });
+
+        success &= loop.IsCompleted;
+
+        return success;
     }
 
     private static bool RunTest([Dyn(New| PublicMethods)] Type testClass, MethodInfo method)
