@@ -181,141 +181,97 @@ public class DotNetTests : IDisposable
         AssertReleaseDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod] public void Test_Rebuild()          => TestRebuild_Debug  (() => Rebuild());
-    [TestMethod] public void Test_Rebuild_Args()     => TestRebuild_Debug  (() => Rebuild("--no-incremental"));
-    [TestMethod] public void Test_Rebuild_Opt()      => TestRebuild_Release(() => Rebuild(_opt));
-    [TestMethod] public void Test_Rebuild_Args_Opt() => TestRebuild_Release(() => Rebuild("--no-incremental", _opt));
+    [TestMethod] public void Test_Rebuild_ByMethod()          => TestRebuild_Debug  (() => Rebuild());
+    [TestMethod] public void Test_Rebuild_ByMethod_Args()     => TestRebuild_Debug  (() => Rebuild("--no-incremental"));
+    [TestMethod] public void Test_Rebuild_ByMethod_Opt()      => TestRebuild_Release(() => Rebuild(_opt));
+    [TestMethod] public void Test_Rebuild_ByMethod_Args_Opt() => TestRebuild_Release(() => Rebuild("--no-incremental", _opt));
+    [TestMethod] public void Test_Rebuild_ByEnum()            => TestRebuild_Debug  (() => DotNet.Exe(rebuild));
+    [TestMethod] public void Test_Rebuild_ByEnum_Args()       => TestRebuild_Debug  (() => DotNet.Exe(rebuild, "--no-incremental"));
+    [TestMethod] public void Test_Rebuild_ByEnum_Opt()        => TestRebuild_Release(() => DotNet.Exe(rebuild, _opt));
+    [TestMethod] public void Test_Rebuild_ByEnum_Args_Opt()   => TestRebuild_Release(() => DotNet.Exe(rebuild, "--no-incremental", _opt));
 
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
-
-    [TestMethod]
-    public void Test_MSBuild()
+    
+    private void TestMSBuild_Debug(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(MSBuild(), expectedInOutput: "Temp"));
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Temp"));
         AssertDebugDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod]
-    public void Test_MSBuild_Args()
+    private void TestMSBuild_Release(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(MSBuild("/p:TreatWarningsAsErrors=false"), expectedInOutput: "Temp"));
-        AssertDebugDll(); // no-option overload defaults to Debug
-    }
-
-    [TestMethod]
-    public void Test_MSBuild_Opt()
-    {
-        AssertOutputText(MSBuild(_opt), expectedInOutput: "Temp");
+        AssertOutputText(call(), expectedInOutput: "Temp");
         AssertReleaseDll();
     }
 
-    [TestMethod]
-    public void Test_MSBuild_Args_Opt()
-    {
-        AssertOutputText(MSBuild("/p:TreatWarningsAsErrors=false", _opt), expectedInOutput: "Temp");
-        AssertReleaseDll();
-    }
+    [TestMethod] public void Test_MSBuild()          => TestMSBuild_Debug  (() => MSBuild());
+    [TestMethod] public void Test_MSBuild_Args()     => TestMSBuild_Debug  (() => MSBuild("/p:TreatWarningsAsErrors=false"));
+    [TestMethod] public void Test_MSBuild_Opt()      => TestMSBuild_Release(() => MSBuild(_opt));
+    [TestMethod] public void Test_MSBuild_Args_Opt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", _opt));
 
     // MSRebuild
 
-    [TestMethod]
-    public void Test_MSRebuild()
+    private void TestMSRebuild_Debug(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(MSRebuild(), expectedInOutput: "Temp"));
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Temp"));
         AssertDebugDll(); // no-option overload defaults to Debug
     }
 
-    [TestMethod]
-    public void Test_MSRebuild_Args()
+    private void TestMSRebuild_Release(Func<string> call)
     {
-        // TODO: This doesn't actually test if the parameter even comes through.
-        InTempDir(() => AssertOutputText(MSRebuild("/p:TreatWarningsAsErrors=false"), expectedInOutput: "Temp"));
-        AssertDebugDll(); // no-option overload defaults to Debug
-    }
-
-    [TestMethod]
-    public void Test_MSRebuild_Opt()
-    {
-        AssertOutputText(MSRebuild(_opt), expectedInOutput: "Temp");
+        AssertOutputText(call(), expectedInOutput: "Temp");
         AssertReleaseDll();
     }
 
-    [TestMethod]
-    public void Test_MSRebuild_Args_Opt()
-    {
-        AssertOutputText(MSRebuild("/p:TreatWarningsAsErrors=false", _opt), expectedInOutput: "Temp");
-        AssertReleaseDll();
-    }
+    [TestMethod] public void Test_MSRebuild()          => TestMSRebuild_Debug  (() => MSRebuild());
+    [TestMethod] public void Test_MSRebuild_Args()     => TestMSRebuild_Debug  (() => MSRebuild("/p:TreatWarningsAsErrors=false"));
+    [TestMethod] public void Test_MSRebuild_Opt()      => TestMSRebuild_Release(() => MSRebuild(_opt));
+    [TestMethod] public void Test_MSRebuild_Args_Opt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", _opt));
     
     // TODO: How about testing what happens if a build actually fails?
 
     // InstallPackage
 
-    [TestMethod]
-    public void Test_InstallPackage()
+    private void TestInstallPackage_InTempDir(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(InstallPackage(PackageId, PackageVer), expectedInOutput: PackageId));
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackageId));
         IsTrue(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
-    [TestMethod]
-    public void Test_InstallPackage_Args()
+    private void TestInstallPackage_WithOptions(Func<string> call)
     {
-        // Pass empty args; --no-restore would skip adding to csproj which defeats the purpose.
-        // TODO: So pass another one.
-        InTempDir(() => AssertOutputText(InstallPackage(PackageId, PackageVer, ""), expectedInOutput: PackageId));
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_Opt()
-    {
-        AssertOutputText(InstallPackage(PackageId, PackageVer, _optNoFile), expectedInOutput: PackageId);
+        AssertOutputText(call(), expectedInOutput: PackageId);
         IsTrue(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
-    [TestMethod]
-    public void Test_InstallPackage_Args_Opt()
-    {
-        AssertOutputText(InstallPackage(PackageId, PackageVer, "--no-restore", _optNoFile), expectedInOutput: PackageId);
-    }
+    [TestMethod] public void Test_InstallPackage()          => TestInstallPackage_InTempDir(() => InstallPackage(PackageId, PackageVer));
+    [TestMethod] public void Test_InstallPackage_Args()     => TestInstallPackage_InTempDir(() => InstallPackage(PackageId, PackageVer, ""));
+    [TestMethod] public void Test_InstallPackage_Opt()      => TestInstallPackage_WithOptions(() => InstallPackage(PackageId, PackageVer, _optNoFile));
+    [TestMethod] public void Test_InstallPackage_Args_Opt() => TestInstallPackage_WithOptions(() => InstallPackage(PackageId, PackageVer, "--no-restore", _optNoFile));
 
     // UninstallPackage
     // Each test installs first since each instance gets a fresh temp project.
     // After uninstall the csproj should no longer reference the package.
 
-    [TestMethod]
-    public void Test_UninstallPackage()
+    private void TestUninstallPackage_InTempDir(Func<string> call)
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
-        InTempDir(() => AssertOutputText(UninstallPackage(PackageId), expectedInOutput: PackageId));
+        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackageId));
         IsFalse(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
-    [TestMethod]
-    public void Test_UninstallPackage_Args()
+    private void TestUninstallPackage_WithOptions(Func<string> call)
     {
         InstallPackage(PackageId, PackageVer, _optNoFile);
-        // Pass empty string as extra args; --no-restore is not a valid flag for dotnet remove package.
-        InTempDir(() => AssertOutputText(UninstallPackage(PackageId, ""), expectedInOutput: PackageId));
-    }
-
-    [TestMethod]
-    public void Test_UninstallPackage_Opt()
-    {
-        InstallPackage(PackageId, PackageVer, _optNoFile);
-        AssertOutputText(UninstallPackage(PackageId, _optNoFile), expectedInOutput: PackageId);
+        AssertOutputText(call(), expectedInOutput: PackageId);
         IsFalse(ReadAllText(_csprojPath).Contains(PackageId));
     }
 
-    [TestMethod]
-    public void Test_UninstallPackage_Args_Opt()
-    {
-        InstallPackage(PackageId, PackageVer, _optNoFile);
-        // Pass empty string as extra args; --no-restore is not a valid flag for dotnet remove package.
-        // TODO: Isn't there another optional parameter that we can use?
-        AssertOutputText(UninstallPackage(PackageId, "", _optNoFile), expectedInOutput: PackageId);
-    }
+    [TestMethod] public void Test_UninstallPackage()          => TestUninstallPackage_InTempDir(() => UninstallPackage(PackageId));
+    [TestMethod] public void Test_UninstallPackage_Args()     => TestUninstallPackage_InTempDir(() => UninstallPackage(PackageId, ""));
+    [TestMethod] public void Test_UninstallPackage_Opt()      => TestUninstallPackage_WithOptions(() => UninstallPackage(PackageId, _optNoFile));
+    [TestMethod] public void Test_UninstallPackage_Args_Opt() => TestUninstallPackage_WithOptions(() => UninstallPackage(PackageId, "", _optNoFile));
 
     // Exe: string command overloads
     // --version requires no project and always emits stdout with the SDK version number.
@@ -323,23 +279,17 @@ public class DotNetTests : IDisposable
     // TODO: Test string variants of "known" commands
     // TODO: Test empty command, but -- parameter in arg.
 
+    private static void TestExeStringOutput(Func<string> call) => AssertOutputText(call(), "Output =");
+
     [TestMethod]
     public void Test_Exe_String()
     {
         string result = DotNet.Exe("--version");
-        AssertOutputText(result, "Output =");
-        // The SDK version number looks like "8.0.xxx" or "10.0.xxx".
+        TestExeStringOutput(() => result);
         IsTrue(result.Contains('.'), $"Expected a version number in: {result}");
     }
 
-    [TestMethod]
-    public void Test_Exe_String_Args()
-    {
-        // TODO: Empty args is a 'not so good' test.
-        // Pass --list-sdks as the command; lists installed SDKs, reliable stdout with no project needed.
-        string result = DotNet.Exe("--list-sdks", "");
-        AssertOutputText(result, "Output =");
-    }
+    [TestMethod] public void Test_Exe_String_Args() => TestExeStringOutput(() => DotNet.Exe("--list-sdks", ""));
 
     [TestMethod]
     public void Test_Exe_String_Opt()
@@ -352,26 +302,5 @@ public class DotNetTests : IDisposable
         IsTrue(msg.Contains("dotnet"), $"Expected log to mention dotnet, got: {msg}");
     }
 
-    [TestMethod]
-    public void Test_Exe_String_Args_Opt()
-    {
-        // TODO: Empty args is a 'not so good' test.
-        string result = DotNet.Exe("--list-sdks", "", new DotNetOptions { Log = _ => { } });
-        AssertOutputText(result, "Output =");
-    }
-
-    // Exe: enum command overloads
-
-    // TODO: enum and string variants should be tested the for each known command exactly the same way as the explicit methods.
-    // Perhaps using a synonyms pattern (see e.g. the test ItemTypes_WithCollectionType in JJ.Framework.Reflection.Legacy.Tests)
-
-    // Restore output says "up-to-date" when already restored; look for "restore" (case-insensitive substring).
-    [TestMethod] public void Test_Exe_Enum()          
-        => InTempDir(() => AssertOutputText(DotNet.Exe(restore                          ), expectedInOutput: "restore"));
-    [TestMethod] public void Test_Exe_Enum_Args()    
-        => InTempDir(() => AssertOutputText(DotNet.Exe(restore, "--no-cache"            ), expectedInOutput: "restore"));
-    [TestMethod] public void Test_Exe_Enum_Opt()      
-        =>                 AssertOutputText(DotNet.Exe(restore,               _optNoFile), expectedInOutput: "restore");
-    [TestMethod] public void Test_Exe_Enum_Args_Opt() 
-        =>                 AssertOutputText(DotNet.Exe(restore, "--no-cache", _optNoFile), expectedInOutput: "restore");
+    [TestMethod] public void Test_Exe_String_Args_Opt() => TestExeStringOutput(() => DotNet.Exe("--list-sdks", "", new DotNetOptions { Log = _ => { } }));
 }
