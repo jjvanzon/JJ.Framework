@@ -85,6 +85,8 @@ public class DotNetTests : IDisposable
 
     // Helpers
 
+    private void Log(string msg) => Console.WriteLine(msg);
+
     private void AssertAssetsFile() => IsTrue(File.Exists(_assetsFilePath),   "Expected assets file: "  + _assetsFilePath  );
     private void AssertReleaseDll() => IsTrue(File.Exists(_outputDllRelease), "Expected DLL file path: " + _outputDllRelease);
     private void AssertDebugDll  () => IsTrue(File.Exists(_outputDllDebug),   "Expected DLL file path: " + _outputDllDebug  );
