@@ -17,6 +17,7 @@
 - Use parameterized assertions without `Assert.` prefix (e.g., `AreEqual` not `Assert.AreEqual`).
 - Ensure tests reflect intended mathematical behavior/specification, not merely current implementation behavior.
 - Do not hide defects by changing tests to expect current erroneous behavior; tests should indicate real errors even if they fail.
+- Avoid placeholder args and weak assertions; use meaningful parameterizations and assert their actual effect.
 
 ## Legacy Tests
 - Expand for full code coverage.
