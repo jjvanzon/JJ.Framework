@@ -50,7 +50,7 @@ public class DotNetTests : IDisposable
         // HACK: Temporarily prevent .NET 4x failure.
         if (targetFramework.StartsWith("net4")) targetFramework = "net8.0";
         
-        _tempDir          = Combine(GetTempPath(), "JJ.Framework.Compilation.Core.TestRuns", GetRandomFileName().Replace(".", ""));
+        _tempDir          = Combine(GetTempPath(), "JJ.Framework.Compilation.Core.TestRuns", Guid.NewGuid().ToString()); // Guid.NewGuid().ToString("x"));// GetRandomFileName().Replace(".", ""));
         _csprojPath       = Combine(_tempDir, "Temp.csproj");
         _outputDllDebug   = Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
         _outputDllRelease = Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
@@ -101,6 +101,8 @@ public class DotNetTests : IDisposable
         IsTrue(outputText.Contains(expectedInOutput), $"Expected '{expectedInOutput}' in: {outputText}");
     }
 
+    private static readonly Lock _tempDirLock = new();
+
     /// <summary>
     /// Temporarily sets the process working directory to the temp project folder so no-option
     /// overloads (which inherit the process CWD) find the project file.
@@ -108,22 +110,28 @@ public class DotNetTests : IDisposable
     /// </summary>
     private void InTempDir(Action action)
     {
-        string saved = GetCurrentDirectory();
-        SetCurrentDirectory(_tempDir);
-        try { action(); }
-        finally { SetCurrentDirectory(saved); }
+        lock (_tempDirLock)
+        {
+            //string saved = GetCurrentDirectory();
+            //try 
+            { 
+                SetCurrentDirectory(_tempDir);
+                action(); 
+            }
+            //finally
+            {
+                //SetCurrentDirectory(saved);
+            }
+        }
     }
 
     // Restore
 
-    private void TestRestore(Func<string> call)
+    private void TestRestore(Func<string> call) => InTempDir(() =>
     {
-        InTempDir(() =>
-        {
-            AssertOutputText(call(), "restore");
-            AssertAssetsFile();
-        });
-    }
+        AssertOutputText(call(), "restore");
+        AssertAssetsFile();
+    });
 
     [TestMethod] public void Test_Restore_ByMethod()          => TestRestore(() => Restore());
     [TestMethod] public void Test_Restore_ByMethod_Opt()      => TestRestore(() => Restore(_optNoFile));
@@ -140,16 +148,16 @@ public class DotNetTests : IDisposable
 
     // Build
 
-    public void TestBuild_Debug(Func<string> call)
+    public void TestBuild_Debug(Func<string> call) => InTempDir(() => 
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
+        AssertOutputText(call(), expectedInOutput: "Build succeeded");
         AssertDebugDll(); // no-option overload defaults to Debug
-    }
+    });
 
     public void TestBuild_Release(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
-        AssertReleaseDll(); // no-option overload defaults to Debug
+        AssertOutputText(call(), expectedInOutput: "Build succeeded");
+        AssertReleaseDll();
     }
 
     [TestMethod] public void Test_Build_ByMethod()          => TestBuild_Debug  (() => Build());
@@ -167,16 +175,16 @@ public class DotNetTests : IDisposable
 
     // Rebuild
 
-    public void TestRebuild_Debug(Func<string> call)
+    public void TestRebuild_Debug(Func<string> call) => InTempDir(() => 
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
+        AssertOutputText(call(), expectedInOutput: "Build succeeded");
         AssertDebugDll(); // no-option overload defaults to Debug
-    }
+    });
 
     public void TestRebuild_Release(Func<string> call)
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Build succeeded"));
-        AssertReleaseDll(); // no-option overload defaults to Debug
+        AssertOutputText(call(), expectedInOutput: "Build succeeded");
+        AssertReleaseDll();
     }
 
     [TestMethod] public void Test_Rebuild_ByMethod()          => TestRebuild_Debug  (() => Rebuild());
@@ -191,11 +199,11 @@ public class DotNetTests : IDisposable
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
     
-    private void TestMSBuild_Debug(Func<string> call)
+    private void TestMSBuild_Debug(Func<string> call) => InTempDir(() => 
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Temp"));
+        AssertOutputText(call(), expectedInOutput: "Temp");
         AssertDebugDll();
-    }
+    });
 
     private void TestMSBuild_Release(Func<string> call)
     {
@@ -218,11 +226,11 @@ public class DotNetTests : IDisposable
 
     // MSRebuild
 
-    private void TestMSRebuild_Debug(Func<string> call)
+    private void TestMSRebuild_Debug(Func<string> call) => InTempDir(() => 
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: "Temp"));
+        AssertOutputText(call(), expectedInOutput: "Temp");
         AssertDebugDll(); // no-option overload defaults to Debug
-    }
+    });
 
     private void TestMSRebuild_Release(Func<string> call)
     {
@@ -243,11 +251,11 @@ public class DotNetTests : IDisposable
 
     // InstallPackage
 
-    private void TestInstallPack_ChDir(Func<string> call)
+    private void TestInstallPack_ChDir(Func<string> call) => InTempDir(() => 
     {
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackId));
+        AssertOutputText(call(), expectedInOutput: PackId);
         IsTrue(ReadAllText(_csprojPath).Contains(PackId));
-    }
+    });
 
     private void TestInstallPack(Func<string> call)
     {
@@ -263,12 +271,12 @@ public class DotNetTests : IDisposable
 
     // UninstallPackage
 
-    private void TestUninstallPack_ChDir(Func<string> call)
+    private void TestUninstallPack_ChDir(Func<string> call) => InTempDir(() => 
     {
         InstallPackage(PackId, PackVer, _optNoFile);
-        InTempDir(() => AssertOutputText(call(), expectedInOutput: PackId));
+        AssertOutputText(call(), expectedInOutput: PackId);
         IsFalse(ReadAllText(_csprojPath).Contains(PackId));
-    }
+    });
 
     private void TestUninstallPack(Func<string> call)
     {

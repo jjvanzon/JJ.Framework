@@ -82,10 +82,11 @@ public static class TestRunner
 
     private static bool RunTest([Dyn(New| PublicMethods)] Type testClass, MethodInfo method)
     {
+        object? instance = null;
         try
         {
             NotNull(method);
-            object instance = CreateTestInstance(testClass);
+            instance = CreateTestInstance(testClass);
             method.Invoke(instance, null);
             WriteLine($"{method.Name} passed.");
             return true;
@@ -97,6 +98,10 @@ public static class TestRunner
             WriteLine();
             return false;
         }
+        finally
+        {
+            CleanUpTestInstance(instance);
+        }
     }
 
     private static object CreateTestInstance([Dyn(New)] Type testClass)
@@ -105,6 +110,29 @@ public static class TestRunner
         ThrowIfNull(instance);
         return instance;
     }
+
+    private static void CleanUpTestInstance(object? instance) 
+        => (instance as IDisposable)?.Dispose();
+
+    /*
+    private static void CleanUpTestInstance(object? instance)
+    {
+        if (instance is IDisposable disposable) disposable.Dispose();
+    }
+    */
+
+    /*
+    private static void CleanUpTestInstance(Type testClass, object? instance)
+    {
+        if (instance == null) return;
+
+        if (testClass.IsAssignableTo(typeof(IDisposable)))
+        {
+           var disposable = (IDisposable)instance;
+           disposable.Dispose();
+        }
+    }
+    */
 
     // Parallelism
 

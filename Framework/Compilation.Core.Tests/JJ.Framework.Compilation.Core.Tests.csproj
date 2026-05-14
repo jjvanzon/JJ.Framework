@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>
     <Version>4.6.$(BuildNum)</Version>
+    <!--<AutoTrimTest>True</AutoTrimTest>-->
   </PropertyGroup>
 
   <ItemGroup>
