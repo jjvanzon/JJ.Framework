@@ -13,7 +13,7 @@ public class DotNetOptionsTests
         AreEqual ("",     opt.Args       );
         AreEqual (Normal, opt.Verbosity  );
         IsFalse  (        opt.AutoRestore);
-        AreEqual (180,    opt.TimeOutSec );
+        AreEqual (240,    opt.TimeOutSec );
         IsNotNull(        opt.Log        );
     }
 
