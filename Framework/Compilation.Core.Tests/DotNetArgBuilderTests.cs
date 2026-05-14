@@ -1,5 +1,6 @@
-
 namespace JJ.Framework.Compilation.Core.Tests;
+
+using static DotNetArgBuilderAccessor;
 
 [TestClass]
 [DoNotParallelize]

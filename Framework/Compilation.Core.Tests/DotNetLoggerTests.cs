@@ -1,5 +1,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
+using static DotNetLoggerAccessor;
+
 [TestClass]
 public class DotNetLoggerTests
 {

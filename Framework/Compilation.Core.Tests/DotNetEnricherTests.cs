@@ -2,6 +2,8 @@
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
+using static DotNetEnricherAccessor;
+
 [TestClass]
 public class DotNetEnricherTests
 {

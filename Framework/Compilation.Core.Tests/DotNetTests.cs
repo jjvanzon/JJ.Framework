@@ -1,7 +1,3 @@
-using static System.IO.Directory;
-using static System.IO.File;
-using static System.IO.Path;
-
 namespace JJ.Framework.Compilation.Core.Tests;
 
 /// <summary>
@@ -113,15 +109,28 @@ public class DotNetTests : IDisposable
         lock (_tempDirLock)
         {
             string saved = GetCurrentDirectory();
+            Log("Saved CurDir:        " + saved);
             try 
             { 
+                Log("Set CurDir to temp:  " + _tempDir);
                 SetCurrentDirectory(_tempDir);
                 action(); 
             }
             finally
             {
                 // Error tolerance: previous cur dir may be deleted any time.
-                try { if (Directory.Exists(saved)) SetCurrentDirectory(saved); }
+                try
+                { 
+                    if (Directory.Exists(saved))
+                    {
+                        Log("Set CurDir to saved: " + saved);
+                        SetCurrentDirectory(saved); 
+                    }
+                    else
+                    {
+                        Log("Saved CurDir gone:   " + saved);
+                    }
+                }
                 catch { /* ignore */ }
             }
         }
