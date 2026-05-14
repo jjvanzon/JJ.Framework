@@ -5,6 +5,7 @@ using System.Threading;
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
+[DoNotParallelize] // Lock seems ineffective in TrimTests in Azure Pipeline.
 public class ConfigurationHelperCoreTests
 {
     // Lock to Force Serial Execution
