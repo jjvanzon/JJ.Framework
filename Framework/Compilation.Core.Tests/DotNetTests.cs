@@ -23,8 +23,7 @@ public class DotNetTests : IDisposable
             <Nullable>enable</Nullable>
             <ImplicitUsings>enable</ImplicitUsings>
             <LangVersion>latest</LangVersion>
-            <!--The target framework 'net7.0' is out of support-->
-            <NoWarn>$(NoWarn);NETSDK1138</NoWarn>
+            <NoWarn>$(NoWarn);NETSDK1138</NoWarn> <!--The target framework 'net7.0' is out of support-->
           </PropertyGroup>
         </Project>
         """;
@@ -100,6 +99,7 @@ public class DotNetTests : IDisposable
     }
 
     private static readonly Lock _tempDirLock = new();
+    //private static readonly object _tempDirLock = new(); // Fixes synchronization?
 
     /// <summary>
     /// Temporarily sets the process working directory to the temp project folder so no-option
