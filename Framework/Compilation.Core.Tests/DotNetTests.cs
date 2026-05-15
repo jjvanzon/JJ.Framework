@@ -14,6 +14,8 @@ public class DotNetTests : IDisposable
     private const string PackId  = "JJ.Framework.Common.Core";
     private const string PackVer = "4.6.6251";
 
+    // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
+
     // Minimal project targeting net8.0 (broadly available SDK; no external packages needed).
     private static string CsprojContent(string targetFramework) => $"""
         <Project Sdk="Microsoft.NET.Sdk">
