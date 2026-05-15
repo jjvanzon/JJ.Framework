@@ -18,6 +18,7 @@
     <Compile Include="..\PlatformCompatibility.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\PlatformCompatibility.Core.Tests\obj\**" />
     <Compile Remove="..\PlatformCompatibility.Core.Tests\bin\**" />
+    <Compile Include="..\PlatformCompatibility.Core.TrimTests\Program.cs" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
