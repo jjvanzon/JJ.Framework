@@ -4,6 +4,10 @@
 
 #if !NET9_0_OR_GREATER
 
+global using Lock = System.Object;
+
+// TODO: Remove outcommented.
+/*
 using JJ.Framework.PlatformCompatibility.Core.docs;
 
 namespace System.Threading;
@@ -18,5 +22,6 @@ internal sealed class Lock
 
     public Scope EnterScope() => default;
 }
+*/
 
 #endif

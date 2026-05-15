@@ -2,7 +2,8 @@
 RunTests<CallerArgumentExpression_Tests>() &&
 RunTests<ExceptionSupport_Tests>() &&
 RunTests<HashCode_Tests>() &&
-RunTests<Lock_Tests>() &&
+// TODO: Remove outcommented
+//RunTests<Lock_Tests>() &&
 RunTests<NotNullWhen_Tests>() &&
 RunTests<OverloadResolutionPriority_Tests>() &&
 RunTests<TrimShimCreation_Tests>() &&
