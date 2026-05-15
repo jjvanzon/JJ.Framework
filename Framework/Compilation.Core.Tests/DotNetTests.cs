@@ -100,8 +100,8 @@ public class DotNetTests : IDisposable
         IsTrue(outputText.Contains(expectedInOutput), $"Expected '{expectedInOutput}' in: {outputText}");
     }
 
-    private static readonly Lock _tempDirLock = new();
-    //private static readonly object _tempDirLock = new(); // Fixes synchronization?
+    //private static readonly Lock _tempDirLock = new();
+    private static readonly object _tempDirLock = new(); // Fixes synchronization?
 
     /// <summary>
     /// Temporarily sets the process working directory to the temp project folder so no-option
