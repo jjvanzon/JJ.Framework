@@ -1,4 +1,3 @@
-/*
 namespace JJ.Framework.PlatformCompatibility.Core.TestBase;
 
 public class Lock_TestBase
@@ -30,4 +29,3 @@ public class Lock_TestBase
         lock (x) { }
     }
 }
-*/

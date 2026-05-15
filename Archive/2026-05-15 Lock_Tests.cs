@@ -1,4 +1,3 @@
-/*
 namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
@@ -18,4 +17,3 @@ public class Lock_Tests
     [TestMethod]
     public void Test_Lock_LockStatement() => _testBase.Test_Lock_LockStatement();
 }
-*/
