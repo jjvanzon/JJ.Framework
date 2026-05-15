@@ -65,12 +65,6 @@ public struct _hashcode;
 public struct _isexternalinit;
 
 /// <summary>
-/// Substitute for <c>System.Threading.Lock</c> (introduced in .NET 9).
-/// Lightweight lock with a <c>using</c>-scoped entry via <c>EnterScope()</c>.
-/// </summary>
-public struct _lock;
-
-/// <summary>
 /// Substitute for <c>[NotNull]</c> (introduced in .NET Standard 2.1).
 /// Marks that an output is never <c>null</c> even when the declared type allows it.
 /// </summary>
