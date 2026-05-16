@@ -6,6 +6,6 @@ internal static class DotNetArgBuilderAccessor
 {
     private static readonly AccessorCore _accessor = new("DotNetArgBuilder");
 
-    public static string FormatArgs(DotNetArgsAccessor args, DotNetOptions opt) =>
-        (string)_accessor.Call(args.Obj, opt)!;
+    public static string FormatArgs(DotNetArgs args, DotNetOptions opt) =>
+        (string)_accessor.Call(args, opt)!;
 }

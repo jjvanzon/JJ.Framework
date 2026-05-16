@@ -3,40 +3,40 @@
 [Suppress("Trimmer", "IL2026", Justification = GetTypesAnd + Bases)]
 internal class DotNetArgsAccessor : AccessorCore
 {
-    private const string TYPE_NAME_SHORT = "DotNetArgs";
+    //private const string TYPE_NAME_SHORT = "DotNetArgs";
 
-    public DotNetArgsAccessor() 
-        : base(TYPE_NAME_SHORT) { }
+    //public DotNetArgsAccessor() 
+    //    : base(typeof(DotNetArgs)) { }
 
     public DotNetArgsAccessor(DotNetCommandEnum commandEnum)
-        : base(TYPE_NAME_SHORT, commandEnum) { }
+        : base(typeof(DotNetArgs), commandEnum) { }
 
-    public DotNetArgsAccessor(string command)
-        : base(TYPE_NAME_SHORT, command) { }
+    //public DotNetArgsAccessor(string command)
+    //    : base(typeof(DotNetArgs), command) { }
 
-    public DotNetCommandEnum CommandEnum
-    {
-        get => Get<DotNetCommandEnum>();
-        set => Set(value);
-    }
+    //public DotNetCommandEnum CommandEnum
+    //{
+    //    get => Get<DotNetCommandEnum>();
+    //    set => Set(value);
+    //}
 
-    public string Command
-    {
-        get => Get<string>()!;
-        set => Set(value);
-    }
+    //public string Command
+    //{
+    //    get => Get<string>()!;
+    //    set => Set(value);
+    //}
 
-    public string ID
-    {
-        get => Get<string>()!;
-        set => Set(value);
-    }
+    //public string ID
+    //{
+    //    get => Get<string>()!;
+    //    set => Set(value);
+    //}
 
-    public string Ver
-    {
-        get => Get<string>()!;
-        set => Set(value);
-    }
+    //public string Ver
+    //{
+    //    get => Get<string>()!;
+    //    set => Set(value);
+    //}
 
     public string Args
     {
@@ -44,11 +44,11 @@ internal class DotNetArgsAccessor : AccessorCore
         set => Set(value);
     }
 
-    public bool IsRebuild
-    {
-        get => Get<bool>();
-        set => Set(value);
-    }
+    //public bool IsRebuild
+    //{
+    //    get => Get<bool>();
+    //    set => Set(value);
+    //}
 
     public string FullArgs 
     {
