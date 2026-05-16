@@ -322,6 +322,7 @@ public class DotNetTests : IDisposable
     {
         string result = DotNet.Exe("--version");
         TestExeStringOutput(() => result);
+        // TODO: Contains a dot (.). Really?
         IsTrue(result.Contains('.'), $"Expected a version number in: {result}");
     }
 

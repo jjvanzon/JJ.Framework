@@ -14,6 +14,8 @@ public class DotNetLoggerTests
         var info = new DotNetInfoAccessor { CommandEnum = build };
         var opt = new DotNetOptions { Verbosity = Quiet, Log = x => msg = x };
 
+        Log(info, opt, "build --nologo");
+
         NullOrEmpty(msg);
     }
 
