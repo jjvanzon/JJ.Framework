@@ -11,8 +11,9 @@ internal static class DotNetExecutor
             opt = DefaultOptions;
         }
 
-        Enrich(args);
-        args.FullArgs = FormatArgs(args, opt);
+        args = Enrich(args, opt);
+        args = args with { FullArgs = FormatArgs(args, opt) };
+
         Log(args, opt);
 
         const string fileName = "dotnet";

@@ -6,5 +6,6 @@ internal static class DotNetEnricherAccessor
 {
     private static readonly AccessorCore _accessor = new("DotNetEnricher");
 
-    public static void Enrich(DotNetArgs args) => _accessor.Call(args);
+    public static DotNetArgs Enrich(DotNetArgs args, DotNetOptions opt) => (DotNetArgs)_accessor.Call(args, opt)!;
+
 }

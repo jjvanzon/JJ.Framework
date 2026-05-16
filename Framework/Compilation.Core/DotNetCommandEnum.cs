@@ -1,5 +1,7 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
+// TODO: Rename to CommandEnum? Or just Command?
+
 /// <inheritdoc cref="_dotnetcommandenum" />
 public enum DotNetCommandEnum
 {

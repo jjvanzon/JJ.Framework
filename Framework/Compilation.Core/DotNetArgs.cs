@@ -1,17 +1,19 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-public class DotNetArgs
+public readonly record struct DotNetArgs
 {
     public DotNetArgs() { }
     public DotNetArgs(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
     public DotNetArgs(string command) => Command = command;
 
-    public DotNetCommandEnum CommandEnum { get; set; }
-    public string            Command     { get; set; } = "";
-    public string            ID          { get; set; } = "";
-    public string            Ver         { get; set; } = "";
-    public string            Args        { get; set; } = "";
-    public bool              IsRebuild   { get; set; }
-    public string            FullArgs    { get; internal set; } = "";
+    public DotNetCommandEnum CommandEnum { get; init; }
+    // TODO: Rename to DotNetCommand (command enum rebuild maps to command build, which sounds ambiguous
+    public string            Command     { get; init; } = "";
+    public string            ID          { get; init; } = "";
+    public string            Ver         { get; init; } = "";
+    // TODO: Rename to ExtraArgs
+    public string            Args        { get; init; } = "";
+    public bool              IsRebuild   { get; init; }
+    public string            FullArgs    { get; internal init; } = "";
 }
 
