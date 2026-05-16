@@ -9,7 +9,6 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class DotNetTests : IDisposable
 {
-    private const int    TimeOutSec = 240;
     private const string PackId  = "JJ.Framework.Common.Core";
     private const string PackVer = "4.6.6251";
 
@@ -63,7 +62,7 @@ public class DotNetTests : IDisposable
             Dir        = _tempDir,
             File       = _csprojPath,
             BuildConf  = "Release",
-            TimeOutSec = TimeOutSec,
+            //TimeOutSec = 300,
             Log        = _ => { }
         };
 
@@ -103,9 +102,9 @@ public class DotNetTests : IDisposable
     //private static readonly object _tempDirLock = new(); // Fixes synchronization?
 
     /// <summary>
-    /// Temporarily sets the process working directory to the temp project folder so no-option
-    /// overloads (which inherit the process CWD) find the project file.
-    /// This to not influence other tests, that may rely on explicit file path parameterization.
+    /// Temporarily sets the process working directory to the temp project folder 
+    /// so no-option overloads find the project file.
+    /// Temporarily, to not influence other tests, that may rely on explicit file path parameterization.
     /// </summary>
     private void InTempDir(Action action)
     {
