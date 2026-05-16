@@ -4,86 +4,86 @@ namespace JJ.Framework.Compilation.Core;
 
 public static class DotNet
 {
-    public static string Build    (                              ) => DotNet.Exe(build               );
-    public static string Build    (             DotNetOptions opt) => DotNet.Exe(build,           opt);
-    public static string Build    (string args, DotNetOptions opt) => DotNet.Exe(build,     args, opt);
-    public static string Build    (string args                   ) => DotNet.Exe(build,     args     );
+    public static DotNetResult Build    (                              ) => DotNet.Exe(build               );
+    public static DotNetResult Build    (             DotNetOptions opt) => DotNet.Exe(build,           opt);
+    public static DotNetResult Build    (string args, DotNetOptions opt) => DotNet.Exe(build,     args, opt);
+    public static DotNetResult Build    (string args                   ) => DotNet.Exe(build,     args     );
 
-    public static string MSBuild  (                              ) => DotNet.Exe(msbuild             );
-    public static string MSBuild  (             DotNetOptions opt) => DotNet.Exe(msbuild,         opt);
-    public static string MSBuild  (string args, DotNetOptions opt) => DotNet.Exe(msbuild,   args, opt);
-    public static string MSBuild  (string args                   ) => DotNet.Exe(msbuild,   args     );
+    public static DotNetResult MSBuild  (                              ) => DotNet.Exe(msbuild             );
+    public static DotNetResult MSBuild  (             DotNetOptions opt) => DotNet.Exe(msbuild,         opt);
+    public static DotNetResult MSBuild  (string args, DotNetOptions opt) => DotNet.Exe(msbuild,   args, opt);
+    public static DotNetResult MSBuild  (string args                   ) => DotNet.Exe(msbuild,   args     );
 
-    public static string Rebuild  (                              ) => DotNet.Exe(rebuild             );
-    public static string Rebuild  (             DotNetOptions opt) => DotNet.Exe(rebuild,         opt);
-    public static string Rebuild  (string args, DotNetOptions opt) => DotNet.Exe(rebuild,   args, opt);
-    public static string Rebuild  (string args                   ) => DotNet.Exe(rebuild,   args     );
+    public static DotNetResult Rebuild  (                              ) => DotNet.Exe(rebuild             );
+    public static DotNetResult Rebuild  (             DotNetOptions opt) => DotNet.Exe(rebuild,         opt);
+    public static DotNetResult Rebuild  (string args, DotNetOptions opt) => DotNet.Exe(rebuild,   args, opt);
+    public static DotNetResult Rebuild  (string args                   ) => DotNet.Exe(rebuild,   args     );
 
-    public static string MSRebuild(                              ) => DotNet.Exe(msrebuild           );
-    public static string MSRebuild(             DotNetOptions opt) => DotNet.Exe(msrebuild,       opt);
-    public static string MSRebuild(string args, DotNetOptions opt) => DotNet.Exe(msrebuild, args, opt);
-    public static string MSRebuild(string args                   ) => DotNet.Exe(msrebuild, args     );
+    public static DotNetResult MSRebuild(                              ) => DotNet.Exe(msrebuild           );
+    public static DotNetResult MSRebuild(             DotNetOptions opt) => DotNet.Exe(msrebuild,       opt);
+    public static DotNetResult MSRebuild(string args, DotNetOptions opt) => DotNet.Exe(msrebuild, args, opt);
+    public static DotNetResult MSRebuild(string args                   ) => DotNet.Exe(msrebuild, args     );
 
-    public static string Restore  (                              ) => DotNet.Exe(restore             );
-    public static string Restore  (             DotNetOptions opt) => DotNet.Exe(restore,         opt);
-    public static string Restore  (string args, DotNetOptions opt) => DotNet.Exe(restore,   args, opt);
-    public static string Restore  (string args                   ) => DotNet.Exe(restore,   args     );
+    public static DotNetResult Restore  (                              ) => DotNet.Exe(restore             );
+    public static DotNetResult Restore  (             DotNetOptions opt) => DotNet.Exe(restore,         opt);
+    public static DotNetResult Restore  (string args, DotNetOptions opt) => DotNet.Exe(restore,   args, opt);
+    public static DotNetResult Restore  (string args                   ) => DotNet.Exe(restore,   args     );
 
-    public static string InstallPackage(string id, string ver)
+    public static DotNetResult InstallPackage(string id, string ver)
         => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver });
 
-    public static string InstallPackage(string id, string ver, DotNetOptions opt)
+    public static DotNetResult InstallPackage(string id, string ver, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver }, opt);
 
-    public static string InstallPackage(string id, string ver, string args) 
+    public static DotNetResult InstallPackage(string id, string ver, string args) 
         => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args });
 
-    public static string InstallPackage(string id, string ver, string args, DotNetOptions opt)
+    public static DotNetResult InstallPackage(string id, string ver, string args, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args }, opt);
 
-    public static string UninstallPackage(string id) 
+    public static DotNetResult UninstallPackage(string id) 
         => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id });
 
-    public static string UninstallPackage(string id, DotNetOptions opt)
+    public static DotNetResult UninstallPackage(string id, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id }, opt);
 
-    public static string UninstallPackage(string id, string args)
+    public static DotNetResult UninstallPackage(string id, string args)
         => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args });
 
-    public static string UninstallPackage(string id, string args, DotNetOptions opt)
+    public static DotNetResult UninstallPackage(string id, string args, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args }, opt);
 
     // TODO: Full blown DotNetExe synonym method.
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command) 
+    public static DotNetResult Exe(DotNetCommandEnum command) 
         => DotNetExecutor.Exe(new DotNetInfo(command));
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, DotNetOptions opt) 
+    public static DotNetResult Exe(DotNetCommandEnum command, DotNetOptions opt) 
         => DotNetExecutor.Exe(new DotNetInfo(command), opt);
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args)
+    public static DotNetResult Exe(DotNetCommandEnum command, string args)
         => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args });
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt)
+    public static DotNetResult Exe(DotNetCommandEnum command, string args, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args }, opt);
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string command) 
+    public static DotNetResult Exe(string command) 
         => DotNetExecutor.Exe(new DotNetInfo(command));
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string command, DotNetOptions opt) 
+    public static DotNetResult Exe(string command, DotNetOptions opt) 
         => DotNetExecutor.Exe(new DotNetInfo(command), opt);
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string command, string args) 
+    public static DotNetResult Exe(string command, string args) 
         => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args });
 
     /// <inheritdoc cref="_exe" />
-    public static string Exe(string command, string args, DotNetOptions opt)
+    public static DotNetResult Exe(string command, string args, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args }, opt);
 
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>

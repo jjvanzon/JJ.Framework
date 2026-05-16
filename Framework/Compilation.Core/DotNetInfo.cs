@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-internal class DotNetInfo
+public class DotNetInfo
 {
     public DotNetInfo() { }
     public DotNetInfo(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
