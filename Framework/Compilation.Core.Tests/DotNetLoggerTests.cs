@@ -11,10 +11,10 @@ public class DotNetLoggerTests
     public void Test_Log_Quiet()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = build };
+        var info = new DotNetArgsAccessor(build) { FullArgs = "build --nologo" };
         var opt = new DotNetOptions { Verbosity = Quiet, Log = x => msg = x };
 
-        Log(info, opt, "build --nologo");
+        Log(info, opt);
 
         NullOrEmpty(msg);
     }
@@ -23,10 +23,10 @@ public class DotNetLoggerTests
     public void Test_Log_Minimal()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = build };
+        var info = new DotNetArgsAccessor(build) { FullArgs = "build --nologo" };
         var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "build --nologo");
+        Log(info, opt);
 
         AreEqual("Build", msg);
     }
@@ -35,10 +35,10 @@ public class DotNetLoggerTests
     public void Test_Log_Minimal_WithArgs()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = build, Args = "--nologo" };
+        var info = new DotNetArgsAccessor(build) { Args = "--nologo", FullArgs = "build --nologo" };
         var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "build --nologo");
+        Log(info, opt);
 
         AreEqual("Build with --nologo", msg);
     }
@@ -47,10 +47,10 @@ public class DotNetLoggerTests
     public void Test_Log_Verbosity_Normal()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = restore};
+        var info = new DotNetArgsAccessor(restore) { FullArgs = "restore"};
         var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "restore");
+        Log(info, opt);
 
         const string expected = 
         """
@@ -66,10 +66,10 @@ public class DotNetLoggerTests
     public void Test_Log_Detailed()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = build };
+        var info = new DotNetArgsAccessor(build) { FullArgs = "build" };
         var opt = new DotNetOptions { Verbosity = Detailed, Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "build");
+        Log(info, opt);
 
         IsTrue(msg.StartsWith(
         """
@@ -87,10 +87,10 @@ public class DotNetLoggerTests
     public void Test_Log_Diagnostic()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = restore };
+        var info = new DotNetArgsAccessor(restore) { FullArgs = "restore" };
         var opt = new DotNetOptions { Verbosity = Diagnostic, Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "restore");
+        Log(info, opt);
 
         IsTrue(msg.StartsWith(
         """
@@ -111,10 +111,10 @@ public class DotNetLoggerTests
     public void Test_Log_MSBuild_UsesCaptionBuild()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = msbuild };
+        var info = new DotNetArgsAccessor(msbuild) { FullArgs = "msbuild" };
         var opt = new DotNetOptions { Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "msbuild");
+        Log(info, opt);
 
         IsTrue(msg.StartsWith("Build:"));
     }
@@ -123,10 +123,10 @@ public class DotNetLoggerTests
     public void Test_Log_MSRebuild_UsesCaptionRebuild()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = msrebuild };
+        var info = new DotNetArgsAccessor(msrebuild) { FullArgs = "msbuild /t:Rebuild" };
         var opt = new DotNetOptions { Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "msbuild /t:Rebuild");
+        Log(info, opt);
 
         IsTrue(msg.StartsWith("Rebuild:"));
     }
@@ -135,10 +135,10 @@ public class DotNetLoggerTests
     public void Test_Log_InstallPackage()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = installpackage };
+        var info = new DotNetArgsAccessor(installpackage) { FullArgs = "add package X" };
         var opt = new DotNetOptions { Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "add package X");
+        Log(info, opt);
 
         IsTrue(msg.StartsWith("Install package:"));
     }
@@ -147,10 +147,10 @@ public class DotNetLoggerTests
     public void Test_Log_UninstallPackage()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor { CommandEnum = uninstallpackage };
+        var info = new DotNetArgsAccessor(uninstallpackage) { FullArgs = "remove package X" };
         var opt = new DotNetOptions { Log = x => msg = x };
 
-        Log(info, opt, fullArgs: "remove package X");
+        Log(info, opt);
 
         IsTrue(msg.StartsWith("Uninstall package:"));
     }

@@ -14,6 +14,7 @@ internal static class Untrimmer
     [NoTrim("IsRebuild",   $"{MainAsm}.DotNetArgs",       MainAsm)]
     [NoTrim("ID",          $"{MainAsm}.DotNetArgs",       MainAsm)]
     [NoTrim("Ver",         $"{MainAsm}.DotNetArgs",       MainAsm)]
+    [NoTrim("FullArgs",    $"{MainAsm}.DotNetArgs",       MainAsm)]
     [NoTrim("FormatArgs",  $"{MainAsm}.DotNetArgBuilder", MainAsm)]
     [NoTrim("Enrich",      $"{MainAsm}.DotNetEnricher",   MainAsm)]
     [NoTrim("Log",         $"{MainAsm}.DotNetLogger",     MainAsm)]

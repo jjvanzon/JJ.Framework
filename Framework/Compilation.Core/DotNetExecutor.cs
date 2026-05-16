@@ -12,15 +12,15 @@ internal static class DotNetExecutor
         }
 
         Enrich(args);
-        string fullArgs = FormatArgs(args, opt);
-        Log(args, opt, fullArgs);
+        args.FullArgs = FormatArgs(args, opt);
+        Log(args, opt);
 
         const string fileName = "dotnet";
 
         using var process = Process.Start(new ProcessStartInfo
         {
             FileName               = fileName,
-            Arguments              = fullArgs,
+            Arguments              = args.FullArgs,
             WorkingDirectory       = opt.Dir,
             RedirectStandardOutput = true,
             RedirectStandardError  = true,
@@ -48,13 +48,13 @@ internal static class DotNetExecutor
         var output = outputSB.ToString().TrimEnd();
         var error  = errorSB .ToString().Trim();       
 
-        var result = new DotNetResult(args, opt, fullArgs, process.ExitCode, error, output, timeOutMessage);
+        var result = new DotNetResult(opt, args, process.ExitCode, error, output, timeOutMessage);
 
-        if (!result.HasError) 
+        if (!result.HasError && Has(result.OutputText)) 
         {
             if (opt.Verbosity.In(Diagnostic, Detailed))
             {
-                opt.Log(output);
+                opt.Log(result.OutputText);
             }
 
             return result;
@@ -62,7 +62,7 @@ internal static class DotNetExecutor
 
         throw new Exception(
             $"{fileName} {opt.Args} failed " +
-            $"{new { result.HasExitCode, result.HasErrorText, result.HasErrorInOutput, result.HasTimeOut, fullArgs }}: " +
+            $"{new { result.HasExitCode, result.HasErrorText, result.HasErrorInOutput, result.HasTimeOut, args.FullArgs }}: " +
             $"{timeOutMessage} " +
             $"Exit code {process.ExitCode} {error} {output}");
     }

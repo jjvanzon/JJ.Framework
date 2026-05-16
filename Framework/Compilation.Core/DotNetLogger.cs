@@ -4,34 +4,34 @@ internal static class DotNetLogger
 {
     private static readonly string e = NewLine;
 
-    public static void Log(DotNetArgs args, DotNetOptions opt, string fullArgs)
+    public static void Log(DotNetArgs args, DotNetOptions opt)
     {
         if (opt.Log == NullLog) return;
-        string message = GetMessage(opt.Verbosity, args, fullArgs);
+        string message = GetMessage(opt.Verbosity, args);
         if (Has(message)) opt.Log(message);
     }
 
-    private static string GetMessage(DotNetVerbosity verbosity, DotNetArgs args, string fullArgs) => verbosity switch
+    private static string GetMessage(DotNetVerbosity verbosity, DotNetArgs args) => verbosity switch
     {
         Quiet   => "",
         Minimal => GetMessageMinimal(args),
-        Normal  => GetMessageNormal(args, fullArgs),
-        _       => GetMessageDetailed(args, fullArgs)
+        Normal  => GetMessageNormal(args),
+        _       => GetMessageDetailed(args)
     };
 
     private static string GetMessageMinimal(DotNetArgs args)
         => FormatCommand(args.CommandEnum) + FormatArgs(args.Args);
 
-    private static string GetMessageNormal(DotNetArgs args, string fullArgs) 
+    private static string GetMessageNormal(DotNetArgs args) 
         => $"{FormatCommand(args.CommandEnum)}:" + e +
-           $"dotnet {fullArgs}" + e
+           $"dotnet {args.FullArgs}" + e
            ;
 
-    private static string GetMessageDetailed(DotNetArgs args, string fullArgs) 
+    private static string GetMessageDetailed(DotNetArgs args) 
         => e + 
            FormatCommand(args.CommandEnum) + e + 
            "-----" + e + 
-           $"dotnet {fullArgs}" + e
+           $"dotnet {args.FullArgs}" + e
            ;
 
     private static string FormatCommand(DotNetCommandEnum command) => command switch

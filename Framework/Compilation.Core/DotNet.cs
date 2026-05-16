@@ -56,6 +56,14 @@ public static class DotNet
     // TODO: Full blown DotNetExe synonym method.
 
     /// <inheritdoc cref="_exe" />
+    public static DotNetResult Exe(DotNetArgs args) 
+        => DotNetExecutor.Exe(args.NotNull());
+
+    /// <inheritdoc cref="_exe" />
+    public static DotNetResult Exe(DotNetArgs args, DotNetOptions opt) 
+        => DotNetExecutor.Exe(args.NotNull(), opt);
+
+    /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(DotNetCommandEnum command) 
         => DotNetExecutor.Exe(new DotNetArgs(command));
 

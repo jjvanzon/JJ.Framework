@@ -7,9 +7,8 @@ public record DotNetResult
 
     public string Text { get; }
 
-    public DotNetArgs    Args             { get; }
     public DotNetOptions Opt              { get; }
-    public string        FullArgs         { get; }
+    public DotNetArgs    Args             { get; }
     public int           ExitCode         { get; }
     public string        ErrorText        { get; }
     public string        OutputText       { get; }
@@ -23,16 +22,15 @@ public record DotNetResult
     public bool          HasTimeOut       { get; }
 
     internal DotNetResult(
-        DotNetArgs args, DotNetOptions opt, string fullArgs, 
+        DotNetOptions opt, DotNetArgs args,
         int exitCode, string errorText, string outputText, string timeOutMessage)
     {
-        Args = args;
-        Opt = opt;
-        FullArgs = fullArgs;
-        ExitCode = exitCode;
-        ErrorText = errorText;
-        OutputText = outputText;
-        TimeOutMessage = timeOutMessage;
+        Args             = args;
+        Opt              = opt;
+        ExitCode         = exitCode;
+        ErrorText        = errorText;
+        OutputText       = outputText;
+        TimeOutMessage   = timeOutMessage;
 
         HasExitCode      = Has(exitCode);
         HasErrorText     = Has(errorText);
