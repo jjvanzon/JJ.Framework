@@ -43,19 +43,19 @@ internal static partial class ReflectUtility
             {
                 return prop;
             }
-            //}
+        }
             
-            ThrowIfNullOrWhiteSpace(name);
+        ThrowIfNullOrWhiteSpace(name);
         
-            string trim = name.Trim();
+        string trim = name.Trim();
         
-            prop = (from t in TypesAndBases(type, bindingFlags)
-                    let p = t.GetProperty(trim, bindingFlags)
-                    where p != null
-                    select p).FirstOrDefault();
+        prop = (from t in TypesAndBases(type, bindingFlags)
+                let p = t.GetProperty(trim, bindingFlags)
+                where p != null
+                select p).FirstOrDefault();
         
-            //lock (lck)
-            //{
+        lock (lck)
+        {
             dict[(type, name)] = prop;
         }
         
