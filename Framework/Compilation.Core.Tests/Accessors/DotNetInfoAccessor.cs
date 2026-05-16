@@ -1,19 +1,19 @@
 ﻿namespace JJ.Framework.Compilation.Core.Tests.Accessors;
 
 [Suppress("Trimmer", "IL2026", Justification = GetTypesAnd + Bases)]
-internal class DotNetInfoAccessor
+internal class DotNetArgsAccessor
 {
-    private const string TYPE_NAME_SHORT = "DotNetInfo";
+    private const string TYPE_NAME_SHORT = "DotNetArgs";
 
     private readonly AccessorCore _accessor;
 
-    public DotNetInfoAccessor()
+    public DotNetArgsAccessor()
         => _accessor = new(TYPE_NAME_SHORT);
 
-    public DotNetInfoAccessor(DotNetCommandEnum commandEnum)
+    public DotNetArgsAccessor(DotNetCommandEnum commandEnum)
         => _accessor = new(TYPE_NAME_SHORT, commandEnum);
 
-    public DotNetInfoAccessor(string command)
+    public DotNetArgsAccessor(string command)
         => _accessor = new(TYPE_NAME_SHORT, command);
 
     public object Obj

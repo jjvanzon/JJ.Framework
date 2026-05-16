@@ -5,23 +5,23 @@ internal static class DotNetArgBuilder
     public const string REBUILD_ARG_MS_BUILD = "/t:Rebuild";
     public const string REBUILD_ARG_DOT_NET = "--no-incremental";
 
-    public static string FormatArgs(DotNetInfo info, DotNetOptions opt)
+    public static string FormatArgs(DotNetArgs args, DotNetOptions opt)
     {
         string formattedFile            = TryFormatFile           (opt.File);
-        string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,   info.CommandEnum);
-        string formattedRebuildArg      = TryFormatRebuildArg     (info.IsRebuild,  info.CommandEnum);
-        string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,   info.CommandEnum);
-        string formattedPackageID       = TryFormatPackageID      (info.ID);
-        string formattedPackageVer      = TryFormatPackageVer     (info.Ver);
-        string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore, info.CommandEnum);
-        string formattedParallelRestore = TryFormatParallelRestore(opt.ParallelRestore, info.CommandEnum);
+        string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,   args.CommandEnum);
+        string formattedRebuildArg      = TryFormatRebuildArg     (args.IsRebuild,  args.CommandEnum);
+        string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,   args.CommandEnum);
+        string formattedPackageID       = TryFormatPackageID      (args.ID);
+        string formattedPackageVer      = TryFormatPackageVer     (args.Ver);
+        string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore, args.CommandEnum);
+        string formattedParallelRestore = TryFormatParallelRestore(opt.ParallelRestore, args.CommandEnum);
         string[] elements = 
         [
-            info.Command, formattedFile, 
+            args.Command, formattedFile, 
             formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
             formattedPackageID, formattedPackageVer,
             formattedParallelRestore,
-            opt.Args, info.Args, formattedAutoRestore // HACK: auto-restore put at the end makes `add package` work.
+            opt.Args, args.Args, formattedAutoRestore // HACK: auto-restore put at the end makes `add package` work.
         ]; 
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 

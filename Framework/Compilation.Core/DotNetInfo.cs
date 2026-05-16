@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-public class DotNetInfo
+public class DotNetArgs
 {
-    public DotNetInfo() { }
-    public DotNetInfo(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
-    public DotNetInfo(string command) => Command = command;
+    public DotNetArgs() { }
+    public DotNetArgs(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
+    public DotNetArgs(string command) => Command = command;
 
     public DotNetCommandEnum CommandEnum { get; set; }
     public string  Command   { get; set; } = "";

@@ -4,16 +4,16 @@
 internal static class DotNetExecutor
 {
     /// <inheritdoc cref="_exe" />
-    internal static DotNetResult Exe(DotNetInfo info, DotNetOptions opt = default)
+    internal static DotNetResult Exe(DotNetArgs args, DotNetOptions opt = default)
     {
         if (opt == default) 
         {
             opt = DefaultOptions;
         }
 
-        Enrich(info);
-        string fullArgs = FormatArgs(info, opt);
-        Log(info, opt, fullArgs);
+        Enrich(args);
+        string fullArgs = FormatArgs(args, opt);
+        Log(args, opt, fullArgs);
 
         const string fileName = "dotnet";
 
@@ -48,7 +48,7 @@ internal static class DotNetExecutor
         var output = outputSB.ToString().TrimEnd();
         var error  = errorSB .ToString().Trim();       
 
-        var result = new DotNetResult(info, opt, fullArgs, process.ExitCode, error, output, timeOutMessage);
+        var result = new DotNetResult(args, opt, fullArgs, process.ExitCode, error, output, timeOutMessage);
 
         if (!result.HasError) 
         {

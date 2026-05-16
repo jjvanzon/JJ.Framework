@@ -30,61 +30,61 @@ public static class DotNet
     public static DotNetResult Restore  (string args                   ) => DotNet.Exe(restore,   args     );
 
     public static DotNetResult InstallPackage(string id, string ver)
-        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver });
+        => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver });
 
     public static DotNetResult InstallPackage(string id, string ver, DotNetOptions opt)
-        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver }, opt);
+        => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver }, opt);
 
     public static DotNetResult InstallPackage(string id, string ver, string args) 
-        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args });
+        => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver, Args = args });
 
     public static DotNetResult InstallPackage(string id, string ver, string args, DotNetOptions opt)
-        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args }, opt);
+        => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver, Args = args }, opt);
 
     public static DotNetResult UninstallPackage(string id) 
-        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id });
+        => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id });
 
     public static DotNetResult UninstallPackage(string id, DotNetOptions opt)
-        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id }, opt);
+        => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id }, opt);
 
     public static DotNetResult UninstallPackage(string id, string args)
-        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args });
+        => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id, Args = args });
 
     public static DotNetResult UninstallPackage(string id, string args, DotNetOptions opt)
-        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args }, opt);
+        => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id, Args = args }, opt);
 
     // TODO: Full blown DotNetExe synonym method.
 
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(DotNetCommandEnum command) 
-        => DotNetExecutor.Exe(new DotNetInfo(command));
+        => DotNetExecutor.Exe(new DotNetArgs(command));
 
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(DotNetCommandEnum command, DotNetOptions opt) 
-        => DotNetExecutor.Exe(new DotNetInfo(command), opt);
+        => DotNetExecutor.Exe(new DotNetArgs(command), opt);
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(DotNetCommandEnum command, string args)
-        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args });
+        => DotNetExecutor.Exe(new DotNetArgs(command) { Args = args });
 
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(DotNetCommandEnum command, string args, DotNetOptions opt)
-        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args }, opt);
+        => DotNetExecutor.Exe(new DotNetArgs(command) { Args = args }, opt);
 
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(string command) 
-        => DotNetExecutor.Exe(new DotNetInfo(command));
+        => DotNetExecutor.Exe(new DotNetArgs(command));
 
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(string command, DotNetOptions opt) 
-        => DotNetExecutor.Exe(new DotNetInfo(command), opt);
+        => DotNetExecutor.Exe(new DotNetArgs(command), opt);
 
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(string command, string args) 
-        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args });
+        => DotNetExecutor.Exe(new DotNetArgs(command) { Args = args });
 
     /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(string command, string args, DotNetOptions opt)
-        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args }, opt);
+        => DotNetExecutor.Exe(new DotNetArgs(command) { Args = args }, opt);
 
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework

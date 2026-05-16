@@ -2,19 +2,19 @@
 
 internal static class DotNetEnricher
 {
-    public static void Enrich(DotNetInfo info)
+    public static void Enrich(DotNetArgs args)
     {
-        info.IsRebuild   = info.IsRebuild || 
-                           IsRebuild(info.CommandEnum) || 
-                           IsRebuild(info.Command, info.Args);
+        args.IsRebuild   = args.IsRebuild || 
+                           IsRebuild(args.CommandEnum) || 
+                           IsRebuild(args.Command, args.Args);
 
-        info.Command     = Has(info.Command) ? 
-                           info.Command : 
-                           FormatCommand(info.CommandEnum);
+        args.Command     = Has(args.Command) ? 
+                           args.Command : 
+                           FormatCommand(args.CommandEnum);
 
-        info.CommandEnum = Has(info.CommandEnum) ? 
-                           info.CommandEnum : 
-                           TryGetCommandEnum(info.Command, info.IsRebuild);
+        args.CommandEnum = Has(args.CommandEnum) ? 
+                           args.CommandEnum : 
+                           TryGetCommandEnum(args.Command, args.IsRebuild);
     }
 
     public static string FormatCommand(DotNetCommandEnum val) => val switch
