@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.254.6560" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6560" />
+    <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.254.6580" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6580" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6560" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6580" />
   </ItemGroup>
 
   <ItemGroup>
