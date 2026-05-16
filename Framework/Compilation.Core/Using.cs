@@ -21,3 +21,4 @@ global using static JJ.Framework.Compilation.Core.DotNetOptions;
 global using static JJ.Framework.Compilation.Core.DotNetEnricher;
 global using static JJ.Framework.Compilation.Core.DotNetLogger;
 global using static JJ.Framework.Compilation.Core.DotNetArgBuilder;
+global using static JJ.Framework.Compilation.Core.DotNetExecutor;

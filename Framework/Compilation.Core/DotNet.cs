@@ -30,138 +30,61 @@ public static class DotNet
     public static string Restore  (string args                   ) => DotNet.Exe(restore,   args     );
 
     public static string InstallPackage(string id, string ver)
-        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver });
+        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver });
 
     public static string InstallPackage(string id, string ver, DotNetOptions opt)
-        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver }, opt);
+        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver }, opt);
 
     public static string InstallPackage(string id, string ver, string args) 
-        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args });
+        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args });
 
     public static string InstallPackage(string id, string ver, string args, DotNetOptions opt)
-        => DotNet.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args }, opt);
+        => DotNetExecutor.Exe(new DotNetInfo(installpackage) { ID = id, Ver = ver, Args = args }, opt);
 
     public static string UninstallPackage(string id) 
-        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id });
+        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id });
 
     public static string UninstallPackage(string id, DotNetOptions opt)
-        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id }, opt);
+        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id }, opt);
 
     public static string UninstallPackage(string id, string args)
-        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args });
+        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args });
 
     public static string UninstallPackage(string id, string args, DotNetOptions opt)
-        => DotNet.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args }, opt);
+        => DotNetExecutor.Exe(new DotNetInfo(uninstallpackage) { ID = id, Args = args }, opt);
 
     // TODO: Full blown DotNetExe synonym method.
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommandEnum command) 
-        => DotNet.Exe(new DotNetInfo(command));
+        => DotNetExecutor.Exe(new DotNetInfo(command));
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommandEnum command, DotNetOptions opt) 
-        => DotNet.Exe(new DotNetInfo(command), opt);
-
+        => DotNetExecutor.Exe(new DotNetInfo(command), opt);
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommandEnum command, string args)
-        => DotNet.Exe(new DotNetInfo(command) { Args = args });
+        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args });
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(DotNetCommandEnum command, string args, DotNetOptions opt)
-        => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
+        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args }, opt);
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(string command) 
-        => DotNet.Exe(new DotNetInfo(command));
+        => DotNetExecutor.Exe(new DotNetInfo(command));
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(string command, DotNetOptions opt) 
-        => DotNet.Exe(new DotNetInfo(command), opt);
+        => DotNetExecutor.Exe(new DotNetInfo(command), opt);
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(string command, string args) 
-        => DotNet.Exe(new DotNetInfo(command) { Args = args });
+        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args });
 
     /// <inheritdoc cref="_exe" />
     public static string Exe(string command, string args, DotNetOptions opt)
-        => DotNet.Exe(new DotNetInfo(command) { Args = args }, opt);
-
-    /// <inheritdoc cref="_exe" />
-    internal static string Exe(DotNetInfo info, DotNetOptions opt = default)
-    {
-        if (opt == default) 
-        {
-            opt = DefaultOptions;
-        }
-
-        Enrich(info);
-        string fullArgs = FormatArgs(info, opt);
-        Log(info, opt, fullArgs);
-
-        const string fileName = "dotnet";
-
-        using var process = Process.Start(new ProcessStartInfo
-        {
-            FileName               = fileName,
-            Arguments              = fullArgs,
-            WorkingDirectory       = opt.Dir,
-            RedirectStandardOutput = true,
-            RedirectStandardError  = true,
-            UseShellExecute        = false,
-            CreateNoWindow         = true
-        })!;
-
-
-        var outputSB = new StringBuilder();
-        var errorSB = new StringBuilder();
-        process.OutputDataReceived += (_, e) => outputSB.AppendLine(e.Data ?? "");
-        process.ErrorDataReceived += (_, e) => errorSB.AppendLine(e.Data ?? "");
-        process.BeginOutputReadLine();
-        process.BeginErrorReadLine();
-       
-        string timeOutMessage = "";
-        if (!process.WaitForExit(opt.TimeOutSec * 1000))
-        {
-            process.Kill(entireProcessTree: true);
-            timeOutMessage = $"{fileName} {opt.Args} timed out after {opt.TimeOutSec}s";
-        }
-        
-        // .NET may flush async after WaitForExit(int); call the parameterless overload.
-        process.WaitForExit();
-
-        var output = outputSB.ToString().TrimEnd();
-        var error  = errorSB .ToString().Trim();       
-
-        bool hasTimeOut       = Has(timeOutMessage);
-        bool hasExitCode      = Has(process.ExitCode);
-        bool hasErrorText     = Has(error);
-        bool hasOutput        = Has(output);
-        bool hasErrorInOutput = output.Contains("[error]");
-        bool hasError         = hasExitCode || hasErrorInOutput | hasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
-
-        if (!hasError) 
-        {
-            string result = 
-                Join(NewLine,
-                     hasExitCode  ? $"Exit Code = {process.ExitCode}" : "",
-                     hasErrorText ? $"Error = {error}" : "",
-                     hasOutput    ? $"Output = {output}" : "");
-
-            if (opt.Verbosity.In(Diagnostic, Detailed))
-            {
-                opt.Log(output);
-            }
-
-            return result;
-        }
-
-        throw new Exception(
-            $"{fileName} {opt.Args} failed " +
-            $"{new { hasExitCode, hasErrorText, hasErrorInOutput, hasTimeOut, fullArgs }}: " +
-            $"{timeOutMessage} " +
-            $"Exit code {process.ExitCode} {error} {output}");
-    }
+        => DotNetExecutor.Exe(new DotNetInfo(command) { Args = args }, opt);
 
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
@@ -194,5 +117,4 @@ public static class DotNet
             throw new Exception($"{nameof(RunningTargetFramework)} could not be resolved from {new {frameworkDescription, frameworkName}}.");
         }
     }
-
 }
