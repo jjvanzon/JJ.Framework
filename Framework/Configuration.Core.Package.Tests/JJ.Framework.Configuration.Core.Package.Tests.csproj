@@ -25,12 +25,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Compilation.Core" Version="4.6.6594" />
+    <PackageReference Include="JJ.Framework.Compilation.Core" Version="4.6.6598" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6594" />
-    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6594" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6594" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6594" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.6.6598" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.254.6598" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6598" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6598" />
   </ItemGroup>
 
   <!--<ItemGroup Condition="'$(TargetFramework)'!='net461'">-->
