@@ -11,7 +11,7 @@ public class DotNetLoggerTests
     public void Test_Log_Quiet()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(build) { FullArgs = "build --nologo" };
+        var info = new DotNetArgsAccessor(build) { FullArgs = "build --nologo" }.Obj;
         var opt = new DotNetOptions { Verbosity = Quiet, Log = x => msg = x };
 
         Log(info, opt);
@@ -23,7 +23,7 @@ public class DotNetLoggerTests
     public void Test_Log_Minimal()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(build) { FullArgs = "build --nologo" };
+        var info = new DotNetArgsAccessor(build) { FullArgs = "build --nologo" }.Obj;
         var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
         Log(info, opt);
@@ -35,7 +35,7 @@ public class DotNetLoggerTests
     public void Test_Log_Minimal_WithArgs()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(build) { Args = "--nologo", FullArgs = "build --nologo" };
+        var info = new DotNetArgsAccessor(build) { Args = "--nologo", FullArgs = "build --nologo" }.Obj;
         var opt = new DotNetOptions { Verbosity = Minimal, Log = x => msg = x };
 
         Log(info, opt);
@@ -47,7 +47,7 @@ public class DotNetLoggerTests
     public void Test_Log_Verbosity_Normal()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(restore) { FullArgs = "restore"};
+        var info = new DotNetArgsAccessor(restore) { FullArgs = "restore"}.Obj;
         var opt = new DotNetOptions { Verbosity = Normal, Log = x => msg = x };
 
         Log(info, opt);
@@ -66,7 +66,7 @@ public class DotNetLoggerTests
     public void Test_Log_Detailed()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(build) { FullArgs = "build" };
+        var info = new DotNetArgsAccessor(build) { FullArgs = "build" }.Obj;
         var opt = new DotNetOptions { Verbosity = Detailed, Log = x => msg = x };
 
         Log(info, opt);
@@ -87,7 +87,7 @@ public class DotNetLoggerTests
     public void Test_Log_Diagnostic()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(restore) { FullArgs = "restore" };
+        var info = new DotNetArgsAccessor(restore) { FullArgs = "restore" }.Obj;
         var opt = new DotNetOptions { Verbosity = Diagnostic, Log = x => msg = x };
 
         Log(info, opt);
@@ -111,7 +111,7 @@ public class DotNetLoggerTests
     public void Test_Log_MSBuild_UsesCaptionBuild()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(msbuild) { FullArgs = "msbuild" };
+        var info = new DotNetArgsAccessor(msbuild) { FullArgs = "msbuild" }.Obj;
         var opt = new DotNetOptions { Log = x => msg = x };
 
         Log(info, opt);
@@ -123,7 +123,7 @@ public class DotNetLoggerTests
     public void Test_Log_MSRebuild_UsesCaptionRebuild()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(msrebuild) { FullArgs = "msbuild /t:Rebuild" };
+        var info = new DotNetArgsAccessor(msrebuild) { FullArgs = "msbuild /t:Rebuild" }.Obj;
         var opt = new DotNetOptions { Log = x => msg = x };
 
         Log(info, opt);
@@ -135,7 +135,7 @@ public class DotNetLoggerTests
     public void Test_Log_InstallPackage()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(installpackage) { FullArgs = "add package X" };
+        var info = new DotNetArgsAccessor(installpackage) { FullArgs = "add package X" }.Obj;
         var opt = new DotNetOptions { Log = x => msg = x };
 
         Log(info, opt);
@@ -147,7 +147,7 @@ public class DotNetLoggerTests
     public void Test_Log_UninstallPackage()
     {
         string msg = "";
-        var info = new DotNetArgsAccessor(uninstallpackage) { FullArgs = "remove package X" };
+        var info = new DotNetArgsAccessor(uninstallpackage) { FullArgs = "remove package X" }.Obj;
         var opt = new DotNetOptions { Log = x => msg = x };
 
         Log(info, opt);

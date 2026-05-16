@@ -6,6 +6,6 @@ internal static class DotNetLoggerAccessor
 {
     private static readonly AccessorCore _accessor = new("DotNetLogger");
 
-    public static void Log(DotNetArgsAccessor args, DotNetOptions opt) 
-        => _accessor.Call(args.Obj, opt); 
+    public static void Log(DotNetArgs args, DotNetOptions opt) 
+        => _accessor.Call(args, opt); 
 }
