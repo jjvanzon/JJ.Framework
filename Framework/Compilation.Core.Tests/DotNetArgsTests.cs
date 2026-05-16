@@ -1,7 +1,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class DotNetInfoTests
+public class DotNetArgsTests
 {
     [TestMethod]
     public void Constructor_WithCommandEnum_SetsCommandEnum()

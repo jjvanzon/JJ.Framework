@@ -1,7 +1,7 @@
 ﻿bool success =
 RunTests<DotNetArgBuilderTests>() &&
 RunTests<DotNetEnricherTests>() &&
-RunTests<DotNetInfoTests>() &&
+RunTests<DotNetArgsTests>() &&
 RunTests<DotNetLoggerTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetTests>() &&
