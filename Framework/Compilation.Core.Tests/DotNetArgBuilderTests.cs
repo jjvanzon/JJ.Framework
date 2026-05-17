@@ -13,35 +13,35 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_Build_FullOptions()
     {
-        var info = new DotNetArgs(build)  { Command = "build", Args = "--nologo" };
+        var args = new DotNetArgs(build)  { Command = "build", Args = "--nologo" };
         var opt  = new DotNetOptions { File = "MySolution.sln", BuildConf = "Release", Verbosity = Diagnostic, AutoRestore = false, Args = "-p:Foo=Bar" };
 
-        AreEqual("build \"MySolution.sln\" -c Release --verbosity Diagnostic -p:Foo=Bar --nologo --no-restore", FormatArgs(info, opt));
+        AreEqual("build \"MySolution.sln\" -c Release --verbosity Diagnostic -p:Foo=Bar --nologo --no-restore", FormatArgs(args, opt));
     }
 
     [TestMethod]
     public void FormatArgs_Build_NoFile()
     {
-        var info = new DotNetArgs(build) { Command = "build" };
+        var args = new DotNetArgs(build) { Command = "build" };
 
-        AreEqual("build --no-restore", FormatArgs(info, DefaultOptions));
+        AreEqual("build --no-restore", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod]
     public void FormatArgs_Build_Rebuild()
     {
-        var info = new DotNetArgs(rebuild) { Command = "build", IsRebuild = true };
+        var args = new DotNetArgs(rebuild) { Command = "build", IsRebuild = true };
 
-        AreEqual("build --no-incremental --no-restore", FormatArgs(info, DefaultOptions));
+        AreEqual("build --no-incremental --no-restore", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod]
     public void FormatArgs_Build_AutoRestore()
     {
-        var info = new DotNetArgs(build) { Command = "build" };
+        var args = new DotNetArgs(build) { Command = "build" };
         var opt  = new DotNetOptions { AutoRestore = true };
 
-        AreEqual("build", FormatArgs(info, opt));
+        AreEqual("build", FormatArgs(args, opt));
     }
 
     // msbuild style
@@ -49,19 +49,19 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_MSRebuild_FullOptions()
     {
-        var info = new DotNetArgs(msrebuild) { Command = "msbuild", IsRebuild = true };
+        var args = new DotNetArgs(msrebuild) { Command = "msbuild", IsRebuild = true };
         var opt  = new DotNetOptions { BuildConf = "Debug", Verbosity = Minimal, AutoRestore = true };
 
-        AreEqual("msbuild /p:Configuration=Debug /t:Rebuild -verbosity:Minimal -restore", FormatArgs(info, opt));
+        AreEqual("msbuild /p:Configuration=Debug /t:Rebuild -verbosity:Minimal -restore", FormatArgs(args, opt));
     }
 
     [TestMethod]
     public void FormatArgs_MSBuild_NoAutoRestore()
     {
-        var info = new DotNetArgs(msbuild) { Command = "msbuild" };
+        var args = new DotNetArgs(msbuild) { Command = "msbuild" };
         var opt  = new DotNetOptions { AutoRestore = false };
 
-        AreEqual("msbuild", FormatArgs(info, opt));
+        AreEqual("msbuild", FormatArgs(args, opt));
     }
 
     // restore
@@ -71,42 +71,42 @@ public class DotNetArgBuilderTests
     [TestMethod]
     public void FormatArgs_Restore_IgnoresOptions()
     {
-        var info = new DotNetArgs(restore) { Command = "restore", IsRebuild = true };
-        var opt  = new DotNetOptions { BuildConf = "Release", Verbosity = Detailed, AutoRestore = false };
+        var args = new DotNetArgs(restore) { Command = "restore", IsRebuild = true };
+        var opt  = new DotNetOptions { BuildConf = "Release", Verbosity = Detailed };
 
-        AreEqual("restore --disable-parallel", FormatArgs(info, opt));
+        AreEqual("restore --disable-parallel", FormatArgs(args, opt));
     }
 
     [TestMethod]
     public void FormatArgs_Restore_Parallel()
     {
-        var info = new DotNetArgs(restore) { Command = "restore", IsRebuild = true };
+        var args = new DotNetArgs(restore) { Command = "restore", IsRebuild = true };
         var opt  = new DotNetOptions { ParallelRestore = true };
 
-        AreEqual("restore", FormatArgs(info, opt));
+        AreEqual("restore", FormatArgs(args, opt));
     }
 
     // package (add/remove)
 
     [TestMethod] public void FormatArgs_InstallPackage()
     {
-        var info = new DotNetArgs(installpackage) { Command = "add", ID = "Newtonsoft.Json", Ver = "13.0.3", Args = "--prerelease" };
+        var args = new DotNetArgs(installpackage) { Command = "add", ID = "Newtonsoft.Json", Ver = "13.0.3", Args = "--prerelease" };
 
-        AreEqual("add package Newtonsoft.Json --version 13.0.3 --prerelease", FormatArgs(info, DefaultOptions));
+        AreEqual("add package Newtonsoft.Json --version 13.0.3 --prerelease", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod] public void FormatArgs_InstallPackage_NoVersion()
     {
-        var info = new DotNetArgs(installpackage) { Command = "add", ID = "Serilog", Ver = "", Args = "" };
+        var args = new DotNetArgs(installpackage) { Command = "add", ID = "Serilog" };
 
-        AreEqual("add package Serilog", FormatArgs(info, DefaultOptions));
+        AreEqual("add package Serilog", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod] public void FormatArgs_InstallPackage_NoID()
     {
-        var info = new DotNetArgs(installpackage) { Command = "add", ID = "", Ver = "1.2.3", Args = "" };
+        var args = new DotNetArgs(installpackage) { Command = "add", Ver = "1.2.3" };
 
-        AreEqual("add --version 1.2.3", FormatArgs(info, DefaultOptions));
+        AreEqual("add --version 1.2.3", FormatArgs(args, DefaultOptions));
     }
 
     // TODO: `remove package` tests

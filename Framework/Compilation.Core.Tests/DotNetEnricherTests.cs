@@ -1,4 +1,5 @@
 // ReSharper disable ConvertToConstant.Local
+// ReSharper disable InlineTemporaryVariable
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
@@ -21,11 +22,11 @@ public class DotNetEnricherTests
     private static void TestEnrich(DotNetCommandEnum input, bool expect, string command)
     {
         bool isRebuild = expect;
-        var info = new DotNetArgs(input);
-        Enrich(info);
-        AreEqual(input,     info.CommandEnum);
-        AreEqual(command,   info.Command);
-        AreEqual(isRebuild, info.IsRebuild);
+        var args = new DotNetArgs(input);
+        Enrich(args);
+        AreEqual(input,     args.CommandEnum);
+        AreEqual(command,   args.Command);
+        AreEqual(isRebuild, args.IsRebuild);
     }
 
     [TestMethod] public void Enrich_BuildCommand()           => TestEnrich(input: "build",                     expect:     build           );
@@ -39,15 +40,15 @@ public class DotNetEnricherTests
     [TestMethod] public void Enrich_UnknownCommand()         => TestEnrich(input: "custom",                    expect:     undefined       );
 
     private static void TestEnrich(string input, DotNetCommandEnum expect) => TestEnrich(input, "", false, expect);
-    private static void TestEnrich(string input, bool expect, DotNetCommandEnum @enum) => TestEnrich(input, "", expect, @enum);
-    private static void TestEnrich(string input, string args, bool expect, DotNetCommandEnum @enum)
+    //private static void TestEnrich(string input, bool expect, DotNetCommandEnum @enum) => TestEnrich(input, "", expect, @enum);
+    private static void TestEnrich(string input, string extraArgs, bool expect, DotNetCommandEnum @enum)
     {
         bool isRebuild = expect;
-        var info = new DotNetArgs(input) { Args = args };
-        Enrich(info);
-        AreEqual(input,     info.Command);
-        AreEqual(@enum,     info.CommandEnum);
-        AreEqual(isRebuild, info.IsRebuild);
+        var args = new DotNetArgs(input) { Args = extraArgs };
+        Enrich(args);
+        AreEqual(input,     args.Command);
+        AreEqual(@enum,     args.CommandEnum);
+        AreEqual(isRebuild, args.IsRebuild);
     }
 
     // Already-filled values are retained (not overwritten by enrichment)
@@ -56,35 +57,35 @@ public class DotNetEnricherTests
     public void Enrich_RetainsExistingCommand_EvenInConflict()
     {
         var conflicting = installpackage;
-        var info = new DotNetArgs("build") { CommandEnum = conflicting };
+        var args = new DotNetArgs("build") { CommandEnum = conflicting };
 
-        Enrich(info);
+        Enrich(args);
 
-        AreEqual("build",     info.Command    );
-        AreEqual(conflicting, info.CommandEnum);
+        AreEqual("build",     args.Command    );
+        AreEqual(conflicting, args.CommandEnum);
     }
 
     [TestMethod]
     public void Enrich_RetainsExistingCommandEnum_EvenInConflict()
     {
         var conflicting = "add";
-        var info = new DotNetArgs(restore) { Command = conflicting };
+        var args = new DotNetArgs(restore) { Command = conflicting };
 
-        Enrich(info);
+        Enrich(args);
 
-        AreEqual(restore,     info.CommandEnum);
-        AreEqual(conflicting, info.Command    );
+        AreEqual(restore,     args.CommandEnum);
+        AreEqual(conflicting, args.Command    );
     }
 
     [TestMethod]
     public void Enrich_RetainsIsRebuildTrue_EvenInConflict()
     {
         var conflicting = uninstallpackage;
-        var info = new DotNetArgs { IsRebuild = true, CommandEnum = conflicting };
+        var args = new DotNetArgs { IsRebuild = true, CommandEnum = conflicting };
 
-        Enrich(info);
+        Enrich(args);
 
-        IsTrue  (             info.IsRebuild  );
-        AreEqual(conflicting, info.CommandEnum);
+        IsTrue  (             args.IsRebuild  );
+        AreEqual(conflicting, args.CommandEnum);
     }
 }

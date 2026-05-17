@@ -6,32 +6,32 @@ public class DotNetArgsTests
     [TestMethod]
     public void Constructor_WithCommandEnum_SetsCommandEnum()
     {
-        var info = new DotNetArgs(restore);
-        AreEqual(restore, info.CommandEnum);
-        AreEqual("", info.Command);
-        AreEqual("", info.ID);
-        AreEqual("", info.Ver);
-        AreEqual("", info.Args);
-        IsFalse(info.IsRebuild);
+        var args = new DotNetArgs(restore);
+        AreEqual(restore, args.CommandEnum);
+        AreEqual("", args.Command);
+        AreEqual("", args.ID);
+        AreEqual("", args.Ver);
+        AreEqual("", args.Args);
+        IsFalse(args.IsRebuild);
     }
 
     [TestMethod]
     public void Constructor_WithCommandString_SetsCommand()
     {
-        var info = new DotNetArgs("custom");
-        AreEqual("custom", info.Command);
-        AreEqual(default, info.CommandEnum);
+        var args = new DotNetArgs("custom");
+        AreEqual("custom", args.Command);
+        AreEqual(default, args.CommandEnum);
     }
 
     [TestMethod]
     public void Constructor_Default_InitializesEmptyProperties()
     {
-        var info = new DotNetArgs();
-        AreEqual(default, info.CommandEnum);
-        AreEqual("", info.Command);
-        AreEqual("", info.ID);
-        AreEqual("", info.Ver);
-        AreEqual("", info.Args);
-        IsFalse(info.IsRebuild);
+        var args = new DotNetArgs();
+        AreEqual(default, args.CommandEnum);
+        AreEqual("", args.Command);
+        AreEqual("", args.ID);
+        AreEqual("", args.Ver);
+        AreEqual("", args.Args);
+        IsFalse(args.IsRebuild);
     }
 }
