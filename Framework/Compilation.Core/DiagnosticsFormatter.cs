@@ -1,26 +1,34 @@
-﻿// ReSharper disable ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
-
-namespace JJ.Framework.Compilation.Core;
+﻿namespace JJ.Framework.Compilation.Core;
 
 internal static class DiagnosticsFormatter
 {
-    public static string Descriptor(DotNetArgs args)
+    private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
+
+    public static string Descriptor(DotNetArgs? args)
     {
+        if (args == null) return DotNetArgsNull;
+
         string commandDescriptor = CommandDescriptor(args);
         string idVerDescriptor = IDVerDescriptor(args);
-        
-        //args.Args       
-        //args.FullArgs   
-        throw new NotImplementedException();
+        string argsDescriptor = ArgsDescriptor(args);
+
+        string sep1 = Has(commandDescriptor) && Has(idVerDescriptor) ? " " : "";
+        string sep2 = Has(sep1) && Has(argsDescriptor) ? " | " : "";
+
+        return commandDescriptor + sep1 + idVerDescriptor + sep2 + argsDescriptor;
     }
 
-    private static string CommandDescriptor(DotNetArgs args) 
-        => ReNoCommand(args.CommandEnum, args.Command, args.IsRebuild);
+    private static string CommandDescriptor(DotNetArgs? args)
+    {
+        if (args == null) return DotNetArgsNull;
+        
+        return CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
+    }
 
-    private static string ReNoCommand(DotNetCommandEnum @enum, string command, bool isRebuild)
+    private static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
         string enumText = Coalesce(@enum, "");
-        string commandText = !command.Is(enumText) ? command : "";
+        string commandText = !command.Is(enumText) ? command ?? "" : "";
 
         bool hasEnum = Has(@enum);
         bool hasCommand = Has(command);
@@ -40,12 +48,33 @@ internal static class DiagnosticsFormatter
             $"{new { @enum, command, isRebuild, hasEnum, hasCommand, reRequired }}"); // ncrunch: no coverage
     }
 
-    // ReSharper disable once UnusedParameter.Local
-    private static string IDVerDescriptor(DotNetArgs args) 
+    private static string IDVerDescriptor(DotNetArgs? args)
     {
-        //args.ID
-        //args.Ver
+        if (args == null) return DotNetArgsNull;
 
-        throw new NotImplementedException();
+        return IDVerDescriptor(args.ID, args.Ver);
+    }
+
+    private static string IDVerDescriptor(string? id, string? ver) 
+        => $"{id} {ver}".Trim();
+
+    private static string ArgsDescriptor(DotNetArgs? args)
+    {
+        if (args == null) return DotNetArgsNull;
+
+        return ArgsDescriptor(args.Args, args.FullArgs);
+    }
+
+    private static string ArgsDescriptor(string? args, string? fullArgs)
+    {
+        args     = (args     ?? "").Trim();
+        fullArgs = (fullArgs ?? "").Trim();
+
+        if (fullArgs.EndsWith(args))
+        {
+            return fullArgs;
+        }
+
+        return args + " | " + fullArgs;
     }
 }
