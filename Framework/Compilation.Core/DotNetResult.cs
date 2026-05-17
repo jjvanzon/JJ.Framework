@@ -14,7 +14,7 @@ public record DotNetResult
     public string        OutputText       { get; }
     public string        TimeOutMessage   { get; }
     
-    public bool          HasError         { get; }
+    public bool          Successful       { get; }
     public bool          HasExitCode      { get; }
     public bool          HasErrorText     { get; }
     public bool          HasOutputText    { get; }
@@ -37,11 +37,22 @@ public record DotNetResult
         HasOutputText    = Has(outputText);
         HasErrorInOutput = outputText.Contains("[error]");
         HasTimeOut       = Has(timeOutMessage);
-        HasError         = HasExitCode || HasErrorInOutput | HasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
+        bool hasError    = HasExitCode || HasErrorInOutput | HasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
+        Successful       = !hasError;
 
         Text = Join(NewLine,
                     HasExitCode   ? $"Exit Code = {exitCode}" : "",
                     HasErrorText  ? $"Error = {errorText}" : "",
                     HasOutputText ? $"Output = {outputText}" : "");
+    }
+
+    public void Assert()
+    {
+        if (Successful) return;
+        throw new Exception(
+            $"dotnet {Args} failed " +
+            $"{new { HasExitCode, HasErrorText, HasErrorInOutput, HasTimeOut, Args.FullArgs }}: " +
+            $"{TimeOutMessage} " +
+            $"Exit code {ExitCode} {ErrorText} {OutputText}");
     }
 }

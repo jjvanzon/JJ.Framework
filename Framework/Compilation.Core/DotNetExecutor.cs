@@ -41,30 +41,23 @@ internal static class DotNetExecutor
             process.Kill(entireProcessTree: true);
             timeOutMessage = $"{fileName} {opt.Args} timed out after {opt.TimeOutSec}s";
         }
-        
         // .NET may flush async after WaitForExit(int); call the parameterless overload.
         process.WaitForExit();
 
         var output = outputSB.ToString().TrimEnd();
         var error  = errorSB .ToString().Trim();       
-
         var result = new DotNetResult(opt, args, process.ExitCode, error, output, timeOutMessage);
 
-        if (!result.HasError && Has(result.OutputText)) 
+        result.Assert();
+
+        if (opt.Verbosity.In(Diagnostic, Detailed))
         {
-            if (opt.Verbosity.In(Diagnostic, Detailed))
+            if (Has(result.OutputText)) 
             {
                 opt.Log(result.OutputText);
             }
-
-            return result;
         }
 
-        throw new Exception(
-            $"{fileName} {opt.Args} failed " +
-            $"{new { result.HasExitCode, result.HasErrorText, result.HasErrorInOutput, result.HasTimeOut, args.FullArgs }}: " +
-            $"{timeOutMessage} " +
-            $"Exit code {process.ExitCode} {error} {output}");
+        return result;
     }
-
 }
