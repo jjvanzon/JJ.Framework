@@ -17,106 +17,25 @@ internal static class DiagnosticsFormatter
     private static string CommandDescriptor(DotNetArgs args)
     {
         string enumText = Coalesce(args.CommandEnum, "");
-        string commandTrim = args.Command?.Trim() ?? "";
-
-        bool commandsEqual = enumText.Is(commandTrim);
-        if (commandsEqual) commandTrim = "";
+        string commandText = !args.Command.Is(enumText) ? args.Command : "";
 
         bool hasEnum = Has(args.CommandEnum);
         bool hasCommand = Has(args.Command);
+        bool reRequired = args.IsRebuild && !enumText.StartsWith("re");
 
-        bool enumHasRe = HasRe(enumText);
-        bool reRequired = !enumHasRe && args.IsRebuild;
+        if ( hasEnum &&  hasCommand &&  reRequired) return $"{enumText}/(re){commandText}";
+        if ( hasEnum &&  hasCommand && !reRequired) return $"{enumText}/{commandText}";
+        if ( hasEnum && !hasCommand &&  reRequired) return $"(re){enumText}";
+        if ( hasEnum && !hasCommand && !reRequired) return enumText;
+        if (!hasEnum &&  hasCommand &&  reRequired) return $"(re){commandText}";
+        if (!hasEnum &&  hasCommand && !reRequired) return commandText;
+        if (!hasEnum && !hasCommand &&  reRequired) return "(re-)<no command>";
+        if (!hasEnum && !hasCommand && !reRequired) return "<no command>";
 
-        if (hasEnum && hasCommand && reRequired)
-        {
-            return FormatCommandEnumTextRe(enumText, commandTrim);
-        }
-        if (hasEnum && hasCommand && !reRequired)
-        {
-            return FormatCommandEnumText(enumText, commandTrim);
-        }
-        if (hasEnum && !hasCommand && reRequired)
-        {
-            return FormatCommandEnumRe(enumText);
-        }
-        if (hasEnum && !hasCommand && !reRequired)
-        {
-            return FormatCommandEnum(enumText);
-        }
-        if (!hasEnum && hasCommand && reRequired)
-        {
-            return FormatCommandTextRe(commandTrim);
-        }
-        if (!hasEnum && hasCommand && !reRequired)
-        {
-            return FormatCommandText(commandTrim);
-        }
-        if (!hasEnum && !hasCommand && reRequired)
-        {
-            return FormatNoCommandRe();
-        }
-        if (!hasEnum && !hasCommand && !reRequired)
-        {
-            return FormatNoCommand();
-        }
-
-        /*if (hasCommand)
-        {
-            if (args.IsRebuild)
-            {
-                if (HasRe(enumText))
-                {
-                    return enumText;
-                }
-                else
-                {
-                    return (args.IsRebuild ? "(re)" : "") + enumText;
-                }
-            }
-        }
-        else
-        {
-            if (args.IsRebuild)
-            {
-                return enumText + "/(re)" + commandTrim;
-            }
-            else
-            {
-                return enumText + "/" + commandTrim;
-            }
-        }
-        */
-
-        throw new NotImplementedException();
+        throw new Exception(
+            $"No descriptor can be derived from combination of " +
+            $"{new { args.CommandEnum, args.Command, args.IsRebuild, hasEnum, hasCommand, reRequired }}"); // ncrunch: no coverage
     }
-
-    private static string FormatNoCommand() 
-        => "<no command>";
-
-    private static string FormatNoCommandRe()
-        => "(re-)<no command>";
-
-    private static string FormatCommandText(string command) 
-        => command;
-
-    private static string FormatCommandEnum(string enumText) 
-        => enumText;
-
-    private static string FormatCommandEnumText(string enumText, string command) 
-        => $"{enumText}/{command}";
-
-    private static bool HasRe(string enumText) 
-        => enumText.StartsWith("re");
-
-    private static string FormatCommandTextRe(string command) 
-        => $"(re){command}";
-
-    private static string FormatCommandEnumRe(string enumText)
-        => !HasRe(enumText) ? $"(re){enumText}" : enumText;
-
-    private static string FormatCommandEnumTextRe(string enumText, string command) 
-        => $"{enumText}/(re){command}";
 
     // ReSharper disable once UnusedParameter.Local
     private static string IDVerDescriptor(DotNetArgs args) 
