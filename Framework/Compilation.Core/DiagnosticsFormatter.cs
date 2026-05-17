@@ -31,7 +31,7 @@ internal static class DiagnosticsFormatter
         string commandText = !command.Is(enumText) ? command ?? "" : "";
 
         bool hasEnum = Has(@enum);
-        bool hasCommand = Has(command);
+        bool hasCommand = Has(commandText);
         bool reRequired = isRebuild && !enumText.StartsWith("re");
 
         if (!hasEnum && !hasCommand && !reRequired) return "<no command>";
@@ -70,11 +70,13 @@ internal static class DiagnosticsFormatter
         args     = (args     ?? "").Trim();
         fullArgs = (fullArgs ?? "").Trim();
 
-        if (fullArgs.EndsWith(args))
+        if (fullArgs.Contains(args, OrdinalIgnoreCase))
         {
             return fullArgs;
         }
 
-        return args + " | " + fullArgs;
+        string sep = Has(args) && Has(fullArgs) ? " | " : "";
+
+        return args + sep + fullArgs;
     }
 }
