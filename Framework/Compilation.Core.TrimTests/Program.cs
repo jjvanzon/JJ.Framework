@@ -1,5 +1,5 @@
 ﻿bool success =
-RunTests<DotNetArgBuilderTests>() &&
+RunTests<DotNetArgFormatterTests>() &&
 RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetArgsTests>() &&
 RunTests<DotNetLoggerTests>() &&

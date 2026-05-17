@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-internal static class DotNetArgBuilder
+internal static class DotNetArgFormatter
 {
     public const string REBUILD_ARG_MS_BUILD = "/t:Rebuild";
     public const string REBUILD_ARG_DOT_NET = "--no-incremental";

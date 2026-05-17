@@ -2,9 +2,9 @@ namespace JJ.Framework.Compilation.Core.Tests.Accessors;
 
 [Suppress("Trimmer", "IL2026", Justification = BasesAnd + GenericMethod)]
 [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]
-internal static class DotNetArgBuilderAccessor
+internal static class DotNetArgFormatterAccessor
 {
-    private static readonly AccessorCore _accessor = new("DotNetArgBuilder");
+    private static readonly AccessorCore _accessor = new("DotNetArgFormatter");
 
     public static string FormatArgs(DotNetArgs args, DotNetOptions opt) =>
         (string)_accessor.Call(args, opt)!;
