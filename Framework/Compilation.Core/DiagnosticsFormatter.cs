@@ -14,35 +14,37 @@ internal static class DiagnosticsFormatter
         throw new NotImplementedException();
     }
 
-    private static string CommandDescriptor(DotNetArgs args)
+    private static string CommandDescriptor(DotNetArgs args) 
+        => ReNoCommand(args.CommandEnum, args.Command, args.IsRebuild);
+
+    private static string ReNoCommand(DotNetCommandEnum @enum, string command, bool isRebuild)
     {
-        string enumText = Coalesce(args.CommandEnum, "");
-        string commandText = !args.Command.Is(enumText) ? args.Command : "";
+        string enumText = Coalesce(@enum, "");
+        string commandText = !command.Is(enumText) ? command : "";
 
-        bool hasEnum = Has(args.CommandEnum);
-        bool hasCommand = Has(args.Command);
-        bool reRequired = args.IsRebuild && !enumText.StartsWith("re");
+        bool hasEnum = Has(@enum);
+        bool hasCommand = Has(command);
+        bool reRequired = isRebuild && !enumText.StartsWith("re");
 
-        if ( hasEnum &&  hasCommand &&  reRequired) return $"{enumText}/(re){commandText}";
-        if ( hasEnum &&  hasCommand && !reRequired) return $"{enumText}/{commandText}";
-        if ( hasEnum && !hasCommand &&  reRequired) return $"(re){enumText}";
-        if ( hasEnum && !hasCommand && !reRequired) return enumText;
-        if (!hasEnum &&  hasCommand &&  reRequired) return $"(re){commandText}";
-        if (!hasEnum &&  hasCommand && !reRequired) return commandText;
-        if (!hasEnum && !hasCommand &&  reRequired) return "(re-)<no command>";
         if (!hasEnum && !hasCommand && !reRequired) return "<no command>";
+        if (!hasEnum && !hasCommand &&  reRequired) return "(re-)<no command>";
+        if (!hasEnum &&  hasCommand && !reRequired) return commandText;
+        if (!hasEnum &&  hasCommand &&  reRequired) return "(re)" + commandText;
+        if ( hasEnum && !hasCommand && !reRequired) return enumText;
+        if ( hasEnum && !hasCommand &&  reRequired) return "(re)" + enumText;
+        if ( hasEnum &&  hasCommand && !reRequired) return $"{enumText}/{commandText}";
+        if ( hasEnum &&  hasCommand &&  reRequired) return $"{enumText}/(re){commandText}";
 
         throw new Exception(
             $"No descriptor can be derived from combination of " +
-            $"{new { args.CommandEnum, args.Command, args.IsRebuild, hasEnum, hasCommand, reRequired }}"); // ncrunch: no coverage
+            $"{new { @enum, command, isRebuild, hasEnum, hasCommand, reRequired }}"); // ncrunch: no coverage
     }
 
     // ReSharper disable once UnusedParameter.Local
     private static string IDVerDescriptor(DotNetArgs args) 
     {
-        
         //args.ID
-        //args.Ver        
+        //args.Ver
 
         throw new NotImplementedException();
     }
