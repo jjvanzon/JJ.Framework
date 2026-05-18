@@ -22,7 +22,7 @@ public class DotNetEnricherTests
     private static void TestEnrich(DotNetCommandEnum input, bool expect, string command)
     {
         bool isRebuild = expect;
-        var args = new DotNetArgs(input);
+        var args = new DotNetArgsAccessor(input).Obj;
         Enrich(args);
         AreEqual(input,     args.CommandEnum);
         AreEqual(command,   args.Command);
@@ -44,7 +44,7 @@ public class DotNetEnricherTests
     private static void TestEnrich(string input, string extraArgs, bool expect, DotNetCommandEnum @enum)
     {
         bool isRebuild = expect;
-        var args = new DotNetArgs(input) { Args = extraArgs };
+        var args = new DotNetArgsAccessor(input) { Args = extraArgs }.Obj;
         Enrich(args);
         AreEqual(input,     args.Command);
         AreEqual(@enum,     args.CommandEnum);
@@ -57,7 +57,7 @@ public class DotNetEnricherTests
     public void Enrich_RetainsExistingCommand_EvenInConflict()
     {
         var conflicting = installpackage;
-        var args = new DotNetArgs("build") { CommandEnum = conflicting };
+        var args = new DotNetArgsAccessor("build") { CommandEnum = conflicting }.Obj;
 
         Enrich(args);
 
@@ -69,7 +69,7 @@ public class DotNetEnricherTests
     public void Enrich_RetainsExistingCommandEnum_EvenInConflict()
     {
         var conflicting = "add";
-        var args = new DotNetArgs(restore) { Command = conflicting };
+        var args = new DotNetArgsAccessor(restore) { Command = conflicting }.Obj;
 
         Enrich(args);
 
@@ -81,7 +81,7 @@ public class DotNetEnricherTests
     public void Enrich_RetainsIsRebuildTrue_EvenInConflict()
     {
         var conflicting = uninstallpackage;
-        var args = new DotNetArgs { IsRebuild = true, CommandEnum = conflicting };
+        var args = new DotNetArgsAccessor { IsRebuild = true, CommandEnum = conflicting }.Obj;
 
         Enrich(args);
 

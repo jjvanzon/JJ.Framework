@@ -6,8 +6,13 @@ namespace JJ.Framework.Compilation.Core.TrimTests;
 internal static class Untrimmer
 {
     public const string MainAsm = "JJ.Framework.Compilation.Core";
-    [NoTrim("Args",              $"{MainAsm}.DotNetArgs",           MainAsm)]
-    [NoTrim("FullArgs",          $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim(AllCtors,            $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim("set_Command",       $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim("set_CommandEnum",   $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim("set_ID",            $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim("set_Ver",           $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim("set_Args",          $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim("set_FullArgs",      $"{MainAsm}.DotNetArgs",           MainAsm)]
     [NoTrim("FormatArgs",        $"{MainAsm}.DotNetArgFormatter",   MainAsm)]
     [NoTrim("Enrich",            $"{MainAsm}.DotNetEnricher",       MainAsm)]
     [NoTrim("Log",               $"{MainAsm}.DotNetLogger",         MainAsm)]
