@@ -2,6 +2,8 @@
 
 internal static class DiagnosticsFormatter
 {
+    // Args Descriptor
+
     private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
 
     public static string Descriptor(DotNetArgs? args)
@@ -18,6 +20,8 @@ internal static class DiagnosticsFormatter
         return commandDescriptor + sep1 + idVerDescriptor + sep2 + argsDescriptor;
     }
 
+    // Command Descriptor
+
     private static string CommandDescriptor(DotNetArgs? args)
     {
         if (args == null) return DotNetArgsNull;
@@ -27,70 +31,68 @@ internal static class DiagnosticsFormatter
 
     private static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
-        command ??= "";
+        bool inconsistenciesDetected = IsInconsistent(@enum, command, isRebuild);
+        bool enumRequired    = Has(@enum);
+        bool commandRequired = CommandRequired(command, @enum, inconsistenciesDetected);
+        bool reRequired      = ReRequired(isRebuild, @enum, inconsistenciesDetected);
 
-        //string enumText = Coalesce(@enum, "");
-        //string commandText = CommandRequired(enumText, command, isRebuild) ? command ?? "" : "";
+        if (!enumRequired && !commandRequired && !reRequired) return "<no command>";
+        if (!enumRequired && !commandRequired &&  reRequired) return "(re-)<no command>";
+        if (!enumRequired &&  commandRequired && !reRequired) return command ?? "";
+        if (!enumRequired &&  commandRequired &&  reRequired) return "(re)" + command;
+        if ( enumRequired && !commandRequired && !reRequired) return $"{@enum}";
+        if ( enumRequired && !commandRequired &&  reRequired) return "(re)" + @enum;
+        if ( enumRequired &&  commandRequired && !reRequired) return $"{@enum} / {command}";
+        if ( enumRequired &&  commandRequired &&  reRequired) return $"{@enum} / (re){command}";
 
-        bool hasEnum = Has(@enum);
-        bool includeCommand = IncludeCommand(@enum, command, isRebuild);
-        bool reRequired = ReRequired(@enum, command, isRebuild);
-
-        if (!hasEnum && !includeCommand && !reRequired) return "<no command>";
-        if (!hasEnum && !includeCommand &&  reRequired) return "(re-)<no command>";
-        if (!hasEnum &&  includeCommand && !reRequired) return command;
-        if (!hasEnum &&  includeCommand &&  reRequired) return "(re)" + command;
-        if ( hasEnum && !includeCommand && !reRequired) return $"{@enum}";
-        if ( hasEnum && !includeCommand &&  reRequired) return "(re)" + @enum;
-        if ( hasEnum &&  includeCommand && !reRequired) return $"{@enum} / {command}";
-        if ( hasEnum &&  includeCommand &&  reRequired) return $"{@enum} / (re){command}";
-
-        throw new Exception(
+        throw new Exception( // ncrunch: no coverage
             $"No descriptor can be derived from combination of " +
-            $"{new { @enum, command, isRebuild, hasEnum, hasCommand = includeCommand, reRequired }}"); // ncrunch: no coverage
-    }
-
-    private static bool ReRequired(DotNetCommandEnum @enum, string? command, bool isRebuild)
-    {
-        if (!Has(isRebuild)) return false;
-
-        // Always include in case of inconsistencies.
-        if (IsInconsistent(@enum, command, isRebuild)) return true;
-
-        // Otherwise only include when not already implied by enum.
-        if (IsRe(@enum)) return false;
-        return true;
+            $"{new { @enum, command, isRebuild, enumRequired, commandRequired, reRequired }}");
     }
     
-    private static bool IncludeCommand(DotNetCommandEnum @enum, string? command, bool isRebuild)
+    private static bool IsInconsistent(DotNetCommandEnum @enum, string? command, bool isRebuild)
+    {
+        bool invalidReFlag = IsRe(@enum) != isRebuild;
+        if (invalidReFlag) return true;
+
+        string[] knownCommands = [ "build", "msbuild", "restore", "add", "remove" ];
+        bool commandIsUnknown = Has(command) && !command.In(knownCommands);
+        if (commandIsUnknown) return true;
+
+        return false;
+    }
+
+    private static bool CommandRequired(string? command, DotNetCommandEnum @enum, bool inconsistenciesDetected)
     {
         if (!Has(command)) return false;
 
         // Always include in case of inconsistencies.
-        if (IsInconsistent(@enum, command, isRebuild)) return true;
+        if (inconsistenciesDetected) return true;
 
         // Otherwise include when different
         string enumText = @enum.ToString();
         return !command.Is(enumText);
         
         //if (!Has(@enum)) return true;
-        //if ($"re{command}".Is($"{@enum}")) return false;
         //return true;
     }
-
-    private static bool IsInconsistent(DotNetCommandEnum @enum, string? command, bool isRebuild)
+    
+    private static bool ReRequired(bool isRebuild, DotNetCommandEnum @enum, bool inconsistenciesDetected)
     {
-        bool invalidReFlag = IsRe(@enum) != isRebuild;
-        if (invalidReFlag) return true;
+        if (!Has(isRebuild)) return false;
 
-        bool unknownCommand = Has(command) && !command.In("build", "msbuild", "restore", "add", "remove");
-        if (unknownCommand) return true;
+        // Always include in case of inconsistencies.
+        if (inconsistenciesDetected) return true;
 
-        return false;
+        // Otherwise only include when not already implied by enum.
+        if (IsRe(@enum)) return false;
+        return true;
     }
 
     private static bool IsRe(DotNetCommandEnum @enum) 
         => @enum is rebuild or msrebuild;
+
+    // IDVerDescriptor
 
     private static string IDVerDescriptor(DotNetArgs? args)
     {

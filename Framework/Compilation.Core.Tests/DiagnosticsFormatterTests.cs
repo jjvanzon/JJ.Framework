@@ -183,7 +183,7 @@ public class DiagnosticsFormatterTests
         {
             AreEqual("(re)build",            CommandDescriptor(build,            nully, re));
             AreEqual("(re)msbuild",          CommandDescriptor(msbuild,          nully, re));
-            AreEqual("(re)restore",          CommandDescriptor(restore,          nully, re)); // Misapplied (should still show as diagnostics)
+            AreEqual("(re)restore",          CommandDescriptor(restore,          nully, re));
             AreEqual("(re)installpackage",   CommandDescriptor(installpackage,   nully, re));
             AreEqual("(re)uninstallpackage", CommandDescriptor(uninstallpackage, nully, re));
         }
