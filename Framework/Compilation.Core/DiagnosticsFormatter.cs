@@ -52,7 +52,12 @@ internal static class DiagnosticsFormatter
 
     private static bool ReRequired(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
-        if (!isRebuild) return false;
+        if (!Has(isRebuild)) return false;
+
+        // Always include in case of inconsistencies.
+        if (IsInconsistent(@enum, command, isRebuild)) return true;
+
+        // Otherwise only include when not already implied by enum.
         if (IsRe(@enum)) return false;
         return true;
     }
@@ -62,12 +67,7 @@ internal static class DiagnosticsFormatter
         if (!Has(command)) return false;
 
         // Always include in case of inconsistencies.
-
-        bool invalidReFlag = IsRe(@enum) != isRebuild;
-        if (invalidReFlag) return true;
-
-        bool unknownCommand = !command.In("build", "msbuild", "restore", "add", "remove");
-        if (unknownCommand) return true;
+        if (IsInconsistent(@enum, command, isRebuild)) return true;
 
         // Otherwise include when different
         string enumText = @enum.ToString();
@@ -78,7 +78,16 @@ internal static class DiagnosticsFormatter
         //return true;
     }
 
-    //private static bool IsInconsistent
+    private static bool IsInconsistent(DotNetCommandEnum @enum, string? command, bool isRebuild)
+    {
+        bool invalidReFlag = IsRe(@enum) != isRebuild;
+        if (invalidReFlag) return true;
+
+        bool unknownCommand = Has(command) && !command.In("build", "msbuild", "restore", "add", "remove");
+        if (unknownCommand) return true;
+
+        return false;
+    }
 
     private static bool IsRe(DotNetCommandEnum @enum) 
         => @enum is rebuild or msrebuild;
