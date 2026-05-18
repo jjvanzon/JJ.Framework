@@ -22,7 +22,7 @@ public partial class AccessorCore
         _typesInHierarchy = _type.GetTypesInHierarchy();
     }
 
-    public AccessorCore([Dyn(Intf | PublicCtors)] Type type, params ICollection<object?> constructArgs)
+    public AccessorCore([Dyn(Intf | AllCtors)] Type type, params ICollection<object?> constructArgs)
     {
         ThrowIfNull(type);
         _type = type;
@@ -38,13 +38,11 @@ public partial class AccessorCore
         Obj = NewOrNull(_type, constructArgs);
     }
     
-    private object? NewOrNull([Dyn(PublicCtors)] Type type, ICollection<object?> constructArgs)
+    private object? NewOrNull([Dyn(AllCtors)] Type type, ICollection<object?> constructArgs)
     {
         ThrowIfNull(constructArgs);
         var constructorTypes = TypesFromObjects(constructArgs);
-        // TODO: Doesn't work with internal constructors yet (and)
-        //ConstructorInfo? constructor = type.GetConstructor(BindingFlagsAll, null, constructorTypes, null);
-        ConstructorInfo? constructor = type.GetConstructor(constructorTypes);
+        ConstructorInfo? constructor = type.GetConstructor(Public | NonPublic | Instance, null, constructorTypes, []);
         if (Has(constructArgs)) ThrowIfNull(constructor);
         return constructor?.Invoke(constructArgs.ToArray());
     }

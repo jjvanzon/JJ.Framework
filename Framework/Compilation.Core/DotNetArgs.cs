@@ -2,10 +2,9 @@
 
 public class DotNetArgs
 {
-    // TODO: Make internal once AccessorCore can handle the internal constructors properly.
-    public DotNetArgs() { }
-    public DotNetArgs(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
-    public DotNetArgs(string command) => Command = command;
+    internal DotNetArgs() { }
+    internal DotNetArgs(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
+    internal DotNetArgs(string command) => Command = command;
 
     public DotNetCommandEnum CommandEnum { get; internal set; }
     public string            Command     { get; internal set; } = "";
