@@ -6,13 +6,14 @@ namespace JJ.Framework.Compilation.Core.TrimTests;
 internal static class Untrimmer
 {
     public const string MainAsm = "JJ.Framework.Compilation.Core";
-    [NoTrim(AllCtors,            $"{MainAsm}.DotNetArgs",           MainAsm)]
-    [NoTrim("set_Command",       $"{MainAsm}.DotNetArgs",           MainAsm)]
-    [NoTrim("set_CommandEnum",   $"{MainAsm}.DotNetArgs",           MainAsm)]
-    [NoTrim("set_ID",            $"{MainAsm}.DotNetArgs",           MainAsm)]
-    [NoTrim("set_Ver",           $"{MainAsm}.DotNetArgs",           MainAsm)]
-    [NoTrim("set_Args",          $"{MainAsm}.DotNetArgs",           MainAsm)]
-    [NoTrim("set_FullArgs",      $"{MainAsm}.DotNetArgs",           MainAsm)]
+    [NoTrim(AllCtors,            typeof(DotNetArgs))]
+    [NoTrim("set_CommandEnum",   typeof(DotNetArgs))]
+    [NoTrim("set_Command",       typeof(DotNetArgs))]
+    [NoTrim("set_ID",            typeof(DotNetArgs))]
+    [NoTrim("set_Ver",           typeof(DotNetArgs))]
+    [NoTrim("set_Args",          typeof(DotNetArgs))]
+    [NoTrim("set_IsRebuild",     typeof(DotNetArgs))]
+    [NoTrim("set_FullArgs",      typeof(DotNetArgs))]
     [NoTrim("FormatArgs",        $"{MainAsm}.DotNetArgFormatter",   MainAsm)]
     [NoTrim("Enrich",            $"{MainAsm}.DotNetEnricher",       MainAsm)]
     [NoTrim("Log",               $"{MainAsm}.DotNetLogger",         MainAsm)]

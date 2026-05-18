@@ -3,7 +3,7 @@
     <Version>4.6.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <!--<AutoTrimTest>False</AutoTrimTest>-->
+    <!--<AutoTrimTest>True</AutoTrimTest>-->
   </PropertyGroup>
 
   <ItemGroup>
