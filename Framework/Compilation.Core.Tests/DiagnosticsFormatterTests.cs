@@ -51,19 +51,6 @@ public class DiagnosticsFormatterTests
     // CommandDescriptor
 
     [TestMethod]
-    public void CommandDescriptor_CommandStringOnly()
-    {
-        foreach(var nully1 in _enumNullies)
-        foreach(var nully2 in _boolNullies)
-        {
-            AreEqual("build",    CommandDescriptor(nully1, "build",    nully2));
-            AreEqual("rebuild",  CommandDescriptor(nully1, "rebuild",  nully2));
-            AreEqual("debuild",  CommandDescriptor(nully1, "debuild",  nully2));
-            AreEqual("whatever", CommandDescriptor(nully1, "whatever", nully2));
-        }
-    }
-
-    [TestMethod]
     public void CommandDescriptor_EnumOnly()
     {
         foreach (var nully1 in _textNullies)
@@ -80,44 +67,20 @@ public class DiagnosticsFormatterTests
     }
 
     [TestMethod]
-    public void CommandDescriptor_CommandStringWithReFlag()
+    public void CommandDescriptor_CommandStringOnly()
     {
-        // All cases represent inconsistent data.
-        // (Consistent case would have re flag only when enum also filled.)
-        // That why it's meaningful to always show the redundant "(re)" flag
-        foreach(var nully in _enumNullies)
+        foreach(var nully1 in _enumNullies)
+        foreach(var nully2 in _boolNullies)
         {
-            AreEqual("(re)build",     CommandDescriptor(nully, "build",     re));
-            AreEqual("(re)rebuild",   CommandDescriptor(nully, "rebuild",   re)); // command text "rebuild" does not exist: 2x re: text should have been "build", so there are redundant re-s.
-            AreEqual("(re)msbuild",   CommandDescriptor(nully, "msbuild",   re));
-            AreEqual("(re)msrebuild", CommandDescriptor(nully, "msrebuild", re)); // command text "msrebuild" does not exist: 2x re: text should have been "msbuild", so there are redundant re-s.
-            AreEqual("(re)restore",   CommandDescriptor(nully, "restore",   re)); // Redundant re flag displayed correctly.
-            AreEqual("(re)add",       CommandDescriptor(nully, "add",       re));
-            AreEqual("(re)remove",    CommandDescriptor(nully, "remove",    re)); // Redundant re flag displayed correctly.
-            AreEqual("(re)whatever",  CommandDescriptor(nully, "whatever",  re));
-        }
-    }
-
-    [TestMethod]
-    public void CommandDescriptor_Enum_ReFlagAlreadyImplied()
-    {
-        foreach (var nully in _textNullies)
-        {
-            AreEqual("rebuild",   CommandDescriptor(rebuild,   nully, re));
-            AreEqual("msrebuild", CommandDescriptor(msrebuild, nully, re));
-        }
-    }
-
-    [TestMethod]
-    public void CommandDescriptor_EnumShowsReFlag_WhenMisapplied()
-    {
-        foreach (var nully in _textNullies)
-        {
-            AreEqual("(re)build",            CommandDescriptor(build,            nully, re));
-            AreEqual("(re)msbuild",          CommandDescriptor(msbuild,          nully, re));
-            AreEqual("(re)restore",          CommandDescriptor(restore,          nully, re)); // Misapplied (should still show as diagnostics)
-            AreEqual("(re)installpackage",   CommandDescriptor(installpackage,   nully, re));
-            AreEqual("(re)uninstallpackage", CommandDescriptor(uninstallpackage, nully, re));
+            AreEqual("build",     CommandDescriptor(nully1, "build",     nully2));
+            AreEqual("rebuild",   CommandDescriptor(nully1, "rebuild",   nully2)); // Unrealistic command string (should be "build" + re-flag)
+            AreEqual("msbuild",   CommandDescriptor(nully1, "msbuild",   nully2));
+            AreEqual("msrebuild", CommandDescriptor(nully1, "msrebuild", nully2)); // Unrealistic command string (should be "msbuild" + re-flag)
+            AreEqual("restore",   CommandDescriptor(nully1, "restore",   nully2));
+            AreEqual("add",       CommandDescriptor(nully1, "add",       nully2));
+            AreEqual("remove",    CommandDescriptor(nully1, "remove",    nully2));
+            AreEqual("debuild",   CommandDescriptor(nully1, "debuild",   nully2)); // Unrealistic command string
+            AreEqual("whatever",  CommandDescriptor(nully1, "whatever",  nully2)); // Unrealistic command string
         }
     }
 
@@ -143,7 +106,7 @@ public class DiagnosticsFormatterTests
             AreEqual("uninstallpackage / build",   CommandDescriptor(uninstallpackage, "build",   nully));
             
             AreEqual("build / rebuild",            CommandDescriptor(build,            "rebuild", nully));
-            AreEqual("rebuild",                    CommandDescriptor(rebuild,          "rebuild", nully)); // TODO: Text command "rebuild" should be "build" + a re flag. Inconsistent data should always show re flag.
+            AreEqual("rebuild / rebuild",          CommandDescriptor(rebuild,          "rebuild", nully));
             AreEqual("msbuild / rebuild",          CommandDescriptor(msbuild,          "rebuild", nully));
             AreEqual("msrebuild / rebuild",        CommandDescriptor(msrebuild,        "rebuild", nully));
             AreEqual("restore / rebuild",          CommandDescriptor(restore,          "rebuild", nully));
@@ -183,6 +146,48 @@ public class DiagnosticsFormatterTests
             AreEqual("uninstallpackage / remove",  CommandDescriptor(uninstallpackage, "remove",  nully));
         }
     }
+    
+    [TestMethod]
+    public void CommandDescriptor_CommandStringWithReFlag()
+    {
+        // All cases represent inconsistent data.
+        // (Consistent case would have re flag only when enum also filled.)
+        // That why it's meaningful to always show the redundant "(re)" flag
+        foreach(var nully in _enumNullies)
+        {
+            AreEqual("(re)build",     CommandDescriptor(nully, "build",     re));
+            AreEqual("(re)rebuild",   CommandDescriptor(nully, "rebuild",   re)); // Redundant re flag displayed correctly. (Command text "rebuild" does not exist: 2x re: text should have been "build".)
+            AreEqual("(re)msbuild",   CommandDescriptor(nully, "msbuild",   re));
+            AreEqual("(re)msrebuild", CommandDescriptor(nully, "msrebuild", re)); // Redundant re flag displayed correctly. (Command text "msrebuild" does not exist: 2x re: text should have been "msbuild".)
+            AreEqual("(re)restore",   CommandDescriptor(nully, "restore",   re)); // Redundant re flag displayed correctly.
+            AreEqual("(re)add",       CommandDescriptor(nully, "add",       re));
+            AreEqual("(re)remove",    CommandDescriptor(nully, "remove",    re)); // Redundant re flag displayed correctly.
+            AreEqual("(re)whatever",  CommandDescriptor(nully, "whatever",  re));
+        }
+    }
+
+    [TestMethod]
+    public void CommandDescriptor_Enum_ReFlagAlreadyImplied()
+    {
+        foreach (var nully in _textNullies)
+        {
+            AreEqual("rebuild",   CommandDescriptor(rebuild,   nully, re));
+            AreEqual("msrebuild", CommandDescriptor(msrebuild, nully, re));
+        }
+    }
+
+    [TestMethod]
+    public void CommandDescriptor_EnumShowsReFlag_WhenMisapplied()
+    {
+        foreach (var nully in _textNullies)
+        {
+            AreEqual("(re)build",            CommandDescriptor(build,            nully, re));
+            AreEqual("(re)msbuild",          CommandDescriptor(msbuild,          nully, re));
+            AreEqual("(re)restore",          CommandDescriptor(restore,          nully, re)); // Misapplied (should still show as diagnostics)
+            AreEqual("(re)installpackage",   CommandDescriptor(installpackage,   nully, re));
+            AreEqual("(re)uninstallpackage", CommandDescriptor(uninstallpackage, nully, re));
+        }
+    }
 
     [TestMethod]
     public void CommandDescriptor_EnumAndText_WithReFlag_NormalCases()
@@ -201,8 +206,9 @@ public class DiagnosticsFormatterTests
         AreEqual("restore / (re)blah",             CommandDescriptor(restore,          "blah",    re));
         AreEqual("installpackage / (re)blah",      CommandDescriptor(installpackage,   "blah",    re));
         AreEqual("uninstallpackage / (re)blah",    CommandDescriptor(uninstallpackage, "blah",    re));
-                                
-        AreEqual("(re)build",                      CommandDescriptor(build,            "build",   re)); // TODO: Should build/(re)build (inconsistent case needs (re)-tag)
+
+        // Checking if command text matches command enum might help. But also might hard-link logic into diagnostics.
+        AreEqual("build / (re)build",              CommandDescriptor(build,            "build",   re));
         AreEqual("rebuild / build",                CommandDescriptor(rebuild,          "build",   re));
         AreEqual("msbuild / (re)build",            CommandDescriptor(msbuild,          "build",   re));
         AreEqual("msrebuild / build",              CommandDescriptor(msrebuild,        "build",   re));
@@ -211,7 +217,7 @@ public class DiagnosticsFormatterTests
         AreEqual("uninstallpackage / (re)build",   CommandDescriptor(uninstallpackage, "build",   re));
         
         AreEqual("build / (re)rebuild",            CommandDescriptor(build,            "rebuild", re));
-        AreEqual("rebuild",                        CommandDescriptor(rebuild,          "rebuild", re)); // TODO: `rebuild / rebuild` would make sense here, since 2nd rebuild is weird data.
+        AreEqual("rebuild / rebuild",              CommandDescriptor(rebuild,          "rebuild", re));
         AreEqual("msbuild / (re)rebuild",          CommandDescriptor(msbuild,          "rebuild", re));
         AreEqual("msrebuild / rebuild",            CommandDescriptor(msrebuild,        "rebuild", re));
         AreEqual("restore / (re)rebuild",          CommandDescriptor(restore,          "rebuild", re));
@@ -220,7 +226,7 @@ public class DiagnosticsFormatterTests
         
         AreEqual("build / (re)msbuild",            CommandDescriptor(build,            "msbuild", re));
         AreEqual("rebuild / msbuild",              CommandDescriptor(rebuild,          "msbuild", re));
-        AreEqual("(re)msbuild",                    CommandDescriptor(msbuild,          "msbuild", re));
+        AreEqual("msbuild / (re)msbuild",          CommandDescriptor(msbuild,          "msbuild", re));
         AreEqual("msrebuild / msbuild",            CommandDescriptor(msrebuild,        "msbuild", re));
         AreEqual("restore / (re)msbuild",          CommandDescriptor(restore,          "msbuild", re));
         AreEqual("installpackage / (re)msbuild",   CommandDescriptor(installpackage,   "msbuild", re));
@@ -238,7 +244,7 @@ public class DiagnosticsFormatterTests
         AreEqual("rebuild / restore",              CommandDescriptor(rebuild,          "restore", re));
         AreEqual("msbuild / (re)restore",          CommandDescriptor(msbuild,          "restore", re));
         AreEqual("msrebuild / restore",            CommandDescriptor(msrebuild,        "restore", re));
-        AreEqual("(re)restore",                    CommandDescriptor(restore,          "restore", re));
+        AreEqual("restore / (re)restore",          CommandDescriptor(restore,          "restore", re));
         AreEqual("installpackage / (re)restore",   CommandDescriptor(installpackage,   "restore", re));
         AreEqual("uninstallpackage / (re)restore", CommandDescriptor(uninstallpackage, "restore", re));
         
