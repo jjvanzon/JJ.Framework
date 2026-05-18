@@ -32,7 +32,7 @@ internal static class DiagnosticsFormatter
 
         bool hasEnum = Has(@enum);
         bool hasCommand = Has(commandText);
-        bool reRequired = isRebuild && !enumText.StartsWith("re");
+        bool reRequired = isRebuild && !IsRe(@enum);
 
         if (!hasEnum && !hasCommand && !reRequired) return "<no command>";
         if (!hasEnum && !hasCommand &&  reRequired) return "(re-)<no command>";
@@ -40,13 +40,16 @@ internal static class DiagnosticsFormatter
         if (!hasEnum &&  hasCommand &&  reRequired) return "(re)" + commandText;
         if ( hasEnum && !hasCommand && !reRequired) return enumText;
         if ( hasEnum && !hasCommand &&  reRequired) return "(re)" + enumText;
-        if ( hasEnum &&  hasCommand && !reRequired) return $"{enumText}/{commandText}";
-        if ( hasEnum &&  hasCommand &&  reRequired) return $"{enumText}/(re){commandText}";
+        if ( hasEnum &&  hasCommand && !reRequired) return $"{enumText} / {commandText}";
+        if ( hasEnum &&  hasCommand &&  reRequired) return $"{enumText} / (re){commandText}";
 
         throw new Exception(
             $"No descriptor can be derived from combination of " +
             $"{new { @enum, command, isRebuild, hasEnum, hasCommand, reRequired }}"); // ncrunch: no coverage
     }
+
+    private static bool IsRe(DotNetCommandEnum @enum) 
+        => @enum is rebuild or msrebuild;
 
     private static string IDVerDescriptor(DotNetArgs? args)
     {
