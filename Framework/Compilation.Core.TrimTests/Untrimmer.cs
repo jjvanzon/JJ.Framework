@@ -19,6 +19,7 @@ internal static class Untrimmer
     [NoTrim("FormatArgs",        $"{MainAsm}.DotNetArgFormatter",   MainAsm)]
     [NoTrim("Enrich",            $"{MainAsm}.DotNetEnricher",       MainAsm)]
     [NoTrim("Log",               $"{MainAsm}.DotNetLogger",         MainAsm)]
+    [NoTrim("Descriptor",        $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("CommandDescriptor", $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("IDVerDescriptor",   $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("ArgsDescriptor",    $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
