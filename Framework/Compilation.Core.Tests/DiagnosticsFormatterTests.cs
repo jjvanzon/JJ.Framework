@@ -135,7 +135,7 @@ public class DiagnosticsFormatterTests
         AreEqual("installpackage / build",     CommandDescriptor(installpackage,   "build",   default));
         AreEqual("uninstallpackage / build",   CommandDescriptor(uninstallpackage, "build",   default));
         
-        AreEqual("build / rebuild",            CommandDescriptor(build,            "rebuild", default)); // "rebuild" isn't even an actual dotnet.exe command
+        AreEqual("build / rebuild",            CommandDescriptor(build,            "rebuild", default));
         AreEqual("rebuild",                    CommandDescriptor(rebuild,          "rebuild", default));
         AreEqual("msbuild / rebuild",          CommandDescriptor(msbuild,          "rebuild", default));
         AreEqual("msrebuild / rebuild",        CommandDescriptor(msrebuild,        "rebuild", default));
@@ -174,19 +174,77 @@ public class DiagnosticsFormatterTests
         AreEqual("restore / remove",           CommandDescriptor(restore,          "remove",  default));
         AreEqual("installpackage / remove",    CommandDescriptor(installpackage,   "remove",  default));
         AreEqual("uninstallpackage / remove",  CommandDescriptor(uninstallpackage, "remove",  default));
+    }
 
+    // TODO: Split the normaler cases from the weirder ones.
+
+    [TestMethod]
+    public void CommandDescriptor_WithSlashText_WithReFlag()
+    {
+        AreEqual("build / (re)blah",               CommandDescriptor(build,            "blah",    re));
+        AreEqual("rebuild / blah",                 CommandDescriptor(rebuild,          "blah",    re)); // re not mentioned; already implied
+        AreEqual("msbuild / (re)blah",             CommandDescriptor(msbuild,          "blah",    re));
+        AreEqual("msrebuild / blah",               CommandDescriptor(msrebuild,        "blah",    re)); // re not mentioned; already implied
+        AreEqual("restore / (re)blah",             CommandDescriptor(restore,          "blah",    re));
+        AreEqual("installpackage / (re)blah",      CommandDescriptor(installpackage,   "blah",    re));
+        AreEqual("uninstallpackage / (re)blah",    CommandDescriptor(uninstallpackage, "blah",    re));
+                                
+        AreEqual("(re)build",                      CommandDescriptor(build,            "build",   re));
+        AreEqual("rebuild / build",                CommandDescriptor(rebuild,          "build",   re));
+        AreEqual("msbuild / (re)build",            CommandDescriptor(msbuild,          "build",   re));
+        AreEqual("msrebuild / build",              CommandDescriptor(msrebuild,        "build",   re));
+        AreEqual("restore / (re)build",            CommandDescriptor(restore,          "build",   re));
+        AreEqual("installpackage / (re)build",     CommandDescriptor(installpackage,   "build",   re));
+        AreEqual("uninstallpackage / (re)build",   CommandDescriptor(uninstallpackage, "build",   re));
+        
+        // Reallly weird (re) flags, but the data is inconsistent. And rebuild isn't even a 
+        AreEqual("build / (re)rebuild",            CommandDescriptor(build,            "rebuild", re));
+        AreEqual("rebuild",                        CommandDescriptor(rebuild,          "rebuild", re)); // TODO: `rebuild / rebuild` would make sense here, since 2nd rebuild is weird data.
+        AreEqual("msbuild / (re)rebuild",          CommandDescriptor(msbuild,          "rebuild", re));
+        AreEqual("msrebuild / rebuild",            CommandDescriptor(msrebuild,        "rebuild", re));
+        AreEqual("restore / (re)rebuild",          CommandDescriptor(restore,          "rebuild", re));
+        AreEqual("installpackage / (re)rebuild",   CommandDescriptor(installpackage,   "rebuild", re));
+        AreEqual("uninstallpackage / (re)rebuild", CommandDescriptor(uninstallpackage, "rebuild", re));
+        
+        AreEqual("build / (re)msbuild",            CommandDescriptor(build,            "msbuild", re));
+        AreEqual("rebuild / msbuild",              CommandDescriptor(rebuild,          "msbuild", re));
+        AreEqual("(re)msbuild",                    CommandDescriptor(msbuild,          "msbuild", re));
+        AreEqual("msrebuild / msbuild",            CommandDescriptor(msrebuild,        "msbuild", re));
+        AreEqual("restore / (re)msbuild",          CommandDescriptor(restore,          "msbuild", re));
+        AreEqual("installpackage / (re)msbuild",   CommandDescriptor(installpackage,   "msbuild", re));
+        AreEqual("uninstallpackage / (re)msbuild", CommandDescriptor(uninstallpackage, "msbuild", re));
+        
+        AreEqual("build / (re)add",                CommandDescriptor(build,            "add",     re));
+        AreEqual("rebuild / add",                  CommandDescriptor(rebuild,          "add",     re));
+        AreEqual("msbuild / (re)add",              CommandDescriptor(msbuild,          "add",     re));
+        AreEqual("msrebuild / add",                CommandDescriptor(msrebuild,        "add",     re));
+        AreEqual("restore / (re)add",              CommandDescriptor(restore,          "add",     re));
+        AreEqual("installpackage / (re)add",       CommandDescriptor(installpackage,   "add",     re));
+        AreEqual("uninstallpackage / (re)add",     CommandDescriptor(uninstallpackage, "add",     re));
+        
+        AreEqual("build / (re)restore",            CommandDescriptor(build,            "restore", re));
+        AreEqual("rebuild / restore",              CommandDescriptor(rebuild,          "restore", re));
+        AreEqual("msbuild / (re)restore",          CommandDescriptor(msbuild,          "restore", re));
+        AreEqual("msrebuild / restore",            CommandDescriptor(msrebuild,        "restore", re));
+        AreEqual("(re)restore",                    CommandDescriptor(restore,          "restore", re));
+        AreEqual("installpackage / (re)restore",   CommandDescriptor(installpackage,   "restore", re));
+        AreEqual("uninstallpackage / (re)restore", CommandDescriptor(uninstallpackage, "restore", re));
+        
+        AreEqual("build / (re)remove",             CommandDescriptor(build,            "remove",  re));
+        AreEqual("rebuild / remove",               CommandDescriptor(rebuild,          "remove",  re));
+        AreEqual("msbuild / (re)remove",           CommandDescriptor(msbuild,          "remove",  re));
+        AreEqual("msrebuild / remove",             CommandDescriptor(msrebuild,        "remove",  re));
+        AreEqual("restore / (re)remove",           CommandDescriptor(restore,          "remove",  re));
+        AreEqual("installpackage / (re)remove",    CommandDescriptor(installpackage,   "remove",  re));
+        AreEqual("uninstallpackage / (re)remove",  CommandDescriptor(uninstallpackage, "remove",  re));
     }
 
     /*
-    [TestMethod]
-    public void CommandDescriptor_WithSlashText_WithReFlag()
-        => AreEqual("build/(re)custom", CommandDescriptor(build, "custom", true));
-
     // TODO: More cases where Enum and Text are same (so with the re flag then).
 
     // TODO: More elaborate
     [TestMethod]
-    public void CommandDescriptor_WithReCommandEnumAndIsRebuild()
+    public void CommandDescriptor_WithReCommandEnumAndReFlag()
         => AreEqual("rebuild", CommandDescriptor(rebuild, default, true));
 
     // TODO: More elaborate
