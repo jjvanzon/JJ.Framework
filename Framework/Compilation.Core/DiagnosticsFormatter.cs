@@ -15,7 +15,7 @@ internal static class DiagnosticsFormatter
         string argsDescriptor = ArgsDescriptor(args);
 
         string sep1 = Has(commandDescriptor) && Has(idVerDescriptor) ? " " : "";
-        string sep2 = Has(sep1) && Has(argsDescriptor) ? " | " : "";
+        string sep2 = (Has(commandDescriptor) || Has(idVerDescriptor)) && Has(argsDescriptor) ? " | " : "";
 
         return commandDescriptor + sep1 + idVerDescriptor + sep2 + argsDescriptor;
     }

@@ -10,35 +10,94 @@ public class DiagnosticsFormatterTests
     private static readonly string?[] _textNullies = [ null, default, "", " " ];
     private static readonly bool[] _boolNullies = [ default, false ];
 
-    /*
-    // Descriptor (public entry point)
+    // DotNetArgs
 
     [TestMethod]
-    public void Descriptor_NullArgs_ReturnsNullPlaceholder()
+    public void DotNetArgs_Descriptor_NullArgs()
         => AreEqual("<DotNetArgs=null>", Descriptor(null));
 
     [TestMethod]
-    public void Descriptor_CommandAndIDVer_JoinedWithSpace()
+    public void DotNetArgs_Descriptor_EnumAndCommandText_MSRebuild()
     {
-        var args = new DotNetArgs(build) { ID = "MyPkg", Ver = "1.0.0" };
-        AreEqual("build MyPkg 1.0.0", Descriptor(args));
+        var args = new DotNetArgsAccessor(msrebuild) { Command = "msbuild" }.Obj;
+        AreEqual("msrebuild / msbuild", Descriptor(args));
     }
 
     [TestMethod]
-    public void Descriptor_CommandAndArgs_JoinedWithPipe()
+    public void DotNetArgs_Descriptor_EnumAndFullArgs_Build()
     {
-        var acc = new DotNetArgsAccessor(build) { FullArgs = "build --nologo" };
-        AreEqual("build | build --nologo", Descriptor(acc.Obj));
+        var args = new DotNetArgsAccessor(build) { FullArgs = "build --no-restore" }.Obj;
+        AreEqual("build | build --no-restore", Descriptor(args));
     }
 
     [TestMethod]
-    public void Descriptor_CommandIDVerAndArgs_AllThreeParts()
+    public void DotNetArgs_Descriptor_Rebuild_Enum_CommandText_IsRebuild_FullArgs()
     {
-        var acc = new DotNetArgsAccessor(build) { FullArgs = "build \"Pkg\" 2.0 --nologo" };
-        acc.Obj.ID  = "Pkg";
-        acc.Obj.Ver = "2.0";
-        AreEqual("build Pkg 2.0 | build \"Pkg\" 2.0 --nologo", Descriptor(acc.Obj));
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = rebuild, 
+            Command = "build", 
+            IsRebuild = true, 
+            FullArgs = "build --no-incremental" 
+        };
+
+        AreEqual("rebuild / build | build --no-incremental", Descriptor(args.Obj));
     }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_CommandEnum_FullArgsAndArgs()
+    {
+        var args = new DotNetArgsAccessor
+        {
+            CommandEnum = restore,
+            Args = "--bogus-arg",
+            FullArgs = "--dummy-arg"
+        };
+        AreEqual("restore | --bogus-arg | --dummy-arg", Descriptor(args.Obj));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_FullContainsArgs()
+    {
+        // TODO
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_InstallPackage_CommandEnumAndIDVer()
+    {
+        var args = new DotNetArgsAccessor(installpackage) { ID = "JJ.Framework.Common", Ver = "1.0.0" }.Obj;
+        AreEqual("installpackage JJ.Framework.Common 1.0.0", Descriptor(args));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_InstallPackage_CommandTextAndIDVer()
+    {
+        var args = new DotNetArgsAccessor("add") { ID = "JJ.Framework.Common", Ver = "1.0.0" }.Obj;
+        AreEqual("add JJ.Framework.Common 1.0.0", Descriptor(args));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandTextAndID()
+    {
+        var args = new DotNetArgsAccessor("remove") { ID = "JJ.Framework.Common" }.Obj;
+        AreEqual("remove JJ.Framework.Common", Descriptor(args));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_InstallPackage_CommandEnumTextIDVerAndArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = installpackage, 
+            Command = "add", 
+            ID = "JJ.Framework.Common", 
+            Ver = "1.0.0",
+            Args = "--no-cache"
+        }.Obj;
+        AreEqual("installpackage / add JJ.Framework.Common 1.0.0 | --no-cache", Descriptor(args));
+    }
+
+    /*
 
     [TestMethod]
     public void Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
