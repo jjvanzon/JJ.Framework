@@ -3,12 +3,12 @@
 public static partial class Reflect
 {
    public const BindingFlags BindingFlagsAll =
-        BindingFlags.Public |
-        BindingFlags.NonPublic |
-        BindingFlags.Instance |
-        BindingFlags.Static |
-        BindingFlags.FlattenHierarchy |
-        BindingFlags.IgnoreCase;
+        Public |
+        NonPublic |
+        Instance |
+        Static |
+        FlattenHierarchy |
+        IgnoreCase;
     
     internal static readonly ReflectionCacheLegacy _cache = new(BindingFlagsAll);
 }
