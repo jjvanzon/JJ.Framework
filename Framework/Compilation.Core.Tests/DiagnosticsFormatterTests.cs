@@ -207,11 +207,10 @@ public class DiagnosticsFormatterTests
         AreEqual("installpackage / (re)blah",      CommandDescriptor(installpackage,   "blah",    re));
         AreEqual("uninstallpackage / (re)blah",    CommandDescriptor(uninstallpackage, "blah",    re));
 
-        // Checking if command text matches command enum might help. But also might hard-link logic into diagnostics.
         AreEqual("build / (re)build",              CommandDescriptor(build,            "build",   re));
         AreEqual("rebuild / build",                CommandDescriptor(rebuild,          "build",   re));
         AreEqual("msbuild / (re)build",            CommandDescriptor(msbuild,          "build",   re));
-        AreEqual("msrebuild / build",              CommandDescriptor(msrebuild,        "build",   re)); // TODO: Inconsistent daa should show re-flag.
+        AreEqual("msrebuild / (re)build",          CommandDescriptor(msrebuild,        "build",   re));
         AreEqual("restore / (re)build",            CommandDescriptor(restore,          "build",   re));
         AreEqual("installpackage / (re)build",     CommandDescriptor(installpackage,   "build",   re));
         AreEqual("uninstallpackage / (re)build",   CommandDescriptor(uninstallpackage, "build",   re));
@@ -225,7 +224,7 @@ public class DiagnosticsFormatterTests
         AreEqual("uninstallpackage / (re)rebuild", CommandDescriptor(uninstallpackage, "rebuild", re));
         
         AreEqual("build / (re)msbuild",            CommandDescriptor(build,            "msbuild", re));
-        AreEqual("rebuild / msbuild",              CommandDescriptor(rebuild,          "msbuild", re)); // TODO: Inconsistent data should show re-flag.
+        AreEqual("rebuild / (re)msbuild",          CommandDescriptor(rebuild,          "msbuild", re));
         AreEqual("msbuild / (re)msbuild",          CommandDescriptor(msbuild,          "msbuild", re));
         AreEqual("msrebuild / msbuild",            CommandDescriptor(msrebuild,        "msbuild", re));
         AreEqual("restore / (re)msbuild",          CommandDescriptor(restore,          "msbuild", re));
@@ -235,7 +234,7 @@ public class DiagnosticsFormatterTests
         AreEqual("build / (re)add",                CommandDescriptor(build,            "add",     re));
         AreEqual("rebuild / add",                  CommandDescriptor(rebuild,          "add",     re)); // TODO: Inconsistent data should show re-flag.
         AreEqual("msbuild / (re)add",              CommandDescriptor(msbuild,          "add",     re));
-        AreEqual("msrebuild / add",                CommandDescriptor(msrebuild,        "add",     re));
+        AreEqual("msrebuild / (re)add",            CommandDescriptor(msrebuild,        "add",     re));
         AreEqual("restore / (re)add",              CommandDescriptor(restore,          "add",     re));
         AreEqual("installpackage / (re)add",       CommandDescriptor(installpackage,   "add",     re));
         AreEqual("uninstallpackage / (re)add",     CommandDescriptor(uninstallpackage, "add",     re));
@@ -243,7 +242,7 @@ public class DiagnosticsFormatterTests
         AreEqual("build / (re)restore",            CommandDescriptor(build,            "restore", re));
         AreEqual("rebuild / restore",              CommandDescriptor(rebuild,          "restore", re)); // TODO: Inconsistent data should show re-flag.
         AreEqual("msbuild / (re)restore",          CommandDescriptor(msbuild,          "restore", re));
-        AreEqual("msrebuild / restore",            CommandDescriptor(msrebuild,        "restore", re)); // TODO: Inconsistent data should show re-flag.
+        AreEqual("msrebuild / (re)restore",        CommandDescriptor(msrebuild,        "restore", re));
         AreEqual("restore / (re)restore",          CommandDescriptor(restore,          "restore", re));
         AreEqual("installpackage / (re)restore",   CommandDescriptor(installpackage,   "restore", re));
         AreEqual("uninstallpackage / (re)restore", CommandDescriptor(uninstallpackage, "restore", re));
@@ -251,7 +250,7 @@ public class DiagnosticsFormatterTests
         AreEqual("build / (re)remove",             CommandDescriptor(build,            "remove",  re));
         AreEqual("rebuild / remove",               CommandDescriptor(rebuild,          "remove",  re));  // TODO: Inconsistent data should show re-flag.
         AreEqual("msbuild / (re)remove",           CommandDescriptor(msbuild,          "remove",  re));
-        AreEqual("msrebuild / remove",             CommandDescriptor(msrebuild,        "remove",  re));  // TODO: Inconsistent data should show re-flag.
+        AreEqual("msrebuild / (re)remove",         CommandDescriptor(msrebuild,        "remove",  re));
         AreEqual("restore / (re)remove",           CommandDescriptor(restore,          "remove",  re));
         AreEqual("installpackage / (re)remove",    CommandDescriptor(installpackage,   "remove",  re));
         AreEqual("uninstallpackage / (re)remove",  CommandDescriptor(uninstallpackage, "remove",  re));

@@ -59,6 +59,10 @@ internal static class DiagnosticsFormatter
         bool commandIsUnknown = Has(command) && !command.In(knownCommands);
         if (commandIsUnknown) return true;
 
+        bool commandIsMs = command.Is("msbuild");
+        bool enumIsMs = @enum is msbuild or msrebuild;
+        if (Has(command) && Has(@enum) && commandIsMs != enumIsMs) return true;
+
         return false;
     }
 
