@@ -52,8 +52,11 @@ internal static class DiagnosticsFormatter
     
     private static bool IsInconsistent(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
-        bool invalidReFlag = IsRe(@enum) != isRebuild;
-        if (invalidReFlag) return true;
+        bool enumIsRe = IsRe(@enum);
+        if (enumIsRe != isRebuild) return true;
+
+        bool commandCanBeRe = CanBeRebuild(command);
+        if (enumIsRe && !commandCanBeRe) return true;
 
         string[] knownCommands = [ "build", "msbuild", "restore", "add", "remove" ];
         bool commandIsUnknown = Has(command) && !command.In(knownCommands);
@@ -61,7 +64,8 @@ internal static class DiagnosticsFormatter
 
         bool commandIsMs = command.Is("msbuild");
         bool enumIsMs = @enum is msbuild or msrebuild;
-        if (Has(command) && Has(@enum) && commandIsMs != enumIsMs) return true;
+        bool msMismatch = Has(command) && Has(@enum) && commandIsMs != enumIsMs;
+        if (msMismatch) return true;
 
         return false;
     }
@@ -93,8 +97,8 @@ internal static class DiagnosticsFormatter
         return true;
     }
 
-    private static bool IsRe(DotNetCommandEnum @enum) 
-        => @enum is rebuild or msrebuild;
+    private static bool IsRe(DotNetCommandEnum @enum) => @enum is rebuild or msrebuild;
+    private static bool CanBeRebuild(string? command) => !Has(command) || command.In("build", "msbuild");
 
     // IDVerDescriptor
 
