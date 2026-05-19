@@ -14,6 +14,8 @@
     <File Path="Framework/Vars.xml" />
     <File Path="NuGet.config" />
   </Folder>
+  <Project Path="Framework/Compilation.Core.Package.Tests/JJ.Framework.Compilation.Core.Package.Tests.csproj" />
+  <Project Path="Framework/Compilation.Core.Package.TrimTests/JJ.Framework.Compilation.Core.Package.TrimTests.csproj" />
   <Project Path="Framework/Compilation.Core.Tests/JJ.Framework.Compilation.Core.Tests.csproj" />
   <Project Path="Framework/Compilation.Core.TrimTests/JJ.Framework.Compilation.Core.TrimTests.csproj" />
   <Project Path="Framework/Compilation.Core/JJ.Framework.Compilation.Core.csproj" />
