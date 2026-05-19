@@ -15,6 +15,8 @@ internal static class DotNetExecutor
         args.FullArgs = FormatArgs(args, opt);
         Log(args, opt);
 
+        //string temp = args.ToString();
+
         const string fileName = "dotnet";
 
         using var process = Process.Start(new ProcessStartInfo

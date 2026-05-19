@@ -6,8 +6,8 @@ internal static class DiagnosticsFormatter
 
     private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
 
-    public static string DebuggerDisplay(DotNetArgs? args)
-        => nameof(DotNetArgs) + " " + Descriptor(args);
+    public static string DebuggerDisplay(DotNetArgs? args) => 
+        nameof(DotNetArgs) + " " + Descriptor(args);
 
     public static string Descriptor(DotNetArgs? args)
     {
@@ -17,6 +17,16 @@ internal static class DiagnosticsFormatter
         string idVerDescriptor = IDVerDescriptor(args);
         string argsDescriptor = ArgsDescriptor(args);
 
+        // Cut away redundancies.
+        if (argsDescriptor.StartsWith(commandDescriptor, OrdinalIgnoreCase))
+        {
+            commandDescriptor = "";
+        }
+        if (argsDescriptor.StartsWith(args.Command, OrdinalIgnoreCase))
+        {
+            commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
+        }
+
         string sep1 = Has(commandDescriptor) && Has(idVerDescriptor) ? " " : "";
         string sep2 = (Has(commandDescriptor) || Has(idVerDescriptor)) && Has(argsDescriptor) ? " | " : "";
 
@@ -25,12 +35,8 @@ internal static class DiagnosticsFormatter
 
     // Command Descriptor
 
-    private static string CommandDescriptor(DotNetArgs? args)
-    {
-        if (args == null) return DotNetArgsNull;
-        
-        return CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
-    }
+    private static string CommandDescriptor(DotNetArgs? args) => 
+        args == null ? DotNetArgsNull : CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
 
     private static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
@@ -102,22 +108,14 @@ internal static class DiagnosticsFormatter
 
     // IDVerDescriptor
 
-    private static string IDVerDescriptor(DotNetArgs? args)
-    {
-        if (args == null) return DotNetArgsNull;
+    private static string IDVerDescriptor(DotNetArgs? args) => 
+        args == null ? DotNetArgsNull : IDVerDescriptor(args.ID, args.Ver);
 
-        return IDVerDescriptor(args.ID, args.Ver);
-    }
+    private static string IDVerDescriptor(string? id, string? ver) => 
+        $"{id} {ver}".Trim();
 
-    private static string IDVerDescriptor(string? id, string? ver) 
-        => $"{id} {ver}".Trim();
-
-    private static string ArgsDescriptor(DotNetArgs? args)
-    {
-        if (args == null) return DotNetArgsNull;
-
-        return ArgsDescriptor(args.Args, args.FullArgs);
-    }
+    private static string ArgsDescriptor(DotNetArgs? args) => 
+        args == null ? DotNetArgsNull : ArgsDescriptor(args.Args, args.FullArgs);
 
     private static string ArgsDescriptor(string? args, string? fullArgs)
     {

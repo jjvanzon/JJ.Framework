@@ -27,7 +27,27 @@ public class DiagnosticsFormatterTests
     public void DotNetArgs_Descriptor_EnumAndFullArgs_Build()
     {
         var args = new DotNetArgsAccessor(build) { FullArgs = "build --no-restore" }.Obj;
-        AreEqual("build | build --no-restore", Descriptor(args));
+        AreEqual("build --no-restore", Descriptor(args));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_EnumAndFullArgs_Rebuild()
+    {
+        var args = new DotNetArgsAccessor(rebuild) { FullArgs = "build --no-incremental" }.Obj;
+        AreEqual("rebuild | build --no-incremental", Descriptor(args));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_Build_Enum_CommandText_FullArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = build, 
+            Command = "build", 
+            IsRebuild = false, 
+            FullArgs = "build --no-incremental" 
+        };
+        AreEqual("build --no-incremental", Descriptor(args.Obj));
     }
 
     [TestMethod]
@@ -40,7 +60,7 @@ public class DiagnosticsFormatterTests
             IsRebuild = true, 
             FullArgs = "build --no-incremental" 
         };
-        AreEqual("rebuild / build | build --no-incremental", Descriptor(args.Obj));
+        AreEqual("rebuild | build --no-incremental", Descriptor(args.Obj));
     }
 
     [TestMethod]
