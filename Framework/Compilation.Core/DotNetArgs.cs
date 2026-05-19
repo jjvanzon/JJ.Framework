@@ -2,6 +2,8 @@
 
 public class DotNetArgs
 {
+    public override string ToString() => DebuggerDisplay(this);
+
     internal DotNetArgs() { }
     internal DotNetArgs(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
     internal DotNetArgs(string command) => Command = command;

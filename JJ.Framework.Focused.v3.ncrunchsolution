@@ -5,6 +5,12 @@
       <Value>IsNCrunch = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
+    <MetricsExclusionList>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.0\..</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.1\..</Value>
+      <Value>Framework\Compilation.Core.Tests\JJ.Framework.Compilation.Core.Tests.csproj:net461\..</Value>
+      <Value>Framework\Compilation.Core.Tests\JJ.Framework.Compilation.Core.Tests.csproj:net462\..</Value>
+    </MetricsExclusionList>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>

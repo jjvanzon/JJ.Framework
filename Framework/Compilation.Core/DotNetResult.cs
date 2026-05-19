@@ -3,7 +3,7 @@
 public record DotNetResult
 {
     public override string ToString() => Text;
-    public static implicit operator string(DotNetResult? result) => $"{result}";
+    public static implicit operator string(DotNetResult? result) => result?.Text ?? "";
 
     public string Text { get; }
 

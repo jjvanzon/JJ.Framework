@@ -6,6 +6,9 @@ internal static class DiagnosticsFormatter
 
     private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
 
+    public static string DebuggerDisplay(DotNetArgs? args)
+        => nameof(DotNetArgs) + " " + Descriptor(args);
+
     public static string Descriptor(DotNetArgs? args)
     {
         if (args == null) return DotNetArgsNull;
@@ -55,7 +58,7 @@ internal static class DiagnosticsFormatter
         bool enumIsRe = IsRe(@enum);
         if (enumIsRe != isRebuild) return true;
 
-        bool commandCanBeRe = CanBeRebuild(command);
+        bool commandCanBeRe = CanBeRe(command);
         if (enumIsRe && !commandCanBeRe) return true;
 
         string[] knownCommands = [ "build", "msbuild", "restore", "add", "remove" ];
@@ -80,9 +83,6 @@ internal static class DiagnosticsFormatter
         // Otherwise include when different
         string enumText = @enum.ToString();
         return !command.Is(enumText);
-        
-        //if (!Has(@enum)) return true;
-        //return true;
     }
     
     private static bool ReRequired(bool isRebuild, DotNetCommandEnum @enum, bool inconsistenciesDetected)
@@ -98,7 +98,7 @@ internal static class DiagnosticsFormatter
     }
 
     private static bool IsRe(DotNetCommandEnum @enum) => @enum is rebuild or msrebuild;
-    private static bool CanBeRebuild(string? command) => !Has(command) || command.In("build", "msbuild");
+    private static bool CanBeRe(string? command) => !Has(command) || command.In("build", "msbuild");
 
     // IDVerDescriptor
 

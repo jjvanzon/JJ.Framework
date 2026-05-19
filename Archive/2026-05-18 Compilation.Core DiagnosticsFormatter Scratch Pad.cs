@@ -41,3 +41,6 @@
         foreach (var nully in _textNullies)
         {
         }
+
+    private static string WithTypeName<T>(string descriptor)
+        => typeof(T).Name + ": " + descriptor;

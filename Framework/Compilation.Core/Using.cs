@@ -23,3 +23,4 @@ global using static JJ.Framework.Compilation.Core.DotNetEnricher;
 global using static JJ.Framework.Compilation.Core.DotNetLogger;
 global using static JJ.Framework.Compilation.Core.DotNetArgFormatter;
 global using static JJ.Framework.Compilation.Core.DotNetExecutor;
+global using static JJ.Framework.Compilation.Core.DiagnosticsFormatter;
