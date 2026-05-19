@@ -40,7 +40,6 @@ public class DiagnosticsFormatterTests
             IsRebuild = true, 
             FullArgs = "build --no-incremental" 
         };
-
         AreEqual("rebuild / build | build --no-incremental", Descriptor(args.Obj));
     }
 
@@ -57,9 +56,26 @@ public class DiagnosticsFormatterTests
     }
 
     [TestMethod]
-    public void DotNetArgs_Descriptor_FullContainsArgs()
+    public void DotNetArgs_Descriptor_CommandEnum_FullContainsArgs()
     {
-        // TODO
+        var args = new DotNetArgsAccessor
+        {
+            CommandEnum = restore,
+            Args = "--no-cache",
+            FullArgs = "--no-cache --no-logo"
+        };
+        AreEqual("restore | --no-cache --no-logo", Descriptor(args.Obj));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_ArgsDescriptorAlone()
+    {
+        var args = new DotNetArgsAccessor
+        {
+            Args = "--no-cache",
+            FullArgs = "--no-cache --no-logo"
+        };
+        AreEqual("<no command> | --no-cache --no-logo", Descriptor(args.Obj));
     }
 
     [TestMethod]
@@ -97,15 +113,12 @@ public class DiagnosticsFormatterTests
         AreEqual("installpackage / add JJ.Framework.Common 1.0.0 | --no-cache", Descriptor(args));
     }
 
-    /*
-
     [TestMethod]
     public void Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
     {
-        var args = new DotNetArgs();
+        var args = new DotNetArgsAccessor().Obj;
         AreEqual("<no command>", Descriptor(args));
     }
-    */
 
     // CommandDescriptor
 
