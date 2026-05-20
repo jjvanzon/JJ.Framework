@@ -15,6 +15,9 @@ public class AssertCoreTests
     private const  string               _actualText      = "b";
     private static readonly object?     _obj             = new();
     private static readonly object?     _noObj           = null;
+    private static readonly int?        _nullableOne     = 1;
+    private static readonly Type        _intType         = typeof(int);
+    private static readonly Type        _stringType      = typeof(string);
 
     // AreEqual
 
@@ -452,33 +455,44 @@ public class AssertCoreTests
     // Type
 
     [TestMethod]
-    public void AssertCore_IsType_ValueType()
+    public void AssertCore_IsType_WithValue()
     {
-        int? nullableOne = 1;
+        IsType(typeof(int?), _nullableOne);
+        IsType(typeof(int?), _nullableOne, "oops");
 
-        IsType(typeof(int?), (int?)1);
-        IsType(typeof(int?), (int?)1, "oops");
+        Throws(() => IsType(typeof(int), _nullableOne),         "IsType failed", "_nullableOne");
+        Throws(() => IsType(typeof(int), _nullableOne, "oops"), "IsType failed", "_nullableOne", "oops");
+    }
 
-        Throws(() => IsType(typeof(int), nullableOne),     "IsType failed", "nullableOne");
-        Throws(() => IsType(typeof(int), (int?)1, "oops"), "IsType failed", "(int?)1", "oops");
+    [TestMethod]
+    public void AssertCore_IsType_TwoTypes()
+    {
+        IsType(typeof(int?), _nullableOne);
+        IsType(typeof(int?), _nullableOne, "oops");
+
+        Throws(() => IsType(typeof(int), _stringType),         "IsType failed", "_stringType");
+        Throws(() => IsType(typeof(int), _stringType, "oops"), "IsType failed", "_stringType", "oops");
     }
 
     // NotType
 
     [TestMethod]
-    public void AssertCore_NotType_ValueType()
+    public void AssertCore_NotType_WithValue()
     {
-        int? nullableOne = 1;
-        var intType = typeof(int);
+        NotType(typeof(int), _nullableOne);
+        NotType(typeof(int), _nullableOne, "oops");
 
-        NotType(typeof(int), (int?)1);
-        NotType(typeof(int), (int?)1, "oops");
-        NotType(typeof(string), typeof(int));
-        NotType(typeof(string), typeof(int), "oops");
+        Throws(() => NotType(typeof(int?), _nullableOne),         "NotType failed", "nullableOne");
+        Throws(() => NotType(typeof(int?), _nullableOne, "oops"), "NotType failed", "nullableOne", "oops");
+    }
 
-        Throws(() => NotType(typeof(int?), nullableOne),         "NotType failed", "nullableOne");
-        Throws(() => NotType(typeof(int),  intType    ),         "NotType failed", "intType"    );
-        Throws(() => NotType(typeof(int?), (int?)1,     "oops"), "NotType failed", "(int?)1",     "oops");
-        Throws(() => NotType(typeof(int),  typeof(int), "oops"), "NotType failed", "typeof(int)", "oops");
+    [TestMethod]
+    public void AssertCore_NotType_WithTwoTypes()
+    {
+        NotType(typeof(string), _intType);
+        NotType(typeof(string), _intType, "oops");
+
+        Throws(() => NotType(typeof(int), _intType),         "NotType failed", "_intType");
+        Throws(() => NotType(typeof(int), _intType, "oops"), "NotType failed", "_intType", "oops");
     }
 }

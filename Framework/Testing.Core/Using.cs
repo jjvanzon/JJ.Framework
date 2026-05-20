@@ -24,7 +24,6 @@ global using static System.Reflection.BindingFlags;
 global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes;
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.Exceptions.Core.Throw;
-global using static JJ.Framework.Reflection.Legacy.ExpressionHelper;
 global using static JJ.Framework.Reflection.Legacy.ReflectionHelper;
 global using static JJ.Framework.Reflection.Core.Reflect;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
