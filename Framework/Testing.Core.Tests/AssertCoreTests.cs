@@ -202,7 +202,7 @@ public class AssertCoreTests
     // Null
 
     [TestMethod]
-    public void AssertCore_Null_Overloads()
+    public void AssertCore_Null()
     {
         IsNull(_noObj);
         IsNull(_noObj, "oops");
@@ -213,7 +213,7 @@ public class AssertCoreTests
     // NotNull
 
     [TestMethod]
-    public void AssertCore_NotNull_Overloads()
+    public void AssertCore_NotNull()
     {
           NotNull(_obj);
         IsNotNull(_obj);
@@ -229,7 +229,7 @@ public class AssertCoreTests
     // NullOrEmpty
 
     [TestMethod]
-    public void AssertCore_IsNotNullOrEmpty_And_NotNullOrEmpty_Overloads()
+    public void AssertCore_NotNullOrEmpty()
     {
         const string empty = "";
         string? noText = null;
@@ -250,7 +250,7 @@ public class AssertCoreTests
     }
 
     [TestMethod]
-    public void AssertCore_IsNullOrEmpty_And_NullOrEmpty_Overloads()
+    public void AssertCore_NullOrEmpty()
     {
         const string filled = "x";
         const string empty = "";
@@ -274,7 +274,7 @@ public class AssertCoreTests
     // NullOrWhiteSpace
 
     [TestMethod]
-    public void AssertCore_IsNotNullOrWhiteSpace_And_NotNullOrWhiteSpace_Overloads()
+    public void AssertCore_NotNullOrWhiteSpace()
     {
         const string whitespace = " ";
         const string empty = "";
@@ -305,7 +305,7 @@ public class AssertCoreTests
     }
 
     [TestMethod]
-    public void AssertCore_IsNullOrWhiteSpace_And_NullOrWhiteSpace_Overloads()
+    public void AssertCore_NullOrWhiteSpace()
     {
         const string text = "x";
         const string empty = "";
@@ -381,7 +381,7 @@ public class AssertCoreTests
     // NoNullRet
 
     [TestMethod]
-    public void AssertCore_NoNullRet_Overloads()
+    public void AssertCore_NoNullRet()
     {
         string nullText = null!;
 
@@ -397,7 +397,7 @@ public class AssertCoreTests
     }
 
     [TestMethod]
-    public void AssertCore_NullRet_Overloads()
+    public void AssertCore_NullRet()
     {
         int? wrong = 2;
         const int nonNullable = 1;
@@ -418,7 +418,7 @@ public class AssertCoreTests
     // Throws
 
     [TestMethod]
-    public void AssertCore_Throws_Methods()
+    public void AssertCore_Throws()
     {
         Throws         (ThrowingAction        );
         Throws         (ThrowingFunc          );
@@ -438,16 +438,49 @@ public class AssertCoreTests
         Throws         (ThrowingAction, typeof(InvalidOperationException), "boom");
         Throws         (ThrowingFunc,   typeof(InvalidOperationException), "boom");
         ThrowsException(ThrowingFunc,   typeof(InvalidOperationException), "boom");
-        
+
+
+        Throws(() => Throws(() => { }), "An exception should have occurred.");
     }
 
     [TestMethod]
-    public void AssertCore_ThrowsOnOtherThread_Methods()
+    public void AssertCore_Throws_DidNotThrow()
+    {
+        const string expectedMsgPart = "An exception should have"; // been throws/occurred.
+        // Throws-ception needed to test the "didn't throw" case.
+        Throws(() => Throws         (() => { }        ), expectedMsgPart);
+        Throws(() => Throws         (() => ""         ), expectedMsgPart);
+        Throws(() => ThrowsException(() => ""         ), expectedMsgPart);
+        Throws(() => Throws         (() => { }, "murp"), expectedMsgPart);
+        Throws(() => Throws         (() => "",  "murp"), expectedMsgPart);
+        Throws(() => ThrowsException(() => "",  "murp"), expectedMsgPart);
+        Throws(() => Throws         <InvalidOperationException>(() => { }        ), expectedMsgPart);
+        Throws(() => Throws         <InvalidOperationException>(() => ""         ), expectedMsgPart);
+        Throws(() => ThrowsException<InvalidOperationException>(() => ""         ), expectedMsgPart);
+        Throws(() => Throws         <InvalidOperationException>(() => { }, "murp"), expectedMsgPart);
+        Throws(() => Throws         <InvalidOperationException>(() => "",  "murp"), expectedMsgPart);
+        Throws(() => ThrowsException<InvalidOperationException>(() => "",  "murp"), expectedMsgPart);
+        Throws(() => Throws         (() => { }, typeof(InvalidOperationException)        ), expectedMsgPart);
+        Throws(() => Throws         (() => "",  typeof(InvalidOperationException)        ), expectedMsgPart);
+        Throws(() => ThrowsException(() => "",  typeof(InvalidOperationException)        ), expectedMsgPart);
+        Throws(() => Throws         (() => { }, typeof(InvalidOperationException), "murp"), expectedMsgPart);
+        Throws(() => Throws         (() => "",  typeof(InvalidOperationException), "murp"), expectedMsgPart);
+        Throws(() => ThrowsException(() => "",  typeof(InvalidOperationException), "murp"), expectedMsgPart);
+    }
+
+    // TODO: Wrong exception type case.
+    // TODO: Wrong message case.
+    // TODO: Wrong exception type and wrong message case.
+
+    [TestMethod]
+    public void AssertCore_ThrowsOnOtherThread()
     {
         ThrowsOnOtherThread         (ThrowingAction);
         ThrowsOnOtherThread         (ThrowingFunc);
         ThrowsExceptionOnOtherThread(ThrowingFunc);
     }
+
+    // TODO: DidNotThrow variants etc. for ThrowsOnOtherThread variants.
 
     private void ThrowingAction() => throw new InvalidOperationException("boom");
     private object ThrowingFunc() => throw new InvalidOperationException("boom");
