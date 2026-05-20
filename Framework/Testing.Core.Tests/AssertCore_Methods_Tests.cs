@@ -3,6 +3,9 @@ namespace JJ.Framework.Testing.Core.Tests;
 [TestClass]
 public class AssertCore_Methods_Tests
 {
+    // TODO: Use a reference type for the (object) tests.
+    // TODO: Test for type int, string, maybe CultureInfo (for a reference type).
+
     [TestMethod]
     public void AssertCore_AreEqual_Object_Overloads()
     {
@@ -17,13 +20,20 @@ public class AssertCore_Methods_Tests
     {
         AreEqual(1, 1);
         AreEqual(1, 1, "ok");
-        Throws(() => AreEqual(1, 2), "Assert.AreEqual failed.");
-        Throws(() => AreEqual(1, 2, "x"), "Assert.AreEqual failed.", "x");
+        // TODO: From now on, test if `actual` ends up in the message too.
+        //Throws(() => AreEqual(1, 2), "Assert.AreEqual failed.");
+        Throws(() => AreEqual(1, 2), "AreEqual failed.", "Tested", "2");
+        //Throws(() => AreEqual(1, 2, "x"), "Assert.AreEqual failed.", "x");
+        Throws(() => AreEqual(1, 2, "yeah"), "AreEqual failed.", "Tested", "2", "yeah");
     }
+
+    // TODO: You didn't test the failure cases here.
 
     [TestMethod]
     public void AssertCore_NotEqual_And_AreNotEqual_Overloads()
     {
+        // TODO: Using a reference type (e.g. CultureInfo) should take care of the ugly (object) casts.
+        // TODO: Replace "ok" by "yeah"
         NotEqual((object)1, (object)2);
         NotEqual((object)1, (object)2, "ok");
         NotEqual(1, 2);
@@ -117,6 +127,8 @@ public class AssertCore_Methods_Tests
         NullRet(1, (int?)1);
         NullRet(1, (int?)1, "ok");
     }
+
+    // TODO: Avoid casts to (Action) and (Func<>).
 
     [TestMethod]
     public void AssertCore_Throws_Methods()
