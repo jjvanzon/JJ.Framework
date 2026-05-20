@@ -32,3 +32,14 @@
     // ncrunch: no coverage end
 
     #endregion
+
+
+    [TestMethod]
+    public void AssertCore_ThrowsException_WrongMessage()
+    {
+        const string expectedMsgPart = "AreEqual failed";
+
+        Throws(() => ThrowsException(ThrowingFunc, "murp"), expectedMsgPart);
+        Throws(() => ThrowsException<InvalidOperationException>(ThrowingFunc, "murp"), expectedMsgPart);
+        Throws(() => ThrowsException(ThrowingFunc, typeof(InvalidOperationException), "murp"), expectedMsgPart);
+    }
