@@ -56,17 +56,17 @@ public class DotNetTests : IDisposable
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), ProgramContent);
 
         // TODO: Different types of options aren't tested.
-        // TODO: Logging isn't used nor tested.
+        // TODO: Logging isn't really tested.
         _opt = new DotNetOptions
         {
             Dir        = _tempDir,
             File       = _csprojPath,
             BuildConf  = "Release",
             //TimeOutSec = 300,
-            Log        = _ => { }
+            Log        = Log
         };
 
-        _optNoFile = _opt with { File = "" };
+        _optNoFile = _opt with { File = "", Log = NullLog };
 
         // Restore once so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
         // TODO: This influences test results beyond regular usage?
@@ -86,11 +86,19 @@ public class DotNetTests : IDisposable
 
     private void Log(string msg) => Console.WriteLine(msg);
 
-    private void AssertAssetsFile()            => IsTrue(Exists(_assetsFilePath),   message: _assetsFilePath  );
-    private void AssertReleaseDll()            => IsTrue(Exists(_outputDllRelease), message: _outputDllRelease);
-    private void AssertDebugDll()              => IsTrue(Exists(_outputDllDebug),   message: _outputDllDebug  );
     private void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
-    private void AssertContains(string part, string whole) => IsTrue(whole.Contains(part), $"Expected '{part}' in: {whole}");
+
+    private void AssertContains(string whole, string part)
+    {
+        IsTrue(whole.Contains(part, OrdinalIgnoreCase), $"Expected '{part}' in: {whole}");
+    }
+
+    private void AssertContainsAny(string whole, params string[] parts)
+    {
+        string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
+        IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), 
+               $"Expected one of {partsFormatted} in: {whole}");
+    }
 
     private static readonly Lock _tempDirLock = new();
 
@@ -120,16 +128,15 @@ public class DotNetTests : IDisposable
 
     // Restore
 
+    private void TestRestore_ChDir(Func<string> call) => InTempDir(() => TestRestore(call));
     private void TestRestore(Func<string> call)
     {
         string output = call();
         NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains("restore"), message: output);
-        IsTrue(output.Contains("Restored") || output.Contains("up-to-date"), message: output);
-        AssertAssetsFile();
+        AssertContains(output, "restore");
+        AssertContainsAny(output, "restored", "up-to-date");
+        AssertExists(_assetsFilePath);
     }
-
-    private void TestRestore_ChDir(Func<string> call) => InTempDir(() => TestRestore(call));
 
     [TestMethod] public void Test_Restore_ByMethod()          => TestRestore_ChDir(() => Restore());
     [TestMethod] public void Test_Restore_ByMethod_Opt()      => TestRestore      (() => Restore(_optNoFile));
@@ -152,8 +159,8 @@ public class DotNetTests : IDisposable
     {
         string output = call();
         NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains("Build succeeded"), message: output);
-        IsTrue(output.Contains(filePath), $"Expected '{filePath}' in: {output}");
+        AssertContains(output, "build succeeded");
+        AssertContains(output, filePath);
         AssertExists(filePath);
     }
 
@@ -172,23 +179,17 @@ public class DotNetTests : IDisposable
 
     // Rebuild
 
-    public void TestRebuild_Debug(Func<string> call) => InTempDir(() => 
+    public void TestRebuild_Debug(Func<string> call) => InTempDir(() => TestRebuild(call, _outputDllDebug));
+    public void TestRebuild_Release(Func<string> call) => TestRebuild(call, _outputDllRelease);
+    public void TestRebuild(Func<string> call, string dllFileName)
     {
         string output = call();
         NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains("Build succeeded"), message: output);
-        IsTrue(output.Contains(_outputDllDebug), $"Expected '{_outputDllDebug}' in: {output}");
-        AssertDebugDll(); // no-option overload defaults to Debug
-    });
-
-    public void TestRebuild_Release(Func<string> call)
-    {
-        string output = call();
-        NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains("Build succeeded"), message: output);
-        IsTrue(output.Contains(_outputDllRelease), $"Expected '{_outputDllRelease}' in: {output}");
-        AssertReleaseDll();
+        AssertContains(output, "Build succeeded");
+        AssertContains(output, dllFileName);
+        AssertExists(dllFileName);
     }
+
 
     [TestMethod] public void Test_Rebuild_ByMethod()          => TestRebuild_Debug  (() => Rebuild());
     [TestMethod] public void Test_Rebuild_ByMethod_Opt()      => TestRebuild_Release(() => Rebuild(_opt));
@@ -227,20 +228,14 @@ public class DotNetTests : IDisposable
 
     // MSRebuild
 
-    private void TestMSRebuild_Debug(Func<string> call) => InTempDir(() => 
+    private void TestMSRebuild_Debug(Func<string> call) => InTempDir(() => TestMSRebuild(call, _outputDllDebug));
+    private void TestMSRebuild_Release(Func<string> call) => TestMSRebuild(call, _outputDllRelease);
+    private void TestMSRebuild(Func<string> call, string dllFilePath)
     {
         string output = call();
         NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains(_outputDllDebug), message: output);
-        AssertDebugDll();
-    });
-
-    private void TestMSRebuild_Release(Func<string> call)
-    {
-        string output = call();
-        NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains(_outputDllRelease), message: output);
-        AssertReleaseDll();
+        AssertContains(output, dllFilePath);
+        AssertExists(dllFilePath);
     }
 
     [TestMethod] public void Test_MSRebuild_ByMethod()          => TestMSRebuild_Debug  (() => MSRebuild());
@@ -261,11 +256,12 @@ public class DotNetTests : IDisposable
     {
         string output = call();
         NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains(PackId), output);
+        AssertContains(output, PackId);
 
         string content = ReadAllText(_csprojPath);
-        IsTrue(content.Contains(PackId), content);
-        IsTrue(content.Contains(PackVer), content);
+        NotNullOrWhiteSpace(content);
+        AssertContains(content, PackId);
+        AssertContains(content, PackVer);
     }
 
     [TestMethod] public void Test_InstallPackage_ByMethod()          => TestInstallPack_ChDir(() => InstallPackage(PackId, PackVer));
@@ -283,7 +279,7 @@ public class DotNetTests : IDisposable
 
         string output = call();
         NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains(PackId), output);
+        AssertContains(output, PackId);
 
         string content = ReadAllText(_csprojPath);
         IsFalse(content.Contains(PackId));

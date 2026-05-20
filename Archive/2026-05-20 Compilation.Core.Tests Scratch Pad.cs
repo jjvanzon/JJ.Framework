@@ -38,3 +38,12 @@
         IsTrue(outputText.Contains("Output ="), $"Expected 'Output =' in: {outputText}");
 
     //private static readonly object _tempDirLock = new(); // Fixes synchronization?
+
+
+    //private void AssertContainsAll(string whole, params string[] parts)
+    //{
+        //foreach (string part in parts)
+        //{
+            //AssertContains(whole, part);
+        //}
+    //}
