@@ -80,6 +80,7 @@
       "Framework\\StringResources.TrimTests\\JJ.Framework.StringResources.Legacy.TrimTests.csproj",
       "Framework\\Testing.Core.MSTestless\\JJ.Framework.Testing.Core.MSTestless.csproj",
       "Framework\\Testing.Core.NCrunchless\\JJ.Framework.Testing.Core.NCrunchless.csproj",
+      "Framework\\Testing.Core.Tests\\JJ.Framework.Testing.Core.Tests.csproj",
       "Framework\\Testing.Core\\JJ.Framework.Testing.Core.csproj",
       "Framework\\Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\Validation.Tests.Helpers\\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj",
