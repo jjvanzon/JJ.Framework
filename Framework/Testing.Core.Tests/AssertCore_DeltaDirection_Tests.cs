@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Testing.Core.Tests;
 
 [TestClass]
-public class AssertHelperCore_DeltaDirection_Tests
+public class AssertCore_DeltaDirection_Tests
 {
     // With Ints
 

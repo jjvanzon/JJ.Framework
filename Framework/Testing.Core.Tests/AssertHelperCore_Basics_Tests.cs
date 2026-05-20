@@ -1,33 +1,33 @@
 ﻿namespace JJ.Framework.Testing.Core.Tests;
 
 [TestClass]
-public class AssertHelperCore_Basics_Tests
+public class AssertCore_Basics_Tests
 {
     [TestMethod]
-    public void AssertHelperCore_IsTrue_Value_Succeeds() => IsTrue(true);
+    public void AssertCore_IsTrue_Value_Succeeds() => IsTrue(true);
     
     [TestMethod]
-    public void AssertHelperCore_IsTrue_Value_Fails() 
+    public void AssertCore_IsTrue_Value_Fails() 
         => Throws(() => IsTrue(false), "Assert.IsTrue failed.");
     
     [TestMethod]
-    public void AssertHelperCore_IsFalse_Value_Succeeds() => IsFalse(false);
+    public void AssertCore_IsFalse_Value_Succeeds() => IsFalse(false);
     
     [TestMethod]
-    public void AssertHelperCore_IsFalse_Value_Fails()
+    public void AssertCore_IsFalse_Value_Fails()
         => Throws(() => IsFalse(true), "Assert.IsFalse failed.");
     
     [TestMethod]
-    public void AssertHelperCore_IsTrue_WithMessage_Succeeds() => IsTrue(true, "It went wrong.");
+    public void AssertCore_IsTrue_WithMessage_Succeeds() => IsTrue(true, "It went wrong.");
     
     [TestMethod]
-    public void AssertHelperCore_IsTrue_WithMessage_Fails() 
+    public void AssertCore_IsTrue_WithMessage_Fails() 
         => Throws(() => IsTrue(false, "It went wrong."), "Assert.IsTrue failed.", "It went wrong.");
     
     [TestMethod]
-    public void AssertHelperCore_IsFalse_WithMessage_Succeeds() => IsFalse(false, "It went wrong.");
+    public void AssertCore_IsFalse_WithMessage_Succeeds() => IsFalse(false, "It went wrong.");
     
     [TestMethod]
-    public void AssertHelperCore_IsFalse_WithMessage_Fails() 
+    public void AssertCore_IsFalse_WithMessage_Fails() 
         => Throws(() => IsFalse(true, "It went wrong."), "Assert.IsFalse failed.", "It went wrong.");
 }

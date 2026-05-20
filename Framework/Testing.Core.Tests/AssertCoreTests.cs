@@ -2,7 +2,7 @@
 namespace JJ.Framework.Testing.Core.Tests;
 
 [TestClass]
-public class AssertCore_Methods_Tests
+public class AssertCoreTests
 {
     [TestMethod]
     public void AssertCore_AreEqual_Object_Overloads()
@@ -208,41 +208,43 @@ public class AssertCore_Methods_Tests
     [TestMethod]
     public void AssertCore_Throws_Methods()
     {
-        Action throwingAction = () => throw new InvalidOperationException("boom");
-        Func<object?> throwingFunc = () => throw new InvalidOperationException("boom");
-
-        Throws(throwingAction, "boom");
-        Throws(throwingFunc, "boom");
-        Throws(throwingAction, typeof(InvalidOperationException), "boom");
-        Throws(throwingFunc, typeof(InvalidOperationException), "boom");
-        Throws<InvalidOperationException>(throwingAction, "boom");
-        Throws<InvalidOperationException>(throwingFunc, "boom");
+        Throws(ThrowingAction, "boom");
+        Throws(ThrowingFunc, "boom");
+        Throws(ThrowingAction, typeof(InvalidOperationException), "boom");
+        Throws(ThrowingFunc, typeof(InvalidOperationException), "boom");
+        Throws<InvalidOperationException>(ThrowingAction, "boom");
+        Throws<InvalidOperationException>(ThrowingFunc, "boom");
     }
 
     [TestMethod]
     public void AssertCore_ThrowsException_Methods()
     {
-        Func<object?> throwInvalidOperation = () => throw new InvalidOperationException();
-        Func<object?> throwInvalidOperationWithMessage = () => throw new InvalidOperationException("boom");
+        ThrowsException(ThrowingFunc);
+        ThrowsException(ThrowingFunc, "boom");
+        ThrowsException(ThrowingFunc, typeof(InvalidOperationException));
+        ThrowsException(ThrowingFunc, typeof(InvalidOperationException), "boom");
+        ThrowsException<InvalidOperationException>(ThrowingFunc);
+        ThrowsException<InvalidOperationException>(ThrowingFunc, "boom");
 
-        ThrowsException(throwInvalidOperation);
-        ThrowsException(throwInvalidOperationWithMessage, "boom");
-        ThrowsException(throwInvalidOperation, typeof(InvalidOperationException));
-        ThrowsException(throwInvalidOperationWithMessage, typeof(InvalidOperationException), "boom");
-        ThrowsException<InvalidOperationException>(throwInvalidOperation);
-        ThrowsException<InvalidOperationException>(throwInvalidOperationWithMessage, "boom");
+        ThrowsException(ThrowingAction);
+        ThrowsException(ThrowingAction, "boom");
+        ThrowsException(ThrowingAction, typeof(InvalidOperationException));
+        ThrowsException(ThrowingAction, typeof(InvalidOperationException), "boom");
+        ThrowsException<InvalidOperationException>(ThrowingAction);
+        ThrowsException<InvalidOperationException>(ThrowingAction, "boom");
     }
 
     [TestMethod]
     public void AssertCore_ThrowsOnOtherThread_Methods()
     {
-        Action throwingAction = () => throw new InvalidOperationException();
-        Func<object?> throwingFunc = () => throw new InvalidOperationException();
-
-        ThrowsExceptionOnOtherThread(throwingFunc);
-        ThrowsOnOtherThread(throwingAction);
-        ThrowsOnOtherThread(throwingFunc);
+        ThrowsExceptionOnOtherThread(ThrowingAction);
+        ThrowsExceptionOnOtherThread(ThrowingFunc);
+        ThrowsOnOtherThread(ThrowingAction);
+        ThrowsOnOtherThread(ThrowingFunc);
     }
+
+    private void ThrowingAction() => throw new InvalidOperationException("boom");
+    private object ThrowingFunc() => throw new InvalidOperationException("boom");
 
     [TestMethod]
     public void AssertCore_Type_Methods()
