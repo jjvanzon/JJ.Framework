@@ -4,7 +4,7 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
-    // Prios - Overload with explicitly passed message comes first, and includes the tested expression as well.
+    // Prios - Overload with explicitly passed message comes first, which includes the argument expression as well.
 
     public static void IsTrue(bool value, [ArgExpress(nameof(value))] string expression = "") 
         => Check(value == true, message: expression);

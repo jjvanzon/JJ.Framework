@@ -4,6 +4,8 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
+    // Prios - Overload with explicitly passed message comes first, which includes the argument expression as well.
+
     // Throws (Containing)
 
     public static void Throws(Func<object?> statement, params string[] expectedTexts)

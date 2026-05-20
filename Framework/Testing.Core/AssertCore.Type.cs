@@ -3,6 +3,8 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
+    // Prios - Overload with explicitly passed message comes first, which includes the argument expression as well.
+
     // TODO: Add variants IsType<int>(myType). Sure it'd be like equality check for the type, but it gets the intent clear, just like IsTrue just checks equality to true. It's a syntax sugar / the syntax is expected to work, but currently doesn't.
 
     public static void IsType<TValue>(
@@ -60,37 +62,4 @@ public static partial class AssertCore
         Type expected, Type actual, 
         string message, [ArgExpress(nameof(actual))] string expression = "")
         => Check(expected, actual, expression + " " + message, () => expected != actual);
-
-    #region Obsolete
-
-    // ncrunch: no coverage start
-
-    // ReSharper disable UnusedTypeParameter
-    // ReSharper disable UnusedParameter.Local
-    // ReSharper disable EntityNameCapturedOnly.Local
-
-    private const string ObsoleteTExpectedArg 
-        = "Overload unworkable. Here the argument is always the expected type, and a null/not-null difference cannot be evaluated.";
-        
-    private const string ObsoleteObjectArg
-        = "Overload unworkable. Here the argument is object? and the return type info from the argument is lost.";
-
-    // ReSharper disable once UnusedMember.Local
-    [Obsolete(ObsoleteTExpectedArg, true)]
-    private static void IsType<TExpected>(TExpected value, [ArgExpress(nameof(value))] string message = "") 
-        => throw new NotSupportedException(ObsoleteTExpectedArg);
-    
-    // ReSharper disable once UnusedMember.Local
-    [Obsolete(ObsoleteTExpectedArg, true)]
-    private static void NotType<TExpected>(TExpected value, [ArgExpress(nameof(value))] string message = "") 
-        => throw new NotSupportedException(ObsoleteTExpectedArg);
-        
-    // ReSharper disable once UnusedMember.Local
-    [Obsolete(ObsoleteObjectArg, true)]
-    private static void NotType<TExpected>(object? value, [ArgExpress(nameof(value))] string message = "") 
-        => throw new NotSupportedException(ObsoleteObjectArg);
-    
-    // ncrunch: no coverage end
-
-    #endregion
 }

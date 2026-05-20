@@ -2,6 +2,8 @@
 
 public static partial class AssertCore
 {
+    // Prios - Overload with explicitly passed message comes first, which includes the argument expression as well.
+
     // Null
 
     public static void IsNotNull([NotNull] object? value, [ArgExpress(nameof(value))] string expression = "")

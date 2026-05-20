@@ -2,6 +2,8 @@
 
 public static partial class AssertCore
 {
+    // Prios - Overload with explicitly passed message comes first, which includes the argument expression as well.
+
     public static void AreSame(object? expected, object? actual, [ArgExpress(nameof(actual))] string expression = "") 
         => Check(expected, actual, expression, () => ReferenceEquals(expected, actual));
 
