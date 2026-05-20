@@ -1,12 +1,17 @@
 ﻿// ReSharper disable RedundantBoolCompare
 
-
 namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
-    public static void IsTrue(bool value, [ArgExpress(nameof(value))] string message = "") 
-        => Check(value == true, message: message);
+    // Prios - Overload with explicitly passed message comes first, and includes the tested expression as well.
+
+    public static void IsTrue(bool value, [ArgExpress(nameof(value))] string expr = "") 
+        => Check(value == true, message: expr);
+    
+    [Prio(1)]
+    public static void IsTrue(bool value, string message, [ArgExpress(nameof(value))] string expr = "") 
+        => Check(value == true, message: expr + " " + message);
     
     public static void IsFalse(bool value, [ArgExpress(nameof(value))] string message = "") 
         => Check(value == false, message: message);
