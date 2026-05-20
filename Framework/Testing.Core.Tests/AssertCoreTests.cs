@@ -10,6 +10,8 @@ public class AssertCoreTests
     private static readonly object      _expectedObject  = _expectedCulture;
     private static readonly object      _sameObject      = _sameCulture;
     private static readonly object      _actualObject    = _actualCulture;
+    private static readonly object?     _obj             = new();
+    private static readonly object?     _noObj           = null;
 
     // AreEqual
 
@@ -56,29 +58,39 @@ public class AssertCoreTests
     // NotEqual
 
     [TestMethod]
-    public void AssertCore_NotEqual_And_AreNotEqual_Overloads()
+    public void AssertCore_NotEqual_AsObject()
+    {
+        NotEqual   (_expectedObject, _actualObject);
+        AreNotEqual(_expectedObject, _actualObject);
+        NotEqual   (_expectedObject, _actualObject, "oops");
+        AreNotEqual(_expectedObject, _actualObject, "oops");
+
+        Throws(() => NotEqual   (_expectedObject, _expectedObject),         "NotEqual failed", "expectedObject");
+        Throws(() => AreNotEqual(_expectedObject, _expectedObject),         "NotEqual failed", "expectedObject");
+        Throws(() => NotEqual   (_expectedObject, _expectedObject, "oops"), "NotEqual failed", "expectedObject", "oops");
+        Throws(() => AreNotEqual(_expectedObject, _expectedObject, "oops"), "NotEqual failed", "expectedObject", "oops");
+    }
+
+    [TestMethod]
+    public void AssertCore_NotEqual_ValueType()
     {
         const int same = 1;
 
-        NotEqual(_expectedObject, _actualObject);
-        NotEqual(_expectedObject, _actualObject, "oops");
-        AreNotEqual(_expectedObject, _actualObject);
-        AreNotEqual(_expectedObject, _actualObject, "oops");
-        NotEqual(1, 2);
-        NotEqual(1, 2, "oops");
+        NotEqual   (1, 2);
         AreNotEqual(1, 2);
+        NotEqual   (1, 2, "oops");
         AreNotEqual(1, 2, "oops");
 
-        Throws(() => NotEqual(_expectedObject, _expectedObject), "NotEqual failed", "expected");
-        Throws(() => NotEqual(1, same, "oops"), "NotEqual failed", "same", "oops");
-        Throws(() => AreNotEqual(_expectedObject, _expectedObject), "NotEqual failed", "expected");
+        Throws(() => NotEqual   (1, same),         "NotEqual failed", "same");
+        Throws(() => AreNotEqual(1, same),         "NotEqual failed", "same");
+        Throws(() => NotEqual   (1, same, "oops"), "NotEqual failed", "same", "oops");
         Throws(() => AreNotEqual(1, same, "oops"), "NotEqual failed", "same", "oops");
     }
 
     // Same
 
     [TestMethod]
-    public void AssertCore_AreSame_NotSame_NotSame_Overloads()
+    public void AssertCore_AreSame_Overloads()
     {
         var x = new object();
         var y = new object();
@@ -86,17 +98,24 @@ public class AssertCoreTests
         AreSame(x, x);
         AreSame(x, x, "oops");
 
-        NotSame(x, y);
-        NotSame(x, y, "oops");
+        Throws(() => AreSame(x, y),         "AreSame failed", "y");
+        Throws(() => AreSame(x, y, "oops"), "AreSame failed", "y", "oops");
+    }
 
+    [TestMethod]
+    public void AssertCore_NotSame_Overloads()
+    {
+        var x = new object();
+        var y = new object();
+
+        NotSame   (x, y);
         AreNotSame(x, y);
+        NotSame   (x, y, "oops");
         AreNotSame(x, y, "oops");
 
-        Throws(() => AreSame(x, y), "AreSame failed", "y");
-        Throws(() => AreSame(x, y, "oops"), "AreSame failed", "y", "oops");
-        Throws(() => NotSame(x, x), "NotSame failed", "x");
-        Throws(() => NotSame(x, x, "oops"), "NotSame failed", "x", "oops");
-        Throws(() => AreNotSame(x, x), "NotSame failed", "x");
+        Throws(() => NotSame   (x, x),         "NotSame failed", "x");
+        Throws(() => AreNotSame(x, x),         "NotSame failed", "x");
+        Throws(() => NotSame   (x, x, "oops"), "NotSame failed", "x", "oops");
         Throws(() => AreNotSame(x, x, "oops"), "NotSame failed", "x", "oops");
     }
 
@@ -105,13 +124,10 @@ public class AssertCoreTests
     [TestMethod]
     public void AssertCore_Null_Overloads()
     {
-        object? obj = new();
-        object? noObj = null;
-
-        IsNull(noObj);
-        IsNull(noObj, "oops");
-        Throws(() => IsNull(obj), "IsNull failed", "obj");
-        Throws(() => IsNull(obj, "oops"), "IsNull failed", "obj", "oops");
+        IsNull(_noObj);
+        IsNull(_noObj, "oops");
+        Throws(() => IsNull(_obj),         "IsNull failed", "obj");
+        Throws(() => IsNull(_obj, "oops"), "IsNull failed", "obj", "oops");
     }
 
     // NotNull
@@ -119,107 +135,133 @@ public class AssertCoreTests
     [TestMethod]
     public void AssertCore_NotNull_Overloads()
     {
-        object? obj = new();
-        object? noObj = null;
+          NotNull(_obj);
+        IsNotNull(_obj);
+          NotNull(_obj, "oops");
+        IsNotNull(_obj, "oops");
 
-        IsNotNull(obj);
-        IsNotNull(obj, "oops");
-        NotNull(obj);
-        NotNull(obj, "oops");
-
-        Throws(() => IsNotNull(noObj), "NotNull failed", "noObj");
-        Throws(() => IsNotNull(noObj, "oops"), "NotNull failed", "noObj", "oops");
-        Throws(() => NotNull(noObj), "NotNull failed", "noObj");
-        Throws(() => NotNull(noObj, "oops"), "NotNull failed", "noObj", "oops");
+        Throws(() =>   NotNull(_noObj),         "NotNull failed", "noObj");
+        Throws(() => IsNotNull(_noObj),         "NotNull failed", "noObj");
+        Throws(() =>   NotNull(_noObj, "oops"), "NotNull failed", "noObj", "oops");
+        Throws(() => IsNotNull(_noObj, "oops"), "NotNull failed", "noObj", "oops");
     }
+
+    // TODO: Was here with corrections.
 
     // NullOrEmpty
 
     [TestMethod]
-    public void AssertCore_NullOrEmpty_Overloads()
+    public void AssertCore_IsNotNullOrEmpty_And_NotNullOrEmpty_Overloads()
     {
-        const string filled = "x";
         const string empty = "";
 
+          NotNullOrEmpty("x");
         IsNotNullOrEmpty("x");
+          NotNullOrEmpty("x", "oops");
         IsNotNullOrEmpty("x", "oops");
-        NotNullOrEmpty("x");
-        NotNullOrEmpty("x", "oops");
-        
+
+        // TODO: nulls
+        Throws(() =>   NotNullOrEmpty(empty),      "NotNullOrEmpty failed", "empty");
+        Throws(() => IsNotNullOrEmpty(empty),      "NotNullOrEmpty failed", "empty");
+        Throws(() =>   NotNullOrEmpty("", "oops"), "NotNullOrEmpty failed", "oops");
+        Throws(() => IsNotNullOrEmpty("", "oops"), "NotNullOrEmpty failed", "oops");
+    }
+
+    [TestMethod]
+    public void AssertCore_IsNullOrEmpty_And_NullOrEmpty_Overloads()
+    {
+        const string filled = "x";
+
+        // TODO: nulls
         IsNullOrEmpty("");
-        IsNullOrEmpty("", "oops");
         NullOrEmpty("");
+        IsNullOrEmpty("", "oops");
         NullOrEmpty("", "oops");
 
-        Throws(() => IsNotNullOrEmpty(empty), "NotNullOrEmpty failed", "empty");
-        Throws(() => IsNotNullOrEmpty("", "oops"), "NotNullOrEmpty failed", "oops");
-        Throws(() => NotNullOrEmpty(empty), "NotNullOrEmpty failed", "empty");
-        Throws(() => NotNullOrEmpty("", "oops"), "NotNullOrEmpty failed", "oops");
-        
-        Throws(() => IsNullOrEmpty(filled), "NullOrEmpty failed", "filled");
+        Throws(() => IsNullOrEmpty(filled),         "NullOrEmpty failed", "filled");
+        Throws(() => NullOrEmpty(filled),         "NullOrEmpty failed", "filled");
         Throws(() => IsNullOrEmpty(filled, "oops"), "NullOrEmpty failed", "filled", "oops");
-        Throws(() => NullOrEmpty(filled), "NullOrEmpty failed", "filled");
         Throws(() => NullOrEmpty(filled, "oops"), "NullOrEmpty failed", "filled", "oops");
     }
 
     // NullOrWhiteSpace
 
     [TestMethod]
-    public void AssertCore_NullOrWhiteSpace_Overloads()
+    public void AssertCore_IsNotNullOrWhiteSpace_And_NotNullOrWhiteSpace_Overloads()
     {
-        const string text = "x";
         const string whitespace = " ";
 
         IsNotNullOrWhiteSpace("x");
-        IsNotNullOrWhiteSpace("x", "oops");
         NotNullOrWhiteSpace("x");
+        IsNotNullOrWhiteSpace("x", "oops");
         NotNullOrWhiteSpace("x", "oops");
+
+        // TODO: Nulls and empties and a tab for instance.
+        Throws(() => IsNotNullOrWhiteSpace(whitespace),         "NotNullOrWhiteSpace failed", "whitespace");
+        Throws(() => NotNullOrWhiteSpace(whitespace),         "NotNullOrWhiteSpace failed", "whitespace");
+        Throws(() => IsNotNullOrWhiteSpace(" ", "oops"), "NotNullOrWhiteSpace failed", "oops");
+        Throws(() => NotNullOrWhiteSpace(" ", "oops"), "NotNullOrWhiteSpace failed", "oops");
+    }
+
+    [TestMethod]
+    public void AssertCore_IsNullOrWhiteSpace_And_NullOrWhiteSpace_Overloads()
+    {
+        const string text = "x";
+
         IsNullOrWhiteSpace(" ");
-        IsNullOrWhiteSpace(" ", "oops");
         NullOrWhiteSpace("\t");
+        IsNullOrWhiteSpace(" ", "oops");
         NullOrWhiteSpace("\t", "oops");
 
-        Throws(() => IsNotNullOrWhiteSpace(whitespace), "NotNullOrWhiteSpace failed", "whitespace");
-        Throws(() => IsNotNullOrWhiteSpace(" ", "oops"), "NotNullOrWhiteSpace failed", "oops");
-        Throws(() => NotNullOrWhiteSpace(whitespace), "NotNullOrWhiteSpace failed", "whitespace");
-        Throws(() => NotNullOrWhiteSpace(" ", "oops"), "NotNullOrWhiteSpace failed", "oops");
-        Throws(() => IsNullOrWhiteSpace(text), "NullOrWhiteSpace failed", "text");
+        Throws(() => IsNullOrWhiteSpace(text),         "NullOrWhiteSpace failed", "text");
+        Throws(() => NullOrWhiteSpace(text),         "NullOrWhiteSpace failed", "text");
         Throws(() => IsNullOrWhiteSpace(text, "oops"), "NullOrWhiteSpace failed", "text", "oops");
-        Throws(() => NullOrWhiteSpace(text), "NullOrWhiteSpace failed", "text");
         Throws(() => NullOrWhiteSpace(text, "oops"), "NullOrWhiteSpace failed", "text", "oops");
     }
 
     // True/False/Contains
 
     [TestMethod]
-    public void AssertCore_Misc_Methods()
+    public void AssertCore_IsTrue_Overloads()
     {
-        const bool falseValue = false;
-        const bool trueValue = true;
-
         IsTrue(true);
         IsTrue(true, "oops");
+
+        Throws(() => IsTrue(false),         "IsTrue failed", "false");
+        Throws(() => IsTrue(false, "oops"), "IsTrue failed", "false", "oops");
+    }
+
+    [TestMethod]
+    public void AssertCore_IsFalse_Overloads()
+    {
         IsFalse(false);
         IsFalse(false, "oops");
+
+        Throws(() => IsFalse(true),         "IsFalse failed", "true");
+        Throws(() => IsFalse(true, "oops"), "IsFalse failed", "true", "oops");
+    }
+
+    [TestMethod]
+    public void AssertCore_Contains_Overloads()
+    {
         Contains("needle", "haystack NEEDLE hay");
+
+        Throws(() => Contains("needle", "haystack"), "does not contain");
+    }
+
+    [TestMethod]
+    public void AssertCore_Fail_Overloads()
+    {
         Throws(() => Fail(), " failed");
         Throws(() => Fail("x"), " failed", "x");
-
-        Throws(() => IsTrue(falseValue), "IsTrue failed", "falseValue");
-        Throws(() => IsTrue(false, "oops"), "IsTrue failed", "oops");
-        Throws(() => IsFalse(trueValue), "IsFalse failed", "trueValue");
-        Throws(() => IsFalse(true, "oops"), "IsFalse failed", "oops");
-        Throws(() => Contains("needle", "haystack"), "does not contain");
     }
 
     // NoNullRet
 
     [TestMethod]
-    public void AssertCore_NoNullRet_And_NullRet_Methods()
+    public void AssertCore_NoNullRet_Overloads()
     {
         string nullText = null!;
-        int? wrong = 2;
-        const int nonNullable = 1;
 
         NoNullRet(1);
         NoNullRet(1, "oops");
@@ -227,11 +269,20 @@ public class AssertCoreTests
         NoNullRet(1, 1, "oops");
         NoNullRet("a", "a");
         NoNullRet("a", "a", "oops");
+
+        Throws(() => NoNullRet(nullText),    "NotNull failed", "nullText");
+        Throws(() => NoNullRet("a", nullText), "NotNull failed", "nullText");
+    }
+
+    [TestMethod]
+    public void AssertCore_NullRet_Overloads()
+    {
+        int? wrong = 2;
+        const int nonNullable = 1;
+
         NullRet(1, (int?)1);
         NullRet(1, (int?)1, "oops");
 
-        Throws(() => NoNullRet(nullText), "NotNull failed", "nullText");
-        Throws(() => NoNullRet("a", nullText), "NotNull failed", "nullText");
         Throws(() => NullRet(1, wrong), "AreEqual failed", "wrong");
         Throws(() => NullRet(1, nonNullable), "IsType failed", "nonNullable");
 
@@ -282,7 +333,7 @@ public class AssertCoreTests
     // Type
 
     [TestMethod]
-    public void AssertCore_IsType_Methods()
+    public void AssertCore_IsType_ValueType()
     {
         int? nullableOne = 1;
 
@@ -296,7 +347,7 @@ public class AssertCoreTests
     // NotType
 
     [TestMethod]
-    public void AssertCore_NotType_Methods()
+    public void AssertCore_NotType_ValueType()
     {
         int? nullableOne = 1;
         var intType = typeof(int);

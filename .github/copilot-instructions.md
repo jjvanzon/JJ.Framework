@@ -18,6 +18,7 @@
 - Ensure tests reflect intended mathematical behavior/specification, not merely current implementation behavior.
 - Do not hide defects by changing tests to expect current erroneous behavior; tests should indicate real errors even if they fail.
 - Avoid placeholder args and weak assertions; use meaningful parameterizations and assert their actual effect.
+- When the user manually adjusts tests, do not revert those user corrections in subsequent edits.
 
 ## Legacy Tests
 - Expand for full code coverage.
