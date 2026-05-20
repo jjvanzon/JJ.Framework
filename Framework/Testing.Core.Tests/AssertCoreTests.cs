@@ -146,42 +146,49 @@ public class AssertCoreTests
         Throws(() => IsNotNull(_noObj, "oops"), "NotNull failed", "noObj", "oops");
     }
 
-    // TODO: Was here with corrections.
-
     // NullOrEmpty
 
     [TestMethod]
     public void AssertCore_IsNotNullOrEmpty_And_NotNullOrEmpty_Overloads()
     {
         const string empty = "";
+        string? noText = null;
 
           NotNullOrEmpty("x");
         IsNotNullOrEmpty("x");
           NotNullOrEmpty("x", "oops");
         IsNotNullOrEmpty("x", "oops");
 
-        // TODO: nulls
-        Throws(() =>   NotNullOrEmpty(empty),      "NotNullOrEmpty failed", "empty");
-        Throws(() => IsNotNullOrEmpty(empty),      "NotNullOrEmpty failed", "empty");
-        Throws(() =>   NotNullOrEmpty("", "oops"), "NotNullOrEmpty failed", "oops");
-        Throws(() => IsNotNullOrEmpty("", "oops"), "NotNullOrEmpty failed", "oops");
+        Throws(() =>   NotNullOrEmpty(empty),          "NotNullOrEmpty failed", "empty");
+        Throws(() => IsNotNullOrEmpty(empty),          "NotNullOrEmpty failed", "empty");
+        Throws(() =>   NotNullOrEmpty(noText),         "NotNullOrEmpty failed", "noText");
+        Throws(() => IsNotNullOrEmpty(noText),         "NotNullOrEmpty failed", "noText");
+        Throws(() =>   NotNullOrEmpty(empty,  "oops"), "NotNullOrEmpty failed", "empty", "oops");
+        Throws(() => IsNotNullOrEmpty(empty,  "oops"), "NotNullOrEmpty failed", "empty", "oops");
+        Throws(() =>   NotNullOrEmpty(noText, "oops"), "NotNullOrEmpty failed", "noText", "oops");
+        Throws(() => IsNotNullOrEmpty(noText, "oops"), "NotNullOrEmpty failed", "noText", "oops");
     }
 
     [TestMethod]
     public void AssertCore_IsNullOrEmpty_And_NullOrEmpty_Overloads()
     {
         const string filled = "x";
+        const string empty = "";
+        string? noText = null;
 
-        // TODO: nulls
-        IsNullOrEmpty("");
-        NullOrEmpty("");
-        IsNullOrEmpty("", "oops");
-        NullOrEmpty("", "oops");
+          NullOrEmpty(empty);
+        IsNullOrEmpty(empty);
+          NullOrEmpty(noText);
+        IsNullOrEmpty(noText);
+          NullOrEmpty(empty,  "oops");
+        IsNullOrEmpty(empty,  "oops");
+          NullOrEmpty(noText, "oops");
+        IsNullOrEmpty(noText, "oops");
 
+        Throws(() =>   NullOrEmpty(filled),         "NullOrEmpty failed", "filled");
         Throws(() => IsNullOrEmpty(filled),         "NullOrEmpty failed", "filled");
-        Throws(() => NullOrEmpty(filled),         "NullOrEmpty failed", "filled");
+        Throws(() =>   NullOrEmpty(filled, "oops"), "NullOrEmpty failed", "filled", "oops");
         Throws(() => IsNullOrEmpty(filled, "oops"), "NullOrEmpty failed", "filled", "oops");
-        Throws(() => NullOrEmpty(filled, "oops"), "NullOrEmpty failed", "filled", "oops");
     }
 
     // NullOrWhiteSpace
@@ -190,33 +197,63 @@ public class AssertCoreTests
     public void AssertCore_IsNotNullOrWhiteSpace_And_NotNullOrWhiteSpace_Overloads()
     {
         const string whitespace = " ";
+        const string empty = "";
+        const string tab = "\t";
+        string? noText = null;
 
+          NotNullOrWhiteSpace("x");
         IsNotNullOrWhiteSpace("x");
-        NotNullOrWhiteSpace("x");
+          NotNullOrWhiteSpace("x", "oops");
         IsNotNullOrWhiteSpace("x", "oops");
-        NotNullOrWhiteSpace("x", "oops");
 
-        // TODO: Nulls and empties and a tab for instance.
+        Throws(() =>   NotNullOrWhiteSpace(whitespace),         "NotNullOrWhiteSpace failed", "whitespace");
         Throws(() => IsNotNullOrWhiteSpace(whitespace),         "NotNullOrWhiteSpace failed", "whitespace");
-        Throws(() => NotNullOrWhiteSpace(whitespace),         "NotNullOrWhiteSpace failed", "whitespace");
-        Throws(() => IsNotNullOrWhiteSpace(" ", "oops"), "NotNullOrWhiteSpace failed", "oops");
-        Throws(() => NotNullOrWhiteSpace(" ", "oops"), "NotNullOrWhiteSpace failed", "oops");
+        Throws(() =>   NotNullOrWhiteSpace(empty),              "NotNullOrWhiteSpace failed", "empty");
+        Throws(() => IsNotNullOrWhiteSpace(empty),              "NotNullOrWhiteSpace failed", "empty");
+        Throws(() =>   NotNullOrWhiteSpace(tab),                "NotNullOrWhiteSpace failed", "tab");
+        Throws(() => IsNotNullOrWhiteSpace(tab),                "NotNullOrWhiteSpace failed", "tab");
+        Throws(() =>   NotNullOrWhiteSpace(noText),             "NotNullOrWhiteSpace failed", "noText");
+        Throws(() => IsNotNullOrWhiteSpace(noText),             "NotNullOrWhiteSpace failed", "noText");
+        Throws(() =>   NotNullOrWhiteSpace(whitespace, "oops"), "NotNullOrWhiteSpace failed", "whitespace", "oops");
+        Throws(() => IsNotNullOrWhiteSpace(whitespace, "oops"), "NotNullOrWhiteSpace failed", "whitespace", "oops");
+        Throws(() =>   NotNullOrWhiteSpace(empty,      "oops"), "NotNullOrWhiteSpace failed", "empty",      "oops");
+        Throws(() => IsNotNullOrWhiteSpace(empty,      "oops"), "NotNullOrWhiteSpace failed", "empty",      "oops");
+        Throws(() =>   NotNullOrWhiteSpace(tab,        "oops"), "NotNullOrWhiteSpace failed", "tab",        "oops");
+        Throws(() => IsNotNullOrWhiteSpace(tab,        "oops"), "NotNullOrWhiteSpace failed", "tab",        "oops");
+        Throws(() =>   NotNullOrWhiteSpace(noText,     "oops"), "NotNullOrWhiteSpace failed", "noText",     "oops");
+        Throws(() => IsNotNullOrWhiteSpace(noText,     "oops"), "NotNullOrWhiteSpace failed", "noText",     "oops");
     }
 
     [TestMethod]
     public void AssertCore_IsNullOrWhiteSpace_And_NullOrWhiteSpace_Overloads()
     {
         const string text = "x";
+        const string empty = "";
+        const string whitespace = " ";
+        const string tab = "\t";
+        string? noText = null;
 
-        IsNullOrWhiteSpace(" ");
-        NullOrWhiteSpace("\t");
-        IsNullOrWhiteSpace(" ", "oops");
-        NullOrWhiteSpace("\t", "oops");
+          NullOrWhiteSpace(whitespace);
+        IsNullOrWhiteSpace(whitespace);
+          NullOrWhiteSpace(empty);
+        IsNullOrWhiteSpace(empty);
+          NullOrWhiteSpace(tab);
+        IsNullOrWhiteSpace(tab);
+          NullOrWhiteSpace(noText);
+        IsNullOrWhiteSpace(noText);
+          NullOrWhiteSpace(whitespace, "oops");
+        IsNullOrWhiteSpace(whitespace, "oops");
+          NullOrWhiteSpace(empty, "oops");
+        IsNullOrWhiteSpace(empty, "oops");
+          NullOrWhiteSpace(tab, "oops");
+        IsNullOrWhiteSpace(tab, "oops");
+          NullOrWhiteSpace(noText, "oops");
+        IsNullOrWhiteSpace(noText, "oops");
 
+        Throws(() =>   NullOrWhiteSpace(text),         "NullOrWhiteSpace failed", "text");
         Throws(() => IsNullOrWhiteSpace(text),         "NullOrWhiteSpace failed", "text");
-        Throws(() => NullOrWhiteSpace(text),         "NullOrWhiteSpace failed", "text");
+        Throws(() =>   NullOrWhiteSpace(text, "oops"), "NullOrWhiteSpace failed", "text", "oops");
         Throws(() => IsNullOrWhiteSpace(text, "oops"), "NullOrWhiteSpace failed", "text", "oops");
-        Throws(() => NullOrWhiteSpace(text, "oops"), "NullOrWhiteSpace failed", "text", "oops");
     }
 
     // True/False/Contains
@@ -270,7 +307,7 @@ public class AssertCoreTests
         NoNullRet("a", "a");
         NoNullRet("a", "a", "oops");
 
-        Throws(() => NoNullRet(nullText),    "NotNull failed", "nullText");
+        Throws(() => NoNullRet(nullText),      "NotNull failed", "nullText");
         Throws(() => NoNullRet("a", nullText), "NotNull failed", "nullText");
     }
 
@@ -283,7 +320,7 @@ public class AssertCoreTests
         NullRet(1, (int?)1);
         NullRet(1, (int?)1, "oops");
 
-        Throws(() => NullRet(1, wrong), "AreEqual failed", "wrong");
+        Throws(() => NullRet(1, wrong),       "AreEqual failed", "wrong");
         Throws(() => NullRet(1, nonNullable), "IsType failed", "nonNullable");
 
         // These don't exist yet. Overloads clashed.
