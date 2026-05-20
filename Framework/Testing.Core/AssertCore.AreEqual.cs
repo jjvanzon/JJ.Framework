@@ -4,23 +4,47 @@ namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
-    public static void AreEqual(object? expected, object? actual, [ArgExpress(nameof(actual))] string message = "") 
-        => Check(expected, actual, message, () => Equals(expected, actual));
-    
-    public static void AreEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "") 
-        => Check(expected, actual, message, () => Equals(expected, actual));
+    public static void AreEqual(object? expected, object? actual, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression, () => Equals(expected, actual));
 
-    public static void NotEqual(object expected, object actual, [ArgExpress(nameof(actual))] string message = "") 
-        => Check(expected, actual, message, () => !Equals(expected, actual));
+    [Prio(1)]
+    public static void AreEqual(object? expected, object? actual, string message, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression + " " + message, () => Equals(expected, actual));
+    
+    public static void AreEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression, () => Equals(expected, actual));
 
-    public static void NotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "") 
-        => Check(expected, actual, message, () => !Equals(expected, actual));
+    [Prio(1)]
+    public static void AreEqual<T>(T expected, T actual, string message, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression + " " + message, () => Equals(expected, actual));
+
+    public static void NotEqual(object expected, object actual, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression, () => !Equals(expected, actual));
+
+    [Prio(1)]
+    public static void NotEqual(object expected, object actual, string message, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression + " " + message, () => !Equals(expected, actual));
+
+    public static void NotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression, () => !Equals(expected, actual));
+
+    [Prio(1)]
+    public static void NotEqual<T>(T expected, T actual, string message, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression + " " + message, () => !Equals(expected, actual));
     
-    public static void AreNotEqual(object expected, object actual, [ArgExpress(nameof(actual))] string message = "") 
-        => Check(expected, actual, message, () => !Equals(expected, actual));
+    public static void AreNotEqual(object expected, object actual, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression, () => !Equals(expected, actual));
+
+    [Prio(1)]
+    public static void AreNotEqual(object expected, object actual, string message, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression + " " + message, () => !Equals(expected, actual));
     
-    public static void AreNotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "")
-        => Check(expected, actual, message, () => !Equals(expected, actual));
+    public static void AreNotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string expression = "")
+        => Check(expected, actual, expression, () => !Equals(expected, actual));
+
+    [Prio(1)]
+    public static void AreNotEqual<T>(T expected, T actual, string message, [ArgExpress(nameof(actual))] string expression = "")
+        => Check(expected, actual, expression + " " + message, () => !Equals(expected, actual));
     
     /// <inheritdoc cref="_deltadirection" />
     public static void AreEqual(

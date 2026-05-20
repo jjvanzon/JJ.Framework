@@ -5,24 +5,48 @@ public static partial class AssertCore
 {
     // TODO: Add variants IsType<int>(myType). Sure it'd be like equality check for the type, but it gets the intent clear, just like IsTrue just checks equality to true. It's a syntax sugar / the syntax is expected to work, but currently doesn't.
 
-    public static void IsType<TValue>(Type expected, TValue value, [ArgExpress(nameof(value))] string message = "")
+    public static void IsType<TValue>(Type expected, TValue value, [ArgExpress(nameof(value))] string expression = "")
     {
         var actual = CompileTimeType(value);
-        IsType(expected, actual, message);
+        IsType(expected, actual, expression);
     }
-    
-    private static void IsType(Type expected, Type actual, [ArgExpress(nameof(actual))] string message = "") 
-        => Check(expected, actual, message, () => expected == actual);
-    
-    public static void NotType<TValue>(Type expected, TValue value, [ArgExpress(nameof(value))] string message = "")
+
+    [Prio(1)]
+    public static void IsType<TValue>(Type expected, TValue value, string message, [ArgExpress(nameof(value))] string expression = "")
     {
         var actual = CompileTimeType(value);
-        NotType(expected, actual, message);
+        IsType(expected, actual, message, expression);
     }
     
-    public static void NotType(Type expected, Type actual, [ArgExpress(nameof(actual))] string message = "")
+    private static void IsType(Type expected, Type actual, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression, () => expected == actual);
+
+    [Prio(1)]
+    private static void IsType(Type expected, Type actual, string message, [ArgExpress(nameof(actual))] string expression = "") 
+        => Check(expected, actual, expression + " " + message, () => expected == actual);
+    
+    public static void NotType<TValue>(Type expected, TValue value, [ArgExpress(nameof(value))] string expression = "")
     {
-        Check(expected, actual, message, () => expected != actual);
+        var actual = CompileTimeType(value);
+        NotType(expected, actual, expression);
+    }
+
+    [Prio(1)]
+    public static void NotType<TValue>(Type expected, TValue value, string message, [ArgExpress(nameof(value))] string expression = "")
+    {
+        var actual = CompileTimeType(value);
+        NotType(expected, actual, message, expression);
+    }
+    
+    public static void NotType(Type expected, Type actual, [ArgExpress(nameof(actual))] string expression = "")
+    {
+        Check(expected, actual, expression, () => expected != actual);
+    }
+
+    [Prio(1)]
+    public static void NotType(Type expected, Type actual, string message, [ArgExpress(nameof(actual))] string expression = "")
+    {
+        Check(expected, actual, expression + " " + message, () => expected != actual);
     }
     
     #region Obsolete

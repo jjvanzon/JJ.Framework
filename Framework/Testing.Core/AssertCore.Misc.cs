@@ -6,15 +6,19 @@ public static partial class AssertCore
 {
     // Prios - Overload with explicitly passed message comes first, and includes the tested expression as well.
 
-    public static void IsTrue(bool value, [ArgExpress(nameof(value))] string expr = "") 
-        => Check(value == true, message: expr);
+    public static void IsTrue(bool value, [ArgExpress(nameof(value))] string expression = "") 
+        => Check(value == true, message: expression);
     
     [Prio(1)]
-    public static void IsTrue(bool value, string message, [ArgExpress(nameof(value))] string expr = "") 
-        => Check(value == true, message: expr + " " + message);
+    public static void IsTrue(bool value, string message, [ArgExpress(nameof(value))] string expression = "") 
+        => Check(value == true, message: expression + " " + message);
     
-    public static void IsFalse(bool value, [ArgExpress(nameof(value))] string message = "") 
-        => Check(value == false, message: message);
+    public static void IsFalse(bool value, [ArgExpress(nameof(value))] string expr = "") 
+        => Check(value == false, message: expr);
+    
+    [Prio(1)]
+    public static void IsFalse(bool value, string message, [ArgExpress(nameof(value))] string expression = "") 
+        => Check(value == false, message: expression + " " + message);
     
     public static void Fail() 
         => throw new Exception(GetFailureMessageLegacy("", ""));
