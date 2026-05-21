@@ -4,20 +4,20 @@ namespace JJ.Framework.Testing.Core.Tests;
 
 internal static class Mocks
 {
-    public static readonly CultureInfo _expectedCulture = InvariantCulture;
-    public static readonly CultureInfo _sameCulture     = _expectedCulture;
-    public static readonly CultureInfo _actualCulture   = new("nl-NL");
-    public static readonly object      _expectedObject  = _expectedCulture;
-    public static readonly object      _sameObject      = _sameCulture;
-    public static readonly object      _actualObject    = _actualCulture;
-    public const  string               _expectedText    = "a";
-    public const  string               _sameText        = _expectedText;
-    public const  string               _actualText      = "b";
-    public static readonly object?     _obj             = new();
-    public static readonly object?     _noObj           = null;
-    public static readonly int?        _nullableOne     = 1;
-    public static readonly Type        _intType         = typeof(int);
-    public static readonly Type        _stringType      = typeof(string);
+    public static readonly CultureInfo ExpectedCulture = InvariantCulture;
+    public static readonly CultureInfo SameCulture     = ExpectedCulture;
+    public static readonly CultureInfo ActualCulture   = new("nl-NL");
+    public static readonly object      ExpectedObject  = ExpectedCulture;
+    public static readonly object      SameObject      = SameCulture;
+    public static readonly object      ActualObject    = ActualCulture;
+    public const  string               ExpectedText    = "a";
+    public const  string               SameText        = ExpectedText;
+    public const  string               ActualText      = "b";
+    public static readonly object?     Obj             = new();
+    public static readonly object?     NoObj           = null;
+    public static readonly int?        NullableOne     = 1;
+    public static readonly Type        IntType         = typeof(int);
+    public static readonly Type        StringType      = typeof(string);
 }
 
 [TestClass]
@@ -28,21 +28,21 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void AssertCore_AreEqual_AsObject()
     {
-        AreEqual(_expectedObject, _sameObject);
-        AreEqual(_expectedObject, _sameObject, "oops");
+        AreEqual(ExpectedObject, SameObject);
+        AreEqual(ExpectedObject, SameObject, "oops");
 
-        Throws(() => AreEqual(_expectedObject, _actualObject),         "AreEqual failed", "Tested", "actualObject");
-        Throws(() => AreEqual(_expectedObject, _actualObject, "oops"), "AreEqual failed", "Tested", "actualObject", "oops");
+        Throws(() => AreEqual(ExpectedObject, ActualObject),         "AreEqual failed", "Tested", "ActualObject");
+        Throws(() => AreEqual(ExpectedObject, ActualObject, "oops"), "AreEqual failed", "Tested", "ActualObject", "oops");
     }
 
     [TestMethod]
     public void AssertCore_AreEqual_ReferenceType()
     {
-        AreEqual(_expectedCulture, _sameCulture);
-        AreEqual(_expectedCulture, _sameCulture, "oops");
+        AreEqual(ExpectedCulture, SameCulture);
+        AreEqual(ExpectedCulture, SameCulture, "oops");
 
-        Throws(() => AreEqual(_expectedCulture, _actualCulture),         "AreEqual failed", "Tested", "actualCulture");
-        Throws(() => AreEqual(_expectedCulture, _actualCulture, "oops"), "AreEqual failed", "Tested", "actualCulture", "oops");
+        Throws(() => AreEqual(ExpectedCulture, ActualCulture),         "AreEqual failed", "Tested", "ActualCulture");
+        Throws(() => AreEqual(ExpectedCulture, ActualCulture, "oops"), "AreEqual failed", "Tested", "ActualCulture", "oops");
     }
 
     [TestMethod]
@@ -70,29 +70,29 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void AssertCore_NotEqual_AsObject()
     {
-        NotEqual   (_expectedObject, _actualObject);
-        AreNotEqual(_expectedObject, _actualObject);
-        NotEqual   (_expectedObject, _actualObject, "oops");
-        AreNotEqual(_expectedObject, _actualObject, "oops");
+        NotEqual   (ExpectedObject, ActualObject);
+        AreNotEqual(ExpectedObject, ActualObject);
+        NotEqual   (ExpectedObject, ActualObject, "oops");
+        AreNotEqual(ExpectedObject, ActualObject, "oops");
 
-        Throws(() => NotEqual   (_expectedObject, _sameObject),         "NotEqual failed", "sameObject");
-        Throws(() => AreNotEqual(_expectedObject, _sameObject),         "NotEqual failed", "sameObject");
-        Throws(() => NotEqual   (_expectedObject, _sameObject, "oops"), "NotEqual failed", "sameObject", "oops");
-        Throws(() => AreNotEqual(_expectedObject, _sameObject, "oops"), "NotEqual failed", "sameObject", "oops");
+        Throws(() => NotEqual   (ExpectedObject, SameObject),         "NotEqual failed", "SameObject");
+        Throws(() => AreNotEqual(ExpectedObject, SameObject),         "NotEqual failed", "SameObject");
+        Throws(() => NotEqual   (ExpectedObject, SameObject, "oops"), "NotEqual failed", "SameObject", "oops");
+        Throws(() => AreNotEqual(ExpectedObject, SameObject, "oops"), "NotEqual failed", "SameObject", "oops");
     }
 
     [TestMethod]
     public void AssertCore_NotEqual_ReferenceType()
     {
-        NotEqual   (_expectedCulture, _actualCulture);
-        AreNotEqual(_expectedCulture, _actualCulture);
-        NotEqual   (_expectedCulture, _actualCulture, "oops");
-        AreNotEqual(_expectedCulture, _actualCulture, "oops");
+        NotEqual   (ExpectedCulture, ActualCulture);
+        AreNotEqual(ExpectedCulture, ActualCulture);
+        NotEqual   (ExpectedCulture, ActualCulture, "oops");
+        AreNotEqual(ExpectedCulture, ActualCulture, "oops");
 
-        Throws(() => NotEqual   (_expectedCulture, _sameCulture),         "NotEqual failed", "sameCulture");
-        Throws(() => AreNotEqual(_expectedCulture, _sameCulture),         "NotEqual failed", "sameCulture");
-        Throws(() => NotEqual   (_expectedCulture, _sameCulture, "oops"), "NotEqual failed", "sameCulture", "oops");
-        Throws(() => AreNotEqual(_expectedCulture, _sameCulture, "oops"), "NotEqual failed", "sameCulture", "oops");
+        Throws(() => NotEqual   (ExpectedCulture, SameCulture),         "NotEqual failed", "SameCulture");
+        Throws(() => AreNotEqual(ExpectedCulture, SameCulture),         "NotEqual failed", "SameCulture");
+        Throws(() => NotEqual   (ExpectedCulture, SameCulture, "oops"), "NotEqual failed", "SameCulture", "oops");
+        Throws(() => AreNotEqual(ExpectedCulture, SameCulture, "oops"), "NotEqual failed", "SameCulture", "oops");
     }
 
     [TestMethod]
@@ -132,31 +132,31 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void AssertCore_AreSame_AsObject()
     {
-        AreSame(_expectedObject, _sameObject);
-        AreSame(_expectedObject, _sameObject, "oops");
+        AreSame(ExpectedObject, SameObject);
+        AreSame(ExpectedObject, SameObject, "oops");
 
-        Throws(() => AreSame(_expectedObject, _actualObject),         "AreSame failed", "actualObject");
-        Throws(() => AreSame(_expectedObject, _actualObject, "oops"), "AreSame failed", "actualObject", "oops");
+        Throws(() => AreSame(ExpectedObject, ActualObject),         "AreSame failed", "ActualObject");
+        Throws(() => AreSame(ExpectedObject, ActualObject, "oops"), "AreSame failed", "ActualObject", "oops");
     }
 
     [TestMethod]
     public void AssertCore_AreSame_ReferenceType()
     {
-        AreSame(_expectedCulture, _sameCulture);
-        AreSame(_expectedCulture, _sameCulture, "oops");
+        AreSame(ExpectedCulture, SameCulture);
+        AreSame(ExpectedCulture, SameCulture, "oops");
 
-        Throws(() => AreSame(_expectedCulture, _actualCulture),         "AreSame failed", "actualCulture");
-        Throws(() => AreSame(_expectedCulture, _actualCulture, "oops"), "AreSame failed", "actualCulture", "oops");
+        Throws(() => AreSame(ExpectedCulture, ActualCulture),         "AreSame failed", "ActualCulture");
+        Throws(() => AreSame(ExpectedCulture, ActualCulture, "oops"), "AreSame failed", "ActualCulture", "oops");
     }
 
     [TestMethod]
     public void AssertCore_AreSame_String()
     {
-        AreSame(_expectedText, _sameText);
-        AreSame(_expectedText, _sameText, "oops");
+        AreSame(ExpectedText, SameText);
+        AreSame(ExpectedText, SameText, "oops");
 
-        Throws(() => AreSame(_expectedText, _actualText),         "AreSame failed", "actualText");
-        Throws(() => AreSame(_expectedText, _actualText, "oops"), "AreSame failed", "actualText", "oops");
+        Throws(() => AreSame(ExpectedText, ActualText),         "AreSame failed", "actualText");
+        Throws(() => AreSame(ExpectedText, ActualText, "oops"), "AreSame failed", "actualText", "oops");
     }
 
     // NotSame
@@ -164,43 +164,43 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void AssertCore_NotSame_AsObject()
     {
-           NotSame(_expectedObject, _actualObject);
-        AreNotSame(_expectedObject, _actualObject);
-           NotSame(_expectedObject, _actualObject, "oops");
-        AreNotSame(_expectedObject, _actualObject, "oops");
+           NotSame(ExpectedObject, ActualObject);
+        AreNotSame(ExpectedObject, ActualObject);
+           NotSame(ExpectedObject, ActualObject, "oops");
+        AreNotSame(ExpectedObject, ActualObject, "oops");
 
-        Throws(() =>    NotSame(_expectedObject, _sameObject),         "NotSame failed", "sameObject");
-        Throws(() => AreNotSame(_expectedObject, _sameObject),         "NotSame failed", "sameObject");
-        Throws(() =>    NotSame(_expectedObject, _sameObject, "oops"), "NotSame failed", "sameObject", "oops");
-        Throws(() => AreNotSame(_expectedObject, _sameObject, "oops"), "NotSame failed", "sameObject", "oops");
+        Throws(() =>    NotSame(ExpectedObject, SameObject),         "NotSame failed", "SameObject");
+        Throws(() => AreNotSame(ExpectedObject, SameObject),         "NotSame failed", "SameObject");
+        Throws(() =>    NotSame(ExpectedObject, SameObject, "oops"), "NotSame failed", "SameObject", "oops");
+        Throws(() => AreNotSame(ExpectedObject, SameObject, "oops"), "NotSame failed", "SameObject", "oops");
     }
 
     [TestMethod]
     public void AssertCore_NotSame_ReferenceType()
     {
-           NotSame(_expectedCulture, _actualCulture);
-        AreNotSame(_expectedCulture, _actualCulture);
-           NotSame(_expectedCulture, _actualCulture, "oops");
-        AreNotSame(_expectedCulture, _actualCulture, "oops");
+           NotSame(ExpectedCulture, ActualCulture);
+        AreNotSame(ExpectedCulture, ActualCulture);
+           NotSame(ExpectedCulture, ActualCulture, "oops");
+        AreNotSame(ExpectedCulture, ActualCulture, "oops");
 
-        Throws(() =>    NotSame(_expectedCulture, _sameCulture),         "NotSame failed", "sameCulture");
-        Throws(() => AreNotSame(_expectedCulture, _sameCulture),         "NotSame failed", "sameCulture");
-        Throws(() =>    NotSame(_expectedCulture, _sameCulture, "oops"), "NotSame failed", "sameCulture", "oops");
-        Throws(() => AreNotSame(_expectedCulture, _sameCulture, "oops"), "NotSame failed", "sameCulture", "oops");
+        Throws(() =>    NotSame(ExpectedCulture, SameCulture),         "NotSame failed", "SameCulture");
+        Throws(() => AreNotSame(ExpectedCulture, SameCulture),         "NotSame failed", "SameCulture");
+        Throws(() =>    NotSame(ExpectedCulture, SameCulture, "oops"), "NotSame failed", "SameCulture", "oops");
+        Throws(() => AreNotSame(ExpectedCulture, SameCulture, "oops"), "NotSame failed", "SameCulture", "oops");
     }
 
     [TestMethod]
     public void AssertCore_NotSame_String()
     {
-           NotSame(_expectedText, _actualText);
-        AreNotSame(_expectedText, _actualText);
-           NotSame(_expectedText, _actualText, "oops");
-        AreNotSame(_expectedText, _actualText, "oops");
+           NotSame(ExpectedText, ActualText);
+        AreNotSame(ExpectedText, ActualText);
+           NotSame(ExpectedText, ActualText, "oops");
+        AreNotSame(ExpectedText, ActualText, "oops");
 
-        Throws(() =>    NotSame(_expectedText, _sameText),         "NotSame failed", "sameText");
-        Throws(() => AreNotSame(_expectedText, _sameText),         "NotSame failed", "sameText");
-        Throws(() =>    NotSame(_expectedText, _sameText, "oops"), "NotSame failed", "sameText", "oops");
-        Throws(() => AreNotSame(_expectedText, _sameText, "oops"), "NotSame failed", "sameText", "oops");
+        Throws(() =>    NotSame(ExpectedText, SameText),         "NotSame failed", "SameText");
+        Throws(() => AreNotSame(ExpectedText, SameText),         "NotSame failed", "SameText");
+        Throws(() =>    NotSame(ExpectedText, SameText, "oops"), "NotSame failed", "SameText", "oops");
+        Throws(() => AreNotSame(ExpectedText, SameText, "oops"), "NotSame failed", "SameText", "oops");
     }
 }
 
@@ -212,10 +212,10 @@ public class AssertCore_Existence_Tests
     [TestMethod]
     public void AssertCore_Null()
     {
-        IsNull(_noObj);
-        IsNull(_noObj, "oops");
-        Throws(() => IsNull(_obj),         "IsNull failed", "obj");
-        Throws(() => IsNull(_obj, "oops"), "IsNull failed", "obj", "oops");
+        IsNull(NoObj);
+        IsNull(NoObj, "oops");
+        Throws(() => IsNull(Obj),         "IsNull failed", "Obj");
+        Throws(() => IsNull(Obj, "oops"), "IsNull failed", "Obj", "oops");
     }
 
     // NotNull
@@ -223,15 +223,15 @@ public class AssertCore_Existence_Tests
     [TestMethod]
     public void AssertCore_NotNull()
     {
-          NotNull(_obj);
-        IsNotNull(_obj);
-          NotNull(_obj, "oops");
-        IsNotNull(_obj, "oops");
+          NotNull(Obj);
+        IsNotNull(Obj);
+          NotNull(Obj, "oops");
+        IsNotNull(Obj, "oops");
 
-        Throws(() =>   NotNull(_noObj),         "NotNull failed", "noObj");
-        Throws(() => IsNotNull(_noObj),         "NotNull failed", "noObj");
-        Throws(() =>   NotNull(_noObj, "oops"), "NotNull failed", "noObj", "oops");
-        Throws(() => IsNotNull(_noObj, "oops"), "NotNull failed", "noObj", "oops");
+        Throws(() =>   NotNull(NoObj),         "NotNull failed", "NoObj");
+        Throws(() => IsNotNull(NoObj),         "NotNull failed", "NoObj");
+        Throws(() =>   NotNull(NoObj, "oops"), "NotNull failed", "NoObj", "oops");
+        Throws(() => IsNotNull(NoObj, "oops"), "NotNull failed", "NoObj", "oops");
     }
 
     // NullOrEmpty
@@ -247,14 +247,14 @@ public class AssertCore_Existence_Tests
           NotNullOrEmpty("x", "oops");
         IsNotNullOrEmpty("x", "oops");
 
-        Throws(() =>   NotNullOrEmpty(empty),          "NotNullOrEmpty failed", "empty");
-        Throws(() => IsNotNullOrEmpty(empty),          "NotNullOrEmpty failed", "empty");
-        Throws(() =>   NotNullOrEmpty(noText),         "NotNullOrEmpty failed", "noText");
-        Throws(() => IsNotNullOrEmpty(noText),         "NotNullOrEmpty failed", "noText");
-        Throws(() =>   NotNullOrEmpty(empty,  "oops"), "NotNullOrEmpty failed", "empty", "oops");
-        Throws(() => IsNotNullOrEmpty(empty,  "oops"), "NotNullOrEmpty failed", "empty", "oops");
-        Throws(() =>   NotNullOrEmpty(noText, "oops"), "NotNullOrEmpty failed", "noText", "oops");
-        Throws(() => IsNotNullOrEmpty(noText, "oops"), "NotNullOrEmpty failed", "noText", "oops");
+        Throws(() =>   NotNullOrEmpty(empty),          "NotNullOrEmpty failed", "Empty");
+        Throws(() => IsNotNullOrEmpty(empty),          "NotNullOrEmpty failed", "Empty");
+        Throws(() =>   NotNullOrEmpty(noText),         "NotNullOrEmpty failed", "NoText");
+        Throws(() => IsNotNullOrEmpty(noText),         "NotNullOrEmpty failed", "NoText");
+        Throws(() =>   NotNullOrEmpty(empty,  "oops"), "NotNullOrEmpty failed", "Empty", "oops");
+        Throws(() => IsNotNullOrEmpty(empty,  "oops"), "NotNullOrEmpty failed", "Empty", "oops");
+        Throws(() =>   NotNullOrEmpty(noText, "oops"), "NotNullOrEmpty failed", "NoText", "oops");
+        Throws(() => IsNotNullOrEmpty(noText, "oops"), "NotNullOrEmpty failed", "NoText", "oops");
     }
 
     [TestMethod]
@@ -565,21 +565,21 @@ public class AssertCore_Types_Tests
     [TestMethod]
     public void AssertCore_IsType_WithValue()
     {
-        IsType(typeof(int?), _nullableOne);
-        IsType(typeof(int?), _nullableOne, "oops");
+        IsType(typeof(int?), NullableOne);
+        IsType(typeof(int?), NullableOne, "oops");
 
-        Throws(() => IsType(typeof(int), _nullableOne),         "IsType failed", "_nullableOne");
-        Throws(() => IsType(typeof(int), _nullableOne, "oops"), "IsType failed", "_nullableOne", "oops");
+        Throws(() => IsType(typeof(int), NullableOne),         "IsType failed", "NullableOne");
+        Throws(() => IsType(typeof(int), NullableOne, "oops"), "IsType failed", "NullableOne", "oops");
     }
 
     [TestMethod]
     public void AssertCore_IsType_TwoTypes()
     {
-        IsType(typeof(int?), _nullableOne);
-        IsType(typeof(int?), _nullableOne, "oops");
+        IsType(typeof(int?), NullableOne);
+        IsType(typeof(int?), NullableOne, "oops");
 
-        Throws(() => IsType(typeof(int), _stringType),         "IsType failed", "_stringType");
-        Throws(() => IsType(typeof(int), _stringType, "oops"), "IsType failed", "_stringType", "oops");
+        Throws(() => IsType(typeof(int), StringType),         "IsType failed", "StringType");
+        Throws(() => IsType(typeof(int), StringType, "oops"), "IsType failed", "StringType", "oops");
     }
 
     // NotType
@@ -587,20 +587,20 @@ public class AssertCore_Types_Tests
     [TestMethod]
     public void AssertCore_NotType_WithValue()
     {
-        NotType(typeof(int), _nullableOne);
-        NotType(typeof(int), _nullableOne, "oops");
+        NotType(typeof(int), NullableOne);
+        NotType(typeof(int), NullableOne, "oops");
 
-        Throws(() => NotType(typeof(int?), _nullableOne),         "NotType failed", "nullableOne");
-        Throws(() => NotType(typeof(int?), _nullableOne, "oops"), "NotType failed", "nullableOne", "oops");
+        Throws(() => NotType(typeof(int?), NullableOne),         "NotType failed", "NullableOne");
+        Throws(() => NotType(typeof(int?), NullableOne, "oops"), "NotType failed", "NullableOne", "oops");
     }
 
     [TestMethod]
     public void AssertCore_NotType_WithTwoTypes()
     {
-        NotType(typeof(string), _intType);
-        NotType(typeof(string), _intType, "oops");
+        NotType(typeof(string), IntType);
+        NotType(typeof(string), IntType, "oops");
 
-        Throws(() => NotType(typeof(int), _intType),         "NotType failed", "_intType");
-        Throws(() => NotType(typeof(int), _intType, "oops"), "NotType failed", "_intType", "oops");
+        Throws(() => NotType(typeof(int), IntType),         "NotType failed", "IntType");
+        Throws(() => NotType(typeof(int), IntType, "oops"), "NotType failed", "IntType", "oops");
     }
 }
