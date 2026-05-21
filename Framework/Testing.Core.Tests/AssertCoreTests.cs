@@ -1,4 +1,3 @@
-
 namespace JJ.Framework.Testing.Core.Tests;
 
 [TestClass]
@@ -365,18 +364,20 @@ public class AssertCoreTests
     [TestMethod]
     public void AssertCore_Fail()
     {
-        Throws(() => Fail(), " failed");
-        Throws(() => Fail("x"), " failed", "x");
+        Throws(() => Fail(      ), "failed");
+        Throws(() => Fail("oops"), "failed", "oops");
     }
 
     // Contains
 
     [TestMethod]
-    public void AssertCore_Contains()
-    {
-        Contains("needle", "haystack NEEDLE hay");
-        Throws(() => Contains("needle", "haystack"), "does not contain");
-    }
+    public void AssertCore_Contains() => Contains("needle", "haystack needle hay");
+    
+    [TestMethod]
+    public void AssertCore_Contains_IgnoresCase() => Contains("needle", "haystack NEEDLE hay");
+
+    [TestMethod]
+    public void AssertCore_Contains_AssertsError() => Throws(() => Contains("needle", "haystack"), "does not contain");
 
     // NoNullRet
 
