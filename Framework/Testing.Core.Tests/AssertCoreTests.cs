@@ -401,18 +401,22 @@ public class AssertCoreTests
     {
         int? wrong = 2;
         const int nonNullable = 1;
+        string? nullText = null;
 
         NullRet(1, (int?)1);
         NullRet(1, (int?)1, "oops");
 
-        Throws(() => NullRet(1, wrong),       "AreEqual failed", "wrong");
+        Throws(() => NullRet(1, wrong),       "failed", "wrong");
         Throws(() => NullRet(1, nonNullable), "IsType failed", "nonNullable");
 
-        // These don't exist yet. Overloads clashed.
-        //Throws(() => NoNullRet(nullText, "oops"), "NotNull failed", "oops");
-        //Throws(() => NoNullRet("a", nullText, "oops"), "NotNull failed", "oops");
-        //Throws(() => NullRet(1, (int?)2, "oops"), "AreEqual failed", "oops");
-        //Throws(() => NullRet(1, 1, "oops"), "IsType failed", "oops");
+        Throws(() => NoNullRet("a", "b"              ), "AreEqual failed", "a", "b");
+        Throws(() => NoNullRet("a", "b",       "oops"), "AreEqual failed", "a", "b", "oops");
+        Throws(() => NoNullRet("a", nullText!, "oops"), "NotNull failed", "oops");
+
+
+        Throws(() => NullRet(1, (int?)2, "oops"), "AreEqual failed", "oops");
+        Throws(() => NullRet(1, (int)1, "oops"), "IsType failed", "oops");
+        Throws(() => NullRet(1, 1, "oops"), "failed", "1", "oops");
     }
 
     // Throws
