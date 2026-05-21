@@ -1,23 +1,28 @@
+using static JJ.Framework.Testing.Core.Tests.Mocks;
+
 namespace JJ.Framework.Testing.Core.Tests;
 
-[TestClass]
-public class AssertCoreTests
+internal static class Mocks
 {
-    private static readonly CultureInfo _expectedCulture = InvariantCulture;
-    private static readonly CultureInfo _sameCulture     = _expectedCulture;
-    private static readonly CultureInfo _actualCulture   = new("nl-NL");
-    private static readonly object      _expectedObject  = _expectedCulture;
-    private static readonly object      _sameObject      = _sameCulture;
-    private static readonly object      _actualObject    = _actualCulture;
-    private const  string               _expectedText    = "a";
-    private const  string               _sameText        = _expectedText;
-    private const  string               _actualText      = "b";
-    private static readonly object?     _obj             = new();
-    private static readonly object?     _noObj           = null;
-    private static readonly int?        _nullableOne     = 1;
-    private static readonly Type        _intType         = typeof(int);
-    private static readonly Type        _stringType      = typeof(string);
+    public static readonly CultureInfo _expectedCulture = InvariantCulture;
+    public static readonly CultureInfo _sameCulture     = _expectedCulture;
+    public static readonly CultureInfo _actualCulture   = new("nl-NL");
+    public static readonly object      _expectedObject  = _expectedCulture;
+    public static readonly object      _sameObject      = _sameCulture;
+    public static readonly object      _actualObject    = _actualCulture;
+    public const  string               _expectedText    = "a";
+    public const  string               _sameText        = _expectedText;
+    public const  string               _actualText      = "b";
+    public static readonly object?     _obj             = new();
+    public static readonly object?     _noObj           = null;
+    public static readonly int?        _nullableOne     = 1;
+    public static readonly Type        _intType         = typeof(int);
+    public static readonly Type        _stringType      = typeof(string);
+}
 
+[TestClass]
+public class AssertCore_Equals_Tests
+{
     // AreEqual
 
     [TestMethod]
@@ -197,7 +202,11 @@ public class AssertCoreTests
         Throws(() =>    NotSame(_expectedText, _sameText, "oops"), "NotSame failed", "sameText", "oops");
         Throws(() => AreNotSame(_expectedText, _sameText, "oops"), "NotSame failed", "sameText", "oops");
     }
+}
 
+[TestClass]
+public class AssertCore_Existence_Tests
+{
     // Null
 
     [TestMethod]
@@ -334,7 +343,11 @@ public class AssertCoreTests
         Throws(() =>   NullOrWhiteSpace(text, "oops"), "NullOrWhiteSpace failed", "text", "oops");
         Throws(() => IsNullOrWhiteSpace(text, "oops"), "NullOrWhiteSpace failed", "text", "oops");
     }
+}
 
+[TestClass]
+public class AssertCore_Truth_Tests
+{
     // True
 
     [TestMethod]
@@ -367,7 +380,11 @@ public class AssertCoreTests
         Throws(() => Fail(      ), "failed");
         Throws(() => Fail("oops"), "failed", "oops");
     }
+}
 
+[TestClass]
+public class AssertCoreTests
+{
     // Contains
 
     [TestMethod]
@@ -416,7 +433,11 @@ public class AssertCoreTests
         Throws(() => NullRet(1, wrong,       "oops"), "AreEqual failed", "wrong",       "oops");
         Throws(() => NullRet(1, nonNullable, "oops"), "IsType failed",   "nonNullable", "oops");
     }
+}
 
+[TestClass]
+public class AssertCore_Throws_Tests
+{
     // Throws
 
     [TestMethod]
@@ -534,7 +555,11 @@ public class AssertCoreTests
 
     private void ThrowingAction() => throw new InvalidOperationException("boom");
     private object ThrowingFunc() => throw new InvalidOperationException("boom");
+}
 
+[TestClass]
+public class AssertCore_Types_Tests
+{
     // Type
 
     [TestMethod]
