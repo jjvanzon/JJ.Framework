@@ -383,7 +383,7 @@ public class AssertCoreTests
     [TestMethod]
     public void AssertCore_NoNullRet()
     {
-        string nullText = null!;
+        string? nullText = null;
 
         NoNullRet(1);
         NoNullRet(1, "oops");
@@ -392,8 +392,12 @@ public class AssertCoreTests
         NoNullRet("a", "a");
         NoNullRet("a", "a", "oops");
 
-        Throws(() => NoNullRet(nullText),      "NotNull failed", "nullText");
-        Throws(() => NoNullRet("a", nullText), "NotNull failed", "nullText");
+        // When `!` is removed, compiler complains = NoNullRet
+        Throws(() => NoNullRet(nullText!             ), "NotNull failed", "nullText");
+        Throws(() => NoNullRet("a", nullText!        ), "NotNull failed", "nullText");
+        Throws(() => NoNullRet("a", nullText!, "oops"), "NotNull failed", "nullText", "oops");
+        Throws(() => NoNullRet("a", "b"              ), "AreEqual failed", "a", "b");
+        Throws(() => NoNullRet("a", "b",       "oops"), "AreEqual failed", "a", "b", "oops");
     }
 
     [TestMethod]
@@ -406,17 +410,10 @@ public class AssertCoreTests
         NullRet(1, (int?)1);
         NullRet(1, (int?)1, "oops");
 
-        Throws(() => NullRet(1, wrong),       "failed", "wrong");
-        Throws(() => NullRet(1, nonNullable), "IsType failed", "nonNullable");
-
-        Throws(() => NoNullRet("a", "b"              ), "AreEqual failed", "a", "b");
-        Throws(() => NoNullRet("a", "b",       "oops"), "AreEqual failed", "a", "b", "oops");
-        Throws(() => NoNullRet("a", nullText!, "oops"), "NotNull failed", "oops");
-
-
-        Throws(() => NullRet(1, (int?)2, "oops"), "AreEqual failed", "oops");
-        Throws(() => NullRet(1, (int)1, "oops"), "IsType failed", "oops");
-        Throws(() => NullRet(1, 1, "oops"), "failed", "1", "oops");
+        Throws(() => NullRet(1, wrong              ), "AreEqual failed", "wrong"              );
+        Throws(() => NullRet(1, nonNullable        ), "IsType failed",   "nonNullable"        );
+        Throws(() => NullRet(1, wrong,       "oops"), "AreEqual failed", "wrong",       "oops");
+        Throws(() => NullRet(1, nonNullable, "oops"), "IsType failed",   "nonNullable", "oops");
     }
 
     // Throws
