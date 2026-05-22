@@ -9,8 +9,17 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class DotNetTests : IDisposable
 {
-    private const string PackId  = "JJ.Framework.Common.Core";
-    private const string PackVer = "4.6.6251";
+    private const string CS_PROJ_FILE_NAME = "Temp.csproj";
+    private const string PACK_ID  = "JJ.Framework.Common.Core";
+    private const string PACK_VER = "4.6.6251";
+    private const string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
+    private readonly string _tempDir;
+    private readonly string _csprojPath;
+    private readonly string _outputDllDebug;
+    private readonly string _outputDllRelease;
+    private readonly string _assetsFilePath;
+    private readonly DotNetOptions _opt;       // with file + dir
+    private readonly DotNetOptions _optNoFile; // with dir only (restore / package commands)
 
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
@@ -28,17 +37,6 @@ public class DotNetTests : IDisposable
         </Project>
         """;
 
-    private const string ProgramContent = "Console.WriteLine(\"hello\");";
-    private const string CsProjFileName = "Temp.csproj";
-
-    private readonly string _tempDir;
-    private readonly string _csprojPath;
-    private readonly string _outputDllDebug;
-    private readonly string _outputDllRelease;
-    private readonly string _assetsFilePath;
-    private readonly DotNetOptions _opt;       // with file + dir
-    private readonly DotNetOptions _optNoFile; // with dir only (restore / package commands)
-
     public DotNetTests()
     {
         //const string TargetFramework = "net8.0";
@@ -47,21 +45,21 @@ public class DotNetTests : IDisposable
         if (targetFramework.StartsWith("net4")) targetFramework = "net8.0";
         
         _tempDir          = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", Path.GetRandomFileName().Replace(".", "")); //Guid.NewGuid().ToString());
-        _csprojPath       = Path.Combine(_tempDir, CsProjFileName);
+        _csprojPath       = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
         _outputDllDebug   = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
         _outputDllRelease = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
         _assetsFilePath   = Path.Combine(_tempDir, "obj", "project.assets.json");
         
         Directory.CreateDirectory(_tempDir);
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
-        WriteAllText(Path.Combine(_tempDir, "Program.cs"), ProgramContent);
+        WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
 
         // TODO: Different types of options aren't tested.
         // TODO: Logging isn't really tested.
         _opt = new DotNetOptions
         {
             Dir        = _tempDir,
-            File       = CsProjFileName,
+            File       = CS_PROJ_FILE_NAME,
             BuildConf  = "Release",
             //TimeOutSec = 300,
             Log        = Log
@@ -257,18 +255,18 @@ public class DotNetTests : IDisposable
     {
         string output = call();
         NotNullOrWhiteSpace(output);
-        AssertContains(output, PackId);
+        AssertContains(output, PACK_ID);
 
         string content = ReadAllText(_csprojPath);
         NotNullOrWhiteSpace(content);
-        AssertContains(content, PackId);
-        AssertContains(content, PackVer);
+        AssertContains(content, PACK_ID);
+        AssertContains(content, PACK_VER);
     }
 
-    [TestMethod] public void Test_InstallPackage_ByMethod()          => TestInstallPack_ChDir(() => InstallPackage(PackId, PackVer));
-    [TestMethod] public void Test_InstallPackage_ByMethod_Args()     => TestInstallPack_ChDir(() => InstallPackage(PackId, PackVer, ""));
-    [TestMethod] public void Test_InstallPackage_ByMethod_Opt()      => TestInstallPack      (() => InstallPackage(PackId, PackVer, _optNoFile));
-    [TestMethod] public void Test_InstallPackage_ByMethod_Args_Opt() => TestInstallPack      (() => InstallPackage(PackId, PackVer, "--no-restore", _optNoFile));
+    [TestMethod] public void Test_InstallPackage_ByMethod()          => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER));
+    [TestMethod] public void Test_InstallPackage_ByMethod_Args()     => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER, ""));
+    [TestMethod] public void Test_InstallPackage_ByMethod_Opt()      => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, _optNoFile));
+    [TestMethod] public void Test_InstallPackage_ByMethod_Args_Opt() => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, "--no-restore", _optNoFile));
     // ByEnum and ByName variants won't work unless you specify id and ver as args.
 
     // UninstallPackage
@@ -276,20 +274,20 @@ public class DotNetTests : IDisposable
     private void TestUninstallPack_ChDir(Func<string> call) => InTempDir(() => TestUninstallPack(call));
     private void TestUninstallPack(Func<string> call)
     {
-        InstallPackage(PackId, PackVer, _optNoFile);
+        InstallPackage(PACK_ID, PACK_VER, _optNoFile);
 
         string output = call();
         NotNullOrWhiteSpace(output);
-        AssertContains(output, PackId);
+        AssertContains(output, PACK_ID);
 
         string content = ReadAllText(_csprojPath);
-        IsFalse(content.Contains(PackId));
-        IsFalse(content.Contains(PackVer));
+        IsFalse(content.Contains(PACK_ID));
+        IsFalse(content.Contains(PACK_VER));
     }
 
-    [TestMethod] public void Test_UninstallPackage()          => TestUninstallPack_ChDir(() => UninstallPackage(PackId));
-    [TestMethod] public void Test_UninstallPackage_Args()     => TestUninstallPack_ChDir(() => UninstallPackage(PackId, ""));
-    [TestMethod] public void Test_UninstallPackage_Opt()      => TestUninstallPack      (() => UninstallPackage(PackId, _optNoFile));
-    [TestMethod] public void Test_UninstallPackage_Args_Opt() => TestUninstallPack      (() => UninstallPackage(PackId, "", _optNoFile));
+    [TestMethod] public void Test_UninstallPackage()          => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID));
+    [TestMethod] public void Test_UninstallPackage_Args()     => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID, ""));
+    [TestMethod] public void Test_UninstallPackage_Opt()      => TestUninstallPack      (() => UninstallPackage(PACK_ID, _optNoFile));
+    [TestMethod] public void Test_UninstallPackage_Args_Opt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, "", _optNoFile));
     // Enum and name won't work unless you specify id and ver as args.
 }
