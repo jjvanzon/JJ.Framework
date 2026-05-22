@@ -99,6 +99,15 @@ public class DiagnosticsFormatterTests
     }
 
     [TestMethod]
+    public void Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
+    {
+        var args = new DotNetArgsAccessor().Obj;
+        AreEqual("<no command>", Descriptor(args));
+    }
+
+    // InstallPackage
+
+    [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandEnumAndIDVer()
     {
         var args = new DotNetArgsAccessor
@@ -176,35 +185,81 @@ public class DiagnosticsFormatterTests
         AreEqual("installpackage | add package JJ.Framework.Common --version 1.0.0", Descriptor(args.Obj));
     }
 
-    // TODO: Add FullArgs variants to UninstallPackage tests.
+    // UninstallPackage
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandTextAndID()
     {
-        var args = new DotNetArgsAccessor("remove") { ID = "JJ.Framework.Common" }.Obj;
-        AreEqual("remove JJ.Framework.Common", Descriptor(args));
+        var args = new DotNetArgsAccessor
+        { 
+            Command = "remove",
+            ID = "JJ.Framework.Common" 
+        };
+        AreEqual("remove JJ.Framework.Common", Descriptor(args.Obj));
     }
 
     [TestMethod]
-    public void DotNetArgs_Descriptor_InstallPackage_CommandEnumTextIDVerAndArgs()
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumAndID()
     {
         var args = new DotNetArgsAccessor
         { 
-            CommandEnum = installpackage, 
-            Command = "add", 
-            ID = "JJ.Framework.Common", 
-            Ver = "1.0.0",
-            Args = "--no-cache"
-        }.Obj;
-        AreEqual("installpackage / add JJ.Framework.Common 1.0.0 | --no-cache", Descriptor(args));
+            CommandEnum = uninstallpackage,
+            ID = "JJ.Framework.Common" 
+        };
+        AreEqual("uninstallpackage JJ.Framework.Common", Descriptor(args.Obj));
     }
 
     [TestMethod]
-    public void Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandTextEnumAndID()
     {
-        var args = new DotNetArgsAccessor().Obj;
-        AreEqual("<no command>", Descriptor(args));
+        var args = new DotNetArgsAccessor
+        { 
+            Command = "remove",
+            CommandEnum = uninstallpackage,
+            ID = "JJ.Framework.Common" 
+        };
+        AreEqual("uninstallpackage / remove JJ.Framework.Common", Descriptor(args.Obj));
     }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDrAndArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = uninstallpackage, 
+            Command = "remove", 
+            ID = "JJ.Framework.Common", 
+            Args = "--help"
+        }.Obj;
+        AreEqual("uninstallpackage / remove JJ.Framework.Common | --help", Descriptor(args));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandTextIDAndFullArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            Command = "remove",
+            ID = "JJ.Framework.Common", 
+            FullArgs = "remove package JJ.Framework.Common"
+        };
+        AreEqual("remove package JJ.Framework.Common", Descriptor(args.Obj));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDAndFullArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = uninstallpackage,
+            Command = "remove",
+            ID = "JJ.Framework.Common", 
+            FullArgs = "remove package JJ.Framework.Common"
+        };
+        AreEqual("uninstallpackage | remove package JJ.Framework.Common", Descriptor(args.Obj));
+    }
+
+    // TODO: Tests with both Args and FullArgs (realistic non-error case ones).
 
     // CommandDescriptor
 
