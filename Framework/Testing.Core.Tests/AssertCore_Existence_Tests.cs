@@ -158,17 +158,25 @@ public class AssertCore_Existence_Tests
     [TestMethod]
     public void Test_AssertCore_NullRet()
     {
+        // ReSharper disable ConvertToConstant.Local
         int? wrong = 2;
-        // ReSharper disable once ConvertToConstant.Local
+        bool? wrongBool = false;
         int nonNullable = 1;
+        bool nonNullableBool = true;
 
-        // TODO: This doesn't check all types (ref, text) just vals.
+        // NullRet is for Nullable<T> (value types). Nullability of ref/text is compile-time only.
         NullRet(1, (int?)1);
         NullRet(1, (int?)1, "oops");
+        NullRet(true, (bool?)true);
+        NullRet(true, (bool?)true, "oops");
 
-        Throws(() => NullRet(1, wrong              ), "AreEqual failed", "wrong"              );
-        Throws(() => NullRet(1, nonNullable        ), "IsType failed",   "nonNullable"        );
-        Throws(() => NullRet(1, wrong,       "oops"), "AreEqual failed", "wrong",       "oops");
-        Throws(() => NullRet(1, nonNullable, "oops"), "IsType failed",   "nonNullable", "oops");
+        Throws(() => NullRet(1,    wrong                  ), "AreEqual failed", "wrong"                  );
+        Throws(() => NullRet(1,    nonNullable            ), "IsType failed",   "nonNullable"            );
+        Throws(() => NullRet(1,    wrong,           "oops"), "AreEqual failed", "wrong",           "oops");
+        Throws(() => NullRet(1,    nonNullable,     "oops"), "IsType failed",   "nonNullable",     "oops");
+        Throws(() => NullRet(true, wrongBool              ), "AreEqual failed", "wrongBool"              );
+        Throws(() => NullRet(true, nonNullableBool        ), "IsType failed",   "nonNullableBool"        );
+        Throws(() => NullRet(true, wrongBool,       "oops"), "AreEqual failed", "wrongBool",       "oops");
+        Throws(() => NullRet(true, nonNullableBool, "oops"), "IsType failed",   "nonNullableBool", "oops");
     }
 }

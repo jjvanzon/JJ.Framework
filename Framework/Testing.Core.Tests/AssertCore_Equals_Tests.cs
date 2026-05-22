@@ -3,10 +3,10 @@ namespace JJ.Framework.Testing.Core.Tests;
 [TestClass]
 public class AssertCore_Equals_Tests
 {
-    private static readonly CultureInfo _wxpectedCulture = InvariantCulture;
-    private static readonly CultureInfo _sameCulture     = _wxpectedCulture;
+    private static readonly CultureInfo _expectedCulture = InvariantCulture;
+    private static readonly CultureInfo _sameCulture     = _expectedCulture;
     private static readonly CultureInfo _actualCulture   = new("nl-NL");
-    private static readonly object      _expectedObject  = _wxpectedCulture;
+    private static readonly object      _expectedObject  = _expectedCulture;
     private static readonly object      _sameObject      = _sameCulture;
     private static readonly object      _actualObject    = _actualCulture;
     private const  string               _expectedText     = "a";
@@ -28,11 +28,11 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void Test_AssertCore_AreEqual_ReferenceType()
     {
-        AreEqual(_wxpectedCulture, _sameCulture);
-        AreEqual(_wxpectedCulture, _sameCulture, "oops");
+        AreEqual(_expectedCulture, _sameCulture);
+        AreEqual(_expectedCulture, _sameCulture, "oops");
 
-        Throws(() => AreEqual(_wxpectedCulture, _actualCulture),         "AreEqual failed", "Tested", "ActualCulture");
-        Throws(() => AreEqual(_wxpectedCulture, _actualCulture, "oops"), "AreEqual failed", "Tested", "ActualCulture", "oops");
+        Throws(() => AreEqual(_expectedCulture, _actualCulture),         "AreEqual failed", "Tested", "ActualCulture");
+        Throws(() => AreEqual(_expectedCulture, _actualCulture, "oops"), "AreEqual failed", "Tested", "ActualCulture", "oops");
     }
 
     [TestMethod]
@@ -74,15 +74,15 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void Test_AssertCore_NotEqual_ReferenceType()
     {
-        NotEqual   (_wxpectedCulture, _actualCulture);
-        AreNotEqual(_wxpectedCulture, _actualCulture);
-        NotEqual   (_wxpectedCulture, _actualCulture, "oops");
-        AreNotEqual(_wxpectedCulture, _actualCulture, "oops");
+        NotEqual   (_expectedCulture, _actualCulture);
+        AreNotEqual(_expectedCulture, _actualCulture);
+        NotEqual   (_expectedCulture, _actualCulture, "oops");
+        AreNotEqual(_expectedCulture, _actualCulture, "oops");
 
-        Throws(() => NotEqual   (_wxpectedCulture, _sameCulture),         "NotEqual failed", "SameCulture");
-        Throws(() => AreNotEqual(_wxpectedCulture, _sameCulture),         "NotEqual failed", "SameCulture");
-        Throws(() => NotEqual   (_wxpectedCulture, _sameCulture, "oops"), "NotEqual failed", "SameCulture", "oops");
-        Throws(() => AreNotEqual(_wxpectedCulture, _sameCulture, "oops"), "NotEqual failed", "SameCulture", "oops");
+        Throws(() => NotEqual   (_expectedCulture, _sameCulture),         "NotEqual failed", "SameCulture");
+        Throws(() => AreNotEqual(_expectedCulture, _sameCulture),         "NotEqual failed", "SameCulture");
+        Throws(() => NotEqual   (_expectedCulture, _sameCulture, "oops"), "NotEqual failed", "SameCulture", "oops");
+        Throws(() => AreNotEqual(_expectedCulture, _sameCulture, "oops"), "NotEqual failed", "SameCulture", "oops");
     }
 
     [TestMethod]
@@ -130,11 +130,11 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void Test_AssertCore_AreSame_ReferenceType()
     {
-        AreSame(_wxpectedCulture, _sameCulture);
-        AreSame(_wxpectedCulture, _sameCulture, "oops");
+        AreSame(_expectedCulture, _sameCulture);
+        AreSame(_expectedCulture, _sameCulture, "oops");
 
-        Throws(() => AreSame(_wxpectedCulture, _actualCulture),         "AreSame failed", "ActualCulture");
-        Throws(() => AreSame(_wxpectedCulture, _actualCulture, "oops"), "AreSame failed", "ActualCulture", "oops");
+        Throws(() => AreSame(_expectedCulture, _actualCulture),         "AreSame failed", "ActualCulture");
+        Throws(() => AreSame(_expectedCulture, _actualCulture, "oops"), "AreSame failed", "ActualCulture", "oops");
     }
 
     [TestMethod]
@@ -166,15 +166,15 @@ public class AssertCore_Equals_Tests
     [TestMethod]
     public void Test_AssertCore_NotSame_ReferenceType()
     {
-           NotSame(_wxpectedCulture, _actualCulture);
-        AreNotSame(_wxpectedCulture, _actualCulture);
-           NotSame(_wxpectedCulture, _actualCulture, "oops");
-        AreNotSame(_wxpectedCulture, _actualCulture, "oops");
+           NotSame(_expectedCulture, _actualCulture);
+        AreNotSame(_expectedCulture, _actualCulture);
+           NotSame(_expectedCulture, _actualCulture, "oops");
+        AreNotSame(_expectedCulture, _actualCulture, "oops");
 
-        Throws(() =>    NotSame(_wxpectedCulture, _sameCulture),         "NotSame failed", "SameCulture");
-        Throws(() => AreNotSame(_wxpectedCulture, _sameCulture),         "NotSame failed", "SameCulture");
-        Throws(() =>    NotSame(_wxpectedCulture, _sameCulture, "oops"), "NotSame failed", "SameCulture", "oops");
-        Throws(() => AreNotSame(_wxpectedCulture, _sameCulture, "oops"), "NotSame failed", "SameCulture", "oops");
+        Throws(() =>    NotSame(_expectedCulture, _sameCulture),         "NotSame failed", "SameCulture");
+        Throws(() => AreNotSame(_expectedCulture, _sameCulture),         "NotSame failed", "SameCulture");
+        Throws(() =>    NotSame(_expectedCulture, _sameCulture, "oops"), "NotSame failed", "SameCulture", "oops");
+        Throws(() => AreNotSame(_expectedCulture, _sameCulture, "oops"), "NotSame failed", "SameCulture", "oops");
     }
 
     [TestMethod]
