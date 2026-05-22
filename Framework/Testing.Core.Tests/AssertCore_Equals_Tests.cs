@@ -16,7 +16,7 @@ public class AssertCore_Equals_Tests
     // AreEqual
 
     [TestMethod]
-    public void AssertCore_AreEqual_AsObject()
+    public void Test_AssertCore_AreEqual_AsObject()
     {
         AreEqual(_expectedObject, _sameObject);
         AreEqual(_expectedObject, _sameObject, "oops");
@@ -26,7 +26,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_AreEqual_ReferenceType()
+    public void Test_AssertCore_AreEqual_ReferenceType()
     {
         AreEqual(_wxpectedCulture, _sameCulture);
         AreEqual(_wxpectedCulture, _sameCulture, "oops");
@@ -36,7 +36,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_AreEqual_ValueType()
+    public void Test_AssertCore_AreEqual_ValueType()
     {
         AreEqual(1, 1);
         AreEqual(1, 1, "oops");
@@ -46,7 +46,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_AreEqual_String()
+    public void Test_AssertCore_AreEqual_String()
     {
         AreEqual("a", "a");
         AreEqual("a", "a", "oops");
@@ -58,7 +58,7 @@ public class AssertCore_Equals_Tests
     // NotEqual
 
     [TestMethod]
-    public void AssertCore_NotEqual_AsObject()
+    public void Test_AssertCore_NotEqual_AsObject()
     {
         NotEqual   (_expectedObject, _actualObject);
         AreNotEqual(_expectedObject, _actualObject);
@@ -72,7 +72,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NotEqual_ReferenceType()
+    public void Test_AssertCore_NotEqual_ReferenceType()
     {
         NotEqual   (_wxpectedCulture, _actualCulture);
         AreNotEqual(_wxpectedCulture, _actualCulture);
@@ -86,7 +86,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NotEqual_ValueType()
+    public void Test_AssertCore_NotEqual_ValueType()
     {
         const int same = 1;
 
@@ -102,7 +102,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NotEqual_String()
+    public void Test_AssertCore_NotEqual_String()
     {
         NotEqual   ("a", "b");
         AreNotEqual("a", "b");
@@ -118,7 +118,7 @@ public class AssertCore_Equals_Tests
     // Same
 
     [TestMethod]
-    public void AssertCore_AreSame_AsObject()
+    public void Test_AssertCore_AreSame_AsObject()
     {
         AreSame(_expectedObject, _sameObject);
         AreSame(_expectedObject, _sameObject, "oops");
@@ -128,7 +128,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_AreSame_ReferenceType()
+    public void Test_AssertCore_AreSame_ReferenceType()
     {
         AreSame(_wxpectedCulture, _sameCulture);
         AreSame(_wxpectedCulture, _sameCulture, "oops");
@@ -138,7 +138,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_AreSame_String()
+    public void Test_AssertCore_AreSame_String()
     {
         AreSame(_expectedText, _sameText);
         AreSame(_expectedText, _sameText, "oops");
@@ -150,7 +150,7 @@ public class AssertCore_Equals_Tests
     // NotSame
 
     [TestMethod]
-    public void AssertCore_NotSame_AsObject()
+    public void Test_AssertCore_NotSame_AsObject()
     {
            NotSame(_expectedObject, _actualObject);
         AreNotSame(_expectedObject, _actualObject);
@@ -164,7 +164,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NotSame_ReferenceType()
+    public void Test_AssertCore_NotSame_ReferenceType()
     {
            NotSame(_wxpectedCulture, _actualCulture);
         AreNotSame(_wxpectedCulture, _actualCulture);
@@ -178,7 +178,7 @@ public class AssertCore_Equals_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NotSame_String()
+    public void Test_AssertCore_NotSame_String()
     {
            NotSame(_expectedText, _actualText);
         AreNotSame(_expectedText, _actualText);

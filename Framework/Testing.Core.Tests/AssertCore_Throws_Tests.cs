@@ -6,7 +6,7 @@ public class AssertCore_Throws_Tests
     // Throws
 
     [TestMethod]
-    public void AssertCore_Throws()
+    public void Test_AssertCore_Throws()
     {
         Throws         (ThrowingAction        );
         Throws         (ThrowingFunc          );
@@ -29,7 +29,7 @@ public class AssertCore_Throws_Tests
     }
 
     [TestMethod]
-    public void AssertCore_Throws_DidNotThrow()
+    public void Test_AssertCore_Throws_DidNotThrow()
     {
         const string expectedMsgPart = "An exception should have"; // been throws/occurred.
         Throws(() => Throws         (() => { }        ), expectedMsgPart);
@@ -53,7 +53,7 @@ public class AssertCore_Throws_Tests
     }
 
     [TestMethod]
-    public void AssertCore_Throws_WrongExceptionType()
+    public void Test_AssertCore_Throws_WrongExceptionType()
     {
         const string expectedMsgPart = "AreEqual failed";
 
@@ -72,7 +72,7 @@ public class AssertCore_Throws_Tests
     }
 
     [TestMethod]
-    public void AssertCore_Throws_WrongMessage()
+    public void Test_AssertCore_Throws_WrongMessage()
     {
         string[] msgParts = [ "boom", "murp" ];
 
@@ -88,7 +88,7 @@ public class AssertCore_Throws_Tests
     }
 
     [TestMethod]
-    public void AssertCore_Throws_WrongExceptionType_And_WrongMessage()
+    public void Test_AssertCore_Throws_WrongExceptionType_And_WrongMessage()
     {
         const string expectedMsgPart = "AreEqual failed";
 
@@ -101,7 +101,7 @@ public class AssertCore_Throws_Tests
     }
 
     [TestMethod]
-    public void AssertCore_ThrowsOnOtherThread()
+    public void Test_AssertCore_ThrowsOnOtherThread()
     {
         ThrowsOnOtherThread         (ThrowingAction);
         ThrowsOnOtherThread         (ThrowingFunc);
@@ -109,7 +109,7 @@ public class AssertCore_Throws_Tests
     }
 
     [TestMethod]
-    public void AssertCore_ThrowsOnOtherThread_DidNotThrow()
+    public void Test_AssertCore_ThrowsOnOtherThread_DidNotThrow()
     {
         const string expectedMsgPart = "An exception should have";
 

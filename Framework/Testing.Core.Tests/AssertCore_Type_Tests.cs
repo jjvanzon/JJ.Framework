@@ -10,7 +10,7 @@ public class AssertCore_Type_Tests
     // Type
 
     [TestMethod]
-    public void AssertCore_IsType_WithValue()
+    public void Test_AssertCore_IsType_WithValue()
     {
         IsType(typeof(int?), _nullableOne);
         IsType(typeof(int?), _nullableOne, "oops");
@@ -20,7 +20,7 @@ public class AssertCore_Type_Tests
     }
 
     [TestMethod]
-    public void AssertCore_IsType_TwoTypes()
+    public void Test_AssertCore_IsType_TwoTypes()
     {
         IsType(typeof(int?), _nullableOne);
         IsType(typeof(int?), _nullableOne, "oops");
@@ -32,7 +32,7 @@ public class AssertCore_Type_Tests
     // NotType
 
     [TestMethod]
-    public void AssertCore_NotType_WithValue()
+    public void Test_AssertCore_NotType_WithValue()
     {
         NotType(typeof(int), _nullableOne);
         NotType(typeof(int), _nullableOne, "oops");
@@ -42,7 +42,7 @@ public class AssertCore_Type_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NotType_WithTwoTypes()
+    public void Test_AssertCore_NotType_WithTwoTypes()
     {
         NotType(typeof(string), _intType);
         NotType(typeof(string), _intType, "oops");

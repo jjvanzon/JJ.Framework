@@ -6,7 +6,7 @@ public class AssertCore_Existence_Tests
     // Null
 
     [TestMethod]
-    public void AssertCore_Null()
+    public void Test_AssertCore_Null()
     {
         IsNull(NoObj);
         IsNull(NoObj, "oops");
@@ -17,7 +17,7 @@ public class AssertCore_Existence_Tests
     // NotNull
 
     [TestMethod]
-    public void AssertCore_NotNull()
+    public void Test_AssertCore_NotNull()
     {
         NotNull(Obj);
         IsNotNull(Obj);
@@ -33,7 +33,7 @@ public class AssertCore_Existence_Tests
     // NullOrEmpty
 
     [TestMethod]
-    public void AssertCore_NotNullOrEmpty()
+    public void Test_AssertCore_NotNullOrEmpty()
     {
         NotNullOrEmpty("x");
         IsNotNullOrEmpty("x");
@@ -51,7 +51,7 @@ public class AssertCore_Existence_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NullOrEmpty()
+    public void Test_AssertCore_NullOrEmpty()
     {
         NullOrEmpty(Empty);
         IsNullOrEmpty(Empty);
@@ -71,7 +71,7 @@ public class AssertCore_Existence_Tests
     // NullOrWhiteSpace
 
     [TestMethod]
-    public void AssertCore_NotNullOrWhiteSpace()
+    public void Test_AssertCore_NotNullOrWhiteSpace()
     {
         NotNullOrWhiteSpace("x");
         IsNotNullOrWhiteSpace("x");
@@ -97,7 +97,7 @@ public class AssertCore_Existence_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NullOrWhiteSpace()
+    public void Test_AssertCore_NullOrWhiteSpace()
     {
         NullOrWhiteSpace(WhiteSpace);
         IsNullOrWhiteSpace(WhiteSpace);
@@ -125,18 +125,18 @@ public class AssertCore_Existence_Tests
     // Contains
 
     [TestMethod]
-    public void AssertCore_Contains() => Contains("needle", "haystack needle hay");
+    public void Test_AssertCore_Contains() => Contains("needle", "haystack needle hay");
     
     [TestMethod]
-    public void AssertCore_Contains_IgnoresCase() => Contains("needle", "haystack NEEDLE hay");
+    public void Test_AssertCore_Contains_IgnoresCase() => Contains("needle", "haystack NEEDLE hay");
 
     [TestMethod]
-    public void AssertCore_Contains_AssertsError() => Throws(() => Contains("needle", "haystack"), "does not contain");
+    public void Test_AssertCore_Contains_AssertsError() => Throws(() => Contains("needle", "haystack"), "does not contain");
 
     // NoNullRet
 
     [TestMethod]
-    public void AssertCore_NoNullRet()
+    public void Test_AssertCore_NoNullRet()
     {
         int nonNullInt = 1;
 
@@ -156,7 +156,7 @@ public class AssertCore_Existence_Tests
     }
 
     [TestMethod]
-    public void AssertCore_NullRet()
+    public void Test_AssertCore_NullRet()
     {
         int? wrong = 2;
         // ReSharper disable once ConvertToConstant.Local

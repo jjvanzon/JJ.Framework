@@ -4,30 +4,30 @@
 public class AssertCore_Basics_Tests
 {
     [TestMethod]
-    public void AssertCore_IsTrue_Value_Succeeds() => IsTrue(true);
+    public void Test_AssertCore_IsTrue_Value_Succeeds() => IsTrue(true);
     
     [TestMethod]
-    public void AssertCore_IsTrue_Value_Fails() 
+    public void Test_AssertCore_IsTrue_Value_Fails() 
         => Throws(() => IsTrue(false), "Assert.IsTrue failed.");
     
     [TestMethod]
-    public void AssertCore_IsFalse_Value_Succeeds() => IsFalse(false);
+    public void Test_AssertCore_IsFalse_Value_Succeeds() => IsFalse(false);
     
     [TestMethod]
-    public void AssertCore_IsFalse_Value_Fails()
+    public void Test_AssertCore_IsFalse_Value_Fails()
         => Throws(() => IsFalse(true), "Assert.IsFalse failed.");
     
     [TestMethod]
-    public void AssertCore_IsTrue_WithMessage_Succeeds() => IsTrue(true, "It went wrong.");
+    public void Test_AssertCore_IsTrue_WithMessage_Succeeds() => IsTrue(true, "It went wrong.");
     
     [TestMethod]
-    public void AssertCore_IsTrue_WithMessage_Fails() 
+    public void Test_AssertCore_IsTrue_WithMessage_Fails() 
         => Throws(() => IsTrue(false, "It went wrong."), "Assert.IsTrue failed.", "It went wrong.");
     
     [TestMethod]
-    public void AssertCore_IsFalse_WithMessage_Succeeds() => IsFalse(false, "It went wrong.");
+    public void Test_AssertCore_IsFalse_WithMessage_Succeeds() => IsFalse(false, "It went wrong.");
     
     [TestMethod]
-    public void AssertCore_IsFalse_WithMessage_Fails() 
+    public void Test_AssertCore_IsFalse_WithMessage_Fails() 
         => Throws(() => IsFalse(true, "It went wrong."), "Assert.IsFalse failed.", "It went wrong.");
 }

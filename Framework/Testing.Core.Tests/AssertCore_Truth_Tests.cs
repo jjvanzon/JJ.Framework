@@ -6,7 +6,7 @@ public class AssertCore_Truth_Tests
     // True
 
     [TestMethod]
-    public void AssertCore_IsTrue()
+    public void Test_AssertCore_IsTrue()
     {
         IsTrue(true);
         IsTrue(true, "oops");
@@ -18,7 +18,7 @@ public class AssertCore_Truth_Tests
     // False
 
     [TestMethod]
-    public void AssertCore_IsFalse()
+    public void Test_AssertCore_IsFalse()
     {
         IsFalse(false);
         IsFalse(false, "oops");
@@ -30,7 +30,7 @@ public class AssertCore_Truth_Tests
     // Fail
 
     [TestMethod]
-    public void AssertCore_Fail()
+    public void Test_AssertCore_Fail()
     {
         Throws(() => Fail(      ), "failed");
         Throws(() => Fail("oops"), "failed", "oops");
