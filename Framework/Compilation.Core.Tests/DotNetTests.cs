@@ -29,6 +29,7 @@ public class DotNetTests : IDisposable
         """;
 
     private const string ProgramContent = "Console.WriteLine(\"hello\");";
+    private const string CsProjFileName = "Temp.csproj";
 
     private readonly string _tempDir;
     private readonly string _csprojPath;
@@ -46,7 +47,7 @@ public class DotNetTests : IDisposable
         if (targetFramework.StartsWith("net4")) targetFramework = "net8.0";
         
         _tempDir          = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", Path.GetRandomFileName().Replace(".", "")); //Guid.NewGuid().ToString());
-        _csprojPath       = Path.Combine(_tempDir, "Temp.csproj");
+        _csprojPath       = Path.Combine(_tempDir, CsProjFileName);
         _outputDllDebug   = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
         _outputDllRelease = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
         _assetsFilePath   = Path.Combine(_tempDir, "obj", "project.assets.json");
@@ -60,7 +61,7 @@ public class DotNetTests : IDisposable
         _opt = new DotNetOptions
         {
             Dir        = _tempDir,
-            File       = _csprojPath,
+            File       = CsProjFileName,
             BuildConf  = "Release",
             //TimeOutSec = 300,
             Log        = Log
