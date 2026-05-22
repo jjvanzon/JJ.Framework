@@ -326,48 +326,7 @@ public class AssertCore_Existence_Tests
         Throws(() =>   NullOrWhiteSpace(Filled, "oops"), "NullOrWhiteSpace failed", "Filled", "oops");
         Throws(() => IsNullOrWhiteSpace(Filled, "oops"), "NullOrWhiteSpace failed", "Filled", "oops");
     }
-}
 
-[TestClass]
-public class AssertCore_Truth_Tests
-{
-    // True
-
-    [TestMethod]
-    public void AssertCore_IsTrue()
-    {
-        IsTrue(true);
-        IsTrue(true, "oops");
-
-        Throws(() => IsTrue(false),         "IsTrue failed", "false");
-        Throws(() => IsTrue(false, "oops"), "IsTrue failed", "false", "oops");
-    }
-
-    // False
-
-    [TestMethod]
-    public void AssertCore_IsFalse()
-    {
-        IsFalse(false);
-        IsFalse(false, "oops");
-
-        Throws(() => IsFalse(true),         "IsFalse failed", "true");
-        Throws(() => IsFalse(true, "oops"), "IsFalse failed", "true", "oops");
-    }
-
-    // Fail
-
-    [TestMethod]
-    public void AssertCore_Fail()
-    {
-        Throws(() => Fail(      ), "failed");
-        Throws(() => Fail("oops"), "failed", "oops");
-    }
-}
-
-[TestClass]
-public class AssertCoreTests
-{
     // Contains
 
     [TestMethod]
@@ -420,7 +379,44 @@ public class AssertCoreTests
 }
 
 [TestClass]
-public class AssertCore_Throws_Tests
+public class AssertCore_Truth_Tests
+{
+    // True
+
+    [TestMethod]
+    public void AssertCore_IsTrue()
+    {
+        IsTrue(true);
+        IsTrue(true, "oops");
+
+        Throws(() => IsTrue(false),         "IsTrue failed", "false");
+        Throws(() => IsTrue(false, "oops"), "IsTrue failed", "false", "oops");
+    }
+
+    // False
+
+    [TestMethod]
+    public void AssertCore_IsFalse()
+    {
+        IsFalse(false);
+        IsFalse(false, "oops");
+
+        Throws(() => IsFalse(true),         "IsFalse failed", "true");
+        Throws(() => IsFalse(true, "oops"), "IsFalse failed", "true", "oops");
+    }
+
+    // Fail
+
+    [TestMethod]
+    public void AssertCore_Fail()
+    {
+        Throws(() => Fail(      ), "failed");
+        Throws(() => Fail("oops"), "failed", "oops");
+    }
+}
+
+[TestClass]
+public class AssertCore_Throw_Tests
 {
     // Throws
 
@@ -542,7 +538,7 @@ public class AssertCore_Throws_Tests
 }
 
 [TestClass]
-public class AssertCore_Types_Tests
+public class AssertCore_Type_Tests
 {
     private static readonly int? _nullableOne = 1;
     private static readonly Type _intType      = typeof(int);
