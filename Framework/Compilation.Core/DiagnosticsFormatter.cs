@@ -26,6 +26,14 @@ internal static class DiagnosticsFormatter
         {
             commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
         }
+        if (Has(args.ID) && argsDescriptor.Contains(args.ID, OrdinalIgnoreCase))
+        {
+            idVerDescriptor = idVerDescriptor.Replace(args.ID, "").TrimStart();
+        }
+        if (Has(args.Ver) && argsDescriptor.Contains(args.Ver, OrdinalIgnoreCase))
+        {
+            idVerDescriptor = idVerDescriptor.Replace(args.Ver, "").TrimEnd();
+        }
 
         string sep1 = Has(commandDescriptor) && Has(idVerDescriptor) ? " " : "";
         string sep2 = (Has(commandDescriptor) || Has(idVerDescriptor)) && Has(argsDescriptor) ? " | " : "";

@@ -101,16 +101,82 @@ public class DiagnosticsFormatterTests
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandEnumAndIDVer()
     {
-        var args = new DotNetArgsAccessor(installpackage) { ID = "JJ.Framework.Common", Ver = "1.0.0" }.Obj;
-        AreEqual("installpackage JJ.Framework.Common 1.0.0", Descriptor(args));
+        var args = new DotNetArgsAccessor
+        {
+            CommandEnum = installpackage,
+            ID = "JJ.Framework.Common", 
+            Ver = "1.0.0" 
+        };
+        AreEqual("installpackage JJ.Framework.Common 1.0.0", Descriptor(args.Obj));
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandTextAndIDVer()
     {
-        var args = new DotNetArgsAccessor("add") { ID = "JJ.Framework.Common", Ver = "1.0.0" }.Obj;
-        AreEqual("add JJ.Framework.Common 1.0.0", Descriptor(args));
+        var args = new DotNetArgsAccessor()
+        { 
+            Command = "add",
+            ID = "JJ.Framework.Common", 
+            Ver = "1.0.0" 
+        };
+        AreEqual("add JJ.Framework.Common 1.0.0", Descriptor(args.Obj));
     }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_InstallPackage_CommandEnumTextAndIDVer()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = installpackage,
+            Command = "add",
+            ID = "JJ.Framework.Common", 
+            Ver = "1.0.0",
+
+        };
+        AreEqual("installpackage / add JJ.Framework.Common 1.0.0", Descriptor(args.Obj));
+    }
+    
+    [TestMethod]
+    public void DotNetArgs_Descriptor_InstallPackage_CommandEnumIDVerAndFullArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = installpackage,
+            ID = "JJ.Framework.Common", 
+            Ver = "1.0.0",
+            FullArgs = "add package JJ.Framework.Common --version 1.0.0"
+        };
+        AreEqual("installpackage | add package JJ.Framework.Common --version 1.0.0", Descriptor(args.Obj));
+    }
+    
+    [TestMethod]
+    public void DotNetArgs_Descriptor_InstallPackage_CommandTextIDVerAndFullArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            Command = "add",
+            ID = "JJ.Framework.Common", 
+            Ver = "1.0.0",
+            FullArgs = "add package JJ.Framework.Common --version 1.0.0"
+        };
+        AreEqual("add package JJ.Framework.Common --version 1.0.0", Descriptor(args.Obj));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_InstallPackage_CommandEnumTextIDVerAndFullArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = installpackage,
+            Command = "add",
+            ID = "JJ.Framework.Common", 
+            Ver = "1.0.0",
+            FullArgs = "add package JJ.Framework.Common --version 1.0.0"
+        };
+        AreEqual("installpackage | add package JJ.Framework.Common --version 1.0.0", Descriptor(args.Obj));
+    }
+
+    // TODO: Add FullArgs variants to UninstallPackage tests.
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandTextAndID()
