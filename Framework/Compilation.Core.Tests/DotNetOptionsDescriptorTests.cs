@@ -120,7 +120,7 @@ public class DotNetOptionsDescriptorTests
         AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
         AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
         AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
-        AreEqual("",           Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
+        AreEqual("",                Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
         AreEqual("Log: Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }));
         AreEqual("Log: Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }));
         AreEqual("Log: Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));

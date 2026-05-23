@@ -9,11 +9,6 @@ internal static class DiagnosticsFormatter
 
     public static string Descriptor(DotNetOptions opt)
     {
-        if (opt == DefaultOptions)
-        {
-        }
-
-
         string formattedRestore     = FormatRestore(opt);
         string formattedLogOptions  = FormatLogOptions(opt);
         string formattedTimeOut     = FormatTimeOut(opt);
@@ -27,16 +22,19 @@ internal static class DiagnosticsFormatter
 
     private static string FormatRestore(bool autoRestore, bool parallelRestore)
     {
-        if (HasRestore(autoRestore, parallelRestore))
+        if (!HasRestore(autoRestore, parallelRestore)) 
         {
-            const string title = "Restore:";
-            string formattedAuto = autoRestore ? "Auto" : "";
-            string formattedParallel = parallelRestore ? "Parallel" : "";
-            string[] elements = [ title, formattedAuto, formattedParallel ];
-            return Join(" ", elements.Where(FilledIn));
+            return "";
         }
 
-        return "";
+        string[] elements = 
+        [
+            "Restore:", 
+            autoRestore ? "Auto" : "", 
+            parallelRestore ? "Parallel" : "" 
+        ];
+
+        return Join(" ", elements.Where(FilledIn));
     }
 
     private static bool HasRestore(bool autoRestore, bool parallelRestore)
@@ -49,14 +47,6 @@ internal static class DiagnosticsFormatter
     {
         if (verbosity == Quiet || !HasLog(log)) return "";
         return $"Log: {verbosity}";
-
-        //if (verbosity == Quiet) return "";
-        //string callbackFlag = HasLog(log) ? " (callback)": "";
-        //return $"log {verbosity}" + callbackFlag;
-
-        //string formattedVerbosity = Coalesce(verbosity, "");
-        //string[] elements = [ formattedVerbosity, callbackFlag ];
-        //return Join(" ", elements.Where(FilledIn));
     }
 
     private static bool HasLog(Action<string>? log) => log != null && log != NullLog;
@@ -75,6 +65,7 @@ internal static class DiagnosticsFormatter
     
     private static string FormatFileOptions(string file, string args, string dir)
     {
+        // TODO: put args after file if file is not long (is usually when dir is filled in).
         string formattedDir = Has(dir) ? $"({dir})" : "";
         string[] elements = [ args, file, formattedDir ];
         return Join(" " , elements.Where(FilledIn));
