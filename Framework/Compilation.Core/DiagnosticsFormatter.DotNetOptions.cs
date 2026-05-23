@@ -73,21 +73,32 @@ internal static partial class DiagnosticsFormatter
 
     private static string FormatFileOptions(string? file, string? args, string? dir)
     {
+        bool hasSep1 = Has(args) && Has(file);
+        bool hasSep2 = (Has(args) || Has(file)) && Has(dir);
+
         bool filePathIsLong = file?.Length > LONG_PATH_LENGTH;
         string formattedDir = FormatDir(dir);
+
         if (filePathIsLong)
         {
-            string sep1 = Has(args) && Has(file) ? " | " : "";
-            string sep2 = (Has(args) || Has(file)) && Has(dir) ? " | " : "";
+            string sep1 = hasSep1 ? " | " : "";
+            string sep2 = hasSep2 ? " | " : "";
             return args + sep1 + file + sep2 + formattedDir;
         }
         else
         { 
-            string sep1 = Has(args) && Has(file) ? " " : "";
-            string sep2 = (Has(args) || Has(file)) && Has(dir) ? " | " : "";
+            string sep1 = hasSep1 ? " " : "";
+            string sep2 = hasSep2 ? " | " : "";
             return file + sep1 + args + sep2 + formattedDir;
         }
     }
 
-    private static string FormatDir(string? dir) => Has(dir) ? $@"Dir: ""{dir}""" : "";
+    private static string FormatDir(string? dir)
+    {
+        if (!Has(dir)) return "";
+        return 
+            $"""
+             Dir: "{dir}"
+             """;
+    }
 }
