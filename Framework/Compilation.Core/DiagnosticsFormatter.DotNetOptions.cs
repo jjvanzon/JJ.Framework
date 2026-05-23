@@ -2,18 +2,26 @@
 
 internal static partial class DiagnosticsFormatter
 {
-    public static string DebuggerDisplay(DotNetOptions opt) 
-        => nameof(DotNetOptions) + " " + Descriptor(opt);
+    public static string DebuggerDisplay(DotNetOptions opt)
+    {
+        string descriptor = Descriptor(opt);
+        string sep = Has(descriptor) ? " " : "";
+        return nameof(DotNetOptions) + sep + descriptor;
+    }
 
     public static string Descriptor(DotNetOptions opt)
     {
+        string formattedBuildConf   = FormatBuildConf(opt);
         string formattedRestore     = FormatRestore(opt);
         string formattedLogOptions  = FormatLogOptions(opt);
         string formattedTimeOut     = FormatTimeOut(opt);
         string formattedFileOptions = FormatFileOptions(opt);
-        string[] elements = [opt.BuildConf, formattedRestore, formattedLogOptions, formattedTimeOut, formattedFileOptions];
+        string[] elements = [formattedBuildConf, formattedRestore, formattedLogOptions, formattedTimeOut, formattedFileOptions];
         return Join(" | ", elements.Where(FilledIn));
     }
+
+    private static string FormatBuildConf(DotNetOptions opt) => FormatBuildConf(opt.BuildConf);
+    private static string FormatBuildConf(string buildConf) => Has(buildConf) ? @"""" + buildConf + @"""" : "";
 
     private static string FormatRestore(DotNetOptions opt)
         => FormatRestore(opt.AutoRestore, opt.ParallelRestore);
@@ -44,7 +52,7 @@ internal static partial class DiagnosticsFormatter
     private static string FormatLogOptions(DotNetVerbosity verbosity, Action<string>? log)
     {
         if (verbosity == Quiet || !HasLog(log)) return "";
-        return $"Log: {verbosity}";
+        return $"Log {verbosity}";
     }
 
     private static bool HasLog(Action<string>? log) => log != null && log != NullLog;
@@ -61,11 +69,25 @@ internal static partial class DiagnosticsFormatter
     private static string FormatFileOptions(DotNetOptions opt)
         => FormatFileOptions(opt.File, opt.Args, opt.Dir);
     
-    private static string FormatFileOptions(string file, string args, string dir)
+    private const int LONG_PATH_LENGTH = 20;
+
+    private static string FormatFileOptions(string? file, string? args, string? dir)
     {
-        // TODO: put args after file if file is not long (is usually when dir is filled in).
-        string formattedDir = Has(dir) ? $"({dir})" : "";
-        string[] elements = [ args, file, formattedDir ];
-        return Join(" " , elements.Where(FilledIn));
+        bool filePathIsLong = file?.Length > LONG_PATH_LENGTH;
+        string formattedDir = FormatDir(dir);
+        if (filePathIsLong)
+        {
+            string sep1 = Has(args) && Has(file) ? " | " : "";
+            string sep2 = (Has(args) || Has(file)) && Has(dir) ? " | " : "";
+            return args + sep1 + file + sep2 + formattedDir;
+        }
+        else
+        { 
+            string sep1 = Has(args) && Has(file) ? " " : "";
+            string sep2 = (Has(args) || Has(file)) && Has(dir) ? " | " : "";
+            return file + sep1 + args + sep2 + formattedDir;
+        }
     }
+
+    private static string FormatDir(string? dir) => Has(dir) ? $@"Dir: ""{dir}""" : "";
 }

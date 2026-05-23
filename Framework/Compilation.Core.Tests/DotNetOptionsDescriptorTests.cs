@@ -20,14 +20,14 @@ public class DotNetOptionsDescriptorTests
             ParallelRestore = true,
             TimeOutSec = 123,
             Verbosity = Detailed,
-            Log = x => WriteLine(x),
+            Log = WriteLine, // ncrunch: no coverage
             Args = "--no-logo",
             File = "MyProject.csproj",
-            Dir = "C:/repo"
+            Dir = @"C:\repo"
         };
 
         AreEqual(
-            "Release | Restore: Auto Parallel | Log: Detailed | Timeout: 123s | --no-logo MyProject.csproj (C:/repo)",
+            @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir: ""C:\repo""",
             Descriptor(opt));
     }
 
@@ -46,10 +46,10 @@ public class DotNetOptionsDescriptorTests
     [TestMethod]
     public void DotNetOptions_Descriptor_BuildConf()
     {
-        AreEqual("Release", Descriptor(new DotNetOptions { BuildConf = "Release" }));
-        AreEqual("Debug",   Descriptor(new DotNetOptions { BuildConf = "Debug"   }));
-        AreEqual("La lala", Descriptor(new DotNetOptions { BuildConf = "La lala" }));
-        AreEqual("",        Descriptor(new DotNetOptions { BuildConf = ""        }));
+        AreEqual(@"""Release""", Descriptor(new DotNetOptions { BuildConf = "Release" }));
+        AreEqual(@"""Debug""",   Descriptor(new DotNetOptions { BuildConf = "Debug"   }));
+        AreEqual(@"""La lala""", Descriptor(new DotNetOptions { BuildConf = "La lala" }));
+        AreEqual("",             Descriptor(new DotNetOptions { BuildConf = ""        }));
     }
 
     // Restore
@@ -109,7 +109,7 @@ public class DotNetOptionsDescriptorTests
 
     [TestMethod]
     public void DotNetOptions_Descriptor_Log_Included()
-        => AreEqual("Log: Normal", Descriptor(new DotNetOptions { Log = WriteLine }));
+        => AreEqual("Log Normal", Descriptor(new DotNetOptions { Log = WriteLine }));
 
     // Verbosity
 
@@ -117,13 +117,13 @@ public class DotNetOptionsDescriptorTests
     public void DotNetOptions_Descriptor_Verbosity_AllValues()
     {
 
-        AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
-        AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
-        AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
+        AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
+        AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
+        AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
         AreEqual("",                Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
-        AreEqual("Log: Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }));
-        AreEqual("Log: Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }));
-        AreEqual("Log: Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));
+        AreEqual("Log Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }));
+        AreEqual("Log Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }));
+        AreEqual("Log Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));
     }
 
     // File Options
@@ -138,7 +138,7 @@ public class DotNetOptionsDescriptorTests
 
     [TestMethod]
     public void DotNetOptions_Descriptor_OnlyDir()
-        => AreEqual("(C:\repo)", Descriptor(new DotNetOptions { Dir = "C:\repo" }));
+        => AreEqual(@"Dir: ""C:\repo""", Descriptor(new DotNetOptions { Dir = @"C:\repo" }));
 
     [TestMethod]
     public void DotNetOptions_Descriptor_AllFileOptions()
@@ -147,10 +147,25 @@ public class DotNetOptionsDescriptorTests
         {
             Args = "--no-logo",
             File = "MyProject.csproj",
-            Dir = "C:/repo"
+            Dir = @"D:\JJ\Dev\Products\Code"
         };
 
-        AreEqual("--no-logo MyProject.csproj (C:/repo)", Descriptor(opt));
+        AreEqual(@"MyProject.csproj --no-logo | Dir: ""D:\JJ\Dev\Products\Code""", Descriptor(opt));
+    }
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_AllFileOptions_LongFilePath()
+    {
+        var opt = new DotNetOptions
+        {
+            Args = "--no-logo",
+            File = @"D:\JJ\Dev\Products\Code\MyProject.csproj",
+            Dir = @"D:\JJ\Dev\Products\Code"
+        };
+
+        IsTrue(opt.File.Length > 20);
+
+        AreEqual(@"--no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir: ""D:\JJ\Dev\Products\Code""", Descriptor(opt));
     }
 
     [TestMethod]

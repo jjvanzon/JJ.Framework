@@ -3,6 +3,7 @@
 public record struct DotNetOptions
 {
     public DotNetOptions() { }
+    public override string ToString() => DebuggerDisplay(this);
 
     internal const int DEFAULT_TIME_OUT_SEC = 5 * 60;
     public static readonly Action<string> NullLog = _ => { };
