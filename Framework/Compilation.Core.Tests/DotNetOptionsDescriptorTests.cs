@@ -120,7 +120,7 @@ public class DotNetOptionsDescriptorTests
         AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
         AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
         AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
-        AreEqual("",                Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
+        AreEqual("",               Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
         AreEqual("Log Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }));
         AreEqual("Log Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }));
         AreEqual("Log Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));
@@ -177,5 +177,121 @@ public class DotNetOptionsDescriptorTests
         {
             AreEqual("", Descriptor(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }));
         }
+    }
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_Combos()
+    {
+        AreEqual(
+            """
+            "Release" | Timeout: 123s
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", TimeOutSec = 123 }));
+
+        AreEqual(
+            """
+            "Release" | Restore: Auto
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", AutoRestore = true }));
+
+        AreEqual(
+            """
+            "Release" | Log Detailed
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Detailed }));
+
+        AreEqual(
+            """
+            Restore: Parallel | Timeout: 123s
+            """,
+            Descriptor(new DotNetOptions { ParallelRestore = true, TimeOutSec = 123 }));
+
+        AreEqual(
+            """
+            Restore: Auto | Log Detailed
+            """,
+            Descriptor(new DotNetOptions { AutoRestore = true, Log = WriteLine, Verbosity = Detailed }));
+
+        AreEqual(
+            """
+            Log Detailed | Timeout: 123s
+            """,
+            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 }));
+
+        AreEqual("""
+            "Release" | Restore: Parallel | Timeout: 123s
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", ParallelRestore = true, TimeOutSec = 123 }));
+
+        AreEqual("""
+            "Release" | Timeout: 123s
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Quiet, TimeOutSec = 123 }));
+
+        AreEqual("""
+            "Release" | Restore: Auto | Timeout: 123s
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", AutoRestore = true, Log = WriteLine, Verbosity = Quiet, TimeOutSec = 123 }));
+
+        AreEqual(
+            """
+            "Release" | Restore: Parallel | Log Detailed | Timeout: 123s
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", ParallelRestore = true, Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 }));
+    }
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_FileOptionCombos()
+    {
+        const string shortFile = "MyProject.csproj";
+        const string longFile = @"D:\JJ\Dev\Products\Code\MyProject.csproj";
+
+        AreEqual(
+            """
+            --no-logo | Dir: "C:\repo"
+            """,
+            Descriptor(new DotNetOptions { Args = "--no-logo", Dir = @"C:\repo" }));
+
+        AreEqual(
+            """
+            MyProject.csproj | Dir: "C:\repo"
+            """,
+            Descriptor(new DotNetOptions { File = shortFile, Dir = @"C:\repo" }));
+
+        AreEqual(
+            """
+            MyProject.csproj --no-logo
+            """,
+            Descriptor(new DotNetOptions { Args = "--no-logo", File = shortFile }));
+
+        AreEqual(
+            """
+            --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj
+            """,
+            Descriptor(new DotNetOptions { Args = "--no-logo", File = longFile }));
+
+        AreEqual(
+            """
+            D:\JJ\Dev\Products\Code\MyProject.csproj | Dir: "C:\repo"
+            """,
+            Descriptor(new DotNetOptions { File = longFile, Dir = @"C:\repo" }));
+
+        AreEqual(
+            """
+            --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir: "C:\repo"
+            """,
+            Descriptor(new DotNetOptions { Args = "--no-logo", File = longFile, Dir = @"C:\repo" }));
+
+        AreEqual(
+            """
+            "Release" | --no-logo | Dir: "C:\repo"
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", Args = "--no-logo", Dir = @"C:\repo" }));
+
+        AreEqual(
+            """
+            "Release" | MyProject.csproj | Dir: "C:\repo"
+            """,
+            Descriptor(new DotNetOptions { BuildConf = "Release", File = shortFile, Dir = @"C:\repo" }));
     }
 }
