@@ -4,7 +4,7 @@ public record struct DotNetOptions
 {
     public DotNetOptions() { }
 
-    private const int DEFAULT_TIME_OUT_SEC = 5 * 60;
+    internal const int DEFAULT_TIME_OUT_SEC = 5 * 60;
     public static readonly Action<string> NullLog = _ => { };
     public static readonly DotNetOptions DefaultOptions = new();
 

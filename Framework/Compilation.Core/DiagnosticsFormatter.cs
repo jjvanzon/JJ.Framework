@@ -2,12 +2,79 @@
 
 internal static class DiagnosticsFormatter
 {
+    // DotNetOptions Descriptor
+    
+    public static string DebuggerDisplay(DotNetOptions opt) 
+        => nameof(DotNetOptions) + " " + Descriptor(opt);
+
+    public static string Descriptor(DotNetOptions opt)
+    {
+        string formattedRestore     = FormatRestore(opt);
+        string formattedTimeOut     = FormatTimeOut(opt);
+        string formattedLogOptions  = FormatLogOptions(opt);
+        string formattedFileOptions = FormatFileOptions(opt);
+        string[] elements = [opt.BuildConf, formattedRestore, formattedTimeOut, formattedLogOptions, formattedFileOptions];
+        return Join(" ", elements.Where(FilledIn));
+    }
+
+    private static string FormatRestore(DotNetOptions opt)
+        => FormatRestore(opt.AutoRestore, opt.ParallelRestore);
+
+    private static string FormatRestore(bool autoRestore, bool parallelRestore)
+    {
+        if (HasRestore(autoRestore, parallelRestore))
+        {
+            string title = "restore";
+            string formattedAuto = autoRestore ? "auto" : "";
+            string formattedParallel = parallelRestore ? "parallel" : "";
+            string[] elements = [ title, formattedAuto, formattedParallel ];
+            return Join(" ", elements.Where(FilledIn));
+        }
+
+        return "";
+    }
+
+    private static bool HasRestore(bool autoRestore, bool parallelRestore)
+        => autoRestore || parallelRestore;
+
+    private static string FormatLogOptions(DotNetOptions opt)
+        => FormatLogOptions(opt.Verbosity, opt.Log);
+    
+    private static string FormatLogOptions(DotNetVerbosity verbosity, Action<string>? log)
+    {
+        string formattedVerbosity = Coalesce(verbosity, "");
+        string formattedLog = HasLog(log) ? "(logs)": "";
+        string[] elements = [ formattedVerbosity, formattedLog ];
+        return Join(" ", elements.Where(FilledIn));
+    }
+
+    private static bool HasLog(Action<string>? log) => log != null && log != NullLog;
+
+    private static string FormatTimeOut(DotNetOptions opt) 
+        => FormatTimeOut(opt.TimeOutSec);
+
+    private static string FormatTimeOut(int timeOutSec) 
+        => HasTimeOut(timeOutSec) ? $"(timeout {timeOutSec}s)" : "";
+
+    private static bool HasTimeOut(int timeOutSec)
+       => timeOutSec != 0 && timeOutSec != DEFAULT_TIME_OUT_SEC;
+
+    private static string FormatFileOptions(DotNetOptions opt)
+        => FormatFileOptions(opt.File, opt.Args, opt.Dir);
+    
+    private static string FormatFileOptions(string file, string args, string dir)
+    {
+        string formattedDir = Has(dir) ? $"({dir})" : "";
+        string[] elements = [ args, file, formattedDir ];
+        return Join(" " , elements.Where(FilledIn));
+    }
+
     // Args Descriptor
 
     private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
 
-    public static string DebuggerDisplay(DotNetArgs? args) => 
-        nameof(DotNetArgs) + " " + Descriptor(args);
+    public static string DebuggerDisplay(DotNetArgs? args) 
+        => nameof(DotNetArgs) + " " + Descriptor(args);
 
     public static string Descriptor(DotNetArgs? args)
     {
@@ -43,8 +110,8 @@ internal static class DiagnosticsFormatter
 
     // Command Descriptor
 
-    private static string CommandDescriptor(DotNetArgs? args) => 
-        args == null ? DotNetArgsNull : CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
+    private static string CommandDescriptor(DotNetArgs? args) 
+        => args == null ? DotNetArgsNull : CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
 
     private static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
@@ -107,8 +174,7 @@ internal static class DiagnosticsFormatter
         if (inconsistenciesDetected) return true;
 
         // Otherwise only include when not already implied by enum.
-        if (IsRe(@enum)) return false;
-        return true;
+        return !IsRe(@enum);
     }
 
     private static bool IsRe(DotNetCommandEnum @enum) => @enum is rebuild or msrebuild;
@@ -116,14 +182,14 @@ internal static class DiagnosticsFormatter
 
     // IDVerDescriptor
 
-    private static string IDVerDescriptor(DotNetArgs? args) => 
-        args == null ? DotNetArgsNull : IDVerDescriptor(args.ID, args.Ver);
+    private static string IDVerDescriptor(DotNetArgs? args) 
+        => args == null ? DotNetArgsNull : IDVerDescriptor(args.ID, args.Ver);
 
-    private static string IDVerDescriptor(string? id, string? ver) => 
-        $"{id} {ver}".Trim();
+    private static string IDVerDescriptor(string? id, string? ver)
+        => $"{id} {ver}".Trim();
 
-    private static string ArgsDescriptor(DotNetArgs? args) => 
-        args == null ? DotNetArgsNull : ArgsDescriptor(args.Args, args.FullArgs);
+    private static string ArgsDescriptor(DotNetArgs? args) 
+        => args == null ? DotNetArgsNull : ArgsDescriptor(args.Args, args.FullArgs);
 
     private static string ArgsDescriptor(string? args, string? fullArgs)
     {
