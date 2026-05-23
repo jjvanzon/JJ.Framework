@@ -8,6 +8,9 @@ internal static class DiagnosticsFormatterAccessor
 
     private static readonly AccessorCore _accessor = new("DiagnosticsFormatter");
 
+    public static string? Descriptor(DotNetOptions opt)
+        => (string?)_accessor.Call([ opt ], [ typeof(DotNetOptions) ]);
+
     public static string? Descriptor(DotNetArgs? args) 
         => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
 

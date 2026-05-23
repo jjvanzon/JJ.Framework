@@ -69,7 +69,7 @@ internal static class DiagnosticsFormatter
         return Join(" " , elements.Where(FilledIn));
     }
 
-    // Args Descriptor
+    // DotNetArgs Descriptor
 
     private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
 
