@@ -9,12 +9,17 @@ internal static class DiagnosticsFormatter
 
     public static string Descriptor(DotNetOptions opt)
     {
+        if (opt == DefaultOptions)
+        {
+        }
+
+
         string formattedRestore     = FormatRestore(opt);
-        string formattedTimeOut     = FormatTimeOut(opt);
         string formattedLogOptions  = FormatLogOptions(opt);
+        string formattedTimeOut     = FormatTimeOut(opt);
         string formattedFileOptions = FormatFileOptions(opt);
-        string[] elements = [opt.BuildConf, formattedRestore, formattedTimeOut, formattedLogOptions, formattedFileOptions];
-        return Join(" ", elements.Where(FilledIn));
+        string[] elements = [opt.BuildConf, formattedRestore, formattedLogOptions, formattedTimeOut, formattedFileOptions];
+        return Join(" | ", elements.Where(FilledIn));
     }
 
     private static string FormatRestore(DotNetOptions opt)
@@ -24,9 +29,9 @@ internal static class DiagnosticsFormatter
     {
         if (HasRestore(autoRestore, parallelRestore))
         {
-            string title = "restore";
-            string formattedAuto = autoRestore ? "auto" : "";
-            string formattedParallel = parallelRestore ? "parallel" : "";
+            const string title = "Restore:";
+            string formattedAuto = autoRestore ? "Auto" : "";
+            string formattedParallel = parallelRestore ? "Parallel" : "";
             string[] elements = [ title, formattedAuto, formattedParallel ];
             return Join(" ", elements.Where(FilledIn));
         }
@@ -42,10 +47,16 @@ internal static class DiagnosticsFormatter
     
     private static string FormatLogOptions(DotNetVerbosity verbosity, Action<string>? log)
     {
-        string formattedVerbosity = Coalesce(verbosity, "");
-        string formattedLog = HasLog(log) ? "(logs)": "";
-        string[] elements = [ formattedVerbosity, formattedLog ];
-        return Join(" ", elements.Where(FilledIn));
+        if (verbosity == Quiet || !HasLog(log)) return "";
+        return $"Log: {verbosity}";
+
+        //if (verbosity == Quiet) return "";
+        //string callbackFlag = HasLog(log) ? " (callback)": "";
+        //return $"log {verbosity}" + callbackFlag;
+
+        //string formattedVerbosity = Coalesce(verbosity, "");
+        //string[] elements = [ formattedVerbosity, callbackFlag ];
+        //return Join(" ", elements.Where(FilledIn));
     }
 
     private static bool HasLog(Action<string>? log) => log != null && log != NullLog;
@@ -54,7 +65,7 @@ internal static class DiagnosticsFormatter
         => FormatTimeOut(opt.TimeOutSec);
 
     private static string FormatTimeOut(int timeOutSec) 
-        => HasTimeOut(timeOutSec) ? $"(timeout {timeOutSec}s)" : "";
+        => HasTimeOut(timeOutSec) ? $"Timeout: {timeOutSec}s" : "";
 
     private static bool HasTimeOut(int timeOutSec)
        => timeOutSec != 0 && timeOutSec != DEFAULT_TIME_OUT_SEC;

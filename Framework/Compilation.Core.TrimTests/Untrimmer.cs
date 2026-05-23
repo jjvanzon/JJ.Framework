@@ -15,7 +15,7 @@ internal static class Untrimmer
     [NoTrim("set_" + nameof(DotNetArgs.Args),        typeof(DotNetArgs))]
     [NoTrim("set_" + nameof(DotNetArgs.IsRebuild),   typeof(DotNetArgs))]
     [NoTrim("set_" + nameof(DotNetArgs.FullArgs),    typeof(DotNetArgs))]
-
+    [NoTrim("DEFAULT_TIME_OUT_SEC",               typeof(DotNetOptions))]
     [NoTrim("FormatArgs",        $"{MainAsm}.DotNetArgFormatter",   MainAsm)]
     [NoTrim("Enrich",            $"{MainAsm}.DotNetEnricher",       MainAsm)]
     [NoTrim("Log",               $"{MainAsm}.DotNetLogger",         MainAsm)]

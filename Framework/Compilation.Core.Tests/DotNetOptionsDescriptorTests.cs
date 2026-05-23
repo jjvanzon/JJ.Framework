@@ -1,96 +1,15 @@
-namespace JJ.Framework.Compilation.Core.Tests;
+using static JJ.Framework.Compilation.Core.Tests.Accessors.DotNetOptionsAccessor;
 
-using static DiagnosticsFormatterAccessor;
+namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
 public class DotNetOptionsDescriptorTests
 {
-    private const int _defaultTimeOutSec = 5 * 60;
     private static readonly string[] _textNullies = [ "", " ", default! ];
+    private static readonly Action<string>[] _logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
 
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Default()
-        => AreEqual("", Descriptor(new DotNetOptions()));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_BuildConfOnly()
-        => AreEqual("Release", Descriptor(new DotNetOptions { BuildConf = "Release" }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Restore_Auto()
-        => AreEqual("restore auto", Descriptor(new DotNetOptions { AutoRestore = true }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Restore_Parallel()
-        => AreEqual("restore parallel", Descriptor(new DotNetOptions { ParallelRestore = true }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Restore_AutoAndParallel()
-        => AreEqual("restore auto parallel", Descriptor(new DotNetOptions { AutoRestore = true, ParallelRestore = true }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_TimeOut_Omitted_WhenDefaultOrZero()
-    {
-        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = _defaultTimeOutSec }));
-        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = 0 }));
-    }
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_TimeOut_Shown_WhenCustom()
-    {
-        AreEqual("(timeout 1s)", Descriptor(new DotNetOptions { TimeOutSec = 1 }));
-        AreEqual("(timeout 600s)", Descriptor(new DotNetOptions { TimeOutSec = 600 }));
-    }
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Log_Omitted_WhenNullLog()
-        => AreEqual("", Descriptor(new DotNetOptions { Log = DotNetOptions.NullLog }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Log_Shown_WhenCustomDelegate()
-        => AreEqual("(logs)", Descriptor(new DotNetOptions { Log = x => WriteLine(x) }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Verbosity_AllValues()
-    {
-        AreEqual("", Descriptor(new DotNetOptions { Verbosity = Normal }));
-        AreEqual("Quiet", Descriptor(new DotNetOptions { Verbosity = Quiet }));
-        AreEqual("Minimal", Descriptor(new DotNetOptions { Verbosity = Minimal }));
-        AreEqual("Detailed", Descriptor(new DotNetOptions { Verbosity = Detailed }));
-        AreEqual("Diagnostic", Descriptor(new DotNetOptions { Verbosity = Diagnostic }));
-    }
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_FileOptions_OnlyArgs()
-        => AreEqual("--no-restore", Descriptor(new DotNetOptions { Args = "--no-restore" }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_FileOptions_OnlyFile()
-        => AreEqual("MyProject.csproj", Descriptor(new DotNetOptions { File = "MyProject.csproj" }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_FileOptions_OnlyDir()
-        => AreEqual("(C:/repo)", Descriptor(new DotNetOptions { Dir = "C:/repo" }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_FileOptions_All()
-        => AreEqual("--no-restore MyProject.csproj (C:/repo)", Descriptor(
-            new DotNetOptions
-            {
-                Args = "--no-restore",
-                File = "MyProject.csproj",
-                Dir = "C:/repo"
-            }));
-
-    [TestMethod]
-    public void DotNetOptions_Descriptor_Nullies_IgnoredForFileParts()
-    {
-        foreach (var nully in _textNullies)
-        {
-            AreEqual("", Descriptor(new DotNetOptions { Args = nully, File = nully, Dir = nully }));
-        }
-    }
-
+    // All Options Filled
+    
     [TestMethod]
     public void DotNetOptions_Descriptor_FullCombination()
     {
@@ -102,13 +21,146 @@ public class DotNetOptionsDescriptorTests
             TimeOutSec = 123,
             Verbosity = Detailed,
             Log = x => WriteLine(x),
-            Args = "--no-restore",
+            Args = "--no-logo",
             File = "MyProject.csproj",
             Dir = "C:/repo"
         };
 
         AreEqual(
-            "Release restore auto parallel (timeout 123s) Detailed (logs) --no-restore MyProject.csproj (C:/repo)",
+            "Release | Restore: Auto Parallel | Log: Detailed | Timeout: 123s | --no-logo MyProject.csproj (C:/repo)",
             Descriptor(opt));
+    }
+
+    // Empty/Default
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_EmptyOrDefault()
+    {
+        AreEqual("", Descriptor(default(DotNetOptions)));
+        AreEqual("", Descriptor(new DotNetOptions()));
+        AreEqual("", Descriptor(DefaultOptions));
+    }
+
+    // BuildConf Option
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_BuildConf()
+    {
+        AreEqual("Release", Descriptor(new DotNetOptions { BuildConf = "Release" }));
+        AreEqual("Debug",   Descriptor(new DotNetOptions { BuildConf = "Debug"   }));
+        AreEqual("La lala", Descriptor(new DotNetOptions { BuildConf = "La lala" }));
+        AreEqual("",        Descriptor(new DotNetOptions { BuildConf = ""        }));
+    }
+
+    // Restore
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_Restore_Auto()
+        => AreEqual("Restore: Auto", Descriptor(new DotNetOptions { AutoRestore = true }));
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_Restore_Parallel()
+        => AreEqual("Restore: Parallel", Descriptor(new DotNetOptions { ParallelRestore = true }));
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_Restore_AutoAndParallel()
+        => AreEqual("Restore: Auto Parallel", Descriptor(new DotNetOptions { AutoRestore = true, ParallelRestore = true }));
+
+    // Time-Out
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_TimeOut_Omitted_WhenDefaultOrZero()
+    {
+        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = DEFAULT_TIME_OUT_SEC }));
+        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = 0 }));
+        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = default }));
+    }
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_TimeOut_Shown_WhenCustom()
+    {
+        AreEqual("Timeout: 1s",   Descriptor(new DotNetOptions { TimeOutSec = 1   }));
+        AreEqual("Timeout: 600s", Descriptor(new DotNetOptions { TimeOutSec = 600 }));
+    }
+
+    // Log
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_Log_Nully()
+    {
+        foreach (Action<string> logNully in _logNullies)
+        {
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully                        }));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = 0         }));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = default   }));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Normal    }));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Quiet     }));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Minimal   }));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Detailed  }));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Diagnostic}));
+        }
+
+        // Verbosity quiet means no logging at all.
+        AreEqual("", Descriptor(new DotNetOptions { Log = null!,     Verbosity = Quiet }));
+        AreEqual("", Descriptor(new DotNetOptions { Log = NullLog,   Verbosity = Quiet }));
+        AreEqual("", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = Quiet }));
+        AreEqual("", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet }));
+    }
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_Log_Included()
+        => AreEqual("Log: Normal", Descriptor(new DotNetOptions { Log = WriteLine }));
+
+    // Verbosity
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_Verbosity_AllValues()
+    {
+
+        AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
+        AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
+        AreEqual("Log: Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
+        AreEqual("",           Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
+        AreEqual("Log: Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }));
+        AreEqual("Log: Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }));
+        AreEqual("Log: Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));
+    }
+
+    // File Options
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_OnlyArgs()
+        => AreEqual("--no-logo", Descriptor(new DotNetOptions { Args = "--no-logo" }));
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_OnlyFile()
+        => AreEqual("MyProject.csproj", Descriptor(new DotNetOptions { File = "MyProject.csproj" }));
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_OnlyDir()
+        => AreEqual("(C:\repo)", Descriptor(new DotNetOptions { Dir = "C:\repo" }));
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_AllFileOptions()
+    {
+        var opt = new DotNetOptions
+        {
+            Args = "--no-logo",
+            File = "MyProject.csproj",
+            Dir = "C:/repo"
+        };
+
+        AreEqual("--no-logo MyProject.csproj (C:/repo)", Descriptor(opt));
+    }
+
+    [TestMethod]
+    public void DotNetOptions_Descriptor_EmptyFileOptions()
+    {
+        foreach (var nully1 in _textNullies)
+        foreach (var nully2 in _textNullies)
+        foreach (var nully3 in _textNullies)
+        {
+            AreEqual("", Descriptor(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }));
+        }
     }
 }

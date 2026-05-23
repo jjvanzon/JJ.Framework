@@ -4,6 +4,7 @@ RunTests<DotNetArgsDescriptorTests>() &&
 RunTests<DotNetArgsTests>() &&
 RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetLoggerTests>() &&
+RunTests<DotNetOptionsDescriptorTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetTests>() &&
 RunTests<RunningTargetFrameworkTests>();
