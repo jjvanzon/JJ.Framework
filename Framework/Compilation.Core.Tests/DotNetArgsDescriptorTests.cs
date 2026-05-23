@@ -3,7 +3,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 using static DiagnosticsFormatterAccessor;
 
 [TestClass]
-public class DiagnosticsFormatterTests
+public class DotNetArgsDescriptorTests
 {
     private const bool re = true;
     private static readonly DotNetCommandEnum[] _enumNullies = [ 0, default, undefined ];
@@ -44,7 +44,6 @@ public class DiagnosticsFormatterTests
         { 
             CommandEnum = build, 
             Command = "build", 
-            IsRebuild = false, 
             FullArgs = "build --no-incremental" 
         };
         AreEqual("build --no-incremental", Descriptor(args.Obj));
@@ -88,7 +87,7 @@ public class DiagnosticsFormatterTests
     }
 
     [TestMethod]
-    public void DotNetArgs_Descriptor_ArgsDescriptorAlone()
+    public void DotNetArgs_Descriptor_ArgsAndFullArgs()
     {
         var args = new DotNetArgsAccessor
         {
@@ -99,7 +98,7 @@ public class DiagnosticsFormatterTests
     }
 
     [TestMethod]
-    public void Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
+    public void DotNetArgs_Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
     {
         var args = new DotNetArgsAccessor().Obj;
         AreEqual("<no command>", Descriptor(args));
@@ -222,7 +221,7 @@ public class DiagnosticsFormatterTests
     }
 
     [TestMethod]
-    public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDrAndArgs()
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDAndArgs()
     {
         var args = new DotNetArgsAccessor
         { 
@@ -257,6 +256,20 @@ public class DiagnosticsFormatterTests
             FullArgs = "remove package JJ.Framework.Common"
         };
         AreEqual("uninstallpackage | remove package JJ.Framework.Common", Descriptor(args.Obj));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDAnd_ArgsInFullArgs()
+    {
+        var args = new DotNetArgsAccessor
+        { 
+            CommandEnum = uninstallpackage,
+            Command = "remove",
+            ID = "JJ.Framework.Common", 
+            FullArgs = "remove package JJ.Framework.Common --help",
+            Args = "--help"
+        };
+        AreEqual("uninstallpackage | remove package JJ.Framework.Common --help", Descriptor(args.Obj));
     }
 
     // TODO: Tests with both Args and FullArgs (realistic non-error case ones).

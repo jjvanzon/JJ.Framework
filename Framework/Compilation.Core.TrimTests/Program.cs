@@ -1,8 +1,8 @@
 ﻿bool success =
-RunTests<DiagnosticsFormatterTests>() &&
 RunTests<DotNetArgFormatterTests>() &&
-RunTests<DotNetEnricherTests>() &&
+RunTests<DotNetArgsDescriptorTests>() &&
 RunTests<DotNetArgsTests>() &&
+RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetLoggerTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetTests>() &&
