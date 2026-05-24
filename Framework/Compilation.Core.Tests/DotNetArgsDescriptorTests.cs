@@ -36,10 +36,13 @@ public class DotNetArgsDescriptorTests
             --o "C:\Temp\out"
             """;
 
-        AreEqual(
+        const string expected =
             """
             DotNetArgs build | --o "C:\Temp\out"
-            """, Stringify(args.Obj));
+            """;
+
+        AreEqual(expected, Stringify(args.Obj));
+        AreEqual(expected, args.Obj.ToString());
     }
 
     [TestMethod]
@@ -52,10 +55,13 @@ public class DotNetArgsDescriptorTests
             --o "C:\Temp\out"
             """;
 
-        AreEqual(
-            """
-            {DotNetArgs build | --o 'C:/Temp/out'}
-            """, DebuggerDisplay(args.Obj));
+        const string expected =
+           """
+           {DotNetArgs build | --o 'C:/Temp/out'}
+           """;
+
+        AreEqual(expected, DebuggerDisplay(args.Obj));
+        AreEqual(expected, args.DebuggerDisplay);
     }
 
     // With Commands

@@ -53,9 +53,7 @@ internal static partial class DiagnosticsFormatter
 
     // Command Descriptor
 
-    private static string CommandDescriptor(DotNetArgs? args) 
-        => args == null ? DotNetArgsNull : CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
-
+    private static string CommandDescriptor(DotNetArgs args) => CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
     private static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
         bool inconsistenciesDetected = IsInconsistent(@enum, command, isRebuild);
@@ -125,15 +123,13 @@ internal static partial class DiagnosticsFormatter
 
     // IDVerDescriptor
 
-    private static string IDVerDescriptor(DotNetArgs? args) 
-        => args == null ? DotNetArgsNull : IDVerDescriptor(args.ID, args.Ver);
-
+    private static string IDVerDescriptor(DotNetArgs args) => IDVerDescriptor(args.ID, args.Ver);
     private static string IDVerDescriptor(string? id, string? ver)
-        => $"{id} {ver}".Trim();
+    {
+        return $"{id} {ver}".Trim();
+    }
 
-    private static string ArgsDescriptor(DotNetArgs? args) 
-        => args == null ? DotNetArgsNull : ArgsDescriptor(args.Args, args.FullArgs);
-
+    private static string ArgsDescriptor(DotNetArgs args) => ArgsDescriptor(args.Args, args.FullArgs);
     private static string ArgsDescriptor(string? args, string? fullArgs)
     {
         args     = (args     ?? "").Trim();

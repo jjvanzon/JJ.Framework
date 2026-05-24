@@ -11,7 +11,6 @@ internal static partial class DiagnosticsFormatter
 
     public static string DebuggerDisplay(DotNetOptions opt)
     {
-        // TODO: Remove quote char parameter, for options themselves can contain quotes.
         var descriptor = Descriptor(opt);
         descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
         string sep = Has(descriptor) ? " " : "";

@@ -39,9 +39,13 @@ public class DotNetOptionsDescriptorTests
             Dir = @"C:\repo"
         };
 
-        AreEqual("""
-                 DotNetOptions "Release" | --no-logo | C:\Code\MyProject.csproj | Dir: "C:\repo"
-                 """, Stringify(opt));
+        const string expected = 
+            """
+            DotNetOptions "Release" | --no-logo | C:\Code\MyProject.csproj | Dir: "C:\repo"
+            """;
+
+        AreEqual(expected, Stringify(opt));
+        AreEqual(expected, opt.ToString());
     }
 
     [TestMethod]
@@ -55,9 +59,15 @@ public class DotNetOptionsDescriptorTests
             Dir = @"C:\Code"
         };
 
-        AreEqual("""
-                 {DotNetOptions 'Release' | --no-logo | C:/Code/MyProject.csproj | Dir: 'C:/Code'}
-                 """, DebuggerDisplay(opt));
+        var accessor = new DotNetOptionsAccessor(opt);
+
+        string expected =
+            """
+            {DotNetOptions 'Release' | --no-logo | C:/Code/MyProject.csproj | Dir: 'C:/Code'}
+            """;
+
+        AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, accessor.DebuggerDisplay);
     }
 
     // All Options Filled
