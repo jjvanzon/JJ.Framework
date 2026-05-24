@@ -2,11 +2,19 @@
 
 internal static partial class DiagnosticsFormatter
 {
-    public static string DebuggerDisplay(DotNetOptions opt)
+    public static string Stringify(DotNetOptions opt)
     {
         string descriptor = Descriptor(opt);
         string sep = Has(descriptor) ? " " : "";
         return nameof(DotNetOptions) + sep + descriptor;
+    }
+
+    public static string DebuggerDisplay(DotNetOptions opt)
+    {
+        var descriptor = Descriptor(opt);
+        descriptor = descriptor.Replace(@"""", "'").Replace(@"\", "/");
+        string sep = Has(descriptor) ? " " : "";
+        return "{" + nameof(DotNetOptions) + sep + descriptor + "}";
     }
 
     public static string Descriptor(DotNetOptions opt)

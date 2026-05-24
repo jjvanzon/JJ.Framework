@@ -1,9 +1,12 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-public record struct DotNetOptions
+[DebuggerDisplay("{DebuggerDisplay}")]
+public readonly record struct DotNetOptions
 {
+    public override string ToString() => Stringify(this);
+    private string DebuggerDisplay => DebuggerDisplay(this);
+
     public DotNetOptions() { }
-    public override string ToString() => DebuggerDisplay(this);
 
     internal const int DEFAULT_TIME_OUT_SEC = 5 * 60;
     public static readonly Action<string> NullLog = _ => { };

@@ -4,8 +4,23 @@ internal static partial class DiagnosticsFormatter
 {
     private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
 
-    public static string DebuggerDisplay(DotNetArgs? args) 
-        => nameof(DotNetArgs) + " " + Descriptor(args);
+    //public static string DebuggerDisplay(DotNetArgs? args) 
+    //    => nameof(DotNetArgs) + " " + Descriptor(args);
+
+    public static string Stringify(DotNetArgs? opt)
+    {
+        string descriptor = Descriptor(opt);
+        string sep = Has(descriptor) ? " " : "";
+        return nameof(DotNetArgs) + sep + descriptor;
+    }
+
+    public static string DebuggerDisplay(DotNetArgs? opt)
+    {
+        var descriptor = Descriptor(opt);
+        descriptor = descriptor.Replace(@"""", "'").Replace(@"\", "/");
+        string sep = Has(descriptor) ? " " : "";
+        return "{" + nameof(DotNetArgs) + sep + descriptor + "}";
+    }
 
     public static string Descriptor(DotNetArgs? args)
     {

@@ -1,8 +1,10 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
+[DebuggerDisplay("{DebuggerDisplay}")]
 public class DotNetArgs
 {
-    public override string ToString() => DebuggerDisplay(this);
+    public override string ToString() => Stringify(this);
+    private string DebuggerDisplay => DebuggerDisplay(this);
 
     internal DotNetArgs() { }
     internal DotNetArgs(DotNetCommandEnum commandEnum) => CommandEnum = commandEnum;
