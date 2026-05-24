@@ -34,3 +34,15 @@ More:
     public static string DebuggerDisplay(DotNetArgs? args) 
         => nameof(DotNetArgs) + " " + Descriptor(args);
 ```
+
+`DotNet` utiity:
+
+```cs
+    /// <inheritdoc cref="_exe" />
+    public static DotNetResult Exe(DotNetArgs args) 
+        => DotNetExecutor.Exe(args.NotNull());
+
+    /// <inheritdoc cref="_exe" />
+    public static DotNetResult Exe(DotNetArgs args, DotNetOptions opt) 
+        => DotNetExecutor.Exe(args.NotNull(), opt);
+```

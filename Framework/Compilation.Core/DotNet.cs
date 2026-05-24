@@ -1,4 +1,5 @@
-﻿#pragma warning disable IDE0002 // Simplify member access
+﻿
+#pragma warning disable IDE0002 // Simplify member access
 
 namespace JJ.Framework.Compilation.Core;
 
@@ -56,14 +57,6 @@ public static class DotNet
     // TODO: Full blown DotNetExe synonym method.
 
     /// <inheritdoc cref="_exe" />
-    public static DotNetResult Exe(DotNetArgs args) 
-        => DotNetExecutor.Exe(args.NotNull());
-
-    /// <inheritdoc cref="_exe" />
-    public static DotNetResult Exe(DotNetArgs args, DotNetOptions opt) 
-        => DotNetExecutor.Exe(args.NotNull(), opt);
-
-    /// <inheritdoc cref="_exe" />
     public static DotNetResult Exe(DotNetCommandEnum command) 
         => DotNetExecutor.Exe(new DotNetArgs(command));
 
@@ -111,7 +104,7 @@ public static class DotNet
             var targetFrameworkAttribs = 
                 GetCallingAssembly().GetCustomAttributes<TargetFrameworkAttribute>().ToArray();
             
-            ThrowIf(targetFrameworkAttribs.Length != 1);
+            if (targetFrameworkAttribs.Length != 1) throw new Exception(TextOf(targetFrameworkAttribs.Length != 1));
 
             // ".NETFramework,Version=v4.6.1" => "net461"
             const string prefix = ".NETFramework,Version=v";
