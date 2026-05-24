@@ -11,8 +11,20 @@ internal static class DiagnosticsFormatterAccessor
     public static string? Descriptor(DotNetOptions opt, char quote = '"')
         => (string?)_accessor.Call(opt, quote);
 
+    public static string? Stringify(DotNetOptions opt)
+        => (string?)_accessor.Call([ opt ], [ typeof(DotNetOptions) ]);
+
+    public static string? DebuggerDisplay(DotNetOptions opt)
+        => (string?)_accessor.Call([ opt ], [ typeof(DotNetOptions) ]);
+
     public static string? Descriptor(DotNetArgs? args) 
-        => (string?)_accessor.Call(args);
+        => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
+
+    public static string? Stringify(DotNetArgs? args)
+        => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
+
+    public static string? DebuggerDisplay(DotNetArgs? args)
+        => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
 
     public static string? CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild) 
         => (string?)_accessor.Call(@enum, command, isRebuild);

@@ -29,3 +29,8 @@ More:
             descriptor = "<no descriptor>";
         }
 ```
+
+```cs
+    public static string DebuggerDisplay(DotNetArgs? args) 
+        => nameof(DotNetArgs) + " " + Descriptor(args);
+```

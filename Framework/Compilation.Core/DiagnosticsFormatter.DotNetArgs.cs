@@ -4,9 +4,6 @@ internal static partial class DiagnosticsFormatter
 {
     private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
 
-    //public static string DebuggerDisplay(DotNetArgs? args) 
-    //    => nameof(DotNetArgs) + " " + Descriptor(args);
-
     public static string Stringify(DotNetArgs? opt)
     {
         string descriptor = Descriptor(opt);

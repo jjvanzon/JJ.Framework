@@ -13,8 +13,38 @@ public class DotNetArgsDescriptorTests
     // DotNetArgs
 
     [TestMethod]
+    public void DotNetArgs_Stringify_NullArgs()
+        => AreEqual("DotNetArgs <DotNetArgs=null>", Stringify(null));
+
+    [TestMethod]
+    public void DotNetArgs_DebuggerDisplay_NullArgs()
+        => AreEqual("{DotNetArgs <DotNetArgs=null>}", DebuggerDisplay(null));
+    
+    [TestMethod]
     public void DotNetArgs_Descriptor_NullArgs()
         => AreEqual("<DotNetArgs=null>", Descriptor(null));
+
+    [TestMethod]
+    public void DotNetArgs_Stringify()
+    {
+        // TODO: More args demonstrating quote and slash use.
+        var args = new DotNetArgsAccessor(build) { Args = "--no-restore" };
+        AreEqual("DotNetArgs build | --no-restore", Stringify(args.Obj));
+    }
+
+    [TestMethod]
+    public void DotNetArgs_DebuggerDisplay()
+    {
+        var args = new DotNetArgsAccessor
+        {
+            CommandEnum = build,
+            FullArgs = "build --output " + '"' + @"C:\Temp\out" + '"'
+        };
+
+        AreEqual("{DotNetArgs build --output 'C:/Temp/out'}", DebuggerDisplay(args.Obj));
+    }
+
+    // With Commands
 
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndCommandText_MSRebuild()
@@ -36,6 +66,8 @@ public class DotNetArgsDescriptorTests
         var args = new DotNetArgsAccessor(rebuild) { FullArgs = "build --no-incremental" }.Obj;
         AreEqual("rebuild | build --no-incremental", Descriptor(args));
     }
+
+    // With Args
 
     [TestMethod]
     public void DotNetArgs_Descriptor_Build_Enum_CommandText_FullArgs()

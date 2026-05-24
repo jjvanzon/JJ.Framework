@@ -1,4 +1,5 @@
 using static JJ.Framework.Compilation.Core.Tests.Accessors.DotNetOptionsAccessor;
+using static JJ.Framework.Compilation.Core.Tests.Accessors.DiagnosticsFormatterAccessor;
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
@@ -7,7 +8,56 @@ public class DotNetOptionsDescriptorTests
 {
     private static readonly string[] _textNullies = [ "", " ", default! ];
     private static readonly Action<string>[] _logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
+    private static readonly DotNetOptions[] _optNullies = [ DefaultOptions, default ];
     private const string DEFAULT_DESCRIPTOR = "default";
+
+    // Entry Points
+
+    [TestMethod]
+    public void DotNetOptions_Stringify_Default()
+    {
+        foreach (var nully in _optNullies)
+        {
+            AreEqual("DotNetOptions default", Stringify(nully));
+        }
+    }
+
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_Default()
+    {
+        foreach (var nully in _optNullies)
+        {
+            AreEqual("{DotNetOptions default}", DebuggerDisplay(nully));
+        }
+    }
+
+    [TestMethod]
+    public void DotNetOptions_Stringify_UsesDescriptor()
+    {
+        var opt = new DotNetOptions
+        {
+            BuildConf = "Release",
+            File = "MyProject.csproj",
+            Args = "--no-logo",
+            Dir = @"C:\repo"
+        };
+
+        AreEqual(@"DotNetOptions ""Release"" | MyProject.csproj --no-logo | Dir: ""C:\repo""", Stringify(opt));
+    }
+
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_UsesSingleQuotesAndForwardSlashes()
+    {
+        var opt = new DotNetOptions
+        {
+            BuildConf = "Release",
+            File = @"C:\Code\MyProject.csproj",
+            Args = "--no-logo",
+            Dir = @"C:\Code"
+        };
+
+        AreEqual("{DotNetOptions 'Release' | C:/Code/MyProject.csproj --no-logo | Dir: 'C:/Code'}", DebuggerDisplay(opt));
+    }
 
     // All Options Filled
     
