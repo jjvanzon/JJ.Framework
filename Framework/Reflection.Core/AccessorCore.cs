@@ -9,8 +9,6 @@ public partial class AccessorCore
     [Dyn(Intf)] private readonly Type _type;
     private readonly ICollection<Type> _typesInHierarchy;
 
-    // TODO: Rework used NoTrimReasons - constructor probably uses Bases, while members do not need that repeated.
-
     // Constructors
 
     [TrimWarn(ObjectGetType)]
@@ -19,6 +17,15 @@ public partial class AccessorCore
         ThrowIfNull(obj);
         Obj = obj;
         _type = obj.GetType();
+        _typesInHierarchy = _type.GetTypesInHierarchy();
+    }
+
+    public AccessorCore(object obj, [Dyn(Intf | AllCtors)] Type type)
+    {
+        ThrowIfNull(type);
+        _type = type;
+        ThrowIfNull(obj);
+        Obj = obj;
         _typesInHierarchy = _type.GetTypesInHierarchy();
     }
 
