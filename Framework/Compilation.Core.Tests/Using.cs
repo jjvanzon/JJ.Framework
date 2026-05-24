@@ -4,6 +4,7 @@ global using JJ.Framework.Compilation.Core.Tests.Accessors;
 global using static System.StringComparison;
 global using static System.String;
 global using static System.IO.File;
+global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Compilation.Core.DotNetOptions;
 global using static JJ.Framework.Compilation.Core.DotNetCommandEnum;

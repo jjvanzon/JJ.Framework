@@ -8,18 +8,18 @@ internal static class DiagnosticsFormatterAccessor
 
     private static readonly AccessorCore _accessor = new("DiagnosticsFormatter");
 
-    public static string? Descriptor(DotNetOptions opt)
-        => (string?)_accessor.Call([ opt ], [ typeof(DotNetOptions) ]);
+    public static string? Descriptor(DotNetOptions opt, char quote = '"')
+        => (string?)_accessor.Call(opt, quote);
 
     public static string? Descriptor(DotNetArgs? args) 
-        => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
+        => (string?)_accessor.Call(args);
 
     public static string? CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild) 
-        => (string?)_accessor.Call([ @enum, command, isRebuild ], [ _, typeof(string), _ ]);
+        => (string?)_accessor.Call(@enum, command, isRebuild);
 
     public static string? IDVerDescriptor(string? id, string? ver)
-        => (string?)_accessor.Call([ id, ver ], [ typeof(string), typeof(string) ]);
+        => (string?)_accessor.Call(Name(), id, ver);
 
     public static string? ArgsDescriptor(string? args, string? fullArgs)
-        => (string?)_accessor.Call([ args, fullArgs ], [ typeof(string), typeof(string) ]);
+        => (string?)_accessor.Call(Name(), args, fullArgs);
 }
