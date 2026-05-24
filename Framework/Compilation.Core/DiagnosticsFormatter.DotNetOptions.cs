@@ -38,12 +38,17 @@ internal static partial class DiagnosticsFormatter
         return descriptor;
     }
 
+    // BuildConf
+
     private static string FormatBuildConf(DotNetOptions opt) => FormatBuildConf(opt.BuildConf);
-    private static string FormatBuildConf(string buildConf) => Has(buildConf) ? @"""" + buildConf + @"""" : "";
+    private static string FormatBuildConf(string buildConf)
+    {
+        return Has(buildConf) ? '"' + buildConf + '"' : "";
+    }
 
-    private static string FormatRestore(DotNetOptions opt)
-        => FormatRestore(opt.AutoRestore, opt.ParallelRestore);
+    // Restore
 
+    private static string FormatRestore(DotNetOptions opt) => FormatRestore(opt.AutoRestore, opt.ParallelRestore);
     private static string FormatRestore(bool autoRestore, bool parallelRestore)
     {
         if (!HasRestore(autoRestore, parallelRestore)) 
@@ -61,12 +66,11 @@ internal static partial class DiagnosticsFormatter
         return Join(" ", elements.Where(FilledIn));
     }
 
-    private static bool HasRestore(bool autoRestore, bool parallelRestore)
-        => autoRestore || parallelRestore;
+    private static bool HasRestore(bool autoRestore, bool parallelRestore) => autoRestore || parallelRestore;
 
-    private static string FormatLogOptions(DotNetOptions opt)
-        => FormatLogOptions(opt.Verbosity, opt.Log);
-    
+    // Log
+
+    private static string FormatLogOptions(DotNetOptions opt) => FormatLogOptions(opt.Verbosity, opt.Log);
     private static string FormatLogOptions(DotNetVerbosity verbosity, Action<string>? log)
     {
         if (!HasLog(log)) return "";
@@ -76,20 +80,21 @@ internal static partial class DiagnosticsFormatter
 
     private static bool HasLog(Action<string>? log) => log != null && log != NullLog;
 
-    private static string FormatTimeOut(DotNetOptions opt) 
-        => FormatTimeOut(opt.TimeOutSec);
+    // TimeOut
 
-    private static string FormatTimeOut(int timeOutSec) 
-        => HasTimeOut(timeOutSec) ? $"Timeout: {timeOutSec}s" : "";
+    private static string FormatTimeOut(DotNetOptions opt) => FormatTimeOut(opt.TimeOutSec);
+    private static string FormatTimeOut(int timeOutSec)
+    {
+        return HasTimeOut(timeOutSec) ? $"Timeout: {timeOutSec}s" : "";
+    }
 
-    private static bool HasTimeOut(int timeOutSec)
-       => timeOutSec != 0 && timeOutSec != DEFAULT_TIME_OUT_SEC;
+    private static bool HasTimeOut(int timeOutSec) => timeOutSec != 0 && timeOutSec != DEFAULT_TIME_OUT_SEC;
 
-    private static string FormatFileOptions(DotNetOptions opt)
-        => FormatFileOptions(opt.File, opt.Args, opt.Dir);
-    
+    // File Options
+
     private const int LONG_PATH_LENGTH = 20;
 
+    private static string FormatFileOptions(DotNetOptions opt) => FormatFileOptions(opt.File, opt.Args, opt.Dir);
     private static string FormatFileOptions(string? file, string? args, string? dir)
     {
         bool hasSep1 = Has(args) && Has(file);
@@ -112,12 +117,5 @@ internal static partial class DiagnosticsFormatter
         }
     }
 
-    private static string FormatDir(string? dir)
-    {
-        if (!Has(dir)) return "";
-        return 
-            $"""
-             Dir: "{dir}"
-             """;
-    }
+    private static string FormatDir(string? dir) => Has(dir) ? "Dir: " + '"' + dir + '"' : "";
 }
