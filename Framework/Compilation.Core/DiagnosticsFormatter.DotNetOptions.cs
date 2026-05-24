@@ -59,7 +59,8 @@ internal static partial class DiagnosticsFormatter
     
     private static string FormatLogOptions(DotNetVerbosity verbosity, Action<string>? log)
     {
-        if (verbosity == Quiet || !HasLog(log)) return "";
+        if (!HasLog(log)) return "";
+        if (verbosity == Normal) return "Log";
         return $"Log {verbosity}";
     }
 

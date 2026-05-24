@@ -88,28 +88,34 @@ public class DotNetOptionsDescriptorTests
     [TestMethod]
     public void DotNetOptions_Descriptor_Log_Nully()
     {
+        DotNetVerbosity[] allVerbosities = [ 0, default, Normal, Quiet, Minimal, Detailed, Diagnostic ];
+
         foreach (Action<string> logNully in _logNullies)
         {
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully                        }));
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = 0         }));
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = default   }));
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Normal    }));
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Quiet     }));
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Minimal   }));
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Detailed  }));
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = Diagnostic}));
+            AreEqual("", Descriptor(new DotNetOptions { Log = logNully }));
+
+            foreach (DotNetVerbosity anyVerbosity in allVerbosities)
+            {
+                AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = anyVerbosity }));
+            }
         }
 
-        // Verbosity quiet means no logging at all.
-        AreEqual("", Descriptor(new DotNetOptions { Log = null!,     Verbosity = Quiet }));
-        AreEqual("", Descriptor(new DotNetOptions { Log = NullLog,   Verbosity = Quiet }));
-        AreEqual("", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = Quiet }));
-        AreEqual("", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet }));
+        AreEqual("", Descriptor(new DotNetOptions { Log = null!,     Verbosity = Normal }));
+        AreEqual("", Descriptor(new DotNetOptions { Log = NullLog,   Verbosity = Normal }));
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Log_Included()
-        => AreEqual("Log Normal", Descriptor(new DotNetOptions { Log = WriteLine }));
+    public void DotNetOptions_Descriptor_Log_VerbosityNormal()
+    {
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine                      }));
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal  }));
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default }));
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0       }));
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { }                       }));
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = Normal  }));
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = default }));
+        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = 0       }));
+    }
 
     // Verbosity
 
@@ -117,10 +123,10 @@ public class DotNetOptionsDescriptorTests
     public void DotNetOptions_Descriptor_Verbosity_AllValues()
     {
 
-        AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
-        AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
-        AreEqual("Log Normal",     Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
-        AreEqual("",               Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
+        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
+        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
+        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
+        AreEqual("Log Quiet",      Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
         AreEqual("Log Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }));
         AreEqual("Log Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }));
         AreEqual("Log Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));
@@ -218,20 +224,21 @@ public class DotNetOptionsDescriptorTests
             """,
             Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 }));
 
-        AreEqual("""
+        AreEqual(
+            """
             "Release" | Restore: Parallel | Timeout: 123s
             """,
             Descriptor(new DotNetOptions { BuildConf = "Release", ParallelRestore = true, TimeOutSec = 123 }));
 
         AreEqual("""
-            "Release" | Timeout: 123s
+            "Release" | Log Quiet | Timeout: 123s
             """,
             Descriptor(new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Quiet, TimeOutSec = 123 }));
 
         AreEqual("""
-            "Release" | Restore: Auto | Timeout: 123s
+            "Release" | Restore: Auto | Log | Timeout: 123s
             """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", AutoRestore = true, Log = WriteLine, Verbosity = Quiet, TimeOutSec = 123 }));
+            Descriptor(new DotNetOptions { BuildConf = "Release", AutoRestore = true, Log = WriteLine, Verbosity = Normal, TimeOutSec = 123 }));
 
         AreEqual(
             """
