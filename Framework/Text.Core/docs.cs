@@ -32,3 +32,9 @@ namespace JJ.Framework.Text.Core.docs;
 /// after accounting for <paramref name="ignoreWhiteSpace"/>.
 /// </returns>
 public struct _endswithpunctuation;
+
+/// <summary>
+/// Syntax sugar for original string.Replace method,
+/// where char and string can be mixed as arguments.
+/// </summary>
+public struct _replace;

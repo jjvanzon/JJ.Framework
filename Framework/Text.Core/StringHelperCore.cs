@@ -172,5 +172,21 @@
             
             return false;
         }
+
+        /// <inheritdoc cref="_replace" />
+        public static string Replace(string text, string oldValue, char newValue)
+        {
+            ThrowIfNull(text);
+            return text.Replace(oldValue, newValue.ToString()); 
+        }
+
+        /// <inheritdoc cref="_replace" />
+        public static string Replace(string text, char oldValue, string newValue)
+        {
+            ThrowIfNull(text);
+            return text.Replace(oldValue.ToString(), newValue);
+        }
+
+        // TODO: Expland with other overloads that .NET supports. Our overloads mix char and string parameters for old and new values for syntax sugar.
     }
 }
