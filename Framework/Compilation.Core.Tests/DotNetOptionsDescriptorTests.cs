@@ -7,6 +7,7 @@ public class DotNetOptionsDescriptorTests
 {
     private static readonly string[] _textNullies = [ "", " ", default! ];
     private static readonly Action<string>[] _logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
+    private const string DEFAULT_DESCRIPTOR = "default";
 
     // All Options Filled
     
@@ -36,9 +37,9 @@ public class DotNetOptionsDescriptorTests
     [TestMethod]
     public void DotNetOptions_Descriptor_EmptyOrDefault()
     {
-        AreEqual("", Descriptor(default(DotNetOptions)));
-        AreEqual("", Descriptor(new DotNetOptions()));
-        AreEqual("", Descriptor(DefaultOptions));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(default(DotNetOptions)));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions()));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(DefaultOptions));
     }
 
     // BuildConf Option
@@ -46,10 +47,10 @@ public class DotNetOptionsDescriptorTests
     [TestMethod]
     public void DotNetOptions_Descriptor_BuildConf()
     {
-        AreEqual(@"""Release""", Descriptor(new DotNetOptions { BuildConf = "Release" }));
-        AreEqual(@"""Debug""",   Descriptor(new DotNetOptions { BuildConf = "Debug"   }));
-        AreEqual(@"""La lala""", Descriptor(new DotNetOptions { BuildConf = "La lala" }));
-        AreEqual("",             Descriptor(new DotNetOptions { BuildConf = ""        }));
+        AreEqual(@"""Release""",     Descriptor(new DotNetOptions { BuildConf = "Release" }));
+        AreEqual(@"""Debug""",       Descriptor(new DotNetOptions { BuildConf = "Debug"   }));
+        AreEqual(@"""La lala""",     Descriptor(new DotNetOptions { BuildConf = "La lala" }));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { BuildConf = ""        }));
     }
 
     // Restore
@@ -71,9 +72,9 @@ public class DotNetOptionsDescriptorTests
     [TestMethod]
     public void DotNetOptions_Descriptor_TimeOut_Omitted_WhenDefaultOrZero()
     {
-        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = DEFAULT_TIME_OUT_SEC }));
-        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = 0 }));
-        AreEqual("", Descriptor(new DotNetOptions { TimeOutSec = default }));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { TimeOutSec = DEFAULT_TIME_OUT_SEC }));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { TimeOutSec = 0 }));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { TimeOutSec = default }));
     }
 
     [TestMethod]
@@ -92,16 +93,16 @@ public class DotNetOptionsDescriptorTests
 
         foreach (Action<string> logNully in _logNullies)
         {
-            AreEqual("", Descriptor(new DotNetOptions { Log = logNully }));
+            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = logNully }));
 
             foreach (DotNetVerbosity anyVerbosity in allVerbosities)
             {
-                AreEqual("", Descriptor(new DotNetOptions { Log = logNully, Verbosity = anyVerbosity }));
+                AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = logNully, Verbosity = anyVerbosity }));
             }
         }
 
-        AreEqual("", Descriptor(new DotNetOptions { Log = null!,     Verbosity = Normal }));
-        AreEqual("", Descriptor(new DotNetOptions { Log = NullLog,   Verbosity = Normal }));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = null!,     Verbosity = Normal }));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = NullLog,   Verbosity = Normal }));
     }
 
     [TestMethod]
@@ -181,12 +182,12 @@ public class DotNetOptionsDescriptorTests
         foreach (var nully2 in _textNullies)
         foreach (var nully3 in _textNullies)
         {
-            AreEqual("", Descriptor(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }));
+            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }));
         }
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Combos()
+    public void DotNetOptions_Descriptor_Combos_WithoutFileOptions()
     {
         AreEqual(
             """

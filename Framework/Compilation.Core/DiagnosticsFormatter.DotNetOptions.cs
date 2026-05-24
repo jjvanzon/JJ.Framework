@@ -19,13 +19,23 @@ internal static partial class DiagnosticsFormatter
 
     public static string Descriptor(DotNetOptions opt)
     {
-        string formattedBuildConf   = FormatBuildConf(opt);
-        string formattedRestore     = FormatRestore(opt);
-        string formattedLogOptions  = FormatLogOptions(opt);
-        string formattedTimeOut     = FormatTimeOut(opt);
-        string formattedFileOptions = FormatFileOptions(opt);
-        string[] elements = [formattedBuildConf, formattedRestore, formattedLogOptions, formattedTimeOut, formattedFileOptions];
-        return Join(" | ", elements.Where(FilledIn));
+        if (opt == default) return "default";
+        if (opt == DefaultOptions) return "default";
+
+        string[] elements = 
+        [
+            FormatBuildConf(opt), 
+            FormatRestore(opt), 
+            FormatLogOptions(opt), 
+            FormatTimeOut(opt), 
+            FormatFileOptions(opt)
+        ];
+
+        var descriptor = Join(" | ", elements.Where(FilledIn));
+
+        descriptor = Coalesce(descriptor, "default");
+
+        return descriptor;
     }
 
     private static string FormatBuildConf(DotNetOptions opt) => FormatBuildConf(opt.BuildConf);

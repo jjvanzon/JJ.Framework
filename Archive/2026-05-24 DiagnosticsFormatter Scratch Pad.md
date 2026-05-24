@@ -19,3 +19,13 @@ More:
         elements = [ file, args, dir ];
         return Join(" " , elements.Where(FilledIn));
 ```
+
+
+```cs
+        if (opt == default       ) return "Default";
+        ff (opt == DefaultOptions) return "Default";
+        if (!Has(descriptor))
+        {
+            descriptor = "<no descriptor>";
+        }
+```

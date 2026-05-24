@@ -88,21 +88,24 @@ public class DotNetArgFormatterTests
 
     // package (add/remove)
 
-    [TestMethod] public void FormatArgs_InstallPackage()
+    [TestMethod] 
+    public void FormatArgs_InstallPackage()
     {
         var args = new DotNetArgsAccessor(installpackage) { Command = "add", ID = "Newtonsoft.Json", Ver = "13.0.3", Args = "--prerelease" }.Obj;
 
         AreEqual("add package Newtonsoft.Json --version 13.0.3 --prerelease", FormatArgs(args, DefaultOptions));
     }
 
-    [TestMethod] public void FormatArgs_InstallPackage_NoVersion()
+    [TestMethod]
+    public void FormatArgs_InstallPackage_NoVersion()
     {
         var args = new DotNetArgsAccessor(installpackage) { Command = "add", ID = "Serilog" }.Obj;
 
         AreEqual("add package Serilog", FormatArgs(args, DefaultOptions));
     }
 
-    [TestMethod] public void FormatArgs_InstallPackage_NoID()
+    [TestMethod] 
+    public void FormatArgs_InstallPackage_NoID()
     {
         var args = new DotNetArgsAccessor(installpackage) { Command = "add", Ver = "1.2.3" }.Obj;
 
