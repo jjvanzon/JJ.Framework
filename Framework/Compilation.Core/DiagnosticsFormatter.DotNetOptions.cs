@@ -4,20 +4,21 @@ internal static partial class DiagnosticsFormatter
 {
     public static string Stringify(DotNetOptions opt)
     {
-        string descriptor = Descriptor(opt, quote: '"');
+        string descriptor = Descriptor(opt);
         string sep = Has(descriptor) ? " " : "";
         return nameof(DotNetOptions) + sep + descriptor;
     }
 
     public static string DebuggerDisplay(DotNetOptions opt)
     {
-        var descriptor = Descriptor(opt, quote: '\'');
-        descriptor = descriptor.Replace(@"\", "/");
+        // TODO: Remove quote char parameter, for options themselves can contain quotes.
+        var descriptor = Descriptor(opt);
+        descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
         string sep = Has(descriptor) ? " " : "";
         return "{" + nameof(DotNetOptions) + sep + descriptor + "}";
     }
 
-    public static string Descriptor(DotNetOptions opt, char quote = '"')
+    public static string Descriptor(DotNetOptions opt)
     {
         if (opt == default) return "default";
         if (opt == DefaultOptions) return "default";
@@ -28,7 +29,7 @@ internal static partial class DiagnosticsFormatter
             FormatRestore(opt), 
             FormatLogOptions(opt), 
             FormatTimeOut(opt), 
-            FormatFileOptions(opt, quote)
+            FormatFileOptions(opt)
         ];
 
         var descriptor = Join(" | ", elements.Where(FilledIn));
@@ -94,14 +95,14 @@ internal static partial class DiagnosticsFormatter
 
     private const int LONG_PATH_LENGTH = 20;
 
-    private static string FormatFileOptions(DotNetOptions opt, char quote) => FormatFileOptions(opt.File, opt.Args, opt.Dir, quote);
-    private static string FormatFileOptions(string? file, string? args, string? dir, char quote)
+    private static string FormatFileOptions(DotNetOptions opt) => FormatFileOptions(opt.File, opt.Args, opt.Dir);
+    private static string FormatFileOptions(string? file, string? args, string? dir)
     {
         bool hasSep1 = Has(args) && Has(file);
         bool hasSep2 = (Has(args) || Has(file)) && Has(dir);
 
         bool filePathIsLong = file?.Length > LONG_PATH_LENGTH;
-        string formattedDir = FormatDir(dir, quote);
+        string formattedDir = FormatDir(dir);
 
         if (filePathIsLong)
         {
@@ -117,5 +118,5 @@ internal static partial class DiagnosticsFormatter
         }
     }
 
-    private static string FormatDir(string? dir, char quote) => Has(dir) ? "Dir: " + quote + dir + quote : "";
+    private static string FormatDir(string? dir) => Has(dir) ? "Dir: " + '"' + dir + '"' : "";
 }

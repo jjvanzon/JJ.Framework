@@ -1,6 +1,3 @@
-using static JJ.Framework.Compilation.Core.Tests.Accessors.DotNetOptionsAccessor;
-using static JJ.Framework.Compilation.Core.Tests.Accessors.DiagnosticsFormatterAccessor;
-
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
@@ -37,12 +34,14 @@ public class DotNetOptionsDescriptorTests
         var opt = new DotNetOptions
         {
             BuildConf = "Release",
-            File = "MyProject.csproj",
+            File = @"C:\Code\MyProject.csproj",
             Args = "--no-logo",
             Dir = @"C:\repo"
         };
 
-        AreEqual(@"DotNetOptions ""Release"" | MyProject.csproj --no-logo | Dir: ""C:\repo""", Stringify(opt));
+        AreEqual("""
+                 DotNetOptions "Release" | --no-logo | C:\Code\MyProject.csproj | Dir: "C:\repo"
+                 """, Stringify(opt));
     }
 
     [TestMethod]
@@ -56,7 +55,9 @@ public class DotNetOptionsDescriptorTests
             Dir = @"C:\Code"
         };
 
-        AreEqual("{DotNetOptions 'Release' | C:/Code/MyProject.csproj --no-logo | Dir: 'C:/Code'}", DebuggerDisplay(opt));
+        AreEqual("""
+                 {DotNetOptions 'Release' | --no-logo | C:/Code/MyProject.csproj | Dir: 'C:/Code'}
+                 """, DebuggerDisplay(opt));
     }
 
     // All Options Filled

@@ -11,6 +11,7 @@ global using static JJ.Framework.Compilation.Core.DotNetCommandEnum;
 global using static JJ.Framework.Compilation.Core.DotNetVerbosity;
 global using static JJ.Framework.Compilation.Core.DotNet;
 global using static JJ.Framework.Compilation.Core.Tests.Accessors.DiagnosticsFormatterAccessor;
+global using static JJ.Framework.Compilation.Core.Tests.Accessors.DotNetOptionsAccessor;
 
 // ReSharper disable RedundantUsingDirective.Global
 global using JJ.Framework.Compilation.Core.Tests;

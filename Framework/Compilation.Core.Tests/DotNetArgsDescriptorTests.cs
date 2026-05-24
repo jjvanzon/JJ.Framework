@@ -1,3 +1,5 @@
+#pragma warning disable IDE0017
+
 namespace JJ.Framework.Compilation.Core.Tests;
 
 using static DiagnosticsFormatterAccessor;
@@ -14,34 +16,46 @@ public class DotNetArgsDescriptorTests
 
     [TestMethod]
     public void DotNetArgs_Stringify_NullArgs()
-        => AreEqual("DotNetArgs <DotNetArgs=null>", Stringify(null));
+        => AreEqual("DotNetArgs <null>", Stringify(null));
 
     [TestMethod]
     public void DotNetArgs_DebuggerDisplay_NullArgs()
-        => AreEqual("{DotNetArgs <DotNetArgs=null>}", DebuggerDisplay(null));
+        => AreEqual("{DotNetArgs <null>}", DebuggerDisplay(null));
     
     [TestMethod]
     public void DotNetArgs_Descriptor_NullArgs()
-        => AreEqual("<DotNetArgs=null>", Descriptor(null));
+        => AreEqual("<null>", Descriptor(null));
 
     [TestMethod]
     public void DotNetArgs_Stringify()
     {
-        // TODO: More args demonstrating quote and slash use.
-        var args = new DotNetArgsAccessor(build) { Args = "--no-restore" };
-        AreEqual("DotNetArgs build | --no-restore", Stringify(args.Obj));
+        var args = new DotNetArgsAccessor(build);
+
+        args.Args = 
+            """
+            --o "C:\Temp\out"
+            """;
+
+        AreEqual(
+            """
+            DotNetArgs build | --o "C:\Temp\out"
+            """, Stringify(args.Obj));
     }
 
     [TestMethod]
     public void DotNetArgs_DebuggerDisplay()
     {
-        var args = new DotNetArgsAccessor
-        {
-            CommandEnum = build,
-            FullArgs = "build --output " + '"' + @"C:\Temp\out" + '"'
-        };
+        var args = new DotNetArgsAccessor(build);
 
-        AreEqual("{DotNetArgs build --output 'C:/Temp/out'}", DebuggerDisplay(args.Obj));
+        args.Args = 
+            """
+            --o "C:\Temp\out"
+            """;
+
+        AreEqual(
+            """
+            {DotNetArgs build | --o 'C:/Temp/out'}
+            """, DebuggerDisplay(args.Obj));
     }
 
     // With Commands

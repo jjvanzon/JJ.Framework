@@ -2,7 +2,7 @@
 
 internal static partial class DiagnosticsFormatter
 {
-    private const string DotNetArgsNull = $"<{nameof(DotNetArgs)}=null>";
+    private const string DotNetArgsNull = "<null>";
 
     public static string Stringify(DotNetArgs? opt)
     {
@@ -14,7 +14,7 @@ internal static partial class DiagnosticsFormatter
     public static string DebuggerDisplay(DotNetArgs? opt)
     {
         var descriptor = Descriptor(opt);
-        descriptor = descriptor.Replace(@"""", "'").Replace(@"\", "/");
+        descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
         string sep = Has(descriptor) ? " " : "";
         return "{" + nameof(DotNetArgs) + sep + descriptor + "}";
     }
