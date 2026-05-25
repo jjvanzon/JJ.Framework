@@ -287,6 +287,44 @@ public class DotNetOptionsDescriptorTests
         AreEqual(expected, accessor.DebuggerDisplay);
     }
 
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_DirTruncated_FileNot()
+    {
+        var opt = new DotNetOptions
+        {
+            Args = "--no-logo",
+            File = "MyProject.csproj",
+            Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
+        };
+
+        const string expected =
+            "{DotNetOptions MyProject.csproj --no-logo | Dir = ... /Billing/ServiceHost/bin/Release/net10.0}";
+
+        var accessor = new DotNetOptionsAccessor(opt);
+
+        AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, accessor.DebuggerDisplay);
+    }
+
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_FileTruncated_DirNot()
+    {
+        var opt = new DotNetOptions
+        {
+            Args = "--no-logo",
+            File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
+            Dir = @"D:\Repos\JJ.Framework"
+        };
+
+        const string expected =
+            "{DotNetOptions --no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = D:/Repos/JJ.Framework}";
+
+        var accessor = new DotNetOptionsAccessor(opt);
+
+        AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, accessor.DebuggerDisplay);
+    }
+
     // Combos
 
     [TestMethod]
