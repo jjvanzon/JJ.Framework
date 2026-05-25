@@ -61,7 +61,7 @@ public class DotNetOptionsDescriptorTests
 
         var accessor = new DotNetOptionsAccessor(opt);
 
-        string expected =
+        const string expected =
             """
             {DotNetOptions 'Release' | --no-logo | C:/Code/MyProject.csproj | Dir = C:/Code}
             """;

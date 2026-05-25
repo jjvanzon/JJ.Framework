@@ -11,13 +11,13 @@ internal static partial class DiagnosticsFormatter
 
     public static string DebuggerDisplay(DotNetOptions opt)
     {
-        var descriptor = Descriptor(opt);
+        var descriptor = Descriptor(opt, MAX_PATH_CHARS);
         descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
         string sep = Has(descriptor) ? " " : "";
         return "{" + nameof(DotNetOptions) + sep + descriptor + "}";
     }
 
-    public static string Descriptor(DotNetOptions opt)
+    public static string Descriptor(DotNetOptions opt, int? maxPathChars = null)
     {
         if (opt == default) return "default";
         if (opt == DefaultOptions) return "default";
@@ -28,7 +28,7 @@ internal static partial class DiagnosticsFormatter
             FormatRestore(opt), 
             FormatLogOptions(opt), 
             FormatTimeOut(opt), 
-            FormatFileOptions(opt)
+            FormatFileOptions(opt, maxPathChars)
         ];
 
         var descriptor = Join(" | ", elements.Where(FilledIn));
@@ -95,15 +95,15 @@ internal static partial class DiagnosticsFormatter
     private const int LONG_PATH_LENGTH = 20;
     private const int MAX_PATH_CHARS = 40;
 
-    private static string FormatFileOptions(DotNetOptions opt) => FormatFileOptions(opt.File, opt.Args, opt.Dir);
-    private static string FormatFileOptions(string? file, string? args, string? dir)
+    private static string FormatFileOptions(DotNetOptions opt, int? maxPathChars = null) => FormatFileOptions(opt.File, opt.Args, opt.Dir, maxPathChars);
+    private static string FormatFileOptions(string? file, string? args, string? dir, int? maxPathChars = null)
     {
         bool hasSep1 = Has(args) && Has(file);
         bool hasSep2 = (Has(args) || Has(file)) && Has(dir);
 
         bool filePathIsLong = file?.Length > LONG_PATH_LENGTH;
-        string formattedDir = FormatDir(dir);
-        string formattedFile = FormatFile(file);
+        string formattedDir = FormatDir(dir, maxPathChars);
+        string formattedFile = FormatFile(file, maxPathChars);
 
         if (filePathIsLong)
         {
@@ -119,12 +119,13 @@ internal static partial class DiagnosticsFormatter
         }
     }
 
-    private static string FormatFile(string? file) => TruncatePath(file);
-    private static string FormatDir(string? dir) => Has(dir) ? "Dir = " + TruncatePath(dir) : "";
-    private static string TruncatePath(string? path)
+    private static string FormatFile(string? file, int? maxPathChars = null) => TruncatePath(file, maxPathChars);
+    private static string FormatDir(string? dir, int? maxPathChars = null) => Has(dir) ? "Dir = " + TruncatePath(dir, maxPathChars) : "";
+    private static string TruncatePath(string? path, int? maxPathChars = null)
     {
         path ??= "";
-        if (path.Length <= MAX_PATH_CHARS) return path;
-        return "... " + path.Right(MAX_PATH_CHARS);
+        if (maxPathChars == null) return path;
+        if (path.Length <= maxPathChars) return path;
+        return "... " + path.Right(maxPathChars.Value);
     }
 }
