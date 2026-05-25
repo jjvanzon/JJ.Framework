@@ -20,6 +20,7 @@
 - Avoid placeholder args and weak assertions; use meaningful parameterizations and assert their actual effect.
 - When the user manually adjusts tests, do not revert those user corrections in subsequent edits.
 - Align similar calls in table/column style (method names and argument columns) to keep formatting consistent with the user's preferred visual structure.
+- Use terse test names and realistic practical paths, favoring literal inline test values over extra variableization in tests.
 
 ## Legacy Tests
 - Expand for full code coverage.

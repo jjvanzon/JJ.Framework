@@ -248,6 +248,48 @@ public class DotNetOptionsDescriptorTests
     }
 
     [TestMethod]
+    public void DotNetOptions_Stringify_ToString_NoPathTruncation()
+    {
+        var opt = new DotNetOptions
+        {
+            Args = "--no-logo",
+            File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
+            Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
+        };
+
+        const string expected = 
+            """
+            DotNetOptions --no-logo | D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj | Dir = D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0
+            """;
+
+        AreEqual(expected, Stringify(opt));
+        AreEqual(expected, opt.ToString());
+    }
+
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_PathTruncation()
+    {
+        var opt = new DotNetOptions
+        {
+            Args = "--no-logo",
+            File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
+            Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
+        };
+
+        const string expected = 
+            """
+            {DotNetOptions --no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = ... /Billing/ServiceHost/bin/Release/net10.0}
+            """;
+
+        var accessor = new DotNetOptionsAccessor(opt);
+
+        AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, accessor.DebuggerDisplay);
+    }
+
+    // Combos
+
+    [TestMethod]
     public void DotNetOptions_Descriptor_Combos_WithoutFileOptions()
     {
         AreEqual(
