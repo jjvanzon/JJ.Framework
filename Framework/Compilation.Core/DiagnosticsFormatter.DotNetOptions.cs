@@ -93,6 +93,7 @@ internal static partial class DiagnosticsFormatter
     // File Options
 
     private const int LONG_PATH_LENGTH = 20;
+    private const int MAX_PATH_CHARS = 40;
 
     private static string FormatFileOptions(DotNetOptions opt) => FormatFileOptions(opt.File, opt.Args, opt.Dir);
     private static string FormatFileOptions(string? file, string? args, string? dir)
@@ -102,20 +103,28 @@ internal static partial class DiagnosticsFormatter
 
         bool filePathIsLong = file?.Length > LONG_PATH_LENGTH;
         string formattedDir = FormatDir(dir);
+        string formattedFile = FormatFile(file);
 
         if (filePathIsLong)
         {
             string sep1 = hasSep1 ? " | " : "";
             string sep2 = hasSep2 ? " | " : "";
-            return args + sep1 + file + sep2 + formattedDir;
+            return args + sep1 + formattedFile + sep2 + formattedDir;
         }
         else
         { 
             string sep1 = hasSep1 ? " " : "";
             string sep2 = hasSep2 ? " | " : "";
-            return file + sep1 + args + sep2 + formattedDir;
+            return formattedFile + sep1 + args + sep2 + formattedDir;
         }
     }
 
-    private static string FormatDir(string? dir) => Has(dir) ? "Dir: " + '"' + dir + '"' : "";
+    private static string FormatFile(string? file) => TruncatePath(file);
+    private static string FormatDir(string? dir) => Has(dir) ? "Dir = " + TruncatePath(dir) : "";
+    private static string TruncatePath(string? path)
+    {
+        path ??= "";
+        if (path.Length <= MAX_PATH_CHARS) return path;
+        return "... " + path.Right(MAX_PATH_CHARS);
+    }
 }

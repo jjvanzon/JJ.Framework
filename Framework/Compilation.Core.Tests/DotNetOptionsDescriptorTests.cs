@@ -41,7 +41,7 @@ public class DotNetOptionsDescriptorTests
 
         const string expected = 
             """
-            DotNetOptions "Release" | --no-logo | C:\Code\MyProject.csproj | Dir: "C:\repo"
+            DotNetOptions "Release" | --no-logo | C:\Code\MyProject.csproj | Dir = C:\repo
             """;
 
         AreEqual(expected, Stringify(opt));
@@ -63,7 +63,7 @@ public class DotNetOptionsDescriptorTests
 
         string expected =
             """
-            {DotNetOptions 'Release' | --no-logo | C:/Code/MyProject.csproj | Dir: 'C:/Code'}
+            {DotNetOptions 'Release' | --no-logo | C:/Code/MyProject.csproj | Dir = C:/Code}
             """;
 
         AreEqual(expected, DebuggerDisplay(opt));
@@ -89,7 +89,7 @@ public class DotNetOptionsDescriptorTests
         };
 
         AreEqual(
-            @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir: ""C:\repo""",
+            @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir = C:\repo",
             Descriptor(opt));
     }
 
@@ -206,7 +206,7 @@ public class DotNetOptionsDescriptorTests
 
     [TestMethod]
     public void DotNetOptions_Descriptor_OnlyDir()
-        => AreEqual(@"Dir: ""C:\repo""", Descriptor(new DotNetOptions { Dir = @"C:\repo" }));
+        => AreEqual(@"Dir = C:\repo", Descriptor(new DotNetOptions { Dir = @"C:\repo" }));
 
     [TestMethod]
     public void DotNetOptions_Descriptor_AllFileOptions()
@@ -218,7 +218,7 @@ public class DotNetOptionsDescriptorTests
             Dir = @"D:\JJ\Dev\Products\Code"
         };
 
-        AreEqual(@"MyProject.csproj --no-logo | Dir: ""D:\JJ\Dev\Products\Code""", Descriptor(opt));
+        AreEqual(@"MyProject.csproj --no-logo | Dir = D:\JJ\Dev\Products\Code", Descriptor(opt));
     }
 
     [TestMethod]
@@ -233,7 +233,7 @@ public class DotNetOptionsDescriptorTests
 
         IsTrue(opt.File.Length > 20);
 
-        AreEqual(@"--no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir: ""D:\JJ\Dev\Products\Code""", Descriptor(opt));
+        AreEqual(@"--no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = D:\JJ\Dev\Products\Code", Descriptor(opt));
     }
 
     [TestMethod]
@@ -317,13 +317,13 @@ public class DotNetOptionsDescriptorTests
 
         AreEqual(
             """
-            --no-logo | Dir: "C:\repo"
+            --no-logo | Dir = C:\repo
             """,
             Descriptor(new DotNetOptions { Args = "--no-logo", Dir = @"C:\repo" }));
 
         AreEqual(
             """
-            MyProject.csproj | Dir: "C:\repo"
+            MyProject.csproj | Dir = C:\repo
             """,
             Descriptor(new DotNetOptions { File = shortFile, Dir = @"C:\repo" }));
 
@@ -341,25 +341,25 @@ public class DotNetOptionsDescriptorTests
 
         AreEqual(
             """
-            D:\JJ\Dev\Products\Code\MyProject.csproj | Dir: "C:\repo"
+            D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = C:\repo
             """,
             Descriptor(new DotNetOptions { File = longFile, Dir = @"C:\repo" }));
 
         AreEqual(
             """
-            --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir: "C:\repo"
+            --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = C:\repo
             """,
             Descriptor(new DotNetOptions { Args = "--no-logo", File = longFile, Dir = @"C:\repo" }));
 
         AreEqual(
             """
-            "Release" | --no-logo | Dir: "C:\repo"
+            "Release" | --no-logo | Dir = C:\repo
             """,
             Descriptor(new DotNetOptions { BuildConf = "Release", Args = "--no-logo", Dir = @"C:\repo" }));
 
         AreEqual(
             """
-            "Release" | MyProject.csproj | Dir: "C:\repo"
+            "Release" | MyProject.csproj | Dir = C:\repo
             """,
             Descriptor(new DotNetOptions { BuildConf = "Release", File = shortFile, Dir = @"C:\repo" }));
     }
