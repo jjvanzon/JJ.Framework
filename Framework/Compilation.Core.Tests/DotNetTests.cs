@@ -127,10 +127,10 @@ public class DotNetTests : IDisposable
 
     // Restore
 
-    private void TestRestore_ChDir(Func<string> call) => InTempDir(() => TestRestore(call));
-    private void TestRestore(Func<string> call)
+    private void TestRestore_ChDir(Func<DotNetResult> call) => InTempDir(() => TestRestore(call));
+    private void TestRestore(Func<DotNetResult> call)
     {
-        string output = call();
+        DotNetResult output = call();
         NotNullOrWhiteSpace(output);
         AssertContains(output, "restore");
         AssertContainsAny(output, "restored", "up-to-date");
@@ -152,11 +152,11 @@ public class DotNetTests : IDisposable
 
     // Build
 
-    public void TestBuild_Debug(Func<string> call) => InTempDir(() => TestBuild(call, _outputDllDebug));
-    public void TestBuild_Release(Func<string> call) => TestBuild(call, _outputDllRelease);
-    public void TestBuild(Func<string> call, string filePath)
+    public void TestBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestBuild(call, _outputDllDebug));
+    public void TestBuild_Release(Func<DotNetResult> call) => TestBuild(call, _outputDllRelease);
+    public void TestBuild(Func<DotNetResult> call, string filePath)
     {
-        string output = call();
+        DotNetResult output = call();
         NotNullOrWhiteSpace(output);
         AssertContains(output, "build succeeded");
         AssertContains(output, filePath);
@@ -178,11 +178,11 @@ public class DotNetTests : IDisposable
 
     // Rebuild
 
-    public void TestRebuild_Debug(Func<string> call) => InTempDir(() => TestRebuild(call, _outputDllDebug));
-    public void TestRebuild_Release(Func<string> call) => TestRebuild(call, _outputDllRelease);
-    public void TestRebuild(Func<string> call, string dllFileName)
+    public void TestRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestRebuild(call, _outputDllDebug));
+    public void TestRebuild_Release(Func<DotNetResult> call) => TestRebuild(call, _outputDllRelease);
+    public void TestRebuild(Func<DotNetResult> call, string dllFileName)
     {
-        string output = call();
+        DotNetResult output = call();
         NotNullOrWhiteSpace(output);
         AssertContains(output, "Build succeeded");
         AssertContains(output, dllFileName);
@@ -202,13 +202,13 @@ public class DotNetTests : IDisposable
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
     
-    private void TestMSBuild_Debug(Func<string> call) => InTempDir(() => TestMSBuild(call, _outputDllDebug));
-    private void TestMSBuild_Release(Func<string> call) => TestMSBuild(call, _outputDllRelease);
-    private void TestMSBuild(Func<string> call, string dllFilePath)
+    private void TestMSBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSBuild(call, _outputDllDebug));
+    private void TestMSBuild_Release(Func<DotNetResult> call) => TestMSBuild(call, _outputDllRelease);
+    private void TestMSBuild(Func<DotNetResult> call, string dllFilePath)
     {
-        string output = call();
+        DotNetResult output = call();
         NotNullOrWhiteSpace(output);
-        IsTrue(output.Contains(dllFilePath), message: output);
+        AssertContains(output, dllFilePath);
         AssertExists(dllFilePath);
     }
 
@@ -227,11 +227,11 @@ public class DotNetTests : IDisposable
 
     // MSRebuild
 
-    private void TestMSRebuild_Debug(Func<string> call) => InTempDir(() => TestMSRebuild(call, _outputDllDebug));
-    private void TestMSRebuild_Release(Func<string> call) => TestMSRebuild(call, _outputDllRelease);
-    private void TestMSRebuild(Func<string> call, string dllFilePath)
+    private void TestMSRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSRebuild(call, _outputDllDebug));
+    private void TestMSRebuild_Release(Func<DotNetResult> call) => TestMSRebuild(call, _outputDllRelease);
+    private void TestMSRebuild(Func<DotNetResult> call, string dllFilePath)
     {
-        string output = call();
+        DotNetResult output = call();
         NotNullOrWhiteSpace(output);
         AssertContains(output, dllFilePath);
         AssertExists(dllFilePath);
@@ -250,10 +250,10 @@ public class DotNetTests : IDisposable
 
     // InstallPackage
 
-    private void TestInstallPack_ChDir(Func<string> call) => InTempDir(() => TestInstallPack(call));
-    private void TestInstallPack(Func<string> call)
+    private void TestInstallPack_ChDir(Func<DotNetResult> call) => InTempDir(() => TestInstallPack(call));
+    private void TestInstallPack(Func<DotNetResult> call)
     {
-        string output = call();
+        DotNetResult output = call();
         NotNullOrWhiteSpace(output);
         AssertContains(output, PACK_ID);
 
@@ -271,12 +271,12 @@ public class DotNetTests : IDisposable
 
     // UninstallPackage
 
-    private void TestUninstallPack_ChDir(Func<string> call) => InTempDir(() => TestUninstallPack(call));
-    private void TestUninstallPack(Func<string> call)
+    private void TestUninstallPack_ChDir(Func<DotNetResult> call) => InTempDir(() => TestUninstallPack(call));
+    private void TestUninstallPack(Func<DotNetResult> call)
     {
         InstallPackage(PACK_ID, PACK_VER, _optNoFile);
 
-        string output = call();
+        DotNetResult output = call();
         NotNullOrWhiteSpace(output);
         AssertContains(output, PACK_ID);
 

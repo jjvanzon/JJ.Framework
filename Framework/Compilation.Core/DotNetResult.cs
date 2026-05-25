@@ -7,7 +7,7 @@ public record DotNetResult
     private string DebuggerDisplay => Text;
     public static implicit operator string(DotNetResult? result) => result?.Text ?? "";
 
-    public string Text { get; }
+    public string        Text             { get; }
 
     public DotNetOptions Opt              { get; }
     public DotNetArgs    Args             { get; }
