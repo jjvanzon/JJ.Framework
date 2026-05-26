@@ -2,8 +2,6 @@
 
 internal static partial class DiagnosticsFormatter
 {
-    private const string DotNetArgsNull = "<null>";
-
     public static string Stringify(DotNetArgs? opt)
     {
         string descriptor = Descriptor(opt);
@@ -21,7 +19,7 @@ internal static partial class DiagnosticsFormatter
 
     public static string Descriptor(DotNetArgs? args)
     {
-        if (args == null) return DotNetArgsNull;
+        if (args == null) return "<null>";
 
         string commandDescriptor = CommandDescriptor(args);
         string idVerDescriptor = IDVerDescriptor(args);

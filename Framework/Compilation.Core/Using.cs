@@ -15,6 +15,7 @@ global using static System.String;
 global using static System.StringComparison;
 global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
+global using static JJ.Framework.Compilation.Core.DotNetFilledInHelper;
 global using static JJ.Framework.Compilation.Core.DotNetVerbosity;
 global using static JJ.Framework.Compilation.Core.DotNetCommandEnum;
 global using static JJ.Framework.Compilation.Core.DotNetOptions;

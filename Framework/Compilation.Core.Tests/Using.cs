@@ -1,3 +1,4 @@
+global using System.Diagnostics.CodeAnalysis;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Compilation.Core.Tests.Accessors;

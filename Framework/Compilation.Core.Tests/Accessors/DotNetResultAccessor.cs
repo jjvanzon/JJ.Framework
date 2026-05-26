@@ -20,5 +20,6 @@ internal class DotNetResultAccessor
     public DotNetResult Obj => (DotNetResult)_accessor.Obj!;
 
     public string DebuggerDisplay => _accessor.Get<string>()!;
+
 }
 
