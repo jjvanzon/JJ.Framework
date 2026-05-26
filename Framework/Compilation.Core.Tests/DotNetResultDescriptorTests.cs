@@ -4,7 +4,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 public class DotNetResultDescriptorTests
 {
     [TestMethod]
-    public void DotNetResult_Stringify_Success_ContainsDotNetArgsAndOutput()
+    public void DotNetResult_Stringify_Success_ArgsOptOutputText()
     {
         var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
         var opt = new DotNetOptions { Dir = @"C:\repo", File = "MyProject.csproj" };
@@ -158,4 +158,27 @@ public class DotNetResultDescriptorTests
 
         AreEqual(result.Text, resultAccessor.DebuggerDisplay);
     }
+
+    // Part-by-Part Tests
+
+    /*
+    [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
+
+    [TestMethod] public void Test_DotNetResult_Descriptor_Failure_None() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasTimeOut() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasErrorInOutput() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasExitCode() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_Failure_PriorityOrder() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_Failure_PreferenceOrder() => throw new NotImplementedException();
+
+    [TestMethod] public void Test_DotNetResult_Descriptor_Args() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_Opt() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_TimeOut() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_ExitCode() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_ErrorText_WithSuccess() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_ErrorText_WithFailure() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_Descriptor_OutputText() => throw new NotImplementedException();
+    */
+
 }
