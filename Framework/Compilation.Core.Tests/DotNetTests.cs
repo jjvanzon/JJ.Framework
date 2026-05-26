@@ -99,6 +99,50 @@ public class DotNetTests : IDisposable
                $"Expected one of {partsFormatted} in: {whole}");
     }
 
+    //private static string NullyText(string? x) => IsNullOrWhiteSpace(x) ? "" : x;
+
+    private void AssertResultCore(DotNetResult result)
+    {
+        // Nulls
+        NotNull(result);
+        NotNull(result.Text);
+        NotNull(result.Args);
+        NotNull(result.ErrorText);
+        NotNull(result.OutputText);
+        NotNull(result.TimeOutMessage);
+
+        // Text Equality
+        AreEqual(result.Text, result.ToString());
+        AreEqual(result.Text, (string)result);
+        // TODO: DebuggerDisplay.
+
+        // Logical Consistency
+        NotEqual(result.Opt,           default);
+        AreEqual(result.HasExitCode,   result.ExitCode != 0);
+        AreEqual(result.HasErrorText,  !IsNullOrWhiteSpace(result.ErrorText));
+        AreEqual(result.HasOutputText, !IsNullOrWhiteSpace(result.OutputText));
+        AreEqual(result.HasTimeOut,    !IsNullOrWhiteSpace(result.TimeOutMessage));
+        AreEqual(result.Successful,    !(result.HasExitCode || result.HasErrorInOutput || result.HasTimeOut));
+
+        if (result.HasErrorInOutput)
+        {
+            AssertContains(result.OutputText, "[error]");
+            //AreEqual(result.HasErrorInOutput, NullyText(result.OutputText).Contains("[error]"));
+        }
+    }
+
+    private void AssertResultOk(DotNetResult result)
+    {
+        AssertResultCore(result);
+        IsTrue(result.Successful);
+        NotNullOrWhiteSpace(result.Text);
+        NotNullOrWhiteSpace(result.OutputText);
+        IsFalse(result.HasExitCode);
+        IsFalse(result.HasErrorInOutput);
+        IsFalse(result.HasTimeOut);
+        AreEqual(0, result.ExitCode);
+    }
+
     private static readonly Lock _tempDirLock = new();
 
     /// <summary>
@@ -131,9 +175,12 @@ public class DotNetTests : IDisposable
     private void TestRestore(Func<DotNetResult> call)
     {
         DotNetResult output = call();
+        AssertResultOk(output);
+
         NotNullOrWhiteSpace(output);
         AssertContains(output, "restore");
         AssertContainsAny(output, "restored", "up-to-date");
+        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(_assetsFilePath);
     }
 
@@ -157,9 +204,12 @@ public class DotNetTests : IDisposable
     public void TestBuild(Func<DotNetResult> call, string filePath)
     {
         DotNetResult output = call();
+        AssertResultOk(output);
+
         NotNullOrWhiteSpace(output);
         AssertContains(output, "build succeeded");
         AssertContains(output, filePath);
+        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(filePath);
     }
 
@@ -183,9 +233,12 @@ public class DotNetTests : IDisposable
     public void TestRebuild(Func<DotNetResult> call, string dllFileName)
     {
         DotNetResult output = call();
+        AssertResultOk(output);
+
         NotNullOrWhiteSpace(output);
         AssertContains(output, "Build succeeded");
         AssertContains(output, dllFileName);
+        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(dllFileName);
     }
 
@@ -207,8 +260,11 @@ public class DotNetTests : IDisposable
     private void TestMSBuild(Func<DotNetResult> call, string dllFilePath)
     {
         DotNetResult output = call();
+        AssertResultOk(output);
+
         NotNullOrWhiteSpace(output);
         AssertContains(output, dllFilePath);
+        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(dllFilePath);
     }
 
@@ -232,8 +288,11 @@ public class DotNetTests : IDisposable
     private void TestMSRebuild(Func<DotNetResult> call, string dllFilePath)
     {
         DotNetResult output = call();
+        AssertResultOk(output);
+
         NotNullOrWhiteSpace(output);
         AssertContains(output, dllFilePath);
+        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(dllFilePath);
     }
 
@@ -254,8 +313,11 @@ public class DotNetTests : IDisposable
     private void TestInstallPack(Func<DotNetResult> call)
     {
         DotNetResult output = call();
+        AssertResultOk(output);
+
         NotNullOrWhiteSpace(output);
         AssertContains(output, PACK_ID);
+        NotNullOrWhiteSpace(output.OutputText);
 
         string content = ReadAllText(_csprojPath);
         NotNullOrWhiteSpace(content);
@@ -277,8 +339,11 @@ public class DotNetTests : IDisposable
         InstallPackage(PACK_ID, PACK_VER, _optNoFile);
 
         DotNetResult output = call();
+        AssertResultOk(output);
+
         NotNullOrWhiteSpace(output);
         AssertContains(output, PACK_ID);
+        NotNullOrWhiteSpace(output.OutputText);
 
         string content = ReadAllText(_csprojPath);
         IsFalse(content.Contains(PACK_ID));

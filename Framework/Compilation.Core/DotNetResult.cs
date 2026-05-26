@@ -76,17 +76,17 @@ public record DotNetResult
         string failurePart = "";
         if (HasTimeOut)
         {
-            failurePart = "dotnet TIME OUT !";
+            failurePart = "dotnet TIME OUT!";
             dotNetWasAdded = true;
         }
         else if (HasErrorInOutput)
         {
-            failurePart = "dotnet ERROR !";
+            failurePart = "dotnet ERROR!";
             dotNetWasAdded = true;
         }
         else if (HasExitCode)
         {
-            failurePart = "dotnet EXIT CODE = " + ExitCode + " !";
+            failurePart = "dotnet EXIT CODE = " + ExitCode + "!";
             exitCodeWasAdded = true;
             dotNetWasAdded = true;
         }
