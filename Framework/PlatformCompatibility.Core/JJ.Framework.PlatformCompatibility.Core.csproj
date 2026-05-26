@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="NotNullIfNotNull.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,6 @@
-﻿// ReSharper disable UnusedParameter.Global
+﻿#pragma warning disable IDE0005
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable UnusedType.Global
 
 using System.Diagnostics;
 

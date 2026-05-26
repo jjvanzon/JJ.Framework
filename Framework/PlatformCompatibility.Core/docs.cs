@@ -76,6 +76,19 @@ public struct _notnullattribute;
 /// </summary>
 public struct _notnullwhen;
 
+// TODO: Rephrase copy-pasted docs
+
+/// <summary>Specifies that the output will be non-null if the named parameter is non-null.</summary>
+/// <param name="parameterName">
+/// The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+/// </param>
+public struct _notnullifnotnull;
+
+/// <summary>
+/// The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+/// </summary>
+public struct _notnullifnotnullparameter;
+
 /// <summary>
 /// Substitute for <c>[OverloadResolutionPriority]</c> (introduced in .NET 9 / C# 13).
 /// Lets you prefer one overload over another when multiple overloads match.
