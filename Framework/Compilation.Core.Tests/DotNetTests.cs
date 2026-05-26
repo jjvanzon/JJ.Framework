@@ -95,8 +95,7 @@ public class DotNetTests : IDisposable
     private void AssertContainsAny(string whole, params string[] parts)
     {
         string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
-        IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), 
-               $"Expected one of {partsFormatted} in: {whole}");
+        IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
     }
 
     //private static string NullyText(string? x) => IsNullOrWhiteSpace(x) ? "" : x;
@@ -114,7 +113,7 @@ public class DotNetTests : IDisposable
         // Text Equality
         AreEqual(result.Text, result.ToString());
         AreEqual(result.Text, (string)result);
-        // TODO: DebuggerDisplay.
+        AreEqual(result.Text, new DotNetResultAccessor(result).DebuggerDisplay);
 
         // Logical Consistency
         NotEqual(result.Opt,           default);
@@ -127,7 +126,6 @@ public class DotNetTests : IDisposable
         if (result.HasErrorInOutput)
         {
             AssertContains(result.OutputText, "[error]");
-            //AreEqual(result.HasErrorInOutput, NullyText(result.OutputText).Contains("[error]"));
         }
     }
 
