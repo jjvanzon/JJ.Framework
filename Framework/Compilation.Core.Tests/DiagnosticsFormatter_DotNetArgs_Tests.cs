@@ -5,7 +5,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 using static DiagnosticsFormatterAccessor;
 
 [TestClass]
-public class DotNetArgsDescriptorTests
+public class DiagnosticsFormatter_DotNetArgs_Tests
 {
     private const bool re = true;
     private static readonly DotNetCommandEnum[] _enumNullies = [ 0, default, undefined ];
@@ -20,7 +20,7 @@ public class DotNetArgsDescriptorTests
 
     [TestMethod]
     public void DotNetArgs_DebuggerDisplay_NullArgs()
-        => AreEqual("{DotNetArgs <null>}", DebuggerDisplay(null));
+        => AreEqual("{DotNetArgs <null>}", DebuggerDisplay((DotNetArgs?)null));
     
     [TestMethod]
     public void DotNetArgs_Descriptor_NullArgs()

@@ -1,7 +1,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class DotNetOptionsDescriptorTests
+public class DiagnosticsFormatter_DotNetOptions_Tests
 {
     private static readonly string[] _textNullies = [ "", " ", default! ];
     private static readonly Action<string>[] _logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
