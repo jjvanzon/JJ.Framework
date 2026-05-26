@@ -2,9 +2,9 @@
 
 internal static partial class DiagnosticsFormatter
 {
-    public static string Stringify(DotNetResult result) => Descriptor(result, NewLine);
-    public static string ExceptionMessage(DotNetResult result) => Descriptor(result, " ");
-    private static string Descriptor(DotNetResult result, string sep)
+    public static string  Stringify       (DotNetResult result) => Descriptor(result, NewLine);
+    public static string  ExceptionMessage(DotNetResult result) => Descriptor(result, " ");
+    private static string Descriptor      (DotNetResult result, string sep)
     {
         bool exitCodeWasAdded = false;
         bool dotNetWasAdded = false;
@@ -29,7 +29,7 @@ internal static partial class DiagnosticsFormatter
 
         string dotNetPart = dotNetWasAdded ? "" : "dotnet ";
         
-        string argsPart = DiagnosticsFormatter.Descriptor(result.Args, result.Opt, sep);
+        string argsPart = Descriptor(result.Args, result.Opt, sep);
 
         string timeOutPart = "";
         if (result.HasTimeOut)
