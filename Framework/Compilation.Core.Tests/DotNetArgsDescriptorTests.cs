@@ -16,7 +16,7 @@ public class DotNetArgsDescriptorTests
 
     [TestMethod]
     public void DotNetArgs_Stringify_NullArgs()
-        => AreEqual("DotNetArgs <null>", Stringify(null));
+        => AreEqual("DotNetArgs <null>", Stringify((DotNetArgs?)null));
 
     [TestMethod]
     public void DotNetArgs_DebuggerDisplay_NullArgs()

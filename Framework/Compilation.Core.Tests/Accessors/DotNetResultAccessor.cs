@@ -1,9 +1,23 @@
 ﻿namespace JJ.Framework.Compilation.Core.Tests.Accessors;
 
 [Suppress("Trimmer", "IL2026", Justification = Bases)]
-internal class DotNetResultAccessor(DotNetResult obj)
+internal class DotNetResultAccessor
 {
-    private readonly AccessorCore _accessor = new(typeof(DotNetResult), obj);
+    private readonly AccessorCore _accessor;
+
+    public DotNetResultAccessor(
+        DotNetOptions opt,
+        DotNetArgs args,
+        int exitCode = 0,
+        string errorText = "",
+        string outputText = "",
+        string timeOutMessage = "")
+        => _accessor = new(typeof(DotNetResult), opt, args, exitCode, errorText, outputText, timeOutMessage);
+
+    public DotNetResultAccessor(DotNetResult obj)
+        => _accessor = new(typeof(DotNetResult), obj);
+
+    public DotNetResult Obj => (DotNetResult)_accessor.Obj!;
 
     public string DebuggerDisplay => _accessor.Get<string>()!;
 }

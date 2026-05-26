@@ -26,6 +26,12 @@ internal static class DiagnosticsFormatterAccessor
     public static string? DebuggerDisplay(DotNetArgs? args)
         => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
 
+    public static string? Stringify(DotNetResult result)
+        => (string?)_accessor.Call([ result ], [ typeof(DotNetResult) ]);
+
+    public static string? ExceptionMessage(DotNetResult result)
+        => (string?)_accessor.Call([ result ], [ typeof(DotNetResult) ]);
+
     public static string? CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild) 
         => (string?)_accessor.Call(@enum, command, isRebuild);
 
