@@ -3,8 +3,9 @@
 [DebuggerDisplay("{DebuggerDisplay}")]
 public record DotNetResult
 {
+    private string DebuggerDisplay => DebuggerDisplay(this);
+    
     public override string ToString() => Text;
-    private string DebuggerDisplay => Text;
     public static implicit operator string(DotNetResult? result) => result?.Text ?? "";
 
     public string        Text             { get; }

@@ -8,6 +8,8 @@ internal static class DiagnosticsFormatterAccessor
 
     private static readonly AccessorCore _accessor = new("DiagnosticsFormatter");
 
+    // Opt
+
     public static string? Descriptor(DotNetOptions opt, int? maxPathChars = null)
         => (string?)_accessor.Call(opt, maxPathChars);
 
@@ -16,6 +18,8 @@ internal static class DiagnosticsFormatterAccessor
 
     public static string? DebuggerDisplay(DotNetOptions opt)
         => (string?)_accessor.Call([ opt ], [ typeof(DotNetOptions) ]);
+
+    // Args
 
     public static string? Descriptor(DotNetArgs? args) 
         => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
@@ -26,11 +30,21 @@ internal static class DiagnosticsFormatterAccessor
     public static string? DebuggerDisplay(DotNetArgs? args)
         => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
 
-    public static string? Stringify(DotNetResult result)
+    // Result
+
+    public static string? Descriptor(DotNetResult? result, string sep)
+        => (string?)_accessor.Call(Name(), result, sep);
+
+    public static string? Stringify(DotNetResult? result)
         => (string?)_accessor.Call([ result ], [ typeof(DotNetResult) ]);
 
-    public static string? ExceptionMessage(DotNetResult result)
+    public static string? DebuggerDisplay(DotNetResult? result)
         => (string?)_accessor.Call([ result ], [ typeof(DotNetResult) ]);
+
+    public static string? ExceptionMessage(DotNetResult? result)
+        => (string?)_accessor.Call([ result ], [ typeof(DotNetResult) ]);
+
+    // Parts
 
     public static string? CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild) 
         => (string?)_accessor.Call(@enum, command, isRebuild);
