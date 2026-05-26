@@ -42,7 +42,7 @@ public record DotNetResult
         bool hasError    = HasExitCode || HasErrorInOutput | HasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
         Successful       = !hasError;
 
-        Text = FormatText();
+        Text = Stringify(this);
         
         /*
         Text = Join(NewLine,
@@ -55,7 +55,7 @@ public record DotNetResult
     public void Assert()
     {
         if (Successful) return;
-        throw new Exception(FormatExceptionText());
+        throw new Exception(ExceptionMessage(this));
         /*
         throw new Exception(
             $"dotnet {Args} failed " +
@@ -65,65 +65,64 @@ public record DotNetResult
         */
     }
 
-    private string FormatText() => Descriptor(NewLine);
-    private string FormatExceptionText() => Descriptor(" ");
-
-    private string Descriptor(string sep)
+    private static string Stringify(DotNetResult result) => Descriptor(result, NewLine);
+    private static string ExceptionMessage(DotNetResult result) => Descriptor(result, " ");
+    private static string Descriptor(DotNetResult result, string sep)
     {
         bool exitCodeWasAdded = false;
         bool dotNetWasAdded = false;
 
         string failurePart = "";
-        if (HasTimeOut)
+        if (result.HasTimeOut)
         {
             failurePart = "dotnet TIME OUT!";
             dotNetWasAdded = true;
         }
-        else if (HasErrorInOutput)
+        else if (result.HasErrorInOutput)
         {
             failurePart = "dotnet ERROR!";
             dotNetWasAdded = true;
         }
-        else if (HasExitCode)
+        else if (result.HasExitCode)
         {
-            failurePart = "dotnet EXIT CODE = " + ExitCode + "!";
+            failurePart = "dotnet EXIT CODE = " + result.ExitCode + "!";
             exitCodeWasAdded = true;
             dotNetWasAdded = true;
         }
 
         string dotNetPart = dotNetWasAdded ? "" : "dotnet ";
         
-        string argsPart = DiagnosticsFormatter.Descriptor(Args, Opt, sep);
+        string argsPart = DiagnosticsFormatter.Descriptor(result.Args, result.Opt, sep);
 
         string timeOutPart = "";
-        if (HasTimeOut)
+        if (result.HasTimeOut)
         {
-            timeOutPart = TimeOutMessage;
+            timeOutPart = result.TimeOutMessage;
         }
         
         string exitCodePart = "";
-        if (HasExitCode && !exitCodeWasAdded)
+        if (result.HasExitCode && !exitCodeWasAdded)
         {
-            exitCodePart = "ExitCode = " + ExitCode;
+            exitCodePart = "ExitCode = " + result.ExitCode;
         }
         
         string errorTextPart = "";
-        if (HasErrorText)
+        if (result.HasErrorText)
         {
-            if (Successful)
+            if (result.Successful)
             {
-                errorTextPart = $"stdErr ={sep}{ErrorText}";
+                errorTextPart = $"stdErr ={sep}{result.ErrorText}";
             }
             else
             {
-                errorTextPart = $"Error ={sep}{ErrorText}";
+                errorTextPart = $"Error ={sep}{result.ErrorText}";
             }
         }
         
         string outputTextPart = "";
-        if (HasOutputText)
+        if (result.HasOutputText)
         {
-            outputTextPart = $"Output ={sep}{OutputText}";
+            outputTextPart = $"Output ={sep}{result.OutputText}";
         }
 
         string[] elements = 
