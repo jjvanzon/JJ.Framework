@@ -25,6 +25,7 @@ internal static class Untrimmer
     [NoTrim("Descriptor",        $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("Stringify",         $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("DebuggerDisplay",   $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
+    [NoTrim("ExceptionMessage",  $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("CommandDescriptor", $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("IDVerDescriptor",   $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
     [NoTrim("ArgsDescriptor",    $"{MainAsm}.DiagnosticsFormatter", MainAsm)]

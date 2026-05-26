@@ -6,6 +6,7 @@ RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetLoggerTests>() &&
 RunTests<DotNetOptionsDescriptorTests>() &&
 RunTests<DotNetOptionsTests>() &&
+RunTests<DotNetResultDescriptorTests>() &&
 RunTests<DotNetTests>() &&
 RunTests<RunningTargetFrameworkTests>();
 WriteLine("Done.");
