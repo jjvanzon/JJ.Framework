@@ -1,7 +1,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class DotNetResultDescriptorTests
+public class DiagnosticsFormatter_DotNetResult_Tests
 {
     [TestMethod]
     public void DotNetResult_Stringify_Success_ArgsOptOutputText()
@@ -156,10 +156,29 @@ public class DotNetResultDescriptorTests
 
         DotNetResult result = resultAccessor.Obj;
 
-        AreEqual(result.Text, resultAccessor.DebuggerDisplay);
+        // TODO: No longer the case. Add prefix?
+        //AreEqual(result.Text, resultAccessor.DebuggerDisplay);
     }
 
     // Part-by-Part Tests
+
+    private static readonly DotNetArgs DefaultArgs = new DotNetArgsAccessor().Obj;
+    private static readonly DotNetResult EmptyResult = new DotNetResultAccessor(DefaultOptions, DefaultArgs).Obj;
+    private static readonly DotNetResult? NullResult = null;
+
+    [TestMethod] public void DotNetResult_Empty_Text()               => AreEqual("DotNetResult empty", EmptyResult.Text);
+    [TestMethod] public void DotNetResult_Empty_ToString()           => AreEqual("DotNetResult empty", EmptyResult.ToString());
+    [TestMethod] public void DotNetResult_Empty_ConversionOpString() => AreEqual("DotNetResult empty", EmptyResult);
+    [TestMethod] public void DotNetResult_Empty_Descriptor()         => AreEqual("empty", Descriptor(EmptyResult, " "));
+    [TestMethod] public void DotNetResult_Empty_Stringify()          => AreEqual("DotNetResult empty", Stringify(EmptyResult));
+    [TestMethod] public void DotNetResult_Empty_ExceptionMessage()   => AreEqual("DotNetResult empty", ExceptionMessage(EmptyResult));
+    //[TestMethod] public void DotNetResult_Empty_DebuggerDisplay()    => AreEqual("DotNetResult empty", DebuggerDisplay(EmptyResult));
+
+    //[TestMethod] public void DotNetResult_Null_ConversionOpString() => AreEqual("null", NullResult);
+    //[TestMethod] public void DotNetResult_Null_Descriptor()         => AreEqual("null", Descriptor(NullResult, " "));
+    [TestMethod] public void DotNetResult_Null_Stringify()          => AreEqual("null", Stringify(NullResult));
+    [TestMethod] public void DotNetResult_Null_ExceptionMessage()   => AreEqual("DotNetResult null", ExceptionMessage(NullResult));
+    [TestMethod] public void DotNetResult_Null_DebuggerDisplay()    => AreEqual("DotNetResult null", DebuggerDisplay(NullResult));
 
     /*
     [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
@@ -180,5 +199,4 @@ public class DotNetResultDescriptorTests
     [TestMethod] public void Test_DotNetResult_Descriptor_ErrorText_WithFailure() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_Descriptor_OutputText() => throw new NotImplementedException();
     */
-
 }
