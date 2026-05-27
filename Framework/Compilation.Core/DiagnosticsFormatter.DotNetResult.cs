@@ -2,13 +2,14 @@
 
 internal static partial class DiagnosticsFormatter
 {
-    public static string DebuggerDisplay(DotNetResult? result) => nameof(DotNetResult) + " " + Descriptor(result, " ");
-    public static string Stringify(DotNetResult? result) => Has(result) ? Descriptor(result, NewLine) : nameof(DotNetResult) + " empty";
-    public static string ExceptionMessage(DotNetResult? result) => Has(result) ? Descriptor(result, " ") : nameof(DotNetResult) + " empty";
+    public static string Stringify(DotNetResult? result) => Has(result?.Text) ? result.Text : Descriptor(result, NewLine);
+    public static string DebuggerDisplay(DotNetResult? result) => Descriptor(result, " ");
+    public static string ExceptionMessage(DotNetResult? result) => Descriptor(result, " ");
     private static string Descriptor(DotNetResult? result, string sep)
     {
-        if (result == null) return "null";
-        if (!Has(result)) return "empty";
+        if (result == null) return nameof(DotNetResult) + " null";
+        if (!Has(result)) return nameof(DotNetResult) + " empty";
+        //if (Has(result.Text)) return result.Text;
 
         bool exitCodeWasAdded = false;
         bool dotNetWasAdded = false;

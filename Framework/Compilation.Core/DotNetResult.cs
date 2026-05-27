@@ -4,9 +4,8 @@
 public record DotNetResult
 {
     private string DebuggerDisplay => DebuggerDisplay(this);
-    
-    public override string ToString() => Text;
-    public static implicit operator string(DotNetResult? result) => result?.Text ?? "";
+    public override string ToString() => Stringify(this);
+    public static implicit operator string(DotNetResult? result) => Stringify(result);
 
     public string        Text             { get; }
 

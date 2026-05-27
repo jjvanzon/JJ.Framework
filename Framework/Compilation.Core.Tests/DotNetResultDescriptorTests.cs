@@ -163,27 +163,24 @@ public class DiagnosticsFormatter_DotNetResult_Tests
     // Part-by-Part Tests
 
     private static readonly DotNetArgs DefaultArgs = new DotNetArgsAccessor().Obj;
-    private static readonly DotNetResult EmptyResult = new DotNetResultAccessor(DefaultOptions, DefaultArgs).Obj;
     private static readonly DotNetResult? NullResult = null;
+    private static readonly DotNetResult EmptyResult = new DotNetResultAccessor(DefaultOptions, DefaultArgs).Obj;
 
-    [TestMethod] public void DotNetResult_Empty_Text()               => AreEqual("DotNetResult empty", EmptyResult.Text);
-    [TestMethod] public void DotNetResult_Empty_ToString()           => AreEqual("DotNetResult empty", EmptyResult.ToString());
-    [TestMethod] public void DotNetResult_Empty_ConversionOpString() => AreEqual("DotNetResult empty", EmptyResult);
-    [TestMethod] public void DotNetResult_Empty_Descriptor()         => AreEqual("empty", Descriptor(EmptyResult, " "));
-    [TestMethod] public void DotNetResult_Empty_Stringify()          => AreEqual("DotNetResult empty", Stringify(EmptyResult));
-    [TestMethod] public void DotNetResult_Empty_ExceptionMessage()   => AreEqual("DotNetResult empty", ExceptionMessage(EmptyResult));
-    //[TestMethod] public void DotNetResult_Empty_DebuggerDisplay()    => AreEqual("DotNetResult empty", DebuggerDisplay(EmptyResult));
+    [TestMethod] public void DotNetResult_Null_ConversionOp()      => AreEqual("DotNetResult null", NullResult);
+    [TestMethod] public void DotNetResult_Null_Descriptor()        => AreEqual("DotNetResult null", Descriptor(NullResult, " "));
+    [TestMethod] public void DotNetResult_Null_Stringify()         => AreEqual("DotNetResult null", Stringify(NullResult));
+    [TestMethod] public void DotNetResult_Null_ExceptionMessage()  => AreEqual("DotNetResult null", ExceptionMessage(NullResult));
+    [TestMethod] public void DotNetResult_Null_DebuggerDisplay()   => AreEqual("DotNetResult null", DebuggerDisplay(NullResult));
 
-    //[TestMethod] public void DotNetResult_Null_ConversionOpString() => AreEqual("null", NullResult);
-    //[TestMethod] public void DotNetResult_Null_Descriptor()         => AreEqual("null", Descriptor(NullResult, " "));
-    [TestMethod] public void DotNetResult_Null_Stringify()          => AreEqual("null", Stringify(NullResult));
-    [TestMethod] public void DotNetResult_Null_ExceptionMessage()   => AreEqual("DotNetResult null", ExceptionMessage(NullResult));
-    [TestMethod] public void DotNetResult_Null_DebuggerDisplay()    => AreEqual("DotNetResult null", DebuggerDisplay(NullResult));
+    [TestMethod] public void DotNetResult_Empty_Text()             => AreEqual("DotNetResult empty", EmptyResult.Text);
+    [TestMethod] public void DotNetResult_Empty_ToString()         => AreEqual("DotNetResult empty", EmptyResult.ToString());
+    [TestMethod] public void DotNetResult_Empty_ConversionOp()     => AreEqual("DotNetResult empty", EmptyResult);
+    [TestMethod] public void DotNetResult_Empty_Descriptor()       => AreEqual("DotNetResult empty", Descriptor(EmptyResult, " "));
+    [TestMethod] public void DotNetResult_Empty_Stringify()        => AreEqual("DotNetResult empty", Stringify(EmptyResult));
+    [TestMethod] public void DotNetResult_Empty_ExceptionMessage() => AreEqual("DotNetResult empty", ExceptionMessage(EmptyResult));
+    [TestMethod] public void DotNetResult_Empty_DebuggerDisplay()  => AreEqual("DotNetResult empty", DebuggerDisplay(EmptyResult));
 
     /*
-    [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
-
     [TestMethod] public void Test_DotNetResult_Descriptor_Failure_None() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasTimeOut() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasErrorInOutput() => throw new NotImplementedException();
@@ -198,5 +195,8 @@ public class DiagnosticsFormatter_DotNetResult_Tests
     [TestMethod] public void Test_DotNetResult_Descriptor_ErrorText_WithSuccess() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_Descriptor_ErrorText_WithFailure() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_Descriptor_OutputText() => throw new NotImplementedException();
+    
+    [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
     */
 }
