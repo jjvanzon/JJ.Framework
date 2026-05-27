@@ -5,6 +5,7 @@
       <Value>IsNCrunch = True</Value>
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
+    <ImpactDetection>CompareIL</ImpactDetection>
     <MetricsExclusionList>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.0\..</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.1\..</Value>
