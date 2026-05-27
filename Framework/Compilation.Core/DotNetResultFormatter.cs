@@ -37,7 +37,7 @@ internal static class DotNetResultFormatter
         }
         else if (result.HasExitCode)
         {
-            failurePart = "EXIT CODE = " + result.ExitCode + "!";
+            failurePart = "EXIT CODE " + result.ExitCode + "!";
             exitCodeWasAdded = true;
             //dotNetWasAdded = true;
         }

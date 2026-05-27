@@ -8,24 +8,43 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void DotNetResult_Stringify_Success_ArgsOptOutputText()
     {
-        var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
-        var opt = new DotNetOptions { Dir = @"C:\repo", File = "MyProject.csproj" };
-        var result = new DotNetResultAccessor(
-            opt,
-            args,
-            outputText: "Build succeeded.").Obj;
+        var args = new DotNetArgsAccessor(build)
+        { 
+            Args = "--no-logo", 
+            FullArgs = "build MyProject.csproj --no-logo" 
+        };
 
-        const string expected =
+        var opt = new DotNetOptions
+        { 
+            Dir = @"C:\repo", 
+            File = "MyProject.csproj"
+        };
+
+        DotNetResult result = new DotNetResultAccessor(opt, args.Obj, outputText: "Build succeeded.").Obj;
+
+        // TODO: If args contains File, do not repeat in opt descriptor.
+
+        const string expectedLongForm =
             """
-            dotnet build --no-logo
+            dotnet build MyProject.csproj --no-logo
             MyProject.csproj | Dir = C:\repo
             Output:
             Build succeeded.
             """;
 
-        AreEqual(expected, Stringify(result));
-        AreEqual(expected, result.ToString());
-    }
+        const string expectedWideForm = 
+            """
+            dotnet build MyProject.csproj --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.
+            """;
+        
+        AreEqual(expectedLongForm, result.Text);
+        AreEqual(expectedLongForm, result.ToString());
+        AreEqual(expectedLongForm, result);
+        AreEqual(expectedLongForm, Descriptor(result));
+        AreEqual(expectedLongForm, Stringify(result));
+        AreEqual(expectedWideForm, ExceptionMessage(result));
+        AreEqual(expectedWideForm, DebuggerDisplay(result));
+}
 
     [TestMethod]
     public void DotNetResult_ExceptionMessage_Success_UsesSingleLineSeparator()
@@ -53,9 +72,11 @@ public class DotNetResultFormatterTests
             exitCode: 2,
             errorText: "Compilation failed.").Obj;
 
+        // TODO: "dotnet" would look better near the full arg text.
+
         const string expected =
             """
-            dotnet EXIT CODE = 2!
+            dotnet EXIT CODE 2!
             build --no-logo
             Error:
             Compilation failed.
@@ -94,20 +115,20 @@ public class DotNetResultFormatterTests
     {
         var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
         var result = new DotNetResultAccessor(
-            default,
+            DefaultOptions,
             args,
             //timeOutMessage: "dotnet --no-logo timed out after 5s").Obj;
             hasTimeOut: true).Obj;
 
+        // TODO: dotnet next to build instead would look better.
+
         const string expected =
             """
-            dotnet TIME OUT!
+            dotnet TIME OUT! after 300s
             build --no-logo
-            dotnet --no-logo timed out after 5s
             """;
 
-        // TODO: Time-out messages do not quite work out yet.        
-        //AreEqual(expected, Stringify(result));
+        AreEqual(expected, Stringify(result));
     }
 
     [TestMethod]
@@ -149,32 +170,20 @@ public class DotNetResultFormatterTests
 
     // Part-by-Part Tests
 
-    private static readonly DotNetArgs DefaultArgs = new DotNetArgsAccessor().Obj;
-    private static readonly DotNetResult? NullResult = null;
-    private static readonly DotNetResult EmptyResult = new DotNetResultAccessor(DefaultOptions, DefaultArgs).Obj;
-
     // TODO: One method for Null, one method for Empty.
 
     [TestMethod]
     public void DotNetResult_Null()
     {
-        AreEqual("DotNetResult null", NullResult);
-        AreEqual("DotNetResult null", Descriptor(NullResult));
-        AreEqual("DotNetResult null", Stringify(NullResult));
-        AreEqual("DotNetResult null", ExceptionMessage(NullResult));
-        AreEqual("DotNetResult null", DebuggerDisplay(NullResult));
+        DotNetResult? result = null;
+        AssertDiagnosticTexts(result, "DotNetResult null");
     }
 
     [TestMethod] 
     public void DotNetResult_Empty()
     {
-        AreEqual("DotNetResult empty", EmptyResult);
-        AreEqual("DotNetResult empty", EmptyResult.Text);
-        AreEqual("DotNetResult empty", EmptyResult.ToString());
-        AreEqual("DotNetResult empty", Descriptor(EmptyResult));
-        AreEqual("DotNetResult empty", Stringify(EmptyResult));
-        AreEqual("DotNetResult empty", ExceptionMessage(EmptyResult));
-        AreEqual("DotNetResult empty", DebuggerDisplay(EmptyResult));
+        DotNetResult result = new DotNetResultAccessor(DefaultOptions, DefaultArgs).Obj;
+        AssertDiagnosticTexts(result, "DotNetResult empty");
     }
 
     [TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasTimeOut()
@@ -182,16 +191,8 @@ public class DotNetResultFormatterTests
         DotNetResult result = new DotNetResultAccessor(
             DefaultOptions, DefaultArgs, 
             hasTimeOut: true).Obj;
-        
-        const string expected = "dotnet TIME OUT! after 300s";
 
-        AreEqual(expected, result.Text);
-        AreEqual(expected, result.ToString());
-        AreEqual(expected, result);
-        AreEqual(expected, Descriptor(result));
-        AreEqual(expected, Stringify(result));
-        AreEqual(expected, ExceptionMessage(result));
-        AreEqual(expected, DebuggerDisplay(result));
+        AssertDiagnosticTexts(result, "dotnet TIME OUT! after 300s");
     }
 
     [TestMethod] 
@@ -199,30 +200,34 @@ public class DotNetResultFormatterTests
     {
         DotNetResult result = new DotNetResultAccessor(
             DefaultOptions, DefaultArgs, 
-            outputText: "[error] Something went wrong during compilation.").Obj;
+            outputText: "  Happily compiling the stuff..." + NewLine +
+                        "  [error] Something went wrong during compilation.").Obj;
 
-        string[] expectedElements = 
-        [
-            "dotnet ERROR!",
-            "Output:",
-            "[error] Something went wrong during compilation."
-        ];
+        // TODO: Trim between "Output: " and the rest of the text.
+        const string expectedWideForm = 
+            """
+            dotnet ERROR! | Output:   Happily compiling the stuff...
+              [error] Something went wrong during compilation.
+            """;
 
-        string expectedSingleLine = Join(" | ", expectedElements);
-        string expectedMultiLine = Join(NewLine, expectedElements);
+        const string expectedLongForm = 
+            """
+            dotnet ERROR!
+            Output:
+              Happily compiling the stuff...
+              [error] Something went wrong during compilation.
+            """;
 
-        AreEqual(expectedMultiLine,  result.Text);
-        AreEqual(expectedMultiLine,  result.ToString());
-        AreEqual(expectedMultiLine,  result);
-        AreEqual(expectedMultiLine,  Descriptor(result));
-        AreEqual(expectedMultiLine,  Stringify(result));
-        // TODO: Fix single line tests
-        //AreEqual(expectedSingleLine, ExceptionMessage(result));
-        //AreEqual(expectedSingleLine, DebuggerDisplay(result));
-         
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
     }
 
-    //[TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasExitCode() => throw new NotImplementedException();
+    [TestMethod]
+    public void Test_DotNetResult_Descriptor_Failure_HasExitCode()
+    {
+        DotNetResult result = new DotNetResultAccessor(DefaultOptions, DefaultArgs, exitCode: 3).Obj;
+        AssertDiagnosticTexts(result, "dotnet EXIT CODE 3!");
+    }
+
     //[TestMethod] public void Test_DotNetResult_Descriptor_Failure_PriorityOrder() => throw new NotImplementedException();
     //[TestMethod] public void Test_DotNetResult_Descriptor_Failure_None() => throw new NotImplementedException();
 
@@ -238,4 +243,21 @@ public class DotNetResultFormatterTests
     [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
     */
+
+    // Helpers
+
+    private static readonly DotNetArgs DefaultArgs = new DotNetArgsAccessor().Obj;
+
+    private static void AssertDiagnosticTexts(DotNetResult? result, string expectedWideForm, string? expectedLongForm = null)
+    {
+        expectedLongForm ??= expectedWideForm;
+        
+        if (result != null) AreEqual(expectedLongForm, result.ToString());
+
+        AreEqual(expectedLongForm, result);
+        AreEqual(expectedLongForm, Descriptor(result));
+        AreEqual(expectedLongForm, Stringify(result));
+        AreEqual(expectedWideForm, ExceptionMessage(result));
+        AreEqual(expectedWideForm, DebuggerDisplay(result));
+    }
 }
