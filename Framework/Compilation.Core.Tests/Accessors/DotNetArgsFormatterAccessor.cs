@@ -8,16 +8,14 @@ internal static class DotNetArgsFormatterAccessor
 
     private static readonly AccessorCore _accessor = new("DotNetArgsFormatter");
 
-    // Args
-
     public static string? Descriptor(DotNetArgs? args) 
-        => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
+        => (string?)_accessor.Call(args);
 
     public static string? Stringify(DotNetArgs? args)
-        => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
+        => (string?)_accessor.Call(args);
 
     public static string? DebuggerDisplay(DotNetArgs? args)
-        => (string?)_accessor.Call([ args ], [ typeof(DotNetArgs) ]);
+        => (string?)_accessor.Call(args);
 
     // Parts
 
