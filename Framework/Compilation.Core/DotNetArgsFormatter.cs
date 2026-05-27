@@ -1,17 +1,24 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
+internal static class DotNetArgsFormatterExtensions
+{
+    public static string Stringify(this DotNetArgs? args) => DotNetArgsFormatter.Stringify(args);
+    public static string DebuggerDisplay(this DotNetArgs? args) => DotNetArgsFormatter.DebuggerDisplay(args);
+    public static string Descriptor(this DotNetArgs? args) => DotNetArgsFormatter.Descriptor(args);
+}
+
 internal static class DotNetArgsFormatter
 {
-    public static string Stringify(DotNetArgs? opt)
+    public static string Stringify(DotNetArgs? args)
     {
-        string descriptor = Descriptor(opt);
+        string descriptor = Descriptor(args);
         string sep = Has(descriptor) ? " " : "";
         return nameof(DotNetArgs) + sep + descriptor;
     }
 
-    public static string DebuggerDisplay(DotNetArgs? opt)
+    public static string DebuggerDisplay(DotNetArgs? args)
     {
-        var descriptor = Descriptor(opt);
+        var descriptor = Descriptor(args);
         descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
         string sep = Has(descriptor) ? " " : "";
         return "{" + nameof(DotNetArgs) + sep + descriptor + "}";

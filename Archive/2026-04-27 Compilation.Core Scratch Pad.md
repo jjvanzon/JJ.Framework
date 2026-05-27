@@ -12,4 +12,6 @@
 
     //private const string DotNetArgsNull = "<null>";
 
+        //string argsPart = $"{Descriptor(result.Args)}{sep}{Descriptor(result.Opt)}";
+
 ```

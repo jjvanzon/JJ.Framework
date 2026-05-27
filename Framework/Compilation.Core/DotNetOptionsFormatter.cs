@@ -1,5 +1,12 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
+internal static class DotNetOptionsExtensions
+{
+    public static string Stringify(this DotNetOptions opt) => DotNetOptionsFormatter.Stringify(opt);
+    public static string DebuggerDisplay(this DotNetOptions opt) => DotNetOptionsFormatter.DebuggerDisplay(opt);
+    public static string Descriptor(this DotNetOptions opt, int? maxPathChars = null) => DotNetOptionsFormatter.Descriptor(opt, maxPathChars);
+}
+
 internal static class DotNetOptionsFormatter
 {
     public static string Stringify(DotNetOptions opt)

@@ -1,5 +1,13 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
+internal static class DotNetResultFormatterExtensions
+{
+    public static string Stringify(this DotNetResult? result) => DotNetResultFormatter.Stringify(result);
+    public static string DebuggerDisplay(this DotNetResult? result) => DotNetResultFormatter.DebuggerDisplay(result);
+    public static string ExceptionMessage(this DotNetResult? result) => DotNetResultFormatter.ExceptionMessage(result);
+    internal static string Descriptor(this DotNetResult? result, bool singleLine = false) => DotNetResultFormatter.Descriptor(result, singleLine);
+}
+
 internal static class DotNetResultFormatter
 {
     public static string Stringify(DotNetResult? result) => Has(result?.Text) ? result.Text : Descriptor(result);
@@ -38,9 +46,8 @@ internal static class DotNetResultFormatter
 
         // TODO: Remove redundancies from opt when already in args.
         
-        string argsPart = result.Args.FilledIn() ? DotNetArgsFormatter.Descriptor(result.Args) : "";
-        string optPart = result.Opt.FilledIn() ? DotNetOptionsFormatter.Descriptor(result.Opt) : "";
-        //string argsPart = $"{Descriptor(result.Args)}{sep}{Descriptor(result.Opt)}";
+        string argsPart = result.Args.FilledIn() ? result.Args.Descriptor() : "";
+        string optPart = result.Opt.FilledIn() ? result.Opt.Descriptor() : "";
 
         string timeOutPart = "";
         if (result.HasTimeOut)
