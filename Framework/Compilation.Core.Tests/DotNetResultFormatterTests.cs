@@ -49,23 +49,19 @@ public class DotNetResultFormatterTests
             FullArgs = "build --no-logo"
         }.Obj;
 
-        var result = new DotNetResultAccessor(
-            default,
-            args,
-            exitCode: 2,
-            errorText: "Project or solution not found!").Obj;
+        var result = new DotNetResultAccessor(args: args, exitCode: 2, errorText: "Project not found!").Obj;
 
         // TODO: "dotnet" would look better near the full arg text.
 
         const string expectedWideForm =
-            "dotnet EXIT CODE 2! | build --no-logo | Error: Project or solution not found!";
+            "dotnet EXIT CODE 2! | build --no-logo | Error: Project not found!";
 
         const string expectedLongForm =
             """
             dotnet EXIT CODE 2!
             build --no-logo
             Error:
-            Project or solution not found!
+            Project not found!
             """;
 
         AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
@@ -80,10 +76,7 @@ public class DotNetResultFormatterTests
             FullArgs = "build --no-logo" 
         }.Obj;
 
-        var result = new DotNetResultAccessor(
-            default,
-            args,
-            outputText: "[error] Something broke").Obj;
+        var result = new DotNetResultAccessor(args: args, outputText: "[error] Something broke").Obj;
 
         const string expectedWideForm =
             "dotnet ERROR! | build --no-logo | Output: [error] Something broke";
@@ -108,10 +101,7 @@ public class DotNetResultFormatterTests
             FullArgs = "build --no-logo"
         }.Obj;
 
-        var result = new DotNetResultAccessor(
-            DefaultOptions,
-            args,
-            hasTimeOut: true).Obj;
+        var result = new DotNetResultAccessor(args: args, hasTimeOut: true).Obj;
 
         // TODO: dotnet next to build instead would look better.
 
@@ -137,8 +127,7 @@ public class DotNetResultFormatterTests
         }.Obj;
 
         var result = new DotNetResultAccessor(
-            default,
-            args,
+            args: args,
             errorText: "Welcome banner",
             outputText: "Build succeeded.").Obj;
 
@@ -169,16 +158,14 @@ public class DotNetResultFormatterTests
     [TestMethod] 
     public void DotNetResult_Empty()
     {
-        DotNetResult result = new DotNetResultAccessor(DefaultOptions, DefaultArgs).Obj;
+        DotNetResult result = new DotNetResultAccessor().Obj;
         AssertDiagnosticTexts(result, "DotNetResult empty");
     }
 
-    [TestMethod] public void Test_DotNetResultFormatter_Failure_HasTimeOut()
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Failure_HasTimeOut()
     {
-        DotNetResult result = new DotNetResultAccessor(
-            DefaultOptions, DefaultArgs, 
-            hasTimeOut: true).Obj;
-
+        DotNetResult result = new DotNetResultAccessor(hasTimeOut: true).Obj;
         AssertDiagnosticTexts(result, "dotnet TIME OUT! after 300s");
     }
 
@@ -186,7 +173,6 @@ public class DotNetResultFormatterTests
     public void Test_DotNetResultFormatter_Failure_HasErrorInOutput()
     {
         DotNetResult result = new DotNetResultAccessor(
-            DefaultOptions, DefaultArgs, 
             outputText: "  Happily compiling the stuff..." + NewLine +
                         "  [error] Something went wrong during compilation.").Obj;
 
@@ -211,7 +197,7 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void Test_DotNetResultFormatter_Failure_HasExitCode()
     {
-        DotNetResult result = new DotNetResultAccessor(DefaultOptions, DefaultArgs, exitCode: 3).Obj;
+        DotNetResult result = new DotNetResultAccessor(exitCode: 3).Obj;
         AssertDiagnosticTexts(result, "dotnet EXIT CODE 3!");
     }
 
@@ -232,8 +218,6 @@ public class DotNetResultFormatterTests
     */
 
     // Helpers
-
-    private static readonly DotNetArgs DefaultArgs = new DotNetArgsAccessor().Obj;
 
     private static void AssertDiagnosticTexts(DotNetResult? result, string expectedWideForm, string? expectedLongForm = null)
     {

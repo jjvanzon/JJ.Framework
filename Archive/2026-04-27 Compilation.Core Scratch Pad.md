@@ -103,4 +103,7 @@
         // TODO: No longer the case. Add prefix?
         //AreEqual(result.Text, resultAccessor.DebuggerDisplay);
     }
+
+    private static readonly DotNetArgs DefaultArgs = new DotNetArgsAccessor().Obj;
+
 ```
