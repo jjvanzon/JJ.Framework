@@ -32,8 +32,8 @@ internal static class DiagnosticsFormatterAccessor
 
     // Result
 
-    public static string? Descriptor(DotNetResult? result, string sep)
-        => (string?)_accessor.Call(Name(), result, sep);
+    public static string? Descriptor(DotNetResult? result, bool singleLine = false)
+        => (string?)_accessor.Call(Name(), result, singleLine);
 
     public static string? Stringify(DotNetResult? result)
         => (string?)_accessor.Call([ result ], [ typeof(DotNetResult) ]);
