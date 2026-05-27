@@ -60,4 +60,47 @@
         AreEqual("DotNetResult null", ExceptionMessage(NullResult));
         AreEqual("DotNetResult null", DebuggerDisplay(NullResult));
     }
+
+
+    [TestMethod]
+    public void DotNetResultFormatter_ExceptionMessage_Success_UsesSingleLineSeparator()
+    {
+        var args = new DotNetArgsAccessor(build)
+        { 
+            Args = "--no-logo", 
+            FullArgs = "build MyProject.csproj --no-logo" 
+        }.Obj;
+
+        var opt = new DotNetOptions
+        {
+            Dir = @"C:\repo", 
+            File = "MyProject.csproj"
+        };
+
+        var result = new DotNetResultAccessor(
+            opt,
+            args,
+            outputText: "Build succeeded.").Obj;
+
+        const string expected =
+            @"dotnet build MyProject.csproj --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.";
+
+        AreEqual(expected, ExceptionMessage(result));
+    }
+
+
+    [TestMethod]
+    public void DotNetResult_DebuggerDisplay_EqualsText()
+    {
+        var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
+        var resultAccessor = new DotNetResultAccessor(
+            default,
+            args,
+            outputText: "Build succeeded.");
+
+        DotNetResult result = resultAccessor.Obj;
+
+        // TODO: No longer the case. Add prefix?
+        //AreEqual(result.Text, resultAccessor.DebuggerDisplay);
+    }
 ```

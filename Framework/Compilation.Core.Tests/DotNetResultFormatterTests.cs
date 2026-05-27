@@ -6,7 +6,7 @@ using static DotNetResultFormatterAccessor;
 public class DotNetResultFormatterTests
 {
     [TestMethod]
-    public void DotNetResult_Stringify_Success_ArgsOptOutputText()
+    public void DotNetResultFormatter_Success_WithArgsOptOutputText()
     {
         var args = new DotNetArgsAccessor(build)
         { 
@@ -37,56 +37,42 @@ public class DotNetResultFormatterTests
             dotnet build MyProject.csproj --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.
             """;
         
-        AreEqual(expectedLongForm, result.Text);
-        AreEqual(expectedLongForm, result.ToString());
-        AreEqual(expectedLongForm, result);
-        AreEqual(expectedLongForm, Descriptor(result));
-        AreEqual(expectedLongForm, Stringify(result));
-        AreEqual(expectedWideForm, ExceptionMessage(result));
-        AreEqual(expectedWideForm, DebuggerDisplay(result));
-}
-
-    [TestMethod]
-    public void DotNetResult_ExceptionMessage_Success_UsesSingleLineSeparator()
-    {
-        var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
-        var opt = new DotNetOptions { Dir = @"C:\repo", File = "MyProject.csproj" };
-        var result = new DotNetResultAccessor(
-            opt,
-            args,
-            outputText: "Build succeeded.").Obj;
-
-        const string expected =
-            @"dotnet build --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.";
-
-        AreEqual(expected, ExceptionMessage(result));
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
     }
 
     [TestMethod]
-    public void DotNetResult_Stringify_ExitCodeFailure_IncludesExitCodeAndErrorLabel()
+    public void DotNetResultFormatter_Failure_ExitCode_WithArgsErrorText()
     {
-        var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
+        var args = new DotNetArgsAccessor(build)
+        { 
+            Args = "--no-logo", 
+            FullArgs = "build --no-logo"
+        }.Obj;
+
         var result = new DotNetResultAccessor(
             default,
             args,
             exitCode: 2,
-            errorText: "Compilation failed.").Obj;
+            errorText: "Project or solution not found!").Obj;
 
         // TODO: "dotnet" would look better near the full arg text.
 
-        const string expected =
+        const string expectedWideForm =
+            "dotnet EXIT CODE 2! | build --no-logo | Error: Project or solution not found!";
+
+        const string expectedLongForm =
             """
             dotnet EXIT CODE 2!
             build --no-logo
             Error:
-            Compilation failed.
+            Project or solution not found!
             """;
 
-        AreEqual(expected, Stringify(result));
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
     }
 
     [TestMethod]
-    public void DotNetResult_Stringify_ErrorInOutputFailure_UsesDotNetErrorHeader()
+    public void DotNetResultFormatter_Failure_ErrorInOutput_WithArgs()
     {
         var args = new DotNetArgsAccessor(build)
         {
@@ -99,7 +85,10 @@ public class DotNetResultFormatterTests
             args,
             outputText: "[error] Something broke").Obj;
 
-        const string expected =
+        const string expectedWideForm =
+            "dotnet ERROR! | build --no-logo | Output: [error] Something broke";
+
+        const string expectedLongForm =
             """
             dotnet ERROR!
             build --no-logo
@@ -107,41 +96,56 @@ public class DotNetResultFormatterTests
             [error] Something broke
             """;
 
-        AreEqual(expected, Stringify(result));
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
     }
 
     [TestMethod]
-    public void DotNetResult_Stringify_TimeOutFailure_IncludesTimeOutMessage()
+    public void DotNetResultFormatter_Failure_TimeOut_WithArgs()
     {
-        var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
+        var args = new DotNetArgsAccessor(build)
+        {
+            Args = "--no-logo", 
+            FullArgs = "build --no-logo"
+        }.Obj;
+
         var result = new DotNetResultAccessor(
             DefaultOptions,
             args,
-            //timeOutMessage: "dotnet --no-logo timed out after 5s").Obj;
             hasTimeOut: true).Obj;
 
         // TODO: dotnet next to build instead would look better.
 
-        const string expected =
+        const string expectedWideForm =
+            "dotnet TIME OUT! after 300s | build --no-logo";
+
+        const string expectedLongForm =
             """
             dotnet TIME OUT! after 300s
             build --no-logo
             """;
 
-        AreEqual(expected, Stringify(result));
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
     }
 
     [TestMethod]
-    public void DotNetResult_Stringify_Success_WithErrorText_UsesStdErrLabel()
+    public void DotNetResultFormatter_Success_WithStdErr_WithArgs()
     {
-        var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
+        var args = new DotNetArgsAccessor(build)
+        { 
+            Args = "--no-logo", 
+            FullArgs = "build --no-logo"
+        }.Obj;
+
         var result = new DotNetResultAccessor(
             default,
             args,
             errorText: "Welcome banner",
             outputText: "Build succeeded.").Obj;
 
-        const string expected =
+        const string expectedWideForm =
+            "dotnet build --no-logo | stdErr: Welcome banner | Output: Build succeeded.";
+
+        const string expectedLongForm =
             """
             dotnet build --no-logo
             stdErr:
@@ -150,27 +154,10 @@ public class DotNetResultFormatterTests
             Build succeeded.
             """;
 
-        AreEqual(expected, Stringify(result));
-    }
-
-    [TestMethod]
-    public void DotNetResult_DebuggerDisplay_EqualsText()
-    {
-        var args = new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo" }.Obj;
-        var resultAccessor = new DotNetResultAccessor(
-            default,
-            args,
-            outputText: "Build succeeded.");
-
-        DotNetResult result = resultAccessor.Obj;
-
-        // TODO: No longer the case. Add prefix?
-        //AreEqual(result.Text, resultAccessor.DebuggerDisplay);
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
     }
 
     // Part-by-Part Tests
-
-    // TODO: One method for Null, one method for Empty.
 
     [TestMethod]
     public void DotNetResult_Null()
@@ -186,7 +173,7 @@ public class DotNetResultFormatterTests
         AssertDiagnosticTexts(result, "DotNetResult empty");
     }
 
-    [TestMethod] public void Test_DotNetResult_Descriptor_Failure_HasTimeOut()
+    [TestMethod] public void Test_DotNetResultFormatter_Failure_HasTimeOut()
     {
         DotNetResult result = new DotNetResultAccessor(
             DefaultOptions, DefaultArgs, 
@@ -196,7 +183,7 @@ public class DotNetResultFormatterTests
     }
 
     [TestMethod] 
-    public void Test_DotNetResult_Descriptor_Failure_HasErrorInOutput()
+    public void Test_DotNetResultFormatter_Failure_HasErrorInOutput()
     {
         DotNetResult result = new DotNetResultAccessor(
             DefaultOptions, DefaultArgs, 
@@ -222,23 +209,23 @@ public class DotNetResultFormatterTests
     }
 
     [TestMethod]
-    public void Test_DotNetResult_Descriptor_Failure_HasExitCode()
+    public void Test_DotNetResultFormatter_Failure_HasExitCode()
     {
         DotNetResult result = new DotNetResultAccessor(DefaultOptions, DefaultArgs, exitCode: 3).Obj;
         AssertDiagnosticTexts(result, "dotnet EXIT CODE 3!");
     }
 
-    //[TestMethod] public void Test_DotNetResult_Descriptor_Failure_PriorityOrder() => throw new NotImplementedException();
-    //[TestMethod] public void Test_DotNetResult_Descriptor_Failure_None() => throw new NotImplementedException();
+    //[TestMethod] public void Test_DotNetResultFormatter_Failure_PriorityOrder() => throw new NotImplementedException();
+    //[TestMethod] public void Test_DotNetResultFormatter_Failure_None() => throw new NotImplementedException();
 
     /*
-    [TestMethod] public void Test_DotNetResult_Descriptor_Args() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_Descriptor_Opt() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_Descriptor_TimeOut() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_Descriptor_ExitCode() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_Descriptor_ErrorText_WithSuccess() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_Descriptor_ErrorText_WithFailure() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_Descriptor_OutputText() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Args() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_TimeOut() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_ExitCode() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithSuccess() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithFailure() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_OutputText() => throw new NotImplementedException();
     
     [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
