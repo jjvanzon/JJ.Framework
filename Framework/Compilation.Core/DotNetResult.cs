@@ -14,7 +14,6 @@ public record DotNetResult
     public int           ExitCode         { get; }
     public string        ErrorText        { get; }
     public string        OutputText       { get; }
-    public string        TimeOutMessage   { get; }
     
     public bool          Successful       { get; }
     public bool          HasExitCode      { get; }
@@ -25,20 +24,19 @@ public record DotNetResult
 
     internal DotNetResult(
         DotNetOptions opt, DotNetArgs args,
-        int exitCode, string errorText, string outputText, string timeOutMessage)
+        int exitCode, string errorText, string outputText, bool hasTimeOut)
     {
         Args             = args;
         Opt              = opt;
         ExitCode         = exitCode;
         ErrorText        = errorText;
         OutputText       = outputText;
-        TimeOutMessage   = timeOutMessage;
 
         HasExitCode      = Has(exitCode);
         HasErrorText     = Has(errorText);
         HasOutputText    = Has(outputText);
         HasErrorInOutput = outputText.Contains("[error]");
-        HasTimeOut       = Has(timeOutMessage);
+        HasTimeOut       = hasTimeOut;
         bool hasError    = HasExitCode || HasErrorInOutput | HasTimeOut; // Don't consider error text, which has welcome messages and such in it these days.
         Successful       = !hasError;
 

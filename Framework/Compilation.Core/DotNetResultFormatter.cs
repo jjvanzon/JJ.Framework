@@ -27,7 +27,7 @@ internal static class DotNetResultFormatter
         string failurePart = "";
         if (result.HasTimeOut)
         {
-            //failurePart = "TIME OUT!";
+            failurePart = $"TIME OUT! after {result.Opt.TimeOutSec}s";
             //dotNetWasAdded = true;
         }
         else if (result.HasErrorInOutput)
@@ -50,10 +50,10 @@ internal static class DotNetResultFormatter
         string optPart = result.Opt.FilledIn() ? result.Opt.Descriptor() : "";
 
         string timeOutPart = "";
-        if (result.HasTimeOut)
-        {
-            timeOutPart = result.TimeOutMessage;
-        }
+        //if (result.HasTimeOut)
+        //{
+        //    timeOutPart = $"after {result.Opt.TimeOutSec}s";
+        //}
         
         string exitCodePart = "";
         if (result.HasExitCode && !exitCodeWasAdded)

@@ -35,19 +35,18 @@ internal static class DotNetExecutor
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
        
-        string timeOutMessage = "";
+        bool hasTimeOut = false;
         if (!process.WaitForExit(opt.TimeOutSec * 1000))
         {
             process.Kill(entireProcessTree: true);
-            // TODO: Strip redundancies since descriptors are more richly extended as is.
-            timeOutMessage = $"{fileName} {args.FullArgs} timed out after {opt.TimeOutSec}s";
+            hasTimeOut = true;
         }
         // .NET may flush async after WaitForExit(int); call the parameterless overload.
         process.WaitForExit();
 
         var output = outputSB.ToString().TrimEnd();
         var error  = errorSB .ToString().Trim();       
-        var result = new DotNetResult(opt, args, process.ExitCode, error, output, timeOutMessage);
+        var result = new DotNetResult(opt, args, process.ExitCode, error, output, hasTimeOut);
 
         result.Assert();
 

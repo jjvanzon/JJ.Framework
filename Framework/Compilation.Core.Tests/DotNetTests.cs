@@ -108,7 +108,6 @@ public class DotNetTests : IDisposable
         NotNull(result.Args);
         NotNull(result.ErrorText);
         NotNull(result.OutputText);
-        NotNull(result.TimeOutMessage);
 
         // Text Equality
         AreEqual(result.Text, result.ToString());
@@ -121,7 +120,6 @@ public class DotNetTests : IDisposable
         AreEqual(result.HasExitCode,   result.ExitCode != 0);
         AreEqual(result.HasErrorText,  !IsNullOrWhiteSpace(result.ErrorText));
         AreEqual(result.HasOutputText, !IsNullOrWhiteSpace(result.OutputText));
-        AreEqual(result.HasTimeOut,    !IsNullOrWhiteSpace(result.TimeOutMessage));
         AreEqual(result.Successful,    !(result.HasExitCode || result.HasErrorInOutput || result.HasTimeOut));
 
         if (result.HasErrorInOutput)

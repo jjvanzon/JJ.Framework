@@ -11,8 +11,8 @@ internal class DotNetResultAccessor
         int exitCode = 0,
         string errorText = "",
         string outputText = "",
-        string timeOutMessage = "")
-        => _accessor = new(typeof(DotNetResult), opt, args, exitCode, errorText, outputText, timeOutMessage);
+        bool hasTimeOut = false)
+        => _accessor = new(typeof(DotNetResult), opt, args, exitCode, errorText, outputText, hasTimeOut);
 
     public DotNetResultAccessor(DotNetResult obj)
         => _accessor = new(typeof(DotNetResult), obj);

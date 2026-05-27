@@ -37,7 +37,6 @@ internal static class DotNetFilledInUtil
         //if (Has(result.Text             )) return true; // Messes with things
         if (Has(result.ErrorText        )) return true;
         if (Has(result.OutputText       )) return true;
-        if (Has(result.TimeOutMessage   )) return true;
         return false;
     }
 }

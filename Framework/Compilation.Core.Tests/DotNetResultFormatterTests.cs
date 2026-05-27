@@ -13,10 +13,7 @@ public class DotNetResultFormatterTests
         var result = new DotNetResultAccessor(
             opt,
             args,
-            exitCode: 0,
-            errorText: "",
-            outputText: "Build succeeded.",
-            timeOutMessage: "").Obj;
+            outputText: "Build succeeded.").Obj;
 
         const string expected =
             """
@@ -38,10 +35,7 @@ public class DotNetResultFormatterTests
         var result = new DotNetResultAccessor(
             opt,
             args,
-            exitCode: 0,
-            errorText: "",
-            outputText: "Build succeeded.",
-            timeOutMessage: "").Obj;
+            outputText: "Build succeeded.").Obj;
 
         const string expected =
             @"dotnet build --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.";
@@ -57,9 +51,7 @@ public class DotNetResultFormatterTests
             default,
             args,
             exitCode: 2,
-            errorText: "Compilation failed.",
-            outputText: "",
-            timeOutMessage: "").Obj;
+            errorText: "Compilation failed.").Obj;
 
         const string expected =
             """
@@ -84,10 +76,7 @@ public class DotNetResultFormatterTests
         var result = new DotNetResultAccessor(
             default,
             args,
-            exitCode: 0,
-            errorText: "",
-            outputText: "[error] Something broke",
-            timeOutMessage: "").Obj;
+            outputText: "[error] Something broke").Obj;
 
         const string expected =
             """
@@ -107,10 +96,8 @@ public class DotNetResultFormatterTests
         var result = new DotNetResultAccessor(
             default,
             args,
-            exitCode: 0,
-            errorText: "",
-            outputText: "",
-            timeOutMessage: "dotnet --no-logo timed out after 5s").Obj;
+            //timeOutMessage: "dotnet --no-logo timed out after 5s").Obj;
+            hasTimeOut: true).Obj;
 
         const string expected =
             """
@@ -130,10 +117,8 @@ public class DotNetResultFormatterTests
         var result = new DotNetResultAccessor(
             default,
             args,
-            exitCode: 0,
             errorText: "Welcome banner",
-            outputText: "Build succeeded.",
-            timeOutMessage: "").Obj;
+            outputText: "Build succeeded.").Obj;
 
         const string expected =
             """
@@ -154,10 +139,7 @@ public class DotNetResultFormatterTests
         var resultAccessor = new DotNetResultAccessor(
             default,
             args,
-            exitCode: 0,
-            errorText: "",
-            outputText: "Build succeeded.",
-            timeOutMessage: "");
+            outputText: "Build succeeded.");
 
         DotNetResult result = resultAccessor.Obj;
 
@@ -199,9 +181,9 @@ public class DotNetResultFormatterTests
     {
         DotNetResult result = new DotNetResultAccessor(
             DefaultOptions, DefaultArgs, 
-            timeOutMessage: "timed out after 120s").Obj;
+            hasTimeOut: true).Obj;
         
-        const string expected = "dotnet timed out after 120s";
+        const string expected = "dotnet TIME OUT! after 300s";
 
         AreEqual(expected, result.Text);
         AreEqual(expected, result.ToString());
@@ -229,8 +211,14 @@ public class DotNetResultFormatterTests
         string expectedSingleLine = Join(" | ", expectedElements);
         string expectedMultiLine = Join(NewLine, expectedElements);
 
-        AreEqual(expectedMultiLine, result.Text);
-
+        AreEqual(expectedMultiLine,  result.Text);
+        AreEqual(expectedMultiLine,  result.ToString());
+        AreEqual(expectedMultiLine,  result);
+        AreEqual(expectedMultiLine,  Descriptor(result));
+        AreEqual(expectedMultiLine,  Stringify(result));
+        // TODO: Fix single line tests
+        //AreEqual(expectedSingleLine, ExceptionMessage(result));
+        //AreEqual(expectedSingleLine, DebuggerDisplay(result));
          
     }
 
