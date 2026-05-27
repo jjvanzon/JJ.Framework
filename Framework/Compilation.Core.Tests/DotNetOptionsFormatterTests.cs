@@ -1,7 +1,9 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
+using static DotNetOptionsFormatterAccessor;
+
 [TestClass]
-public class DiagnosticsFormatter_DotNetOptions_Tests
+public class DotNetOptionsFormatterTests
 {
     private static readonly string[] _textNullies = [ "", " ", default! ];
     private static readonly Action<string>[] _logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
@@ -98,7 +100,7 @@ public class DiagnosticsFormatter_DotNetOptions_Tests
     [TestMethod]
     public void DotNetOptions_Descriptor_EmptyOrDefault()
     {
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(default(DotNetOptions)));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(default));
         AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions()));
         AreEqual(DEFAULT_DESCRIPTOR, Descriptor(DefaultOptions));
     }

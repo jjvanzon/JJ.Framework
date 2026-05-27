@@ -1,7 +1,9 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
+using static DotNetResultFormatterAccessor;
+
 [TestClass]
-public class DiagnosticsFormatter_DotNetResult_Tests
+public class DotNetResultFormatterTests
 {
     [TestMethod]
     public void DotNetResult_Stringify_Success_ArgsOptOutputText()

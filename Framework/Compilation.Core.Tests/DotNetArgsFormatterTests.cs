@@ -2,10 +2,10 @@
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
-using static DiagnosticsFormatterAccessor;
+using static DotNetArgsFormatterAccessor;
 
 [TestClass]
-public class DiagnosticsFormatter_DotNetArgs_Tests
+public class DotNetArgsFormatterTests
 {
     private const bool re = true;
     private static readonly DotNetCommandEnum[] _enumNullies = [ 0, default, undefined ];

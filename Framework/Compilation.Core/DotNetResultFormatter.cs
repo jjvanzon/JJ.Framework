@@ -1,11 +1,11 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-internal static partial class DiagnosticsFormatter
+internal static class DotNetResultFormatter
 {
     public static string Stringify(DotNetResult? result) => Has(result?.Text) ? result.Text : Descriptor(result);
     public static string DebuggerDisplay(DotNetResult? result) => Descriptor(result, singleLine: true);
     public static string ExceptionMessage(DotNetResult? result) => Descriptor(result, singleLine: true);
-    private static string Descriptor(DotNetResult? result, bool singleLine = false)
+    internal static string Descriptor(DotNetResult? result, bool singleLine = false)
     {
         string sep = singleLine ? " | " : NewLine;
 
@@ -38,8 +38,8 @@ internal static partial class DiagnosticsFormatter
 
         // TODO: Remove redundancies from opt when already in args.
         
-        string argsPart = result.Args.FilledIn() ? Descriptor(result.Args) : "";
-        string optPart = result.Opt.FilledIn() ? Descriptor(result.Opt) : "";
+        string argsPart = result.Args.FilledIn() ? DotNetArgsFormatter.Descriptor(result.Args) : "";
+        string optPart = result.Opt.FilledIn() ? DotNetOptionsFormatter.Descriptor(result.Opt) : "";
         //string argsPart = $"{Descriptor(result.Args)}{sep}{Descriptor(result.Opt)}";
 
         string timeOutPart = "";

@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Compilation.Core;
 
-internal static partial class DiagnosticsFormatter
+internal static class DotNetArgsFormatter
 {
     public static string Stringify(DotNetArgs? opt)
     {

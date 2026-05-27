@@ -1,12 +1,12 @@
 ﻿bool success =
-RunTests<DiagnosticsFormatter_DotNetArgs_Tests>() &&
-RunTests<DiagnosticsFormatter_DotNetOptions_Tests>() &&
-RunTests<DiagnosticsFormatter_DotNetResult_Tests>() &&
-RunTests<DotNetArgFormatterTests>() &&
+RunTests<DotNetArgsFormatterTests>() &&
 RunTests<DotNetArgsTests>() &&
+RunTests<DotNetCommandFormatterTests>() &&
 RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetLoggerTests>() &&
+RunTests<DotNetOptionsFormatterTests>() &&
 RunTests<DotNetOptionsTests>() &&
+RunTests<DotNetResultFormatterTests>() &&
 RunTests<DotNetTests>() &&
 RunTests<RunningTargetFrameworkTests>();
 WriteLine("Done.");

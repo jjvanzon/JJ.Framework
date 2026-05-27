@@ -1,9 +1,9 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
-using static DotNetArgFormatterAccessor;
+using static DotNetCommandFormatterAccessor;
 
 [TestClass]
-public class DotNetArgFormatterTests
+public class DotNetCommandFormatterTests
 {
     // TODO: Info where both command string and command enum are specified are never used internally.
     //  So these tests are not representative.
