@@ -146,7 +146,7 @@ public class DotNetResultFormatterTests
         AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
     }
 
-    // Part-by-Part Tests
+    // Error States
 
     [TestMethod]
     public void DotNetResult_Null() => AssertDiagnosticTexts(null, "DotNetResult null");
@@ -196,6 +196,8 @@ public class DotNetResultFormatterTests
     //[TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithSuccess() => throw new NotImplementedException();
     //[TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithFailure() => throw new NotImplementedException();
 
+    // Part-by-Part Tests
+
     [TestMethod]
     public void Test_DotNetResultFormatter_OutputText()
     {
@@ -216,39 +218,122 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void Test_DotNetResultFormatter_Opt_Dir()
     {
-        var result = new DotNetResultAccessor(DefaultOptions with { Dir = @"C:\Repositories\FunProject" }).Obj;
-
-        //return;
-
-        // TODO: Slashes should vary more.
-        var expectedWideForm =
-            //@"dotnet Dir = C:/Repositories/FunProject";
-            @"dotnet Dir = C:\Repositories\FunProject";
-        var expectedLongForm =
-            @"dotnet Dir = C:\Repositories\FunProject";
-
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+        AssertDiagnosticTexts(NewResult(opt: new() { 
+            Dir = @"C:\Repositories\FunProject" }), 
+            @"dotnet Dir = C:\Repositories\FunProject");
+        // TODO: Test a longer path too.
     }
 
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Opt_File()
+    {
+        AssertDiagnosticTexts(NewResult(opt: new() { 
+            File = "FunProject.csproj" }), 
+            "dotnet FunProject.csproj");
+        // TODO: Test a longer path too.
+    }
+
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Opt_BuildConf() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            BuildConf = "Release" }), 
+            """
+            dotnet "Release"
+            """);
+
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Opt_Args() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            Args = "--help" }), 
+            "dotnet --help");
+
+    // TODO: Fails: result ToString says "dotnet default". Problem: verbosity without Log method.
     /*
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_File() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_BuildConf() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_Args() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_Verbosity() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_AutoRestore() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_ParallelRestore() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_TimeOutSec() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt_Log() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Arg_CommandEnum() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Arg_Command() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Arg_ID() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Arg_Ver() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Arg_Args() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Arg_IsRebuild() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Arg_FullArgs() => throw new NotImplementedException();
-    */
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Opt_Verbosity() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            Verbosity = Quiet }), 
+            "dotnet | Log Quiet");
+    */        
+
+    // TODO: Maybe a pipeline after dotnet would be nice? Not sure
+    //   Pipeline character between command line parts and property parts?
+
+    [TestMethod]
+    public void Test_DotNetResultFormatter_Opt_AutoRestore() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            AutoRestore = true }), 
+            "dotnet Restore: Auto");
+    
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Opt_ParallelRestore() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            ParallelRestore = true }), 
+            "dotnet Restore: Parallel");
+
+    [TestMethod]
+    public void Test_DotNetResultFormatter_Opt_TimeOutSec()
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            TimeOutSec = 123 }), 
+            "dotnet Timeout: 123s");
+    
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Opt_Log() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            Log = WriteLine }), 
+            "dotnet Log");
+    
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_CommandEnum() 
+        => AssertDiagnosticTexts(NewResult(arg: new() { 
+            CommandEnum = build }), 
+            "dotnet build");
+
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Arg_Command() 
+        => AssertDiagnosticTexts(NewResult(arg: new() { 
+            Command = "nuget" }), 
+            "dotnet nuget");
+
+    // TODO: <no command> didn't show up in the other incomplete results.
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Arg_ID() 
+        => AssertDiagnosticTexts(NewResult(arg: new() { 
+            ID = "JJ.Framework.Common" }), 
+            "dotnet <no command> JJ.Framework.Common");
+
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Arg_Ver() 
+        => AssertDiagnosticTexts(NewResult(arg: new() { 
+            Ver = "1.0.0" }), 
+            "dotnet <no command> 1.0.0");
+
+    // TODO: Turns out "co command" isn't even a big problem per se,
+    //  because if args specify the command anyway, it wouldn't matter.
+    // TODO: Pipeline might work well, to signal there are Args but not yet FullArgs.
+    //  But it probably got there because of a hard `opt + sep + args`.
+
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Arg_Args()
+        => AssertDiagnosticTexts(NewResult(arg: new() { 
+            Args = "--p:BuildNum=1234" }), 
+            "dotnet <no command> | --p:BuildNum=1234");
+
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_IsRebuild()
+        => AssertDiagnosticTexts(NewResult(arg: new() { 
+            IsRebuild = true }), 
+            "dotnet (re-)<no command>");
+
+    // TODO: "dotnet --p:BuildNum=1234" would be better. "<no commmand>" and " | " are irrenevant
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Arg_FullArgs()
+        => AssertDiagnosticTexts(NewResult(arg: new() { 
+            FullArgs = "--p:BuildNum=1234" }), 
+            "dotnet <no command> | --p:BuildNum=1234");
 
     // Helpers
+
+    private static DotNetResult NewResult(DotNetOptions opt) => new DotNetResultAccessor(opt).Obj;
+    private static DotNetResult NewResult(DotNetArgsAccessor arg) => new DotNetResultAccessor(args: arg.Obj).Obj;
 
     private static void AssertDiagnosticTexts(DotNetResult? result, string expectedWideForm, string? expectedLongForm = null)
     {
@@ -260,6 +345,12 @@ public class DotNetResultFormatterTests
         AreEqual(expectedLongForm, Descriptor(result));
         AreEqual(expectedLongForm, Stringify(result));
         AreEqual(expectedWideForm, ExceptionMessage(result));
-        AreEqual(expectedWideForm, DebuggerDisplay(result));
+
+        // TODO: Should the debugger display even contain the entire output?
+        // ... TODO: This one should have no double quotes or backslashes, just single quotes and foreward ones.
+        string expectedDebuggerDisplay = expectedWideForm;
+        //expectedDebuggerDisplay = expectedDebuggerDisplay.Replace('\\', '/')
+        //                                                 .Replace('"', '\'');
+        AreEqual(expectedDebuggerDisplay, DebuggerDisplay(result));
     }
 }
