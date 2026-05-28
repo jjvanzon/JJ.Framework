@@ -106,4 +106,7 @@
 
     private static readonly DotNetArgs DefaultArgs = new DotNetArgsAccessor().Obj;
 
+    
+    [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
 ```

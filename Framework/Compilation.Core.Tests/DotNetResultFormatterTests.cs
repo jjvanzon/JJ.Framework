@@ -149,24 +149,16 @@ public class DotNetResultFormatterTests
     // Part-by-Part Tests
 
     [TestMethod]
-    public void DotNetResult_Null()
-    {
-        DotNetResult? result = null;
-        AssertDiagnosticTexts(result, "DotNetResult null");
-    }
+    public void DotNetResult_Null() => AssertDiagnosticTexts(null, "DotNetResult null");
 
     [TestMethod] 
-    public void DotNetResult_Empty()
-    {
-        DotNetResult result = new DotNetResultAccessor().Obj;
-        AssertDiagnosticTexts(result, "DotNetResult empty");
-    }
+    public void DotNetResult_Empty() 
+        => AssertDiagnosticTexts(new DotNetResultAccessor().Obj, "DotNetResult empty");
 
     [TestMethod] 
-    public void Test_DotNetResultFormatter_Failure_HasTimeOut()
+    public void Test_DotNetResultFormatter_TimeOut()
     {
-        DotNetResult result = new DotNetResultAccessor(hasTimeOut: true).Obj;
-        AssertDiagnosticTexts(result, "dotnet TIME OUT! after 300s");
+        AssertDiagnosticTexts(new DotNetResultAccessor(hasTimeOut: true).Obj, "dotnet TIME OUT! after 300s");
     }
 
     [TestMethod] 
@@ -195,26 +187,65 @@ public class DotNetResultFormatterTests
     }
 
     [TestMethod]
-    public void Test_DotNetResultFormatter_Failure_HasExitCode()
-    {
-        DotNetResult result = new DotNetResultAccessor(exitCode: 3).Obj;
-        AssertDiagnosticTexts(result, "dotnet EXIT CODE 3!");
-    }
+    public void Test_DotNetResultFormatter_ExitCode() 
+        => AssertDiagnosticTexts(new DotNetResultAccessor(exitCode: 3).Obj, "dotnet EXIT CODE 3!");
 
     //[TestMethod] public void Test_DotNetResultFormatter_Failure_PriorityOrder() => throw new NotImplementedException();
     //[TestMethod] public void Test_DotNetResultFormatter_Failure_None() => throw new NotImplementedException();
 
+    //[TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithSuccess() => throw new NotImplementedException();
+    //[TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithFailure() => throw new NotImplementedException();
+
+    [TestMethod]
+    public void Test_DotNetResultFormatter_OutputText()
+    {
+        var result = new DotNetResultAccessor(outputText: "I am happy to inform you of this output text.").Obj;
+
+        const string expectedWideForm = 
+            "dotnet Output: I am happy to inform you of this output text.";
+
+        const string expectedLongForm = 
+            """
+            dotnet Output:
+            I am happy to inform you of this output text.
+            """;
+
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+    }
+
+    [TestMethod]
+    public void Test_DotNetResultFormatter_Opt_Dir()
+    {
+        var result = new DotNetResultAccessor(DefaultOptions with { Dir = @"C:\Repositories\FunProject" }).Obj;
+
+        //return;
+
+        // TODO: Slashes should vary more.
+        var expectedWideForm =
+            //@"dotnet Dir = C:/Repositories/FunProject";
+            @"dotnet Dir = C:\Repositories\FunProject";
+        var expectedLongForm =
+            @"dotnet Dir = C:\Repositories\FunProject";
+
+        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+    }
+
     /*
-    [TestMethod] public void Test_DotNetResultFormatter_Args() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_Opt() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_TimeOut() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_ExitCode() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithSuccess() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithFailure() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResultFormatter_OutputText() => throw new NotImplementedException();
-    
-    [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
-    [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_File() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_BuildConf() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_Args() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_Verbosity() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_AutoRestore() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_ParallelRestore() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_TimeOutSec() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Opt_Log() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_CommandEnum() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_Command() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_ID() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_Ver() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_Args() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_IsRebuild() => throw new NotImplementedException();
+    [TestMethod] public void Test_DotNetResultFormatter_Arg_FullArgs() => throw new NotImplementedException();
     */
 
     // Helpers

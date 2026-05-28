@@ -19,6 +19,8 @@ internal static class DotNetArgsFormatter
     public static string DebuggerDisplay(DotNetArgs? args)
     {
         var descriptor = Descriptor(args);
+        // Replace backslahes and double quotes by foreward slashes and single quotes
+        // because it'd look bad in the debugger display.
         descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
         string sep = Has(descriptor) ? " " : "";
         return "{" + nameof(DotNetArgs) + sep + descriptor + "}";
