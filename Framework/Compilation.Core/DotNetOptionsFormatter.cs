@@ -9,6 +9,8 @@ internal static class DotNetOptionsExtensions
 
 internal static class DotNetOptionsFormatter
 {
+    // Combined Descriptors
+
     public static string Stringify(DotNetOptions opt)
     {
         string descriptor = Descriptor(opt);

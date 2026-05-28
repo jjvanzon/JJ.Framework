@@ -5,7 +5,7 @@ internal static class DotNetResultFormatterExtensions
     public static string Stringify(this DotNetResult? result) => DotNetResultFormatter.Stringify(result);
     public static string DebuggerDisplay(this DotNetResult? result) => DotNetResultFormatter.DebuggerDisplay(result);
     public static string ExceptionMessage(this DotNetResult? result) => DotNetResultFormatter.ExceptionMessage(result);
-    internal static string Descriptor(this DotNetResult? result, bool singleLine = false) => DotNetResultFormatter.Descriptor(result, singleLine);
+    public static string Descriptor(this DotNetResult? result, bool singleLine = false) => DotNetResultFormatter.Descriptor(result, singleLine);
 }
 
 internal static class DotNetResultFormatter
@@ -13,7 +13,7 @@ internal static class DotNetResultFormatter
     public static string Stringify(DotNetResult? result) => Has(result?.Text) ? result.Text : Descriptor(result);
     public static string DebuggerDisplay(DotNetResult? result) => Descriptor(result, singleLine: true);
     public static string ExceptionMessage(DotNetResult? result) => Descriptor(result, singleLine: true);
-    internal static string Descriptor(DotNetResult? result, bool singleLine = false)
+    public static string Descriptor(DotNetResult? result, bool singleLine = false)
     {
         string sep = singleLine ? " | " : NewLine;
 

@@ -5,6 +5,8 @@ using static DotNetResultFormatterAccessor;
 [TestClass]
 public class DotNetResultFormatterTests
 {
+    // Arbitrary Combinations
+
     [TestMethod]
     public void DotNetResultFormatter_Success_WithArgsOptOutputText()
     {
@@ -196,6 +198,52 @@ public class DotNetResultFormatterTests
     //[TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithSuccess() => throw new NotImplementedException();
     //[TestMethod] public void Test_DotNetResultFormatter_ErrorText_WithFailure() => throw new NotImplementedException();
 
+    // All Opts and Args
+
+    [TestMethod]
+    public void Test_DotNetResultFormatter_AllOptsAndArgs()
+    {
+        var result = NewResult(
+            new DotNetOptions
+            {
+                Dir = @"C:\Repositories\FunProject",
+                File = "FunProject.csproj",
+                BuildConf = "Release",
+                Args = "--help",
+                Verbosity = Quiet,
+                Log = WriteLine,
+                AutoRestore = true,
+                ParallelRestore = true,
+                TimeOutSec = 123 
+            },
+            new DotNetArgsAccessor
+            {
+                CommandEnum = build,
+                Command = "nuget",
+                IsRebuild = true,
+                ID = "JJ.Framework.Common",
+                Ver = "1.2.3",
+                Args = "--p:BuildNum=1234",
+                //FullArgs = "--p:BuildNum=1234"
+            });
+
+        // TODO: I think that the elements of args and opts should be formatted individually 
+        // and then mixed to one descriptor, so path things are grouped together.
+        // I also feel that as long as args/opts haven't been integrated in the FullArgs,
+        // dotnet should have a | in between e.g. dotnet | build.
+        AssertDiagnosticTexts(result,
+            """
+            dotnet build / (re)nuget JJ.Framework.Common 1.2.3 | --p:BuildNum=1234 | "Release" | Restore: Auto Parallel | Log Quiet | Timeout: 123s | FunProject.csproj --help | Dir = C:\Repositories\FunProject
+            """,
+            """
+            dotnet build / (re)nuget JJ.Framework.Common 1.2.3 | --p:BuildNum=1234
+            "Release" | Restore: Auto Parallel | Log Quiet | Timeout: 123s | FunProject.csproj --help | Dir = C:\Repositories\FunProject
+            """);
+    }
+
+    // TODO: Test with/without FullArgs.
+    // TODO: Test with all opts/args + output texts.
+
     // Part-by-Part Tests
 
     [TestMethod]
@@ -256,6 +304,12 @@ public class DotNetResultFormatterTests
             "dotnet | Log Quiet");
     */        
 
+    [TestMethod] 
+    public void Test_DotNetResultFormatter_Opt_Log() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
+            Log = WriteLine }), 
+            "dotnet Log");
+
     // TODO: Maybe a pipeline after dotnet would be nice? Not sure
     //   Pipeline character between command line parts and property parts?
 
@@ -276,12 +330,6 @@ public class DotNetResultFormatterTests
         => AssertDiagnosticTexts(NewResult(opt: new() { 
             TimeOutSec = 123 }), 
             "dotnet Timeout: 123s");
-    
-    [TestMethod] 
-    public void Test_DotNetResultFormatter_Opt_Log() 
-        => AssertDiagnosticTexts(NewResult(opt: new() { 
-            Log = WriteLine }), 
-            "dotnet Log");
     
     [TestMethod] public void Test_DotNetResultFormatter_Arg_CommandEnum() 
         => AssertDiagnosticTexts(NewResult(arg: new() { 
@@ -304,8 +352,8 @@ public class DotNetResultFormatterTests
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_Ver() 
         => AssertDiagnosticTexts(NewResult(arg: new() { 
-            Ver = "1.0.0" }), 
-            "dotnet <no command> 1.0.0");
+            Ver = "1.2.3" }), 
+            "dotnet <no command> 1.2.3");
 
     // TODO: Turns out "co command" isn't even a big problem per se,
     //  because if args specify the command anyway, it wouldn't matter.
@@ -334,6 +382,7 @@ public class DotNetResultFormatterTests
 
     private static DotNetResult NewResult(DotNetOptions opt) => new DotNetResultAccessor(opt).Obj;
     private static DotNetResult NewResult(DotNetArgsAccessor arg) => new DotNetResultAccessor(args: arg.Obj).Obj;
+    private static DotNetResult NewResult(DotNetOptions opt, DotNetArgsAccessor arg) => new DotNetResultAccessor(opt, arg.Obj).Obj;
 
     private static void AssertDiagnosticTexts(DotNetResult? result, string expectedWideForm, string? expectedLongForm = null)
     {
