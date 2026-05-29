@@ -168,4 +168,28 @@
     // TODO: Perhaps it is time for a helper method that checks both syntaxes given a DotNetOptions and expected text.
 
         // TODO: Accound for path truncation styles.
+
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_Default()
+    {
+        var expected = "{DotNetOptions default}";
+        foreach (var nully in _optNullies)
+        {
+            AreEqual(expected, DebuggerDisplay(nully));
+            AreEqual(expected, nully.DebuggerDisplay());
+        }
+    }
+    
+    // TODO: Replace AreEqual with AssertDiagnosticText.
+
+    private static readonly DotNetOptions[] _optNullies = [ DefaultOptions, default ];
+
+    [TestMethod]
+    public void DotNetOptionsFormatter_Default()
+    {
+        foreach (var nully in _optNullies)
+        {
+            AssertDiagnosticTexts(nully, DEFAULT_DESCRIPTOR);
+        }
+    }
 ```

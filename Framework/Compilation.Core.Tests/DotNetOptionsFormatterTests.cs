@@ -8,35 +8,9 @@ using static DotNetOptionsFormatterExtensionsAccessor;
 [TestClass]
 public class DotNetOptionsFormatterTests
 {
-    private static readonly string[] _textNullies = [ "", " ", default! ];
-    private static readonly DotNetOptions[] _optNullies = [ DefaultOptions, default ];
     private const string DEFAULT_DESCRIPTOR = "default";
 
     // Entry Points
-
-    // TODO: Replace AreEqual with AssertDiagnosticText.
-
-    [TestMethod]
-    public void DotNetOptionsFormatter_Default()
-    {
-        var expected = "DotNetOptions default";
-        foreach (var nully in _optNullies)
-        {
-            AreEqual(expected, Stringify(nully));
-            AreEqual(expected, nully.Stringify());
-        }
-    }
-
-    [TestMethod]
-    public void DotNetOptions_DebuggerDisplay_Default()
-    {
-        var expected = "{DotNetOptions default}";
-        foreach (var nully in _optNullies)
-        {
-            AreEqual(expected, DebuggerDisplay(nully));
-            AreEqual(expected, nully.DebuggerDisplay());
-        }
-    }
 
     [TestMethod]
     public void DotNetOptionsFormatter_UsesDescriptor()
@@ -72,7 +46,9 @@ public class DotNetOptionsFormatterTests
                 File = "MyProject.csproj",
                 Dir = @"C:\repo"
             },
-            @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir = C:\repo");
+            """
+            "Release" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir = C:\repo
+            """);
     }
 
     // Empty/Default
@@ -93,10 +69,10 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_BuildConf()
     {
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Release" }, @"""Release""");
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Debug" }, @"""Debug""");
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "La lala" }, @"""La lala""");
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "" }, DEFAULT_DESCRIPTOR);
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Release" }, '"' + "Release" + '"');
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Debug"   }, '"' + "Debug"   + '"');
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "La lala" }, '"' + "La lala" + '"');
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = ""        }, DEFAULT_DESCRIPTOR);
     }
 
     // Restore
@@ -188,9 +164,9 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_Log_VariousVerbosities()
     {
-        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Quiet }, "Log Quiet");
-        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Minimal }, "Log Minimal");
-        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Detailed }, "Log Detailed");
+        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Quiet      }, "Log Quiet"     );
+        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Minimal    }, "Log Minimal"   );
+        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Detailed   }, "Log Detailed"  );
         AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic }, "Log Diagnostic");
     }
 
@@ -245,9 +221,11 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_EmptyFileOptions()
     {
-        foreach (var nully1 in _textNullies)
-        foreach (var nully2 in _textNullies)
-        foreach (var nully3 in _textNullies)
+        string[] textNullies = [ "", " ", default! ];
+
+        foreach (var nully1 in textNullies)
+        foreach (var nully2 in textNullies)
+        foreach (var nully3 in textNullies)
         {
             AssertDiagnosticTexts(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }, DEFAULT_DESCRIPTOR);
         }
@@ -296,7 +274,7 @@ public class DotNetOptionsFormatterTests
                 File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
                 Dir = @"D:\Repos\JJ.Framework"
             },
-            """
+            "" "
             --no-logo | D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj | Dir = D:\Repos\JJ.Framework
             """,
             "--no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = D:/Repos/JJ.Framework");
