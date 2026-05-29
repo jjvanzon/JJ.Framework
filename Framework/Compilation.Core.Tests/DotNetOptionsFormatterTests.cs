@@ -1,6 +1,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 using static DotNetOptionsFormatterAccessor;
+using static DotNetOptionsFormatterExtensionsAccessor;
 
 [TestClass]
 public class DotNetOptionsFormatterTests
@@ -15,18 +16,22 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptions_Stringify_Default()
     {
+        var expected = "DotNetOptions default";
         foreach (var nully in _optNullies)
         {
-            AreEqual("DotNetOptions default", Stringify(nully));
+            AreEqual(expected, Stringify(nully));
+            AreEqual(expected, nully.Stringify());
         }
     }
 
     [TestMethod]
     public void DotNetOptions_DebuggerDisplay_Default()
     {
+        var expected = "{DotNetOptions default}";
         foreach (var nully in _optNullies)
         {
-            AreEqual("{DotNetOptions default}", DebuggerDisplay(nully));
+            AreEqual(expected, DebuggerDisplay(nully));
+            AreEqual(expected, nully.DebuggerDisplay());
         }
     }
 
@@ -47,6 +52,7 @@ public class DotNetOptionsFormatterTests
             """;
 
         AreEqual(expected, Stringify(opt));
+        AreEqual(expected, opt.Stringify());
         AreEqual(expected, opt.ToString());
     }
 
@@ -69,6 +75,7 @@ public class DotNetOptionsFormatterTests
             """;
 
         AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, opt.DebuggerDisplay());
         AreEqual(expected, accessor.DebuggerDisplay);
     }
 
@@ -90,9 +97,9 @@ public class DotNetOptionsFormatterTests
             Dir = @"C:\repo"
         };
 
-        AreEqual(
-            @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir = C:\repo",
-            Descriptor(opt));
+        var expected = @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir = C:\repo";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
     }
 
     // Empty/Default
@@ -101,8 +108,11 @@ public class DotNetOptionsFormatterTests
     public void DotNetOptions_Descriptor_EmptyOrDefault()
     {
         AreEqual(DEFAULT_DESCRIPTOR, Descriptor(default));
+        AreEqual(DEFAULT_DESCRIPTOR, default(DotNetOptions).Descriptor());
         AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions()));
+        AreEqual(DEFAULT_DESCRIPTOR, new DotNetOptions().Descriptor());
         AreEqual(DEFAULT_DESCRIPTOR, Descriptor(DefaultOptions));
+        AreEqual(DEFAULT_DESCRIPTOR, DefaultOptions.Descriptor());
     }
 
     // BuildConf Option
@@ -110,27 +120,53 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptions_Descriptor_BuildConf()
     {
-        AreEqual(@"""Release""",     Descriptor(new DotNetOptions { BuildConf = "Release" }));
-        AreEqual(@"""Debug""",       Descriptor(new DotNetOptions { BuildConf = "Debug"   }));
-        AreEqual(@"""La lala""",     Descriptor(new DotNetOptions { BuildConf = "La lala" }));
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { BuildConf = ""        }));
+        var opt1 = new DotNetOptions { BuildConf = "Release" };
+        var opt2 = new DotNetOptions { BuildConf = "Debug"   };
+        var opt3 = new DotNetOptions { BuildConf = "La lala" };
+        var opt4 = new DotNetOptions { BuildConf = ""        };
+
+        AreEqual(@"""Release""",     Descriptor(opt1)); 
+        AreEqual(@"""Release""",     opt1.Descriptor());
+        AreEqual(@"""Debug""",       Descriptor(opt2)); 
+        AreEqual(@"""Debug""",       opt2.Descriptor());
+        AreEqual(@"""La lala""",     Descriptor(opt3)); 
+        AreEqual(@"""La lala""",     opt3.Descriptor());
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(opt4)); 
+        AreEqual(DEFAULT_DESCRIPTOR, opt4.Descriptor());
     }
 
     // Restore
 
     [TestMethod]
     public void DotNetOptions_Descriptor_Restore_Auto()
-        => AreEqual("Restore: Auto", Descriptor(new DotNetOptions { AutoRestore = true }));
+    {
+        var opt = new DotNetOptions { AutoRestore = true };
+        var expected = "Restore: Auto";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
+    }
 
     [TestMethod]
     public void DotNetOptions_Descriptor_Restore_Parallel()
-        => AreEqual("Restore: Parallel", Descriptor(new DotNetOptions { ParallelRestore = true }));
+    {
+        var opt = new DotNetOptions { ParallelRestore = true };
+        var expected = "Restore: Parallel";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
+    }
 
     [TestMethod]
     public void DotNetOptions_Descriptor_Restore_AutoAndParallel()
-        => AreEqual("Restore: Auto Parallel", Descriptor(new DotNetOptions { AutoRestore = true, ParallelRestore = true }));
+    {
+        var opt = new DotNetOptions { AutoRestore = true, ParallelRestore = true };
+        var expected = "Restore: Auto Parallel";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
+    }
 
     // Time-Out
+
+    // TODO: Here split between static and extension method invocation still needs to be coded out.
 
     [TestMethod]
     public void DotNetOptions_Descriptor_TimeOut_Omitted_WhenDefaultOrZero()
@@ -196,19 +232,36 @@ public class DotNetOptionsFormatterTests
         AreEqual("Log Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));
     }
 
+    // TODO: End of section where split between static and extension method invocation still needs to be coded out.
+
     // File Options
 
     [TestMethod]
     public void DotNetOptions_Descriptor_OnlyArgs()
-        => AreEqual("--no-logo", Descriptor(new DotNetOptions { Args = "--no-logo" }));
+    {
+        var opt = new DotNetOptions { Args = "--no-logo" };
+        var expected = "--no-logo";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
+    }
 
     [TestMethod]
     public void DotNetOptions_Descriptor_OnlyFile()
-        => AreEqual("MyProject.csproj", Descriptor(new DotNetOptions { File = "MyProject.csproj" }));
+    {
+        var opt = new DotNetOptions { File = "MyProject.csproj" };
+        var expected = "MyProject.csproj";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
+    }
 
     [TestMethod]
     public void DotNetOptions_Descriptor_OnlyDir()
-        => AreEqual(@"Dir = C:\repo", Descriptor(new DotNetOptions { Dir = @"C:\repo" }));
+    {
+        var opt = new DotNetOptions { Dir = @"C:\repo" };
+        var expected = @"Dir = C:\repo";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
+    }
 
     [TestMethod]
     public void DotNetOptions_Descriptor_AllFileOptions()
@@ -220,7 +273,9 @@ public class DotNetOptionsFormatterTests
             Dir = @"D:\JJ\Dev\Products\Code"
         };
 
-        AreEqual(@"MyProject.csproj --no-logo | Dir = D:\JJ\Dev\Products\Code", Descriptor(opt));
+        var expected = @"MyProject.csproj --no-logo | Dir = D:\JJ\Dev\Products\Code";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
     }
 
     [TestMethod]
@@ -235,7 +290,9 @@ public class DotNetOptionsFormatterTests
 
         IsTrue(opt.File.Length > 20);
 
-        AreEqual(@"--no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = D:\JJ\Dev\Products\Code", Descriptor(opt));
+        var expected = @"--no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = D:\JJ\Dev\Products\Code";
+        AreEqual(expected, Descriptor(opt));
+        AreEqual(expected, opt.Descriptor());
     }
 
     [TestMethod]
@@ -245,7 +302,9 @@ public class DotNetOptionsFormatterTests
         foreach (var nully2 in _textNullies)
         foreach (var nully3 in _textNullies)
         {
-            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }));
+            var opt = new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 };
+            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(opt));
+            AreEqual(DEFAULT_DESCRIPTOR, opt.Descriptor());
         }
     }
 
@@ -265,6 +324,7 @@ public class DotNetOptionsFormatterTests
             """;
 
         AreEqual(expected, Stringify(opt));
+        AreEqual(expected, opt.Stringify());
         AreEqual(expected, opt.ToString());
     }
 
@@ -286,6 +346,7 @@ public class DotNetOptionsFormatterTests
         var accessor = new DotNetOptionsAccessor(opt);
 
         AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, opt.DebuggerDisplay());
         AreEqual(expected, accessor.DebuggerDisplay);
     }
 
@@ -305,6 +366,7 @@ public class DotNetOptionsFormatterTests
         var accessor = new DotNetOptionsAccessor(opt);
 
         AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, opt.DebuggerDisplay());
         AreEqual(expected, accessor.DebuggerDisplay);
     }
 
@@ -324,10 +386,14 @@ public class DotNetOptionsFormatterTests
         var accessor = new DotNetOptionsAccessor(opt);
 
         AreEqual(expected, DebuggerDisplay(opt));
+        AreEqual(expected, opt.DebuggerDisplay());
         AreEqual(expected, accessor.DebuggerDisplay);
     }
 
     // Combos
+
+    // TODO: Here the distinction between static/extension invocation still needs to be programmed out.
+    // TODO: Perhaps it is time for a helper method that checks both syntaxes given a DotNetOptions and expected text.
 
     [TestMethod]
     public void DotNetOptions_Descriptor_Combos_WithoutFileOptions()

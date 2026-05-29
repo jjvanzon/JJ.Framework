@@ -1,4 +1,5 @@
 #pragma warning disable IDE0017
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
@@ -16,15 +17,24 @@ public class DotNetArgsFormatterTests
 
     [TestMethod]
     public void DotNetArgs_Stringify_NullArgs()
-        => AreEqual("DotNetArgs <null>", Stringify((DotNetArgs?)null));
+    {
+        AreEqual("DotNetArgs <null>", Stringify(null));
+        AreEqual("DotNetArgs <null>", ((DotNetArgs?)null).Stringify());
+    }
 
     [TestMethod]
     public void DotNetArgs_DebuggerDisplay_NullArgs()
-        => AreEqual("{DotNetArgs <null>}", DebuggerDisplay((DotNetArgs?)null));
-    
+    {
+        AreEqual("{DotNetArgs <null>}", DebuggerDisplay(null));
+        AreEqual("{DotNetArgs <null>}", ((DotNetArgs?)null).DebuggerDisplay());
+    }
+
     [TestMethod]
     public void DotNetArgs_Descriptor_NullArgs()
-        => AreEqual("<null>", Descriptor(null));
+    {
+        AreEqual("<null>", Descriptor(null));
+        AreEqual("<null>", ((DotNetArgs?)null).Descriptor());
+    }
 
     [TestMethod]
     public void DotNetArgs_Stringify()
@@ -42,6 +52,7 @@ public class DotNetArgsFormatterTests
             """;
 
         AreEqual(expected, Stringify(args.Obj));
+        AreEqual(expected, args.Obj.Stringify());
         AreEqual(expected, args.Obj.ToString());
     }
 
@@ -61,6 +72,7 @@ public class DotNetArgsFormatterTests
            """;
 
         AreEqual(expected, DebuggerDisplay(args.Obj));
+        AreEqual(expected, args.Obj.DebuggerDisplay());
         AreEqual(expected, args.DebuggerDisplay);
     }
 
@@ -70,21 +82,27 @@ public class DotNetArgsFormatterTests
     public void DotNetArgs_Descriptor_EnumAndCommandText_MSRebuild()
     {
         var args = new DotNetArgsAccessor(msrebuild) { Command = "msbuild" }.Obj;
-        AreEqual("msrebuild / msbuild", Descriptor(args));
+        var expected = "msrebuild / msbuild";
+        AreEqual(expected, Descriptor(args));
+        AreEqual(expected, args.Descriptor());
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndFullArgs_Build()
     {
         var args = new DotNetArgsAccessor(build) { FullArgs = "build --no-restore" }.Obj;
-        AreEqual("build --no-restore", Descriptor(args));
+        var expected = "build --no-restore";
+        AreEqual(expected, Descriptor(args));
+        AreEqual(expected, args.Descriptor());
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndFullArgs_Rebuild()
     {
         var args = new DotNetArgsAccessor(rebuild) { FullArgs = "build --no-incremental" }.Obj;
-        AreEqual("rebuild | build --no-incremental", Descriptor(args));
+        var expected = "rebuild | build --no-incremental";
+        AreEqual(expected, Descriptor(args));
+        AreEqual(expected, args.Descriptor());
     }
 
     // With Args
@@ -98,7 +116,9 @@ public class DotNetArgsFormatterTests
             Command = "build", 
             FullArgs = "build --no-incremental" 
         };
-        AreEqual("build --no-incremental", Descriptor(args.Obj));
+        var expected = "build --no-incremental";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -111,7 +131,10 @@ public class DotNetArgsFormatterTests
             IsRebuild = true, 
             FullArgs = "build --no-incremental" 
         };
-        AreEqual("rebuild | build --no-incremental", Descriptor(args.Obj));
+
+        var expected = "rebuild | build --no-incremental";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -123,7 +146,10 @@ public class DotNetArgsFormatterTests
             Args = "--bogus-arg",
             FullArgs = "--dummy-arg"
         };
-        AreEqual("restore | --bogus-arg | --dummy-arg", Descriptor(args.Obj));
+
+        var expected = "restore | --bogus-arg | --dummy-arg";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -135,7 +161,10 @@ public class DotNetArgsFormatterTests
             Args = "--no-cache",
             FullArgs = "--no-cache --no-logo"
         };
-        AreEqual("restore | --no-cache --no-logo", Descriptor(args.Obj));
+
+        var expected = "restore | --no-cache --no-logo";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -146,14 +175,19 @@ public class DotNetArgsFormatterTests
             Args = "--no-cache",
             FullArgs = "--no-cache --no-logo"
         };
-        AreEqual("<no command> | --no-cache --no-logo", Descriptor(args.Obj));
+
+        var expected = "<no command> | --no-cache --no-logo";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
     {
         var args = new DotNetArgsAccessor().Obj;
-        AreEqual("<no command>", Descriptor(args));
+        var expected = "<no command>";
+        AreEqual(expected, Descriptor(args));
+        AreEqual(expected, args.Descriptor());
     }
 
     // InstallPackage
@@ -167,7 +201,10 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0" 
         };
-        AreEqual("installpackage JJ.Framework.Common 1.0.0", Descriptor(args.Obj));
+
+        var expected = "installpackage JJ.Framework.Common 1.0.0";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -179,7 +216,10 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0" 
         };
-        AreEqual("add JJ.Framework.Common 1.0.0", Descriptor(args.Obj));
+
+        var expected = "add JJ.Framework.Common 1.0.0";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -193,7 +233,10 @@ public class DotNetArgsFormatterTests
             Ver = "1.0.0",
 
         };
-        AreEqual("installpackage / add JJ.Framework.Common 1.0.0", Descriptor(args.Obj));
+
+        var expected = "installpackage / add JJ.Framework.Common 1.0.0";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
     
     [TestMethod]
@@ -206,7 +249,10 @@ public class DotNetArgsFormatterTests
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
         };
-        AreEqual("installpackage | add package JJ.Framework.Common --version 1.0.0", Descriptor(args.Obj));
+
+        var expected = "installpackage | add package JJ.Framework.Common --version 1.0.0";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
     
     [TestMethod]
@@ -219,7 +265,10 @@ public class DotNetArgsFormatterTests
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
         };
-        AreEqual("add package JJ.Framework.Common --version 1.0.0", Descriptor(args.Obj));
+
+        var expected = "add package JJ.Framework.Common --version 1.0.0";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -233,7 +282,10 @@ public class DotNetArgsFormatterTests
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
         };
-        AreEqual("installpackage | add package JJ.Framework.Common --version 1.0.0", Descriptor(args.Obj));
+
+        var expected = "installpackage | add package JJ.Framework.Common --version 1.0.0";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     // UninstallPackage
@@ -246,7 +298,10 @@ public class DotNetArgsFormatterTests
             Command = "remove",
             ID = "JJ.Framework.Common" 
         };
-        AreEqual("remove JJ.Framework.Common", Descriptor(args.Obj));
+
+        var expected = "remove JJ.Framework.Common";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -257,7 +312,10 @@ public class DotNetArgsFormatterTests
             CommandEnum = uninstallpackage,
             ID = "JJ.Framework.Common" 
         };
-        AreEqual("uninstallpackage JJ.Framework.Common", Descriptor(args.Obj));
+
+        var expected = "uninstallpackage JJ.Framework.Common";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -269,7 +327,10 @@ public class DotNetArgsFormatterTests
             CommandEnum = uninstallpackage,
             ID = "JJ.Framework.Common" 
         };
-        AreEqual("uninstallpackage / remove JJ.Framework.Common", Descriptor(args.Obj));
+
+        var expected = "uninstallpackage / remove JJ.Framework.Common";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -282,7 +343,10 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             Args = "--help"
         }.Obj;
-        AreEqual("uninstallpackage / remove JJ.Framework.Common | --help", Descriptor(args));
+
+        var expected = "uninstallpackage / remove JJ.Framework.Common | --help";
+        AreEqual(expected, Descriptor(args));
+        AreEqual(expected, args.Descriptor());
     }
 
     [TestMethod]
@@ -294,7 +358,10 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common"
         };
-        AreEqual("remove package JJ.Framework.Common", Descriptor(args.Obj));
+
+        var expected = "remove package JJ.Framework.Common";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -307,7 +374,10 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common"
         };
-        AreEqual("uninstallpackage | remove package JJ.Framework.Common", Descriptor(args.Obj));
+
+        var expected = "uninstallpackage | remove package JJ.Framework.Common";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     [TestMethod]
@@ -321,7 +391,10 @@ public class DotNetArgsFormatterTests
             FullArgs = "remove package JJ.Framework.Common --help",
             Args = "--help"
         };
-        AreEqual("uninstallpackage | remove package JJ.Framework.Common --help", Descriptor(args.Obj));
+
+        var expected = "uninstallpackage | remove package JJ.Framework.Common --help";
+        AreEqual(expected, Descriptor(args.Obj));
+        AreEqual(expected, args.Obj.Descriptor());
     }
 
     // TODO: Tests with both Args and FullArgs (realistic non-error case ones).

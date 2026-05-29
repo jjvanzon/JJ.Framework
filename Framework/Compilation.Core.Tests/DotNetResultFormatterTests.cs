@@ -1,6 +1,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 using static DotNetResultFormatterAccessor;
+using static DotNetResultFormatterExtensionsAccessor;
 
 [TestClass]
 public class DotNetResultFormatterTests
@@ -387,13 +388,19 @@ public class DotNetResultFormatterTests
     private static void AssertDiagnosticTexts(DotNetResult? result, string expectedWideForm, string? expectedLongForm = null)
     {
         expectedLongForm ??= expectedWideForm;
-        
+
         if (result != null) AreEqual(expectedLongForm, result.ToString());
 
+        // Static method variants
         AreEqual(expectedLongForm, result);
         AreEqual(expectedLongForm, Descriptor(result));
         AreEqual(expectedLongForm, Stringify(result));
         AreEqual(expectedWideForm, ExceptionMessage(result));
+
+        // Extension method variants
+        AreEqual(expectedLongForm, result.Descriptor());
+        AreEqual(expectedLongForm, result.Stringify());
+        AreEqual(expectedWideForm, result.ExceptionMessage());
 
         // TODO: Should the debugger display even contain the entire output?
         // ... TODO: This one should have no double quotes or backslashes, just single quotes and foreward ones.
@@ -401,5 +408,6 @@ public class DotNetResultFormatterTests
         //expectedDebuggerDisplay = expectedDebuggerDisplay.Replace('\\', '/')
         //                                                 .Replace('"', '\'');
         AreEqual(expectedDebuggerDisplay, DebuggerDisplay(result));
+        AreEqual(expectedDebuggerDisplay, result.DebuggerDisplay());
     }
 }
