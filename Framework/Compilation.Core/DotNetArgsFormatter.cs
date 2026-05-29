@@ -9,6 +9,8 @@ internal static class DotNetArgsFormatterExtensions
 
 internal static class DotNetArgsFormatter
 {
+    // Combined Descriptors
+
     public static string Stringify(DotNetArgs? args)
     {
         string descriptor = Descriptor(args);
@@ -32,30 +34,30 @@ internal static class DotNetArgsFormatter
 
         string commandDescriptor = CommandDescriptor(args);
         string idVerDescriptor = IDVerDescriptor(args);
-        string argsDescriptor = ArgsDescriptor(args);
+        string argPropsDescriptor = ArgPropsDescriptor(args);
 
         // Cut away redundancies.
-        if (argsDescriptor.StartsWith(commandDescriptor, OrdinalIgnoreCase))
+        if (argPropsDescriptor.StartsWith(commandDescriptor, OrdinalIgnoreCase))
         {
             commandDescriptor = "";
         }
-        if (argsDescriptor.StartsWith(args.Command, OrdinalIgnoreCase))
+        if (argPropsDescriptor.StartsWith(args.Command, OrdinalIgnoreCase))
         {
             commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
         }
-        if (Has(args.ID) && argsDescriptor.Contains(args.ID, OrdinalIgnoreCase))
+        if (Has(args.ID) && argPropsDescriptor.Contains(args.ID, OrdinalIgnoreCase))
         {
             idVerDescriptor = idVerDescriptor.Replace(args.ID, "").TrimStart();
         }
-        if (Has(args.Ver) && argsDescriptor.Contains(args.Ver, OrdinalIgnoreCase))
+        if (Has(args.Ver) && argPropsDescriptor.Contains(args.Ver, OrdinalIgnoreCase))
         {
             idVerDescriptor = idVerDescriptor.Replace(args.Ver, "").TrimEnd();
         }
 
         string sep1 = Has(commandDescriptor) && Has(idVerDescriptor) ? " " : "";
-        string sep2 = (Has(commandDescriptor) || Has(idVerDescriptor)) && Has(argsDescriptor) ? " | " : "";
+        string sep2 = (Has(commandDescriptor) || Has(idVerDescriptor)) && Has(argPropsDescriptor) ? " | " : "";
 
-        return commandDescriptor + sep1 + idVerDescriptor + sep2 + argsDescriptor;
+        return commandDescriptor + sep1 + idVerDescriptor + sep2 + argPropsDescriptor;
     }
 
     // Command Descriptor
@@ -136,8 +138,10 @@ internal static class DotNetArgsFormatter
         return $"{id} {ver}".Trim();
     }
 
-    public static string ArgsDescriptor(DotNetArgs args) => ArgsDescriptor(args.Args, args.FullArgs);
-    public static string ArgsDescriptor(string? args, string? fullArgs)
+    // ArgPropsDescriptor
+
+    public static string ArgPropsDescriptor(DotNetArgs args) => ArgPropsDescriptor(args.Args, args.FullArgs);
+    public static string ArgPropsDescriptor(string? args, string? fullArgs)
     {
         args     = (args     ?? "").Trim();
         fullArgs = (fullArgs ?? "").Trim();

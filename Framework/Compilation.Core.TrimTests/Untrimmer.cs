@@ -26,28 +26,28 @@ internal static class Untrimmer
     [NoTrim("DebuggerDisplay",              typeof(DotNetResult ))]
 
     // DotNetArgsFormatter
-    [NoTrim("Descriptor",          $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("Stringify",           $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("DebuggerDisplay",     $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("CommandDescriptor",   $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("IDVerDescriptor",     $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("ArgsDescriptor", $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("CommandDescriptor",  $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("IDVerDescriptor",    $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("ArgPropsDescriptor", $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
 
     // DotNetOptionsFormatter
-    [NoTrim("Descriptor",          $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
-    [NoTrim("Stringify",           $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
-    [NoTrim("DebuggerDisplay",     $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
 
     // DotNetResultFormatter
-    [NoTrim("Descriptor",          $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
-    [NoTrim("Stringify",           $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
-    [NoTrim("DebuggerDisplay",     $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
-    [NoTrim("ExceptionMessage",    $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+    [NoTrim("ExceptionMessage",   $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
 
     // Services
-    [NoTrim("FormatArgs",          $"{MainAsm}.DotNetCommandFormatter", MainAsm)]
-    [NoTrim("Enrich",              $"{MainAsm}.DotNetEnricher",         MainAsm)]
-    [NoTrim("Log",                 $"{MainAsm}.DotNetLogger",           MainAsm)]
+    [NoTrim("FormatArgs",         $"{MainAsm}.DotNetCommandFormatter", MainAsm)]
+    [NoTrim("Enrich",             $"{MainAsm}.DotNetEnricher",         MainAsm)]
+    [NoTrim("Log",                $"{MainAsm}.DotNetLogger",           MainAsm)]
 
     public static void Untrim() { }
 }

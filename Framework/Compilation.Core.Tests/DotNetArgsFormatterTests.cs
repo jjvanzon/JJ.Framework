@@ -607,43 +607,43 @@ public class DotNetArgsFormatterTests
         }
     }
 
-    // ArgsDescriptor
+    // ArgPropsDescriptor
 
     [TestMethod]
-    public void ArgsDescriptor_FullArgsDoesNotContainArgs_ReturnsBothWithPipe()
-        => AreEqual("--output ./out | --no-restore", ArgsDescriptor("--output ./out", "--no-restore"));
+    public void ArgPropsDescriptor_FullArgsDoesNotContainArgs_ReturnsBothWithPipe()
+        => AreEqual("--output ./out | --no-restore", ArgPropsDescriptor("--output ./out", "--no-restore"));
 
     [TestMethod]
-    public void ArgsDescriptor_NullyArgs()
+    public void ArgPropsDescriptor_NullyArgs()
     {
         foreach (var nully in _textNullies)
         {
-            AreEqual("build --output ./out", ArgsDescriptor(nully, "build --output ./out"));
+            AreEqual("build --output ./out", ArgPropsDescriptor(nully, "build --output ./out"));
         }
     }
 
     [TestMethod]
-    public void ArgsDescriptor_NullyFullArgs()
+    public void ArgPropsDescriptor_NullyFullArgs()
     {
         foreach (var nully in _textNullies)
         {
-            AreEqual("--output ./out", ArgsDescriptor("--output ./out", nully));
+            AreEqual("--output ./out", ArgPropsDescriptor("--output ./out", nully));
         }
     }
 
     [TestMethod]
-    public void ArgsDescriptor_ArgsInFullArgs_ReturnsOnlyFullArgs()
+    public void ArgPropsDescriptor_ArgsInFullArgs_ReturnsOnlyFullArgs()
         => AreEqual(
             "-f net8.0 --output ./out  --no-restore", 
-            ArgsDescriptor("--output ./out", "  -f net8.0 --output ./out  --no-restore"));
+            ArgPropsDescriptor("--output ./out", "  -f net8.0 --output ./out  --no-restore"));
 
     [TestMethod]
-    public void ArgsDescriptor_NullyCases()
+    public void ArgPropsDescriptor_NullyCases()
     {
         foreach (var nully1 in _textNullies)
         foreach (var nully2 in _textNullies)
         {
-            AreEqual("", ArgsDescriptor(nully1, nully2));
+            AreEqual("", ArgPropsDescriptor(nully1, nully2));
         }
     }
 }

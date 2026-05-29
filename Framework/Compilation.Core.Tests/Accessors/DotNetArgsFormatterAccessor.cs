@@ -25,6 +25,6 @@ internal static class DotNetArgsFormatterAccessor
     public static string? IDVerDescriptor(string? id, string? ver)
         => (string?)_accessor.Call(Name(), id, ver);
 
-    public static string? ArgsDescriptor(string? args, string? fullArgs)
+    public static string? ArgPropsDescriptor(string? args, string? fullArgs)
         => (string?)_accessor.Call(Name(), args, fullArgs);
 }
