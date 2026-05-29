@@ -274,7 +274,7 @@ public class DotNetOptionsFormatterTests
                 File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
                 Dir = @"D:\Repos\JJ.Framework"
             },
-            "" "
+            """
             --no-logo | D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj | Dir = D:\Repos\JJ.Framework
             """,
             "--no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = D:/Repos/JJ.Framework");
