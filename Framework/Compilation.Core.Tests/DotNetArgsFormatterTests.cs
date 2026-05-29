@@ -13,6 +13,8 @@ public class DotNetArgsFormatterTests
     private static readonly string?[] _textNullies = [ null, default, "", " " ];
     private static readonly bool[] _boolNullies = [ default, false ];
 
+    // TODO: Use AssertDiagnosticTexts helper to conjointly test Stringify, DebuggerDisplay, Descriptor, ToString.
+
     // DotNetArgs
 
     [TestMethod]

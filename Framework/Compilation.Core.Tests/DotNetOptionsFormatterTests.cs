@@ -97,7 +97,6 @@ public class DotNetOptionsFormatterTests
 
     // Time-Out
 
-
     [TestMethod]
     public void DotNetOptionsFormatter_TimeOut_Omitted_WhenDefaultOrZero()
     {
