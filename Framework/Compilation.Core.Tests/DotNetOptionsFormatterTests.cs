@@ -465,71 +465,65 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptions_Descriptor_Combos_WithoutFileOptions()
     {
-        // New:
         AssertDiagnosticTexts(
             new DotNetOptions { BuildConf = "Release", TimeOutSec = 123 },
             """
             "Release" | Timeout: 123s
             """);
 
-        // Old:
-        AreEqual(
-            """
-            "Release" | Timeout: 123s
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", TimeOutSec = 123 }));
-
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", AutoRestore = true },
             """
             "Release" | Restore: Auto
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", AutoRestore = true }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Detailed },
             """
             "Release" | Log Detailed
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Detailed }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { ParallelRestore = true, TimeOutSec = 123 },
             """
             Restore: Parallel | Timeout: 123s
-            """,
-            Descriptor(new DotNetOptions { ParallelRestore = true, TimeOutSec = 123 }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { AutoRestore = true, Log = WriteLine, Verbosity = Detailed },
             """
             Restore: Auto | Log Detailed
-            """,
-            Descriptor(new DotNetOptions { AutoRestore = true, Log = WriteLine, Verbosity = Detailed }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
             """
             Log Detailed | Timeout: 123s
-            """,
-            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", ParallelRestore = true, TimeOutSec = 123 },
             """
             "Release" | Restore: Parallel | Timeout: 123s
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", ParallelRestore = true, TimeOutSec = 123 }));
+            """);
 
-        AreEqual("""
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Quiet, TimeOutSec = 123 },
+            """
             "Release" | Log Quiet | Timeout: 123s
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Quiet, TimeOutSec = 123 }));
+            """);
 
-        AreEqual("""
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", AutoRestore = true, Log = WriteLine, Verbosity = Normal, TimeOutSec = 123 },
+            """
             "Release" | Restore: Auto | Log | Timeout: 123s
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", AutoRestore = true, Log = WriteLine, Verbosity = Normal, TimeOutSec = 123 }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", ParallelRestore = true, Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
             """
             "Release" | Restore: Parallel | Log Detailed | Timeout: 123s
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", ParallelRestore = true, Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 }));
+            """);
     }
 
     [TestMethod]
@@ -538,53 +532,53 @@ public class DotNetOptionsFormatterTests
         const string shortFile = "MyProject.csproj";
         const string longFile = @"D:\JJ\Dev\Products\Code\MyProject.csproj";
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { Args = "--no-logo", Dir = @"C:\repo" },
             """
             --no-logo | Dir = C:\repo
-            """,
-            Descriptor(new DotNetOptions { Args = "--no-logo", Dir = @"C:\repo" }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { File = shortFile, Dir = @"C:\repo" },
             """
             MyProject.csproj | Dir = C:\repo
-            """,
-            Descriptor(new DotNetOptions { File = shortFile, Dir = @"C:\repo" }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { Args = "--no-logo", File = shortFile },
             """
             MyProject.csproj --no-logo
-            """,
-            Descriptor(new DotNetOptions { Args = "--no-logo", File = shortFile }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { Args = "--no-logo", File = longFile },
             """
             --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj
-            """,
-            Descriptor(new DotNetOptions { Args = "--no-logo", File = longFile }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { File = longFile, Dir = @"C:\repo" },
             """
             D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = C:\repo
-            """,
-            Descriptor(new DotNetOptions { File = longFile, Dir = @"C:\repo" }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { Args = "--no-logo", File = longFile, Dir = @"C:\repo" },
             """
             --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = C:\repo
-            """,
-            Descriptor(new DotNetOptions { Args = "--no-logo", File = longFile, Dir = @"C:\repo" }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", Args = "--no-logo", Dir = @"C:\repo" },
             """
             "Release" | --no-logo | Dir = C:\repo
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", Args = "--no-logo", Dir = @"C:\repo" }));
+            """);
 
-        AreEqual(
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", File = shortFile, Dir = @"C:\repo" },
             """
             "Release" | MyProject.csproj | Dir = C:\repo
-            """,
-            Descriptor(new DotNetOptions { BuildConf = "Release", File = shortFile, Dir = @"C:\repo" }));
+            """);
     }
 
     private void AssertDiagnosticTexts(DotNetOptions opt, string expectedText)
@@ -605,9 +599,12 @@ public class DotNetOptionsFormatterTests
         }
         // DebuggerDisplay
         {
+            var accessor = new DotNetOptionsAccessor(opt);
+            
             string expected = "{" + nameof(DotNetOptions) + " " + expectedText.Replace('"', '\'').Replace('\\', '/') + "}";
             AreEqual(expected, DebuggerDisplay(opt));
             AreEqual(expected, opt.DebuggerDisplay());
+            AreEqual(expected, accessor.DebuggerDisplay);
         }
     }
 }
