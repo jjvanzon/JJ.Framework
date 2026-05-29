@@ -109,4 +109,24 @@
     
     [TestMethod] public void Test_DotNetResult_Stringify_UsesNewLines() => throw new NotImplementedException();
     [TestMethod] public void Test_DotNetResult_ExceptionMessage_UsesSpaceSeparator() => throw new NotImplementedException();
+
+
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = null!,     Verbosity = Normal }));
+        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = NullLog,   Verbosity = Normal }));
+
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine                      }));
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal  }));
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default }));
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0       }));
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { }                       }));
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = Normal  }));
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = default }));
+            AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = 0       }));
+
+        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }            ));
+        AreEqual("Log",                       new DotNetOptions { Log = WriteLine, Verbosity = 0         }.Descriptor());
+        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }            ));
+        AreEqual("Log",                       new DotNetOptions { Log = WriteLine, Verbosity = default   }.Descriptor());
+        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }            ));
+        AreEqual("Log",                       new DotNetOptions { Log = WriteLine, Verbosity = Normal    }.Descriptor());
 ```

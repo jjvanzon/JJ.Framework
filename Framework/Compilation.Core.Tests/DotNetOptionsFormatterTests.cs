@@ -1,3 +1,5 @@
+// ReSharper disable ConvertToConstant.Local
+// ReSharper disable InlineTemporaryVariable
 namespace JJ.Framework.Compilation.Core.Tests;
 
 using static DotNetOptionsFormatterAccessor;
@@ -7,7 +9,6 @@ using static DotNetOptionsFormatterExtensionsAccessor;
 public class DotNetOptionsFormatterTests
 {
     private static readonly string[] _textNullies = [ "", " ", default! ];
-    private static readonly Action<string>[] _logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
     private static readonly DotNetOptions[] _optNullies = [ DefaultOptions, default ];
     private const string DEFAULT_DESCRIPTOR = "default";
 
@@ -107,12 +108,13 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptions_Descriptor_EmptyOrDefault()
     {
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(default));
-        AreEqual(DEFAULT_DESCRIPTOR, default(DotNetOptions).Descriptor());
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions()));
-        AreEqual(DEFAULT_DESCRIPTOR, new DotNetOptions().Descriptor());
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(DefaultOptions));
-        AreEqual(DEFAULT_DESCRIPTOR, DefaultOptions.Descriptor());
+        DotNetOptions[] nullyOptions = [ default, new(), DefaultOptions ];
+       
+        foreach (var nullyOption in nullyOptions)
+        {
+            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(nullyOption));
+            AreEqual(DEFAULT_DESCRIPTOR, nullyOption.Descriptor());
+        }
     }
 
     // BuildConf Option
@@ -120,19 +122,30 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptions_Descriptor_BuildConf()
     {
-        var opt1 = new DotNetOptions { BuildConf = "Release" };
-        var opt2 = new DotNetOptions { BuildConf = "Debug"   };
-        var opt3 = new DotNetOptions { BuildConf = "La lala" };
-        var opt4 = new DotNetOptions { BuildConf = ""        };
-
-        AreEqual(@"""Release""",     Descriptor(opt1)); 
-        AreEqual(@"""Release""",     opt1.Descriptor());
-        AreEqual(@"""Debug""",       Descriptor(opt2)); 
-        AreEqual(@"""Debug""",       opt2.Descriptor());
-        AreEqual(@"""La lala""",     Descriptor(opt3)); 
-        AreEqual(@"""La lala""",     opt3.Descriptor());
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(opt4)); 
-        AreEqual(DEFAULT_DESCRIPTOR, opt4.Descriptor());
+        {
+            var opt = new DotNetOptions { BuildConf = "Release" };
+            var expected = @"""Release""";
+            AreEqual(expected, Descriptor(opt)); 
+            AreEqual(expected, opt.Descriptor());
+        }
+        {
+            var opt = new DotNetOptions { BuildConf = "Debug" };
+            var expected = @"""Debug""";
+            AreEqual(expected, Descriptor(opt)); 
+            AreEqual(expected, opt.Descriptor());
+        }
+        {
+            var opt = new DotNetOptions { BuildConf = "La lala" };
+            var expected = @"""La lala""";
+            AreEqual(expected, Descriptor(opt)); 
+            AreEqual(expected, opt.Descriptor());
+        }
+        {
+            var opt = new DotNetOptions { BuildConf = "" };
+            var expected = DEFAULT_DESCRIPTOR;
+            AreEqual(expected, Descriptor(opt)); 
+            AreEqual(expected, opt.Descriptor());
+        }
     }
 
     // Restore
@@ -166,21 +179,38 @@ public class DotNetOptionsFormatterTests
 
     // Time-Out
 
-    // TODO: Here split between static and extension method invocation still needs to be coded out.
 
     [TestMethod]
     public void DotNetOptions_Descriptor_TimeOut_Omitted_WhenDefaultOrZero()
     {
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { TimeOutSec = DEFAULT_TIME_OUT_SEC }));
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { TimeOutSec = 0 }));
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { TimeOutSec = default }));
+        DotNetOptions[] nullyOptions =
+        [
+            new() { TimeOutSec = DEFAULT_TIME_OUT_SEC },
+            new() { TimeOutSec = 0 },
+            new() { TimeOutSec = default }];
+
+        foreach (DotNetOptions nullyOption in nullyOptions)
+        {
+            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(nullyOption));
+            AreEqual(DEFAULT_DESCRIPTOR, nullyOption.Descriptor());
+        }
     }
 
     [TestMethod]
     public void DotNetOptions_Descriptor_TimeOut_Shown_WhenCustom()
     {
-        AreEqual("Timeout: 1s",   Descriptor(new DotNetOptions { TimeOutSec = 1   }));
-        AreEqual("Timeout: 600s", Descriptor(new DotNetOptions { TimeOutSec = 600 }));
+        {
+            var opt = new DotNetOptions { TimeOutSec = 1 };
+            var expected = "Timeout: 1s";
+            AreEqual(expected, Descriptor(opt));
+            AreEqual(expected, opt.Descriptor());
+        }
+        {
+            var opt = new DotNetOptions { TimeOutSec = 600 };
+            var expected = "Timeout: 600s";
+            AreEqual(expected, Descriptor(opt));
+            AreEqual(expected, opt.Descriptor());
+        }
     }
 
     // Log
@@ -188,51 +218,70 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptions_Descriptor_Log_Nully()
     {
+        Action<string>[] logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
         DotNetVerbosity[] allVerbosities = [ 0, default, Normal, Quiet, Minimal, Detailed, Diagnostic ];
 
-        foreach (Action<string> logNully in _logNullies)
+        foreach (Action<string> logNully in logNullies)
         {
-            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = logNully }));
+            {
+                var opt = new DotNetOptions { Log = logNully };
+                var expected = DEFAULT_DESCRIPTOR;
+                AreEqual(expected, Descriptor(opt));
+                AreEqual(expected, opt.Descriptor());
+            }
 
             foreach (DotNetVerbosity anyVerbosity in allVerbosities)
             {
-                AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = logNully, Verbosity = anyVerbosity }));
+                // TODO: Verbosity variance is still relevant to show for diagnostics, even when Log is nully.
+                //  It also affects the dotnet run, not just the Log delegate.
+                var opt = new DotNetOptions { Log = logNully, Verbosity = anyVerbosity };
+                var expected = DEFAULT_DESCRIPTOR;
+                AreEqual(expected, Descriptor(opt));
+                AreEqual(expected, opt.Descriptor());
             }
         }
-
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = null!,     Verbosity = Normal }));
-        AreEqual(DEFAULT_DESCRIPTOR, Descriptor(new DotNetOptions { Log = NullLog,   Verbosity = Normal }));
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Log_VerbosityNormal()
+    public void DotNetOptions_Descriptor_LogCallback_VerbosityNormalOrDefault()
     {
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine                      }));
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal  }));
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default }));
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0       }));
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { }                       }));
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = Normal  }));
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = default }));
-        AreEqual("Log", Descriptor(new DotNetOptions { Log = _ => { },  Verbosity = 0       }));
+        Action<string>[] logNonNullies = [ WriteLine, _ => { } ];
+        DotNetVerbosity[] nullyVerbosities = [ 0, default, Normal ];
+
+        foreach (Action<string> logNonNully in logNonNullies)
+        {
+            {
+                var opt = new DotNetOptions { Log = logNonNully };
+                var expected = "Log";
+                AreEqual(expected, Descriptor(opt));
+                AreEqual(expected, opt.Descriptor());
+            }
+
+            foreach (DotNetVerbosity nullyVerbosity in nullyVerbosities)
+            {
+                var opt = new DotNetOptions { Log = logNonNully, Verbosity = nullyVerbosity };
+                var expected = "Log";
+                AreEqual(expected, Descriptor(opt));
+                AreEqual(expected, opt.Descriptor());
+            }
+        }
     }
 
     // Verbosity
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Verbosity_AllValues()
+    public void DotNetOptions_Descriptor_LogCallback_VerbosityNonDefault()
     {
-
-        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = 0         }));
-        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = default   }));
-        AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }));
-        AreEqual("Log Quiet",      Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }));
-        AreEqual("Log Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }));
-        AreEqual("Log Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }));
-        AreEqual("Log Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}));
+        // TODO: Extract variables.
+        AreEqual("Log Quiet",      Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }            ));
+        AreEqual("Log Quiet",                 new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }.Descriptor());
+        AreEqual("Log Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }            ));
+        AreEqual("Log Minimal",               new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }.Descriptor());
+        AreEqual("Log Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }            ));
+        AreEqual("Log Detailed",              new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }.Descriptor());
+        AreEqual("Log Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}            ));
+        AreEqual("Log Diagnostic",            new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}.Descriptor());
     }
-
-    // TODO: End of section where split between static and extension method invocation still needs to be coded out.
 
     // File Options
 
