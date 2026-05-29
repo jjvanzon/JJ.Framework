@@ -129,4 +129,10 @@
         AreEqual("Log",                       new DotNetOptions { Log = WriteLine, Verbosity = default   }.Descriptor());
         AreEqual("Log",            Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Normal    }            ));
         AreEqual("Log",                       new DotNetOptions { Log = WriteLine, Verbosity = Normal    }.Descriptor());
+
+        // params string[] expectedElements)
+        //string expectedWideForm = Join(" | ", expectedElements);
+        //string expectedLongForm = Join(NewLine, expectedElements);
+        // TODO: Account for quote and slash styles.
+
 ```
