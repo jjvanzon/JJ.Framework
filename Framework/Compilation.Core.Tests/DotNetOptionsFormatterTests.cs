@@ -14,6 +14,8 @@ public class DotNetOptionsFormatterTests
 
     // Entry Points
 
+    // TODO: Test all variants with same parameterization in one test method.
+
     [TestMethod]
     public void DotNetOptions_Stringify_Default()
     {
@@ -232,7 +234,8 @@ public class DotNetOptionsFormatterTests
 
             foreach (DotNetVerbosity anyVerbosity in allVerbosities)
             {
-                // TODO: Verbosity variance is still relevant to show for diagnostics, even when Log is nully.
+                // TODO: Change main code implementation:
+                //  Verbosity variance is still relevant to show for diagnostics, even when Log is nully.
                 //  It also affects the dotnet run, not just the Log delegate.
                 var opt = new DotNetOptions { Log = logNully, Verbosity = anyVerbosity };
                 var expected = DEFAULT_DESCRIPTOR;
@@ -270,17 +273,32 @@ public class DotNetOptionsFormatterTests
     // Verbosity
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_LogCallback_VerbosityNonDefault()
+    public void DotNetOptions_Descriptor_Log_VariousVerbosities()
     {
-        // TODO: Extract variables.
-        AreEqual("Log Quiet",      Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }            ));
-        AreEqual("Log Quiet",                 new DotNetOptions { Log = WriteLine, Verbosity = Quiet     }.Descriptor());
-        AreEqual("Log Minimal",    Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }            ));
-        AreEqual("Log Minimal",               new DotNetOptions { Log = WriteLine, Verbosity = Minimal   }.Descriptor());
-        AreEqual("Log Detailed",   Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }            ));
-        AreEqual("Log Detailed",              new DotNetOptions { Log = WriteLine, Verbosity = Detailed  }.Descriptor());
-        AreEqual("Log Diagnostic", Descriptor(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}            ));
-        AreEqual("Log Diagnostic",            new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic}.Descriptor());
+        {
+            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Quiet };
+            var expected = "Log Quiet";
+            AreEqual(expected, Descriptor(opt));
+            AreEqual(expected, opt.Descriptor());
+        }
+        {
+            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Minimal };
+            var expected = "Log Minimal";
+            AreEqual(expected, Descriptor(opt));
+            AreEqual(expected, opt.Descriptor());
+        }
+        {
+            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Detailed };
+            var expected = "Log Detailed";
+            AreEqual(expected, Descriptor(opt));
+            AreEqual(expected, opt.Descriptor());
+        }
+        {
+            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic };
+            var expected = "Log Diagnostic";
+            AreEqual(expected, Descriptor(opt));
+            AreEqual(expected, opt.Descriptor());
+        }
     }
 
     // File Options
@@ -447,6 +465,14 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptions_Descriptor_Combos_WithoutFileOptions()
     {
+        // New:
+        AssertDiagnosticTexts(
+            new DotNetOptions { BuildConf = "Release", TimeOutSec = 123 },
+            """
+            "Release" | Timeout: 123s
+            """);
+
+        // Old:
         AreEqual(
             """
             "Release" | Timeout: 123s
@@ -559,5 +585,29 @@ public class DotNetOptionsFormatterTests
             "Release" | MyProject.csproj | Dir = C:\repo
             """,
             Descriptor(new DotNetOptions { BuildConf = "Release", File = shortFile, Dir = @"C:\repo" }));
+    }
+
+    private void AssertDiagnosticTexts(DotNetOptions opt, string expectedText)
+    {
+        // TODO: Accound for path truncation styles.
+
+        // Descriptor
+        {
+            AreEqual(expectedText, Descriptor(opt));
+            AreEqual(expectedText, opt.Descriptor());
+        }
+        // String
+        {
+            string expected = nameof(DotNetOptions) + " " + expectedText;
+            AreEqual(expected, opt.ToString());
+            AreEqual(expected, Stringify(opt));
+            AreEqual(expected, opt.Stringify());
+        }
+        // DebuggerDisplay
+        {
+            string expected = "{" + nameof(DotNetOptions) + " " + expectedText.Replace('"', '\'').Replace('\\', '/') + "}";
+            AreEqual(expected, DebuggerDisplay(opt));
+            AreEqual(expected, opt.DebuggerDisplay());
+        }
     }
 }
