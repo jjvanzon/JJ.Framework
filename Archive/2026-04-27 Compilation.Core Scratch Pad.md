@@ -135,4 +135,37 @@
         //string expectedLongForm = Join(NewLine, expectedElements);
         // TODO: Account for quote and slash styles.
 
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_UsesSingleQuotesAndForwardSlashes()
+    {
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                BuildConf = "Release",
+                File = @"C:\Code\MyProject.csproj",
+                Args = "--no-logo",
+                Dir = @"C:\Code"
+            },
+            """'Release' | --no-logo | C:/Code/MyProject.csproj | Dir = C:/Code""");
+    }
+
+    [TestMethod]
+    public void DotNetOptions_DebuggerDisplay_PathTruncation()
+    {
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                Args = "--no-logo",
+                File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
+                Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
+            },
+            @"--no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = ... /Billing/ServiceHost/bin/Release/net10.0");
+    }
+
+    // TODO: Test all variants with same parameterization in one test method.
+
+    // TODO: Here the distinction between static/extension invocation still needs to be programmed out.
+    // TODO: Perhaps it is time for a helper method that checks both syntaxes given a DotNetOptions and expected text.
+
+        // TODO: Accound for path truncation styles.
 ```

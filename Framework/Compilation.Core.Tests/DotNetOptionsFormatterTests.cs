@@ -14,10 +14,10 @@ public class DotNetOptionsFormatterTests
 
     // Entry Points
 
-    // TODO: Test all variants with same parameterization in one test method.
+    // TODO: Replace AreEqual with AssertDiagnosticText.
 
     [TestMethod]
-    public void DotNetOptions_Stringify_Default()
+    public void DotNetOptionsFormatter_Default()
     {
         var expected = "DotNetOptions default";
         foreach (var nully in _optNullies)
@@ -39,151 +39,91 @@ public class DotNetOptionsFormatterTests
     }
 
     [TestMethod]
-    public void DotNetOptions_Stringify_UsesDescriptor()
+    public void DotNetOptionsFormatter_UsesDescriptor()
     {
-        var opt = new DotNetOptions
-        {
-            BuildConf = "Release",
-            File = @"C:\Code\MyProject.csproj",
-            Args = "--no-logo",
-            Dir = @"C:\repo"
-        };
-
-        const string expected = 
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                BuildConf = "Release",
+                File = @"C:\Code\MyProject.csproj",
+                Args = "--no-logo",
+                Dir = @"C:\repo"
+            },
             """
-            DotNetOptions "Release" | --no-logo | C:\Code\MyProject.csproj | Dir = C:\repo
-            """;
-
-        AreEqual(expected, Stringify(opt));
-        AreEqual(expected, opt.Stringify());
-        AreEqual(expected, opt.ToString());
-    }
-
-    [TestMethod]
-    public void DotNetOptions_DebuggerDisplay_UsesSingleQuotesAndForwardSlashes()
-    {
-        var opt = new DotNetOptions
-        {
-            BuildConf = "Release",
-            File = @"C:\Code\MyProject.csproj",
-            Args = "--no-logo",
-            Dir = @"C:\Code"
-        };
-
-        var accessor = new DotNetOptionsAccessor(opt);
-
-        const string expected =
-            """
-            {DotNetOptions 'Release' | --no-logo | C:/Code/MyProject.csproj | Dir = C:/Code}
-            """;
-
-        AreEqual(expected, DebuggerDisplay(opt));
-        AreEqual(expected, opt.DebuggerDisplay());
-        AreEqual(expected, accessor.DebuggerDisplay);
+            "Release" | --no-logo | C:\Code\MyProject.csproj | Dir = C:\repo
+            """);
     }
 
     // All Options Filled
     
     [TestMethod]
-    public void DotNetOptions_Descriptor_FullCombination()
+    public void DotNetOptionsFormatter_FullCombination()
     {
-        var opt = new DotNetOptions
-        {
-            BuildConf = "Release",
-            AutoRestore = true,
-            ParallelRestore = true,
-            TimeOutSec = 123,
-            Verbosity = Detailed,
-            Log = WriteLine, // ncrunch: no coverage
-            Args = "--no-logo",
-            File = "MyProject.csproj",
-            Dir = @"C:\repo"
-        };
-
-        var expected = @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir = C:\repo";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                BuildConf = "Release",
+                AutoRestore = true,
+                ParallelRestore = true,
+                TimeOutSec = 123,
+                Verbosity = Detailed,
+                Log = WriteLine, // ncrunch: no coverage
+                Args = "--no-logo",
+                File = "MyProject.csproj",
+                Dir = @"C:\repo"
+            },
+            @"""Release"" | Restore: Auto Parallel | Log Detailed | Timeout: 123s | MyProject.csproj --no-logo | Dir = C:\repo");
     }
 
     // Empty/Default
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_EmptyOrDefault()
+    public void DotNetOptionsFormatter_EmptyOrDefault()
     {
         DotNetOptions[] nullyOptions = [ default, new(), DefaultOptions ];
-       
+
         foreach (var nullyOption in nullyOptions)
         {
-            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(nullyOption));
-            AreEqual(DEFAULT_DESCRIPTOR, nullyOption.Descriptor());
+            AssertDiagnosticTexts(nullyOption, DEFAULT_DESCRIPTOR);
         }
     }
 
     // BuildConf Option
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_BuildConf()
+    public void DotNetOptionsFormatter_BuildConf()
     {
-        {
-            var opt = new DotNetOptions { BuildConf = "Release" };
-            var expected = @"""Release""";
-            AreEqual(expected, Descriptor(opt)); 
-            AreEqual(expected, opt.Descriptor());
-        }
-        {
-            var opt = new DotNetOptions { BuildConf = "Debug" };
-            var expected = @"""Debug""";
-            AreEqual(expected, Descriptor(opt)); 
-            AreEqual(expected, opt.Descriptor());
-        }
-        {
-            var opt = new DotNetOptions { BuildConf = "La lala" };
-            var expected = @"""La lala""";
-            AreEqual(expected, Descriptor(opt)); 
-            AreEqual(expected, opt.Descriptor());
-        }
-        {
-            var opt = new DotNetOptions { BuildConf = "" };
-            var expected = DEFAULT_DESCRIPTOR;
-            AreEqual(expected, Descriptor(opt)); 
-            AreEqual(expected, opt.Descriptor());
-        }
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Release" }, @"""Release""");
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Debug" }, @"""Debug""");
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "La lala" }, @"""La lala""");
+        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "" }, DEFAULT_DESCRIPTOR);
     }
 
     // Restore
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Restore_Auto()
+    public void DotNetOptionsFormatter_Restore_Auto()
     {
-        var opt = new DotNetOptions { AutoRestore = true };
-        var expected = "Restore: Auto";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(new DotNetOptions { AutoRestore = true }, "Restore: Auto");
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Restore_Parallel()
+    public void DotNetOptionsFormatter_Restore_Parallel()
     {
-        var opt = new DotNetOptions { ParallelRestore = true };
-        var expected = "Restore: Parallel";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(new DotNetOptions { ParallelRestore = true }, "Restore: Parallel");
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Restore_AutoAndParallel()
+    public void DotNetOptionsFormatter_Restore_AutoAndParallel()
     {
-        var opt = new DotNetOptions { AutoRestore = true, ParallelRestore = true };
-        var expected = "Restore: Auto Parallel";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(new DotNetOptions { AutoRestore = true, ParallelRestore = true }, "Restore: Auto Parallel");
     }
 
     // Time-Out
 
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_TimeOut_Omitted_WhenDefaultOrZero()
+    public void DotNetOptionsFormatter_TimeOut_Omitted_WhenDefaultOrZero()
     {
         DotNetOptions[] nullyOptions =
         [
@@ -193,79 +133,52 @@ public class DotNetOptionsFormatterTests
 
         foreach (DotNetOptions nullyOption in nullyOptions)
         {
-            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(nullyOption));
-            AreEqual(DEFAULT_DESCRIPTOR, nullyOption.Descriptor());
+            AssertDiagnosticTexts(nullyOption, DEFAULT_DESCRIPTOR);
         }
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_TimeOut_Shown_WhenCustom()
+    public void DotNetOptionsFormatter_TimeOut_Shown_WhenCustom()
     {
-        {
-            var opt = new DotNetOptions { TimeOutSec = 1 };
-            var expected = "Timeout: 1s";
-            AreEqual(expected, Descriptor(opt));
-            AreEqual(expected, opt.Descriptor());
-        }
-        {
-            var opt = new DotNetOptions { TimeOutSec = 600 };
-            var expected = "Timeout: 600s";
-            AreEqual(expected, Descriptor(opt));
-            AreEqual(expected, opt.Descriptor());
-        }
+        AssertDiagnosticTexts(new DotNetOptions { TimeOutSec = 1 }, "Timeout: 1s");
+        AssertDiagnosticTexts(new DotNetOptions { TimeOutSec = 600 }, "Timeout: 600s");
     }
 
     // Log
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Log_Nully()
+    public void DotNetOptionsFormatter_Log_Nully()
     {
-        Action<string>[] logNullies = [ null!, NullLog ]; //, _ => { }]; // CustomNot empty lamda recognized as nully.
+        Action<string>[] logNullies = [ null!, NullLog ];
         DotNetVerbosity[] allVerbosities = [ 0, default, Normal, Quiet, Minimal, Detailed, Diagnostic ];
 
         foreach (Action<string> logNully in logNullies)
         {
-            {
-                var opt = new DotNetOptions { Log = logNully };
-                var expected = DEFAULT_DESCRIPTOR;
-                AreEqual(expected, Descriptor(opt));
-                AreEqual(expected, opt.Descriptor());
-            }
+            AssertDiagnosticTexts(new DotNetOptions { Log = logNully }, DEFAULT_DESCRIPTOR);
 
             foreach (DotNetVerbosity anyVerbosity in allVerbosities)
             {
                 // TODO: Change main code implementation:
                 //  Verbosity variance is still relevant to show for diagnostics, even when Log is nully.
                 //  It also affects the dotnet run, not just the Log delegate.
-                var opt = new DotNetOptions { Log = logNully, Verbosity = anyVerbosity };
-                var expected = DEFAULT_DESCRIPTOR;
-                AreEqual(expected, Descriptor(opt));
-                AreEqual(expected, opt.Descriptor());
+                AssertDiagnosticTexts(new DotNetOptions { Log = logNully, Verbosity = anyVerbosity }, DEFAULT_DESCRIPTOR);
             }
         }
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_LogCallback_VerbosityNormalOrDefault()
+    public void DotNetOptionsFormatter_LogCallback_VerbosityNormalOrDefault()
     {
         Action<string>[] logNonNullies = [ WriteLine, _ => { } ];
         DotNetVerbosity[] nullyVerbosities = [ 0, default, Normal ];
 
         foreach (Action<string> logNonNully in logNonNullies)
         {
-            {
-                var opt = new DotNetOptions { Log = logNonNully };
-                var expected = "Log";
-                AreEqual(expected, Descriptor(opt));
-                AreEqual(expected, opt.Descriptor());
-            }
+            AssertDiagnosticTexts(new DotNetOptions { Log = logNonNully }, "Log");
 
             foreach (DotNetVerbosity nullyVerbosity in nullyVerbosities)
             {
-                var opt = new DotNetOptions { Log = logNonNully, Verbosity = nullyVerbosity };
-                var expected = "Log";
-                AreEqual(expected, Descriptor(opt));
-                AreEqual(expected, opt.Descriptor());
+                AssertDiagnosticTexts(new DotNetOptions { Log = logNonNully, Verbosity = nullyVerbosity }, "Log");
             }
         }
     }
@@ -273,80 +186,49 @@ public class DotNetOptionsFormatterTests
     // Verbosity
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_Log_VariousVerbosities()
+    public void DotNetOptionsFormatter_Log_VariousVerbosities()
     {
-        {
-            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Quiet };
-            var expected = "Log Quiet";
-            AreEqual(expected, Descriptor(opt));
-            AreEqual(expected, opt.Descriptor());
-        }
-        {
-            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Minimal };
-            var expected = "Log Minimal";
-            AreEqual(expected, Descriptor(opt));
-            AreEqual(expected, opt.Descriptor());
-        }
-        {
-            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Detailed };
-            var expected = "Log Detailed";
-            AreEqual(expected, Descriptor(opt));
-            AreEqual(expected, opt.Descriptor());
-        }
-        {
-            var opt = new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic };
-            var expected = "Log Diagnostic";
-            AreEqual(expected, Descriptor(opt));
-            AreEqual(expected, opt.Descriptor());
-        }
+        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Quiet }, "Log Quiet");
+        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Minimal }, "Log Minimal");
+        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Detailed }, "Log Detailed");
+        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic }, "Log Diagnostic");
     }
 
     // File Options
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_OnlyArgs()
+    public void DotNetOptionsFormatter_OnlyArgs()
     {
-        var opt = new DotNetOptions { Args = "--no-logo" };
-        var expected = "--no-logo";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(new DotNetOptions { Args = "--no-logo" }, "--no-logo");
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_OnlyFile()
+    public void DotNetOptionsFormatter_OnlyFile()
     {
-        var opt = new DotNetOptions { File = "MyProject.csproj" };
-        var expected = "MyProject.csproj";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(new DotNetOptions { File = "MyProject.csproj" }, "MyProject.csproj");
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_OnlyDir()
+    public void DotNetOptionsFormatter_OnlyDir()
     {
-        var opt = new DotNetOptions { Dir = @"C:\repo" };
-        var expected = @"Dir = C:\repo";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(new DotNetOptions { Dir = @"C:\repo" }, @"Dir = C:\repo");
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_AllFileOptions()
+    public void DotNetOptionsFormatter_AllFileOptions()
     {
-        var opt = new DotNetOptions
-        {
-            Args = "--no-logo",
-            File = "MyProject.csproj",
-            Dir = @"D:\JJ\Dev\Products\Code"
-        };
-
-        var expected = @"MyProject.csproj --no-logo | Dir = D:\JJ\Dev\Products\Code";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                Args = "--no-logo",
+                File = "MyProject.csproj",
+                Dir = @"D:\JJ\Dev\Products\Code"
+            },
+            @"MyProject.csproj --no-logo | Dir = D:\JJ\Dev\Products\Code");
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_AllFileOptions_LongFilePath()
+    public void DotNetOptionsFormatter_AllFileOptions_LongFilePath()
     {
         var opt = new DotNetOptions
         {
@@ -357,113 +239,73 @@ public class DotNetOptionsFormatterTests
 
         IsTrue(opt.File.Length > 20);
 
-        var expected = @"--no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = D:\JJ\Dev\Products\Code";
-        AreEqual(expected, Descriptor(opt));
-        AreEqual(expected, opt.Descriptor());
+        AssertDiagnosticTexts(opt, @"--no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = D:\JJ\Dev\Products\Code");
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_EmptyFileOptions()
+    public void DotNetOptionsFormatter_EmptyFileOptions()
     {
         foreach (var nully1 in _textNullies)
         foreach (var nully2 in _textNullies)
         foreach (var nully3 in _textNullies)
         {
-            var opt = new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 };
-            AreEqual(DEFAULT_DESCRIPTOR, Descriptor(opt));
-            AreEqual(DEFAULT_DESCRIPTOR, opt.Descriptor());
+            AssertDiagnosticTexts(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }, DEFAULT_DESCRIPTOR);
         }
     }
 
     [TestMethod]
-    public void DotNetOptions_Stringify_ToString_NoPathTruncation()
+    public void DotNetOptionsFormatter_PathsTruncated()
     {
-        var opt = new DotNetOptions
-        {
-            Args = "--no-logo",
-            File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
-            Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
-        };
-
-        const string expected = 
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                Args = "--no-logo",
+                File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
+                Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
+            },
             """
-            DotNetOptions --no-logo | D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj | Dir = D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0
-            """;
+            --no-logo | D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj | Dir = D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0
+            """,
+            "--no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = ... /Billing/ServiceHost/bin/Release/net10.0");
 
-        AreEqual(expected, Stringify(opt));
-        AreEqual(expected, opt.Stringify());
-        AreEqual(expected, opt.ToString());
     }
 
     [TestMethod]
-    public void DotNetOptions_DebuggerDisplay_PathTruncation()
+    public void DotNetOptionsFormatter_DirTruncated_FileNot()
     {
-        var opt = new DotNetOptions
-        {
-            Args = "--no-logo",
-            File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
-            Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
-        };
-
-        const string expected = 
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                Args = "--no-logo",
+                File = "MyProject.csproj",
+                Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
+            },
             """
-            {DotNetOptions --no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = ... /Billing/ServiceHost/bin/Release/net10.0}
-            """;
-
-        var accessor = new DotNetOptionsAccessor(opt);
-
-        AreEqual(expected, DebuggerDisplay(opt));
-        AreEqual(expected, opt.DebuggerDisplay());
-        AreEqual(expected, accessor.DebuggerDisplay);
+            MyProject.csproj --no-logo | Dir = D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0
+            """,
+            "MyProject.csproj --no-logo | Dir = ... /Billing/ServiceHost/bin/Release/net10.0");
     }
 
     [TestMethod]
-    public void DotNetOptions_DebuggerDisplay_DirTruncated_FileNot()
+    public void DotNetOptionsFormatter_FileTruncated_DirNot()
     {
-        var opt = new DotNetOptions
-        {
-            Args = "--no-logo",
-            File = "MyProject.csproj",
-            Dir = @"D:\Repos\JJ.Framework\src\Apps\Billing\ServiceHost\bin\Release\net10.0"
-        };
-
-        const string expected =
-            "{DotNetOptions MyProject.csproj --no-logo | Dir = ... /Billing/ServiceHost/bin/Release/net10.0}";
-
-        var accessor = new DotNetOptionsAccessor(opt);
-
-        AreEqual(expected, DebuggerDisplay(opt));
-        AreEqual(expected, opt.DebuggerDisplay());
-        AreEqual(expected, accessor.DebuggerDisplay);
-    }
-
-    [TestMethod]
-    public void DotNetOptions_DebuggerDisplay_FileTruncated_DirNot()
-    {
-        var opt = new DotNetOptions
-        {
-            Args = "--no-logo",
-            File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
-            Dir = @"D:\Repos\JJ.Framework"
-        };
-
-        const string expected =
-            "{DotNetOptions --no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = D:/Repos/JJ.Framework}";
-
-        var accessor = new DotNetOptionsAccessor(opt);
-
-        AreEqual(expected, DebuggerDisplay(opt));
-        AreEqual(expected, opt.DebuggerDisplay());
-        AreEqual(expected, accessor.DebuggerDisplay);
+        AssertDiagnosticTexts(
+            new DotNetOptions
+            {
+                Args = "--no-logo",
+                File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
+                Dir = @"D:\Repos\JJ.Framework"
+            },
+            """
+            --no-logo | D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj | Dir = D:\Repos\JJ.Framework
+            """,
+            "--no-logo | ... /Apps/Billing/Billing.Service.Api.csproj | Dir = D:/Repos/JJ.Framework");
     }
 
     // Combos
 
-    // TODO: Here the distinction between static/extension invocation still needs to be programmed out.
-    // TODO: Perhaps it is time for a helper method that checks both syntaxes given a DotNetOptions and expected text.
-
     [TestMethod]
-    public void DotNetOptions_Descriptor_Combos_WithoutFileOptions()
+    public void DotNetOptionsFormatter_Combos_WithoutFileOptions()
     {
         AssertDiagnosticTexts(
             new DotNetOptions { BuildConf = "Release", TimeOutSec = 123 },
@@ -527,7 +369,7 @@ public class DotNetOptionsFormatterTests
     }
 
     [TestMethod]
-    public void DotNetOptions_Descriptor_FileOptionCombos()
+    public void DotNetOptionsFormatter_FileOptionCombos()
     {
         const string shortFile = "MyProject.csproj";
         const string longFile = @"D:\JJ\Dev\Products\Code\MyProject.csproj";
@@ -581,9 +423,9 @@ public class DotNetOptionsFormatterTests
             """);
     }
 
-    private void AssertDiagnosticTexts(DotNetOptions opt, string expectedText)
+    private void AssertDiagnosticTexts(DotNetOptions opt, string expectedText, string? withTruncatedPaths = null)
     {
-        // TODO: Accound for path truncation styles.
+        withTruncatedPaths ??= expectedText;
 
         // Descriptor
         {
@@ -601,7 +443,7 @@ public class DotNetOptionsFormatterTests
         {
             var accessor = new DotNetOptionsAccessor(opt);
             
-            string expected = "{" + nameof(DotNetOptions) + " " + expectedText.Replace('"', '\'').Replace('\\', '/') + "}";
+            string expected = "{" + nameof(DotNetOptions) + " " + withTruncatedPaths.Replace('"', '\'').Replace('\\', '/') + "}";
             AreEqual(expected, DebuggerDisplay(opt));
             AreEqual(expected, opt.DebuggerDisplay());
             AreEqual(expected, accessor.DebuggerDisplay);
