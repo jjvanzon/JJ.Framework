@@ -60,8 +60,8 @@ internal static class DotNetArgsFormatter
 
     // Command Descriptor
 
-    private static string CommandDescriptor(DotNetArgs args) => CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
-    private static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
+    public static string CommandDescriptor(DotNetArgs args) => CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
+    public static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
     {
         bool inconsistenciesDetected = IsInconsistent(@enum, command, isRebuild);
         bool enumRequired    = Has(@enum);
@@ -130,14 +130,14 @@ internal static class DotNetArgsFormatter
 
     // IDVerDescriptor
 
-    private static string IDVerDescriptor(DotNetArgs args) => IDVerDescriptor(args.ID, args.Ver);
-    private static string IDVerDescriptor(string? id, string? ver)
+    public static string IDVerDescriptor(DotNetArgs args) => IDVerDescriptor(args.ID, args.Ver);
+    public static string IDVerDescriptor(string? id, string? ver)
     {
         return $"{id} {ver}".Trim();
     }
 
-    private static string ArgsDescriptor(DotNetArgs args) => ArgsDescriptor(args.Args, args.FullArgs);
-    private static string ArgsDescriptor(string? args, string? fullArgs)
+    public static string ArgsDescriptor(DotNetArgs args) => ArgsDescriptor(args.Args, args.FullArgs);
+    public static string ArgsDescriptor(string? args, string? fullArgs)
     {
         args     = (args     ?? "").Trim();
         fullArgs = (fullArgs ?? "").Trim();

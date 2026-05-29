@@ -7,6 +7,7 @@ internal static class Untrimmer
 {
     public const string MainAsm = "JJ.Framework.Compilation.Core";
     
+    // DotNetArgs
     [NoTrim(AllCtors,                       typeof(DotNetArgs   ))]
     [NoTrim(nameof(DotNetArgs.CommandEnum), typeof(DotNetArgs   ))]
     [NoTrim(nameof(DotNetArgs.Command),     typeof(DotNetArgs   ))]
@@ -16,25 +17,37 @@ internal static class Untrimmer
     [NoTrim(nameof(DotNetArgs.IsRebuild),   typeof(DotNetArgs   ))]
     [NoTrim(nameof(DotNetArgs.FullArgs),    typeof(DotNetArgs   ))]
     [NoTrim("DebuggerDisplay",              typeof(DotNetArgs   ))]
-    [NoTrim("DebuggerDisplay",              typeof(DotNetResult ))]
+
+    // DotNetOptions
     [NoTrim("DebuggerDisplay",              typeof(DotNetOptions))]
     [NoTrim("DEFAULT_TIME_OUT_SEC",         typeof(DotNetOptions))]
-    [NoTrim("FormatArgs",        $"{MainAsm}.DotNetCommandFormatter", MainAsm)]
-    [NoTrim("Enrich",            $"{MainAsm}.DotNetEnricher",         MainAsm)]
-    [NoTrim("Log",               $"{MainAsm}.DotNetLogger",           MainAsm)]
-    [NoTrim("Descriptor",        $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("Descriptor",        $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
-    [NoTrim("Descriptor",        $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
-    [NoTrim("Stringify",         $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("Stringify",         $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
-    [NoTrim("Stringify",         $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
-    [NoTrim("DebuggerDisplay",   $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("DebuggerDisplay",   $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
-    [NoTrim("DebuggerDisplay",   $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
-    [NoTrim("ExceptionMessage",  $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
-    [NoTrim("CommandDescriptor", $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("IDVerDescriptor",   $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
-    [NoTrim("ArgsDescriptor",    $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+
+    // DotNetResult
+    [NoTrim("DebuggerDisplay",              typeof(DotNetResult ))]
+
+    // DotNetArgsFormatter
+    [NoTrim("Descriptor",          $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("Stringify",           $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("DebuggerDisplay",     $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("CommandDescriptor",   $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("IDVerDescriptor",     $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+    [NoTrim("ArgsDescriptor", $"{MainAsm}.DotNetArgsFormatter",    MainAsm)]
+
+    // DotNetOptionsFormatter
+    [NoTrim("Descriptor",          $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("Stringify",           $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("DebuggerDisplay",     $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
+
+    // DotNetResultFormatter
+    [NoTrim("Descriptor",          $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+    [NoTrim("Stringify",           $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+    [NoTrim("DebuggerDisplay",     $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+    [NoTrim("ExceptionMessage",    $"{MainAsm}.DotNetResultFormatter",  MainAsm)]
+
+    // Services
+    [NoTrim("FormatArgs",          $"{MainAsm}.DotNetCommandFormatter", MainAsm)]
+    [NoTrim("Enrich",              $"{MainAsm}.DotNetEnricher",         MainAsm)]
+    [NoTrim("Log",                 $"{MainAsm}.DotNetLogger",           MainAsm)]
 
     public static void Untrim() { }
 }

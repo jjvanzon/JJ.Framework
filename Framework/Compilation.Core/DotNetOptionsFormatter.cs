@@ -33,11 +33,11 @@ internal static class DotNetOptionsFormatter
 
         string[] elements = 
         [
-            FormatBuildConf(opt), 
-            FormatRestore(opt), 
-            FormatLogOptions(opt), 
-            FormatTimeOut(opt), 
-            FormatFileOptions(opt, maxPathChars)
+            BuildConfDescriptor(opt), 
+            RestoreDescriptor(opt), 
+            LogDescriptor(opt), 
+            TimeOutDescriptor(opt), 
+            FileOptDescriptor(opt, maxPathChars)
         ];
 
         var descriptor = Join(" | ", elements.Where(FilledIn));
@@ -49,16 +49,16 @@ internal static class DotNetOptionsFormatter
 
     // BuildConf
 
-    private static string FormatBuildConf(DotNetOptions opt) => FormatBuildConf(opt.BuildConf);
-    private static string FormatBuildConf(string buildConf)
+    public static string BuildConfDescriptor(DotNetOptions opt) => BuildConfDescriptor(opt.BuildConf);
+    public static string BuildConfDescriptor(string buildConf)
     {
         return Has(buildConf) ? '"' + buildConf + '"' : "";
     }
 
     // Restore
 
-    private static string FormatRestore(DotNetOptions opt) => FormatRestore(opt.AutoRestore, opt.ParallelRestore);
-    private static string FormatRestore(bool autoRestore, bool parallelRestore)
+    public static string RestoreDescriptor(DotNetOptions opt) => RestoreDescriptor(opt.AutoRestore, opt.ParallelRestore);
+    public static string RestoreDescriptor(bool autoRestore, bool parallelRestore)
     {
         if (!HasRestore(autoRestore, parallelRestore)) 
         {
@@ -79,8 +79,8 @@ internal static class DotNetOptionsFormatter
 
     // Log
 
-    private static string FormatLogOptions(DotNetOptions opt) => FormatLogOptions(opt.Verbosity, opt.Log);
-    private static string FormatLogOptions(DotNetVerbosity verbosity, Action<string>? log)
+    public static string LogDescriptor(DotNetOptions opt) => LogDescriptor(opt.Verbosity, opt.Log);
+    public static string LogDescriptor(DotNetVerbosity verbosity, Action<string>? log)
     {
         if (!HasLog(log)) return "";
         if (verbosity == Normal) return "Log";
@@ -91,8 +91,8 @@ internal static class DotNetOptionsFormatter
 
     // TimeOut
 
-    private static string FormatTimeOut(DotNetOptions opt) => FormatTimeOut(opt.TimeOutSec);
-    private static string FormatTimeOut(int timeOutSec)
+    public static string TimeOutDescriptor(DotNetOptions opt) => TimeOutDescriptor(opt.TimeOutSec);
+    public static string TimeOutDescriptor(int timeOutSec)
     {
         return HasTimeOut(timeOutSec) ? $"Timeout: {timeOutSec}s" : "";
     }
@@ -104,15 +104,15 @@ internal static class DotNetOptionsFormatter
     private const int LONG_PATH_LENGTH = 20;
     private const int MAX_PATH_CHARS = 40;
 
-    private static string FormatFileOptions(DotNetOptions opt, int? maxPathChars = null) => FormatFileOptions(opt.File, opt.Args, opt.Dir, maxPathChars);
-    private static string FormatFileOptions(string? file, string? args, string? dir, int? maxPathChars = null)
+    public static string FileOptDescriptor(DotNetOptions opt, int? maxPathChars = null) => FileOptDescriptor(opt.File, opt.Args, opt.Dir, maxPathChars);
+    public static string FileOptDescriptor(string? file, string? args, string? dir, int? maxPathChars = null)
     {
         bool hasSep1 = Has(args) && Has(file);
         bool hasSep2 = (Has(args) || Has(file)) && Has(dir);
 
         bool filePathIsLong = file?.Length > LONG_PATH_LENGTH;
-        string formattedDir = FormatDir(dir, maxPathChars);
-        string formattedFile = FormatFile(file, maxPathChars);
+        string formattedDir = DirDescriptor(dir, maxPathChars);
+        string formattedFile = FileDescriptor(file, maxPathChars);
 
         if (filePathIsLong)
         {
@@ -128,8 +128,9 @@ internal static class DotNetOptionsFormatter
         }
     }
 
-    private static string FormatFile(string? file, int? maxPathChars = null) => TruncatePath(file, maxPathChars);
-    private static string FormatDir(string? dir, int? maxPathChars = null) => Has(dir) ? "Dir = " + TruncatePath(dir, maxPathChars) : "";
+    public static string FileDescriptor(string? file, int? maxPathChars = null) => TruncatePath(file, maxPathChars);
+    public static string DirDescriptor(string? dir, int? maxPathChars = null) => Has(dir) ? "Dir = " + TruncatePath(dir, maxPathChars) : "";
+
     private static string TruncatePath(string? path, int? maxPathChars = null)
     {
         path ??= "";
