@@ -6,6 +6,9 @@ internal class DotNetArgsAccessor : AccessorCore
     public DotNetArgsAccessor()
         : base(typeof(DotNetArgs)) { }
 
+    public DotNetArgsAccessor(DotNetArgs obj)
+        : base(obj, typeof(DotNetArgs)) { }
+
     public DotNetArgsAccessor(DotNetCommandEnum commandEnum)
         : base(typeof(DotNetArgs), commandEnum) { }
 

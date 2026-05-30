@@ -192,4 +192,55 @@
             AssertDiagnosticTexts(nully, DEFAULT_DESCRIPTOR);
         }
     }
+
+
+    [TestMethod]
+    public void DotNetArgs_DebuggerDisplay_NullArgs()
+    {
+        AssertDiagnosticTexts(null, "<null>");
+    }
+
+    [TestMethod]
+    public void DotNetArgs_Descriptor_NullArgs()
+    {
+        AssertDiagnosticTexts(null, "<null>");
+    }
+
+
+    [TestMethod]
+    public void DotNetArgs_DebuggerDisplay()
+    {
+        var args = new DotNetArgsAccessor(build);
+
+        args.Args = 
+            """
+            --o "C:\Temp\out"
+            """;
+
+        AssertDiagnosticTexts(
+            args.Obj,
+            """
+            build | --o "C:\Temp\out"
+            """,
+            """
+            DotNetArgs build | --o "C:\Temp\out"
+            """,
+            """
+            {DotNetArgs build | --o 'C:/Temp/out'}
+            """);
+    }
+
+        AssertDiagnosticTexts(
+            args.Obj,
+            """
+            build | --o "C:\Temp\out"
+            """
+            //,
+            //"""
+            //DotNetArgs build | --o "C:\Temp\out"
+            //"""
+            );
+
+    // TODO: Use AssertDiagnosticTexts helper to conjointly test Stringify, DebuggerDisplay, Descriptor, ToString.
+
 ```
