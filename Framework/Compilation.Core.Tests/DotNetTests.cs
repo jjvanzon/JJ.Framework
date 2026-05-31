@@ -99,89 +99,6 @@ public class DotNetTests : IDisposable
         catch { /* ignore */ }
     }
 
-    // Helpers
-
-    private void Log(string msg) => Trace.WriteLine(msg);
-
-    private void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
-
-    private void AssertContains(string whole, string part)
-    {
-        IsTrue(whole.Contains(part, OrdinalIgnoreCase), $"Expected '{part}' in: {whole}");
-    }
-
-    private void AssertContainsAny(string whole, params string[] parts)
-    {
-        string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
-        IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
-    }
-
-    //private static string NullyText(string? x) => IsNullOrWhiteSpace(x) ? "" : x;
-
-    private void AssertResultCore(DotNetResult result)
-    {
-        // Nulls
-        NotNull(result);
-        NotNull(result.Text);
-        NotNull(result.Args);
-        NotNull(result.ErrorText);
-        NotNull(result.OutputText);
-
-        // Text Equality
-        AreEqual(result.Text, result.ToString());
-        AreEqual(result.Text, (string)result);
-
-        // Logical Consistency
-        NotEqual(result.Opt,           default);
-        AreEqual(result.HasExitCode,   result.ExitCode != 0);
-        AreEqual(result.HasErrorText,  !IsNullOrWhiteSpace(result.ErrorText));
-        AreEqual(result.HasOutputText, !IsNullOrWhiteSpace(result.OutputText));
-        AreEqual(result.Successful,    !(result.HasExitCode || result.HasErrorInOutput || result.HasTimeOut));
-
-        if (result.HasErrorInOutput)
-        {
-            AssertContains(result.OutputText, "[error]");
-        }
-    }
-
-    private void AssertResultOk(DotNetResult result)
-    {
-        AssertResultCore(result);
-        IsTrue(result.Successful);
-        NotNullOrWhiteSpace(result.Text);
-        NotNullOrWhiteSpace(result.OutputText);
-        IsFalse(result.HasExitCode);
-        IsFalse(result.HasErrorInOutput);
-        IsFalse(result.HasTimeOut);
-        AreEqual(0, result.ExitCode);
-    }
-
-    private static readonly Lock _tempDirLock = new();
-
-    /// <summary>
-    /// Temporarily sets the process working directory to the temp project folder 
-    /// so no-option overloads find the project file.
-    /// Temporarily, to not influence other tests, that may rely on explicit file path parameterization.
-    /// </summary>
-    private void InTempDir(Action action)
-    {
-        lock (_tempDirLock)
-        {
-            string saved = Directory.GetCurrentDirectory();
-            try 
-            { 
-                Directory.SetCurrentDirectory(_tempDir);
-                action(); 
-            }
-            finally
-            {
-                
-                try { Directory.SetCurrentDirectory(saved); }
-                catch { /* Error tolerance: previous cur dir may be deleted any time. */ }
-            }
-        }
-    }
-
     // Restore
 
     private void TestRestore_ChDir(Func<DotNetResult> call) => InTempDir(() => TestRestore(call));
@@ -368,4 +285,85 @@ public class DotNetTests : IDisposable
     [TestMethod] public void Test_UninstallPackage_Opt()      => TestUninstallPack      (() => UninstallPackage(PACK_ID, _optNoFile));
     [TestMethod] public void Test_UninstallPackage_Args_Opt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, "", _optNoFile));
     // Enum and name won't work unless you specify id and ver as args.
+
+    // Helpers
+
+    private void Log(string msg) => Trace.WriteLine(msg);
+
+    private void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
+
+    private void AssertContains(string whole, string part)
+    {
+        IsTrue(whole.Contains(part, OrdinalIgnoreCase), $"Expected '{part}' in: {whole}");
+    }
+
+    private void AssertContainsAny(string whole, params string[] parts)
+    {
+        string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
+        IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
+    }
+
+    private void AssertResultCore(DotNetResult result)
+    {
+        // Nulls
+        NotNull(result);
+        NotNull(result.Text);
+        NotNull(result.Args);
+        NotNull(result.ErrorText);
+        NotNull(result.OutputText);
+
+        // Text Equality
+        AreEqual(result.Text, result.ToString());
+        AreEqual(result.Text, (string)result);
+
+        // Logical Consistency
+        NotEqual(result.Opt,           default);
+        AreEqual(result.HasExitCode,   result.ExitCode != 0);
+        AreEqual(result.HasErrorText,  !IsNullOrWhiteSpace(result.ErrorText));
+        AreEqual(result.HasOutputText, !IsNullOrWhiteSpace(result.OutputText));
+        AreEqual(result.Successful,    !(result.HasExitCode || result.HasErrorInOutput || result.HasTimeOut));
+
+        if (result.HasErrorInOutput)
+        {
+            AssertContains(result.OutputText, "[error]");
+        }
+    }
+
+    private void AssertResultOk(DotNetResult result)
+    {
+        AssertResultCore(result);
+        IsTrue(result.Successful);
+        NotNullOrWhiteSpace(result.Text);
+        NotNullOrWhiteSpace(result.OutputText);
+        IsFalse(result.HasExitCode);
+        IsFalse(result.HasErrorInOutput);
+        IsFalse(result.HasTimeOut);
+        AreEqual(0, result.ExitCode);
+    }
+
+    private static readonly Lock _tempDirLock = new();
+
+    /// <summary>
+    /// Temporarily sets the process working directory to the temp project folder 
+    /// so no-option overloads find the project file.
+    /// Temporarily, to not influence other tests, that may rely on explicit file path parameterization.
+    /// </summary>
+    private void InTempDir(Action action)
+    {
+        lock (_tempDirLock)
+        {
+            string saved = Directory.GetCurrentDirectory();
+            try 
+            { 
+                Directory.SetCurrentDirectory(_tempDir);
+                action(); 
+            }
+            finally
+            {
+                
+                try { Directory.SetCurrentDirectory(saved); }
+                catch { /* Error tolerance: previous cur dir may be deleted any time. */ }
+            }
+        }
+    }
 }

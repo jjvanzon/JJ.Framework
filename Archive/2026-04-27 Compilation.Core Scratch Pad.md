@@ -256,4 +256,6 @@
         {
            targetFramework = "net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461";
         }
+
+    //private static string NullyText(string? x) => IsNullOrWhiteSpace(x) ? "" : x;
 ```
