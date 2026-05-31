@@ -249,3 +249,11 @@
 ```xml
     <!--<AutoTrimTest Condition="!$(IsNCrunch)">True</AutoTrimTest>-->
 ```
+
+```cs
+        // HACK: Azure Pipelines TestRunner hates specific frameworks here.
+        if (IsAzurePipelines)
+        {
+           targetFramework = "net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461";
+        }
+```

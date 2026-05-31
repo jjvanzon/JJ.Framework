@@ -57,12 +57,6 @@ public class DotNetTests : IDisposable
         
         Directory.CreateDirectory(_tempDir);
         
-        // HACK: Azure Pipelines TestRunner hates specific frameworks here.
-        if (IsAzurePipelines)
-        {
-           targetFramework = "net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461";
-        }
-
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
 
