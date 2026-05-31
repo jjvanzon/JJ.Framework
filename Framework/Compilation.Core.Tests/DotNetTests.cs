@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace JJ.Framework.Compilation.Core.Tests;
 
 /// <summary>
@@ -15,7 +13,7 @@ public class DotNetTests : IDisposable
     private const string PACK_ID  = "JJ.Framework.Common.Core";
     private const string PACK_VER = "4.6.6251";
     private const string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
-    private readonly string _randomPathPart;
+    private readonly string _randomLetters;
     private readonly string _tempDir;
     private readonly string _csprojPath;
     private readonly string _outputDllDebug;
@@ -49,8 +47,8 @@ public class DotNetTests : IDisposable
             targetFramework = "net8.0";
         }
 
-        _randomPathPart    = Path.GetRandomFileName().Replace(".", "");
-        _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomPathPart);
+        _randomLetters    = Path.GetRandomFileName().Replace(".", "");
+        _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
         _csprojPath        = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
         _outputDllDebug    = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
         _outputDllRelease  = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
@@ -277,7 +275,8 @@ public class DotNetTests : IDisposable
         // TODO: Different types of options aren't tested.
         // TODO: Logging isn't really tested.
 
-        string binLogFilePath = Path.GetFullPath($"JJ.CompilationCoreTests.{testName}.{_randomPathPart}.binlog");
+        //JJ.Framework.Reflection.Legacy.
+        string binLogFilePath = Path.GetFullPath($"{GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}.binlog");
 
         var opt = new DotNetOptions()
         {
