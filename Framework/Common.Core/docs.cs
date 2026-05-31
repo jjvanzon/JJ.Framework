@@ -86,3 +86,15 @@ public struct _textof;
 /// Intended for normalization before search, sorting or comparison.
 /// </summary>
 public struct _removeaccents;
+
+/// <summary>
+/// Returns if the code is running inside Azure Pipelines,
+/// by chacking if the environment variable <c>"TF_BUILD"</c> equals <c>"True"</c>.
+/// </summary>
+public struct _isazurepipelines;
+
+/// <summary>
+/// Returns if the code is running inside NCrunch,
+/// by chacking if the environment variable <c>"NCrunch"</c> equals <c>"1"</c>.
+/// </summary>
+public struct _isncrunch;

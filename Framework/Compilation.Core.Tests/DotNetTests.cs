@@ -1,3 +1,5 @@
+using static JJ.Framework.Common.Core.EnvironmentHelper;
+
 namespace JJ.Framework.Compilation.Core.Tests;
 
 /// <summary>
@@ -24,7 +26,15 @@ public class DotNetTests : IDisposable
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
     // Minimal project targeting net8.0 (broadly available SDK; no external packages needed).
-    private static string CsprojContent(string targetFramework) => $"""
+    private static string CsprojContent(string targetFramework)
+    {
+        // HACK: Azure Pipelines TestRunner hates specific frameworks here.
+        if (IsAzurePipelines)
+        {
+           targetFramework = "net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461";
+        }
+            
+        return $"""
         <Project Sdk="Microsoft.NET.Sdk">
           <PropertyGroup>
             <OutputType>Exe</OutputType>
@@ -36,6 +46,7 @@ public class DotNetTests : IDisposable
           </PropertyGroup>
         </Project>
         """;
+    }
 
     public DotNetTests()
     {
