@@ -11,8 +11,8 @@ public static partial class Reflect
     public static string GetAssemblyName(Assembly assembly) => ReflectUtility.GetAssemblyName(assembly);
     public static string TryGetAssemblyName(Assembly assembly) => ReflectUtility.TryGetAssemblyName(assembly);
 
-    public static string GetAssemblyName() => ReflectUtility.GetAssemblyName();
-    public static string TryGetAssemblyName() => ReflectUtility.TryGetAssemblyName();
+    public static string GetAssemblyName() => GetAssemblyName(Assembly.GetCallingAssembly());
+    public static string TryGetAssemblyName() => TryGetAssemblyName(Assembly.GetCallingAssembly());
 }
 
 public static partial class ReflectExtensions
@@ -31,9 +31,6 @@ internal static partial class ReflectUtility
     
     public static string GetAssemblyName(Type type) => GetAssemblyName(type.NotNull().Assembly);
     public static string TryGetAssemblyName(Type type) => TryGetAssemblyName(type.NotNull().Assembly);
-
-    public static string GetAssemblyName() => GetAssemblyName(Assembly.GetCallingAssembly());
-    public static string TryGetAssemblyName() => TryGetAssemblyName(Assembly.GetCallingAssembly());
 
     public static string GetAssemblyName(Assembly assembly)
     {
