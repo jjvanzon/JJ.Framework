@@ -12,6 +12,7 @@ global using JetBrains.Annotations;
 global using JJ.Framework.SharedProject.Core;
 global using JJ.Framework.Common.Core;
 global using JJ.Framework.Collections.Core;
+global using JJ.Framework.Exceptions.Core;
 global using JJ.Framework.Existence.Core;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core.docs;

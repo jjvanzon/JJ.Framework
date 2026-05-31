@@ -2,14 +2,45 @@
 
 public static partial class Reflect
 {
-    public static string GetAssemblyName<TType>()
-        => TryGetAssemblyName(typeof(TType).Assembly);
+    public static string GetAssemblyName<TType>() => ReflectUtility.GetAssemblyName<TType>();
+    public static string TryGetAssemblyName<TType>() => ReflectUtility.TryGetAssemblyName<TType>();
+
+    public static string GetAssemblyName(Type type) => ReflectUtility.GetAssemblyName(type);
+    public static string TryGetAssemblyName(Type type) => ReflectUtility.TryGetAssemblyName(type);
     
-    public static string TryGetAssemblyName(Assembly assembly)
+    public static string GetAssemblyName(Assembly assembly) => ReflectUtility.GetAssemblyName(assembly);
+    public static string TryGetAssemblyName(Assembly assembly) => ReflectUtility.TryGetAssemblyName(assembly);
+
+    public static string GetAssemblyName() => ReflectUtility.GetAssemblyName();
+    public static string TryGetAssemblyName() => ReflectUtility.TryGetAssemblyName();
+}
+
+public static partial class ReflectExtensions
+{
+    public static string GetAssemblyName(this Type type) => ReflectUtility.GetAssemblyName(type);
+    public static string TryGetAssemblyName(this Type type) => ReflectUtility.TryGetAssemblyName(type);
+    
+    public static string GetAssemblyName(this Assembly assembly) => ReflectUtility.GetAssemblyName(assembly);
+    public static string TryGetAssemblyName(this Assembly assembly) => ReflectUtility.TryGetAssemblyName(assembly);
+}
+
+internal static partial class ReflectUtility
+{
+    public static string GetAssemblyName<TType>() => GetAssemblyName(typeof(TType));
+    public static string TryGetAssemblyName<TType>() => TryGetAssemblyName(typeof(TType));
+    
+    public static string GetAssemblyName(Type type) => GetAssemblyName(type.NotNull().Assembly);
+    public static string TryGetAssemblyName(Type type) => TryGetAssemblyName(type.NotNull().Assembly);
+
+    public static string GetAssemblyName() => GetAssemblyName(Assembly.GetCallingAssembly());
+    public static string TryGetAssemblyName() => TryGetAssemblyName(Assembly.GetCallingAssembly());
+
+    public static string GetAssemblyName(Assembly assembly)
     {
-        ThrowIfNull(assembly);
-        return assembly.GetName().Name ?? "";
+        string assemblyName = TryGetAssemblyName(assembly);
+        if (!Has(assemblyName)) throw new Exception(nameof(assemblyName) + " not found.");
+        return assemblyName ?? throw new NullException(() => assembly);
     }
 
-    public static string GetAssemblyName(Assembly assembly) => TryGetAssemblyName(assembly) ?? throw new NullException(() => assembly);
+    public static string TryGetAssemblyName(Assembly assembly) => assembly.NotNull().GetName().Name ?? "";
 }
