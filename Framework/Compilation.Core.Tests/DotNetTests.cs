@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using static JJ.Framework.Common.Core.EnvironmentHelper;
 
 namespace JJ.Framework.Compilation.Core.Tests;
@@ -41,19 +42,20 @@ public class DotNetTests : IDisposable
 
     public DotNetTests()
     {
-        //const string TargetFramework = "net8.0";
         string targetFramework = RunningTargetFramework;
+
         // HACK: Temporarily prevent .NET 4x failure.
         if (targetFramework.StartsWith("net4"))
         {
             targetFramework = "net8.0";
         }
         
-        _tempDir          = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", Path.GetRandomFileName().Replace(".", "")); //Guid.NewGuid().ToString());
-        _csprojPath       = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
-        _outputDllDebug   = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
-        _outputDllRelease = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
-        _assetsFilePath   = Path.Combine(_tempDir, "obj", "project.assets.json");
+        var randomPathPart = Path.GetRandomFileName().Replace(".", "");
+        _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", randomPathPart);
+        _csprojPath        = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
+        _outputDllDebug    = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
+        _outputDllRelease  = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
+        _assetsFilePath    = Path.Combine(_tempDir, "obj", "project.assets.json");
         
         Directory.CreateDirectory(_tempDir);
         
@@ -64,14 +66,18 @@ public class DotNetTests : IDisposable
         // TODO: Logging isn't really tested.
         _opt = new DotNetOptions
         {
-            Dir        = _tempDir,
-            File       = CS_PROJ_FILE_NAME,
-            BuildConf  = "Release",
-            //TimeOutSec = 300,
-            Log        = Log
+            Dir         = _tempDir,
+            File        = CS_PROJ_FILE_NAME,
+            BuildConf   = "Release",
+            Log         = Log
         };
 
-        _optNoFile = _opt with { File = "", Log = NullLog };
+        _optNoFile = new DotNetOptions
+        {
+            Dir        = _tempDir,
+            BuildConf  = "Release",
+            Log        = Log
+        };
 
         // Restore once so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
         // TODO: This influences test results beyond regular usage?
@@ -89,7 +95,7 @@ public class DotNetTests : IDisposable
 
     // Helpers
 
-    private void Log(string msg) => Console.WriteLine(msg);
+    private void Log(string msg) => Trace.WriteLine(msg);
 
     private void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
 
