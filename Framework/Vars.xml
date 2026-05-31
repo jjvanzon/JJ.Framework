@@ -15,8 +15,6 @@
     <IsNet8>$(TargetFramework.Equals('net8.0'))</IsNet8>
     <IsNet9>$(TargetFramework.Equals('net9.0'))</IsNet9>
     <IsNet10>$(TargetFramework.Equals('net10.0'))</IsNet10>
-    <IsAzurePipelines>False</IsAzurePipelines>
-    <IsAzurePipelines Condition="'$(TF_BUILD)'=='true'">True</IsAzurePipelines>
     <IsOuterBuild>True</IsOuterBuild>
     <IsOuterBuild Condition="'$(TargetFramework)'!=''">False</IsOuterBuild>
     <IsInnerBuild>False</IsInnerBuild>
@@ -24,9 +22,20 @@
     <!-- Turn IsNCrunch String into a proper Boolean-->
     <IsNCrunch Condition="'$(IsNCrunch)'!='True'">False</IsNCrunch>
     <IsNCrunch Condition="'$(IsNCrunch)'=='True'">True</IsNCrunch>
+    <IsAzurePipelines>False</IsAzurePipelines>
+    <IsAzurePipelines Condition="'$(TF_BUILD)'=='true'">True</IsAzurePipelines>
     <AutoTrimTest>False</AutoTrimTest>
     <AutoTrimTest Condition="$(IsTrimTest) And $(IsInnerBuild) And 
                              !$(IsAzurePipelines) And
                              ($(IsNCrunch) Or '$(Configuration)'=='Release')">True</AutoTrimTest>
+    <SolutionDirjj>$(SolutionDir)</SolutionDirjj>
+    <SolutionDirjj Condition="'$(SolutionDirjj)'==''">$(MSBuildThisFileDirectory)\..\</SolutionDirjj>
   </PropertyGroup>
+
+  <!-- Diagnostics -->
+  <Target Name="JJ_Framework_Vars_BuildType" BeforeTargets="Build">
+    <Message Text="$(MSBuildProjectName) > IsCore = $(IsCore) | IsLegacy = $(IsLegacy) | IsNet48 = $(IsNet48) | IsTest = $(IsTest) | IsTrimTest = $(IsTrimTest)" Importance="High" />
+    <Message Text="$(MSBuildProjectName) > IsOuterBuild = $(IsOuterBuild) | IsInnerBuild = $(IsInnerBuild) | IsNCrunch = $(IsNCrunch)  | IsAzurePipelines = $(IsAzurePipelines) | AutoTrimTest = $(AutoTrimTest)" Importance="High" />
+    <Message Condition="'$(IsInnerBuild)'=='True'" Text="$(MSBuildProjectName) > IsNet5 = $(IsNet5) | IsNet6 = $(IsNet6) | IsNet7 = $(IsNet7) | IsNet8 = $(IsNet8) | IsNet9 = $(IsNet9) | IsNet10 = $(IsNet10)" Importance="High" />
+  </Target>
 </Project>

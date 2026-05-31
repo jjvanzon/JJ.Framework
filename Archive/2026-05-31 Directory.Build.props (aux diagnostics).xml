@@ -1,0 +1,4 @@
+  <!-- Diagnostics -->
+  <Target Name="JJ_Framework_Vars2" BeforeTargets="Build">
+    <Message Text="$(MSBuildProjectName) > Nullable = $(Nullable) | GeneratePackageOnBuild = $(GeneratePackageOnBuild) | GenerateDocFile = $(GenerateDocumentationFile)" Importance="High" />
+  </Target>
