@@ -28,17 +28,17 @@ public class DotNetTests : IDisposable
 
     private static string CsprojContent(string targetFrameworks) 
         => $"""
-        <Project Sdk="Microsoft.NET.Sdk">
-          <PropertyGroup>
-            <OutputType>Exe</OutputType>
+           <Project Sdk="Microsoft.NET.Sdk">
+             <PropertyGroup>
+               <OutputType>Exe</OutputType>
                <TargetFrameworks>{targetFrameworks}</TargetFrameworks>
-            <Nullable>enable</Nullable>
-            <ImplicitUsings>enable</ImplicitUsings>
-            <LangVersion>latest</LangVersion>
-            <NoWarn>$(NoWarn);NETSDK1138</NoWarn> <!--The target framework 'net7.0' is out of support-->
-          </PropertyGroup>
-        </Project>
-        """;
+               <Nullable>enable</Nullable>
+               <ImplicitUsings>enable</ImplicitUsings>
+               <LangVersion>latest</LangVersion>
+               <NoWarn>$(NoWarn);NETSDK1138</NoWarn> <!--The target framework 'net7.0' is out of support-->
+             </PropertyGroup>
+           </Project>
+           """;
 
     public DotNetTests()
     {
@@ -49,7 +49,7 @@ public class DotNetTests : IDisposable
         {
             targetFramework = "net8.0";
         }
-        
+
         var randomPathPart = Path.GetRandomFileName().Replace(".", "");
         _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", randomPathPart);
         _csprojPath        = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
@@ -58,7 +58,7 @@ public class DotNetTests : IDisposable
         _assetsFilePath    = Path.Combine(_tempDir, "obj", "project.assets.json");
         
         Directory.CreateDirectory(_tempDir);
-        
+
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
 
@@ -82,6 +82,12 @@ public class DotNetTests : IDisposable
         // Restore once so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
         // TODO: This influences test results beyond regular usage?
         Restore(_optNoFile);
+
+        // HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
+        {
+            string binLogFilePath = Path.GetFullPath($"JJ.CompilationCoreTests.{randomPathPart}.binlog");
+            _opt = _opt with { Args = $"-bl:\"{binLogFilePath}\"" };
+        }
     }
 
     void IDisposable.Dispose() => Cleanup();
