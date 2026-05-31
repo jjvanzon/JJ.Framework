@@ -25,20 +25,12 @@ public class DotNetTests : IDisposable
 
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
-    // Minimal project targeting net8.0 (broadly available SDK; no external packages needed).
-    private static string CsprojContent(string targetFramework)
-    {
-        // HACK: Azure Pipelines TestRunner hates specific frameworks here.
-        if (IsAzurePipelines)
-        {
-           targetFramework = "net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461";
-        }
-            
-        return $"""
+    private static string CsprojContent(string targetFrameworks) 
+        => $"""
         <Project Sdk="Microsoft.NET.Sdk">
           <PropertyGroup>
             <OutputType>Exe</OutputType>
-            <TargetFramework>{targetFramework}</TargetFramework>
+               <TargetFrameworks>{targetFrameworks}</TargetFrameworks>
             <Nullable>enable</Nullable>
             <ImplicitUsings>enable</ImplicitUsings>
             <LangVersion>latest</LangVersion>
@@ -46,14 +38,16 @@ public class DotNetTests : IDisposable
           </PropertyGroup>
         </Project>
         """;
-    }
 
     public DotNetTests()
     {
         //const string TargetFramework = "net8.0";
         string targetFramework = RunningTargetFramework;
         // HACK: Temporarily prevent .NET 4x failure.
-        if (targetFramework.StartsWith("net4")) targetFramework = "net8.0";
+        if (targetFramework.StartsWith("net4"))
+        {
+            targetFramework = "net8.0";
+        }
         
         _tempDir          = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", Path.GetRandomFileName().Replace(".", "")); //Guid.NewGuid().ToString());
         _csprojPath       = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
@@ -62,6 +56,13 @@ public class DotNetTests : IDisposable
         _assetsFilePath   = Path.Combine(_tempDir, "obj", "project.assets.json");
         
         Directory.CreateDirectory(_tempDir);
+        
+        // HACK: Azure Pipelines TestRunner hates specific frameworks here.
+        if (IsAzurePipelines)
+        {
+           targetFramework = "net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461";
+        }
+
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
 
