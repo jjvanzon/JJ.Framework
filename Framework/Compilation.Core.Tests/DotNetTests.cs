@@ -16,12 +16,12 @@ public class DotNetTests : IDisposable
     private const string PACK_ID  = "JJ.Framework.Common.Core";
     private const string PACK_VER = "4.6.6251";
     private const string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
+    private readonly string _randomPathPart;
     private readonly string _tempDir;
     private readonly string _csprojPath;
     private readonly string _outputDllDebug;
     private readonly string _outputDllRelease;
     private readonly string _assetsFilePath;
-    private readonly DotNetOptions _opt;       // with file + dir
     private readonly DotNetOptions _optNoFile; // with dir only (restore / package commands)
 
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
@@ -50,8 +50,8 @@ public class DotNetTests : IDisposable
             targetFramework = "net8.0";
         }
 
-        var randomPathPart = Path.GetRandomFileName().Replace(".", "");
-        _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", randomPathPart);
+        _randomPathPart    = Path.GetRandomFileName().Replace(".", "");
+        _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomPathPart);
         _csprojPath        = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
         _outputDllDebug    = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
         _outputDllRelease  = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
@@ -61,16 +61,6 @@ public class DotNetTests : IDisposable
 
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
-
-        // TODO: Different types of options aren't tested.
-        // TODO: Logging isn't really tested.
-        _opt = new DotNetOptions
-        {
-            Dir         = _tempDir,
-            File        = CS_PROJ_FILE_NAME,
-            BuildConf   = "Release",
-            Log         = Log
-        };
 
         _optNoFile = new DotNetOptions
         {
@@ -83,11 +73,6 @@ public class DotNetTests : IDisposable
         // TODO: This influences test results beyond regular usage?
         Restore(_optNoFile);
 
-        // HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
-        {
-            string binLogFilePath = Path.GetFullPath($"JJ.CompilationCoreTests.{randomPathPart}.binlog");
-            _opt = _opt with { Args = $"-bl:\"{binLogFilePath}\"" };
-        }
     }
 
     void IDisposable.Dispose() => Cleanup();
@@ -144,17 +129,17 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_Build_ByMethod()          => TestBuild_Debug  (() => Build());
-    [TestMethod] public void Test_Build_ByMethod_Opt()      => TestBuild_Release(() => Build(_opt));
+    [TestMethod] public void Test_Build_ByMethod_Opt()      => TestBuild_Release(() => Build(GetOpt()));
     [TestMethod] public void Test_Build_ByMethod_Args()     => TestBuild_Debug  (() => Build("--no-logo"));
-    [TestMethod] public void Test_Build_ByMethod_Args_Opt() => TestBuild_Release(() => Build("--no-logo", _opt));
+    [TestMethod] public void Test_Build_ByMethod_Args_Opt() => TestBuild_Release(() => Build("--no-logo", GetOpt()));
     [TestMethod] public void Test_Build_ByEnum()            => TestBuild_Debug  (() => DotNet.Exe(build));
-    [TestMethod] public void Test_Build_ByEnum_Opt()        => TestBuild_Release(() => DotNet.Exe(build, _opt));
+    [TestMethod] public void Test_Build_ByEnum_Opt()        => TestBuild_Release(() => DotNet.Exe(build, GetOpt()));
     [TestMethod] public void Test_Build_ByEnum_Args()       => TestBuild_Debug  (() => DotNet.Exe(build, "--no-logo"));
-    [TestMethod] public void Test_Build_ByEnum_Args_Opt()   => TestBuild_Release(() => DotNet.Exe(build, "--no-logo", _opt));
+    [TestMethod] public void Test_Build_ByEnum_Args_Opt()   => TestBuild_Release(() => DotNet.Exe(build, "--no-logo", GetOpt()));
     [TestMethod] public void Test_Build_ByName()            => TestBuild_Debug  (() => DotNet.Exe("build"));
-    [TestMethod] public void Test_Build_ByName_Opt()        => TestBuild_Release(() => DotNet.Exe("build", _opt));
+    [TestMethod] public void Test_Build_ByName_Opt()        => TestBuild_Release(() => DotNet.Exe("build", GetOpt()));
     [TestMethod] public void Test_Build_ByName_Args()       => TestBuild_Debug  (() => DotNet.Exe("build", "--no-logo"));
-    [TestMethod] public void Test_Build_ByName_Args_Opt()   => TestBuild_Release(() => DotNet.Exe("build", "--no-logo", _opt));
+    [TestMethod] public void Test_Build_ByName_Args_Opt()   => TestBuild_Release(() => DotNet.Exe("build", "--no-logo", GetOpt()));
 
     // Rebuild
 
@@ -174,13 +159,13 @@ public class DotNetTests : IDisposable
 
 
     [TestMethod] public void Test_Rebuild_ByMethod()          => TestRebuild_Debug  (() => Rebuild());
-    [TestMethod] public void Test_Rebuild_ByMethod_Opt()      => TestRebuild_Release(() => Rebuild(_opt));
+    [TestMethod] public void Test_Rebuild_ByMethod_Opt()      => TestRebuild_Release(() => Rebuild(GetOpt()));
     [TestMethod] public void Test_Rebuild_ByMethod_Args()     => TestRebuild_Debug  (() => Rebuild("--no-logo"));
-    [TestMethod] public void Test_Rebuild_ByMethod_Args_Opt() => TestRebuild_Release(() => Rebuild("--no-logo", _opt));
+    [TestMethod] public void Test_Rebuild_ByMethod_Args_Opt() => TestRebuild_Release(() => Rebuild("--no-logo", GetOpt()));
     [TestMethod] public void Test_Rebuild_ByEnum()            => TestRebuild_Debug  (() => DotNet.Exe(rebuild));
-    [TestMethod] public void Test_Rebuild_ByEnum_Opt()        => TestRebuild_Release(() => DotNet.Exe(rebuild, _opt));
+    [TestMethod] public void Test_Rebuild_ByEnum_Opt()        => TestRebuild_Release(() => DotNet.Exe(rebuild, GetOpt()));
     [TestMethod] public void Test_Rebuild_ByEnum_Args()       => TestRebuild_Debug  (() => DotNet.Exe(rebuild, "--no-logo"));
-    [TestMethod] public void Test_Rebuild_ByEnum_Args_Opt()   => TestRebuild_Release(() => DotNet.Exe(rebuild, "--no-logo", _opt));
+    [TestMethod] public void Test_Rebuild_ByEnum_Args_Opt()   => TestRebuild_Release(() => DotNet.Exe(rebuild, "--no-logo", GetOpt()));
 
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
@@ -199,17 +184,17 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_MSBuild_ByMethod()          => TestMSBuild_Debug  (() => MSBuild());
-    [TestMethod] public void Test_MSBuild_ByMethod_Opt()      => TestMSBuild_Release(() => MSBuild(_opt));
+    [TestMethod] public void Test_MSBuild_ByMethod_Opt()      => TestMSBuild_Release(() => MSBuild(GetOpt()));
     [TestMethod] public void Test_MSBuild_ByMethod_Args()     => TestMSBuild_Debug  (() => MSBuild("/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSBuild_ByMethod_Args_Opt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSBuild_ByMethod_Args_Opt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", GetOpt()));
     [TestMethod] public void Test_MSBuild_ByEnum()            => TestMSBuild_Debug  (() => DotNet.Exe(msbuild));
-    [TestMethod] public void Test_MSBuild_ByEnum_Opt()        => TestMSBuild_Release(() => DotNet.Exe(msbuild, _opt));
+    [TestMethod] public void Test_MSBuild_ByEnum_Opt()        => TestMSBuild_Release(() => DotNet.Exe(msbuild, GetOpt()));
     [TestMethod] public void Test_MSBuild_ByEnum_Args()       => TestMSBuild_Debug  (() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSBuild_ByEnum_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSBuild_ByEnum_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false", GetOpt()));
     [TestMethod] public void Test_MSBuild_ByName()            => TestMSBuild_Debug  (() => DotNet.Exe("msbuild"));
-    [TestMethod] public void Test_MSBuild_ByName_Opt()        => TestMSBuild_Release(() => DotNet.Exe("msbuild", _opt));
+    [TestMethod] public void Test_MSBuild_ByName_Opt()        => TestMSBuild_Release(() => DotNet.Exe("msbuild", GetOpt()));
     [TestMethod] public void Test_MSBuild_ByName_Args()       => TestMSBuild_Debug  (() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSBuild_ByName_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSBuild_ByName_Args_Opt()   => TestMSBuild_Release(() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false", GetOpt()));
 
     // MSRebuild
 
@@ -227,13 +212,13 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_MSRebuild_ByMethod()          => TestMSRebuild_Debug  (() => MSRebuild());
-    [TestMethod] public void Test_MSRebuild_ByMethod_Opt()      => TestMSRebuild_Release(() => MSRebuild(_opt));
+    [TestMethod] public void Test_MSRebuild_ByMethod_Opt()      => TestMSRebuild_Release(() => MSRebuild(GetOpt()));
     [TestMethod] public void Test_MSRebuild_ByMethod_Args()     => TestMSRebuild_Debug  (() => MSRebuild("/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSRebuild_ByMethod_Args_Opt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSRebuild_ByMethod_Args_Opt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", GetOpt()));
     [TestMethod] public void Test_MSRebuild_ByEnum()            => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild));
-    [TestMethod] public void Test_MSRebuild_ByEnum_Opt()        => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, _opt));
+    [TestMethod] public void Test_MSRebuild_ByEnum_Opt()        => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, GetOpt()));
     [TestMethod] public void Test_MSRebuild_ByEnum_Args()       => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSRebuild_ByEnum_Args_Opt()   => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false", _opt));
+    [TestMethod] public void Test_MSRebuild_ByEnum_Args_Opt()   => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false", GetOpt()));
     
     // TODO: How about testing what happens if a build actually fails?
 
@@ -287,6 +272,26 @@ public class DotNetTests : IDisposable
     // Enum and name won't work unless you specify id and ver as args.
 
     // Helpers
+
+    private DotNetOptions GetOpt([Caller] string name = "")
+    {
+        // TODO: Different types of options aren't tested.
+        // TODO: Logging isn't really tested.
+
+        string binLogFilePath = Path.GetFullPath($"JJ.CompilationCoreTests.{_randomPathPart}.binlog");
+
+        var opt = new DotNetOptions()
+        {
+            Dir = _tempDir,
+            File = CS_PROJ_FILE_NAME,
+            BuildConf = "Release",
+            Log = Log,
+            // HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
+            Args = $"-bl:\"{binLogFilePath}\"" 
+        };
+
+        return opt;
+    }
 
     private void Log(string msg) => Trace.WriteLine(msg);
 

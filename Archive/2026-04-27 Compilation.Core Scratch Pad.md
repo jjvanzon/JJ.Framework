@@ -258,4 +258,7 @@
         }
 
     //private static string NullyText(string? x) => IsNullOrWhiteSpace(x) ? "" : x;
+
+    //private readonly DotNetOptions _opt;       // with file + dir
+        //_opt = GetOpt();
 ```
