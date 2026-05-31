@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using static JJ.Framework.Common.Core.EnvironmentHelper;
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
@@ -273,12 +272,12 @@ public class DotNetTests : IDisposable
 
     // Helpers
 
-    private DotNetOptions GetOpt([Caller] string name = "")
+    private DotNetOptions GetOpt([Caller] string testName = "")
     {
         // TODO: Different types of options aren't tested.
         // TODO: Logging isn't really tested.
 
-        string binLogFilePath = Path.GetFullPath($"JJ.CompilationCoreTests.{_randomPathPart}.binlog");
+        string binLogFilePath = Path.GetFullPath($"JJ.CompilationCoreTests.{testName}.{_randomPathPart}.binlog");
 
         var opt = new DotNetOptions()
         {
