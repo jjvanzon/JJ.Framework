@@ -243,4 +243,9 @@
 
     // TODO: Use AssertDiagnosticTexts helper to conjointly test Stringify, DebuggerDisplay, Descriptor, ToString.
 
+
+```
+
+```xml
+    <!--<AutoTrimTest Condition="!$(IsNCrunch)">True</AutoTrimTest>-->
 ```
