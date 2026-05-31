@@ -3,8 +3,8 @@
     <Version>4.6.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <!--<AutoTrimTest>True</AutoTrimTest>-->
-    <!--<AutoTrimTest Condition="$(IsNCrunch)">False</AutoTrimTest>-->
+    <AutoTrimTest>True</AutoTrimTest>
+    <AutoTrimTest Condition="$(IsNCrunch)">False</AutoTrimTest>
   </PropertyGroup>
 
   <ItemGroup>
