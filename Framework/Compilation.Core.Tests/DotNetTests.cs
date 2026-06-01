@@ -10,7 +10,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 public class DotNetTests : IDisposable
 {
     // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
-    static DotNetTests() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
+    //static DotNetTests() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
 
     private const string CS_PROJ_FILE_NAME = "Temp.csproj";
     private const string PACK_ID  = "JJ.Framework.Common.Core";
@@ -60,8 +60,6 @@ public class DotNetTests : IDisposable
 
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
-
-        InitRestore();
     }
 
     private void InitRestore()
@@ -114,6 +112,8 @@ public class DotNetTests : IDisposable
     public void TestBuild_Release(Func<DotNetResult> call) => TestBuild(call, _outputDllRelease);
     public void TestBuild(Func<DotNetResult> call, string filePath)
     {
+        InitRestore();
+
         DotNetResult output = call();
         AssertResultOk(output);
 
@@ -143,6 +143,8 @@ public class DotNetTests : IDisposable
     public void TestRebuild_Release(Func<DotNetResult> call) => TestRebuild(call, _outputDllRelease);
     public void TestRebuild(Func<DotNetResult> call, string dllFileName)
     {
+        InitRestore();
+
         DotNetResult output = call();
         AssertResultOk(output);
 
@@ -170,6 +172,8 @@ public class DotNetTests : IDisposable
     private void TestMSBuild_Release(Func<DotNetResult> call) => TestMSBuild(call, _outputDllRelease);
     private void TestMSBuild(Func<DotNetResult> call, string dllFilePath)
     {
+        InitRestore();
+
         DotNetResult output = call();
         AssertResultOk(output);
 
@@ -198,6 +202,8 @@ public class DotNetTests : IDisposable
     private void TestMSRebuild_Release(Func<DotNetResult> call) => TestMSRebuild(call, _outputDllRelease);
     private void TestMSRebuild(Func<DotNetResult> call, string dllFilePath)
     {
+        InitRestore();
+
         DotNetResult output = call();
         AssertResultOk(output);
 
