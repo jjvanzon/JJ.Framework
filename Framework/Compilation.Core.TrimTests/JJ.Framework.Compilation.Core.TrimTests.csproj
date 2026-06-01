@@ -3,9 +3,10 @@
     <Version>4.6.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <AutoTrimTest>True</AutoTrimTest>
+    <!--<AutoTrimTest>True</AutoTrimTest>-->
+    <AutoTrimTest>False</AutoTrimTest>
     <AutoTrimTest Condition="$(IsNCrunch)">False</AutoTrimTest>
-    <!--<AutoTrimTest>False</AutoTrimTest>-->
+    <AutoTrimTest Condition="$(IsAzurePipelines)">True</AutoTrimTest>
   </PropertyGroup>
 
   <ItemGroup>

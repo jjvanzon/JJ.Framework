@@ -9,6 +9,9 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class DotNetTests : IDisposable
 {
+    // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
+    static DotNetTests() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
+
     private const string CS_PROJ_FILE_NAME = "Temp.csproj";
     private const string PACK_ID  = "JJ.Framework.Common.Core";
     private const string PACK_VER = "4.6.6251";
