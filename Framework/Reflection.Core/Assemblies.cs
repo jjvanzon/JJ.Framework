@@ -15,30 +15,35 @@ public static partial class Reflect
     [AotWarn(CallingAssembly)]
     public static string GetAssemblyName()
     {
+        Assembly? assembly;
         try
         {
-            return GetAssemblyName(Assembly.GetCallingAssembly());
+            assembly = Assembly.GetCallingAssembly();
         }
         catch
         {
            // Fallback for self-contained apps
-           return GetAssemblyName(Assembly.GetExecutingAssembly());
+           assembly = Assembly.GetEntryAssembly();
         }
+
+        return ReflectUtility.GetAssemblyName(assembly.NotNull());
     }
 
     [MethodImpl(NoInlining)]
     [AotWarn(CallingAssembly)]
     public static string TryGetAssemblyName()
     {
+        Assembly? assembly;
         try
         {
-            return TryGetAssemblyName(Assembly.GetCallingAssembly());
+            assembly = Assembly.GetCallingAssembly();
         }
         catch
         {
            // Fallback for self-contained apps
-           return TryGetAssemblyName(Assembly.GetExecutingAssembly());
+           assembly = Assembly.GetEntryAssembly();
         }
+        return assembly == null ? "" : ReflectUtility.TryGetAssemblyName(assembly);
     }
 }
 
