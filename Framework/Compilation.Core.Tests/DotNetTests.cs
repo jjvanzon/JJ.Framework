@@ -293,7 +293,7 @@ public class DotNetTests : IDisposable
         return opt;
     }
 
-    private void Log(string msg) => Trace.WriteLine(msg);
+    private void Log(string msg) => Console.WriteLine(msg);
 
     private void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
 
