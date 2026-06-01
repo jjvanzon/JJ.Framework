@@ -11,6 +11,15 @@ internal static class DotNetLogger
         if (Has(message)) opt.Log(message);
     }
 
+    public static void LogOutputIfNeeded(DotNetResult result)
+    {
+        if (!result.Opt.Verbosity.In(Diagnostic, Detailed)) return;
+        if (!Has(result.OutputText)) return;
+
+        // HACK: This blows up my CI if I enable Verbose or Detailed logging (but I need that for binlogs).
+        //result.Opt.Log(result.OutputText);
+    }
+
     private static string GetMessage(DotNetVerbosity verbosity, DotNetArgs args) => verbosity switch
     {
         Quiet   => "",

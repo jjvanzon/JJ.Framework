@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Compilation.Core;
+﻿// ReSharper disable HeuristicUnreachableCode
+namespace JJ.Framework.Compilation.Core;
 
 internal static class DotNetCommandFormatter
 {
@@ -15,13 +16,15 @@ internal static class DotNetCommandFormatter
         string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,       args.CommandEnum);
         string formattedParallelRestore = TryFormatParallelRestore(opt.ParallelRestore, args.CommandEnum);
         string formattedNodeReuse       = TryFormatNodeReuse      (opt.NodeReuse,       args.CommandEnum);
+        string formattedBinLog          = TryFormatBinLog         (opt.BinLog,          args.CommandEnum);
         string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore,     args.CommandEnum);
         string[] elements = 
         [
             args.Command, 
             formattedPackageID, formattedPackageVer, // Bit more defensive for package commands, that can be position-sensitive.
             formattedFile, formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
-            formattedParallelRestore, formattedNodeReuse,
+            formattedParallelRestore, 
+            formattedNodeReuse, formattedBinLog,
             opt.Args, args.Args, formattedAutoRestore // Auto-restore at the end makes `add package` work.
         ]; 
         string ret = Join(" ", elements.Where(FilledIn));
@@ -39,6 +42,22 @@ internal static class DotNetCommandFormatter
         }
 
         return "";
+    }
+
+    //private static string TryFormatBinLogEnabled(DotNetOptions opt, DotNetCommandEnum commandEnum) => TryFormatBinLogEnabled(opt.BinLogEnabled, opt.File, commandEnum);
+    private static string TryFormatBinLog(string binLogFile, DotNetCommandEnum commandEnum)
+    {
+        if (binLogFile.IsNully()) 
+        {
+            return "";
+        }
+
+        if (commandEnum is not (build or rebuild or msbuild or msrebuild)) 
+        {
+            return "";
+        }
+           
+        return $"-bl:\"{binLogFile}\"" ;
     }
 
     private static string TryFormatFile(string file) => Has(file) ? '"' + file + '"' : "";

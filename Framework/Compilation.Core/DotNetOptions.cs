@@ -33,6 +33,9 @@ public readonly record struct DotNetOptions
     /// You can re-enabled it by setting ParallelRestore to true.
     /// </summary>
     public bool            ParallelRestore { get; init; }
+
+    // HACK: NodeReuse an BinLog not supported as much as other options (in tests) like AutoRestore is.
+
     /// <summary>
     /// Limits the amount of dotnet.exe processes spun up.
     /// If many compilations are run in parallel,
@@ -42,6 +45,7 @@ public readonly record struct DotNetOptions
     /// Set to true explicitly to restore original behavior.
     /// </summary>
     public bool            NodeReuse       { get; init; }
+    public string          BinLog          { get; init; } = "";
     public int             TimeOutSec      { get; init; } = DEFAULT_TIME_OUT_SEC;
     public Action<string>  Log             { get; init; } = NullLog;
 }

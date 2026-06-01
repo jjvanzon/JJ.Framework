@@ -50,13 +50,7 @@ internal static class DotNetExecutor
 
         result.Assert();
 
-        if (opt.Verbosity.In(Diagnostic, Detailed))
-        {
-            if (Has(result.OutputText)) 
-            {
-                opt.Log(result.OutputText);
-            }
-        }
+        LogOutputIfNeeded(result);
 
         return result;
     }

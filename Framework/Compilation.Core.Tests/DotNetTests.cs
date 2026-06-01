@@ -19,7 +19,6 @@ public class DotNetTests : IDisposable
     private readonly string _outputDllDebug;
     private readonly string _outputDllRelease;
     private readonly string _assetsFilePath;
-    private readonly DotNetOptions _optNoFile; // with dir only (restore / package commands)
 
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
@@ -47,7 +46,7 @@ public class DotNetTests : IDisposable
             targetFramework = "net8.0";
         }
 
-        _randomLetters    = Path.GetRandomFileName().Replace(".", "");
+        _randomLetters     = Path.GetRandomFileName().Replace(".", "");
         _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
         _csprojPath        = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
         _outputDllDebug    = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
@@ -59,17 +58,14 @@ public class DotNetTests : IDisposable
         WriteAllText(_csprojPath, CsprojContent(targetFramework));
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
 
-        _optNoFile = new DotNetOptions
-        {
-            Dir        = _tempDir,
-            BuildConf  = "Release",
-            Log        = Log
-        };
+        InitRestore();
+    }
 
+    private void InitRestore()
+    {
         // Restore once so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
         // TODO: This influences test results beyond regular usage?
-        Restore(_optNoFile);
-
+        Restore(GetOptNoFile());
     }
 
     void IDisposable.Dispose() => Cleanup();
@@ -97,17 +93,17 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_Restore_ByMethod()                => TestRestore_ChDir(() => Restore());
-    [TestMethod] public void Test_Restore_ByMethod_WithOpt()        => TestRestore      (() => Restore(_optNoFile));
+    [TestMethod] public void Test_Restore_ByMethod_WithOpt()        => TestRestore      (() => Restore(GetOptNoFile()));
     [TestMethod] public void Test_Restore_ByMethod_WithArgs()       => TestRestore_ChDir(() => Restore("--no-cache"));
-    [TestMethod] public void Test_Restore_ByMethod_WithArgsAndOpt() => TestRestore      (() => Restore("--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByMethod_WithArgsAndOpt() => TestRestore      (() => Restore("--no-cache", GetOptNoFile()));
     [TestMethod] public void Test_Restore_ByEnum()                  => TestRestore_ChDir(() => DotNet.Exe(restore));
-    [TestMethod] public void Test_Restore_ByEnum_WithOpt()          => TestRestore      (() => DotNet.Exe(restore, _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum_WithOpt()          => TestRestore      (() => DotNet.Exe(restore, GetOptNoFile()));
     [TestMethod] public void Test_Restore_ByEnum_WithArgs()         => TestRestore_ChDir(() => DotNet.Exe(restore, "--no-cache"));
-    [TestMethod] public void Test_Restore_ByEnum_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe(restore, "--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByEnum_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe(restore, "--no-cache", GetOptNoFile()));
     [TestMethod] public void Test_Restore_ByName()                  => TestRestore_ChDir(() => DotNet.Exe("restore"));
-    [TestMethod] public void Test_Restore_ByName_WithOpt()          => TestRestore      (() => DotNet.Exe("restore", _optNoFile));
+    [TestMethod] public void Test_Restore_ByName_WithOpt()          => TestRestore      (() => DotNet.Exe("restore", GetOptNoFile()));
     [TestMethod] public void Test_Restore_ByName_WithArgs()         => TestRestore_ChDir(() => DotNet.Exe("restore", "--no-cache"));
-    [TestMethod] public void Test_Restore_ByName_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe("restore", "--no-cache", _optNoFile));
+    [TestMethod] public void Test_Restore_ByName_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe("restore", "--no-cache", GetOptNoFile()));
 
     // Build
 
@@ -239,8 +235,8 @@ public class DotNetTests : IDisposable
 
     [TestMethod] public void Test_InstallPackage_ByMethod()                => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER));
     [TestMethod] public void Test_InstallPackage_ByMethod_WithArgs()       => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER, "--no-restore"));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, _optNoFile));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, "--no-restore", _optNoFile));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, GetOptNoFile()));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, "--no-restore", GetOptNoFile()));
     // ByEnum and ByName variants won't work unless you specify id and ver as args.
 
     // UninstallPackage
@@ -248,7 +244,7 @@ public class DotNetTests : IDisposable
     private void TestUninstallPack_ChDir(Func<DotNetResult> call) => InTempDir(() => TestUninstallPack(call));
     private void TestUninstallPack(Func<DotNetResult> call)
     {
-        InstallPackage(PACK_ID, PACK_VER, _optNoFile);
+        InstallPackage(PACK_ID, PACK_VER, GetOptNoFile());
 
         DotNetResult output = call();
         AssertResultOk(output);
@@ -264,8 +260,8 @@ public class DotNetTests : IDisposable
 
     [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID));
     [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID, "--interactive"));
-    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PACK_ID, _optNoFile));
-    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, "--interactive", _optNoFile));
+    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PACK_ID, GetOptNoFile()));
+    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, "--interactive", GetOptNoFile()));
     // Enum and name won't work unless you specify id and ver as args.
 
     // Helpers
@@ -275,29 +271,39 @@ public class DotNetTests : IDisposable
         // TODO: Different types of options aren't tested.
         // TODO: Logging isn't really tested.
 
-        var opt = new DotNetOptions()
+        var opt = new DotNetOptions
         {
-            Dir = _tempDir,
-            File = CS_PROJ_FILE_NAME,
+            Dir       = _tempDir,
+            File      = CS_PROJ_FILE_NAME,
             BuildConf = "Release",
-            Log = Log,
-            Verbosity = Normal,
-            Args = GetBinLogArg(testName) 
+            Log       = Log,
+            Verbosity = Diagnostic,
+            BinLog    = GetBinLog(testName)
         };
 
         return opt;
     }
 
-    /// <summary>
-    /// HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
-    /// </summary>
-    private string GetBinLogArg(string testName)
+    private DotNetOptions GetOptNoFile([Caller] string testName = "")
+    {
+        return new DotNetOptions
+        {
+            Dir       = _tempDir,
+            BuildConf = "Release",
+            Log       = Log,
+            Verbosity = Diagnostic,
+            BinLog    = GetBinLog(testName)
+        };
+    }
+
+
+    private string GetBinLog(string testName)
     {
         Assembly asm = typeof(DotNetTests).Assembly;
         string folderPath = AppContext.BaseDirectory; 
         string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}.binlog";
         string filePath = Path.Combine(folderPath, fileName);
-        return $"-bl:\"{filePath}\"" ;
+        return filePath;
     }
 
     private void Log(string msg) => Console.WriteLine(msg);
