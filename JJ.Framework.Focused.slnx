@@ -1,11 +1,7 @@
 <Solution>
-  <Project Path="Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj" />
-  <Project Path="Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj" />
-  <Project Path="Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj" />
   <Project Path="Framework\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
   <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
-  <Project Path="Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj" />
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
     <File Path="Directory.Build.targets" />
@@ -16,11 +12,10 @@
     <File Path="NuGet.config" />
   </Folder>
   <Project Path="Framework/Compilation.Core.Tests/JJ.Framework.Compilation.Core.Tests.csproj" />
-  <Project Path="Framework/Compilation.Core.TrimTests/JJ.Framework.Compilation.Core.TrimTests.csproj" />
+  <Project Path="Framework/Compilation.Core.TrimTests/JJ.Framework.Compilation.Core.TrimTests.csproj">
+    <Build Solution="Debug|*" Project="false" />
+  </Project>
   <Project Path="Framework/Compilation.Core/JJ.Framework.Compilation.Core.csproj" />
-  <Project Path="Framework/Configuration.Core.Package.Tests.Dummy/JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj" />
-  <Project Path="Framework/Configuration.Core.Package.Tests/JJ.Framework.Configuration.Core.Package.Tests.csproj" />
-  <Project Path="Framework/Configuration.Core.Tests.Dummy/JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
   <Project Path="Framework/PlatformCompatibility.Core.SharedProject/JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj" Id="e275ca1f-e6b3-4f2e-bff3-c1c24982f009" />
   <Project Path="Framework/PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
   <Project Path="Framework/SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" Id="1beb8e62-fcb0-4b88-b142-23e720d5bacc" />
