@@ -9,6 +9,7 @@ TestResults
 *.cache
 .idea
 *.Backup.tmp
+*.binlog
 
 # NCrunch
 nCrunchTemp*.*
