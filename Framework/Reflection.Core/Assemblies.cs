@@ -11,8 +11,35 @@ public static partial class Reflect
     public static string GetAssemblyName(Assembly assembly) => ReflectUtility.GetAssemblyName(assembly);
     public static string TryGetAssemblyName(Assembly assembly) => ReflectUtility.TryGetAssemblyName(assembly);
 
-    public static string GetAssemblyName() => GetAssemblyName(Assembly.GetCallingAssembly());
-    public static string TryGetAssemblyName() => TryGetAssemblyName(Assembly.GetCallingAssembly());
+    [MethodImpl(NoInlining)]
+    [AotWarn(CallingAssembly)]
+    public static string GetAssemblyName()
+    {
+        try
+        {
+            return GetAssemblyName(Assembly.GetCallingAssembly());
+        }
+        catch
+        {
+           // Fallback for self-contained apps
+           return GetAssemblyName(Assembly.GetExecutingAssembly());
+        }
+    }
+
+    [MethodImpl(NoInlining)]
+    [AotWarn(CallingAssembly)]
+    public static string TryGetAssemblyName()
+    {
+        try
+        {
+            return TryGetAssemblyName(Assembly.GetCallingAssembly());
+        }
+        catch
+        {
+           // Fallback for self-contained apps
+           return TryGetAssemblyName(Assembly.GetExecutingAssembly());
+        }
+    }
 }
 
 public static partial class ReflectExtensions

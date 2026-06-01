@@ -270,6 +270,7 @@ public class DotNetTests : IDisposable
 
     // Helpers
 
+    [Suppress("Trimmer", "IL3050", Justification = CallingAssembly)]
     private DotNetOptions GetOpt([Caller] string testName = "")
     {
         // TODO: Different types of options aren't tested.

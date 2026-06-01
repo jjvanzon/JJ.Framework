@@ -72,4 +72,9 @@ internal static class NoTrimReasons
         "JJ0014 - GENERIC LIST: Reflection could attempt to construct a generic list, " +
         "which should exist at compile time. Make sure the List<T> is loaded possibly by referencing it with explicit item type included by referencing it in code somewhere e.g. List<MyItem>? list = null; ";
     public const string GenericList = GenericListAnd + DoWhatInstead;
+
+    public const string CallingAssemblyAnd = 
+        "JJ0015 - CALLING ASSEMBLY - GetCallingAssembly is used but poorly compatible with AOT/Trimming. " +
+        "Might fall back to GetExecutingAssembly: the only assembly in a self contained app. ";
+    public const string CallingAssembly = CallingAssemblyAnd + DoWhatInstead;
 }
