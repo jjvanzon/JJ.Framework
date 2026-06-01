@@ -65,17 +65,20 @@ public static class TestRunner
 
     private static bool RunTests([Dyn(New| PublicMethods)] Type testClass, ICollection<MethodInfo> methods)
     {
-        bool success = true;
         ThrowIfNull(methods);
 
-        var opt = GetParallelOptions(testClass);
+        bool success = true;
 
+        var opt = GetParallelOptions(testClass);
+       
         var loop = Parallel.ForEach(methods.ToArray(), opt, method =>
         {
-            success &= RunTest(testClass, method);
+            // RACE CONDITION WARNING: Avoid &= which flips success = false to true with unfortunate timing.
+            if (!RunTest(testClass, method)) success = false; 
+
         });
 
-        success &= loop.IsCompleted;
+        if (!loop.IsCompleted) success = false; 
 
         return success;
     }
