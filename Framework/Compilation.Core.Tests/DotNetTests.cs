@@ -238,7 +238,7 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_InstallPackage_ByMethod()                => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgs()       => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER, ""));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgs()       => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER, "--no-restore"));
     [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, _optNoFile));
     [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, "--no-restore", _optNoFile));
     // ByEnum and ByName variants won't work unless you specify id and ver as args.
@@ -263,12 +263,14 @@ public class DotNetTests : IDisposable
     }
 
     [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID));
-    [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID, ""));
+    [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID, GetProjectArg()));
     [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PACK_ID, _optNoFile));
-    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, "", _optNoFile));
+    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, GetProjectArg(), _optNoFile));
     // Enum and name won't work unless you specify id and ver as args.
 
     // Helpers
+
+    private string GetProjectArg() => "--project:" + '"' + CS_PROJ_FILE_NAME + '"';
 
     private DotNetOptions GetOpt([Caller] string testName = "")
     {
