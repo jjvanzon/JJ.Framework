@@ -285,7 +285,7 @@ public class DotNetTests : IDisposable
             File = CS_PROJ_FILE_NAME,
             BuildConf = "Release",
             Log = Log,
-            Verbosity = Detailed,
+            Verbosity = Normal,
             // HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
             Args = $"-bl:\"{binLogFilePath}\"" 
         };
