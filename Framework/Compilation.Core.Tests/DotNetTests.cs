@@ -291,12 +291,10 @@ public class DotNetTests : IDisposable
     /// <summary>
     /// HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
     /// </summary>
-    [Suppress("Trimmer", "IL3050", Justification = CallingAssembly)]
     private string GetBinLogArg(string testName)
     {
         Assembly asm = typeof(DotNetTests).Assembly;
-        string folderPath = AppContext.BaseDirectory; //Path.GetDirectoryName(asm.Location).NotNull();
-        // TODO: Use asm.GetAssemblyName().
+        string folderPath = AppContext.BaseDirectory; 
         string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}.binlog";
         string filePath = Path.Combine(folderPath, fileName);
         return $"-bl:\"{filePath}\"" ;

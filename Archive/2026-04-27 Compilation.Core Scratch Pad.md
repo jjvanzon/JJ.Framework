@@ -264,4 +264,8 @@
 
 
     private string GetProjectArg() => "--project:" + '"' + CS_PROJ_FILE_NAME + '"';
+
+    //[Suppress("Trimmer", "IL3050", Justification = CallingAssembly)]
+    //Path.GetDirectoryName(asm.Location).NotNull();
+        // TODO: Use asm.GetAssemblyName().
 ```
