@@ -261,4 +261,7 @@
 
     //private readonly DotNetOptions _opt;       // with file + dir
         //_opt = GetOpt();
+
+
+    private string GetProjectArg() => "--project:" + '"' + CS_PROJ_FILE_NAME + '"';
 ```

@@ -22,8 +22,8 @@ internal static class DotNetEnricher
         build or rebuild => "build",
         msbuild or msrebuild => "msbuild",
         restore => "restore",
-        installpackage => "package add",
-        uninstallpackage => "package remove",
+        installpackage => "add package",
+        uninstallpackage => "remove package",
         _ => ""
     };
 
@@ -32,8 +32,8 @@ internal static class DotNetEnricher
         if (command.Is("build"))   return isRebuild ? rebuild : build;
         if (command.Is("msbuild")) return isRebuild ? msrebuild : msbuild;
         if (command.Is("restore")) return restore;
-        if (command.Is("package add"))     return installpackage; 
-        if (command.Is("package remove"))  return uninstallpackage;
+        if (command.Is("add package"))     return installpackage; 
+        if (command.Is("remove package"))  return uninstallpackage;
         return default;
     }
 
