@@ -5,6 +5,7 @@
     <OutputType>Exe</OutputType>
     <AutoTrimTest>True</AutoTrimTest>
     <AutoTrimTest Condition="$(IsNCrunch)">False</AutoTrimTest>
+    <!--<AutoTrimTest>False</AutoTrimTest>-->
   </PropertyGroup>
 
   <ItemGroup>
