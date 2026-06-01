@@ -7,21 +7,21 @@ internal static class DotNetCommandFormatter
 
     public static string FormatArgs(DotNetArgs args, DotNetOptions opt)
     {
+        string formattedPackageID       = TryFormatPackageID      (args.ID);
+        string formattedPackageVer      = TryFormatPackageVer     (args.Ver);
         string formattedFile            = TryFormatFile           (opt.File);
         string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,   args.CommandEnum);
         string formattedRebuildArg      = TryFormatRebuildArg     (args.IsRebuild,  args.CommandEnum);
         string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,   args.CommandEnum);
-        string formattedPackageID       = TryFormatPackageID      (args.ID);
-        string formattedPackageVer      = TryFormatPackageVer     (args.Ver);
         string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore, args.CommandEnum);
         string formattedParallelRestore = TryFormatParallelRestore(opt.ParallelRestore, args.CommandEnum);
         string[] elements = 
         [
-            args.Command, formattedFile, 
-            formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
-            formattedPackageID, formattedPackageVer,
+            args.Command, 
+            formattedPackageID, formattedPackageVer, // Bit more defensive for package commands, that can be position-sensitive.
+            formattedFile, formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
             formattedParallelRestore,
-            opt.Args, args.Args, formattedAutoRestore // HACK: auto-restore put at the end makes `add package` work.
+            opt.Args, args.Args, formattedAutoRestore // Auto-restore at the end makes `add package` work.
         ]; 
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
@@ -70,7 +70,7 @@ internal static class DotNetCommandFormatter
     private static string TryFormatPackageID(string id)
     {
         if (id.IsNully()) return "";
-        return $"package {id}";
+        return $"{id}";
     }
 
     private static string TryFormatPackageVer(string ver)
