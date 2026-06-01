@@ -270,14 +270,10 @@ public class DotNetTests : IDisposable
 
     // Helpers
 
-    [Suppress("Trimmer", "IL3050", Justification = CallingAssembly)]
     private DotNetOptions GetOpt([Caller] string testName = "")
     {
         // TODO: Different types of options aren't tested.
         // TODO: Logging isn't really tested.
-
-        //JJ.Framework.Reflection.Legacy.
-        string binLogFilePath = Path.GetFullPath($"{GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}.binlog");
 
         var opt = new DotNetOptions()
         {
@@ -286,11 +282,24 @@ public class DotNetTests : IDisposable
             BuildConf = "Release",
             Log = Log,
             Verbosity = Normal,
-            // HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
-            Args = $"-bl:\"{binLogFilePath}\"" 
+            Args = GetBinLogArg(testName) 
         };
 
         return opt;
+    }
+
+    /// <summary>
+    /// HACK: Add binlogs (temporarily) for dotnet.exe performance degredation test.
+    /// </summary>
+    [Suppress("Trimmer", "IL3050", Justification = CallingAssembly)]
+    private string GetBinLogArg(string testName)
+    {
+        Assembly asm = typeof(DotNetTests).Assembly;
+        string folderPath = AppContext.BaseDirectory; //Path.GetDirectoryName(asm.Location).NotNull();
+        // TODO: Use asm.GetAssemblyName().
+        string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}.binlog";
+        string filePath = Path.Combine(folderPath, fileName);
+        return $"-bl:\"{filePath}\"" ;
     }
 
     private void Log(string msg) => Console.WriteLine(msg);

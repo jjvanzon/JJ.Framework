@@ -1,7 +1,9 @@
+global using System.Reflection;
 global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Core;
+global using JJ.Framework.Exceptions.Core;
 global using JJ.Framework.Compilation.Core.Tests.Accessors;
 global using static System.StringComparison;
 global using static System.String;
