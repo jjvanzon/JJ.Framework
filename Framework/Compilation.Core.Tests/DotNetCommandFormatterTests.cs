@@ -16,7 +16,7 @@ public class DotNetCommandFormatterTests
         var args = new DotNetArgsAccessor(build) { Command = "build", Args = "--nologo" }.Obj;
         var opt  = new DotNetOptions { File = "MySolution.sln", BuildConf = "Release", Verbosity = Diagnostic, AutoRestore = false, Args = "-p:Foo=Bar" };
 
-        AreEqual("build \"MySolution.sln\" -c Release --verbosity Diagnostic -p:Foo=Bar --nologo --no-restore", FormatArgs(args, opt));
+        AreEqual("build \"MySolution.sln\" -c Release --verbosity Diagnostic --nodereuse:false -p:Foo=Bar --nologo --no-restore", FormatArgs(args, opt));
     }
 
     [TestMethod]
@@ -24,7 +24,7 @@ public class DotNetCommandFormatterTests
     {
         var args = new DotNetArgsAccessor(build) { Command = "build" }.Obj;
 
-        AreEqual("build --no-restore", FormatArgs(args, DefaultOptions));
+        AreEqual("build --nodereuse:false --no-restore", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod]
@@ -32,7 +32,7 @@ public class DotNetCommandFormatterTests
     {
         var args = new DotNetArgsAccessor(rebuild) { Command = "build", IsRebuild = true }.Obj;
 
-        AreEqual("build --no-incremental --no-restore", FormatArgs(args, DefaultOptions));
+        AreEqual("build --no-incremental --nodereuse:false --no-restore", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod]
@@ -41,7 +41,7 @@ public class DotNetCommandFormatterTests
         var args = new DotNetArgsAccessor(build) { Command = "build" }.Obj;
         var opt  = new DotNetOptions { AutoRestore = true };
 
-        AreEqual("build", FormatArgs(args, opt));
+        AreEqual("build --nodereuse:false", FormatArgs(args, opt));
     }
 
     // msbuild style
@@ -52,7 +52,7 @@ public class DotNetCommandFormatterTests
         var args = new DotNetArgsAccessor(msrebuild) { Command = "msbuild", IsRebuild = true }.Obj;
         var opt  = new DotNetOptions { BuildConf = "Debug", Verbosity = Minimal, AutoRestore = true };
 
-        AreEqual("msbuild /p:Configuration=Debug /t:Rebuild -verbosity:Minimal -restore", FormatArgs(args, opt));
+        AreEqual("msbuild /p:Configuration=Debug /t:Rebuild -verbosity:Minimal --nodereuse:false -restore", FormatArgs(args, opt));
     }
 
     [TestMethod]
@@ -61,7 +61,7 @@ public class DotNetCommandFormatterTests
         var args = new DotNetArgsAccessor(msbuild) { Command = "msbuild" }.Obj;
         var opt  = new DotNetOptions { AutoRestore = false };
 
-        AreEqual("msbuild", FormatArgs(args, opt));
+        AreEqual("msbuild --nodereuse:false", FormatArgs(args, opt));
     }
 
     // restore

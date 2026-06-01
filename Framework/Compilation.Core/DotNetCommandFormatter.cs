@@ -10,21 +10,35 @@ internal static class DotNetCommandFormatter
         string formattedPackageID       = TryFormatPackageID      (args.ID);
         string formattedPackageVer      = TryFormatPackageVer     (args.Ver);
         string formattedFile            = TryFormatFile           (opt.File);
-        string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,   args.CommandEnum);
-        string formattedRebuildArg      = TryFormatRebuildArg     (args.IsRebuild,  args.CommandEnum);
-        string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,   args.CommandEnum);
-        string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore, args.CommandEnum);
+        string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,       args.CommandEnum);
+        string formattedRebuildArg      = TryFormatRebuildArg     (args.IsRebuild,      args.CommandEnum);
+        string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,       args.CommandEnum);
         string formattedParallelRestore = TryFormatParallelRestore(opt.ParallelRestore, args.CommandEnum);
+        string formattedNodeReuse       = TryFormatNodeReuse      (opt.NodeReuse,       args.CommandEnum);
+        string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore,     args.CommandEnum);
         string[] elements = 
         [
             args.Command, 
             formattedPackageID, formattedPackageVer, // Bit more defensive for package commands, that can be position-sensitive.
             formattedFile, formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
-            formattedParallelRestore,
+            formattedParallelRestore, formattedNodeReuse,
             opt.Args, args.Args, formattedAutoRestore // Auto-restore at the end makes `add package` work.
         ]; 
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
+    }
+
+    private static string TryFormatNodeReuse(bool nodeReuse, DotNetCommandEnum commandEnum)
+    {
+        // Assumed true by default.
+        if (nodeReuse) return "";
+
+        if (commandEnum is build or rebuild or msbuild or msrebuild)
+        {
+            return "--nodereuse:false";
+        }
+
+        return "";
     }
 
     private static string TryFormatFile(string file) => Has(file) ? '"' + file + '"' : "";

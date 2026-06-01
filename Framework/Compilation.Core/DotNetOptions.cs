@@ -33,6 +33,15 @@ public readonly record struct DotNetOptions
     /// You can re-enabled it by setting ParallelRestore to true.
     /// </summary>
     public bool            ParallelRestore { get; init; }
+    /// <summary>
+    /// Limits the amount of dotnet.exe processes spun up.
+    /// If many compilations are run in parallel,
+    /// NodeReuse = true might reuse too little dotnet.exe instances
+    /// (bug after after Visual Studio 2026 update to 18.6.0 and 18.6.2.)
+    /// Trying NodeReuse = false as a default for that reason.
+    /// Set to true explicitly to restore original behavior.
+    /// </summary>
+    public bool            NodeReuse       { get; init; }
     public int             TimeOutSec      { get; init; } = DEFAULT_TIME_OUT_SEC;
     public Action<string>  Log             { get; init; } = NullLog;
 }
