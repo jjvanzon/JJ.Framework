@@ -314,9 +314,10 @@ public class DotNetTests : IDisposable
         File      = CS_PROJ_FILE_NAME,
         BuildConf = "Release",
         Log       = Log,
-        Verbosity = Detailed,
+        Verbosity = Diagnostic,
         BinLog    = GetBinLogFilePath(testName),
-        LogFile   = GetLogFilePath(testName)
+        // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
+        LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
     };
 
     private DotNetOptions BasicOpt() => new()
@@ -327,6 +328,10 @@ public class DotNetTests : IDisposable
 
     private string GetLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".log";
     private string GetBinLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".binlog";
+    /// <summary>
+    /// Generate a file path (for log files) specifically not in the temp folder, 
+    /// but in the test env bin folder, so they don't get cleared out immedaite after the test. 
+    /// </summary>
     private string GenerateFilePathNoExt([Caller] string testName = "")
     {
         Assembly asm = typeof(DotNetTests).Assembly;
