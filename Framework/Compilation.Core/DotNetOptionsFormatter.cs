@@ -79,7 +79,7 @@ internal static class DotNetOptionsFormatter
 
     // Log
 
-    public static string LogDescriptor(DotNetOptions opt) => LogDescriptor(opt.Verbosity, opt.Log);
+    public static string LogDescriptor(DotNetOptions opt) => LogDescriptor(opt.Verbosity, opt.LogAction);
     public static string LogDescriptor(DotNetVerbosity verbosity, Action<string>? log)
     {
         if (!HasLog(log)) return "";
@@ -87,7 +87,7 @@ internal static class DotNetOptionsFormatter
         return $"Log {verbosity}";
     }
 
-    private static bool HasLog(Action<string>? log) => log != null && log != NullLog;
+    private static bool HasLog(Action<string>? log) => log != null && log != NullAction;
 
     // TimeOut
 

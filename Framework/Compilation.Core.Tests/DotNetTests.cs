@@ -313,7 +313,7 @@ public class DotNetTests : IDisposable
         Dir       = _tempDir,
         File      = CS_PROJ_FILE_NAME,
         BuildConf = "Release",
-        Log       = Log,
+        LogAction = Log,
         Verbosity = Diagnostic,
         BinLog    = GetBinLogFilePath(testName),
         // Limit LogFiles to one TFM, because they are huge and stored as artifacts.

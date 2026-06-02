@@ -9,7 +9,7 @@ public readonly record struct DotNetOptions
     public DotNetOptions() { }
 
     internal const int DEFAULT_TIME_OUT_SEC = 5 * 60;
-    public static readonly Action<string> NullLog = _ => { };
+    public static readonly Action<string> NullAction = _ => { };
     public static readonly DotNetOptions DefaultOptions = new();
 
     public string          Dir             { get; init; } = "";
@@ -34,7 +34,7 @@ public readonly record struct DotNetOptions
     /// </summary>
     public bool            ParallelRestore { get; init; }
 
-    // HACK: NodeReuse an BinLog not supported as much as other options (in tests) like AutoRestore is.
+    // TODO: NodeReuse an BinLog not supported as much as other options (in tests) like AutoRestore is.
 
     /// <summary>
     /// Limits the amount of dotnet.exe processes spun up.
@@ -50,7 +50,7 @@ public readonly record struct DotNetOptions
     /// TODO: Rename Log and NullLog to something more specific since there are more log options now to distinguish.
     ///  "Logger" as a name is in use by DotNetLogger, so that also doesn't work.
     /// </summary>
-    public Action<string>  Log             { get; init; } = NullLog;
+    public Action<string>  LogAction       { get; init; } = NullAction;
     public string          BinLog          { get; init; } = "";
     public string          LogFile         { get; init; } = "";
 }

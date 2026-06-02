@@ -14,13 +14,13 @@ public class DotNetOptionsTests
         AreEqual (Normal, opt.Verbosity  );
         IsFalse  (        opt.AutoRestore);
         AreEqual (5 * 60, opt.TimeOutSec );
-        IsNotNull(        opt.Log        );
+        IsNotNull(        opt.LogAction        );
     }
 
     [TestMethod]
     public void Constructor_DefaultLog_CanBeInvoked()
     {
         var opt = new DotNetOptions();
-        opt.Log("hello");
+        opt.LogAction("hello");
     }
 }

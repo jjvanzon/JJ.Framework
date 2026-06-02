@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.Compilation.Core;
+﻿//using System.Runtime.CompilerServices;
+//using static System.Runtime.CompilerServices.MethodImplOptions;
+
+namespace JJ.Framework.Compilation.Core;
 
 internal static class DotNetArgsFormatterExtensions
 {
@@ -18,6 +21,7 @@ internal static class DotNetArgsFormatter
         return nameof(DotNetArgs) + sep + descriptor;
     }
 
+    //[MethodImpl(NoInlining)] // Visual Studio Test client doesn't find type DotNetArgsFormatter.
     public static string DebuggerDisplay(DotNetArgs? args)
     {
         var descriptor = Descriptor(args);

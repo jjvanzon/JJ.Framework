@@ -9,9 +9,9 @@ internal static class DotNetLogger
 
     public static void Log(DotNetArgs args, DotNetOptions opt)
     {
-        if (opt.Log == NullLog) return;
+        if (opt.LogAction == NullAction) return;
         string message = GetMessage(opt.Verbosity, args);
-        if (Has(message)) opt.Log(message);
+        if (Has(message)) opt.LogAction(message);
     }
 
     public static void LogOutputIfNeeded(DotNetResult result)
@@ -20,7 +20,7 @@ internal static class DotNetLogger
         if (!Has(result.OutputText)) return;
 
         // HACK: This blows up my CI if I enable Verbose or Detailed logging (but I need that for binlogs).
-        //result.Opt.Log(result.OutputText);
+        result.Opt.LogAction(result.OutputText);
     }
 
     public static void WriteLogFileIfNeeded(DotNetResult result)
@@ -30,7 +30,7 @@ internal static class DotNetLogger
 
         if (result.Opt.Verbosity is Normal or Detailed or Diagnostic)
         {
-            result.Opt.Log("LogFile = " + result.Opt.LogFile);
+            result.Opt.LogAction("LogFile = " + result.Opt.LogFile);
         }
 
         using FileStream stream = File.Create(result.Opt.LogFile);

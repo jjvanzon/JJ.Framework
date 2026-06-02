@@ -41,7 +41,7 @@ public class DotNetOptionsFormatterTests
                 ParallelRestore = true,
                 TimeOutSec = 123,
                 Verbosity = Detailed,
-                Log = WriteLine, // ncrunch: no coverage
+                LogAction = WriteLine, // ncrunch: no coverage
                 Args = "--no-logo",
                 File = "MyProject.csproj",
                 Dir = @"C:\repo"
@@ -124,19 +124,19 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_Log_Nully()
     {
-        Action<string>[] logNullies = [ null!, NullLog ];
+        Action<string>[] nullyLogActions = [ null!, NullAction ];
         DotNetVerbosity[] allVerbosities = [ 0, default, Normal, Quiet, Minimal, Detailed, Diagnostic ];
 
-        foreach (Action<string> logNully in logNullies)
+        foreach (Action<string> nullyLogAction in nullyLogActions)
         {
-            AssertDiagnosticTexts(new DotNetOptions { Log = logNully }, DEFAULT_DESCRIPTOR);
+            AssertDiagnosticTexts(new DotNetOptions { LogAction = nullyLogAction }, DEFAULT_DESCRIPTOR);
 
             foreach (DotNetVerbosity anyVerbosity in allVerbosities)
             {
                 // TODO: Change main code implementation:
                 //  Verbosity variance is still relevant to show for diagnostics, even when Log is nully.
                 //  It also affects the dotnet run, not just the Log delegate.
-                AssertDiagnosticTexts(new DotNetOptions { Log = logNully, Verbosity = anyVerbosity }, DEFAULT_DESCRIPTOR);
+                AssertDiagnosticTexts(new DotNetOptions { LogAction = nullyLogAction, Verbosity = anyVerbosity }, DEFAULT_DESCRIPTOR);
             }
         }
     }
@@ -149,11 +149,11 @@ public class DotNetOptionsFormatterTests
 
         foreach (Action<string> logNonNully in logNonNullies)
         {
-            AssertDiagnosticTexts(new DotNetOptions { Log = logNonNully }, "Log");
+            AssertDiagnosticTexts(new DotNetOptions { LogAction = logNonNully }, "Log");
 
             foreach (DotNetVerbosity nullyVerbosity in nullyVerbosities)
             {
-                AssertDiagnosticTexts(new DotNetOptions { Log = logNonNully, Verbosity = nullyVerbosity }, "Log");
+                AssertDiagnosticTexts(new DotNetOptions { LogAction = logNonNully, Verbosity = nullyVerbosity }, "Log");
             }
         }
     }
@@ -163,10 +163,10 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_Log_VariousVerbosities()
     {
-        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Quiet      }, "Log Quiet"     );
-        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Minimal    }, "Log Minimal"   );
-        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Detailed   }, "Log Detailed"  );
-        AssertDiagnosticTexts(new DotNetOptions { Log = WriteLine, Verbosity = Diagnostic }, "Log Diagnostic");
+        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Quiet      }, "Log Quiet"     );
+        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Minimal    }, "Log Minimal"   );
+        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Detailed   }, "Log Detailed"  );
+        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Diagnostic }, "Log Diagnostic");
     }
 
     // File Options
@@ -297,7 +297,7 @@ public class DotNetOptionsFormatterTests
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Detailed },
+            new DotNetOptions { BuildConf = "Release", LogAction = WriteLine, Verbosity = Detailed },
             """
             "Release" | Log Detailed
             """);
@@ -309,13 +309,13 @@ public class DotNetOptionsFormatterTests
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { AutoRestore = true, Log = WriteLine, Verbosity = Detailed },
+            new DotNetOptions { AutoRestore = true, LogAction = WriteLine, Verbosity = Detailed },
             """
             Restore: Auto | Log Detailed
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
+            new DotNetOptions { LogAction = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
             """
             Log Detailed | Timeout: 123s
             """);
@@ -327,19 +327,19 @@ public class DotNetOptionsFormatterTests
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", Log = WriteLine, Verbosity = Quiet, TimeOutSec = 123 },
+            new DotNetOptions { BuildConf = "Release", LogAction = WriteLine, Verbosity = Quiet, TimeOutSec = 123 },
             """
             "Release" | Log Quiet | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", AutoRestore = true, Log = WriteLine, Verbosity = Normal, TimeOutSec = 123 },
+            new DotNetOptions { BuildConf = "Release", AutoRestore = true, LogAction = WriteLine, Verbosity = Normal, TimeOutSec = 123 },
             """
             "Release" | Restore: Auto | Log | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", ParallelRestore = true, Log = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
+            new DotNetOptions { BuildConf = "Release", ParallelRestore = true, LogAction = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
             """
             "Release" | Restore: Parallel | Log Detailed | Timeout: 123s
             """);

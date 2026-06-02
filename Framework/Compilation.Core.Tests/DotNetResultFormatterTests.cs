@@ -212,7 +212,7 @@ public class DotNetResultFormatterTests
                 BuildConf = "Release",
                 Args = "--help",
                 Verbosity = Quiet,
-                Log = WriteLine,
+                LogAction = WriteLine,
                 AutoRestore = true,
                 ParallelRestore = true,
                 TimeOutSec = 123 
@@ -306,9 +306,9 @@ public class DotNetResultFormatterTests
     */        
 
     [TestMethod] 
-    public void Test_DotNetResultFormatter_Opt_Log() 
+    public void Test_DotNetResultFormatter_Opt_LogAction() 
         => AssertDiagnosticTexts(NewResult(opt: new() { 
-            Log = WriteLine }), 
+            LogAction = WriteLine }), 
             "dotnet Log");
 
     // TODO: Maybe a pipeline after dotnet would be nice? Not sure
