@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.IO.Core" Version="4.6.6627" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Legacy" Version="0.254.6627" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6627" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.254.6627" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6627" />
+    <PackageReference Include="JJ.Framework.IO.Core" Version="4.6.6799" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Legacy" Version="0.254.6799" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6799" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.254.6799" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6799" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.6.6627" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.6.6799" />
   </ItemGroup>
 </Project>
 
