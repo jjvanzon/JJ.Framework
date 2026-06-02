@@ -28,4 +28,37 @@ Compilation.Core Logging Scratch Pad
     */
 
     //private static string TryFormatBinLogEnabled(DotNetOptions opt, DotNetCommandEnum commandEnum) => TryFormatBinLogEnabled(opt.BinLogEnabled, opt.File, commandEnum);
+
+
+    [TestMethod]
+    public void FormatArgs_Build_LogFile()
+    {
+        var args = new DotNetArgsAccessor(build) { Command = "build" }.Obj;
+        var opt  = new DotNetOptions { LogFile = "build.log" };
+
+        AreEqual("build --nodereuse:false --no-restore > \"build.log\"", FormatArgs(args, opt));
+    }
+
+        //string formattedLogFile         = TryFormatLogFile        (opt.LogFile,         args.CommandEnum);  
+
+            //formattedLogFile // Add at the end to use cmd > operator
+
+
+    /*
+    // ReSharper disable once UnusedParameter.Local
+    private static string TryFormatLogFile(string logFile, DotNetCommandEnum commandEnum)
+    {
+        if (logFile.IsNully()) 
+        {
+            return "";
+        }
+
+        //if (commandEnum is not (build or rebuild or msbuild or msrebuild)) 
+        //{
+        //    return "";
+        //}
+           
+        return $"> \"{logFile}\"";
+    }
+    */
 ```

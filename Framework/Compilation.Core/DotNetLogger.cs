@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Compilation.Core;
+﻿using static JJ.Framework.Exceptions.Core.Throw;
+
+namespace JJ.Framework.Compilation.Core;
 
 internal static class DotNetLogger
 {
@@ -18,6 +20,40 @@ internal static class DotNetLogger
 
         // HACK: This blows up my CI if I enable Verbose or Detailed logging (but I need that for binlogs).
         //result.Opt.Log(result.OutputText);
+    }
+
+    public static void WriteLogFileIfNeeded(DotNetResult result)
+    {
+        var logFile = result.Opt.LogFile;
+        if (logFile.IsNully()) return;
+        if (!result.HasOutputText && !result.HasErrorText) return;
+
+        bool bothFilled = result.HasOutputText && result.HasErrorText;
+
+        using FileStream stream = File.Create(logFile);
+        using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+
+        if (bothFilled)
+        {
+            writer.WriteLine("Error:");
+            writer.WriteLine();
+        }
+
+        if (result.HasErrorText)
+        {
+            writer.Write(result.ErrorText);
+        }
+
+        if (bothFilled)
+        {
+            writer.WriteLine("Output:");
+            writer.WriteLine();
+        }
+
+        if (result.HasOutputText)
+        {
+            writer.Write(result.OutputText);
+        }
     }
 
     private static string GetMessage(DotNetVerbosity verbosity, DotNetArgs args) => verbosity switch

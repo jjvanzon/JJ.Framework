@@ -51,6 +51,7 @@ internal static class DotNetExecutor
         result.Assert();
 
         LogOutputIfNeeded(result);
+        WriteLogFileIfNeeded(result);
 
         return result;
     }
