@@ -314,7 +314,7 @@ public class DotNetTests : IDisposable
         File      = CS_PROJ_FILE_NAME,
         BuildConf = "Release",
         Log       = Log,
-        Verbosity = Diagnostic,
+        Verbosity = Detailed,
         BinLog    = GetBinLogFilePath(testName),
         LogFile   = GetLogFilePath(testName)
     };
