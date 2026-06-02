@@ -1,4 +1,5 @@
 ﻿using static JJ.Framework.Exceptions.Core.Throw;
+// ReSharper disable MergeIntoPattern
 
 namespace JJ.Framework.Compilation.Core;
 
@@ -24,14 +25,18 @@ internal static class DotNetLogger
 
     public static void WriteLogFileIfNeeded(DotNetResult result)
     {
-        var logFile = result.Opt.LogFile;
-        if (logFile.IsNully()) return;
+        if (!Has(result.Opt.LogFile)) return;
         if (!result.HasOutputText && !result.HasErrorText) return;
 
-        bool bothFilled = result.HasOutputText && result.HasErrorText;
+        if (result.Opt.Verbosity is Normal or Detailed or Diagnostic)
+        {
+            result.Opt.Log("LogFile = " + result.Opt.LogFile);
+        }
 
-        using FileStream stream = File.Create(logFile);
+        using FileStream stream = File.Create(result.Opt.LogFile);
         using StreamWriter writer = new StreamWriter(stream, Encoding.UTF8);
+
+        bool bothFilled = result.HasOutputText && result.HasErrorText;
 
         if (bothFilled)
         {

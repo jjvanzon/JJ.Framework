@@ -280,7 +280,7 @@ public class DotNetTests : IDisposable
     {
         InitRestore();
 
-        var opt = GetBasicOpt() with
+        var opt = BasicOpt() with
         {
             LogFile = GetLogFilePath()
         };
@@ -294,7 +294,7 @@ public class DotNetTests : IDisposable
     {
         InitRestore();
 
-        var opt = GetBasicOpt() with
+        var opt = BasicOpt() with
         {
             BinLog = GetBinLogFilePath()
         };
@@ -315,22 +315,23 @@ public class DotNetTests : IDisposable
         BuildConf = "Release",
         Log       = Log,
         Verbosity = Diagnostic,
-        BinLog    = GetBinLogFilePath(testName)
+        BinLog    = GetBinLogFilePath(testName),
+        LogFile   = GetLogFilePath(testName)
     };
 
-    private DotNetOptions GetBasicOpt() => new()
+    private DotNetOptions BasicOpt() => new()
     {
         Dir       = _tempDir,
         File      = CS_PROJ_FILE_NAME,
     };
 
-    private string GetLogFilePath([Caller] string testName = "") => GenerateFilePath(testName, ".log");
-    private string GetBinLogFilePath([Caller] string testName = "") => GenerateFilePath(testName, ".binlog");
-    private string GenerateFilePath([Caller] string testName = "", string extension = ".binlog")
+    private string GetLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".log";
+    private string GetBinLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".binlog";
+    private string GenerateFilePathNoExt([Caller] string testName = "")
     {
         Assembly asm = typeof(DotNetTests).Assembly;
         string folderPath = AppContext.BaseDirectory; 
-        string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}{extension}";
+        string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}";
         string filePath = Path.Combine(folderPath, fileName);
         return filePath;
     }
