@@ -12,6 +12,10 @@ public class DotNetTests : IDisposable
     // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
     //static DotNetTests() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
 
+    // TODO: Different types of options aren't tested.
+    // TODO: Logging isn't really tested.
+    // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
+
     private const string CS_PROJ_FILE_NAME = "Temp.csproj";
     private const string PACK_ID  = "JJ.Framework.Common.Core";
     private const string PACK_VER = "4.6.6251";
@@ -22,8 +26,6 @@ public class DotNetTests : IDisposable
     private readonly string _outputDllDebug;
     private readonly string _outputDllRelease;
     private readonly string _assetsFilePath;
-
-    // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
     private static string CsprojContent(string targetFrameworks) =>
         $"""
@@ -271,43 +273,64 @@ public class DotNetTests : IDisposable
     [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, "--interactive", GetOptNoFile()));
     // Enum and name won't work unless you specify id and ver as args.
 
+    // Options
+
+    [TestMethod]
+    public void Test_DotNet_LogFile()
+    {
+        InitRestore();
+
+        var opt = GetBasicOpt() with
+        {
+            LogFile = GetLogFilePath()
+        };
+
+        AssertResultOk(Build(opt));
+        AssertExists(opt.LogFile);
+    }
+
+    [TestMethod]
+    public void Test_DotNet_BinLog()
+    {
+        InitRestore();
+
+        var opt = GetBasicOpt() with
+        {
+            BinLog = GetBinLogFilePath()
+        };
+
+        AssertResultOk(Build(opt));
+        AssertExists(opt.BinLog);
+    }
+
     // Helpers
 
-    private DotNetOptions GetOpt([Caller] string testName = "")
-    {
-        // TODO: Different types of options aren't tested.
-        // TODO: Logging isn't really tested.
-
-        var opt = new DotNetOptions
-        {
-            Dir       = _tempDir,
-            File      = CS_PROJ_FILE_NAME,
-            BuildConf = "Release",
-            Log       = Log,
-            Verbosity = Diagnostic,
-            BinLog    = GetBinLog(testName)
-        };
-
-        return opt;
-    }
-
     private DotNetOptions GetOptNoFile([Caller] string testName = "")
-    {
-        return new DotNetOptions
-        {
-            Dir       = _tempDir,
-            BuildConf = "Release",
-            Log       = Log,
-            Verbosity = Diagnostic,
-            BinLog    = GetBinLog(testName)
-        };
-    }
+        => GetOpt(testName) with { File = "" };
 
-    private string GetBinLog(string testName)
+    private DotNetOptions GetOpt([Caller] string testName = "") => new()
+    {
+        Dir       = _tempDir,
+        File      = CS_PROJ_FILE_NAME,
+        BuildConf = "Release",
+        Log       = Log,
+        Verbosity = Diagnostic,
+        BinLog    = GetBinLogFilePath(testName)
+    };
+
+    private DotNetOptions GetBasicOpt() => new()
+    {
+        Dir       = _tempDir,
+        File      = CS_PROJ_FILE_NAME,
+    };
+
+    private string GetLogFilePath([Caller] string testName = "") => GenerateFilePath(testName, ".log");
+    private string GetBinLogFilePath([Caller] string testName = "") => GenerateFilePath(testName, ".binlog");
+    private string GenerateFilePath([Caller] string testName = "", string extension = ".binlog")
     {
         Assembly asm = typeof(DotNetTests).Assembly;
         string folderPath = AppContext.BaseDirectory; 
-        string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}.binlog";
+        string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}{extension}";
         string filePath = Path.Combine(folderPath, fileName);
         return filePath;
     }
