@@ -45,7 +45,12 @@ public readonly record struct DotNetOptions
     /// Set to true explicitly to restore original behavior.
     /// </summary>
     public bool            NodeReuse       { get; init; }
-    public string          BinLog          { get; init; } = "";
     public int             TimeOutSec      { get; init; } = DEFAULT_TIME_OUT_SEC;
+    /// <summary>
+    /// TODO: Rename Log and NullLog to something more specific since there are more log options now to distinguish.
+    ///  "Logger" as a name is in use by DotNetLogger, so that also doesn't work.
+    /// </summary>
     public Action<string>  Log             { get; init; } = NullLog;
+    public string          BinLog          { get; init; } = "";
+    public string          LogFile         { get; init; } = "";
 }

@@ -17,6 +17,7 @@ internal static class DotNetCommandFormatter
         string formattedParallelRestore = TryFormatParallelRestore(opt.ParallelRestore, args.CommandEnum);
         string formattedNodeReuse       = TryFormatNodeReuse      (opt.NodeReuse,       args.CommandEnum);
         string formattedBinLog          = TryFormatBinLog         (opt.BinLog,          args.CommandEnum);
+        string formattedLogFile         = TryFormatLogFile        (opt.LogFile,         args.CommandEnum);  
         string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore,     args.CommandEnum);
         string[] elements = 
         [
@@ -24,9 +25,9 @@ internal static class DotNetCommandFormatter
             formattedPackageID, formattedPackageVer, // Bit more defensive for package commands, that can be position-sensitive.
             formattedFile, formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
             formattedParallelRestore, 
-            formattedNodeReuse, formattedBinLog,
+            formattedNodeReuse, formattedBinLog, formattedLogFile,
             opt.Args, args.Args, formattedAutoRestore // Auto-restore at the end makes `add package` work.
-        ]; 
+        ];
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
     }
@@ -44,7 +45,6 @@ internal static class DotNetCommandFormatter
         return "";
     }
 
-    //private static string TryFormatBinLogEnabled(DotNetOptions opt, DotNetCommandEnum commandEnum) => TryFormatBinLogEnabled(opt.BinLogEnabled, opt.File, commandEnum);
     private static string TryFormatBinLog(string binLogFile, DotNetCommandEnum commandEnum)
     {
         if (binLogFile.IsNully()) 
@@ -57,7 +57,23 @@ internal static class DotNetCommandFormatter
             return "";
         }
            
-        return $"-bl:\"{binLogFile}\"" ;
+        return $"-bl:\"{binLogFile}\"";
+    }
+
+    // ReSharper disable once UnusedParameter.Local
+    private static string TryFormatLogFile(string logFile, DotNetCommandEnum commandEnum)
+    {
+        if (logFile.IsNully()) 
+        {
+            return "";
+        }
+
+        //if (commandEnum is not (build or rebuild or msbuild or msrebuild)) 
+        //{
+        //    return "";
+        //}
+           
+        return $"-lf:\"{logFile}\"" ;
     }
 
     private static string TryFormatFile(string file) => Has(file) ? '"' + file + '"' : "";

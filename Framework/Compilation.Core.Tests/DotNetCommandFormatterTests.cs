@@ -44,6 +44,24 @@ public class DotNetCommandFormatterTests
         AreEqual("build --nodereuse:false", FormatArgs(args, opt));
     }
 
+    [TestMethod]
+    public void FormatArgs_Build_LogFile()
+    {
+        var args = new DotNetArgsAccessor(build) { Command = "build" }.Obj;
+        var opt  = new DotNetOptions { LogFile = "build.log" };
+
+        AreEqual("build --nodereuse:false -lf:\"build.log\" --no-restore", FormatArgs(args, opt));
+    }
+
+    [TestMethod]
+    public void FormatArgs_Build_BinLog()
+    {
+        var args = new DotNetArgsAccessor(build) { Command = "build" }.Obj;
+        var opt  = new DotNetOptions { BinLog = "build.binlog" };
+
+        AreEqual("build --nodereuse:false -bl:\"build.binlog\" --no-restore", FormatArgs(args, opt));
+    }
+
     // msbuild style
 
     [TestMethod]

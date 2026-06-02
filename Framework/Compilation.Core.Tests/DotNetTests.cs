@@ -62,21 +62,19 @@ public class DotNetTests : IDisposable
         WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
     }
 
-    private void InitRestore()
-    {
-        // Restore once so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
-        // TODO: This influences test results beyond regular usage?
-        Restore(GetOptNoFile());
-    }
-
-    void IDisposable.Dispose() => Cleanup();
-    ~DotNetTests() => Cleanup(); // ncrunch: no coverage
+    /// <summary>
+    /// Restore so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
+    /// </summary>
+    private void InitRestore() => Restore(GetOptNoFile());
 
     private void Cleanup()
     {
         try { if (Directory.Exists(_tempDir)) Directory.Delete(_tempDir, recursive: true); }
         catch { /* ignore */ }
     }
+
+    void IDisposable.Dispose() => Cleanup();
+    ~DotNetTests() => Cleanup(); // ncrunch: no coverage
 
     // Restore
 
@@ -304,7 +302,6 @@ public class DotNetTests : IDisposable
             BinLog    = GetBinLog(testName)
         };
     }
-
 
     private string GetBinLog(string testName)
     {
