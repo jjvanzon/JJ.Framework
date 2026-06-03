@@ -54,7 +54,7 @@ public class DotNetOptionsTests : DotNetTestHelper
     [TestMethod]
     public void Test_DotNetOptions_LogFile()
     {
-        var opt = BasicOpt() with { LogFile = GetLogFilePath() };
+        var opt = BasicOpt with { LogFile = GetLogFilePath() };
         Compile(opt);
         AssertExists(opt.LogFile);
     }
@@ -62,7 +62,7 @@ public class DotNetOptionsTests : DotNetTestHelper
     [TestMethod]
     public void Test_DotNetOptions_NoLogFile()
     {
-        var opt = BasicOpt() with { LogFile = "" };
+        var opt = BasicOpt with { LogFile = "" };
         Compile(opt);
         AssertNotExists(opt.LogFile);
     }
@@ -72,7 +72,7 @@ public class DotNetOptionsTests : DotNetTestHelper
     [TestMethod]
     public void Test_DotNetOptions_BinLog()
     {
-        var opt = BasicOpt() with { BinLog = GetBinLogFilePath() };
+        var opt = BasicOpt with { BinLog = GetBinLogFilePath() };
         Compile(opt);
         AssertExists(opt.BinLog);
     }
@@ -80,7 +80,7 @@ public class DotNetOptionsTests : DotNetTestHelper
     [TestMethod]
     public void Test_DotNetOptions_NoBinLog()
     {
-        var opt = BasicOpt() with { BinLog = "" };
+        var opt = BasicOpt with { BinLog = "" };
         Compile(opt);
         AssertNotExists(opt.BinLog);
     }

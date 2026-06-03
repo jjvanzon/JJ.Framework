@@ -11,13 +11,14 @@ public class DotNetTestHelper : IDisposable
     private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
     private  readonly string _randomLetters;
 
-    internal const    string PackID  = "JJ.Framework.Common.Core";
-    internal const    string PackVer = "4.6.6251";
-    internal          string TempDir            { get; }
-    internal          string CsprojPath         { get; }
-    internal          string DebugDllFilePath   { get; }
-    internal          string ReleaseDllFilePath { get; }
-    internal          string AssetsFilePath     { get; }
+    internal const    string        PackID  = "JJ.Framework.Common.Core";
+    internal const    string        PackVer = "4.6.6251";
+    internal          string        TempDir            { get; }
+    internal          string        CsprojPath         { get; }
+    internal          string        DebugDllFilePath   { get; }
+    internal          string        ReleaseDllFilePath { get; }
+    internal          string        AssetsFilePath     { get; }
+    internal          DotNetOptions BasicOpt           { get; }
 
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
@@ -54,6 +55,8 @@ public class DotNetTestHelper : IDisposable
         ReleaseDllFilePath = Path.Combine(TempDir, "bin", "Release", targetFramework, "Temp.dll");
         AssetsFilePath     = Path.Combine(TempDir, "obj", "project.assets.json");
         
+        BasicOpt = CreateBasicOpt();
+
         Directory.CreateDirectory(TempDir);
 
         WriteAllText(CsprojPath, GetCsprojContent(targetFramework));
@@ -73,10 +76,16 @@ public class DotNetTestHelper : IDisposable
 
     internal void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
     internal void AssertNotExists(string filePath) => IsFalse(Exists(filePath), message: filePath);
+    internal void AssertDebugDll() => AssertExists(DebugDllFilePath);
 
     internal void AssertContains(string whole, string part)
     {
         IsTrue(whole.Contains(part, OrdinalIgnoreCase), $"Expected '{part}' in: {whole}");
+    }
+
+    internal void AssertNotContains(string whole, string part)
+    {
+        IsTrue(!whole.Contains(part, OrdinalIgnoreCase), $"Unexpected '{part}' found in: {whole}");
     }
 
     internal void AssertContainsAny(string whole, params string[] parts)
@@ -87,7 +96,7 @@ public class DotNetTestHelper : IDisposable
     
     internal void AssertResultOk(DotNetResult result)
     {
-        AssertResultCore(result);
+        AssertResultBase(result);
 
         IsTrue(result.Successful);
         NotNullOrWhiteSpace(result);
@@ -99,7 +108,7 @@ public class DotNetTestHelper : IDisposable
         AreEqual(0, result.ExitCode);
     }
 
-    internal void AssertResultCore(DotNetResult result)
+    internal void AssertResultBase(DotNetResult result)
     {
         // Nulls
         NotNull(result);
@@ -132,7 +141,6 @@ public class DotNetTestHelper : IDisposable
     internal DotNetOptions GetOptNoFile([Caller] string testName = "")
         => GetOpt(testName) with { File = "" };
 
-
     // ReSharper disable once UnusedParameter.Global
     internal DotNetOptions GetOpt([Caller] string testName = "") => new()
     {
@@ -146,10 +154,10 @@ public class DotNetTestHelper : IDisposable
         //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
     };
 
-    internal DotNetOptions BasicOpt() => new()
+    private DotNetOptions CreateBasicOpt() => new()
     {
-        Dir       = TempDir,
-        File      = CS_PROJ_FILE_NAME,
+        Dir  = TempDir,
+        File = CS_PROJ_FILE_NAME,
     };
 
     internal string GetLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".log";
