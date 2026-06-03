@@ -4,8 +4,8 @@
 public record DotNetResult
 {
     private string DebuggerDisplay => DebuggerDisplay(this);
-    public override string ToString() => Stringify(this);
-    public static implicit operator string(DotNetResult? result) => Stringify(result);
+    public override string ToString() => Coalesce(Text, Stringify(this));
+    public static implicit operator string(DotNetResult? result) => Coalesce(result?.Text, Stringify(result));
 
     public string        Text             { get; }
 
