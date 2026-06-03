@@ -7,76 +7,15 @@ namespace JJ.Framework.Compilation.Core.Tests;
 /// child dotnet process finds the temp project without an explicit Dir in options.
 /// </summary>
 [TestClass]
-public class DotNetTests : IDisposable
+public class DotNetTests : DotNetTestHelper
 {
-    // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
-    //static DotNetTests() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
-
     // TODO: Different types of options aren't tested.
     // TODO: Logging isn't really tested.
-    // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
-
-    private const string CS_PROJ_FILE_NAME = "Temp.csproj";
-    private const string PACK_ID  = "JJ.Framework.Common.Core";
-    private const string PACK_VER = "4.6.6251";
-    private const string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
-    private readonly string _randomLetters;
-    private readonly string _tempDir;
-    private readonly string _csprojPath;
-    private readonly string _outputDllDebug;
-    private readonly string _outputDllRelease;
-    private readonly string _assetsFilePath;
-
-    private static string CsprojContent(string targetFrameworks) =>
-        $"""
-        <Project Sdk="Microsoft.NET.Sdk">
-          <PropertyGroup>
-            <OutputType>Exe</OutputType>
-            <TargetFrameworks>{targetFrameworks}</TargetFrameworks>
-            <Nullable>enable</Nullable>
-            <ImplicitUsings>enable</ImplicitUsings>
-            <LangVersion>latest</LangVersion>
-            <NoWarn>$(NoWarn);NETSDK1138</NoWarn> <!--The target framework 'net7.0' is out of support-->
-          </PropertyGroup>
-        </Project>
-        """;
-
-    public DotNetTests()
-    {
-        string targetFramework = RunningTargetFramework;
-
-        // HACK: Temporarily prevent .NET 4x failure.
-        if (targetFramework.StartsWith("net4"))
-        {
-            targetFramework = "net8.0";
-        }
-
-        _randomLetters     = Path.GetRandomFileName().Replace(".", "");
-        _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
-        _csprojPath        = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
-        _outputDllDebug    = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
-        _outputDllRelease  = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
-        _assetsFilePath    = Path.Combine(_tempDir, "obj", "project.assets.json");
-        
-        Directory.CreateDirectory(_tempDir);
-
-        WriteAllText(_csprojPath, CsprojContent(targetFramework));
-        WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
-    }
-
+    
     /// <summary>
     /// Restore so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
     /// </summary>
     private void InitRestore() => Restore(GetOptNoFile());
-
-    private void Cleanup()
-    {
-        try { if (Directory.Exists(_tempDir)) Directory.Delete(_tempDir, recursive: true); }
-        catch { /* ignore */ }
-    }
-
-    void IDisposable.Dispose() => Cleanup();
-    ~DotNetTests() => Cleanup(); // ncrunch: no coverage
 
     // Restore
 
@@ -304,96 +243,6 @@ public class DotNetTests : IDisposable
     }
 
     // Helpers
-
-    private DotNetOptions GetOptNoFile([Caller] string testName = "")
-        => GetOpt(testName) with { File = "" };
-
-    // ReSharper disable once UnusedParameter.Local
-    private DotNetOptions GetOpt([Caller] string testName = "") => new()
-    {
-        Dir       = _tempDir,
-        File      = CS_PROJ_FILE_NAME,
-        BuildConf = "Release",
-        LogAction = Log,
-        Verbosity = Normal,
-        //BinLog    = GetBinLogFilePath(testName),
-        // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
-        //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
-    };
-
-    private DotNetOptions BasicOpt() => new()
-    {
-        Dir       = _tempDir,
-        File      = CS_PROJ_FILE_NAME,
-    };
-
-    private string GetLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".log";
-    private string GetBinLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".binlog";
-    /// <summary>
-    /// Generate a file path (for log files) specifically not in the temp folder, 
-    /// but in the test env bin folder, so they don't get cleared out immedaite after the test. 
-    /// </summary>
-    private string GenerateFilePathNoExt([Caller] string testName = "")
-    {
-        Assembly asm = typeof(DotNetTests).Assembly;
-        string folderPath = AppContext.BaseDirectory; 
-        string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}";
-        string filePath = Path.Combine(folderPath, fileName);
-        return filePath;
-    }
-
-    private void Log(string msg) => Console.WriteLine(msg);
-
-    private void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
-
-    private void AssertContains(string whole, string part)
-    {
-        IsTrue(whole.Contains(part, OrdinalIgnoreCase), $"Expected '{part}' in: {whole}");
-    }
-
-    private void AssertContainsAny(string whole, params string[] parts)
-    {
-        string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
-        IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
-    }
-
-    private void AssertResultCore(DotNetResult result)
-    {
-        // Nulls
-        NotNull(result);
-        NotNull(result.Text);
-        NotNull(result.Args);
-        NotNull(result.ErrorText);
-        NotNull(result.OutputText);
-
-        // Text Equality
-        AreEqual(result.Text, result.ToString());
-        AreEqual(result.Text, (string)result);
-
-        // Logical Consistency
-        NotEqual(result.Opt,           default);
-        AreEqual(result.HasExitCode,   result.ExitCode != 0);
-        AreEqual(result.HasErrorText,  !IsNullOrWhiteSpace(result.ErrorText));
-        AreEqual(result.HasOutputText, !IsNullOrWhiteSpace(result.OutputText));
-        AreEqual(result.Successful,    !(result.HasExitCode || result.HasErrorInOutput || result.HasTimeOut));
-
-        if (result.HasErrorInOutput)
-        {
-            AssertContains(result.OutputText, "[error]");
-        }
-    }
-
-    private void AssertResultOk(DotNetResult result)
-    {
-        AssertResultCore(result);
-        IsTrue(result.Successful);
-        NotNullOrWhiteSpace(result.Text);
-        NotNullOrWhiteSpace(result.OutputText);
-        IsFalse(result.HasExitCode);
-        IsFalse(result.HasErrorInOutput);
-        IsFalse(result.HasTimeOut);
-        AreEqual(0, result.ExitCode);
-    }
 
     private static readonly Lock _tempDirLock = new();
 
