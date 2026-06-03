@@ -12,19 +12,19 @@ public readonly record struct DotNetOptions
     public static readonly Action<string> NullAction = _ => { };
     public static readonly DotNetOptions DefaultOptions = new();
 
+    // File
+
     public string          Dir             { get; init; } = "";
     public string          File            { get; init; } = "";
+
+    // Build
+
     /// <summary> Build configuration. Typically "Release" or "Debug", and "" for default behavior. </summary>
     public string          BuildConf       { get; init; } = "";
     public string          Args            { get; init; } = "";
-    /// <summary>
-    /// <para>Verbosity is passed to the build processes executed in this helper.</para>
-    /// Plus:<br/>
-    /// - <c>Diagnostic</c> or <c>Detailed</c> will log all build output.<br/>
-    /// - <c>Normal</c> and <c>Minimal</c> will only check silently for errors internally.<br/>
-    /// - <c>Quiet</c> won't work, because it'll swallow diagnostics used by the logic.
-    /// </summary>
-    public DotNetVerbosity Verbosity       { get; init; }
+
+    // Restore
+
     public bool            AutoRestore     { get; init; }
     /// <summary>
     /// Many NuGet restores firing off at the same time,
@@ -36,6 +36,8 @@ public readonly record struct DotNetOptions
 
     // TODO: NodeReuse an BinLog not supported as much as other options (in tests) like AutoRestore is.
 
+    // Process
+
     /// <summary>
     /// Limits the amount of dotnet.exe processes spun up.
     /// If many compilations are run in parallel,
@@ -46,11 +48,18 @@ public readonly record struct DotNetOptions
     /// </summary>
     public bool            NodeReuse       { get; init; }
     public int             TimeOutSec      { get; init; } = DEFAULT_TIME_OUT_SEC;
+
+    // Logging
+
     /// <summary>
-    /// TODO: Rename Log and NullLog to something more specific since there are more log options now to distinguish.
-    ///  "Logger" as a name is in use by DotNetLogger, so that also doesn't work.
+    /// <para>Verbosity is passed to the build processes executed in this helper.</para>
+    /// Plus:<br/>
+    /// - <c>Diagnostic</c> or <c>Detailed</c> will log all build output.<br/>
+    /// - <c>Normal</c> and <c>Minimal</c> will only check silently for errors internally.<br/>
+    /// - <c>Quiet</c> won't work, because it'll swallow diagnostics used by the logic.
     /// </summary>
-    public Action<string>  LogAction       { get; init; } = NullAction;
-    public string          BinLog          { get; init; } = "";
+    public DotNetVerbosity Verbosity       { get; init; }
     public string          LogFile         { get; init; } = "";
+    public string          BinLog          { get; init; } = "";
+    public Action<string>  LogAction       { get; init; } = NullAction;
 }

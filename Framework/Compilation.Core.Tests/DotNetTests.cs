@@ -24,11 +24,8 @@ public class DotNetTests : DotNetTestHelper
     {
         DotNetResult output = call();
         AssertResultOk(output);
-
-        NotNullOrWhiteSpace(output);
         AssertContains(output, "restore");
         AssertContainsAny(output, "restored", "up-to-date");
-        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(AssetsFilePath);
     }
 
@@ -55,11 +52,8 @@ public class DotNetTests : DotNetTestHelper
 
         DotNetResult output = call();
         AssertResultOk(output);
-
-        NotNullOrWhiteSpace(output);
         AssertContains(output, "build succeeded");
         AssertContains(output, filePath);
-        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(filePath);
     }
 
@@ -86,11 +80,8 @@ public class DotNetTests : DotNetTestHelper
 
         DotNetResult output = call();
         AssertResultOk(output);
-
-        NotNullOrWhiteSpace(output);
         AssertContains(output, "Build succeeded");
         AssertContains(output, dllFileName);
-        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(dllFileName);
     }
 
@@ -115,10 +106,7 @@ public class DotNetTests : DotNetTestHelper
 
         DotNetResult output = call();
         AssertResultOk(output);
-
-        NotNullOrWhiteSpace(output);
         AssertContains(output, dllFilePath);
-        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(dllFilePath);
     }
 
@@ -145,10 +133,7 @@ public class DotNetTests : DotNetTestHelper
 
         DotNetResult output = call();
         AssertResultOk(output);
-
-        NotNullOrWhiteSpace(output);
         AssertContains(output, dllFilePath);
-        NotNullOrWhiteSpace(output.OutputText);
         AssertExists(dllFilePath);
     }
 
@@ -170,10 +155,7 @@ public class DotNetTests : DotNetTestHelper
     {
         DotNetResult output = call();
         AssertResultOk(output);
-
-        NotNullOrWhiteSpace(output);
         AssertContains(output, PackID);
-        NotNullOrWhiteSpace(output.OutputText);
 
         string content = ReadAllText(CsprojPath);
         NotNullOrWhiteSpace(content);
@@ -196,10 +178,7 @@ public class DotNetTests : DotNetTestHelper
 
         DotNetResult output = call();
         AssertResultOk(output);
-
-        NotNullOrWhiteSpace(output);
         AssertContains(output, PackID);
-        NotNullOrWhiteSpace(output.OutputText);
 
         string content = ReadAllText(CsprojPath);
         IsFalse(content.Contains(PackID));

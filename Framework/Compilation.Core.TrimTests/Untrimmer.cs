@@ -73,7 +73,7 @@ internal static class Untrimmer
 
     [NoTrim("FormatArgs",         $"{MainAsm}.DotNetCommandFormatter", MainAsm)]
     [NoTrim("Enrich",             $"{MainAsm}.DotNetEnricher",         MainAsm)]
-    [NoTrim("Log",                $"{MainAsm}.DotNetLogger",           MainAsm)]
+    [NoTrim("LogAction",          $"{MainAsm}.DotNetLogger",           MainAsm)]
 
     public static void Untrim() { }
 }

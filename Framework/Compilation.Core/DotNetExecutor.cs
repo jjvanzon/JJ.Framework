@@ -13,7 +13,7 @@ internal static class DotNetExecutor
 
         Enrich(args);
         args.FullArgs = FormatArgs(args, opt);
-        Log(args, opt);
+        LogAction(args, opt);
 
         const string fileName = "dotnet";
 
@@ -50,7 +50,7 @@ internal static class DotNetExecutor
 
         result.Assert();
 
-        LogOutputIfNeeded(result);
+        LogOutputWithActionIfNeeded(result);
         WriteLogFileIfNeeded(result);
 
         return result;

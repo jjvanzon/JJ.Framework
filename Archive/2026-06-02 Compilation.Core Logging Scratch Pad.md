@@ -61,4 +61,9 @@ Compilation.Core Logging Scratch Pad
         return $"> \"{logFile}\"";
     }
     */
+
+    /// <summary>
+    /// TODO: Rename Log and NullLog to something more specific since there are more log options now to distinguish.
+    ///  "Logger" as a name is in use by DotNetLogger, so that also doesn't work.
+    /// </summary>
 ```

@@ -3,18 +3,34 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class DotNetOptionsTests : DotNetTestHelper
 {
+    // Constructor
+
     [TestMethod]
     public void DotNetOptions_New_InitializedDefaults()
     {
         var opt = new DotNetOptions();
-        AreEqual ("",     opt.Dir        );
-        AreEqual ("",     opt.File       );
-        AreEqual ("",     opt.BuildConf  );
-        AreEqual ("",     opt.Args       );
-        AreEqual (Normal, opt.Verbosity  );
-        IsFalse  (        opt.AutoRestore);
-        AreEqual (5 * 60, opt.TimeOutSec );
-        IsNotNull(        opt.LogAction        );
+        
+        // File
+        AreEqual("",         opt.Dir            );
+        AreEqual("",         opt.File           );
+
+        // Build
+        AreEqual("",         opt.BuildConf      );
+        AreEqual("",         opt.Args           );
+
+        // Restore
+        IsFalse (            opt.AutoRestore    );
+        IsFalse (            opt.ParallelRestore);
+
+        // Process
+        IsFalse (            opt.NodeReuse      );
+        AreEqual(5 * 60,     opt.TimeOutSec     );
+
+        // Logging
+        AreEqual(Normal,     opt.Verbosity      );
+        AreEqual("",         opt.LogFile        );
+        AreEqual("",         opt.BinLog         );
+        AreEqual(NullAction, opt.LogAction      );
     }
 
     [TestMethod]
@@ -24,32 +40,52 @@ public class DotNetOptionsTests : DotNetTestHelper
         opt.LogAction("hello");
     }
 
+    // TODO: Test:
+    // - Args
+    // - AutoRestore/ParallelRestore
+    // - NodeReuse (how?), TimeOutSec
+    //  Do not test: 
+    // - Dir/File/BuildConf (already adequately tested)
+    // - 
+    // - Log options (logging tested separately).
+
+    // LogFile
 
     [TestMethod]
-    public void Test_DotNet_LogFile()
+    public void Test_DotNetOptions_LogFile()
     {
-        var opt = BasicOpt() with
-        {
-            LogFile = GetLogFilePath()
-        };
-
+        var opt = BasicOpt() with { LogFile = GetLogFilePath() };
         Compile(opt);
-
         AssertExists(opt.LogFile);
     }
 
     [TestMethod]
-    public void Test_DotNet_BinLog()
+    public void Test_DotNetOptions_NoLogFile()
     {
-        var opt = BasicOpt() with
-        {
-            BinLog = GetBinLogFilePath()
-        };
-
+        var opt = BasicOpt() with { LogFile = "" };
         Compile(opt);
+        AssertNotExists(opt.LogFile);
+    }
 
+    // BinLog
+
+    [TestMethod]
+    public void Test_DotNetOptions_BinLog()
+    {
+        var opt = BasicOpt() with { BinLog = GetBinLogFilePath() };
+        Compile(opt);
         AssertExists(opt.BinLog);
     }
+
+    [TestMethod]
+    public void Test_DotNetOptions_NoBinLog()
+    {
+        var opt = BasicOpt() with { BinLog = "" };
+        Compile(opt);
+        AssertNotExists(opt.BinLog);
+    }
+
+    // Helpers
 
     private void Compile(DotNetOptions opt)
     {

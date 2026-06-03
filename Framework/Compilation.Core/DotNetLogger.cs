@@ -1,5 +1,4 @@
-﻿using static JJ.Framework.Exceptions.Core.Throw;
-// ReSharper disable MergeIntoPattern
+﻿// ReSharper disable MergeIntoPattern
 
 namespace JJ.Framework.Compilation.Core;
 
@@ -7,14 +6,14 @@ internal static class DotNetLogger
 {
     private static readonly string e = NewLine;
 
-    public static void Log(DotNetArgs args, DotNetOptions opt)
+    public static void LogAction(DotNetArgs args, DotNetOptions opt)
     {
         if (opt.LogAction == NullAction) return;
         string message = GetMessage(opt.Verbosity, args);
         if (Has(message)) opt.LogAction(message);
     }
 
-    public static void LogOutputIfNeeded(DotNetResult result)
+    public static void LogOutputWithActionIfNeeded(DotNetResult result)
     {
         if (!result.Opt.Verbosity.In(Diagnostic, Detailed)) return;
         if (!Has(result.OutputText)) return;

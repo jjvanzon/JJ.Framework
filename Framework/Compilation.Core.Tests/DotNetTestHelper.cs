@@ -72,6 +72,7 @@ public class DotNetTestHelper : IDisposable
     // Assert
 
     internal void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
+    internal void AssertNotExists(string filePath) => IsFalse(Exists(filePath), message: filePath);
 
     internal void AssertContains(string whole, string part)
     {
@@ -82,6 +83,20 @@ public class DotNetTestHelper : IDisposable
     {
         string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
         IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
+    }
+    
+    internal void AssertResultOk(DotNetResult result)
+    {
+        AssertResultCore(result);
+
+        IsTrue(result.Successful);
+        NotNullOrWhiteSpace(result);
+        NotNullOrWhiteSpace(result.Text);
+        NotNullOrWhiteSpace(result.OutputText);
+        IsFalse(result.HasExitCode);
+        IsFalse(result.HasErrorInOutput);
+        IsFalse(result.HasTimeOut);
+        AreEqual(0, result.ExitCode);
     }
 
     internal void AssertResultCore(DotNetResult result)
@@ -108,18 +123,6 @@ public class DotNetTestHelper : IDisposable
         {
             AssertContains(result.OutputText, "[error]");
         }
-    }
-
-    internal void AssertResultOk(DotNetResult result)
-    {
-        AssertResultCore(result);
-        IsTrue(result.Successful);
-        NotNullOrWhiteSpace(result.Text);
-        NotNullOrWhiteSpace(result.OutputText);
-        IsFalse(result.HasExitCode);
-        IsFalse(result.HasErrorInOutput);
-        IsFalse(result.HasTimeOut);
-        AreEqual(0, result.ExitCode);
     }
 
     // Helpers
