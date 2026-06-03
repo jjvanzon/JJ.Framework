@@ -1,10 +1,10 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class DotNetOptionsTests
+public class DotNetOptionsTests : DotNetTestHelper
 {
     [TestMethod]
-    public void DotNetOptions_Constructor_InitializedDefaults()
+    public void DotNetOptions_New_InitializedDefaults()
     {
         var opt = new DotNetOptions();
         AreEqual ("",     opt.Dir        );
@@ -18,9 +18,43 @@ public class DotNetOptionsTests
     }
 
     [TestMethod]
-    public void Constructor_DefaultLog_CanBeInvoked()
+    public void DotNetOptions_New_DefaultLog_CanBeInvoked()
     {
         var opt = new DotNetOptions();
         opt.LogAction("hello");
+    }
+
+
+    [TestMethod]
+    public void Test_DotNet_LogFile()
+    {
+        var opt = BasicOpt() with
+        {
+            LogFile = GetLogFilePath()
+        };
+
+        Compile(opt);
+
+        AssertExists(opt.LogFile);
+    }
+
+    [TestMethod]
+    public void Test_DotNet_BinLog()
+    {
+        var opt = BasicOpt() with
+        {
+            BinLog = GetBinLogFilePath()
+        };
+
+        Compile(opt);
+
+        AssertExists(opt.BinLog);
+    }
+
+    private void Compile(DotNetOptions opt)
+    {
+        Restore(opt);
+        var result = Build(opt);
+        AssertResultOk(result);
     }
 }

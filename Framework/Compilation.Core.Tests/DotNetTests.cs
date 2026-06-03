@@ -214,34 +214,6 @@ public class DotNetTests : DotNetTestHelper
 
     // Options
 
-    [TestMethod]
-    public void Test_DotNet_LogFile()
-    {
-        InitRestore();
-
-        var opt = BasicOpt() with
-        {
-            LogFile = GetLogFilePath()
-        };
-
-        AssertResultOk(Build(opt));
-        AssertExists(opt.LogFile);
-    }
-
-    [TestMethod]
-    public void Test_DotNet_BinLog()
-    {
-        InitRestore();
-
-        var opt = BasicOpt() with
-        {
-            BinLog = GetBinLogFilePath()
-        };
-
-        AssertResultOk(Build(opt));
-        AssertExists(opt.BinLog);
-    }
-
     // Helpers
 
     private static readonly Lock _tempDirLock = new();
