@@ -308,6 +308,7 @@ public class DotNetTests : IDisposable
     private DotNetOptions GetOptNoFile([Caller] string testName = "")
         => GetOpt(testName) with { File = "" };
 
+    // ReSharper disable once UnusedParameter.Local
     private DotNetOptions GetOpt([Caller] string testName = "") => new()
     {
         Dir       = _tempDir,
