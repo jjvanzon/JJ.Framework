@@ -314,10 +314,10 @@ public class DotNetTests : IDisposable
         File      = CS_PROJ_FILE_NAME,
         BuildConf = "Release",
         LogAction = Log,
-        Verbosity = Detailed,
-        BinLog    = GetBinLogFilePath(testName),
+        Verbosity = Normal,
+        //BinLog    = GetBinLogFilePath(testName),
         // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
-        LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
+        //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
     };
 
     private DotNetOptions BasicOpt() => new()
