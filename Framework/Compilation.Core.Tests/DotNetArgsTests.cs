@@ -4,7 +4,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 public class DotNetArgsTests
 {
     [TestMethod]
-    public void Constructor_WithCommandEnum_SetsCommandEnum()
+    public void DotNetArgs_New_WithCommandEnum()
     {
         var args = new DotNetArgsAccessor(restore).Obj;
         AreEqual(restore, args.CommandEnum);
@@ -12,11 +12,12 @@ public class DotNetArgsTests
         AreEqual("", args.ID);
         AreEqual("", args.Ver);
         AreEqual("", args.Args);
+        AreEqual("", args.FullArgs);
         IsFalse(args.IsRebuild);
     }
 
     [TestMethod]
-    public void Constructor_WithCommandString_SetsCommand()
+    public void DotNetArgs_New_WithCommandString()
     {
         var args = new DotNetArgsAccessor("custom").Obj;
         AreEqual("custom", args.Command);
@@ -24,7 +25,7 @@ public class DotNetArgsTests
     }
 
     [TestMethod]
-    public void Constructor_Default_InitializesEmptyProperties()
+    public void DotNetArgs_New_Default_InitializesEmptyProperties()
     {
         var args = new DotNetArgsAccessor().Obj;
         AreEqual(default, args.CommandEnum);
@@ -32,6 +33,7 @@ public class DotNetArgsTests
         AreEqual("", args.ID);
         AreEqual("", args.Ver);
         AreEqual("", args.Args);
+        AreEqual("", args.FullArgs);
         IsFalse(args.IsRebuild);
     }
 }
