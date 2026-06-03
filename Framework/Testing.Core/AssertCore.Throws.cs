@@ -8,10 +8,10 @@ public static partial class AssertCore
 
     // Throws (Containing)
 
-    public static void Throws(Func<object?> statement, params string[] expectedTexts)
+    public static Exception Throws(Func<object?> statement, params string[] expectedTexts)
         => Throws(() => { statement(); }, expectedTexts);
 
-    public static void Throws(Action statement, params string[] expectedTexts)
+    public static Exception Throws(Action statement, params string[] expectedTexts)
     {
         if (statement == null) throw new NullException(() => statement);
         if (expectedTexts == null) throw new NullException(() => expectedTexts);
@@ -27,16 +27,16 @@ public static partial class AssertCore
                 Contains(expectedText, ex.Message);
             }
             
-            return;
+            return ex;
         }
 
         throw new Exception("An exception should have occurred.");
     }
     
-    public static void Throws(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
+    public static Exception Throws(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
         => Throws(() => { statement(); }, exceptionType, expectedTexts);
 
-    public static void Throws(Action statement, Type exceptionType, params string[] expectedTexts)
+    public static Exception Throws(Action statement, Type exceptionType, params string[] expectedTexts)
     {
         if (statement == null) throw new NullException(() => statement);
         if (exceptionType == null) throw new NullException(() => exceptionType);
@@ -55,16 +55,16 @@ public static partial class AssertCore
                 Contains(expectedText, ex.Message);
             }
             
-            return;
+            return ex;
         }
 
         throw new Exception("An exception should have occurred.");
     }
 
-    public static void Throws<TException>(Func<object?> statement, params string[] expectedTexts)
+    public static Exception Throws<TException>(Func<object?> statement, params string[] expectedTexts)
         => Throws(statement, typeof(TException), expectedTexts);
 
-    public static void Throws<TException>(Action statement, params string[] expectedTexts)
+    public static Exception Throws<TException>(Action statement, params string[] expectedTexts)
         => Throws(statement, typeof(TException), expectedTexts);
 
     public static void ThrowsExceptionOnOtherThread(Func<object?> statement)
