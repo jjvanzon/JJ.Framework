@@ -29,7 +29,7 @@ public class DotNetTests : DotNetTestHelper
         AssertContains(output, "restore");
         AssertContainsAny(output, "restored", "up-to-date");
         NotNullOrWhiteSpace(output.OutputText);
-        AssertExists(_assetsFilePath);
+        AssertExists(AssetsFilePath);
     }
 
     [TestMethod] public void Test_Restore_ByMethod()                => TestRestore_ChDir(() => Restore());
@@ -47,8 +47,8 @@ public class DotNetTests : DotNetTestHelper
 
     // Build
 
-    public void TestBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestBuild(call, _outputDllDebug));
-    public void TestBuild_Release(Func<DotNetResult> call) => TestBuild(call, _outputDllRelease);
+    public void TestBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestBuild(call, DebugDllFilePath));
+    public void TestBuild_Release(Func<DotNetResult> call) => TestBuild(call, ReleaseDllFilePath);
     public void TestBuild(Func<DotNetResult> call, string filePath)
     {
         InitRestore();
@@ -78,8 +78,8 @@ public class DotNetTests : DotNetTestHelper
 
     // Rebuild
 
-    public void TestRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestRebuild(call, _outputDllDebug));
-    public void TestRebuild_Release(Func<DotNetResult> call) => TestRebuild(call, _outputDllRelease);
+    public void TestRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestRebuild(call, DebugDllFilePath));
+    public void TestRebuild_Release(Func<DotNetResult> call) => TestRebuild(call, ReleaseDllFilePath);
     public void TestRebuild(Func<DotNetResult> call, string dllFileName)
     {
         InitRestore();
@@ -107,8 +107,8 @@ public class DotNetTests : DotNetTestHelper
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
     
-    private void TestMSBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSBuild(call, _outputDllDebug));
-    private void TestMSBuild_Release(Func<DotNetResult> call) => TestMSBuild(call, _outputDllRelease);
+    private void TestMSBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSBuild(call, DebugDllFilePath));
+    private void TestMSBuild_Release(Func<DotNetResult> call) => TestMSBuild(call, ReleaseDllFilePath);
     private void TestMSBuild(Func<DotNetResult> call, string dllFilePath)
     {
         InitRestore();
@@ -137,8 +137,8 @@ public class DotNetTests : DotNetTestHelper
 
     // MSRebuild
 
-    private void TestMSRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSRebuild(call, _outputDllDebug));
-    private void TestMSRebuild_Release(Func<DotNetResult> call) => TestMSRebuild(call, _outputDllRelease);
+    private void TestMSRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSRebuild(call, DebugDllFilePath));
+    private void TestMSRebuild_Release(Func<DotNetResult> call) => TestMSRebuild(call, ReleaseDllFilePath);
     private void TestMSRebuild(Func<DotNetResult> call, string dllFilePath)
     {
         InitRestore();
@@ -172,19 +172,19 @@ public class DotNetTests : DotNetTestHelper
         AssertResultOk(output);
 
         NotNullOrWhiteSpace(output);
-        AssertContains(output, PACK_ID);
+        AssertContains(output, PackID);
         NotNullOrWhiteSpace(output.OutputText);
 
-        string content = ReadAllText(_csprojPath);
+        string content = ReadAllText(CsprojPath);
         NotNullOrWhiteSpace(content);
-        AssertContains(content, PACK_ID);
-        AssertContains(content, PACK_VER);
+        AssertContains(content, PackID);
+        AssertContains(content, PackVer);
     }
 
-    [TestMethod] public void Test_InstallPackage_ByMethod()                => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgs()       => TestInstallPack_ChDir(() => InstallPackage(PACK_ID, PACK_VER, "--no-restore"));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, GetOptNoFile()));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PACK_ID, PACK_VER, "--no-restore", GetOptNoFile()));
+    [TestMethod] public void Test_InstallPackage_ByMethod()                => TestInstallPack_ChDir(() => InstallPackage(PackID, PackVer));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgs()       => TestInstallPack_ChDir(() => InstallPackage(PackID, PackVer, "--no-restore"));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PackID, PackVer, GetOptNoFile()));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PackID, PackVer, "--no-restore", GetOptNoFile()));
     // ByEnum and ByName variants won't work unless you specify id and ver as args.
 
     // UninstallPackage
@@ -192,24 +192,24 @@ public class DotNetTests : DotNetTestHelper
     private void TestUninstallPack_ChDir(Func<DotNetResult> call) => InTempDir(() => TestUninstallPack(call));
     private void TestUninstallPack(Func<DotNetResult> call)
     {
-        InstallPackage(PACK_ID, PACK_VER, GetOptNoFile());
+        InstallPackage(PackID, PackVer, GetOptNoFile());
 
         DotNetResult output = call();
         AssertResultOk(output);
 
         NotNullOrWhiteSpace(output);
-        AssertContains(output, PACK_ID);
+        AssertContains(output, PackID);
         NotNullOrWhiteSpace(output.OutputText);
 
-        string content = ReadAllText(_csprojPath);
-        IsFalse(content.Contains(PACK_ID));
-        IsFalse(content.Contains(PACK_VER));
+        string content = ReadAllText(CsprojPath);
+        IsFalse(content.Contains(PackID));
+        IsFalse(content.Contains(PackVer));
     }
 
-    [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID));
-    [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PACK_ID, "--interactive"));
-    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PACK_ID, GetOptNoFile()));
-    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PACK_ID, "--interactive", GetOptNoFile()));
+    [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(PackID));
+    [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PackID, "--interactive"));
+    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PackID, GetOptNoFile()));
+    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PackID, "--interactive", GetOptNoFile()));
     // Enum and name won't work unless you specify id and ver as args.
 
     // Options
@@ -258,7 +258,7 @@ public class DotNetTests : DotNetTestHelper
             string saved = Directory.GetCurrentDirectory();
             try 
             { 
-                Directory.SetCurrentDirectory(_tempDir);
+                Directory.SetCurrentDirectory(TempDir);
                 action(); 
             }
             finally

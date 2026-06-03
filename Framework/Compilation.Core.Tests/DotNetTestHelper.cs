@@ -9,18 +9,19 @@ public class DotNetTestHelper : IDisposable
 
     private  const    string CS_PROJ_FILE_NAME = "Temp.csproj";
     private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
-    internal const    string PACK_ID  = "JJ.Framework.Common.Core";
-    internal const    string PACK_VER = "4.6.6251";
-    internal readonly string _randomLetters;
-    internal readonly string _tempDir;
-    internal readonly string _csprojPath;
-    internal readonly string _outputDllDebug;
-    internal readonly string _outputDllRelease;
-    internal readonly string _assetsFilePath;
+    private  readonly string _randomLetters;
+
+    internal const    string PackID  = "JJ.Framework.Common.Core";
+    internal const    string PackVer = "4.6.6251";
+    internal          string TempDir            { get; }
+    internal          string CsprojPath         { get; }
+    internal          string DebugDllFilePath   { get; }
+    internal          string ReleaseDllFilePath { get; }
+    internal          string AssetsFilePath     { get; }
 
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
-    private static string CsprojContent(string targetFrameworks) =>
+    private static string GetCsprojContent(string targetFrameworks) =>
         $"""
         <Project Sdk="Microsoft.NET.Sdk">
           <PropertyGroup>
@@ -47,21 +48,21 @@ public class DotNetTestHelper : IDisposable
         }
 
         _randomLetters     = Path.GetRandomFileName().Replace(".", "");
-        _tempDir           = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
-        _csprojPath        = Path.Combine(_tempDir, CS_PROJ_FILE_NAME);
-        _outputDllDebug    = Path.Combine(_tempDir, "bin", "Debug",   targetFramework, "Temp.dll");
-        _outputDllRelease  = Path.Combine(_tempDir, "bin", "Release", targetFramework, "Temp.dll");
-        _assetsFilePath    = Path.Combine(_tempDir, "obj", "project.assets.json");
+        TempDir            = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
+        CsprojPath         = Path.Combine(TempDir, CS_PROJ_FILE_NAME);
+        DebugDllFilePath   = Path.Combine(TempDir, "bin", "Debug",   targetFramework, "Temp.dll");
+        ReleaseDllFilePath = Path.Combine(TempDir, "bin", "Release", targetFramework, "Temp.dll");
+        AssetsFilePath     = Path.Combine(TempDir, "obj", "project.assets.json");
         
-        Directory.CreateDirectory(_tempDir);
+        Directory.CreateDirectory(TempDir);
 
-        WriteAllText(_csprojPath, CsprojContent(targetFramework));
-        WriteAllText(Path.Combine(_tempDir, "Program.cs"), PROGRAM_CONTENT);
+        WriteAllText(CsprojPath, GetCsprojContent(targetFramework));
+        WriteAllText(Path.Combine(TempDir, "Program.cs"), PROGRAM_CONTENT);
     }
 
     private void Cleanup()
     {
-        try { if (Directory.Exists(_tempDir)) Directory.Delete(_tempDir, recursive: true); }
+        try { if (Directory.Exists(TempDir)) Directory.Delete(TempDir, recursive: true); }
         catch { /* ignore */ }
     }
 
@@ -132,7 +133,7 @@ public class DotNetTestHelper : IDisposable
     // ReSharper disable once UnusedParameter.Global
     internal DotNetOptions GetOpt([Caller] string testName = "") => new()
     {
-        Dir       = _tempDir,
+        Dir       = TempDir,
         File      = CS_PROJ_FILE_NAME,
         BuildConf = "Release",
         LogAction = Log,
@@ -144,7 +145,7 @@ public class DotNetTestHelper : IDisposable
 
     internal DotNetOptions BasicOpt() => new()
     {
-        Dir       = _tempDir,
+        Dir       = TempDir,
         File      = CS_PROJ_FILE_NAME,
     };
 
