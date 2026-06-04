@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Compilation.Core;
+﻿namespace JJ.Framework.Compilation.Core.Primitives;
 
 [DebuggerDisplay("{DebuggerDisplay}")]
 public readonly record struct DotNetOptions

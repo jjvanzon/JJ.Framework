@@ -1,4 +1,4 @@
-namespace JJ.Framework.Compilation.Core.Tests;
+namespace JJ.Framework.Compilation.Core.Tests.PrimitivesTests;
 
 [TestClass]
 public class DotNetOptionsTests : DotNetTestHelper
@@ -42,11 +42,9 @@ public class DotNetOptionsTests : DotNetTestHelper
 
     // TODO: Test:
     // - Args
-    // - AutoRestore/ParallelRestore
     // - NodeReuse (how?), TimeOutSec
     //  Do not test: 
     // - Dir/File/BuildConf (already adequately tested)
-    // - 
     // - Log options (logging tested separately).
 
     // LogFile

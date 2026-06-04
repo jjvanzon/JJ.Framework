@@ -10,6 +10,8 @@ using T = RestoreTests;
 [TestClass]
 public class RestoreTests : DotNetTestHelper
 {
+    // TODO: Test Without File
+
     [TestMethod]
     public void Test_ExplicitRestore()
     {
@@ -195,17 +197,17 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_Overloads()
     {
-        { T x = new(); x.AssertChDir(() =>      Restore(                       )); }
+        { T x = new(); x.AssertNoDir(() =>      Restore(                       )); }
         { T x = new(); x.Assert     (() =>      Restore(                x.Opt())); }
-        { T x = new(); x.AssertChDir(() =>      Restore(  "--no-cache"         )); }
+        { T x = new(); x.AssertNoDir(() =>      Restore(  "--no-cache"         )); }
         { T x = new(); x.Assert     (() =>      Restore(  "--no-cache", x.Opt())); }
-        { T x = new(); x.AssertChDir(() => Exe( restore                        )); }
+        { T x = new(); x.AssertNoDir(() => Exe( restore                        )); }
         { T x = new(); x.Assert     (() => Exe( restore,                x.Opt())); }
-        { T x = new(); x.AssertChDir(() => Exe( restore,  "--no-cache"         )); }
+        { T x = new(); x.AssertNoDir(() => Exe( restore,  "--no-cache"         )); }
         { T x = new(); x.Assert     (() => Exe( restore,  "--no-cache", x.Opt())); }
-        { T x = new(); x.AssertChDir(() => Exe("restore"                       )); }
+        { T x = new(); x.AssertNoDir(() => Exe("restore"                       )); }
         { T x = new(); x.Assert     (() => Exe("restore",               x.Opt())); }
-        { T x = new(); x.AssertChDir(() => Exe("restore", "--no-cache"         )); }
+        { T x = new(); x.AssertNoDir(() => Exe("restore", "--no-cache"         )); }
         { T x = new(); x.Assert     (() => Exe("restore", "--no-cache", x.Opt())); }
     }
 
@@ -217,7 +219,7 @@ public class RestoreTests : DotNetTestHelper
         public Exception? Exception { get; set; }
     }
 
-    private void AssertChDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
+    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
     private void Assert(Func<DotNetResult> call)
     {
         AssertInitialState();
