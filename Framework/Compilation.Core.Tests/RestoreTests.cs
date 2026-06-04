@@ -1,8 +1,7 @@
 ﻿// ReSharper disable ConvertToLambdaExpression
 // ReSharper disable InvertIf
-
-using static System.Threading.Tasks.Parallel;
 // ReSharper disable InlineTemporaryVariable
+// ReSharper disable ReplaceWithSingleCallToCount
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
@@ -94,6 +93,14 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(msg, "Assets file '" + AssetsFilePath + "' not found.");
     }
 
+    private record RestoreInfo(DotNetTestHelper Helper, DotNetOptions Opt)
+    {
+        public Task? Task { get; set; }
+        public DotNetResult? Result { get; set; }
+        public Exception? Exception { get; set; }
+
+    }
+
     /// <summary>
     /// Basically parallel restore doesn't work. It deadlocks under heavy parallel work.
     /// 
@@ -103,8 +110,6 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_ParallelRestore_EvilDoesNotWork()
     {
-        // TODO: Assert the disable parallel argument is there by default.
-
         Log("Parallel restore unstable. Test provokes exceptions but still checks the outcome.");
 
         AssertInitialState();
@@ -117,35 +122,31 @@ public class RestoreTests : DotNetTestHelper
         // Init in advance so loop is tight
         const int count = 96;
 
-        var testHelpers = new DotNetTestHelper[count];
-        var opts        = new DotNetOptions   [count];
-        var results     = new DotNetResult?   [count];
-        var exceptions  = new Exception?      [count];
-        var tasks       = new Task            [count];
+        var infos = new RestoreInfo[count];
+        var tasks = new Task[count];
 
         // Manage your own tasks - better guarantees parallelism than parallel loop.
         for (int i = 0; i < count; i++)
         {
-            testHelpers[i] = new DotNetTestHelper();
-            opts[i] = testHelpers[i].BasicOpt with { ParallelRestore = true, TimeOutSec = timeOutSec  };
 
-            // Snapshot variables locally.
-            var frozenIndex = i; 
-            var fronzenOpt = opts[i];
+            DotNetTestHelper helper = new();
+            DotNetOptions opt = helper.BasicOpt with { ParallelRestore = true, TimeOutSec = timeOutSec  };
+            RestoreInfo info = new(helper, opt);
 
-            // TODO: Hmm... would hoist a lot of data. Use tuple array for above objects?
-
-            tasks[i] = new(() =>
+            var task = new Task(() =>
             {
                 try
                 {
-                    results[frozenIndex] = Restore(fronzenOpt);
+                    info.Result = Restore(opt);
                 }
                 catch (Exception ex)
                 {
-                    exceptions[frozenIndex] = ex;
+                    info.Exception = ex;
                 }
             });
+
+            tasks[i] = task;
+            infos[i] = info;
         }
 
         // Tight loop (makes exceptions more likely)
@@ -158,35 +159,32 @@ public class RestoreTests : DotNetTestHelper
         Task.WaitAll(tasks);
 
         // Report exception count
-        int exceptionCount = exceptions.Where(FilledIn).Count();
+        int exceptionCount = infos.Where(x => Has(x.Exception)).Count();
         Log($"{exceptionCount} exceptions occurred. {count} restores run.");
 
-        // Evaluate only after parallel loop, keeps loop tight and exception more likely.
-        for (int i = 0; i < count; i++)
+        // Evaluate afterwards, keeps parallel loop tight and exception more likely.
+        foreach (RestoreInfo info in infos)
         {
-            DotNetTestHelper testHelper = testHelpers[i];
-            DotNetResult?    result     = results    [i];
-            Exception?       ex         = exceptions [i];
-
             // Having both a result and and exception, shouldn't happen.
-            IsFalse(Has(result) && Has(ex));
+            IsFalse(Has(info.Result) && Has(info.Exception));
 
-            if (result != null)
+            if (info.Result != null)
             {
-                AssertContains(result, "dotnet restore");
-                AssertContains(result, "determining projects to restore");
-                AssertContains(result, "restored " + testHelper.CsprojPath);
+                AssertContains(info.Result, "dotnet restore");
+                AssertContains(info.Result, "determining projects to restore");
+                AssertContains(info.Result, "restored " + info.Helper.CsprojPath);
                 // TODO: Assert more
             }
 
-            if (ex != null)
+            if (info.Exception != null)
             {
-                AssertContainsAny(ex.Message, "Timeout", "Access is denied");
+                AssertContainsAny(info.Exception.Message, "Timeout", "Access is denied");
                 LogLine();
-                Log($"{ex}");
+                Log($"{info.Exception}");
             }
         }
 
+        // TODO: Assert the disable parallel argument is there by default.
     }
 
     [TestMethod]
