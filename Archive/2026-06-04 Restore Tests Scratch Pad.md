@@ -2,9 +2,8 @@ Restore Tests Scratch Pad
 =========================
 
 ```cs
-        //string formattedFile          = TryFormatFile           (opt.File,            args.CommandEnum);
-            //formattedFile, 
-
+        string formattedFile = TryFormatFile(opt.File, args.CommandEnum);
+        formattedFile, 
 
     [TestMethod] public void Test_Restore_ByMethod()                => TestRestore_ChDir(() => Restore());
     [TestMethod] public void Test_Restore_ByMethod_WithOpt()        => TestRestore      (() => Restore(GetOpt()));

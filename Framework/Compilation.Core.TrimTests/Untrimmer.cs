@@ -9,71 +9,71 @@ internal static class Untrimmer
     
     // DotNetArgs
 
-    [NoTrim(AllCtors,                       typeof(DotNetArgs   ))]
-    [NoTrim(nameof(DotNetArgs.CommandEnum), typeof(DotNetArgs   ))]
-    [NoTrim(nameof(DotNetArgs.Command),     typeof(DotNetArgs   ))]
-    [NoTrim(nameof(DotNetArgs.ID),          typeof(DotNetArgs   ))]
-    [NoTrim(nameof(DotNetArgs.Ver),         typeof(DotNetArgs   ))]
-    [NoTrim(nameof(DotNetArgs.Args),        typeof(DotNetArgs   ))]
-    [NoTrim(nameof(DotNetArgs.IsRebuild),   typeof(DotNetArgs   ))]
-    [NoTrim(nameof(DotNetArgs.FullArgs),    typeof(DotNetArgs   ))]
-    [NoTrim("DebuggerDisplay",              typeof(DotNetArgs   ))]
+    [NoTrim(AllCtors,                       typeof(DotNetArgs))]
+    [NoTrim(nameof(DotNetArgs.CommandEnum), typeof(DotNetArgs))]
+    [NoTrim(nameof(DotNetArgs.Command),     typeof(DotNetArgs))]
+    [NoTrim(nameof(DotNetArgs.ID),          typeof(DotNetArgs))]
+    [NoTrim(nameof(DotNetArgs.Ver),         typeof(DotNetArgs))]
+    [NoTrim(nameof(DotNetArgs.Args),        typeof(DotNetArgs))]
+    [NoTrim(nameof(DotNetArgs.IsRebuild),   typeof(DotNetArgs))]
+    [NoTrim(nameof(DotNetArgs.FullArgs),    typeof(DotNetArgs))]
+    [NoTrim("DebuggerDisplay",              typeof(DotNetArgs))]
 
     // DotNetOptions
 
-    [NoTrim("DebuggerDisplay",              typeof(DotNetOptions))]
-    [NoTrim("DEFAULT_TIME_OUT_SEC",         typeof(DotNetOptions))]
+    [NoTrim("DebuggerDisplay",      typeof(DotNetOptions))]
+    [NoTrim("DEFAULT_TIME_OUT_SEC", typeof(DotNetOptions))]
 
     // DotNetResult
 
-    [NoTrim("DebuggerDisplay",              typeof(DotNetResult ))]
+    [NoTrim("DebuggerDisplay", typeof(DotNetResult))]
 
     // DotNetArgsFormatter
 
-    [NoTrim("Descriptor",         $"{MainAsm}.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("Stringify",          $"{MainAsm}.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("CommandDescriptor",  $"{MainAsm}.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("IDVerDescriptor",    $"{MainAsm}.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("ArgPropsDescriptor", $"{MainAsm}.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("CommandDescriptor",  $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("IDVerDescriptor",    $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("ArgPropsDescriptor", $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
 
     // DotNetArgsFormatterExtensions
 
-    [NoTrim("Descriptor",         $"{MainAsm}.DotNetArgsFormatterExtensions", MainAsm)]
-    [NoTrim("Stringify",          $"{MainAsm}.DotNetArgsFormatterExtensions", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetArgsFormatterExtensions", MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetArgsFormatterExtensions", MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetArgsFormatterExtensions", MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetArgsFormatterExtensions", MainAsm)]
 
     // DotNetOptionsFormatter
 
-    [NoTrim("Descriptor",         $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
-    [NoTrim("Stringify",          $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetOptionsFormatter", MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetOptionsFormatter", MainAsm)]
 
     // DotNetOptionsExtensions
 
-    [NoTrim("Descriptor",         $"{MainAsm}.DotNetOptionsExtensions", MainAsm)]
-    [NoTrim("Stringify",          $"{MainAsm}.DotNetOptionsExtensions", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetOptionsExtensions", MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetOptionsExtensions", MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetOptionsExtensions", MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetOptionsExtensions", MainAsm)]
 
     // DotNetResultFormatter
 
-    [NoTrim("Descriptor",         $"{MainAsm}.DotNetResultFormatter", MainAsm)]
-    [NoTrim("Stringify",          $"{MainAsm}.DotNetResultFormatter", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetResultFormatter", MainAsm)]
-    [NoTrim("ExceptionMessage",   $"{MainAsm}.DotNetResultFormatter", MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetResultFormatter", MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetResultFormatter", MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetResultFormatter", MainAsm)]
+    [NoTrim("ExceptionMessage",   $"{MainAsm}.Formatters.DotNetResultFormatter", MainAsm)]
 
     // DotNetResultFormatterExtensions
 
-    [NoTrim("Descriptor",         $"{MainAsm}.DotNetResultFormatterExtensions", MainAsm)]
-    [NoTrim("Stringify",          $"{MainAsm}.DotNetResultFormatterExtensions", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.DotNetResultFormatterExtensions", MainAsm)]
-    [NoTrim("ExceptionMessage",   $"{MainAsm}.DotNetResultFormatterExtensions", MainAsm)]
+    [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
+    [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
+    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
+    [NoTrim("ExceptionMessage",   $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
 
     // Services
 
-    [NoTrim("FormatArgs",         $"{MainAsm}.DotNetCommandFormatter", MainAsm)]
-    [NoTrim("Enrich",             $"{MainAsm}.DotNetEnricher",         MainAsm)]
-    [NoTrim("LogAction",          $"{MainAsm}.DotNetLogger",           MainAsm)]
+    [NoTrim("FormatArgs",         $"{MainAsm}.Formatters.DotNetCommandFormatter", MainAsm)]
+    [NoTrim("Enrich",             $"{MainAsm}.DotNetEnricher",                    MainAsm)]
+    [NoTrim("LogAction",          $"{MainAsm}.DotNetLogger",                      MainAsm)]
 
     public static void Untrim() { }
 }

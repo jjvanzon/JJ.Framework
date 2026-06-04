@@ -2,7 +2,7 @@
 // ReSharper disable InvertIf
 // ReSharper disable ConvertToConstant.Local
 
-namespace JJ.Framework.Compilation.Core.Tests;
+namespace JJ.Framework.Compilation.Core.Tests.FormatterTests;
 
 using static DotNetArgsFormatterAccessor;
 using static DotNetArgsFormatterExtensionsAccessor;

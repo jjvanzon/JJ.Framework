@@ -1,7 +1,7 @@
 ﻿//using System.Runtime.CompilerServices;
 //using static System.Runtime.CompilerServices.MethodImplOptions;
 
-namespace JJ.Framework.Compilation.Core;
+namespace JJ.Framework.Compilation.Core.Formatters;
 
 internal static class DotNetArgsFormatterExtensions
 {

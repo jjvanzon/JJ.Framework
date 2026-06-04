@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Compilation.Core;
+﻿namespace JJ.Framework.Compilation.Core.Formatters;
 
 internal static class DotNetOptionsExtensions
 {

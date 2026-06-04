@@ -22,6 +22,7 @@ global using static JJ.Framework.Compilation.Core.Tests.Accessors.DotNetOptionsA
 
 // ReSharper disable RedundantUsingDirective.Global
 global using JJ.Framework.Compilation.Core.Tests;
+global using JJ.Framework.Compilation.Core.Tests.FormatterTests;
 global using static System.Environment;
 global using static System.Console;
 global using static JJ.Framework.Testing.Core.TestRunner;

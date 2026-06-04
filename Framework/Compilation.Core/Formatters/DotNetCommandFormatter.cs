@@ -1,5 +1,5 @@
 ﻿// ReSharper disable HeuristicUnreachableCode
-namespace JJ.Framework.Compilation.Core;
+namespace JJ.Framework.Compilation.Core.Formatters;
 
 internal static class DotNetCommandFormatter
 {

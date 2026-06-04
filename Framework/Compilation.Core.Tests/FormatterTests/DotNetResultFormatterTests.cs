@@ -1,4 +1,4 @@
-namespace JJ.Framework.Compilation.Core.Tests;
+namespace JJ.Framework.Compilation.Core.Tests.FormatterTests;
 
 using static DotNetResultFormatterAccessor;
 using static DotNetResultFormatterExtensionsAccessor;

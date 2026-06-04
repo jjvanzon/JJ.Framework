@@ -62,6 +62,15 @@
       <Value>Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:net10.0</Value>
+      <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj</Value>
+      <Value>Framework\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj</Value>
+      <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\Compilation.Core.TrimTests\JJ.Framework.Compilation.Core.TrimTests.csproj</Value>
     </MetricsExclusionList>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>

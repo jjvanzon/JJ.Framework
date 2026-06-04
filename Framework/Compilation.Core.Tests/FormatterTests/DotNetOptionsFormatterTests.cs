@@ -1,6 +1,7 @@
 // ReSharper disable ConvertToConstant.Local
 // ReSharper disable InlineTemporaryVariable
-namespace JJ.Framework.Compilation.Core.Tests;
+
+namespace JJ.Framework.Compilation.Core.Tests.FormatterTests;
 
 using static DotNetOptionsFormatterAccessor;
 using static DotNetOptionsFormatterExtensionsAccessor;
