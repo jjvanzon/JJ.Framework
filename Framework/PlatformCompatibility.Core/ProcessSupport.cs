@@ -1,4 +1,6 @@
 ﻿// ReSharper disable UnusedParameter.Global
+// ReSharper disable UnusedType.Global
+// ReSharper disable RedundantUsingDirective.Global
 
 using System.Diagnostics;
 

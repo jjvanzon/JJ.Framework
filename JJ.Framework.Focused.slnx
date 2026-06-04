@@ -9,6 +9,7 @@
     <File Path="Framework/Directory.Build.props" />
     <File Path="Framework/TargetFrameworks.xml" />
     <File Path="Framework/Vars.xml" />
+    <File Path="JJ.Framework.Focused.slnx.DotSettings" />
     <File Path="NuGet.config" />
   </Folder>
   <Project Path="Framework/Compilation.Core.Tests/JJ.Framework.Compilation.Core.Tests.csproj" />
