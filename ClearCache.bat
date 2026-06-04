@@ -18,5 +18,8 @@ echo ------------------------------------------------------------------
 echo Calling ClearNCrunch.bat
 call "%~dp0ClearNCrunch.bat"
 echo ------------------------------------------------------------------
+echo Calling ClearMisc.bat
+call "%~dp0ClearMisc.bat"
+echo ------------------------------------------------------------------
 echo All done.
 pause

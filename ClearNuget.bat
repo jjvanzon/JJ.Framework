@@ -1,11 +1,6 @@
 @echo off
 
-echo CLEAR NUGET
-echo -----------
-echo Deletes repo-level "packages" directory 
-echo and the user's .nuget folder.
-
-echo(
+echo Deletes repo-level "packages" directory and the user's .nuget folder.
 
 REM %~dp0         = Folder of bat file
 REM %USERPROFILE% = Windows variable pointing to user folder (like "C:\Users\janjo")

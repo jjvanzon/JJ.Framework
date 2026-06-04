@@ -1,9 +1,6 @@
 @echo off
 
-echo CLEAR MORE TEMP FOLDERS AND CACHES
-echo ----------------------------------
-
-echo(
+echo Clears miscellaneous caches and temp folders
 
 echo Deleting "C:\Windows\ServiceProfiles\NetworkService\.nuget"
 rmdir /s /q "C:\Windows\ServiceProfiles\NetworkService\.nuget"
