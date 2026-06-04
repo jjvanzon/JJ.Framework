@@ -2,15 +2,13 @@
 // ReSharper disable InvertIf
 
 using static System.Threading.Tasks.Parallel;
+// ReSharper disable InlineTemporaryVariable
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
 public class RestoreTests : DotNetTestHelper
 {
-
-    // TODO: Implement each behavioral test
-
     [TestMethod]
     public void Test_Restore_Explicit()
     {
@@ -107,42 +105,57 @@ public class RestoreTests : DotNetTestHelper
     {
         // TODO: Assert the disable parallel argument is there by default.
 
-        Log("Parallel restore unstable. Test provokes exceptions but checks the outcome.");
+        Log("Parallel restore unstable. Test provokes exceptions but still checks the outcome.");
 
         AssertInitialState();
 
+        // Add tight time-out or test might take long.
+        // It's a bit like rigging the test to produce exceptions,
+        // but I think it's representative for behavior experienced.
+        const int timeOutSec = 10;
+
         // Init in advance so loop is tight
-        const int count = 128;
+        const int count = 96;
 
         var testHelpers = new DotNetTestHelper[count];
         var opts        = new DotNetOptions   [count];
         var results     = new DotNetResult?   [count];
         var exceptions  = new Exception?      [count];
+        var tasks       = new Task            [count];
 
+        // Manage your own tasks - better guarantees parallelism than parallel loop.
         for (int i = 0; i < count; i++)
         {
             testHelpers[i] = new DotNetTestHelper();
-            // Add tight time-out or test might take long.
-            // It's a bit like rigging the test to produce exceptions,
-            // but I think it's representative for behavior experienced.
-            opts[i] = testHelpers[i].BasicOpt with { ParallelRestore = true, TimeOutSec = 20 };
+            opts[i] = testHelpers[i].BasicOpt with { ParallelRestore = true, TimeOutSec = timeOutSec  };
+
+            // Snapshot variables locally.
+            var frozenIndex = i; 
+            var fronzenOpt = opts[i];
+
+            // TODO: Hmm... would hoist a lot of data. Use tuple array for above objects?
+
+            tasks[i] = new(() =>
+            {
+                try
+                {
+                    results[frozenIndex] = Restore(fronzenOpt);
+                }
+                catch (Exception ex)
+                {
+                    exceptions[frozenIndex] = ex;
+                }
+            });
         }
 
-        // TODO: Manage your own tasks, which should give better guarantees to degree of parallelism.
-
         // Tight loop (makes exceptions more likely)
-        var parallelOpts = new ParallelOptions { MaxDegreeOfParallelism = count };
-        For(0, count, parallelOpts, i =>
+        for (int i = 0; i < count; i++)
         {
-            try
-            {
-                results[i] = Restore(opts[i]);
-            }
-            catch (Exception ex)
-            {
-                exceptions[i] = ex;
-            }
-        });
+            tasks[i].Start();
+        }
+       
+        // Wait till finished
+        Task.WaitAll(tasks);
 
         // Report exception count
         int exceptionCount = exceptions.Where(FilledIn).Count();
@@ -169,6 +182,7 @@ public class RestoreTests : DotNetTestHelper
             if (ex != null)
             {
                 AssertContainsAny(ex.Message, "Timeout", "Access is denied");
+                LogLine();
                 Log($"{ex}");
             }
         }
@@ -178,6 +192,7 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_DotNet_Restore_Overloads()
     {
+        // TODO: Implement.
     }
 
     // Helpers

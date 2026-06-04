@@ -136,6 +136,7 @@ public class DotNetTestHelper : IDisposable
 
     // Helpers
 
+    internal void LogLine() => Log("");
     internal void Log(string msg) => Console.WriteLine(msg);
 
     internal DotNetOptions GetOptNoFile([Caller] string testName = "")

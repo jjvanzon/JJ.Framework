@@ -11,4 +11,18 @@ RestoreTests Scratch Pad
         {
             exceptionMessage = ex.Message;
         }
+
+
+        var parallelOpts = new ParallelOptions { MaxDegreeOfParallelism = count };
+        For(0, count, parallelOpts, i =>
+        {
+            try
+            {
+                results[i] = Restore(opts[i]);
+            }
+            catch (Exception ex)
+            {
+                exceptions[i] = ex;
+            }
+        });
 ```
