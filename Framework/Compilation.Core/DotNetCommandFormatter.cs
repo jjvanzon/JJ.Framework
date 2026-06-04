@@ -8,7 +8,7 @@ internal static class DotNetCommandFormatter
 
     public static string FormatArgs(DotNetArgs args, DotNetOptions opt)
     {
-        string formattedCommandAndFile  = TryFormatCommandAndFile (args, opt);
+        string formattedCommandAndFile  = TryFormatCommandAndFile (args.CommandEnum, args.Command, opt.File);
         string formattedPackageID       = TryFormatPackageID      (args.ID);
         string formattedPackageVer      = TryFormatPackageVer     (args.Ver);
         string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,       args.CommandEnum);
@@ -37,12 +37,8 @@ internal static class DotNetCommandFormatter
     /// For <c>dotnet remove package</c>, we need to squish the <c>File</c> arg in between 
     /// <c>remove</c> and <c>package</c> e.g., <c>remove Temp.csproj package</c>.
     /// </summary>
-    private static string TryFormatCommandAndFile(DotNetArgs args, DotNetOptions opt)
+    private static string TryFormatCommandAndFile(DotNetCommandEnum commandEnum, string command, string file)
     {
-        DotNetCommandEnum commandEnum = args.CommandEnum;
-        string command = args.Command;
-        string file = opt.File;
-
         // No file? Just return command.
         if (!Has(file)) return command;
         
@@ -64,16 +60,53 @@ internal static class DotNetCommandFormatter
         return $"{command} {formattedFile}";
     }
 
-    private static string TryFormatNodeReuse(bool nodeReuse, DotNetCommandEnum commandEnum)
+    private static string TryFormatPackageID(string id)
     {
-        // Assumed true by default.
-        if (nodeReuse) return "";
+        if (id.IsNully()) return "";
+        return $"{id}";
+    }
 
-        if (commandEnum is build or rebuild or msbuild or msrebuild)
-        {
-            return "--nodereuse:false";
-        }
+    private static string TryFormatPackageVer(string ver)
+    {
+        if (ver.IsNully()) return "";
+        return $"--version {ver}";
+    }
+    
+    private static string TryFormatBuildConf(string buildConf, DotNetCommandEnum commandEnum)
+    {
+        if (!Has(buildConf)) return "";
+        if (commandEnum is build or rebuild) return $"-c {buildConf}";
+        if (commandEnum is msbuild or msrebuild) return $"/p:Configuration={buildConf}";
+        return "";
+    }
 
+    private static string TryFormatRebuildArg(bool isRebuild, DotNetCommandEnum commandEnum)
+    {
+        if (!isRebuild) return "";
+        if (commandEnum is build or rebuild) return REBUILD_ARG_DOT_NET;
+        if (commandEnum is msbuild or msrebuild) return REBUILD_ARG_MS_BUILD;
+        return "";
+    }
+
+    private static string TryFormatAutoRestore(bool autoRestore, DotNetCommandEnum commandEnum)
+    {
+        if (commandEnum is build or rebuild) return autoRestore ? "" : "--no-restore";
+        if (commandEnum is msbuild or msrebuild) return autoRestore ? "-restore" : "";
+        return "";
+    }
+
+    private static string TryFormatParallelRestore(bool parallelRestore, DotNetCommandEnum commandEnum)
+    {
+        if (parallelRestore) return "";
+        if (commandEnum != restore) return "";
+        return "--disable-parallel";
+    }
+
+    private static string TryFormatVerbosity(DotNetVerbosity verbosity, DotNetCommandEnum commandEnum)
+    {
+        if (verbosity == default) return "";
+        if (commandEnum is build or rebuild) return $"--verbosity {verbosity}";
+        if (commandEnum is msbuild or msrebuild) return $"-verbosity:{verbosity}";
         return "";
     }
 
@@ -92,53 +125,16 @@ internal static class DotNetCommandFormatter
         return $"-bl:\"{binLogFile}\"";
     }
 
-    private static string TryFormatAutoRestore(bool autoRestore, DotNetCommandEnum commandEnum)
+    private static string TryFormatNodeReuse(bool nodeReuse, DotNetCommandEnum commandEnum)
     {
-        if (commandEnum is build or rebuild) return autoRestore ? "" : "--no-restore";
-        if (commandEnum is msbuild or msrebuild) return autoRestore ? "-restore" : "";
+        // Assumed true by default.
+        if (nodeReuse) return "";
+
+        if (commandEnum is build or rebuild or msbuild or msrebuild)
+        {
+            return "--nodereuse:false";
+        }
+
         return "";
-    }
-
-    private static string TryFormatParallelRestore(bool parallelRestore, DotNetCommandEnum commandEnum)
-    {
-        if (parallelRestore) return "";
-        if (commandEnum != restore) return "";
-        return "--disable-parallel";
-    }
-
-    private static string TryFormatBuildConf(string buildConf, DotNetCommandEnum commandEnum)
-    {
-        if (!Has(buildConf)) return "";
-        if (commandEnum is build or rebuild) return $"-c {buildConf}";
-        if (commandEnum is msbuild or msrebuild) return $"/p:Configuration={buildConf}";
-        return "";
-    }
-
-    private static string TryFormatVerbosity(DotNetVerbosity verbosity, DotNetCommandEnum commandEnum)
-    {
-        if (verbosity == default) return "";
-        if (commandEnum is build or rebuild) return $"--verbosity {verbosity}";
-        if (commandEnum is msbuild or msrebuild) return $"-verbosity:{verbosity}";
-        return "";
-    }
-
-    private static string TryFormatRebuildArg(bool isRebuild, DotNetCommandEnum commandEnum)
-    {
-        if (!isRebuild) return "";
-        if (commandEnum is build or rebuild) return REBUILD_ARG_DOT_NET;
-        if (commandEnum is msbuild or msrebuild) return REBUILD_ARG_MS_BUILD;
-        return "";
-    }
-
-    private static string TryFormatPackageID(string id)
-    {
-        if (id.IsNully()) return "";
-        return $"{id}";
-    }
-
-    private static string TryFormatPackageVer(string ver)
-    {
-        if (ver.IsNully()) return "";
-        return $"--version {ver}";
     }
 }
