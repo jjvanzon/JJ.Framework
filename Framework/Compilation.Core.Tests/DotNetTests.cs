@@ -182,7 +182,7 @@ public class DotNetTests : DotNetTestHelper
     {
         AssertInitialState();
 
-        InstallPackage(PackID, PackVer, GetOptNoFile());
+        InstallPackage(PackID, PackVer, GetOpt());
 
         DotNetResult output = call();
         AssertResultOk(output);
@@ -195,7 +195,7 @@ public class DotNetTests : DotNetTestHelper
 
     [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(PackID));
     [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PackID, "--interactive"));
-    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PackID, GetOptNoFile()));
-    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PackID, "--interactive", GetOptNoFile()));
+    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PackID, GetOpt()));
+    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PackID, "--interactive", GetOpt()));
     // Enum and name won't work unless you specify id and ver as args.
 }

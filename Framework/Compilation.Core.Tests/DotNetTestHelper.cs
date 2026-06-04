@@ -148,9 +148,10 @@ public class DotNetTestHelper : IDisposable
     internal void Log(string msg) => Console.WriteLine(msg);
 
     internal DotNetOptions GetOptNoFile([Caller] string testName = "")
-        => GetOpt(testName) with { File = "" };
+    {
+        return GetOpt(testName) with { File = "" };
+    }
 
-    // TODO: Create once per instance, not once per call.
     // ReSharper disable once UnusedParameter.Global
     internal DotNetOptions GetOpt([Caller] string testName = "") => BasicOpt with
     {

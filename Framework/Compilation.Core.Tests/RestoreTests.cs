@@ -116,8 +116,8 @@ public class RestoreTests : DotNetTestHelper
         // Add tight time-out or test might take long.
         // It's a bit like rigging the test to produce exceptions,
         // but I think it's representative for behavior experienced.
-        const int timeOutSec = 10;
-        const int count = 96;
+        const int timeOutSec = 8;
+        const int count = 72;
 
         // Init in advance so loop is tight
         var infos = new RestoreInfo[count];

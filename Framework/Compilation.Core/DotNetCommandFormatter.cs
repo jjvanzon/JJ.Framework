@@ -8,9 +8,9 @@ internal static class DotNetCommandFormatter
 
     public static string FormatArgs(DotNetArgs args, DotNetOptions opt)
     {
+        string formattedCommandAndFile  = TryFormatCommandAndFile (args, opt);
         string formattedPackageID       = TryFormatPackageID      (args.ID);
         string formattedPackageVer      = TryFormatPackageVer     (args.Ver);
-        string formattedFile            = TryFormatFile           (opt.File,            args.CommandEnum);
         string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,       args.CommandEnum);
         string formattedRebuildArg      = TryFormatRebuildArg     (args.IsRebuild,      args.CommandEnum);
         string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,       args.CommandEnum);
@@ -20,9 +20,8 @@ internal static class DotNetCommandFormatter
         string formattedAutoRestore     = TryFormatAutoRestore    (opt.AutoRestore,     args.CommandEnum);
         string[] elements = 
         [
-            args.Command, 
+            formattedCommandAndFile, 
             formattedPackageID, formattedPackageVer,
-            formattedFile, 
             formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
             formattedParallelRestore, 
             formattedNodeReuse, formattedBinLog, 
@@ -30,6 +29,39 @@ internal static class DotNetCommandFormatter
         ];
         string ret = Join(" ", elements.Where(FilledIn));
         return ret; 
+    }
+
+    /// <summary>
+    /// NOTE:
+    /// We use <c>remove package</c> instead of <c>package remove</c> for backward compatibility prior to .NET 10.
+    /// For <c>dotnet remove package</c>, we need to squish the <c>File</c> arg in between 
+    /// <c>remove</c> and <c>package</c> e.g., <c>remove Temp.csproj package</c>.
+    /// </summary>
+    private static string TryFormatCommandAndFile(DotNetArgs args, DotNetOptions opt)
+    {
+        DotNetCommandEnum commandEnum = args.CommandEnum;
+        string command = args.Command;
+        string file = opt.File;
+
+        // No file? Just return command.
+        if (!Has(file)) return command;
+        
+        string formattedFile = '"' + file + '"';
+
+        // `remove package`: special case: squish file in between keywords. 
+        if (commandEnum == uninstallpackage)
+        {
+            return $"remove {formattedFile} package ";
+        }
+
+        // `add package`: likes the --project switch.
+        if (commandEnum == installpackage)
+        {
+            return $"{command} --project {formattedFile}";
+        }
+
+        // Any other command: just concat file.
+        return $"{command} {formattedFile}";
     }
 
     private static string TryFormatNodeReuse(bool nodeReuse, DotNetCommandEnum commandEnum)
@@ -58,15 +90,6 @@ internal static class DotNetCommandFormatter
         }
            
         return $"-bl:\"{binLogFile}\"";
-    }
-
-    private static string TryFormatFile(string file, DotNetCommandEnum commandEnum)
-    {
-        if (file.IsNully()) return "";
-
-        string projectArg = commandEnum is installpackage ? "--project " : "";
-
-        return projectArg + '"' + file + '"';
     }
 
     private static string TryFormatAutoRestore(bool autoRestore, DotNetCommandEnum commandEnum)
