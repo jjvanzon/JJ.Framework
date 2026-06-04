@@ -25,4 +25,15 @@ RestoreTests Scratch Pad
                 exceptions[i] = ex;
             }
         });
+
+
+        public void Deconstruct(
+            out DotNetTestHelper helper, 
+            out DotNetResult? result, 
+            out Exception? exception)
+        {
+            helper = Helper;
+            result = Result;
+            exception = Exception;
+        }
 ```

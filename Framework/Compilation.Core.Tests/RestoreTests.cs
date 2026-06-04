@@ -3,6 +3,7 @@
 // ReSharper disable InlineTemporaryVariable
 // ReSharper disable ReplaceWithSingleCallToCount
 
+
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
@@ -93,14 +94,6 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(msg, "Assets file '" + AssetsFilePath + "' not found.");
     }
 
-    private record RestoreInfo(DotNetTestHelper Helper, DotNetOptions Opt)
-    {
-        public Task? Task { get; set; }
-        public DotNetResult? Result { get; set; }
-        public Exception? Exception { get; set; }
-
-    }
-
     /// <summary>
     /// Basically parallel restore doesn't work. It deadlocks under heavy parallel work.
     /// 
@@ -110,7 +103,13 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_ParallelRestore_EvilDoesNotWork()
     {
+        #if NET5_0
+            Log("Skip .NET 5. Too slow. Check other .NET version.");
+            return;
+        #endif
+
         Log("Parallel restore unstable. Test provokes exceptions but still checks the outcome.");
+        LogLine();
 
         AssertInitialState();
 
@@ -130,8 +129,8 @@ public class RestoreTests : DotNetTestHelper
         {
 
             DotNetTestHelper helper = new();
-            DotNetOptions opt = helper.BasicOpt with { ParallelRestore = true, TimeOutSec = timeOutSec  };
-            RestoreInfo info = new(helper, opt);
+            DotNetOptions opt = helper.BasicOpt with { ParallelRestore = true, TimeOutSec = timeOutSec };
+            RestoreInfo info = new(helper);
 
             var task = new Task(() =>
             {
@@ -156,31 +155,31 @@ public class RestoreTests : DotNetTestHelper
         }
        
         // Wait till finished
-        Task.WaitAll(tasks);
+        WaitAll(tasks);
 
         // Report exception count
         int exceptionCount = infos.Where(x => Has(x.Exception)).Count();
         Log($"{exceptionCount} exceptions occurred. {count} restores run.");
 
         // Evaluate afterwards, keeps parallel loop tight and exception more likely.
-        foreach (RestoreInfo info in infos)
+        foreach (var x in infos)
         {
             // Having both a result and and exception, shouldn't happen.
-            IsFalse(Has(info.Result) && Has(info.Exception));
+            IsFalse(Has(x.Result) && Has(x.Exception));
 
-            if (info.Result != null)
+            if (x.Result != null)
             {
-                AssertContains(info.Result, "dotnet restore");
-                AssertContains(info.Result, "determining projects to restore");
-                AssertContains(info.Result, "restored " + info.Helper.CsprojPath);
-                // TODO: Assert more
+                AssertResultOk(x.Result);
+                AssertContains(x.Result, "dotnet restore");
+                AssertContains(x.Result, "determining projects to restore");
+                AssertContains(x.Result, "restored " + x.Helper.CsprojPath);
             }
 
-            if (info.Exception != null)
+            if (x.Exception != null)
             {
-                AssertContainsAny(info.Exception.Message, "Timeout", "Access is denied");
+                AssertContainsAny(x.Exception.Message, "Timeout", "Access is denied");
                 LogLine();
-                Log($"{info.Exception}");
+                Log($"{x.Exception}");
             }
         }
 
@@ -200,5 +199,11 @@ public class RestoreTests : DotNetTestHelper
         AssertNotExists(AssetsFilePath);
         AssertNotExists(DebugDllFilePath);
         AssertNotExists(ReleaseDllFilePath);
+    }
+
+    private record RestoreInfo(DotNetTestHelper Helper)
+    {
+        public DotNetResult? Result { get; set; }
+        public Exception? Exception { get; set; }
     }
 }
