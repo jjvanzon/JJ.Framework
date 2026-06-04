@@ -1,4 +1,5 @@
 ﻿// ReSharper disable ConvertToLambdaExpression
+// ReSharper disable InvertIf
 
 using static System.Threading.Tasks.Parallel;
 
@@ -26,7 +27,7 @@ public class RestoreTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_Restore_AutoRestore_True()
+    public void Test_Restore_AutoRestore()
     {
         AssertInitialState();
 
@@ -73,7 +74,7 @@ public class RestoreTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_NoRestore_Builds_WithPainfulException()
+    public void Test_NoRestore_PainfulException()
     {
         AssertInitialState();
 
@@ -95,17 +96,18 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(msg, "Assets file '" + AssetsFilePath + "' not found.");
     }
 
+    /// <summary>
+    /// Basically parallel restore doesn't work. It deadlocks under heavy parallel work.
+    /// 
+    /// Assert the option can be set, but not if the effect is consistent.
+    /// Build might succeed. Exception might occur with time-out.
+    /// </summary>
     [TestMethod]
-    public void Test_DotNet_Restore_ParallelRestore()
+    public void Test_Restore_ParallelRestore_EvilDoesNotWork()
     {
-        // TODO: Not sure how to test this.
+        // TODO: Assert the disable parallel argument is there by default.
 
-        // Basically parallel restore doesn't work well.
-        // It deadlocks in parallel.
-        // So assert the disable parallel argument is there by default?
-
-        // Assert the option can be set, but not if the effect is consistent.
-        // Build might succeed. Exception might occur with time-out.
+        Log("Parallel restore unstable. Test provokes exceptions but checks the outcome.");
 
         AssertInitialState();
 
@@ -122,7 +124,7 @@ public class RestoreTests : DotNetTestHelper
             testHelpers[i] = new DotNetTestHelper();
             // Add tight time-out or test might take long.
             // It's a bit like rigging the test to produce exceptions,
-            // but I think it's representative for behavior experienced currently (as of 2026-06).
+            // but I think it's representative for behavior experienced.
             opts[i] = testHelpers[i].BasicOpt with { ParallelRestore = true, TimeOutSec = 20 };
         }
 
@@ -142,7 +144,11 @@ public class RestoreTests : DotNetTestHelper
             }
         });
 
-        // Evaluate after parallel loop, keeps loop tight and exception more likely.
+        // Report exception count
+        int exceptionCount = exceptions.Where(FilledIn).Count();
+        Log($"{exceptionCount} exceptions occurred. {count} restores run.");
+
+        // Evaluate only after parallel loop, keeps loop tight and exception more likely.
         for (int i = 0; i < count; i++)
         {
             DotNetTestHelper testHelper = testHelpers[i];
@@ -166,6 +172,7 @@ public class RestoreTests : DotNetTestHelper
                 Log($"{ex}");
             }
         }
+
     }
 
     [TestMethod]
