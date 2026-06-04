@@ -135,17 +135,16 @@ public class DotNetTestHelper : IDisposable
     }
 
     // Helpers
-    
-    private void Log(string msg) => Console.WriteLine(msg);
+
+    internal void Log(string msg) => Console.WriteLine(msg);
 
     internal DotNetOptions GetOptNoFile([Caller] string testName = "")
         => GetOpt(testName) with { File = "" };
 
+    // TODO: Create once per instance, not once per call.
     // ReSharper disable once UnusedParameter.Global
-    internal DotNetOptions GetOpt([Caller] string testName = "") => new()
+    internal DotNetOptions GetOpt([Caller] string testName = "") => BasicOpt with
     {
-        Dir       = TempDir,
-        File      = CS_PROJ_FILE_NAME,
         BuildConf = "Release",
         LogAction = Log,
         Verbosity = Normal,
