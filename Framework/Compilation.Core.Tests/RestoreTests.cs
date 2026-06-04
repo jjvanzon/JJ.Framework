@@ -3,14 +3,15 @@
 // ReSharper disable InlineTemporaryVariable
 // ReSharper disable ReplaceWithSingleCallToCount
 
-
 namespace JJ.Framework.Compilation.Core.Tests;
+
+using T = RestoreTests;
 
 [TestClass]
 public class RestoreTests : DotNetTestHelper
 {
     [TestMethod]
-    public void Test_Restore_Explicit()
+    public void Test_ExplicitRestore()
     {
         AssertInitialState();
 
@@ -25,7 +26,7 @@ public class RestoreTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_Restore_AutoRestore()
+    public void Test_AutoRestore()
     {
         AssertInitialState();
 
@@ -94,6 +95,13 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(msg, "Assets file '" + AssetsFilePath + "' not found.");
     }
 
+    [TestMethod]
+    public void Test_Restore_DisableParallel_ByDefault()
+    {
+        DotNetResult result = Restore(BasicOpt);
+        AssertContains(result, "--disable-parallel");
+    }
+
     /// <summary>
     /// Basically parallel restore doesn't work. It deadlocks under heavy parallel work.
     /// 
@@ -101,7 +109,7 @@ public class RestoreTests : DotNetTestHelper
     /// Build might succeed. Exception might occur with time-out.
     /// </summary>
     [TestMethod]
-    public void Test_Restore_ParallelRestore_EvilDoesNotWork()
+    public void Test_ParallelRestore_EvilDoesNotWork()
     {
         #if NET5_0
             Log("Skip .NET 5. Too slow. Check other .NET version.");
@@ -182,16 +190,23 @@ public class RestoreTests : DotNetTestHelper
         }
     }
 
-    [TestMethod]
-    public void Test_Restore_DisableParallel_ByDefault() 
-        => AssertContains(Restore(BasicOpt), "--disable-parallel");
+    // Overloads
 
     [TestMethod]
     public void Test_Restore_Overloads()
     {
-        var helper = new DotNetTestHelper();
-        Restore(helper.BasicOpt);
-        // TODO: Implement.
+        { T x = new(); x.AssertChDir(() =>      Restore(                       )); }
+        { T x = new(); x.Assert     (() =>      Restore(                x.Opt())); }
+        { T x = new(); x.AssertChDir(() =>      Restore(  "--no-cache"         )); }
+        { T x = new(); x.Assert     (() =>      Restore(  "--no-cache", x.Opt())); }
+        { T x = new(); x.AssertChDir(() => Exe( restore                        )); }
+        { T x = new(); x.Assert     (() => Exe( restore,                x.Opt())); }
+        { T x = new(); x.AssertChDir(() => Exe( restore,  "--no-cache"         )); }
+        { T x = new(); x.Assert     (() => Exe( restore,  "--no-cache", x.Opt())); }
+        { T x = new(); x.AssertChDir(() => Exe("restore"                       )); }
+        { T x = new(); x.Assert     (() => Exe("restore",               x.Opt())); }
+        { T x = new(); x.AssertChDir(() => Exe("restore", "--no-cache"         )); }
+        { T x = new(); x.Assert     (() => Exe("restore", "--no-cache", x.Opt())); }
     }
 
     // Helpers
@@ -200,5 +215,17 @@ public class RestoreTests : DotNetTestHelper
     {
         public DotNetResult? Result { get; set; }
         public Exception? Exception { get; set; }
+    }
+
+    private void AssertChDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
+    private void Assert(Func<DotNetResult> call)
+    {
+        AssertInitialState();
+        DotNetResult result = call();
+        AssertExists(AssetsFilePath);
+        AssertResultOk(result);
+        AssertContains(result, "dotnet restore");
+        AssertContains(result, "determining projects to restore");
+        AssertContains(result, "restored " + CsprojPath);
     }
 }

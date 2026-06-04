@@ -75,21 +75,21 @@ public class DotNetTestHelper : IDisposable
 
     // Assert
 
-    internal void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
-    internal void AssertNotExists(string filePath) => IsFalse(Exists(filePath), message: filePath);
+    internal static void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
+    internal static void AssertNotExists(string filePath) => IsFalse(Exists(filePath), message: filePath);
     internal void AssertDebugDll() => AssertExists(DebugDllFilePath);
 
-    internal void AssertContains(string whole, string part)
+    internal static void AssertContains(string whole, string part)
     {
         IsTrue(whole.Contains(part, OrdinalIgnoreCase), $"Expected '{part}' in: {whole}");
     }
 
-    internal void AssertNotContains(string whole, string part)
+    internal static void AssertNotContains(string whole, string part)
     {
         IsTrue(!whole.Contains(part, OrdinalIgnoreCase), $"Unexpected '{part}' found in: {whole}");
     }
 
-    internal void AssertContainsAny(string whole, params string[] parts)
+    internal static void AssertContainsAny(string whole, params string[] parts)
     {
         string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
         IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
@@ -102,7 +102,7 @@ public class DotNetTestHelper : IDisposable
         AssertNotExists(ReleaseDllFilePath);
     }
     
-    internal void AssertResultOk(DotNetResult result)
+    internal static void AssertResultOk(DotNetResult result)
     {
         AssertResultBase(result);
 
@@ -116,7 +116,7 @@ public class DotNetTestHelper : IDisposable
         AreEqual(0, result.ExitCode);
     }
 
-    internal void AssertResultBase(DotNetResult result)
+    internal static void AssertResultBase(DotNetResult result)
     {
         // Nulls
         NotNull(result);
@@ -147,21 +147,22 @@ public class DotNetTestHelper : IDisposable
     internal void LogLine() => Log("");
     internal void Log(string msg) => Console.WriteLine(msg);
 
-    internal DotNetOptions GetOptNoFile([Caller] string testName = "")
+    internal DotNetOptions OptNoFile([Caller] string testName = "")
     {
-        return GetOpt(testName) with { File = "" };
+        return Opt(testName) with { File = "" };
     }
 
     // ReSharper disable once UnusedParameter.Global
-    internal DotNetOptions GetOpt([Caller] string testName = "") => BasicOpt with
-    {
-        BuildConf = "Release",
-        LogAction = Log,
-        Verbosity = Normal,
-        //BinLog    = GetBinLogFilePath(testName),
-        // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
-        //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
-    };
+    internal DotNetOptions Opt([Caller] string testName = "") 
+        => BasicOpt with
+        {
+            BuildConf = "Release",
+            LogAction = Log,
+            Verbosity = Normal,
+            //BinLog    = GetBinLogFilePath(testName),
+            // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
+            //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
+        };
 
     private DotNetOptions CreateBasicOpt() => new()
     {
