@@ -30,17 +30,17 @@ public class DotNetTests : DotNetTestHelper
     }
 
     [TestMethod] public void Test_Restore_ByMethod()                => TestRestore_ChDir(() => Restore());
-    [TestMethod] public void Test_Restore_ByMethod_WithOpt()        => TestRestore      (() => Restore(GetOptNoFile()));
+    [TestMethod] public void Test_Restore_ByMethod_WithOpt()        => TestRestore      (() => Restore(GetOpt()));
     [TestMethod] public void Test_Restore_ByMethod_WithArgs()       => TestRestore_ChDir(() => Restore("--no-cache"));
-    [TestMethod] public void Test_Restore_ByMethod_WithArgsAndOpt() => TestRestore      (() => Restore("--no-cache", GetOptNoFile()));
+    [TestMethod] public void Test_Restore_ByMethod_WithArgsAndOpt() => TestRestore      (() => Restore("--no-cache", GetOpt()));
     [TestMethod] public void Test_Restore_ByEnum()                  => TestRestore_ChDir(() => DotNet.Exe(restore));
-    [TestMethod] public void Test_Restore_ByEnum_WithOpt()          => TestRestore      (() => DotNet.Exe(restore, GetOptNoFile()));
+    [TestMethod] public void Test_Restore_ByEnum_WithOpt()          => TestRestore      (() => DotNet.Exe(restore, GetOpt()));
     [TestMethod] public void Test_Restore_ByEnum_WithArgs()         => TestRestore_ChDir(() => DotNet.Exe(restore, "--no-cache"));
-    [TestMethod] public void Test_Restore_ByEnum_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe(restore, "--no-cache", GetOptNoFile()));
+    [TestMethod] public void Test_Restore_ByEnum_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe(restore, "--no-cache", GetOpt()));
     [TestMethod] public void Test_Restore_ByName()                  => TestRestore_ChDir(() => DotNet.Exe("restore"));
-    [TestMethod] public void Test_Restore_ByName_WithOpt()          => TestRestore      (() => DotNet.Exe("restore", GetOptNoFile()));
+    [TestMethod] public void Test_Restore_ByName_WithOpt()          => TestRestore      (() => DotNet.Exe("restore", GetOpt()));
     [TestMethod] public void Test_Restore_ByName_WithArgs()         => TestRestore_ChDir(() => DotNet.Exe("restore", "--no-cache"));
-    [TestMethod] public void Test_Restore_ByName_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe("restore", "--no-cache", GetOptNoFile()));
+    [TestMethod] public void Test_Restore_ByName_WithArgsAndOpt()   => TestRestore      (() => DotNet.Exe("restore", "--no-cache", GetOpt()));
 
     // Build
 
@@ -48,6 +48,7 @@ public class DotNetTests : DotNetTestHelper
     public void TestBuild_Release(Func<DotNetResult> call) => TestBuild(call, ReleaseDllFilePath);
     public void TestBuild(Func<DotNetResult> call, string filePath)
     {
+        AssertInitialState();
         InitRestore();
 
         DotNetResult output = call();
@@ -76,6 +77,7 @@ public class DotNetTests : DotNetTestHelper
     public void TestRebuild_Release(Func<DotNetResult> call) => TestRebuild(call, ReleaseDllFilePath);
     public void TestRebuild(Func<DotNetResult> call, string dllFileName)
     {
+        AssertInitialState();
         InitRestore();
 
         DotNetResult output = call();
@@ -102,6 +104,7 @@ public class DotNetTests : DotNetTestHelper
     private void TestMSBuild_Release(Func<DotNetResult> call) => TestMSBuild(call, ReleaseDllFilePath);
     private void TestMSBuild(Func<DotNetResult> call, string dllFilePath)
     {
+        AssertInitialState();
         InitRestore();
 
         DotNetResult output = call();
@@ -129,6 +132,7 @@ public class DotNetTests : DotNetTestHelper
     private void TestMSRebuild_Release(Func<DotNetResult> call) => TestMSRebuild(call, ReleaseDllFilePath);
     private void TestMSRebuild(Func<DotNetResult> call, string dllFilePath)
     {
+        AssertInitialState();
         InitRestore();
 
         DotNetResult output = call();
@@ -153,6 +157,8 @@ public class DotNetTests : DotNetTestHelper
     private void TestInstallPack_ChDir(Func<DotNetResult> call) => InTempDir(() => TestInstallPack(call));
     private void TestInstallPack(Func<DotNetResult> call)
     {
+        AssertInitialState();
+
         DotNetResult output = call();
         AssertResultOk(output);
         AssertContains(output, PackID);
@@ -165,8 +171,8 @@ public class DotNetTests : DotNetTestHelper
 
     [TestMethod] public void Test_InstallPackage_ByMethod()                => TestInstallPack_ChDir(() => InstallPackage(PackID, PackVer));
     [TestMethod] public void Test_InstallPackage_ByMethod_WithArgs()       => TestInstallPack_ChDir(() => InstallPackage(PackID, PackVer, "--no-restore"));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PackID, PackVer, GetOptNoFile()));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PackID, PackVer, "--no-restore", GetOptNoFile()));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PackID, PackVer, GetOpt()));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PackID, PackVer, "--no-restore", GetOpt()));
     // ByEnum and ByName variants won't work unless you specify id and ver as args.
 
     // UninstallPackage
@@ -174,6 +180,8 @@ public class DotNetTests : DotNetTestHelper
     private void TestUninstallPack_ChDir(Func<DotNetResult> call) => InTempDir(() => TestUninstallPack(call));
     private void TestUninstallPack(Func<DotNetResult> call)
     {
+        AssertInitialState();
+
         InstallPackage(PackID, PackVer, GetOptNoFile());
 
         DotNetResult output = call();
@@ -190,34 +198,4 @@ public class DotNetTests : DotNetTestHelper
     [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PackID, GetOptNoFile()));
     [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PackID, "--interactive", GetOptNoFile()));
     // Enum and name won't work unless you specify id and ver as args.
-
-    // Options
-
-    // Helpers
-
-    private static readonly Lock _tempDirLock = new();
-
-    /// <summary>
-    /// Temporarily sets the process working directory to the temp project folder 
-    /// so no-option overloads find the project file.
-    /// Temporarily, to not influence other tests, that may rely on explicit file path parameterization.
-    /// </summary>
-    private void InTempDir(Action action)
-    {
-        lock (_tempDirLock)
-        {
-            string saved = Directory.GetCurrentDirectory();
-            try 
-            { 
-                Directory.SetCurrentDirectory(TempDir);
-                action(); 
-            }
-            finally
-            {
-                
-                try { Directory.SetCurrentDirectory(saved); }
-                catch { /* Error tolerance: previous cur dir may be deleted any time. */ }
-            }
-        }
-    }
 }

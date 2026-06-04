@@ -100,17 +100,17 @@ public class DotNetCommandFormatterTests
     [TestMethod] 
     public void FormatArgs_InstallPackage()
     {
-        var args = new DotNetArgsAccessor(installpackage) { Command = "add package", ID = "Newtonsoft.Json", Ver = "13.0.3", Args = "--prerelease" }.Obj;
+        var args = new DotNetArgsAccessor(installpackage) { Command = "add package", ID = "JJ.Framework.Common.Core", Ver = "4.6.6251", Args = "--prerelease" }.Obj;
 
-        AreEqual("add package Newtonsoft.Json --version 13.0.3 --prerelease", FormatArgs(args, DefaultOptions));
+        AreEqual("add package JJ.Framework.Common.Core --version 4.6.6251 --prerelease", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod]
     public void FormatArgs_InstallPackage_NoVersion()
     {
-        var args = new DotNetArgsAccessor(installpackage) { Command = "add package", ID = "Serilog" }.Obj;
+        var args = new DotNetArgsAccessor(installpackage) { Command = "add package", ID = "JJ.Framework.Common.Core" }.Obj;
 
-        AreEqual("add package Serilog", FormatArgs(args, DefaultOptions));
+        AreEqual("add package JJ.Framework.Common.Core", FormatArgs(args, DefaultOptions));
     }
 
     [TestMethod] 

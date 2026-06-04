@@ -34,8 +34,10 @@ public class DotNetEnricherTests
     [TestMethod] public void Enrich_MSBuildCommand()         => TestEnrich(input: "msbuild",                   expect:     msbuild         );
     [TestMethod] public void Enrich_MSBuildCommand_Rebuild() => TestEnrich(input: "msbuild", "/t:Rebuild",     expect: re, msrebuild       );
     [TestMethod] public void Enrich_RestoreCommand()         => TestEnrich(input: "restore",                   expect:     restore         );
-    [TestMethod] public void Enrich_AddCommand()             => TestEnrich(input: "add package",               expect:     installpackage  );
-    [TestMethod] public void Enrich_RemoveCommand()          => TestEnrich(input: "remove package",            expect:     uninstallpackage);
+    [TestMethod] public void Enrich_AddPackageCommand()      => TestEnrich(input: "add package",               expect:     installpackage  );
+    [TestMethod] public void Enrich_RemovePackageCommand()   => TestEnrich(input: "remove package",            expect:     uninstallpackage);
+    [TestMethod] public void Enrich_PackageAddCommand()      => TestEnrich(input: "package add",               expect:     installpackage  );
+    [TestMethod] public void Enrich_PackageRemoveCommand()   => TestEnrich(input: "package remove",            expect:     uninstallpackage);
     [TestMethod] public void Enrich_UnknownCommand()         => TestEnrich(input: "custom",                    expect:     undefined       );
 
     private static void TestEnrich(string input, DotNetCommandEnum expect) => TestEnrich(input, "", false, expect);

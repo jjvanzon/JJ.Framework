@@ -10,7 +10,7 @@ internal static class DotNetCommandFormatter
     {
         string formattedPackageID       = TryFormatPackageID      (args.ID);
         string formattedPackageVer      = TryFormatPackageVer     (args.Ver);
-        string formattedFile            = TryFormatFile           (opt.File);
+        string formattedFile            = TryFormatFile           (opt.File,            args.CommandEnum);
         string formattedBuildConf       = TryFormatBuildConf      (opt.BuildConf,       args.CommandEnum);
         string formattedRebuildArg      = TryFormatRebuildArg     (args.IsRebuild,      args.CommandEnum);
         string formattedVerbosity       = TryFormatVerbosity      (opt.Verbosity,       args.CommandEnum);
@@ -21,8 +21,9 @@ internal static class DotNetCommandFormatter
         string[] elements = 
         [
             args.Command, 
-            formattedPackageID, formattedPackageVer, // Bit more defensive for package commands, that can be position-sensitive.
-            formattedFile, formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
+            formattedPackageID, formattedPackageVer,
+            formattedFile, 
+            formattedBuildConf, formattedRebuildArg, formattedVerbosity, 
             formattedParallelRestore, 
             formattedNodeReuse, formattedBinLog, 
             opt.Args, args.Args, formattedAutoRestore // Auto-restore at the end makes `add package` work.
@@ -59,7 +60,14 @@ internal static class DotNetCommandFormatter
         return $"-bl:\"{binLogFile}\"";
     }
 
-    private static string TryFormatFile(string file) => Has(file) ? '"' + file + '"' : "";
+    private static string TryFormatFile(string file, DotNetCommandEnum commandEnum)
+    {
+        if (file.IsNully()) return "";
+
+        string projectArg = commandEnum is installpackage ? "--project " : "";
+
+        return projectArg + '"' + file + '"';
+    }
 
     private static string TryFormatAutoRestore(bool autoRestore, DotNetCommandEnum commandEnum)
     {

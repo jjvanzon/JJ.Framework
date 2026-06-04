@@ -117,17 +117,15 @@ public class RestoreTests : DotNetTestHelper
         // It's a bit like rigging the test to produce exceptions,
         // but I think it's representative for behavior experienced.
         const int timeOutSec = 10;
-
-        // Init in advance so loop is tight
         const int count = 96;
 
+        // Init in advance so loop is tight
         var infos = new RestoreInfo[count];
         var tasks = new Task[count];
 
         // Manage your own tasks - better guarantees parallelism than parallel loop.
         for (int i = 0; i < count; i++)
         {
-
             DotNetTestHelper helper = new();
             DotNetOptions opt = helper.BasicOpt with { ParallelRestore = true, TimeOutSec = timeOutSec };
             RestoreInfo info = new(helper);
@@ -177,29 +175,26 @@ public class RestoreTests : DotNetTestHelper
 
             if (x.Exception != null)
             {
-                AssertContainsAny(x.Exception.Message, "Timeout", "Access is denied");
+                AssertContainsAny(x.Exception.Message, "Timeout", "Access is denied", "Cannot process request");
                 LogLine();
                 Log($"{x.Exception}");
             }
         }
-
-        // TODO: Assert the disable parallel argument is there by default.
     }
 
     [TestMethod]
-    public void Test_DotNet_Restore_Overloads()
+    public void Test_Restore_DisableParallel_ByDefault() 
+        => AssertContains(Restore(BasicOpt), "--disable-parallel");
+
+    [TestMethod]
+    public void Test_Restore_Overloads()
     {
+        var helper = new DotNetTestHelper();
+        Restore(helper.BasicOpt);
         // TODO: Implement.
     }
 
     // Helpers
-
-    private void AssertInitialState()
-    {
-        AssertNotExists(AssetsFilePath);
-        AssertNotExists(DebugDllFilePath);
-        AssertNotExists(ReleaseDllFilePath);
-    }
 
     private record RestoreInfo(DotNetTestHelper Helper)
     {

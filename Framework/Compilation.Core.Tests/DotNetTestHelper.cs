@@ -19,6 +19,7 @@ public class DotNetTestHelper : IDisposable
     internal          string        ReleaseDllFilePath { get; }
     internal          string        AssetsFilePath     { get; }
     internal          DotNetOptions BasicOpt           { get; }
+    //internal          DotNetOptions Opt                { get; }
 
     // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
 
@@ -92,6 +93,13 @@ public class DotNetTestHelper : IDisposable
     {
         string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
         IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
+    }
+
+    internal void AssertInitialState()
+    {
+        AssertNotExists(AssetsFilePath);
+        AssertNotExists(DebugDllFilePath);
+        AssertNotExists(ReleaseDllFilePath);
     }
     
     internal void AssertResultOk(DotNetResult result)
@@ -174,5 +182,31 @@ public class DotNetTestHelper : IDisposable
         string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}";
         string filePath = Path.Combine(folderPath, fileName);
         return filePath;
+    }
+
+    private static readonly Lock _tempDirLock = new();
+
+    /// <summary>
+    /// Temporarily sets the process working directory to the temp project folder 
+    /// so no-option overloads find the project file.
+    /// Temporarily, to not influence other tests, that may rely on explicit file path parameterization.
+    /// </summary>
+    internal void InTempDir(Action action)
+    {
+        lock (_tempDirLock)
+        {
+            string saved = Directory.GetCurrentDirectory();
+            try 
+            { 
+                Directory.SetCurrentDirectory(TempDir);
+                action(); 
+            }
+            finally
+            {
+                
+                try { Directory.SetCurrentDirectory(saved); }
+                catch { /* Error tolerance: previous cur dir may be deleted any time. */ }
+            }
+        }
     }
 }
