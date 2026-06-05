@@ -12,6 +12,7 @@ public class RestoreTests : DotNetTestHelper
 {
     // TODO: Test Without File
     // TODO: Make test console output look better.
+    // TODO: Test with all options on and see if it still works.
 
     [TestMethod]
     public void Test_ExplicitRestore()
