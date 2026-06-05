@@ -11,11 +11,6 @@ public class DotNetTests : DotNetTestHelper
 {
     // TODO: Different types of options aren't tested.
     // TODO: Logging isn't really tested.
-    
-    /// <summary>
-    /// Restore so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
-    /// </summary>
-    private void InitRestore() => Restore(OptNoFile());
 
     // Build
 
@@ -34,17 +29,17 @@ public class DotNetTests : DotNetTestHelper
     }
 
     [TestMethod] public void Test_Build_ByMethod()                => TestBuild_Debug  (() => Build());
-    [TestMethod] public void Test_Build_ByMethod_WithOpt()        => TestBuild_Release(() => Build(Opt()));
+    [TestMethod] public void Test_Build_ByMethod_WithOpt()        => TestBuild_Release(() => Build(OptRelease()));
     [TestMethod] public void Test_Build_ByMethod_WithArgs()       => TestBuild_Debug  (() => Build("--no-logo"));
-    [TestMethod] public void Test_Build_ByMethod_WithArgsAndOpt() => TestBuild_Release(() => Build("--no-logo", Opt()));
+    [TestMethod] public void Test_Build_ByMethod_WithArgsAndOpt() => TestBuild_Release(() => Build("--no-logo", OptRelease()));
     [TestMethod] public void Test_Build_ByEnum()                  => TestBuild_Debug  (() => DotNet.Exe(build));
-    [TestMethod] public void Test_Build_ByEnum_WithOpt()          => TestBuild_Release(() => DotNet.Exe(build, Opt()));
+    [TestMethod] public void Test_Build_ByEnum_WithOpt()          => TestBuild_Release(() => DotNet.Exe(build, OptRelease()));
     [TestMethod] public void Test_Build_ByEnum_WithArgs()         => TestBuild_Debug  (() => DotNet.Exe(build, "--no-logo"));
-    [TestMethod] public void Test_Build_ByEnum_WithArgsAndOpt()   => TestBuild_Release(() => DotNet.Exe(build, "--no-logo", Opt()));
+    [TestMethod] public void Test_Build_ByEnum_WithArgsAndOpt()   => TestBuild_Release(() => DotNet.Exe(build, "--no-logo", OptRelease()));
     [TestMethod] public void Test_Build_ByName()                  => TestBuild_Debug  (() => DotNet.Exe("build"));
-    [TestMethod] public void Test_Build_ByName_WithOpt()          => TestBuild_Release(() => DotNet.Exe("build", Opt()));
+    [TestMethod] public void Test_Build_ByName_WithOpt()          => TestBuild_Release(() => DotNet.Exe("build", OptRelease()));
     [TestMethod] public void Test_Build_ByName_WithArgs()         => TestBuild_Debug  (() => DotNet.Exe("build", "--no-logo"));
-    [TestMethod] public void Test_Build_ByName_WithArgsAndOpt()   => TestBuild_Release(() => DotNet.Exe("build", "--no-logo", Opt()));
+    [TestMethod] public void Test_Build_ByName_WithArgsAndOpt()   => TestBuild_Release(() => DotNet.Exe("build", "--no-logo", OptRelease()));
 
     // Rebuild
 
@@ -64,13 +59,13 @@ public class DotNetTests : DotNetTestHelper
 
 
     [TestMethod] public void Test_Rebuild_ByMethod()                => TestRebuild_Debug  (() => Rebuild());
-    [TestMethod] public void Test_Rebuild_ByMethod_WithOpt()        => TestRebuild_Release(() => Rebuild(Opt()));
+    [TestMethod] public void Test_Rebuild_ByMethod_WithOpt()        => TestRebuild_Release(() => Rebuild(OptRelease()));
     [TestMethod] public void Test_Rebuild_ByMethod_WithArgs()       => TestRebuild_Debug  (() => Rebuild("--no-logo"));
-    [TestMethod] public void Test_Rebuild_ByMethod_WithArgsAndOpt() => TestRebuild_Release(() => Rebuild("--no-logo", Opt()));
+    [TestMethod] public void Test_Rebuild_ByMethod_WithArgsAndOpt() => TestRebuild_Release(() => Rebuild("--no-logo", OptRelease()));
     [TestMethod] public void Test_Rebuild_ByEnum()                  => TestRebuild_Debug  (() => DotNet.Exe(rebuild));
-    [TestMethod] public void Test_Rebuild_ByEnum_WithOpt()          => TestRebuild_Release(() => DotNet.Exe(rebuild, Opt()));
+    [TestMethod] public void Test_Rebuild_ByEnum_WithOpt()          => TestRebuild_Release(() => DotNet.Exe(rebuild, OptRelease()));
     [TestMethod] public void Test_Rebuild_ByEnum_WithArgs()         => TestRebuild_Debug  (() => DotNet.Exe(rebuild, "--no-logo"));
-    [TestMethod] public void Test_Rebuild_ByEnum_WithArgsAndOpt()   => TestRebuild_Release(() => DotNet.Exe(rebuild, "--no-logo", Opt()));
+    [TestMethod] public void Test_Rebuild_ByEnum_WithArgsAndOpt()   => TestRebuild_Release(() => DotNet.Exe(rebuild, "--no-logo", OptRelease()));
 
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
@@ -89,17 +84,17 @@ public class DotNetTests : DotNetTestHelper
     }
 
     [TestMethod] public void Test_MSBuild_ByMethod()                => TestMSBuild_Debug  (() => MSBuild());
-    [TestMethod] public void Test_MSBuild_ByMethod_WithOpt()        => TestMSBuild_Release(() => MSBuild(Opt()));
+    [TestMethod] public void Test_MSBuild_ByMethod_WithOpt()        => TestMSBuild_Release(() => MSBuild(OptRelease()));
     [TestMethod] public void Test_MSBuild_ByMethod_WithArgs()       => TestMSBuild_Debug  (() => MSBuild("/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSBuild_ByMethod_WithArgsAndOpt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", Opt()));
+    [TestMethod] public void Test_MSBuild_ByMethod_WithArgsAndOpt() => TestMSBuild_Release(() => MSBuild("/p:TreatWarningsAsErrors=false", OptRelease()));
     [TestMethod] public void Test_MSBuild_ByEnum()                  => TestMSBuild_Debug  (() => DotNet.Exe(msbuild));
-    [TestMethod] public void Test_MSBuild_ByEnum_WithOpt()          => TestMSBuild_Release(() => DotNet.Exe(msbuild, Opt()));
+    [TestMethod] public void Test_MSBuild_ByEnum_WithOpt()          => TestMSBuild_Release(() => DotNet.Exe(msbuild, OptRelease()));
     [TestMethod] public void Test_MSBuild_ByEnum_WithArgs()         => TestMSBuild_Debug  (() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSBuild_ByEnum_WithArgsAndOpt()   => TestMSBuild_Release(() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false", Opt()));
+    [TestMethod] public void Test_MSBuild_ByEnum_WithArgsAndOpt()   => TestMSBuild_Release(() => DotNet.Exe(msbuild, "/p:TreatWarningsAsErrors=false", OptRelease()));
     [TestMethod] public void Test_MSBuild_ByName()                  => TestMSBuild_Debug  (() => DotNet.Exe("msbuild"));
-    [TestMethod] public void Test_MSBuild_ByName_WithOpt()          => TestMSBuild_Release(() => DotNet.Exe("msbuild", Opt()));
+    [TestMethod] public void Test_MSBuild_ByName_WithOpt()          => TestMSBuild_Release(() => DotNet.Exe("msbuild", OptRelease()));
     [TestMethod] public void Test_MSBuild_ByName_WithArgs()         => TestMSBuild_Debug  (() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSBuild_ByName_WithArgsAndOpt()   => TestMSBuild_Release(() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false", Opt()));
+    [TestMethod] public void Test_MSBuild_ByName_WithArgsAndOpt()   => TestMSBuild_Release(() => DotNet.Exe("msbuild", "/p:TreatWarningsAsErrors=false", OptRelease()));
 
     // MSRebuild
 
@@ -117,13 +112,13 @@ public class DotNetTests : DotNetTestHelper
     }
 
     [TestMethod] public void Test_MSRebuild_ByMethod()                => TestMSRebuild_Debug  (() => MSRebuild());
-    [TestMethod] public void Test_MSRebuild_ByMethod_WithOpt()        => TestMSRebuild_Release(() => MSRebuild(Opt()));
+    [TestMethod] public void Test_MSRebuild_ByMethod_WithOpt()        => TestMSRebuild_Release(() => MSRebuild(OptRelease()));
     [TestMethod] public void Test_MSRebuild_ByMethod_WithArgs()       => TestMSRebuild_Debug  (() => MSRebuild("/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSRebuild_ByMethod_WithArgsAndOpt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", Opt()));
+    [TestMethod] public void Test_MSRebuild_ByMethod_WithArgsAndOpt() => TestMSRebuild_Release(() => MSRebuild("/p:TreatWarningsAsErrors=false", OptRelease()));
     [TestMethod] public void Test_MSRebuild_ByEnum()                  => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild));
-    [TestMethod] public void Test_MSRebuild_ByEnum_WithOpt()          => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, Opt()));
+    [TestMethod] public void Test_MSRebuild_ByEnum_WithOpt()          => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, OptRelease()));
     [TestMethod] public void Test_MSRebuild_ByEnum_WithArgs()         => TestMSRebuild_Debug  (() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false"));
-    [TestMethod] public void Test_MSRebuild_ByEnum_WithArgsAndOpt()   => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false", Opt()));
+    [TestMethod] public void Test_MSRebuild_ByEnum_WithArgsAndOpt()   => TestMSRebuild_Release(() => DotNet.Exe(msrebuild, "/p:TreatWarningsAsErrors=false", OptRelease()));
     
     // TODO: How about testing what happens if a build actually fails?
 
@@ -146,8 +141,8 @@ public class DotNetTests : DotNetTestHelper
 
     [TestMethod] public void Test_InstallPackage_ByMethod()                => TestInstallPack_ChDir(() => InstallPackage(PackID, PackVer));
     [TestMethod] public void Test_InstallPackage_ByMethod_WithArgs()       => TestInstallPack_ChDir(() => InstallPackage(PackID, PackVer, "--no-restore"));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PackID, PackVer, Opt()));
-    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PackID, PackVer, "--no-restore", Opt()));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PackID, PackVer, OptRelease()));
+    [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PackID, PackVer, "--no-restore", OptRelease()));
     // ByEnum and ByName variants won't work unless you specify id and ver as args.
 
     // UninstallPackage
@@ -157,7 +152,7 @@ public class DotNetTests : DotNetTestHelper
     {
         AssertInitialState();
 
-        InstallPackage(PackID, PackVer, Opt());
+        InstallPackage(PackID, PackVer, OptRelease());
 
         DotNetResult output = call();
         AssertResultOk(output);
@@ -170,7 +165,16 @@ public class DotNetTests : DotNetTestHelper
 
     [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(PackID));
     [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PackID, "--interactive"));
-    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PackID, Opt()));
-    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PackID, "--interactive", Opt()));
+    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PackID, OptRelease()));
+    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PackID, "--interactive", OptRelease()));
     // Enum and name won't work unless you specify id and ver as args.
+
+    // Helpers
+
+    private void AssertInitialState()
+    {
+        AssertNotExists(AssetsFilePath);
+        AssertNotExists(DebugDllFilePath);
+        AssertNotExists(ReleaseDllFilePath);
+    }
 }

@@ -1,12 +1,19 @@
 ﻿namespace JJ.Framework.Compilation.Core.Formatters;
 
+// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 internal static class DotNetResultFormatterExtensions
 {
-    public static string Stringify(this DotNetResult? result) => DotNetResultFormatter.Stringify(result);
-    public static string DebuggerDisplay(this DotNetResult? result) => DotNetResultFormatter.DebuggerDisplay(result);
-    public static string ExceptionMessage(this DotNetResult? result) => DotNetResultFormatter.ExceptionMessage(result);
-    public static string Descriptor(this DotNetResult? result, bool singleLine = false) => DotNetResultFormatter.Descriptor(result, singleLine);
+    extension(DotNetResult? result)
+    {
+        public string Stringify() => DotNetResultFormatter.Stringify(result);
+        public string DebuggerDisplay() => DotNetResultFormatter.DebuggerDisplay(result);
+        public string ExceptionMessage() => DotNetResultFormatter.ExceptionMessage(result);
+        public string Descriptor(bool singleLine = false) => DotNetResultFormatter.Descriptor(result, singleLine);
+    }
 }
+// ReSharper restore UnusedType.Global
+// ReSharper restore UnusedMember.Global
 
 internal static class DotNetResultFormatter
 {
@@ -22,6 +29,7 @@ internal static class DotNetResultFormatter
         //if (Has(result.Text)) return result.Text;
 
         bool exitCodeWasAdded = false;
+        // ReSharper disable once ConvertToConstant.Local
         bool dotNetWasAdded = false;
 
         string failurePart = "";
@@ -49,6 +57,7 @@ internal static class DotNetResultFormatter
         string argsPart = result.Args.FilledIn() ? result.Args.Descriptor() : "";
         string optPart = result.Opt.FilledIn() ? result.Opt.Descriptor() : "";
 
+        // ReSharper disable once ConvertToConstant.Local
         string timeOutPart = "";
         //if (result.HasTimeOut)
         //{

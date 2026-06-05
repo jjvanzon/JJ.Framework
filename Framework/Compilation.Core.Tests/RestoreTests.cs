@@ -11,13 +11,14 @@ using T = RestoreTests;
 public class RestoreTests : DotNetTestHelper
 {
     // TODO: Test Without File
+    // TODO: Make test console output look better.
 
     [TestMethod]
     public void Test_ExplicitRestore()
     {
         AssertInitialState();
 
-        DotNetResult restore = Restore(BasicOpt);
+        DotNetResult restore = Restore(GetOpt());
 
         AssertExists(AssetsFilePath);
 
@@ -32,7 +33,7 @@ public class RestoreTests : DotNetTestHelper
     {
         AssertInitialState();
 
-        DotNetOptions opt = BasicOpt with { AutoRestore = true };
+        DotNetOptions opt = GetOpt() with { AutoRestore = true };
         DotNetResult build = Build(opt);
         AssertResultOk(build);
 
@@ -54,7 +55,7 @@ public class RestoreTests : DotNetTestHelper
     {
         AssertInitialState();
 
-        var opt = BasicOpt with { AutoRestore = true };
+        var opt = GetOpt() with { AutoRestore = true };
 
         // Build with AutoRestore
         {
@@ -79,7 +80,7 @@ public class RestoreTests : DotNetTestHelper
     {
         AssertInitialState();
 
-        var opt = BasicOpt with { AutoRestore = false };
+        var opt = GetOpt() with { AutoRestore = false };
         
         string msg = Throws(() => Build(opt)).Message;
 
@@ -100,7 +101,7 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_DisableParallel_ByDefault()
     {
-        DotNetResult result = Restore(BasicOpt);
+        DotNetResult result = Restore(GetOpt());
         AssertContains(result, "--disable-parallel");
     }
 
@@ -118,7 +119,7 @@ public class RestoreTests : DotNetTestHelper
             return;
         #endif
 
-        Log("Parallel restore unstable. Test provokes exceptions but still checks the outcome.");
+        Log("Parallel restore unstable. Test provokes and tolerates exceptions but still checks the outcome.");
         LogLine();
 
         AssertInitialState();
@@ -137,7 +138,7 @@ public class RestoreTests : DotNetTestHelper
         for (int i = 0; i < count; i++)
         {
             DotNetTestHelper helper = new();
-            DotNetOptions opt = helper.BasicOpt with { ParallelRestore = true, TimeOutSec = timeOutSec };
+            DotNetOptions opt = helper.GetOpt() with { ParallelRestore = true, TimeOutSec = timeOutSec };
             RestoreInfo info = new(helper);
 
             var task = new Task(() =>
@@ -197,18 +198,18 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_Overloads()
     {
-        { T x = new(); x.AssertNoDir(() =>      Restore(                       )); }
-        { T x = new(); x.Assert     (() =>      Restore(                x.Opt())); }
-        { T x = new(); x.AssertNoDir(() =>      Restore(  "--no-cache"         )); }
-        { T x = new(); x.Assert     (() =>      Restore(  "--no-cache", x.Opt())); }
-        { T x = new(); x.AssertNoDir(() => Exe( restore                        )); }
-        { T x = new(); x.Assert     (() => Exe( restore,                x.Opt())); }
-        { T x = new(); x.AssertNoDir(() => Exe( restore,  "--no-cache"         )); }
-        { T x = new(); x.Assert     (() => Exe( restore,  "--no-cache", x.Opt())); }
-        { T x = new(); x.AssertNoDir(() => Exe("restore"                       )); }
-        { T x = new(); x.Assert     (() => Exe("restore",               x.Opt())); }
-        { T x = new(); x.AssertNoDir(() => Exe("restore", "--no-cache"         )); }
-        { T x = new(); x.Assert     (() => Exe("restore", "--no-cache", x.Opt())); }
+        { T x = new(); x.AssertNoDir(() =>      Restore(                          )); }
+        { T x = new(); x.Assert     (() =>      Restore(                x.GetOpt())); }
+        { T x = new(); x.AssertNoDir(() =>      Restore(  "--no-cache"            )); }
+        { T x = new(); x.Assert     (() =>      Restore(  "--no-cache", x.GetOpt())); }
+        { T x = new(); x.AssertNoDir(() => Exe( restore                           )); }
+        { T x = new(); x.Assert     (() => Exe( restore,                x.GetOpt())); }
+        { T x = new(); x.AssertNoDir(() => Exe( restore,  "--no-cache"            )); }
+        { T x = new(); x.Assert     (() => Exe( restore,  "--no-cache", x.GetOpt())); }
+        { T x = new(); x.AssertNoDir(() => Exe("restore"                          )); }
+        { T x = new(); x.Assert     (() => Exe("restore",               x.GetOpt())); }
+        { T x = new(); x.AssertNoDir(() => Exe("restore", "--no-cache"            )); }
+        { T x = new(); x.Assert     (() => Exe("restore", "--no-cache", x.GetOpt())); }
     }
 
     // Helpers
@@ -230,4 +231,12 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(result, "determining projects to restore");
         AssertContains(result, "restored " + CsprojPath);
     }
+
+    private void AssertInitialState()
+    {
+        AssertNotExists(AssetsFilePath);
+        AssertNotExists(DebugDllFilePath);
+        AssertNotExists(ReleaseDllFilePath);
+    }
+
 }

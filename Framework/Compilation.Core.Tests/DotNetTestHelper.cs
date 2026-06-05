@@ -7,21 +7,19 @@ public class DotNetTestHelper : IDisposable
 
     // Vars
 
-    private  const    string CS_PROJ_FILE_NAME = "Temp.csproj";
+    internal const    string ProjectName    = "Temp";
+    internal const    string CsProjFileName = "Temp.csproj";
+    internal const    string DllFileName    = "Temp.dll";
     private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
     private  readonly string _randomLetters;
 
-    internal const    string        PackID  = "JJ.Framework.Common.Core";
-    internal const    string        PackVer = "4.6.6251";
-    internal          string        TempDir            { get; }
-    internal          string        CsprojPath         { get; }
-    internal          string        DebugDllFilePath   { get; }
-    internal          string        ReleaseDllFilePath { get; }
-    internal          string        AssetsFilePath     { get; }
-    internal          DotNetOptions BasicOpt           { get; }
-    //internal          DotNetOptions Opt                { get; }
-
-    // TODO: Add Message ItBuilt as MSBuild scripting in CsprojContent and assert it's in the output.
+    internal const    string PackID  = "JJ.Framework.Common.Core";
+    internal const    string PackVer = "4.6.6251";
+    internal          string TempDir            { get; }
+    internal          string CsprojPath         { get; }
+    internal          string DebugDllFilePath   { get; }
+    internal          string ReleaseDllFilePath { get; }
+    internal          string AssetsFilePath     { get; }
 
     private static string GetCsprojContent(string targetFrameworks) =>
         $"""
@@ -51,12 +49,12 @@ public class DotNetTestHelper : IDisposable
 
         _randomLetters     = Path.GetRandomFileName().Replace(".", "");
         TempDir            = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
-        CsprojPath         = Path.Combine(TempDir, CS_PROJ_FILE_NAME);
-        DebugDllFilePath   = Path.Combine(TempDir, "bin", "Debug",   targetFramework, "Temp.dll");
-        ReleaseDllFilePath = Path.Combine(TempDir, "bin", "Release", targetFramework, "Temp.dll");
+        CsprojPath         = Path.Combine(TempDir, CsProjFileName);
+        DebugDllFilePath   = Path.Combine(TempDir, "bin", "Debug",   targetFramework, DllFileName);
+        ReleaseDllFilePath = Path.Combine(TempDir, "bin", "Release", targetFramework, DllFileName);
         AssetsFilePath     = Path.Combine(TempDir, "obj", "project.assets.json");
         
-        BasicOpt = CreateBasicOpt();
+        //BasicOpt = CreateBasicOpt();
 
         Directory.CreateDirectory(TempDir);
 
@@ -73,11 +71,18 @@ public class DotNetTestHelper : IDisposable
     void IDisposable.Dispose() => Cleanup();
     ~DotNetTestHelper() => Cleanup(); // ncrunch: no coverage
 
+        
+    /// <summary>
+    /// Restore so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
+    /// </summary>
+    public void InitRestore() => Restore(OptNoFile());
+
     // Assert
 
     internal static void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
     internal static void AssertNotExists(string filePath) => IsFalse(Exists(filePath), message: filePath);
     internal void AssertDebugDll() => AssertExists(DebugDllFilePath);
+    internal void AssertReleaseDll() => AssertExists(ReleaseDllFilePath);
 
     internal static void AssertContains(string whole, string part)
     {
@@ -93,13 +98,6 @@ public class DotNetTestHelper : IDisposable
     {
         string partsFormatted = Join(", ", parts.Select(x => $"'{x}'"));
         IsTrue(parts.Any(x => whole.Contains(x, OrdinalIgnoreCase)), $"Expected one of {partsFormatted} in: {whole}");
-    }
-
-    internal void AssertInitialState()
-    {
-        AssertNotExists(AssetsFilePath);
-        AssertNotExists(DebugDllFilePath);
-        AssertNotExists(ReleaseDllFilePath);
     }
     
     internal static void AssertResultOk(DotNetResult result)
@@ -149,26 +147,28 @@ public class DotNetTestHelper : IDisposable
 
     internal DotNetOptions OptNoFile([Caller] string testName = "")
     {
-        return Opt(testName) with { File = "" };
+        return OptRelease(testName) with { File = "" };
     }
 
     // ReSharper disable once UnusedParameter.Global
-    internal DotNetOptions Opt([Caller] string testName = "") 
-        => BasicOpt with
+    internal DotNetOptions OptRelease([Caller] string testName = "") 
+        => GetOpt() with
         {
-            BuildConf = "Release",
+            BuildConf = "Release"
+        };
+
+    // ReSharper disable once UnusedParameter.Global
+    internal DotNetOptions GetOpt([Caller] string testName = "") 
+        => new()
+        {
+            Dir  = TempDir,
+            File = CsProjFileName,
             LogAction = Log,
-            Verbosity = Normal,
+            Verbosity = Normal
             //BinLog    = GetBinLogFilePath(testName),
             // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
             //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
         };
-
-    private DotNetOptions CreateBasicOpt() => new()
-    {
-        Dir  = TempDir,
-        File = CS_PROJ_FILE_NAME,
-    };
 
     internal string GetLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".log";
     internal string GetBinLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".binlog";

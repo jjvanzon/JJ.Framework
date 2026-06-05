@@ -3,12 +3,19 @@
 
 namespace JJ.Framework.Compilation.Core.Formatters;
 
+// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 internal static class DotNetArgsFormatterExtensions
 {
-    public static string Stringify(this DotNetArgs? args) => DotNetArgsFormatter.Stringify(args);
-    public static string DebuggerDisplay(this DotNetArgs? args) => DotNetArgsFormatter.DebuggerDisplay(args);
-    public static string Descriptor(this DotNetArgs? args) => DotNetArgsFormatter.Descriptor(args);
+    extension(DotNetArgs? args)
+    {
+        public string Stringify() => DotNetArgsFormatter.Stringify(args);
+        public string DebuggerDisplay() => DotNetArgsFormatter.DebuggerDisplay(args);
+        public string Descriptor() => DotNetArgsFormatter.Descriptor(args);
+    }
 }
+// ReSharper restore UnusedType.Global
+// ReSharper restore UnusedMember.Global
 
 internal static class DotNetArgsFormatter
 {
