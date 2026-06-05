@@ -3,6 +3,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 using static Path;
+using static Directory;
 
 [TestClass]
 public class BuildTests : DotNetTestHelper
@@ -147,18 +148,29 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_ErrorCase_WithoutDir() 
     {
-        AssertInitialState();
+        // Do it thread-safe in the temp dir, or all hell breaks looose, 
+        // when not specifying dir with the dotnet command.
+        InTempDir(() =>
+        {
+            // CsProj was set up in base class initialization.
+            // Create and move to a sub-directory, so we emulate the csproj not being found.
+            CreateDirectory("SubDir");
+            CurrentDirectory = Combine(CurrentDirectory, "SubDir");
 
-        var opt = Opt() with { Dir = "" };
+            // Now do our test.
+            AssertInitialState();
 
-        DotNetResult? build = null;
+            var opt = Opt() with { Dir = "" };
 
-        Exception ex = Throws(() => build = Build(opt));
+            DotNetResult? build = null;
 
-        IsNull(build);
-        AssertContains(ex.Message, "Exit code 1");
-        AssertContains(ex.Message, "MSB1009");
-        AssertContains(ex.Message, "Project file does not exist");
+            Exception ex = Throws(() => build = Build(opt));
+
+            IsNull(build);
+            AssertContains(ex.Message, "Exit code 1");
+            AssertContains(ex.Message, "MSB1009");
+            AssertContains(ex.Message, "Project file does not exist");
+        });
     }
 
     /*
