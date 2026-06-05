@@ -1,5 +1,8 @@
 ﻿#pragma warning disable IDE0002
+
 namespace JJ.Framework.Compilation.Core.Tests;
+
+using static Path;
 
 [TestClass]
 public class BuildTests : DotNetTestHelper
@@ -26,44 +29,19 @@ public class BuildTests : DotNetTestHelper
        
         Assert(() => Build(opt));
     }
-
+    
     [TestMethod]
-    public void Test_Build_BuildConf() 
+    public void Test_Build_AsCommandEnum()
     {
-        AssertInitialState();
-
-        var opt = Opt() with { BuildConf = "Release" };
-        var result = Build(opt);
-
-        AssertContains(result, "release");
-
-        AssertResult(result);
-       
-        AssertDllRelease();
+        Assert(() => DotNet.Exe(build, Opt()));
     }
 
     [TestMethod]
-    public void Test_Build_AsCommandEnum() => Assert(() => DotNet.Exe(build, Opt()));
-
-    [TestMethod]
-    public void Test_Build_AsCommandText() => Assert(() => DotNet.Exe("build", Opt()));
-
-    [TestMethod]
-    public void Test_Build_Args() 
+    public void Test_Build_AsCommandText()
     {
-        AssertInitialState();
-
-        var result = Build("--help", Opt());
-
-        AssertResultOk(result);
-
-        AssertNotExists(DllPath);
-        AssertNotExists(DllPathRelease);
-
-        AssertContains(result, "Usage:");
-        AssertContains(result, "dotnet build [<PROJECT | SOLUTION | FILE>...] [options]");
+        Assert(() => DotNet.Exe("build", Opt()));
     }
- 
+
     [TestMethod]
     public void Test_Build_WithFile()
     {
@@ -94,13 +72,47 @@ public class BuildTests : DotNetTestHelper
         InTempDir(() => Assert(() => Build(Opt() with { Dir = "" })));
     }
 
+    
+    [TestMethod]
+    public void Test_Build_Conf() 
+    {
+        AssertInitialState();
+
+        var opt = Opt() with { BuildConf = "Release" };
+        var result = Build(opt);
+
+        AssertDllRelease();
+
+        AssertResultOk(result);
+        AssertContains(result, "release");
+        AssertContains(result, "dotnet build");
+        AssertContains(result, "build succeeded");
+        AssertContains(result, ProjectName + " -> " + DllPathRelease);
+    }
+
+    [TestMethod]
+    public void Test_Build_Args() 
+    {
+        AssertInitialState();
+
+        var result = Build("--help", Opt());
+
+        AssertResultOk(result);
+
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
+
+        AssertContains(result, "Usage:");
+        AssertContains(result, "dotnet build [<PROJECT | SOLUTION | FILE>...] [options]");
+    }
+
     [TestMethod]
     public void Test_Build_AllOptsOn() 
     { 
         AssertInitialState();
 
-        string logPath = Path.Combine(TempDir, Name() + ".log");
-        string binLogPath = Path.Combine(TempDir, Name() + ".binlog");
+        string logPath    = Combine(TempDir, Name() + ".log");
+        string binLogPath = Combine(TempDir, Name() + ".binlog");
 
         var allOpt = new DotNetOptions
         {
@@ -122,12 +134,16 @@ public class BuildTests : DotNetTestHelper
             LogAction       = Log
         };
 
-        var result = Build(allOpt);
+        var result = Build("-low", allOpt);
 
-        AssertResult(result);
         AssertDllRelease();
         AssertExists(logPath);
         AssertExists(binLogPath);
+
+        AssertResultOk(result);
+        AssertContains(result, "dotnet build");
+        AssertContains(result, "build succeeded");
+        AssertContains(result, ProjectName + " -> " + DllPathRelease);
     }
 
     [TestMethod]
@@ -153,7 +169,7 @@ public class BuildTests : DotNetTestHelper
         AssertResultOk(result);
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
-        AssertContains(result, ProjectName + " -> ");
+        AssertContains(result, ProjectName + " -> " + DllPath);
     }
 
     private void Assert(Func<DotNetResult> call)
