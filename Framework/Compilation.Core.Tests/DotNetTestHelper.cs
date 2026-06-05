@@ -192,6 +192,7 @@ public class DotNetTestHelper : IDisposable
     /// Temporarily sets the process working directory to the temp project folder 
     /// so no-option overloads find the project file.
     /// Temporarily, to not influence other tests, that may rely on explicit file path parameterization.
+    /// Thread safe.
     /// </summary>
     internal void InTempDir(Action action)
     {
