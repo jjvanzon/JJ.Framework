@@ -24,14 +24,9 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_MainCase()
     {
-        AssertInitialState();
-
-        var opt = GetOpt();
-        var result = Build(opt);
-
-        AssertResult(result);
-
-        AssertDll();
+        var opt = Opt();
+       
+        Assert(() => Build(opt));
     }
 
     [TestMethod]
@@ -39,7 +34,7 @@ public class BuildTests : DotNetTestHelper
     {
         AssertInitialState();
 
-        var opt = GetOpt() with { BuildConf = "Release" };
+        var opt = Opt() with { BuildConf = "Release" };
         var result = Build(opt);
 
         AssertContains(result, "release");
@@ -50,35 +45,17 @@ public class BuildTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_Build_AsCommandEnum()
-    {
-        AssertInitialState();
-
-        var result = DotNet.Exe(build, GetOpt());
-
-        AssertResult(result);
-
-        AssertDll();
-    }
+    public void Test_Build_AsCommandEnum() => Assert(() => DotNet.Exe(build, Opt()));
 
     [TestMethod]
-    public void Test_Build_AsCommandText() 
-    {
-        AssertInitialState();
-
-        var result = DotNet.Exe("build", GetOpt());
-
-        AssertResult(result);
-
-        AssertDll();
-    }
+    public void Test_Build_AsCommandText() => Assert(() => DotNet.Exe("build", Opt()));
 
     [TestMethod]
     public void Test_Build_Args() 
     {
         AssertInitialState();
 
-        var result = Build("--help", GetOpt());
+        var result = Build("--help", Opt());
 
         AssertResultOk(result);
 
@@ -92,41 +69,31 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_WithFile()
     {
-        var opt = GetOpt() with { File = CsProjFileName };
-
-        Assert(() => Build(opt));
-    }
-        
-    [TestMethod]
-    public void Test_Build_WithoutFile() 
-    {
-        var opt = GetOpt() with { File = "" };
-
-        Assert(() => Build(opt));
+        Assert(() => Build(Opt() with { File = CsProjFileName }));
     }
 
     [TestMethod]
-    public void Test_Build_WithDir() 
+    public void Test_Build_WithoutFile()
     {
-        var opt = GetOpt() with { Dir = TempDir };
-
-        Assert(() => Build(opt));
+        Assert(() => Build(Opt() with { File = "" }));
     }
 
     [TestMethod]
-    public void Test_Build_WithoutDir_WithFullFilePath() 
+    public void Test_Build_WithDir()
     {
-        var opt = GetOpt() with { Dir = "", File = CsprojPath };
+        Assert(() => Build(Opt() with { Dir = TempDir }));
+    }
 
-        Assert(() => Build(opt));
+    [TestMethod]
+    public void Test_Build_WithoutDir_WithFullFilePath()
+    {
+        Assert(() => Build(Opt() with { Dir = "", File = CsprojPath }));
     }
 
     [TestMethod]
     public void Test_Build_WithoutDir_WithChDir() 
     {
-        var opt = GetOpt() with { Dir = "" };
-
-        InTempDir(() => Assert(() => Build(opt)));
+        InTempDir(() => Assert(() => Build(Opt() with { Dir = "" })));
     }
 
     [TestMethod]

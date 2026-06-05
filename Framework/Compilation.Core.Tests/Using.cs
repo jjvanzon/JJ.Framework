@@ -4,6 +4,7 @@ global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Compilation.Core.Primitives;
 global using JJ.Framework.Compilation.Core.Tests.Accessors;
+global using JJ.Framework.Compilation.Core.Tests.docs;
 global using static System.String;
 global using static System.StringComparison;
 global using static System.IO.File;

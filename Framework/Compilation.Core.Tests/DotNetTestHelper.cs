@@ -159,9 +159,10 @@ public class DotNetTestHelper : IDisposable
 
     // ReSharper disable once UnusedParameter.Global
 
-    /// <summary> Opt() and GetOpt() are synonyms here. </summary>
+    /// <inheritdoc cref="_getopt" />
     internal DotNetOptions Opt([Caller] string testName = "") => GetOpt();
-    /// <summary> Opt() and GetOpt() are synonyms here. </summary>
+    /// <inheritdoc cref="_getopt" />
+    // ReSharper disable once UnusedParameter.Global
     internal DotNetOptions GetOpt([Caller] string testName = "") 
         => new()
         {
