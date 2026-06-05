@@ -143,33 +143,36 @@ public class BuildTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_Build_WithError() 
+    public void Test_Build_ErrorCase_WithoutDir() 
     {
-        // Without Dir
-        {
-            var opt = Opt() with { Dir = "" };
+        AssertInitialState();
 
-            DotNetResult? build = null;
+        var opt = Opt() with { Dir = "" };
 
-            Exception ex = Throws(() => build = Build(opt));
+        DotNetResult? build = null;
 
-            IsNull(build);
-            AssertContains(ex.Message, "Exit code 1");
-            AssertContains(ex.Message, "MSB1009");
-            AssertContains(ex.Message, "Project file does not exist");
-        }
+        Exception ex = Throws(() => build = Build(opt));
 
+        IsNull(build);
+        AssertContains(ex.Message, "Exit code 1");
+        AssertContains(ex.Message, "MSB1009");
+        AssertContains(ex.Message, "Project file does not exist");
+    }
+
+    [TestMethod]
+    public void Test_Build_ErrorCase_NoOpt() 
+    {
         // No opt = without dir
-        {
-            DotNetResult? build = null;
+        AssertInitialState();
 
-            Exception ex = Throws(() => build = Build());
+        DotNetResult? build = null;
 
-            IsNull(build);
-            AssertContains(ex.Message, "Exit code 1");
-            AssertContains(ex.Message, "MSB1003");
-            AssertContains(ex.Message, "Specify a project or solution file");
-        }
+        Exception ex = Throws(() => build = Build());
+
+        IsNull(build);
+        AssertContains(ex.Message, "Exit code 1");
+        AssertContains(ex.Message, "MSB1003");
+        AssertContains(ex.Message, "Specify a project or solution file");
     }
 
     // Helpers
