@@ -18,7 +18,14 @@ internal static class DotNetResultFormatterExtensions
 internal static class DotNetResultFormatter
 {
     public static string Stringify(DotNetResult? result) => Has(result?.Text) ? result.Text : Descriptor(result);
-    public static string DebuggerDisplay(DotNetResult? result) => Descriptor(result, singleLine: true);
+    public static string DebuggerDisplay(DotNetResult? result)
+    {
+        // TODO: Replace double quotes and backslashes by single quotes and forward slashes for pretty display.
+        var text = Descriptor(result, singleLine: true);
+        text = text.Replace('"', '\'').Replace('\\', '/');
+        return text;
+    }
+
     public static string ExceptionMessage(DotNetResult? result) => Descriptor(result, singleLine: true);
     public static string Descriptor(DotNetResult? result, bool singleLine = false)
     {

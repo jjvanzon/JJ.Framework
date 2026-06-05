@@ -403,10 +403,8 @@ public class DotNetResultFormatterTests
         AreEqual(expectedWideForm, result.ExceptionMessage());
 
         // TODO: Should the debugger display even contain the entire output?
-        // ... TODO: This one should have no double quotes or backslashes, just single quotes and foreward ones.
         string expectedDebuggerDisplay = expectedWideForm;
-        //expectedDebuggerDisplay = expectedDebuggerDisplay.Replace('\\', '/')
-        //                                                 .Replace('"', '\'');
+        expectedDebuggerDisplay = expectedDebuggerDisplay.Replace('\\', '/').Replace('"', '\'');
         AreEqual(expectedDebuggerDisplay, DebuggerDisplay(result));
         AreEqual(expectedDebuggerDisplay, result.DebuggerDisplay());
     }
