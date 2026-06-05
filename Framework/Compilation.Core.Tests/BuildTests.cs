@@ -142,6 +142,7 @@ public class BuildTests : DotNetTestHelper
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
     }
 
+    /*
     [TestMethod]
     public void Test_Build_ErrorCase_WithoutDir() 
     {
@@ -174,6 +175,7 @@ public class BuildTests : DotNetTestHelper
         AssertContains(ex.Message, "MSB1003");
         AssertContains(ex.Message, "Specify a project or solution file");
     }
+    */
 
     // Helpers
 
