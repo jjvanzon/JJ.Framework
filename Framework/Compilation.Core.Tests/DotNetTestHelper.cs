@@ -17,8 +17,8 @@ public class DotNetTestHelper : IDisposable
     internal const    string PackVer = "4.6.6251";
     internal          string TempDir        { get; }
     internal          string CsprojPath     { get; }
-    internal          string DebugDllPath   { get; }
-    internal          string ReleaseDllPath { get; }
+    internal          string DllPath        { get; }
+    internal          string DllPathRelease { get; }
     internal          string AssetsFilePath { get; }
 
     private static string GetCsprojContent(string targetFrameworks) =>
@@ -50,8 +50,8 @@ public class DotNetTestHelper : IDisposable
         _randomLetters = Path.GetRandomFileName().Replace(".", "");
         TempDir        = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
         CsprojPath     = Path.Combine(TempDir, CsProjFileName);
-        DebugDllPath   = Path.Combine(TempDir, "bin", "Debug",   targetFramework, DllFileName);
-        ReleaseDllPath = Path.Combine(TempDir, "bin", "Release", targetFramework, DllFileName);
+        DllPath        = Path.Combine(TempDir, "bin", "Debug",   targetFramework, DllFileName);
+        DllPathRelease = Path.Combine(TempDir, "bin", "Release", targetFramework, DllFileName);
         AssetsFilePath = Path.Combine(TempDir, "obj", "project.assets.json");
         
         //BasicOpt = CreateBasicOpt();
@@ -81,8 +81,8 @@ public class DotNetTestHelper : IDisposable
 
     internal static void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
     internal static void AssertNotExists(string filePath) => IsFalse(Exists(filePath), message: filePath);
-    internal void AssertDebugDll() => AssertExists(DebugDllPath);
-    internal void AssertReleaseDll() => AssertExists(ReleaseDllPath);
+    internal void AssertDll() => AssertExists(DllPath);
+    internal void AssertDllRelease() => AssertExists(DllPathRelease);
 
     internal static void AssertContains(string whole, string part)
     {

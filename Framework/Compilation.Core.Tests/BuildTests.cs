@@ -31,7 +31,7 @@ public class BuildTests : DotNetTestHelper
 
         AssertResult(result);
 
-        AssertDebugDll();
+        AssertDll();
     }
 
     [TestMethod]
@@ -46,7 +46,7 @@ public class BuildTests : DotNetTestHelper
 
         AssertResult(result);
        
-        AssertReleaseDll();
+        AssertDllRelease();
     }
 
     [TestMethod]
@@ -58,7 +58,7 @@ public class BuildTests : DotNetTestHelper
 
         AssertResult(result);
 
-        AssertDebugDll();
+        AssertDll();
     }
 
     [TestMethod]
@@ -70,7 +70,7 @@ public class BuildTests : DotNetTestHelper
 
         AssertResult(result);
 
-        AssertDebugDll();
+        AssertDll();
     }
 
     [TestMethod]
@@ -82,8 +82,8 @@ public class BuildTests : DotNetTestHelper
 
         AssertResultOk(result);
 
-        AssertNotExists(DebugDllPath);
-        AssertNotExists(ReleaseDllPath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
 
         AssertContains(result, "Usage:");
         AssertContains(result, "dotnet build [<PROJECT | SOLUTION | FILE>...] [options]");
@@ -143,8 +143,8 @@ public class BuildTests : DotNetTestHelper
     private void AssertInitialState()
     {
         AssertExists(AssetsFilePath);
-        AssertNotExists(DebugDllPath);
-        AssertNotExists(ReleaseDllPath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
     }
 
     private void AssertResult(DotNetResult result)
@@ -163,6 +163,6 @@ public class BuildTests : DotNetTestHelper
 
         AssertResult(result);
 
-        AssertDebugDll();
+        AssertDll();
     }
 }

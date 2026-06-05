@@ -25,8 +25,8 @@ public class DotNetTests : DotNetTestHelper
         DotNetResult output = call();
         AssertResultOk(output);
         AssertContains(output, "build succeeded");
-        AssertContains(output, DebugDllPath);
-        AssertExists(DebugDllPath);
+        AssertContains(output, DllPath);
+        AssertExists(DllPath);
     }
 
     [TestMethod] public void Test_Build_ByMethod()                => TestBuild_ChDir(() =>             Build(                    ));
@@ -53,8 +53,8 @@ public class DotNetTests : DotNetTestHelper
         DotNetResult output = call();
         AssertResultOk(output);
         AssertContains(output, "Build succeeded");
-        AssertContains(output, DebugDllPath);
-        AssertExists(DebugDllPath);
+        AssertContains(output, DllPath);
+        AssertExists(DllPath);
     }
 
     [TestMethod] public void Test_Rebuild_ByMethod()                => TestRebuild_ChDir(() =>            Rebuild(                   ));
@@ -77,8 +77,8 @@ public class DotNetTests : DotNetTestHelper
 
         DotNetResult output = call();
         AssertResultOk(output);
-        AssertContains(output, DebugDllPath);
-        AssertExists(DebugDllPath);
+        AssertContains(output, DllPath);
+        AssertExists(DllPath);
     }
 
     [TestMethod] public void Test_MSBuild_ByMethod()                => TestMSBuild_ChDir(() =>             MSBuild(               ));
@@ -104,8 +104,8 @@ public class DotNetTests : DotNetTestHelper
 
         DotNetResult output = call();
         AssertResultOk(output);
-        AssertContains(output, DebugDllPath);
-        AssertExists(DebugDllPath);
+        AssertContains(output, DllPath);
+        AssertExists(DllPath);
     }
 
     [TestMethod] public void Test_MSRebuild_ByMethod()                => TestMSRebuild_ChDir  (() =>            MSRebuild(              ));
@@ -171,7 +171,7 @@ public class DotNetTests : DotNetTestHelper
     private void AssertInitialState()
     {
         AssertNotExists(AssetsFilePath);
-        AssertNotExists(DebugDllPath);
-        AssertNotExists(ReleaseDllPath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
     }
 }
