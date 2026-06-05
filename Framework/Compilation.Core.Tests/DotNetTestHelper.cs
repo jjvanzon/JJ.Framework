@@ -217,4 +217,20 @@ public class DotNetTestHelper : IDisposable
             }
         }
     }
+
+    internal void InEmptyDir(Action action)
+    {
+        // Do it thread-safe in the temp dir, or all hell breaks looose, 
+        // when not specifying dir with the dotnet command.
+        InTempDir(() =>
+        {
+            // CsProj was set up in base class initialization.
+            // Create and move to a sub-directory, so we emulate the csproj not being found.
+            Directory.CreateDirectory("SubDir");
+            CurrentDirectory = Path.Combine(CurrentDirectory, "SubDir");
+
+            // Now do our test.
+            action();
+        });
+    }
 }
