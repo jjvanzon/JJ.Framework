@@ -112,7 +112,9 @@ public class BuildTests : DotNetTestHelper
             Args            = "--no-logo",
             
             AutoRestore     = true,
-            ParallelRestore = true,
+            // One parallel restore could choke up the whole thing before, so no thanks.
+            //ParallelRestore = true, 
+            ParallelRestore = false, 
             
             NodeReuse       = true,
             TimeOutSec      = 123,
@@ -142,7 +144,6 @@ public class BuildTests : DotNetTestHelper
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
     }
 
-    /*
     [TestMethod]
     public void Test_Build_ErrorCase_WithoutDir() 
     {
@@ -160,6 +161,7 @@ public class BuildTests : DotNetTestHelper
         AssertContains(ex.Message, "Project file does not exist");
     }
 
+    /*
     [TestMethod]
     public void Test_Build_ErrorCase_NoOpt() 
     {
