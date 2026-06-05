@@ -14,12 +14,10 @@ public class BuildTests : DotNetTestHelper
     // x Args
     // x With File / Without File
     // x With Dir / Without Dir
+    // x Test with all options on and see if it still works.
     // - Error cases
-    // - Test with all options on and see if it still works.
 
     // TODO: Make test console output look better with LogAction and Verbosity settings.
-
-    // TODO: More test methods to use teh Assert(delegate) helper.
 
     [TestMethod]
     public void Test_Build_MainCase()
@@ -94,6 +92,42 @@ public class BuildTests : DotNetTestHelper
     public void Test_Build_WithoutDir_WithChDir() 
     {
         InTempDir(() => Assert(() => Build(Opt() with { Dir = "" })));
+    }
+
+    [TestMethod]
+    public void Test_Build_AllOptsOn() 
+    { 
+        AssertInitialState();
+
+        string logPath = Path.Combine(TempDir, Name() + ".log");
+        string binLogPath = Path.Combine(TempDir, Name() + ".binlog");
+
+        var allOpt = new DotNetOptions
+        {
+            Dir             = TempDir,
+            File            = CsprojPath,
+
+            BuildConf       = "Release",
+            Args            = "--no-logo",
+            
+            AutoRestore     = true,
+            ParallelRestore = true,
+            
+            NodeReuse       = true,
+            TimeOutSec      = 123,
+                            
+            Verbosity       = Detailed,
+            LogFile         = logPath,
+            BinLog          = binLogPath,
+            LogAction       = Log
+        };
+
+        var result = Build(allOpt);
+
+        AssertResult(result);
+        AssertDllRelease();
+        AssertExists(logPath);
+        AssertExists(binLogPath);
     }
 
     [TestMethod]
