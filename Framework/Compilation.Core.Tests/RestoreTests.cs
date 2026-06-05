@@ -196,22 +196,19 @@ public class RestoreTests : DotNetTestHelper
 
     // Overloads
 
-    [TestMethod]
-    public void Test_Restore_Overloads()
-    {
-        { T x = new(); x.AssertNoDir(() =>      Restore(                          )); }
-        { T x = new(); x.Assert     (() =>      Restore(                x.GetOpt())); }
-        { T x = new(); x.AssertNoDir(() =>      Restore(  "--no-cache"            )); }
-        { T x = new(); x.Assert     (() =>      Restore(  "--no-cache", x.GetOpt())); }
-        { T x = new(); x.AssertNoDir(() => Exe( restore                           )); }
-        { T x = new(); x.Assert     (() => Exe( restore,                x.GetOpt())); }
-        { T x = new(); x.AssertNoDir(() => Exe( restore,  "--no-cache"            )); }
-        { T x = new(); x.Assert     (() => Exe( restore,  "--no-cache", x.GetOpt())); }
-        { T x = new(); x.AssertNoDir(() => Exe("restore"                          )); }
-        { T x = new(); x.Assert     (() => Exe("restore",               x.GetOpt())); }
-        { T x = new(); x.AssertNoDir(() => Exe("restore", "--no-cache"            )); }
-        { T x = new(); x.Assert     (() => Exe("restore", "--no-cache", x.GetOpt())); }
-    }
+    [TestMethod] public void Test_Restore_Overload_Method()           => AssertNoDir(() =>      Restore(                     ));
+    [TestMethod] public void Test_Restore_Overload_MethodOpt()        => Assert     (() =>      Restore(                Opt()));
+    [TestMethod] public void Test_Restore_Overload_MethodArgs()       => AssertNoDir(() =>      Restore(  "--no-cache"       ));
+    [TestMethod] public void Test_Restore_Overload_MethodArgsAndOpt() => Assert     (() =>      Restore(  "--no-cache", Opt()));
+    [TestMethod] public void Test_Restore_Overload_Enum()             => AssertNoDir(() => Exe( restore                      ));
+    [TestMethod] public void Test_Restore_Overload_EnumhOpt()         => Assert     (() => Exe( restore,                Opt()));
+    [TestMethod] public void Test_Restore_Overload_EnumhArgs()        => AssertNoDir(() => Exe( restore,  "--no-cache"       ));
+    [TestMethod] public void Test_Restore_Overload_EnumhArgsAndOpt()  => Assert     (() => Exe( restore,  "--no-cache", Opt()));
+    [TestMethod] public void Test_Restore_Overload_Name()             => AssertNoDir(() => Exe("restore"                     ));
+    [TestMethod] public void Test_Restore_Overload_NameOpt()          => Assert     (() => Exe("restore",               Opt()));
+    [TestMethod] public void Test_Restore_Overload_NameArgs()         => AssertNoDir(() => Exe("restore", "--no-cache"       ));
+    [TestMethod] public void Test_Restore_Overload_NameArgsAndOpt()   => Assert     (() => Exe("restore", "--no-cache", Opt()));
+
 
     // Helpers
 

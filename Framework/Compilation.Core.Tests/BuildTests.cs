@@ -117,7 +117,7 @@ public class BuildTests : DotNetTestHelper
             NodeReuse       = true,
             TimeOutSec      = 123,
                             
-            Verbosity       = Detailed,
+            Verbosity       = Minimal,
             LogFile         = logPath,
             BinLog          = binLogPath,
             LogAction       = Log
@@ -132,6 +132,13 @@ public class BuildTests : DotNetTestHelper
         AssertResultOk(result);
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
+        AssertContains(result, "release");
+        AssertContains(result, "minimal");
+        AssertContains(result, "timeout: 123");
+        AssertContains(result, "--no-logo");
+        AssertContains(result, "-low");
+        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
+        AssertContains(result, binLogPath);
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
     }
 
@@ -163,7 +170,6 @@ public class BuildTests : DotNetTestHelper
             AssertContains(ex.Message, "MSB1003");
             AssertContains(ex.Message, "Specify a project or solution file");
         }
-
     }
 
     // Helpers
