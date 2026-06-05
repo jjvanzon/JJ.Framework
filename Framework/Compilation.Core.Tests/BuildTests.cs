@@ -173,23 +173,28 @@ public class BuildTests : DotNetTestHelper
         });
     }
 
-    /*
     [TestMethod]
     public void Test_Build_ErrorCase_NoOpt() 
     {
-        // No opt = without dir
-        AssertInitialState();
+        InTempDir(() =>
+        {
+            CreateDirectory("SubDir");
+            CurrentDirectory = Combine(CurrentDirectory, "SubDir");
 
-        DotNetResult? build = null;
+            // Now do our test.
+            // No opt = without dir
+            AssertInitialState();
 
-        Exception ex = Throws(() => build = Build());
+            DotNetResult? build = null;
 
-        IsNull(build);
-        AssertContains(ex.Message, "Exit code 1");
-        AssertContains(ex.Message, "MSB1003");
-        AssertContains(ex.Message, "Specify a project or solution file");
-    }
-    */
+            Exception ex = Throws(() => build = Build());
+
+            IsNull(build);
+            AssertContains(ex.Message, "Exit code 1");
+            AssertContains(ex.Message, "MSB1003");
+            AssertContains(ex.Message, "Specify a project or solution file");
+        });
+       }
 
     // Helpers
 
