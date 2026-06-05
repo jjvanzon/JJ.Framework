@@ -14,8 +14,8 @@ public class DotNetTests : DotNetTestHelper
 
     // Build
 
-    public void TestBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestBuild(call, DebugDllFilePath));
-    public void TestBuild_Release(Func<DotNetResult> call) => TestBuild(call, ReleaseDllFilePath);
+    public void TestBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestBuild(call, DebugDllPath));
+    public void TestBuild_Release(Func<DotNetResult> call) => TestBuild(call, ReleaseDllPath);
     public void TestBuild(Func<DotNetResult> call, string filePath)
     {
         AssertInitialState();
@@ -43,8 +43,8 @@ public class DotNetTests : DotNetTestHelper
 
     // Rebuild
 
-    public void TestRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestRebuild(call, DebugDllFilePath));
-    public void TestRebuild_Release(Func<DotNetResult> call) => TestRebuild(call, ReleaseDllFilePath);
+    public void TestRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestRebuild(call, DebugDllPath));
+    public void TestRebuild_Release(Func<DotNetResult> call) => TestRebuild(call, ReleaseDllPath);
     public void TestRebuild(Func<DotNetResult> call, string dllFileName)
     {
         AssertInitialState();
@@ -70,8 +70,8 @@ public class DotNetTests : DotNetTestHelper
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
     
-    private void TestMSBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSBuild(call, DebugDllFilePath));
-    private void TestMSBuild_Release(Func<DotNetResult> call) => TestMSBuild(call, ReleaseDllFilePath);
+    private void TestMSBuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSBuild(call, DebugDllPath));
+    private void TestMSBuild_Release(Func<DotNetResult> call) => TestMSBuild(call, ReleaseDllPath);
     private void TestMSBuild(Func<DotNetResult> call, string dllFilePath)
     {
         AssertInitialState();
@@ -98,8 +98,8 @@ public class DotNetTests : DotNetTestHelper
 
     // MSRebuild
 
-    private void TestMSRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSRebuild(call, DebugDllFilePath));
-    private void TestMSRebuild_Release(Func<DotNetResult> call) => TestMSRebuild(call, ReleaseDllFilePath);
+    private void TestMSRebuild_Debug(Func<DotNetResult> call) => InTempDir(() => TestMSRebuild(call, DebugDllPath));
+    private void TestMSRebuild_Release(Func<DotNetResult> call) => TestMSRebuild(call, ReleaseDllPath);
     private void TestMSRebuild(Func<DotNetResult> call, string dllFilePath)
     {
         AssertInitialState();
@@ -174,7 +174,7 @@ public class DotNetTests : DotNetTestHelper
     private void AssertInitialState()
     {
         AssertNotExists(AssetsFilePath);
-        AssertNotExists(DebugDllFilePath);
-        AssertNotExists(ReleaseDllFilePath);
+        AssertNotExists(DebugDllPath);
+        AssertNotExists(ReleaseDllPath);
     }
 }

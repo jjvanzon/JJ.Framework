@@ -82,8 +82,8 @@ public class BuildTests : DotNetTestHelper
 
         AssertResultOk(result);
 
-        AssertNotExists(DebugDllFilePath);
-        AssertNotExists(ReleaseDllFilePath);
+        AssertNotExists(DebugDllPath);
+        AssertNotExists(ReleaseDllPath);
 
         AssertContains(result, "Usage:");
         AssertContains(result, "dotnet build [<PROJECT | SOLUTION | FILE>...] [options]");
@@ -143,8 +143,8 @@ public class BuildTests : DotNetTestHelper
     private void AssertInitialState()
     {
         AssertExists(AssetsFilePath);
-        AssertNotExists(DebugDllFilePath);
-        AssertNotExists(ReleaseDllFilePath);
+        AssertNotExists(DebugDllPath);
+        AssertNotExists(ReleaseDllPath);
     }
 
     private void AssertResult(DotNetResult result)

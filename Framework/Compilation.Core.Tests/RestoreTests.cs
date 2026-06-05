@@ -46,7 +46,7 @@ public class RestoreTests : DotNetTestHelper
 
         // Assert Build Happened
         AssertDebugDll();
-        AssertContains(build, DebugDllFilePath);
+        AssertContains(build, DebugDllPath);
         AssertContains(build, "dotnet build");
         AssertContains(build, "build succeeded");
     }
@@ -236,8 +236,8 @@ public class RestoreTests : DotNetTestHelper
     private void AssertInitialState()
     {
         AssertNotExists(AssetsFilePath);
-        AssertNotExists(DebugDllFilePath);
-        AssertNotExists(ReleaseDllFilePath);
+        AssertNotExists(DebugDllPath);
+        AssertNotExists(ReleaseDllPath);
     }
 
 }
