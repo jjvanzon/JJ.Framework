@@ -9,17 +9,6 @@ public class BuildTests : DotNetTestHelper
 {
     public BuildTests() => InitRestore();
 
-    // TODO: Test:
-    // x Build
-    // x BuildConf
-    // x As CommandEnum
-    // x As Command text
-    // x Args
-    // x With File / Without File
-    // x With Dir / Without Dir
-    // x Test with all options on and see if it still works.
-    // - Error cases
-
     // TODO: Make test console output look better with LogAction and Verbosity settings.
 
     [TestMethod]
@@ -147,12 +136,34 @@ public class BuildTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_Build_ErrorCases() 
+    public void Test_Build_WithError() 
     {
-        // E.g. call with no opt, leads to error no project or solution file in cur dir.
-        //Build();
+        // Without Dir
+        {
+            var opt = Opt() with { Dir = "" };
 
-        // E.g. WithoutDir
+            DotNetResult? build = null;
+
+            Exception ex = Throws(() => build = Build(opt));
+
+            IsNull(build);
+            AssertContains(ex.Message, "Exit code 1");
+            AssertContains(ex.Message, "MSB1009");
+            AssertContains(ex.Message, "Project file does not exist");
+        }
+
+        // No opt = without dir
+        {
+            DotNetResult? build = null;
+
+            Exception ex = Throws(() => build = Build());
+
+            IsNull(build);
+            AssertContains(ex.Message, "Exit code 1");
+            AssertContains(ex.Message, "MSB1003");
+            AssertContains(ex.Message, "Specify a project or solution file");
+        }
+
     }
 
     // Helpers
