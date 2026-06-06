@@ -110,9 +110,7 @@ public class BuildTests : DotNetTestHelper
             Args            = "--no-logo",
             
             AutoRestore     = true,
-            // One parallel restore could choke up the whole thing before, so no thanks.
-            //ParallelRestore = true, 
-            ParallelRestore = false, 
+            ParallelRestore = false, // Keep false. Parallel restore can choke up the whole system.
             
             NodeReuse       = true,
             TimeOutSec      = 123,
@@ -128,18 +126,18 @@ public class BuildTests : DotNetTestHelper
         AssertDllRelease();
         AssertExists(logPath);
         AssertExists(binLogPath);
-
         AssertResultOk(result);
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
         AssertContains(result, "release");
-        //AssertContains(result, "minimal"); // Verbosity overrides interfere
         AssertContains(result, "timeout: 123");
         AssertContains(result, "--no-logo");
         AssertContains(result, "-low");
         //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
         AssertContains(result, binLogPath);
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
+
+        //AssertContains(result, "minimal"); // Verbosity overrides interfere
     }
 
     [TestMethod]

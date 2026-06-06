@@ -5,25 +5,35 @@
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
+using static Path;
+
 [TestClass]
 public class RestoreTests : DotNetTestHelper
 {
-    // TODO: Test Without File
-    // TODO: Test with all options on and see if it still works.
-
-    private void LogOutput(string text)
-    {
-        bool alreadyLogged = Verbosity >= Detailed;
-        if (alreadyLogged) return;
-        LogNormal(text);
-    }
-
     [TestMethod]
     public void Test_ExplicitRestore()
     {
         AssertInitialState();
 
         DotNetResult restore = Restore(GetOpt());
+
+        AssertExists(AssetsFilePath);
+
+        AssertResultOk(restore);
+        AssertContains(restore, "dotnet restore");
+        AssertContains(restore, "determining projects to restore");
+        AssertContains(restore, "restored " + CsprojPath);
+
+        LogOutput(restore.OutputText);
+    }
+
+    [TestMethod]
+    public void Test_Restore_WithoutFile()
+    {
+        AssertInitialState();
+
+        DotNetOptions opt = GetOpt() with { File = "" };
+        DotNetResult restore = Restore(opt);
 
         AssertExists(AssetsFilePath);
 
@@ -87,6 +97,54 @@ public class RestoreTests : DotNetTestHelper
             LogOutput(restore.OutputText);
         }
     }
+
+    [TestMethod]
+    public void Test_Restore_AllOptsOn() 
+    { 
+        AssertInitialState();
+
+        string logPath    = Combine(TempDir, Name() + ".log");
+        string binLogPath = Combine(TempDir, Name() + ".binlog");
+
+        var allOpt = new DotNetOptions
+        {
+            Dir             = TempDir,
+            File            = CsprojPath,
+
+            BuildConf       = "Release",
+            Args            = "--no-logo",
+            
+            AutoRestore     = true,
+            ParallelRestore = false, // Keep false. Parallel restore can choke up the whole system.
+            
+            NodeReuse       = true,
+            TimeOutSec      = 123,
+                            
+            Verbosity       = UnlessHigh(Minimal),
+            LogFile         = logPath,
+            BinLog          = binLogPath,
+            LogAction       = Log
+        };
+
+        var result = Restore("-low", allOpt);
+
+        AssertExists(AssetsFilePath);
+        AssertExists(logPath);
+        AssertResultOk(result);
+        AssertContains(result, "dotnet restore");
+        AssertContains(result, "determining projects to restore");
+        AssertContains(result, "restored " + CsprojPath);
+        AssertContains(result, "release");
+        AssertContains(result, "timeout: 123");
+        AssertContains(result, "--no-logo");
+        AssertContains(result, "-low");
+        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
+        //AssertContains(result, binLogPath); // Currently not shown: not in descriptor.
+        //AssertContains(result, "minimal"); // Verbosity overrides interfere
+        //AssertExists(binLogPath); // Binlog is only for build.
+    }
+
+    // Painful
 
     [TestMethod]
     public void Test_NoRestore_PainfulException()
@@ -240,6 +298,13 @@ public class RestoreTests : DotNetTestHelper
         public DotNetResult? Result { get; set; }
         public Exception? Exception { get; set; }
     }
+    
+    private void LogOutput(string text)
+    {
+        bool alreadyLogged = Verbosity > Normal;
+        if (alreadyLogged) return;
+        LogNormal(text); // ncrunch: no coverage
+    }
 
     private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
     private void Assert(Func<DotNetResult> call)
@@ -259,5 +324,4 @@ public class RestoreTests : DotNetTestHelper
         AssertNotExists(DllPath);
         AssertNotExists(DllPathRelease);
     }
-
 }
