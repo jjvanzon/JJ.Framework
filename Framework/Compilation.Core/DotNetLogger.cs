@@ -17,8 +17,7 @@ internal static class DotNetLogger
     {
         if (!result.Opt.Verbosity.In(Diagnostic, Detailed)) return;
         if (!Has(result.OutputText)) return;
-
-        // HACK: This blows up my CI if I enable Verbose or Detailed logging (but I need that for binlogs).
+        if (IsAzurePipelines) return; // HACK: This blows up my CI if I enable Dianostics or Detailed logging (but I need that for binlogs).
         result.Opt.LogAction(result.OutputText);
     }
 
