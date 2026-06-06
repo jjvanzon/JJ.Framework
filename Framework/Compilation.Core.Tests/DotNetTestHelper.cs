@@ -186,10 +186,10 @@ public class DotNetTestHelper : IDisposable
             Dir  = TempDir,
             File = CsProjFileName,
             LogAction = Log,
-            Verbosity = Verbosity
-            //BinLog    = GetBinLogFilePath(testName),
+            Verbosity = Verbosity,
+            BinLog    = Verbosity == Diagnostic ? GetBinLogFilePath(testName) : "",
             // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
-            //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
+            LogFile   = Verbosity == Diagnostic && RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
         };
 
     internal string GetLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".log";
