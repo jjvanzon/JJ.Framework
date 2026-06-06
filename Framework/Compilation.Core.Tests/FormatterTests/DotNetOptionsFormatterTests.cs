@@ -103,7 +103,7 @@ public class DotNetOptionsFormatterTests
     {
         DotNetOptions[] nullyOptions =
         [
-            new() { TimeOutSec = DEFAULT_TIME_OUT_SEC },
+            new() { TimeOutSec = DefaultOptions.TimeOutSec },
             new() { TimeOutSec = 0 },
             new() { TimeOutSec = default }];
 
@@ -125,36 +125,51 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_Log_Nully()
     {
-        Action<string>[] nullyLogActions = [ null!, NullAction ];
+        Action<string>[] filledLogActions = [ null!, NullAction ];
         DotNetVerbosity[] allVerbosities = [ 0, default, Normal, Quiet, Minimal, Detailed, Diagnostic ];
 
-        foreach (Action<string> nullyLogAction in nullyLogActions)
+        foreach (Action<string> filledLogAction in filledLogActions)
         {
-            AssertDiagnosticTexts(new DotNetOptions { LogAction = nullyLogAction }, DEFAULT_DESCRIPTOR);
+            AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction }, DEFAULT_DESCRIPTOR);
 
             foreach (DotNetVerbosity anyVerbosity in allVerbosities)
             {
                 // TODO: Change main code implementation:
                 //  Verbosity variance is still relevant to show for diagnostics, even when Log is nully.
                 //  It also affects the dotnet run, not just the Log delegate.
-                AssertDiagnosticTexts(new DotNetOptions { LogAction = nullyLogAction, Verbosity = anyVerbosity }, DEFAULT_DESCRIPTOR);
+                AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction, Verbosity = anyVerbosity }, DEFAULT_DESCRIPTOR);
             }
         }
     }
 
     [TestMethod]
-    public void DotNetOptionsFormatter_LogCallback_VerbosityNormalOrDefault()
+    public void DotNetOptionsFormatter_LogCallback_VerbosityNormal()
     {
-        Action<string>[] logNonNullies = [ WriteLine, _ => { } ];
-        DotNetVerbosity[] nullyVerbosities = [ 0, default, Normal ];
+        Action<string>[] filledLogActions = [ WriteLine, _ => { } ];
+        DotNetVerbosity[] normalVerbosities = [ Normal, DefaultOptions.Verbosity ];
 
-        foreach (Action<string> logNonNully in logNonNullies)
+        foreach (Action<string> filledLogAction in filledLogActions)
         {
-            AssertDiagnosticTexts(new DotNetOptions { LogAction = logNonNully }, "Log");
+            AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction }, "Log");
 
+            foreach (DotNetVerbosity normalVerbosity in normalVerbosities)
+            {
+                AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction, Verbosity = normalVerbosity }, "Log");
+            }
+        }
+    }
+
+    [TestMethod]
+    public void DotNetOptionsFormatter_LogCallback_VerbosityZeroOrUndefined()
+    {
+        Action<string>[] filledLogActions = [ WriteLine, _ => { } ];
+        DotNetVerbosity[] nullyVerbosities = [ 0, default, Undefined ];
+
+        foreach (Action<string> filledLogAction in filledLogActions)
+        {
             foreach (DotNetVerbosity nullyVerbosity in nullyVerbosities)
             {
-                AssertDiagnosticTexts(new DotNetOptions { LogAction = logNonNully, Verbosity = nullyVerbosity }, "Log");
+                AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction, Verbosity = nullyVerbosity }, "Log Undefined");
             }
         }
     }

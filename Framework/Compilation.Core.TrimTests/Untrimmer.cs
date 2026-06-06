@@ -22,7 +22,6 @@ internal static class Untrimmer
     // DotNetOptions
 
     [NoTrim("DebuggerDisplay",      typeof(DotNetOptions))]
-    [NoTrim("DEFAULT_TIME_OUT_SEC", typeof(DotNetOptions))]
 
     // DotNetResult
 

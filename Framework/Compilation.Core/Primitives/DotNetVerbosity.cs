@@ -2,9 +2,11 @@
 
 public enum DotNetVerbosity
 {
-    Normal,
+    // ReSharper disable once UnusedMember.Global
+    Undefined,
     Quiet,
     Minimal,
+    Normal,
     Detailed,
     Diagnostic
 }

@@ -8,7 +8,6 @@ public readonly record struct DotNetOptions
 
     public DotNetOptions() { }
 
-    internal const int DEFAULT_TIME_OUT_SEC = 5 * 60;
     public static readonly Action<string> NullAction = _ => { };
     public static readonly DotNetOptions DefaultOptions = new();
 
@@ -47,7 +46,7 @@ public readonly record struct DotNetOptions
     /// Set to true explicitly to restore original behavior.
     /// </summary>
     public bool            NodeReuse       { get; init; }
-    public int             TimeOutSec      { get; init; } = DEFAULT_TIME_OUT_SEC;
+    public int             TimeOutSec      { get; init; } = 5 * 60;
 
     // Logging
 
@@ -58,7 +57,7 @@ public readonly record struct DotNetOptions
     /// - <c>Normal</c> and <c>Minimal</c> will only check silently for errors internally.<br/>
     /// - <c>Quiet</c> won't work, because it'll swallow diagnostics used by the logic.
     /// </summary>
-    public DotNetVerbosity Verbosity       { get; init; }
+    public DotNetVerbosity Verbosity       { get; init; } = Normal;
     public string          LogFile         { get; init; } = "";
     public string          BinLog          { get; init; } = "";
     public Action<string>  LogAction       { get; init; } = NullAction;

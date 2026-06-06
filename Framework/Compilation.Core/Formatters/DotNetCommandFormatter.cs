@@ -104,7 +104,7 @@ internal static class DotNetCommandFormatter
 
     private static string TryFormatVerbosity(DotNetVerbosity verbosity, DotNetCommandEnum commandEnum)
     {
-        if (verbosity == default) return "";
+        if (verbosity == DefaultOptions.Verbosity) return "";
         if (commandEnum is build or rebuild) return $"--verbosity {verbosity}";
         if (commandEnum is msbuild or msrebuild) return $"-verbosity:{verbosity}";
         return "";

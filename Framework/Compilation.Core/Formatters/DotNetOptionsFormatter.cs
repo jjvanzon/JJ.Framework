@@ -97,7 +97,7 @@ internal static class DotNetOptionsFormatter
         return HasTimeOut(timeOutSec) ? $"Timeout: {timeOutSec}s" : "";
     }
 
-    private static bool HasTimeOut(int timeOutSec) => timeOutSec != 0 && timeOutSec != DEFAULT_TIME_OUT_SEC;
+    private static bool HasTimeOut(int timeOutSec) => timeOutSec != 0 && timeOutSec != DefaultOptions.TimeOutSec;
 
     // File Options
 
