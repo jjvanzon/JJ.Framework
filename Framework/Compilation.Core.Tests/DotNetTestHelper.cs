@@ -26,6 +26,8 @@ public class DotNetTestHelper : IDisposable
     internal          string DllPathRelease { get; }
     internal          string AssetsFilePath { get; }
 
+    // Init
+
     private static string GetCsprojContent(string targetFrameworks) =>
         $"""
         <Project Sdk="Microsoft.NET.Sdk">
@@ -39,8 +41,6 @@ public class DotNetTestHelper : IDisposable
           </PropertyGroup>
         </Project>
         """;
-
-    // Init
 
     public DotNetTestHelper()
     {
@@ -59,8 +59,6 @@ public class DotNetTestHelper : IDisposable
         DllPathRelease = Path.Combine(TempDir, "bin", "Release", targetFramework, DllFileName);
         AssetsFilePath = Path.Combine(TempDir, "obj", "project.assets.json");
         
-        //BasicOpt = CreateBasicOpt();
-
         Directory.CreateDirectory(TempDir);
 
         WriteAllText(CsprojPath, GetCsprojContent(targetFramework));
@@ -152,8 +150,8 @@ public class DotNetTestHelper : IDisposable
     // Logging
 
     // ReSharper disable once UnusedMember.Global
-    internal void LogLine() => Log("");
-    internal void Log(string msg) => Console.WriteLine(msg);
+    internal static void LogLine() => Log("");
+    internal static void Log(string msg) => Console.WriteLine(msg);
     
     /// <summary>
     /// Downgrade verbosity if not very detailed already.
@@ -164,17 +162,17 @@ public class DotNetTestHelper : IDisposable
         return replacement;
     }
 
-    internal void LogMinimal(string text)
+    internal static void LogMinimal(string text)
     {
         if (Verbosity >= Minimal) Log(text);
     }
 
-    internal void LogNormal(string text)
+    internal static void LogNormal(string text)
     {
         if (Verbosity >= Normal) Log(text);
     }
 
-    // Helpers
+    // Options
 
     /// <inheritdoc cref="_getopt" />
     internal DotNetOptions Opt([Caller] string testName = "") => GetOpt(testName);
@@ -207,6 +205,45 @@ public class DotNetTestHelper : IDisposable
         string filePath = Path.Combine(folderPath, fileName);
         return filePath;
     }
+
+    internal DotNetOptions AllOptsOn([Caller] string testName = "") => new() 
+    {
+        Dir             = TempDir,
+        File            = CsprojPath,
+
+        BuildConf       = "Release",
+        Args            = "--no-logo",
+        
+        AutoRestore     = true,
+        ParallelRestore = false, // Keep false. Parallel restore can choke up the whole system.
+        
+        NodeReuse       = true,
+        TimeOutSec      = 123,
+                        
+        LogAction       = Log,
+        Verbosity       = UnlessHigh(Minimal),
+        LogFile         = Path.Combine(TempDir, testName + ".log"),
+        BinLog          = Path.Combine(TempDir, testName + ".binlog"),
+    };
+
+    internal void AssertAllOptsOn(DotNetResult result, DotNetOptions opt)
+    {
+        AssertDllRelease();
+        AssertExists(opt.LogFile);
+        AssertExists(opt.BinLog);
+        AssertResultOk(result);
+        AssertContains(result, "build succeeded");
+        AssertContains(result, "release");
+        AssertContains(result, "timeout: 123");
+        AssertContains(result, "--no-logo");
+        AssertContains(result, "-low");
+        AssertContains(result, opt.BinLog);
+        AssertContains(result, ProjectName + " -> " + DllPathRelease);
+        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
+        //AssertContains(result, "minimal"); // Verbosity overrides interfere
+    }
+
+    // File Stuff
 
     private static readonly Lock _tempDirLock = new();
 

@@ -103,45 +103,12 @@ public class BuildTests : DotNetTestHelper
     { 
         AssertInitialState();
 
-        string logPath    = Combine(TempDir, Name() + ".log");
-        string binLogPath = Combine(TempDir, Name() + ".binlog");
+        var opt = AllOptsOn();
 
-        var allOpt = new DotNetOptions
-        {
-            Dir             = TempDir,
-            File            = CsprojPath,
+        var result = Build("-low", opt);
 
-            BuildConf       = "Release",
-            Args            = "--no-logo",
-            
-            AutoRestore     = true,
-            ParallelRestore = false, // Keep false. Parallel restore can choke up the whole system.
-            
-            NodeReuse       = true,
-            TimeOutSec      = 123,
-                            
-            Verbosity       = UnlessHigh(Minimal),
-            LogFile         = logPath,
-            BinLog          = binLogPath,
-            LogAction       = Log
-        };
-
-        var result = Build("-low", allOpt);
-
-        AssertDllRelease();
-        AssertExists(logPath);
-        AssertExists(binLogPath);
-        AssertResultOk(result);
+        AssertAllOptsOn(result, opt);
         AssertContains(result, "dotnet build");
-        AssertContains(result, "build succeeded");
-        AssertContains(result, "release");
-        AssertContains(result, "timeout: 123");
-        AssertContains(result, "--no-logo");
-        AssertContains(result, "-low");
-        AssertContains(result, binLogPath);
-        AssertContains(result, ProjectName + " -> " + DllPathRelease);
-        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
-        //AssertContains(result, "minimal"); // Verbosity overrides interfere
     }
 
     [TestMethod]

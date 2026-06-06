@@ -75,6 +75,18 @@ public class RebuildTests : DotNetTestHelper
         var result = Rebuild();
         AssertResult(result);
     });
+    
+    [TestMethod]
+    public void Test_Rebuild_AllOptsOn()
+    {
+        AssertInitialState();
+
+        var opt = AllOptsOn();
+        var result = Rebuild("-low", opt);
+
+        AssertAllOptsOn(result, opt);
+        AssertContains(result, "dotnet rebuild | build");
+    }
 
     [TestMethod]
     public void Test_Rebuild_VsBuild()
@@ -152,54 +164,6 @@ public class RebuildTests : DotNetTestHelper
     {
         Assert(Rebuild, Opt() with { Dir = "" });
     });
-
-    // TODO: Make helper for checking with all opt, because there's lots of repetition compared to BuildTests.
-
-    [TestMethod]
-    public void Test_Rebuild_AllOptsOn()
-    {
-        AssertInitialState();
-
-        string logPath    = Combine(TempDir, Name() + ".log");
-        string binLogPath = Combine(TempDir, Name() + ".binlog");
-
-        var allOpt = new DotNetOptions
-        {
-            Dir             = TempDir,
-            File            = CsprojPath,
-
-            BuildConf       = "Release",
-            Args            = "--no-logo",
-            
-            AutoRestore     = true,
-            ParallelRestore = false, // Keep false. Parallel restore can choke up the whole system.
-            
-            NodeReuse       = true,
-            TimeOutSec      = 123,
-                            
-            Verbosity       = UnlessHigh(Minimal),
-            LogFile         = logPath,
-            BinLog          = binLogPath,
-            LogAction       = Log
-        };
-
-        var result = Rebuild("-low", allOpt);
-
-        AssertDllRelease();
-        AssertExists(logPath);
-        AssertExists(binLogPath);
-        AssertResultOk(result);
-        AssertContains(result, "dotnet rebuild | build");
-        AssertContains(result, "build succeeded");
-        AssertContains(result, "release");
-        AssertContains(result, "timeout: 123");
-        AssertContains(result, "--no-logo");
-        AssertContains(result, "-low");
-        AssertContains(result, binLogPath);
-        AssertContains(result, ProjectName + " -> " + DllPathRelease);
-        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
-        //AssertContains(result, "minimal"); // Verbosity overrides interfere
-    }
 
     [TestMethod]
     public void Test_Rebuild_Overloads()
