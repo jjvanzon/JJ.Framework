@@ -12,6 +12,7 @@ RunTests<DotNetOptionsFormatterTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetResultFormatterTests>() &&
 RunTests<DotNetTests>() &&
+RunTests<RebuildTests>() &&
 RunTests<RestoreTests>() &&
 RunTests<RunningTargetFrameworkTests>();
 WriteLine("Done.");
