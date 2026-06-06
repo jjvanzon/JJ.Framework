@@ -11,6 +11,13 @@ public class RestoreTests : DotNetTestHelper
     // TODO: Test Without File
     // TODO: Test with all options on and see if it still works.
 
+    private void LogOutput(string text)
+    {
+        bool alreadyLogged = Verbosity >= Detailed;
+        if (alreadyLogged) return;
+        LogNormal(text);
+    }
+
     [TestMethod]
     public void Test_ExplicitRestore()
     {
@@ -25,7 +32,7 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(restore, "determining projects to restore");
         AssertContains(restore, "restored " + CsprojPath);
 
-        Log(restore.OutputText);
+        LogOutput(restore.OutputText);
     }
 
     [TestMethod]
@@ -49,7 +56,7 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(build, "dotnet build");
         AssertContains(build, "build succeeded");
 
-        Log(build.OutputText);
+        LogOutput(build.OutputText);
     }
     
     [TestMethod]
@@ -65,10 +72,10 @@ public class RestoreTests : DotNetTestHelper
             AssertResultOk(build);
             AssertContains(build, "restored " + CsprojPath);
             AssertExists(AssetsFilePath);
-            Log(build.OutputText);
+            LogOutput(build.OutputText);
         }
 
-        LogLine();
+        LogOutput("");
 
         // Restore and see "up to date" message
         {
@@ -77,7 +84,7 @@ public class RestoreTests : DotNetTestHelper
             AssertContains(restore, "dotnet restore");
             AssertContains(restore, "determining projects to restore");
             AssertContains(restore, "up-to-date");
-            Log(restore.OutputText);
+            LogOutput(restore.OutputText);
         }
     }
 
@@ -85,6 +92,9 @@ public class RestoreTests : DotNetTestHelper
     public void Test_NoRestore_PainfulException()
     {
         AssertInitialState();
+
+        LogNormal("Error = expected");
+        LogNormal("");
 
         var opt = GetOpt() with { AutoRestore = false };
         
@@ -103,7 +113,7 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(msg, "Run a NuGet package restore");
         AssertContains(msg, "Assets file '" + AssetsFilePath + "' not found.");
 
-        Log(msg);
+        LogNormal(msg);
     }
 
     [TestMethod]
@@ -123,12 +133,12 @@ public class RestoreTests : DotNetTestHelper
     public void Test_ParallelRestore_EvilDoesNotWork()
     {
         #if NET5_0
-            Log("Skip .NET 5. Too slow. Check other .NET version.");
+            LogMinimal("Skip .NET 5. Too slow. Check other .NET version.");
             return;
         #endif
 
-        Log("Parallel restore unstable. Test provokes and tolerates exceptions but still checks the outcome.");
-        LogLine();
+        LogMinimal("Parallel restore unstable. Test provokes and tolerates exceptions but still checks the outcome.");
+        LogMinimal("");
 
         AssertInitialState();
 
@@ -146,7 +156,14 @@ public class RestoreTests : DotNetTestHelper
         for (int i = 0; i < count; i++)
         {
             DotNetTestHelper helper = new();
-            DotNetOptions opt = helper.GetOpt() with { ParallelRestore = true, TimeOutSec = timeOutSec, Verbosity = Quiet };
+
+            var opt = helper.Opt() with 
+            {
+                ParallelRestore = true, 
+                TimeOutSec = timeOutSec,
+                Verbosity = UnlessHigh(Quiet)
+            };
+
             RestoreInfo info = new(helper);
 
             var task = new Task(() =>
@@ -176,7 +193,7 @@ public class RestoreTests : DotNetTestHelper
 
         // Report exception count
         int exceptionCount = infos.Where(x => Has(x.Exception)).Count();
-        Log($"{exceptionCount} exceptions occurred. {count} restores run.");
+        LogMinimal($"{exceptionCount} exceptions occurred. {count} restores run.");
 
         // Evaluate afterwards, keeps parallel loop tight and exception more likely.
         foreach (var x in infos)
@@ -195,8 +212,8 @@ public class RestoreTests : DotNetTestHelper
             if (x.Exception != null)
             {
                 AssertContainsAny(x.Exception.Message, "Timeout", "Access is denied", "Cannot process request");
-                LogLine();
-                Log($"{x.Exception}");
+                LogNormal("");
+                LogNormal($"{x.Exception}");
             }
         }
     }

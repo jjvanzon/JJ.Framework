@@ -1,9 +1,14 @@
-﻿namespace JJ.Framework.Compilation.Core.Tests;
+﻿#pragma warning disable IDE0002
+// ReSharper disable ReplaceAutoPropertyWithComputedProperty
+
+namespace JJ.Framework.Compilation.Core.Tests;
 
 public class DotNetTestHelper : IDisposable
 {
     // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
     //static DotNetTestHelper() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
+
+    internal static DotNetVerbosity Verbosity { get; set; } = Diagnostic;
 
     // Vars
 
@@ -70,12 +75,16 @@ public class DotNetTestHelper : IDisposable
 
     void IDisposable.Dispose() => Cleanup();
     ~DotNetTestHelper() => Cleanup(); // ncrunch: no coverage
-
         
     /// <summary>
     /// Restore so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.
     /// </summary>
-    public void InitRestore() => Restore(OptNoFile());
+    public void InitRestore()
+    {
+        var opt = Opt() with { File = "", Verbosity = UnlessHigh(Minimal) };
+
+        Restore(opt);
+    }
 
     // Assert
 
@@ -140,36 +149,44 @@ public class DotNetTestHelper : IDisposable
         }
     }
 
-    // Helpers
+    // Logging
 
+    // ReSharper disable once UnusedMember.Global
     internal void LogLine() => Log("");
     internal void Log(string msg) => Console.WriteLine(msg);
-
-    internal DotNetOptions OptNoFile([Caller] string testName = "")
+    
+    /// <summary>
+    /// Downgrade verbosity if not very detailed already.
+    /// </summary>
+    internal static DotNetVerbosity UnlessHigh(DotNetVerbosity replacement)
     {
-        return OptRelease(testName) with { File = "" };
+        if (Verbosity > Normal) return Verbosity;
+        return replacement;
     }
 
-    // ReSharper disable once UnusedParameter.Global
-    internal DotNetOptions OptRelease([Caller] string testName = "") 
-        => GetOpt() with
-        {
-            BuildConf = "Release"
-        };
+    internal void LogMinimal(string text)
+    {
+        if (Verbosity >= Minimal) Log(text);
+    }
 
-    // ReSharper disable once UnusedParameter.Global
+    internal void LogNormal(string text)
+    {
+        if (Verbosity >= Normal) Log(text);
+    }
+
+    // Helpers
 
     /// <inheritdoc cref="_getopt" />
-    internal DotNetOptions Opt([Caller] string testName = "") => GetOpt();
-    /// <inheritdoc cref="_getopt" />
+    internal DotNetOptions Opt([Caller] string testName = "") => GetOpt(testName);
     // ReSharper disable once UnusedParameter.Global
+    /// <inheritdoc cref="_getopt" />
     internal DotNetOptions GetOpt([Caller] string testName = "") 
         => new()
         {
             Dir  = TempDir,
             File = CsProjFileName,
             LogAction = Log,
-            Verbosity = Normal
+            Verbosity = Verbosity
             //BinLog    = GetBinLogFilePath(testName),
             // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
             //LogFile   = RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""

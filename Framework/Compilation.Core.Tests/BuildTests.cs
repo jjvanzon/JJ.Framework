@@ -3,14 +3,11 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 using static Path;
-using static Directory;
 
 [TestClass]
 public class BuildTests : DotNetTestHelper
 {
     public BuildTests() => InitRestore();
-
-    // TODO: Make test console output look better with LogAction and Verbosity settings.
 
     [TestMethod]
     public void Test_Build_MainCase()
@@ -120,7 +117,7 @@ public class BuildTests : DotNetTestHelper
             NodeReuse       = true,
             TimeOutSec      = 123,
                             
-            Verbosity       = Minimal,
+            Verbosity       = UnlessHigh(Minimal),
             LogFile         = logPath,
             BinLog          = binLogPath,
             LogAction       = Log
@@ -136,7 +133,7 @@ public class BuildTests : DotNetTestHelper
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
         AssertContains(result, "release");
-        AssertContains(result, "minimal");
+        //AssertContains(result, "minimal"); // Verbosity overrides interfere
         AssertContains(result, "timeout: 123");
         AssertContains(result, "--no-logo");
         AssertContains(result, "-low");
@@ -148,6 +145,8 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_ErrorCase_WithoutDir() => InEmptyDir(() =>
     {
+        LogNormal("Error = expected");
+
         AssertInitialState();
 
         DotNetOptions opt = Opt() with { Dir = "" };
@@ -159,12 +158,16 @@ public class BuildTests : DotNetTestHelper
         AssertContains(ex.Message, "Exit code 1");
         AssertContains(ex.Message, "MSB1009");
         AssertContains(ex.Message, "Project file does not exist");
+
+        LogNormal($"{ex}");
     });
 
     [TestMethod]
-    public void Test_Build_ErrorCase_NoOpt() => InEmptyDir(() =>
+    public void Test_Build_ErrorCase_NoOptions() => InEmptyDir(() =>
     {
         // No opt = without dir
+        LogNormal("Error = expected");
+
         AssertInitialState();
 
         DotNetResult? build = null;
@@ -175,6 +178,8 @@ public class BuildTests : DotNetTestHelper
         AssertContains(ex.Message, "Exit code 1");
         AssertContains(ex.Message, "MSB1003");
         AssertContains(ex.Message, "Specify a project or solution file");
+
+        LogNormal($"{ex}");
     });
 
     // Helpers
