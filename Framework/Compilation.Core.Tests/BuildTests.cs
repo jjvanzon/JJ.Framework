@@ -54,12 +54,11 @@ public class BuildTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_Build_WithoutDir_WithChDir() 
+    public void Test_Build_WithoutDir_WithChDir() => InTempDir(() =>
     {
-        InTempDir(() => Assert(() => Build(Opt() with { Dir = "" })));
-    }
+        Assert(() => Build(Opt() with { Dir = "" }));
+    });
 
-    
     [TestMethod]
     public void Test_Build_Conf() 
     {
@@ -92,6 +91,12 @@ public class BuildTests : DotNetTestHelper
         AssertContains(result, "Usage:");
         AssertContains(result, "dotnet build [<PROJECT | SOLUTION | FILE>...] [options]");
     }
+    
+    [TestMethod]
+    public void Test_Build_NoOptions_InTempDir() => InTempDir(() =>
+    {
+        Assert(Build);
+    });
 
     [TestMethod]
     public void Test_Build_AllOptsOn() 
@@ -133,10 +138,9 @@ public class BuildTests : DotNetTestHelper
         AssertContains(result, "timeout: 123");
         AssertContains(result, "--no-logo");
         AssertContains(result, "-low");
-        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
         AssertContains(result, binLogPath);
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
-
+        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
         //AssertContains(result, "minimal"); // Verbosity overrides interfere
     }
 
@@ -161,7 +165,7 @@ public class BuildTests : DotNetTestHelper
     });
 
     [TestMethod]
-    public void Test_Build_ErrorCase_NoOptions() => InEmptyDir(() =>
+    public void Test_Build_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
         // No opt = without dir
         LogNormal("Error = expected");
