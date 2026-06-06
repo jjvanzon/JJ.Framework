@@ -2,8 +2,6 @@
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
-using static Path;
-
 [TestClass]
 public class BuildTests : DotNetTestHelper
 {
@@ -151,6 +149,21 @@ public class BuildTests : DotNetTestHelper
         LogNormal($"{ex}");
     });
 
+    // Overloads
+
+    [TestMethod] public void Test_Build_Overload_Method()        => AssertNoDir(() =>             Build(                ));
+    [TestMethod] public void Test_Build_Overload_MethodOpt()     => Assert     (() =>             Build(           Opt()));
+    [TestMethod] public void Test_Build_Overload_MethodArgs()    => AssertNoDir(() =>             Build(  "--low"       ));
+    [TestMethod] public void Test_Build_Overload_MethodArgsOpt() => Assert     (() =>             Build(  "--low", Opt()));
+    [TestMethod] public void Test_Build_Overload_Enum()          => AssertNoDir(() => DotNet.Exe( build                 ));
+    [TestMethod] public void Test_Build_Overload_EnumOpt()       => Assert     (() => DotNet.Exe( build,           Opt()));
+    [TestMethod] public void Test_Build_Overload_EnumArgs()      => AssertNoDir(() => DotNet.Exe( build,  "--low"       ));
+    [TestMethod] public void Test_Build_Overload_EnumArgsOpt()   => Assert     (() => DotNet.Exe( build,  "--low", Opt()));
+    [TestMethod] public void Test_Build_Overload_Name()          => AssertNoDir(() => DotNet.Exe("build"                ));
+    [TestMethod] public void Test_Build_Overload_NameOpt()       => Assert     (() => DotNet.Exe("build",          Opt()));
+    [TestMethod] public void Test_Build_Overload_NameArgs()      => AssertNoDir(() => DotNet.Exe("build", "--low"       ));
+    [TestMethod] public void Test_Build_Overload_NameArgsOpt()   => Assert     (() => DotNet.Exe("build", "--low", Opt()));
+
     // Helpers
 
     private void AssertInitialState()
@@ -160,22 +173,16 @@ public class BuildTests : DotNetTestHelper
         AssertNotExists(DllPathRelease);
     }
 
-    private void AssertResult(DotNetResult result)
+    private void Assert(Func<DotNetResult> call)
     {
+        AssertInitialState();
+        var result = call();
         AssertResultOk(result);
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
         AssertContains(result, ProjectName + " -> " + DllPath);
-    }
-
-    private void Assert(Func<DotNetResult> call)
-    {
-        AssertInitialState();
-
-        DotNetResult result = call();
-
-        AssertResult(result);
-
         AssertDll();
     }
+
+    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
 }

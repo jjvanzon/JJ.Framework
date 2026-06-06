@@ -14,34 +14,6 @@ public class DotNetTests : DotNetTestHelper
     // TODO: Different types of options aren't tested.
     // TODO: Logging isn't really tested.
 
-    // Build
-
-    public void TestBuild_ChDir(Func<DotNetResult> call) => InTempDir(() => TestBuild(call));
-    public void TestBuild(Func<DotNetResult> call)
-    {
-        AssertInitialState();
-        InitRestore();
-
-        DotNetResult output = call();
-        AssertResultOk(output);
-        AssertContains(output, "build succeeded");
-        AssertContains(output, DllPath);
-        AssertExists(DllPath);
-    }
-
-    [TestMethod] public void Test_Build_ByMethod()                => TestBuild_ChDir(() =>             Build(                    ));
-    [TestMethod] public void Test_Build_ByMethod_WithOpt()        => TestBuild      (() =>             Build(               Opt()));
-    [TestMethod] public void Test_Build_ByMethod_WithArgs()       => TestBuild_ChDir(() =>             Build(  "--no-logo"       ));
-    [TestMethod] public void Test_Build_ByMethod_WithArgsAndOpt() => TestBuild      (() =>             Build(  "--no-logo", Opt()));
-    [TestMethod] public void Test_Build_ByEnum()                  => TestBuild_ChDir(() => DotNet.Exe( build                     ));
-    [TestMethod] public void Test_Build_ByEnum_WithOpt()          => TestBuild      (() => DotNet.Exe( build,               Opt()));
-    [TestMethod] public void Test_Build_ByEnum_WithArgs()         => TestBuild_ChDir(() => DotNet.Exe( build,  "--no-logo"       ));
-    [TestMethod] public void Test_Build_ByEnum_WithArgsAndOpt()   => TestBuild      (() => DotNet.Exe( build,  "--no-logo", Opt()));
-    [TestMethod] public void Test_Build_ByName()                  => TestBuild_ChDir(() => DotNet.Exe("build"                    ));
-    [TestMethod] public void Test_Build_ByName_WithOpt()          => TestBuild      (() => DotNet.Exe("build",              Opt()));
-    [TestMethod] public void Test_Build_ByName_WithArgs()         => TestBuild_ChDir(() => DotNet.Exe("build", "--no-logo"       ));
-    [TestMethod] public void Test_Build_ByName_WithArgsAndOpt()   => TestBuild      (() => DotNet.Exe("build", "--no-logo", Opt()));
-
     // Rebuild
 
     public void TestRebuild_ChDir(Func<DotNetResult> call) => InTempDir(() => TestRebuild(call));
