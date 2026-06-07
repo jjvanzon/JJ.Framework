@@ -12,6 +12,7 @@ RunTests<DotNetOptionsFormatterTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetResultFormatterTests>() &&
 RunTests<DotNetTests>() &&
+RunTests<InstallPackageTests>() &&
 RunTests<RebuildTests>() &&
 RunTests<RestoreTests>() &&
 RunTests<RunningTargetFrameworkTests>();
