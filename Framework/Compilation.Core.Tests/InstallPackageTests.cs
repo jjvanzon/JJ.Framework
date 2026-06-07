@@ -10,17 +10,20 @@ public class InstallPackageTests : DotNetTestHelper
     // x As command enum
     // x As command text
     // x As args only
-    // - No opt
+    // x No opt
     // x Rework: Recognize command in text and arg in Enricher, which adjusts behavior in CmdFormatter.
+    // - File situations
+    // - With Args
+    // - With AutoRestore (should be irrelevant but still work).
+    // - All options on
+    // Error cases:
+    // - Empty ID
+    // - Empty Ver
     // - Invalid package name syntax
     // - Invalid version syntax
     // - Package does not exist (might pass, just to break compilation)
     // - Package version does not exist
-    // - All options on
-    // - File situations
     // - Overload space
-    // - With Args
-    // - With AutoRestore (should be irrelevant but still work).
 
     public InstallPackageTests() => AssertInitialState();
 
@@ -63,16 +66,45 @@ public class InstallPackageTests : DotNetTestHelper
     public void Test_InstallPackage_NoCommandAsArgOnly_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("", $"add package {ID} -v {Ver}")));
 
+    // File Options
+
+    [TestMethod]
+    public void Test_InstallPackage_WithFile()
+    {
+        Assert(InstallPackage(ID, Ver, Opt() with { File = CsProjFileName }));
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_WithoutFile()
+    {
+        Assert(InstallPackage(ID, Ver, Opt() with { File = "" }));
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_WithDir()
+    {
+        Assert(InstallPackage(ID, Ver, Opt() with { Dir = TempDir }));
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_WithoutDir_WithFullFilePath()
+    {
+        Assert(InstallPackage(ID, Ver, Opt() with { Dir = "", File = CsprojPath }));
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_WithoutDir_WithChDir() => InTempDir(() => 
+    {
+        Assert(InstallPackage(ID, Ver, Opt() with { Dir = "" }));
+    });
+
     // Error Cases
     
     [TestMethod]
-    public void Test_InstallPackage_ErrorCase_NoCommand_ArgOnly_WithOpt_Limitation_DoesNotWork()
-    {
-        // Args placed at the end, after file; no resolution.
-        Throws(
+    public void Test_InstallPackage_Exception_NoCommand_ArgOnly_WithFile_PlacedBeforeArg() 
+        => Throws(
             () => DotNet.Exe("", $"add package {ID} -v {Ver}", Opt()), 
             $"--project \"Temp.csproj\" add package {ID} -v {Ver}");
-    }
 
     // Assertion
 

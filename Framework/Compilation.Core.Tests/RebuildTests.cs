@@ -150,6 +150,8 @@ public class RebuildTests : DotNetTestHelper
         Assert(Rebuild, Opt() with { Dir = "" });
     });
 
+    // Error Case
+
     [TestMethod]
     public void Test_Rebuild_ErrorCase_ForgotRestore()
     {
