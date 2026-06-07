@@ -21,7 +21,7 @@ global using static JJ.Framework.Compilation.Core.DotNetFilledInHelper;
 global using static JJ.Framework.Compilation.Core.DotNetEnricher;
 global using static JJ.Framework.Compilation.Core.DotNetLogger;
 global using static JJ.Framework.Compilation.Core.Formatters.DotNetArgsFormatter;
-global using static JJ.Framework.Compilation.Core.Formatters.DotNetCommandFormatter;
+global using static JJ.Framework.Compilation.Core.Formatters.DotNetCmdFormatter;
 global using static JJ.Framework.Compilation.Core.Formatters.DotNetOptionsFormatter;
 global using static JJ.Framework.Compilation.Core.Formatters.DotNetResultFormatter;
 global using static JJ.Framework.Compilation.Core.Primitives.DotNetVerbosity;

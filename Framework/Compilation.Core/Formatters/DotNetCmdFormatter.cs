@@ -1,7 +1,7 @@
 ﻿// ReSharper disable HeuristicUnreachableCode
 namespace JJ.Framework.Compilation.Core.Formatters;
 
-internal static class DotNetCommandFormatter
+internal static class DotNetCmdFormatter
 {
     public const string REBUILD_ARG_MS_BUILD = "/t:Rebuild";
     public const string REBUILD_ARG_DOT_NET = "--no-incremental";
