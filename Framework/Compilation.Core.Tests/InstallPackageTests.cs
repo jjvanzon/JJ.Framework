@@ -71,7 +71,13 @@ public class InstallPackageTests : DotNetTestHelper
     // Options
 
     [TestMethod]
-    public void Test_InstallPackage_WithExtraArg_NoRestore()
+    public void Test_InstallPackage_WithAutoRestore_DoesNothingButWorks()
+    {
+        Assert(InstallPackage(ID, Ver, Opt() with { AutoRestore = true }));
+    }
+    
+    [TestMethod]
+    public void Test_InstallPackage_WithArg()
     {
         var result = InstallPackage(ID, Ver, "--no-restore", Opt());
         AssertResult(result);
@@ -79,10 +85,15 @@ public class InstallPackageTests : DotNetTestHelper
         AssertPackageReference();
     }
 
-    [TestMethod]
-    public void Test_InstallPackage_WithAutoRestore_DoesNothingButWorks() 
-        => Assert(InstallPackage(ID, Ver, Opt() with { AutoRestore = true }));
-    
+    [TestMethod] 
+    public void Test_InstallPackage_WithArg_NoOpt() => InTempDir(() =>
+    {
+        var result = InstallPackage(ID, Ver, "--no-restore");
+        AssertResult(result);
+        AssertNotExists(AssetsFilePath);
+        AssertPackageReference();
+    });
+
     [TestMethod]
     public void Test_InstallPackage_OptsAllOn()
     {
