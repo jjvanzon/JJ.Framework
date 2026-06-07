@@ -176,7 +176,6 @@ public class DotNetTestHelper : IDisposable
 
     /// <inheritdoc cref="_getopt" />
     internal DotNetOptions Opt([Caller] string testName = "") => GetOpt(testName);
-    // ReSharper disable once UnusedParameter.Global
     /// <inheritdoc cref="_getopt" />
     internal DotNetOptions GetOpt([Caller] string testName = "") 
         => new()
@@ -185,28 +184,12 @@ public class DotNetTestHelper : IDisposable
             File = CsProjFileName,
             LogAction = Log,
             Verbosity = Verbosity,
-            BinLog    = Verbosity == Diagnostic ? GetBinLogFilePath(testName) : "",
+            BinLog    = Verbosity == Diagnostic ? BinLogInAppDir(testName) : "",
             // Limit LogFiles to one TFM, because they are huge and stored as artifacts.
-            LogFile   = Verbosity == Diagnostic && RunningTargetFramework == "net10.0" ? GetLogFilePath(testName) : ""
+            LogFile   = Verbosity == Diagnostic && RunningTargetFramework == "net10.0" ? LogFileInAppDir(testName) : ""
         };
 
-    internal string GetLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".log";
-    internal string GetBinLogFilePath([Caller] string testName = "") => GenerateFilePathNoExt(testName) + ".binlog";
-
-    /// <summary>
-    /// Generate a file path (for log files) specifically not in the temp folder, 
-    /// but in the test env bin folder, so they don't get cleared out immedaite after the test. 
-    /// </summary>
-    private string GenerateFilePathNoExt([Caller] string testName = "")
-    {
-        Assembly asm = typeof(DotNetTests).Assembly;
-        string folderPath = AppContext.BaseDirectory; 
-        string fileName = $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}";
-        string filePath = Path.Combine(folderPath, fileName);
-        return filePath;
-    }
-
-    internal DotNetOptions AllOptsOn([Caller] string testName = "") => new() 
+    internal DotNetOptions OptsAllOn([Caller] string testName = "") => new() 
     {
         Dir             = TempDir,
         File            = CsprojPath,
@@ -222,28 +205,69 @@ public class DotNetTestHelper : IDisposable
                         
         LogAction       = Log,
         Verbosity       = UnlessHigh(Minimal),
-        LogFile         = Path.Combine(TempDir, testName + ".log"),
-        BinLog          = Path.Combine(TempDir, testName + ".binlog"),
+        LogFile         = LogFileInTempDir(testName),
+        BinLog          = BinLogInTempDir(testName),
     };
 
-    internal void AssertAllOptsOn(DotNetResult result, DotNetOptions opt)
+    internal void AssertOptsAllOnResult(DotNetResult result)
     {
-        AssertDllRelease();
-        AssertExists(opt.LogFile);
-        AssertExists(opt.BinLog);
         AssertResultOk(result);
+
+        NotNullOrWhiteSpace(      result.Opt.Dir);
+        NotNullOrWhiteSpace(      result.Opt.File);
+        NotNullOrWhiteSpace(      result.Opt.BuildConf);
+        AssertContains(result,    result.Opt.BuildConf);
+        NotNullOrWhiteSpace(      result.Opt.Args);
+        AssertContains(result,    result.Opt.Args);
+        IsTrue(                   result.Opt.AutoRestore);
+        IsFalse(                  result.Opt.ParallelRestore); // Kept off. Parallel restore evil.
+        IsTrue(                   result.Opt.NodeReuse);
+        AssertContains(result, $"timeout: {result.Opt.TimeOutSec}");
+        AreSame(Log,              result.Opt.LogAction);
+        NotEqual(default,         result.Opt.Verbosity);
+        AssertContains(result, $"{result.Opt.Verbosity}"); 
+        NotNullOrWhiteSpace(      result.Opt.LogFile);
+        AssertExists(             result.Opt.LogFile);
+        //AssertContains(result,  result.Opt.LogFile); // Might be shown later, currently not command line, not in descriptor.
+        NotNullOrWhiteSpace(      result.Opt.BinLog); // Only exists for build tasks.
+        NotNullOrWhiteSpace(      result.Args.Args);
+        AssertContains(result,    result.Args.Args);
+    }
+
+    internal void AssertOptsAllOnResultForBuild(DotNetResult result)
+    {
+        AssertOptsAllOnResult(result);
         AssertContains(result, "build succeeded");
-        AssertContains(result, "release");
-        AssertContains(result, "timeout: 123");
-        AssertContains(result, "--no-logo");
-        AssertContains(result, "-low");
-        AssertContains(result, opt.BinLog);
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
-        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
-        //AssertContains(result, "minimal"); // Verbosity overrides interfere
+        AssertExists(result.Opt.BinLog);
+        AssertDllRelease();
     }
 
     // File Stuff
+    
+    private string AppDir => AppContext.BaseDirectory;
+    
+    /// <summary>
+    /// Generate a file path (for log files) 
+    /// </summary>
+    private string GenerateFileName(string testName = "")
+    {
+        Assembly asm = typeof(DotNetTests).Assembly;
+        return $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}";
+    }
+
+    /// <summary>
+    /// Specifically not in the temp folder, 
+    /// but in the test env bin folder, so they don't get cleared out immedaite after the test. 
+    /// </summary>
+    internal string LogFileInAppDir ([Caller] string testName = "") => Path.Combine(AppDir,  GenerateFileName(testName)) + ".log";
+    internal string LogFileInTempDir([Caller] string testName = "") => Path.Combine(TempDir, GenerateFileName(testName)) + ".log";
+    /// <summary>
+    /// Specifically not in the temp folder, 
+    /// but in the test env bin folder, so they don't get cleared out immedaite after the test. 
+    /// </summary>
+    internal string BinLogInAppDir  ([Caller] string testName = "") => Path.Combine(AppDir,  GenerateFileName(testName)) + ".binlog";
+    internal string BinLogInTempDir ([Caller] string testName = "") => Path.Combine(TempDir, GenerateFileName(testName)) + ".binlog";
 
     private static readonly Lock _tempDirLock = new();
 

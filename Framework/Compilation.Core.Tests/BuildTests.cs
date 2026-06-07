@@ -101,12 +101,11 @@ public class BuildTests : DotNetTestHelper
     { 
         AssertInitialState();
 
-        var opt = AllOptsOn();
-
+        var opt = OptsAllOn();
         var result = Build("-low", opt);
 
-        AssertAllOptsOn(result, opt);
         AssertContains(result, "dotnet build");
+        AssertOptsAllOnResultForBuild(result);
     }
 
     [TestMethod]

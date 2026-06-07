@@ -52,7 +52,7 @@ public class DotNetOptionsTests : DotNetTestHelper
     [TestMethod]
     public void Test_DotNetOptions_LogFile()
     {
-        var opt = GetOpt() with { LogFile = GetLogFilePath() };
+        var opt = GetOpt() with { LogFile = LogFileInAppDir() };
         Compile(opt);
         AssertExists(opt.LogFile);
     }
@@ -70,7 +70,7 @@ public class DotNetOptionsTests : DotNetTestHelper
     [TestMethod]
     public void Test_DotNetOptions_BinLog()
     {
-        var opt = GetOpt() with { BinLog = GetBinLogFilePath() };
+        var opt = GetOpt() with { BinLog = BinLogInAppDir() };
         Compile(opt);
         AssertExists(opt.BinLog);
     }

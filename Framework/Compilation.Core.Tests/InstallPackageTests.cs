@@ -12,10 +12,11 @@ public class InstallPackageTests : DotNetTestHelper
     // x As args only
     // x No opt
     // x Rework: Recognize command in text and arg in Enricher, which adjusts behavior in CmdFormatter.
-    // - File situations
-    // - With Args
-    // - With AutoRestore (should be irrelevant but still work).
-    // - All options on
+    // x File situations
+    // x With extra Args
+    // x With AutoRestore (should be irrelevant but still work).
+    // x All options on
+    // - Overload space
     // Error cases:
     // - Empty ID
     // - Empty Ver
@@ -23,12 +24,13 @@ public class InstallPackageTests : DotNetTestHelper
     // - Invalid version syntax
     // - Package does not exist (might pass, just to break compilation)
     // - Package version does not exist
-    // - Overload space
 
     public InstallPackageTests() => AssertInitialState();
 
     private const string ID = "JJ.Framework.Common.Core";
     private const string Ver = "4.6.6251";
+
+    // Syntaxes
 
     [TestMethod]
     public void Test_InstallPackage_MainCase() 
@@ -65,6 +67,31 @@ public class InstallPackageTests : DotNetTestHelper
     [TestMethod]
     public void Test_InstallPackage_NoCommandAsArgOnly_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("", $"add package {ID} -v {Ver}")));
+
+    // Options
+
+    [TestMethod]
+    public void Test_InstallPackage_WithExtraArg_NoRestore()
+    {
+        var result = InstallPackage(ID, Ver, "--no-restore", Opt());
+        AssertResult(result);
+        AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
+        AssertPackageReference();
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_WithAutoRestore_DoesNothingButWorks() 
+        => Assert(InstallPackage(ID, Ver, Opt() with { AutoRestore = true }));
+    
+    [TestMethod]
+    public void Test_InstallPackage_OptsAllOn()
+    {
+        var opt = OptsAllOn() with { Args = "--no-restore" };
+        var result = InstallPackage(ID, Ver, "--framework net10.0", opt);
+
+        AssertOptsAllOnResult(result);
+        AssertNotExists(AssetsFilePath);
+    }
 
     // File Options
 
@@ -117,11 +144,19 @@ public class InstallPackageTests : DotNetTestHelper
 
     private void Assert(DotNetResult result)
     {
+        AssertResult(result);
+        AssertExists(AssetsFilePath);
+        AssertPackageReference();
+    }
+
+    private static void AssertResult(DotNetResult result)
+    {
         AssertResultOk(result);
         AssertContains(result, $"package '{ID}' version '{Ver}' added");
+    }
 
-        AssertExists(AssetsFilePath);
-
+    private void AssertPackageReference()
+    {
         string content = ReadAllText(CsprojPath);
         NotNullOrWhiteSpace(content);
         AssertContains(content, ID);

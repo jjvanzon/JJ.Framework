@@ -104,6 +104,8 @@ public class RestoreTests : DotNetTestHelper
     { 
         AssertInitialState();
 
+        // TODO: Reuse helpers in DotNetTestHelper
+
         string logPath    = Combine(TempDir, Name() + ".log");
         string binLogPath = Combine(TempDir, Name() + ".binlog");
 

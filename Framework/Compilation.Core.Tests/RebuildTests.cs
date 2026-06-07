@@ -62,14 +62,13 @@ public class RebuildTests : DotNetTestHelper
     });
     
     [TestMethod]
-    public void Test_Rebuild_AllOptsOn()
+    public void Test_Rebuild_AllOptionsOn()
     {
         AssertInitialState();
 
-        var opt = AllOptsOn();
-        var result = Rebuild("-low", opt);
+        var result = Rebuild("-low", OptsAllOn());
 
-        AssertAllOptsOn(result, opt);
+        AssertOptsAllOnResultForBuild(result);
         AssertContains(result, "dotnet rebuild | build");
     }
 
