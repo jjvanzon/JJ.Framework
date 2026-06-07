@@ -14,30 +14,6 @@ public class DotNetTests : DotNetTestHelper
     // TODO: Different types of options aren't tested.
     // TODO: Logging isn't really tested.
 
-    // Rebuild
-
-    public void TestRebuild_ChDir(Func<DotNetResult> call) => InTempDir(() => TestRebuild(call));
-    public void TestRebuild(Func<DotNetResult> call)
-    {
-        AssertInitialState();
-        InitRestore();
-
-        DotNetResult output = call();
-        AssertResultOk(output);
-        AssertContains(output, "Build succeeded");
-        AssertContains(output, DllPath);
-        AssertExists(DllPath);
-    }
-
-    [TestMethod] public void Test_Rebuild_ByMethod()                => TestRebuild_ChDir(() =>            Rebuild(                   ));
-    [TestMethod] public void Test_Rebuild_ByMethod_WithOpt()        => TestRebuild      (() =>            Rebuild(              Opt()));
-    [TestMethod] public void Test_Rebuild_ByMethod_WithArgs()       => TestRebuild_ChDir(() =>            Rebuild( "--no-logo"       ));
-    [TestMethod] public void Test_Rebuild_ByMethod_WithArgsAndOpt() => TestRebuild      (() =>            Rebuild( "--no-logo", Opt()));
-    [TestMethod] public void Test_Rebuild_ByEnum()                  => TestRebuild_ChDir(() => DotNet.Exe(rebuild                    ));
-    [TestMethod] public void Test_Rebuild_ByEnum_WithOpt()          => TestRebuild      (() => DotNet.Exe(rebuild,              Opt()));
-    [TestMethod] public void Test_Rebuild_ByEnum_WithArgs()         => TestRebuild_ChDir(() => DotNet.Exe(rebuild, "--no-logo"       ));
-    [TestMethod] public void Test_Rebuild_ByEnum_WithArgsAndOpt()   => TestRebuild      (() => DotNet.Exe(rebuild, "--no-logo", Opt()));
-
     // MSBuild
     // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
     

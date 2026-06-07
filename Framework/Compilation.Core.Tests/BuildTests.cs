@@ -91,7 +91,7 @@ public class BuildTests : DotNetTestHelper
     }
     
     [TestMethod]
-    public void Test_Build_NoOptions_InTempDir() => InTempDir(() =>
+    public void Test_Build_NoOptions() => InTempDir(() =>
     {
         Assert(Build);
     });
@@ -132,7 +132,6 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
-        // No opt = without dir
         LogNormal("Error = expected");
 
         AssertInitialState();

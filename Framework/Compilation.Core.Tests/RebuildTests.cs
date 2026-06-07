@@ -1,23 +1,10 @@
 ﻿#pragma warning disable IDE0002
-namespace JJ.Framework.Compilation.Core.Tests;
 
-using static Path;
+namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
 public class RebuildTests : DotNetTestHelper
 {
-    // Most logic is already hit by BuildTests
-
-    // TODO: Test:
-    // x~ Command Text? > Requires an explicit re-parameter on/off?
-    // x~ Rebuild vs Build > Can't use check for "up-to-date" text.
-    // - Overload space
-    // - File options on/off
-
-    // Just look in BuildTests to see which are worth repeating for Rebuild.
-    // Do explicit restores inside the methods themselves instead of constructor,
-    // since that will get logging options applied to it.
-
     [TestMethod]
     public void Test_Rebuild_ExplicitRestore()
     {
@@ -41,7 +28,6 @@ public class RebuildTests : DotNetTestHelper
         AssertResult(result);
     }
 
-
     [TestMethod]
     public void Test_Rebuild_AsCommandEnum()
     {
@@ -61,14 +47,13 @@ public class RebuildTests : DotNetTestHelper
 
         var opt = Opt() with { AutoRestore = true }; // AutoRestore for the heck of it.
 
-        // TODO: Might like a re argument for easy variable re option?
         var result = DotNet.Exe("build", "--no-incremental", opt);
 
         AssertResult(result);
     }
 
     [TestMethod]
-    public void Test_Rebuild_NoOpt() => InTempDir(() =>
+    public void Test_Rebuild_NoOptions() => InTempDir(() =>
     {
         AssertInitialState();
         Restore();
@@ -128,7 +113,7 @@ public class RebuildTests : DotNetTestHelper
             // TODO: Assert the up-to-date message.
 
             AssertContains   (build,   "up-to-date");
-            AssertNotContains(rebuild, "up-to-date"); // TODO: Still contains "up-to-date"
+            AssertNotContains(rebuild, "up-to-date"); // TODO: Still contains "up-to-date" (packages)
         }
         */
     }
@@ -166,10 +151,34 @@ public class RebuildTests : DotNetTestHelper
     });
 
     [TestMethod]
-    public void Test_Rebuild_Overloads()
+    public void Test_Rebuild_ErrorCase_ForgotRestore()
     {
-        // TODO: Implement
+        LogNormal("Error = expected");
+
+        AssertInitialState();
+
+        DotNetResult? result = null;
+
+        Exception ex = Throws(() => result = Rebuild(Opt()));
+
+        IsNull(result);
+        AssertContains(ex.Message, "Exit code 1");
+        AssertContains(ex.Message, "NETSDK1004");
+        AssertContains(ex.Message, "Run a NuGet package restore");
+
+        LogNormal($"{ex}");
     }
+
+    // Overloads
+
+    [TestMethod] public void Test_Rebuild_Overload_Method()        => AssertNoDir(() =>            Rebuild(              ));
+    [TestMethod] public void Test_Rebuild_Overload_MethodOpt()     => Assert     (() =>            Rebuild(         Opt()));
+    [TestMethod] public void Test_Rebuild_Overload_MethodArgs()    => AssertNoDir(() =>            Rebuild( "-low"       ));
+    [TestMethod] public void Test_Rebuild_Overload_MethodArgsOpt() => Assert     (() =>            Rebuild( "-low", Opt()));
+    [TestMethod] public void Test_Rebuild_Overload_Enum()          => AssertNoDir(() => DotNet.Exe(rebuild               ));
+    [TestMethod] public void Test_Rebuild_Overload_EnumOpt()       => Assert     (() => DotNet.Exe(rebuild,         Opt()));
+    [TestMethod] public void Test_Rebuild_Overload_EnumArgs()      => AssertNoDir(() => DotNet.Exe(rebuild, "-low"       ));
+    [TestMethod] public void Test_Rebuild_Overload_EnumArgsOpt()   => Assert     (() => DotNet.Exe(rebuild, "-low", Opt()));
 
     // Helpers
 
@@ -195,5 +204,17 @@ public class RebuildTests : DotNetTestHelper
         Restore(opt);
         var result = call(opt);
         AssertResult(result);
+        AssertDll();
     }
+
+    private void Assert(Func<DotNetResult> call)
+    {
+        AssertInitialState();
+        InitRestore();
+        var result = call();
+        AssertResult(result);
+        AssertDll();
+    }
+
+    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
 }

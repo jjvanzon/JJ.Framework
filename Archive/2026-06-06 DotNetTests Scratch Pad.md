@@ -1,5 +1,11 @@
 ```cs
 
+    // RebuildTests:
+    // Most logic is already hit by BuildTests
+    // Just look in BuildTests to see which are worth repeating for Rebuild.
+    // Do explicit restores inside the methods themselves instead of constructor,
+    // since that will get logging options applied to it.
+
     private void Assert(Func<DotNetResult> call)
     {
         AssertInitialState();
@@ -9,8 +15,6 @@
     }
 
         //BasicOpt = CreateBasicOpt();
-
-    // TODO: Make helper for checking with all opt, because there's lots of repetition compared to BuildTests.
     
     /*
     private void TestBuild(Func<DotNetResult> call)
