@@ -14,7 +14,7 @@ internal static class DotNetEnricher
 
         args.CommandEnum = Has(args.CommandEnum) ? 
                            args.CommandEnum : 
-                           TryGetCommandEnum(args.Command, args.IsRebuild);
+                           TryGetCommandEnum(args);
     }
 
     public static string FormatCommand(DotNetCommandEnum val) => val switch
@@ -28,19 +28,30 @@ internal static class DotNetEnricher
         _ => ""
     };
 
-    public static DotNetCommandEnum TryGetCommandEnum(string command, bool isRebuild)
+    public static DotNetCommandEnum TryGetCommandEnum(DotNetArgs args)
     {
-        if (command.Is("build"))          return isRebuild ? rebuild : build;
-        if (command.Is("msbuild"))        return isRebuild ? msrebuild : msbuild;
-        if (command.Is("restore"))        return restore;
-        if (command.Is("add package"))    return installpackage; 
-        if (command.Is("remove package")) return uninstallpackage;
-
+        if (Is(args, "build "        )) return args.IsRebuild ? rebuild : build;
+        if (Is(args, "msbuild"       )) return args.IsRebuild ? msrebuild : msbuild;
+        if (Is(args, "restore"       )) return restore;
+        if (Is(args, "add package"   )) return installpackage;
+        if (Is(args, "remove package")) return uninstallpackage;
         // New .NET 10 style.
-        if (command.Is("package add"))    return installpackage; 
-        if (command.Is("package remove")) return uninstallpackage;
+        if (Is(args, "package add"   )) return installpackage; 
+        if (Is(args, "package remove")) return uninstallpackage;
 
         return default;
+    }
+
+    private static bool Is(DotNetArgs dotNetArgs, string commandToMatch)
+    {
+        string command = dotNetArgs.Command.TrimStart();
+        string args = dotNetArgs.Args.TrimStart();
+
+        if (command.Is(commandToMatch)) return true;
+        if (command.StartsWith(commandToMatch + ' ', OrdinalIgnoreCase)) return true;
+        if (!Has(command) && args.StartsWith(commandToMatch + ' ', OrdinalIgnoreCase)) return true;
+
+        return false;
     }
 
     private static bool IsRebuild(DotNetCommandEnum command)
