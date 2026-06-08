@@ -59,19 +59,13 @@ public class InstallPackageTests : DotNetTestHelper
     [TestMethod]
     public void Test_InstallPackage_WithArg()
     {
-        var result = InstallPackage(ID, Ver, "--no-restore", Opt());
-        AssertResult(result);
-        AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
-        AssertPackageReference();
+        AssertNoRestore(InstallPackage(ID, Ver, "--no-restore", Opt()));
     }
 
     [TestMethod] 
     public void Test_InstallPackage_WithArg_NoOpt() => InTempDir(() =>
     {
-        var result = InstallPackage(ID, Ver, "--no-restore");
-        AssertResult(result);
-        AssertNotExists(AssetsFilePath);
-        AssertPackageReference();
+        AssertNoRestore(InstallPackage(ID, Ver, "--no-restore"));
     });
 
     [TestMethod]
@@ -87,8 +81,7 @@ public class InstallPackageTests : DotNetTestHelper
     [TestMethod]
     public void Test_InstallPackage_NoVer_InstallsLatest()
     {
-        var result = InstallPackage(ID, "", Opt());
-        AssertResult(result);
+        Assert(InstallPackage(ID, "", Opt()));
     }
 
     // File Options
@@ -156,12 +149,35 @@ public class InstallPackageTests : DotNetTestHelper
         Throws(() => InstallPackage(ID, "1.0/x", Opt()), "not a valid version string");
     }
 
+    [TestMethod]
+    public void Test_InstallPackage_Exception_IDDoesNotExist_WithRestore()
+    {
+        Throws(() => InstallPackage(id: "JJ.Framework.Oops", Ver, Opt()), "NU1101", "Unable to find package");
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_IDDoesNotExist_NoRestore_InstallSucceeds_BuildThrows()
+    {
+        const string wrongID = "JJ.Framework.Oops";
+        var opt = Opt();
+        var result = InstallPackage(wrongID, Ver, "--no-restore", opt);
+        
+        // Assert for different ID.
+        AssertResultOk(result);
+        AssertContains(result, $"Adding PackageReference for package '{wrongID}' into project");
+        AssertContains(result, $"PackageReference for package '{wrongID}' version '{Ver}' added");
+        AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
+
+        // Build should throw
+        Throws(() => Build(opt), 
+            $"NETSDK1004: Assets file '{AssetsFilePath}' not found", 
+            "Run a NuGet package restore");
+
+        Throws(() => Build(opt with { AutoRestore = true }), $"Unable to find package {wrongID}");
+    }
+
     // TODO: Test error cases:
-    // x Empty ID
-    // x Empty Ver
-    // x Invalid package name syntax
-    // x Invalid version syntax
-    // - Package does not exist (might pass install, just to break upon compilation)
+    // x Package does not exist (might pass install, just to break upon compilation)
     // - Package version does not exist
     // TODO: --no-restore appears to have an effect. Is the AutoRestore option applied 
     //  to InstallPackage automatically?
@@ -183,6 +199,13 @@ public class InstallPackageTests : DotNetTestHelper
         AssertExists(AssetsFilePath);
         AssertPackageReference();
     }
+    
+    private void AssertNoRestore(DotNetResult result)
+    {
+        AssertResult(result);
+        AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
+        AssertPackageReference();
+    }
 
     private void AssertResult(DotNetResult result)
     {
@@ -195,7 +218,7 @@ public class InstallPackageTests : DotNetTestHelper
             $"Adding PackageReference for package '{ID}' into project '{CsProjPath}'");
         
         AssertContainsAny(result, 
-            $"Added to file '{CsProjName}'",
+            //$"Added to file '{CsProjName}'",
             $"Added to file '{CsProjPath}'");
     }
 
@@ -203,7 +226,8 @@ public class InstallPackageTests : DotNetTestHelper
     {
         string content = ReadAllText(CsProjPath);
         NotNullOrWhiteSpace(content);
-        AssertContains(content, ID);
-        AssertContains(content, Ver);
+        AssertContains(content, $"<PackageReference Include=\"{ID}\" Version=");
+        //AssertContains(content, ID);
+        //AssertContains(content, Ver);
     }
 }

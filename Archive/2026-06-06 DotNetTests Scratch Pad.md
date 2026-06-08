@@ -63,4 +63,8 @@
     // x With AutoRestore (should be irrelevant but still work).
     // x All options on
     // x Overload space
+
+        AssertContainsAny(result, 
+            $"Adding PackageReference for package '{ID}' into project '{CsProjName}'",
+            $"Adding PackageReference for package '{ID}' into project '{CsProjPath}'");
 ```
