@@ -50,4 +50,17 @@
     [TestMethod] public void Test_InstallPackage_ByMethod_WithOpt()        => TestInstallPack      (() => InstallPackage(PackID, PackVer, Opt()));
     [TestMethod] public void Test_InstallPackage_ByMethod_WithArgsAndOpt() => TestInstallPack      (() => InstallPackage(PackID, PackVer, "--no-restore", Opt()));
     // ByEnum and ByName variants won't work unless you specify id and ver as args.
+
+    // TODO: Test:
+    // x Main case
+    // x As command enum
+    // x As command text
+    // x As args only
+    // x No opt
+    // x Rework: Recognize command in text and arg in Enricher, which adjusts behavior in CmdFormatter.
+    // x File situations
+    // x With extra Args
+    // x With AutoRestore (should be irrelevant but still work).
+    // x All options on
+    // x Overload space
 ```

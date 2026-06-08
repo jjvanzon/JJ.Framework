@@ -5,26 +5,6 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class InstallPackageTests : DotNetTestHelper
 {
-    // TODO: Test:
-    // x Main case
-    // x As command enum
-    // x As command text
-    // x As args only
-    // x No opt
-    // x Rework: Recognize command in text and arg in Enricher, which adjusts behavior in CmdFormatter.
-    // x File situations
-    // x With extra Args
-    // x With AutoRestore (should be irrelevant but still work).
-    // x All options on
-    // - Overload space
-    // Error cases:
-    // - Empty ID
-    // - Empty Ver
-    // - Invalid package name syntax
-    // - Invalid version syntax
-    // - Package does not exist (might pass, just to break compilation)
-    // - Package version does not exist
-
     public InstallPackageTests() => AssertInitialState();
 
     private const string ID = "JJ.Framework.Common.Core";
@@ -103,13 +83,20 @@ public class InstallPackageTests : DotNetTestHelper
         AssertOptsAllOnResult(result);
         AssertNotExists(AssetsFilePath);
     }
+        
+    [TestMethod]
+    public void Test_InstallPackage_NoVer_InstallsLatest()
+    {
+        var result = InstallPackage(ID, "", Opt());
+        AssertResult(result);
+    }
 
     // File Options
 
     [TestMethod]
     public void Test_InstallPackage_WithFile()
     {
-        Assert(InstallPackage(ID, Ver, Opt() with { File = CsProjFileName }));
+        Assert(InstallPackage(ID, Ver, Opt() with { File = CsProjName }));
     }
 
     [TestMethod]
@@ -127,7 +114,7 @@ public class InstallPackageTests : DotNetTestHelper
     [TestMethod]
     public void Test_InstallPackage_WithoutDir_WithFullFilePath()
     {
-        Assert(InstallPackage(ID, Ver, Opt() with { Dir = "", File = CsprojPath }));
+        Assert(InstallPackage(ID, Ver, Opt() with { Dir = "", File = CsProjPath }));
     }
 
     [TestMethod]
@@ -144,6 +131,41 @@ public class InstallPackageTests : DotNetTestHelper
             () => DotNet.Exe("", $"add package {ID} -v {Ver}", Opt()), 
             $"--project \"Temp.csproj\" add package {ID} -v {Ver}");
 
+    [TestMethod]
+    public void Test_InstallPackage_Exception_NoID()
+    {
+        Throws(() => InstallPackage("", Ver, Opt()), "required argument missing");
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_NoID_EvenWhenNoRestore()
+    {
+        var opt = Opt() with { AutoRestore = false }; // TODO: Auto-Restore not applied.
+        Throws(() => InstallPackage(id: "", Ver, "--no-restore", opt), "required argument missing");
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_InvalidPackageIDSyntax()
+    {
+        Throws(() => InstallPackage("JJ.Framework/Common.Core", Ver, Opt()), "NU1017", "invalid package id");
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_InvalidVerSyntax()
+    {
+        Throws(() => InstallPackage(ID, "1.0/x", Opt()), "not a valid version string");
+    }
+
+    // TODO: Test error cases:
+    // x Empty ID
+    // x Empty Ver
+    // x Invalid package name syntax
+    // x Invalid version syntax
+    // - Package does not exist (might pass install, just to break upon compilation)
+    // - Package version does not exist
+    // TODO: --no-restore appears to have an effect. Is the AutoRestore option applied 
+    //  to InstallPackage automatically?
+
     // Assertion
 
     private void AssertInitialState()
@@ -156,19 +178,30 @@ public class InstallPackageTests : DotNetTestHelper
     private void Assert(DotNetResult result)
     {
         AssertResult(result);
+        AssertContains(result, "Writing assets file to disk");
+        AssertContainsAny(result, $"Restored {CsProjPath}", $"Restored {CsProjName}");
         AssertExists(AssetsFilePath);
         AssertPackageReference();
     }
 
-    private static void AssertResult(DotNetResult result)
+    private void AssertResult(DotNetResult result)
     {
         AssertResultOk(result);
-        AssertContains(result, $"package '{ID}' version '{Ver}' added");
+
+        AssertContains(result, result.Args.Ver);
+
+        AssertContainsAny(result, 
+            $"Adding PackageReference for package '{ID}' into project '{CsProjName}'",
+            $"Adding PackageReference for package '{ID}' into project '{CsProjPath}'");
+        
+        AssertContainsAny(result, 
+            $"Added to file '{CsProjName}'",
+            $"Added to file '{CsProjPath}'");
     }
 
     private void AssertPackageReference()
     {
-        string content = ReadAllText(CsprojPath);
+        string content = ReadAllText(CsProjPath);
         NotNullOrWhiteSpace(content);
         AssertContains(content, ID);
         AssertContains(content, Ver);

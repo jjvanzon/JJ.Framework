@@ -122,7 +122,7 @@ public class RebuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Rebuild_WithFile()
     {
-        Assert(Rebuild, Opt() with { File = CsProjFileName });
+        Assert(Rebuild, Opt() with { File = CsProjName });
     }
 
     [TestMethod]
@@ -140,7 +140,7 @@ public class RebuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Rebuild_WithoutDir_WithFullFilePath()
     {
-        Assert(Rebuild, Opt() with { Dir = "", File = CsprojPath });
+        Assert(Rebuild, Opt() with { Dir = "", File = CsProjPath });
     }
 
     [TestMethod]

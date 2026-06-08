@@ -30,7 +30,7 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_WithFile()
     {
-        Assert(() => Build(Opt() with { File = CsProjFileName }));
+        Assert(() => Build(Opt() with { File = CsProjName }));
     }
 
     [TestMethod]
@@ -48,7 +48,7 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_WithoutDir_WithFullFilePath()
     {
-        Assert(() => Build(Opt() with { Dir = "", File = CsprojPath }));
+        Assert(() => Build(Opt() with { Dir = "", File = CsProjPath }));
     }
 
     [TestMethod]

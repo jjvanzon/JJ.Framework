@@ -13,7 +13,7 @@ public class DotNetTestHelper : IDisposable
     // Vars
 
     internal const    string ProjectName    = "Temp";
-    internal const    string CsProjFileName = "Temp.csproj";
+    internal const    string CsProjName = "Temp.csproj";
     internal const    string DllFileName    = "Temp.dll";
     private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
     private  readonly string _randomLetters;
@@ -21,7 +21,7 @@ public class DotNetTestHelper : IDisposable
     internal const    string PackID  = "JJ.Framework.Common.Core";
     internal const    string PackVer = "4.6.6251";
     internal          string TempDir        { get; }
-    internal          string CsprojPath     { get; }
+    internal          string CsProjPath     { get; }
     internal          string DllPath        { get; }
     internal          string DllPathRelease { get; }
     internal          string AssetsFilePath { get; }
@@ -54,14 +54,14 @@ public class DotNetTestHelper : IDisposable
 
         _randomLetters = Path.GetRandomFileName().Replace(".", "");
         TempDir        = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
-        CsprojPath     = Path.Combine(TempDir, CsProjFileName);
+        CsProjPath     = Path.Combine(TempDir, CsProjName);
         DllPath        = Path.Combine(TempDir, "bin", "Debug",   targetFramework, DllFileName);
         DllPathRelease = Path.Combine(TempDir, "bin", "Release", targetFramework, DllFileName);
         AssetsFilePath = Path.Combine(TempDir, "obj", "project.assets.json");
         
         Directory.CreateDirectory(TempDir);
 
-        WriteAllText(CsprojPath, GetCsprojContent(targetFramework));
+        WriteAllText(CsProjPath, GetCsprojContent(targetFramework));
         WriteAllText(Path.Combine(TempDir, "Program.cs"), PROGRAM_CONTENT);
     }
 
@@ -181,7 +181,7 @@ public class DotNetTestHelper : IDisposable
         => new()
         {
             Dir  = TempDir,
-            File = CsProjFileName,
+            File = CsProjName,
             LogAction = Log,
             Verbosity = Verbosity,
             BinLog    = Verbosity == Diagnostic ? BinLogInAppDir(testName) : "",
@@ -192,7 +192,7 @@ public class DotNetTestHelper : IDisposable
     internal DotNetOptions OptsAllOn([Caller] string testName = "") => new() 
     {
         Dir             = TempDir,
-        File            = CsprojPath,
+        File            = CsProjPath,
 
         BuildConf       = "Release",
         Args            = "--no-logo",

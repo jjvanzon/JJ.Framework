@@ -78,7 +78,7 @@ public class DotNetTests : DotNetTestHelper
         AssertResultOk(output);
         AssertContains(output, PackID);
 
-        string content = ReadAllText(CsprojPath);
+        string content = ReadAllText(CsProjPath);
         IsFalse(content.Contains(PackID));
         IsFalse(content.Contains(PackVer));
     }

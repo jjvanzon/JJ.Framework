@@ -23,7 +23,7 @@ public class RestoreTests : DotNetTestHelper
         AssertResultOk(restore);
         AssertContains(restore, "dotnet restore");
         AssertContains(restore, "determining projects to restore");
-        AssertContains(restore, "restored " + CsprojPath);
+        AssertContains(restore, "restored " + CsProjPath);
 
         LogOutput(restore.OutputText);
     }
@@ -41,7 +41,7 @@ public class RestoreTests : DotNetTestHelper
         AssertResultOk(restore);
         AssertContains(restore, "dotnet restore");
         AssertContains(restore, "determining projects to restore");
-        AssertContains(restore, "restored " + CsprojPath);
+        AssertContains(restore, "restored " + CsProjPath);
 
         LogOutput(restore.OutputText);
     }
@@ -59,7 +59,7 @@ public class RestoreTests : DotNetTestHelper
         AssertExists(AssetsFilePath);
         AssertContains(build, "restore: auto");
         AssertContains(build, "determining projects to restore");
-        AssertContains(build, "restored " + CsprojPath);
+        AssertContains(build, "restored " + CsProjPath);
 
         // Assert Build Happened
         AssertDll();
@@ -81,7 +81,7 @@ public class RestoreTests : DotNetTestHelper
         {
             DotNetResult build = Build(opt);
             AssertResultOk(build);
-            AssertContains(build, "restored " + CsprojPath);
+            AssertContains(build, "restored " + CsProjPath);
             AssertExists(AssetsFilePath);
             LogOutput(build.OutputText);
         }
@@ -112,7 +112,7 @@ public class RestoreTests : DotNetTestHelper
         var allOpt = new DotNetOptions
         {
             Dir             = TempDir,
-            File            = CsprojPath,
+            File            = CsProjPath,
 
             BuildConf       = "Release",
             Args            = "--no-logo",
@@ -136,7 +136,7 @@ public class RestoreTests : DotNetTestHelper
         AssertResultOk(result);
         AssertContains(result, "dotnet restore");
         AssertContains(result, "determining projects to restore");
-        AssertContains(result, "restored " + CsprojPath);
+        AssertContains(result, "restored " + CsProjPath);
         AssertContains(result, "release");
         AssertContains(result, "timeout: 123");
         AssertContains(result, "--no-logo");
@@ -267,7 +267,7 @@ public class RestoreTests : DotNetTestHelper
                 AssertResultOk(x.Result);
                 AssertContains(x.Result, "dotnet restore");
                 AssertContains(x.Result, "determining projects to restore");
-                AssertContains(x.Result, "restored " + x.Helper.CsprojPath);
+                AssertContains(x.Result, "restored " + x.Helper.CsProjPath);
             }
 
             if (x.Exception != null)
@@ -318,7 +318,7 @@ public class RestoreTests : DotNetTestHelper
         AssertResultOk(result);
         AssertContains(result, "dotnet restore");
         AssertContains(result, "determining projects to restore");
-        AssertContains(result, "restored " + CsprojPath);
+        AssertContains(result, "restored " + CsProjPath);
     }
 
     private void AssertInitialState()
