@@ -178,10 +178,6 @@ public class InstallPackageTests : DotNetTestHelper
         Throws(() => Build(opt with { AutoRestore = true }), $"Unable to find package {wrongID}");
     }
 
-    // TODO: --no-restore appears to have an effect. Is the AutoRestore option applied 
-    //  to InstallPackage automatically?
-
-
     [TestMethod]
     public void Test_InstallPackage_Exception_VerDoesNotExist_WithRestore()
     {

@@ -74,4 +74,7 @@
     // TODO: Test error cases:
     // x Package does not exist (might pass install, just to break upon compilation)
     // x Package version does not exist
+
+    // TODO: --no-restore appears to have an effect. Is the AutoRestore option applied 
+    //  to InstallPackage automatically?
 ```

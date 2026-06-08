@@ -24,6 +24,22 @@ public readonly record struct DotNetOptions
 
     // Restore
 
+    /// <summary>
+    /// <para>
+    /// <c>AutoRestore</c> is set to 
+    /// <see langword="false" /> by default for build-related actions.
+    /// As you are scripting, you are expected to either call 
+    /// <see cref="DotNet.Restore()">Restore</see> yourself explicitly,
+    /// or pass a <c>DotNetOptions</c> struct 
+    /// with <c>AutoRestore</c> set to <see langword="true" />.
+    /// </para>
+    /// <para>
+    /// NOTE: <see cref="DotNet.InstallPackage(string, string)">InstallPackage</see> still does an auto-restore by default.
+    /// To omit restore for package-related actions, 
+    /// pass <c>"--no-restore"</c> as the <c>args</c> parameter.
+    /// It requires more explicit handling, because it is unusual to install without a restore.
+    /// </para>
+    /// </summary>
     public bool            AutoRestore     { get; init; }
     /// <summary>
     /// Many NuGet restores firing off at the same time,
