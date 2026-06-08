@@ -158,29 +158,59 @@ public class InstallPackageTests : DotNetTestHelper
     [TestMethod]
     public void Test_InstallPackage_IDDoesNotExist_NoRestore_InstallSucceeds_BuildThrows()
     {
+        var opt = Opt() with { AutoRestore = false };
         const string wrongID = "JJ.Framework.Oops";
-        var opt = Opt();
+
         var result = InstallPackage(wrongID, Ver, "--no-restore", opt);
         
         // Assert for different ID.
         AssertResultOk(result);
         AssertContains(result, $"Adding PackageReference for package '{wrongID}' into project");
         AssertContains(result, $"PackageReference for package '{wrongID}' version '{Ver}' added");
-        AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
+        
+        // Asserts file does not exist, because --no-restore
+        AssertNotExists(AssetsFilePath); 
 
         // Build should throw
         Throws(() => Build(opt), 
-            $"NETSDK1004: Assets file '{AssetsFilePath}' not found", 
-            "Run a NuGet package restore");
+            "NETSDK1004", $"Assets file '{AssetsFilePath}' not found", "Run a NuGet package restore");
 
         Throws(() => Build(opt with { AutoRestore = true }), $"Unable to find package {wrongID}");
     }
 
-    // TODO: Test error cases:
-    // x Package does not exist (might pass install, just to break upon compilation)
-    // - Package version does not exist
     // TODO: --no-restore appears to have an effect. Is the AutoRestore option applied 
     //  to InstallPackage automatically?
+
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_VerDoesNotExist_WithRestore()
+    {
+        Throws(
+            () => InstallPackage(ID, "1234.1234.1234", Opt()), 
+            "NU1102", $"Unable to find package {ID} with version", ">= 1234.1234.1234");
+    }
+
+    [TestMethod]
+    public void Test_InstallPackage_VerDoesNotExist_NoRestore_InstallSucceeds_BuildThrows()
+    {
+        var opt = Opt() with { AutoRestore = false };
+        const string wrongVer = "1234.1234.1234";
+
+        var result = InstallPackage(ID, "1234.1234.1234", "--no-restore", opt);
+
+        // Install package succeeds
+        AssertResultOk(result);
+        AssertContains(result, $"Adding PackageReference for package '{ID}' into project");
+        AssertContains(result, $"PackageReference for package '{ID}' version '{wrongVer}' added");
+
+        AssertNotExists(AssetsFilePath); 
+
+        // Build throws
+        Throws(() => Build(opt), 
+            "NETSDK1004", $"Assets file '{AssetsFilePath}' not found", "Run a NuGet package restore");
+
+        Throws(() => Build(opt with { AutoRestore = true }), $"Unable to find package {ID}");
+    }
 
     // Assertion
 
@@ -217,9 +247,7 @@ public class InstallPackageTests : DotNetTestHelper
             $"Adding PackageReference for package '{ID}' into project '{CsProjName}'",
             $"Adding PackageReference for package '{ID}' into project '{CsProjPath}'");
         
-        AssertContainsAny(result, 
-            //$"Added to file '{CsProjName}'",
-            $"Added to file '{CsProjPath}'");
+        AssertContains(result, $"Added to file '{CsProjPath}'");
     }
 
     private void AssertPackageReference()
@@ -227,7 +255,5 @@ public class InstallPackageTests : DotNetTestHelper
         string content = ReadAllText(CsProjPath);
         NotNullOrWhiteSpace(content);
         AssertContains(content, $"<PackageReference Include=\"{ID}\" Version=");
-        //AssertContains(content, ID);
-        //AssertContains(content, Ver);
     }
 }

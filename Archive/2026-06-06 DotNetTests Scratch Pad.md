@@ -67,4 +67,11 @@
         AssertContainsAny(result, 
             $"Adding PackageReference for package '{ID}' into project '{CsProjName}'",
             $"Adding PackageReference for package '{ID}' into project '{CsProjPath}'");
+
+        //AssertContains(content, ID);
+        //AssertContains(content, Ver);
+
+    // TODO: Test error cases:
+    // x Package does not exist (might pass install, just to break upon compilation)
+    // x Package version does not exist
 ```
