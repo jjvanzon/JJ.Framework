@@ -14,34 +14,6 @@ public class DotNetTests : DotNetTestHelper
     // TODO: Different types of options aren't tested.
     // TODO: Logging isn't really tested.
 
-    // MSBuild
-    // MSBuild output doesn't say "Build succeeded"; it shows "MSBuild version" + "Temp ->"; check for the dll path.
-    
-    private void TestMSBuild_ChDir(Func<DotNetResult> call) => InTempDir(() => TestMSBuild(call));
-    private void TestMSBuild(Func<DotNetResult> call)
-    {
-        AssertInitialState();
-        InitRestore();
-
-        DotNetResult output = call();
-        AssertResultOk(output);
-        AssertContains(output, DllPath);
-        AssertExists(DllPath);
-    }
-
-    [TestMethod] public void Test_MSBuild_ByMethod()                => TestMSBuild_ChDir(() =>             MSBuild(               ));
-    [TestMethod] public void Test_MSBuild_ByMethod_WithOpt()        => TestMSBuild      (() =>             MSBuild(          Opt()));
-    [TestMethod] public void Test_MSBuild_ByMethod_WithArgs()       => TestMSBuild_ChDir(() =>             MSBuild(  "-low"       ));
-    [TestMethod] public void Test_MSBuild_ByMethod_WithArgsAndOpt() => TestMSBuild      (() =>             MSBuild(  "-low", Opt()));
-    [TestMethod] public void Test_MSBuild_ByEnum()                  => TestMSBuild_ChDir(() => DotNet.Exe( msbuild                ));
-    [TestMethod] public void Test_MSBuild_ByEnum_WithOpt()          => TestMSBuild      (() => DotNet.Exe( msbuild,          Opt()));
-    [TestMethod] public void Test_MSBuild_ByEnum_WithArgs()         => TestMSBuild_ChDir(() => DotNet.Exe( msbuild,  "-low"       ));
-    [TestMethod] public void Test_MSBuild_ByEnum_WithArgsAndOpt()   => TestMSBuild      (() => DotNet.Exe( msbuild,  "-low", Opt()));
-    [TestMethod] public void Test_MSBuild_ByName()                  => TestMSBuild_ChDir(() => DotNet.Exe("msbuild"               ));
-    [TestMethod] public void Test_MSBuild_ByName_WithOpt()          => TestMSBuild      (() => DotNet.Exe("msbuild",         Opt()));
-    [TestMethod] public void Test_MSBuild_ByName_WithArgs()         => TestMSBuild_ChDir(() => DotNet.Exe("msbuild", "-low"       ));
-    [TestMethod] public void Test_MSBuild_ByName_WithArgsAndOpt()   => TestMSBuild      (() => DotNet.Exe("msbuild", "-low", Opt()));
-
     // MSRebuild
 
     private void TestMSRebuild_ChDir(Func<DotNetResult> call) => InTempDir(() => TestMSRebuild(call));

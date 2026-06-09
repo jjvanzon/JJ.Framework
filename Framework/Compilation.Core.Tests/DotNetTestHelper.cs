@@ -176,7 +176,7 @@ public class DotNetTestHelper : IDisposable
     internal void AssertOptsAllOnResultForBuild(DotNetResult result)
     {
         AssertOptsAllOnResult(result);
-        //AssertContains(result, "build succeeded");
+        //AssertContains(result, "build succeeded"); // MSBuild doesn't say "Build succeeded"
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
         AssertExists(result.Opt.BinLog);
         AssertDllRelease();
