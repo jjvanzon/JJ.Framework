@@ -5,83 +5,78 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class BuildTests : DotNetTestHelper
 {
-    public BuildTests() => InitRestore();
+    public BuildTests() { InitRestore(); AssertInitialState(); }
 
     [TestMethod]
     public void Test_Build_MainCase()
     {
-        Assert(() => Build(Opt()));
+        Assert(Build(Opt()));
     }
     
     [TestMethod]
     public void Test_Build_AsCommandEnum()
     {
-        Assert(() => DotNet.Exe(build, Opt()));
+        Assert(DotNet.Exe(build, Opt()));
     }
 
     [TestMethod]
     public void Test_Build_AsCommandText()
     {
-        Assert(() => DotNet.Exe("build", Opt()));
+        Assert(DotNet.Exe("build", Opt()));
     }
 
     [TestMethod]
     public void Test_Build_WithFile()
     {
-        Assert(() => Build(Opt() with { File = CsProjName }));
+        Assert(Build(Opt() with { File = CsProjName }));
     }
 
     [TestMethod]
     public void Test_Build_WithoutFile()
     {
-        Assert(() => Build(Opt() with { File = "" }));
+        Assert(Build(Opt() with { File = "" }));
     }
 
     [TestMethod]
     public void Test_Build_WithDir()
     {
-        Assert(() => Build(Opt() with { Dir = TempDir }));
+        Assert(Build(Opt() with { Dir = TempDir }));
     }
 
     [TestMethod]
     public void Test_Build_WithoutDir_WithFullFilePath()
     {
-        Assert(() => Build(Opt() with { Dir = "", File = CsProjPath }));
+        Assert(Build(Opt() with { Dir = "", File = CsProjPath }));
     }
 
     [TestMethod]
     public void Test_Build_WithoutDir_WithChDir() => InTempDir(() =>
     {
-        Assert(() => Build(Opt() with { Dir = "" }));
+        Assert(Build(Opt() with { Dir = "" }));
     });
 
     [TestMethod]
     public void Test_Build_Conf()
     {
-        Assert(() => Build(Opt() with { BuildConf = "Release" }), release: true);
+        Assert(Build(Opt() with { BuildConf = "Release" }), release: true);
     }
 
     [TestMethod]
     public void Test_Build_Args() 
     {
-        Assert(() => Build("-low", Opt()), args: "-low");
+        Assert(Build("-low", Opt()));
     }
     
     [TestMethod]
     public void Test_Build_NoOptions() => InTempDir(() =>
     {
-        Assert(Build);
+        Assert(Build());
     });
 
     [TestMethod]
     public void Test_Build_AllOptsOn() 
     { 
-        AssertInitialState();
-
         var result = Build("-low", OptsAllOn());
-
-        Assert(result, release: true);
-
         AssertOptsAllOnResultForBuild(result);
     }
 
@@ -89,8 +84,6 @@ public class BuildTests : DotNetTestHelper
     public void Test_Build_ErrorCase_WithoutDir() => InEmptyDir(() =>
     {
         LogNormal("Error = expected");
-
-        AssertInitialState();
 
         Exception ex = Throws(() => Build(Opt() with { Dir = "" }));
 
@@ -106,8 +99,6 @@ public class BuildTests : DotNetTestHelper
     {
         LogNormal("Error = expected");
 
-        AssertInitialState();
-
         Exception ex = Throws(Build);
 
         AssertContains(ex.Message, "Exit code 1");
@@ -119,18 +110,18 @@ public class BuildTests : DotNetTestHelper
 
     // Overloads
 
-    [TestMethod] public void Test_Build_Overload_Method()        => AssertNoDir(() =>             Build(                ));
-    [TestMethod] public void Test_Build_Overload_MethodOpt()     => Assert     (() =>             Build(           Opt()));
-    [TestMethod] public void Test_Build_Overload_MethodArgs()    => AssertNoDir(() =>             Build(  "--low"       ));
-    [TestMethod] public void Test_Build_Overload_MethodArgsOpt() => Assert     (() =>             Build(  "--low", Opt()));
-    [TestMethod] public void Test_Build_Overload_Enum()          => AssertNoDir(() => DotNet.Exe( build                 ));
-    [TestMethod] public void Test_Build_Overload_EnumOpt()       => Assert     (() => DotNet.Exe( build,           Opt()));
-    [TestMethod] public void Test_Build_Overload_EnumArgs()      => AssertNoDir(() => DotNet.Exe( build,  "--low"       ));
-    [TestMethod] public void Test_Build_Overload_EnumArgsOpt()   => Assert     (() => DotNet.Exe( build,  "--low", Opt()));
-    [TestMethod] public void Test_Build_Overload_Name()          => AssertNoDir(() => DotNet.Exe("build"                ));
-    [TestMethod] public void Test_Build_Overload_NameOpt()       => Assert     (() => DotNet.Exe("build",          Opt()));
-    [TestMethod] public void Test_Build_Overload_NameArgs()      => AssertNoDir(() => DotNet.Exe("build", "--low"       ));
-    [TestMethod] public void Test_Build_Overload_NameArgsOpt()   => Assert     (() => DotNet.Exe("build", "--low", Opt()));
+    [TestMethod] public void Test_Build_Overload_Method()        => InTempDir(() => Assert(            Build(               )));
+    [TestMethod] public void Test_Build_Overload_MethodOpt()     =>                 Assert(            Build(           Opt()));
+    [TestMethod] public void Test_Build_Overload_MethodArgs()    => InTempDir(() => Assert(            Build(  "--low"      )));
+    [TestMethod] public void Test_Build_Overload_MethodArgsOpt() =>                 Assert(            Build(  "--low", Opt()));
+    [TestMethod] public void Test_Build_Overload_Enum()          => InTempDir(() => Assert(DotNet.Exe( build                )));
+    [TestMethod] public void Test_Build_Overload_EnumOpt()       =>                 Assert(DotNet.Exe( build,           Opt()));
+    [TestMethod] public void Test_Build_Overload_EnumArgs()      => InTempDir(() => Assert(DotNet.Exe( build,  "--low"      )));
+    [TestMethod] public void Test_Build_Overload_EnumArgsOpt()   =>                 Assert(DotNet.Exe( build,  "--low", Opt()));
+    [TestMethod] public void Test_Build_Overload_Name()          => InTempDir(() => Assert(DotNet.Exe("build"               )));
+    [TestMethod] public void Test_Build_Overload_NameOpt()       =>                 Assert(DotNet.Exe("build",          Opt()));
+    [TestMethod] public void Test_Build_Overload_NameArgs()      => InTempDir(() => Assert(DotNet.Exe("build", "--low"      )));
+    [TestMethod] public void Test_Build_Overload_NameArgsOpt()   =>                 Assert(DotNet.Exe("build", "--low", Opt()));
 
     // Helpers
 
@@ -141,16 +132,7 @@ public class BuildTests : DotNetTestHelper
         AssertNotExists(DllPathRelease);
     }
 
-    private void Assert(Func<DotNetResult> call, string args = "", bool release = false)
-    {
-        AssertInitialState();
-
-        var result = call();
-
-        Assert(result, args, release);
-    }
-
-    private void Assert(DotNetResult result, string args = "", bool release = false)
+    private void Assert(DotNetResult result, bool release = false)
     {
         string dllPath = release ? DllPathRelease : DllPath;
 
@@ -158,12 +140,10 @@ public class BuildTests : DotNetTestHelper
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
         AssertContains(result, ProjectName + " -> " + dllPath);
-        AssertContains(result, args);
+        AssertContains(result, result.Args.Args);
 
         if (release) AssertContains(result, "release");
 
         AssertExists(dllPath);
     }
-
-    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
 }

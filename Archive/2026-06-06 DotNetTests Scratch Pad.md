@@ -77,4 +77,19 @@
 
     // TODO: --no-restore appears to have an effect. Is the AutoRestore option applied 
     //  to InstallPackage automatically?
+
+        Assert(result, release: true); // TODO: Redundant? Shouldn't the call below cover all of it?
+
+
+    /*
+    [Obsolete]
+    private void Assert(Func<DotNetResult> call, string args = "", bool release = false)
+    {
+        var result = call();
+
+        Assert(result, args, release);
+    }
+    */
+
+    //private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
 ```

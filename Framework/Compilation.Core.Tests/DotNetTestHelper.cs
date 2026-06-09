@@ -84,7 +84,7 @@ public class DotNetTestHelper : IDisposable
         Restore(opt);
     }
 
-    // Assert
+    // Asserts
 
     internal static void AssertExists(string filePath) => IsTrue(Exists(filePath), message: filePath);
     internal static void AssertNotExists(string filePath) => IsFalse(Exists(filePath), message: filePath);
@@ -145,6 +145,41 @@ public class DotNetTestHelper : IDisposable
         {
             AssertContains(result.OutputText, "[error]");
         }
+    }
+
+    internal void AssertOptsAllOnResult(DotNetResult result)
+    {
+        AssertResultOk(result);
+
+        NotNullOrWhiteSpace(      result.Opt.Dir);
+        NotNullOrWhiteSpace(      result.Opt.File);
+        NotNullOrWhiteSpace(      result.Opt.BuildConf);
+        AssertContains(result,    result.Opt.BuildConf);
+        NotNullOrWhiteSpace(      result.Opt.Args);
+        AssertContains(result,    result.Opt.Args);
+        IsTrue(                   result.Opt.AutoRestore);
+        IsFalse(                  result.Opt.ParallelRestore); // Kept off. Parallel restore evil.
+        IsTrue(                   result.Opt.NodeReuse);
+        AssertContains(result, $"timeout: {result.Opt.TimeOutSec}");
+        AreSame(Log,              result.Opt.LogAction);
+        NotEqual(default,         result.Opt.Verbosity);
+        AssertContains(result, $"{result.Opt.Verbosity}"); 
+        NotNullOrWhiteSpace(      result.Opt.LogFile);
+        AssertExists(             result.Opt.LogFile);
+        //AssertContains(result,  result.Opt.LogFile); // Might be shown later, currently not command line, not in descriptor.
+        NotNullOrWhiteSpace(      result.Opt.BinLog); // Only exists for build tasks.
+        //AssertContains(result,  result.Opt.BinLog); // Currently not shown: not in descriptor.
+        NotNullOrWhiteSpace(      result.Args.Args);
+        AssertContains(result,    result.Args.Args);
+    }
+
+    internal void AssertOptsAllOnResultForBuild(DotNetResult result)
+    {
+        AssertOptsAllOnResult(result);
+        AssertContains(result, "build succeeded");
+        AssertContains(result, ProjectName + " -> " + DllPathRelease);
+        AssertExists(result.Opt.BinLog);
+        AssertDllRelease();
     }
 
     // Logging
@@ -209,42 +244,7 @@ public class DotNetTestHelper : IDisposable
         BinLog          = BinLogInTempDir(testName),
     };
 
-    internal void AssertOptsAllOnResult(DotNetResult result)
-    {
-        AssertResultOk(result);
-
-        NotNullOrWhiteSpace(      result.Opt.Dir);
-        NotNullOrWhiteSpace(      result.Opt.File);
-        NotNullOrWhiteSpace(      result.Opt.BuildConf);
-        AssertContains(result,    result.Opt.BuildConf);
-        NotNullOrWhiteSpace(      result.Opt.Args);
-        AssertContains(result,    result.Opt.Args);
-        IsTrue(                   result.Opt.AutoRestore);
-        IsFalse(                  result.Opt.ParallelRestore); // Kept off. Parallel restore evil.
-        IsTrue(                   result.Opt.NodeReuse);
-        AssertContains(result, $"timeout: {result.Opt.TimeOutSec}");
-        AreSame(Log,              result.Opt.LogAction);
-        NotEqual(default,         result.Opt.Verbosity);
-        AssertContains(result, $"{result.Opt.Verbosity}"); 
-        NotNullOrWhiteSpace(      result.Opt.LogFile);
-        AssertExists(             result.Opt.LogFile);
-        //AssertContains(result,  result.Opt.LogFile); // Might be shown later, currently not command line, not in descriptor.
-        NotNullOrWhiteSpace(      result.Opt.BinLog); // Only exists for build tasks.
-        //AssertContains(result,  result.Opt.BinLog); // Currently not shown: not in descriptor.
-        NotNullOrWhiteSpace(      result.Args.Args);
-        AssertContains(result,    result.Args.Args);
-    }
-
-    internal void AssertOptsAllOnResultForBuild(DotNetResult result)
-    {
-        AssertOptsAllOnResult(result);
-        AssertContains(result, "build succeeded");
-        AssertContains(result, ProjectName + " -> " + DllPathRelease);
-        AssertExists(result.Opt.BinLog);
-        AssertDllRelease();
-    }
-
-    // File Stuff
+    // File
     
     private string AppDir => AppContext.BaseDirectory;
     
