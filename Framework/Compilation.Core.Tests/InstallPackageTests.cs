@@ -133,8 +133,7 @@ public class InstallPackageTests : DotNetTestHelper
     [TestMethod]
     public void Test_InstallPackage_Exception_NoID_EvenWhenNoRestore()
     {
-        var opt = Opt() with { AutoRestore = false }; // TODO: Auto-Restore not applied.
-        Throws(() => InstallPackage(id: "", Ver, "--no-restore", opt), "required argument missing");
+        Throws(() => InstallPackage(id: "", Ver, "--no-restore", Opt()), "required argument missing");
     }
 
     [TestMethod]

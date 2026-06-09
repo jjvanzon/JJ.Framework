@@ -230,6 +230,7 @@ public class DotNetTestHelper : IDisposable
         AssertExists(             result.Opt.LogFile);
         //AssertContains(result,  result.Opt.LogFile); // Might be shown later, currently not command line, not in descriptor.
         NotNullOrWhiteSpace(      result.Opt.BinLog); // Only exists for build tasks.
+        //AssertContains(result,  result.Opt.BinLog); // Currently not shown: not in descriptor.
         NotNullOrWhiteSpace(      result.Args.Args);
         AssertContains(result,    result.Args.Args);
     }

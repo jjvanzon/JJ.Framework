@@ -100,51 +100,19 @@ public class RestoreTests : DotNetTestHelper
     }
 
     [TestMethod]
-    public void Test_Restore_AllOptsOn() 
+    public void Test_Restore_OptsAllOn() 
     { 
         AssertInitialState();
 
-        // TODO: Reuse helpers in DotNetTestHelper
+        var result = Restore("-low", OptsAllOn());
 
-        string logPath    = Combine(TempDir, Name() + ".log");
-        string binLogPath = Combine(TempDir, Name() + ".binlog");
-
-        var allOpt = new DotNetOptions
-        {
-            Dir             = TempDir,
-            File            = CsProjPath,
-
-            BuildConf       = "Release",
-            Args            = "--no-logo",
-            
-            AutoRestore     = true,
-            ParallelRestore = false, // Keep false. Parallel restore can choke up the whole system.
-            
-            NodeReuse       = true,
-            TimeOutSec      = 123,
-                            
-            Verbosity       = UnlessHigh(Minimal),
-            LogFile         = logPath,
-            BinLog          = binLogPath,
-            LogAction       = Log
-        };
-
-        var result = Restore("-low", allOpt);
-
+        AssertOptsAllOnResult(result);
         AssertExists(AssetsFilePath);
-        AssertExists(logPath);
-        AssertResultOk(result);
+        
         AssertContains(result, "dotnet restore");
         AssertContains(result, "determining projects to restore");
         AssertContains(result, "restored " + CsProjPath);
-        AssertContains(result, "release");
-        AssertContains(result, "timeout: 123");
-        AssertContains(result, "--no-logo");
         AssertContains(result, "-low");
-        //AssertContains(result, logPath); // Currently not shown: not in command line, not in descriptor.
-        //AssertContains(result, binLogPath); // Currently not shown: not in descriptor.
-        //AssertContains(result, "minimal"); // Verbosity overrides interfere
-        //AssertExists(binLogPath); // Binlog is only for build.
     }
 
     // Painful

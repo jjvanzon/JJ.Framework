@@ -115,7 +115,7 @@ public static class DotNet
                 return "net" + ver;
             }
 
-            throw new Exception($"{nameof(RunningTargetFramework)} could not be resolved from {new {frameworkDescription, frameworkName}}.");
+            throw new Exception($"{nameof(RunningTargetFramework)} could not be resolved from {new {frameworkDescription, frameworkName}}."); // ncrunch: no coverage
         }
     }
 }
