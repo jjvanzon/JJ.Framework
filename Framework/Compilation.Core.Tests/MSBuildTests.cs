@@ -8,80 +8,80 @@ public class MSBuildTests : DotNetTestHelper
     public MSBuildTests() { InitRestore(); AssertInitialState(); }
 
     [TestMethod]
-    public void Test_Build_MainCase()
+    public void Test_MSBuild_MainCase()
     {
         Assert(MSBuild(Opt()));
     }
     
     [TestMethod]
-    public void Test_Build_AsCommandEnum()
+    public void Test_MSBuild_AsCommandEnum()
     {
         Assert(DotNet.Exe(msbuild, Opt()));
     }
 
     [TestMethod]
-    public void Test_Build_AsCommandText()
+    public void Test_MSBuild_AsCommandText()
     {
         Assert(DotNet.Exe("msbuild", Opt()));
     }
 
     [TestMethod]
-    public void Test_Build_WithFile()
+    public void Test_MSBuild_WithFile()
     {
         Assert(MSBuild(Opt() with { File = CsProjName }));
     }
 
     [TestMethod]
-    public void Test_Build_WithoutFile()
+    public void Test_MSBuild_WithoutFile()
     {
         Assert(MSBuild(Opt() with { File = "" }));
     }
 
     [TestMethod]
-    public void Test_Build_WithDir()
+    public void Test_MSBuild_WithDir()
     {
         Assert(MSBuild(Opt() with { Dir = TempDir }));
     }
 
     [TestMethod]
-    public void Test_Build_WithoutDir_WithFullFilePath()
+    public void Test_MSBuild_WithoutDir_WithFullFilePath()
     {
         Assert(MSBuild(Opt() with { Dir = "", File = CsProjPath }));
     }
 
     [TestMethod]
-    public void Test_Build_WithoutDir_WithChDir() => InTempDir(() =>
+    public void Test_MSBuild_WithoutDir_WithChDir() => InTempDir(() =>
     {
         Assert(MSBuild(Opt() with { Dir = "" }));
     });
 
     [TestMethod]
-    public void Test_Build_Conf()
+    public void Test_MSBuild_Conf()
     {
         Assert(MSBuild(Opt() with { BuildConf = "Release" }), release: true);
     }
 
     [TestMethod]
-    public void Test_Build_Args() 
+    public void Test_MSBuild_Args() 
     {
         Assert(MSBuild("-low", Opt()));
     }
     
     [TestMethod]
-    public void Test_Build_NoOptions() => InTempDir(() =>
+    public void Test_MSBuild_NoOptions() => InTempDir(() =>
     {
         Assert(MSBuild());
     });
 
     [TestMethod]
-    public void Test_Build_AllOptsOn() 
+    public void Test_MSBuild_AllOptsOn() 
     { 
         var result = MSBuild("-low", OptsAllOn());
         AssertOptsAllOnResultForBuild(result);
     }
 
     [TestMethod]
-    public void Test_Build_ErrorCase_WithoutDir() => InEmptyDir(() =>
+    public void Test_MSBuild_ErrorCase_WithoutDir() => InEmptyDir(() =>
     {
         LogNormal("Error = expected");
 
@@ -95,7 +95,7 @@ public class MSBuildTests : DotNetTestHelper
     });
 
     [TestMethod]
-    public void Test_Build_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
+    public void Test_MSBuild_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
         LogNormal("Error = expected");
 
@@ -110,18 +110,18 @@ public class MSBuildTests : DotNetTestHelper
 
     // Overloads
 
-    [TestMethod] public void Test_Build_Overload_Method()        => InTempDir(() => Assert(            MSBuild(               )));
-    [TestMethod] public void Test_Build_Overload_MethodOpt()     =>                 Assert(            MSBuild(           Opt()));
-    [TestMethod] public void Test_Build_Overload_MethodArgs()    => InTempDir(() => Assert(            MSBuild(  "--low"      )));
-    [TestMethod] public void Test_Build_Overload_MethodArgsOpt() =>                 Assert(            MSBuild(  "--low", Opt()));
-    [TestMethod] public void Test_Build_Overload_Enum()          => InTempDir(() => Assert(DotNet.Exe( msbuild                )));
-    [TestMethod] public void Test_Build_Overload_EnumOpt()       =>                 Assert(DotNet.Exe( msbuild,           Opt()));
-    [TestMethod] public void Test_Build_Overload_EnumArgs()      => InTempDir(() => Assert(DotNet.Exe( msbuild,  "--low"      )));
-    [TestMethod] public void Test_Build_Overload_EnumArgsOpt()   =>                 Assert(DotNet.Exe( msbuild,  "--low", Opt()));
-    [TestMethod] public void Test_Build_Overload_Name()          => InTempDir(() => Assert(DotNet.Exe("msbuild"               )));
-    [TestMethod] public void Test_Build_Overload_NameOpt()       =>                 Assert(DotNet.Exe("msbuild",          Opt()));
-    [TestMethod] public void Test_Build_Overload_NameArgs()      => InTempDir(() => Assert(DotNet.Exe("msbuild", "--low"      )));
-    [TestMethod] public void Test_Build_Overload_NameArgsOpt()   =>                 Assert(DotNet.Exe("msbuild", "--low", Opt()));
+    [TestMethod] public void Test_MSBuild_Overload_Method()        => InTempDir(() => Assert(            MSBuild(               )));
+    [TestMethod] public void Test_MSBuild_Overload_MethodOpt()     =>                 Assert(            MSBuild(           Opt()));
+    [TestMethod] public void Test_MSBuild_Overload_MethodArgs()    => InTempDir(() => Assert(            MSBuild(  "--low"      )));
+    [TestMethod] public void Test_MSBuild_Overload_MethodArgsOpt() =>                 Assert(            MSBuild(  "--low", Opt()));
+    [TestMethod] public void Test_MSBuild_Overload_Enum()          => InTempDir(() => Assert(DotNet.Exe( msbuild                )));
+    [TestMethod] public void Test_MSBuild_Overload_EnumOpt()       =>                 Assert(DotNet.Exe( msbuild,           Opt()));
+    [TestMethod] public void Test_MSBuild_Overload_EnumArgs()      => InTempDir(() => Assert(DotNet.Exe( msbuild,  "--low"      )));
+    [TestMethod] public void Test_MSBuild_Overload_EnumArgsOpt()   =>                 Assert(DotNet.Exe( msbuild,  "--low", Opt()));
+    [TestMethod] public void Test_MSBuild_Overload_Name()          => InTempDir(() => Assert(DotNet.Exe("msbuild"               )));
+    [TestMethod] public void Test_MSBuild_Overload_NameOpt()       =>                 Assert(DotNet.Exe("msbuild",          Opt()));
+    [TestMethod] public void Test_MSBuild_Overload_NameArgs()      => InTempDir(() => Assert(DotNet.Exe("msbuild", "--low"      )));
+    [TestMethod] public void Test_MSBuild_Overload_NameArgsOpt()   =>                 Assert(DotNet.Exe("msbuild", "--low", Opt()));
 
     // Helpers
 
