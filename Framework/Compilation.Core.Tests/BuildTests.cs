@@ -10,9 +10,7 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_MainCase()
     {
-        var opt = Opt();
-       
-        Assert(() => Build(opt));
+        Assert(() => Build(Opt()));
     }
     
     [TestMethod]
@@ -58,20 +56,9 @@ public class BuildTests : DotNetTestHelper
     });
 
     [TestMethod]
-    public void Test_Build_Conf() 
+    public void Test_Build_Conf()
     {
-        AssertInitialState();
-
-        var opt = Opt() with { BuildConf = "Release" };
-        var result = Build(opt);
-
-        AssertDllRelease();
-
-        AssertResultOk(result);
-        AssertContains(result, "release");
-        AssertContains(result, "dotnet build");
-        AssertContains(result, "build succeeded");
-        AssertContains(result, ProjectName + " -> " + DllPathRelease);
+        Assert(() => Build(Opt() with { BuildConf = "Release" }), release: true);
     }
 
     [TestMethod]
@@ -101,8 +88,7 @@ public class BuildTests : DotNetTestHelper
     { 
         AssertInitialState();
 
-        var opt = OptsAllOn();
-        var result = Build("-low", opt);
+        var result = Build("-low", OptsAllOn());
 
         AssertContains(result, "dotnet build");
         AssertOptsAllOnResultForBuild(result);
@@ -171,15 +157,22 @@ public class BuildTests : DotNetTestHelper
         AssertNotExists(DllPathRelease);
     }
 
-    private void Assert(Func<DotNetResult> call)
+    private void Assert(Func<DotNetResult> call, bool release = false)
     {
+        string dllPath = release ? DllPathRelease : DllPath;
+
         AssertInitialState();
+
         var result = call();
+
         AssertResultOk(result);
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
-        AssertContains(result, ProjectName + " -> " + DllPath);
-        AssertDll();
+        AssertContains(result, ProjectName + " -> " + dllPath);
+
+        if (release) AssertContains(result, "release");
+
+        AssertExists(dllPath);
     }
 
     private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
