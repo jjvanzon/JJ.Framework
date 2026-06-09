@@ -64,17 +64,7 @@ public class BuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Build_Args() 
     {
-        AssertInitialState();
-
-        var result = Build("--help", Opt());
-
-        AssertResultOk(result);
-
-        AssertNotExists(DllPath);
-        AssertNotExists(DllPathRelease);
-
-        AssertContains(result, "Usage:");
-        AssertContains(result, "dotnet build [<PROJECT | SOLUTION | FILE>...] [options]");
+        Assert(() => Build("-low", Opt()), args: "-low");
     }
     
     [TestMethod]
@@ -90,7 +80,8 @@ public class BuildTests : DotNetTestHelper
 
         var result = Build("-low", OptsAllOn());
 
-        AssertContains(result, "dotnet build");
+        Assert(result, release: true);
+
         AssertOptsAllOnResultForBuild(result);
     }
 
@@ -101,12 +92,8 @@ public class BuildTests : DotNetTestHelper
 
         AssertInitialState();
 
-        DotNetOptions opt = Opt() with { Dir = "" };
-        DotNetResult? build = null;
+        Exception ex = Throws(() => Build(Opt() with { Dir = "" }));
 
-        Exception ex = Throws(() => build = Build(opt));
-
-        IsNull(build);
         AssertContains(ex.Message, "Exit code 1");
         AssertContains(ex.Message, "MSB1009");
         AssertContains(ex.Message, "Project file does not exist");
@@ -121,11 +108,8 @@ public class BuildTests : DotNetTestHelper
 
         AssertInitialState();
 
-        DotNetResult? build = null;
+        Exception ex = Throws(Build);
 
-        Exception ex = Throws(() => build = Build());
-
-        IsNull(build);
         AssertContains(ex.Message, "Exit code 1");
         AssertContains(ex.Message, "MSB1003");
         AssertContains(ex.Message, "Specify a project or solution file");
@@ -157,18 +141,24 @@ public class BuildTests : DotNetTestHelper
         AssertNotExists(DllPathRelease);
     }
 
-    private void Assert(Func<DotNetResult> call, bool release = false)
+    private void Assert(Func<DotNetResult> call, string args = "", bool release = false)
     {
-        string dllPath = release ? DllPathRelease : DllPath;
-
         AssertInitialState();
 
         var result = call();
+
+        Assert(result, args, release);
+    }
+
+    private void Assert(DotNetResult result, string args = "", bool release = false)
+    {
+        string dllPath = release ? DllPathRelease : DllPath;
 
         AssertResultOk(result);
         AssertContains(result, "dotnet build");
         AssertContains(result, "build succeeded");
         AssertContains(result, ProjectName + " -> " + dllPath);
+        AssertContains(result, args);
 
         if (release) AssertContains(result, "release");
 
