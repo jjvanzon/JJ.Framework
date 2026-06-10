@@ -16,13 +16,13 @@ public class RebuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_Rebuild_AsCommandEnum()
     {
-        Assert(DotNet.Exe(rebuild, Opt() with { AutoRestore = true })); // AutoRestore for the heck of it.
+        Assert(DotNet.Exe(rebuild, Opt()));
     }
 
     [TestMethod]
     public void Test_Rebuild_AsCommandText()
     {
-        Assert(DotNet.Exe("build", "--no-incremental", Opt() with { AutoRestore = true })); // AutoRestore for the heck of it.
+        Assert(DotNet.Exe("build", "--no-incremental", Opt()));
     }
 
     [TestMethod]
@@ -124,6 +124,7 @@ public class RebuildTests : DotNetTestHelper
     public void Test_Rebuild_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
         LogNormal("Error = expected");
+        LogNormal("");
 
         Exception ex = Throws(Rebuild);
 
@@ -134,16 +135,14 @@ public class RebuildTests : DotNetTestHelper
         LogNormal($"{ex}");
     });
 
-    // Overloads
+    // Overloads (comment = alread covered)
 
-    // TODO: Ones already covered above: Comment out for perf (but keep for overview).
-
-    [TestMethod] public void Test_Rebuild_Overload_Method()        => InTempDir(() => Assert(           Rebuild(             )));
-    [TestMethod] public void Test_Rebuild_Overload_MethodOpt()     =>                 Assert(           Rebuild(         Opt()));
+  //[TestMethod] public void Test_Rebuild_Overload_Method()        => InTempDir(() => Assert(           Rebuild(             )));
+  //[TestMethod] public void Test_Rebuild_Overload_MethodOpt()     =>                 Assert(           Rebuild(         Opt()));
     [TestMethod] public void Test_Rebuild_Overload_MethodArgs()    => InTempDir(() => Assert(           Rebuild( "-low"      )));
-    [TestMethod] public void Test_Rebuild_Overload_MethodArgsOpt() =>                 Assert(           Rebuild( "-low", Opt()));
+  //[TestMethod] public void Test_Rebuild_Overload_MethodArgsOpt() =>                 Assert(           Rebuild( "-low", Opt()));
     [TestMethod] public void Test_Rebuild_Overload_Enum()          => InTempDir(() => Assert(DotNet.Exe(rebuild              )));
-    [TestMethod] public void Test_Rebuild_Overload_EnumOpt()       =>                 Assert(DotNet.Exe(rebuild,         Opt()));
+  //[TestMethod] public void Test_Rebuild_Overload_EnumOpt()       =>                 Assert(DotNet.Exe(rebuild,         Opt()));
     [TestMethod] public void Test_Rebuild_Overload_EnumArgs()      => InTempDir(() => Assert(DotNet.Exe(rebuild, "-low"      )));
     [TestMethod] public void Test_Rebuild_Overload_EnumArgsOpt()   =>                 Assert(DotNet.Exe(rebuild, "-low", Opt()));
 
@@ -158,7 +157,6 @@ public class RebuildTests : DotNetTestHelper
         AssertContains(result, "build succeeded");
         AssertContains(result, "--no-incremental");
         AssertContains(result, ProjectName + " -> " + dllPath);
-        AssertContains(result, result.Args.Args);
 
         if (release) AssertContains(result, "release");
 

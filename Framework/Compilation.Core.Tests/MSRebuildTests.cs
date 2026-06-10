@@ -16,13 +16,13 @@ public class MSRebuildTests : DotNetTestHelper
     [TestMethod]
     public void Test_MSRebuild_AsCommandEnum()
     {
-        Assert(DotNet.Exe(msrebuild, Opt() with { AutoRestore = true })); // AutoRestore for the heck of it.
+        Assert(DotNet.Exe(msrebuild, Opt())); 
     }
 
     [TestMethod]
     public void Test_MSRebuild_AsCommandText()
     {
-        Assert(DotNet.Exe("msbuild", "/t:Rebuild", Opt() with { AutoRestore = true })); // AutoRestore for the heck of it.
+        Assert(DotNet.Exe("msbuild", "/t:Rebuild", Opt()));
     }
 
     [TestMethod]
@@ -124,6 +124,7 @@ public class MSRebuildTests : DotNetTestHelper
     public void Test_MSRebuild_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
         LogNormal("Error = expected");
+        LogNormal("");
 
         Exception ex = Throws(MSRebuild);
 
@@ -134,14 +135,14 @@ public class MSRebuildTests : DotNetTestHelper
         LogNormal($"{ex}");
     });
 
-    // Overloads
+    // Overloads (comment = already tested elsewhere)
 
-    [TestMethod] public void Test_MSRebuild_Overload_Method()        => InTempDir(() => Assert(           MSRebuild(             )));
-    [TestMethod] public void Test_MSRebuild_Overload_MethodOpt()     =>                 Assert(           MSRebuild(         Opt()));
+  //[TestMethod] public void Test_MSRebuild_Overload_Method()        => InTempDir(() => Assert(           MSRebuild(             )));
+  //[TestMethod] public void Test_MSRebuild_Overload_MethodOpt()     =>                 Assert(           MSRebuild(         Opt()));
     [TestMethod] public void Test_MSRebuild_Overload_MethodArgs()    => InTempDir(() => Assert(           MSRebuild( "-low"      )));
-    [TestMethod] public void Test_MSRebuild_Overload_MethodArgsOpt() =>                 Assert(           MSRebuild( "-low", Opt()));
+  //[TestMethod] public void Test_MSRebuild_Overload_MethodArgsOpt() =>                 Assert(           MSRebuild( "-low", Opt()));
     [TestMethod] public void Test_MSRebuild_Overload_Enum()          => InTempDir(() => Assert(DotNet.Exe(msrebuild              )));
-    [TestMethod] public void Test_MSRebuild_Overload_EnumOpt()       =>                 Assert(DotNet.Exe(msrebuild,         Opt()));
+  //[TestMethod] public void Test_MSRebuild_Overload_EnumOpt()       =>                 Assert(DotNet.Exe(msrebuild,         Opt()));
     [TestMethod] public void Test_MSRebuild_Overload_EnumArgs()      => InTempDir(() => Assert(DotNet.Exe(msrebuild, "-low"      )));
     [TestMethod] public void Test_MSRebuild_Overload_EnumArgsOpt()   =>                 Assert(DotNet.Exe(msrebuild, "-low", Opt()));
 
@@ -156,7 +157,6 @@ public class MSRebuildTests : DotNetTestHelper
         //AssertContains(result, "build succeeded"); // MSBuild does not say "build succeeeded".
         AssertContains(result, "/t:Rebuild");
         AssertContains(result, ProjectName + " -> " + dllPath);
-        AssertContains(result, result.Args.Args);
 
         if (release) AssertContains(result, "release");
 

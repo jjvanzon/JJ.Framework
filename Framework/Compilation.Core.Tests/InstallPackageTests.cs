@@ -189,6 +189,7 @@ public class InstallPackageTests : DotNetTestHelper
             AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
             return;
         }
+
         AssertContains(result, "Writing assets file to disk");
         AssertContainsAny(result, $"Restored {CsProjPath}", $"Restored {CsProjName}");
         AssertExists(AssetsFilePath);

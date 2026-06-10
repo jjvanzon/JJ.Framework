@@ -12,31 +12,16 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_ExplicitRestore()
     {
-        DotNetResult restore = Restore(GetOpt());
-
-        AssertExists(AssetsFilePath);
-
-        AssertResultOk(restore);
-        AssertContains(restore, "dotnet restore");
-        AssertContains(restore, "determining projects to restore");
-        AssertContains(restore, "restored " + CsProjPath);
-
+        var restore = Restore(GetOpt());
+        Assert(restore);
         LogOutput(restore.OutputText);
     }
 
     [TestMethod]
     public void Test_Restore_WithoutFile()
     {
-        DotNetOptions opt = GetOpt() with { File = "" };
-        DotNetResult restore = Restore(opt);
-
-        AssertExists(AssetsFilePath);
-
-        AssertResultOk(restore);
-        AssertContains(restore, "dotnet restore");
-        AssertContains(restore, "determining projects to restore");
-        AssertContains(restore, "restored " + CsProjPath);
-
+        var restore = Restore(GetOpt() with { File = "" });
+        Assert(restore);
         LogOutput(restore.OutputText);
     }
 
@@ -69,7 +54,7 @@ public class RestoreTests : DotNetTestHelper
 
         // Build with AutoRestore
         {
-            DotNetResult build = Build(opt);
+            var build = Build(opt);
             AssertResultOk(build);
             AssertContains(build, "restored " + CsProjPath);
             AssertExists(AssetsFilePath);
@@ -80,7 +65,7 @@ public class RestoreTests : DotNetTestHelper
 
         // Restore and see "up to date" message
         {
-            DotNetResult restore = Restore(opt);
+            var restore = Restore(opt);
             AssertResultOk(restore);
             AssertContains(restore, "dotnet restore");
             AssertContains(restore, "determining projects to restore");
@@ -92,15 +77,9 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_OptsAllOn() 
     { 
-        var result = Restore("-low", OptsAllOn());
-
-        AssertOptsAllOnResult(result);
-        AssertExists(AssetsFilePath);
-        
-        AssertContains(result, "dotnet restore");
-        AssertContains(result, "determining projects to restore");
-        AssertContains(result, "restored " + CsProjPath);
-        AssertContains(result, "-low");
+        var restore = Restore("-low", OptsAllOn());
+        AssertOptsAllOnResult(restore);
+        Assert(restore);
     }
 
     // Painful
@@ -130,11 +109,11 @@ public class RestoreTests : DotNetTestHelper
 
         LogNormal(ex.Message);
     }
-
+        
     [TestMethod]
-    public void Test_Restore_DisableParallel_ByDefault()
+    public void Test_ParallelRestore_DisabledByDefault()
     {
-        DotNetResult result = Restore(GetOpt());
+        var result = Restore(GetOpt());
         AssertContains(result, "--disable-parallel");
     }
 
@@ -231,20 +210,20 @@ public class RestoreTests : DotNetTestHelper
         }
     }
 
-    // Overloads
+    // Overloads (commented = tested elsewhere)
 
-    [TestMethod] public void Test_Restore_Overload_Method()        => AssertNoDir(() =>             Restore(                     ));
-    [TestMethod] public void Test_Restore_Overload_MethodOpt()     => Assert     (() =>             Restore(                Opt()));
-    [TestMethod] public void Test_Restore_Overload_MethodArgs()    => AssertNoDir(() =>             Restore(  "--no-cache"       ));
-    [TestMethod] public void Test_Restore_Overload_MethodArgsOpt() => Assert     (() =>             Restore(  "--no-cache", Opt()));
-    [TestMethod] public void Test_Restore_Overload_Enum()          => AssertNoDir(() => DotNet.Exe( restore                      ));
-    [TestMethod] public void Test_Restore_Overload_EnumOpt()       => Assert     (() => DotNet.Exe( restore,                Opt()));
-    [TestMethod] public void Test_Restore_Overload_EnumArgs()      => AssertNoDir(() => DotNet.Exe( restore,  "--no-cache"       ));
-    [TestMethod] public void Test_Restore_Overload_EnumArgsOpt()   => Assert     (() => DotNet.Exe( restore,  "--no-cache", Opt()));
-    [TestMethod] public void Test_Restore_Overload_Name()          => AssertNoDir(() => DotNet.Exe("restore"                     ));
-    [TestMethod] public void Test_Restore_Overload_NameOpt()       => Assert     (() => DotNet.Exe("restore",               Opt()));
-    [TestMethod] public void Test_Restore_Overload_NameArgs()      => AssertNoDir(() => DotNet.Exe("restore", "--no-cache"       ));
-    [TestMethod] public void Test_Restore_Overload_NameArgsOpt()   => Assert     (() => DotNet.Exe("restore", "--no-cache", Opt()));
+    [TestMethod] public void Test_Restore_Overload_Method()        => InTempDir(() => Assert(            Restore(                    )));
+  //[TestMethod] public void Test_Restore_Overload_MethodOpt()     => Assert(                            Restore(                Opt()));
+    [TestMethod] public void Test_Restore_Overload_MethodArgs()    => InTempDir(() => Assert(            Restore(  "--no-cache"      )));
+  //[TestMethod] public void Test_Restore_Overload_MethodArgsOpt() => Assert(                            Restore(  "--no-cache", Opt()));
+    [TestMethod] public void Test_Restore_Overload_Enum()          => InTempDir(() => Assert(DotNet.Exe( restore                     )));
+    [TestMethod] public void Test_Restore_Overload_EnumOpt()       => Assert(                DotNet.Exe( restore,                Opt()));
+    [TestMethod] public void Test_Restore_Overload_EnumArgs()      => InTempDir(() => Assert(DotNet.Exe( restore,  "--no-cache"      )));
+    [TestMethod] public void Test_Restore_Overload_EnumArgsOpt()   => Assert(                DotNet.Exe( restore,  "--no-cache", Opt()));
+    [TestMethod] public void Test_Restore_Overload_Name()          => InTempDir(() => Assert(DotNet.Exe("restore"                    )));
+    [TestMethod] public void Test_Restore_Overload_NameOpt()       => Assert(                DotNet.Exe("restore",               Opt()));
+    [TestMethod] public void Test_Restore_Overload_NameArgs()      => InTempDir(() => Assert(DotNet.Exe("restore", "--no-cache"      )));
+    [TestMethod] public void Test_Restore_Overload_NameArgsOpt()   => Assert(                DotNet.Exe("restore", "--no-cache", Opt()));
 
     // Helpers
 
@@ -261,10 +240,8 @@ public class RestoreTests : DotNetTestHelper
         LogNormal(text); // ncrunch: no coverage
     }
 
-    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
-    private void Assert(Func<DotNetResult> call)
+    private void Assert(DotNetResult result)
     {
-        DotNetResult result = call();
         AssertExists(AssetsFilePath);
         AssertResultOk(result);
         AssertContains(result, "dotnet restore");

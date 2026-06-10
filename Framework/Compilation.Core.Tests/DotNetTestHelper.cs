@@ -145,6 +145,8 @@ public class DotNetTestHelper : IDisposable
         {
             AssertContains(result.OutputText, "[error]");
         }
+
+        AssertContains(result, result.Args.Args);
     }
 
     internal void AssertOptsAllOnResult(DotNetResult result)

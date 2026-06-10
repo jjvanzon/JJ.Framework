@@ -219,4 +219,6 @@ c
         AssertNotExists(DllPath);
         AssertNotExists(DllPathRelease);
     }
+
+    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call()));
 ```
