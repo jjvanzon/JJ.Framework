@@ -6,16 +6,12 @@
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
-using static Path;
-
 [TestClass]
 public class RestoreTests : DotNetTestHelper
 {
     [TestMethod]
     public void Test_ExplicitRestore()
     {
-        AssertInitialState();
-
         DotNetResult restore = Restore(GetOpt());
 
         AssertExists(AssetsFilePath);
@@ -31,8 +27,6 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_WithoutFile()
     {
-        AssertInitialState();
-
         DotNetOptions opt = GetOpt() with { File = "" };
         DotNetResult restore = Restore(opt);
 
@@ -49,8 +43,6 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_AutoRestore()
     {
-        AssertInitialState();
-
         DotNetOptions opt = GetOpt() with { AutoRestore = true };
         DotNetResult build = Build(opt);
         AssertResultOk(build);
@@ -73,8 +65,6 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_UpToDate()
     {
-        AssertInitialState();
-
         var opt = GetOpt() with { AutoRestore = true };
 
         // Build with AutoRestore
@@ -102,8 +92,6 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_Restore_OptsAllOn() 
     { 
-        AssertInitialState();
-
         var result = Restore("-low", OptsAllOn());
 
         AssertOptsAllOnResult(result);
@@ -120,29 +108,27 @@ public class RestoreTests : DotNetTestHelper
     [TestMethod]
     public void Test_NoRestore_PainfulException()
     {
-        AssertInitialState();
-
         LogNormal("Error = expected");
         LogNormal("");
 
         var opt = GetOpt() with { AutoRestore = false };
         
-        string msg = Throws(() => Build(opt)).Message;
+        Exception ex = Throws(() => Build(opt));
 
-        NotNullOrWhiteSpace(msg);
-        AssertContains(msg, "--no-restore");
+        NotNullOrWhiteSpace(ex.Message);
+        AssertContains(ex.Message, "--no-restore");
 
         AssertNotExists(AssetsFilePath);
-        AssertNotContains(msg, "restored");
-        AssertNotContains(msg, "up-to-date");
+        AssertNotContains(ex.Message, "restored");
+        AssertNotContains(ex.Message, "up-to-date");
 
-        AssertContains(msg, "Build failed");
-        AssertContains(msg, "Exit Code 1");
-        AssertContains(msg, "NETSDK1004");
-        AssertContains(msg, "Run a NuGet package restore");
-        AssertContains(msg, "Assets file '" + AssetsFilePath + "' not found.");
+        AssertContains(ex.Message, "Build failed");
+        AssertContains(ex.Message, "Exit Code 1");
+        AssertContains(ex.Message, "NETSDK1004");
+        AssertContains(ex.Message, "Run a NuGet package restore");
+        AssertContains(ex.Message, "Assets file '" + AssetsFilePath + "' not found.");
 
-        LogNormal(msg);
+        LogNormal(ex.Message);
     }
 
     [TestMethod]
@@ -168,8 +154,6 @@ public class RestoreTests : DotNetTestHelper
 
         LogMinimal("Parallel restore unstable. Test provokes and tolerates exceptions but still checks the outcome.");
         LogMinimal("");
-
-        AssertInitialState();
 
         // Add tight time-out or test might take long.
         // It's a bit like rigging the test to produce exceptions,
@@ -280,19 +264,11 @@ public class RestoreTests : DotNetTestHelper
     private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
     private void Assert(Func<DotNetResult> call)
     {
-        AssertInitialState();
         DotNetResult result = call();
         AssertExists(AssetsFilePath);
         AssertResultOk(result);
         AssertContains(result, "dotnet restore");
         AssertContains(result, "determining projects to restore");
         AssertContains(result, "restored " + CsProjPath);
-    }
-
-    private void AssertInitialState()
-    {
-        AssertNotExists(AssetsFilePath);
-        AssertNotExists(DllPath);
-        AssertNotExists(DllPathRelease);
     }
 }

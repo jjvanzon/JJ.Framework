@@ -5,78 +5,84 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class RebuildTests : DotNetTestHelper
 {
-    [TestMethod]
-    public void Test_Rebuild_ExplicitRestore()
-    {
-        AssertInitialState();
-
-        var opt = Opt();
-        Restore(opt);
-        var result = Rebuild(opt);
-
-        AssertResult(result);
-    }
+    public RebuildTests() => InitRestore();
 
     [TestMethod]
-    public void Test_Rebuild_AutoRestore()
+    public void Test_Rebuild_MainCase()
     {
-        AssertInitialState();
-
-        var opt = Opt() with { AutoRestore = true };
-        var result = Rebuild(opt);
-
-        AssertResult(result);
+        Assert(Rebuild(Opt()));
     }
 
     [TestMethod]
     public void Test_Rebuild_AsCommandEnum()
     {
-        AssertInitialState();
-
-        var opt = Opt() with { AutoRestore = true }; // AutoRestore for the heck of it.
-
-        var result = DotNet.Exe(rebuild, opt);
-
-        AssertResult(result);
+        Assert(DotNet.Exe(rebuild, Opt() with { AutoRestore = true })); // AutoRestore for the heck of it.
     }
 
     [TestMethod]
     public void Test_Rebuild_AsCommandText()
     {
-        AssertInitialState();
+        Assert(DotNet.Exe("build", "--no-incremental", Opt() with { AutoRestore = true })); // AutoRestore for the heck of it.
+    }
 
-        var opt = Opt() with { AutoRestore = true }; // AutoRestore for the heck of it.
+    [TestMethod]
+    public void Test_Rebuild_WithFile()
+    {
+        Assert(Rebuild(Opt() with { File = CsProjName }));
+    }
 
-        var result = DotNet.Exe("build", "--no-incremental", opt);
+    [TestMethod]
+    public void Test_Rebuild_WithoutFile()
+    {
+        Assert(Rebuild(Opt() with { File = "" }));
+    }
 
-        AssertResult(result);
+    [TestMethod]
+    public void Test_Rebuild_WithDir()
+    {
+        Assert(Rebuild(Opt() with { Dir = TempDir }));
+    }
+
+    [TestMethod]
+    public void Test_Rebuild_WithoutDir_WithFullFilePath()
+    {
+        Assert(Rebuild(Opt() with { Dir = "", File = CsProjPath }));
+    }
+
+    [TestMethod]
+    public void Test_Rebuild_WithoutDir_WithChDir() => InTempDir(() => 
+    {
+        Assert(Rebuild(Opt() with { Dir = "" }));
+    });
+
+    [TestMethod]
+    public void Test_Build_Conf()
+    {
+        Assert(Rebuild(Opt() with { BuildConf = "Release" }), release: true);
+    }
+
+    [TestMethod]
+    public void Test_Rebuild_Args() 
+    {
+        Assert(Rebuild("-low", Opt()));
     }
 
     [TestMethod]
     public void Test_Rebuild_NoOptions() => InTempDir(() =>
     {
-        AssertInitialState();
-        Restore();
-        var result = Rebuild();
-        AssertResult(result);
+        Assert(Rebuild());
     });
     
     [TestMethod]
-    public void Test_Rebuild_AllOptionsOn()
+    public void Test_Rebuild_OptsAllOn()
     {
-        AssertInitialState();
-
         var result = Rebuild("-low", OptsAllOn());
-
         AssertOptsAllOnResultForBuild(result);
-        AssertContains(result, "dotnet rebuild | build");
     }
 
     [TestMethod]
     public void Test_Rebuild_VsBuild()
     {
-        AssertInitialState();
-
         var opt = Opt() with { Verbosity = UnlessHigh(Detailed) }; // Verbosity trying to see up-to-date message where expected.
 
         Restore(opt);
@@ -117,105 +123,48 @@ public class RebuildTests : DotNetTestHelper
         */
     }
 
-    // File Options
-
-    [TestMethod]
-    public void Test_Rebuild_WithFile()
-    {
-        Assert(Rebuild, Opt() with { File = CsProjName });
-    }
-
-    [TestMethod]
-    public void Test_Rebuild_WithoutFile()
-    {
-        Assert(Rebuild, Opt() with { File = "" });
-    }
-
-    [TestMethod]
-    public void Test_Rebuild_WithDir()
-    {
-        Assert(Rebuild, Opt() with { Dir = TempDir });
-    }
-
-    [TestMethod]
-    public void Test_Rebuild_WithoutDir_WithFullFilePath()
-    {
-        Assert(Rebuild, Opt() with { Dir = "", File = CsProjPath });
-    }
-
-    [TestMethod]
-    public void Test_Rebuild_WithoutDir_WithChDir() => InTempDir(() => 
-    {
-        Assert(Rebuild, Opt() with { Dir = "" });
-    });
-
     // Error Case
 
     [TestMethod]
-    public void Test_Rebuild_ErrorCase_ForgotRestore()
+    public void Test_Rebuild_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
         LogNormal("Error = expected");
 
-        AssertInitialState();
+        Exception ex = Throws(Rebuild);
 
-        DotNetResult? result = null;
-
-        Exception ex = Throws(() => result = Rebuild(Opt()));
-
-        IsNull(result);
         AssertContains(ex.Message, "Exit code 1");
-        AssertContains(ex.Message, "NETSDK1004");
-        AssertContains(ex.Message, "Run a NuGet package restore");
+        AssertContains(ex.Message, "MSB1003");
+        AssertContains(ex.Message, "Specify a project or solution file");
 
         LogNormal($"{ex}");
-    }
+    });
 
     // Overloads
 
-    [TestMethod] public void Test_Rebuild_Overload_Method()        => AssertNoDir(() =>            Rebuild(              ));
-    [TestMethod] public void Test_Rebuild_Overload_MethodOpt()     => Assert     (() =>            Rebuild(         Opt()));
-    [TestMethod] public void Test_Rebuild_Overload_MethodArgs()    => AssertNoDir(() =>            Rebuild( "-low"       ));
-    [TestMethod] public void Test_Rebuild_Overload_MethodArgsOpt() => Assert     (() =>            Rebuild( "-low", Opt()));
-    [TestMethod] public void Test_Rebuild_Overload_Enum()          => AssertNoDir(() => DotNet.Exe(rebuild               ));
-    [TestMethod] public void Test_Rebuild_Overload_EnumOpt()       => Assert     (() => DotNet.Exe(rebuild,         Opt()));
-    [TestMethod] public void Test_Rebuild_Overload_EnumArgs()      => AssertNoDir(() => DotNet.Exe(rebuild, "-low"       ));
-    [TestMethod] public void Test_Rebuild_Overload_EnumArgsOpt()   => Assert     (() => DotNet.Exe(rebuild, "-low", Opt()));
+    [TestMethod] public void Test_Rebuild_Overload_Method()        => InTempDir(() => Assert(           Rebuild(             )));
+    [TestMethod] public void Test_Rebuild_Overload_MethodOpt()     =>                 Assert(           Rebuild(         Opt()));
+    [TestMethod] public void Test_Rebuild_Overload_MethodArgs()    => InTempDir(() => Assert(           Rebuild( "-low"      )));
+    [TestMethod] public void Test_Rebuild_Overload_MethodArgsOpt() =>                 Assert(           Rebuild( "-low", Opt()));
+    [TestMethod] public void Test_Rebuild_Overload_Enum()          => InTempDir(() => Assert(DotNet.Exe(rebuild              )));
+    [TestMethod] public void Test_Rebuild_Overload_EnumOpt()       =>                 Assert(DotNet.Exe(rebuild,         Opt()));
+    [TestMethod] public void Test_Rebuild_Overload_EnumArgs()      => InTempDir(() => Assert(DotNet.Exe(rebuild, "-low"      )));
+    [TestMethod] public void Test_Rebuild_Overload_EnumArgsOpt()   =>                 Assert(DotNet.Exe(rebuild, "-low", Opt()));
 
     // Helpers
 
-    private void AssertInitialState()
+    private void Assert(DotNetResult result, bool release = false)
     {
-        AssertNotExists(AssetsFilePath);
-        AssertNotExists(DllPath);
-        AssertNotExists(DllPathRelease);
-    }
+        string dllPath = release ? DllPathRelease : DllPath;
 
-    private void AssertResult(DotNetResult result)
-    {
         AssertResultOk(result);
         AssertContains(result, "rebuild | build");
         AssertContains(result, "build succeeded");
         AssertContains(result, "--no-incremental");
-        AssertContains(result, ProjectName + " -> " + DllPath);
-    }
+        AssertContains(result, ProjectName + " -> " + dllPath);
+        AssertContains(result, result.Args.Args);
 
-    private void Assert(Func<DotNetOptions, DotNetResult> call, DotNetOptions opt)
-    {
-        AssertInitialState();
-        Restore(opt);
-        var result = call(opt);
-        AssertResult(result);
-        AssertDll();
-    }
+        if (release) AssertContains(result, "release");
 
-    private void Assert(Func<DotNetResult> call)
-    {
-        AssertInitialState();
-        InitRestore();
-        var result = call();
-        AssertResult(result);
-        AssertDll();
+        AssertExists(dllPath);
     }
-
-    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
 }

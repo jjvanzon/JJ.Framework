@@ -13,7 +13,7 @@
         var result = call();
         AssertResult(result);
     }
-
+c
         //BasicOpt = CreateBasicOpt();
     
     /*
@@ -121,4 +121,71 @@
     [TestMethod] public void Test_MSBuild_ByName_WithOpt()          => TestMSBuild      (() => DotNet.Exe("msbuild",         Opt()));
     [TestMethod] public void Test_MSBuild_ByName_WithArgs()         => TestMSBuild_ChDir(() => DotNet.Exe("msbuild", "-low"       ));
     [TestMethod] public void Test_MSBuild_ByName_WithArgsAndOpt()   => TestMSBuild      (() => DotNet.Exe("msbuild", "-low", Opt()));
+
+        AssertContains(result, "dotnet rebuild | build");
+
+    private void AssertInitialState()
+    {
+        AssertExists(AssetsFilePath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
+    }
+
+
+    private void AssertInitialState()
+    {
+        AssertExists(AssetsFilePath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
+    }
+
+    [TestMethod]
+    public void Test_Rebuild_AutoRestore()
+    {
+        Assert(Rebuild(Opt() with { AutoRestore = true }));
+    }
+
+    private void AssertInitialState()
+    {
+        AssertNotExists(AssetsFilePath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
+    }
+
+    [TestMethod]
+    public void Test_Rebuild_ErrorCase_ForgotRestore()
+    {
+        LogNormal("Error = expected");
+
+        Exception ex = Throws(() => Rebuild(Opt()));
+
+        AssertContains(ex.Message, "Exit code 1");
+        AssertContains(ex.Message, "NETSDK1004");
+        AssertContains(ex.Message, "Run a NuGet package restore");
+
+        LogNormal($"{ex}");
+    }
+    
+    internal void AssertInitialStateForBuild()
+    {
+        AssertNotExists(AssetsFilePath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
+    }
+
+    private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call));
+
+    private void Assert(Func<DotNetResult> call)
+    {
+        InitRestore();
+        var result = call();
+        Assert(result);
+        AssertDll();
+    }
+
+    private void Assert(Func<DotNetOptions, DotNetResult> call, DotNetOptions opt)
+    {
+        var result = call(opt);
+        Assert(result);
+    }
 ```

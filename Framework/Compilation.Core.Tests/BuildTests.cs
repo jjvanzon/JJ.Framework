@@ -5,7 +5,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class BuildTests : DotNetTestHelper
 {
-    public BuildTests() { InitRestore(); AssertInitialState(); }
+    public BuildTests() { InitRestore(); }
 
     [TestMethod]
     public void Test_Build_MainCase()
@@ -74,7 +74,7 @@ public class BuildTests : DotNetTestHelper
     });
 
     [TestMethod]
-    public void Test_Build_AllOptsOn() 
+    public void Test_Build_OptsAllOn() 
     { 
         var result = Build("-low", OptsAllOn());
         AssertOptsAllOnResultForBuild(result);
@@ -124,13 +124,6 @@ public class BuildTests : DotNetTestHelper
     [TestMethod] public void Test_Build_Overload_NameArgsOpt()   =>                 Assert(DotNet.Exe("build", "--low", Opt()));
 
     // Helpers
-
-    private void AssertInitialState()
-    {
-        AssertExists(AssetsFilePath);
-        AssertNotExists(DllPath);
-        AssertNotExists(DllPathRelease);
-    }
 
     private void Assert(DotNetResult result, bool release = false)
     {

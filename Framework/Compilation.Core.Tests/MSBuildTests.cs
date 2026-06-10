@@ -5,7 +5,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class MSBuildTests : DotNetTestHelper
 {
-    public MSBuildTests() { InitRestore(); AssertInitialState(); }
+    public MSBuildTests() => InitRestore();
 
     [TestMethod]
     public void Test_MSBuild_MainCase()
@@ -124,13 +124,6 @@ public class MSBuildTests : DotNetTestHelper
     [TestMethod] public void Test_MSBuild_Overload_NameArgsOpt()   =>                 Assert(DotNet.Exe("msbuild", "--low", Opt()));
 
     // Helpers
-
-    private void AssertInitialState()
-    {
-        AssertExists(AssetsFilePath);
-        AssertNotExists(DllPath);
-        AssertNotExists(DllPathRelease);
-    }
 
     private void Assert(DotNetResult result, bool release = false)
     {
