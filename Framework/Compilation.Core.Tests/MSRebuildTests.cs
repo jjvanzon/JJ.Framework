@@ -103,23 +103,19 @@ public class MSRebuildTests : DotNetTestHelper
         }
 
         // Catch the up-to-date message
-
-        //throw new NotImplementedException();
-        // Wasn't able to distinguish them. In rebuild lots of sthings are still "up-to-date".
-        /*
         {
-            var build = Build(opt);
-            var rebuild = Rebuild(opt);
+            var msbuild = MSBuild(opt);
+            var msrebuild = MSRebuild(opt);
 
-            AssertResultOk(build);
-            AssertResultOk(rebuild);
+            AssertResultOk(msbuild);
+            AssertResultOk(msrebuild);
 
-            // TODO: Assert the up-to-date message.
+            // Shorter text "up-to-date" is mentioned in both msbuild and msrebuild (e.g. packages up-to-date).
+            const string upToDateMessage = "Skipping target \"CoreCompile\" because all output files are up-to-date";
 
-            AssertContains   (build,   "up-to-date");
-            AssertNotContains(rebuild, "up-to-date"); // TODO: Still contains "up-to-date" (packages)
+            AssertContains   (msbuild,   upToDateMessage);
+            AssertNotContains(msrebuild, upToDateMessage);
         }
-        */
     }
 
     // Error Case
