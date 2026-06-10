@@ -221,4 +221,14 @@ c
     }
 
     private void AssertNoDir(Func<DotNetResult> call) => InTempDir(() => Assert(call()));
+
+    //private const string ID = "JJ.Framework.Common.Core";
+    //private const string Ver = "4.6.6251";
+
+
+        // If command string filled, its use takes preference.
+        //if (Has(command))
+        //{
+        //    return $"{command} {formattedFile}";
+        //}
 ```

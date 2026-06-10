@@ -5,9 +5,6 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class InstallPackageTests : DotNetTestHelper
 {
-    private const string ID = "JJ.Framework.Common.Core";
-    private const string Ver = "4.6.6251";
-
     private const string WrongID = "JJ.Framework.Oops";
     private const string WrongVer = "1234.1234.1234";
 
@@ -22,32 +19,60 @@ public class InstallPackageTests : DotNetTestHelper
         => Assert(InstallPackage(ID, Ver)));
 
     [TestMethod]
-    public void Test_InstallPackage_AsCommandEnum() 
+    public void Test_InstallPackage_AsEnum() 
         => Assert(DotNet.Exe(installpackage, $"{ID} -v {Ver}", Opt()));
 
     [TestMethod]
-    public void Test_InstallPackage_AsCommandEnum_NoOpt() => InTempDir(()
+    public void Test_InstallPackage_AsEnum_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe(installpackage, $"{ID} -v {Ver}")));
 
     [TestMethod]
-    public void Test_InstallPackage_AsCommandTextAndArgs() 
+    public void Test_AddPackage_CommandTextAndArgs() 
         => Assert(DotNet.Exe("add package", $"{ID} -v {Ver}", Opt()));
 
     [TestMethod]
-    public void Test_InstallPackage_AsCommandTextAndArgs_NoOpt() => InTempDir(()
+    public void Test_AddPackage_CommandTextAndArgs_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("add package", $"{ID} -v {Ver}")));
 
     [TestMethod]
-    public void Test_InstallPackage_AsCommandTextOnly() 
+    public void Test_AddPackage_AllInCommandText() 
         => Assert(DotNet.Exe($"add package {ID} -v {Ver}", Opt()));
 
     [TestMethod]
-    public void Test_InstallPackage_AsCommandTextOnly_NoOpt() => InTempDir(()
+    public void Test_AddPackage_AllInCommandText_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe($"add package {ID} -v {Ver}")));
 
     [TestMethod]
-    public void Test_InstallPackage_NoCommandAsArgOnly_NoOpt() => InTempDir(()
+    public void Test_AddPackage_AllInArgsOnly_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("", $"add package {ID} -v {Ver}")));
+
+    [TestMethod]
+    public void Test_AddPackage_AllInArgOnly_NoOpt() => InTempDir(()
+        => Assert(DotNet.Exe("", $"add package {ID} -v {Ver}")));
+
+    [TestMethod]
+    public void Test_PackageAdd_CommandTextAndArgs() 
+        => Assert(DotNet.Exe("package add", $"{ID} -v {Ver}", Opt()));
+
+    [TestMethod]
+    public void Test_PackageAdd_CommandTextAndArgs_NoOpt() => InTempDir(()
+        => Assert(DotNet.Exe("package add", $"{ID} -v {Ver}")));
+
+    [TestMethod]
+    public void Test_PackageAdd_AllInCommandText() 
+        => Assert(DotNet.Exe($"package add {ID} -v {Ver}", Opt()));
+
+    [TestMethod]
+    public void Test_PackageAdd_AllInCommandText_NoOpt() => InTempDir(()
+        => Assert(DotNet.Exe($"package add {ID} -v {Ver}")));
+
+    [TestMethod]
+    public void Test_PackageAdd_AllInArgsOnly_NoOpt() => InTempDir(()
+        => Assert(DotNet.Exe("", $"package add {ID} -v {Ver}")));
+
+    [TestMethod]
+    public void Test_PackageAdd_AllInArgOnly_NoOpt() => InTempDir(()
+        => Assert(DotNet.Exe("", $"package add {ID} -v {Ver}")));
 
     // File Options
 

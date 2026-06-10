@@ -21,21 +21,21 @@ public class DotNetTests : DotNetTestHelper
     {
         AssertInitialState();
 
-        InstallPackage(PackID, PackVer, Opt());
+        InstallPackage(ID, Ver, Opt());
 
         DotNetResult output = call();
         AssertResultOk(output);
-        AssertContains(output, PackID);
+        AssertContains(output, ID);
 
         string content = ReadAllText(CsProjPath);
-        IsFalse(content.Contains(PackID));
-        IsFalse(content.Contains(PackVer));
+        IsFalse(content.Contains(ID));
+        IsFalse(content.Contains(Ver));
     }
 
-    [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(PackID));
-    [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(PackID, "--interactive"));
-    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(PackID, Opt()));
-    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(PackID, "--interactive", Opt()));
+    [TestMethod] public void Test_UninstallPackage()                => TestUninstallPack_ChDir(() => UninstallPackage(ID));
+    [TestMethod] public void Test_UninstallPackage_WithArgs()       => TestUninstallPack_ChDir(() => UninstallPackage(ID, "--interactive"));
+    [TestMethod] public void Test_UninstallPackage_WithOpt()        => TestUninstallPack      (() => UninstallPackage(ID, Opt()));
+    [TestMethod] public void Test_UninstallPackage_WithArgsAndOpt() => TestUninstallPack      (() => UninstallPackage(ID, "--interactive", Opt()));
     // Enum and name won't work unless you specify id and ver as args.
 
     // Helpers

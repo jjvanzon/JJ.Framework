@@ -43,15 +43,23 @@ internal static class DotNetCmdFormatter
         if (!Has(file)) return command;
         
         string formattedFile = '"' + file + '"';
-
-        // `remove package`: special case: squish file in between keywords. 
-        if (commandEnum == uninstallpackage)
-        {
-            return $"remove {formattedFile} package ";
-        }
+        command = command.TrimStart();
 
         // `add package`: likes the --project switch.
         if (commandEnum == installpackage)
+        {
+            return $"{command} --project {formattedFile}";
+        }
+
+        if (command.StartsWith("remove package", Ordinal))
+        {
+            // Command text could contain more than just "remove package",
+            // but (as the Enricher matches it) it should start with it (white space/case insensitive)
+            string commandSuffix = command.ToLower().CutLeft("remove package");
+            return $"remove {formattedFile} package " + commandSuffix;
+        }
+
+        if (command.StartsWith("package remove", Ordinal))
         {
             return $"{command} --project {formattedFile}";
         }

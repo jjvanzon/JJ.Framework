@@ -18,8 +18,8 @@ public class DotNetTestHelper : IDisposable
     private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
     private  readonly string _randomLetters;
 
-    internal const    string PackID  = "JJ.Framework.Common.Core";
-    internal const    string PackVer = "4.6.6251";
+    internal const    string ID  = "JJ.Framework.Common.Core";
+    internal const    string Ver = "4.6.6251";
     internal          string TempDir        { get; }
     internal          string CsProjPath     { get; }
     internal          string DllPath        { get; }

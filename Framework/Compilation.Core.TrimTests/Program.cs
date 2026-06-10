@@ -17,7 +17,9 @@ RunTests<MSBuildTests>() &&
 RunTests<MSRebuildTests>() &&
 RunTests<RebuildTests>() &&
 RunTests<RestoreTests>() &&
-RunTests<RunningTargetFrameworkTests>();
+RunTests<RunningTargetFrameworkTests>() &&
+RunTests<UninstallPackageTests>();
+
 WriteLine("Done.");
 
 if (!success)
