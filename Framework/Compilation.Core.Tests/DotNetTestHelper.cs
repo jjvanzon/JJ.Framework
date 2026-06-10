@@ -8,7 +8,7 @@ public class DotNetTestHelper : IDisposable
     // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
     //static DotNetTestHelper() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
 
-    internal static DotNetVerbosity Verbosity { get; set; } = Normal;
+    internal static DotNetVerbosity Verbosity { get; set; } = Diagnostic;
 
     // Vars
 
