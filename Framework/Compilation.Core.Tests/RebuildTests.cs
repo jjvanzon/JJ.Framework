@@ -110,7 +110,7 @@ public class RebuildTests : DotNetTestHelper
             AssertResultOk(build);
             AssertResultOk(rebuild);
 
-             // Shorter text "up-to-date" is mentioned in both msbuild and msrebuild (e.g. packages up-to-date).
+            // Shorter text "up-to-date" is mentioned in both msbuild and msrebuild (e.g. packages up-to-date).
             const string upToDateMessage = "Skipping target \"CoreCompile\" because all output files are up-to-date";
 
             AssertContains   (build,   upToDateMessage);

@@ -188,4 +188,28 @@ c
         var result = call(opt);
         Assert(result);
     }
+
+
+    // MSRebuild
+
+    private void TestMSRebuild_ChDir(Func<DotNetResult> call) => InTempDir(() => TestMSRebuild(call));
+    private void TestMSRebuild(Func<DotNetResult> call)
+    {
+        AssertInitialState();
+        InitRestore();
+
+        DotNetResult output = call();
+        AssertResultOk(output);
+        AssertContains(output, DllPath);
+        AssertExists(DllPath);
+    }
+
+    [TestMethod] public void Test_MSRebuild_ByMethod()                => TestMSRebuild_ChDir  (() =>            MSRebuild(              ));
+    [TestMethod] public void Test_MSRebuild_ByMethod_WithOpt()        => TestMSRebuild        (() =>            MSRebuild(         Opt()));
+    [TestMethod] public void Test_MSRebuild_ByMethod_WithArgs()       => TestMSRebuild_ChDir  (() =>            MSRebuild( "-low"       ));
+    [TestMethod] public void Test_MSRebuild_ByMethod_WithArgsAndOpt() => TestMSRebuild        (() =>            MSRebuild( "-low", Opt()));
+    [TestMethod] public void Test_MSRebuild_ByEnum()                  => TestMSRebuild_ChDir  (() => DotNet.Exe(msrebuild               ));
+    [TestMethod] public void Test_MSRebuild_ByEnum_WithOpt()          => TestMSRebuild        (() => DotNet.Exe(msrebuild,         Opt()));
+    [TestMethod] public void Test_MSRebuild_ByEnum_WithArgs()         => TestMSRebuild_ChDir  (() => DotNet.Exe(msrebuild, "-low"       ));
+    [TestMethod] public void Test_MSRebuild_ByEnum_WithArgsAndOpt()   => TestMSRebuild        (() => DotNet.Exe(msrebuild, "-low", Opt()));
 ```

@@ -153,7 +153,7 @@ public class MSRebuildTests : DotNetTestHelper
 
         AssertResultOk(result);
         AssertContains(result, "msrebuild | msbuild");
-        //AssertContains(result, "build succeeded");
+        //AssertContains(result, "build succeeded"); // MSBuild does not say "build succeeeded".
         AssertContains(result, "/t:Rebuild");
         AssertContains(result, ProjectName + " -> " + dllPath);
         AssertContains(result, result.Args.Args);
