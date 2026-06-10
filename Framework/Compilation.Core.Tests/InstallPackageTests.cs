@@ -5,10 +5,11 @@ namespace JJ.Framework.Compilation.Core.Tests;
 [TestClass]
 public class InstallPackageTests : DotNetTestHelper
 {
-    public InstallPackageTests() => AssertInitialState();
-
     private const string ID = "JJ.Framework.Common.Core";
     private const string Ver = "4.6.6251";
+
+    private const string WrongID = "JJ.Framework.Oops";
+    private const string WrongVer = "1234.1234.1234";
 
     // Syntaxes
 
@@ -48,24 +49,40 @@ public class InstallPackageTests : DotNetTestHelper
     public void Test_InstallPackage_NoCommandAsArgOnly_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("", $"add package {ID} -v {Ver}")));
 
+    // File Options
+
+    [TestMethod]
+    public void Test_InstallPackage_WithFile() 
+        => Assert(InstallPackage(ID, Ver, Opt() with { File = CsProjName }));
+
+    [TestMethod]
+    public void Test_InstallPackage_WithoutFile() 
+        => Assert(InstallPackage(ID, Ver, Opt() with { File = "" }));
+
+    [TestMethod]
+    public void Test_InstallPackage_WithDir() 
+        => Assert(InstallPackage(ID, Ver, Opt() with { Dir = TempDir }));
+
+    [TestMethod]
+    public void Test_InstallPackage_WithoutDir_WithFullFilePath() 
+        => Assert(InstallPackage(ID, Ver, Opt() with { Dir = "", File = CsProjPath }));
+
+    [TestMethod]
+    public void Test_InstallPackage_WithoutDir_WithChDir() => InTempDir(() => 
+    {
+        Assert(InstallPackage(ID, Ver, Opt() with { Dir = "" }));
+    });
+
     // Options
 
     [TestMethod]
-    public void Test_InstallPackage_WithAutoRestore_DoesNothingButWorks()
-    {
-        Assert(InstallPackage(ID, Ver, Opt() with { AutoRestore = true }));
-    }
-    
-    [TestMethod]
-    public void Test_InstallPackage_WithArg()
-    {
-        AssertNoRestore(InstallPackage(ID, Ver, "--no-restore", Opt()));
-    }
+    public void Test_InstallPackage_WithArg() 
+        => Assert(InstallPackage(ID, Ver, "--no-restore", Opt()), restore: false);
 
     [TestMethod] 
     public void Test_InstallPackage_WithArg_NoOpt() => InTempDir(() =>
     {
-        AssertNoRestore(InstallPackage(ID, Ver, "--no-restore"));
+        Assert(InstallPackage(ID, Ver, "--no-restore"), restore: false);
     });
 
     [TestMethod]
@@ -79,176 +96,101 @@ public class InstallPackageTests : DotNetTestHelper
     }
         
     [TestMethod]
-    public void Test_InstallPackage_NoVer_InstallsLatest()
-    {
-        Assert(InstallPackage(ID, "", Opt()));
-    }
-
-    // File Options
+    public void Test_InstallPackage_NoVer_InstallsLatest() 
+        => Assert(InstallPackage(ID, "", Opt()));
 
     [TestMethod]
-    public void Test_InstallPackage_WithFile()
-    {
-        Assert(InstallPackage(ID, Ver, Opt() with { File = CsProjName }));
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_WithoutFile()
-    {
-        Assert(InstallPackage(ID, Ver, Opt() with { File = "" }));
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_WithDir()
-    {
-        Assert(InstallPackage(ID, Ver, Opt() with { Dir = TempDir }));
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_WithoutDir_WithFullFilePath()
-    {
-        Assert(InstallPackage(ID, Ver, Opt() with { Dir = "", File = CsProjPath }));
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_WithoutDir_WithChDir() => InTempDir(() => 
-    {
-        Assert(InstallPackage(ID, Ver, Opt() with { Dir = "" }));
-    });
+    public void Test_InstallPackage_WithAutoRestore_DoesNothingButWorks() 
+        => Assert(InstallPackage(ID, Ver, Opt() with { AutoRestore = true }));
 
     // Error Cases
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_NoID() 
+        => Throws(() => InstallPackage(id: "", Ver, Opt()), "required argument missing");
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_NoID_EvenWhenNoRestore() 
+        => Throws(() => InstallPackage(id: "", Ver, "--no-restore", Opt()), "required argument missing");
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_InvalidPackageIDSyntax() 
+        => Throws(() => InstallPackage("JJ.Framework/Common.Core", Ver, Opt()), "NU1017", "invalid package id");
+
+    [TestMethod]
+    public void Test_InstallPackage_Exception_InvalidVerSyntax() 
+        => Throws(() => InstallPackage(ID, "1.0/x", Opt()), "not a valid version string");
     
     [TestMethod]
-    public void Test_InstallPackage_Exception_NoCommand_ArgOnly_WithFile_PlacedBeforeArg() 
-        => Throws(
-            () => DotNet.Exe("", $"add package {ID} -v {Ver}", Opt()), 
-            $"--project \"Temp.csproj\" add package {ID} -v {Ver}");
+    public void Test_InstallPackage_Exception_CommandMissingArgOnly_FilePlacedBeforeArg()
+        => Throws(() => DotNet.Exe("", $"add package {ID} -v {Ver}", Opt()), $"--project \"Temp.csproj\" add package {ID} -v {Ver}");
 
     [TestMethod]
-    public void Test_InstallPackage_Exception_NoID()
-    {
-        Throws(() => InstallPackage("", Ver, Opt()), "required argument missing");
-    }
+    public void Test_InstallPackage_IDDoesNotExist_WithRestore_Exception() 
+        => Throws(() => InstallPackage(id: "JJ.Framework.Oops", Ver, Opt()), "NU1101", "Unable to find package");
 
     [TestMethod]
-    public void Test_InstallPackage_Exception_NoID_EvenWhenNoRestore()
-    {
-        Throws(() => InstallPackage(id: "", Ver, "--no-restore", Opt()), "required argument missing");
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_Exception_InvalidPackageIDSyntax()
-    {
-        Throws(() => InstallPackage("JJ.Framework/Common.Core", Ver, Opt()), "NU1017", "invalid package id");
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_Exception_InvalidVerSyntax()
-    {
-        Throws(() => InstallPackage(ID, "1.0/x", Opt()), "not a valid version string");
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_Exception_IDDoesNotExist_WithRestore()
-    {
-        Throws(() => InstallPackage(id: "JJ.Framework.Oops", Ver, Opt()), "NU1101", "Unable to find package");
-    }
+    public void Test_InstallPackage_VerDoesNotExist_WithRestore_Exception() 
+        => Throws(() => InstallPackage(ID, WrongVer, Opt()), "NU1102", $"Unable to find package {ID} with version", ">= " + WrongVer);
 
     [TestMethod]
     public void Test_InstallPackage_IDDoesNotExist_NoRestore_InstallSucceeds_BuildThrows()
     {
-        var opt = Opt() with { AutoRestore = false };
-        const string wrongID = "JJ.Framework.Oops";
-
-        var result = InstallPackage(wrongID, Ver, "--no-restore", opt);
-        
-        // Assert for different ID.
-        AssertResultOk(result);
-        AssertContains(result, $"Adding PackageReference for package '{wrongID}' into project");
-        AssertContains(result, $"PackageReference for package '{wrongID}' version '{Ver}' added");
-        
-        // Asserts file does not exist, because --no-restore
-        AssertNotExists(AssetsFilePath); 
+        // Assert for wrong ID passes
+        Assert(InstallPackage(WrongID, Ver, "--no-restore", Opt()), restore: false);
 
         // Build should throw
-        Throws(() => Build(opt), 
-            "NETSDK1004", $"Assets file '{AssetsFilePath}' not found", "Run a NuGet package restore");
-
-        Throws(() => Build(opt with { AutoRestore = true }), $"Unable to find package {wrongID}");
-    }
-
-    [TestMethod]
-    public void Test_InstallPackage_Exception_VerDoesNotExist_WithRestore()
-    {
-        Throws(
-            () => InstallPackage(ID, "1234.1234.1234", Opt()), 
-            "NU1102", $"Unable to find package {ID} with version", ">= 1234.1234.1234");
+        Throws(() => Build(Opt() with { AutoRestore = false }), "NETSDK1004", $"Assets file '{AssetsFilePath}' not found", "Run a NuGet package restore");
+        Throws(() => Build(Opt() with { AutoRestore = true  }), $"Unable to find package {WrongID}");
     }
 
     [TestMethod]
     public void Test_InstallPackage_VerDoesNotExist_NoRestore_InstallSucceeds_BuildThrows()
     {
-        var opt = Opt() with { AutoRestore = false };
-        const string wrongVer = "1234.1234.1234";
-
-        var result = InstallPackage(ID, "1234.1234.1234", "--no-restore", opt);
-
-        // Install package succeeds
-        AssertResultOk(result);
-        AssertContains(result, $"Adding PackageReference for package '{ID}' into project");
-        AssertContains(result, $"PackageReference for package '{ID}' version '{wrongVer}' added");
-
-        AssertNotExists(AssetsFilePath); 
-
+        // Install with wrong ver succeeds
+        Assert(InstallPackage(ID, WrongVer, "--no-restore", Opt()), restore: false);
+        
         // Build throws
-        Throws(() => Build(opt), 
-            "NETSDK1004", $"Assets file '{AssetsFilePath}' not found", "Run a NuGet package restore");
-
-        Throws(() => Build(opt with { AutoRestore = true }), $"Unable to find package {ID}");
+        Throws(() => Build(Opt() with { AutoRestore = false }), "NETSDK1004", $"Assets file '{AssetsFilePath}' not found", "Run a NuGet package restore");
+        Throws(() => Build(Opt() with { AutoRestore = true  }), $"Unable to find package {ID}");
     }
 
     // Assertion
 
-    private void AssertInitialState()
+    private void Assert(DotNetResult result, bool restore = true)
     {
-        AssertNotExists(AssetsFilePath);
-        AssertNotExists(DllPath);
-        AssertNotExists(DllPathRelease);
-    }
+        string id = Coalesce(result.Args.ID, ID);
+        bool hasVer = Has(result.Args.Ver);
 
-    private void Assert(DotNetResult result)
-    {
-        AssertResult(result);
+        // Check success messages
+        AssertResultOk(result);
+        AssertContainsAny(result, 
+            $"Adding PackageReference for package '{id}' into project '{CsProjName}'",
+            $"Adding PackageReference for package '{id}' into project '{CsProjPath}'");
+
+        // Check with or without ver
+        if (hasVer)
+        {
+            AssertContains(result, $"PackageReference for package '{id}' version '{result.Args.Ver}' added to file '{CsProjPath}'");
+        }
+        else
+        {
+            AssertContains(result, $"PackageReference for package '{id}' "); AssertContains(result, $"added to file '{CsProjPath}'");
+        }
+
+        // Check Package Reference
+        string content = ReadAllText(CsProjPath);
+        NotNullOrWhiteSpace(content);
+        AssertContains(content, $"<PackageReference Include=\"{id}\" Version=");
+
+        // Check Restore
+        if (!restore)
+        {
+            AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
+            return;
+        }
         AssertContains(result, "Writing assets file to disk");
         AssertContainsAny(result, $"Restored {CsProjPath}", $"Restored {CsProjName}");
         AssertExists(AssetsFilePath);
-        AssertPackageReference();
-    }
-    
-    private void AssertNoRestore(DotNetResult result)
-    {
-        AssertResult(result);
-        AssertNotExists(AssetsFilePath); // Asserts file does not exist, because --no-restore
-        AssertPackageReference();
-    }
-
-    private void AssertResult(DotNetResult result)
-    {
-        AssertResultOk(result);
-
-        AssertContains(result, result.Args.Ver);
-
-        AssertContainsAny(result, 
-            $"Adding PackageReference for package '{ID}' into project '{CsProjName}'",
-            $"Adding PackageReference for package '{ID}' into project '{CsProjPath}'");
-        
-        AssertContains(result, $"Added to file '{CsProjPath}'");
-    }
-
-    private void AssertPackageReference()
-    {
-        string content = ReadAllText(CsProjPath);
-        NotNullOrWhiteSpace(content);
-        AssertContains(content, $"<PackageReference Include=\"{ID}\" Version=");
     }
 }

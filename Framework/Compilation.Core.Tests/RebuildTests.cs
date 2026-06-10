@@ -136,6 +136,8 @@ public class RebuildTests : DotNetTestHelper
 
     // Overloads
 
+    // TODO: Ones already covered above: Comment out for perf (but keep for overview).
+
     [TestMethod] public void Test_Rebuild_Overload_Method()        => InTempDir(() => Assert(           Rebuild(             )));
     [TestMethod] public void Test_Rebuild_Overload_MethodOpt()     =>                 Assert(           Rebuild(         Opt()));
     [TestMethod] public void Test_Rebuild_Overload_MethodArgs()    => InTempDir(() => Assert(           Rebuild( "-low"      )));

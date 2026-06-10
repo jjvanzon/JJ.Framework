@@ -212,4 +212,11 @@ c
     [TestMethod] public void Test_MSRebuild_ByEnum_WithOpt()          => TestMSRebuild        (() => DotNet.Exe(msrebuild,         Opt()));
     [TestMethod] public void Test_MSRebuild_ByEnum_WithArgs()         => TestMSRebuild_ChDir  (() => DotNet.Exe(msrebuild, "-low"       ));
     [TestMethod] public void Test_MSRebuild_ByEnum_WithArgsAndOpt()   => TestMSRebuild        (() => DotNet.Exe(msrebuild, "-low", Opt()));
+
+    private void AssertInitialState()
+    {
+        AssertNotExists(AssetsFilePath);
+        AssertNotExists(DllPath);
+        AssertNotExists(DllPathRelease);
+    }
 ```
