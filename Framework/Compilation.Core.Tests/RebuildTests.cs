@@ -56,7 +56,7 @@ public class RebuildTests : DotNetTestHelper
     });
 
     [TestMethod]
-    public void Test_Build_Conf()
+    public void Test_Rebuild_Conf()
     {
         Assert(Rebuild(Opt() with { BuildConf = "Release" }), release: true);
     }
@@ -84,8 +84,6 @@ public class RebuildTests : DotNetTestHelper
     public void Test_Rebuild_VsBuild()
     {
         var opt = Opt() with { Verbosity = UnlessHigh(Detailed) }; // Verbosity trying to see up-to-date message where expected.
-
-        Restore(opt);
 
         {
             var build = Build(opt);

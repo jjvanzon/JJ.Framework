@@ -2,9 +2,9 @@
 //ReadKey();
 
 bool success =
+RunTests<BuildTests>() &&
 RunTests<DotNetArgsFormatterTests>() &&
 RunTests<DotNetArgsTests>() &&
-RunTests<BuildTests>() &&
 RunTests<DotNetCmdFormatterTests>() &&
 RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetLoggerTests>() &&
@@ -13,6 +13,8 @@ RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetResultFormatterTests>() &&
 RunTests<DotNetTests>() &&
 RunTests<InstallPackageTests>() &&
+RunTests<MSBuildTests>() &&
+RunTests<MSRebuildTests>() &&
 RunTests<RebuildTests>() &&
 RunTests<RestoreTests>() &&
 RunTests<RunningTargetFrameworkTests>();
