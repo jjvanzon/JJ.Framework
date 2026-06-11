@@ -180,7 +180,7 @@ public class InstallPackageTests : DotNetTestHelper
         Throws(() => Build(Opt() with { AutoRestore = true  }), $"Unable to find package {ID}");
     }
 
-    // Assertion
+    // Assert
 
     private void Assert(DotNetResult result, bool restore = true)
     {

@@ -77,7 +77,7 @@ internal static class DotNetCmdFormatter
     private static string FormatRemovePackage(string command, string file)
     {
         string suffix = command.TrimStart().ToLower().CutLeft("remove package");
-        return $"remove {FormatFile(file)} package " + suffix;
+        return $"remove {FormatFile(file)} package" + suffix;
     }
 
     private static string FormatFile(string file)

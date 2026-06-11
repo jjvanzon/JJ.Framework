@@ -8,6 +8,7 @@ public class UninstallPackageTests : DotNetTestHelper
     public UninstallPackageTests() => Initialize();
 
     // Syntaxes
+
     [TestMethod]
     public void Test_UninstallPackage()
         => Assert(UninstallPackage(ID, Opt()));
@@ -71,6 +72,39 @@ public class UninstallPackageTests : DotNetTestHelper
     [TestMethod]
     public void Test_PackageRemove_AllInArgOnly_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("", $"package remove {ID}")));
+
+    // File Options
+
+    [TestMethod]
+    public void Test_UninstallPackage_WithFile() 
+        => Assert(UninstallPackage(ID, Opt() with { File = CsProjName }));
+
+    [TestMethod]
+    public void Test_UninstallPackage_WithoutFile() 
+        => Assert(UninstallPackage(ID, Opt() with { File = "" }));
+
+    [TestMethod]
+    public void Test_UninstallPackage_WithDir() 
+        => Assert(UninstallPackage(ID, Opt() with { Dir = TempDir }));
+
+    [TestMethod]
+    public void Test_UninstallPackage_WithoutDir_WithFullFilePath() 
+        => Assert(UninstallPackage(ID, Opt() with { Dir = "", File = CsProjPath }));
+
+    [TestMethod]
+    public void Test_UninstallPackage_WithoutDir_WithChDir() => InTempDir(() => 
+    {
+        Assert(UninstallPackage(ID, Opt() with { Dir = "" }));
+    });
+
+    // Error cases
+
+    [TestMethod]
+    public void Test_UninstallPackage_AccidentalVerInclusionAsArgs()
+        => Throws(
+            () => UninstallPackage(ID, Ver, Opt()),
+            "remove \"Temp.csproj\" package JJ.Framework.Common.Core 4.6.6251",
+            "Error: Specify only one package reference to remove.");
 
     // Helpers
     
