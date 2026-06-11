@@ -26,8 +26,8 @@
     <IsAzurePipelines Condition="'$(TF_BUILD)'=='true'">True</IsAzurePipelines>
     <AutoTrimTest>False</AutoTrimTest>
     <AutoTrimTest Condition="$(IsTrimTest) And $(IsInnerBuild) And 
-                             !$(IsAzurePipelines) And
                              ($(IsNCrunch) Or '$(Configuration)'=='Release')">True</AutoTrimTest>
+                             <!--!$(IsAzurePipelines) And--> <!-- Include TrimTest in Azure Pipelines Build step again -->
     <SolutionDirjj>$(SolutionDir)</SolutionDirjj>
     <SolutionDirjj Condition="'$(SolutionDirjj)'==''">$(MSBuildThisFileDirectory)\..\</SolutionDirjj>
   </PropertyGroup>
