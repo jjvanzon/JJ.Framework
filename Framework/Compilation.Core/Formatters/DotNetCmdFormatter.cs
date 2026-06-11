@@ -41,31 +41,49 @@ internal static class DotNetCmdFormatter
     {
         // No file? Just return command.
         if (!Has(file)) return command;
-        
-        string formattedFile = '"' + file + '"';
-        command = command.TrimStart();
 
         // `add package`: likes the --project switch.
         if (commandEnum == installpackage)
         {
-            return $"{command} --project {formattedFile}";
+            return FormatInstallPackage(command, file);
         }
 
-        if (command.StartsWith("remove package", Ordinal))
+        if (IsRemovePackage(command))
         {
-            // Command text could contain more than just "remove package",
-            // but (as the Enricher matches it) it should start with it (white space/case insensitive)
-            string commandSuffix = command.ToLower().CutLeft("remove package");
-            return $"remove {formattedFile} package " + commandSuffix;
+            return FormatRemovePackage(command, file);
         }
 
-        if (command.StartsWith("package remove", Ordinal))
+        if (IsPackageRemove(command))
         {
-            return $"{command} --project {formattedFile}";
+            return FormatPackageRemove(command, file);
         }
 
         // Any other command: just concat file.
-        return $"{command} {formattedFile}";
+        return $"{command} {FormatFile(file)}";
+    }
+
+    private static string FormatInstallPackage(string command, string file) => $"{command} --project {FormatFile(file)}";
+
+    private static bool IsPackageRemove(string command) => command.TrimStart().StartsWith("package remove", OrdinalIgnoreCase);
+
+    private static string FormatPackageRemove (string command, string file) => $"{command} --project {FormatFile(file)}";
+
+    private static bool IsRemovePackage(string command) => command.TrimStart().StartsWith("remove package", OrdinalIgnoreCase);
+
+    /// <summary>
+    /// Command text could contain more than just "remove package",
+    /// but (as the Enricher matches it) it should start with it (white space/case insensitive)
+    /// </summary>
+    private static string FormatRemovePackage(string command, string file)
+    {
+        string suffix = command.TrimStart().ToLower().CutLeft("remove package");
+        return $"remove {FormatFile(file)} package " + suffix;
+    }
+
+    private static string FormatFile(string file)
+    {
+        if (!Has(file)) return file;
+        return '"' + file + '"';
     }
 
     private static string TryFormatPackageID(string id)
