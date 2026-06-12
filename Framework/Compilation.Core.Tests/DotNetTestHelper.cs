@@ -172,14 +172,19 @@ public class DotNetTestHelper : IDisposable
         }
     }
 
-    internal void AssertOptsAllOnResult(DotNetResult result)
+    /// <summary>
+    /// Checks most, but notably skips checking if Args are filled in
+    /// (result.Args.Args and result.Opts.Args),
+    /// Because UnstallPackage can't always do guarantee it filled in.
+    /// Add a call to <see cref="AssertOptsAllOnArgs"></see> to check those.
+    /// </summary>
+    internal void AssertOptsAllOnBase(DotNetResult result)
     {
         AssertResultOk(result);
 
         NotNullOrWhiteSpace(      result.Opt.Dir);
         NotNullOrWhiteSpace(      result.Opt.File);
         NotNullOrWhiteSpace(      result.Opt.BuildConf);
-        NotNullOrWhiteSpace(      result.Opt.Args);
         IsTrue(                   result.Opt.AutoRestore);
         IsFalse(                  result.Opt.ParallelRestore); // Kept off. Parallel restore evil.
         IsTrue(                   result.Opt.NodeReuse);
@@ -192,12 +197,22 @@ public class DotNetTestHelper : IDisposable
         //AssertContains(result,  result.Opt.LogFile); // Might be shown later, currently not command line, not in descriptor.
         NotNullOrWhiteSpace(      result.Opt.BinLog); // Only exists for build tasks.
         //AssertContains(result,  result.Opt.BinLog); // Currently not shown: not in descriptor.
-        NotNullOrWhiteSpace(      result.Args.Args);
+    }
+    
+    /// <summary>
+    /// Args can't be guaranteed filledin for UninstallPackage
+    /// </summary>
+    internal static void AssertOptsAllOnArgs(DotNetResult result)
+    {
+        NotNullOrWhiteSpace(result.Args.Args);
+        NotNullOrWhiteSpace(result.Opt.Args);
     }
 
-    internal void AssertOptsAllOnResultForBuild(DotNetResult result)
+    internal void AssertOptsAllOnForBuild(DotNetResult result)
     {
-        AssertOptsAllOnResult(result);
+        AssertOptsAllOnBase(result);
+        AssertOptsAllOnArgs(result);
+
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
         AssertContains(result, result.Opt.BinLog);
         AssertExists(result.Opt.BinLog);

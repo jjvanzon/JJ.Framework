@@ -78,7 +78,7 @@ public class RestoreTests : DotNetTestHelper
     public void Test_Restore_OptsAllOn() 
     { 
         var restore = Restore("-low", OptsAllOn());
-        AssertOptsAllOnResult(restore);
+        AssertOptsAllOn(restore);
         Assert(restore);
     }
 
@@ -247,5 +247,11 @@ public class RestoreTests : DotNetTestHelper
         AssertContains(result, "dotnet restore");
         AssertContains(result, "determining projects to restore");
         AssertContains(result, "restored " + CsProjPath);
+    }
+
+    internal void AssertOptsAllOn(DotNetResult result)
+    {
+        AssertOptsAllOnBase(result);
+        AssertOptsAllOnArgs(result);
     }
 }

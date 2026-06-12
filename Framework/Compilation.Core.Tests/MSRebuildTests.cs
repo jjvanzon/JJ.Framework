@@ -77,7 +77,7 @@ public class MSRebuildTests : DotNetTestHelper
     public void Test_MSRebuild_OptsAllOn()
     {
         var result = MSRebuild("-low", OptsAllOn());
-        AssertOptsAllOnResultForBuild(result);
+        AssertOptsAllOnForBuild(result);
     }
 
     [TestMethod]

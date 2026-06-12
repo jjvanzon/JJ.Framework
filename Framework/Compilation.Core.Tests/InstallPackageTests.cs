@@ -116,7 +116,7 @@ public class InstallPackageTests : DotNetTestHelper
         var opt = OptsAllOn() with { Args = "--no-restore" };
         var result = InstallPackage(ID, Ver, "--framework net10.0", opt);
 
-        AssertOptsAllOnResult(result);
+        AssertOptsAllOn(result);
         AssertNotExists(AssetsFilePath);
     }
         
@@ -218,5 +218,11 @@ public class InstallPackageTests : DotNetTestHelper
         AssertContains(result, "Writing assets file to disk");
         AssertContainsAny(result, $"Restored {CsProjPath}", $"Restored {CsProjName}");
         AssertExists(AssetsFilePath);
+    }
+
+    internal void AssertOptsAllOn(DotNetResult result)
+    {
+        AssertOptsAllOnBase(result);
+        AssertOptsAllOnArgs(result);
     }
 }

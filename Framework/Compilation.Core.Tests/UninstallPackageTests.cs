@@ -113,9 +113,10 @@ public class UninstallPackageTests : DotNetTestHelper
         var opt = OptsAllOn() with { Args = "--interactive" };
         var result = UninstallPackage(ID, opt);
 
-        // Complains about Args.Args not being filled. 
-        // TODO: Make specialized version for UninstallPacakge, and move specific option to the ForBuild version?
-        //AssertOptsAllOnResult(result); 
+        AssertOptsAllOnBase(result); 
+
+        NotNullOrWhiteSpace(result.Opt.Args);
+        NullOrWhiteSpace(result.Args.Args);
 
         Assert(result);
     }
@@ -126,7 +127,11 @@ public class UninstallPackageTests : DotNetTestHelper
         var opt = OptsAllOn() with { Args = "" };
         var result = UninstallPackage(ID, "--interactive", opt);
 
-        //AssertOptsAllOnResult(result);
+        AssertOptsAllOnBase(result);
+
+        NotNullOrWhiteSpace(result.Args.Args);
+        NullOrWhiteSpace(result.Opt.Args);
+
         Assert(result);
     }
 

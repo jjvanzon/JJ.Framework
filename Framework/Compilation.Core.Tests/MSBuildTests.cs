@@ -77,7 +77,7 @@ public class MSBuildTests : DotNetTestHelper
     public void Test_MSBuild_AllOptsOn() 
     { 
         var result = MSBuild("-low", OptsAllOn());
-        AssertOptsAllOnResultForBuild(result);
+        AssertOptsAllOnForBuild(result);
     }
 
     [TestMethod]
