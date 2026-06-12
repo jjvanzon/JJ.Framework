@@ -131,7 +131,7 @@ public class InstallPackageTests : TestHelper
     // Error Cases
 
     [TestMethod]
-    public void Test_InstallPackage_Exception_NoID() 
+    public void Test_InstallPackage_Exception_MissingID() 
         => Throws(() => InstallPackage(id: "", Ver, Opt()), "required argument missing");
 
     [TestMethod]
@@ -147,7 +147,7 @@ public class InstallPackageTests : TestHelper
         => Throws(() => InstallPackage(ID, "1.0/x", Opt()), "not a valid version string");
     
     [TestMethod]
-    public void Test_InstallPackage_Exception_CommandMissingArgOnly_FilePlacedBeforeArg()
+    public void Test_InstallPackage_Exception_CommandMissingArgOnly_CsProjNamePlacedBeforeArg()
         => Throws(() => DotNet.Exe("", $"add package {ID} -v {Ver}", Opt()), $"--project \"Temp.csproj\" add package {ID} -v {Ver}");
 
     [TestMethod]

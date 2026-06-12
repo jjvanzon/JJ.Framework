@@ -114,8 +114,6 @@ public class UninstallPackageTests : TestHelper
         var result = UninstallPackage(ID, opt);
 
         AssertOptsAllOn(result, checkArgsArgs: false); 
-
-
         Assert(result);
     }
 
@@ -126,12 +124,26 @@ public class UninstallPackageTests : TestHelper
         var result = UninstallPackage(ID, "--interactive", opt);
 
         AssertOptsAllOn(result, checkOptArgs: false);
-
-
         Assert(result);
     }
 
-    // Error cases
+    [TestMethod]
+    public void Test_UninstallPackage_WithAutoRestore_DoesNothingButWorks() 
+        => Assert(UninstallPackage(ID, Opt() with { AutoRestore = true }));
+
+    // Error Cases
+
+    [TestMethod]
+    public void Test_UninstallPackage_Exception_MissingID() 
+        => Throws(() => UninstallPackage(id: "", Opt()), "required argument missing");
+
+    [TestMethod]
+    public void Test_RemovePackage_Exception_CommandMissingArgOnly_CsProjNamePlacedBeforeArg()
+        => Throws(() => DotNet.Exe("", $"remove package {ID}", Opt()), $"\"Temp.csproj\" remove package {ID}");
+    
+    [TestMethod]
+    public void Test_PackageRemove_Exception_CommandMissingArgOnly_CsProjNamePlacedBeforeArg()
+        => Throws(() => DotNet.Exe("", $"package remove {ID}", Opt()), $"\"Temp.csproj\" package remove {ID}");
 
     [TestMethod]
     public void Test_UninstallPackage_Exception_AccidentalVerInclusionAsArgs()

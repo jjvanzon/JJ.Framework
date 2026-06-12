@@ -260,4 +260,15 @@ c
 
         //NotNullOrWhiteSpace(result.Args.Args);
         //NullOrWhiteSpace(result.Opt.Args);
+
+
+    [TestMethod]
+    public void Test_UninstallPackage_Exception_NoID_EvenWhenNoRestore() 
+        => Throws(() => UninstallPackage(id: "", "--no-restore", Opt()), "required argument missing");
+
+    // Oddly doesn't raise that specific exception. It says package ref does not exist.
+    //[TestMethod]
+    //public void Test_InstallPackage_Exception_InvalidPackageIDSyntax() 
+    //    => Throws(() => UninstallPackage("JJ.Framework/Common.Core", Opt()), "NU1017", "invalid package id");
+    
 ```
