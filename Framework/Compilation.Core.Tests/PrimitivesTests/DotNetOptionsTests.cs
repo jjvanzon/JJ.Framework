@@ -1,7 +1,7 @@
 namespace JJ.Framework.Compilation.Core.Tests.PrimitivesTests;
 
 [TestClass]
-public class DotNetOptionsTests : DotNetTestHelper
+public class DotNetOptionsTests : TestHelper
 {
     // Constructor
 

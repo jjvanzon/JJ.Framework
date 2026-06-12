@@ -3,7 +3,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class InstallPackageTests : DotNetTestHelper
+public class InstallPackageTests : TestHelper
 {
     private const string WrongID = "JJ.Framework.Oops";
     private const string WrongVer = "1234.1234.1234";

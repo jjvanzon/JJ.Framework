@@ -3,7 +3,7 @@
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
-public class DotNetTestHelper : IDisposable
+public class TestHelper : IDisposable
 {
     // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
     //static DotNetTestHelper() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
@@ -42,7 +42,7 @@ public class DotNetTestHelper : IDisposable
         </Project>
         """;
 
-    public DotNetTestHelper()
+    public TestHelper()
     {
         string targetFramework = RunningTargetFramework;
 
@@ -72,7 +72,7 @@ public class DotNetTestHelper : IDisposable
     }
 
     void IDisposable.Dispose() => Cleanup();
-    ~DotNetTestHelper() => Cleanup(); // ncrunch: no coverage
+    ~TestHelper() => Cleanup(); // ncrunch: no coverage
         
     /// <summary>
     /// Restore so obj/project.assets.json exists for all build/rebuild/msbuild/msrebuild tests.

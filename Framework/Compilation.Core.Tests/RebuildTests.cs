@@ -3,7 +3,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class RebuildTests : DotNetTestHelper
+public class RebuildTests : TestHelper
 {
     public RebuildTests() => InitRestore();
 

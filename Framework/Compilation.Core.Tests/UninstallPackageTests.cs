@@ -3,7 +3,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class UninstallPackageTests : DotNetTestHelper
+public class UninstallPackageTests : TestHelper
 {
     public UninstallPackageTests() => Initialize();
 

@@ -7,7 +7,7 @@
 namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
-public class RestoreTests : DotNetTestHelper
+public class RestoreTests : TestHelper
 {
     [TestMethod]
     public void Test_ExplicitRestore()
@@ -147,7 +147,7 @@ public class RestoreTests : DotNetTestHelper
         // Manage your own tasks - better guarantees parallelism than parallel loop.
         for (int i = 0; i < count; i++)
         {
-            DotNetTestHelper helper = new();
+            TestHelper helper = new();
 
             var opt = helper.Opt() with 
             {
@@ -227,7 +227,7 @@ public class RestoreTests : DotNetTestHelper
 
     // Helpers
 
-    private record RestoreInfo(DotNetTestHelper Helper)
+    private record RestoreInfo(TestHelper Helper)
     {
         public DotNetResult? Result { get; set; }
         public Exception? Exception { get; set; }

@@ -5,11 +5,11 @@ namespace JJ.Framework.Compilation.Core.Tests;
 /// <summary>
 /// Tests the public <see cref="DotNet"/> facade by running real dotnet processes against a minimal temp project.
 /// Output assertions verify that meaningful text was produced; disk assertions confirm that artifacts land on disk.
-/// No-option overloads run via <see cref="DotNetTestHelper.InTempDir"/>, which temporarily sets the process command window
+/// No-option overloads run via <see cref="TestHelper.InTempDir"/>, which temporarily sets the process command window
 /// so the child dotnet process finds the temp project without an explicit Dir in options.
 /// </summary>
 [TestClass]
-public class DotNetTests : DotNetTestHelper
+public class DotNetTests : TestHelper
 {
     // TODO: Different types of options aren't tested.
     // TODO: Logging isn't really tested.
