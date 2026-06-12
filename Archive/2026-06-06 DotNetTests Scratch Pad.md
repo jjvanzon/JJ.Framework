@@ -231,4 +231,8 @@ c
         //{
         //    return $"{command} {formattedFile}";
         //}
+
+
+        //AssertContains(result, result.Opt.BinLog); // Only for Build results. Already covered in other tests.
+        //AssertContains(result, "build succeeded"); // MSBuild doesn't say "Build succeeded"
 ```

@@ -141,12 +141,35 @@ public class DotNetTestHelper : IDisposable
         AreEqual(result.HasOutputText, !IsNullOrWhiteSpace(result.OutputText));
         AreEqual(result.Successful,    !(result.HasExitCode || result.HasErrorInOutput || result.HasTimeOut));
 
+        // Args and Opts mentioned in text result.
+        AssertContains(result,    result.Args.Command      );
+        AssertContains(result, $"{result.Args.CommandEnum}");
+        AssertContains(result,    result.Args.ID           );
+        AssertContains(result,    result.Args.Ver          );
+        AssertContains(result,    result.Args.Args         );
+        AssertContains(result,    result.Args.FullArgs     );
+       
+        AssertContains(result,    result.Opt.Dir);
+        AssertContains(result,    result.Opt.File);
+        AssertContains(result,    result.Opt.BuildConf);
+        AssertContains(result,    result.Opt.Args);
+
+        // Conditional checks
+
         if (result.HasErrorInOutput)
         {
             AssertContains(result.OutputText, "[error]");
         }
 
-        AssertContains(result, result.Args.Args);
+        if (Has(result.Opt.TimeOutSec) && result.Opt.TimeOutSec != DefaultOptions.TimeOutSec)
+        {
+            AssertContains(result, $"{result.Opt.TimeOutSec}");
+        }
+
+        if (result.Opt.Verbosity != DefaultOptions.Verbosity)
+        {
+            AssertContains(result, $"{result.Opt.Verbosity}");
+        }
     }
 
     internal void AssertOptsAllOnResult(DotNetResult result)
@@ -156,9 +179,7 @@ public class DotNetTestHelper : IDisposable
         NotNullOrWhiteSpace(      result.Opt.Dir);
         NotNullOrWhiteSpace(      result.Opt.File);
         NotNullOrWhiteSpace(      result.Opt.BuildConf);
-        AssertContains(result,    result.Opt.BuildConf);
         NotNullOrWhiteSpace(      result.Opt.Args);
-        AssertContains(result,    result.Opt.Args);
         IsTrue(                   result.Opt.AutoRestore);
         IsFalse(                  result.Opt.ParallelRestore); // Kept off. Parallel restore evil.
         IsTrue(                   result.Opt.NodeReuse);
@@ -172,14 +193,13 @@ public class DotNetTestHelper : IDisposable
         NotNullOrWhiteSpace(      result.Opt.BinLog); // Only exists for build tasks.
         //AssertContains(result,  result.Opt.BinLog); // Currently not shown: not in descriptor.
         NotNullOrWhiteSpace(      result.Args.Args);
-        AssertContains(result,    result.Args.Args);
     }
 
     internal void AssertOptsAllOnResultForBuild(DotNetResult result)
     {
         AssertOptsAllOnResult(result);
-        //AssertContains(result, "build succeeded"); // MSBuild doesn't say "Build succeeded"
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
+        AssertContains(result, result.Opt.BinLog);
         AssertExists(result.Opt.BinLog);
         AssertDllRelease();
     }
