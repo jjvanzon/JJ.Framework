@@ -107,6 +107,15 @@ public class UninstallPackageTests : TestHelper
         Assert(result);
     });
 
+    [TestMethod] 
+    public void Test_InstallPackage_WithArg_WithOpt()
+    {
+        var opt = Opt();
+        var result = UninstallPackage(ID, "--interactive", opt);
+        AssertContains(result, $"remove \"{opt.File}\" package {ID} --interactive");
+        Assert(result);
+    }
+
     [TestMethod]
     public void Test_UninstallPackage_OptsAllOn_ArgInOpts()
     {

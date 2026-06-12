@@ -11,7 +11,6 @@ RunTests<DotNetLoggerTests>() &&
 RunTests<DotNetOptionsFormatterTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetResultFormatterTests>() &&
-RunTests<DotNetTests>() &&
 RunTests<InstallPackageTests>() &&
 RunTests<MSBuildTests>() &&
 RunTests<MSRebuildTests>() &&

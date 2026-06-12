@@ -280,7 +280,7 @@ public class TestHelper : IDisposable
     /// </summary>
     private string GenerateFileName(string testName = "")
     {
-        Assembly asm = typeof(DotNetTests).Assembly;
+        Assembly asm = typeof(TestHelper).Assembly;
         return $"{asm.GetAssemblyName()}.{RunningTargetFramework}.{testName}.{_randomLetters}";
     }
 
