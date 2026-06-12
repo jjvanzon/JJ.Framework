@@ -248,10 +248,4 @@ public class RestoreTests : TestHelper
         AssertContains(result, "determining projects to restore");
         AssertContains(result, "restored " + CsProjPath);
     }
-
-    internal void AssertOptsAllOn(DotNetResult result)
-    {
-        AssertOptsAllOnBase(result);
-        AssertOptsAllOnArgs(result);
-    }
 }

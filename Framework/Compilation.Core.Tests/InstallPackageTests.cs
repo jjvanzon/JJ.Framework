@@ -219,10 +219,4 @@ public class InstallPackageTests : TestHelper
         AssertContainsAny(result, $"Restored {CsProjPath}", $"Restored {CsProjName}");
         AssertExists(AssetsFilePath);
     }
-
-    internal void AssertOptsAllOn(DotNetResult result)
-    {
-        AssertOptsAllOnBase(result);
-        AssertOptsAllOnArgs(result);
-    }
 }

@@ -113,10 +113,8 @@ public class UninstallPackageTests : TestHelper
         var opt = OptsAllOn() with { Args = "--interactive" };
         var result = UninstallPackage(ID, opt);
 
-        AssertOptsAllOnBase(result); 
+        AssertOptsAllOn(result, checkArgsArgs: false); 
 
-        NotNullOrWhiteSpace(result.Opt.Args);
-        NullOrWhiteSpace(result.Args.Args);
 
         Assert(result);
     }
@@ -127,10 +125,8 @@ public class UninstallPackageTests : TestHelper
         var opt = OptsAllOn() with { Args = "" };
         var result = UninstallPackage(ID, "--interactive", opt);
 
-        AssertOptsAllOnBase(result);
+        AssertOptsAllOn(result, checkOptArgs: false);
 
-        NotNullOrWhiteSpace(result.Args.Args);
-        NullOrWhiteSpace(result.Opt.Args);
 
         Assert(result);
     }

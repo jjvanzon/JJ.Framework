@@ -235,4 +235,29 @@ c
 
         //AssertContains(result, result.Opt.BinLog); // Only for Build results. Already covered in other tests.
         //AssertContains(result, "build succeeded"); // MSBuild doesn't say "Build succeeded"
+
+    /// <summary>
+    /// Checks most, but notably skips checking if Args are filled in
+    /// (result.Args.Args and result.Opts.Args),
+    /// Because UnstallPackage can't always do guarantee it filled in.
+    /// Add a call to <see cref="AssertOptsAllOnArgs"></see> to check those.
+    /// </summary>
+
+    /// <summary>
+    /// Args can't be guaranteed filledin for UninstallPackage
+    /// </summary>
+    internal static void AssertOptsAllOnArgs(DotNetResult result)
+    {
+        NotNullOrWhiteSpace(result.Args.Args);
+        NotNullOrWhiteSpace(result.Opt.Args);
+    }
+
+    // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
+    //static DotNetTestHelper() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
+
+        //NotNullOrWhiteSpace(result.Opt.Args);
+        //NullOrWhiteSpace(result.Args.Args);
+
+        //NotNullOrWhiteSpace(result.Args.Args);
+        //NullOrWhiteSpace(result.Opt.Args);
 ```

@@ -1,23 +1,15 @@
 ﻿#pragma warning disable IDE0002
-// ReSharper disable ReplaceAutoPropertyWithComputedProperty
 
 namespace JJ.Framework.Compilation.Core.Tests;
 
 public class TestHelper : IDisposable
 {
-    // HACK: Update to Visual Studio 18.6.0 and 18.6.2 gave dotnet.exe perf hit.
-    //static DotNetTestHelper() => SetEnvironmentVariable("MSBuildDisableFeaturesFromVersion", "18.6");
-
     internal static DotNetVerbosity Verbosity { get; set; } = Normal;
 
     // Vars
 
     internal const    string ProjectName    = "Temp";
     internal const    string CsProjName = "Temp.csproj";
-    internal const    string DllFileName    = "Temp.dll";
-    private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
-    private  readonly string _randomLetters;
-
     internal const    string ID  = "JJ.Framework.Common.Core";
     internal const    string Ver = "4.6.6251";
     internal          string TempDir        { get; }
@@ -25,6 +17,10 @@ public class TestHelper : IDisposable
     internal          string DllPath        { get; }
     internal          string DllPathRelease { get; }
     internal          string AssetsFilePath { get; }
+
+    private  const    string DllFileName    = "Temp.dll";
+    private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
+    private  readonly string _randomLetters;
 
     // Init
 
@@ -121,7 +117,7 @@ public class TestHelper : IDisposable
         AreEqual(0, result.ExitCode);
     }
 
-    internal static void AssertResultBase(DotNetResult result)
+    private static void AssertResultBase(DotNetResult result)
     {
         // Nulls
         NotNull(result);
@@ -172,13 +168,7 @@ public class TestHelper : IDisposable
         }
     }
 
-    /// <summary>
-    /// Checks most, but notably skips checking if Args are filled in
-    /// (result.Args.Args and result.Opts.Args),
-    /// Because UnstallPackage can't always do guarantee it filled in.
-    /// Add a call to <see cref="AssertOptsAllOnArgs"></see> to check those.
-    /// </summary>
-    internal void AssertOptsAllOnBase(DotNetResult result)
+    internal static void AssertOptsAllOn(DotNetResult result, bool checkArgsArgs = true, bool checkOptArgs = true)
     {
         AssertResultOk(result);
 
@@ -197,21 +187,21 @@ public class TestHelper : IDisposable
         //AssertContains(result,  result.Opt.LogFile); // Might be shown later, currently not command line, not in descriptor.
         NotNullOrWhiteSpace(      result.Opt.BinLog); // Only exists for build tasks.
         //AssertContains(result,  result.Opt.BinLog); // Currently not shown: not in descriptor.
-    }
-    
-    /// <summary>
-    /// Args can't be guaranteed filledin for UninstallPackage
-    /// </summary>
-    internal static void AssertOptsAllOnArgs(DotNetResult result)
-    {
-        NotNullOrWhiteSpace(result.Args.Args);
-        NotNullOrWhiteSpace(result.Opt.Args);
+
+        if (checkArgsArgs)
+        {
+            NotNullOrWhiteSpace(result.Args.Args);
+        }
+
+        if (checkOptArgs)
+        {
+            NotNullOrWhiteSpace(result.Opt.Args);
+        }
     }
 
     internal void AssertOptsAllOnForBuild(DotNetResult result)
     {
-        AssertOptsAllOnBase(result);
-        AssertOptsAllOnArgs(result);
+        AssertOptsAllOn(result);
 
         AssertContains(result, ProjectName + " -> " + DllPathRelease);
         AssertContains(result, result.Opt.BinLog);
