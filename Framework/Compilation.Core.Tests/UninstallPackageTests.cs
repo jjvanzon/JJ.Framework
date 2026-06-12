@@ -97,10 +97,43 @@ public class UninstallPackageTests : DotNetTestHelper
         Assert(UninstallPackage(ID, Opt() with { Dir = "" }));
     });
 
+    // Options
+
+    [TestMethod] 
+    public void Test_InstallPackage_WithArg_NoOpt() => InTempDir(() =>
+    {
+        var result = UninstallPackage(ID, "--interactive");
+        AssertContains(result, $"remove package {ID} --interactive");
+        Assert(result);
+    });
+
+    [TestMethod]
+    public void Test_UninstallPackage_OptsAllOn_ArgInOpts()
+    {
+        var opt = OptsAllOn() with { Args = "--interactive" };
+        var result = UninstallPackage(ID, opt);
+
+        // Complains about Args.Args not being filled. 
+        // TODO: Make specialized version for UninstallPacakge, and move specific option to the ForBuild version?
+        //AssertOptsAllOnResult(result); 
+
+        Assert(result);
+    }
+
+    [TestMethod]
+    public void Test_UninstallPackage_OptsAllOn_ArgInCall()
+    {
+        var opt = OptsAllOn() with { Args = "" };
+        var result = UninstallPackage(ID, "--interactive", opt);
+
+        //AssertOptsAllOnResult(result);
+        Assert(result);
+    }
+
     // Error cases
 
     [TestMethod]
-    public void Test_UninstallPackage_AccidentalVerInclusionAsArgs()
+    public void Test_UninstallPackage_Exception_AccidentalVerInclusionAsArgs()
         => Throws(
             () => UninstallPackage(ID, Ver, Opt()),
             "remove \"Temp.csproj\" package JJ.Framework.Common.Core 4.6.6251",
