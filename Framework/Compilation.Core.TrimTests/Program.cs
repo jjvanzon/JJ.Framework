@@ -7,6 +7,7 @@ RunTests<DotNetArgsFormatterTests>() &&
 RunTests<DotNetArgsTests>() &&
 RunTests<DotNetCmdFormatterTests>() &&
 RunTests<DotNetEnricherTests>() &&
+RunTests<DotNetFilledInTests>() &&
 RunTests<DotNetLoggerTests>() &&
 RunTests<DotNetOptionsFormatterTests>() &&
 RunTests<DotNetOptionsTests>() &&

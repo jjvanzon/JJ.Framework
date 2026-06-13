@@ -10,7 +10,6 @@ using static DotNetArgsFormatterExtensionsAccessor;
 [TestClass]
 public class DotNetArgsFormatterTests
 {
-
     // DotNetArgs
 
     [TestMethod]
@@ -303,8 +302,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_EnumOnly()
     {
-        foreach (var nully1 in TextNullies)
-        foreach (var nully2 in BoolNullies)
+        foreach (var nully1 in NullyTexts)
+        foreach (var nully2 in NullyBools)
         {
             AreEqual("build",            CommandDescriptor(build,            nully1, nully2));
             AreEqual("rebuild",          CommandDescriptor(rebuild,          nully1, nully2));
@@ -319,8 +318,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_CommandStringOnly()
     {
-        foreach(var nully1 in CommandEnumNullies)
-        foreach(var nully2 in BoolNullies)
+        foreach(var nully1 in NullyCommandEnums)
+        foreach(var nully2 in NullyBools)
         {
             AreEqual("build",     CommandDescriptor(nully1, "build",     nully2));
             AreEqual("rebuild",   CommandDescriptor(nully1, "rebuild",   nully2)); // Unrealistic command string (should be "build" + re-flag)
@@ -337,7 +336,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_EnumAndText()
     {
-        foreach (var nully in BoolNullies)
+        foreach (var nully in NullyBools)
         {
             AreEqual("build / blah",               CommandDescriptor(build,            "blah",    nully));
             AreEqual("rebuild / blah",             CommandDescriptor(rebuild,          "blah",    nully));
@@ -403,7 +402,7 @@ public class DotNetArgsFormatterTests
         // All cases represent inconsistent data.
         // (Consistent case would have re flag only when enum also filled.)
         // That why it's meaningful to always show the redundant "(re)" flag
-        foreach(var nully in CommandEnumNullies)
+        foreach(var nully in NullyCommandEnums)
         {
             AreEqual("(re)build",     CommandDescriptor(nully, "build",     Re));
             AreEqual("(re)rebuild",   CommandDescriptor(nully, "rebuild",   Re)); // Redundant re flag displayed correctly. (Command text "rebuild" does not exist: 2x re: text should have been "build".)
@@ -419,7 +418,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_Enum_ReFlagAlreadyImplied()
     {
-        foreach (var nully in TextNullies)
+        foreach (var nully in NullyTexts)
         {
             AreEqual("rebuild",   CommandDescriptor(rebuild,   nully, Re));
             AreEqual("msrebuild", CommandDescriptor(msrebuild, nully, Re));
@@ -429,7 +428,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_EnumShowsReFlag_WhenMisapplied()
     {
-        foreach (var nully in TextNullies)
+        foreach (var nully in NullyTexts)
         {
             AreEqual("(re)build",            CommandDescriptor(build,            nully, Re));
             AreEqual("(re)msbuild",          CommandDescriptor(msbuild,          nully, Re));
@@ -516,7 +515,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_CommandSameAsEnum_OnlyShowsOnlyOne()
     {
-        foreach (var nully in BoolNullies)
+        foreach (var nully in NullyBools)
         {
             AreEqual("build",   CommandDescriptor(build,   "build",   nully));
             AreEqual("msbuild", CommandDescriptor(msbuild, "msbuild", nully));
@@ -527,9 +526,9 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_Nullies_ShowAsNoCommand()
     {
-        foreach (var nully1 in CommandEnumNullies)
-        foreach (var nully2 in TextNullies)
-        foreach (var nully3 in BoolNullies)
+        foreach (var nully1 in NullyCommandEnums)
+        foreach (var nully2 in NullyTexts)
+        foreach (var nully3 in NullyBools)
         {
             AreEqual("<no command>", CommandDescriptor(nully1, nully2, nully3));
         }
@@ -538,8 +537,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_IsRebuildAndNullies_ShowsAsReWithNoCommand()
     {
-        foreach (var nully1 in CommandEnumNullies)
-        foreach (var nully2 in TextNullies)
+        foreach (var nully1 in NullyCommandEnums)
+        foreach (var nully2 in NullyTexts)
         {
             AreEqual("(re-)<no command>", CommandDescriptor(nully1, nully2, Re));
         }
@@ -554,7 +553,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void IDVerDescriptor_OnlyID()
     {
-        foreach (var nully in TextNullies)
+        foreach (var nully in NullyTexts)
         {
             AreEqual("MyPkg", IDVerDescriptor("MyPkg", nully));
         }
@@ -563,7 +562,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void IDVerDescriptor_OnlyVer()
     {
-        foreach (var nully in TextNullies)
+        foreach (var nully in NullyTexts)
         {
             AreEqual("1.0.0", IDVerDescriptor(nully, "1.0.0"));
         }
@@ -572,8 +571,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void IDVerDescriptor_NullyCases()
     {
-        foreach (var nully1 in TextNullies)
-        foreach (var nully2 in TextNullies)
+        foreach (var nully1 in NullyTexts)
+        foreach (var nully2 in NullyTexts)
         {
             AreEqual("", IDVerDescriptor(nully1, nully2));
         }
@@ -588,7 +587,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void ArgPropsDescriptor_NullyArgs()
     {
-        foreach (var nully in TextNullies)
+        foreach (var nully in NullyTexts)
         {
             AreEqual("build --output ./out", ArgPropsDescriptor(nully, "build --output ./out"));
         }
@@ -597,7 +596,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void ArgPropsDescriptor_NullyFullArgs()
     {
-        foreach (var nully in TextNullies)
+        foreach (var nully in NullyTexts)
         {
             AreEqual("--output ./out", ArgPropsDescriptor("--output ./out", nully));
         }
@@ -612,8 +611,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void ArgPropsDescriptor_NullyCases()
     {
-        foreach (var nully1 in TextNullies)
-        foreach (var nully2 in TextNullies)
+        foreach (var nully1 in NullyTexts)
+        foreach (var nully2 in NullyTexts)
         {
             AreEqual("", ArgPropsDescriptor(nully1, nully2));
         }

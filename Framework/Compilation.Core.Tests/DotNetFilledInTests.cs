@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Compilation.Core.Tests;
+﻿using JJ.Framework.Existence.Core;
+
+namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
 public class DotNetFilledInTests
@@ -25,12 +27,13 @@ public class DotNetFilledInTests
     [TestMethod]
     public void Test_DotNetArgs_Nully_CommandEnum()
     {
-        foreach (var nully in CommandEnumNullies)
+        foreach (var nully in NullyCommandEnums)
         {
             AssertNully(new DotNetArgsAccessor { CommandEnum = nully }.Obj);
         }
     }
 
+    // One Prop Filled
 
     [TestMethod]
     public void Test_DotNetArgs_Filled_CommandEnum()
@@ -83,7 +86,48 @@ public class DotNetFilledInTests
         }
     }
 
-    // TODO: Test NotNullWhen.
+    [TestMethod]
+    public void Test_DotNetArgs_FilledInOrNot_AllCombos()
+    {
+        foreach (var commandEnum in FilledCommandEnums.Union(NullyCommandEnums))
+        foreach (var command     in FilledCommands    .Union(NullyTexts))
+        foreach (var id          in FilledIDs         .Union(NullyTexts))
+        foreach (var ver         in FilledVers        .Union(NullyTexts))
+        foreach (var isRebuild   in FilledBools       .Union(NullyBools))
+        foreach (var fullArgs    in FilledTexts       .Union(NullyTexts))
+        {
+            DotNetArgs args = new DotNetArgsAccessor 
+            { 
+                CommandEnum = commandEnum,
+                Command     = command!,
+                ID          = id!,
+                Ver         = ver!,
+                IsRebuild   = isRebuild,
+                FullArgs    = fullArgs!
+            }.Obj;
+
+            bool isNully = commandEnum.In(NullyCommandEnums) &&
+                           command    .In(NullyTexts) &&
+                           id         .In(NullyTexts) &&
+                           ver        .In(NullyTexts) &&
+                           isRebuild  .In(NullyBools) &&
+                           fullArgs   .In(NullyTexts);
+
+            if (isNully)
+            {
+                AssertNully(args);
+            }
+            else
+            {
+                AssertFilled(args);
+            }
+        }
+    }
+
+
+
+
+    // TODO: NotNullWhen.
 
     // Helpers
 

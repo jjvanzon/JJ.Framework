@@ -7,14 +7,15 @@ public class TestHelper : IDisposable
     internal static DotNetVerbosity Verbosity { get; set; } = Normal;
 
     internal const bool Re = true;
-    internal static DotNetCommandEnum[] CommandEnumNullies { get; } = [ default, 0, undefined ];
     internal static DotNetCommandEnum[] FilledCommandEnums { get; } = [ build, rebuild, msbuild, msrebuild, restore, installpackage, uninstallpackage ];
-    internal static string?          [] TextNullies        { get; } = [ null, default, "", " " ];
     internal static string           [] FilledTexts        { get; } = [ "something", "anything ", "---" ];
     internal static string           [] FilledCommands     { get; } = [ "build", "test", "whatevs" ];
     internal static string           [] FilledIDs          { get; } = [ ID, "NoID!" ];
     internal static string           [] FilledVers         { get; } = [ Ver, "Not a ver" ];
-    internal static bool             [] BoolNullies        { get; } = [ default, false ];
+    internal static bool             [] FilledBools        { get; } = [ true ];
+    internal static bool             [] NullyBools         { get; } = [ default, false ];
+    internal static DotNetCommandEnum[] NullyCommandEnums  { get; } = [ default, 0, undefined ];
+    internal static string?          [] NullyTexts         { get; } = [ null, default, "", " " ];
 
     // Vars
 

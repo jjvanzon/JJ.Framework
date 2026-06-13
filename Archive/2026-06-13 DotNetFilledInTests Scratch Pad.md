@@ -10,12 +10,4 @@
     private static readonly DotNetCommandEnum[] _enumNullies = [ 0, default, undefined ];
 
 
-    [TestMethod]
-    public void Test_DotNetArgs_Filled_CommandEnum()
-    {
-        foreach (var filled in FilledCommandEnums)
-        {
-            AssertFilled(new DotNetArgsAccessor { CommandEnum = filled }.Obj);
-        }
-    }
 ```
