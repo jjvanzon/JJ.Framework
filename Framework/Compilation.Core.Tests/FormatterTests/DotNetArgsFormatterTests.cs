@@ -10,10 +10,6 @@ using static DotNetArgsFormatterExtensionsAccessor;
 [TestClass]
 public class DotNetArgsFormatterTests
 {
-    private const bool re = true;
-    private static readonly DotNetCommandEnum[] _enumNullies = [ 0, default, undefined ];
-    private static readonly string?[] _textNullies = [ null, default, "", " " ];
-    private static readonly bool[] _boolNullies = [ default, false ];
 
     // DotNetArgs
 
@@ -307,8 +303,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_EnumOnly()
     {
-        foreach (var nully1 in _textNullies)
-        foreach (var nully2 in _boolNullies)
+        foreach (var nully1 in TextNullies)
+        foreach (var nully2 in BoolNullies)
         {
             AreEqual("build",            CommandDescriptor(build,            nully1, nully2));
             AreEqual("rebuild",          CommandDescriptor(rebuild,          nully1, nully2));
@@ -323,8 +319,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_CommandStringOnly()
     {
-        foreach(var nully1 in _enumNullies)
-        foreach(var nully2 in _boolNullies)
+        foreach(var nully1 in CommandEnumNullies)
+        foreach(var nully2 in BoolNullies)
         {
             AreEqual("build",     CommandDescriptor(nully1, "build",     nully2));
             AreEqual("rebuild",   CommandDescriptor(nully1, "rebuild",   nully2)); // Unrealistic command string (should be "build" + re-flag)
@@ -341,7 +337,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_EnumAndText()
     {
-        foreach (var nully in _boolNullies)
+        foreach (var nully in BoolNullies)
         {
             AreEqual("build / blah",               CommandDescriptor(build,            "blah",    nully));
             AreEqual("rebuild / blah",             CommandDescriptor(rebuild,          "blah",    nully));
@@ -407,120 +403,120 @@ public class DotNetArgsFormatterTests
         // All cases represent inconsistent data.
         // (Consistent case would have re flag only when enum also filled.)
         // That why it's meaningful to always show the redundant "(re)" flag
-        foreach(var nully in _enumNullies)
+        foreach(var nully in CommandEnumNullies)
         {
-            AreEqual("(re)build",     CommandDescriptor(nully, "build",     re));
-            AreEqual("(re)rebuild",   CommandDescriptor(nully, "rebuild",   re)); // Redundant re flag displayed correctly. (Command text "rebuild" does not exist: 2x re: text should have been "build".)
-            AreEqual("(re)msbuild",   CommandDescriptor(nully, "msbuild",   re));
-            AreEqual("(re)msrebuild", CommandDescriptor(nully, "msrebuild", re)); // Redundant re flag displayed correctly. (Command text "msrebuild" does not exist: 2x re: text should have been "msbuild".)
-            AreEqual("(re)restore",   CommandDescriptor(nully, "restore",   re)); // Redundant re flag displayed correctly.
-            AreEqual("(re)add",       CommandDescriptor(nully, "add",       re));
-            AreEqual("(re)remove",    CommandDescriptor(nully, "remove",    re)); // Redundant re flag displayed correctly.
-            AreEqual("(re)whatever",  CommandDescriptor(nully, "whatever",  re));
+            AreEqual("(re)build",     CommandDescriptor(nully, "build",     Re));
+            AreEqual("(re)rebuild",   CommandDescriptor(nully, "rebuild",   Re)); // Redundant re flag displayed correctly. (Command text "rebuild" does not exist: 2x re: text should have been "build".)
+            AreEqual("(re)msbuild",   CommandDescriptor(nully, "msbuild",   Re));
+            AreEqual("(re)msrebuild", CommandDescriptor(nully, "msrebuild", Re)); // Redundant re flag displayed correctly. (Command text "msrebuild" does not exist: 2x re: text should have been "msbuild".)
+            AreEqual("(re)restore",   CommandDescriptor(nully, "restore",   Re)); // Redundant re flag displayed correctly.
+            AreEqual("(re)add",       CommandDescriptor(nully, "add",       Re));
+            AreEqual("(re)remove",    CommandDescriptor(nully, "remove",    Re)); // Redundant re flag displayed correctly.
+            AreEqual("(re)whatever",  CommandDescriptor(nully, "whatever",  Re));
         }
     }
 
     [TestMethod]
     public void CommandDescriptor_Enum_ReFlagAlreadyImplied()
     {
-        foreach (var nully in _textNullies)
+        foreach (var nully in TextNullies)
         {
-            AreEqual("rebuild",   CommandDescriptor(rebuild,   nully, re));
-            AreEqual("msrebuild", CommandDescriptor(msrebuild, nully, re));
+            AreEqual("rebuild",   CommandDescriptor(rebuild,   nully, Re));
+            AreEqual("msrebuild", CommandDescriptor(msrebuild, nully, Re));
         }
     }
 
     [TestMethod]
     public void CommandDescriptor_EnumShowsReFlag_WhenMisapplied()
     {
-        foreach (var nully in _textNullies)
+        foreach (var nully in TextNullies)
         {
-            AreEqual("(re)build",            CommandDescriptor(build,            nully, re));
-            AreEqual("(re)msbuild",          CommandDescriptor(msbuild,          nully, re));
-            AreEqual("(re)restore",          CommandDescriptor(restore,          nully, re));
-            AreEqual("(re)installpackage",   CommandDescriptor(installpackage,   nully, re));
-            AreEqual("(re)uninstallpackage", CommandDescriptor(uninstallpackage, nully, re));
+            AreEqual("(re)build",            CommandDescriptor(build,            nully, Re));
+            AreEqual("(re)msbuild",          CommandDescriptor(msbuild,          nully, Re));
+            AreEqual("(re)restore",          CommandDescriptor(restore,          nully, Re));
+            AreEqual("(re)installpackage",   CommandDescriptor(installpackage,   nully, Re));
+            AreEqual("(re)uninstallpackage", CommandDescriptor(uninstallpackage, nully, Re));
         }
     }
 
     [TestMethod]
     public void CommandDescriptor_EnumAndText_WithReFlag_NormalCases()
     {
-        AreEqual("rebuild / build",                CommandDescriptor(rebuild,          "build",   re));
-        AreEqual("msrebuild / msbuild",            CommandDescriptor(msrebuild,        "msbuild", re));
+        AreEqual("rebuild / build",                CommandDescriptor(rebuild,          "build",   Re));
+        AreEqual("msrebuild / msbuild",            CommandDescriptor(msrebuild,        "msbuild", Re));
     }
 
     [TestMethod]
     public void CommandDescriptor_EnumAndText_WithReFlag_AllCombos()
     {
-        AreEqual("build / (re)blah",               CommandDescriptor(build,            "blah",    re));
-        AreEqual("rebuild / (re)blah",             CommandDescriptor(rebuild,          "blah",    re));
-        AreEqual("msbuild / (re)blah",             CommandDescriptor(msbuild,          "blah",    re));
-        AreEqual("msrebuild / (re)blah",           CommandDescriptor(msrebuild,        "blah",    re));
-        AreEqual("restore / (re)blah",             CommandDescriptor(restore,          "blah",    re));
-        AreEqual("installpackage / (re)blah",      CommandDescriptor(installpackage,   "blah",    re));
-        AreEqual("uninstallpackage / (re)blah",    CommandDescriptor(uninstallpackage, "blah",    re));
+        AreEqual("build / (re)blah",               CommandDescriptor(build,            "blah",    Re));
+        AreEqual("rebuild / (re)blah",             CommandDescriptor(rebuild,          "blah",    Re));
+        AreEqual("msbuild / (re)blah",             CommandDescriptor(msbuild,          "blah",    Re));
+        AreEqual("msrebuild / (re)blah",           CommandDescriptor(msrebuild,        "blah",    Re));
+        AreEqual("restore / (re)blah",             CommandDescriptor(restore,          "blah",    Re));
+        AreEqual("installpackage / (re)blah",      CommandDescriptor(installpackage,   "blah",    Re));
+        AreEqual("uninstallpackage / (re)blah",    CommandDescriptor(uninstallpackage, "blah",    Re));
 
-        AreEqual("build / (re)build",              CommandDescriptor(build,            "build",   re));
-        AreEqual("rebuild / build",                CommandDescriptor(rebuild,          "build",   re));
-        AreEqual("msbuild / (re)build",            CommandDescriptor(msbuild,          "build",   re));
-        AreEqual("msrebuild / (re)build",          CommandDescriptor(msrebuild,        "build",   re));
-        AreEqual("restore / (re)build",            CommandDescriptor(restore,          "build",   re));
-        AreEqual("installpackage / (re)build",     CommandDescriptor(installpackage,   "build",   re));
-        AreEqual("uninstallpackage / (re)build",   CommandDescriptor(uninstallpackage, "build",   re));
+        AreEqual("build / (re)build",              CommandDescriptor(build,            "build",   Re));
+        AreEqual("rebuild / build",                CommandDescriptor(rebuild,          "build",   Re));
+        AreEqual("msbuild / (re)build",            CommandDescriptor(msbuild,          "build",   Re));
+        AreEqual("msrebuild / (re)build",          CommandDescriptor(msrebuild,        "build",   Re));
+        AreEqual("restore / (re)build",            CommandDescriptor(restore,          "build",   Re));
+        AreEqual("installpackage / (re)build",     CommandDescriptor(installpackage,   "build",   Re));
+        AreEqual("uninstallpackage / (re)build",   CommandDescriptor(uninstallpackage, "build",   Re));
         
-        AreEqual("build / (re)rebuild",            CommandDescriptor(build,            "rebuild", re));
-        AreEqual("rebuild / (re)rebuild",          CommandDescriptor(rebuild,          "rebuild", re));
-        AreEqual("msbuild / (re)rebuild",          CommandDescriptor(msbuild,          "rebuild", re));
-        AreEqual("msrebuild / (re)rebuild",        CommandDescriptor(msrebuild,        "rebuild", re));
-        AreEqual("restore / (re)rebuild",          CommandDescriptor(restore,          "rebuild", re));
-        AreEqual("installpackage / (re)rebuild",   CommandDescriptor(installpackage,   "rebuild", re));
-        AreEqual("uninstallpackage / (re)rebuild", CommandDescriptor(uninstallpackage, "rebuild", re));
+        AreEqual("build / (re)rebuild",            CommandDescriptor(build,            "rebuild", Re));
+        AreEqual("rebuild / (re)rebuild",          CommandDescriptor(rebuild,          "rebuild", Re));
+        AreEqual("msbuild / (re)rebuild",          CommandDescriptor(msbuild,          "rebuild", Re));
+        AreEqual("msrebuild / (re)rebuild",        CommandDescriptor(msrebuild,        "rebuild", Re));
+        AreEqual("restore / (re)rebuild",          CommandDescriptor(restore,          "rebuild", Re));
+        AreEqual("installpackage / (re)rebuild",   CommandDescriptor(installpackage,   "rebuild", Re));
+        AreEqual("uninstallpackage / (re)rebuild", CommandDescriptor(uninstallpackage, "rebuild", Re));
         
-        AreEqual("build / (re)msbuild",            CommandDescriptor(build,            "msbuild", re));
-        AreEqual("rebuild / (re)msbuild",          CommandDescriptor(rebuild,          "msbuild", re));
-        AreEqual("msbuild / (re)msbuild",          CommandDescriptor(msbuild,          "msbuild", re));
-        AreEqual("msrebuild / msbuild",            CommandDescriptor(msrebuild,        "msbuild", re));
-        AreEqual("restore / (re)msbuild",          CommandDescriptor(restore,          "msbuild", re));
-        AreEqual("installpackage / (re)msbuild",   CommandDescriptor(installpackage,   "msbuild", re));
-        AreEqual("uninstallpackage / (re)msbuild", CommandDescriptor(uninstallpackage, "msbuild", re));
+        AreEqual("build / (re)msbuild",            CommandDescriptor(build,            "msbuild", Re));
+        AreEqual("rebuild / (re)msbuild",          CommandDescriptor(rebuild,          "msbuild", Re));
+        AreEqual("msbuild / (re)msbuild",          CommandDescriptor(msbuild,          "msbuild", Re));
+        AreEqual("msrebuild / msbuild",            CommandDescriptor(msrebuild,        "msbuild", Re));
+        AreEqual("restore / (re)msbuild",          CommandDescriptor(restore,          "msbuild", Re));
+        AreEqual("installpackage / (re)msbuild",   CommandDescriptor(installpackage,   "msbuild", Re));
+        AreEqual("uninstallpackage / (re)msbuild", CommandDescriptor(uninstallpackage, "msbuild", Re));
         
-        AreEqual("build / (re)add",                CommandDescriptor(build,            "add",     re));
-        AreEqual("rebuild / (re)add",              CommandDescriptor(rebuild,          "add",     re));
-        AreEqual("msbuild / (re)add",              CommandDescriptor(msbuild,          "add",     re));
-        AreEqual("msrebuild / (re)add",            CommandDescriptor(msrebuild,        "add",     re));
-        AreEqual("restore / (re)add",              CommandDescriptor(restore,          "add",     re));
-        AreEqual("installpackage / (re)add",       CommandDescriptor(installpackage,   "add",     re));
-        AreEqual("uninstallpackage / (re)add",     CommandDescriptor(uninstallpackage, "add",     re));
+        AreEqual("build / (re)add",                CommandDescriptor(build,            "add",     Re));
+        AreEqual("rebuild / (re)add",              CommandDescriptor(rebuild,          "add",     Re));
+        AreEqual("msbuild / (re)add",              CommandDescriptor(msbuild,          "add",     Re));
+        AreEqual("msrebuild / (re)add",            CommandDescriptor(msrebuild,        "add",     Re));
+        AreEqual("restore / (re)add",              CommandDescriptor(restore,          "add",     Re));
+        AreEqual("installpackage / (re)add",       CommandDescriptor(installpackage,   "add",     Re));
+        AreEqual("uninstallpackage / (re)add",     CommandDescriptor(uninstallpackage, "add",     Re));
         
-        AreEqual("build / (re)restore",            CommandDescriptor(build,            "restore", re));
-        AreEqual("rebuild / (re)restore",          CommandDescriptor(rebuild,          "restore", re));
-        AreEqual("msbuild / (re)restore",          CommandDescriptor(msbuild,          "restore", re));
-        AreEqual("msrebuild / (re)restore",        CommandDescriptor(msrebuild,        "restore", re));
-        AreEqual("restore / (re)restore",          CommandDescriptor(restore,          "restore", re));
-        AreEqual("installpackage / (re)restore",   CommandDescriptor(installpackage,   "restore", re));
-        AreEqual("uninstallpackage / (re)restore", CommandDescriptor(uninstallpackage, "restore", re));
+        AreEqual("build / (re)restore",            CommandDescriptor(build,            "restore", Re));
+        AreEqual("rebuild / (re)restore",          CommandDescriptor(rebuild,          "restore", Re));
+        AreEqual("msbuild / (re)restore",          CommandDescriptor(msbuild,          "restore", Re));
+        AreEqual("msrebuild / (re)restore",        CommandDescriptor(msrebuild,        "restore", Re));
+        AreEqual("restore / (re)restore",          CommandDescriptor(restore,          "restore", Re));
+        AreEqual("installpackage / (re)restore",   CommandDescriptor(installpackage,   "restore", Re));
+        AreEqual("uninstallpackage / (re)restore", CommandDescriptor(uninstallpackage, "restore", Re));
         
-        AreEqual("build / (re)remove",             CommandDescriptor(build,            "remove",  re));
-        AreEqual("rebuild / (re)remove",           CommandDescriptor(rebuild,          "remove",  re));
-        AreEqual("msbuild / (re)remove",           CommandDescriptor(msbuild,          "remove",  re));
-        AreEqual("msrebuild / (re)remove",         CommandDescriptor(msrebuild,        "remove",  re));
-        AreEqual("restore / (re)remove",           CommandDescriptor(restore,          "remove",  re));
-        AreEqual("installpackage / (re)remove",    CommandDescriptor(installpackage,   "remove",  re));
-        AreEqual("uninstallpackage / (re)remove",  CommandDescriptor(uninstallpackage, "remove",  re));
+        AreEqual("build / (re)remove",             CommandDescriptor(build,            "remove",  Re));
+        AreEqual("rebuild / (re)remove",           CommandDescriptor(rebuild,          "remove",  Re));
+        AreEqual("msbuild / (re)remove",           CommandDescriptor(msbuild,          "remove",  Re));
+        AreEqual("msrebuild / (re)remove",         CommandDescriptor(msrebuild,        "remove",  Re));
+        AreEqual("restore / (re)remove",           CommandDescriptor(restore,          "remove",  Re));
+        AreEqual("installpackage / (re)remove",    CommandDescriptor(installpackage,   "remove",  Re));
+        AreEqual("uninstallpackage / (re)remove",  CommandDescriptor(uninstallpackage, "remove",  Re));
     }
 
     [TestMethod]
     public void CommandDescriptor_WithReEnumAndReFlag()
     {
-        AreEqual("rebuild",   CommandDescriptor(rebuild,   null, re));
-        AreEqual("msrebuild", CommandDescriptor(msrebuild, null, re));
+        AreEqual("rebuild",   CommandDescriptor(rebuild,   null, Re));
+        AreEqual("msrebuild", CommandDescriptor(msrebuild, null, Re));
     }
 
     [TestMethod]
     public void CommandDescriptor_CommandSameAsEnum_OnlyShowsOnlyOne()
     {
-        foreach (var nully in _boolNullies)
+        foreach (var nully in BoolNullies)
         {
             AreEqual("build",   CommandDescriptor(build,   "build",   nully));
             AreEqual("msbuild", CommandDescriptor(msbuild, "msbuild", nully));
@@ -531,9 +527,9 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_Nullies_ShowAsNoCommand()
     {
-        foreach (var nully1 in _enumNullies)
-        foreach (var nully2 in _textNullies)
-        foreach (var nully3 in _boolNullies)
+        foreach (var nully1 in CommandEnumNullies)
+        foreach (var nully2 in TextNullies)
+        foreach (var nully3 in BoolNullies)
         {
             AreEqual("<no command>", CommandDescriptor(nully1, nully2, nully3));
         }
@@ -542,10 +538,10 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void CommandDescriptor_IsRebuildAndNullies_ShowsAsReWithNoCommand()
     {
-        foreach (var nully1 in _enumNullies)
-        foreach (var nully2 in _textNullies)
+        foreach (var nully1 in CommandEnumNullies)
+        foreach (var nully2 in TextNullies)
         {
-            AreEqual("(re-)<no command>", CommandDescriptor(nully1, nully2, re));
+            AreEqual("(re-)<no command>", CommandDescriptor(nully1, nully2, Re));
         }
     }
 
@@ -558,7 +554,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void IDVerDescriptor_OnlyID()
     {
-        foreach (var nully in _textNullies)
+        foreach (var nully in TextNullies)
         {
             AreEqual("MyPkg", IDVerDescriptor("MyPkg", nully));
         }
@@ -567,7 +563,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void IDVerDescriptor_OnlyVer()
     {
-        foreach (var nully in _textNullies)
+        foreach (var nully in TextNullies)
         {
             AreEqual("1.0.0", IDVerDescriptor(nully, "1.0.0"));
         }
@@ -576,8 +572,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void IDVerDescriptor_NullyCases()
     {
-        foreach (var nully1 in _textNullies)
-        foreach (var nully2 in _textNullies)
+        foreach (var nully1 in TextNullies)
+        foreach (var nully2 in TextNullies)
         {
             AreEqual("", IDVerDescriptor(nully1, nully2));
         }
@@ -592,7 +588,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void ArgPropsDescriptor_NullyArgs()
     {
-        foreach (var nully in _textNullies)
+        foreach (var nully in TextNullies)
         {
             AreEqual("build --output ./out", ArgPropsDescriptor(nully, "build --output ./out"));
         }
@@ -601,7 +597,7 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void ArgPropsDescriptor_NullyFullArgs()
     {
-        foreach (var nully in _textNullies)
+        foreach (var nully in TextNullies)
         {
             AreEqual("--output ./out", ArgPropsDescriptor("--output ./out", nully));
         }
@@ -616,8 +612,8 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void ArgPropsDescriptor_NullyCases()
     {
-        foreach (var nully1 in _textNullies)
-        foreach (var nully2 in _textNullies)
+        foreach (var nully1 in TextNullies)
+        foreach (var nully2 in TextNullies)
         {
             AreEqual("", ArgPropsDescriptor(nully1, nully2));
         }

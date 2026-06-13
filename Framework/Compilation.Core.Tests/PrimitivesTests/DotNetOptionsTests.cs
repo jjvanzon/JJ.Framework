@@ -44,7 +44,6 @@ public class DotNetOptionsTests : TestHelper
     // - Args
     // - NodeReuse (how?), TimeOutSec
     //  Do not test: 
-    // - Dir/File/BuildConf (already adequately tested)
     // - Log options (logging tested separately).
 
     // LogFile
