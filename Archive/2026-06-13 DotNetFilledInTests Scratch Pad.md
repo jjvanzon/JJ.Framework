@@ -23,4 +23,9 @@
             AssertNully(new DotNetArgsAccessor { CommandEnum = nully }.Obj);
         }
     }
+
+
+        //return opt.HasValue && 
+        //       opt.Value != default && 
+        //       opt.Value != DefaultOptions;
 ```

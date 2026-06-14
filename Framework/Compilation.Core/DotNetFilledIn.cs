@@ -7,39 +7,131 @@ internal static class DotNetFilledInUtil
 {
     public static bool FilledIn([NotNullWhen(true)] DotNetArgs? args)
     {
-        if (args == null) return false;
+        if (args == null) 
+            return false;
 
-        if (Has(args.IsRebuild  )) return true;
-        if (Has(args.CommandEnum)) return true;
-        if (Has(args.Command    )) return true;
-        if (Has(args.ID         )) return true;
-        if (Has(args.Ver        )) return true;
-        if (Has(args.Args       )) return true;
-        if (Has(args.FullArgs   )) return true;
+        if (Has(args.IsRebuild))
+            return true;
+
+        if (Has(args.CommandEnum))
+            return true;
+
+        if (Has(args.Command))
+            return true;
+
+        if (Has(args.ID))
+            return true;
+
+        if (Has(args.Ver))
+            return true;
+
+        if (Has(args.Args))
+            return true;
+
+        if (Has(args.FullArgs))
+            return true;
 
         return false;
     }
 
     public static bool FilledIn(DotNetOptions? opt)
     {
-        return opt.HasValue && opt.Value != default && opt.Value != DefaultOptions;
+        if (!opt.HasValue) 
+            return false;
+
+        return FilledIn(opt.Value);
+    }
+
+    public static bool FilledIn(DotNetOptions opt)
+    {
+        if (opt == default)
+            return false;
+
+        if (opt == DefaultOptions)
+            return false;
+
+        if (Has(opt.Dir))
+            return true;
+
+        if (Has(opt.File))
+            return true;
+
+        if (Has(opt.BuildConf))
+            return true;
+
+        if (Has(opt.Args))
+            return true;
+
+        if (Has(opt.AutoRestore))
+            return true;
+
+        if (Has(opt.ParallelRestore))
+            return true;
+
+        if (Has(opt.NodeReuse))
+            return true;
+
+        if (Has(opt.LogFile))
+            return true;
+
+        if (Has(opt.BinLog))
+            return true;
+
+        if (Has(opt.TimeOutSec) && opt.TimeOutSec != DefaultOptions.TimeOutSec)
+            return true;
+
+        if (Has(opt.Verbosity) && opt.Verbosity != DefaultOptions.Verbosity)
+            return true;
+
+        if (Has(opt.LogAction) && opt.LogAction != DefaultOptions.LogAction)
+            return true;
+
+        return false;
     }
 
     public static bool FilledIn(DotNetResult? result)
     {
-        if (result == null) return false;
-        //if (Has(result.Successful       )) return true; // Messes with things
-        if (Has(result.HasExitCode      )) return true;
-        if (Has(result.HasErrorText     )) return true;
-        if (Has(result.HasOutputText    )) return true;
-        if (Has(result.HasErrorInOutput )) return true;
-        if (Has(result.HasTimeOut       )) return true;
-        if (Has(result.ExitCode         )) return true;
-        if (Has(result.Opt              )) return true;
-        if (Has(result.Args             )) return true;
-        //if (Has(result.Text             )) return true; // Messes with things
-        if (Has(result.ErrorText        )) return true;
-        if (Has(result.OutputText       )) return true;
+        if (result == null)
+            return false;
+
+        if (Has(result.HasExitCode))
+            return true;
+
+        if (Has(result.HasErrorText))
+            return true;
+
+        if (Has(result.HasOutputText))
+            return true;
+
+        if (Has(result.HasErrorInOutput))
+            return true;
+
+        if (Has(result.HasTimeOut))
+            return true;
+
+        if (Has(result.ExitCode))
+            return true;
+
+        if (Has(result.Opt))
+            return true;
+
+        if (Has(result.Args))
+            return true;
+
+        if (Has(result.ErrorText))
+            return true;
+
+        if (Has(result.OutputText))
+            return true;
+
+        // Outcommented: These mess with things.
+
+        //if (Has(result.Successful)) 
+        //    return true; 
+       
+        //if (Has(result.Text)) 
+        //    return true; 
+
         return false;
     }
 }

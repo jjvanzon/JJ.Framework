@@ -1,10 +1,10 @@
 ﻿// ReSharper disable ReturnValueOfPureMethodIsNotUsed
 // ReSharper disable ReturnTypeCanBeNotNullable
 
-namespace JJ.Framework.Compilation.Core.Tests;
+namespace JJ.Framework.Compilation.Core.Tests.FilledInTests;
 
 [TestClass]
-public class DotNetFilledInTests
+public class DotNetArgsFilledInTests
 {
     [TestMethod]
     public void Test_DotNetArgs_Nully()

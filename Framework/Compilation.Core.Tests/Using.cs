@@ -24,6 +24,7 @@ global using static JJ.Framework.Compilation.Core.Tests.TestHelper;
 global using JJ.Framework.Compilation.Core.Tests;
 global using JJ.Framework.Compilation.Core.Tests.FormatterTests;
 global using JJ.Framework.Compilation.Core.Tests.PrimitivesTests;
+global using JJ.Framework.Compilation.Core.Tests.FilledInTests;
 global using static System.Environment;
 global using static System.Console;
 global using static JJ.Framework.Testing.Core.TestRunner;

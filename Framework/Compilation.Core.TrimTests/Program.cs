@@ -3,12 +3,13 @@
 
 bool success =
 RunTests<BuildTests>() &&
+RunTests<DotNetArgsFilledInTests>() &&
 RunTests<DotNetArgsFormatterTests>() &&
 RunTests<DotNetArgsTests>() &&
 RunTests<DotNetCmdFormatterTests>() &&
 RunTests<DotNetEnricherTests>() &&
-RunTests<DotNetFilledInTests>() &&
 RunTests<DotNetLoggerTests>() &&
+RunTests<DotNetOptionsFilledInTests>() &&
 RunTests<DotNetOptionsFormatterTests>() &&
 RunTests<DotNetOptionsTests>() &&
 RunTests<DotNetResultFormatterTests>() &&
