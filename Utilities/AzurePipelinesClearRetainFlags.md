@@ -63,4 +63,5 @@ do {
 
     $maxTime = $releases.value[-1].createdOn
 
-} while ($releases.value.Count -eq 100 -and ++$i -lt 50)```
+} while ($releases.value.Count -eq 100 -and ++$i -lt 50)
+```
