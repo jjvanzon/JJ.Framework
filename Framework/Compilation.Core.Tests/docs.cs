@@ -11,3 +11,9 @@
 /// Opt() and GetOpt() are synonyms here.
 /// </summary>
 public struct _getopt;
+
+/// <summary>
+/// ToString() would trigger a nullability compiler error,
+/// if Has/FilledIn/IsNully NotNullWhen attribute set wrong.
+/// </summary>
+public struct _notnullwhentests;

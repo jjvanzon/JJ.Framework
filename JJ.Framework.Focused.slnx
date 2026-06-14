@@ -1,7 +1,4 @@
 <Solution>
-  <Project Path="Framework\Testing.Core\JJ.Framework.Testing.Core.csproj" />
-  <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
-  <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
     <File Path="Directory.Build.targets" />
@@ -23,12 +20,15 @@
   <Project Path="Framework/Testing.Core.MSTestless/JJ.Framework.Testing.Core.MSTestless.csproj" />
   <Project Path="Framework/Testing.Core.NCrunchless/JJ.Framework.Testing.Core.NCrunchless.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
-  <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
-  <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
-  <Project Path="Framework\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
-  <Project Path="Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
-  <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
   <Project Path="Framework\Collections.Core\JJ.Framework.Collections.Core.csproj" />
   <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
+  <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
+  <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
+  <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
+  <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
+  <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
+  <Project Path="Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
+  <Project Path="Framework\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
+  <Project Path="Framework\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   <Project Path="Framework\Text.Core\JJ.Framework.Text.Core.csproj" />
 </Solution>

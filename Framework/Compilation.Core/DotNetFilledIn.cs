@@ -1,8 +1,11 @@
-﻿namespace JJ.Framework.Compilation.Core;
+﻿global using System.Diagnostics.CodeAnalysis;
+// ReSharper disable RedundantNullableFlowAttribute
+
+namespace JJ.Framework.Compilation.Core;
 
 internal static class DotNetFilledInUtil
 {
-    public static bool FilledIn(DotNetArgs? args)
+    public static bool FilledIn([NotNullWhen(true)] DotNetArgs? args)
     {
         if (args == null) return false;
 
@@ -43,28 +46,28 @@ internal static class DotNetFilledInUtil
 
 public static class DotNetFilledInHelper
 {
-    public static bool FilledIn(     DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
-    public static bool FilledIn(     DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
-    public static bool FilledIn(     DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
-    public static bool FilledIn(     DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
-    public static bool Has     (     DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
-    public static bool Has     (     DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
-    public static bool Has     (     DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
-    public static bool Has     (     DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
-    public static bool IsNully (     DotNetArgs?    args  ) => !DotNetFilledInUtil.FilledIn(args);
-    public static bool IsNully (     DotNetOptions  opt   ) => !DotNetFilledInUtil.FilledIn(opt);
-    public static bool IsNully (     DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
-    public static bool IsNully (     DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
+    public static bool FilledIn([NotNullWhen(true )]      DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
+    public static bool FilledIn([NotNullWhen(true )]      DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    public static bool FilledIn([NotNullWhen(true )]      DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    public static bool FilledIn([NotNullWhen(true )]      DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
+    public static bool Has     ([NotNullWhen(true )]      DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
+    public static bool Has     ([NotNullWhen(true )]      DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    public static bool Has     ([NotNullWhen(true )]      DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    public static bool Has     ([NotNullWhen(true )]      DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
+    public static bool IsNully ([NotNullWhen(false)]      DotNetArgs?    args  ) => !DotNetFilledInUtil.FilledIn(args);
+    public static bool IsNully ([NotNullWhen(false)]      DotNetOptions  opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    public static bool IsNully ([NotNullWhen(false)]      DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    public static bool IsNully ([NotNullWhen(false)]      DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
 }
 
 public static class DotNetFilledInExtensions
 {
-    public static bool FilledIn(this DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
-    public static bool FilledIn(this DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
-    public static bool FilledIn(this DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
-    public static bool FilledIn(this DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
-    public static bool IsNully (this DotNetArgs?    args  ) => !DotNetFilledInUtil.FilledIn(args);
-    public static bool IsNully (this DotNetOptions  opt   ) => !DotNetFilledInUtil.FilledIn(opt);
-    public static bool IsNully (this DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
-    public static bool IsNully (this DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
+    public static bool FilledIn([NotNullWhen(true )] this DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
+    public static bool FilledIn([NotNullWhen(true )] this DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    public static bool FilledIn([NotNullWhen(true )] this DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    public static bool FilledIn([NotNullWhen(true )] this DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
+    public static bool IsNully ([NotNullWhen(false)] this DotNetArgs?    args  ) => !DotNetFilledInUtil.FilledIn(args);
+    public static bool IsNully ([NotNullWhen(false)] this DotNetOptions  opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    public static bool IsNully ([NotNullWhen(false)] this DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    public static bool IsNully ([NotNullWhen(false)] this DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
 }

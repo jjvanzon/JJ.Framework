@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.Compilation.Core.Tests;
+﻿// ReSharper disable ReturnValueOfPureMethodIsNotUsed
+// ReSharper disable ReturnTypeCanBeNotNullable
+
+namespace JJ.Framework.Compilation.Core.Tests;
 
 [TestClass]
 public class DotNetFilledInTests
@@ -50,47 +53,6 @@ public class DotNetFilledInTests
     }
 
     [TestMethod]
-    public void Test_DotNetArgs_FilledInOrNot_AllCombos()
-    {
-        foreach (var commandEnum in FilledCommandEnums.Union(NullyCommandEnums))
-        foreach (var command     in FilledCommands    .Union(NullyTexts))
-        foreach (var id          in FilledIDs         .Union(NullyTexts))
-        foreach (var ver         in FilledVers        .Union(NullyTexts))
-        foreach (var extraArgs   in FilledTexts       .Union(NullyTexts))
-        foreach (var isRebuild   in FilledBools       .Union(NullyBools))
-        foreach (var fullArgs    in FilledTexts       .Union(NullyTexts))
-        {
-            DotNetArgs args = new DotNetArgsAccessor 
-            { 
-                CommandEnum = commandEnum,
-                Command     = command!,
-                ID          = id!,
-                Ver         = ver!,
-                IsRebuild   = isRebuild,
-                Args        = extraArgs!,
-                FullArgs    = fullArgs!
-            }.Obj;
-
-            bool isNully = commandEnum.In(NullyCommandEnums) &&
-                           command    .In(NullyTexts) &&
-                           id         .In(NullyTexts) &&
-                           ver        .In(NullyTexts) &&
-                           extraArgs  .In(NullyTexts) &&
-                           isRebuild  .In(NullyBools) &&
-                           fullArgs   .In(NullyTexts);
-
-            if (isNully)
-            {
-                AssertNully(args);
-            }
-            else
-            {
-                AssertFilled(args);
-            }
-        }
-    }
-
-    [TestMethod]
     public void Test_DotNetArgs_OnePropNully()
     {
         foreach (var nully in NullyCommandEnums)
@@ -135,9 +97,59 @@ public class DotNetFilledInTests
         }
     }
 
-    // TODO: NotNullWhen.
+    [TestMethod]
+    public void Test_DotNetArgs_FilledOrNot_AllCombos()
+    {
+        foreach (var commandEnum in FilledCommandEnums.Union(NullyCommandEnums))
+        foreach (var command     in FilledCommands    .Union(NullyTexts))
+        foreach (var id          in FilledIDs         .Union(NullyTexts))
+        foreach (var ver         in FilledVers        .Union(NullyTexts))
+        foreach (var extraArgs   in FilledTexts       .Union(NullyTexts))
+        foreach (var isRebuild   in FilledBools       .Union(NullyBools))
+        foreach (var fullArgs    in FilledTexts       .Union(NullyTexts))
+        {
+            var args = new DotNetArgsAccessor 
+            { 
+                CommandEnum = commandEnum,
+                Command     = command!,
+                ID          = id!,
+                Ver         = ver!,
+                IsRebuild   = isRebuild,
+                Args        = extraArgs!,
+                FullArgs    = fullArgs!
+            }.Obj;
 
+            bool isNully = commandEnum.In(NullyCommandEnums) &&
+                           command    .In(NullyTexts) &&
+                           id         .In(NullyTexts) &&
+                           ver        .In(NullyTexts) &&
+                           extraArgs  .In(NullyTexts) &&
+                           isRebuild  .In(NullyBools) &&
+                           fullArgs   .In(NullyTexts);
 
+            if (isNully)
+            {
+                AssertNully(args);
+            }
+            else
+            {
+                AssertFilled(args);
+            }
+        }
+    }
+
+    /// <inheritdoc cref="_notnullwhentests" />
+    [TestMethod]
+    public void Test_DotNetArgs_NotNullWhen()
+    {
+        static DotNetArgs? Get() => new DotNetArgsAccessor().Obj;
+
+        { DotNetArgs? args = Get(); if ( Has     (args )) args.ToString(); }
+        { DotNetArgs? args = Get(); if ( FilledIn(args )) args.ToString(); }
+        { DotNetArgs? args = Get(); if (!IsNully (args )) args.ToString(); }
+        { DotNetArgs? args = Get(); if ( args.FilledIn()) args.ToString(); }
+        { DotNetArgs? args = Get(); if (!args.IsNully ()) args.ToString(); }
+    }
     // Helpers
 
     private static void AssertNully(DotNetArgs? dotNetArgs, [ArgExpress(nameof(dotNetArgs))] string expr = "")
