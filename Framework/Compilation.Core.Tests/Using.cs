@@ -2,6 +2,7 @@ global using System.Reflection;
 global using System.Diagnostics.CodeAnalysis;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Reflection.Core;
+global using JJ.Framework.Existence.Core;
 global using JJ.Framework.Compilation.Core.Primitives;
 global using JJ.Framework.Compilation.Core.Tests.Accessors;
 global using JJ.Framework.Compilation.Core.Tests.docs;
