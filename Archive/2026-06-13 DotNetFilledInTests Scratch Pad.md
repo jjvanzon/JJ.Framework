@@ -28,4 +28,9 @@
         //return opt.HasValue && 
         //       opt.Value != default && 
         //       opt.Value != DefaultOptions;
+
+
+    //private static bool HasDefaults(DotNetOptions opt)
+    //    =>!Has(opt.Dir) &&
+
 ```

@@ -12,14 +12,26 @@ public class DotNetOptionsFilledInTests
     [TestMethod]
     public void Test_DotNetOptions_Nully()
     {
-        DotNetOptions? @null = null;
-        AssertNully(@null);
-
-        var @new = new DotNetOptions();
-        AssertNully(@new);
-
-        var @default = default(DotNetOptions);
-        AssertNully(@new);
+        {
+            DotNetOptions? @null = null;
+            AssertNully(@null);
+        }
+        {
+            DotNetOptions @new = new();
+            AssertNully(@new);
+        }
+        {
+            DotNetOptions? nullyNew = new();
+            AssertNully(nullyNew);
+        }
+        {
+            DotNetOptions @default = default;
+            AssertNully(@default);
+        }
+        {
+            DotNetOptions? nullyDefault = default;
+            AssertNully(nullyDefault);
+        }
     }
 
     [TestMethod]
@@ -134,19 +146,31 @@ public class DotNetOptionsFilledInTests
         int counter = 0;
 
         // Take(n) otherwise 2 million combos (not fast)
+        var dirVals             = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
+        var fileVals            = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
+        var buildConfVals       = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
+        var argsVals            = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
+        var autoRestoreVals     = FilledBools      .Take(1).Union(NullyBools      .Take(2)).ToArray();
+        var parallelRestoreVals = FilledBools      .Take(1).Union(NullyBools      .Take(2)).ToArray();
+        var nodeReuseVals       = FilledBools      .Take(1).Union(NullyBools      .Take(2)).ToArray();
+        var timeOutSecVals      = FilledTimeOuts   .Take(1).Union(NullyTimeOuts   .Take(2)).ToArray();
+        var verbosityVals       = FilledVerbosities.Take(1).Union(NullyVerbosities.Take(2)).ToArray();
+        var logFileVals         = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
+        var binLogVals          = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
+        var logActionVals       = FilledLogActions .Take(1).Union(NullyLogActions .Take(2)).ToArray();
 
-        foreach (var dir             in FilledTexts      .Take(1).Union(NullyTexts      .Take(2)))
-        foreach (var file            in FilledTexts      .Take(1).Union(NullyTexts      .Take(2)))
-        foreach (var buildConf       in FilledTexts      .Take(1).Union(NullyTexts      .Take(2)))
-        foreach (var args            in FilledTexts      .Take(1).Union(NullyTexts      .Take(2)))
-        foreach (var autoRestore     in FilledBools      .Take(1).Union(NullyBools      .Take(2)))
-        foreach (var parallelRestore in FilledBools      .Take(1).Union(NullyBools      .Take(2)))
-        foreach (var nodeReuse       in FilledBools      .Take(1).Union(NullyBools      .Take(2)))
-        foreach (var timeOutSec      in FilledTimeOuts   .Take(1).Union(NullyTimeOuts   .Take(2)))
-        foreach (var verbosity       in FilledVerbosities.Take(1).Union(NullyVerbosities.Take(2)))
-        foreach (var logFile         in FilledTexts      .Take(1).Union(NullyTexts      .Take(2)))
-        foreach (var binLog          in FilledTexts      .Take(1).Union(NullyTexts      .Take(2)))
-        foreach (var logAction       in FilledLogActions .Take(1).Union(NullyLogActions .Take(2)))
+        foreach (var dir             in dirVals)
+        foreach (var file            in fileVals)
+        foreach (var buildConf       in buildConfVals)
+        foreach (var args            in argsVals)
+        foreach (var autoRestore     in autoRestoreVals)
+        foreach (var parallelRestore in parallelRestoreVals)
+        foreach (var nodeReuse       in nodeReuseVals)
+        foreach (var timeOutSec      in timeOutSecVals)
+        foreach (var verbosity       in verbosityVals)
+        foreach (var logFile         in logFileVals)
+        foreach (var binLog          in binLogVals)
+        foreach (var logAction       in logActionVals)
         {
             DotNetOptions opts = new()
             { 
@@ -206,6 +230,17 @@ public class DotNetOptionsFilledInTests
     }
     // Helpers
 
+    private static void AssertNully(DotNetOptions opts, [ArgExpress(nameof(opts))] string expr = "")
+    {
+        IsFalse(FilledIn(opts), expr);
+        IsFalse(opts.FilledIn(), expr);
+
+        IsTrue(IsNully(opts), expr);
+        IsTrue(opts.IsNully(), expr);
+
+        IsFalse(Has(opts), expr);
+    }
+
     private static void AssertNully(DotNetOptions? opts, [ArgExpress(nameof(opts))] string expr = "")
     {
         IsFalse(FilledIn(opts), expr);
@@ -215,6 +250,17 @@ public class DotNetOptionsFilledInTests
         IsTrue(opts.IsNully(), expr);
 
         IsFalse(Has(opts), expr);
+    }
+
+    private static void AssertFilled(DotNetOptions opts, [ArgExpress(nameof(opts))] string expr = "")
+    {
+        IsTrue(FilledIn(opts), expr);
+        IsTrue(opts.FilledIn(), expr);
+
+        IsFalse(IsNully(opts), expr);
+        IsFalse(opts.IsNully(), expr);
+
+        IsTrue(Has(opts), expr);
     }
 
     private static void AssertFilled(DotNetOptions? opts, [ArgExpress(nameof(opts))] string expr = "")
