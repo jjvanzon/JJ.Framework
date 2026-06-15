@@ -7,10 +7,8 @@ namespace JJ.Framework.Compilation.Core.Tests.FilledInTests;
 [TestClass]
 public class DotNetOptionsFilledInTests
 {
-    // TODO: Test nullable opts explicitly for coverage.
-
     [TestMethod]
-    public void Test_DotNetOptions_Nully()
+    public void Test_DotNetOptions_Nullies()
     {
         {
             DotNetOptions? @null = null;
@@ -31,6 +29,10 @@ public class DotNetOptionsFilledInTests
         {
             DotNetOptions? nullyDefault = default;
             AssertNully(nullyDefault);
+        }
+        {
+            DotNetOptions? nullyFilled = FilledOpt;
+            AssertFilled(nullyFilled);
         }
     }
 
@@ -92,51 +94,51 @@ public class DotNetOptionsFilledInTests
     {
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(FilledOpts with { Dir = nully! });
+            AssertFilled(FilledOpt with { Dir = nully! });
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(FilledOpts with { File = nully! });
+            AssertFilled(FilledOpt with { File = nully! });
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(FilledOpts with { BuildConf = nully! });
+            AssertFilled(FilledOpt with { BuildConf = nully! });
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(FilledOpts with { Args = nully! });
+            AssertFilled(FilledOpt with { Args = nully! });
         }
 
-        AssertFilled(FilledOpts with { AutoRestore = false });
-        AssertFilled(FilledOpts with { ParallelRestore = false });
-        AssertFilled(FilledOpts with { NodeReuse = false });
+        AssertFilled(FilledOpt with { AutoRestore = false });
+        AssertFilled(FilledOpt with { ParallelRestore = false });
+        AssertFilled(FilledOpt with { NodeReuse = false });
 
         foreach (var nully in NullyTimeOuts)
         {
-            AssertFilled(FilledOpts with { TimeOutSec = nully! });
+            AssertFilled(FilledOpt with { TimeOutSec = nully! });
         }
 
         foreach (var nully in NullyVerbosities)
         {
-            AssertFilled(FilledOpts with { Verbosity = nully! });
+            AssertFilled(FilledOpt with { Verbosity = nully! });
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(FilledOpts with { LogFile = nully! });
+            AssertFilled(FilledOpt with { LogFile = nully! });
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(FilledOpts with { BinLog = nully! });
+            AssertFilled(FilledOpt with { BinLog = nully! });
         }
 
         foreach (var nully in NullyLogActions)
         {
-            AssertFilled(FilledOpts with { LogAction = nully! });
+            AssertFilled(FilledOpt with { LogAction = nully! });
         }
     }
 
@@ -273,21 +275,5 @@ public class DotNetOptionsFilledInTests
 
         IsTrue(Has(opts), expr);
     }
-
-    private static DotNetOptions FilledOpts { get; } = new()
-    {
-        Dir = FilledTexts[0],
-        File = FilledTexts[0],
-        BuildConf = FilledTexts[0],
-        Args = FilledTexts[0],
-        AutoRestore = true,
-        ParallelRestore = true,
-        NodeReuse = true,
-        TimeOutSec = FilledTimeOuts[0],
-        Verbosity = FilledVerbosities[0],
-        LogFile = FilledTexts[0],
-        BinLog = FilledTexts[0],
-        LogAction = FilledLogActions[0]
-    };
 }
 

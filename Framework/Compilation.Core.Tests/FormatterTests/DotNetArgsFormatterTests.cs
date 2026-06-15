@@ -30,7 +30,7 @@ public class DotNetArgsFormatterTests
         };
 
         AssertDiagnosticTexts(
-            args.Obj,
+            args,
             """
             build | --o "C:\Temp\out"
             """);
@@ -41,21 +41,21 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndCommandText_MSRebuild()
     {
-        var args = new DotNetArgsAccessor(msrebuild) { Command = "msbuild" }.Obj;
+        var args = new DotNetArgsAccessor(msrebuild) { Command = "msbuild" };
         AssertDiagnosticTexts(args, "msrebuild / msbuild");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndFullArgs_Build()
     {
-        var args = new DotNetArgsAccessor(build) { FullArgs = "build --no-restore" }.Obj;
+        var args = new DotNetArgsAccessor(build) { FullArgs = "build --no-restore" };
         AssertDiagnosticTexts(args, "build --no-restore");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndFullArgs_Rebuild()
     {
-        var args = new DotNetArgsAccessor(rebuild) { FullArgs = "build --no-incremental" }.Obj;
+        var args = new DotNetArgsAccessor(rebuild) { FullArgs = "build --no-incremental" };
         AssertDiagnosticTexts(args, "rebuild | build --no-incremental");
     }
 
@@ -69,7 +69,7 @@ public class DotNetArgsFormatterTests
             CommandEnum = build, 
             Command = "build", 
             FullArgs = "build --no-incremental" 
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "build --no-incremental");
     }
 
@@ -82,7 +82,7 @@ public class DotNetArgsFormatterTests
             Command = "build", 
             IsRebuild = true, 
             FullArgs = "build --no-incremental" 
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "rebuild | build --no-incremental");
     }
 
@@ -94,7 +94,7 @@ public class DotNetArgsFormatterTests
             CommandEnum = restore,
             Args = "--bogus-arg",
             FullArgs = "--dummy-arg"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "restore | --bogus-arg | --dummy-arg");
     }
 
@@ -106,7 +106,7 @@ public class DotNetArgsFormatterTests
             CommandEnum = restore,
             Args = "--no-cache",
             FullArgs = "--no-cache --no-logo"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "restore | --no-cache --no-logo");
     }
 
@@ -117,14 +117,14 @@ public class DotNetArgsFormatterTests
         {
             Args = "--no-cache",
             FullArgs = "--no-cache --no-logo"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "<no command> | --no-cache --no-logo");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
     {
-        var args = new DotNetArgsAccessor().Obj;
+        var args = new DotNetArgsAccessor();
         AssertDiagnosticTexts(args, "<no command>");
     }
 
@@ -138,7 +138,7 @@ public class DotNetArgsFormatterTests
             CommandEnum = installpackage,
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0" 
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "installpackage JJ.Framework.Common 1.0.0");
     }
 
@@ -150,7 +150,7 @@ public class DotNetArgsFormatterTests
             Command = "add",
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0" 
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "add JJ.Framework.Common 1.0.0");
     }
 
@@ -163,7 +163,7 @@ public class DotNetArgsFormatterTests
             Command = "add",
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "installpackage / add JJ.Framework.Common 1.0.0");
     }
     
@@ -176,7 +176,7 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "installpackage | add package JJ.Framework.Common --version 1.0.0");
     }
     
@@ -189,7 +189,7 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "add package JJ.Framework.Common --version 1.0.0");
     }
 
@@ -203,7 +203,7 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "installpackage | add package JJ.Framework.Common --version 1.0.0");
     }
 
@@ -216,7 +216,7 @@ public class DotNetArgsFormatterTests
         { 
             Command = "remove",
             ID = "JJ.Framework.Common" 
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "remove JJ.Framework.Common");
     }
 
@@ -227,7 +227,7 @@ public class DotNetArgsFormatterTests
         { 
             CommandEnum = uninstallpackage,
             ID = "JJ.Framework.Common" 
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "uninstallpackage JJ.Framework.Common");
     }
 
@@ -239,7 +239,7 @@ public class DotNetArgsFormatterTests
             Command = "remove",
             CommandEnum = uninstallpackage,
             ID = "JJ.Framework.Common" 
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "uninstallpackage / remove JJ.Framework.Common");
     }
 
@@ -252,7 +252,7 @@ public class DotNetArgsFormatterTests
             Command = "remove", 
             ID = "JJ.Framework.Common", 
             Args = "--help"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "uninstallpackage / remove JJ.Framework.Common | --help");
     }
 
@@ -264,7 +264,7 @@ public class DotNetArgsFormatterTests
             Command = "remove",
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "remove package JJ.Framework.Common");
     }
 
@@ -277,7 +277,7 @@ public class DotNetArgsFormatterTests
             Command = "remove",
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "uninstallpackage | remove package JJ.Framework.Common");
     }
 
@@ -291,7 +291,7 @@ public class DotNetArgsFormatterTests
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common --help",
             Args = "--help"
-        }.Obj;
+        };
         AssertDiagnosticTexts(args, "uninstallpackage | remove package JJ.Framework.Common --help");
     }
 

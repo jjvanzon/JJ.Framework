@@ -2,17 +2,18 @@
 //ReadKey();
 
 bool success =
-RunTests<BuildTests>() &&
 RunTests<DotNetArgsFilledInTests>() &&
+RunTests<DotNetOptionsFilledInTests>() &&
+RunTests<DotNetResultFilledInTests>() &&
 RunTests<DotNetArgsFormatterTests>() &&
-RunTests<DotNetArgsTests>() &&
 RunTests<DotNetCmdFormatterTests>() &&
+RunTests<DotNetOptionsFormatterTests>() &&
+RunTests<DotNetResultFormatterTests>() &&
+RunTests<DotNetArgsTests>() &&
+RunTests<DotNetOptionsTests>() &&
+RunTests<BuildTests>() &&
 RunTests<DotNetEnricherTests>() &&
 RunTests<DotNetLoggerTests>() &&
-RunTests<DotNetOptionsFilledInTests>() &&
-RunTests<DotNetOptionsFormatterTests>() &&
-RunTests<DotNetOptionsTests>() &&
-RunTests<DotNetResultFormatterTests>() &&
 RunTests<InstallPackageTests>() &&
 RunTests<MSBuildTests>() &&
 RunTests<MSRebuildTests>() &&

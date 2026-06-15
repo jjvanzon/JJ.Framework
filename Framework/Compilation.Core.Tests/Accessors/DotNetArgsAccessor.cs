@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.Compilation.Core.Tests.Accessors;
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable PropertyCanBeMadeInitOnly.Global
+
+namespace JJ.Framework.Compilation.Core.Tests.Accessors;
 
 [Suppress("Trimmer", "IL2026", Justification = GetTypesAnd + Bases)]
 internal class DotNetArgsAccessor : AccessorCore
@@ -15,15 +18,18 @@ internal class DotNetArgsAccessor : AccessorCore
     public DotNetArgsAccessor(string command)
         : base(typeof(DotNetArgs), command) { }
 
+    [return: NotNullIfNotNull(nameof(accessor))]
+    public static implicit operator DotNetArgs?(DotNetArgsAccessor? accessor) => accessor?.Obj;
+
     public new DotNetArgs Obj => (DotNetArgs)base.Obj!;
 
-    public string            Args        { set => Set(value); }
-    public string            Command     { set => Set(value); }
-    public DotNetCommandEnum CommandEnum { set => Set(value); }
-    public bool              IsRebuild   { set => Set(value); }
-    public string            ID          { set => Set(value); }
-    public string            Ver         { set => Set(value); }
-    public string            FullArgs    { set => Set(value); }
+    public string            Args        { get => (string           )Get()!; set => Set(value); }
+    public string            Command     { get => (string           )Get()!; set => Set(value); }
+    public DotNetCommandEnum CommandEnum { get => (DotNetCommandEnum)Get()!; set => Set(value); }
+    public bool              IsRebuild   { get => (bool             )Get()!; set => Set(value); }
+    public string            ID          { get => (string           )Get()!; set => Set(value); }
+    public string            Ver         { get => (string           )Get()!; set => Set(value); }
+    public string            FullArgs    { get => (string           )Get()!; set => Set(value); }
 
     public string DebuggerDisplay => Get<string>()!;
 }

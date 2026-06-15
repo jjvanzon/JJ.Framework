@@ -4,102 +4,116 @@
 namespace JJ.Framework.Compilation.Core.Tests.FilledInTests;
 
 [TestClass]
-public class DotNetArgsFilledInTests
+public class DotNetResultFilledInTests
 {
     [TestMethod]
-    public void Test_DotNetArgs_Nully()
+    public void Test_DotNetResult_Nully()
     {
-        DotNetArgs? @null = null;
+        DotNetResult? @null = null;
         AssertNully(@null);
 
-        var args = new DotNetArgsAccessor();
+        var args = NewResult();
         AssertNully(args);
     }
 
     [TestMethod]
-    public void Test_DotNetArgs_OnePropFilled()
+    public void Test_DotNetResult_OnePropFilled()
     {
+        // TODO: Test with Opt prop filled, Args prop filled, and then the 4 other constructor arguments.
+
         foreach (var filled in FilledCommandEnums)
         {
-            AssertFilled(new DotNetArgsAccessor { CommandEnum = filled });
+            AssertFilled(NewResult(new DotNetArgsAccessor { CommandEnum = filled }));
         }
 
         foreach (var filled in FilledCommands)
         {
-            AssertFilled(new DotNetArgsAccessor { Command = filled });
+            AssertFilled(NewResult(new DotNetArgsAccessor { Command = filled }));
         }
 
         foreach (var filled in FilledIDs)
         {
-            AssertFilled(new DotNetArgsAccessor { ID = filled });
+            AssertFilled(NewResult(new DotNetArgsAccessor { ID = filled }));
         }
 
         foreach (var filled in FilledVers)
         {
-            AssertFilled(new DotNetArgsAccessor { Ver = filled });
+            AssertFilled(NewResult(new DotNetArgsAccessor { Ver = filled }));
         }
 
         foreach (var filled in FilledTexts)
         {
-            AssertFilled(new DotNetArgsAccessor { Args = filled });
+            AssertFilled(NewResult(new DotNetArgsAccessor { Args = filled }));
         }
 
-        AssertFilled(new DotNetArgsAccessor { IsRebuild = true });
+        {
+            AssertFilled(NewResult(new DotNetArgsAccessor { IsRebuild = true }));
+        }
 
         foreach (var filled in FilledTexts)
         {
-            AssertFilled(new DotNetArgsAccessor { FullArgs = filled });
+            AssertFilled(NewResult(new DotNetArgsAccessor { FullArgs = filled }));
         }
     }
 
     [TestMethod]
-    public void Test_DotNetArgs_OnePropNully()
+    public void Test_DotNetResult_OnePropNully()
     {
         foreach (var nully in NullyCommandEnums)
         {
             var args = FilledArgs();
-            AssertFilled(new DotNetArgsAccessor(args) { CommandEnum = nully });
+            args.CommandEnum = nully;
+            AssertFilled(FilledResult(args));
+        }
+
+        foreach (var nully in NullyTexts.Except([ null ]))
+        {
+            var args = FilledArgs();
+            args.Command = nully!;
+            AssertFilled(FilledResult(args));
         }
 
         foreach (var nully in NullyTexts)
         {
             var args = FilledArgs();
-            AssertFilled(new DotNetArgsAccessor(args) { Command = nully! });
+            args.ID = nully!;
+            AssertFilled(FilledResult(args));
         }
 
         foreach (var nully in NullyTexts)
         {
             var args = FilledArgs();
-            AssertFilled(new DotNetArgsAccessor(args) { ID = nully! });
+            args.Ver = nully!;
+            AssertFilled(FilledResult(args));
         }
 
         foreach (var nully in NullyTexts)
         {
             var args = FilledArgs();
-            AssertFilled(new DotNetArgsAccessor(args) { Ver = nully! });
+            args.Args = nully!;
+            AssertFilled(FilledResult(args));
+        }
+
+        {
+            var args = FilledArgs();
+            args.IsRebuild = false;
+            AssertFilled(FilledResult(args));
         }
 
         foreach (var nully in NullyTexts)
         {
             var args = FilledArgs();
-            AssertFilled(new DotNetArgsAccessor(args) { Args = nully! });
-        }
-
-        {
-            var args = FilledArgs();
-            AssertFilled(new DotNetArgsAccessor(args) { IsRebuild = false });
-        }
-
-        foreach (var nully in NullyTexts)
-        {
-            var args = FilledArgs();
-            AssertFilled(new DotNetArgsAccessor(args) { FullArgs = nully! });
+            args.FullArgs = nully!;
+            AssertFilled(FilledResult(args));
         }
     }
 
     [TestMethod]
-    public void Test_DotNetArgs_FilledOrNot_AllCombos()
+    public void Test_DotNetResult_FilledOrNot_AllCombos()
     {
+        // TODO: Finish implementing.
+        return;
+
         foreach (var commandEnum in FilledCommandEnums.Union(NullyCommandEnums))
         foreach (var command     in FilledCommands    .Union(NullyTexts))
         foreach (var id          in FilledIDs         .Union(NullyTexts))
@@ -119,6 +133,8 @@ public class DotNetArgsFilledInTests
                 FullArgs    = fullArgs!
             };
 
+            var result = NewResult(args);
+
             bool isNully = commandEnum.In(NullyCommandEnums) &&
                            command    .In(NullyTexts) &&
                            id         .In(NullyTexts) &&
@@ -129,49 +145,49 @@ public class DotNetArgsFilledInTests
 
             if (isNully)
             {
-                AssertNully(args);
+                AssertNully(result);
             }
             else
             {
-                AssertFilled(args);
+                AssertFilled(result);
             }
         }
     }
 
     /// <inheritdoc cref="_notnullwhentests" />
     [TestMethod]
-    public void Test_DotNetArgs_NotNullWhen()
+    public void Test_DotNetResult_NotNullWhen()
     {
-        static DotNetArgs? Get() => new DotNetArgsAccessor();
+        static DotNetResult? Get() => NewResult();
 
-        { DotNetArgs? args = Get(); if ( Has     (args )) args.ToString(); }
-        { DotNetArgs? args = Get(); if ( FilledIn(args )) args.ToString(); }
-        { DotNetArgs? args = Get(); if (!IsNully (args )) args.ToString(); }
-        { DotNetArgs? args = Get(); if ( args.FilledIn()) args.ToString(); }
-        { DotNetArgs? args = Get(); if (!args.IsNully ()) args.ToString(); }
+        { DotNetResult? result = Get(); if ( Has     (result )) result.ToString(); }
+        { DotNetResult? result = Get(); if ( FilledIn(result )) result.ToString(); }
+        { DotNetResult? result = Get(); if (!IsNully (result )) result.ToString(); }
+        { DotNetResult? result = Get(); if ( result.FilledIn()) result.ToString(); }
+        { DotNetResult? result = Get(); if (!result.IsNully ()) result.ToString(); }
     }
     // Helpers
 
-    private static void AssertNully(DotNetArgs? dotNetArgs, [ArgExpress(nameof(dotNetArgs))] string expr = "")
+    private static void AssertNully(DotNetResult? result)
     {
-        IsFalse(FilledIn(dotNetArgs), expr);
-        IsFalse(dotNetArgs.FilledIn(), expr);
+        IsFalse(FilledIn(result));
+        IsFalse(result.FilledIn());
 
-        IsTrue(IsNully(dotNetArgs), expr);
-        IsTrue(dotNetArgs.IsNully(), expr);
+        IsTrue(IsNully(result));
+        IsTrue(result.IsNully());
 
-        IsFalse(Has(dotNetArgs), expr);
+        IsFalse(Has(result));
     }
 
-    private static void AssertFilled(DotNetArgs? dotNetArgs, [ArgExpress(nameof(dotNetArgs))] string expr = "")
+    private static void AssertFilled(DotNetResult? result)
     {
-        IsTrue(FilledIn(dotNetArgs), expr);
-        IsTrue(dotNetArgs.FilledIn(), expr);
+        IsTrue(FilledIn(result));
+        IsTrue(result.FilledIn());
 
-        IsFalse(IsNully(dotNetArgs), expr);
-        IsFalse(dotNetArgs.IsNully(), expr);
+        IsFalse(IsNully(result));
+        IsFalse(result.IsNully());
 
-        IsTrue(Has(dotNetArgs), expr);
+        IsTrue(Has(result));
     }
 }
 

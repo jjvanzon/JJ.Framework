@@ -6,24 +6,6 @@ public class TestHelper : IDisposable
 {
     internal static DotNetVerbosity Verbosity { get; set; } = Normal;
 
-    internal const bool Re = true;
-    internal static DotNetCommandEnum[] FilledCommandEnums { get; } = [ build, rebuild, msbuild, msrebuild, restore, installpackage, uninstallpackage ];
-    internal static string           [] FilledTexts        { get; } = [ "something", "anything ", "---" ];
-    internal static string           [] FilledCommands     { get; } = [ "build", "test", "whatevs" ];
-    internal static string           [] FilledIDs          { get; } = [ ID, "NoID!" ];
-    internal static string           [] FilledVers         { get; } = [ Ver, "Not a ver" ];
-    internal static bool             [] FilledBools        { get; } = [ true ];
-    internal static int              [] FilledTimeOuts     { get; } = [ 123 ];
-    internal static DotNetVerbosity  [] FilledVerbosities  { get; } = [ Quiet, Minimal, Detailed, Diagnostic ];
-    internal static Action<string>   [] FilledLogActions   { get; } = [ _ => { }, WriteLine ];
-    
-    internal static bool             [] NullyBools         { get; } = [ false, default ];
-    internal static DotNetCommandEnum[] NullyCommandEnums  { get; } = [ undefined, default, 0 ];
-    internal static string?          [] NullyTexts         { get; } = [ " ", "", default, null ];
-    internal static int              [] NullyTimeOuts      { get; } = [ DefaultOptions.TimeOutSec, default, 0 ];
-    internal static DotNetVerbosity  [] NullyVerbosities   { get; } = [ DefaultOptions.Verbosity, Undefined, default, 0 ];
-    internal static Action<string>?  [] NullyLogActions    { get; } = [ DefaultOptions.LogAction, default, null ];
-
     // Vars
 
     internal const    string ProjectName    = "Temp";

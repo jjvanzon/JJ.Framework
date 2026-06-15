@@ -6,7 +6,7 @@ public class DotNetArgsTests
     [TestMethod]
     public void DotNetArgs_New_WithCommandEnum()
     {
-        var args = new DotNetArgsAccessor(restore).Obj;
+        var args = new DotNetArgsAccessor(restore);
         AreEqual(restore, args.CommandEnum);
         AreEqual("", args.Command);
         AreEqual("", args.ID);
@@ -19,7 +19,7 @@ public class DotNetArgsTests
     [TestMethod]
     public void DotNetArgs_New_WithCommandString()
     {
-        var args = new DotNetArgsAccessor("custom").Obj;
+        var args = new DotNetArgsAccessor("custom");
         AreEqual("custom", args.Command);
         AreEqual(default, args.CommandEnum);
     }
@@ -27,7 +27,7 @@ public class DotNetArgsTests
     [TestMethod]
     public void DotNetArgs_New_Default_InitializesEmptyProperties()
     {
-        var args = new DotNetArgsAccessor().Obj;
+        var args = new DotNetArgsAccessor();
         AreEqual(default, args.CommandEnum);
         AreEqual("", args.Command);
         AreEqual("", args.ID);

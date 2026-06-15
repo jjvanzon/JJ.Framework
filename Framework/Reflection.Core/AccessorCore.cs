@@ -20,6 +20,8 @@ public partial class AccessorCore
         _typesInHierarchy = _type.GetTypesInHierarchy();
     }
 
+    // TODO: (obj, type), (type, obj) make overloads clash or confuse, which isn't great.
+    [Prio(1)]
     public AccessorCore(object obj, [Dyn(Intf | AllCtors)] Type type)
     {
         ThrowIfNull(type);

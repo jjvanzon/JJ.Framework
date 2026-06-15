@@ -23,7 +23,7 @@ public class DotNetResultFormatterTests
             File = "MyProject.csproj"
         };
 
-        DotNetResult result = new DotNetResultAccessor(opt, args.Obj, outputText: "Build succeeded.").Obj;
+        DotNetResult result = NewResult(opt, args, outputText: "Build succeeded.");
 
         // TODO: If args contains File, do not repeat in opt descriptor.
 
@@ -50,9 +50,9 @@ public class DotNetResultFormatterTests
         { 
             Args = "--no-logo", 
             FullArgs = "build --no-logo"
-        }.Obj;
+        };
 
-        var result = new DotNetResultAccessor(args: args, exitCode: 2, errorText: "Project not found!").Obj;
+        DotNetResult result = NewResult(args, exitCode: 2, errorText: "Project not found!");
 
         // TODO: "dotnet" would look better near the full arg text.
 
@@ -77,9 +77,9 @@ public class DotNetResultFormatterTests
         {
             Args = "--no-logo", 
             FullArgs = "build --no-logo" 
-        }.Obj;
+        };
 
-        var result = new DotNetResultAccessor(args: args, outputText: "[error] Something broke").Obj;
+        DotNetResult result = NewResult(args, outputText: "[error] Something broke");
 
         const string expectedWideForm =
             "dotnet ERROR! | build --no-logo | Output: [error] Something broke";
@@ -102,9 +102,9 @@ public class DotNetResultFormatterTests
         {
             Args = "--no-logo", 
             FullArgs = "build --no-logo"
-        }.Obj;
+        };
 
-        var result = new DotNetResultAccessor(args: args, hasTimeOut: true).Obj;
+        DotNetResult result = NewResult(args, hasTimeOut: true);
 
         // TODO: dotnet next to build instead would look better.
 
@@ -127,12 +127,12 @@ public class DotNetResultFormatterTests
         { 
             Args = "--no-logo", 
             FullArgs = "build --no-logo"
-        }.Obj;
+        };
 
-        var result = new DotNetResultAccessor(
-            args: args,
+        DotNetResult result = NewResult(
+            args,
             errorText: "Welcome banner",
-            outputText: "Build succeeded.").Obj;
+            outputText: "Build succeeded.");
 
         const string expectedWideForm =
             "dotnet build --no-logo | stdErr: Welcome banner | Output: Build succeeded.";
@@ -156,20 +156,20 @@ public class DotNetResultFormatterTests
 
     [TestMethod] 
     public void DotNetResult_Empty() 
-        => AssertDiagnosticTexts(new DotNetResultAccessor().Obj, "DotNetResult empty");
+        => AssertDiagnosticTexts(NewResult(), "DotNetResult empty");
 
     [TestMethod] 
     public void Test_DotNetResultFormatter_TimeOut()
     {
-        AssertDiagnosticTexts(new DotNetResultAccessor(hasTimeOut: true).Obj, "dotnet TIME OUT! after 300s");
+        AssertDiagnosticTexts(NewResult(hasTimeOut: true), "dotnet TIME OUT! after 300s");
     }
 
     [TestMethod] 
     public void Test_DotNetResultFormatter_Failure_HasErrorInOutput()
     {
-        DotNetResult result = new DotNetResultAccessor(
+        DotNetResult result = NewResult(
             outputText: "  Happily compiling the stuff..." + NewLine +
-                        "  [error] Something went wrong during compilation.").Obj;
+                        "  [error] Something went wrong during compilation.");
 
         // TODO: Trim between "Output: " and the rest of the text.
         const string expectedWideForm = 
@@ -191,7 +191,7 @@ public class DotNetResultFormatterTests
 
     [TestMethod]
     public void Test_DotNetResultFormatter_ExitCode() 
-        => AssertDiagnosticTexts(new DotNetResultAccessor(exitCode: 3).Obj, "dotnet EXIT CODE 3!");
+        => AssertDiagnosticTexts(NewResult(exitCode: 3), "dotnet EXIT CODE 3!");
 
     //[TestMethod] public void Test_DotNetResultFormatter_Failure_PriorityOrder() => throw new NotImplementedException();
     //[TestMethod] public void Test_DotNetResultFormatter_Failure_None() => throw new NotImplementedException();
@@ -250,7 +250,7 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void Test_DotNetResultFormatter_OutputText()
     {
-        var result = new DotNetResultAccessor(outputText: "I am happy to inform you of this output text.").Obj;
+        DotNetResult result = NewResult(outputText: "I am happy to inform you of this output text.");
 
         const string expectedWideForm = 
             "dotnet Output: I am happy to inform you of this output text.";
@@ -333,26 +333,26 @@ public class DotNetResultFormatterTests
             "dotnet Timeout: 123s");
     
     [TestMethod] public void Test_DotNetResultFormatter_Arg_CommandEnum() 
-        => AssertDiagnosticTexts(NewResult(arg: new() { 
+        => AssertDiagnosticTexts(NewResult(args: new() { 
             CommandEnum = build }), 
             "dotnet build");
 
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_Command() 
-        => AssertDiagnosticTexts(NewResult(arg: new() { 
+        => AssertDiagnosticTexts(NewResult(args: new() { 
             Command = "nuget" }), 
             "dotnet nuget");
 
     // TODO: <no command> didn't show up in the other incomplete results.
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_ID() 
-        => AssertDiagnosticTexts(NewResult(arg: new() { 
+        => AssertDiagnosticTexts(NewResult(args: new() { 
             ID = "JJ.Framework.Common" }), 
             "dotnet <no command> JJ.Framework.Common");
 
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_Ver() 
-        => AssertDiagnosticTexts(NewResult(arg: new() { 
+        => AssertDiagnosticTexts(NewResult(args: new() { 
             Ver = "1.2.3" }), 
             "dotnet <no command> 1.2.3");
 
@@ -363,27 +363,23 @@ public class DotNetResultFormatterTests
 
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_Args()
-        => AssertDiagnosticTexts(NewResult(arg: new() { 
+        => AssertDiagnosticTexts(NewResult(args: new() { 
             Args = "--p:BuildNum=1234" }), 
             "dotnet <no command> | --p:BuildNum=1234");
 
     [TestMethod] public void Test_DotNetResultFormatter_Arg_IsRebuild()
-        => AssertDiagnosticTexts(NewResult(arg: new() { 
+        => AssertDiagnosticTexts(NewResult(args: new() { 
             IsRebuild = true }), 
             "dotnet (re-)<no command>");
 
     // TODO: "dotnet --p:BuildNum=1234" would be better. "<no commmand>" and " | " are irrenevant
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_FullArgs()
-        => AssertDiagnosticTexts(NewResult(arg: new() { 
+        => AssertDiagnosticTexts(NewResult(args: new() { 
             FullArgs = "--p:BuildNum=1234" }), 
             "dotnet <no command> | --p:BuildNum=1234");
 
     // Helpers
-
-    private static DotNetResult NewResult(DotNetOptions opt) => new DotNetResultAccessor(opt).Obj;
-    private static DotNetResult NewResult(DotNetArgsAccessor arg) => new DotNetResultAccessor(args: arg.Obj).Obj;
-    private static DotNetResult NewResult(DotNetOptions opt, DotNetArgsAccessor arg) => new DotNetResultAccessor(opt, arg.Obj).Obj;
 
     private static void AssertDiagnosticTexts(DotNetResult? result, string expectedWideForm, string? expectedLongForm = null)
     {
