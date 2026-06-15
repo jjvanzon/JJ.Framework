@@ -3,7 +3,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 
 internal static class Mocks
 {
-    public static bool Re { get; } = true;
+    public const bool Re = true;
 
     public static DotNetCommandEnum[] FilledCommandEnums { get; } = [ build, rebuild, msbuild, msrebuild, restore, installpackage, uninstallpackage ];
     public static string           [] FilledTexts        { get; } = [ "something", "anything ", "---" ];
@@ -22,10 +22,15 @@ internal static class Mocks
     public static DotNetVerbosity  [] NullyVerbosities   { get; } = [ DefaultOptions.Verbosity, Undefined, default, 0 ];
     public static Action<string>?  [] NullyLogActions    { get; } = [ DefaultOptions.LogAction, default, null ];
 
-    public static int    FilledExitCode   { get; } = 1;
-    public static string FilledErrorText  { get; } = "Welcome to the .NET CLI!"; // Yes, this is a realistic error text #nosarcasm
-    public static string FilledOutputText { get; } = "Build successful";
-    public static bool   FilledTimeOut    { get; } = true;
+    public const int    FilledExitCode   = 1;
+    public const string FilledErrorText  = "Welcome to the .NET CLI!"; // Yes, this is a realistic error text #nosarcasm
+    public const string FilledOutputText = "Build successful";
+    public const bool   FilledHasTimeOut = true;
+
+    public const int    NullyExitCode    = 0;
+    public const string NullyErrorText   = " ";
+    public const string NullyOutputText  = " ";
+    public const bool   NullyHasTimeOut  = false;
 
 
     public static DotNetOptions FilledOpt { get; } = new()
@@ -64,7 +69,7 @@ internal static class Mocks
         FilledExitCode,
         FilledErrorText,
         FilledOutputText,
-        FilledTimeOut
+        FilledHasTimeOut
     );
 
     public static DotNetResultAccessor FilledResult(DotNetArgs args) => new
@@ -74,9 +79,10 @@ internal static class Mocks
         FilledExitCode,
         FilledErrorText,
         FilledOutputText,
-        FilledTimeOut
+        FilledHasTimeOut
     );
     
+    /*
     public static DotNetResultAccessor FilledResult() => new
     (
         FilledOpt,
@@ -86,6 +92,15 @@ internal static class Mocks
         FilledOutputText,
         FilledTimeOut
     );
+    */
+
+    public static DotNetResult FilledResult(
+        int    exitCode   = FilledExitCode,
+        string errorText  = FilledErrorText,
+        string outputText = FilledOutputText,
+        bool   hasTimeOut = FilledHasTimeOut)
+        => new DotNetResultAccessor(FilledOpt, FilledArgs(), exitCode, errorText, outputText, hasTimeOut);
+
 
     public static DotNetResult NewResult(
         DotNetArgsAccessor args,

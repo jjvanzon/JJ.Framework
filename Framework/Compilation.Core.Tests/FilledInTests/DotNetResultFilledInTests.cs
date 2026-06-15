@@ -1,5 +1,4 @@
-﻿// ReSharper disable ReturnValueOfPureMethodIsNotUsed
-// ReSharper disable ReturnTypeCanBeNotNullable
+﻿// ReSharper disable RedundantSuppressNullableWarningExpression
 
 namespace JJ.Framework.Compilation.Core.Tests.FilledInTests;
 
@@ -21,7 +20,10 @@ public class DotNetResultFilledInTests
     [TestMethod]
     public void Test_DotNetResult_OnePropFilled()
     {
-        // TODO: Test with Opt prop filled, Args prop filled, and then the 4 other constructor arguments.
+        AssertFilled(NewResult(exitCode: FilledExitCode));
+        AssertFilled(NewResult(errorText: FilledErrorText));
+        AssertFilled(NewResult(outputText: FilledOutputText));
+        AssertFilled(NewResult(hasTimeOut: FilledHasTimeOut));
 
         foreach (var filled in FilledTexts)
         {
@@ -118,61 +120,66 @@ public class DotNetResultFilledInTests
     [TestMethod]
     public void Test_DotNetResult_OnePropNully()
     {
-        foreach (var nully in NullyTexts)
-        {
-            AssertFilled(NewResult(FilledOpt with { Dir = nully! }));
-        }
+        AssertFilled(FilledResult(exitCode: NullyExitCode));
+        AssertFilled(FilledResult(errorText: NullyErrorText));
+        AssertFilled(FilledResult(outputText: NullyOutputText));
+        AssertFilled(FilledResult(hasTimeOut: NullyHasTimeOut));
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(NewResult(FilledOpt with { File = nully! }));
-        }
-
-        foreach (var nully in NullyTexts)
-        {
-            AssertFilled(NewResult(FilledOpt with { BuildConf = nully! }));
+            AssertFilled(FilledResult(FilledOpt with { Dir = nully! }));
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(NewResult(FilledOpt with { Args = nully! }));
+            AssertFilled(FilledResult(FilledOpt with { File = nully! }));
+        }
+
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(FilledResult(FilledOpt with { BuildConf = nully! }));
+        }
+
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(FilledResult(FilledOpt with { Args = nully! }));
         }
 
         {
-            AssertFilled(NewResult(FilledOpt with { AutoRestore = false }));
+            AssertFilled(FilledResult(FilledOpt with { AutoRestore = false }));
         }
 
         {
-            AssertFilled(NewResult(FilledOpt with { ParallelRestore = false }));
+            AssertFilled(FilledResult(FilledOpt with { ParallelRestore = false }));
         }
 
         {
-            AssertFilled(NewResult(FilledOpt with { NodeReuse = false }));
+            AssertFilled(FilledResult(FilledOpt with { NodeReuse = false }));
         }
 
         foreach (var nully in NullyTimeOuts)
         {
-            AssertFilled(NewResult(FilledOpt with { TimeOutSec = nully! }));
+            AssertFilled(FilledResult(FilledOpt with { TimeOutSec = nully! }));
         }
 
         foreach (var nully in NullyVerbosities)
         {
-            AssertFilled(NewResult(FilledOpt with { Verbosity = nully! }));
+            AssertFilled(FilledResult(FilledOpt with { Verbosity = nully! }));
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(NewResult(FilledOpt with { LogFile = nully! }));
+            AssertFilled(FilledResult(FilledOpt with { LogFile = nully! }));
         }
 
         foreach (var nully in NullyTexts)
         {
-            AssertFilled(NewResult(FilledOpt with { BinLog = nully! }));
+            AssertFilled(FilledResult(FilledOpt with { BinLog = nully! }));
         }
 
         foreach (var nully in NullyLogActions)
         {
-            AssertFilled(NewResult(FilledOpt with { LogAction = nully! }));
+            AssertFilled(FilledResult(FilledOpt with { LogAction = nully! }));
         }
 
         foreach (var nully in NullyCommandEnums)
@@ -227,42 +234,46 @@ public class DotNetResultFilledInTests
     [TestMethod]
     public void Test_DotNetResult_FilledOrNot_AllCombos()
     {
-        // TODO: Was expecting failure, since result's own fields aren't used, just arg and opt..
+        // Take(n) and commented out a few, otherwise 2 million combos (not fast)
 
-        // Take(n) otherwise 2 million combos (not fast)
-        var dirVals             = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var fileVals            = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var buildConfVals       = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var extraArgsVals1      = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var autoRestoreVals     = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
-        var parallelRestoreVals = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
-        var nodeReuseVals       = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
-        var timeOutSecVals      = FilledTimeOuts    .Take(1).Union(NullyTimeOuts    .Take(1)).ToArray();
-        var verbosityVals       = FilledVerbosities .Take(1).Union(NullyVerbosities .Take(1)).ToArray();
-        var logFileVals         = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var binLogVals          = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var logActionVals       = FilledLogActions  .Take(1).Union(NullyLogActions  .Take(1)).ToArray();
-        var commandEnumVals     = FilledCommandEnums.Take(1).Union(NullyCommandEnums.Take(1)).ToArray();
-        var commandVals         = FilledCommands    .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var idVals              = FilledIDs         .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var verVals             = FilledVers        .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var extraArgsVals2      = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
-        var isRebuildVals       = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
-        var fullArgsVals        = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   dirVals             = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   fileVals            = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   buildConfVals       = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        //var extraArgsVals1      = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        //var autoRestoreVals     = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        //var parallelRestoreVals = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        //var nodeReuseVals       = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        var   timeOutSecVals      = FilledTimeOuts    .Take(1).Union(NullyTimeOuts    .Take(1)).ToArray();
+        var   verbosityVals       = FilledVerbosities .Take(1).Union(NullyVerbosities .Take(1)).ToArray();
+        var   logFileVals         = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        //var binLogVals          = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   logActionVals       = FilledLogActions  .Take(1).Union(NullyLogActions  .Take(1)).ToArray();
+        var   commandEnumVals     = FilledCommandEnums.Take(1).Union(NullyCommandEnums.Take(1)).ToArray();
+        var   commandVals         = FilledCommands    .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   idVals              = FilledIDs         .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   verVals             = FilledVers        .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   extraArgsVals2      = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var   isRebuildVals       = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        var   fullArgsVals        = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+
+        int   [] exitCodeVals   = [ FilledExitCode,   NullyExitCode   ];
+        string[] errorTextVals  = [ FilledErrorText,  NullyErrorText  ];
+        string[] outputTextVals = [ FilledOutputText, NullyOutputText ];
+        bool  [] hasTimeOutVals = [ FilledHasTimeOut, NullyHasTimeOut ];
 
         int counter = 0;
 
         foreach (var dir             in dirVals)
         foreach (var file            in fileVals)
         foreach (var buildConf       in buildConfVals)
-        foreach (var extraArgs1      in extraArgsVals1)
-        foreach (var autoRestore     in autoRestoreVals)
-        foreach (var parallelRestore in parallelRestoreVals)
-        foreach (var nodeReuse       in nodeReuseVals)
+        //foreach (var extraArgs1      in extraArgsVals1)
+        //foreach (var autoRestore     in autoRestoreVals)
+        //foreach (var parallelRestore in parallelRestoreVals)
+        //foreach (var nodeReuse       in nodeReuseVals)
         foreach (var timeOutSec      in timeOutSecVals)
         foreach (var verbosity       in verbosityVals)
         foreach (var logFile         in logFileVals)
-        foreach (var binLog          in binLogVals)
+        //foreach (var binLog          in binLogVals)
         foreach (var logAction       in logActionVals)
         foreach (var commandEnum     in commandEnumVals)
         foreach (var command         in commandVals)
@@ -271,20 +282,24 @@ public class DotNetResultFilledInTests
         foreach (var extraArgs2      in extraArgsVals2)
         foreach (var isRebuild       in isRebuildVals)
         foreach (var fullArgs        in fullArgsVals)
+        foreach (var exitCode        in exitCodeVals)
+        foreach (var errorText       in errorTextVals)
+        foreach (var outputText      in outputTextVals)
+        foreach (var hasTimeOut      in hasTimeOutVals)
         {
             var opt = new DotNetOptions
             { 
                 Dir             = dir!,            
                 File            = file!,           
                 BuildConf       = buildConf!, 
-                Args            = extraArgs1!,
-                AutoRestore     = autoRestore!,
-                ParallelRestore = parallelRestore!,
-                NodeReuse       = nodeReuse!,
+                //Args            = extraArgs1!,
+                //AutoRestore     = autoRestore!,
+                //ParallelRestore = parallelRestore!,
+                //NodeReuse       = nodeReuse!,
                 TimeOutSec      = timeOutSec!,
                 Verbosity       = verbosity!,
                 LogFile         = logFile!,
-                BinLog          = binLog!,         
+                //BinLog          = binLog!,         
                 LogAction       = logAction!
             };
 
@@ -299,27 +314,32 @@ public class DotNetResultFilledInTests
                 FullArgs    = fullArgs!
             };
 
-            var result = NewResult(opt, args);
+            var result = NewResult(opt, args, exitCode, errorText, outputText, hasTimeOut);
 
-            bool isNully = dir            .In(NullyTexts) &&
-                           file           .In(NullyTexts) &&
-                           buildConf      .In(NullyTexts) &&
-                           extraArgs1     .In(NullyTexts) &&
-                           autoRestore    .In(NullyBools) &&
-                           parallelRestore.In(NullyBools) &&
-                           nodeReuse      .In(NullyBools) &&
-                           timeOutSec     .In(NullyTimeOuts) &&
-                           verbosity      .In(NullyVerbosities) &&
-                           logFile        .In(NullyTexts) &&
-                           binLog         .In(NullyTexts) &&
-                           logAction      .In(NullyLogActions) &&
+            bool isNully = dir            .In(NullyTexts       ) &&
+                           file           .In(NullyTexts       ) &&
+                           buildConf      .In(NullyTexts       ) &&
+                           //extraArgs1     .In(NullyTexts       ) &&
+                           //autoRestore    .In(NullyBools       ) &&
+                           //parallelRestore.In(NullyBools       ) &&
+                           //nodeReuse      .In(NullyBools       ) &&
+                           timeOutSec     .In(NullyTimeOuts    ) &&
+                           verbosity      .In(NullyVerbosities ) &&
+                           logFile        .In(NullyTexts       ) &&
+                           //binLog         .In(NullyTexts       ) &&
+                           logAction      .In(NullyLogActions  ) &&
                            commandEnum    .In(NullyCommandEnums) &&
-                           command        .In(NullyTexts) &&
-                           id             .In(NullyTexts) &&
-                           ver            .In(NullyTexts) &&
-                           extraArgs2     .In(NullyTexts) &&
-                           isRebuild      .In(NullyBools) &&
-                           fullArgs       .In(NullyTexts);
+                           command        .In(NullyTexts       ) &&
+                           id             .In(NullyTexts       ) &&
+                           ver            .In(NullyTexts       ) &&
+                           extraArgs2     .In(NullyTexts       ) &&
+                           isRebuild      .In(NullyBools       ) &&
+                           fullArgs       .In(NullyTexts       ) &&
+                           errorText      .Is(NullyErrorText   ) &&
+                           outputText     .Is(NullyOutputText  ) &&
+                           exitCode   ==      NullyExitCode      &&
+                           hasTimeOut ==      NullyHasTimeOut
+                           ;
 
             if (isNully)
             {
@@ -340,6 +360,9 @@ public class DotNetResultFilledInTests
     [TestMethod]
     public void Test_DotNetResult_NotNullWhen()
     {
+        // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+        // ReSharper disable ReturnTypeCanBeNotNullable
+
         static DotNetResult? Get() => NewResult();
 
         { DotNetResult? result = Get(); if ( Has     (result )) result.ToString(); }
@@ -347,29 +370,34 @@ public class DotNetResultFilledInTests
         { DotNetResult? result = Get(); if (!IsNully (result )) result.ToString(); }
         { DotNetResult? result = Get(); if ( result.FilledIn()) result.ToString(); }
         { DotNetResult? result = Get(); if (!result.IsNully ()) result.ToString(); }
+
+        // ReSharper restore ReturnValueOfPureMethodIsNotUsed
+        // ReSharper restore ReturnTypeCanBeNotNullable
     }
+
+
     // Helpers
 
     private static void AssertNully(DotNetResult? result)
     {
-        IsFalse(FilledIn(result));
-        IsFalse(result.FilledIn());
+        IsFalse(FilledIn(result), result);
+        IsFalse(result.FilledIn(), result);
 
-        IsTrue(IsNully(result));
-        IsTrue(result.IsNully());
+        IsTrue(IsNully(result), result);
+        IsTrue(result.IsNully(), result);
 
-        IsFalse(Has(result));
+        IsFalse(Has(result), result);
     }
 
     private static void AssertFilled(DotNetResult? result)
     {
-        IsTrue(FilledIn(result));
-        IsTrue(result.FilledIn());
+        IsTrue(FilledIn(result), result);
+        IsTrue(result.FilledIn(), result);
 
-        IsFalse(IsNully(result));
-        IsFalse(result.IsNully());
+        IsFalse(IsNully(result), result);
+        IsFalse(result.IsNully(), result);
 
-        IsTrue(Has(result));
+        IsTrue(Has(result), result);
     }
 }
 

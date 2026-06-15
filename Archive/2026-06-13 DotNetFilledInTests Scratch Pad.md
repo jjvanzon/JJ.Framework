@@ -42,4 +42,13 @@
     //private static DotNetResult NewResult(DotNetArgsAccessor args) => Mocks.NewResult(args);
     //private static DotNetResult NewResult(DotNetOptions opt) => Mocks.NewResult(opt);
     //private static DotNetResult NewResult(DotNetOptions opt, DotNetArgsAccessor args) => Mocks.NewResult(opt, args);
+
+        // TODO: Test with the 4 other result constructor arguments.
+        //AssertFilled(FilledResult(exitCode: NullyExitCode));
+        //AssertFilled(FilledResult(errorText: NullyErrorText));
+        //AssertFilled(FilledResult(outputText: NullyOutputText));
+        //AssertFilled(FilledResult(hasTimeOut: NullyTimeOut));
+     
+        // TODO: Was expecting failure, since result's own fields aren't used, just arg and opt..
+
 ```
