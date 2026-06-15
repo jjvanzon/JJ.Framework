@@ -145,8 +145,6 @@ public class DotNetOptionsFilledInTests
     [TestMethod]
     public void Test_DotNetOptions_FilledOrNot_AllCombos()
     {
-        int counter = 0;
-
         // Take(n) otherwise 2 million combos (not fast)
         var dirVals             = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
         var fileVals            = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
@@ -161,6 +159,8 @@ public class DotNetOptionsFilledInTests
         var binLogVals          = FilledTexts      .Take(1).Union(NullyTexts      .Take(2)).ToArray();
         var logActionVals       = FilledLogActions .Take(1).Union(NullyLogActions .Take(2)).ToArray();
 
+        int counter = 0;
+
         foreach (var dir             in dirVals)
         foreach (var file            in fileVals)
         foreach (var buildConf       in buildConfVals)
@@ -174,7 +174,7 @@ public class DotNetOptionsFilledInTests
         foreach (var binLog          in binLogVals)
         foreach (var logAction       in logActionVals)
         {
-            DotNetOptions opts = new()
+            var opt = new DotNetOptions
             { 
                 Dir             = dir!,            
                 File            = file!,           
@@ -205,11 +205,11 @@ public class DotNetOptionsFilledInTests
 
             if (isNully)
             {
-                AssertNully(opts);
+                AssertNully(opt);
             }
             else
             {
-                AssertFilled(opts);
+                AssertFilled(opt);
             }
 
             counter++;

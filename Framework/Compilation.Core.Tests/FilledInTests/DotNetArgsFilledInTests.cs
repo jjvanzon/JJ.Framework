@@ -100,13 +100,23 @@ public class DotNetArgsFilledInTests
     [TestMethod]
     public void Test_DotNetArgs_FilledOrNot_AllCombos()
     {
-        foreach (var commandEnum in FilledCommandEnums.Union(NullyCommandEnums))
-        foreach (var command     in FilledCommands    .Union(NullyTexts))
-        foreach (var id          in FilledIDs         .Union(NullyTexts))
-        foreach (var ver         in FilledVers        .Union(NullyTexts))
-        foreach (var extraArgs   in FilledTexts       .Union(NullyTexts))
-        foreach (var isRebuild   in FilledBools       .Union(NullyBools))
-        foreach (var fullArgs    in FilledTexts       .Union(NullyTexts))
+        var commandEnumVals = FilledCommandEnums.Union(NullyCommandEnums).ToArray();
+        var commandVals     = FilledCommands    .Union(NullyTexts).ToArray();
+        var idVals          = FilledIDs         .Union(NullyTexts).ToArray();
+        var verVals         = FilledVers        .Union(NullyTexts).ToArray();
+        var extraArgsVals   = FilledTexts       .Union(NullyTexts).ToArray();
+        var isRebuildVals   = FilledBools       .Union(NullyBools).ToArray();
+        var fullArgsVals    = FilledTexts       .Union(NullyTexts).ToArray();
+
+        int counter = 0;
+
+        foreach (var commandEnum in commandEnumVals)
+        foreach (var command     in commandVals)
+        foreach (var id          in idVals)
+        foreach (var ver         in verVals)
+        foreach (var extraArgs   in extraArgsVals)
+        foreach (var isRebuild   in isRebuildVals)
+        foreach (var fullArgs    in fullArgsVals)
         {
             var args = new DotNetArgsAccessor 
             { 
@@ -135,7 +145,11 @@ public class DotNetArgsFilledInTests
             {
                 AssertFilled(args);
             }
+        
+            counter++;
         }
+
+        Log($"{counter} combos checked.");
     }
 
     /// <inheritdoc cref="_notnullwhentests" />

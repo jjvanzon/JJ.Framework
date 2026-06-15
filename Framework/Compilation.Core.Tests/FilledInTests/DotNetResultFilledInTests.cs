@@ -6,6 +6,8 @@ namespace JJ.Framework.Compilation.Core.Tests.FilledInTests;
 [TestClass]
 public class DotNetResultFilledInTests
 {
+    // TODO: AllFilled test so that case isn't dependent on the grand "all combos" loop.
+
     [TestMethod]
     public void Test_DotNetResult_Nully()
     {
@@ -20,6 +22,63 @@ public class DotNetResultFilledInTests
     public void Test_DotNetResult_OnePropFilled()
     {
         // TODO: Test with Opt prop filled, Args prop filled, and then the 4 other constructor arguments.
+
+        foreach (var filled in FilledTexts)
+        {
+            AssertFilled(NewResult(new DotNetOptions { Dir = filled }));
+        }
+
+        foreach (var filled in FilledTexts)
+        {
+            AssertFilled(NewResult(new DotNetOptions { File = filled }));
+        }
+
+        foreach (var filled in FilledTexts)
+        {
+            AssertFilled(NewResult(new DotNetOptions { BuildConf = filled }));
+        }
+
+        foreach (var filled in FilledTexts)
+        {
+            AssertFilled(NewResult(new DotNetOptions { Args = filled }));
+        }
+
+        {
+            AssertFilled(NewResult(new DotNetOptions { AutoRestore = true }));
+        }
+        
+        {
+            AssertFilled(NewResult(new DotNetOptions { ParallelRestore = true }));
+        }
+        
+        {
+            AssertFilled(NewResult(new DotNetOptions { NodeReuse = true }));
+        }
+
+        foreach (var filled in FilledTimeOuts)
+        {
+            AssertFilled(NewResult(new DotNetOptions { TimeOutSec = filled }));
+        }
+        
+        foreach (var filled in FilledVerbosities)
+        {
+            AssertFilled(NewResult(new DotNetOptions { Verbosity = filled }));
+        }
+
+        foreach (var filled in FilledTexts)
+        {
+            AssertFilled(NewResult(new DotNetOptions { LogFile = filled }));
+        }
+
+        foreach (var filled in FilledTexts)
+        {
+            AssertFilled(NewResult(new DotNetOptions { BinLog = filled }));
+        }
+
+        foreach (var filled in FilledLogActions)
+        {
+            AssertFilled(NewResult(new DotNetOptions { LogAction = filled }));
+        }
 
         foreach (var filled in FilledCommandEnums)
         {
@@ -59,6 +118,63 @@ public class DotNetResultFilledInTests
     [TestMethod]
     public void Test_DotNetResult_OnePropNully()
     {
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(NewResult(FilledOpt with { Dir = nully! }));
+        }
+
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(NewResult(FilledOpt with { File = nully! }));
+        }
+
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(NewResult(FilledOpt with { BuildConf = nully! }));
+        }
+
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(NewResult(FilledOpt with { Args = nully! }));
+        }
+
+        {
+            AssertFilled(NewResult(FilledOpt with { AutoRestore = false }));
+        }
+
+        {
+            AssertFilled(NewResult(FilledOpt with { ParallelRestore = false }));
+        }
+
+        {
+            AssertFilled(NewResult(FilledOpt with { NodeReuse = false }));
+        }
+
+        foreach (var nully in NullyTimeOuts)
+        {
+            AssertFilled(NewResult(FilledOpt with { TimeOutSec = nully! }));
+        }
+
+        foreach (var nully in NullyVerbosities)
+        {
+            AssertFilled(NewResult(FilledOpt with { Verbosity = nully! }));
+        }
+
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(NewResult(FilledOpt with { LogFile = nully! }));
+        }
+
+        foreach (var nully in NullyTexts)
+        {
+            AssertFilled(NewResult(FilledOpt with { BinLog = nully! }));
+        }
+
+        foreach (var nully in NullyLogActions)
+        {
+            AssertFilled(NewResult(FilledOpt with { LogAction = nully! }));
+        }
+
         foreach (var nully in NullyCommandEnums)
         {
             var args = FilledArgs();
@@ -111,17 +227,67 @@ public class DotNetResultFilledInTests
     [TestMethod]
     public void Test_DotNetResult_FilledOrNot_AllCombos()
     {
-        // TODO: Finish implementing.
-        return;
+        // TODO: Was expecting failure, since result's own fields aren't used, just arg and opt..
 
-        foreach (var commandEnum in FilledCommandEnums.Union(NullyCommandEnums))
-        foreach (var command     in FilledCommands    .Union(NullyTexts))
-        foreach (var id          in FilledIDs         .Union(NullyTexts))
-        foreach (var ver         in FilledVers        .Union(NullyTexts))
-        foreach (var extraArgs   in FilledTexts       .Union(NullyTexts))
-        foreach (var isRebuild   in FilledBools       .Union(NullyBools))
-        foreach (var fullArgs    in FilledTexts       .Union(NullyTexts))
+        // Take(n) otherwise 2 million combos (not fast)
+        var dirVals             = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var fileVals            = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var buildConfVals       = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var extraArgsVals1      = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var autoRestoreVals     = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        var parallelRestoreVals = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        var nodeReuseVals       = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        var timeOutSecVals      = FilledTimeOuts    .Take(1).Union(NullyTimeOuts    .Take(1)).ToArray();
+        var verbosityVals       = FilledVerbosities .Take(1).Union(NullyVerbosities .Take(1)).ToArray();
+        var logFileVals         = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var binLogVals          = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var logActionVals       = FilledLogActions  .Take(1).Union(NullyLogActions  .Take(1)).ToArray();
+        var commandEnumVals     = FilledCommandEnums.Take(1).Union(NullyCommandEnums.Take(1)).ToArray();
+        var commandVals         = FilledCommands    .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var idVals              = FilledIDs         .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var verVals             = FilledVers        .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var extraArgsVals2      = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+        var isRebuildVals       = FilledBools       .Take(1).Union(NullyBools       .Take(1)).ToArray();
+        var fullArgsVals        = FilledTexts       .Take(1).Union(NullyTexts       .Take(1)).ToArray();
+
+        int counter = 0;
+
+        foreach (var dir             in dirVals)
+        foreach (var file            in fileVals)
+        foreach (var buildConf       in buildConfVals)
+        foreach (var extraArgs1      in extraArgsVals1)
+        foreach (var autoRestore     in autoRestoreVals)
+        foreach (var parallelRestore in parallelRestoreVals)
+        foreach (var nodeReuse       in nodeReuseVals)
+        foreach (var timeOutSec      in timeOutSecVals)
+        foreach (var verbosity       in verbosityVals)
+        foreach (var logFile         in logFileVals)
+        foreach (var binLog          in binLogVals)
+        foreach (var logAction       in logActionVals)
+        foreach (var commandEnum     in commandEnumVals)
+        foreach (var command         in commandVals)
+        foreach (var id              in idVals)
+        foreach (var ver             in verVals)
+        foreach (var extraArgs2      in extraArgsVals2)
+        foreach (var isRebuild       in isRebuildVals)
+        foreach (var fullArgs        in fullArgsVals)
         {
+            var opt = new DotNetOptions
+            { 
+                Dir             = dir!,            
+                File            = file!,           
+                BuildConf       = buildConf!, 
+                Args            = extraArgs1!,
+                AutoRestore     = autoRestore!,
+                ParallelRestore = parallelRestore!,
+                NodeReuse       = nodeReuse!,
+                TimeOutSec      = timeOutSec!,
+                Verbosity       = verbosity!,
+                LogFile         = logFile!,
+                BinLog          = binLog!,         
+                LogAction       = logAction!
+            };
+
             var args = new DotNetArgsAccessor 
             { 
                 CommandEnum = commandEnum,
@@ -129,19 +295,31 @@ public class DotNetResultFilledInTests
                 ID          = id!,
                 Ver         = ver!,
                 IsRebuild   = isRebuild,
-                Args        = extraArgs!,
+                Args        = extraArgs2!,
                 FullArgs    = fullArgs!
             };
 
-            var result = NewResult(args);
+            var result = NewResult(opt, args);
 
-            bool isNully = commandEnum.In(NullyCommandEnums) &&
-                           command    .In(NullyTexts) &&
-                           id         .In(NullyTexts) &&
-                           ver        .In(NullyTexts) &&
-                           extraArgs  .In(NullyTexts) &&
-                           isRebuild  .In(NullyBools) &&
-                           fullArgs   .In(NullyTexts);
+            bool isNully = dir            .In(NullyTexts) &&
+                           file           .In(NullyTexts) &&
+                           buildConf      .In(NullyTexts) &&
+                           extraArgs1     .In(NullyTexts) &&
+                           autoRestore    .In(NullyBools) &&
+                           parallelRestore.In(NullyBools) &&
+                           nodeReuse      .In(NullyBools) &&
+                           timeOutSec     .In(NullyTimeOuts) &&
+                           verbosity      .In(NullyVerbosities) &&
+                           logFile        .In(NullyTexts) &&
+                           binLog         .In(NullyTexts) &&
+                           logAction      .In(NullyLogActions) &&
+                           commandEnum    .In(NullyCommandEnums) &&
+                           command        .In(NullyTexts) &&
+                           id             .In(NullyTexts) &&
+                           ver            .In(NullyTexts) &&
+                           extraArgs2     .In(NullyTexts) &&
+                           isRebuild      .In(NullyBools) &&
+                           fullArgs       .In(NullyTexts);
 
             if (isNully)
             {
@@ -151,7 +329,11 @@ public class DotNetResultFilledInTests
             {
                 AssertFilled(result);
             }
+        
+            counter++;
         }
+    
+        Log($"{counter} combos checked.");
     }
 
     /// <inheritdoc cref="_notnullwhentests" />
