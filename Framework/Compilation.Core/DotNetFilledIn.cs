@@ -94,34 +94,25 @@ internal static class DotNetFilledInUtil
         if (result == null)
             return false;
 
-        if (Has(result.HasExitCode))
+        if (Has(result.HasExitCode) || Has(result.ExitCode))
             return true;
 
-        if (Has(result.HasErrorText))
+        if (Has(result.HasErrorText) || Has(result.ErrorText))
             return true;
 
-        if (Has(result.HasOutputText))
+        if (Has(result.HasOutputText) || Has(result.OutputText))
             return true;
-
+       
         if (Has(result.HasErrorInOutput))
             return true;
 
         if (Has(result.HasTimeOut))
             return true;
 
-        if (Has(result.ExitCode))
-            return true;
-
         if (Has(result.Opt))
             return true;
 
         if (Has(result.Args))
-            return true;
-
-        if (Has(result.ErrorText))
-            return true;
-
-        if (Has(result.OutputText))
             return true;
 
         // Outcommented: These mess with things.
