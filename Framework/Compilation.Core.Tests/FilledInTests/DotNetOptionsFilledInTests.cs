@@ -35,6 +35,12 @@ public class DotNetOptionsFilledInTests
             AssertFilled(nullyFilled);
         }
     }
+    
+    [TestMethod]
+    public void Test_DotNetOptions_AllPropsFilled()
+    {
+        AssertFilled(FilledOpt);
+    }
 
     [TestMethod]
     public void Test_DotNetOptions_OnePropFilled()

@@ -5,8 +5,6 @@ namespace JJ.Framework.Compilation.Core.Tests.FilledInTests;
 [TestClass]
 public class DotNetResultFilledInTests
 {
-    // TODO: AllFilled test so that case isn't dependent on the grand "all combos" loop.
-
     [TestMethod]
     public void Test_DotNetResult_Nully()
     {
@@ -15,6 +13,12 @@ public class DotNetResultFilledInTests
 
         var args = NewResult();
         AssertNully(args);
+    }
+    
+    [TestMethod]
+    public void Test_DotNetResult_AllPropsFilled()
+    {
+        AssertFilled(FilledResult());
     }
 
     [TestMethod]

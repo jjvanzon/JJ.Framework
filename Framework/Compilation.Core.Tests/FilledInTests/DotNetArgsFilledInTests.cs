@@ -17,6 +17,12 @@ public class DotNetArgsFilledInTests
     }
 
     [TestMethod]
+    public void Test_DotNetArgs_AllPropsFilled()
+    {
+        AssertFilled(FilledArgs());
+    }
+
+    [TestMethod]
     public void Test_DotNetArgs_OnePropFilled()
     {
         foreach (var filled in FilledCommandEnums)
