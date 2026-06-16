@@ -17,7 +17,7 @@ public class DotNetOptionsFormatterTests
     public void DotNetOptionsFormatter_UsesDescriptor()
     {
         AssertDiagnosticTexts(
-            new DotNetOptions
+            new()
             {
                 BuildConf = "Release",
                 File = @"C:\Code\MyProject.csproj",
@@ -35,7 +35,7 @@ public class DotNetOptionsFormatterTests
     public void DotNetOptionsFormatter_FullCombination()
     {
         AssertDiagnosticTexts(
-            new DotNetOptions
+            new()
             {
                 BuildConf = "Release",
                 AutoRestore = true,
@@ -70,10 +70,10 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_BuildConf()
     {
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Release" }, '"' + "Release" + '"');
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "Debug"   }, '"' + "Debug"   + '"');
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = "La lala" }, '"' + "La lala" + '"');
-        AssertDiagnosticTexts(new DotNetOptions { BuildConf = ""        }, DEFAULT_DESCRIPTOR);
+        AssertDiagnosticTexts(new() { BuildConf = "Release" }, '"' + "Release" + '"');
+        AssertDiagnosticTexts(new() { BuildConf = "Debug"   }, '"' + "Debug"   + '"');
+        AssertDiagnosticTexts(new() { BuildConf = "La lala" }, '"' + "La lala" + '"');
+        AssertDiagnosticTexts(new() { BuildConf = ""        }, DEFAULT_DESCRIPTOR);
     }
 
     // Restore
@@ -81,19 +81,19 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_Restore_Auto()
     {
-        AssertDiagnosticTexts(new DotNetOptions { AutoRestore = true }, "Restore: Auto");
+        AssertDiagnosticTexts(new() { AutoRestore = true }, "Restore: Auto");
     }
 
     [TestMethod]
     public void DotNetOptionsFormatter_Restore_Parallel()
     {
-        AssertDiagnosticTexts(new DotNetOptions { ParallelRestore = true }, "Restore: Parallel");
+        AssertDiagnosticTexts(new() { ParallelRestore = true }, "Restore: Parallel");
     }
 
     [TestMethod]
     public void DotNetOptionsFormatter_Restore_AutoAndParallel()
     {
-        AssertDiagnosticTexts(new DotNetOptions { AutoRestore = true, ParallelRestore = true }, "Restore: Auto Parallel");
+        AssertDiagnosticTexts(new() { AutoRestore = true, ParallelRestore = true }, "Restore: Auto Parallel");
     }
 
     // Time-Out
@@ -116,8 +116,8 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_TimeOut_Shown_WhenCustom()
     {
-        AssertDiagnosticTexts(new DotNetOptions { TimeOutSec = 1 }, "Timeout: 1s");
-        AssertDiagnosticTexts(new DotNetOptions { TimeOutSec = 600 }, "Timeout: 600s");
+        AssertDiagnosticTexts(new() { TimeOutSec = 1 }, "Timeout: 1s");
+        AssertDiagnosticTexts(new() { TimeOutSec = 600 }, "Timeout: 600s");
     }
 
     // Log
@@ -130,14 +130,14 @@ public class DotNetOptionsFormatterTests
 
         foreach (Action<string> filledLogAction in filledLogActions)
         {
-            AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction }, DEFAULT_DESCRIPTOR);
+            AssertDiagnosticTexts(new() { LogAction = filledLogAction }, DEFAULT_DESCRIPTOR);
 
             foreach (DotNetVerbosity anyVerbosity in allVerbosities)
             {
                 // TODO: Change main code implementation:
                 //  Verbosity variance is still relevant to show for diagnostics, even when Log is nully.
                 //  It also affects the dotnet run, not just the Log delegate.
-                AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction, Verbosity = anyVerbosity }, DEFAULT_DESCRIPTOR);
+                AssertDiagnosticTexts(new() { LogAction = filledLogAction, Verbosity = anyVerbosity }, DEFAULT_DESCRIPTOR);
             }
         }
     }
@@ -150,11 +150,11 @@ public class DotNetOptionsFormatterTests
 
         foreach (Action<string> filledLogAction in filledLogActions)
         {
-            AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction }, "Log");
+            AssertDiagnosticTexts(new() { LogAction = filledLogAction }, "Log");
 
             foreach (DotNetVerbosity normalVerbosity in normalVerbosities)
             {
-                AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction, Verbosity = normalVerbosity }, "Log");
+                AssertDiagnosticTexts(new() { LogAction = filledLogAction, Verbosity = normalVerbosity }, "Log");
             }
         }
     }
@@ -169,7 +169,7 @@ public class DotNetOptionsFormatterTests
         {
             foreach (DotNetVerbosity nullyVerbosity in nullyVerbosities)
             {
-                AssertDiagnosticTexts(new DotNetOptions { LogAction = filledLogAction, Verbosity = nullyVerbosity }, "Log Undefined");
+                AssertDiagnosticTexts(new() { LogAction = filledLogAction, Verbosity = nullyVerbosity }, "Log Undefined");
             }
         }
     }
@@ -179,10 +179,10 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_Log_VariousVerbosities()
     {
-        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Quiet      }, "Log Quiet"     );
-        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Minimal    }, "Log Minimal"   );
-        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Detailed   }, "Log Detailed"  );
-        AssertDiagnosticTexts(new DotNetOptions { LogAction = WriteLine, Verbosity = Diagnostic }, "Log Diagnostic");
+        AssertDiagnosticTexts(new() { LogAction = WriteLine, Verbosity = Quiet      }, "Log Quiet"     );
+        AssertDiagnosticTexts(new() { LogAction = WriteLine, Verbosity = Minimal    }, "Log Minimal"   );
+        AssertDiagnosticTexts(new() { LogAction = WriteLine, Verbosity = Detailed   }, "Log Detailed"  );
+        AssertDiagnosticTexts(new() { LogAction = WriteLine, Verbosity = Diagnostic }, "Log Diagnostic");
     }
 
     // File Options
@@ -190,26 +190,26 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_OnlyArgs()
     {
-        AssertDiagnosticTexts(new DotNetOptions { Args = "--no-logo" }, "--no-logo");
+        AssertDiagnosticTexts(new() { Args = "--no-logo" }, "--no-logo");
     }
 
     [TestMethod]
     public void DotNetOptionsFormatter_OnlyFile()
     {
-        AssertDiagnosticTexts(new DotNetOptions { File = "MyProject.csproj" }, "MyProject.csproj");
+        AssertDiagnosticTexts(new() { File = "MyProject.csproj" }, "MyProject.csproj");
     }
 
     [TestMethod]
     public void DotNetOptionsFormatter_OnlyDir()
     {
-        AssertDiagnosticTexts(new DotNetOptions { Dir = @"C:\repo" }, @"Dir = C:\repo");
+        AssertDiagnosticTexts(new() { Dir = @"C:\repo" }, @"Dir = C:\repo");
     }
 
     [TestMethod]
     public void DotNetOptionsFormatter_AllFileOptions()
     {
         AssertDiagnosticTexts(
-            new DotNetOptions
+            new()
             {
                 Args = "--no-logo",
                 File = "MyProject.csproj",
@@ -221,7 +221,7 @@ public class DotNetOptionsFormatterTests
     [TestMethod]
     public void DotNetOptionsFormatter_AllFileOptions_LongFilePath()
     {
-        var opt = new DotNetOptions
+        DotNetOptions opt = new()
         {
             Args = "--no-logo",
             File = @"D:\JJ\Dev\Products\Code\MyProject.csproj",
@@ -242,7 +242,7 @@ public class DotNetOptionsFormatterTests
         foreach (var nully2 in textNullies)
         foreach (var nully3 in textNullies)
         {
-            AssertDiagnosticTexts(new DotNetOptions { Args = nully1, File = nully2, Dir = nully3 }, DEFAULT_DESCRIPTOR);
+            AssertDiagnosticTexts(new() { Args = nully1, File = nully2, Dir = nully3 }, DEFAULT_DESCRIPTOR);
         }
     }
 
@@ -250,7 +250,7 @@ public class DotNetOptionsFormatterTests
     public void DotNetOptionsFormatter_PathsTruncated()
     {
         AssertDiagnosticTexts(
-            new DotNetOptions
+            new()
             {
                 Args = "--no-logo",
                 File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
@@ -267,7 +267,7 @@ public class DotNetOptionsFormatterTests
     public void DotNetOptionsFormatter_DirTruncated_FileNot()
     {
         AssertDiagnosticTexts(
-            new DotNetOptions
+            new()
             {
                 Args = "--no-logo",
                 File = "MyProject.csproj",
@@ -283,7 +283,7 @@ public class DotNetOptionsFormatterTests
     public void DotNetOptionsFormatter_FileTruncated_DirNot()
     {
         AssertDiagnosticTexts(
-            new DotNetOptions
+            new()
             {
                 Args = "--no-logo",
                 File = @"D:\Repos\JJ.Framework\src\Apps\Billing\Billing.Service.Api.csproj",
@@ -301,61 +301,61 @@ public class DotNetOptionsFormatterTests
     public void DotNetOptionsFormatter_Combos_WithoutFileOptions()
     {
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", TimeOutSec = 123 },
+            new() { BuildConf = "Release", TimeOutSec = 123 },
             """
             "Release" | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", AutoRestore = true },
+            new() { BuildConf = "Release", AutoRestore = true },
             """
             "Release" | Restore: Auto
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", LogAction = WriteLine, Verbosity = Detailed },
+            new() { BuildConf = "Release", LogAction = WriteLine, Verbosity = Detailed },
             """
             "Release" | Log Detailed
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { ParallelRestore = true, TimeOutSec = 123 },
+            new() { ParallelRestore = true, TimeOutSec = 123 },
             """
             Restore: Parallel | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { AutoRestore = true, LogAction = WriteLine, Verbosity = Detailed },
+            new() { AutoRestore = true, LogAction = WriteLine, Verbosity = Detailed },
             """
             Restore: Auto | Log Detailed
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { LogAction = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
+            new() { LogAction = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
             """
             Log Detailed | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", ParallelRestore = true, TimeOutSec = 123 },
+            new() { BuildConf = "Release", ParallelRestore = true, TimeOutSec = 123 },
             """
             "Release" | Restore: Parallel | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", LogAction = WriteLine, Verbosity = Quiet, TimeOutSec = 123 },
+            new() { BuildConf = "Release", LogAction = WriteLine, Verbosity = Quiet, TimeOutSec = 123 },
             """
             "Release" | Log Quiet | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", AutoRestore = true, LogAction = WriteLine, Verbosity = Normal, TimeOutSec = 123 },
+            new() { BuildConf = "Release", AutoRestore = true, LogAction = WriteLine, Verbosity = Normal, TimeOutSec = 123 },
             """
             "Release" | Restore: Auto | Log | Timeout: 123s
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", ParallelRestore = true, LogAction = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
+            new() { BuildConf = "Release", ParallelRestore = true, LogAction = WriteLine, Verbosity = Detailed, TimeOutSec = 123 },
             """
             "Release" | Restore: Parallel | Log Detailed | Timeout: 123s
             """);
@@ -368,49 +368,49 @@ public class DotNetOptionsFormatterTests
         const string longFile = @"D:\JJ\Dev\Products\Code\MyProject.csproj";
 
         AssertDiagnosticTexts(
-            new DotNetOptions { Args = "--no-logo", Dir = @"C:\repo" },
+            new() { Args = "--no-logo", Dir = @"C:\repo" },
             """
             --no-logo | Dir = C:\repo
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { File = shortFile, Dir = @"C:\repo" },
+            new() { File = shortFile, Dir = @"C:\repo" },
             """
             MyProject.csproj | Dir = C:\repo
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { Args = "--no-logo", File = shortFile },
+            new() { Args = "--no-logo", File = shortFile },
             """
             MyProject.csproj --no-logo
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { Args = "--no-logo", File = longFile },
+            new() { Args = "--no-logo", File = longFile },
             """
             --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { File = longFile, Dir = @"C:\repo" },
+            new() { File = longFile, Dir = @"C:\repo" },
             """
             D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = C:\repo
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { Args = "--no-logo", File = longFile, Dir = @"C:\repo" },
+            new() { Args = "--no-logo", File = longFile, Dir = @"C:\repo" },
             """
             --no-logo | D:\JJ\Dev\Products\Code\MyProject.csproj | Dir = C:\repo
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", Args = "--no-logo", Dir = @"C:\repo" },
+            new() { BuildConf = "Release", Args = "--no-logo", Dir = @"C:\repo" },
             """
             "Release" | --no-logo | Dir = C:\repo
             """);
 
         AssertDiagnosticTexts(
-            new DotNetOptions { BuildConf = "Release", File = shortFile, Dir = @"C:\repo" },
+            new() { BuildConf = "Release", File = shortFile, Dir = @"C:\repo" },
             """
             "Release" | MyProject.csproj | Dir = C:\repo
             """);

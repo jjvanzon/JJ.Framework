@@ -41,22 +41,19 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndCommandText_MSRebuild()
     {
-        var args = new DotNetArgsAccessor(msrebuild) { Command = "msbuild" };
-        AssertDiagnosticTexts(args, "msrebuild / msbuild");
+        AssertDiagnosticTexts(new() { CommandEnum = msrebuild, Command = "msbuild" }, "msrebuild / msbuild");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndFullArgs_Build()
     {
-        var args = new DotNetArgsAccessor(build) { FullArgs = "build --no-restore" };
-        AssertDiagnosticTexts(args, "build --no-restore");
+        AssertDiagnosticTexts(new(build) { FullArgs = "build --no-restore" }, "build --no-restore");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_EnumAndFullArgs_Rebuild()
     {
-        var args = new DotNetArgsAccessor(rebuild) { FullArgs = "build --no-incremental" };
-        AssertDiagnosticTexts(args, "rebuild | build --no-incremental");
+        AssertDiagnosticTexts(new (rebuild) { FullArgs = "build --no-incremental" }, "rebuild | build --no-incremental");
     }
 
     // With Args
@@ -64,68 +61,67 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void DotNetArgs_Descriptor_Build_Enum_CommandText_FullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = build, 
             Command = "build", 
             FullArgs = "build --no-incremental" 
-        };
-        AssertDiagnosticTexts(args, "build --no-incremental");
+        }, 
+        "build --no-incremental");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_Rebuild_Enum_CommandText_IsRebuild_FullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = rebuild, 
             Command = "build", 
             IsRebuild = true, 
             FullArgs = "build --no-incremental" 
-        };
-        AssertDiagnosticTexts(args, "rebuild | build --no-incremental");
+        }, 
+        "rebuild | build --no-incremental");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_CommandEnum_FullArgsAndArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         {
             CommandEnum = restore,
             Args = "--bogus-arg",
             FullArgs = "--dummy-arg"
-        };
-        AssertDiagnosticTexts(args, "restore | --bogus-arg | --dummy-arg");
+        }, 
+        "restore | --bogus-arg | --dummy-arg");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_CommandEnum_FullContainsArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         {
             CommandEnum = restore,
             Args = "--no-cache",
             FullArgs = "--no-cache --no-logo"
-        };
-        AssertDiagnosticTexts(args, "restore | --no-cache --no-logo");
+        }, 
+        "restore | --no-cache --no-logo");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_ArgsAndFullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         {
             Args = "--no-cache",
             FullArgs = "--no-cache --no-logo"
-        };
-        AssertDiagnosticTexts(args, "<no command> | --no-cache --no-logo");
+        }, 
+        "<no command> | --no-cache --no-logo");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_NoCommandNoIDVerNoArgs_OnlyNoCommandText()
     {
-        var args = new DotNetArgsAccessor();
-        AssertDiagnosticTexts(args, "<no command>");
+        AssertDiagnosticTexts(new(), "<no command>");
     }
 
     // InstallPackage
@@ -133,78 +129,78 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandEnumAndIDVer()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         {
             CommandEnum = installpackage,
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0" 
-        };
-        AssertDiagnosticTexts(args, "installpackage JJ.Framework.Common 1.0.0");
+        }, 
+        "installpackage JJ.Framework.Common 1.0.0");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandTextAndIDVer()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             Command = "add",
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0" 
-        };
-        AssertDiagnosticTexts(args, "add JJ.Framework.Common 1.0.0");
+        }, 
+        "add JJ.Framework.Common 1.0.0");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandEnumTextAndIDVer()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = installpackage,
             Command = "add",
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0"
-        };
-        AssertDiagnosticTexts(args, "installpackage / add JJ.Framework.Common 1.0.0");
+        }, 
+        "installpackage / add JJ.Framework.Common 1.0.0");
     }
     
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandEnumIDVerAndFullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = installpackage,
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
-        };
-        AssertDiagnosticTexts(args, "installpackage | add package JJ.Framework.Common --version 1.0.0");
+        }, 
+        "installpackage | add package JJ.Framework.Common --version 1.0.0");
     }
     
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandTextIDVerAndFullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             Command = "add",
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
-        };
-        AssertDiagnosticTexts(args, "add package JJ.Framework.Common --version 1.0.0");
+        }, 
+        "add package JJ.Framework.Common --version 1.0.0");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_InstallPackage_CommandEnumTextIDVerAndFullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = installpackage,
             Command = "add",
             ID = "JJ.Framework.Common", 
             Ver = "1.0.0",
             FullArgs = "add package JJ.Framework.Common --version 1.0.0"
-        };
-        AssertDiagnosticTexts(args, "installpackage | add package JJ.Framework.Common --version 1.0.0");
+        },
+        "installpackage | add package JJ.Framework.Common --version 1.0.0");
     }
 
     // UninstallPackage
@@ -212,87 +208,87 @@ public class DotNetArgsFormatterTests
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandTextAndID()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             Command = "remove",
             ID = "JJ.Framework.Common" 
-        };
-        AssertDiagnosticTexts(args, "remove JJ.Framework.Common");
+        }, 
+        "remove JJ.Framework.Common");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumAndID()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = uninstallpackage,
             ID = "JJ.Framework.Common" 
-        };
-        AssertDiagnosticTexts(args, "uninstallpackage JJ.Framework.Common");
+        }, 
+        "uninstallpackage JJ.Framework.Common");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandTextEnumAndID()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             Command = "remove",
             CommandEnum = uninstallpackage,
             ID = "JJ.Framework.Common" 
-        };
-        AssertDiagnosticTexts(args, "uninstallpackage / remove JJ.Framework.Common");
+        },
+        "uninstallpackage / remove JJ.Framework.Common");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDAndArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = uninstallpackage, 
             Command = "remove", 
             ID = "JJ.Framework.Common", 
             Args = "--help"
-        };
-        AssertDiagnosticTexts(args, "uninstallpackage / remove JJ.Framework.Common | --help");
+        }, 
+        "uninstallpackage / remove JJ.Framework.Common | --help");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandTextIDAndFullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             Command = "remove",
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common"
-        };
-        AssertDiagnosticTexts(args, "remove package JJ.Framework.Common");
+        }, 
+        "remove package JJ.Framework.Common");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDAndFullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = uninstallpackage,
             Command = "remove",
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common"
-        };
-        AssertDiagnosticTexts(args, "uninstallpackage | remove package JJ.Framework.Common");
+        },
+        "uninstallpackage | remove package JJ.Framework.Common");
     }
 
     [TestMethod]
     public void DotNetArgs_Descriptor_UninstallPackage_CommandEnumTextIDAnd_ArgsInFullArgs()
     {
-        var args = new DotNetArgsAccessor
+        AssertDiagnosticTexts(new()
         { 
             CommandEnum = uninstallpackage,
             Command = "remove",
             ID = "JJ.Framework.Common", 
             FullArgs = "remove package JJ.Framework.Common --help",
             Args = "--help"
-        };
-        AssertDiagnosticTexts(args, "uninstallpackage | remove package JJ.Framework.Common --help");
+        },
+        "uninstallpackage | remove package JJ.Framework.Common --help");
     }
 
     // TODO: Tests with both Args and FullArgs (realistic non-error case ones).
@@ -618,8 +614,9 @@ public class DotNetArgsFormatterTests
         }
     }
 
-    private void AssertDiagnosticTexts(DotNetArgs? args, string expectedDescriptor)
+    private void AssertDiagnosticTexts(DotNetArgsAccessor? accessor, string expectedDescriptor)
     {
+        DotNetArgs? args = accessor;
 
         string expectedStringify = "DotNetArgs " + expectedDescriptor;
         string expectedDebuggerDisplay = "{DotNetArgs " + expectedDescriptor.Replace('"', '\'').Replace('\\', '/') + "}";
@@ -642,8 +639,7 @@ public class DotNetArgsFormatterTests
             
             if (args != null)
             {
-                var accessor = new DotNetArgsAccessor(args);
-                AreEqual(expectedDebuggerDisplay, accessor.DebuggerDisplay);
+                AreEqual(expectedDebuggerDisplay, accessor!.DebuggerDisplay);
             }
         }
     }
