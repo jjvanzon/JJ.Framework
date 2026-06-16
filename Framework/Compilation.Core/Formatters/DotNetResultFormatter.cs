@@ -35,48 +35,38 @@ internal static class DotNetResultFormatter
         if (!Has(result)) return nameof(DotNetResult) + " empty";
         //if (Has(result.Text)) return result.Text;
 
-        bool exitCodeWasAdded = false;
-        // ReSharper disable once ConvertToConstant.Local
-        bool dotNetWasAdded = false;
-
         string failurePart = "";
         if (result.HasTimeOut)
         {
-            failurePart = $"TIME OUT! after {result.Opt.TimeOutSec}s";
-            //dotNetWasAdded = true;
+            failurePart = $"TIME OUT after {result.Opt.TimeOutSec}s";
         }
         else if (result.HasErrorInOutput)
         {
-            failurePart = "ERROR!";
-            //dotNetWasAdded = true;
+            failurePart = "ERROR";
         }
         else if (result.HasExitCode)
         {
-            failurePart = "EXIT CODE " + result.ExitCode + "!";
-            exitCodeWasAdded = true;
-            //dotNetWasAdded = true;
+            failurePart = "EXIT CODE " + result.ExitCode + "";
         }
 
-        string dotNetPart = dotNetWasAdded ? "" : "dotnet ";
+        string dotNetPart = "dotnet ";
 
         // TODO: Remove redundancies from opt when already in args.
         
-        string argsPart = result.Args.FilledIn() ? result.Args.Descriptor() : "";
-        string optPart = result.Opt.FilledIn() ? result.Opt.Descriptor() : "";
-
-        // ReSharper disable once ConvertToConstant.Local
-        string timeOutPart = "";
-        //if (result.HasTimeOut)
-        //{
-        //    timeOutPart = $"after {result.Opt.TimeOutSec}s";
-        //}
-        
-        string exitCodePart = "";
-        if (result.HasExitCode && !exitCodeWasAdded)
+        string argsPart = "";
+        if (result.Args.FilledIn())
         {
-            exitCodePart = "ExitCode = " + result.ExitCode;
+            argsPart = dotNetPart + result.Args.Descriptor();
+            dotNetPart = "";
         }
-        
+
+        string optPart = "";
+        if (result.Opt.FilledIn())
+        {
+            optPart = dotNetPart + result.Opt.Descriptor();
+            dotNetPart = "";
+        }
+
         string sep2 = singleLine ? " " : NewLine;
 
         string errorTextPart = "";
@@ -84,32 +74,34 @@ internal static class DotNetResultFormatter
         {
             if (result.Successful)
             {
-                errorTextPart = $"stdErr:{sep2}{result.ErrorText}";
+                errorTextPart =  $"{dotNetPart}stdErr:{sep2}{result.ErrorText}";
             }
             else
             {
-                errorTextPart = $"Error:{sep2}{result.ErrorText}";
+                errorTextPart =  $"{dotNetPart}Error:{sep2}{result.ErrorText}";
             }
+            dotNetPart = "";
         }
         
         string outputTextPart = "";
         if (result.HasOutputText)
         {
-            outputTextPart = $"Output:{sep2}{result.OutputText}";
+            outputTextPart = $"{dotNetPart}Output:{sep2}{result.OutputText}";
+            dotNetPart = "";
         }
+
+        failurePart = dotNetPart + failurePart;
 
         string[] elements = 
         [
             failurePart,
             argsPart,
             optPart,
-            timeOutPart,
-            exitCodePart,
             errorTextPart,
             outputTextPart
         ];
 
-        var descriptor = dotNetPart + Join(sep, elements.Where(FilledIn));
+        var descriptor = Join(sep, elements.Where(FilledIn));
         return descriptor;
     }
 }

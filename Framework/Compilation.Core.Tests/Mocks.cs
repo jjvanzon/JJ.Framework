@@ -102,6 +102,7 @@ internal static class Mocks
         => new DotNetResultAccessor(FilledOpt, FilledArgs(), exitCode, errorText, outputText, hasTimeOut);
 
 
+    [Prio(1)]
     public static DotNetResult NewResult(
         DotNetArgsAccessor args,
         int exitCode = 0,
@@ -111,7 +112,7 @@ internal static class Mocks
 
     public static DotNetResult NewResult(
         DotNetOptions opt = default,
-        DotNetArgs? args = null,
+        DotNetArgsAccessor? args = null,
         int exitCode = 0,
         string errorText = "",
         string outputText = "",

@@ -46,23 +46,19 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void DotNetResultFormatter_Failure_ExitCode_WithArgsErrorText()
     {
-        var args = new DotNetArgsAccessor(build)
-        { 
-            Args = "--no-logo", 
-            FullArgs = "build --no-logo"
-        };
-
-        DotNetResult result = NewResult(args, exitCode: 2, errorText: "Project not found!");
+        var result = NewResult(
+            args: new(build) { Args = "--no-logo", FullArgs = "build --no-logo" },
+            exitCode: 2, errorText: "Project not found!");
 
         // TODO: "dotnet" would look better near the full arg text.
 
         const string expectedWideForm =
-            "dotnet EXIT CODE 2! | build --no-logo | Error: Project not found!";
+            "EXIT CODE 2 | dotnet build --no-logo | Error: Project not found!";
 
         const string expectedLongForm =
             """
-            dotnet EXIT CODE 2!
-            build --no-logo
+            EXIT CODE 2
+            dotnet build --no-logo
             Error:
             Project not found!
             """;
@@ -73,21 +69,17 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void DotNetResultFormatter_Failure_ErrorInOutput_WithArgs()
     {
-        var args = new DotNetArgsAccessor(build)
-        {
-            Args = "--no-logo", 
-            FullArgs = "build --no-logo" 
-        };
-
-        DotNetResult result = NewResult(args, outputText: "[error] Something broke");
+        var result = NewResult(
+            args: new() { CommandEnum = build, Args = "--no-logo",  FullArgs = "build --no-logo" }, 
+            outputText: "[error] Something broke");
 
         const string expectedWideForm =
-            "dotnet ERROR! | build --no-logo | Output: [error] Something broke";
+            "ERROR | dotnet build --no-logo | Output: [error] Something broke";
 
         const string expectedLongForm =
             """
-            dotnet ERROR!
-            build --no-logo
+            ERROR
+            dotnet build --no-logo
             Output:
             [error] Something broke
             """;
@@ -98,39 +90,24 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void DotNetResultFormatter_Failure_TimeOut_WithArgs()
     {
-        var args = new DotNetArgsAccessor(build)
-        {
-            Args = "--no-logo", 
-            FullArgs = "build --no-logo"
-        };
-
-        DotNetResult result = NewResult(args, hasTimeOut: true);
-
-        // TODO: dotnet next to build instead would look better.
-
-        const string expectedWideForm =
-            "dotnet TIME OUT! after 300s | build --no-logo";
-
-        const string expectedLongForm =
+        AssertDiagnosticTexts(
+            NewResult(new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo"}, hasTimeOut: true),
+            "TIME OUT after 300s | dotnet build --no-logo", 
             """
-            dotnet TIME OUT! after 300s
-            build --no-logo
-            """;
-
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+            TIME OUT after 300s
+            dotnet build --no-logo
+            """);
     }
 
     [TestMethod]
     public void DotNetResultFormatter_Success_WithStdErr_WithArgs()
     {
-        var args = new DotNetArgsAccessor(build)
-        { 
-            Args = "--no-logo", 
-            FullArgs = "build --no-logo"
-        };
-
         DotNetResult result = NewResult(
-            args,
+            new DotNetArgsAccessor(build)
+            { 
+                Args = "--no-logo", 
+                FullArgs = "build --no-logo"
+            },
             errorText: "Welcome banner",
             outputText: "Build succeeded.");
 
@@ -161,7 +138,7 @@ public class DotNetResultFormatterTests
     [TestMethod] 
     public void Test_DotNetResultFormatter_TimeOut()
     {
-        AssertDiagnosticTexts(NewResult(hasTimeOut: true), "dotnet TIME OUT! after 300s");
+        AssertDiagnosticTexts(NewResult(hasTimeOut: true), "dotnet TIME OUT after 300s");
     }
 
     [TestMethod] 
@@ -174,14 +151,14 @@ public class DotNetResultFormatterTests
         // TODO: Trim between "Output: " and the rest of the text.
         const string expectedWideForm = 
             """
-            dotnet ERROR! | Output:   Happily compiling the stuff...
+            ERROR | dotnet Output:   Happily compiling the stuff...
               [error] Something went wrong during compilation.
             """;
 
         const string expectedLongForm = 
             """
-            dotnet ERROR!
-            Output:
+            ERROR
+            dotnet Output:
               Happily compiling the stuff...
               [error] Something went wrong during compilation.
             """;
@@ -191,7 +168,7 @@ public class DotNetResultFormatterTests
 
     [TestMethod]
     public void Test_DotNetResultFormatter_ExitCode() 
-        => AssertDiagnosticTexts(NewResult(exitCode: 3), "dotnet EXIT CODE 3!");
+        => AssertDiagnosticTexts(NewResult(exitCode: 3), "dotnet EXIT CODE 3");
 
     //[TestMethod] public void Test_DotNetResultFormatter_Failure_PriorityOrder() => throw new NotImplementedException();
     //[TestMethod] public void Test_DotNetResultFormatter_Failure_None() => throw new NotImplementedException();
