@@ -88,36 +88,36 @@ public class DotNetResultFilledInTests
 
         foreach (var filled in FilledCommandEnums)
         {
-            AssertFilled(NewResult(new DotNetArgsAccessor { CommandEnum = filled }));
+            AssertFilled(NewResult(args: new() { CommandEnum = filled }));
         }
 
         foreach (var filled in FilledCommands)
         {
-            AssertFilled(NewResult(new DotNetArgsAccessor { Command = filled }));
+            AssertFilled(NewResult(args: new() { Command = filled }));
         }
 
         foreach (var filled in FilledIDs)
         {
-            AssertFilled(NewResult(new DotNetArgsAccessor { ID = filled }));
+            AssertFilled(NewResult(args: new() { ID = filled }));
         }
 
         foreach (var filled in FilledVers)
         {
-            AssertFilled(NewResult(new DotNetArgsAccessor { Ver = filled }));
+            AssertFilled(NewResult(args: new() { Ver = filled }));
         }
 
         foreach (var filled in FilledTexts)
         {
-            AssertFilled(NewResult(new DotNetArgsAccessor { Args = filled }));
+            AssertFilled(NewResult(args: new() { Args = filled }));
         }
 
         {
-            AssertFilled(NewResult(new DotNetArgsAccessor { IsRebuild = true }));
+            AssertFilled(NewResult(args: new() { IsRebuild = true }));
         }
 
         foreach (var filled in FilledTexts)
         {
-            AssertFilled(NewResult(new DotNetArgsAccessor { FullArgs = filled }));
+            AssertFilled(NewResult(args: new() { FullArgs = filled }));
         }
     }
 

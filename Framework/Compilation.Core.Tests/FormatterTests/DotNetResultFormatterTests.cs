@@ -11,36 +11,27 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void DotNetResultFormatter_Success_WithArgsOptOutputText()
     {
-        var args = new DotNetArgsAccessor(build)
-        { 
-            Args = "--no-logo", 
-            FullArgs = "build MyProject.csproj --no-logo" 
-        };
-
-        var opt = new DotNetOptions
-        { 
-            Dir = @"C:\repo", 
-            File = "MyProject.csproj"
-        };
-
-        DotNetResult result = NewResult(opt, args, outputText: "Build succeeded.");
-
         // TODO: If args contains File, do not repeat in opt descriptor.
 
-        const string expectedLongForm =
+
+        var result = NewResult(
+            new() { Dir = @"C:\repo", File = "MyProject.csproj" }, 
+            new(build) { Args = "--no-logo",  FullArgs = "build MyProject.csproj --no-logo" }, 
+            outputText: "Build succeeded.");
+
+        AssertDiagnosticTexts(
+            result, 
+            expectedWideForm:
+            """
+            dotnet build MyProject.csproj --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.
+            """,
+            expectedLongForm:
             """
             dotnet build MyProject.csproj --no-logo
             MyProject.csproj | Dir = C:\repo
             Output:
             Build succeeded.
-            """;
-
-        const string expectedWideForm = 
-            """
-            dotnet build MyProject.csproj --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.
-            """;
-        
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+            """);
     }
 
     [TestMethod]
@@ -50,20 +41,16 @@ public class DotNetResultFormatterTests
             args: new(build) { Args = "--no-logo", FullArgs = "build --no-logo" },
             exitCode: 2, errorText: "Project not found!");
 
-        // TODO: "dotnet" would look better near the full arg text.
-
-        const string expectedWideForm =
-            "EXIT CODE 2 | dotnet build --no-logo | Error: Project not found!";
-
-        const string expectedLongForm =
+        AssertDiagnosticTexts(
+            result, 
+            expectedWideForm: "EXIT CODE 2 | dotnet build --no-logo | Error: Project not found!", 
+            expectedLongForm: 
             """
             EXIT CODE 2
             dotnet build --no-logo
             Error:
             Project not found!
-            """;
-
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+            """);
     }
 
     [TestMethod]
@@ -73,26 +60,26 @@ public class DotNetResultFormatterTests
             args: new() { CommandEnum = build, Args = "--no-logo",  FullArgs = "build --no-logo" }, 
             outputText: "[error] Something broke");
 
-        const string expectedWideForm =
-            "ERROR | dotnet build --no-logo | Output: [error] Something broke";
-
-        const string expectedLongForm =
-            """
+        AssertDiagnosticTexts(
+            result, 
+            expectedWideForm: "ERROR | dotnet build --no-logo | Output: [error] Something broke", 
+            expectedLongForm: """
             ERROR
             dotnet build --no-logo
             Output:
             [error] Something broke
-            """;
-
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+            """);
     }
 
     [TestMethod]
     public void DotNetResultFormatter_Failure_TimeOut_WithArgs()
     {
+        var result = NewResult(args: new() { CommandEnum = build, Args = "--no-logo", FullArgs = "build --no-logo"}, hasTimeOut: true);
+
         AssertDiagnosticTexts(
-            NewResult(new DotNetArgsAccessor(build) { Args = "--no-logo", FullArgs = "build --no-logo"}, hasTimeOut: true),
-            "TIME OUT after 300s | dotnet build --no-logo", 
+            result,
+            expectedWideForm: "TIME OUT after 300s | dotnet build --no-logo", 
+            expectedLongForm:
             """
             TIME OUT after 300s
             dotnet build --no-logo
@@ -102,28 +89,21 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void DotNetResultFormatter_Success_WithStdErr_WithArgs()
     {
-        DotNetResult result = NewResult(
-            new DotNetArgsAccessor(build)
-            { 
-                Args = "--no-logo", 
-                FullArgs = "build --no-logo"
-            },
-            errorText: "Welcome banner",
-            outputText: "Build succeeded.");
+        var result = NewResult(
+            args: new () { CommandEnum = build, Args = "--no-logo", FullArgs = "build --no-logo" }, 
+            errorText: "Welcome banner", outputText: "Build succeeded.");
 
-        const string expectedWideForm =
-            "dotnet build --no-logo | stdErr: Welcome banner | Output: Build succeeded.";
-
-        const string expectedLongForm =
+        AssertDiagnosticTexts(
+            result, 
+            expectedWideForm: "dotnet build --no-logo | stdErr: Welcome banner | Output: Build succeeded.", 
+            expectedLongForm:
             """
             dotnet build --no-logo
             stdErr:
             Welcome banner
             Output:
             Build succeeded.
-            """;
-
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+            """);
     }
 
     // Error States
@@ -144,26 +124,25 @@ public class DotNetResultFormatterTests
     [TestMethod] 
     public void Test_DotNetResultFormatter_Failure_HasErrorInOutput()
     {
-        DotNetResult result = NewResult(
+        var result = NewResult(
             outputText: "  Happily compiling the stuff..." + NewLine +
                         "  [error] Something went wrong during compilation.");
 
         // TODO: Trim between "Output: " and the rest of the text.
-        const string expectedWideForm = 
+        AssertDiagnosticTexts(
+            result, 
+            expectedWideForm:
             """
             ERROR | dotnet Output:   Happily compiling the stuff...
               [error] Something went wrong during compilation.
-            """;
-
-        const string expectedLongForm = 
+            """,
+            expectedLongForm:
             """
             ERROR
             dotnet Output:
               Happily compiling the stuff...
               [error] Something went wrong during compilation.
-            """;
-
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+            """);
     }
 
     [TestMethod]
@@ -227,18 +206,16 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void Test_DotNetResultFormatter_OutputText()
     {
-        DotNetResult result = NewResult(outputText: "I am happy to inform you of this output text.");
+        var result = NewResult(outputText: "I am happy to inform you of this output text.");
 
-        const string expectedWideForm = 
-            "dotnet Output: I am happy to inform you of this output text.";
-
-        const string expectedLongForm = 
+        AssertDiagnosticTexts(
+            result,
+            expectedWideForm: "dotnet Output: I am happy to inform you of this output text.",
+            expectedLongForm:
             """
             dotnet Output:
             I am happy to inform you of this output text.
-            """;
-
-        AssertDiagnosticTexts(result, expectedWideForm, expectedLongForm);
+            """);
     }
 
     [TestMethod]

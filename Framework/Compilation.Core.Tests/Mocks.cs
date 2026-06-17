@@ -82,18 +82,7 @@ internal static class Mocks
         FilledHasTimeOut
     );
     
-    /*
-    public static DotNetResultAccessor FilledResult() => new
-    (
-        FilledOpt,
-        FilledArgs(),
-        FilledExitCode,
-        FilledErrorText,
-        FilledOutputText,
-        FilledTimeOut
-    );
-    */
-
+    
     public static DotNetResult FilledResult(
         int    exitCode   = FilledExitCode,
         string errorText  = FilledErrorText,
@@ -102,14 +91,7 @@ internal static class Mocks
         => new DotNetResultAccessor(FilledOpt, FilledArgs(), exitCode, errorText, outputText, hasTimeOut);
 
 
-    [Prio(1)]
-    public static DotNetResult NewResult(
-        DotNetArgsAccessor args,
-        int exitCode = 0,
-        string errorText = "",
-        string outputText = "",
-        bool hasTimeOut = false) => NewResult(default, args, exitCode, errorText, outputText, hasTimeOut);
-
+    
     public static DotNetResult NewResult(
         DotNetOptions opt = default,
         DotNetArgsAccessor? args = null,
