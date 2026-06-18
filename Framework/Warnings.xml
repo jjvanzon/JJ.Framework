@@ -1,7 +1,7 @@
 <Project>
-  
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
+    <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
     <NoWarn>$(NoWarn);NU1701</NoWarn> <!--Package was not restored with project target framework.-->
     <NoWarn>$(NoWarn);CS8632</NoWarn> <!--Nullable annotation used without nullable option on.-->
     <NoWarn>$(NoWarn);CS1573</NoWarn> <!--Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do)-->
@@ -49,5 +49,4 @@
     <NoWarn>$(NoWarn);IDE0002</NoWarn> <!--Redundant static qualifier-->
     <NoWarn>$(NoWarn);IDE0051</NoWarn> <!--Type member never used-->
   </PropertyGroup>
-  
 </Project>

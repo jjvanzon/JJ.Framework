@@ -5,6 +5,7 @@
     <File Path="Framework/BuildNum.xml" />
     <File Path="Framework/Directory.Build.props" />
     <File Path="Framework/TargetFrameworks.xml" />
+    <File Path="Framework/TrimTest.xml" />
     <File Path="Framework/Vars.xml" />
     <File Path="Framework/Warnings.xml" />
     <File Path="JJ.Framework.Focused.slnx.DotSettings" />

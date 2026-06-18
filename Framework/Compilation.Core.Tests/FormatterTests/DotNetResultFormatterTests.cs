@@ -15,8 +15,17 @@ public class DotNetResultFormatterTests
 
 
         var result = NewResult(
-            new() { Dir = @"C:\repo", File = "MyProject.csproj" }, 
-            new(build) { Args = "--no-logo",  FullArgs = "build MyProject.csproj --no-logo" }, 
+            new DotNetOptions
+            {
+                Dir = @"C:\repo", 
+                File = "MyProject.csproj" 
+            }, 
+            new DotNetArgsAccessor
+            { 
+                CommandEnum = build, 
+                Args = "--no-logo", 
+                FullArgs = "build MyProject.csproj --no-logo"
+            }, 
             outputText: "Build succeeded.");
 
         AssertDiagnosticTexts(
@@ -38,7 +47,7 @@ public class DotNetResultFormatterTests
     public void DotNetResultFormatter_Failure_ExitCode_WithArgsErrorText()
     {
         var result = NewResult(
-            args: new(build) { Args = "--no-logo", FullArgs = "build --no-logo" },
+            args: new() { CommandEnum = build, Args = "--no-logo", FullArgs = "build --no-logo" },
             exitCode: 2, errorText: "Project not found!");
 
         AssertDiagnosticTexts(

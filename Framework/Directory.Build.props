@@ -25,7 +25,6 @@
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework</PackageProjectUrl>
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
-    <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -155,64 +154,8 @@
     <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
   </Target>
 
-  <!-- Trim Test -->
-
-  <Target Name="RunTrimTest" AfterTargets="PublishAfterBuild" Condition="$(AutoTrimTest) And '$(PublishDir)'!=''">
-    <!-- Helper Vars -->
-    <PropertyGroup>
-      <TrimmedExe>$(PublishDir)\$(MSBuildProjectName).exe</TrimmedExe>
-      <TrimRunOutputFilePath>$(PublishDir)$(MSBuildProjectName)-Output.txt</TrimRunOutputFilePath>
-    </PropertyGroup>
-
-    <!-- Run Exe -->
-    <Exec Command="&quot;$(TrimmedExe)&quot; &gt; &quot;$(TrimRunOutputFilePath)&quot; 2&gt;&amp;1"
-          IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="TrimRunExitCode" />
-    </Exec>
-
-    <!-- Helper Vars -->
-    <PropertyGroup>
-      <TrimRunHasError>False</TrimRunHasError>
-      <TrimRunHasError Condition="'$(TrimRunExitCode)'!='' And '$(TrimRunExitCode)'!='0'">True</TrimRunHasError>
-    </PropertyGroup>
-
-    <!-- Read output -->
-    <ReadLinesFromFile File="$(TrimRunOutputFilePath)">
-      <Output TaskParameter="Lines" ItemName="TrimRunOutputLines" />
-    </ReadLinesFromFile>
-
-    <!-- Parse -->
-    <PropertyGroup>
-      <!-- Join output -->
-      <TrimRunOutputJoined>@(TrimRunOutputLines, '&#x0D;&#x0A;')</TrimRunOutputJoined>
-      <!-- Extract text after 'Exception: ' -->
-      <TrimRunException>$([System.Text.RegularExpressions.Regex]::Match('$(TrimRunOutputJoined)','(?s)Exception:\s*(.*)').Groups[1].Value)</TrimRunException>
-      <!-- Build error text -->
-      <TrimRunErrorText>$(TrimRunException)</TrimRunErrorText>
-      <!-- Fallback to complete exe output -->
-      <TrimRunErrorText Condition="'$(TrimRunException)'==''">$(TrimRunOutputJoined)</TrimRunErrorText>
-      <TrimRunErrorText>$(MSBuildProjectName) > Exit Code $(TrimRunExitCode). $(TrimRunErrorText)</TrimRunErrorText>
-    </PropertyGroup>
-
-    <!-- Diagnostics (Trim Test) -->
-    <PropertyGroup>
-      <TrimmedExeExists>False</TrimmedExeExists>
-      <TrimmedExeExists Condition="Exists('$(TrimmedExe)')">True</TrimmedExeExists>
-      <TrimRunOutputExists>False</TrimRunOutputExists>
-      <TrimRunOutputExists Condition="Exists('$(TrimRunOutputFilePath)')">True</TrimRunOutputExists>
-    </PropertyGroup>
-    <Message Text="$(MSBuildProjectName) > TrimmedExe Exists = $(TrimmedExeExists) | $(TrimmedExe)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > Output Exists = $(TrimRunOutputExists) | $(TrimRunOutputFilePath)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > ExitCode = $(TrimRunExitCode)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > HasError = $(TrimRunHasError)" Importance="High" />
-    <Message Text="$(MSBuildProjectName) > Exception = $(TrimRunException)" Importance="High" />
-
-    <!-- Failure => Error List -->
-    <Error Condition="$(TrimRunHasError)" Text="$(TrimRunErrorText)" />
-
-    <!-- Build Output -->
-    <Message Text="$(TrimRunOutputJoined)" Importance="High" />
-  </Target>
+  <Import Project="TrimTest.xml" />
+  
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
   <PropertyGroup Condition="'$(TF_BUILD)'=='true'">
