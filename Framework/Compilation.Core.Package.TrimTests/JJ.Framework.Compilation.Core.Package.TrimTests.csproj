@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="JJ.Framework.Compilation.Core.Package.TrimTests" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
