@@ -38,7 +38,7 @@ public class UninstallPackageTests : TestHelper
         => Assert(DotNet.Exe($"remove package {ID}", Opt()));
 
     [TestMethod]
-    public void Test_RemovePackage_AllInommandTextOnly_NoOpt() => InTempDir(()
+    public void Test_RemovePackage_AllInCommandTextOnly_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe($"remove package {ID}")));
 
     [TestMethod]
@@ -62,7 +62,7 @@ public class UninstallPackageTests : TestHelper
         => Assert(DotNet.Exe($"package remove {ID}", Opt()));
 
     [TestMethod]
-    public void Test_PackageRemove_AllInommandTextOnly_NoOpt() => InTempDir(()
+    public void Test_PackageRemove_AllInCommandTextOnly_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe($"package remove {ID}")));
 
     [TestMethod]
