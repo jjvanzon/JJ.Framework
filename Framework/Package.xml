@@ -1,5 +1,13 @@
 <Project>
+  
+  <!-- Project Properties -->
+  
   <PropertyGroup>
+    <Description>A JJ.Framework Component</Description>
+    <Authors>JJ van Zon</Authors>
+    <Copyright>Copyright © 2013 - 2026 Jan Joost van Zon</Copyright>
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+    <IncludeSymbols>True</IncludeSymbols>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework</RepositoryUrl>
@@ -7,15 +15,20 @@
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <PackageTags>framework; architecture; utility</PackageTags>
   </PropertyGroup>
+
+  <!-- Strict for Core -->
+  <PropertyGroup Condition="$(IsCore) And !$(IsTest) And !$(IsTrimTest)">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
   
   <!-- Packaging -->
-
+  
   <PropertyGroup Condition="!$(IsTest) And !$(IsTrimTest)">
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- Icon -->
-
+  
   <ItemGroup>
     <Content Include="$(SolutionDirjj)\Resources\jj-icon-64x64-margin4.png" Visible="False">
     <Pack>True</Pack>

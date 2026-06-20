@@ -6,35 +6,12 @@
   <Import Project="Publish.xml" />
   <Import Project="TrimTest.xml" />
 
-  <!-- BuildNum -->
-  
   <PropertyGroup><BuildNum>0</BuildNum></PropertyGroup>
   <Import Project="BuildNum.xml" 
           Condition="'$(Configuration)'=='Release' And Exists('BuildNum.xml') And
                      !$(IsTest) And !$(IsTrimTest) And !$(IsNCrunch)" />
-
-  <!-- Project Properties -->
-  
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <Description>A JJ.Framework Component</Description>
-    <Authors>JJ van Zon</Authors>
-    <Copyright>Copyright © 2013 - 2026 Jan Joost van Zon</Copyright>
-    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
-    <IncludeSymbols>True</IncludeSymbols>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <!-- Strict for Core -->
-
-  <PropertyGroup Condition="$(IsCore)">
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <PropertyGroup Condition="$(IsCore) And !$(IsTest) And !$(IsTrimTest)">
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
-    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
-  </PropertyGroup>
-
 </Project>

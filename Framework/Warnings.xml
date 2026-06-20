@@ -1,4 +1,17 @@
 <Project>
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- Strict for Core -->
+  <PropertyGroup Condition="$(IsCore)">
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IsCore) And !$(IsTest) And !$(IsTrimTest)">
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+  </PropertyGroup>
+
   <!-- Warnings Disabled Globally -->
   <PropertyGroup>
     <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
