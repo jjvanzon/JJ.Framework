@@ -2,6 +2,7 @@
   <Import Project="Vars.xml" />
   <Import Project="TargetFrameworks.xml" />
   <Import Project="Warnings.xml" />
+  <Import Project="Package.xml" />
   <Import Project="Publish.xml" />
   <Import Project="TrimTest.xml" />
 
@@ -17,24 +18,12 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <Description>A JJ.Framework Component</Description>
-    <PackageTags>framework; architecture; utility</PackageTags>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © 2013 - 2026 Jan Joost van Zon</Copyright>
     <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <IncludeSymbols>True</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework</PackageProjectUrl>
-    <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-
-  <!-- Packaging -->
-
-  <PropertyGroup Condition="!$(IsTest) And !$(IsTrimTest)">
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- Strict for Core -->
@@ -46,47 +35,6 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
     <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
-  </PropertyGroup>
-
-  <!-- Icon -->
-
-  <ItemGroup>
-    <Content Include="$(SolutionDirjj)\Resources\jj-icon-64x64-margin4.png" Visible="False">
-    <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <!-- README -->
-  
-  <PropertyGroup Condition="!Exists('$(MSBuildProjectDirectory)/README.MD')">
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
-
-  <ItemGroup Condition="!Exists('$(MSBuildProjectDirectory)/README.MD')">
-    <Content Include="$(SolutionDirjj)\README.md" Visible="False">
-      <Pack>True</Pack>
-      <PackagePath>\README.md</PackagePath>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
-    <PackageReadmeFile>README.MD</PackageReadmeFile>
-  </PropertyGroup>       
-
-  <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
-    <Content Include="README.MD">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <!-- Establish Determinism (green check in NuGet Package Explorer page) -->
-  <PropertyGroup Condition="'$(TF_BUILD)'=='true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
 </Project>
