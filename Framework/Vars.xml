@@ -24,10 +24,10 @@
     <IsNCrunch Condition="'$(IsNCrunch)'=='True'">True</IsNCrunch>
     <IsAzurePipelines>False</IsAzurePipelines>
     <IsAzurePipelines Condition="'$(TF_BUILD)'=='true'">True</IsAzurePipelines>
+    <AutoPublish>False</AutoPublish>
+    <AutoPublish Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(Configuration)'=='Release'">True</AutoPublish>
     <AutoTrimTest>False</AutoTrimTest>
-    <AutoTrimTest Condition="$(IsTrimTest) And $(IsInnerBuild) And 
-                             ($(IsNCrunch) Or '$(Configuration)'=='Release')">True</AutoTrimTest>
-                             <!--!$(IsAzurePipelines) And--> <!-- Include TrimTest in Azure Pipelines Build step again -->
+    <AutoTrimTest Condition="$(IsTrimTest) And $(IsInnerBuild) And ('$(Configuration)'=='Release' Or $(IsNCrunch))">True</AutoTrimTest>
     <SolutionDirjj>$(SolutionDir)</SolutionDirjj>
     <SolutionDirjj Condition="'$(SolutionDirjj)'==''">$(MSBuildThisFileDirectory)\..\</SolutionDirjj>
   </PropertyGroup>

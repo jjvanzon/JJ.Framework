@@ -38,7 +38,7 @@
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
 
-  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(AutoPublish)">
     <MSBuild Condition="!$(IsNCrunch)" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true" />
 
@@ -49,7 +49,7 @@
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishReadyToRun=true" />
   </Target>
   
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(IsTrimTest) And $(Configuration)=='Release' And '$(PublishDir)'!=''">
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(AutoPublish) And $(Configuration)=='Release' And '$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 
@@ -65,7 +65,7 @@
   </Target>
 
   <!-- Diagnostics (Publish) -->
-  <Target Name="JJ_Framework_Vars3" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <Target Name="JJ_Framework_Vars_Publish" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
   </Target>
 </Project>

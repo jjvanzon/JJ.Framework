@@ -18,7 +18,8 @@ REM /I     = Case-insensitive
 REM %%~nxD = Folder name of the directory item
 REM /b     = Prevent quit command line
 
-for /R "%~dp0Framework" %%F in (*.TrimTests*.exe) do (
+rem for /R "%~dp0Framework" %%F in (*.TrimTests*.exe) do (
+for /R "." %%F in (*.TrimTests*.exe) do (
   for %%D in ("%%~dpF\.") do (
     echo %%~dpF | findstr /I "\\publish\\" >nul && (
       echo %%F

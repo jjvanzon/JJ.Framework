@@ -40,3 +40,7 @@ public static DotNetResultAccessor FilledResult() => new
         string outputText = "",
         bool hasTimeOut = false) => NewResult(default, args, exitCode, errorText, outputText, hasTimeOut);
 ```
+
+```xml
+<!--!$(IsAzurePipelines) And--> <!-- Include TrimTest in Azure Pipelines Build step again -->
+```
