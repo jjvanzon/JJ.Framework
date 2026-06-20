@@ -20,9 +20,8 @@ internal static class DotNetResultFormatter
     public static string Stringify(DotNetResult? result) => Has(result?.Text) ? result.Text : Descriptor(result);
     public static string DebuggerDisplay(DotNetResult? result)
     {
-        // TODO: Replace double quotes and backslashes by single quotes and forward slashes for pretty display.
         var text = Descriptor(result, singleLine: true);
-        text = text.Replace('"', '\'').Replace('\\', '/');
+        text = PrettifySeparators(text); 
         return text;
     }
 
@@ -33,7 +32,6 @@ internal static class DotNetResultFormatter
 
         if (result == null) return nameof(DotNetResult) + " null";
         if (!Has(result)) return nameof(DotNetResult) + " empty";
-        //if (Has(result.Text)) return result.Text;
 
         string failurePart = "";
         if (result.HasTimeOut)
@@ -51,8 +49,6 @@ internal static class DotNetResultFormatter
 
         string dotNetPart = "dotnet ";
 
-        // TODO: Remove redundancies from opt when already in args.
-        
         string argsPart = "";
         if (result.Args.FilledIn())
         {
@@ -65,6 +61,43 @@ internal static class DotNetResultFormatter
         {
             optPart = dotNetPart + result.Opt.Descriptor();
             dotNetPart = "";
+        }
+
+        // Remove redundancies from opt
+        if (Has(optPart))
+        {
+            if (argsPart.Has(result.Opt.Dir))
+            {
+                string dirDescriptor = DirDescriptor(result.Opt.Dir);
+                if (Has(dirDescriptor)) optPart = optPart.Replace(dirDescriptor, "");
+            }
+
+            if (argsPart.Has(result.Opt.File))
+            {
+                string fileDescriptor = FileDescriptor(result.Opt.File);
+                if (Has(fileDescriptor)) optPart = optPart.Replace(fileDescriptor, "");
+            }
+
+            if (argsPart.Has(result.Opt.BuildConf))
+            {
+                string buildConfDescriptor = BuildConfDescriptor(result.Opt);
+                if (Has(buildConfDescriptor)) optPart = optPart.Replace(buildConfDescriptor, "");
+
+            }
+
+            if (result.HasTimeOut)
+            {
+                string timeOutDescriptor = TimeOutDescriptor(result.Opt.TimeOutSec);
+                if (Has(timeOutDescriptor)) optPart = optPart.Replace(timeOutDescriptor, "");
+            }
+
+            //if (argsPart.Has(result.Opt.Verbosity))
+            //{
+            //}
+
+            // TODO: This does not seem enough. I think I need my string.Trim(string) overload back.
+            const string optSep = " | ";
+            optPart = optPart.CutLeft(optSep);
         }
 
         string sep2 = singleLine ? " " : NewLine;

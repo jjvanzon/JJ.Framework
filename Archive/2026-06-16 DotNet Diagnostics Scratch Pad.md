@@ -44,3 +44,17 @@ public static DotNetResultAccessor FilledResult() => new
 ```xml
 <!--!$(IsAzurePipelines) And--> <!-- Include TrimTest in Azure Pipelines Build step again -->
 ```
+
+```cs
+
+        // TODO: Replace double quotes and backslashes by single quotes and forward slashes for pretty display.
+
+    //[MethodImpl(NoInlining)] // Visual Studio Test client doesn't find type DotNetArgsFormatter.
+//using System.Runtime.CompilerServices;
+//using static System.Runtime.CompilerServices.MethodImplOptions;
+
+        //if (Has(result.Text)) return result.Text;
+
+        //if (result.Opt.Dir.FilledIn() && argsPart.Contains(result.Opt.Dir, OrdinalIgnoreCase))
+        //if (result.Opt.File.FilledIn() && argsPart.Contains(result.Opt.File, OrdinalIgnoreCase))
+```

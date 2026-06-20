@@ -1,7 +1,4 @@
-﻿//using System.Runtime.CompilerServices;
-//using static System.Runtime.CompilerServices.MethodImplOptions;
-
-namespace JJ.Framework.Compilation.Core.Formatters;
+﻿namespace JJ.Framework.Compilation.Core.Formatters;
 
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
@@ -28,13 +25,10 @@ internal static class DotNetArgsFormatter
         return nameof(DotNetArgs) + sep + descriptor;
     }
 
-    //[MethodImpl(NoInlining)] // Visual Studio Test client doesn't find type DotNetArgsFormatter.
     public static string DebuggerDisplay(DotNetArgs? args)
     {
         var descriptor = Descriptor(args);
-        // Replace backslahes and double quotes by foreward slashes and single quotes
-        // because it'd look bad in the debugger display.
-        descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
+        descriptor = PrettifySeparators(descriptor);
         string sep = Has(descriptor) ? " " : "";
         return "{" + nameof(DotNetArgs) + sep + descriptor + "}";
     }

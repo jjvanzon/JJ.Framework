@@ -5,6 +5,14 @@ namespace JJ.Framework.Compilation.Core;
 
 internal static class DotNetFilledInUtil
 {
+    // TODO: Move to Existence.Core and add all the fun with flags.
+    public static bool FilledIn(string whole, string part)
+    {
+        if (!whole.FilledIn()) return false;
+        if (!part.FilledIn()) return false;
+        return whole.Contains(part.Trim(), OrdinalIgnoreCase);
+    }
+
     public static bool FilledIn([NotNullWhen(true)] DotNetArgs? args)
     {
         if (args == null) 
@@ -153,4 +161,7 @@ public static class DotNetFilledInExtensions
     public static bool IsNully ([NotNullWhen(false)] this DotNetOptions  opt   ) => !DotNetFilledInUtil.FilledIn(opt);
     public static bool IsNully ([NotNullWhen(false)] this DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
     public static bool IsNully ([NotNullWhen(false)] this DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
+
+    // TODO: Move to Existence.Core and add all the fun with flags.
+    internal static bool Has(this string whole, string part) => DotNetFilledInUtil.FilledIn(whole, part);
 }

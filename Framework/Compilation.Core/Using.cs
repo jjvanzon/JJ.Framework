@@ -20,6 +20,7 @@ global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Compilation.Core.DotNetFilledInHelper;
 global using static JJ.Framework.Compilation.Core.DotNetEnricher;
 global using static JJ.Framework.Compilation.Core.DotNetLogger;
+global using static JJ.Framework.Compilation.Core.Formatters.DotNetFormatterHelper;
 global using static JJ.Framework.Compilation.Core.Formatters.DotNetArgsFormatter;
 global using static JJ.Framework.Compilation.Core.Formatters.DotNetCmdFormatter;
 global using static JJ.Framework.Compilation.Core.Formatters.DotNetOptionsFormatter;

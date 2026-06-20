@@ -203,7 +203,7 @@ public class RestoreTests : TestHelper
 
             if (x.Exception != null)
             {
-                AssertContainsAny(x.Exception.Message, "Timeout", "Access is denied", "Cannot process request");
+                AssertContainsAny(x.Exception.Message, "Timeout", "TIME OUT" ,"Access is denied", "Cannot process request");
                 LogNormal("");
                 LogNormal($"{x.Exception}");
             }

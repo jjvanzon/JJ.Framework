@@ -11,9 +11,6 @@ public class DotNetResultFormatterTests
     [TestMethod]
     public void DotNetResultFormatter_Success_WithArgsOptOutputText()
     {
-        // TODO: If args contains File, do not repeat in opt descriptor.
-
-
         var result = NewResult(
             new DotNetOptions
             {
@@ -32,12 +29,12 @@ public class DotNetResultFormatterTests
             result, 
             expectedWideForm:
             """
-            dotnet build MyProject.csproj --no-logo | MyProject.csproj | Dir = C:\repo | Output: Build succeeded.
+            dotnet build MyProject.csproj --no-logo | Dir = C:\repo | Output: Build succeeded.
             """,
             expectedLongForm:
             """
             dotnet build MyProject.csproj --no-logo
-            MyProject.csproj | Dir = C:\repo
+            Dir = C:\repo
             Output:
             Build succeeded.
             """);

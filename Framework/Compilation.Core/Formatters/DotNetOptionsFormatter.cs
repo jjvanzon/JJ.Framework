@@ -21,7 +21,7 @@ internal static class DotNetOptionsFormatter
     public static string DebuggerDisplay(DotNetOptions opt)
     {
         var descriptor = Descriptor(opt, MAX_PATH_CHARS);
-        descriptor = descriptor.Replace('"', '\'').Replace('\\', '/');
+        descriptor = PrettifySeparators(descriptor);
         string sep = Has(descriptor) ? " " : "";
         return "{" + nameof(DotNetOptions) + sep + descriptor + "}";
     }
