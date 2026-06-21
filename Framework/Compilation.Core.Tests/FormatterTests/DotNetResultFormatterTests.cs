@@ -299,7 +299,6 @@ public class DotNetResultFormatterTests
             Command = "nuget" }), 
             "dotnet nuget");
 
-    // TODO: <no command> didn't show up in the other incomplete results.
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_ID() 
         => AssertDiagnosticTexts(NewResult(args: new() { 
@@ -312,9 +311,6 @@ public class DotNetResultFormatterTests
             Ver = "1.2.3" }), 
             "dotnet 1.2.3");
 
-    // TODO: Pipeline might work well, to signal there are Args but not yet FullArgs.
-    //  But it probably got there because of a hard `opt + sep + args`.
-
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_Args()
         => AssertDiagnosticTexts(NewResult(args: new() { 
@@ -324,9 +320,8 @@ public class DotNetResultFormatterTests
     [TestMethod] public void Test_DotNetResultFormatter_Arg_IsRebuild()
         => AssertDiagnosticTexts(NewResult(args: new() { 
             IsRebuild = true }), 
-            "dotnet (re-)<no command>");
+            "dotnet (re-)");
 
-    // TODO: "dotnet --p:BuildNum=1234" would be better. "<no commmand>" and " | " are irrenevant
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_FullArgs()
         => AssertDiagnosticTexts(NewResult(args: new() { 

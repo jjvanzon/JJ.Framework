@@ -17,30 +17,36 @@ internal static class DotNetArgOptFormatter
 
         if (args != null)
         {
-            commandDescriptor = CommandDescriptor(args);
+            commandDescriptor = CommandDescriptor(args, noCommandIndicator: "");
             idVerDescriptor = IDVerDescriptor(args);
             argPropsDescriptor = ArgPropsDescriptor(args);
+
+            commandDescriptor = StripCommandDescriptor(commandDescriptor, args);
+            idVerDescriptor = StripIDVerDescriptor(idVerDescriptor, args);
         }
 
         if (opt != default && opt != DefaultOptions)
         {
-            buildConfDescriptor = BuildConfDescriptor(opt);
+            if (!args.Has(opt.BuildConf)) 
+                buildConfDescriptor = BuildConfDescriptor(opt);
+
             restoreDescriptor = RestoreDescriptor(opt);
             logDescriptor = LogDescriptor(opt);
             timeOutDescriptor = TimeOutDescriptor(opt);
-            fileDescriptor = FileDescriptor(opt, maxPathChars);
-            dirDescriptor = DirDescriptor(opt, maxPathChars);
+            
+            if (!args.Has(opt.File))
+                fileDescriptor = FileDescriptor(opt, maxPathChars);
+
+            if (!args.Has(opt.Dir)) 
+                dirDescriptor = DirDescriptor(opt, maxPathChars);
+
             optArgsDescriptor = opt.Args;
         }
 
-        // Strip redundancies
-        commandDescriptor = StripCommandDescriptor(commandDescriptor, args);
-        if (commandDescriptor.Is("<no command>")) commandDescriptor = ""; // TODO: magic string
-        idVerDescriptor = StripIDVerDescriptor(idVerDescriptor, args);
 
-        if (args.Has(   opt.Dir        )) dirDescriptor       = "";
-        if (args.Has(   opt.File       )) fileDescriptor      = "";
-        if (args.Has(   opt.BuildConf  )) buildConfDescriptor = "";
+        //if (args.Has(   opt.Dir        )) dirDescriptor       = "";
+        //if (args.Has(   opt.File       )) fileDescriptor      = "";
+        //if (args.Has(   opt.BuildConf  )) buildConfDescriptor = "";
         if (args.Has(   opt.Args       )) optArgsDescriptor   = "";
         if (args.Has($"{opt.Verbosity}")) logDescriptor = logDescriptor.Replace($"{opt.Verbosity}", "").Trim();
 
@@ -67,7 +73,9 @@ internal static class DotNetArgOptFormatter
         var optDescriptor = Join(" | ", optElements.Where(FilledIn));
 
         string sep = "";
-        if (Has(argDescriptor) && Has(optDescriptor))
+
+        if (Has(argDescriptor) && 
+            Has(optDescriptor))
         {
             sep = singleLine ? " | " : NewLine;
         }

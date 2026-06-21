@@ -90,4 +90,14 @@ public static DotNetResultAccessor FilledResult() => new
 
             //noOptsDescriptor,
             //fileOptDescriptor  
+
+        if (commandDescriptor.Is("<no command>")) 
+        {
+            commandDescriptor = ""; // TODO: magic string
+        }
+
+    // TODO: <no command> didn't show up in the other incomplete results.
+    // TODO: "dotnet --p:BuildNum=1234" would be better. "<no commmand>" and " | " are irrenevant
+    // TODO: Pipeline might work well, to signal there are Args but not yet FullArgs.
+    //  But it probably got there because of a hard `opt + sep + args`.
 ```
