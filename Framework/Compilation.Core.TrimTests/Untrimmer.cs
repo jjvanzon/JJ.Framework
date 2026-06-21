@@ -29,12 +29,13 @@ internal static class Untrimmer
 
     // DotNetArgsFormatter
 
-    [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("CommandDescriptor",  $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("IDVerDescriptor",    $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
-    [NoTrim("ArgPropsDescriptor", $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("Descriptor",                   $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("Stringify",                    $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("DebuggerDisplay",              $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("CommandDescriptor",            $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("IDVerDescriptor",              $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("ArgPropsDescriptor",           $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
+    [NoTrim("DEFAULT_NO_COMMAND_INDICATOR", $"{MainAsm}.Formatters.DotNetArgsFormatter", MainAsm)]
 
     // DotNetArgsFormatterExtensions
 
