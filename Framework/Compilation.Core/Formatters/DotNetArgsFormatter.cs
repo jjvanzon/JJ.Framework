@@ -42,27 +42,90 @@ internal static class DotNetArgsFormatter
         string argPropsDescriptor = ArgPropsDescriptor(args);
 
         // Cut away redundancies.
-        if (argPropsDescriptor.StartsWith(commandDescriptor, OrdinalIgnoreCase))
-        {
-            commandDescriptor = "";
-        }
-        if (argPropsDescriptor.StartsWith(args.Command, OrdinalIgnoreCase))
-        {
-            commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
-        }
-        if (Has(args.ID) && argPropsDescriptor.Contains(args.ID, OrdinalIgnoreCase))
-        {
-            idVerDescriptor = idVerDescriptor.Replace(args.ID, "").TrimStart();
-        }
-        if (Has(args.Ver) && argPropsDescriptor.Contains(args.Ver, OrdinalIgnoreCase))
-        {
-            idVerDescriptor = idVerDescriptor.Replace(args.Ver, "").TrimEnd();
-        }
+        commandDescriptor = StripCommandDescriptor(commandDescriptor, args);
+        idVerDescriptor = StripIDVerDescriptor(idVerDescriptor, args);
 
         string sep1 = Has(commandDescriptor) && Has(idVerDescriptor) ? " " : "";
         string sep2 = (Has(commandDescriptor) || Has(idVerDescriptor)) && Has(argPropsDescriptor) ? " | " : "";
 
         return commandDescriptor + sep1 + idVerDescriptor + sep2 + argPropsDescriptor;
+    }
+
+    // TODO: Might replace DotNetArgs with string(s).
+    public static string StripIDVerDescriptor(string idVerDescriptor, DotNetArgs? args)
+    {
+        if (args == null) 
+        {
+            return idVerDescriptor;
+        }
+
+        //if (argPropsDescriptor.Has(args.ID))
+        //{
+        //    idVerDescriptor = idVerDescriptor.Replace(args.ID, "").TrimStart();
+        //}
+        if (args.Args.Has(args.ID))
+        {
+            idVerDescriptor = idVerDescriptor.Replace(args.ID, "").TrimStart();
+        }
+        if (args.FullArgs.Has(args.ID))
+        {
+            idVerDescriptor = idVerDescriptor.Replace(args.ID, "").TrimStart();
+        }
+        //if (argPropsDescriptor.Has(args.Ver))
+        //{
+        //    idVerDescriptor = idVerDescriptor.Replace(args.Ver, "").TrimEnd();
+        //}
+        if (args.Args.Has(args.Ver))
+        {
+            idVerDescriptor = idVerDescriptor.Replace(args.Ver, "").TrimEnd();
+        }
+        if (args.FullArgs.Has(args.Ver))
+        {
+            idVerDescriptor = idVerDescriptor.Replace(args.Ver, "").TrimEnd();
+        }
+
+        return idVerDescriptor;
+    }
+
+    public static string StripCommandDescriptor(
+        string commandDescriptor, DotNetArgs? args)
+    {
+        if (args == null) 
+        {
+            return commandDescriptor;
+        }
+
+        //if (argPropsDescriptor.StartsWith(commandDescriptor, OrdinalIgnoreCase))
+        //{
+        //    commandDescriptor = "";
+        //}
+   
+        if (args.Args.LeftIs(commandDescriptor))
+        {
+            commandDescriptor = "";
+        }
+
+        if (args.FullArgs.LeftIs(commandDescriptor))
+        {
+            commandDescriptor = "";
+        }
+
+        //if (argPropsDescriptor.StartsWith(args.Command, OrdinalIgnoreCase))
+        //{
+        //    commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
+        //}
+
+        if (args.Args.LeftIs(args.Command))
+        {
+            commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
+        }
+
+        if (args.FullArgs.LeftIs(args.Command))
+        {
+            commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
+        }
+
+        return commandDescriptor;
     }
 
     // Command Descriptor

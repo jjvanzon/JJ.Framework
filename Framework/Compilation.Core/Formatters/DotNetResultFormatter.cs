@@ -49,56 +49,63 @@ internal static class DotNetResultFormatter
 
         string dotNetPart = "dotnet ";
 
-        string argsPart = "";
-        if (result.Args.FilledIn())
+        string argsOptPart  = "";
+        if (Has(result.Args) || Has(result.Opt))
         {
-            argsPart = dotNetPart + result.Args.Descriptor();
+            argsOptPart = dotNetPart + DotNetArgOptFormatter.Descriptor(result.Args, result.Opt, singleLine);
             dotNetPart = "";
         }
 
-        string optPart = "";
-        if (result.Opt.FilledIn())
-        {
-            optPart = dotNetPart + result.Opt.Descriptor();
-            dotNetPart = "";
-        }
-
-        // Remove redundancies from opt
-        if (Has(optPart))
-        {
-            if (argsPart.Has(result.Opt.Dir))
-            {
-                string dirDescriptor = DirDescriptor(result.Opt.Dir);
-                if (Has(dirDescriptor)) optPart = optPart.Replace(dirDescriptor, "");
-            }
-
-            if (argsPart.Has(result.Opt.File))
-            {
-                string fileDescriptor = FileDescriptor(result.Opt.File);
-                if (Has(fileDescriptor)) optPart = optPart.Replace(fileDescriptor, "");
-            }
-
-            if (argsPart.Has(result.Opt.BuildConf))
-            {
-                string buildConfDescriptor = BuildConfDescriptor(result.Opt);
-                if (Has(buildConfDescriptor)) optPart = optPart.Replace(buildConfDescriptor, "");
-
-            }
-
-            if (result.HasTimeOut)
-            {
-                string timeOutDescriptor = TimeOutDescriptor(result.Opt.TimeOutSec);
-                if (Has(timeOutDescriptor)) optPart = optPart.Replace(timeOutDescriptor, "");
-            }
-
-            //if (argsPart.Has(result.Opt.Verbosity))
-            //{
-            //}
-
-            // TODO: This does not seem enough. I think I need my string.Trim(string) overload back.
-            const string optSep = " | ";
-            optPart = optPart.CutLeft(optSep);
-        }
+        //string argsPart = "";
+        //if (result.Args.FilledIn())
+        //{
+        //    argsPart = dotNetPart + result.Args.Descriptor();
+        //    dotNetPart = "";
+        //}
+        //
+        //string optPart = "";
+        //if (result.Opt.FilledIn())
+        //{
+        //    optPart = dotNetPart + result.Opt.Descriptor();
+        //    dotNetPart = "";
+        //}
+        //
+        //// Remove redundancies from opt
+        //if (Has(optPart))
+        //{
+        //    if (argsPart.Has(result.Opt.Dir))
+        //    {
+        //        string dirDescriptor = DirDescriptor(result.Opt.Dir);
+        //        if (Has(dirDescriptor)) optPart = optPart.Replace(dirDescriptor, "");
+        //    }
+        //
+        //    if (argsPart.Has(result.Opt.File))
+        //    {
+        //        string fileDescriptor = FileDescriptor(result.Opt.File);
+        //        if (Has(fileDescriptor)) optPart = optPart.Replace(fileDescriptor, "");
+        //    }
+        //
+        //    if (argsPart.Has(result.Opt.BuildConf))
+        //    {
+        //        string buildConfDescriptor = BuildConfDescriptor(result.Opt);
+        //        if (Has(buildConfDescriptor)) optPart = optPart.Replace(buildConfDescriptor, "");
+        //
+        //    }
+        //
+        //    if (result.HasTimeOut)
+        //    {
+        //        string timeOutDescriptor = TimeOutDescriptor(result.Opt.TimeOutSec);
+        //        if (Has(timeOutDescriptor)) optPart = optPart.Replace(timeOutDescriptor, "");
+        //    }
+        //
+        //    //if (argsPart.Has($"{result.Opt.Verbosity}"))
+        //    //{
+        //    //}
+        //
+        //    // TODO: This does not seem enough. I think I need my string.Trim(string) overload back.
+        //    const string optSep = " | ";
+        //    optPart = optPart.CutLeft(optSep);
+        //}
 
         string sep2 = singleLine ? " " : NewLine;
 
@@ -128,8 +135,9 @@ internal static class DotNetResultFormatter
         string[] elements = 
         [
             failurePart,
-            argsPart,
-            optPart,
+            //argsPart,
+            //optPart,
+            argsOptPart,
             errorTextPart,
             outputTextPart
         ];

@@ -1,16 +1,33 @@
-﻿global using System.Diagnostics.CodeAnalysis;
-// ReSharper disable RedundantNullableFlowAttribute
+﻿// ReSharper disable RedundantNullableFlowAttribute
+// ReSharper disable UseSymbolAlias
 
 namespace JJ.Framework.Compilation.Core;
 
 internal static class DotNetFilledInUtil
 {
     // TODO: Move to Existence.Core and add all the fun with flags.
-    public static bool FilledIn(string whole, string part)
+    public static bool FilledIn(string? whole, string? part)
     {
         if (!whole.FilledIn()) return false;
         if (!part.FilledIn()) return false;
         return whole.Contains(part.Trim(), OrdinalIgnoreCase);
+    }
+
+    public static bool LeftIs(string? whole, string? part)
+    {
+        if (!whole.FilledIn()) return false;
+        if (!part.FilledIn()) return false;
+        return whole.Trim().StartsWith(part.Trim(), OrdinalIgnoreCase);
+    }
+
+    public static bool FilledIn(this DotNetArgs? args, string part)
+    {
+        if (args == null) return false;
+
+        if (args.FullArgs.Has(part)) return true;
+        if (args.Args.Has(part)) return true;
+
+        return false;
     }
 
     public static bool FilledIn([NotNullWhen(true)] DotNetArgs? args)
@@ -162,6 +179,11 @@ public static class DotNetFilledInExtensions
     public static bool IsNully ([NotNullWhen(false)] this DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
     public static bool IsNully ([NotNullWhen(false)] this DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
 
+    internal static bool Has(this DotNetArgs? args, string part) => DotNetFilledInUtil.FilledIn(args, part);
+
     // TODO: Move to Existence.Core and add all the fun with flags.
     internal static bool Has(this string whole, string part) => DotNetFilledInUtil.FilledIn(whole, part);
+
+    // TODO: Move to Existence.Core and add all the fun with flags.
+    internal static bool LeftIs(this string whole, string part) => DotNetFilledInUtil.LeftIs(whole, part);
 }

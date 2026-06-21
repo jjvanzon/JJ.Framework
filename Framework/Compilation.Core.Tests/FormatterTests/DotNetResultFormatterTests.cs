@@ -196,11 +196,11 @@ public class DotNetResultFormatterTests
         // dotnet should have a | in between e.g. dotnet | build.
         AssertDiagnosticTexts(result,
             """
-            dotnet build / (re)nuget JJ.Framework.Common 1.2.3 | --p:BuildNum=1234 | "Release" | Restore: Auto Parallel | Log Quiet | Timeout: 123s | FunProject.csproj --help | Dir = C:\Repositories\FunProject
+            dotnet build / (re)nuget | JJ.Framework.Common 1.2.3 | --p:BuildNum=1234 | "Release" | Restore: Auto Parallel | Log Quiet | Timeout: 123s | FunProject.csproj | --help | Dir = C:\Repositories\FunProject
             """,
             """
-            dotnet build / (re)nuget JJ.Framework.Common 1.2.3 | --p:BuildNum=1234
-            "Release" | Restore: Auto Parallel | Log Quiet | Timeout: 123s | FunProject.csproj --help | Dir = C:\Repositories\FunProject
+            dotnet build / (re)nuget | JJ.Framework.Common 1.2.3 | --p:BuildNum=1234
+            "Release" | Restore: Auto Parallel | Log Quiet | Timeout: 123s | FunProject.csproj | --help | Dir = C:\Repositories\FunProject
             """);
     }
 
@@ -224,23 +224,19 @@ public class DotNetResultFormatterTests
             """);
     }
 
+     // TODO: Test longer paths too.
+
     [TestMethod]
-    public void Test_DotNetResultFormatter_Opt_Dir()
-    {
-        AssertDiagnosticTexts(NewResult(opt: new() { 
+    public void Test_DotNetResultFormatter_Opt_Dir() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
             Dir = @"C:\Repositories\FunProject" }), 
             @"dotnet Dir = C:\Repositories\FunProject");
-        // TODO: Test a longer path too.
-    }
 
     [TestMethod] 
-    public void Test_DotNetResultFormatter_Opt_File()
-    {
-        AssertDiagnosticTexts(NewResult(opt: new() { 
+    public void Test_DotNetResultFormatter_Opt_File() 
+        => AssertDiagnosticTexts(NewResult(opt: new() { 
             File = "FunProject.csproj" }), 
             "dotnet FunProject.csproj");
-        // TODO: Test a longer path too.
-    }
 
     [TestMethod] 
     public void Test_DotNetResultFormatter_Opt_BuildConf() 
@@ -308,16 +304,14 @@ public class DotNetResultFormatterTests
     public void Test_DotNetResultFormatter_Arg_ID() 
         => AssertDiagnosticTexts(NewResult(args: new() { 
             ID = "JJ.Framework.Common" }), 
-            "dotnet <no command> JJ.Framework.Common");
+            "dotnet JJ.Framework.Common");
 
     [TestMethod] 
     public void Test_DotNetResultFormatter_Arg_Ver() 
         => AssertDiagnosticTexts(NewResult(args: new() { 
             Ver = "1.2.3" }), 
-            "dotnet <no command> 1.2.3");
+            "dotnet 1.2.3");
 
-    // TODO: Turns out "co command" isn't even a big problem per se,
-    //  because if args specify the command anyway, it wouldn't matter.
     // TODO: Pipeline might work well, to signal there are Args but not yet FullArgs.
     //  But it probably got there because of a hard `opt + sep + args`.
 
@@ -325,7 +319,7 @@ public class DotNetResultFormatterTests
     public void Test_DotNetResultFormatter_Arg_Args()
         => AssertDiagnosticTexts(NewResult(args: new() { 
             Args = "--p:BuildNum=1234" }), 
-            "dotnet <no command> | --p:BuildNum=1234");
+            "dotnet --p:BuildNum=1234");
 
     [TestMethod] public void Test_DotNetResultFormatter_Arg_IsRebuild()
         => AssertDiagnosticTexts(NewResult(args: new() { 
@@ -337,7 +331,7 @@ public class DotNetResultFormatterTests
     public void Test_DotNetResultFormatter_Arg_FullArgs()
         => AssertDiagnosticTexts(NewResult(args: new() { 
             FullArgs = "--p:BuildNum=1234" }), 
-            "dotnet <no command> | --p:BuildNum=1234");
+            "dotnet --p:BuildNum=1234");
 
     // Helpers
 

@@ -128,7 +128,9 @@ internal static class DotNetOptionsFormatter
         }
     }
 
+    public static string FileDescriptor(DotNetOptions opt, int? maxPathChars = null) => FileDescriptor(opt.File, maxPathChars);
     public static string FileDescriptor(string? file, int? maxPathChars = null) => TruncatePath(file, maxPathChars);
+    public static string DirDescriptor(DotNetOptions opt, int? maxPathChars = null) => DirDescriptor(opt.Dir, maxPathChars);
     public static string DirDescriptor(string? dir, int? maxPathChars = null) => Has(dir) ? "Dir = " + TruncatePath(dir, maxPathChars) : "";
 
     private static string TruncatePath(string? path, int? maxPathChars = null)

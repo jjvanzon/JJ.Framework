@@ -57,4 +57,18 @@ public static DotNetResultAccessor FilledResult() => new
 
         //if (result.Opt.Dir.FilledIn() && argsPart.Contains(result.Opt.Dir, OrdinalIgnoreCase))
         //if (result.Opt.File.FilledIn() && argsPart.Contains(result.Opt.File, OrdinalIgnoreCase))
+
+        string emptyDescriptor = EmptyDescriptor(args);
+        if (Has(emptyDescriptor)) return emptyDescriptor;
+
+        args = args!;
+
+    public static string EmptyDescriptor(DotNetArgs? args)
+    {
+        if (args == null) return "<null>";
+        return null;
+    }
+
+    // TODO: Turns out "co command" isn't even a big problem per se,
+    //  because if args specify the command anyway, it wouldn't matter.
 ```
