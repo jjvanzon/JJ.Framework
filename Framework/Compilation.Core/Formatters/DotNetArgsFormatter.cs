@@ -130,16 +130,18 @@ internal static class DotNetArgsFormatter
 
     // Command Descriptor
 
-    public static string CommandDescriptor(DotNetArgs args) => CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild);
-    public static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild)
+    private const string DEFAULT_NO_COMMAND_INDICATOR = "<no command>";
+
+    public static string CommandDescriptor(DotNetArgs args, string noCommandIndicator = DEFAULT_NO_COMMAND_INDICATOR) => CommandDescriptor(args.CommandEnum, args.Command, args.IsRebuild, noCommandIndicator);
+    public static string CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild, string noCommandIndicator = DEFAULT_NO_COMMAND_INDICATOR)
     {
         bool inconsistenciesDetected = IsInconsistent(@enum, command, isRebuild);
         bool enumRequired    = Has(@enum);
         bool commandRequired = CommandRequired(command, @enum, inconsistenciesDetected);
         bool reRequired      = ReRequired(isRebuild, @enum, inconsistenciesDetected);
 
-        if (!enumRequired && !commandRequired && !reRequired) return "<no command>";
-        if (!enumRequired && !commandRequired &&  reRequired) return "(re-)<no command>";
+        if (!enumRequired && !commandRequired && !reRequired) return noCommandIndicator;
+        if (!enumRequired && !commandRequired &&  reRequired) return "(re-)" + noCommandIndicator;
         if (!enumRequired &&  commandRequired && !reRequired) return command ?? "";
         if (!enumRequired &&  commandRequired &&  reRequired) return "(re)" + command;
         if ( enumRequired && !commandRequired && !reRequired) return $"{@enum}";

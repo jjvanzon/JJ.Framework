@@ -71,4 +71,23 @@ public static DotNetResultAccessor FilledResult() => new
 
     // TODO: Turns out "co command" isn't even a big problem per se,
     //  because if args specify the command anyway, it wouldn't matter.
+
+        //string noArgsDescriptor    = "";
+        //string noOptsDescriptor    = "";
+        //string fileOptDescriptor = "";
+
+        else
+        {
+            //noArgsDescriptor = "no args";
+        }
+
+            //fileOptDescriptor = FileOptDescriptor  (opt, maxPathChars);
+
+        else
+        {
+            //noOptsDescriptor = "default options";
+        }
+
+            //noOptsDescriptor,
+            //fileOptDescriptor  
 ```

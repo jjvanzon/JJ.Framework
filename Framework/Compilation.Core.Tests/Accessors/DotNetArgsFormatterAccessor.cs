@@ -19,8 +19,10 @@ internal static class DotNetArgsFormatterAccessor
 
     // Parts
 
-    public static string? CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild) 
-        => (string?)_accessor.Call(@enum, command, isRebuild);
+    public static string DEFAULT_NO_COMMAND_INDICATOR => (string)_accessor.Get()!;
+
+    public static string? CommandDescriptor(DotNetCommandEnum @enum, string? command, bool isRebuild, string? noCommandIndicator = null) 
+        => (string?)_accessor.Call(Name(), @enum, command, isRebuild, noCommandIndicator ?? DEFAULT_NO_COMMAND_INDICATOR);
 
     public static string? IDVerDescriptor(string? id, string? ver)
         => (string?)_accessor.Call(Name(), id, ver);

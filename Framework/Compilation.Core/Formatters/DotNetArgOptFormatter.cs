@@ -4,30 +4,22 @@ internal static class DotNetArgOptFormatter
 {
     public static string Descriptor(DotNetArgs? args, DotNetOptions opt, bool singleLine = false, int? maxPathChars = null)
     {
-        //string noArgsDescriptor    = "";
         string commandDescriptor   = "";
         string idVerDescriptor     = "";
         string argPropsDescriptor  = "";
-        //string noOptsDescriptor    = "";
         string buildConfDescriptor = "";
         string restoreDescriptor   = "";
         string logDescriptor       = "";
         string timeOutDescriptor   = "";
-        //string fileOptDescriptor = "";
         string fileDescriptor      = "";
         string dirDescriptor       = "";
         string optArgsDescriptor   = "";
-
 
         if (args != null)
         {
             commandDescriptor = CommandDescriptor(args);
             idVerDescriptor = IDVerDescriptor(args);
             argPropsDescriptor = ArgPropsDescriptor(args);
-        }
-        else
-        {
-            //noArgsDescriptor = "no args";
         }
 
         if (opt != default && opt != DefaultOptions)
@@ -36,14 +28,9 @@ internal static class DotNetArgOptFormatter
             restoreDescriptor = RestoreDescriptor(opt);
             logDescriptor = LogDescriptor(opt);
             timeOutDescriptor = TimeOutDescriptor(opt);
-            //fileOptDescriptor = FileOptDescriptor  (opt, maxPathChars);
             fileDescriptor = FileDescriptor(opt, maxPathChars);
             dirDescriptor = DirDescriptor(opt, maxPathChars);
             optArgsDescriptor = opt.Args;
-        }
-        else
-        {
-            //noOptsDescriptor = "default options";
         }
 
         // Strip redundancies
@@ -68,12 +55,10 @@ internal static class DotNetArgOptFormatter
 
         string[] optElements =
         [
-            //noOptsDescriptor,
             buildConfDescriptor,
             restoreDescriptor,  
             logDescriptor,      
             timeOutDescriptor,  
-            //fileOptDescriptor  
             fileDescriptor,
             optArgsDescriptor,
             dirDescriptor
