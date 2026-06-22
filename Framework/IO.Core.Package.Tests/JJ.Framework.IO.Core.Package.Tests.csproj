@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.IO.Core" Version="4.6.6971" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6971" />
+    <PackageReference Include="JJ.Framework.IO.Core" Version="4.6.6993" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.6.6993" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6971" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.6.6993" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
