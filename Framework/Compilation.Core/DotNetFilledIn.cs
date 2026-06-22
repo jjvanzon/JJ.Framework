@@ -127,9 +127,6 @@ internal static class DotNetFilledInUtil
 
         if (Has(result.HasOutputText) || Has(result.OutputText))
             return true;
-       
-        if (Has(result.HasErrorInOutput))
-            return true;
 
         if (Has(result.HasTimeOut))
             return true;
@@ -140,13 +137,16 @@ internal static class DotNetFilledInUtil
         if (Has(result.Args))
             return true;
 
-        // Outcommented: These mess with things.
+        // Outcommented: These mess with things or are irrelevant.
 
         //if (Has(result.Successful)) 
         //    return true; 
        
         //if (Has(result.Text)) 
         //    return true; 
+              
+        //if (Has(result.HasErrorInOutput))
+        //    return true;
 
         return false;
     }
