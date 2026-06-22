@@ -19,7 +19,6 @@ public class TestHelper : IDisposable
     internal          string AssetsFilePath { get; }
 
     private  const    string DllFileName    = "Temp.dll";
-    private  const    string PROGRAM_CONTENT = "Console.WriteLine(\"hello\");";
     private  readonly string _randomLetters;
 
     // Init
@@ -28,7 +27,6 @@ public class TestHelper : IDisposable
         $"""
         <Project Sdk="Microsoft.NET.Sdk">
           <PropertyGroup>
-            <OutputType>Exe</OutputType>
             <TargetFrameworks>{targetFrameworks}</TargetFrameworks>
             <Nullable>enable</Nullable>
             <ImplicitUsings>enable</ImplicitUsings>
@@ -42,12 +40,6 @@ public class TestHelper : IDisposable
     {
         string targetFramework = RunningTargetFramework;
 
-        // HACK: Temporarily prevent .NET 4x failure.
-        if (targetFramework.StartsWith("net4"))
-        {
-            targetFramework = "net8.0";
-        }
-
         _randomLetters = Path.GetRandomFileName().Replace(".", "");
         TempDir        = Path.Combine(Path.GetTempPath(), "JJ.CompilationCoreTests", _randomLetters);
         CsProjPath     = Path.Combine(TempDir, CsProjName);
@@ -56,9 +48,7 @@ public class TestHelper : IDisposable
         AssetsFilePath = Path.Combine(TempDir, "obj", "project.assets.json");
         
         Directory.CreateDirectory(TempDir);
-
         WriteAllText(CsProjPath, GetCsprojContent(targetFramework));
-        WriteAllText(Path.Combine(TempDir, "Program.cs"), PROGRAM_CONTENT);
     }
 
     private void Cleanup()
