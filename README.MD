@@ -226,6 +226,22 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
 - `Throws` methods syntax shorter
 
+#### `2026-06-22` | `4.7`/`0.255` : Compilation.Core
+
+- [`JJ.Framework.Compilation.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Compilation.Core)
+- dotnet.exe CLI wrapper. Run compilations and other dotnet actions programmatically at runtime.
+- [`JJ.Framework.Configuration.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Configuration.Core)
+- Auto-copy config files from proj to bin as classic System.Configuration did for you.
+- [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
+- Show tested argument expression more often, even when a custom message provided, which would formerly override it.
+- Complete test suite guaranteeing no regressions.
+- TestRunner parallel race condition fixed.
+- [`JJ.Framework.Exceptions.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Exceptions.Core)
+- ThrowIf method for guard statements to assert any condition.
+- [`JJ.Framework.PlatformCompatibility.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility.Core)
+- Fix Lock shim that was accidentally not thread-safe.
+
+
 💬 Feedback 
 ------------
 

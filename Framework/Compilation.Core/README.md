@@ -87,9 +87,9 @@ AI-generated tests had been weighing down on me, because I had to redo them with
 
 Then dotnet.exe experienced hanging behavior for the 2nd time during this project and after that I had basically had it wit it.
 
-This tool is good. But the polish is currently missing. I don't want to withhold it from anyone that it could use it.
+This tool is good. But the polish is currently missing. I don't want to withhold it from anyone that could use it.
 
-But I'm pretty much done wit it right now. It desn't seem to be anyone's priority to keep `dotnet.exe` working reliably, performant, under concurrent load, even thouhg it has been capable of it at some points in time, only to regress again. And this whole project is based on that premise, so I'm leaving it at this. Sorry for the rant. I don't usually do that in a package README. I'm off to focus on other things now.
+But I'm pretty much done with it right now. It doesn't seem to be anyone's priority to keep `dotnet.exe` working reliably, performant, under concurrent load, even thouhg it has been capable of it at some points in time, only to regress again. And this whole project is based on that premise, so I'm leaving it at this. Sorry for the rant. I don't usually do that in a package README. I'm off to focus on other things now.
 
 
 Planned Features
