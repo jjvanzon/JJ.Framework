@@ -3,54 +3,83 @@
 
 namespace JJ.Framework.Compilation.Core;
 
+/// <inheritdoc cref="_dotnet" />
 public static class DotNet
 {
+    /// <inheritdoc cref="_build" />
     public static DotNetResult Build    (                              ) => DotNet.Exe(build               );
+    /// <inheritdoc cref="_build" />
     public static DotNetResult Build    (             DotNetOptions opt) => DotNet.Exe(build,           opt);
+    /// <inheritdoc cref="_build" />
     public static DotNetResult Build    (string args, DotNetOptions opt) => DotNet.Exe(build,     args, opt);
+    /// <inheritdoc cref="_build" />
     public static DotNetResult Build    (string args                   ) => DotNet.Exe(build,     args     );
 
+    /// <inheritdoc cref="_msbuild" />
     public static DotNetResult MSBuild  (                              ) => DotNet.Exe(msbuild             );
+    /// <inheritdoc cref="_msbuild" />
     public static DotNetResult MSBuild  (             DotNetOptions opt) => DotNet.Exe(msbuild,         opt);
+    /// <inheritdoc cref="_msbuild" />
     public static DotNetResult MSBuild  (string args, DotNetOptions opt) => DotNet.Exe(msbuild,   args, opt);
+    /// <inheritdoc cref="_msbuild" />
     public static DotNetResult MSBuild  (string args                   ) => DotNet.Exe(msbuild,   args     );
 
+    /// <inheritdoc cref="_rebuild" />
     public static DotNetResult Rebuild  (                              ) => DotNet.Exe(rebuild             );
+    /// <inheritdoc cref="_rebuild" />
     public static DotNetResult Rebuild  (             DotNetOptions opt) => DotNet.Exe(rebuild,         opt);
+    /// <inheritdoc cref="_rebuild" />
     public static DotNetResult Rebuild  (string args, DotNetOptions opt) => DotNet.Exe(rebuild,   args, opt);
+    /// <inheritdoc cref="_rebuild" />
     public static DotNetResult Rebuild  (string args                   ) => DotNet.Exe(rebuild,   args     );
 
+    /// <inheritdoc cref="_msrebuild" />
     public static DotNetResult MSRebuild(                              ) => DotNet.Exe(msrebuild           );
+    /// <inheritdoc cref="_msrebuild" />
     public static DotNetResult MSRebuild(             DotNetOptions opt) => DotNet.Exe(msrebuild,       opt);
+    /// <inheritdoc cref="_msrebuild" />
     public static DotNetResult MSRebuild(string args, DotNetOptions opt) => DotNet.Exe(msrebuild, args, opt);
+    /// <inheritdoc cref="_msrebuild" />
     public static DotNetResult MSRebuild(string args                   ) => DotNet.Exe(msrebuild, args     );
 
+    /// <inheritdoc cref="_restore" />
     public static DotNetResult Restore  (                              ) => DotNet.Exe(restore             );
+    /// <inheritdoc cref="_restore" />
     public static DotNetResult Restore  (             DotNetOptions opt) => DotNet.Exe(restore,         opt);
+    /// <inheritdoc cref="_restore" />
     public static DotNetResult Restore  (string args, DotNetOptions opt) => DotNet.Exe(restore,   args, opt);
+    /// <inheritdoc cref="_restore" />
     public static DotNetResult Restore  (string args                   ) => DotNet.Exe(restore,   args     );
 
+    /// <inheritdoc cref="_installpackage" />
     public static DotNetResult InstallPackage(string id, string ver)
         => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver });
 
+    /// <inheritdoc cref="_installpackage" />
     public static DotNetResult InstallPackage(string id, string ver, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver }, opt);
 
+    /// <inheritdoc cref="_installpackage" />
     public static DotNetResult InstallPackage(string id, string ver, string args) 
         => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver, Args = args });
 
+    /// <inheritdoc cref="_installpackage" />
     public static DotNetResult InstallPackage(string id, string ver, string args, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetArgs(installpackage) { ID = id, Ver = ver, Args = args }, opt);
 
+    /// <inheritdoc cref="_uninstallpackage" />
     public static DotNetResult UninstallPackage(string id) 
         => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id });
 
+    /// <inheritdoc cref="_uninstallpackage" />
     public static DotNetResult UninstallPackage(string id, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id }, opt);
 
+    /// <inheritdoc cref="_uninstallpackage" />
     public static DotNetResult UninstallPackage(string id, string args)
         => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id, Args = args });
 
+    /// <inheritdoc cref="_uninstallpackage" />
     public static DotNetResult UninstallPackage(string id, string args, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetArgs(uninstallpackage) { ID = id, Args = args }, opt);
 

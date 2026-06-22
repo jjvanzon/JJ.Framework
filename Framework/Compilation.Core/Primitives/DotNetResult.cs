@@ -1,25 +1,40 @@
 ﻿namespace JJ.Framework.Compilation.Core.Primitives;
 
+/// <inheritdoc cref="_dotnetresult" />
 [DebuggerDisplay("{DebuggerDisplay}")]
 public record DotNetResult
 {
     private string DebuggerDisplay => DebuggerDisplay(this);
-    public override string ToString() => Coalesce(Text, Stringify(this));
-    public static implicit operator string(DotNetResult? result) => Coalesce(result?.Text, Stringify(result));
 
+    /// <inheritdoc cref="_text" />
+    public override string ToString() => Coalesce(Text, Stringify(this));
+    /// <inheritdoc cref="_text" />
+    public static implicit operator string(DotNetResult? result) => Coalesce(result?.Text, Stringify(result));
+    /// <inheritdoc cref="_text" />
     public string        Text             { get; }
 
+    /// <inheritdoc cref="_dotnetoptions" />
     public DotNetOptions Opt              { get; }
+    /// <inheritdoc cref="_dotnetargs" />
     public DotNetArgs    Args             { get; }
+    /// <inheritdoc cref="_exitcode" />
     public int           ExitCode         { get; }
+    /// <inheritdoc cref="_errortext" />
     public string        ErrorText        { get; }
+    /// <inheritdoc cref="_outputtext" />
     public string        OutputText       { get; }
-    
+
+    /// <inheritdoc cref="_successful" />
     public bool          Successful       { get; }
+    /// <inheritdoc cref="_hasexitcode" />
     public bool          HasExitCode      { get; }
+    /// <inheritdoc cref="_haserrortext" />
     public bool          HasErrorText     { get; }
+    /// <inheritdoc cref="_hasoutputtext" />
     public bool          HasOutputText    { get; }
+    /// <inheritdoc cref="_hasererrorinoutput" />
     public bool          HasErrorInOutput { get; }
+    /// <inheritdoc cref="_hastimeout" />
     public bool          HasTimeOut       { get; }
 
     internal DotNetResult(
@@ -43,6 +58,7 @@ public record DotNetResult
         Text = Stringify(this);
     }
 
+    /// <inheritdoc cref="_assert" />
     public void Assert()
     {
         if (Successful) return;

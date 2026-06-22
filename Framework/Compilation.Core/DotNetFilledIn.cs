@@ -152,31 +152,53 @@ internal static class DotNetFilledInUtil
     }
 }
 
+/// <inheritdoc cref="_dotnetfilledinhelper" />
 public static class DotNetFilledInHelper
 {
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )]      DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )]      DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )]      DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )]      DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
+    /// <inheritdoc cref="_has" />
     public static bool Has     ([NotNullWhen(true )]      DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
+    /// <inheritdoc cref="_has" />
     public static bool Has     ([NotNullWhen(true )]      DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_has" />
     public static bool Has     ([NotNullWhen(true )]      DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_has" />
     public static bool Has     ([NotNullWhen(true )]      DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)]      DotNetArgs?    args  ) => !DotNetFilledInUtil.FilledIn(args);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)]      DotNetOptions  opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)]      DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)]      DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
 }
 
+/// <inheritdoc cref="_dotnetfilledinextensions" />
 public static class DotNetFilledInExtensions
 {
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )] this DotNetArgs?    args  ) =>  DotNetFilledInUtil.FilledIn(args);
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )] this DotNetOptions  opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )] this DotNetOptions? opt   ) =>  DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_filledin" />
     public static bool FilledIn([NotNullWhen(true )] this DotNetResult?  result) =>  DotNetFilledInUtil.FilledIn(result);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)] this DotNetArgs?    args  ) => !DotNetFilledInUtil.FilledIn(args);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)] this DotNetOptions  opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)] this DotNetOptions? opt   ) => !DotNetFilledInUtil.FilledIn(opt);
+    /// <inheritdoc cref="_isnully" />
     public static bool IsNully ([NotNullWhen(false)] this DotNetResult?  result) => !DotNetFilledInUtil.FilledIn(result);
 
     internal static bool Has(this DotNetArgs? args, string part) => DotNetFilledInUtil.FilledIn(args, part);
