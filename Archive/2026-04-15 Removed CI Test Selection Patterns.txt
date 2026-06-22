@@ -1,0 +1,5 @@
+**\*.demos.*.dll
+**\JJ.AutoIncrementVersion.TestSuite*.dll
+!**\JJ.Demos.ReturnActions.*
+!**\JJ.Demos.GetNames.*
+!**\JJ.Demos.Synthesizer.Wishes.*
