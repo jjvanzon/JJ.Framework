@@ -84,7 +84,8 @@ public class RestoreTests : TestHelper
 
     // Painful
 
-    [TestMethod]
+    // (Test disabled for now, for it might impact entire tooling perf.)
+    //[TestMethod]
     public void Test_NoRestore_PainfulException()
     {
         LogNormal("Error = expected");

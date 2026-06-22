@@ -177,7 +177,7 @@ public class TestHelper : IDisposable
         NotNullOrWhiteSpace(      result.Opt.BuildConf);
         IsTrue(                   result.Opt.AutoRestore);
         IsFalse(                  result.Opt.ParallelRestore); // Kept off. Parallel restore evil.
-        IsTrue(                   result.Opt.NodeReuse);
+        IsFalse(                  result.Opt.NodeReuse); // Kept disabled. Evil.
         AssertContains(result, $"timeout: {result.Opt.TimeOutSec}");
         AreSame(Log,              result.Opt.LogAction);
         NotEqual(default,         result.Opt.Verbosity);
@@ -262,7 +262,7 @@ public class TestHelper : IDisposable
         AutoRestore     = true,
         ParallelRestore = false, // Keep false. Parallel restore can choke up the whole system.
         
-        NodeReuse       = true,
+        NodeReuse       = false, // Keep false or might drag down the entire tool chain.
         TimeOutSec      = 123,
                         
         LogAction       = Log,
