@@ -1,6 +1,8 @@
 JJ.Framework.Compilation.Core
 =============================
 
+`[ Pre-Release ]`
+
 A simple wrapper for the `dotnet.exe` CLI.
 
 To kick off compilations of `.NET` projects at runtime, this tool can be helpful for testing build-related behaviors of your code keeping it close the the logical flow of behavior of dotnet related actions.
@@ -75,3 +77,30 @@ Features
     - Well-behaved under parallel load.
     - Default options for well-behaved parallel execution
     - Can be turned off/tuned to your needs.
+
+Pre-Release
+-----------
+
+I'm releasing this prematurely. I almost never do this. I was going for fully tested, and fully worked out, but things have been slowing me down.
+
+AI-generated tests had been weighing down on me, because I had to redo them without the courage to throw any existing tests away.
+
+Then dotnet.exe experienced hanging behavior for the 2nd time during this project and after that I had basically had it wit it.
+
+This tool is good. But the polish is currently missing. I don't want to withhold it from anyone that it could use it.
+
+But I'm pretty much done wit it right now. It desn't seem to be anyone's priority to keep `dotnet.exe` working reliably, performant, under concurrent load, even thouhg it has been capable of it at some points in time, only to regress again. And this whole project is based on that premise, so I'm leaving it at this. Sorry for the rant. I don't usually do that in a package README. I'm off to focus on other things now.
+
+
+Planned Features
+----------------
+
+These features were planned for the final release, before this project was pushed into perpetual pre-release state:
+
+- nothrow option
+- Input sanitization / validation
+- Extra commands: Clean, Test.
+- Diagnostics texts fine-tuning
+    - Some newer options are not always currently displayed, such as bin log and log file paths.
+    - Logging and diagnostics may not be fully covered by unit tests.
+    - Diagnostics texts usually look good, but there may be edge cases in which they do not.
