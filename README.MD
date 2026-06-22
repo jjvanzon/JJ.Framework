@@ -228,18 +228,40 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 #### `2026-06-22` | `4.7`/`0.255` : Compilation.Core
 
+*+ Various Fixes*
+
 - [`JJ.Framework.Compilation.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Compilation.Core)
-- dotnet.exe CLI wrapper. Run compilations and other dotnet actions programmatically at runtime.
+- Brand new dotnet.exe CLI wrapper. Run compilations and other dotnet actions programmatically at runtime.
 - [`JJ.Framework.Configuration.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Configuration.Core)
 - Auto-copy config files from proj to bin as classic System.Configuration did for you.
+- [`JJ.Framework.Configuration.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration)
+- Prevent leaking System.Configuration.ConfigurationManager reference transiently to avoid clashes with older .NET versions.
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
 - Show tested argument expression more often, even when a custom message provided, which would formerly override it.
-- Complete test suite guaranteeing no regressions.
-- TestRunner parallel race condition fixed.
+- Complete test suite against regression.
+- TestRunner parallel by default but respect [DoNotParallelize] attribute. Race conditions mitigated.
+- Throws methods now return Exception in case they need further inspection.
 - [`JJ.Framework.Exceptions.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Exceptions.Core)
 - ThrowIf method for guard statements to assert any condition.
+- Overload added for chainable NotNull assertion method.
+- [`JJ.Framework.Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Reflection.Core)
+- Fix DynamicallyAccessedMembers annotation for code trimming on AccessorCore's target object auto-instantiation (AllCtors instead of just PublicCtors).
+- Add Assembly-related overloads.
 - [`JJ.Framework.PlatformCompatibility.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility.Core)
 - Fix Lock shim that was accidentally not thread-safe.
+- Add NotNullIfNotNull shim for nullable annotation support.
+- Shim for ProcessSupport.Kill with entireProcessTree arg (does not actually kill entire process tree, but prevents compiler errors).
+- [`JJ.Framework.SharedProject.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/SharedProject.Core)
+- Improve reusable NoTrimReason strings, so they can be combined without redundancies with this syntax:
+- [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+- The And-version includes a space separator and the non-And variant includes the DoWhatInstead.
+- __`DevOps:`__
+- Split Directory.Build.props into separate XML files / made modular.
+- Use .NET versions MSBuild convenience variables.
+- Add AutoPublish var for central conditions and the possibility to override (per project).
+- ClearCache calls new ClearMisc to wipe Azure Pipelines folders.
+- AzurePipelinesClearRetainFlags scripts helping to clean up locked Azure DevOps objects clearing excessive storage use.
+- RunTrimTest.bat now operates on current dir, not bat file dir.
 
 
 💬 Feedback 
