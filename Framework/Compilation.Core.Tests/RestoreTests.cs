@@ -127,8 +127,8 @@ public class RestoreTests : TestHelper
     [TestMethod]
     public void Test_ParallelRestore_EvilDoesNotWork()
     {
-        #if NET5_0
-            LogMinimal("Skip .NET 5. Too slow. Check other .NET version.");
+        #if NET5_0 || NCRUNCH
+            LogMinimal("Skip for .NET 5 and NCrunch. Too slow.");
             return;
         #endif
 

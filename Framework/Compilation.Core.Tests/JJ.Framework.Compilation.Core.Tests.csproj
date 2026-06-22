@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- Limit number of target frameworks for NCrunch. dotnet.exe went slow again. (Filters by IsNCrunch were being ignored.) -->
-    <TargetFrameworks>net10.0</TargetFrameworks>
-    <!--<TargetFrameworks Condition="!$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>-->
+    <!-- TargetFramework is also used for compilations fired off at run-time and those need a stretch of .NET versions for coverage. -->
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>
     <Version>4.7.$(BuildNum)</Version>
   </PropertyGroup>
 
