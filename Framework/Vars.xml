@@ -19,8 +19,7 @@
     <IsOuterBuild Condition="'$(TargetFramework)'!=''">False</IsOuterBuild>
     <IsInnerBuild>False</IsInnerBuild>
     <IsInnerBuild Condition="'$(TargetFramework)'!=''">True</IsInnerBuild>
-    <!-- Turn IsNCrunch String into a proper Boolean-->
-    <IsNCrunch Condition="'$(IsNCrunch)'!='True'">False</IsNCrunch>
+    <IsNCrunch Condition="'$(IsNCrunch)'!='True'">False</IsNCrunch> <!-- Turn IsNCrunch String into a proper Boolean-->
     <IsNCrunch Condition="'$(IsNCrunch)'=='True'">True</IsNCrunch>
     <IsAzurePipelines>False</IsAzurePipelines>
     <IsAzurePipelines Condition="'$(TF_BUILD)'=='true'">True</IsAzurePipelines>

@@ -75,8 +75,6 @@ public class DotNetCmdFormatterTests
 
     // restore
 
-    // TODO: Package doesn't contain new functionality yet, due to CI blockage.
-
     [TestMethod]
     public void FormatArgs_Restore_IgnoresOptions()
     {
