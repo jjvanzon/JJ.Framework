@@ -289,6 +289,15 @@
       <Value>Framework\Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net5.0</Value>
       <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net461\..</Value>
       <Value>Framework\Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj:net5.0\..</Value>
+      <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:net10.0</Value>
+      <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:net10.0</Value>
+      <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net10.0</Value>
+      <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net461</Value>
+      <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net5.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
