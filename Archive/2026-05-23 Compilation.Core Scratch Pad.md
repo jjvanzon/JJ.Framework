@@ -48,3 +48,13 @@ Compilation.Core Scratch Pad
     To compensate NCrunch's not doing so. -->
     <!--<AutoTrimTest Condition="$(IsAzurePipelines)">True</AutoTrimTest>-->
 ```
+
+```cs
+        //public string DebuggerDisplay() => DotNetResultFormatter.DebuggerDisplay(result);
+
+        //public string DebuggerDisplay() 
+        //    => (string)_accessor.Call(Name(), result)!;
+
+    //[NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
+        //AreEqual(expectedDebuggerDisplay, result.DebuggerDisplay());
+```

@@ -66,7 +66,6 @@ internal static class Untrimmer
 
     [NoTrim("Descriptor",         $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
     [NoTrim("Stringify",          $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
-    [NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
     [NoTrim("ExceptionMessage",   $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
 
     // Services

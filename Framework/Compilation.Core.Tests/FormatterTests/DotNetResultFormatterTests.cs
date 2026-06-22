@@ -350,7 +350,7 @@ public class DotNetResultFormatterTests
         // TODO: Should the debugger display even contain the entire output?
         string expectedDebuggerDisplay = expectedWideForm;
         expectedDebuggerDisplay = expectedDebuggerDisplay.Replace('\\', '/').Replace('"', '\'');
-        AreEqual(expectedDebuggerDisplay, DebuggerDisplay(result));
-        AreEqual(expectedDebuggerDisplay, result.DebuggerDisplay());
+        AreEqual(expectedDebuggerDisplay, DotNetResultFormatterAccessor.DebuggerDisplay(result));
+        if (result != null) AreEqual(expectedDebuggerDisplay, new DotNetResultAccessor(result).DebuggerDisplay);
     }
 }

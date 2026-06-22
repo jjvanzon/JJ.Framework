@@ -7,7 +7,6 @@ internal static class DotNetResultFormatterExtensions
     extension(DotNetResult? result)
     {
         public string Stringify() => DotNetResultFormatter.Stringify(result);
-        public string DebuggerDisplay() => DotNetResultFormatter.DebuggerDisplay(result);
         public string ExceptionMessage() => DotNetResultFormatter.ExceptionMessage(result);
         public string Descriptor(bool singleLine = false) => DotNetResultFormatter.Descriptor(result, singleLine);
     }

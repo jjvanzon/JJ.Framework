@@ -11,9 +11,6 @@ internal static class DotNetResultFormatterExtensionsAccessor
         public string Stringify() 
             => (string)_accessor.Call(Name(), result)!;
 
-        public string DebuggerDisplay() 
-            => (string)_accessor.Call(Name(), result)!;
-
         public string ExceptionMessage()
             => (string)_accessor.Call(Name(), result)!;
 

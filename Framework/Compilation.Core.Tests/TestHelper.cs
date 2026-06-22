@@ -4,7 +4,7 @@ namespace JJ.Framework.Compilation.Core.Tests;
 
 public class TestHelper : IDisposable
 {
-    internal static DotNetVerbosity Verbosity { get; set; } = Normal;
+    internal static DotNetVerbosity Verbosity { get; } = Normal;
 
     // Vars
 
@@ -118,7 +118,7 @@ public class TestHelper : IDisposable
 
         // Text Equality
         AreEqual(result.Text, result.ToString());
-        AreEqual(result.Text, (string)result);
+        AreEqual(result.Text, result); // Implicit conversion
 
         // Logical Consistency
         NotEqual(result.Opt,           default);
