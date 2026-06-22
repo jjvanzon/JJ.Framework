@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>4.6.$(BuildNum)</Version>
-    <VersionSuffix>prerelease</VersionSuffix>
+    <Version>4.6.$(BuildNum)-preview</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Description>Use C# to call the dotnet.exe CLI at runtime to kick off compilations of .NET projects.</Description>
-    <PackageTags>dotnet cli thin wrapper process start msbuild utility testing</PackageTags>
+    <PackageTags>dotnet exe cli thin wrapper process start msbuild utility testing error exit code command line commandline cmd build rebuild msrebuild install package nuget restore result args diagnostics options buildconfiguration buildconf parallel timeout verbosity logging binlog output assert assertion exitcode stdout stderr quiet minimal normal detailed diagnostic defaults</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Compilation.Core</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Compilation.Core</PackageProjectUrl>
     <!--<NoWarn>$(NoWarn);CS1591</NoWarn>--><!--Missing doc lenience-->
