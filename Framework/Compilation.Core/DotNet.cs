@@ -123,7 +123,7 @@ public static class DotNet
 
     // ncrunch: no coverage start
 
-    /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
+    /// <inheritdoc cref="_runningtargetframework" />
     public static string RunningTargetFramework
     {
         get 

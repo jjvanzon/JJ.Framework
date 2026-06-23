@@ -15,3 +15,6 @@ public struct _dynamicallyaccessedmembertypesex;
 /// are used with reflection so that code can be trimmed without problems.
 /// </summary>
 public struct _properties;
+
+/// <summary> Shorthand for <see cref="ImplicitUsageReasons.OverloadByName" />. </summary>
+public struct _nameovl;

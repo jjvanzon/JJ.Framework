@@ -13,7 +13,7 @@ internal static class ImplicitUsageReasons
         "But it does affect overload resolution. " + 
         "It makes the right flag lead to the right specialized method.";
 
-    /// <summary> Shorthand for <see cref="OverloadByName" />. </summary>
+    /// <inheritdoc cref="_nameovl" />
     internal const string NameOvl = 
         "Adding optional parameters that aren't used, " +
         "can allow a certain kind of overload by parameter name, " +

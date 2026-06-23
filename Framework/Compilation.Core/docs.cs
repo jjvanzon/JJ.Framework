@@ -364,3 +364,29 @@ public struct _dotnetfilledinhelper;
 /// </summary>
 /// <inheritdoc cref="_filledin" />
 public struct _dotnetfilledinextensions;
+
+/// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
+public struct _runningtargetframework;
+
+// Internals
+
+/// <summary>
+/// NOTE:
+/// We use <c>remove package</c> instead of <c>package remove</c> for backward compatibility prior to .NET 10.
+/// For <c>dotnet remove package</c>, we need to squish the <c>File</c> arg in between 
+/// <c>remove</c> and <c>package</c> e.g., <c>remove Temp.csproj package</c>.
+/// </summary>
+internal struct _tryformatcommandandfile;
+
+/// <summary>
+/// Command text could contain more than just "remove package",
+/// but (as the Enricher matches it) it should start with it (white space/case insensitive)
+/// </summary>
+internal struct _formatremovepackage;
+
+/// <summary>
+/// Replace backslahes and double quotes by foreward slashes and single quotes
+/// because it'd look bad in the debugger display.
+/// (Replace afterwards preferred over "separator" parameter, because values can contain these chars too.
+/// </summary>
+internal struct _prettifyseparators;
