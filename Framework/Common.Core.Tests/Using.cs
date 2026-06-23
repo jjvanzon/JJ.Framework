@@ -12,6 +12,8 @@ global using JJ.Framework.Testing.Core;
 global using JJ.Framework.IO.Legacy;
 global using JJ.Framework.SharedProject.Core;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using static System.Guid;
+global using static System.StringComparison;
 global using static System.Console;
 global using static System.Environment;
 global using static JJ.Framework.Common.Core.Tests.Helpers.DebuggerDisplayFormatter;

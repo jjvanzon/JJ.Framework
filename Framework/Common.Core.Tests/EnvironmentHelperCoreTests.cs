@@ -1,4 +1,5 @@
-﻿using static System.Guid;
+﻿
+#pragma warning disable IDE0002
 
 namespace JJ.Framework.Common.Core.Tests;
 
@@ -46,6 +47,23 @@ public class EnvironmentHelperCoreTests
         }
     }
     
+    [TestMethod]
+    public void EnvironmentHelper_IsNCrunch()
+    {
+        #if NCRUNCH
+            IsTrue(EnvironmentHelper.IsNCrunch);
+        #else
+            IsFalse(EnvironmentHelper.IsNCrunch);
+        #endif
+    }
+    
+    [TestMethod]
+    public void EnvironmentHelper_IsAzurePipelines()
+    {
+        var tfBuildEnvVal = Environment.GetEnvironmentVariable("TF_BUILD");
+        AreEqual(string.Equals(tfBuildEnvVal, "True", OrdinalIgnoreCase), EnvironmentHelper.IsAzurePipelines);
+    }
+
     private static (string key, string value) RandomKeyAndValue()
     {
         string guid  = $"{NewGuid()}";
