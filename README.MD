@@ -142,7 +142,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 #### `2026-02-23` | `3.8`/`0.250` __Business.Legacy__ 
 
 - [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
-- Release of historic version. Full test coverage. Features:
+- Release of historic version. Fullly covered with meaningful tests. Features:
 - `EntityStatusManager` and `GetListIsDirty`:
 - Framework-agnostic `New`/`Deleted`/`Dirty` flag container.
 - `ISideEffect` for keeping business logic units separated.
@@ -151,7 +151,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 #### `2026-02-26` | `3.9`/`0.250` : __IO.Legacy__
 
 - [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
-- Full test coverage, and member docs.
+- Full meaningful test coverage, and member docs.
 - Release of historic version `0.250`.
 - Features:
 - `CsvReader`: simple streaming CSV reader supporting quoted fields and escaped double-quotes (`""`).
@@ -164,7 +164,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 - __2018__ variant of `ReflectionCacheLegacy` moved from 
 - [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Reflection.Core) to 
-- [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with test coverage.
+- [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with meaningful test coverage.
 - Trimming/AOT compatiblity.
 - Auto-run trim test 
 - upon build
@@ -173,7 +173,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 #### `2026-03-15` | `4.1`/`0.251` : __Validation.Legacy__
 
 - [`JJ.Framework.Validation.Legacy`](https://www.nuget.org/packages/JJ.Framework.Validation.Legacy)
-- Historic version + full test coverage / IntelliSense docs / code trimming / native AOT support
+- Historic version + full meaningful test coverage / IntelliSense docs / code trimming / native AOT support
 - .NET `10`, `9`, `8`, `7`, `6`, `5`, `4.6.1` / .NET Standard `2.0`, `2.1`
 - `FluentValidator` syntax:  
   `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
@@ -189,7 +189,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
 - Run new code on older .NETs
 - Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
-- Full test coverage and member docs
+- Full coverage with meaningful tests and member docs
 - [`JJ.Framework.Validation.Legacy`](https://www.nuget.org/packages/JJ.Framework.Validation.Legacy)
 - More IntelliSense popups
 - Reworked README
@@ -198,7 +198,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 - [`JJ.Framework.Mathematics.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Mathematics)
 - Integer-based `Pow` and `Log`, `GetRandomItem` and `Randomizer.GetInt32`, number base converter.
-- 100% test coverage, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
+- 100% meaningful test coverage, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
 - Fix: `Pow` and `Log` edge-cases
 - Fix: Removed dependency on [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
@@ -222,7 +222,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - Optional trace logging
 - Customization options
 - Wide .NET version compatibility, Trimming/AOT support
-- IntelliSense docs, 100% test coverage
+- IntelliSense docs, 100% meaningful test coverage
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
 - `Throws` methods syntax shorter
 

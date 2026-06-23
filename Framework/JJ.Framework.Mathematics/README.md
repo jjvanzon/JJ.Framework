@@ -42,7 +42,7 @@ Release Notes
 
 - Legacy release with the following features:
 - Integer-based `Pow` and `Log`, `GetRandomItem` and `Randomizer.GetInt32`, number base converter.
-- 100% test coverage, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
+- 100% coverage with meaningful tests, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
 - Fix: `Pow` and `Log` edge-cases
 - Fix: Removed dependency on [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
 

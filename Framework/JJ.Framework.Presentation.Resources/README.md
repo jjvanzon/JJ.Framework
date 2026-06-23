@@ -35,7 +35,7 @@ Release Notes
 - Optional trace logging
 - Customization options
 - Wide .NET version compatibility, Trimming/AOT support
-- IntelliSense docs, 100% test coverage
+- IntelliSense docs, 100% meaningful test coverage
 
 
 💬 Feedback

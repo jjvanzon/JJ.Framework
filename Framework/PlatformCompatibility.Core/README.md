@@ -71,7 +71,7 @@ Release Notes
 
 - Run new code on older .NETs
 - Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
-- Full test coverage and member docs
+- Full meaningful test coverage and member docs
 
 #### `2026-06-22` | `4.7` : __Update__
 

@@ -16,7 +16,7 @@ Release Notes
 
 #### `2026-02-26` | `0.250`/`3.9` : __Legacy__ 
 
-- Full test coverage, and member docs.
+- Full meaningful test coverage, and member docs.
 - Release of historic version.
 - Features:
 - `CsvReader`: lightweight streaming CSV reader

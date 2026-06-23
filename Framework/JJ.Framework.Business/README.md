@@ -1,7 +1,7 @@
 ﻿JJ.Framework.Business.Legacy
 ----------------------------
 
-A historic version released in aid of older apps, that still hold value. Now targets `.NET 10` and `.NET Standard` supporting native compilation and code trimming for wide compatibility, tested with `100%` code coverage, doc pop-ups everywhere.
+A historic version released in aid of older apps, that still hold value. Now targets `.NET 10` and `.NET Standard` supporting native compilation and code trimming for wide compatibility, with `100%` meaningful test coverage, doc pop-ups everywhere.
 
 A version from a different point in time is [`JJ.Framework.Business`](https://www.nuget.org/packages/JJ.Framework.Business). That one has additional classes to manage bidirectional relationships between entities, but also excludes the `EntityStatusManager` class. It only officially supports an older version of .NET, even though compatibility with a newer .NET should be fine.
 
@@ -29,7 +29,7 @@ Release Notes
 
 #### `2026-02-23` | `0.250`/`3.8` : __Legacy__
 
-- Historic version. Full test coverage. Features:
+- Historic version. Full meaningful test coverage. Features:
 - `EntityStatusManager` and `GetListIsDirty`:  
 - Framework-agnostic `New`/`Deleted`/`Dirty` flag container.
 - `ISideEffect` for keeping business logic units separated.

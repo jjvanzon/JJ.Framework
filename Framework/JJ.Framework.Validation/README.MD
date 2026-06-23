@@ -18,7 +18,7 @@ Release Notes
 
 #### `2026-03-15` | `0.251`/`4.1` : __Legacy__
 
-- Historic version + full test coverage / IntelliSense docs / code trimming / native AOT support
+- Historic version + full meaningful test coverage / IntelliSense docs / code trimming / native AOT support
 - .NET `10`, `9`, `8`, `7`, `6`, `5`, `4.6.1` / .NET Standard `2.0`, `2.1`
 - `FluentValidator` syntax:  
   `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
