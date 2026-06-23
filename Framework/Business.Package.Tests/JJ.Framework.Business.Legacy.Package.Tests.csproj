@@ -11,8 +11,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.255.7021" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.7.7021" />
+    <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.255.7023" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.7.7023" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.7.7021" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.255.7021" />
     <PackageReference Include="MSTest" Version="3.7.3" />
