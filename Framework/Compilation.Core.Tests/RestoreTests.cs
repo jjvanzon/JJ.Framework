@@ -84,8 +84,7 @@ public class RestoreTests : TestHelper
 
     // Painful
 
-    // (Test disabled for now, for it might impact entire tooling perf.)
-    //[TestMethod]
+    [TestMethod]
     public void Test_NoRestore_PainfulException()
     {
         LogNormal("Error = expected");
@@ -239,7 +238,7 @@ public class RestoreTests : TestHelper
         public DotNetResult? Result { get; set; }
         public Exception? Exception { get; set; }
     }
-    
+
     // ncrunch: no coverage end
     
     private void LogOutput(string text)
