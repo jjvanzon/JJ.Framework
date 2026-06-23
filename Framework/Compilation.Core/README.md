@@ -92,8 +92,9 @@ Planned Features
 
 These features were planned for the final release, before this project was pushed into perpetual pre-release state:
 
-- `nothrow `option
-- Input sanitization / validation
+- `nothrow` option
+- Input sanitization / validation  
+  (though things really just boil down to raw text command lines anyway.)
 - Extra commands: Clean, Test.
 - Diagnostics texts fine-tuning:
 - Some newer options are not always currently displayed, such as bin log and log file paths.
