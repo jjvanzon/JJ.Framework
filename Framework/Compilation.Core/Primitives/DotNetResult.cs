@@ -2,7 +2,7 @@
 
 /// <inheritdoc cref="_dotnetresult" />
 [DebuggerDisplay("{DebuggerDisplay}")]
-public record DotNetResult
+public record DotNetResult // ncrunch: no coverage
 {
     private string DebuggerDisplay => DebuggerDisplay(this);
 

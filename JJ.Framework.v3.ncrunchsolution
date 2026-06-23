@@ -298,6 +298,15 @@
       <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net10.0</Value>
       <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net461</Value>
       <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net5.0</Value>
+      <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net10.0</Value>
+      <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net461</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net10.0</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net461</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net5.0</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net6.0</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net7.0</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net8.0</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net9.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>

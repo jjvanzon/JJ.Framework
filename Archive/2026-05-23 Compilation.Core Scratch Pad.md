@@ -57,4 +57,25 @@ Compilation.Core Scratch Pad
 
     //[NoTrim("DebuggerDisplay",    $"{MainAsm}.Formatters.DotNetResultFormatterExtensions", MainAsm)]
         //AreEqual(expectedDebuggerDisplay, result.DebuggerDisplay());
+
+    // (Test disabled for now, for it might impact entire tooling perf.)
+
+        //if (argPropsDescriptor.Has(args.ID))
+        //{
+        //    idVerDescriptor = idVerDescriptor.Replace(args.ID, "").TrimStart();
+        //}
+        //if (argPropsDescriptor.Has(args.Ver))
+        //{
+        //    idVerDescriptor = idVerDescriptor.Replace(args.Ver, "").TrimEnd();
+        //}
+
+        //if (argPropsDescriptor.StartsWith(commandDescriptor, OrdinalIgnoreCase))
+        //{
+        //    commandDescriptor = "";
+        //}
+
+        //if (argPropsDescriptor.StartsWith(args.Command, OrdinalIgnoreCase))
+        //{
+        //    commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
+        //}
 ```

@@ -132,6 +132,8 @@ public class RestoreTests : TestHelper
             return;
         #endif
 
+        // ncrunch: no coverage start
+
         LogMinimal("Parallel restore unstable. Test provokes and tolerates exceptions but still checks the outcome.");
         LogMinimal("");
 
@@ -209,6 +211,8 @@ public class RestoreTests : TestHelper
                 LogNormal($"{x.Exception}");
             }
         }
+    
+        // ncrunch: no coverage end
     }
 
     // Overloads (commented = tested elsewhere)
@@ -228,11 +232,15 @@ public class RestoreTests : TestHelper
 
     // Helpers
 
+    // ncrunch: no coverage start
+
     private record RestoreInfo(TestHelper Helper)
     {
         public DotNetResult? Result { get; set; }
         public Exception? Exception { get; set; }
     }
+    
+    // ncrunch: no coverage end
     
     private void LogOutput(string text)
     {

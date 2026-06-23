@@ -54,7 +54,7 @@ public class TestHelper : IDisposable
     private void Cleanup()
     {
         try { if (Directory.Exists(TempDir)) Directory.Delete(TempDir, recursive: true); }
-        catch { /* ignore */ }
+        catch { /* ignore */ } // ncrunch: no coverage
     }
 
     void IDisposable.Dispose() => Cleanup();
@@ -142,10 +142,16 @@ public class TestHelper : IDisposable
 
         // Conditional checks
 
+        // TODO: HasErrorInOutput can't be tested yet. 
+        // Depends on NoThrow option (not implemented yet)
+        // to get result to inspect error.
+
+        // ncrunch: no coverage start
         if (result.HasErrorInOutput)
         {
             AssertContains(result.OutputText, "[error]");
         }
+        // ncrunch: no coverage end
 
         if (Has(result.Opt.TimeOutSec) && result.Opt.TimeOutSec != DefaultOptions.TimeOutSec)
         {
@@ -202,7 +208,7 @@ public class TestHelper : IDisposable
     // Logging
 
     // ReSharper disable once UnusedMember.Global
-    internal static void LogLine() => Log("");
+    internal static void LogLine() => Log(""); // ncrunch: no coverage
     internal static void Log(string msg) => Console.WriteLine(msg);
     
     /// <summary>
@@ -309,7 +315,7 @@ public class TestHelper : IDisposable
             {
                 
                 try { Directory.SetCurrentDirectory(saved); }
-                catch { /* Error tolerance: previous cur dir may be deleted any time. */ }
+                catch { /* Error tolerance: previous cur dir may be deleted any time. */ } // ncrunch: no coverage
             }
         }
     }

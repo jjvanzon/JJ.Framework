@@ -116,6 +116,13 @@ public static class DotNet
     public static DotNetResult Exe(string command, string args, DotNetOptions opt)
         => DotNetExecutor.Exe(new DotNetArgs(command) { Args = args }, opt);
 
+    // NOTE:
+    // Coverage not measured for RunningTargetFramework.
+    // Which code gets hit depends on the framework, 
+    // thus can't cover all cover all code for all frameworks.
+
+    // ncrunch: no coverage start
+
     /// <summary> Returns the TFM string matching the currently-executing assembly, e.g. "net8.0" or "net461". </summary>
     public static string RunningTargetFramework
     {
@@ -146,5 +153,8 @@ public static class DotNet
 
             throw new Exception($"{nameof(RunningTargetFramework)} could not be resolved from {new {frameworkDescription, frameworkName}}."); // ncrunch: no coverage
         }
+        // ncrunch: no coverage end
     }
 }
+
+
