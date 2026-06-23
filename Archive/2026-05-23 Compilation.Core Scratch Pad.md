@@ -78,4 +78,13 @@ Compilation.Core Scratch Pad
         //{
         //    commandDescriptor = commandDescriptor.CutRight(args.Command).CutRight(" / ");
         //}
+
+```
+
+```xml
+    <AutoTrimTest Condition="$(IsNCrunch)">False</AutoTrimTest>
+    <AutoTrimTest Condition="$(IsAzurePipelines)">True</AutoTrimTest>
+    <!--<AutoTrimTest>True</AutoTrimTest>-->
+    <!--<AutoTrimTest>False</AutoTrimTest>-->
+    <!--<AutoPublish>True</AutoPublish>-->
 ```
