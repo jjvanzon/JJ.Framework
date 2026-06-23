@@ -10,7 +10,7 @@ To kick off compilations of `.NET` projects at runtime, this tool can be helpful
 The problem this package solves, is managing the call around `Process.Start`, kicking off `dotnet.exe`, which comes with subtle issues.
 
 Error Handling
-------------
+--------------
 
 One of the issues, is that the output of the `dotnet.exe` process indicates error or success in subtle ways that aren't trivial to interpret. If handled incorrectly it would swallow the error that you were actually trying to test or your logic will dwell into undefined behavior.
 
@@ -104,3 +104,18 @@ These features were planned for the final release, before this project was pushe
     - Some newer options are not always currently displayed, such as bin log and log file paths.
     - Logging and diagnostics may not be fully covered by unit tests.
     - Diagnostics texts usually look good, but there may be edge cases in which they do not.
+
+
+Release Notes
+-------------
+
+#### `2026-06-22` | `4.7` : __Preview Release__
+
+- Brand new dotnet.exe CLI wrapper. Run compilations and other dotnet actions programmatically at runtime.
+- Preview release. Works in general. More coverage derised. More features desired.
+
+
+💬 Feedback
+============
+
+Questions or found an issues? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)

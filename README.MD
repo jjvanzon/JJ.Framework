@@ -226,12 +226,13 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
 - `Throws` methods syntax shorter
 
-#### `2026-06-22` | `4.7`/`0.255` : Compilation.Core
+#### `2026-06-22` | `4.7`/`0.255` : __Compilation.Core Preview__
 
 *+ Various Fixes*
 
 - [`JJ.Framework.Compilation.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Compilation.Core)
 - Brand new dotnet.exe CLI wrapper. Run compilations and other dotnet actions programmatically at runtime.
+- Preview release. Works in general. More coverage desired. More features desired.
 - [`JJ.Framework.Configuration.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Configuration.Core)
 - Auto-copy config files from proj to bin as classic System.Configuration did for you.
 - [`JJ.Framework.Configuration.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration)
