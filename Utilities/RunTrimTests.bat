@@ -11,6 +11,7 @@ echo(
 
 REM /R     = Recursive
 REM %~dp0  = Folder of bat file
+REM .      = Current folder
 REM %%F    = File path
 REM %%D    = Folder path
 REM %%~dpF = Folder path of the file item
