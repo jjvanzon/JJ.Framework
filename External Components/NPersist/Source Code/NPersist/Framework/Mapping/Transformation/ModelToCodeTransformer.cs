@@ -305,8 +305,8 @@ namespace Puzzle.NPersist.Framework.Mapping.Transformation
 
 		#region ToCode
 
-
-		public String ToCode(CodeCompileUnit compileunit, CodeDomProvider provider)
+        // ReSharper disable once FunctionRecursiveOnAllPaths
+        public String ToCode(CodeCompileUnit compileunit, CodeDomProvider provider)
 		{
 			return ToCode(compileunit, provider);
 		}
