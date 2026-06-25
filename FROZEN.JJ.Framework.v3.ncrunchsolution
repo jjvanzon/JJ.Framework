@@ -1,0 +1,9 @@
+﻿<SolutionConfiguration>
+  <Settings>
+    <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
+    <EnableRDI>False</EnableRDI>
+    <RdiConfigured>True</RdiConfigured>
+    <SolutionConfigured>True</SolutionConfigured>
+  </Settings>
+</SolutionConfiguration>
