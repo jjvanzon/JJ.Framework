@@ -53,7 +53,6 @@
   <Project Path="Framework/JJ.Framework.Mathematics/JJ.Framework.Mathematics.Legacy.csproj" />
   <Project Path="Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Testing.Tests/JJ.Framework.Testing.Legacy.Tests.csproj" />
-  <Project Path="Framework/Mathematics.Core/JJ.Framework.Mathematics.Core.csproj" />
   <Project Path="Framework/Mathematics.TrimTests/JJ.Framework.Mathematics.Legacy.TrimTests.csproj" />
   <Project Path="Framework/Reflection.TrimTests/JJ.Framework.Reflection.Legacy.TrimTests.csproj" />
   <Project Path="Framework\Collections.Core\JJ.Framework.Collections.Core.csproj" />

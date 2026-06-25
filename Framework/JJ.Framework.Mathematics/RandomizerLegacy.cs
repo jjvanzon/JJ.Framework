@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JJ.Framework.Mathematics.Core
+namespace JJ.Framework.Mathematics.Legacy
 {
+    /// <inheritdoc cref="_randomizerlegacy" />
     public static class RandomizerLegacy
     {
         private static readonly Random _random = CreateRandom();
@@ -42,6 +43,7 @@ namespace JJ.Framework.Mathematics.Core
             }
         }
         
+        /// <inheritdoc cref="_getrandomitem" />
         public static T GetRandomItem<T>(IEnumerable<T> collection)
         {
             // ReSharper disable once PossibleMultipleEnumeration
@@ -58,6 +60,7 @@ namespace JJ.Framework.Mathematics.Core
 
         // ReSharper disable PossibleMultipleEnumeration
         
+        /// <inheritdoc cref="_getrandomitem" />
         public static T? TryGetRandomItem<T>(IEnumerable<T?> collection)
             where T : struct
         {
@@ -71,6 +74,7 @@ namespace JJ.Framework.Mathematics.Core
             return collection.ElementAt(index);
         }
 
+        /// <inheritdoc cref="_getrandomitem" />
         public static T? TryGetRandomItem<T>(IEnumerable<T> collection)
             where T : notnull
         {
@@ -85,6 +89,10 @@ namespace JJ.Framework.Mathematics.Core
         }
         
         // ReSharper restore PossibleMultipleEnumeration
+
+        /// <inheritdoc cref="_getrandomitem" />
+        public static T GetRandomItem<T>(params T[] collection)
+            => GetRandomItem((IEnumerable<T>)collection);
         
         /// <summary> Returns a random number between 0.0 and 1.0. </summary>
         public static double GetDouble() => _random.NextDouble();

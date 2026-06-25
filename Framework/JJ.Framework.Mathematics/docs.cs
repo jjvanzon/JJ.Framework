@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0130 // Namespace != folder
 #pragma warning disable IDE1006 // Naming rule
+// ReSharper disable UnusedType.Global
 
 namespace JJ.Framework.Mathematics.Legacy.docs;
 
@@ -23,9 +24,20 @@ public struct _numberingsystems;
 /// <item><c>GetRandomItem</c>: Gets a random item out of a collection.</item>
 /// <item><c>GetInt32</c>: Return a random number out of a range.</item>
 /// </list>
+/// See the <see cref="RandomizerLegacy">RandomizerLegacy</see> variant 
+/// for additional methods.
 /// </summary>
 public struct _randomizer;
 
+/// <summary>
+/// <c>GetRandomItem</c>: Gets a random item out of a collection.<br/>
+/// <c>GetInt32</c> / <c>GetSingle</c> / <c>GetDouble</c>: 
+/// Return a random number out of a range.<br/><br/>
+/// 
+/// Extends the <see cref="Randomizer">Randomizer</see> variant
+/// with additional methods.
+/// </summary>
+public struct _randomizerlegacy;
 
 /// <summary>
 /// Gets a random item out of a collection.
