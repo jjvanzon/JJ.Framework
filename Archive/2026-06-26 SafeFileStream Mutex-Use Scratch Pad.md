@@ -29,9 +29,31 @@ Mutex handling excess code:
                 //bool isLocked = !_createSafeFileStreamMutex.WaitOne(0);
                 //if (isLocked) throw new Exception(nameof(_createSafeFileStreamMutex) + $" {_createSafeFileStreamMutex} already locked.");
 
-```
+```cs
                 //catch (AbandonedMutexException ex)
                 //{
                 //    Console.WriteLine($"{nameof(AbandonedMutexException)}! Mutex was held by a dead thread. {ex.Message}");
                 //    throw;
                 //}
+
+            // NOTE: This made absolutely no difference. AI hallucination.
+
+   
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        private static extern IntPtr CreateMutex(IntPtr lpMutexAttributes, bool bInitialOwner, string lpName);
+         
+            // Use Win32 to create mutex with "Everyone" rights (default security descriptor),
+            // to appease Azure Pipelines (UnauthorizedAccessException on user-scoped default of .NET.)
+            // without importing NuGet dependency.
+            //if (OperatingSystem.IsWindows()) // TODO: Needs .NET Standard Shim.
+            //{
+                  IntPtr handle = CreateMutex(IntPtr.Zero, false, mutexName);
+                  if (handle == IntPtr.Zero)
+                  {
+                      throw new Win32Exception(Marshal.GetLastWin32Error());
+                  }
+            //}
+
+            // Just wrap it. If CreateMutex succeeded, the OS has created/opened it.
+            var mutex = new Mutex(false, mutexName);
+```
