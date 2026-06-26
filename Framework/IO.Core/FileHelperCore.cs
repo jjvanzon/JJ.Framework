@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using JJ.Framework.Text.Core;
 using static System.AppDomain;
@@ -48,7 +50,10 @@ namespace JJ.Framework.IO.Core
             
             return filePath;
         }
-        
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        private static extern IntPtr CreateMutex32(IntPtr lpMutexAttributes, bool bInitialOwner, string lpName);
+
         private const string MUTEX_PREFIX = "Global\\JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25_";
         private static readonly Lock _numberedFileLock = new();
         private static readonly Mutex _numberedFileMutex = CreateMutex();
@@ -56,6 +61,16 @@ namespace JJ.Framework.IO.Core
         {
             string mutexName = folderPath != null ? MUTEX_PREFIX + folderPath : MUTEX_PREFIX;
 
+            // Use Win32 to create mutex with "Everyone" rights (default security descriptor),
+            // to appease Azure Pipelines (UnauthorizedAccessException on user-scoped default of .NET.)
+            // without importing NuGet dependency.
+            IntPtr handle = CreateMutex32(IntPtr.Zero, false, mutexName);
+            if (handle == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+
+            // Just wrap it. If CreateMutex succeeded, the OS has created/opened it.
             var mutex = new Mutex(false, mutexName);
             
             CurrentDomain.ProcessExit += (_, _) =>
