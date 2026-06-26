@@ -11,6 +11,10 @@
   <PropertyGroup Condition="$(IsNet6) Or $(IsNet7)">
     <IsTrimmable>True</IsTrimmable>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="System.Threading.AccessControl" Version="10.0.9" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" />

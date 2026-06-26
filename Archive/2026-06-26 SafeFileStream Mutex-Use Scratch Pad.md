@@ -56,4 +56,15 @@ Mutex handling excess code:
 
             // Just wrap it. If CreateMutex succeeded, the OS has created/opened it.
             var mutex = new Mutex(false, mutexName);
+
+    public static bool IsWindows() 
+    {
+        #if WINDOWS
+            return true;
+        #elif NETSTANDARD || NETFRAMEWORK
+            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        #else
+            return System.OperatingSystem.IsWindows();
+        #endif
+    }
 ```

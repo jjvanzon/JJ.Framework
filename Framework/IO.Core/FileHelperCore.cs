@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Threading;
 using JJ.Framework.Text.Core;
 using static System.AppDomain;
@@ -53,13 +55,23 @@ namespace JJ.Framework.IO.Core
 
         private const string MUTEX_PREFIX = "Global\\JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25_";
         private static readonly Lock _numberedFileLock = new();
-        private static readonly Mutex _numberedFileMutex = CreateNumberedFileMutex();
-        private static Mutex CreateNumberedFileMutex(string? folderPath = "")
-        {
-            string mutexName = folderPath != null ? MUTEX_PREFIX + folderPath : MUTEX_PREFIX;
+        private static readonly Mutex _numberedFileMutex = CreateMutex();
 
-            // Just wrap it. If CreateMutex succeeded, the OS has created/opened it.
-            var mutex = new Mutex(false, mutexName);
+        private static Mutex CreateMutex(string? folderPath = "")
+        {
+            string name = folderPath != null ? MUTEX_PREFIX + SanitizeFilePath(folderPath) : MUTEX_PREFIX;
+
+            Mutex mutex;
+
+            if (IsWindows())
+            {
+                MutexSecurity? sec = GetMutexSecurity();
+                mutex = MutexAcl.Create(false, name, out _, sec);
+            }
+            else
+            {
+                mutex = new Mutex(false, name);
+            }
             
             CurrentDomain.ProcessExit += (_, _) =>
             {
@@ -70,7 +82,27 @@ namespace JJ.Framework.IO.Core
 
             return mutex;
         }
-        
+
+        private static MutexSecurity? GetMutexSecurity()
+        {
+            if (!IsWindows()) return null;
+
+            // Source: https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c
+            // edited by Jeremy Wiebe to add example of setting up security for multi-user usage
+            // edited by 'Marc' to work also on localized systems (don't use just "Everyone") 
+            var allowEveryoneRule = 
+                new MutexAccessRule( 
+                    new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
+                    MutexRights.FullControl, 
+                    AccessControlType.Allow
+                );
+            
+            var securitySettings = new MutexSecurity();
+            securitySettings.AddAccessRule(allowEveryoneRule);
+
+            return securitySettings;
+        }
+
         /// <summary>
         /// If the originalFilePath already exists,
         /// a higher and higher number is inserted into the file name 
@@ -96,7 +128,8 @@ namespace JJ.Framework.IO.Core
             
             lock (_numberedFileLock)
             {
-                using Mutex mutex = CreateNumberedFileMutex();
+                //using Mutex mutex = CreateMutex();
+                Mutex mutex = _numberedFileMutex;
                 try
                 {
                     mutex.WaitOne();

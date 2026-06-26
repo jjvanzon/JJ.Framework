@@ -30,5 +30,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\RequiresDynamicCode.cs" Link="RequiresDynamicCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\RequiresUnreferencedCode.cs" Link="RequiresUnreferencedCode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\UnconditionalSuppressMessage.cs" Link="UnconditionalSuppressMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)..\PlatformCompatibility.Core\OperatingSystemSupport.cs" Link="OperatingSystemSupport.cs" />
   </ItemGroup>
 </Project>
