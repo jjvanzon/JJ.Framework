@@ -10,7 +10,7 @@ using static NumberingSystems;
 /// adding coverage where missing in the originals.
 /// </summary>
 [TestClass]
-public class NumberingSystems_CoreTests
+public class NumberingSystemsTestsEx
 {
     // FromBase (with default digits)
 
