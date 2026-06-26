@@ -52,19 +52,19 @@ namespace JJ.Framework.IO.Core
         }
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        private static extern IntPtr CreateMutex32(IntPtr lpMutexAttributes, bool bInitialOwner, string lpName);
+        private static extern IntPtr CreateMutex(IntPtr lpMutexAttributes, bool bInitialOwner, string lpName);
 
         private const string MUTEX_PREFIX = "Global\\JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25_";
         private static readonly Lock _numberedFileLock = new();
-        private static readonly Mutex _numberedFileMutex = CreateMutex();
-        private static Mutex CreateMutex(string? folderPath = "")
+        private static readonly Mutex _numberedFileMutex = CreateNumberedFileMutex();
+        private static Mutex CreateNumberedFileMutex(string? folderPath = "")
         {
             string mutexName = folderPath != null ? MUTEX_PREFIX + folderPath : MUTEX_PREFIX;
 
             // Use Win32 to create mutex with "Everyone" rights (default security descriptor),
             // to appease Azure Pipelines (UnauthorizedAccessException on user-scoped default of .NET.)
             // without importing NuGet dependency.
-            IntPtr handle = CreateMutex32(IntPtr.Zero, false, mutexName);
+            IntPtr handle = CreateMutex(IntPtr.Zero, false, mutexName);
             if (handle == IntPtr.Zero)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
