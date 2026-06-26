@@ -22,21 +22,15 @@ public struct _numberingsystems;
 /// <summary>
 /// <list type="bullet">
 /// <item><c>GetRandomItem</c>: Gets a random item out of a collection.</item>
-/// <item><c>GetInt32</c>: Return a random number out of a range.</item>
+/// <item><c>GetInt32</c> / <c>GetSingle</c> / <c>GetDouble</c>: Return a random number out of a range.</item>
 /// </list>
-/// See the <see cref="RandomizerLegacy">RandomizerLegacy</see> variant 
-/// for additional methods.
+/// <see cref="RandomizerLegacy">RandomizerLegacy</see> 
+/// which may extend the <see cref="Randomizer">Randomizer</see> variant
+/// with additional methods.
 /// </summary>
 public struct _randomizer;
 
-/// <summary>
-/// <c>GetRandomItem</c>: Gets a random item out of a collection.<br/>
-/// <c>GetInt32</c> / <c>GetSingle</c> / <c>GetDouble</c>: 
-/// Return a random number out of a range.<br/><br/>
-/// 
-/// Extends the <see cref="Randomizer">Randomizer</see> variant
-/// with additional methods.
-/// </summary>
+/// <inheritdoc cref="_randomizer" />
 public struct _randomizerlegacy;
 
 /// <summary>

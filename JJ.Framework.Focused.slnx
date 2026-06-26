@@ -7,7 +7,6 @@
     <Project Path="Framework/SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" Id="1beb8e62-fcb0-4b88-b142-23e720d5bacc" />
     <Project Path="Framework/Testing.Core.MSTestless/JJ.Framework.Testing.Core.MSTestless.csproj" />
     <Project Path="Framework/Testing.Core.NCrunchless/JJ.Framework.Testing.Core.NCrunchless.csproj" />
-    <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
     <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
     <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
   </Folder>
@@ -55,6 +54,7 @@
   <Project Path="Framework/JJ.Framework.Testing.Tests/JJ.Framework.Testing.Legacy.Tests.csproj" />
   <Project Path="Framework/Mathematics.TrimTests/JJ.Framework.Mathematics.Legacy.TrimTests.csproj" />
   <Project Path="Framework/Reflection.TrimTests/JJ.Framework.Reflection.Legacy.TrimTests.csproj" />
+  <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\Collections.Core\JJ.Framework.Collections.Core.csproj" />
   <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
   <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />

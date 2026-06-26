@@ -1,8 +1,9 @@
 bool success = 
-RunTests<Maths_CoreTests>() &&
 RunTests<MathsTests>() &&
+RunTests<MathsTestsEx>() &&
 RunTests<NumberingSystems_CoreTests>() &&
 RunTests<NumberingSystemsTests>() &&
-RunTests<Randomizer_CoreTests>();
+RunTests<RandomizerTestsEx>() &&
+RunTests<RandomizerLegacyTests>();
 WriteLine("Done.");
 if (!success) Exit(1);

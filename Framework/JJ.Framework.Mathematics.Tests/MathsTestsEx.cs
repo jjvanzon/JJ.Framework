@@ -11,7 +11,7 @@ using static Double;
 /// Results between both of them are evaluated and compared for consistency.
 /// </summary>
 [TestClass]
-public class Maths_CoreTests
+public class MathsTestsEx
 {
     // Pow
 
