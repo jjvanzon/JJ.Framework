@@ -18,22 +18,13 @@ namespace JJ.Framework.Mathematics.Legacy
             return random;
         }
         
-        /// <summary>
-        /// Gets a random Int32 between Int32.MinValue and Int32.MaxValue - 1.
-        /// </summary>
+        /// <inheritdoc cref="_getint32" />
         public static int GetInt32() => GetInt32(int.MinValue, int.MaxValue - 1);
         
-        /// <summary>
-        /// Gets a random Int32 between 0 and the specified value.
-        /// max must at most be Int32.MaxValue - 1 or an overflow exception could occur.
-        /// </summary>
+        /// <inheritdoc cref="_getint32max" />
         public static int GetInt32(int max) => GetInt32(0, max);
         
-        /// <summary>
-        /// Gets a random Int32 between between a minimum and a maximum.
-        /// Both the minimum and the maximum are included.
-        /// max must at most be Int32.MaxValue - 1 or an overflow exception could occur.
-        /// </summary>
+        /// <inheritdoc cref="_getint32minmax" />
         public static int GetInt32(int min, int max)
         {
             checked
@@ -44,7 +35,7 @@ namespace JJ.Framework.Mathematics.Legacy
         }
         
         /// <inheritdoc cref="_getrandomitem" />
-        public static T GetRandomItem<T>(IEnumerable<T> collection)
+        public static T GetRandomItem<T>(params IEnumerable<T> collection)
         {
             // ReSharper disable once PossibleMultipleEnumeration
             int count = collection.Count();
@@ -58,12 +49,11 @@ namespace JJ.Framework.Mathematics.Legacy
             return collection.ElementAt(index);
         }
 
-        // ReSharper disable PossibleMultipleEnumeration
-        
-        /// <inheritdoc cref="_getrandomitem" />
-        public static T? TryGetRandomItem<T>(IEnumerable<T?> collection)
+        /// <inheritdoc cref="_trygetrandomitem" />
+        public static T? TryGetRandomItem<T>(params IEnumerable<T?> collection)
             where T : struct
         {
+            // ReSharper disable once PossibleMultipleEnumeration
             int count = collection.Count();
             if (count == 0)
             {
@@ -71,13 +61,15 @@ namespace JJ.Framework.Mathematics.Legacy
             }
             
             int index = GetInt32(count - 1);
-            return collection.ElementAt(index);
+            // ReSharper disable once PossibleMultipleEnumeration
+            return collection.ElementAt(index); 
         }
 
-        /// <inheritdoc cref="_getrandomitem" />
-        public static T? TryGetRandomItem<T>(IEnumerable<T> collection)
+        /// <inheritdoc cref="_trygetrandomitem" />
+        public static T? TryGetRandomItem<T>(params IEnumerable<T> collection)
             where T : notnull
         {
+            // ReSharper disable once PossibleMultipleEnumeration
             int count = collection.Count();
             if (count == 0)
             {
@@ -85,23 +77,17 @@ namespace JJ.Framework.Mathematics.Legacy
             }
             
             int index = GetInt32(count - 1);
+            // ReSharper disable once PossibleMultipleEnumeration
             return collection.ElementAt(index);
         }
-        
-        // ReSharper restore PossibleMultipleEnumeration
 
-        /// <inheritdoc cref="_getrandomitem" />
-        public static T GetRandomItem<T>(params T[] collection)
-            => GetRandomItem((IEnumerable<T>)collection);
-        
-        /// <summary> Returns a random number between 0.0 and 1.0. </summary>
+        /// <inheritdoc cref="_getdouble" />
         public static double GetDouble() => _random.NextDouble();
         
-        /// <summary> Returns a random number between 0.0 and 1.0. </summary>
-        public static float GetSingle() => (float)_random.NextDouble();
+        /// <inheritdoc cref="_getdoublemax" />
+        public static double GetDouble(double max) => GetDouble(0, max);
         
-        /// <param name="min">inclusive</param>
-        /// <param name="max">exclusive</param>
+        /// <inheritdoc cref="_getdoubleminmax" />
         public static double GetDouble(double min, double max)
         {
             double between0And1 = GetDouble();
@@ -109,9 +95,14 @@ namespace JJ.Framework.Mathematics.Legacy
             double value        = min + between0And1 * range;
             return value;
         }
+
+        /// <inheritdoc cref="_getsingle" />
+        public static float GetSingle() => (float)_random.NextDouble();
+
+        /// <inheritdoc cref="_getsinglemax" />
+        public static float GetSingle(float max) => GetSingle(0, max);
         
-        /// <param name="min">inclusive</param>
-        /// <param name="max">exclusive</param>
+        /// <inheritdoc cref="_getsingleminmax" />
         public static float GetSingle(float min, float max)
         {
             float between0And1 = GetSingle();
