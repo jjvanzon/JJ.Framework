@@ -49,11 +49,24 @@ namespace JJ.Framework.IO.Core
             return filePath;
         }
         
-        private static readonly object _createSafeFileStreamLock = new object();
+        private const string MUTEX_NAME = "Global\\JJFrameworkIO_CreateSafeFileStreamMutex2_7f64fd76542045bb98c2e28a44d2df25";
+        private static readonly Lock _createSafeFileStreamLock = new();
         private static readonly Mutex _createSafeFileStreamMutex = CreateMutex();
         private static Mutex CreateMutex()
         {
-            var mutex = new Mutex(false, "Global\\JJFrameworkIO_CreateSafeFileStreamMutex2_7f64fd76542045bb98c2e28a44d2df25");
+
+            // Azure Pipelines complains with UnauthorizedAccessException, the 2nd run after a reboot.
+            // The mutex isn't locked, because it is succesfully used by heavily concurrent other processes.
+            // Try an OpenExisting with lesser right demands in case this allows DevOps to access it the 2ndrun .
+
+            //var mutex = new Mutex(false, MUTEX_NAME);
+            Mutex? mutex;
+            //if (!Mutex.TryOpenExisting(MUTEX_NAME, MutexRights.Synchronize | MutexRights.ModifyState, out mutex))
+            if (!Mutex.TryOpenExisting(MUTEX_NAME, out mutex))
+            {
+                // 2. If it doesn't exist at all, create it normally.
+                mutex = new Mutex(false, MUTEX_NAME);
+            }
             
             // Ensure it's released when the process exits.
             
