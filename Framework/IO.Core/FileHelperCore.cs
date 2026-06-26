@@ -49,46 +49,19 @@ namespace JJ.Framework.IO.Core
             return filePath;
         }
         
-        private const string MUTEX_NAME = "Global\\JJFrameworkIO_CreateSafeFileStreamMutex2_7f64fd76542045bb98c2e28a44d2df25";
-        private static readonly Lock _createSafeFileStreamLock = new();
-        private static readonly Mutex _createSafeFileStreamMutex = CreateMutex();
-        private static Mutex CreateMutex()
+        private const string MUTEX_PREFIX = "Global\\JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25_";
+        private static readonly Lock _numberedFileLock = new();
+        private static readonly Mutex _numberedFileMutex = CreateMutex();
+        private static Mutex CreateMutex(string? folderPath = "")
         {
+            string mutexName = folderPath != null ? MUTEX_PREFIX + folderPath : MUTEX_PREFIX;
 
-            // Azure Pipelines complains with UnauthorizedAccessException, the 2nd run after a reboot.
-            // The mutex isn't locked, because it is succesfully used by heavily concurrent other processes.
-            // Try an OpenExisting with lesser right demands in case this allows DevOps to access it the 2ndrun .
-
-            //var mutex = new Mutex(false, MUTEX_NAME);
-            Mutex? mutex;
-            //if (!Mutex.TryOpenExisting(MUTEX_NAME, MutexRights.Synchronize | MutexRights.ModifyState, out mutex))
-            if (!Mutex.TryOpenExisting(MUTEX_NAME, out mutex))
-            {
-                // 2. If it doesn't exist at all, create it normally.
-                mutex = new Mutex(false, MUTEX_NAME);
-            }
+            var mutex = new Mutex(false, mutexName);
             
-            // Ensure it's released when the process exits.
-            
-            // ReSharper disable UnusedParameter.Local
-            CurrentDomain.ProcessExit += (s, e) =>
+            CurrentDomain.ProcessExit += (_, _) =>
             {
-                // ReSharper restore UnusedParameter.Local
-                
-                //if (mutex == null)
-                //{
-                //    return;
-                //}
-
-                try
-                {
-                    // Release Mutex in case it got abandoned.
-                    mutex.ReleaseMutex();
-                }
-                catch
-                {
-                    // If it didn't get abandoned, ReleaseMutex probably fails.
-                }
+                try { mutex.ReleaseMutex(); } 
+                catch { /* If it didn't get abandoned, ReleaseMutex probably fails.*/ }
                 mutex.Dispose();
             };
 
@@ -118,12 +91,10 @@ namespace JJ.Framework.IO.Core
             (string filePathFirstPart, int number, string filePathLastPart) =
                 GetNumberedFilePathParts(originalFilePath, numberPrefix, numberSuffix, mustNumberFirstFile, maxExtensionLength);
             
-            lock (_createSafeFileStreamLock)
+            lock (_numberedFileLock)
             {
-                //bool isLocked = !_createSafeFileStreamMutex.WaitOne(0);
-                //if (isLocked) throw new Exception(nameof(_createSafeFileStreamMutex) + $" {_createSafeFileStreamMutex} already locked.");
-
-                _createSafeFileStreamMutex.WaitOne();
+                var mutex = _numberedFileMutex;
+                mutex.WaitOne();
                 try
                 {
                     string filePath = originalFilePath;
@@ -140,14 +111,9 @@ namespace JJ.Framework.IO.Core
                     
                     return (filePath, new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read));
                 }
-                //catch (AbandonedMutexException ex)
-                //{
-                //    Console.WriteLine($"{nameof(AbandonedMutexException)}! Mutex was held by a dead thread. {ex.Message}");
-                //    throw;
-                //}
                 finally
                 {
-                    _createSafeFileStreamMutex.ReleaseMutex();
+                    mutex.ReleaseMutex();
                 }
             }
         }
