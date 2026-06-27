@@ -83,6 +83,14 @@ namespace JJ.Framework.IO.Core
             return mutex;
         }
 
+        /// <summary>
+        /// <para> Returns a security descriptor that can give a mutex "Everyone" rights. </para>
+        /// 
+        /// <para> Azure Pipelines complains with UnauthorizedAccessException, the 2nd run after a reboot.
+        /// The mutex isn't locked; it was succesfully used by heavily concurrent other processes. </para>
+        /// 
+        /// <para> It appears to have difficuly accessing a Mutex created from another user session. </para>
+        /// </summary>
         private static MutexSecurity? GetMutexSecurity()
         {
             if (!IsWindows()) return null;
