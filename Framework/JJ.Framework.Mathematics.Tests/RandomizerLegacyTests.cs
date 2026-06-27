@@ -5,11 +5,11 @@ namespace JJ.Framework.Mathematics.Legacy.Tests;
 public class RandomizerLegacyTests
 {
     private const int REPEATS = 1000;
- 
+
     // Int
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetInt32()
+    public void Test_Legacy_GetInt32()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -19,7 +19,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetInt32_WithMax()
+    public void Test_Legacy_GetInt32_WithMax()
     {
         const int max = 10;
 
@@ -32,7 +32,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetInt32_WithMinAndMax()
+    public void Test_Legacy_GetInt32_WithMinAndMax()
     {
         const int min = -5;
         const int max = 5;
@@ -48,7 +48,7 @@ public class RandomizerLegacyTests
     // Double
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetDouble()
+    public void Test_Legacy_GetDouble()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -59,7 +59,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetDouble_WithMax()
+    public void Test_Legacy_GetDouble_WithMax()
     {
         const double max = 10.5;
 
@@ -72,7 +72,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetDouble_WithMinAndMax()
+    public void Test_Legacy_GetDouble_WithMinAndMax()
     {
         const double min = -5.5;
         const double max = 5.5;
@@ -88,7 +88,7 @@ public class RandomizerLegacyTests
     // Single
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetSingle()
+    public void Test_Legacy_GetSingle()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -99,7 +99,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetSingle_WithMax()
+    public void Test_Legacy_GetSingle_WithMax()
     {
         const float max = 10.5f;
 
@@ -112,7 +112,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetSingle_WithMinAndMax()
+    public void Test_Legacy_GetSingle_WithMinAndMax()
     {
         const float min = -5.5f;
         const float max = 5.5f;
@@ -125,12 +125,12 @@ public class RandomizerLegacyTests
         }
     }
 
-    // GetRandomItem
-    
-    // TODO: Cover nullable values, texts and reference types separately.
+    // TODO: Only differentiate between get and tryget where behavior is different, not where it is synonymous?
+
+    // RandomItem (Values)
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetRandomItem_FromValues()
+    public void Test_Legacy_GetRandomItem_FromValues()
     {
         int[] items = [ 1, 2, 3, 4, 5 ];
 
@@ -142,7 +142,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetRandomItem_FromOneValue()
+    public void Test_Legacy_GetRandomItem_JustOneValue()
     {
         int[] items = [ 42 ];
 
@@ -154,16 +154,18 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetRandomItem_EmptyValueColl_Throws()
+    public void Test_Legacy_GetRandomItem_FromNoValues_NotAllowed()
     {
         int[] items = [ ];
         Throws(() => RandomizerLegacy.GetRandomItem(items));
     }
 
+    // GetRandomItem (Nullables)
+
     [TestMethod]
-    public void Test_RandomizerLegacy_GetRandomItem_AllowsNullItems_JustNotEmptyColl()
+    public void Test_Legacy_GetRandomItem_FromNullyFilledValues()
     {
-        int?[] items = [ 1, null, 2 ];
+        int?[] items = [ 1, 2, 3 ];
 
         for (int i = 0; i < REPEATS; i++)
         {
@@ -172,10 +174,145 @@ public class RandomizerLegacyTests
         }
     }
 
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_AllowsNullValues()
+    {
+        int?[] items = [ 1, null, 3 ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int? val = RandomizerLegacy.GetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneNulllyFilled()
+    {
+        int?[] items = [ 1 ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int? val = RandomizerLegacy.GetRandomItem(items);
+            AreEqual(1, val);
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneNull()
+    {
+        int?[] items = [ null ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int? val = RandomizerLegacy.GetRandomItem(items);
+            AreEqual(null, val);
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_NullablesNone_NotAllowed()
+    {
+        int?[] items = [ ];
+        Throws(() => RandomizerLegacy.GetRandomItem(items));
+    }
+
+    // GetRandomItem (Text)
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_FromMultipleTexts()
+    {
+        string[] items = [ "one", "two", "three", "four", "five" ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string val = RandomizerLegacy.GetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneText()
+    {
+        string[] items = [ "one" ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string val = RandomizerLegacy.GetRandomItem(items);
+            AreEqual("one", val);
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_FromNoTexts_Throws()
+    {
+        string[] items = [];
+        Throws(() => RandomizerLegacy.GetRandomItem(items));
+    }
+
+    // GetRandomItem (Nullable Text)
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_FromNullableTexts()
+    {
+        string?[] items = [ "one", "two", "three", "four", "five" ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string? val = RandomizerLegacy.GetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_WithANullText()
+    {
+        string?[] items = [ "one", null, "three", "four", "five" ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string? val = RandomizerLegacy.GetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneNullableText()
+    {
+        string?[] items = [ "one" ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string? val = RandomizerLegacy.GetRandomItem(items);
+            AreEqual("one", val);
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneNullText()
+    {
+        string?[] items = [ null ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string? val = RandomizerLegacy.GetRandomItem(items);
+            AreEqual(null, val);
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_NullyTextsNone_Throws()
+    {
+        string?[] items = [];
+        Throws(() => RandomizerLegacy.GetRandomItem(items));
+    }
+
+    // TODO: Cover (nullable?) reference types separately.
+
     // TryGetRandomItem (Values)
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_FromMultipleValues()
+    public void Test_Legacy_TryGetRandomItem_FromMultipleValues()
     {
         int[] items = [ 1, 2, 3, 4, 5 ];
 
@@ -187,7 +324,7 @@ public class RandomizerLegacyTests
     }
     
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_JustOneValue()
+    public void Test_Legacy_TryGetRandomItem_JustOneValue()
     {
         int[] items = [ 3 ];
 
@@ -199,7 +336,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_FromNoValues_ReturnsDefault()
+    public void Test_Legacy_TryGetRandomItem_FromNoValues_ReturnsDefault()
     {
         int[] items = [ ];
         // One might expect null, but it is 0.
@@ -211,7 +348,7 @@ public class RandomizerLegacyTests
     // TryGetRandomItem (Nullables)
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_FromNullables()
+    public void Test_Legacy_TryGetRandomItem_FromNullables()
     {
         int?[] items = [ 1, null, 2 ];
 
@@ -223,29 +360,29 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_JustOneNullable()
+    public void Test_Legacy_TryGetRandomItem_JustOneNullable()
     {
-        int?[] items = [ 1, null, 2 ];
+        int?[] items = [ null ];
 
         for (int i = 0; i < REPEATS; i++)
         {
             int? val = RandomizerLegacy.TryGetRandomItem(items);
-            IsTrue(items.Contains(val));
+            AreEqual(null, val);
         }
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_EmptyNullableCollection_ReturnsNull()
+    public void Test_Legacy_TryGetRandomItem_NullablesNone_ReturnsNull()
     {
         int?[] items = [ ];
         int? val = RandomizerLegacy.TryGetRandomItem(items);
         AreEqual(null, val);
     }
 
-    // TryGetRandomItem (Texts)
+    // TryGetRandomItem (Text)
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_FromMultipleTexts()
+    public void Test_Legacy_TryGetRandomItem_FromMultipleTexts()
     {
         string[] items = [ "one", "two", "three", "four", "five" ];
 
@@ -257,7 +394,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_JustOneText()
+    public void Test_Legacy_TryGetRandomItem_JustOneText()
     {
         string[] items = [ "one" ];
 
@@ -269,7 +406,7 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_TryGetRandomItem_FromNoTexts_ReturnsNull()
+    public void Test_Legacy_TryGetRandomItem_FromNoTexts_ReturnsNull()
     {
         string[] items = [];
         string? val = RandomizerLegacy.TryGetRandomItem(items);
@@ -279,4 +416,8 @@ public class RandomizerLegacyTests
     // TODO: From Ref Type (non-string): one set with nullable syntax, one without.
     // TODO: Test support for some different collection types.
     // TODO: Test params works everywhere it's declared.
+    // TODO: Test null coll not allowed.
+    // TODO: Try should probably be reworked and not return 0 and allow more nulls (e.g. null coll) for developer sanity.
+    // TODO: (No)NullRet checks.
+    // TODO: Split over multiple files.
 }
