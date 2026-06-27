@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Mathematics.Legacy.Tests;
+﻿
+namespace JJ.Framework.Mathematics.Legacy.Tests;
 
 using static RandomizerLegacy;
 
@@ -6,6 +7,10 @@ using static RandomizerLegacy;
 public class RandomizerLegacyTests_TryGetRandomItem
 {
     private const int REPEATS = 1000;
+    
+    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
+    private static readonly CultureInfo _enUS = GetCultureInfo("en-US");
+    private static readonly CultureInfo _zhCN = GetCultureInfo("zh-CN");
 
     // Values
 
@@ -106,33 +111,33 @@ public class RandomizerLegacyTests_TryGetRandomItem
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_FromTexts()
     {
-        string[] items = [ "one", "two", "three", "four", "five" ];
+        string[] texts = [ "one", "two", "three", "four", "five" ];
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string val = TryGetRandomItem(items);
-            IsTrue(items.Contains(val));
+            string text = TryGetRandomItem(texts);
+            IsTrue(texts.Contains(text));
         }
     }
 
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_JustOneText()
     {
-        string[] items = [ "one" ];
+        string[] texts = [ "one" ];
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string val = TryGetRandomItem(items);
-            AreEqual("one", val);
+            string text = TryGetRandomItem(texts);
+            AreEqual("one", text);
         }
     }
 
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_FromNoTexts_ReturnsNull()
     {
-        string[] items = [];
-        string? val = TryGetRandomItem(items);
-        AreEqual(null, val);
+        string[] texts = [];
+        string? text = TryGetRandomItem(texts);
+        AreEqual(null, text);
     }
 
     // Nullable Text
@@ -140,58 +145,148 @@ public class RandomizerLegacyTests_TryGetRandomItem
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_FromNullableTexts()
     {
-        string?[] items = [ "one", "two", "three", "four", "five" ];
+        string?[] texts = [ "one", "two", "three", "four", "five" ];
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string? val = TryGetRandomItem(items);
-            IsTrue(items.Contains(val));
+            string? text = TryGetRandomItem(texts);
+            IsTrue(texts.Contains(text));
         }
     }
 
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_AllowsNullText()
     {
-        string?[] items = [ "one", null, "three", "four", "five" ];
+        string?[] texts = [ "one", null, "three", "four", "five" ];
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string? val = TryGetRandomItem(items);
-            IsTrue(items.Contains(val));
+            string? text = TryGetRandomItem(texts);
+            IsTrue(texts.Contains(text));
         }
     }
     
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_JustOneNullText()
     {
-        string?[] items = [ null ];
+        string?[] texts = [ null ];
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string? val = TryGetRandomItem(items);
-            AreEqual(null, val);
+            string? text = TryGetRandomItem(texts);
+            AreEqual(null, text);
         }
     }
     
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_JustOneNullyFilledText()
     {
-        string?[] items = [ "one" ];
+        string?[] texts = [ "one" ];
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string? val = TryGetRandomItem(items);
-            AreEqual("one", val);
+            string? text = TryGetRandomItem(texts);
+            AreEqual("one", text);
         }
     }
 
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_NullableTexts_None_ReturnsNull()
     {
-        string?[] items = [];
-        string? val = TryGetRandomItem(items);
-        AreEqual(null, val);
+        string?[] texts = [];
+        string? text = TryGetRandomItem(texts);
+        AreEqual(null, text);
     }
 
-    // TODO: Cover other (nullable) reference type
+    // Objects
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_FromObjects()
+    {
+        CultureInfo[] objects = [ _nlNL, _enUS, _zhCN ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo obj = TryGetRandomItem(objects);
+            IsTrue(objects.Contains(obj));
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_JustOneObject()
+    {
+        CultureInfo[] objects = [ _nlNL ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo obj = TryGetRandomItem(objects);
+            AreEqual(_nlNL, obj);
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_NoObjects_ReturnsNull()
+    {
+        CultureInfo[] objects = [];
+        CultureInfo obj = TryGetRandomItem(objects);
+        AreEqual(null, obj);
+    }
+
+    // Nullable Object
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_FromNullableObjects()
+    {
+        CultureInfo?[] objects = [ _nlNL, _enUS, _zhCN ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = TryGetRandomItem(objects);
+            IsTrue(objects.Contains(obj));
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_AllowsNullObject()
+    {
+        CultureInfo?[] objects = [ _nlNL, null, _zhCN ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = TryGetRandomItem(objects);
+            IsTrue(objects.Contains(obj));
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_JustOneNullObject()
+    {
+        CultureInfo?[] objects = [ null ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = TryGetRandomItem(objects);
+            AreEqual(null, obj);
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_JustOneNullyFilledObject()
+    {
+        CultureInfo?[] objects = [ _nlNL ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = TryGetRandomItem(objects);
+            AreEqual(_nlNL, obj);
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_NullableObjects_None_ReturnsNull()
+    {
+        CultureInfo?[] objects = [];
+        CultureInfo? obj = TryGetRandomItem(objects);
+        AreEqual(null, obj);
+    }
 }
