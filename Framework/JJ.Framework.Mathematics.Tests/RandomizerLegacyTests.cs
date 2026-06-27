@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Mathematics.Legacy.Tests;
+﻿#pragma warning disable IDE0034
+namespace JJ.Framework.Mathematics.Legacy.Tests;
 
 [TestClass]
 public class RandomizerLegacyTests
@@ -127,9 +128,9 @@ public class RandomizerLegacyTests
     // GetRandomItem
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetRandomItem()
+    public void Test_RandomizerLegacy_GetRandomItem_FromValues()
     {
-        var items = new[] { 1, 2, 3, 4, 5 };
+        int[] items = [ 1, 2, 3, 4, 5 ];
 
         for (int i = 0; i < REPEATS; i++)
         {
@@ -139,16 +140,9 @@ public class RandomizerLegacyTests
     }
 
     [TestMethod]
-    public void Test_RandomizerLegacy_GetRandomItem_EmptyCollection()
+    public void Test_RandomizerLegacy_GetRandomItem_FromOneValue()
     {
-        var items = new int[] { };
-        Throws(() => RandomizerLegacy.GetRandomItem(items));
-    }
-
-    [TestMethod]
-    public void Test_RandomizerLegacy_GetRandomItem_SingleItem()
-    {
-        var items = new[] { 42 };
+        int[] items = [ 42 ];
 
         for (int i = 0; i < REPEATS; i++)
         {
@@ -156,5 +150,132 @@ public class RandomizerLegacyTests
             AreEqual(42, val);
         }
     }
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_GetRandomItem_EmptyValueColl_Throws()
+    {
+        int[] items = [ ];
+        Throws(() => RandomizerLegacy.GetRandomItem(items));
     }
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_GetRandomItem_AllowsNullItems_JustNotEmptyColl()
+    {
+        int?[] items = [ 1, null, 2 ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int? val = RandomizerLegacy.GetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+
+    // TODO: Cover nullable values, texts and reference types separately.
+
+    // TryGetRandomItem (with Values)
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_FromMultipleValues()
+    {
+        int[] items = [ 1, 2, 3, 4, 5 ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int val = RandomizerLegacy.TryGetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+    
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_JustOneValue()
+    {
+        int[] items = [ 3 ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int val = RandomizerLegacy.TryGetRandomItem(items);
+            AreEqual(3, val);
+        }
+    }
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_FromNoValues_ReturnsDefault()
+    {
+        int[] items = [ ];
+        // One might expect null, but it is 0.
+        // Inconsistent with text types or reference types.
+        int val = RandomizerLegacy.TryGetRandomItem(items);
+        AreEqual(0, val);
+    }
+    
+    // TryGetRandomItem (Nullables)
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_FromNullables()
+    {
+        int?[] items = [ 1, null, 2 ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int? val = RandomizerLegacy.TryGetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_JustOneNullable()
+    {
+        int?[] items = [ 1, null, 2 ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            int? val = RandomizerLegacy.TryGetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_EmptyNullableCollection_ReturnsNull()
+    {
+        int?[] items = [ ];
+        int? val = RandomizerLegacy.TryGetRandomItem(items);
+        AreEqual(null, val);
+    }
+
+    // TryGetRandomItem (from Text)
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_FromMultipleTexts()
+    {
+        string[] items = [ "one", "two", "three", "four", "five" ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string val = RandomizerLegacy.TryGetRandomItem(items);
+            IsTrue(items.Contains(val));
+        }
+    }
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_JustOneText()
+    {
+        string[] items = [ "one" ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            string val = RandomizerLegacy.TryGetRandomItem(items);
+            AreEqual("one", val);
+        }
+    }
+
+    [TestMethod]
+    public void Test_RandomizerLegacy_TryGetRandomItem_FromNoTexts_ReturnsNull()
+    {
+        string[] items = [];
+        string? val = RandomizerLegacy.TryGetRandomItem(items);
+        AreEqual(null, val);
+    }
+
+    // TODO: From Ref Type (non-string)
+    // TODO: Test support for some different collection types.
 }
