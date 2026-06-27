@@ -6,6 +6,10 @@ using static RandomizerLegacy;
 public class RandomizerLegacyTests_GetRandomItem
 {
     private const int REPEATS = 1000;
+    
+    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
+    private static readonly CultureInfo _enUS = GetCultureInfo("en-US");
+    private static readonly CultureInfo _zhCN = GetCultureInfo("zh-CN");
 
     // Values
 
@@ -187,11 +191,100 @@ public class RandomizerLegacyTests_GetRandomItem
         Throws(() => GetRandomItem(items));
     }
 
-    // TODO: Cover other (nullable) reference type
+    // Objects
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_FromObjects()
+    {
+        CultureInfo[] objects = [ _nlNL, _enUS, _zhCN ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo obj = GetRandomItem(objects);
+            IsTrue(objects.Contains(obj));
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneObject()
+    {
+        CultureInfo[] objects = [ _nlNL ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo obj = GetRandomItem(objects);
+            AreEqual(_nlNL, obj);
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_NoObjects_Throws()
+    {
+        CultureInfo[] objects = [];
+        Throws(() => GetRandomItem(objects));
+    }
+
+    // Nullable Object
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_FromNullableObjects()
+    {
+        CultureInfo?[] objects = [ _nlNL, _enUS, _zhCN ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = GetRandomItem(objects);
+            IsTrue(objects.Contains(obj));
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_AllowsNullObject()
+    {
+        CultureInfo?[] objects = [ _nlNL, null, _zhCN ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = GetRandomItem(objects);
+            IsTrue(objects.Contains(obj));
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneNullObject()
+    {
+        CultureInfo?[] objects = [ null ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = GetRandomItem(objects);
+            AreEqual(null, obj);
+        }
+    }
+    
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_JustOneNullyFilledObject()
+    {
+        CultureInfo?[] objects = [ _nlNL ];
+
+        for (int i = 0; i < REPEATS; i++)
+        {
+            CultureInfo? obj = GetRandomItem(objects);
+            AreEqual(_nlNL, obj);
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_NullableObjects_None_Throws()
+    {
+        CultureInfo?[] objects = [];
+        Throws(() => GetRandomItem(objects));
+    }
+ 
     // TODO: Test support for some different collection types.
     // TODO: Test params works everywhere it's declared.
     // TODO: Test null coll not allowed.
     // TODO: Try should probably be reworked and not return 0 and allow more nulls (e.g. null coll) for developer sanity.
     // TODO: (No)NullRet checks.
-    // TODO: Only differentiate between get and tryget where behavior is different, not where it is synonymous?
+    // TODO: Only differentiate between get and tryget tests where behavior is different, not where it is synonymous?
 }
