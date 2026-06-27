@@ -6,7 +6,7 @@ public class RandomizerLegacyTests
 {
     private const int REPEATS = 1000;
  
-    // Int32
+    // Int
 
     [TestMethod]
     public void Test_RandomizerLegacy_GetInt32()
@@ -126,6 +126,8 @@ public class RandomizerLegacyTests
     }
 
     // GetRandomItem
+    
+    // TODO: Cover nullable values, texts and reference types separately.
 
     [TestMethod]
     public void Test_RandomizerLegacy_GetRandomItem_FromValues()
@@ -170,9 +172,7 @@ public class RandomizerLegacyTests
         }
     }
 
-    // TODO: Cover nullable values, texts and reference types separately.
-
-    // TryGetRandomItem (with Values)
+    // TryGetRandomItem (Values)
 
     [TestMethod]
     public void Test_RandomizerLegacy_TryGetRandomItem_FromMultipleValues()
@@ -242,7 +242,7 @@ public class RandomizerLegacyTests
         AreEqual(null, val);
     }
 
-    // TryGetRandomItem (from Text)
+    // TryGetRandomItem (Texts)
 
     [TestMethod]
     public void Test_RandomizerLegacy_TryGetRandomItem_FromMultipleTexts()
@@ -276,6 +276,7 @@ public class RandomizerLegacyTests
         AreEqual(null, val);
     }
 
-    // TODO: From Ref Type (non-string)
+    // TODO: From Ref Type (non-string): one set with nullable syntax, one without.
     // TODO: Test support for some different collection types.
+    // TODO: Test params works everywhere it's declared.
 }
