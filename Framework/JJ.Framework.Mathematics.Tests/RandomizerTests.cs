@@ -12,7 +12,7 @@ public class RandomizerTests
     // GetInt32
 
     [TestMethod]
-    public void RandomizerLegacy_GetInt32_NoParams_ReturnsValueInFullRangeExceptMaxValue()
+    public void Randomizer_GetInt32_NoParams_ReturnsValueInFullRangeExceptMaxValue()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -22,7 +22,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void RandomizerLegacy_GetInt32_WithMax_ReturnsValueInRangeIncludingMax()
+    public void Randomizer_GetInt32_WithMax_ReturnsValueInRangeIncludingMax()
     {
         const int max = 10;
 
@@ -35,7 +35,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void RandomizerLegacy_GetInt32_WithMinAndMax_ReturnsValueInInclusiveRange()
+    public void Randomizer_GetInt32_WithMinAndMax_ReturnsValueInInclusiveRange()
     {
         const int min = -5;
         const int max = 5;
@@ -49,7 +49,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void RandomizerLegacy_GetInt32_WithInt32MaxValueMinus1_Succeeds()
+    public void Randomizer_GetInt32_WithInt32MaxValueMinus1_Succeeds()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -58,7 +58,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void RandomizerLegacy_GetInt32_WithInt32MaxValue_ThrowsOverflowException()
+    public void Randomizer_GetInt32_WithInt32MaxValue_ThrowsOverflowException()
     {
         Throws<OverflowException>(() => Randomizer.GetInt32(0, int.MaxValue));
     }
@@ -66,14 +66,14 @@ public class RandomizerTests
     // GetRandomItem
 
     [TestMethod]
-    public void RandomizerLegacy_GetRandomItem_WithEmptyCollection_ThrowsException()
+    public void Randomizer_GetRandomItem_WithEmptyCollection_ThrowsException()
     {
         int[] items = [];
         Throws(() => GetRandomItem(items));
     }
 
     [TestMethod]
-    public void RandomizerLegacy_GetRandomItem_WithSingleItem_ReturnsThatItem()
+    public void Randomizer_GetRandomItem_WithSingleItem_ReturnsThatItem()
     {
         int[] items = [ 123 ];
 
@@ -85,7 +85,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void RandomizerLegacy_GetRandomItem_WithMultipleItems_ReturnsItemFromCollection()
+    public void Randomizer_GetRandomItem_WithMultipleItems_ReturnsItemFromCollection()
     {
         int[] items = [ 10, 20, 30, 40 ];
 
