@@ -12,7 +12,7 @@ public class RandomizerTests
     // GetInt32
 
     [TestMethod]
-    public void Randomizer_GetInt32_NoParams_ReturnsValueInFullRangeExceptMaxValue()
+    public void Randomizer_GetInt32()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -22,7 +22,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void Randomizer_GetInt32_WithMax_ReturnsValueInRangeIncludingMax()
+    public void Randomizer_GetInt32_WithMax()
     {
         const int max = 10;
 
@@ -35,7 +35,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void Randomizer_GetInt32_WithMinAndMax_ReturnsValueInInclusiveRange()
+    public void Randomizer_GetInt32_WithMinAndMax()
     {
         const int min = -5;
         const int max = 5;
@@ -66,14 +66,14 @@ public class RandomizerTests
     // GetRandomItem
 
     [TestMethod]
-    public void Randomizer_GetRandomItem_WithEmptyCollection_ThrowsException()
+    public void Randomizer_GetRandomItem_NoItems_Throws()
     {
         int[] items = [];
         Throws(() => GetRandomItem(items));
     }
 
     [TestMethod]
-    public void Randomizer_GetRandomItem_WithSingleItem_ReturnsThatItem()
+    public void Randomizer_GetRandomItem_WithSingleItem()
     {
         int[] items = [ 123 ];
 
@@ -85,7 +85,7 @@ public class RandomizerTests
     }
 
     [TestMethod]
-    public void Randomizer_GetRandomItem_WithMultipleItems_ReturnsItemFromCollection()
+    public void Randomizer_GetRandomItem_FromMultipleItems()
     {
         int[] items = [ 10, 20, 30, 40 ];
 
