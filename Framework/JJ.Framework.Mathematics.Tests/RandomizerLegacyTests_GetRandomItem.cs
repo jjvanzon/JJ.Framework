@@ -283,8 +283,5 @@ public class RandomizerLegacyTests_GetRandomItem
  
     // TODO: Test support for some different collection types.
     // TODO: Test params works everywhere it's declared.
-    // TODO: Test null coll not allowed.
-    // TODO: Try should probably be reworked and not return 0 and allow more nulls (e.g. null coll) for developer sanity.
-    // TODO: (No)NullRet checks.
     // TODO: Only differentiate between get and tryget tests where behavior is different, not where it is synonymous?
 }

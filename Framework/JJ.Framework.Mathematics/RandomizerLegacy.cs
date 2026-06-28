@@ -59,7 +59,7 @@ public static class RandomizerLegacy
         float value        = min + between0And1 * range;
         return value;
     }
-        
+    
     /// <inheritdoc cref="_getrandomitem" />
     public static T GetRandomItem<T>(params IEnumerable<T> collection)
     {
@@ -75,31 +75,35 @@ public static class RandomizerLegacy
         return collection.ElementAt(index);
     }
 
-    /// <inheritdoc cref="_trygetrandomitem" />
-    public static T? TryGetRandomItem<T>(params IEnumerable<T?> collection)
-        where T : struct
-    {
-        // ReSharper disable once PossibleMultipleEnumeration
-        int count = collection.Count();
-        if (count == 0)
-        {
-            return default;
-        }
-            
-        int index = GetInt32(count - 1);
-        // ReSharper disable once PossibleMultipleEnumeration
-        return collection.ElementAt(index); 
-    }
+    ///// <inheritdoc cref="_trygetrandomitem" />
+    //public static T? TryGetRandomItem<T>(params IEnumerable<T?>? collection) 
+    //    where T : struct
+    //{
+    //    if (collection == null) return null;
+    //
+    //    // ReSharper disable once PossibleMultipleEnumeration
+    //    int count = collection.Count();
+    //    if (count == 0)
+    //    {
+    //        return default;
+    //    }
+    //        
+    //    int index = GetInt32(count - 1);
+    //    // ReSharper disable once PossibleMultipleEnumeration
+    //    return collection.ElementAt(index); 
+    //}
 
     /// <inheritdoc cref="_trygetrandomitem" />
-    public static T? TryGetRandomItem<T>(params IEnumerable<T> collection)
+    public static T? TryGetRandomItem<T>(params IEnumerable<T?>? collection) 
         where T : notnull
     {
+        if (collection == null) return default(T?);
+
         // ReSharper disable once PossibleMultipleEnumeration
         int count = collection.Count();
         if (count == 0)
         {
-            return default;
+            return default(T?);
         }
             
         int index = GetInt32(count - 1);

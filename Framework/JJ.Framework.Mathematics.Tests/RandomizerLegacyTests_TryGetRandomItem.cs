@@ -1,4 +1,4 @@
-﻿
+﻿// ReSharper disable ExpressionIsAlwaysNull
 namespace JJ.Framework.Mathematics.Legacy.Tests;
 
 using static RandomizerLegacy;
@@ -33,7 +33,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int val = TryGetRandomItem(items);
+            int? val = TryGetRandomItem(items);
             AreEqual(3, val);
         }
     }
@@ -44,7 +44,8 @@ public class RandomizerLegacyTests_TryGetRandomItem
         int[] items = [ ];
         // One might expect null, but it is 0.
         // Inconsistent with text types or reference types.
-        int val = TryGetRandomItem(items);
+        int? val = TryGetRandomItem(items);
+        //AreEqual(null, val);
         AreEqual(0, val);
     }
     
@@ -289,4 +290,24 @@ public class RandomizerLegacyTests_TryGetRandomItem
         CultureInfo? obj = TryGetRandomItem(objects);
         AreEqual(null, obj);
     }
+
+    // Null Collections
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_ValueCollectionNull_ReturnsNull()
+    {
+        int[]? collection = null;
+        // TODO: Should return null, but returns default
+        //IsNull(TryGetRandomItem(collection));
+        AreEqual(0, TryGetRandomItem(collection));
+    }
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_ObjectCollectionNull_ReturnsNull()
+    {
+        CultureInfo[]? collection = null;
+        IsNull(TryGetRandomItem(collection));
+    }
+
+    // TODO: `Try` should probably be reworked and not return 0 but null and allow more nulls (e.g. null collections) for developer sanity.
 }
