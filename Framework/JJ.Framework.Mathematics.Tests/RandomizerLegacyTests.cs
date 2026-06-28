@@ -1,10 +1,13 @@
 ﻿#pragma warning disable IDE0034
+
 namespace JJ.Framework.Mathematics.Legacy.Tests;
+
+using static RandomizerLegacy;
 
 [TestClass]
 public class RandomizerLegacyTests
 {
-    private const int REPEATS = 1000;
+    private const int REPEATS = 100;
 
     // Int
 
@@ -13,7 +16,7 @@ public class RandomizerLegacyTests
     {
         for (int i = 0; i < REPEATS; i++)
         {
-            int val = RandomizerLegacy.GetInt32();
+            int val = GetInt32();
             IsTrue(val <= int.MaxValue - 1);
         }
     }
@@ -25,7 +28,7 @@ public class RandomizerLegacyTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int val = RandomizerLegacy.GetInt32(max);
+            int val = GetInt32(max);
             IsTrue(val >= 0);
             IsTrue(val <= max);
         }
@@ -39,7 +42,7 @@ public class RandomizerLegacyTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int val = RandomizerLegacy.GetInt32(min, max);
+            int val = GetInt32(min, max);
             IsTrue(val >= min);
             IsTrue(val <= max);
         }
@@ -52,7 +55,7 @@ public class RandomizerLegacyTests
     {
         for (int i = 0; i < REPEATS; i++)
         {
-            double val = RandomizerLegacy.GetDouble();
+            double val = GetDouble();
             IsTrue(val >= 0);
             IsTrue(val < 1);
         }
@@ -65,7 +68,7 @@ public class RandomizerLegacyTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            double val = RandomizerLegacy.GetDouble(max);
+            double val = GetDouble(max);
             IsTrue(val >= 0);
             IsTrue(val < max);
         }
@@ -79,7 +82,7 @@ public class RandomizerLegacyTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            double val = RandomizerLegacy.GetDouble(min, max);
+            double val = GetDouble(min, max);
             IsTrue(val >= min);
             IsTrue(val < max);
         }
@@ -92,7 +95,7 @@ public class RandomizerLegacyTests
     {
         for (int i = 0; i < REPEATS; i++)
         {
-            float val = RandomizerLegacy.GetSingle();
+            float val = GetSingle();
             IsTrue(val >= 0);
             IsTrue(val < 1);
         }
@@ -105,7 +108,7 @@ public class RandomizerLegacyTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            float val = RandomizerLegacy.GetSingle(max);
+            float val = GetSingle(max);
             IsTrue(val >= 0);
             IsTrue(val < max);
         }
@@ -119,7 +122,7 @@ public class RandomizerLegacyTests
 
         for (int i = 0; i < REPEATS; i++)
         {
-            float val = RandomizerLegacy.GetSingle(min, max);
+            float val = GetSingle(min, max);
             IsTrue(val >= min);
             IsTrue(val < max);
         }

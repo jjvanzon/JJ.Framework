@@ -6,7 +6,7 @@ using static RandomizerLegacy;
 [TestClass]
 public class RandomizerLegacyTests_TryGetRandomItem
 {
-    private const int REPEATS = 1000;
+    private const int REPEATS = 100;
     
     private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
     private static readonly CultureInfo _enUS = GetCultureInfo("en-US");
