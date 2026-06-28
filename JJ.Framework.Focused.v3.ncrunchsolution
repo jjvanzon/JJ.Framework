@@ -72,6 +72,65 @@
       <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj:netstandard2.1</Value>
       <Value>Framework\Compilation.Core.TrimTests\JJ.Framework.Compilation.Core.TrimTests.csproj</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net10.0\..</Value>
+      <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:net10.0</Value>
+      <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:net8.0</Value>
+      <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:net9.0</Value>
+      <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\Business.Core\JJ.Framework.Business.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Business\JJ.Framework.Business.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Business\JJ.Framework.Business.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Business\JJ.Framework.Business.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Business.Tests\JJ.Framework.Business.Legacy.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Business.Tests\JJ.Framework.Business.Legacy.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Business.Tests\JJ.Framework.Business.Legacy.Tests.csproj:net5.0</Value>
+      <Value>Framework\Business.TrimTests\JJ.Framework.Business.Legacy.TrimTests.csproj</Value>
+      <Value>Framework\JJ.Framework.Common.Tests\JJ.Framework.Common.Legacy.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Common.Tests\JJ.Framework.Common.Legacy.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Common.Tests\JJ.Framework.Common.Legacy.Tests.csproj:net5.0</Value>
+      <Value>Framework\Common.TrimTests\JJ.Framework.Common.Legacy.TrimTests.csproj</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net10.0</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net461</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net462</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net5.0</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net6.0</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net7.0</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net8.0</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net9.0</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:net10.0</Value>
+      <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Legacy.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Legacy.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Legacy.Tests.csproj:net5.0</Value>
+      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:net10.0</Value>
+      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:netstandard2.0</Value>
+      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.IO.Tests\JJ.Framework.IO.Legacy.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.IO.Tests\JJ.Framework.IO.Legacy.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.IO.Tests\JJ.Framework.IO.Legacy.Tests.csproj:net5.0</Value>
+      <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj</Value>
+      <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net10.0</Value>
+      <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net461</Value>
+      <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Legacy.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Legacy.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Legacy.Tests.csproj:net5.0</Value>
+      <Value>Framework\Reflection.TrimTests\JJ.Framework.Reflection.Legacy.TrimTests.csproj</Value>
+      <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net10.0</Value>
+      <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net461</Value>
+      <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Legacy.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Legacy.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Legacy.Tests.csproj:net5.0</Value>
+      <Value>Framework\Mathematics.TrimTests\JJ.Framework.Mathematics.Legacy.TrimTests.csproj</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net5.0\..</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net461\..</Value>
+      <Value>Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Legacy.Tests.csproj:net10.0\..</Value>
     </MetricsExclusionList>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
