@@ -112,7 +112,8 @@ public static class RandomizerLegacy
     }
 
     /// <inheritdoc cref="_trygetrandomitem" />
-    public static T? TryGetRandomItem<T>(IEnumerable<T?>? collection, T? _ = null) 
+    // ReSharper disable once MethodOverloadWithOptionalParameter
+    public static T? TryGetRandomItem<T>(IEnumerable<T?>? collection, GenericOvl _ = default) 
         where T : class
     {
         if (collection == null) return null;
@@ -128,4 +129,22 @@ public static class RandomizerLegacy
         // ReSharper disable once PossibleMultipleEnumeration
         return collection.ElementAt(index);
     }
+
+    /// <summary>
+    /// <para>
+    /// Not intended for direct use. Do not assign directly.
+    /// </para>
+    /// 
+    /// <para>
+    /// Dummy type used to differentiate generic method overloads 
+    /// that only differ by generic constraints 
+    /// (e.g., <c>where T : struct</c> vs <c>where T : class</c>). 
+    /// C# does not always allow overloading based 
+    /// solely on generic constraints, 
+    /// so this marker type enables the the use of such overloads anyway,
+    /// by showing distinct signatures to the compiler.
+    /// The the calls to the generic overloads will differentiate just fine.
+    /// </para>
+    /// </summary>
+    public struct GenericOvl;
 }
