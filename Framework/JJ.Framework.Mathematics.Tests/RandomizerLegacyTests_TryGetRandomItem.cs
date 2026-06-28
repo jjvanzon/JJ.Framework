@@ -21,8 +21,8 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int val = TryGetRandomItem(items);
-            IsTrue(items.Contains(val));
+            int? val = TryGetRandomItem(items);
+            IsTrue(items.Contains(val.Value));
         }
     }
     
@@ -39,14 +39,11 @@ public class RandomizerLegacyTests_TryGetRandomItem
     }
 
     [TestMethod]
-    public void Test_Legacy_TryGetRandomItem_NoValues_ReturnsDefault()
+    public void Test_Legacy_TryGetRandomItem_NoValues_ReturnsNull()
     {
         int[] items = [ ];
-        // One might expect null, but it is 0.
-        // Inconsistent with text types or reference types.
         int? val = TryGetRandomItem(items);
-        //AreEqual(null, val);
-        AreEqual(0, val);
+        AreEqual(null, val);
     }
     
     // Nullables
@@ -297,9 +294,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
     public void Test_Legacy_TryGetRandomItem_ValueCollectionNull_ReturnsNull()
     {
         int[]? collection = null;
-        // TODO: Should return null, but returns default
-        //IsNull(TryGetRandomItem(collection));
-        AreEqual(0, TryGetRandomItem(collection));
+        IsNull(TryGetRandomItem(collection));
     }
 
     [TestMethod]
@@ -309,5 +304,4 @@ public class RandomizerLegacyTests_TryGetRandomItem
         IsNull(TryGetRandomItem(collection));
     }
 
-    // TODO: `Try` should probably be reworked and not return 0 but null and allow more nulls (e.g. null collections) for developer sanity.
-}
+    }

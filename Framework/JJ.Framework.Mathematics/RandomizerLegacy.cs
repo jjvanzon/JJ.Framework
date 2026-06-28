@@ -69,43 +69,61 @@ public static class RandomizerLegacy
         {
             throw new Exception("collection.Count() == 0");
         }
-            
+
         int index = GetInt32(count - 1);
         // ReSharper disable once PossibleMultipleEnumeration
         return collection.ElementAt(index);
     }
 
-    ///// <inheritdoc cref="_trygetrandomitem" />
-    //public static T? TryGetRandomItem<T>(params IEnumerable<T?>? collection) 
-    //    where T : struct
-    //{
-    //    if (collection == null) return null;
-    //
-    //    // ReSharper disable once PossibleMultipleEnumeration
-    //    int count = collection.Count();
-    //    if (count == 0)
-    //    {
-    //        return default;
-    //    }
-    //        
-    //    int index = GetInt32(count - 1);
-    //    // ReSharper disable once PossibleMultipleEnumeration
-    //    return collection.ElementAt(index); 
-    //}
-
     /// <inheritdoc cref="_trygetrandomitem" />
-    public static T? TryGetRandomItem<T>(params IEnumerable<T?>? collection) 
-        where T : notnull
+    public static T? TryGetRandomItem<T>(IEnumerable<T>? collection) 
+        where T : struct
     {
-        if (collection == null) return default(T?);
+        if (collection == null) return null;
 
         // ReSharper disable once PossibleMultipleEnumeration
         int count = collection.Count();
         if (count == 0)
         {
-            return default(T?);
+            return null;
         }
-            
+
+        int index = GetInt32(count - 1);
+        // ReSharper disable once PossibleMultipleEnumeration
+        return collection.ElementAt(index);
+    }
+
+    /// <inheritdoc cref="_trygetrandomitem" />
+    public static T? TryGetRandomItem<T>(IEnumerable<T?>? collection) 
+        where T : struct
+    {
+        if (collection == null) return null;
+
+        // ReSharper disable once PossibleMultipleEnumeration
+        int count = collection.Count();
+        if (count == 0)
+        {
+            return null;
+        }
+
+        int index = GetInt32(count - 1);
+        // ReSharper disable once PossibleMultipleEnumeration
+        return collection.ElementAt(index);
+    }
+
+    /// <inheritdoc cref="_trygetrandomitem" />
+    public static T? TryGetRandomItem<T>(IEnumerable<T?>? collection, T? _ = null) 
+        where T : class
+    {
+        if (collection == null) return null;
+
+        // ReSharper disable once PossibleMultipleEnumeration
+        int count = collection.Count();
+        if (count == 0)
+        {
+            return null;
+        }
+
         int index = GetInt32(count - 1);
         // ReSharper disable once PossibleMultipleEnumeration
         return collection.ElementAt(index);
