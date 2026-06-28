@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Mathematics.Legacy.Tests;
+﻿// ReSharper disable ExpressionIsAlwaysNull
+namespace JJ.Framework.Mathematics.Legacy.Tests;
 
 using static RandomizerLegacy;
 
@@ -280,8 +281,46 @@ public class RandomizerLegacyTests_GetRandomItem
         CultureInfo?[] objects = [];
         Throws(() => GetRandomItem(objects));
     }
- 
+
+    // Null Collections
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_ValueCollectionNull_Throws()
+    {
+        int[]? collection = null;
+        Throws(() => GetRandomItem(collection));
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_NullCollectionOfNullables_Throws()
+    {
+        int?[]? collection = null;
+        Throws(() => GetRandomItem(collection));
+    }
+
+    [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_ObjectCollectionNull_Throws()
+    {
+        CultureInfo[]? collection = null;
+        Throws(() => GetRandomItem(collection));
+    }
+
+    // Collection Types
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_CollectionTypes()
+    {
+        {
+            IList<int> list = new List<int> { 1, 2, 3 };
+            IsTrue(list.Contains(GetRandomItem(list)));
+        }
+        {
+            List<int> list = [ 1, 2, 3 ];
+            IsTrue(list.Contains(GetRandomItem(list)));
+        }
+        // TODO: A few more.
+    }
+
     // TODO: Test support for some different collection types.
     // TODO: Test params works everywhere it's declared.
-    // TODO: Only differentiate between get and tryget tests where behavior is different, not where it is synonymous?
 }

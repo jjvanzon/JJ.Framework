@@ -22,7 +22,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
         for (int i = 0; i < REPEATS; i++)
         {
             int? val = TryGetRandomItem(items);
-            IsTrue(items.Contains(val.Value));
+            IsTrue(items.Contains(val!.Value));
         }
     }
     
@@ -298,10 +298,16 @@ public class RandomizerLegacyTests_TryGetRandomItem
     }
 
     [TestMethod]
+    public void Test_Legacy_TryGetRandomItem_NullCollectionOfNullables_ReturnsNull()
+    {
+        int?[]? collection = null;
+        IsNull(TryGetRandomItem(collection));
+    }
+
+    [TestMethod]
     public void Test_Legacy_TryGetRandomItem_ObjectCollectionNull_ReturnsNull()
     {
         CultureInfo[]? collection = null;
         IsNull(TryGetRandomItem(collection));
     }
-
-    }
+}
