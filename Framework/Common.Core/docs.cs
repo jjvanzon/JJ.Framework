@@ -112,6 +112,7 @@ public struct _isncrunch;
 /// solely on generic constraints, 
 /// so this marker type enables the the use of such overloads anyway,
 /// by showing distinct signatures to the compiler.
+/// (e.g., <c>MyMethod() where T : struct</c> vs <c>MyMethod(GenOvl _ = default) where T : class</c>). 
 /// The the calls to the generic overloads will differentiate just fine.
 /// </para>
 /// 
