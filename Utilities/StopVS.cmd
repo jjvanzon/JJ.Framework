@@ -1,3 +1,6 @@
+@echo off
+REM %~dp0 = this bat file's dir
+call "%~dp0StopNCrunch.bat"
 taskkill /im devenv.exe /f
 taskkill /im dotnet.exe /f
 taskkill /im msbuild.exe /f
