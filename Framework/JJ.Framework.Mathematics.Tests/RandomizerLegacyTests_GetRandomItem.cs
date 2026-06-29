@@ -349,6 +349,4 @@ public class RandomizerLegacyTests_GetRandomItem
             IsTrue(values.Contains(GetRandomItem(1, 2, 3)));
         }
     }
-
-    // TODO: Only differentiate between get and tryget tests where behavior is different, not where it is synonymous?}
 }
