@@ -73,7 +73,7 @@ Release Notes
 - Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
 - Full meaningful test coverage and member docs
 
-#### `2026-06-22` | `4.7` : __Update__
+#### `2026-06-24` | `4.7` : __Update__
 
 - Fix Lock shim that was accidentally not thread-safe.
 - Add NotNullIfNotNull shim for nullable annotation support.

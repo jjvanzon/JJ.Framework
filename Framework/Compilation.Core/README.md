@@ -105,7 +105,7 @@ These features were planned for the final release, before this project was pushe
 Release Notes
 -------------
 
-#### `2026-06-22` | `4.7` : __Preview Release__
+#### `2026-06-24` | `4.7` : __Preview Release__
 
 - Brand new dotnet.exe CLI wrapper.
 - Run compilations and other dotnet actions programmatically at runtime.

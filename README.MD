@@ -196,7 +196,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 #### `2026-04-08` | `4.5`/`0.253` : __Math Legacy__ 
 
-- [`JJ.Framework.Mathematics.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Mathematics)
+- [`JJ.Framework.Mathematics.Legacy`](https://www.nuget.org/packages/JJ.Framework.Mathematics.Legacy)
 - Integer-based `Pow` and `Log`, `GetRandomItem` and `Randomizer.GetInt32`, number base converter.
 - 100% meaningful test coverage, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
 - Fix: `Pow` and `Log` edge-cases
@@ -226,11 +226,11 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
 - `Throws` methods syntax shorter
 
-#### `2026-06-22` | `4.7`/`0.255` : __Compilation.Core Preview__
+#### `2026-06-24` | `4.7`/`0.255` : __Compilation.Core Preview__
 
 *+ Various Fixes*
 
-- [`JJ.Framework.Compilation.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Compilation.Core)
+- [`JJ.Framework.Compilation.Core`](https://www.nuget.org/packages/JJ.Framework.Compilation.Core/)
 - Brand new dotnet.exe CLI wrapper. Run compilations and other dotnet actions programmatically at runtime.
 - Preview release. Works in general. More coverage desired. More features desired.
 - [`JJ.Framework.Configuration.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Configuration.Core)
@@ -264,6 +264,28 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - AzurePipelinesClearRetainFlags scripts helping to clean up locked Azure DevOps objects clearing excessive storage use.
 - RunTrimTest.bat now operates on current dir, not bat file dir.
 
+
+#### `2026-06-29` | `4.8`/`0.256` : __RandomizerLegacy Move__
+
+- [`JJ.Framework.Mathematics.Legacy`](https://www.nuget.org/packages/JJ.Framework.Mathematics.Legacy)
+- Moved RandomizerLegacy class from .Core variant of project to .Legacy project variant.
+- Fully tested and now release as part of the .Legacy lib.
+- Expanded for coherence. And ported back to 2021 legacy branch.
+- (RandomizerLegacy is a 2021 version. Legacy projects contain code from 2015; Core projects code from 2025. Code from 2021 is somewhere in the middle. It made more sense to move those from .Core to .Legacy since the workflow around Legacy code is so much different than Core, that it makes more architectural sense to group them.)
+- [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
+- Fix Mutex UnauthorizedAccess in Azure Pipelines.
+- For numbering file names (in highly concurrent situations).
+- Mutex created by other user, wouldn't be accessible to one in a different security context.
+- MutexSecurity specifying wider security access, so it can be used machine-wide as intended.
+- [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
+- OperatingSystemSupport.IsWindows(): a check for feature toggles (not present on all .NET version)
+- (Used for conditional MutexSecurity instantion.)
+- Added net462 target framework extra hardening.
+- NotNullIfNotNull retroactively added (accidentally not released last time).
+- [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
+- `GenericOverload` / `GenericOvl`: 
+- Placeholder type for adding optional parameters to generic overloads, that would otherwise clash.
+- This type includes docs explaning this, directly to where it's needed, and avoids further overload clashes, from chosing another parameter type.
 
 💬 Feedback 
 ------------
