@@ -1,102 +1,113 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using JJ.Framework.Exceptions.Basic;
+﻿namespace JJ.Framework.Mathematics;
 
-namespace JJ.Framework.Mathematics
+/// <inheritdoc cref="_randomizer" />
+public static class Randomizer
 {
-    public static class Randomizer
+    private static readonly Random _random = CreateRandom();
+        
+    private static Random CreateRandom()
     {
-        private static readonly Random _random = CreateRandom();
-
-        private static Random CreateRandom()
+        int randomSeed = Guid.NewGuid().GetHashCode();
+            
+        var random = new Random(randomSeed);
+            
+        return random;
+    }
+        
+    /// <inheritdoc cref="_getint32" />
+    public static int GetInt32() => GetInt32(int.MinValue, int.MaxValue - 1);
+        
+    /// <inheritdoc cref="_getint32max" />
+    public static int GetInt32(int max) => GetInt32(0, max);
+        
+    /// <inheritdoc cref="_getint32minmax" />
+    public static int GetInt32(int min, int max)
+    {
+        checked
         {
-            int randomSeed = Guid.NewGuid().GetHashCode();
+            int result = _random.Next(min, max + 1);
+            return result;
+        }
+    }
 
-            var random = new Random(randomSeed);
+    /// <inheritdoc cref="_getdouble" />
+    public static double GetDouble() => _random.NextDouble();
+        
+    /// <inheritdoc cref="_getdoublemax" />
+    public static double GetDouble(double max) => GetDouble(0, max);
+        
+    /// <inheritdoc cref="_getdoubleminmax" />
+    public static double GetDouble(double min, double max)
+    {
+        double between0And1 = GetDouble();
+        double range        = max - min;
+        double value        = min + between0And1 * range;
+        return value;
+    }
 
-            return random;
+    /// <inheritdoc cref="_getsingle" />
+    public static float GetSingle() => (float)_random.NextDouble();
+
+    /// <inheritdoc cref="_getsinglemax" />
+    public static float GetSingle(float max) => GetSingle(0, max);
+        
+    /// <inheritdoc cref="_getsingleminmax" />
+    public static float GetSingle(float min, float max)
+    {
+        float between0And1 = GetSingle();
+        float range        = max - min;
+        float value        = min + between0And1 * range;
+        return value;
+    }
+    
+    /// <inheritdoc cref="_getrandomitem" />
+    public static T GetRandomItem<T>(params IEnumerable<T> collection)
+    {
+        // ReSharper disable once PossibleMultipleEnumeration
+        int count = collection.Count();
+        if (count == 0)
+        {
+            throw new Exception("collection.Count() == 0");
         }
 
-        /// <summary>
-        /// Gets a random Int32 between Int32.MinValue and Int32.MaxValue - 1.
-        /// </summary>
-        public static int GetInt32() => GetInt32(int.MinValue, int.MaxValue - 1);
+        int index = GetInt32(count - 1);
+        // ReSharper disable once PossibleMultipleEnumeration
+        return collection.ElementAt(index);
+    }
 
-        /// <summary>
-        /// Gets a random Int32 between 0 and the specified value.
-        /// max must at most be Int32.MaxValue - 1 or an overflow exception could occur.
-        /// </summary>
-        public static int GetInt32(int max) => GetInt32(0, max);
+    /// <inheritdoc cref="_trygetrandomitem" />
+    public static T? TryGetRandomItem<T>(params IEnumerable<T?>? collection) 
+        where T : struct
+    {
+        if (collection == null) return null;
 
-        /// <summary>
-        /// Gets a random Int32 between between a minimum and a maximum.
-        /// Both the minimum and the maximum are included.
-        /// max must at most be Int32.MaxValue - 1 or an overflow exception could occur.
-        /// </summary>
-        public static int GetInt32(int min, int max)
+        // ReSharper disable once PossibleMultipleEnumeration
+        int count = collection.Count();
+        if (count == 0)
         {
-            checked
-            {
-                int result = _random.Next(min, max + 1);
-                return result;
-            }
+            return null;
         }
 
-        public static T GetRandomItem<T>(IEnumerable<T> collection)
-        {
-            // ReSharper disable once PossibleMultipleEnumeration
-            int count = collection.Count();
-            if (count == 0)
-            {
-                throw new CollectionEmptyException(() => collection);
-            }
+        int index = GetInt32(count - 1);
+        // ReSharper disable once PossibleMultipleEnumeration
+        return collection.ElementAt(index);
+    }
 
-            int index = GetInt32(count - 1);
-            // ReSharper disable once PossibleMultipleEnumeration
-            return collection.ElementAt(index);
+    /// <inheritdoc cref="_trygetrandomitem" />
+    public static T? TryGetRandomItem<T>(params IEnumerable<T?>? collection) 
+        where T : notnull
+    {
+        if (collection == null) return default;
+
+        // ReSharper disable once PossibleMultipleEnumeration
+        int count = collection.Count();
+        if (count == 0)
+        {
+            return default;
         }
 
-        public static T TryGetRandomItem<T>(IEnumerable<T> collection)
-        {
-            // ReSharper disable once PossibleMultipleEnumeration
-            int count = collection.Count();
-            if (count == 0)
-            {
-                // Unfortunately, you cannot create overloads that return T? for structs and null for classes.
-                // This is not currently possible in C#. I think they're working on it.
-                return default;
-            }
-
-            int index = GetInt32(count - 1);
-            // ReSharper disable once PossibleMultipleEnumeration
-            return collection.ElementAt(index);
-        }
-
-        /// <summary> Returns a random number between 0.0 and 1.0. </summary>
-        public static double GetDouble() => _random.NextDouble();
-
-        /// <summary> Returns a random number between 0.0 and 1.0. </summary>
-        public static float GetSingle() => (float)_random.NextDouble();
-
-        /// <param name="min">inclusive</param>
-        /// <param name="max">exclusive</param>
-        public static double GetDouble(double min, double max)
-        {
-            double between0And1 = GetDouble();
-            double range = max - min;
-            double value = min + between0And1 * range;
-            return value;
-        }
-
-        /// <param name="min">inclusive</param>
-        /// <param name="max">exclusive</param>
-        public static float GetSingle(float min, float max)
-        {
-            float between0And1 = GetSingle();
-            float range = max - min;
-            float  value = min + between0And1 * range;
-            return value;
-        }
+        int index = GetInt32(count - 1);
+        // ReSharper disable once PossibleMultipleEnumeration
+        return collection.ElementAt(index);
     }
 }
