@@ -1,19 +1,18 @@
-﻿#if NETSTANDARD || NETFRAMEWORK
+﻿// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
+
+#if NETSTANDARD || NETFRAMEWORK
 
 namespace JJ.Framework.PlatformCompatibility.Core;
 
-using System.Runtime.InteropServices;
+using docs;
 
+/// <inheritdoc cref="_operatingsystemsupport" />
 internal static class OperatingSystemSupport
 {
+    /// <inheritdoc cref="_iswindows" />
     public static bool IsWindows() 
     {
-        //#if WINDOWS
-        //    return true;
-        //#else
-        //    return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-        //#endif
-
         #if WINDOWS || TARGET_WINDOWS
             return true;
         #else

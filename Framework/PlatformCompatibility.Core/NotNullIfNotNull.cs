@@ -3,15 +3,17 @@
 
 #if NETFRAMEWORK || NETSTANDARD2_0
 
+using JJ.Framework.PlatformCompatibility.Core.docs;
+
 namespace System.Diagnostics.CodeAnalysis;
 
 using static AttributeTargets;
 
-[AttributeUsage(Parameter | Property | ReturnValue, AllowMultiple = true, Inherited = false)]
-internal sealed class NotNullIfNotNullAttribute : Attribute
+/// <inheritdoc cref="_notnullifnotnull" />
+[AttributeUsage(Parameter | Property | ReturnValue, AllowMultiple = true)]
+internal sealed class NotNullIfNotNullAttribute(string parameterName) : Attribute
 {
-    public NotNullIfNotNullAttribute(string parameterName) => ParameterName = parameterName;
-    public string ParameterName { get; }
+    public string ParameterName { get; } = parameterName;
 }
 
 #endif

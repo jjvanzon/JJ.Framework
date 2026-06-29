@@ -24,6 +24,9 @@ public struct _dynamicallyaccessedmembers;
 /// </summary>
 public struct _dynamicallyaccessedmembertypes;
 
+/// <inheritdoc cref="_dynamicallyaccessedmembertypes" />
+public struct _dynamicallyaccessedmembertypessupport;
+
 /// <summary>
 /// Substitute for <c>ArgumentException.ThrowIfNullOrWhiteSpace</c> (introduced in .NET 8).
 /// Throws when the argument is <c>null</c> or white space.
@@ -113,3 +116,19 @@ public struct _unconditionalsuppressmessage;
 /// so code can compile for pre-.NET5 along with .NET5+ code.
 /// </summary>
 public struct _kill;
+
+/// <summary>
+/// Usage: <c>[return:NotNullIfNotNull(nameof(myparam))]</c> on a method,
+/// means that the method will not <c>return null</c> if the parameter is not <c>null</c>.
+/// </summary>
+public struct _notnullifnotnull;
+
+/// <summary>
+/// Helpers serving as feature toggles for different operating systems.
+/// </summary>
+public struct _operatingsystemsupport;
+
+/// <summary>
+/// Tells you if the program is compiled for the windows platform,
+/// </summary>
+public struct _iswindows;
