@@ -8,6 +8,14 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API Surface Nulls-->
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />

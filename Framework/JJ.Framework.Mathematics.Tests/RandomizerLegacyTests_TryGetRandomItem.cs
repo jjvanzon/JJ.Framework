@@ -21,8 +21,8 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int? val = TryGetRandomItem(items);
-            IsTrue(items.Contains(val!.Value));
+            int val = TryGetRandomItem(items);
+            IsTrue(items.Contains(val));
         }
     }
     
@@ -33,7 +33,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            int? val = TryGetRandomItem(items);
+            int val = TryGetRandomItem(items);
             AreEqual(3, val);
         }
     }
@@ -42,7 +42,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
     public void Test_Legacy_TryGetRandomItem_NoValues_ReturnsNull()
     {
         int[] items = [ ];
-        int? val = TryGetRandomItem(items);
+        int val = TryGetRandomItem(items);
         //AreEqual(null, val);
         AreEqual(0, val);
     }
@@ -114,8 +114,8 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string text = TryGetRandomItem(texts);
-            IsTrue(texts.Contains(text));
+            string? text = TryGetRandomItem(texts);
+            IsTrue(texts.Contains(text!));
         }
     }
 
@@ -126,7 +126,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            string text = TryGetRandomItem(texts);
+            string? text = TryGetRandomItem(texts);
             AreEqual("one", text);
         }
     }
@@ -141,6 +141,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
     // Nullable Text
 
+    #pragma warning disable CS8631 // Contains-checks gave bogus error: The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match constraint type.
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_FromNullableTexts()
     {
@@ -164,6 +165,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
             IsTrue(texts.Contains(text));
         }
     }
+    #pragma warning restore CS8631
     
     [TestMethod]
     public void Test_Legacy_TryGetRandomItem_JustOneNullText()
@@ -206,7 +208,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            CultureInfo obj = TryGetRandomItem(objects);
+            CultureInfo? obj = TryGetRandomItem(objects);
             IsTrue(objects.Contains(obj));
         }
     }
@@ -218,7 +220,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
 
         for (int i = 0; i < REPEATS; i++)
         {
-            CultureInfo obj = TryGetRandomItem(objects);
+            CultureInfo? obj = TryGetRandomItem(objects);
             AreEqual(_nlNL, obj);
         }
     }
@@ -227,7 +229,7 @@ public class RandomizerLegacyTests_TryGetRandomItem
     public void Test_Legacy_TryGetRandomItem_NoObjects_ReturnsNull()
     {
         CultureInfo[] objects = [];
-        CultureInfo obj = TryGetRandomItem(objects);
+        CultureInfo? obj = TryGetRandomItem(objects);
         AreEqual(null, obj);
     }
 

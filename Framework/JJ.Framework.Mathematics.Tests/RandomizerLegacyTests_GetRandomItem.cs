@@ -137,6 +137,7 @@ public class RandomizerLegacyTests_GetRandomItem
 
     // Nullable Text
 
+    #pragma warning disable CS8631 // Contains-checks gave bogus error: The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match constraint type.
     [TestMethod]
     public void Test_Legacy_GetRandomItem_FromNullableTexts()
     {
@@ -160,6 +161,7 @@ public class RandomizerLegacyTests_GetRandomItem
             IsTrue(items.Contains(val));
         }
     }
+    #pragma warning restore CS8631
     
     [TestMethod]
     public void Test_Legacy_GetRandomItem_JustOneNullText()
