@@ -49,12 +49,43 @@ An extension to [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.F
         void MyMethod(int num, bool differentArg, OverloadByName ovl = default);
         ```
 
+-----
+
+- `GenericOverload` / `GenOvl`:
+
+    - Dummy type used to differentiate generic method overloads 
+      that only differ by generic constraints e.g.,
+        ```
+        where T : struct
+        where T : class
+        ```
+    - C# does not always allow overloading based 
+      solely on generic constraints, 
+      so this marker type enables the the use of such overloads anyway,
+      by showing distinct signatures to the compiler e.g.,
+        ```
+        MyMethod() where T : struct
+        MyMethod(GenOvl _ = default) where T : class
+        ```
+
+    - The the calls to the generic overloads will differentiate just fine
+      and do not require active use of the optional parameter.
+
+    - (When brevity is required `GenOvl` can serve as a synonym for `GenericOverload`.)
+
+
 Release Notes
 -------------
 
 #### `2026-02-17` | `3.7` : __Clash of the Booleans__ 
 
 - `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
+
+#### `2026-06-29` | `4.8` : __Small Addition__
+
+- `GenericOverload` / `GenOvl`: 
+- Placeholder type for adding optional parameters to generic overloads, that would otherwise clash.
+- This type adds docs explaning the technique, and avoids further overload clashes, from chosing a different parameter type.
 
 
 💬 Feedback

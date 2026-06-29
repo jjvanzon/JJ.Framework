@@ -267,25 +267,27 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 
 #### `2026-06-29` | `4.8`/`0.256` : __RandomizerLegacy Move__
 
+*+ Related Fixes*
+
 - [`JJ.Framework.Mathematics.Legacy`](https://www.nuget.org/packages/JJ.Framework.Mathematics.Legacy)
-- Moved RandomizerLegacy class from .Core variant of project to .Legacy project variant.
+- Moved `RandomizerLegacy` class from .Core variant of project to .Legacy project.
 - Fully tested and now release as part of the .Legacy lib.
 - Expanded for coherence. And ported back to 2021 legacy branch.
 - (RandomizerLegacy is a 2021 version. Legacy projects contain code from 2015; Core projects code from 2025. Code from 2021 is somewhere in the middle. It made more sense to move those from .Core to .Legacy since the workflow around Legacy code is so much different than Core, that it makes more architectural sense to group them.)
 - [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
-- Fix Mutex UnauthorizedAccess in Azure Pipelines.
+- Fix `Mutex` UnauthorizedAccess in Azure Pipelines.
 - For numbering file names (in highly concurrent situations).
 - Mutex created by other user, wouldn't be accessible to one in a different security context.
-- MutexSecurity specifying wider security access, so it can be used machine-wide as intended.
+- `MutexSecurity` specifying wider security access, so it can be used machine-wide as intended.
 - [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
-- OperatingSystemSupport.IsWindows(): a check for feature toggles (not present on all .NET version)
+- `OperatingSystemSupport.IsWindows()`: a check for feature toggles (not present on all .NET version)
 - (Used for conditional MutexSecurity instantion.)
-- Added net462 target framework extra hardening.
-- NotNullIfNotNull retroactively added (accidentally not released last time).
+- Added `net462` target framework extra hardening.
+- `NotNullIfNotNull` retroactively added (accidentally not released last time).
 - [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
-- `GenericOverload` / `GenericOvl`: 
+- `GenericOverload` / `GenOvl`: 
 - Placeholder type for adding optional parameters to generic overloads, that would otherwise clash.
-- This type includes docs explaning this, directly to where it's needed, and avoids further overload clashes, from chosing another parameter type.
+- This type adds docs explaning the technique, and avoids further overload clashes, from chosing a different parameter type.
 
 💬 Feedback 
 ------------

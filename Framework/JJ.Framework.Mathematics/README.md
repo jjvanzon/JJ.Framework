@@ -18,12 +18,12 @@ Class extending the `Math` helpers from `.NET` with:
 * `Log` with integers
 	* It will only return integers, but will prevent rounding errors such as `1000 log 10` = `2.99999999996`.
 
-## Randomizer
+## Randomizer / RandomizerLegacy
 
-* `GetRandomItem`
+* `GetRandomItem` `TryGetRandomItem`
 	* Gets a random item out of a collection.
-* `GetInt32`
-	* Return a random number out of a range:
+* `GetInt32` / `GetSingle` / `GetDouble`
+	* Return a random number out of a range.
 
 ## NumberingSystems
 
@@ -45,6 +45,13 @@ Release Notes
 - 100% coverage with meaningful tests, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
 - Fix: `Pow` and `Log` edge-cases
 - Fix: Removed dependency on [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+
+#### `2026-06-29` | `0.256`/`4.8` : __RandomizerLegacy Move__
+
+- Moved `RandomizerLegacy` class from .Core variant of project to .Legacy project.
+- Fully tested and now release as part of the .Legacy lib.
+- Expanded for coherence. And ported back to 2021 legacy branch.
+- (RandomizerLegacy is a 2021 version. Legacy projects contain code from 2015; Core projects code from 2025. Code from 2021 is somewhere in the middle. It made more sense to move those from .Core to .Legacy since the workflow around Legacy code is so much different than Core, that it makes more architectural sense to group them.)
 
 
 💬 Feedback

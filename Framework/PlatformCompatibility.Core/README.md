@@ -63,6 +63,7 @@ Utilities
 ---------
 
 - `HashCode` - `HashCode.Combine(...)` for older `.NET` versions that don't have it built in.
+- `OperatingSystemSupport.IsWindows()` shim where otherwise not available, used for Windows-specific feature toggles.
 
 Release Notes
 --------------
@@ -75,9 +76,17 @@ Release Notes
 
 #### `2026-06-24` | `4.7` : __Update__
 
-- Fix Lock shim that was accidentally not thread-safe.
-- Add NotNullIfNotNull shim for nullable annotation support.
-- Shim for ProcessSupport.Kill with entireProcessTree arg (does not actually kill entire process tree, but prevents compiler errors).
+- Fix `Lock` shim that was accidentally not thread-safe.
+- Add `NotNullIfNotNull` shim for nullable annotation support.
+- Shim for `ProcessSupport.Kill` with `entireProcessTree` arg (does not actually kill entire process tree, but prevents compiler errors).
+
+#### `2026-06-29` | `4.8` : __Fixes__
+
+- `OperatingSystemSupport.IsWindows()`: a check for feature toggles (not present on all .NET version)
+- (Used for conditional MutexSecurity instantion.)
+- Added `net462` target framework extra hardening.
+- `NotNullIfNotNull` retroactively added (accidentally not released last time).
+
 
 💬 Feedback
 ============
