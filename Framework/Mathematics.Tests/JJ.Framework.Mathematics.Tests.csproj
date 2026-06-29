@@ -56,10 +56,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RandomizerTests.cs" />
+    <Compile Include="RandomizerTests_GetRandomItem.cs" />
+    <Compile Include="RandomizerTests_TryGetRandomItem.cs" />
     <Compile Include="TextPlotterTests.cs" />
     <Compile Include="MathHelperTests.cs" />
     <Compile Include="NumberBasesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mathematics\JJ.Framework.Mathematics.csproj">
