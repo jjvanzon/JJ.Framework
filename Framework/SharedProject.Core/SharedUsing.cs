@@ -15,9 +15,5 @@ global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTyp
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.PlatformCompatibility.Core.DynamicallyAccessedMemberTypesSupport;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
-
-#if NETSTANDARD || NETFRAMEWORK
-global using static JJ.Framework.PlatformCompatibility.Core.OperatingSystemSupport;
-#else
 global using static System.OperatingSystem;
-#endif
+global using static JJ.Framework.PlatformCompatibility.Core.OperatingSystemSupport;
