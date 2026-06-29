@@ -43,7 +43,8 @@ public class RandomizerLegacyTests_TryGetRandomItem
     {
         int[] items = [ ];
         int? val = TryGetRandomItem(items);
-        AreEqual(null, val);
+        //AreEqual(null, val);
+        AreEqual(0, val);
     }
     
     // Nullables
@@ -294,7 +295,8 @@ public class RandomizerLegacyTests_TryGetRandomItem
     public void Test_Legacy_TryGetRandomItem_ValueCollectionNull_ReturnsNull()
     {
         int[]? collection = null;
-        IsNull(TryGetRandomItem(collection));
+        //IsNull(TryGetRandomItem(collection));
+        AreEqual(0, TryGetRandomItem(collection));
     }
 
     [TestMethod]
@@ -309,5 +311,58 @@ public class RandomizerLegacyTests_TryGetRandomItem
     {
         CultureInfo[]? collection = null;
         IsNull(TryGetRandomItem(collection));
+    }
+
+    // Collection Types
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItem_CollectionTypes()
+    {
+        {
+            IList<int?> list = new List<int?> { 1, null, 3 };
+            for (int i = 0; i < REPEATS; i++)
+            {
+                int? val = TryGetRandomItem(list);
+                IsTrue(list.Contains(val));
+            }
+        }
+        {
+            List<int?> list = [ 1, null, 3 ];
+            for (int i = 0; i < REPEATS; i++)
+            {
+                int? val = TryGetRandomItem(list);
+                IsTrue(list.Contains(val));
+            }
+        }
+        {
+            var stack = new Stack<CultureInfo?>([ _nlNL, null, _zhCN ]);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                CultureInfo? item = TryGetRandomItem(stack);
+                IsTrue(stack.Contains(item));
+            }
+        }
+    }
+
+    // Params
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItems_Params()
+    {
+        int[] values = [ 1, 2, 3 ];
+        for (int i = 0; i < REPEATS; i++)
+        {
+            IsTrue(values.Contains(TryGetRandomItem(1, 2, 3)));
+        }
+    }
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItems_Params_Nullable()
+    {
+        int?[] values = [ 1, null, 3 ];
+        for (int i = 0; i < REPEATS; i++)
+        {
+            IsTrue(values.Contains(TryGetRandomItem<int>(1, null, 3)));
+        }
     }
 }

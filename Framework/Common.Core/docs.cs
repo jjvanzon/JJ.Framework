@@ -98,3 +98,25 @@ public struct _isazurepipelines;
 /// by chacking if the environment variable <c>"NCrunch"</c> equals <c>"1"</c>.
 /// </summary>
 public struct _isncrunch;
+
+/// <summary>
+/// <para>
+/// Not intended for direct use. Do not assign directly.
+/// </para>
+/// 
+/// <para>
+/// Dummy type used to differentiate generic method overloads 
+/// that only differ by generic constraints 
+/// (e.g., <c>where T : struct</c> vs <c>where T : class</c>). 
+/// C# does not always allow overloading based 
+/// solely on generic constraints, 
+/// so this marker type enables the the use of such overloads anyway,
+/// by showing distinct signatures to the compiler.
+/// The the calls to the generic overloads will differentiate just fine.
+/// </para>
+/// 
+/// <para>
+/// (When brevity is required <c>GenOvl</c> can serve as a synonym for <c>GenericOverload</c>.)
+/// </para>
+/// </summary>
+public struct _genericoverload;

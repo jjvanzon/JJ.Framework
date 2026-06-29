@@ -312,15 +312,41 @@ public class RandomizerLegacyTests_GetRandomItem
     {
         {
             IList<int> list = new List<int> { 1, 2, 3 };
-            IsTrue(list.Contains(GetRandomItem(list)));
+            for (int i = 0; i < REPEATS; i++)
+            {
+                int val = GetRandomItem(list);
+                IsTrue(list.Contains(val));
+            }
         }
         {
-            List<int> list = [ 1, 2, 3 ];
-            IsTrue(list.Contains(GetRandomItem(list)));
+            List<int?> list = [ 1, 2, 3 ];
+            for (int i = 0; i < REPEATS; i++)
+            {
+                int? val = GetRandomItem(list);
+                IsTrue(list.Contains(val));
+            }
         }
-        // TODO: A few more.
+        {
+            var stack = new Stack<CultureInfo?>([ _nlNL, null, _zhCN ]);
+            for (int i = 0; i < REPEATS; i++)
+            {
+                CultureInfo? item = GetRandomItem(stack);
+                IsTrue(stack.Contains(item));
+            }
+        }
     }
 
-    // TODO: Test support for some different collection types.
-    // TODO: Test params works everywhere it's declared.
+    // Params
+
+    [TestMethod]
+    public void Test_Legacy_GetRandomItems_Params()
+    {
+        int[] values = [ 1, 2, 3 ];
+        for (int i = 0; i < REPEATS; i++)
+        {
+            IsTrue(values.Contains(GetRandomItem(1, 2, 3)));
+        }
+    }
+
+    // TODO: Only differentiate between get and tryget tests where behavior is different, not where it is synonymous?}
 }
