@@ -8,10 +8,16 @@ internal static class OperatingSystemSupport
 {
     public static bool IsWindows() 
     {
-        #if WINDOWS
+        //#if WINDOWS
+        //    return true;
+        //#else
+        //    return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        //#endif
+
+        #if WINDOWS || TARGET_WINDOWS
             return true;
         #else
-            return RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+            return false;
         #endif
     }
 }
