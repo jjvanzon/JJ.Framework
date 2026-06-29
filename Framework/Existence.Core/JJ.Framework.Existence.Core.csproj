@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>4.7.$(BuildNum)</Version>
+    <Version>4.8.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Description>Has(text), Coalesce(a,b,c), list.Where(FilledIn) to replace garbage like !Equals(x, default(T?)) &amp;&amp; !Equals(x, default(T)) and string.IsNullOrWhiteSpace(text). Fallbacks, emptiness checks coded like you mean it.</Description>
     <PackageTags>null; empty; whitespace; guards; coalesce; checks; is; in; filled; nully; utility; has; filledin; isnully; contains</PackageTags>
