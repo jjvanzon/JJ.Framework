@@ -9,5 +9,11 @@ public class NotNullIfNotNull_Tests
     public void Test_NotNullIfNotNull_Constructor() => _testBase.Test_NotNullIfNotNull_Constructor();
 
     [TestMethod]
-    public void Test_NotNullIfNotNull_Nullabilities() => _testBase.Test_NotNullIfNotNull_Nullabilities();
+    public void Test_NotNullIfNotNull_ParamNull_ReturnObjNull() => _testBase.Test_NotNullIfNotNull_ParamNull_ReturnObjNull();
+
+    [TestMethod]
+    public void Test_NotNullIfNotNull_ParamEmptyString_ReturnObjNotNull() => _testBase.Test_NotNullIfNotNull_ParamEmptyString_ReturnObjNotNull();
+
+    [TestMethod]
+    public void Test_NotNullIfNotNull_ParalFilled_ReturnObjNotNull() => _testBase.Test_NotNullIfNotNull_ParalFilled_ReturnObjNotNull();
 }
