@@ -14,7 +14,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileInfoExtensions_Hide_Show()
         {
-            string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
+            string filePath = TestHelper.GenerateFileName();
             var file = new FileInfo(filePath);
             _base.Test_FileFunctions_HideFile_ShowFile(
                 filePath,
@@ -25,7 +25,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileInfoExtensions_IsHidden()
         {
-            string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
+            string filePath = TestHelper.GenerateFileName();
             var file = new FileInfo(filePath);
 
             _base.Test_FileFunctions_IsHidden(
@@ -40,7 +40,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileInfoExtensions_MakeReadOnly_MakeWritable()
         {
-            string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
+            string filePath = TestHelper.GenerateFileName();
             var file = new FileInfo(filePath);
             _base.Test_FileFunctions_MakeReadOnly_MakeWritable(
                 filePath,
@@ -51,7 +51,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileInfoExtensions_IsReadOnly()
         {
-            string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
+            string filePath = TestHelper.GenerateFileName();
             var file = new FileInfo(filePath);
 
             _base.Test_FileFunctions_IsReadOnly(

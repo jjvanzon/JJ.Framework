@@ -1,11 +1,10 @@
-﻿using System.IO;
-using System.Reflection;
+﻿using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.IO.Tests
 {
     internal static class TestHelper
     {
-        public static string GenerateFolderName(MethodBase methodBase) => $"{methodBase.Name}_{Path.GetRandomFileName().Replace(".", "")}";
-        public static string GenerateFileName(MethodBase methodBase) => $"{methodBase.Name}_{Path.GetRandomFileName().Replace(".", "")}.txt";
+        public static string GenerateFolderName([CallerMemberName] string name = "") => $"{name}_{Path.GetRandomFileName().Replace(".", "")}";
+        public static string GenerateFileName([CallerMemberName] string name = "") => $"{name}_{Path.GetRandomFileName().Replace(".", "")}.txt";
     }
 }

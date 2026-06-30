@@ -4,6 +4,7 @@ global using System.Text;
 global using System.Linq;
 global using System.Collections.Generic;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using static System.Environment;
 global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 global using static JJ.Framework.IO.StreamHelper;
 global using static JJ.Framework.Testing.AssertHelper;

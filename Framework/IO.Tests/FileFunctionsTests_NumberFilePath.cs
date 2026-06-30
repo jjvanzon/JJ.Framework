@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using static JJ.Framework.IO.FileHelper;
 
 namespace JJ.Framework.IO.Tests
 {
@@ -12,27 +8,27 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_ConditionViolation_BaseFilePathNullOrEmpty()
         {
-            AssertHelper.ThrowsException(() =>
-                FileHelper.GetNumberedFilePath(null),
+            Throws(() =>
+                GetNumberedFilePath(null),
                 "originalFilePath is null or empty.");
 
-            AssertHelper.ThrowsException(() =>
-                FileHelper.GetNumberedFilePath(""),
+            Throws(() =>
+                GetNumberedFilePath(""),
                 "originalFilePath is null or empty.");
         }
 
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNotNumbered()
         {
-            string baseFilePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
-            string filePath = FileHelper.GetNumberedFilePath(baseFilePath);
-            AssertHelper.AreEqual(baseFilePath, () => filePath);
+            string baseFilePath = TestHelper.GenerateFileName();
+            string filePath = GetNumberedFilePath(baseFilePath);
+            AreEqual(baseFilePath, () => filePath);
         }
 
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNumbered()
         {
-            string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
+            string folderPath = TestHelper.GenerateFolderName();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
 
             try
@@ -41,8 +37,8 @@ namespace JJ.Framework.IO.Tests
                 File.Create(baseFilePath).Close();
 
                 string expectedNumberedFilePath = Path.Combine(folderPath, "temp (1).txt");
-                string numberedFilePath = FileHelper.GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
-                AssertHelper.AreEqual(expectedNumberedFilePath, () => numberedFilePath);
+                string numberedFilePath = GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
+                AreEqual(expectedNumberedFilePath, () => numberedFilePath);
             }
             finally
             {
@@ -53,7 +49,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNotNumbered_TwoFiles()
         {
-            string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
+            string folderPath = TestHelper.GenerateFolderName();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
 
             try
@@ -61,14 +57,14 @@ namespace JJ.Framework.IO.Tests
                 Directory.CreateDirectory(folderPath);
 
                 string expectedFilePath1 = baseFilePath;
-                string actualFilePath1 = FileHelper.GetNumberedFilePath(baseFilePath);
-                AssertHelper.AreEqual(expectedFilePath1, () => actualFilePath1);
+                string actualFilePath1 = GetNumberedFilePath(baseFilePath);
+                AreEqual(expectedFilePath1, () => actualFilePath1);
 
                 File.Create(actualFilePath1).Close();
 
                 string expectedFilePath2 = Path.Combine(folderPath, "temp (2).txt");
-                string actualFilePath2 = FileHelper.GetNumberedFilePath(baseFilePath);
-                AssertHelper.AreEqual(expectedFilePath2, () => actualFilePath2);
+                string actualFilePath2 = GetNumberedFilePath(baseFilePath);
+                AreEqual(expectedFilePath2, () => actualFilePath2);
             }
             finally
             {
@@ -79,7 +75,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNumbered_TwoFiles()
         {
-            string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
+            string folderPath = TestHelper.GenerateFolderName();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
 
             try
@@ -87,14 +83,14 @@ namespace JJ.Framework.IO.Tests
                 Directory.CreateDirectory(folderPath);
 
                 string expectedFilePath1 = Path.Combine(folderPath, "temp (1).txt");
-                string actualFilePath1 = FileHelper.GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
-                AssertHelper.AreEqual(expectedFilePath1, () => actualFilePath1);
+                string actualFilePath1 = GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
+                AreEqual(expectedFilePath1, () => actualFilePath1);
 
                 File.Create(actualFilePath1).Close();
 
                 string expectedFilePath2 = Path.Combine(folderPath, "temp (2).txt");
-                string actualFilePath2 = FileHelper.GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
-                AssertHelper.AreEqual(expectedFilePath2, () => actualFilePath2);
+                string actualFilePath2 = GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
+                AreEqual(expectedFilePath2, () => actualFilePath2);
             }
             finally
             {
@@ -105,17 +101,17 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_AlternativeNumberFormat()
         {
-            string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
+            string folderPath = TestHelper.GenerateFolderName();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
             string expectedNumberedFilePath = Path.Combine(folderPath, "temp_001.txt");
-            string numberedFilePath = FileHelper.GetNumberedFilePath(baseFilePath, "_", "000", "", mustNumberFirstFile: true);
-            AssertHelper.AreEqual(expectedNumberedFilePath, () => numberedFilePath);
+            string numberedFilePath = GetNumberedFilePath(baseFilePath, "_", "000", "", mustNumberFirstFile: true);
+            AreEqual(expectedNumberedFilePath, () => numberedFilePath);
         }
 
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_Try12Files()
         {
-            string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
+            string folderPath = TestHelper.GenerateFolderName();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
             const int fileCount = 12;
 
@@ -125,7 +121,7 @@ namespace JJ.Framework.IO.Tests
 
                 for (var i = 1; i <= fileCount; i++)
                 {
-                    string filePath = FileHelper.GetNumberedFilePath(baseFilePath);
+                    string filePath = GetNumberedFilePath(baseFilePath);
                     File.Create(filePath).Close();
                 }
             }
@@ -138,28 +134,28 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_RelativePath()
         {
-            string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
+            string folderPath = TestHelper.GenerateFolderName();
 
-            string originalCurrentDirectory = Environment.CurrentDirectory;
+            string originalCurrentDirectory = CurrentDirectory;
             try
             {
                 Directory.CreateDirectory(folderPath);
-                Environment.CurrentDirectory = folderPath;
+                CurrentDirectory = folderPath;
 
                 const string baseFilePath = "temp.txt";
 
                 const string expectedFilePath1 = "temp.txt";
-                string actualFilePath = FileHelper.GetNumberedFilePath(baseFilePath);
-                AssertHelper.AreEqual(expectedFilePath1, () => actualFilePath);
+                string actualFilePath = GetNumberedFilePath(baseFilePath);
+                AreEqual(expectedFilePath1, () => actualFilePath);
 
                 File.Create("temp.txt").Close();
                 const string expectedFilePath2 = "temp (2).txt";
-                string actualFilePath2 = FileHelper.GetNumberedFilePath(baseFilePath);
-                AssertHelper.AreEqual(expectedFilePath2, () => actualFilePath2);
+                string actualFilePath2 = GetNumberedFilePath(baseFilePath);
+                AreEqual(expectedFilePath2, () => actualFilePath2);
             }
             finally
             {
-                Environment.CurrentDirectory = originalCurrentDirectory;
+                CurrentDirectory = originalCurrentDirectory;
                 if (Directory.Exists(folderPath)) Directory.Delete(folderPath, recursive: true);
             }
         }
@@ -172,16 +168,16 @@ namespace JJ.Framework.IO.Tests
             if (File.Exists(baseFilePath)) File.Delete(baseFilePath);
 
             string expectedFilePath1 = baseFilePath;
-            string actualFilePath1 = FileHelper.GetNumberedFilePath(baseFilePath);
-            AssertHelper.AreEqual(expectedFilePath1, () => actualFilePath1);
+            string actualFilePath1 = GetNumberedFilePath(baseFilePath);
+            AreEqual(expectedFilePath1, () => actualFilePath1);
 
             try
             {
                 File.Create(actualFilePath1).Close();
 
                 string expectedFilePath2 = @"C:\" + guid + " (2).txt";
-                string actualFilePath2 = FileHelper.GetNumberedFilePath(baseFilePath);
-                AssertHelper.AreEqual(expectedFilePath2, () => actualFilePath2);
+                string actualFilePath2 = GetNumberedFilePath(baseFilePath);
+                AreEqual(expectedFilePath2, () => actualFilePath2);
             }
             finally
             {
