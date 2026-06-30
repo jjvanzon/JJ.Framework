@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using JJ.Framework.IO.Core;
+using JJ.Framework.IO.Legacy;
 using JJ.Framework.Testing;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 
