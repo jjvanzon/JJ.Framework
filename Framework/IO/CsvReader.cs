@@ -13,7 +13,7 @@ namespace JJ.Framework.IO
         private readonly string _columnSeparator;
         private readonly int? _enforcedColumnCount;
         private readonly StreamReader _reader;
-        private IList<string> _values;
+        private IList<string> _values = [];
 
         /// <inheritdoc cref="_csvreader" />
         public CsvReader(Stream stream, string columnSeparator = ",", int? enforcedColumnCount = null)
@@ -42,7 +42,7 @@ namespace JJ.Framework.IO
 
             CurrentLine++;
 
-            string line = _reader.ReadLine();
+            string line = _reader.ReadLine() ?? "";
 
             _values = ParseLine(line);
 

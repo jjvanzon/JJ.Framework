@@ -1,6 +1,4 @@
-﻿using static JJ.Framework.IO.StreamHelper;
-
-namespace JJ.Framework.IO.Tests;
+﻿namespace JJ.Framework.IO.Tests;
 
 [TestClass]
 public class StreamHelperTests
