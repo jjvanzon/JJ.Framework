@@ -86,9 +86,6 @@
       <Value>Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Legacy.Tests.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Legacy.Tests.csproj:net461</Value>
       <Value>Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Legacy.Tests.csproj:net5.0</Value>
-      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:net10.0</Value>
-      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:netstandard2.0</Value>
-      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:netstandard2.1</Value>
       <Value>Framework\IO.TrimTests\JJ.Framework.IO.Legacy.TrimTests.csproj</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net10.0</Value>
       <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net461</Value>
@@ -115,9 +112,6 @@
       <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net7.0</Value>
       <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net8.0</Value>
       <Value>Framework\PlatformCompatibility.Core.TrimTests\JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj:net9.0</Value>
-      <Value>Framework\IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net10.0</Value>
-      <Value>Framework\IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net461</Value>
-      <Value>Framework\IO.Core.Tests\JJ.Framework.IO.Core.Tests.csproj:net5.0</Value>
       <Value>Framework\Common.Core.TrimTests\JJ.Framework.Common.Core.TrimTests.csproj</Value>
       <Value>Framework\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net10.0</Value>
       <Value>Framework\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj:net461</Value>
@@ -151,6 +145,9 @@
       <Value>Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:netstandard2.0\..</Value>
+      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:netstandard2.1\..</Value>
+      <Value>Framework\IO.Core\JJ.Framework.IO.Core.csproj:net10.0\..</Value>
     </MetricsExclusionList>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>

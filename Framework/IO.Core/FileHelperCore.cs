@@ -194,7 +194,7 @@ namespace JJ.Framework.IO.Core
             
             string folderPath               = Path.GetDirectoryName(originalFilePath)?.TrimEnd('\\') ?? ""; // Remove slash from root (e.g. @"C:\")
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFilePath);
-            string fileExtension            = GetExtension(originalFilePath, maxExtensionLength);
+            string fileExtension            = FileHelperCore.GetExtension(originalFilePath, maxExtensionLength);
             string separator                = !string.IsNullOrEmpty(folderPath) ? "\\" : "";
             
             string filePathFirstPart = $"{folderPath}{separator}{fileNameWithoutExtension}{numberPrefix}";
