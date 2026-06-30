@@ -29,7 +29,7 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
     <PackageReference Include="JJ.Framework.Configuration.Core" Version="4.8.7092" />
     <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.256.7092" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.8.7092" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.8.7095" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.8.7092" />
   </ItemGroup>
 
