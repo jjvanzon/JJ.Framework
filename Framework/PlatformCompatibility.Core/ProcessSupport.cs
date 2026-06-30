@@ -11,6 +11,8 @@ using docs;
 /// <inheritdoc cref="_kill" />
 internal static class ProcessSupport
 {
+    // ncrunch: no coverage start
+
     #if !NET5_0_OR_GREATER
     /// <inheritdoc cref="_kill" />
     public static void Kill(this System.Diagnostics.Process process, bool entireProcessTree)
@@ -18,4 +20,6 @@ internal static class ProcessSupport
         process.Kill();
     }
     #endif
+
+    // ncrunch: no coverage end
 }

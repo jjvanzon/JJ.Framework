@@ -317,6 +317,7 @@
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net9.0</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.0</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.1</Value>
+      <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj:net462</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>

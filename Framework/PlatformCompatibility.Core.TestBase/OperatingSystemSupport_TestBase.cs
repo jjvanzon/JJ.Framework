@@ -7,6 +7,7 @@ public class OperatingSystemSupport_TestBase
     public void Test_IsWindows()
     {
         if (IsWindows())
+        // ncrunch: no coverage start
         {
             Console.WriteLine("IsWindows == true");
         }
@@ -20,5 +21,6 @@ public class OperatingSystemSupport_TestBase
         #else
             IsTrue(IsWindows());
         #endif
+        // ncrunch: no coverage end
     }
 }
