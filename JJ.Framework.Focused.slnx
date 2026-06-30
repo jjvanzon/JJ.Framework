@@ -1,12 +1,26 @@
 <Solution>
   <Folder Name="/Dependencies/">
-    <Project Path="Framework/Compilation.Core/JJ.Framework.Compilation.Core.csproj" />
-    <Project Path="Framework/JJ.Framework.Xml/JJ.Framework.Xml.Legacy.csproj" />
-    <Project Path="Framework/Reflection.Core.Tests.Helpers/JJ.Framework.Reflection.Core.Tests.Helpers.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.SharedProject/JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj" Id="e275ca1f-e6b3-4f2e-bff3-c1c24982f009" />
+    <Project Path="Framework/PlatformCompatibility.Core.TestBase.Standard/JJ.Framework.PlatformCompatibility.Core.TestBase.Standard.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.TestBase/JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.Tests.Standard/JJ.Framework.PlatformCompatibility.Core.Tests.Standard.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.Tests/JJ.Framework.PlatformCompatibility.Core.Tests.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.TrimTests/JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
     <Project Path="Framework/SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" Id="1beb8e62-fcb0-4b88-b142-23e720d5bacc" />
     <Project Path="Framework/Testing.Core.MSTestless/JJ.Framework.Testing.Core.MSTestless.csproj" />
     <Project Path="Framework/Testing.Core.NCrunchless/JJ.Framework.Testing.Core.NCrunchless.csproj" />
+    <Project Path="Framework\Collections.Core\JJ.Framework.Collections.Core.csproj" />
+    <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
+    <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
     <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
+    <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
+    <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
+    <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
+    <Project Path="Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
+    <Project Path="Framework\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
+    <Project Path="Framework\Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <Project Path="Framework\Text.Core\JJ.Framework.Text.Core.csproj" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".github/copilot-instructions.md" />
@@ -34,47 +48,11 @@
     <File Path="Utilities/StopNCrunch.cmd" />
     <File Path="Utilities/StopVS.cmd" />
   </Folder>
-  <Project Path="Framework/Business.Core/JJ.Framework.Business.Core.csproj" />
-  <Project Path="Framework/Business.TrimTests/JJ.Framework.Business.Legacy.TrimTests.csproj" />
-  <Project Path="Framework/Common.Core.Tests.Helpers/JJ.Framework.Common.Core.Tests.Helpers.csproj" />
-  <Project Path="Framework/Common.Core.Tests/JJ.Framework.Common.Core.Tests.csproj" />
-  <Project Path="Framework/Common.Core.TrimTests/JJ.Framework.Common.Core.TrimTests.csproj" />
-  <Project Path="Framework/Common.TrimTests/JJ.Framework.Common.Legacy.TrimTests.csproj" />
-  <Project Path="Framework/Configuration.Core/JJ.Framework.Configuration.Core.csproj" />
   <Project Path="Framework/IO.Core.Tests/JJ.Framework.IO.Core.Tests.csproj" />
   <Project Path="Framework/IO.Core.TrimTests/JJ.Framework.IO.Core.TrimTests.csproj" />
   <Project Path="Framework/IO.Core/JJ.Framework.IO.Core.csproj" />
   <Project Path="Framework/IO.TrimTests/JJ.Framework.IO.Legacy.TrimTests.csproj" />
-  <Project Path="Framework/JJ.Framework.Business.Tests/JJ.Framework.Business.Legacy.Tests.csproj" />
-  <Project Path="Framework/JJ.Framework.Business/JJ.Framework.Business.Legacy.csproj" />
-  <Project Path="Framework/JJ.Framework.Common.Tests/JJ.Framework.Common.Legacy.Tests.csproj" />
-  <Project Path="Framework/JJ.Framework.Configuration.Tests/JJ.Framework.Configuration.Legacy.Tests.csproj" />
-  <Project Path="Framework/JJ.Framework.Configuration/JJ.Framework.Configuration.Legacy.csproj" />
   <Project Path="Framework/JJ.Framework.IO.Tests/JJ.Framework.IO.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.IO/JJ.Framework.IO.Legacy.csproj" />
-  <Project Path="Framework/JJ.Framework.Mathematics.Tests/JJ.Framework.Mathematics.Legacy.Tests.csproj" />
-  <Project Path="Framework/JJ.Framework.Mathematics/JJ.Framework.Mathematics.Legacy.csproj" />
-  <Project Path="Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Legacy.Tests.csproj" />
-  <Project Path="Framework/JJ.Framework.Testing.Tests/JJ.Framework.Testing.Legacy.Tests.csproj" />
-  <Project Path="Framework/Mathematics.TrimTests/JJ.Framework.Mathematics.Legacy.TrimTests.csproj" />
-  <Project Path="Framework/PlatformCompatibility.Core.SharedProject/JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj" Id="e275ca1f-e6b3-4f2e-bff3-c1c24982f009" />
-  <Project Path="Framework/PlatformCompatibility.Core.TestBase.Standard/JJ.Framework.PlatformCompatibility.Core.TestBase.Standard.csproj" />
-  <Project Path="Framework/PlatformCompatibility.Core.TestBase/JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
-  <Project Path="Framework/PlatformCompatibility.Core.Tests.Standard/JJ.Framework.PlatformCompatibility.Core.Tests.Standard.csproj" />
-  <Project Path="Framework/PlatformCompatibility.Core.Tests/JJ.Framework.PlatformCompatibility.Core.Tests.csproj" />
-  <Project Path="Framework/PlatformCompatibility.Core.TrimTests/JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj" />
-  <Project Path="Framework/PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
-  <Project Path="Framework/Reflection.TrimTests/JJ.Framework.Reflection.Legacy.TrimTests.csproj" />
-  <Project Path="Framework/Testing.Core.Tests/JJ.Framework.Testing.Core.Tests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
-  <Project Path="Framework\Collections.Core\JJ.Framework.Collections.Core.csproj" />
-  <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
-  <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
-  <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
-  <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
-  <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
-  <Project Path="Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
-  <Project Path="Framework\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
-  <Project Path="Framework\Testing.Core\JJ.Framework.Testing.Core.csproj" />
-  <Project Path="Framework\Text.Core\JJ.Framework.Text.Core.csproj" />
 </Solution>
