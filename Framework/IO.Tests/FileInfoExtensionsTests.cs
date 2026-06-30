@@ -7,9 +7,9 @@ namespace JJ.Framework.IO.Tests
     [TestClass]
     public class FileInfoExtensionsTests
     {
-        private readonly FileFunctionsTests _base;
+        private readonly FileHelperTests _base;
 
-        public FileInfoExtensionsTests() => _base = new FileFunctionsTests();
+        public FileInfoExtensionsTests() => _base = new FileHelperTests();
 
         [TestMethod]
         public void Test_FileInfoExtensions_Hide_Show()

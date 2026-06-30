@@ -3,7 +3,7 @@
 namespace JJ.Framework.IO.Tests
 {
     [TestClass]
-    public class FileFunctionsTests_NumberFilePath
+    public class FileHelperTests_NumberFilePath
     {
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_ConditionViolation_BaseFilePathNullOrEmpty()

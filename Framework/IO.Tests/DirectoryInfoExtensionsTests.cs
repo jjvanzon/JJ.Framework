@@ -7,7 +7,7 @@ namespace JJ.Framework.IO.Tests
     [TestClass]
     public class DirectoryInfoExtensionsTests
     {
-        private readonly FileFunctionsTests _base = new FileFunctionsTests();
+        private readonly FileHelperTests _base = new FileHelperTests();
 
         [TestMethod]
         public void Test_DirectoryInfoExtensions_Clear()

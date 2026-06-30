@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.IO.Tests
 {
     [TestClass]
-    public class FileFunctionsTests
+    public class FileHelperTests
     {
         // ClearFolder
 
