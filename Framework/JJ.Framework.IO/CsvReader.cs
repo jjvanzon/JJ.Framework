@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable NotAccessedField.Local
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace JJ.Framework.IO.Legacy
 
         private Stream _stream;
         private StreamReader _reader;
-        private string[] _values;
+        private string[] _values = [];
 
         /// <inheritdoc cref="_csvreader" />
         public CsvReader(Stream stream)
@@ -49,7 +51,7 @@ namespace JJ.Framework.IO.Legacy
                 return false;
             }
 
-            string line = _reader.ReadLine();
+            string line = _reader.ReadLine() ?? "";
 
             _values = ParseLine(line);
 

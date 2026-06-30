@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using JJ.Framework.Reflection;
 using static JJ.Framework.IO.Legacy.StreamHelper;
 
-namespace JJ.Framework.IO.Core
+namespace JJ.Framework.IO.Legacy
 {
+    /// <inheritdoc cref="_streamhelperlegacy" />
     public static class StreamHelperLegacy
     {
+        /// <inheritdoc cref="_stringtostream" />
         public static Stream StringToStream(string text, Encoding encoding, bool includeByteOrderMark = false)
         {
             byte[] bytes = StringToBytes(text, encoding, includeByteOrderMark);
@@ -18,6 +20,7 @@ namespace JJ.Framework.IO.Core
             return stream;
         }
 
+        /// <inheritdoc cref="_stringtobytes" />
         public static byte[] StringToBytes(string text, Encoding encoding, bool includeByteOrderMark = false)
         {
             if (encoding == null) throw new NullException(() => encoding);

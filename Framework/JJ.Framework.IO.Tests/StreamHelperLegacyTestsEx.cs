@@ -1,9 +1,7 @@
-using static JJ.Framework.IO.Core.StreamHelperLegacy;
-
-namespace JJ.Framework.IO.Core.Tests;
+namespace JJ.Framework.IO.Legacy.Tests;
 
 [TestClass]
-public class StreamHelperLegacyTests
+public class StreamHelperLegacyTestsEx
 {
     private static readonly Encoding encoding = Encoding.UTF8;
 

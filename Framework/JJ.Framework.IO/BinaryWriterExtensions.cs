@@ -15,6 +15,7 @@ namespace JJ.Framework.IO.Legacy
         public static void WriteStruct<T>(this BinaryWriter writer, T strct)
             where T : struct
         {
+            ThrowIfNull(writer);
             int size = Marshal.SizeOf<T>();
             byte[] buffer = new byte[size];
             GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -30,6 +31,7 @@ namespace JJ.Framework.IO.Legacy
         public static T ReadStruct<[Dyn(Ctors)]T>(this BinaryReader reader)
             where T : struct
         {
+            ThrowIfNull(reader);
             int size = Marshal.SizeOf<T>();
             byte[] buffer = reader.ReadBytes(size);
             GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
