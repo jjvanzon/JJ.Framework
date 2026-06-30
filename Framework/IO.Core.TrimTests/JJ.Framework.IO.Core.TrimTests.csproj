@@ -15,10 +15,11 @@
   <ItemGroup>
     <ProjectReference Include="..\IO.Core\JJ.Framework.IO.Core.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
-  <Import Project="..\JJ.Framdework.SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
 </Project>
 

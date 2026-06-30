@@ -1,4 +1,3 @@
-global using System;
 global using JJ.Framework.PlatformCompatibility.Core.Tests;
 global using static JJ.Framework.Testing.Core.TestRunner;
 global using static System.Console;

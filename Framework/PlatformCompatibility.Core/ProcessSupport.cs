@@ -4,8 +4,6 @@
 // ReSharper disable RedundantUsingDirective.Global
 // ReSharper disable RedundantUsingDirective.Local
 
-using System.Diagnostics;
-
 namespace JJ.Framework.PlatformCompatibility.Core;
 
 using docs;
@@ -15,7 +13,7 @@ internal static class ProcessSupport
 {
     #if !NET5_0_OR_GREATER
     /// <inheritdoc cref="_kill" />
-    public static void Kill(this Process process, bool entireProcessTree)
+    public static void Kill(this System.Diagnostics.Process process, bool entireProcessTree)
     {
         process.Kill();
     }
