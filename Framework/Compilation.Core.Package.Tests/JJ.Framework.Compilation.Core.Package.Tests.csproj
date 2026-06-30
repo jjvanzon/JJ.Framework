@@ -13,9 +13,9 @@
   <ItemGroup>
     <PackageReference Include="JJ.Framework.Compilation.Core" Version="4.7.7026-preview" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.7.7082" />
-    <PackageReference Include="JJ.Framework.Reflection.Core" Version="4.7.7082" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.7.7082" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.8.7092" />
+    <PackageReference Include="JJ.Framework.Reflection.Core" Version="4.8.7092" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.8.7092" />
   </ItemGroup>
 
   <ItemGroup>
