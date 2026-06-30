@@ -15,5 +15,3 @@ global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTyp
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.PlatformCompatibility.Core.DynamicallyAccessedMemberTypesSupport;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
-global using static System.OperatingSystem;
-global using static JJ.Framework.PlatformCompatibility.Core.OperatingSystemSupport;
