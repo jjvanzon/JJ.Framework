@@ -2,6 +2,9 @@
 
 namespace JJ.Framework.IO.Core.Tests
 {
+    // TODO: Extend with highly concurrent clash-prone stress test.
+    // TODO: Test the use of the actual Stream.
+
     [TestClass]
     public class FileHelperCoreTests_SafeFileStream
     {

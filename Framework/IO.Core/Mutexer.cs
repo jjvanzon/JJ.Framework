@@ -1,6 +1,5 @@
-﻿#pragma warning disable IDE0051
-
-// ReSharper disable InlineTemporaryVariable
+﻿// ReSharper disable InlineTemporaryVariable
+// ReSharper disable UnusedMember.Local
 
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -11,11 +10,15 @@ namespace JJ.Framework.IO.Core;
 internal static class Mutexer
 {
     private const string MUTEX_BASE_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
-    private const string GLOBAL_MUTEX_NAME_WITH_ACL = "Global\\" + MUTEX_BASE_NAME + "_WithAcl";
-    private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_BASE_NAME;
     private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_BASE_NAME;
+    private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_BASE_NAME;
+    private const string GLOBAL_MUTEX_NAME_WITH_ACL = "Global\\" + MUTEX_BASE_NAME + "_WithAcl";
 
-    public static readonly Mutex Mutex = CreateMutexLocal();
+    public static readonly Mutex Mutex = CreateMutex_Local();
+
+
+    // NOTE: Most of these variants are unused, but keep them for now 
+    // as they might be required when things get rough again.
 
     private static Mutex CreateMutexWithFallback()
     {
@@ -31,9 +34,11 @@ internal static class Mutexer
 
     private static Mutex? TryCreateMutex_GlobalWithAcl()
     {
+        if (!IsWindows()) return null;
+
         try
         {
-            return CreateMutexGlobalWithAcl();
+            return CreateMutex_GlobalWithAcl();
         }
         catch (Exception ex)
         {
@@ -42,12 +47,10 @@ internal static class Mutexer
         }
     }
 
-    private static Mutex? CreateMutexGlobalWithAcl()
+    private static Mutex CreateMutex_GlobalWithAcl()
     {
-        if (!IsWindows()) return null;
-
-        MutexSecurity? sec = GetMutexSecurity();
-        if (sec == null) return null;
+        if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
+        MutexSecurity sec = GetMutexSecurity();
         Mutex mutex = MutexAcl.Create(initiallyOwned: false, GLOBAL_MUTEX_NAME_WITH_ACL, out _, sec);
         RegisterMutexReleaseOnExit(mutex);
         return mutex;
@@ -57,7 +60,7 @@ internal static class Mutexer
     {
         try
         {
-            return CreateMutexGlobal();
+            return CreateMutex_Global();
         }
         catch (Exception ex)
         {
@@ -66,7 +69,7 @@ internal static class Mutexer
         }
     }
 
-    private static Mutex? CreateMutexGlobal()
+    private static Mutex CreateMutex_Global()
     {
         var mutex = new Mutex(initiallyOwned: false, GLOBAL_MUTEX_NAME);
         RegisterMutexReleaseOnExit(mutex);
@@ -77,7 +80,7 @@ internal static class Mutexer
     {
         try
         {
-            return CreateMutexLocal();
+            return CreateMutex_Local();
         }
         catch (Exception ex)
         {
@@ -86,17 +89,20 @@ internal static class Mutexer
         }
     }
 
-    private static Mutex CreateMutexLocal()
+    private static Mutex CreateMutex_Local()
     {
         const string name = LOCAL_MUTEX_NAME;
         try
         {
+            // In Azure DevOps, this can create the Mutex with full rights the first time,
+            // but when created the 2nd time, demand of full rights fails.
             var mutex = new Mutex(initiallyOwned: false, name);
             RegisterMutexReleaseOnExit(mutex);
             return mutex;
         }
         catch (UnauthorizedAccessException ex)
         {
+            // This only demands limited rights, but enough for use.
             if (Mutex.TryOpenExisting(name, out Mutex? existingMutex))
             {
                 return existingMutex;
@@ -124,9 +130,9 @@ internal static class Mutexer
     /// 
     /// <para> It appears to have difficuly accessing a Mutex created from another user session. </para>
     /// </summary>
-    private static MutexSecurity? GetMutexSecurity()
+    private static MutexSecurity GetMutexSecurity()
     {
-        if (!IsWindows()) return null;
+        if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
 
         var securitySettings = new MutexSecurity();
 
