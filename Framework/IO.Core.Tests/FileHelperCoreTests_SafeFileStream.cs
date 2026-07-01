@@ -3,30 +3,31 @@
 namespace JJ.Framework.IO.Core.Tests
 {
     [TestClass]
-    public class FileHelperTestsLegacy_NumberFilePath
+    public class FileHelperCoreTests_SafeFileStream
     {
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_ConditionViolation_BaseFilePathNullOrEmpty()
+        public void Test_FileHelper_CreateSafeFileStream_ConditionViolation_BaseFilePathNullOrEmpty()
         {
             Throws(() =>
-                GetNumberedFilePath(null!),
+                CreateSafeFileStream(null!),
                 "originalFilePath is null or empty.");
 
             Throws(() =>
-                GetNumberedFilePath(""),
+                CreateSafeFileStream(""),
                 "originalFilePath is null or empty.");
         }
 
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_FirstFileNotNumbered()
+        public void Test_FileHelper_CreateSafeFileStream_FirstFileNotNumbered()
         {
             string baseFilePath = TestHelper.GenerateFilePath();
-            string filePath = GetNumberedFilePath(baseFilePath);
+            (string filePath, Stream stream) = CreateSafeFileStream(baseFilePath);
+            stream.Dispose();
             AreEqual(baseFilePath, filePath);
         }
 
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_FirstFileNumbered()
+        public void Test_FileHelper_CreateSafeFileStream_FirstFileNumbered()
         {
             string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
@@ -37,7 +38,8 @@ namespace JJ.Framework.IO.Core.Tests
                 File.Create(baseFilePath).Close();
 
                 string expectedNumberedFilePath = Path.Combine(folderPath, "temp (1).txt");
-                string numberedFilePath = GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
+                (string numberedFilePath, Stream stream) = CreateSafeFileStream(baseFilePath, mustNumberFirstFile: true);
+                stream.Dispose();
                 AreEqual(expectedNumberedFilePath, numberedFilePath);
             }
             finally
@@ -47,7 +49,7 @@ namespace JJ.Framework.IO.Core.Tests
         }
 
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_FirstFileNotNumbered_TwoFiles()
+        public void Test_FileHelper_CreateSafeFileStream_FirstFileNotNumbered_TwoFiles()
         {
             string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
@@ -57,13 +59,15 @@ namespace JJ.Framework.IO.Core.Tests
                 Directory.CreateDirectory(folderPath);
 
                 string expectedFilePath1 = baseFilePath;
-                string actualFilePath1 = GetNumberedFilePath(baseFilePath);
+                (string actualFilePath1, Stream stream1) = CreateSafeFileStream(baseFilePath);
+                stream1.Dispose();
                 AreEqual(expectedFilePath1, actualFilePath1);
 
                 File.Create(actualFilePath1).Close();
 
                 string expectedFilePath2 = Path.Combine(folderPath, "temp (2).txt");
-                string actualFilePath2 = GetNumberedFilePath(baseFilePath);
+                (string actualFilePath2, Stream stream2) = CreateSafeFileStream(baseFilePath);
+                stream2.Dispose();
                 AreEqual(expectedFilePath2, actualFilePath2);
             }
             finally
@@ -73,7 +77,7 @@ namespace JJ.Framework.IO.Core.Tests
         }
 
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_FirstFileNumbered_TwoFiles()
+        public void Test_FileHelper_CreateSafeFileStream_FirstFileNumbered_TwoFiles()
         {
             string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
@@ -83,13 +87,15 @@ namespace JJ.Framework.IO.Core.Tests
                 Directory.CreateDirectory(folderPath);
 
                 string expectedFilePath1 = Path.Combine(folderPath, "temp (1).txt");
-                string actualFilePath1 = GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
+                (string actualFilePath1, Stream stream1) = CreateSafeFileStream(baseFilePath, mustNumberFirstFile: true);
+                stream1.Dispose();
                 AreEqual(expectedFilePath1, actualFilePath1);
 
                 File.Create(actualFilePath1).Close();
 
                 string expectedFilePath2 = Path.Combine(folderPath, "temp (2).txt");
-                string actualFilePath2 = GetNumberedFilePath(baseFilePath, mustNumberFirstFile: true);
+                (string actualFilePath2, Stream stream2) = CreateSafeFileStream(baseFilePath, mustNumberFirstFile: true);
+                stream2.Dispose();
                 AreEqual(expectedFilePath2, actualFilePath2);
             }
             finally
@@ -99,17 +105,19 @@ namespace JJ.Framework.IO.Core.Tests
         }
 
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_AlternativeNumberFormat()
+        public void Test_FileHelper_CreateSafeFileStream_AlternativeNumberFormat()
         {
             string folderPath = TestHelper.GenerateFolderPath();
+            Directory.CreateDirectory(folderPath);
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
             string expectedNumberedFilePath = Path.Combine(folderPath, "temp_001.txt");
-            string numberedFilePath = GetNumberedFilePath(baseFilePath, "_", "000", "", mustNumberFirstFile: true);
+            (string numberedFilePath, Stream stream) = CreateSafeFileStream(baseFilePath, "_", "000", "", mustNumberFirstFile: true);
+            stream.Dispose();
             AreEqual(expectedNumberedFilePath, numberedFilePath);
         }
 
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_Try12Files()
+        public void Test_FileHelper_CreateSafeFileStream_Try12Files()
         {
             string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
@@ -121,7 +129,8 @@ namespace JJ.Framework.IO.Core.Tests
 
                 for (var i = 1; i <= fileCount; i++)
                 {
-                    string filePath = GetNumberedFilePath(baseFilePath);
+                    (string filePath, Stream stream) = CreateSafeFileStream(baseFilePath);
+                    stream.Dispose();
                     File.Create(filePath).Close();
                 }
             }
@@ -132,7 +141,7 @@ namespace JJ.Framework.IO.Core.Tests
         }
 
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_RelativePath()
+        public void Test_FileHelper_CreateSafeFileStream_RelativePath()
         {
             string folderPath = TestHelper.GenerateFolderPath();
 
@@ -145,12 +154,14 @@ namespace JJ.Framework.IO.Core.Tests
                 const string baseFilePath = "temp.txt";
 
                 const string expectedFilePath1 = "temp.txt";
-                string actualFilePath = GetNumberedFilePath(baseFilePath);
+                (string actualFilePath, Stream stream1) = CreateSafeFileStream(baseFilePath);
+                stream1.Dispose();
                 AreEqual(expectedFilePath1, actualFilePath);
 
                 File.Create("temp.txt").Close();
                 const string expectedFilePath2 = "temp (2).txt";
-                string actualFilePath2 = GetNumberedFilePath(baseFilePath);
+                (string actualFilePath2, Stream stream2) = CreateSafeFileStream(baseFilePath);
+                stream2.Dispose();
                 AreEqual(expectedFilePath2, actualFilePath2);
             }
             finally
@@ -163,14 +174,14 @@ namespace JJ.Framework.IO.Core.Tests
         // Not permitted in Azure Pipelines Local Agent
         /*
         [TestMethod]
-        public void Test_FileFunctions_GetNumberedFilePath_InRoot()
+        public void Test_FileHelper_CreateSafeFileStream_InRoot()
         {
             string guid = Guid.NewGuid().ToString();
             string baseFilePath = @"C:\" + guid + ".txt";
             if (File.Exists(baseFilePath)) File.Delete(baseFilePath);
 
             string expectedFilePath1 = baseFilePath;
-            string actualFilePath1 = GetNumberedFilePath(baseFilePath);
+            string actualFilePath1 = CreateSafeFileStream(baseFilePath);
             AreEqual(expectedFilePath1, actualFilePath1);
 
             try
@@ -178,7 +189,7 @@ namespace JJ.Framework.IO.Core.Tests
                 File.Create(actualFilePath1).Close();
 
                 string expectedFilePath2 = @"C:\" + guid + " (2).txt";
-                string actualFilePath2 = GetNumberedFilePath(baseFilePath);
+                string actualFilePath2 = CreateSafeFileStream(baseFilePath);
                 AreEqual(expectedFilePath2, actualFilePath2);
             }
             finally
