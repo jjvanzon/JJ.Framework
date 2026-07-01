@@ -1,6 +1,7 @@
 ﻿using System.Security.AccessControl;
 using System.Security.Principal;
 using static System.AppDomain;
+#pragma warning disable IDE0051
 
 namespace JJ.Framework.IO.Core;
 
@@ -11,14 +12,14 @@ internal static class Mutexer
     private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_NAME;
     private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_NAME;
 
-    public static readonly Mutex Mutex = InitMutex();
+    public static readonly Mutex Mutex = CreateMutexLocal();
 
-    private static Mutex InitMutex() 
-    {
-        Mutex mutex = CreateMutexWithFallback();
-        RegisterMutexReleaseOnExit(mutex);
-        return mutex;
-    }
+    //private static Mutex InitMutex() 
+    //{
+    //    Mutex mutex = CreateMutexWithFallback();
+    //    RegisterMutexReleaseOnExit(mutex);
+    //    return mutex;
+    //}
 
     private static Mutex CreateMutexWithFallback()
     {
@@ -41,6 +42,7 @@ internal static class Mutexer
             MutexSecurity? sec = GetMutexSecurity();
             if (sec == null) return null;
             Mutex mutex = MutexAcl.Create(initiallyOwned: false, GLOBAL_MUTEX_NAME_WITH_ACL, out _, sec);
+            RegisterMutexReleaseOnExit(mutex);
             return mutex;
 
         }
@@ -55,7 +57,9 @@ internal static class Mutexer
     {
         try
         {
-            return new Mutex(initiallyOwned: false, GLOBAL_MUTEX_NAME);
+            var mutex = new Mutex(initiallyOwned: false, GLOBAL_MUTEX_NAME);
+            RegisterMutexReleaseOnExit(mutex);
+            return mutex;
         }
         catch (Exception ex)
         {
@@ -68,13 +72,20 @@ internal static class Mutexer
     {
         try
         {
-            return new Mutex(initiallyOwned: false, LOCAL_MUTEX_NAME);
+            return CreateMutexLocal();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"EXCEPTION IGNORED - {ex}");
             return null;
         }
+    }
+
+    private static Mutex CreateMutexLocal()
+    {
+        var mutex = new Mutex(initiallyOwned: false, LOCAL_MUTEX_NAME);
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
     }
 
     private static void RegisterMutexReleaseOnExit(Mutex mutex)
