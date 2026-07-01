@@ -113,3 +113,41 @@ Mutex handling excess code:
             return securitySettings;
        }
 ```
+
+```cs
+
+// From GetMutexSecurity:
+
+        try
+        {
+        }
+        // TODO: It's the TrimTests that fail that's the variable that triggers it?
+        catch (Exception ex)
+        {
+            // Depending on the environment (NCrunch, Visual Studio Build, Azure Pipelines Local Agent)
+            // The MutexAccessRule constructor crashes ITSELF by passing a hard-coded null to its own base class.
+            // Which TFS base library does this is not entirely sure.
+            // This might be a stub framework version or otherwise.
+            // First we tried solving it by adding conditions, but edge cases kept surfacing this bug again.
+            // So for reliability, we can't can't rely on this succeeding here.
+            // So we omit the access rule if this happens.
+            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+            return null;
+        }
+
+// From CreateMutexWithName:
+
+        //try
+        {
+        }
+        // TODO: It's the TrimTests that fail that's the variable that triggers it?
+        //catch (Exception ex)
+        //{ 
+        //    // The platforms/TFM/env/context can almost randomly complain 
+        //    // that MutextSecurity/MutexAcl is not supported.
+        //    // Conditions are near-impossibly to set reliably,
+        //    // so ignoring any exception is the most reliable for now.
+        //    Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+        //}
+
+```

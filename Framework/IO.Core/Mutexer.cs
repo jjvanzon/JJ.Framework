@@ -7,6 +7,7 @@ namespace JJ.Framework.IO.Core;
 internal static class Mutexer
 {
     private const string MUTEX_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
+    private const string GLOBAL_MUTEX_NAME_WITH_ACL = "Global\\" + MUTEX_NAME + "_WithAcl";
     private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_NAME;
     private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_NAME;
 
@@ -15,45 +16,7 @@ internal static class Mutexer
     private static Mutex InitMutex() 
     {
         Mutex mutex = CreateMutexWithFallback();
-        RegisterReleaseMutexOnExit(mutex);
-        return mutex;
-    }
-
-    private static Mutex CreateMutexForFolder(string folderPath)
-    {
-        string name = GLOBAL_MUTEX_NAME + "_" + FileHelperCore.SanitizeFilePath(folderPath);
-        return CreateMutexWithName(name);
-    }
-
-    private static Mutex CreateMutexWithName(string name)
-    {
-        Mutex? mutex = null;
-
-        //try
-        {
-            if (IsWindows())
-            {
-                MutexSecurity? sec = GetMutexSecurity();
-                if (sec != null)
-                {
-                    mutex = MutexAcl.Create(false, name, out _, sec);
-                }
-            }
-        }
-        // TODO: It's the TrimTests that fail that's the variable that triggers it.
-        //catch (Exception ex)
-        //{ 
-        //    // The platforms/TFM/env/context can almost randomly complain 
-        //    // that MutextSecurity/MutexAcl is not supported.
-        //    // Conditions are near-impossibly to set reliably,
-        //    // so ignoring any exception is the most reliable for now.
-        //    Console.WriteLine($"EXCEPTION IGNORED - {ex}");
-        //}
-
-        mutex ??= new Mutex(false, name);
-            
-        RegisterReleaseMutexOnExit(mutex);
-
+        RegisterMutexReleaseOnExit(mutex);
         return mutex;
     }
 
@@ -74,9 +37,10 @@ internal static class Mutexer
         try
         {
             if (!IsWindows()) return null;
+
             MutexSecurity? sec = GetMutexSecurity();
             if (sec == null) return null;
-            Mutex mutex = MutexAcl.Create(false, GLOBAL_MUTEX_NAME, out _, sec);
+            Mutex mutex = MutexAcl.Create(initiallyOwned: false, GLOBAL_MUTEX_NAME_WITH_ACL, out _, sec);
             return mutex;
 
         }
@@ -91,7 +55,7 @@ internal static class Mutexer
     {
         try
         {
-            return new Mutex(false, GLOBAL_MUTEX_NAME);
+            return new Mutex(initiallyOwned: false, GLOBAL_MUTEX_NAME);
         }
         catch (Exception ex)
         {
@@ -104,7 +68,7 @@ internal static class Mutexer
     {
         try
         {
-            return new Mutex(false, LOCAL_MUTEX_NAME);
+            return new Mutex(initiallyOwned: false, LOCAL_MUTEX_NAME);
         }
         catch (Exception ex)
         {
@@ -113,7 +77,7 @@ internal static class Mutexer
         }
     }
 
-    private static void RegisterReleaseMutexOnExit(Mutex mutex)
+    private static void RegisterMutexReleaseOnExit(Mutex mutex)
     {
         CurrentDomain.ProcessExit += (_, _) =>
         {
@@ -137,33 +101,44 @@ internal static class Mutexer
 
         var securitySettings = new MutexSecurity();
 
-        //try
-        {
-            // Source: https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c
-            // edited by Jeremy Wiebe to add example of setting up security for multi-user usage
-            // edited by 'Marc' to work also on localized systems (don't use just "Everyone") 
-            var allowEveryoneRule = 
-                new MutexAccessRule( 
-                    new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
-                    MutexRights.FullControl, 
-                    AccessControlType.Allow
-                );
-            securitySettings.AddAccessRule(allowEveryoneRule);
-        }
-        // TODO: It's the TrimTests that fail that's the variable that triggers it.
-        //catch (Exception ex)
-        //{
-        //    // Depending on the environment (NCrunch, Visual Studio Build, Azure Pipelines Local Agent)
-        //    // The MutexAccessRule constructor crashes ITSELF by passing a hard-coded null to its own base class.
-        //    // Which TFS base library does this is not entirely sure.
-        //    // This might be a stub framework version or otherwise.
-        //    // First we tried solving it by adding conditions, but edge cases kept surfacing this bug again.
-        //    // So for reliability, we can't can't rely on this succeeding here.
-        //    // So we omit the access rule if this happens.
-        //    Console.WriteLine($"EXCEPTION IGNORED - {ex}");
-        //    return null;
-        //}
+        // Source: https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c
+        // edited by Jeremy Wiebe to add example of setting up security for multi-user usage
+        // edited by 'Marc' to work also on localized systems (don't use just "Everyone") 
+        var allowEveryoneRule = 
+            new MutexAccessRule( 
+                new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
+                MutexRights.FullControl, 
+                AccessControlType.Allow);
+
+        securitySettings.AddAccessRule(allowEveryoneRule);
 
         return securitySettings;
     }
+
+    private static Mutex CreateMutexForFolder(string folderPath)
+    {
+        string name = GLOBAL_MUTEX_NAME + "_" + FileHelperCore.SanitizeFilePath(folderPath);
+        return CreateMutexWithName(name);
+    }
+
+    private static Mutex CreateMutexWithName(string name)
+    {
+        Mutex? mutex = null;
+
+            if (IsWindows())
+            {
+                MutexSecurity? sec = GetMutexSecurity();
+                if (sec != null)
+                {
+                    mutex = MutexAcl.Create(false, name, out _, sec);
+                }
+            }
+
+        mutex ??= new Mutex(false, name);
+            
+        RegisterMutexReleaseOnExit(mutex);
+
+        return mutex;
+    }
+
 }
