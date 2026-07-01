@@ -6,13 +6,27 @@ namespace JJ.Framework.IO.Core;
 
 internal static class Mutexer
 {
-    private const string MUTEX_PREFIX = "Global\\JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25_";
-    public static readonly Mutex NumberedFileMutex = CreateMutex();
+    private const string MUTEX_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
+    private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_NAME;
+    private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_NAME;
 
-    private static Mutex CreateMutex(string? folderPath = "")
+    public static readonly Mutex Mutex = InitMutex();
+
+    private static Mutex InitMutex() 
     {
-        string name = folderPath != null ? MUTEX_PREFIX + FileHelperCore.SanitizeFilePath(folderPath) : MUTEX_PREFIX;
+        Mutex mutex = CreateMutexWithFallback();
+        RegisterReleaseMutexOnExit(mutex);
+        return mutex;
+    }
 
+    private static Mutex CreateMutexForFolder(string folderPath)
+    {
+        string name = GLOBAL_MUTEX_NAME + "_" + FileHelperCore.SanitizeFilePath(folderPath);
+        return CreateMutexWithName(name);
+    }
+
+    private static Mutex CreateMutexWithName(string name)
+    {
         Mutex? mutex = null;
 
         //try
@@ -38,14 +52,75 @@ internal static class Mutexer
 
         mutex ??= new Mutex(false, name);
             
+        RegisterReleaseMutexOnExit(mutex);
+
+        return mutex;
+    }
+
+    private static Mutex CreateMutexWithFallback()
+    {
+        return TryCreateMutex_GlobalWithAcl() ??
+               TryCreateMutex_Global() ??
+               TryCreateMutex_Local() ??
+               throw new Exception(
+                   "Could not create Mutex. " +
+                   "Not with security descriptor 'everone', " +
+                   "not a global one, " +
+                   "nor local (per user).");
+    }
+
+    private static Mutex? TryCreateMutex_GlobalWithAcl()
+    {
+        try
+        {
+            if (!IsWindows()) return null;
+            MutexSecurity? sec = GetMutexSecurity();
+            if (sec == null) return null;
+            Mutex mutex = MutexAcl.Create(false, GLOBAL_MUTEX_NAME, out _, sec);
+            return mutex;
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+            return null;
+        }
+    }
+
+    private static Mutex? TryCreateMutex_Global()
+    {
+        try
+        {
+            return new Mutex(false, GLOBAL_MUTEX_NAME);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+            return null;
+        }
+    }
+
+    private static Mutex? TryCreateMutex_Local()
+    {
+        try
+        {
+            return new Mutex(false, LOCAL_MUTEX_NAME);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+            return null;
+        }
+    }
+
+    private static void RegisterReleaseMutexOnExit(Mutex mutex)
+    {
         CurrentDomain.ProcessExit += (_, _) =>
         {
             try { mutex.ReleaseMutex(); } 
             catch { /* If it didn't get abandoned, ReleaseMutex probably fails.*/ }
             mutex.Dispose();
         };
-
-        return mutex;
     }
 
     /// <summary>

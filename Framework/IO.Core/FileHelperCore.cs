@@ -68,7 +68,7 @@
             lock (_numberedFileLock)
             {
                 //using Mutex mutex = CreateMutex();
-                Mutex mutex = Mutexer.NumberedFileMutex;
+                Mutex mutex = Mutexer.Mutex;
                 try
                 {
                     mutex.WaitOne();
