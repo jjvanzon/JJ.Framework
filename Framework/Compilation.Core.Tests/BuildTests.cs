@@ -83,7 +83,7 @@ public class BuildTests : TestHelper
     [TestMethod]
     public void Test_Build_ErrorCase_WithoutDir() => InEmptyDir(() =>
     {
-        LogNormal("Error = expected");
+        LogNormal("ERROR = EXPECTED");
         LogNormal("");
 
         Exception ex = Throws(() => Build(Opt() with { Dir = "" }));
@@ -98,7 +98,7 @@ public class BuildTests : TestHelper
     [TestMethod]
     public void Test_Build_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
-        LogNormal("Error = expected");
+        LogNormal("ERROR = EXPECTED");
         LogNormal("");
 
         Exception ex = Throws(Build);

@@ -155,7 +155,7 @@ c
     [TestMethod]
     public void Test_Rebuild_ErrorCase_ForgotRestore()
     {
-        LogNormal("Error = expected");
+        LogNormal("ERROR = EXPECTED");
 
         Exception ex = Throws(() => Rebuild(Opt()));
 

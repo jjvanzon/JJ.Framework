@@ -123,7 +123,7 @@ public class MSRebuildTests : TestHelper
     [TestMethod]
     public void Test_MSRebuild_ErrorCase_NoOptions_EmptyDir() => InEmptyDir(() =>
     {
-        LogNormal("Error = expected");
+        LogNormal("ERROR = EXPECTED");
         LogNormal("");
 
         Exception ex = Throws(MSRebuild);

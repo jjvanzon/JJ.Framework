@@ -87,7 +87,7 @@ public class RestoreTests : TestHelper
     [TestMethod]
     public void Test_NoRestore_PainfulException()
     {
-        LogNormal("Error = expected");
+        LogNormal("ERROR = EXPECTED");
         LogNormal("");
 
         var opt = GetOpt() with { AutoRestore = false };

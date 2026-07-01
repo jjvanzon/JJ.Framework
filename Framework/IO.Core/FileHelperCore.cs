@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.AccessControl;
+﻿using System.Security.AccessControl;
 using System.Security.Principal;
-using System.Threading;
-using JJ.Framework.Text.Core;
 using static System.AppDomain;
-using static JJ.Framework.Existence.Core.FilledInHelper;
 
 namespace JJ.Framework.IO.Core
 {
@@ -61,17 +52,29 @@ namespace JJ.Framework.IO.Core
         {
             string name = folderPath != null ? MUTEX_PREFIX + SanitizeFilePath(folderPath) : MUTEX_PREFIX;
 
-            Mutex mutex;
+            Mutex? mutex = null;
 
-            if (IsWindows())
+            try
             {
-                MutexSecurity? sec = GetMutexSecurity();
-                mutex = MutexAcl.Create(false, name, out _, sec);
+                if (IsWindows())
+                {
+                    MutexSecurity? sec = GetMutexSecurity();
+                    if (sec != null)
+                    {
+                        mutex = MutexAcl.Create(false, name, out _, sec);
+                    }
+                }
             }
-            else
-            {
-                mutex = new Mutex(false, name);
+            catch (Exception ex)
+            { 
+                // The platforms/TFM/env/context can almost randomly complain 
+                // that MutextSecurity/MutexAcl is not supported.
+                // Conditions are near-impossibly to set reliably,
+                // so ignoring any exception is the most reliable for now.
+                Console.WriteLine($"EXCEPTION IGNORED - {ex}");
             }
+
+            mutex ??= new Mutex(false, name);
             
             CurrentDomain.ProcessExit += (_, _) =>
             {
@@ -95,18 +98,33 @@ namespace JJ.Framework.IO.Core
         {
             if (!IsWindows()) return null;
 
-            // Source: https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c
-            // edited by Jeremy Wiebe to add example of setting up security for multi-user usage
-            // edited by 'Marc' to work also on localized systems (don't use just "Everyone") 
-            var allowEveryoneRule = 
-                new MutexAccessRule( 
-                    new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
-                    MutexRights.FullControl, 
-                    AccessControlType.Allow
-                );
-            
             var securitySettings = new MutexSecurity();
-            securitySettings.AddAccessRule(allowEveryoneRule);
+
+            try
+            {
+                // Source: https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c
+                // edited by Jeremy Wiebe to add example of setting up security for multi-user usage
+                // edited by 'Marc' to work also on localized systems (don't use just "Everyone") 
+                var allowEveryoneRule = 
+                    new MutexAccessRule( 
+                        new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
+                        MutexRights.FullControl, 
+                        AccessControlType.Allow
+                    );
+                securitySettings.AddAccessRule(allowEveryoneRule);
+            }
+            catch (Exception ex)
+            {
+                // Depending on the environment (NCrunch, Visual Studio Build, Azure Pipelines Local Agent)
+                // The MutexAccessRule constructor crashes ITSELF by passing a hard-coded null to its own base class.
+                // Which TFS base library does this is not entirely sure.
+                // This might be a stub framework version or otherwise.
+                // First we tried solving it by adding conditions, but edge cases kept surfacing this bug again.
+                // So for reliability, we can't can't rely on this succeeding here.
+                // So we omit the access rule if this happens.
+                Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+                return null;
+            }
 
             return securitySettings;
         }
