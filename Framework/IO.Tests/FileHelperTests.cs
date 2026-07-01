@@ -36,14 +36,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ClearFolder_FolderPath()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             Test_FileFunctions_ClearFolder(folderPath, () => FileHelper.ClearFolder(folderPath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_ClearFolder_DirectoryInfo()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             Test_FileFunctions_ClearFolder(folderPath, () => FileHelper.ClearFolder(directory));
         }
@@ -101,14 +101,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ClearFolderRecursive_Path()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             Test_FileFunctions_ClearFolderRecursive(folderPath, () => FileHelper.ClearFolderRecursive(folderPath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_ClearFolderRecursive_DirectoryInfo()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             Test_FileFunctions_ClearFolderRecursive(folderPath, () => FileHelper.ClearFolderRecursive(directory));
         }
@@ -123,7 +123,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsFolder_True_Existing()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             try
             {
                 Directory.CreateDirectory(folderPath);
@@ -138,14 +138,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsFolder_True_NonExistent()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             AssertHelper.IsTrue(() => FileHelper.IsFolder(folderPath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_IsFolder_True_LooksLikeFile_Existent()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 Directory.CreateDirectory(filePath);
@@ -161,7 +161,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsFolder_False_ClearlyLooksLikeFile_NonExistent()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
 
             AssertHelper.IsFalse(() => FileHelper.IsFolder(filePath));
         }
@@ -170,7 +170,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsFolder_False_HasPeriodButClearlyNotFile()
         {
-            string path = Path.Combine(TestHelper.GenerateFolderName(), "JJ.Framework.IO");
+            string path = Path.Combine(TestHelper.GenerateFolderPath(), "JJ.Framework.IO");
 
             AssertHelper.IsFalse(() => FileHelper.IsFolder(path));
         }
@@ -180,7 +180,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsFile_True_Existing()
         {
-            string fileName = TestHelper.GenerateFileName();
+            string fileName = TestHelper.GenerateFilePath();
             try
             {
                 File.Create(fileName).Close();
@@ -196,14 +196,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsFile_True_NonExistent()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             AssertHelper.IsTrue(() => FileHelper.IsFile(filePath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_IsFile_True_LooksLikeFolder_Existing()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             string obscurePath = Path.Combine(folderPath, "temp");
             try
             {
@@ -220,7 +220,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsFile_False_LooksLikeFolder_NonExistent()
         {
-            string path = Path.Combine(TestHelper.GenerateFolderName(), "temp");
+            string path = Path.Combine(TestHelper.GenerateFolderPath(), "temp");
             AssertHelper.IsFalse(() => FileHelper.IsFile(path));
         }
 
@@ -258,14 +258,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_GetFolderSize_Path()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             Test_FileFunctions_GetFolderSize(folderPath, () => FileHelper.GetFolderSize(folderPath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_GetFolderSize_DirectoryInfo()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             Test_FileFunctions_GetFolderSize(folderPath, () => FileHelper.GetFolderSize(folderPath));
         }
 
@@ -313,14 +313,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_GetFolderSizeRecursive_Path()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             Test_FileFunctions_GetFolderSizeRecursive(folderPath, () => FileHelper.GetFolderSizeRecursive(folderPath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_GetFolderSizeRecursive_DirectoryInfo()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             Test_FileFunctions_GetFolderSizeRecursive(folderPath, () => FileHelper.GetFolderSizeRecursive(directory));
         }
@@ -369,7 +369,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_CountFilesRecursive_Path()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
 
             Test_FileFunctions_CountFilesRecursive(folderPath, () => FileHelper.CountFilesRecursive(folderPath));
         }
@@ -377,7 +377,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_CountFilesRecursive_DirectoryInfo()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             Test_FileFunctions_CountFilesRecursive(folderPath, () => FileHelper.CountFilesRecursive(directory));
         }
@@ -411,14 +411,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_FolderIsEmpty_Path()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             Test_FileFunctions_FolderIsEmpty(folderPath, () => FileHelper.FolderIsEmpty(folderPath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_FolderIsEmpty_DirectoryInfo()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             Test_FileFunctions_FolderIsEmpty(folderPath, () => FileHelper.FolderIsEmpty(directory));
         }
@@ -448,7 +448,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_HideFile_ShowFile_Path()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             Test_FileFunctions_HideFile_ShowFile(
                 filePath,
                 () => FileHelper.HideFile(filePath),
@@ -458,7 +458,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_HideFile_ShowFile_FileInfo()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             var fileInfo = new FileInfo(filePath);
             Test_FileFunctions_HideFile_ShowFile(
                 filePath,
@@ -493,14 +493,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsHidden_Path()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             Test_FileFunctions_IsHidden(filePath, () => FileHelper.IsHidden(filePath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_IsHidden_FileInfo()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             Test_FileFunctions_IsHidden(filePath, () => FileHelper.IsHidden(new FileInfo(filePath)));
         }
 
@@ -531,7 +531,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_MakeReadOnly_MakeWritable_Path()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             Test_FileFunctions_MakeReadOnly_MakeWritable(
                 filePath,
                 () => FileHelper.MakeReadOnly(filePath),
@@ -541,7 +541,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_MakeReadOnly_MakeWritable_FilePath()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             var file = new FileInfo(filePath);
             Test_FileFunctions_MakeReadOnly_MakeWritable(
                 filePath,
@@ -579,14 +579,14 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_IsReadOnly_Path()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             Test_FileFunctions_IsReadOnly(filePath, () => FileHelper.IsReadOnly(filePath));
         }
 
         [TestMethod]
         public void Test_FileFunctions_IsReadOnly_FileInfo()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             Test_FileFunctions_IsReadOnly(filePath, () => FileHelper.IsReadOnly(new FileInfo(filePath)));
         }
 
@@ -595,7 +595,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllText_OriginalRequiresWriteAccess()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 File.Create(filePath).Close();
@@ -613,7 +613,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllText_RequireWriteAccess_False()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 File.Create(filePath).Close();
@@ -631,7 +631,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllText_RequireWriteAccess_True()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 File.Create(filePath).Close();
@@ -650,7 +650,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllText_RequireWriteAccess_Default_True()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 File.Create(filePath).Close();
@@ -670,7 +670,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllLines_OriginalRequiresWriteAccess()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 string[] lines = { "Line 1", "Line 2" };
@@ -690,7 +690,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllLines_RequireWriteAccess_False()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 string[] lines = { "Line 1", "Line 2" };
@@ -710,7 +710,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllLines_RequireWriteAccess_True()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 string[] lines = { "Line 1", "Line 2" };
@@ -730,7 +730,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ReadAllLines_RequireWriteAccess_Default_True()
         {
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
             try
             {
                 string[] lines = { "Line 1", "Line 2" };
@@ -794,7 +794,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileFunctions_ConditionViolations_NotExists()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
 
             Action[] folderPathActions = {
                 () => FileHelper.ClearFolder(folderPath),
@@ -811,7 +811,7 @@ namespace JJ.Framework.IO.Tests
                     $"Folder '{folderPath}' does not exist.");
             }
 
-            string filePath = TestHelper.GenerateFileName();
+            string filePath = TestHelper.GenerateFilePath();
 
             Action[] filePathActions = {
                 () => FileHelper.HideFile(filePath),

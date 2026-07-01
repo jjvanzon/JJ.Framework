@@ -1,10 +1,16 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.IO.Tests
+namespace JJ.Framework.IO.Tests;
+
+internal static class TestHelper
 {
-    internal static class TestHelper
+    public static string GenerateFolderPath([CallerMemberName] string name = "")
     {
-        public static string GenerateFolderName([CallerMemberName] string name = "") => $"{name}_{Path.GetRandomFileName().Replace(".", "")}";
-        public static string GenerateFileName([CallerMemberName] string name = "") => $"{name}_{Path.GetRandomFileName().Replace(".", "")}.txt";
+        return Path.Combine(Path.GetTempPath(), $"{name}_{Path.GetRandomFileName().Replace(".", "")}");
+    }
+
+    public static string GenerateFilePath([CallerMemberName] string name = "")
+    {
+        return Path.Combine(Path.GetTempPath(), $"{name}_{Path.GetRandomFileName().Replace(".", "")}.txt");
     }
 }

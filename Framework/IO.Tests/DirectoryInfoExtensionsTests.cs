@@ -12,7 +12,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_DirectoryInfoExtensions_Clear()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             _base.Test_FileFunctions_ClearFolder(folderPath, () => directory.Clear());
         }
@@ -20,7 +20,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_DirectoryInfoExtensions_ClearRecursive()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             _base.Test_FileFunctions_ClearFolderRecursive(folderPath, () => directory.ClearRecursive());
         }
@@ -28,7 +28,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_DirectoryInfoExtensions_GetSize()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             _base.Test_FileFunctions_GetFolderSize(folderPath, () => directory.GetSize());
         }
@@ -36,7 +36,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_DirectoryInfoExtensions_GetSizeRecursive()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             _base.Test_FileFunctions_GetFolderSizeRecursive(folderPath, () => directory.GetSizeRecursive());
         }
@@ -44,7 +44,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_DirectoryInfoExtensions_CountFilesRecursive()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directory = new DirectoryInfo(folderPath);
             _base.Test_FileFunctions_CountFilesRecursive(folderPath, () => directory.CountFilesRecursive());
         }
@@ -52,7 +52,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_DirectoryInfoExtensions_IsEmpty()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             var directoryInfo = new DirectoryInfo(folderPath);
             _base.Test_FileFunctions_FolderIsEmpty(folderPath, () => directoryInfo.IsEmpty());
         }

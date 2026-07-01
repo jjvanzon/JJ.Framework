@@ -23,7 +23,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ConditionViolation_FileExistsFalse()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
 
             if (File.Exists(tempFilePath)) File.Delete(tempFilePath);
 
@@ -35,7 +35,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_Construct_WithNoLock()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -55,7 +55,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_Construct_WithReadLock()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -78,7 +78,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_Construct_WithWriteLock()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -104,7 +104,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ChangeLock_NoneToRead()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -129,7 +129,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ChangeLock_NoneToWrite()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -154,7 +154,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ChangeLock_ReadToNone()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -179,7 +179,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ChangeLock_ReadToWrite()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -204,7 +204,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ChangeLock_WriteToNone()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -229,7 +229,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ChangeLock_WriteToRead()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -254,7 +254,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_ChangeLock()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -311,7 +311,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_FileLockException_Read_UponConstruction()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -336,7 +336,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_FileLockException_Write_UponConstruction()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -361,7 +361,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_FileLockException_Read_UponLockPromotion()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -386,7 +386,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_FileLockException_Write_UponLockPromotion()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -411,7 +411,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_Stream_Write()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -430,7 +430,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_Stream_Read()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -453,7 +453,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_Disposal()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -485,7 +485,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_Constructor_WithFileInfo()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -510,7 +510,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_DetermineLock()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
             try
             {
                 CreateTempFile(tempFilePath);
@@ -551,7 +551,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_DetermineLock_ConditionViolation_FileExistsFalse()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
 
             if (File.Exists(tempFilePath)) File.Delete(tempFilePath);
 
@@ -563,7 +563,7 @@ namespace JJ.Framework.IO.Tests
         [TestMethod]
         public void Test_FileLock_SwitchingLockRetainsStreamPosition()
         {
-            string tempFilePath = TestHelper.GenerateFileName();
+            string tempFilePath = TestHelper.GenerateFilePath();
 
             try
             {
