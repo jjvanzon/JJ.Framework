@@ -160,33 +160,5 @@ namespace JJ.Framework.IO.Core.Tests
                 if (Directory.Exists(folderPath)) Directory.Delete(folderPath, recursive: true);
             }
         }
-
-        // Not permitted in Azure Pipelines Local Agent
-        /*
-        [TestMethod]
-        public void Test_FileHelper_GetNumberedFilePath_InRoot()
-        {
-            string guid = Guid.NewGuid().ToString();
-            string baseFilePath = @"C:\" + guid + ".txt";
-            if (File.Exists(baseFilePath)) File.Delete(baseFilePath);
-
-            string expectedFilePath1 = baseFilePath;
-            string actualFilePath1 = GetNumberedFilePath(baseFilePath);
-            AreEqual(expectedFilePath1, actualFilePath1);
-
-            try
-            {
-                File.Create(actualFilePath1).Close();
-
-                string expectedFilePath2 = @"C:\" + guid + " (2).txt";
-                string actualFilePath2 = GetNumberedFilePath(baseFilePath);
-                AreEqual(expectedFilePath2, actualFilePath2);
-            }
-            finally
-            {
-                if (File.Exists(actualFilePath1)) File.Delete(actualFilePath1);
-            }
-        }
-        */
     }
 }
