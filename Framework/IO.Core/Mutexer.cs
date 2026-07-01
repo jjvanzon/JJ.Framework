@@ -10,10 +10,10 @@ namespace JJ.Framework.IO.Core;
 
 internal static class Mutexer
 {
-    private const string MUTEX_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
-    private const string GLOBAL_MUTEX_NAME_WITH_ACL = "Global\\" + MUTEX_NAME + "_WithAcl";
-    private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_NAME;
-    private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_NAME;
+    private const string MUTEX_BASE_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
+    private const string GLOBAL_MUTEX_NAME_WITH_ACL = "Global\\" + MUTEX_BASE_NAME + "_WithAcl";
+    private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_BASE_NAME;
+    private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_BASE_NAME;
 
     public static readonly Mutex Mutex = CreateMutexLocal();
 
