@@ -160,6 +160,8 @@ namespace JJ.Framework.IO.Core.Tests
             }
         }
 
+        // Not permitted in Azure Pipelines Local Agent
+        /*
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_InRoot()
         {
@@ -184,5 +186,6 @@ namespace JJ.Framework.IO.Core.Tests
                 if (File.Exists(actualFilePath1)) File.Delete(actualFilePath1);
             }
         }
+        */
     }
 }
