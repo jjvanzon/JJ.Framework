@@ -20,7 +20,7 @@ namespace JJ.Framework.IO.Core.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNotNumbered()
         {
-            string baseFilePath = TestHelper.GenerateFileName();
+            string baseFilePath = TestHelper.GenerateFilePath();
             string filePath = GetNumberedFilePath(baseFilePath);
             AreEqual(baseFilePath, filePath);
         }
@@ -28,7 +28,7 @@ namespace JJ.Framework.IO.Core.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNumbered()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
 
             try
@@ -49,7 +49,7 @@ namespace JJ.Framework.IO.Core.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNotNumbered_TwoFiles()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
 
             try
@@ -75,7 +75,7 @@ namespace JJ.Framework.IO.Core.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_FirstFileNumbered_TwoFiles()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
 
             try
@@ -101,7 +101,7 @@ namespace JJ.Framework.IO.Core.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_AlternativeNumberFormat()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
             string expectedNumberedFilePath = Path.Combine(folderPath, "temp_001.txt");
             string numberedFilePath = GetNumberedFilePath(baseFilePath, "_", "000", "", mustNumberFirstFile: true);
@@ -111,7 +111,7 @@ namespace JJ.Framework.IO.Core.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_Try12Files()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
             string baseFilePath = Path.Combine(folderPath, "temp.txt");
             const int fileCount = 12;
 
@@ -134,7 +134,7 @@ namespace JJ.Framework.IO.Core.Tests
         [TestMethod]
         public void Test_FileFunctions_GetNumberedFilePath_RelativePath()
         {
-            string folderPath = TestHelper.GenerateFolderName();
+            string folderPath = TestHelper.GenerateFolderPath();
 
             string originalCurrentDirectory = CurrentDirectory;
             try

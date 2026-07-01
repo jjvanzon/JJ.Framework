@@ -29,6 +29,7 @@
     <File Path="Framework/BuildNum.xml" />
     <File Path="Framework/Directory.Build.props" />
     <File Path="Framework/Package.xml" />
+    <File Path="Framework/Publish.xml" />
     <File Path="Framework/TargetFrameworks.xml" />
     <File Path="Framework/TrimTest.xml" />
     <File Path="Framework/Vars.xml" />
