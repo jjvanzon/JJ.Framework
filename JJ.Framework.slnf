@@ -36,6 +36,8 @@
       "Framework\\Existence.Core.TrimTests.Values\\JJ.Framework.Existence.Core.TrimTests.Values.csproj",
       "Framework\\Existence.Core.TrimTests\\JJ.Framework.Existence.Core.TrimTests.csproj",
       "Framework\\Existence.Core\\JJ.Framework.Existence.Core.csproj",
+      "Framework\\IO.Core.Tests\\JJ.Framework.IO.Core.Tests.csproj",
+      "Framework\\IO.Core.TrimTests\\JJ.Framework.IO.Core.TrimTests.csproj",
       "Framework\\IO.Core\\JJ.Framework.IO.Core.csproj",
       "Framework\\IO.TrimTests\\JJ.Framework.IO.Legacy.TrimTests.csproj",
       "Framework\\JJ.Framework.Business.Tests\\JJ.Framework.Business.Legacy.Tests.csproj",
