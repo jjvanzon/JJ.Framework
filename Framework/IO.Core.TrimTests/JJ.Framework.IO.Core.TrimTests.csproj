@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Version>3.9.$(BuildNum)</Version>
@@ -16,6 +16,10 @@
     <ProjectReference Include="..\IO.Core\JJ.Framework.IO.Core.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
