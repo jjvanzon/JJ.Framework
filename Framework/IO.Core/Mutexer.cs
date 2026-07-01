@@ -1,7 +1,10 @@
-﻿using System.Security.AccessControl;
+﻿#pragma warning disable IDE0051
+
+// ReSharper disable InlineTemporaryVariable
+
+using System.Security.AccessControl;
 using System.Security.Principal;
 using static System.AppDomain;
-#pragma warning disable IDE0051
 
 namespace JJ.Framework.IO.Core;
 
@@ -13,13 +16,6 @@ internal static class Mutexer
     private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_NAME;
 
     public static readonly Mutex Mutex = CreateMutexLocal();
-
-    //private static Mutex InitMutex() 
-    //{
-    //    Mutex mutex = CreateMutexWithFallback();
-    //    RegisterMutexReleaseOnExit(mutex);
-    //    return mutex;
-    //}
 
     private static Mutex CreateMutexWithFallback()
     {
@@ -37,14 +33,7 @@ internal static class Mutexer
     {
         try
         {
-            if (!IsWindows()) return null;
-
-            MutexSecurity? sec = GetMutexSecurity();
-            if (sec == null) return null;
-            Mutex mutex = MutexAcl.Create(initiallyOwned: false, GLOBAL_MUTEX_NAME_WITH_ACL, out _, sec);
-            RegisterMutexReleaseOnExit(mutex);
-            return mutex;
-
+            return CreateMutexGlobalWithAcl();
         }
         catch (Exception ex)
         {
@@ -53,19 +42,35 @@ internal static class Mutexer
         }
     }
 
+    private static Mutex? CreateMutexGlobalWithAcl()
+    {
+        if (!IsWindows()) return null;
+
+        MutexSecurity? sec = GetMutexSecurity();
+        if (sec == null) return null;
+        Mutex mutex = MutexAcl.Create(initiallyOwned: false, GLOBAL_MUTEX_NAME_WITH_ACL, out _, sec);
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
+    }
+
     private static Mutex? TryCreateMutex_Global()
     {
         try
         {
-            var mutex = new Mutex(initiallyOwned: false, GLOBAL_MUTEX_NAME);
-            RegisterMutexReleaseOnExit(mutex);
-            return mutex;
+            return CreateMutexGlobal();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"EXCEPTION IGNORED - {ex}");
             return null;
         }
+    }
+
+    private static Mutex? CreateMutexGlobal()
+    {
+        var mutex = new Mutex(initiallyOwned: false, GLOBAL_MUTEX_NAME);
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
     }
 
     private static Mutex? TryCreateMutex_Local()
@@ -83,9 +88,22 @@ internal static class Mutexer
 
     private static Mutex CreateMutexLocal()
     {
-        var mutex = new Mutex(initiallyOwned: false, LOCAL_MUTEX_NAME);
-        RegisterMutexReleaseOnExit(mutex);
-        return mutex;
+        const string name = LOCAL_MUTEX_NAME;
+        try
+        {
+            var mutex = new Mutex(initiallyOwned: false, name);
+            RegisterMutexReleaseOnExit(mutex);
+            return mutex;
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            if (Mutex.TryOpenExisting(name, out Mutex? existingMutex))
+            {
+                return existingMutex;
+            }
+
+            throw new Exception("Both new Mutex and Mutex.TryOpenExisting failed.", ex);
+        }
     }
 
     private static void RegisterMutexReleaseOnExit(Mutex mutex)
@@ -136,14 +154,14 @@ internal static class Mutexer
     {
         Mutex? mutex = null;
 
-            if (IsWindows())
+        if (IsWindows())
+        {
+            MutexSecurity? sec = GetMutexSecurity();
+            if (sec != null)
             {
-                MutexSecurity? sec = GetMutexSecurity();
-                if (sec != null)
-                {
-                    mutex = MutexAcl.Create(false, name, out _, sec);
-                }
+                mutex = MutexAcl.Create(false, name, out _, sec);
             }
+        }
 
         mutex ??= new Mutex(false, name);
             

@@ -137,17 +137,29 @@ Mutex handling excess code:
 
 // From CreateMutexWithName:
 
-        //try
+        try
         {
         }
         // TODO: It's the TrimTests that fail that's the variable that triggers it?
-        //catch (Exception ex)
-        //{ 
-        //    // The platforms/TFM/env/context can almost randomly complain 
-        //    // that MutextSecurity/MutexAcl is not supported.
-        //    // Conditions are near-impossibly to set reliably,
-        //    // so ignoring any exception is the most reliable for now.
-        //    Console.WriteLine($"EXCEPTION IGNORED - {ex}");
-        //}
+        catch (Exception ex)
+        { 
+            // The platforms/TFM/env/context can almost randomly complain 
+            // that MutextSecurity/MutexAcl is not supported.
+            // Conditions are near-impossibly to set reliably,
+            // so ignoring any exception is the most reliable for now.
+            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+        }
+
+```
+
+```cs
+
+
+    private static Mutex InitMutex() 
+    {
+        Mutex mutex = CreateMutexWithFallback();
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
+    }
 
 ```
