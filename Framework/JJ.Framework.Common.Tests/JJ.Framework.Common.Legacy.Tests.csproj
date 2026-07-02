@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.256.$(BuildNum)</Version>
+    <Version>0.257.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
