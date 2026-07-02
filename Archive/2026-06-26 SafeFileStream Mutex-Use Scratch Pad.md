@@ -163,3 +163,15 @@ Mutex handling excess code:
     }
 
 ```
+
+```cs
+
+
+    private static Mutex CreateMutex_ByName_Old(string name)
+    {
+        var mutex = new Mutex(initiallyOwned: false, name);
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
+    }
+
+```

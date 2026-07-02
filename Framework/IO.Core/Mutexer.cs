@@ -3,17 +3,19 @@
 
 using System.Security.AccessControl;
 using System.Security.Principal;
+using static System.Security.AccessControl.AccessControlType;
+using static System.Security.AccessControl.MutexRights;
 using static System.AppDomain;
 
 namespace JJ.Framework.IO.Core;
 
 internal static class Mutexer
 {
-    private const string MUTEX_BASE_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
-    private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_BASE_NAME;
-    private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_BASE_NAME;
-    private const string LOCAL_MUTEX_NAME_WITH_ACL = "Local\\" + MUTEX_BASE_NAME + "_WithAcl";
-    private const string GLOBAL_MUTEX_NAME_WITH_ACL = "Global\\" + MUTEX_BASE_NAME + "_WithAcl";
+    private const string MUTEX_BASE_NAME            = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
+    private const string MUTEX_NAME_LOCAL           = "Local\\"  + MUTEX_BASE_NAME;
+    private const string MUTEX_NAME_LOCAL_WITH_ACL  = "Local\\"  + MUTEX_BASE_NAME + "_WithAcl";
+    private const string MUTEX_NAME_GLOBAL          = "Global\\" + MUTEX_BASE_NAME;
+    private const string MUTEX_NAME_GLOBAL_WITH_ACL = "Global\\" + MUTEX_BASE_NAME + "_WithAcl";
 
     //public static readonly Mutex Mutex = CreateMutex_Local();
     public static readonly Mutex Mutex = TryCreateMutex_LocalWithAcl() ?? CreateMutex_Local();
@@ -31,13 +33,20 @@ internal static class Mutexer
                "not a global one, " +
                "nor local (per user).");
 
-    private static Mutex? TryCreateMutex_GlobalWithAcl()
+    private static Mutex? TryCreateMutex_GlobalWithAcl() => TryCreateMutex_ByNameWithAcl(MUTEX_NAME_GLOBAL_WITH_ACL);
+    private static Mutex     CreateMutex_GlobalWithAcl() =>    CreateMutex_ByNameWithAcl(MUTEX_NAME_GLOBAL_WITH_ACL);
+    private static Mutex? TryCreateMutex_LocalWithAcl () => TryCreateMutex_ByNameWithAcl(MUTEX_NAME_LOCAL_WITH_ACL );
+    private static Mutex     CreateMutex_LocalWithAcl () =>    CreateMutex_ByNameWithAcl(MUTEX_NAME_LOCAL_WITH_ACL );
+    private static Mutex? TryCreateMutex_Global       () => TryCreateMutex_ByName       (MUTEX_NAME_GLOBAL         );
+    private static Mutex     CreateMutex_Global       () =>    CreateMutex_ByName       (MUTEX_NAME_GLOBAL         );
+    private static Mutex? TryCreateMutex_Local        () => TryCreateMutex_ByName       (MUTEX_NAME_LOCAL          );
+    private static Mutex     CreateMutex_Local        () =>    CreateMutex_ByName       (MUTEX_NAME_LOCAL          );
+    
+    private static Mutex? TryCreateMutex_ByName(string name)
     {
-        if (!IsWindows()) return null;
-
         try
         {
-            return CreateMutex_GlobalWithAcl();
+            return CreateMutex_ByName(name);
         }
         catch (Exception ex)
         {
@@ -46,75 +55,8 @@ internal static class Mutexer
         }
     }
 
-    private static Mutex CreateMutex_GlobalWithAcl()
+    private static Mutex CreateMutex_ByName(string name)
     {
-        if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
-        MutexSecurity sec = GetMutexSecurity();
-        Mutex mutex = MutexAcl.Create(initiallyOwned: false, GLOBAL_MUTEX_NAME_WITH_ACL, out _, sec);
-        RegisterMutexReleaseOnExit(mutex);
-        return mutex;
-    }
-
-    private static Mutex? TryCreateMutex_LocalWithAcl()
-    {
-        if (!IsWindows()) return null;
-
-        try
-        {
-            return CreateMutex_LocalWithAcl();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
-            return null;
-        }
-    }
-
-    private static Mutex CreateMutex_LocalWithAcl()
-    {
-        if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
-        MutexSecurity sec = GetMutexSecurity();
-        Mutex mutex = MutexAcl.Create(initiallyOwned: false, LOCAL_MUTEX_NAME_WITH_ACL, out _, sec);
-        RegisterMutexReleaseOnExit(mutex);
-        return mutex;
-    }
-
-    private static Mutex? TryCreateMutex_Global()
-    {
-        try
-        {
-            return CreateMutex_Global();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
-            return null;
-        }
-    }
-
-    private static Mutex CreateMutex_Global()
-    {
-        var mutex = new Mutex(initiallyOwned: false, GLOBAL_MUTEX_NAME);
-        RegisterMutexReleaseOnExit(mutex);
-        return mutex;
-    }
-
-    private static Mutex? TryCreateMutex_Local()
-    {
-        try
-        {
-            return CreateMutex_Local();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
-            return null;
-        }
-    }
-
-    private static Mutex CreateMutex_Local()
-    {
-        const string name = LOCAL_MUTEX_NAME;
         try
         {
             // In Azure DevOps, this can create the Mutex with full rights the first time,
@@ -135,14 +77,28 @@ internal static class Mutexer
         }
     }
 
-    private static void RegisterMutexReleaseOnExit(Mutex mutex)
+    private static Mutex? TryCreateMutex_ByNameWithAcl(string name)
     {
-        CurrentDomain.ProcessExit += (_, _) =>
+        if (!IsWindows()) return null;
+
+        try
         {
-            try { mutex.ReleaseMutex(); } 
-            catch { /* If it didn't get abandoned, ReleaseMutex probably fails.*/ }
-            mutex.Dispose();
-        };
+            return CreateMutex_ByNameWithAcl(name);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+            return null;
+        }
+    }
+
+    private static Mutex CreateMutex_ByNameWithAcl(string name)
+    {
+        if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
+        MutexSecurity sec = GetMutexSecurity();
+        Mutex mutex = MutexAcl.Create(initiallyOwned: false, name, out _, sec);
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
     }
 
     /// <summary>
@@ -165,21 +121,41 @@ internal static class Mutexer
         var allowEveryoneRule = 
             new MutexAccessRule( 
                 new SecurityIdentifier(WellKnownSidType.WorldSid, null), 
-                MutexRights.FullControl, 
-                AccessControlType.Allow);
+                FullControl, 
+                Allow);
 
         securitySettings.AddAccessRule(allowEveryoneRule);
 
         return securitySettings;
     }
 
-    private static Mutex CreateMutexForFolder(string folderPath)
+    
+    private static void RegisterMutexReleaseOnExit(Mutex mutex)
     {
-        string name = GLOBAL_MUTEX_NAME + "_" + FileHelperCore.SanitizeFilePath(folderPath);
-        return CreateMutexWithName(name);
+        CurrentDomain.ProcessExit += (_, _) =>
+        {
+            try { mutex.ReleaseMutex(); } 
+            catch { /* If it didn't get abandoned, ReleaseMutex probably fails.*/ }
+            mutex.Dispose();
+        };
     }
 
-    private static Mutex CreateMutexWithName(string name)
+    // Currently out of favor:
+
+    private static Mutex CreateMutex_ByName_Old(string name)
+    {
+        var mutex = new Mutex(initiallyOwned: false, name);
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
+    }
+
+    private static Mutex CreateMutexForFolder(string folderPath)
+    {
+        string name = MUTEX_NAME_GLOBAL + "_" + FileHelperCore.SanitizeFilePath(folderPath);
+        return CreateMutex_ByName_Older(name);
+    }
+
+    private static Mutex CreateMutex_ByName_Older(string name)
     {
         Mutex? mutex = null;
 
