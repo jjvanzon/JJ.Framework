@@ -26,6 +26,16 @@ Release Notes
 - Bug fix: `CsvReader` solved crash over trailing new line
 
 
+#### `2026-07-02` | `0.257`/`4.9` : __StreamHelperLegacy Move__
+
+- Move `StreamHelperLegacy` from `.Core` variant of project to `.Legacy` variant
+- Port their tests from `legacy` branch to `main`
+- Tighten nullability checks.
+- Related changes to [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core):
+- Share `NumberedFilePath`/`SafeFileStream` `Tests` back and forth between `legacy` and `main`.
+- `Mutex` `UnauthorizedAccess` fixes for Azure Pipelines after introducing more tests.
+
+
 💬 Feedback
 ============
 

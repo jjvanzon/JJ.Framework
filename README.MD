@@ -269,7 +269,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 *+ Related Fixes*
 
 - [`JJ.Framework.Mathematics.Legacy`](https://www.nuget.org/packages/JJ.Framework.Mathematics.Legacy)
-- Moved `RandomizerLegacy` class from .Core variant of project to .Legacy project.
+- Moved `RandomizerLegacy` class from `.Core` variant of project to `.Legacy` project.
 - Fully tested and now release as part of the .Legacy lib.
 - Expanded for coherence. And ported back to 2021 legacy branch.
 - (RandomizerLegacy is a 2021 version. Legacy projects contain code from 2015; Core projects code from 2025. Code from 2021 is somewhere in the middle. It made more sense to move those from .Core to .Legacy since the workflow around Legacy code is so much different than Core, that it makes more architectural sense to group them.)
@@ -291,12 +291,12 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 #### `2026-07-02` | `4.9`/`0.257` : __StreamHelperLegacy Move__
 
 - [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
-- Move `StreamHelperLegacy` from .Core variant of project to .Legacy variant
+- Move `StreamHelperLegacy` from `.Core` variant of project to `.Legacy` variant
 - Port their tests from `legacy` branch to `main`
 - Tighten nullability checks.
 - [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
 - Share `NumberedFilePath`/`SafeFileStream` `Tests` back and forth between `legacy` and `main`.
-- `Mutex` UnauthorizedAccess fixes for Azure Pipelines triggered after introducing more tests.
+- `Mutex` `UnauthorizedAccess` fixes for Azure Pipelines after introducing more tests.
 
 
 
