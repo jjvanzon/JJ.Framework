@@ -11,42 +11,26 @@ namespace JJ.Framework.IO.Core;
 
 internal static class Mutexer
 {
-    private const string MUTEX_BASE_NAME            = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
-    private const string MUTEX_NAME_LOCAL           = "Local\\"  + MUTEX_BASE_NAME;
-    private const string MUTEX_NAME_LOCAL_WITH_ACL  = "Local\\"  + MUTEX_BASE_NAME + "_WithAcl";
-    private const string MUTEX_NAME_GLOBAL          = "Global\\" + MUTEX_BASE_NAME;
-    private const string MUTEX_NAME_GLOBAL_WITH_ACL = "Global\\" + MUTEX_BASE_NAME + "_WithAcl";
-
-    //public static readonly Mutex Mutex = CreateMutex_Local();
+    private const string MUTEX_BASE_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
     public static readonly Mutex Mutex = TryCreateMutex_LocalWithAcl() ?? CreateMutex_Local();
 
     // NOTE: Most of these variants are unused, but keep them for now 
     // as they might be required when things get rough again.
 
-    private static Mutex CreateMutexWithFallback() 
-        => TryCreateMutex_GlobalWithAcl() ??
-           TryCreateMutex_Global() ??
-           TryCreateMutex_Local() ??
-           throw new Exception(
-               "Could not create Mutex. " +
-               "Not with security descriptor 'everone', " +
-               "not a global one, " +
-               "nor local (per user).");
-
-    private static Mutex? TryCreateMutex_GlobalWithAcl() => TryCreateMutex_ByNameWithAcl(MUTEX_NAME_GLOBAL_WITH_ACL);
-    private static Mutex     CreateMutex_GlobalWithAcl() =>    CreateMutex_ByNameWithAcl(MUTEX_NAME_GLOBAL_WITH_ACL);
-    private static Mutex? TryCreateMutex_LocalWithAcl () => TryCreateMutex_ByNameWithAcl(MUTEX_NAME_LOCAL_WITH_ACL );
-    private static Mutex     CreateMutex_LocalWithAcl () =>    CreateMutex_ByNameWithAcl(MUTEX_NAME_LOCAL_WITH_ACL );
-    private static Mutex? TryCreateMutex_Global       () => TryCreateMutex_ByName       (MUTEX_NAME_GLOBAL         );
-    private static Mutex     CreateMutex_Global       () =>    CreateMutex_ByName       (MUTEX_NAME_GLOBAL         );
-    private static Mutex? TryCreateMutex_Local        () => TryCreateMutex_ByName       (MUTEX_NAME_LOCAL          );
-    private static Mutex     CreateMutex_Local        () =>    CreateMutex_ByName       (MUTEX_NAME_LOCAL          );
+    private static Mutex? TryCreateMutex_GlobalWithAcl() => TryCreateMutex_WithAcl("Global\\" + MUTEX_BASE_NAME + "_WithAcl");
+    private static Mutex     CreateMutex_GlobalWithAcl() =>    CreateMutex_WithAcl("Global\\" + MUTEX_BASE_NAME + "_WithAcl");
+    private static Mutex? TryCreateMutex_LocalWithAcl () => TryCreateMutex_WithAcl("Local\\"  + MUTEX_BASE_NAME + "_WithAcl");
+    private static Mutex     CreateMutex_LocalWithAcl () =>    CreateMutex_WithAcl("Local\\"  + MUTEX_BASE_NAME + "_WithAcl");
+    private static Mutex? TryCreateMutex_Global       () => TryCreateMutex        ("Global\\" + MUTEX_BASE_NAME             );
+    private static Mutex     CreateMutex_Global       () =>    CreateMutex        ("Global\\" + MUTEX_BASE_NAME             );
+    private static Mutex? TryCreateMutex_Local        () => TryCreateMutex        ("Local\\"  + MUTEX_BASE_NAME             );
+    private static Mutex     CreateMutex_Local        () =>    CreateMutex        ("Local\\"  + MUTEX_BASE_NAME             );
     
-    private static Mutex? TryCreateMutex_ByName(string name)
+    private static Mutex? TryCreateMutex(string name)
     {
         try
         {
-            return CreateMutex_ByName(name);
+            return CreateMutex(name);
         }
         catch (Exception ex)
         {
@@ -55,7 +39,7 @@ internal static class Mutexer
         }
     }
 
-    private static Mutex CreateMutex_ByName(string name)
+    private static Mutex CreateMutex(string name)
     {
         try
         {
@@ -77,22 +61,28 @@ internal static class Mutexer
         }
     }
 
-    private static Mutex? TryCreateMutex_ByNameWithAcl(string name)
+    private static Mutex? TryCreateMutex_WithAcl(string name)
     {
         if (!IsWindows()) return null;
 
         try
         {
-            return CreateMutex_ByNameWithAcl(name);
+            return CreateMutex_WithAcl(name);
         }
         catch (Exception ex)
         {
+            // Depending on the environment (NCrunch, Visual Studio Build, Azure Pipelines Local Agent)
+            // The MutexAccessRule constructor crashes ITSELF by passing a hard-coded null to its own base class.
+            // Which TFS base library does this is not entirely sure. This might be a stub framework version or otherwise.
+            // First we tried solving it by adding conditions, but edge cases kept surfacing this bug again.
+            // So for reliability, we can't can't rely on this succeeding here.
+            // We tend to omit the access rule if this happens.
             Console.WriteLine($"EXCEPTION IGNORED - {ex}");
             return null;
         }
     }
 
-    private static Mutex CreateMutex_ByNameWithAcl(string name)
+    private static Mutex CreateMutex_WithAcl(string name)
     {
         if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
         MutexSecurity sec = GetMutexSecurity();
@@ -139,40 +129,4 @@ internal static class Mutexer
             mutex.Dispose();
         };
     }
-
-    // Currently out of favor:
-
-    private static Mutex CreateMutex_ByName_Old(string name)
-    {
-        var mutex = new Mutex(initiallyOwned: false, name);
-        RegisterMutexReleaseOnExit(mutex);
-        return mutex;
-    }
-
-    private static Mutex CreateMutexForFolder(string folderPath)
-    {
-        string name = MUTEX_NAME_GLOBAL + "_" + FileHelperCore.SanitizeFilePath(folderPath);
-        return CreateMutex_ByName_Older(name);
-    }
-
-    private static Mutex CreateMutex_ByName_Older(string name)
-    {
-        Mutex? mutex = null;
-
-        if (IsWindows())
-        {
-            MutexSecurity? sec = GetMutexSecurity();
-            if (sec != null)
-            {
-                mutex = MutexAcl.Create(false, name, out _, sec);
-            }
-        }
-
-        mutex ??= new Mutex(false, name);
-            
-        RegisterMutexReleaseOnExit(mutex);
-
-        return mutex;
-    }
-
 }

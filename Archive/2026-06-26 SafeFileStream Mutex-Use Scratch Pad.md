@@ -72,14 +72,6 @@ Mutex handling excess code:
 
 
 ```cs
-        /// <summary>
-        /// <para> Returns a security descriptor that can give a mutex "Everyone" rights. </para>
-        /// 
-        /// <para> Azure Pipelines complains with UnauthorizedAccessException, the 2nd run after a reboot.
-        /// The mutex isn't locked; it was succesfully used by heavily concurrent other processes. </para>
-        /// 
-        /// <para> It appears to have difficuly accessing a Mutex created from another user session. </para>
-        /// </summary>
         private static MutexSecurity? GetMutexSecurity()
         {
             if (!IsWindows()) return null;
@@ -124,13 +116,6 @@ Mutex handling excess code:
         // TODO: It's the TrimTests that fail that's the variable that triggers it?
         catch (Exception ex)
         {
-            // Depending on the environment (NCrunch, Visual Studio Build, Azure Pipelines Local Agent)
-            // The MutexAccessRule constructor crashes ITSELF by passing a hard-coded null to its own base class.
-            // Which TFS base library does this is not entirely sure.
-            // This might be a stub framework version or otherwise.
-            // First we tried solving it by adding conditions, but edge cases kept surfacing this bug again.
-            // So for reliability, we can't can't rely on this succeeding here.
-            // So we omit the access rule if this happens.
             Console.WriteLine($"EXCEPTION IGNORED - {ex}");
             return null;
         }
@@ -149,28 +134,63 @@ Mutex handling excess code:
             // so ignoring any exception is the most reliable for now.
             Console.WriteLine($"EXCEPTION IGNORED - {ex}");
         }
-
 ```
 
 ```cs
-
-
     private static Mutex InitMutex() 
     {
         Mutex mutex = CreateMutexWithFallback();
         RegisterMutexReleaseOnExit(mutex);
         return mutex;
     }
-
 ```
 
 ```cs
 
+    //public static readonly Mutex Mutex = CreateMutex_Local();
 
-    private static Mutex CreateMutex_ByName_Old(string name)
+    // Currently out of favor:
+
+    private static Mutex CreateMutexWithFallback() 
+        => TryCreateMutex_GlobalWithAcl() ??
+           TryCreateMutex_Global() ??
+           TryCreateMutex_Local() ??
+           throw new Exception(
+               "Could not create Mutex. " +
+               "Not with security descriptor 'everone', " +
+               "not a global one, " +
+               "nor local (per user).");
+
+    private static Mutex CreateMutex_Old(string name)
     {
         var mutex = new Mutex(initiallyOwned: false, name);
         RegisterMutexReleaseOnExit(mutex);
+        return mutex;
+    }
+
+    private static Mutex CreateMutexForFolder(string folderPath)
+    {
+        string name = "Global\\" + MUTEX_BASE_NAME + "_" + FileHelperCore.SanitizeFilePath(folderPath);
+        return CreateMutex_Older(name);
+    }
+
+    private static Mutex CreateMutex_Older(string name)
+    {
+        Mutex? mutex = null;
+
+        if (IsWindows())
+        {
+            MutexSecurity? sec = GetMutexSecurity();
+            if (sec != null)
+            {
+                mutex = MutexAcl.Create(false, name, out _, sec);
+            }
+        }
+
+        mutex ??= new Mutex(false, name);
+            
+        RegisterMutexReleaseOnExit(mutex);
+
         return mutex;
     }
 
