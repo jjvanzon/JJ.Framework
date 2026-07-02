@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.256.7131" />
+    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.257.7151" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="4.8.7131" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.8.7131" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="4.9.7151" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.8.7131" />
   </ItemGroup>
 
