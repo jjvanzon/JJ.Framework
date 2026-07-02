@@ -264,7 +264,6 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - AzurePipelinesClearRetainFlags scripts helping to clean up locked Azure DevOps objects clearing excessive storage use.
 - RunTrimTest.bat now operates on current dir, not bat file dir.
 
-
 #### `2026-06-29` | `4.8`/`0.256` : __RandomizerLegacy Move__
 
 *+ Related Fixes*
@@ -288,6 +287,18 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - `GenericOverload` / `GenOvl`: 
 - Placeholder type for adding optional parameters to generic overloads, that would otherwise clash.
 - This type adds docs explaning the technique, and avoids further overload clashes, from chosing a different parameter type.
+
+#### `2026-07-02` | `4.9`/`0.257` : __StreamHelperLegacy Move__
+
+- [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
+- Move `StreamHelperLegacy` from .Core variant of project to .Legacy variant
+- Port their tests from `legacy` branch to `main`
+- Tighten nullability checks.
+- [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
+- Share `NumberedFilePath`/`SafeFileStream` `Tests` back and forth between `legacy` and `main`.
+- `Mutex` UnauthorizedAccess fixes for Azure Pipelines triggered after introducing more tests.
+
+
 
 💬 Feedback 
 ------------
