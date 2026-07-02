@@ -5,6 +5,7 @@
         [Implic]
         Undefined,
         Console,
-        Debug
+        Debug,
+        Trace
     }
 }

@@ -73,6 +73,7 @@ namespace JJ.Framework.Logging.Core
             {
                 case LoggerEnum.Console: logger = new ConsoleLogger(); break;
                 case LoggerEnum.Debug: logger = new DebugLogger(); break;
+                case LoggerEnum.Trace: logger = new TraceLogger(); break;
                 default: throw new ValueNotSupportedException(loggerEnum);
             }
             
