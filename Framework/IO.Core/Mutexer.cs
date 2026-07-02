@@ -12,25 +12,24 @@ internal static class Mutexer
     private const string MUTEX_BASE_NAME = "JJ_SafeFileStream_7f64fd76542045bb98c2e28a44d2df25";
     private const string LOCAL_MUTEX_NAME = "Local\\" + MUTEX_BASE_NAME;
     private const string GLOBAL_MUTEX_NAME = "Global\\" + MUTEX_BASE_NAME;
+    private const string LOCAL_MUTEX_NAME_WITH_ACL = "Local\\" + MUTEX_BASE_NAME + "_WithAcl";
     private const string GLOBAL_MUTEX_NAME_WITH_ACL = "Global\\" + MUTEX_BASE_NAME + "_WithAcl";
 
-    public static readonly Mutex Mutex = CreateMutex_Local();
-
+    //public static readonly Mutex Mutex = CreateMutex_Local();
+    public static readonly Mutex Mutex = TryCreateMutex_LocalWithAcl() ?? CreateMutex_Local();
 
     // NOTE: Most of these variants are unused, but keep them for now 
     // as they might be required when things get rough again.
 
-    private static Mutex CreateMutexWithFallback()
-    {
-        return TryCreateMutex_GlobalWithAcl() ??
-               TryCreateMutex_Global() ??
-               TryCreateMutex_Local() ??
-               throw new Exception(
-                   "Could not create Mutex. " +
-                   "Not with security descriptor 'everone', " +
-                   "not a global one, " +
-                   "nor local (per user).");
-    }
+    private static Mutex CreateMutexWithFallback() 
+        => TryCreateMutex_GlobalWithAcl() ??
+           TryCreateMutex_Global() ??
+           TryCreateMutex_Local() ??
+           throw new Exception(
+               "Could not create Mutex. " +
+               "Not with security descriptor 'everone', " +
+               "not a global one, " +
+               "nor local (per user).");
 
     private static Mutex? TryCreateMutex_GlobalWithAcl()
     {
@@ -52,6 +51,30 @@ internal static class Mutexer
         if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
         MutexSecurity sec = GetMutexSecurity();
         Mutex mutex = MutexAcl.Create(initiallyOwned: false, GLOBAL_MUTEX_NAME_WITH_ACL, out _, sec);
+        RegisterMutexReleaseOnExit(mutex);
+        return mutex;
+    }
+
+    private static Mutex? TryCreateMutex_LocalWithAcl()
+    {
+        if (!IsWindows()) return null;
+
+        try
+        {
+            return CreateMutex_LocalWithAcl();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"EXCEPTION IGNORED - {ex}");
+            return null;
+        }
+    }
+
+    private static Mutex CreateMutex_LocalWithAcl()
+    {
+        if (!IsWindows()) throw new Exception("No possible unless IsWindows() is true.");
+        MutexSecurity sec = GetMutexSecurity();
+        Mutex mutex = MutexAcl.Create(initiallyOwned: false, LOCAL_MUTEX_NAME_WITH_ACL, out _, sec);
         RegisterMutexReleaseOnExit(mutex);
         return mutex;
     }
