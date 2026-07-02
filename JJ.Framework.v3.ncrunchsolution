@@ -318,6 +318,12 @@
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.0</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:netstandard2.1</Value>
       <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj:net462</Value>
+      <Value>Framework\IO.Core.TrimTests\JJ.Framework.IO.Core.TrimTests.csproj:net10.0</Value>
+      <Value>Framework\IO.Core.TrimTests\JJ.Framework.IO.Core.TrimTests.csproj:net5.0</Value>
+      <Value>Framework\IO.Core.TrimTests\JJ.Framework.IO.Core.TrimTests.csproj:net6.0</Value>
+      <Value>Framework\IO.Core.TrimTests\JJ.Framework.IO.Core.TrimTests.csproj:net7.0</Value>
+      <Value>Framework\IO.Core.TrimTests\JJ.Framework.IO.Core.TrimTests.csproj:net8.0</Value>
+      <Value>Framework\IO.Core.TrimTests\JJ.Framework.IO.Core.TrimTests.csproj:net9.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
