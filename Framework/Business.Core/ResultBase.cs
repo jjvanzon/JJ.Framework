@@ -17,14 +17,19 @@ public abstract class ResultBase : IResult
     public ResultBase(IEnumerable<string> messages, bool success) : this(success, messages) { }
     public ResultBase(bool success, params IEnumerable<string> messages)
     {
+        ThrowIfNull(messages);
         Success = success;
-        _messages = NotNull(messages).ToList();
+        _messages = messages.ToList();
     }
 
     /// <inheritdoc />
     public IList<string> Messages
     {
         get => _messages;
-        set => _messages = NotNull(value);
+        set 
+        {
+            ThrowIfNull(value);
+            _messages = value; 
+        }
     }
 }
