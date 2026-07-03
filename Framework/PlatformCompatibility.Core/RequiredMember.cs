@@ -1,7 +1,7 @@
 // ReSharper disable UnusedType.Global
 
 // ncrunch: no coverage start
-#if NETFRAMEWORK || NETSTANDARD2_0 || NETSTANDARD2_1 || NET6_0
+#if !NET7_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
 

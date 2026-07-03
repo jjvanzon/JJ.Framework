@@ -1,4 +1,6 @@
-﻿#pragma warning disable IDE0001 // Redundant qualifier
+﻿// ncrunch: no coverage start
+
+#pragma warning disable IDE0001 // Redundant qualifier
 // ReSharper disable RedundantUsingDirective
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseSymbolAlias
@@ -36,3 +38,5 @@ internal static class ArgumentExceptionSupport
     
     #endif
 }
+
+// ncrunch: no coverage end
