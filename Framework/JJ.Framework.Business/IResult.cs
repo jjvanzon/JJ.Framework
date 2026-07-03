@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Business.Core;
+﻿namespace JJ.Framework.Business.Legacy;
 
 public interface IResult
 {

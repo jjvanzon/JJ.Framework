@@ -1,6 +1,6 @@
 ﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
 
-namespace JJ.Framework.Business.Core;
+namespace JJ.Framework.Business.Legacy;
 
 internal static class DiagnosticsFormatter
 {

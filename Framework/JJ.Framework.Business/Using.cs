@@ -1,6 +1,9 @@
-﻿global using JJ.Framework.PlatformCompatibility.Legacy;
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using JJ.Framework.PlatformCompatibility.Legacy;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Business.Legacy.docs;
-#if !NET9_0_OR_GREATER
-global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
-#endif
+global using static System.String;
+global using static JJ.Framework.Business.Legacy.DiagnosticsFormatter;

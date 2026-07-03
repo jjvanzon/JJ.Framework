@@ -37,7 +37,6 @@
     <File Path="NuGet.config" />
     <File Path="README.MD" />
   </Folder>
-  <Project Path="Framework/Business.Core/JJ.Framework.Business.Core.csproj" />
   <Project Path="Framework/Business.TrimTests/JJ.Framework.Business.Legacy.TrimTests.csproj" />
   <Project Path="Framework/JJ.Framework.Business.Tests/JJ.Framework.Business.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Business/JJ.Framework.Business.Legacy.csproj" />

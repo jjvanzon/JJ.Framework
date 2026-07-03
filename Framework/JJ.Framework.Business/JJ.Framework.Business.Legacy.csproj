@@ -7,6 +7,8 @@
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Business</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Business</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- TODO: Remove missing doc lenience -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">

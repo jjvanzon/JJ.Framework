@@ -1,5 +1,5 @@
 ﻿
-namespace JJ.Framework.Business.Core;
+namespace JJ.Framework.Business.Legacy;
 
 public abstract class ResultBase : IResult
 {
