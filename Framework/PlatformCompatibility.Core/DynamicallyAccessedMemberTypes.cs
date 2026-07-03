@@ -1,4 +1,7 @@
+// ncrunch: no coverage start
+
 // ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 
 #if !NET5_0_OR_GREATER
 
@@ -51,3 +54,5 @@ internal enum DynamicallyAccessedMemberTypes
 }
 
 #endif
+
+// ncrunch: no coverage end

@@ -1,4 +1,6 @@
-﻿// ReSharper disable UnusedType.Global
+﻿// ncrunch: no coverage start
+
+// ReSharper disable UnusedType.Global
 // ReSharper disable RedundantNameQualifier
 
 #if !NET5_0_OR_GREATER && !NETSTANDARD2_1
@@ -13,3 +15,5 @@ using static System.AttributeTargets;
 internal sealed class NotNullAttribute : Attribute;
 
 #endif
+
+// ncrunch: no coverage end

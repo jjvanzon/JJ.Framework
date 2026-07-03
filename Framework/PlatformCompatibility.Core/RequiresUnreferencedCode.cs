@@ -1,3 +1,5 @@
+// ncrunch: no coverage start
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 #if !NET5_0_OR_GREATER
@@ -16,3 +18,5 @@ internal class RequiresUnreferencedCodeAttribute(string message) : Attribute
 }
 
 #endif
+
+// ncrunch: no coverage end

@@ -1,3 +1,5 @@
+// ncrunch: no coverage start
+
 #pragma warning disable IDE0005 // Unused Using
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
@@ -51,3 +53,5 @@ internal static class DynamicallyAccessedMemberTypesSupport
     public const DynamicallyAccessedMemberTypes NonPublicEventsWithInherited       = (DynamicallyAccessedMemberTypes)0b000010000001000000000000;
     #endif
 }
+
+// ncrunch: no coverage end

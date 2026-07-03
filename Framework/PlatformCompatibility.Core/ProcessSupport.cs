@@ -1,4 +1,6 @@
-﻿// ReSharper disable UnusedParameter.Global
+﻿// ncrunch: no coverage start
+
+// ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable RedundantUsingDirective.Global
@@ -23,3 +25,5 @@ internal static class ProcessSupport
 
     // ncrunch: no coverage end
 }
+
+// ncrunch: no coverage end

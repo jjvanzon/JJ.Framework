@@ -1,6 +1,7 @@
+// ncrunch: no coverage start
+
 // ReSharper disable UnusedType.Global
 
-// ncrunch: no coverage start
 #if !NET7_0_OR_GREATER
 
 using JJ.Framework.PlatformCompatibility.Core.docs;
@@ -17,4 +18,5 @@ namespace System.Runtime.CompilerServices;
 internal class RequiredMemberAttribute : Attribute;
 
 #endif
+
 // ncrunch: no coverage end

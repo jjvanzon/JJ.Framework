@@ -1,6 +1,7 @@
-﻿// ReSharper disable UnusedType.Global
-// ReSharper disable UnusedMember.Global
+﻿// ncrunch: no coverage start
 
+// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 
 namespace JJ.Framework.PlatformCompatibility.Core;
 
@@ -23,3 +24,5 @@ internal static class OperatingSystemSupport
 
     #endif
 }
+
+// ncrunch: no coverage end

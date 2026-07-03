@@ -1,4 +1,6 @@
-﻿// ReSharper disable UnusedType.Global
+﻿// ncrunch: no coverage start
+
+// ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 
 #if NETFRAMEWORK || NETSTANDARD2_0
@@ -17,3 +19,5 @@ internal sealed class NotNullIfNotNullAttribute(string parameterName) : Attribut
 }
 
 #endif
+
+// ncrunch: no coverage end

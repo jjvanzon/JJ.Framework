@@ -1,4 +1,6 @@
-﻿// ReSharper disable RedundantUsingDirective
+﻿// ncrunch: no coverage start
+
+// ReSharper disable RedundantUsingDirective
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 
@@ -53,3 +55,5 @@ internal static class DynamicallyAccessedMemberTypesEx
     private const DynamicallyAccessedMemberTypes AllMethods 
         = PublicMethods | NonPublicMethods | InheritedNonPublicMethods;
 }
+
+// ncrunch: no coverage end

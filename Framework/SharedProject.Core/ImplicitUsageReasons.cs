@@ -1,4 +1,6 @@
-﻿// ReSharper disable UnusedType.Global
+﻿// ncrunch: no coverage start
+
+// ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 
 namespace JJ.Framework.SharedProject.Core;
@@ -26,3 +28,5 @@ internal static class ImplicitUsageReasons
         "which you can normally not do. " +
         "E.g. MyMethod(10, arg: true); MyMethod(10, differentArg: true)";
 }
+
+// ncrunch: no coverage end

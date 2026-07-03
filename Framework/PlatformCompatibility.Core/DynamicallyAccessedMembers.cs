@@ -1,3 +1,5 @@
+// ncrunch: no coverage start
+
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
@@ -21,3 +23,5 @@ internal class DynamicallyAccessedMembersAttribute : Attribute
 }
 
 #endif
+
+// ncrunch: no coverage end

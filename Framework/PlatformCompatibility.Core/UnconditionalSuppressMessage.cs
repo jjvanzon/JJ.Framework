@@ -1,3 +1,5 @@
+// ncrunch: no coverage start
+
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
 #if !NET5_0_OR_GREATER
@@ -25,3 +27,5 @@ internal sealed class UnconditionalSuppressMessageAttribute(string category, str
 }
 
 #endif
+
+// ncrunch: no coverage end

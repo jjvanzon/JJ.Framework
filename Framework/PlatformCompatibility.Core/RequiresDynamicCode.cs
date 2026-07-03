@@ -1,3 +1,5 @@
+// ncrunch: no coverage start
+
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable ClassNeverInstantiated.Global
@@ -19,3 +21,5 @@ internal sealed class RequiresDynamicCodeAttribute(string message) : Attribute
 }
 
 #endif
+
+// ncrunch: no coverage end

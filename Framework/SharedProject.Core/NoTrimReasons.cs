@@ -1,4 +1,6 @@
-﻿// ReSharper disable UnusedType.Global
+﻿// ncrunch: no coverage start
+
+// ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
 #pragma warning disable IDE0051 // Member never used
 
@@ -78,3 +80,5 @@ internal static class NoTrimReasons
         "Might fall back to GetExecutingAssembly: the only assembly in a self contained app. ";
     public const string CallingAssembly = CallingAssemblyAnd + DoWhatInstead;
 }
+
+// ncrunch: no coverage end

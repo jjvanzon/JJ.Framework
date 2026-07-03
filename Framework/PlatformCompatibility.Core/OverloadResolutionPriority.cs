@@ -1,4 +1,6 @@
-﻿// ReSharper disable ClassNeverInstantiated.Global
+﻿// ncrunch: no coverage start
+
+// ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnuzedType.Local
 // ReSharper disable UnusedType.Global
@@ -17,3 +19,5 @@ internal class OverloadResolutionPriorityAttribute(int priority) : Attribute
 }
 
 #endif
+
+// ncrunch: no coverage end
