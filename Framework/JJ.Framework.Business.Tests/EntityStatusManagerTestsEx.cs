@@ -3,7 +3,7 @@
 namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
-public class EntityStatusManagerCoreTests
+public class EntityStatusManagerTestsEx
 {
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]

@@ -1,8 +1,9 @@
 bool success = 
 RunTests<EntityStatusManagerTests>() &&
-RunTests<EntityStatusManagerByIDCoreTests>() &&
-RunTests<EntityStatusManagerCoreTests>() &&
-RunTests<ListIsDirtyCoreTests>() &&
-RunTests<SideEffectCoreTests>();
+RunTests<EntityStatusManagerByIDTestsEx>() &&
+RunTests<EntityStatusManagerTestsEx>() &&
+RunTests<ListIsDirtyTestsEx>() &&
+RunTests<ResultOfTTestsEx>() &&
+RunTests<SideEffectTestsEx>();
 WriteLine("Done.");
 if (!success) Exit(1);

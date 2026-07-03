@@ -24,6 +24,7 @@
   <Folder Name="/Solution Items/">
     <File Path=".github/copilot-instructions.md" />
     <File Path=".gitignore" />
+    <File Path="CONTRIBUTING.md" />
     <File Path="Directory.Build.targets" />
     <File Path="Framework/BuildNum.xml" />
     <File Path="Framework/Directory.Build.props" />

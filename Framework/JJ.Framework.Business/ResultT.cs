@@ -2,7 +2,7 @@
 
 public class Result<T> : ResultBase
 {
-    public Result() : base() { }
+    public Result() { }
     public Result(bool success) : base(success) { }
     public Result(params IEnumerable<string> messages) : base(messages) { }
     public Result(IEnumerable<string> messages, bool success) : base(messages, success) { }

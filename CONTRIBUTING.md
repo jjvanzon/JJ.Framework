@@ -1,7 +1,7 @@
 ﻿Contributing to JJ.Framework
 ============================
 
-*__Core__ projects can change. __Other__ projects are frozen.*
+*__Core__ projects can change. __Other__ projects are mostly frozen.*
 
 __Contents__
 
@@ -108,13 +108,13 @@ JJ.Framework.Configuration.Core
 - `.Core` (`JJ.Framework.Configuration.Core`):  
   Either brand-new development or code copied from the __latest__ `legacy` code. This way, we don't stifle innovation while we're working with legacy code.
 
-For code elements such as classes and methods, `Legacy` suffixes and suffix-free variants get a bit more intermixed. The context usually explains itself whether it's `Core` or `Legacy` code. The `Legacy` suffix is basically used when old conflicts with new.
+For code elements such as classes and methods, `Legacy` suffixes and suffix-free variants get a bit more intermixed. The context usually explains itself whether it's `Core` or `Legacy` code. The `Legacy` suffix is basically used when old conflicts with new. The `Ex` suffix ("extended") can also be used where otherwise mixing `Core` and `Legacy` suffixes can become a bit intermixed. 
 
 
 Code Copies
 -----------
 
-`.Core` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Core`, we get all the sweet stuff out there that we want.
+`.LEeacy` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Legacy`, we get all the sweet stuff out there that we want.
 
 
 The King, the Queen and the Core
@@ -156,7 +156,7 @@ https://dev.azure.com/jjvanzon/JJs-Software/_artifacts/feed/JJs-Pre-Release-Pack
 Dev Env
 -------
 
-- `Visual Studio Community 2019` or `2022` is needed to develop this project, which can be downloaded for free from `Microsoft`.
+- `Visual Studio Community` (version `2019`, `2022` or `2026`) is needed to develop this project, which can be downloaded for free from `Microsoft`.
 - Several `.NET SDK` versions might be needed to compile, which can also be downloaded from `Microsoft`. Be sure you use the `SDK` or `Development Pack` ones, not the `Targeting Packs` or `Runtime` versions.
 
 

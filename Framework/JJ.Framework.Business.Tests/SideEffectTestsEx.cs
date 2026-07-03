@@ -4,7 +4,7 @@
 namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
-public class SideEffectCoreTests
+public class SideEffectTestsEx
 {
     private class DelegateSideEffect(Action action) : ISideEffect
     {

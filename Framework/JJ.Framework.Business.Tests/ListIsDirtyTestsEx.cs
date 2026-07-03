@@ -3,7 +3,7 @@ using static JJ.Framework.Business.Legacy.EntityStatusHelper;
 namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
-public class ListIsDirtyCoreTests
+public class ListIsDirtyTestsEx
 {
     [TestMethod]
     public void GetListIsDirty_SameLists()
