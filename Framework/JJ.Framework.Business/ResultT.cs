@@ -8,5 +8,5 @@ public class Result<T> : ResultBase
     public Result(IEnumerable<string> messages, bool success) : base(messages, success) { }
     public Result(bool success, params IEnumerable<string> messages) : base(success, messages) { }
 
-    public required T Data { get; set; }
+    public T Data { get; set; }
 }
