@@ -37,21 +37,11 @@
     <File Path="JJ.Framework.Focused.slnx.DotSettings" />
     <File Path="NuGet.config" />
     <File Path="README.MD" />
-    <File Path="Utilities/ClearAzurePipelines.bat" />
-    <File Path="Utilities/ClearBin.bat" />
-    <File Path="Utilities/ClearCache.bat" />
-    <File Path="Utilities/ClearNCrunch.bat" />
-    <File Path="Utilities/ClearNuget.bat" />
-    <File Path="Utilities/ClearObj.bat" />
-    <File Path="Utilities/ClearReSharper.bat" />
-    <File Path="Utilities/ClearVs.bat" />
-    <File Path="Utilities/RunTrimTests.bat" />
-    <File Path="Utilities/StopNCrunch.cmd" />
-    <File Path="Utilities/StopVS.cmd" />
   </Folder>
   <Project Path="Framework/Business.Core/JJ.Framework.Business.Core.csproj" />
   <Project Path="Framework/Business.TrimTests/JJ.Framework.Business.Legacy.TrimTests.csproj" />
   <Project Path="Framework/JJ.Framework.Business.Tests/JJ.Framework.Business.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Business/JJ.Framework.Business.Legacy.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
+  <Project Path="Utilities/Scripts/JJ.Utilities.Scripts.csproj" />
 </Solution>
