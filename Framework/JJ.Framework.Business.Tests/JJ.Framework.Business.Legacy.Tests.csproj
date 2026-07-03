@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Business\JJ.Framework.Business.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>

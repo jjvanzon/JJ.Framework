@@ -3,7 +3,7 @@ RunTests<EntityStatusManagerTests>() &&
 RunTests<EntityStatusManagerByIDTestsEx>() &&
 RunTests<EntityStatusManagerTestsEx>() &&
 RunTests<ListIsDirtyTestsEx>() &&
-RunTests<ResultOfTTestsEx>() &&
+RunTests<ResultTestsEx>() &&
 RunTests<SideEffectTestsEx>();
 WriteLine("Done.");
 if (!success) Exit(1);
