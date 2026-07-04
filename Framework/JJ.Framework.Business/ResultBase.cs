@@ -5,15 +5,15 @@ public abstract class ResultBase : IResult
 {
     public override string ToString() => DebuggerDisplay(this);
 
-    private const bool DefaultSuccess = true;
+    private const bool DEFAULT_SUCCESS = true;
 
     public bool Success { get; set; }
 
     private IList<string> _messages;
 
-    public ResultBase() : this(DefaultSuccess, [ ]) { }
+    public ResultBase() : this(DEFAULT_SUCCESS, [ ]) { }
     public ResultBase(bool success) : this(success, [ ]) { }
-    public ResultBase(params IEnumerable<string> messages) : this(DefaultSuccess, messages) { }
+    public ResultBase(params IEnumerable<string> messages) : this(DEFAULT_SUCCESS, messages) { }
     public ResultBase(IEnumerable<string> messages, bool success) : this(success, messages) { }
     public ResultBase(bool success, params IEnumerable<string> messages)
     {
