@@ -44,5 +44,4 @@
   <Project Path="Framework/JJ.Framework.Business/JJ.Framework.Business.Legacy.csproj" />
   <Project Path="Framework/PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
-  <Project Path="Utilities/Scripts/JJ.Utilities.Scripts.csproj" />
 </Solution>
