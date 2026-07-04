@@ -1,5 +1,7 @@
 ﻿// ReSharper disable RedundantExplicitParamsArrayCreation
+// ReSharper disable AppendToCollectionExpression
 
+#pragma warning disable IDE0017
 namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
@@ -41,7 +43,7 @@ public class ResultTestsEx
     }
 
     [TestMethod]
-    public void Test_Result_Init_Success()
+    public void Test_Result_Construct_Init_Success()
     {
         {
             var result = new Result();
@@ -76,7 +78,7 @@ public class ResultTestsEx
     }
 
     [TestMethod]
-    public void Test_Result_Init_OneMessage()
+    public void Test_Result_Construct_Init_OneMessage()
     {
         {
             var result = new Result("Just a warning.");
@@ -102,7 +104,7 @@ public class ResultTestsEx
     }
 
     [TestMethod]
-    public void Test_Result_Init_MultipleMessages()
+    public void Test_Result_Construct_Init_MultipleMessages()
     {
         {
             var result = new Result("Just some warnings.", "You may want to take a look.");
@@ -131,7 +133,7 @@ public class ResultTestsEx
     }
 
     [TestMethod]
-    public void Test_Result_Init_SuccessFalseAndMessages()
+    public void Test_Result_Construct_Init_SuccessFalseAndMessages()
     {
         {
             var result = new Result(success: false, "Oops");
@@ -231,16 +233,93 @@ public class ResultTestsEx
     [TestMethod]
     public void Test_Result_NullMessagesCollection()
     {
+        Throws(() => new Result ( messages : null! ), "messages", "null");
+        Throws(() => new Result { Messages = null! }, "messages", "null");
+        Throws(() => { Result result = new(); result.Messages = null!; }, "messages", "null");
     }
 
     [TestMethod]
-    public void Test_Result_PropAssignment()
+    public void Test_Result_DirectUseSuccessProp_StillWorks()
     {
-        // TODO: Test (man)handling the Messages prop.
+        var result = new Result();
+
+        result.Success = true;
+        IsTrue(result.Success);
+
+        result.Success = false;
+        IsFalse(result.Success);
+    }
+
+    [TestMethod]
+    public void Test_Result_DirectUseMessagesProp_StillWorks()
+    {
+        var result = new Result();
+
+        NotNull(result.Messages);
+        AreEqual(0, result.Messages.Count);
+
+        result.Messages = [ "Hi", "How ya doin" ];
+        result.Messages.Add("Fine thanks");
+        NotNull(                result.Messages);
+        AreEqual(3,             result.Messages.Count);
+        AreEqual("Hi",          result.Messages[0]);
+        AreEqual("How ya doin", result.Messages[1]);
+        AreEqual("Fine thanks", result.Messages[2]);
+
+        result.Messages.Clear();
+        NotNull(result.Messages);
+        AreEqual(0, result.Messages.Count);
+
+
+        List<string> messages = [ "Ok", "I will assign" ];
+        result.Messages = messages;
+        NotNull(                  result.Messages);
+        AreEqual(2,               result.Messages.Count);
+        AreEqual("Ok",            result.Messages[0]);
+        AreEqual("I will assign", result.Messages[1]);
     }
     
     [TestMethod]
-    public void Test_Result_Data()
+    public void Test_Result_Messages_AreCloned_ByConstructor()
+    {
+        IList<string> messages = [ "I am here" ];
+        var result = new Result(messages);
+
+        result.Messages = messages;
+        AreEqual(1, result.Messages.Count);
+
+        messages.Add("I am elusive");
+        AreEqual(2, messages.Count);
+        AreEqual(1, result.Messages.Count);
+    }
+    
+    [TestMethod]
+    public void Test_Result_Messages_AreCloned_ByProp()
+    {
+        var result = new Result();
+        IList<string> messages = [ "I am here" ];
+
+        result.Messages = messages;
+        AreEqual(1, result.Messages.Count);
+
+        messages.Add("I am elusive");
+        AreEqual(2, messages.Count);
+        AreEqual(1, result.Messages.Count);
+    }
+    
+    [TestMethod]
+    public void Test_Result_Messages_CollectionTypes()
+    {
+        // TODO: Test using some different collectiont types.
+    }
+    
+    [TestMethod]
+    public void Test_Result_DiagnosticsTexts()
+    {
+    }
+
+    [TestMethod]
+    public void Test_ResultOfT_Data()
     {
         // TODO: Test all the ways to assign/init data. Even with null.
     }
@@ -249,11 +328,6 @@ public class ResultTestsEx
     public void Test_ResultOfT_Init()
     {
         // TODO: ResultOfT has its own copies of the constructors that need to be hit. 
-    }
-
-    [TestMethod]
-    public void Test_Result_DiagnosticsTexts()
-    {
     }
 
     private Result<int> GenerateNum(int min, int max)
