@@ -28,8 +28,8 @@ public abstract class ResultBase : IResult
         get => _messages;
         set 
         {
-            ThrowIfNull(value);
-            _messages = value; 
+            ThrowIfNull(value, nameof(Messages));
+            _messages = value.ToList(); 
         }
     }
 }
