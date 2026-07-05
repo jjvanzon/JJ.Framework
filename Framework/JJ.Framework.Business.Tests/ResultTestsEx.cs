@@ -528,8 +528,7 @@ public class ResultTestsEx
 
         result.Success = false;
         result.Messages = [ "Oh no", "I failed" ];
-        //AreEqual("{Result`1} Failed: Oh no, I failed", result.ToString());
-        AreEqual("{Result`1} Not Success: Oh no, I failed", result.ToString()); // TODO: Bit ugly, the "Not Success".
+        AreEqual("{Result`1} Failed: Oh no, I failed", result.ToString());
     }
 
     private Result<int> GenerateNum(int min, int max)

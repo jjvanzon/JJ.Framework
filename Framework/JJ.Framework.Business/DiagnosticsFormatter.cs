@@ -1,38 +1,39 @@
-﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+﻿using static System.StringComparison;
 
 namespace JJ.Framework.Business.Legacy;
 
 internal static class DiagnosticsFormatter
 {
+
     public static string DebuggerDisplay(IResult result)
     {
         if (result == null) throw new ArgumentNullException(nameof(result));
 
         var sb = new StringBuilder();
 
-        sb.Append($"{{{result.GetType().Name}}}");
+
+        var type = result.GetType();
+        var typeName = type.Name;
+        sb.Append($"{{{typeName}}}");
 
         if (result.Success)
         {
-            sb.Append($" {nameof(result.Success)}");
+            sb.Append(" Success");
         }
         else
         {
-            sb.Append($" Not {nameof(result.Success)}");
+            sb.Append(" Failed");
         }
 
-        if (result.Messages != null)
+        string formattedMessages = FormatMessages(result.Messages);
+        if (!IsNullOrWhiteSpace(formattedMessages))
         {
-            string formattedMessages = FormatMessages(result.Messages);
-            if (!IsNullOrWhiteSpace(formattedMessages))
-            {
-                sb.Append($": {formattedMessages}");
-            }
+            sb.Append($": {formattedMessages}");
         }
 
         return sb.ToString();
     }
 
-    private static string FormatMessages(IList<string> messages) 
+    private static string FormatMessages(IList<string>? messages) 
         => Join(", ", (messages ?? [ ]).Select(x => x ?? "<null>"));
 }
