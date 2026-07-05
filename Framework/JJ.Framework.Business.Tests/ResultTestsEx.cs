@@ -513,7 +513,23 @@ public class ResultTestsEx
     [TestMethod]
     public void Test_Result_DiagnosticsTexts()
     {
-        // TODO
+        var result = new Result<double?>();
+
+        AreEqual("{Result`1} Success", result.ToString()); // TODO: Bit ugly the `1
+
+        result.Messages = [ "I am success", "incarnate" ];
+        AreEqual("{Result`1} Success: I am success, incarnate", result.ToString());
+
+        result.Data = 100;
+        AreEqual("{Result`1} Success: I am success, incarnate", result.ToString());
+
+        result.Messages.Add("As proof I bring data.");
+        AreEqual("{Result`1} Success: I am success, incarnate, As proof I bring data.", result.ToString());
+
+        result.Success = false;
+        result.Messages = [ "Oh no", "I failed" ];
+        //AreEqual("{Result`1} Failed: Oh no, I failed", result.ToString());
+        AreEqual("{Result`1} Not Success: Oh no, I failed", result.ToString()); // TODO: Bit ugly, the "Not Success".
     }
 
     private Result<int> GenerateNum(int min, int max)
