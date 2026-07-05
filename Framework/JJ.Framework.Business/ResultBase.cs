@@ -45,6 +45,6 @@ public abstract class ResultBase : IResult
     /// <inheritdoc cref="_assert" />
     public void Assert()
     {
-        if (!Success) throw new Exception(ToString());
+        if (!Success) throw new Exception(ExceptionMessage(this));
     }
 }
