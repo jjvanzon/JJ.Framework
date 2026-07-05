@@ -365,27 +365,155 @@ public class ResultTestsEx
             //result.Messages = messages;
         }
     }
-    
+
     [TestMethod]
-    public void Test_Result_DiagnosticsTexts()
+    public void Test_IResult_SuccessPropSetter()
     {
+        IResult result = GenerateNum(1, 10);
+        IsTrue(result.Success);
+        result.Success = false;
+        IsFalse(result.Success);
+        result.Success = true;
+        IsTrue(result.Success);
     }
+        
+    [TestMethod]
+    public void Test_IResult_MessagesPropSetter()
+    {
+        IResult result = GenerateNum(1, 10);
+
+        NotNull(result.Messages);
+        AreEqual(0, result.Messages.Count);
+
+        result.Messages = [ "I am", "assigned" ];
+        NotNull(result.Messages);
+        AreEqual(2, result.Messages.Count);
+        AreEqual("I am", result.Messages[0]);
+        AreEqual("assigned", result.Messages[1]);
+
+        result.Messages.Add("I am added");
+        AreEqual(3, result.Messages.Count);
+        AreEqual("I am", result.Messages[0]);
+        AreEqual("assigned", result.Messages[1]);
+        AreEqual("I am added", result.Messages[2]);
+
+        result.Messages = [ ];
+        NotNull(result.Messages);
+        AreEqual(0, result.Messages.Count);
+    }
+
+    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
 
     [TestMethod]
     public void Test_ResultOfT_Data()
     {
-        // TODO: Test all the ways to assign/init data. Even with null.
+        {
+            Result<CultureInfo> result = new() { Data = _nlNL };
+
+            AreEqual(_nlNL, result.Data);
+
+            IsTrue(result.Success);
+            NotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+
+        }
+        {
+            Result<CultureInfo> result = new();
+
+            IsNull(result.Data);
+
+            IsTrue(result.Success);
+            NotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+
+            result.Data = _nlNL;
+            AreEqual(_nlNL, result.Data);
+        }
     }
 
     [TestMethod]
-    public void Test_ResultOfT_Init()
+    public void Test_ResultOfT_Constructors_HaveNoData()
     {
-        // TODO: ResultOfT has its own copies of the constructors that need to be hit. 
-    }
+        {
+            var result = new Result<string>(success: true);
+            IsNull(result.Data);
+            IsTrue(result.Success);
+            NotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+        }
+        {
+            var result = new Result<string>(success: false);
+            IsNull(result.Data);
+            IsFalse(result.Success);
+            NotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+        }
+        {
+            var result = new Result<string>("I have", "no Data");
+            IsTrue(result.Success);
 
+            NotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("I have", result.Messages[0]);
+            AreEqual("no Data", result.Messages[1]);
+
+            IsNull(result.Data);
+        }
+        {
+            var result = new Result<string>([ "I cannot", "give you data..." ]);
+            IsTrue(result.Success);
+
+            NotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("I cannot", result.Messages[0]);
+            AreEqual("give you data...", result.Messages[1]);
+
+            IsNull(result.Data);
+        }
+        {
+            var result = new Result<string>([ "Our data", "is lacking", "and so is our", "success" ], success: false);
+            IsFalse(result.Success);
+
+            NotNull(result.Messages);
+            AreEqual(4, result.Messages.Count);
+            AreEqual("Our data", result.Messages[0]);
+            AreEqual("is lacking", result.Messages[1]);
+            AreEqual("and so is our", result.Messages[2]);
+            AreEqual("success", result.Messages[3]);
+
+            IsNull(result.Data);
+        }
+        {
+            var result = new Result<string>(success: false, "Success", "is not a given", "and neither", "is Data");
+            IsFalse(result.Success);
+
+            NotNull(result.Messages);
+            AreEqual(4, result.Messages.Count);
+            AreEqual("Success", result.Messages[0]);
+            AreEqual("is not a given", result.Messages[1]);
+            AreEqual("and neither", result.Messages[2]);
+            AreEqual("is Data", result.Messages[3]);
+
+            IsNull(result.Data);
+        }
+        { 
+            var result = new Result<string>(success: false, [ "My final report", "on our lack of success...", "and Data" ]);
+            IsFalse(result.Success);
+
+            NotNull(result.Messages);
+            AreEqual(3, result.Messages.Count);
+            AreEqual("My final report", result.Messages[0]);
+            AreEqual("on our lack of success...", result.Messages[1]);
+            AreEqual("and Data", result.Messages[2]);
+
+            IsNull(result.Data);
+        }
+    }
+    
     [TestMethod]
-    public void Test_IResult_PropSetters()
+    public void Test_Result_DiagnosticsTexts()
     {
+        // TODO
     }
 
     private Result<int> GenerateNum(int min, int max)
@@ -398,4 +526,13 @@ public class ResultTestsEx
         int num = RandomizerLegacy.GetInt32(min, max);
         return new (success: true) { Data = num };
     }
+
+    // TODO: Reuse more?
+
+    //private static void AssertDefault(IResult result)
+    //{
+    //    IsTrue(result.Success);
+    //    NotNull(result.Messages);
+    //    AreEqual(0, result.Messages.Count);
+    //}
 }
