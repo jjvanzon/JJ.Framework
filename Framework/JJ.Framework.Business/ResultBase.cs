@@ -9,7 +9,7 @@ public abstract class ResultBase : IResult
 
     public bool Success { get; set; }
 
-    private IList<string> _messages;
+    private List<string> _messages;
 
     public ResultBase() : this(DEFAULT_SUCCESS, [ ]) { }
     public ResultBase(bool success) : this(success, [ ]) { }

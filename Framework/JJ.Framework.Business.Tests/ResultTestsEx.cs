@@ -1,7 +1,11 @@
-﻿// ReSharper disable RedundantExplicitParamsArrayCreation
-// ReSharper disable AppendToCollectionExpression
-
+﻿#pragma warning disable IDE0300
 #pragma warning disable IDE0017
+
+// ReSharper disable RedundantExplicitParamsArrayCreation
+// ReSharper disable AppendToCollectionExpression
+// ReSharper disable RedundantExplicitArrayCreation
+// ReSharper disable ObjectCreationAsStatement
+
 namespace JJ.Framework.Business.Legacy.Tests;
 
 [TestClass]
@@ -310,7 +314,56 @@ public class ResultTestsEx
     [TestMethod]
     public void Test_Result_Messages_CollectionTypes()
     {
-        // TODO: Test using some different collectiont types.
+        // Array
+        {
+            var messages = new string[] { "Hi", "Hello" };
+            new Result ( messages );
+            new Result { Messages = messages };
+            Result result = new(); result.Messages = messages;
+        }
+        // List
+        {
+            var messages = new List<string> { "Hi", "Hello" };
+            new Result ( messages );
+            new Result { Messages = messages };
+            Result result = new();
+            result.Messages = messages;
+        }
+        // IList
+        {
+            IList<string> messages = new List<string> { "Hi", "Hello" };
+            new Result ( messages );
+            new Result { Messages = messages };
+            Result result = new();
+            result.Messages = messages;
+        }
+        // As ICollection > Constructor Only
+        {
+            ICollection<string> messages = new List<string> { "Hi", "Hello" };
+            new Result ( messages );
+            // Oops, IList<T>
+            //new Result { Messages = messages };
+            //Result result = new();
+            //result.Messages = messages;
+        }
+        // HashSet > Constructor only
+        {
+            var messages = new HashSet<string> { "Hi", "Hello" };
+            new Result ( messages );
+            // Oops, IList<T>
+            //new Result { Messages = messages };
+            //Result result = new();
+            //result.Messages = messages;
+        }
+        // IEnumarable > Constructor only
+        {
+            IEnumerable<string> messages = new List<string> { "Hi", "Hello" };
+            new Result ( messages );
+            // Oops, IList<T>
+            //new Result { Messages = messages };
+            //Result result = new();
+            //result.Messages = messages;
+        }
     }
     
     [TestMethod]
@@ -328,6 +381,11 @@ public class ResultTestsEx
     public void Test_ResultOfT_Init()
     {
         // TODO: ResultOfT has its own copies of the constructors that need to be hit. 
+    }
+
+    [TestMethod]
+    public void Test_IResult_PropSetters()
+    {
     }
 
     private Result<int> GenerateNum(int min, int max)
