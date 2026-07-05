@@ -13,6 +13,8 @@ Result Types Scratch Pad
 
         // Data is not a constructor argument in this Result type implementation.
 
+    //public override string ToString() => DebuggerDisplay(this);
+
     //public static string DebuggerDisplay<T>(Result<T> result) => DebuggerDisplay((IResult) result);
         //var typeName = GetPrettyTypeName(type);
 

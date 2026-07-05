@@ -31,8 +31,8 @@ An elegant way to return data, status and messages from your operations:
 - `IResult`  
     - Common interface for result types.
 - `ResultBase`
-    - Base class with core properties: `Successful` and `Messages`.
-- `VoidResult`
+    - Base class with core properties: `Success` and `Messages`.
+- `Result`
     - Use when there's no return value, just success / failure info.
 - `Result<T>`  
     - Returns data along with the status metadata.

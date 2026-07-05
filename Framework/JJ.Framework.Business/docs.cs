@@ -1,3 +1,4 @@
+#pragma warning disable IDE1006
 // ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
@@ -88,3 +89,63 @@ public struct _entitystatushelper;
 /// This can be good for modularity purposes and separations of concerns in business logic code.
 /// </summary>
 public struct _isideeffect;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>Use <c>Result</c> when there's no return value, just success / failure info.</remarks>
+public struct _result;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks><c>IResult</c> is the common interface for the result types.</remarks>
+public struct _iresult;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>
+/// <c>ResultBase</c> is a base class with core properties: 
+/// <c>Success</c> and <c>Messages</c>
+/// and base constructors.
+/// </remarks>
+public struct _resultbase;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks><c>Result&lt;T&gt;</c> returns data along with the status metadata.</remarks>
+public struct _resultoft;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>
+/// The <c>Success</c> flag indicating success or failure of the result.
+/// </remarks>
+public struct _success;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>
+/// <c>Messages</c> to accompany a failed or successful result. 
+/// In case of <c>Success</c>, the messages are considered mere <b>warnings</b>.
+/// Having messages does not imply failure.
+/// </remarks>
+public struct _messages;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>
+/// <c>Data</c> to accompany the result. 
+/// This would have been the return value,
+/// if it wasn't wrapped in a <c>Result</c> type, 
+/// containing success and messages alongside it.
+/// </remarks>
+public struct _data;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>Converts the result type to a human-readable text.</remarks>
+public struct _tostring;
+
+/// <summary>
+/// An elegant way to return data, status and messages from your operations.
+/// </summary>
+/// <param name="success">
+/// The <c>Success</c> flag indicating success or failure of the result.
+/// </param>
+/// <param name="messages">
+/// <c>Messages</c> to accompany a failed or successful result. 
+/// In case of <c>Success</c>, the messages are considered mere <b>warnings</b>.
+/// Having messages does not imply failure.
+/// </param>
+public struct _resulttypes;
