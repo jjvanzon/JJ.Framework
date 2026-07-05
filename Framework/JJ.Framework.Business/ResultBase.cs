@@ -41,4 +41,10 @@ public abstract class ResultBase : IResult
             _messages = value.ToList(); 
         }
     }
+
+    /// <inheritdoc cref="_assert" />
+    public void Assert()
+    {
+        if (!Success) throw new Exception(ToString());
+    }
 }

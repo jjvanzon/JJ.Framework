@@ -25,4 +25,13 @@ Result Types Scratch Pad
     //}
 
 
+    // TODO: Reuse more?
+
+    //private static void AssertDefault(IResult result)
+    //{
+    //    IsTrue(result.Success);
+    //    NotNull(result.Messages);
+    //    AreEqual(0, result.Messages.Count);
+    //}
+
 ```

@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0300
 #pragma warning disable IDE0017
+#pragma warning disable CA1859 // Use concrete type for performance.
 
 // ReSharper disable RedundantExplicitParamsArrayCreation
 // ReSharper disable AppendToCollectionExpression
@@ -18,6 +19,7 @@ public class ResultTestsEx
         IsTrue(result.Success);
         NotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
+        result.Assert();
     }
 
     [TestMethod]
@@ -33,6 +35,8 @@ public class ResultTestsEx
 
         IsTrue(num >= 1);
         IsTrue(num <= 10);
+    
+        result.Assert();
     }
     
     [TestMethod]
@@ -44,6 +48,9 @@ public class ResultTestsEx
         AreEqual(default, result.Data);
         AreEqual(1, result.Messages.Count);
         AreEqual("min > max", result.Messages[0]);
+
+        // TODO: Check the exception message (also in other places)
+        Throws(result.Assert);
     }
 
     [TestMethod]
@@ -54,30 +61,40 @@ public class ResultTestsEx
             IsTrue(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
+            result.Assert();
         }
         {
             var result = new Result(success: true);
             IsTrue(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
+            result.Assert();
         }
         {
             var result = new Result { Success = true };
             IsTrue(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
+            result.Assert();
         }
+    }
+
+    [TestMethod]
+    public void Test_Result_Construct_Init_SuccessFalse()
+    {
         {
             var result = new Result(success: false);
             IsFalse(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
+            Throws(result.Assert);
         }
         {
             var result = new Result { Success = false };
             IsFalse(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
+            Throws(result.Assert);
         }
     }
 
@@ -90,6 +107,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Just a warning.", result.Messages[0]);
+            result.Assert();
         }
         {
             var result = new Result([ "Just a warning." ]);
@@ -97,6 +115,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Just a warning.", result.Messages[0]);
+            result.Assert();
         }
         {
             var result = new Result { Messages = [ "Just a warning." ] };
@@ -104,6 +123,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Just a warning.", result.Messages[0]);
+            result.Assert();
         }
     }
 
@@ -117,6 +137,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Just some warnings.", result.Messages[0]);
             AreEqual("You may want to take a look.", result.Messages[1]);
+            result.Assert();
         }
         {
             var result = new Result([ "Just some warnings.", "You may want to take a look." ]);
@@ -125,6 +146,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Just some warnings.", result.Messages[0]);
             AreEqual("You may want to take a look.", result.Messages[1]);
+            result.Assert();
         }
         {
             var result = new Result { Messages = [ "Just some warnings.", "You may want to take a look." ] };
@@ -133,6 +155,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Just some warnings.", result.Messages[0]);
             AreEqual("You may want to take a look.", result.Messages[1]);
+            result.Assert();
         }
     }
 
@@ -145,6 +168,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
+            Throws(result.Assert);
         }
         {
             var result = new Result(success: false, [ "Oops" ]);
@@ -152,6 +176,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
+            Throws(result.Assert);
         }
         {
             var result = new Result(success: false, "Oops", "a daisy");
@@ -160,6 +185,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
         {
             var result = new Result(success: false, [ "Oops", "a daisy" ]);
@@ -168,6 +194,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
         {
             var result = new Result([ "Oops", "a daisy" ], success: false);
@@ -176,6 +203,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
         {
             var result = new Result(success: false) { Messages = [ "Oops", "a daisy" ] };
@@ -184,14 +212,15 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
-        // Success Initializer
         {
             var result = new Result("Oops") { Success = false };
             IsFalse(result.Success);
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
+            Throws(result.Assert);
         }
         {
             var result = new Result([ "Oops" ]) { Success = false };
@@ -199,6 +228,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
+            Throws(result.Assert);
         }
         {
             var result = new Result("Oops", "a daisy") { Success = false };
@@ -207,6 +237,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
@@ -215,6 +246,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
@@ -223,6 +255,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
         {
             var result = new Result { Messages = [ "Oops", "a daisy" ], Success = false };
@@ -231,6 +264,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
+            Throws(result.Assert);
         }
     }
 
@@ -249,9 +283,11 @@ public class ResultTestsEx
 
         result.Success = true;
         IsTrue(result.Success);
+        result.Assert();
 
         result.Success = false;
         IsFalse(result.Success);
+        Throws(result.Assert);
     }
 
     [TestMethod]
@@ -269,11 +305,12 @@ public class ResultTestsEx
         AreEqual("Hi",          result.Messages[0]);
         AreEqual("How ya doin", result.Messages[1]);
         AreEqual("Fine thanks", result.Messages[2]);
+        result.Assert();
 
         result.Messages.Clear();
         NotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
-
+        result.Assert();
 
         List<string> messages = [ "Ok", "I will assign" ];
         result.Messages = messages;
@@ -281,6 +318,7 @@ public class ResultTestsEx
         AreEqual(2,               result.Messages.Count);
         AreEqual("Ok",            result.Messages[0]);
         AreEqual("I will assign", result.Messages[1]);
+        result.Assert();
     }
     
     [TestMethod]
@@ -288,13 +326,16 @@ public class ResultTestsEx
     {
         IList<string> messages = [ "I am here" ];
         var result = new Result(messages);
+        result.Assert();
 
         result.Messages = messages;
         AreEqual(1, result.Messages.Count);
+        result.Assert();
 
         messages.Add("I am elusive");
         AreEqual(2, messages.Count);
         AreEqual(1, result.Messages.Count);
+        result.Assert();
     }
     
     [TestMethod]
@@ -302,13 +343,16 @@ public class ResultTestsEx
     {
         var result = new Result();
         IList<string> messages = [ "I am here" ];
+        result.Assert();
 
         result.Messages = messages;
         AreEqual(1, result.Messages.Count);
+        result.Assert();
 
         messages.Add("I am elusive");
         AreEqual(2, messages.Count);
         AreEqual(1, result.Messages.Count);
+        result.Assert();
     }
     
     [TestMethod]
@@ -317,52 +361,58 @@ public class ResultTestsEx
         // Array
         {
             var messages = new string[] { "Hi", "Hello" };
-            new Result ( messages );
-            new Result { Messages = messages };
+            new Result ( messages ).Assert();
+            new Result { Messages = messages }.Assert();
             Result result = new(); result.Messages = messages;
+            result.Assert();
         }
         // List
         {
             var messages = new List<string> { "Hi", "Hello" };
-            new Result ( messages );
-            new Result { Messages = messages };
+            new Result ( messages ).Assert();
+            new Result { Messages = messages }.Assert();
             Result result = new();
             result.Messages = messages;
+            result.Assert();
         }
         // IList
         {
             IList<string> messages = new List<string> { "Hi", "Hello" };
-            new Result ( messages );
-            new Result { Messages = messages };
+            new Result ( messages ).Assert();
+            new Result { Messages = messages }.Assert();
             Result result = new();
             result.Messages = messages;
+            result.Assert();
         }
         // As ICollection > Constructor Only
         {
             ICollection<string> messages = new List<string> { "Hi", "Hello" };
-            new Result ( messages );
-            // Oops, IList<T>
-            //new Result { Messages = messages };
+            new Result ( messages ).Assert();
+            // Oops, IList<T> only
+            //new Result { Messages = messages }.Assert();
             //Result result = new();
             //result.Messages = messages;
+            //result.Assert();
         }
         // HashSet > Constructor only
         {
             var messages = new HashSet<string> { "Hi", "Hello" };
-            new Result ( messages );
-            // Oops, IList<T>
-            //new Result { Messages = messages };
+            new Result ( messages ).Assert();
+            // Oops, IList<T> only
+            //new Result { Messages = messages }.Assert();
             //Result result = new();
             //result.Messages = messages;
+            //result.Assert();
         }
         // IEnumarable > Constructor only
         {
             IEnumerable<string> messages = new List<string> { "Hi", "Hello" };
-            new Result ( messages );
-            // Oops, IList<T>
-            //new Result { Messages = messages };
+            new Result ( messages ).Assert();
+            // Oops, IList<T> only
+            //new Result { Messages = messages }.Assert();
             //Result result = new();
             //result.Messages = messages;
+            //result.Assert();
         }
     }
 
@@ -371,10 +421,15 @@ public class ResultTestsEx
     {
         IResult result = GenerateNum(1, 10);
         IsTrue(result.Success);
+        result.Assert();
+
         result.Success = false;
         IsFalse(result.Success);
+        Throws(result.Assert);
+
         result.Success = true;
         IsTrue(result.Success);
+        result.Assert();
     }
         
     [TestMethod]
@@ -384,51 +439,58 @@ public class ResultTestsEx
 
         NotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
+        result.Assert();
 
         result.Messages = [ "I am", "assigned" ];
         NotNull(result.Messages);
         AreEqual(2, result.Messages.Count);
         AreEqual("I am", result.Messages[0]);
         AreEqual("assigned", result.Messages[1]);
+        result.Assert();
 
         result.Messages.Add("I am added");
         AreEqual(3, result.Messages.Count);
         AreEqual("I am", result.Messages[0]);
         AreEqual("assigned", result.Messages[1]);
         AreEqual("I am added", result.Messages[2]);
+        result.Assert();
 
         result.Messages = [ ];
         NotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
+        result.Assert();
     }
 
     private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
 
     [TestMethod]
-    public void Test_ResultOfT_Data()
+    public void Test_ResultOfT_Data_Filled()
     {
-        {
-            Result<CultureInfo> result = new() { Data = _nlNL };
+        Result<CultureInfo> result = new() { Data = _nlNL };
 
-            AreEqual(_nlNL, result.Data);
+        AreEqual(_nlNL, result.Data);
 
-            IsTrue(result.Success);
-            NotNull(result.Messages);
-            AreEqual(0, result.Messages.Count);
+        IsTrue(result.Success);
+        NotNull(result.Messages);
+        AreEqual(0, result.Messages.Count);
+        result.Assert();
+    }
 
-        }
-        {
-            Result<CultureInfo> result = new();
+    [TestMethod]
+    public void Test_ResultOfT_Data_Empty_CanReportSuccessAnyway()
+    {
+        Result<CultureInfo> result = new();
 
-            IsNull(result.Data);
+        IsNull(result.Data);
 
-            IsTrue(result.Success);
-            NotNull(result.Messages);
-            AreEqual(0, result.Messages.Count);
+        IsTrue(result.Success);
+        NotNull(result.Messages);
+        AreEqual(0, result.Messages.Count);
+        result.Assert();
 
-            result.Data = _nlNL;
-            AreEqual(_nlNL, result.Data);
-        }
+        result.Data = _nlNL;
+        AreEqual(_nlNL, result.Data);
+        result.Assert();
     }
 
     [TestMethod]
@@ -440,6 +502,7 @@ public class ResultTestsEx
             IsTrue(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
+            result.Assert();
         }
         {
             var result = new Result<string>(success: false);
@@ -447,9 +510,11 @@ public class ResultTestsEx
             IsFalse(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
+            Throws(result.Assert);
         }
         {
             var result = new Result<string>("I have", "no Data");
+
             IsTrue(result.Success);
 
             NotNull(result.Messages);
@@ -458,9 +523,12 @@ public class ResultTestsEx
             AreEqual("no Data", result.Messages[1]);
 
             IsNull(result.Data);
+
+            result.Assert();
         }
         {
             var result = new Result<string>([ "I cannot", "give you data..." ]);
+
             IsTrue(result.Success);
 
             NotNull(result.Messages);
@@ -469,9 +537,12 @@ public class ResultTestsEx
             AreEqual("give you data...", result.Messages[1]);
 
             IsNull(result.Data);
+
+            result.Assert();
         }
         {
             var result = new Result<string>([ "Our data", "is lacking", "and so is our", "success" ], success: false);
+
             IsFalse(result.Success);
 
             NotNull(result.Messages);
@@ -482,9 +553,12 @@ public class ResultTestsEx
             AreEqual("success", result.Messages[3]);
 
             IsNull(result.Data);
+
+            Throws(result.Assert);
         }
         {
             var result = new Result<string>(success: false, "Success", "is not a given", "and neither", "is Data");
+
             IsFalse(result.Success);
 
             NotNull(result.Messages);
@@ -498,6 +572,7 @@ public class ResultTestsEx
         }
         { 
             var result = new Result<string>(success: false, [ "My final report", "on our lack of success...", "and Data" ]);
+
             IsFalse(result.Success);
 
             NotNull(result.Messages);
@@ -507,6 +582,8 @@ public class ResultTestsEx
             AreEqual("and Data", result.Messages[2]);
 
             IsNull(result.Data);
+
+            Throws(result.Assert);
         }
     }
     
@@ -515,7 +592,7 @@ public class ResultTestsEx
     {
         var result = new Result<double?>();
 
-        AreEqual("{Result`1} Success", result.ToString()); // TODO: Bit ugly the `1
+        AreEqual("{Result`1} Success", result.ToString()); // Bit ugly the `1, but ok.
 
         result.Messages = [ "I am success", "incarnate" ];
         AreEqual("{Result`1} Success: I am success, incarnate", result.ToString());
@@ -541,13 +618,4 @@ public class ResultTestsEx
         int num = RandomizerLegacy.GetInt32(min, max);
         return new (success: true) { Data = num };
     }
-
-    // TODO: Reuse more?
-
-    //private static void AssertDefault(IResult result)
-    //{
-    //    IsTrue(result.Success);
-    //    NotNull(result.Messages);
-    //    AreEqual(0, result.Messages.Count);
-    //}
 }

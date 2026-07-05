@@ -149,3 +149,10 @@ public struct _tostring;
 /// Having messages does not imply failure.
 /// </param>
 public struct _resulttypes;
+
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>
+/// <c>Assert()</c> throws an exception with descriptive message in case
+/// <c>result.Success</c> is false. Otherwise, continues running your code.
+/// </remarks>
+public struct _assert;

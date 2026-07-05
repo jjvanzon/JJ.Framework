@@ -7,4 +7,6 @@ public interface IResult
     bool Success { get; set; }
     /// <inheritdoc cref="_messages"/>
     IList<string> Messages { get; set; }
+    /// <inheritdoc cref="_assert" />
+    void Assert();
 }
