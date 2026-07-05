@@ -48,8 +48,7 @@ public class ResultTestsEx
         AreEqual(default, result.Data);
         AreEqual(1, result.Messages.Count);
         AreEqual("min > max", result.Messages[0]);
-
-        Throws(result.Assert, "Failed: min > max");
+        Throws(result.Assert, "min > max");
     }
 
     [TestMethod]
@@ -86,14 +85,14 @@ public class ResultTestsEx
             IsFalse(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
-            Throws(result.Assert, "Failed");
+            Throws(result.Assert, "Failed without message");
         }
         {
             var result = new Result { Success = false };
             IsFalse(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
-            Throws(result.Assert, "Failed");
+            Throws(result.Assert, "Failed without message");
         }
     }
 
@@ -167,7 +166,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
-            Throws(result.Assert, "Failed: Oops");
+            Throws(result.Assert, "Oops");
         }
         {
             var result = new Result(success: false, [ "Oops" ]);
@@ -175,7 +174,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
-            Throws(result.Assert, "Failed: Oops");
+            Throws(result.Assert, "Oops");
         }
         {
             var result = new Result(success: false, "Oops", "a daisy");
@@ -184,7 +183,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
         {
             var result = new Result(success: false, [ "Oops", "a daisy" ]);
@@ -193,7 +192,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
         {
             var result = new Result([ "Oops", "a daisy" ], success: false);
@@ -202,7 +201,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
         {
             var result = new Result(success: false) { Messages = [ "Oops", "a daisy" ] };
@@ -211,7 +210,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
         {
             var result = new Result("Oops") { Success = false };
@@ -219,7 +218,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
-            Throws(result.Assert, "Failed: Oops");
+            Throws(result.Assert, "Oops");
         }
         {
             var result = new Result([ "Oops" ]) { Success = false };
@@ -227,7 +226,7 @@ public class ResultTestsEx
             NotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
-            Throws(result.Assert, "Failed: Oops");
+            Throws(result.Assert, "Oops");
         }
         {
             var result = new Result("Oops", "a daisy") { Success = false };
@@ -236,7 +235,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
@@ -245,7 +244,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
@@ -254,7 +253,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
         {
             var result = new Result { Messages = [ "Oops", "a daisy" ], Success = false };
@@ -263,7 +262,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Failed: Oops, a daisy");
+            Throws(result.Assert, "Oops, a daisy");
         }
     }
 
@@ -286,7 +285,7 @@ public class ResultTestsEx
 
         result.Success = false;
         IsFalse(result.Success);
-        Throws(result.Assert, "Failed");
+        Throws(result.Assert, "Failed without message");
     }
 
     [TestMethod]
@@ -424,7 +423,7 @@ public class ResultTestsEx
 
         result.Success = false;
         IsFalse(result.Success);
-        Throws(result.Assert, "Failed");
+        Throws(result.Assert, "Failed without message");
 
         result.Success = true;
         IsTrue(result.Success);
@@ -509,7 +508,7 @@ public class ResultTestsEx
             IsFalse(result.Success);
             NotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
-            Throws(result.Assert, "Failed");
+            Throws(result.Assert, "Failed without message");
         }
         {
             var result = new Result<string>("I have", "no Data");
@@ -553,7 +552,7 @@ public class ResultTestsEx
 
             IsNull(result.Data);
 
-            Throws(result.Assert, "Failed: Our data, is lacking, and so is our, success");
+            Throws(result.Assert, "Our data, is lacking, and so is our, success");
         }
         {
             var result = new Result<string>(success: false, "Success", "is not a given", "and neither", "is Data");
@@ -569,7 +568,7 @@ public class ResultTestsEx
 
             IsNull(result.Data);
         
-            Throws(result.Assert, "Failed: Success, is not a given, and neither, is Data");
+            Throws(result.Assert, "Success, is not a given, and neither, is Data");
         }
         { 
             var result = new Result<string>(success: false, [ "My final report", "on our lack of success...", "and Data" ]);
@@ -584,12 +583,12 @@ public class ResultTestsEx
 
             IsNull(result.Data);
 
-            Throws(result.Assert, "Failed: My final report, on our lack of success..., and Data");
+            Throws(result.Assert, "My final report, on our lack of success..., and Data");
         }
     }
     
     [TestMethod]
-    public void Test_Result_DiagnosticsTexts()
+    public void Test_Result_ToString()
     {
         var result = new Result<double?>();
 

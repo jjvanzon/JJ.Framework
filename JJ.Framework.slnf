@@ -80,7 +80,8 @@
       "Framework\\Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\Validation.Tests.Helpers\\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj",
       "Framework\\Validation.Tests\\JJ.Framework.Validation.Legacy.Tests.csproj",
-      "Framework\\Validation.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj"
+      "Framework\\Validation.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj",
+      "Utilities\\Scripts\\JJ.Utilities.Scripts.csproj"
     ]
   }
 }

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
+// ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
 namespace JJ.Framework.Business.Legacy;
 
@@ -6,25 +7,53 @@ internal static class DiagnosticsFormatter
 {
     public static string DebuggerDisplay(IResult? result)
     {
-        Type type = result?.GetType() ?? typeof(IResult);
-        return $"{{{type.Name}}} {FormatResult(result)}";
-    }
+        var formattedType = FormatType(result);
 
-    public static string ExceptionMessage(IResult result) => FormatResult(result);
-
-    public static string FormatResult(IResult? result)
-    {
-        if (result == null) return "Result=<null>";
+        if (result == null) return $"{formattedType}=<null>";
 
         string formattedSuccess = FormatSuccess(result.Success);
         string formattedMessages = FormatMessages(result.Messages);
 
-        if (string.IsNullOrWhiteSpace(formattedMessages))
+        if (IsNullOrWhiteSpace(formattedMessages))
         {
-            return formattedSuccess;
+            return $"{formattedType} {formattedSuccess}";
+        }
+        else
+        {
+            return $"{formattedType} {formattedSuccess}: {formattedMessages}";
+        }
+    }
+
+    public static string ExceptionMessage(IResult? result)
+    {
+        if (result == null) return "Result=<null>";
+
+        var noMessagesText = FormatSuccess(result.Success) + " without message";
+
+        if (result.Messages == null)
+        {
+            return noMessagesText;
         }
 
-        return formattedSuccess + ": " + formattedMessages;
+        if (result.Messages.Count == 0)
+        {
+            return noMessagesText;
+        }
+
+        string formattedMessages = FormatMessages(result.Messages);
+
+        if (IsNullOrWhiteSpace(formattedMessages))
+        {
+            return noMessagesText;
+        }
+
+        return formattedMessages;
+    }
+    
+    private static string FormatType(IResult? result)
+    {
+        Type type = result?.GetType() ?? typeof(IResult);
+        return $"{{{type.Name}}}";
     }
 
     private static string FormatSuccess(bool success) => success ? "Success" : "Failed";
