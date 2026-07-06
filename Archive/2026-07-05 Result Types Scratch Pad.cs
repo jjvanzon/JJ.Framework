@@ -33,5 +33,30 @@ Result Types Scratch Pad
     //    NotNull(result.Messages);
     //    AreEqual(0, result.Messages.Count);
     //}
+```
+
+Accssors / Untrimming:
+
+```cs
+//[Suppress("Trimmer", "IL2026", Justification = GetTypes)] // Assembly.GetType used (GetTypes = closest NoTrimReason).
+
+    //private static Accessor _accessor = new(_type);
+
+    //public static string ExceptionMessage(IResult? result) 
+    //    => 
+
+    //public static string ExceptionMessage(IResult? result) 
+    //    => 
+
+    //, [ typeof(IResult) ]
+    // These all didn't work either:
+    // private static Accessor _accessor = new(_type);
+    // => (string)_accessor.InvokeMethod(nameof(ExceptionMessage), result);
+    // => (string)_accessor.InvokeMethod(() => ExceptionMessage(result));
+    // var reflectionCache = new ReflectionCache(ReflectionHelper.BINDING_FLAGS_ALL); // Doesn't have GetMethod.
+
+        //=> typeof(Result).Assembly.GetType("JJ.Framework.Business.Legacy.DiagnosticsFormatter") ??
+
+    //[NoTrim(AllMethods, $"{MainAsm}.DiagnosticsFormatter", MainAsm)]
 
 ```

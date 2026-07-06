@@ -606,29 +606,36 @@ public class ResultTestsEx
         result.Messages = [ "Oh no", "I failed" ];
         AreEqual("{Result`1} Failed: Oh no, I failed", result.ToString());
     }
+    
+    [TestMethod]
+    public void Test_Result_ExceptionMessages_WithNullyResult()
+    {
+        AreEqual("Result=<null>", ExceptionMessage(null));
+    }
 
     [TestMethod]
-    public void Test_Result_ExceptionMessages_NullyMessages()
+    public void Test_Result_ExceptionMessages_WithNullyMessages()
     {
-        // TODO: Nullies requiring accessors to "break in" and cause invalid state => should still lead to intelligable
-
         var result = new Result { Success = false };
         var accessor = new ResultBaseAccessor(result);
 
-        Throws(result.Assert, "Result failed without messages.");
+        const string expectedMessage = "Result failed without messages.";
+
+        Throws(result.Assert, expectedMessage);
 
         result.Messages = [ "" ];
-        Throws(result.Assert, "Result failed without messages.");
+        Throws(result.Assert, expectedMessage);
 
         result.Messages = [ null! ];
-        Throws(result.Assert, "Result failed without messages."); 
+        Throws(result.Assert, expectedMessage); 
         
         accessor._messages = null!;
         IsNull(accessor._messages);
         IsNull(result.Messages);
-        Throws(result.Assert, "Result failed without messages."); 
-        
+        Throws(result.Assert, expectedMessage);
     }
+
+    // TODO: Any such edge cases worth testing for the ToString?
 
     private Result<int> GenerateNum(int min, int max)
     {
