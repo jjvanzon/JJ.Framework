@@ -5,6 +5,13 @@
     <Version>0.257.$(BuildNum)</Version>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>

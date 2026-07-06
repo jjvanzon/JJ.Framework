@@ -26,9 +26,12 @@ internal static class DiagnosticsFormatter
 
     public static string ExceptionMessage(IResult? result)
     {
-        if (result == null) return "Result=<null>";
+        if (result == null) 
+        {
+            return "Result=<null>";
+        }
 
-        var noMessagesText = FormatSuccess(result.Success) + " without message";
+        var noMessagesText = FormatSuccess(result.Success) + " without message.";
 
         if (result.Messages == null)
         {
@@ -43,6 +46,11 @@ internal static class DiagnosticsFormatter
         string formattedMessages = FormatMessages(result.Messages);
 
         if (IsNullOrWhiteSpace(formattedMessages))
+        {
+            return noMessagesText;
+        }
+
+        if (formattedMessages == "<null>")
         {
             return noMessagesText;
         }

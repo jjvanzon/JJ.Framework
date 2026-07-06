@@ -609,6 +609,27 @@ public class ResultTestsEx
         AreEqual("{Result`1} Failed: Oh no, I failed", result.ToString());
     }
 
+    [TestMethod]
+    public void Test_Result_ExceptionMessages_NullyMessages()
+    {
+        // TODO: Nullies requiring accessors to "break in" and cause invalid state => should still lead to intelligable
+
+        var result = new Result { Success = false };
+
+        // TODO: Maybe should mention "Result returned". Also: failed is implied again: it is an exception message.
+        Throws(result.Assert, "Failed without message.");
+
+        //result.Messages = null!;
+        //Throws(result.Assert, "Failed without message."); 
+
+        result.Messages = [ "" ];
+        Throws(result.Assert, "Failed without message.");
+
+        result.Messages = [ null! ];
+        Throws(result.Assert, "Failed without message."); 
+        
+    }
+
     private Result<int> GenerateNum(int min, int max)
     {
         if (min > max)
