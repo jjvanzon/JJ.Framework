@@ -5,5 +5,8 @@
       <method name="&lt;Main&gt;$" />
     </type>
   </assembly>
+  <type fullname="JJ.Framework.Business.Legacy.TrimTests.Untrimmer" preserve="all">
+    <method name="Untrim" />
+  </type>
   <assembly fullname="nCrunch.TestRuntime.DotNetCore" preserve="all" />
 </linker>

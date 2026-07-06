@@ -1,6 +1,7 @@
 ﻿// ReSharper disable NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
+// ReSharper disable DuplicatedSequentialIfBodies
 namespace JJ.Framework.Business.Legacy;
 
 internal static class DiagnosticsFormatter
@@ -31,7 +32,12 @@ internal static class DiagnosticsFormatter
             return "Result=<null>";
         }
 
-        var noMessagesText = FormatSuccess(result.Success) + " without message.";
+        if (result.Success)
+        {
+            // Not what? Nothing? This should never happen.
+        }
+
+        var noMessagesText = "Result failed without messages.";
 
         if (result.Messages == null)
         {

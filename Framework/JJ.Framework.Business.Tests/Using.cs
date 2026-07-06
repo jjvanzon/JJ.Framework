@@ -2,6 +2,7 @@
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Business.Legacy;
 global using JJ.Framework.Business.Legacy.Tests.Helpers;
+global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Testing.Legacy;
 global using JJ.Framework.Mathematics.Legacy;
 global using static System.Globalization.CultureInfo;

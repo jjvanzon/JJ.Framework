@@ -1,6 +1,4 @@
-﻿#pragma warning disable IDE0300
-#pragma warning disable IDE0017
-#pragma warning disable CA1859 // Use concrete type for performance.
+﻿#pragma warning disable IDE0017 // Simplify object initialization
 
 // ReSharper disable RedundantExplicitParamsArrayCreation
 // ReSharper disable AppendToCollectionExpression
@@ -12,6 +10,8 @@ namespace JJ.Framework.Business.Legacy.Tests;
 [TestClass]
 public class ResultTestsEx
 {
+    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
+
     [TestMethod]
     public void Test_IResult()
     {
@@ -267,7 +267,7 @@ public class ResultTestsEx
     }
 
     [TestMethod]
-    public void Test_Result_NullMessagesCollection()
+    public void Test_Result_Init_NullMessages()
     {
         Throws(() => new Result ( messages : null! ), "messages", "null");
         Throws(() => new Result { Messages = null! }, "messages", "null");
@@ -459,8 +459,6 @@ public class ResultTestsEx
         result.Assert();
     }
 
-    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
-
     [TestMethod]
     public void Test_ResultOfT_Data_Filled()
     {
@@ -615,18 +613,20 @@ public class ResultTestsEx
         // TODO: Nullies requiring accessors to "break in" and cause invalid state => should still lead to intelligable
 
         var result = new Result { Success = false };
+        var accessor = new ResultBaseAccessor(result);
 
-        // TODO: Maybe should mention "Result returned". Also: failed is implied again: it is an exception message.
-        Throws(result.Assert, "Failed without message.");
-
-        //result.Messages = null!;
-        //Throws(result.Assert, "Failed without message."); 
+        Throws(result.Assert, "Result failed without messages.");
 
         result.Messages = [ "" ];
-        Throws(result.Assert, "Failed without message.");
+        Throws(result.Assert, "Result failed without messages.");
 
         result.Messages = [ null! ];
-        Throws(result.Assert, "Failed without message."); 
+        Throws(result.Assert, "Result failed without messages."); 
+        
+        accessor._messages = null!;
+        IsNull(accessor._messages);
+        IsNull(result.Messages);
+        Throws(result.Assert, "Result failed without messages."); 
         
     }
 
