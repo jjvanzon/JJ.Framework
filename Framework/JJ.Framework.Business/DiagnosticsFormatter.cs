@@ -6,7 +6,7 @@ namespace JJ.Framework.Business.Legacy;
 
 internal static class DiagnosticsFormatter
 {
-    public static string DebuggerDisplay(IResult? result)
+    public static string Stringify(IResult? result)
     {
         var formattedType = FormatType(result);
 

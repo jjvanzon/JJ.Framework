@@ -5,7 +5,7 @@ namespace JJ.Framework.Business.Legacy;
 public abstract class ResultBase : IResult
 {
     /// <inheritdoc cref="_tostring" />
-    public override string ToString() => DebuggerDisplay(this);
+    public override string ToString() => Stringify(this);
 
     private const bool DEFAULT_SUCCESS = true;
 

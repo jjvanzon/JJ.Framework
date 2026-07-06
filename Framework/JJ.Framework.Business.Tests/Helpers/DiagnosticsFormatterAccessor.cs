@@ -13,10 +13,7 @@ internal static class DiagnosticsFormatterAccessor
                                   "JJ.Framework.Business.Legacy";
        
         var type = Type.GetType(typeString);
-        if (type == null)
-        {
-            throw new Exception("Type not found: " + typeString);
-        }
+        if (type == null) throw new Exception("Type not found: " + typeString);
         return type;
     }
 
