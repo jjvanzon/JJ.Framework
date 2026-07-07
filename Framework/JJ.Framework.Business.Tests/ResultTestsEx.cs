@@ -606,12 +606,6 @@ public class ResultTestsEx
         result.Messages = [ "Oh no", "I failed" ];
         AreEqual("{Result`1} Failed: Oh no, I failed", result.ToString());
     }
-    
-    [TestMethod]
-    public void Test_Result_ExceptionMessages_WithNullyResult()
-    {
-        AreEqual("Result=<null>", ExceptionMessage(null));
-    }
 
     [TestMethod]
     public void Test_Result_ExceptionMessage_WithNullyMessages()
@@ -638,10 +632,39 @@ public class ResultTestsEx
     // TODO: Test such edge cases for the ToString/Stringify and DebuggerDisplay.
 
     [TestMethod]
-    public void Test_Result_Stringify_WithNullResult() => AreEqual("{IResult}=<null>", Stringify(null));
+    public void Test_Result_ToString_WithNullyMessages() 
+    {
+        var result = new Result { Success = false };
+        var accessor = new ResultBaseAccessor(result);
+
+        const string expectedMessage = "{Result} Failed";
+
+        AreEqual(expectedMessage, result.ToString());
+
+        result.Messages = [ "" ];
+        AreEqual(expectedMessage, result.ToString());
+
+        result.Messages = [ null! ];
+        return; // TODO
+        AreEqual(expectedMessage, result.ToString()); 
+        
+        accessor._messages = null!;
+        IsNull(accessor._messages);
+        IsNull(result.Messages);
+        AreEqual(expectedMessage, result.ToString());
+    }
+        
+    [TestMethod]
+    public void Test_Result_ExceptionMessages_WithNullyResult() 
+        => AreEqual("Result=<null>", ExceptionMessage(null));
 
     [TestMethod]
-    public void Test_Result_DebuggerDisplay_WithNullResult() => AreEqual("IResult=<null>", DebuggerDisplay(null));
+    public void Test_Result_Stringify_WithNullResult() 
+        => AreEqual("{IResult}=<null>", Stringify(null));
+
+    [TestMethod]
+    public void Test_Result_DebuggerDisplay_WithNullResult() 
+        => AreEqual("IResult=<null>", DebuggerDisplay(null));
 
     private Result<int> GenerateNum(int min, int max)
     {

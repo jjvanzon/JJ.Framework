@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Business.Legacy.Tests.Helpers;
+﻿using static JJ.Framework.Reflection.Legacy.StaticReflectionCache;
+
+namespace JJ.Framework.Business.Legacy.Tests.Helpers;
 
 internal static class DiagnosticsFormatterAccessor
 {
@@ -19,22 +21,13 @@ internal static class DiagnosticsFormatterAccessor
         if (type == null) throw new Exception("Type not found: " + typeString);
         return type;
     }
-    
-    private static MethodInfo GetMethod(string name)
-        => StaticReflectionCache.GetMethod(_type, name, typeof(IResult));
-
-    private static readonly MethodInfo _exceptionMessageMethod = GetMethod(nameof(ExceptionMessage));
 
     public static string ExceptionMessage(IResult? result) 
-        => (string)_exceptionMessageMethod.Invoke(null, [ result ])!;
-
-    private static readonly MethodInfo _stringifyMethod = GetMethod(nameof(Stringify));
+        => (string)GetMethod(_type, nameof(ExceptionMessage), typeof(IResult)).Invoke(null, [ result ])!;
 
     public static string Stringify(IResult? result) 
-        => (string)_stringifyMethod.Invoke(null, [ result ])!;
-    
-    private static readonly MethodInfo _debuggerDisplayMethod = GetMethod(nameof(DebuggerDisplay)); 
+        => (string)GetMethod(_type, nameof(Stringify), typeof(IResult)).Invoke(null, [ result ])!;
 
     public static string DebuggerDisplay(IResult? result) 
-        => (string)_debuggerDisplayMethod.Invoke(null, [ result ])!;
+        => (string)GetMethod(_type, nameof(DebuggerDisplay), typeof(IResult)).Invoke(null, [ result ])!;
 }
