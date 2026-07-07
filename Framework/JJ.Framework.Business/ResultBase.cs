@@ -1,9 +1,11 @@
-﻿
-namespace JJ.Framework.Business.Legacy;
+﻿namespace JJ.Framework.Business.Legacy;
 
 /// <inheritdoc cref="_resultbase" />
+[DebuggerDisplay("{DebuggerDisplay}")]
 public abstract class ResultBase : IResult
 {
+    private string DebuggerDisplay => DebuggerDisplay(this);
+
     /// <inheritdoc cref="_tostring" />
     public override string ToString() => Stringify(this);
 

@@ -6,22 +6,37 @@ namespace JJ.Framework.Business.Legacy;
 
 internal static class DiagnosticsFormatter
 {
+    public static string DebuggerDisplay(IResult? result)
+    {
+        var typeName = GetTypeName(result);
+
+        if (result == null) return $"{typeName}=<null>";
+
+        return Stringify(result, typeName + " -");
+    }
+
     public static string Stringify(IResult? result)
     {
-        var formattedType = FormatType(result);
+        var typeName = GetTypeName(result);
+        var formattedTypeName = '{' + typeName + '}';
 
-        if (result == null) return $"{formattedType}=<null>";
+        if (result == null) return $"{formattedTypeName}=<null>";
 
+        return Stringify(result, formattedTypeName);
+    }
+
+    private static string Stringify(IResult result, string formattedTypeName)
+    {
         string formattedSuccess = FormatSuccess(result.Success);
         string formattedMessages = FormatMessages(result.Messages);
 
         if (IsNullOrWhiteSpace(formattedMessages))
         {
-            return $"{formattedType} {formattedSuccess}";
+            return $"{formattedTypeName} {formattedSuccess}";
         }
         else
         {
-            return $"{formattedType} {formattedSuccess}: {formattedMessages}";
+            return $"{formattedTypeName} {formattedSuccess}: {formattedMessages}";
         }
     }
 
@@ -65,10 +80,11 @@ internal static class DiagnosticsFormatter
         return formattedMessages;
     }
     
-    private static string FormatType(IResult? result)
+    private static string GetTypeName(IResult? result)
     {
         Type type = result?.GetType() ?? typeof(IResult);
-        return $"{{{type.Name}}}";
+        return type.Name;
+        //return $"{{{type.Name}}}";
     }
 
     private static string FormatSuccess(bool success) => success ? "Success" : "Failed";

@@ -614,7 +614,7 @@ public class ResultTestsEx
     }
 
     [TestMethod]
-    public void Test_Result_ExceptionMessages_WithNullyMessages()
+    public void Test_Result_ExceptionMessage_WithNullyMessages()
     {
         var result = new Result { Success = false };
         var accessor = new ResultBaseAccessor(result);
@@ -635,7 +635,13 @@ public class ResultTestsEx
         Throws(result.Assert, expectedMessage);
     }
 
-    // TODO: Any such edge cases worth testing for the ToString?
+    // TODO: Test such edge cases for the ToString/Stringify and DebuggerDisplay.
+
+    [TestMethod]
+    public void Test_Result_Stringify_WithNullResult() => AreEqual("{IResult}=<null>", Stringify(null));
+
+    [TestMethod]
+    public void Test_Result_DebuggerDisplay_WithNullResult() => AreEqual("IResult=<null>", DebuggerDisplay(null));
 
     private Result<int> GenerateNum(int min, int max)
     {
