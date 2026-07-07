@@ -298,10 +298,10 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - Share `NumberedFilePath`/`SafeFileStream` `Tests` back and forth between `legacy` and `main`.
 - `Mutex` `UnauthorizedAccess` fixes for Azure Pipelines after introducing more tests.
 
-#### `2026-07-07` | `5.0/`0.258` : __Result Type Legacy Move__
+#### `2026-07-07` | `5.0`/`0.258` : __Result Type Legacy Move__
 
-- [`JJ.Business.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
-- `Result` types
+- [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+- `Result` types.
 - Moved from `.Core` to the `.Legacy` project.
 - Removed `JJ.Business.IO.Core` project variant.
 - Full, meaningful test coverage, IntelliSense docs.
@@ -314,7 +314,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`JJ.Framework.Logging.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Logging.Core)
 - `Trace` logging (alongside Console and Debug) for certain debugging scenarios.
 - [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
-- `required` keyword .NET 5` / .NET 6 support.
+- `required` keyword .NET 5 / .NET 6 support.
 
 💬 Feedback 
 ------------

@@ -48,6 +48,14 @@ Release Notes
 - `ISideEffect` for keeping business logic units separated.
 - Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
 
+#### `2026-07-07` | `0.258`/`5.0` : __Result Type Legacy Move__
+
+- `Result` types.
+- Moved from `.Core` to the `.Legacy` project.
+- Removed `JJ.Business.IO.Core` project variant.
+- Full, meaningful test coverage, IntelliSense docs.
+- Tighter nullability, diagnostic texts.
+
 
 💬 Feedback 
 ------------

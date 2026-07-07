@@ -87,6 +87,11 @@ Release Notes
 - Added `net462` target framework extra hardening.
 - `NotNullIfNotNull` retroactively added (accidentally not released last time).
 
+#### `2026-07-07` | `5.0` : __Fixes__
+
+- [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
+- `required` keyword .NET 5 / .NET 6 support.
+
 
 💬 Feedback
 ============

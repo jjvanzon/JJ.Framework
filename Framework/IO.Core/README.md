@@ -35,4 +35,7 @@ Numbers a file path if the original path already exists to prevent clashes e.g.:
 
 `CreateSafeFileStream`
 
-- A thread-safe variant of numbering file names (e.g. `MyFileToCopy (2).txt`) for highly concurrent scenarios, solving quite some tricky problems, that surface when you pressure the system, have a lot of activity all in one folder.
+- A thread-safe variant of numbering file names (e.g. `MyFileToCopy (2).txt`) 
+  for highly concurrent scenarios, solving quite some tricky problems, 
+  that surface when you pressure the system, 
+  having a lot of activity all in one folder.
