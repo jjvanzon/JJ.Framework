@@ -7,6 +7,17 @@ A version from a different point in time is [`JJ.Framework.Business`](https://ww
 
 Classes to support a business logic layer.
 
+-----
+
+- `Result` types - Elegant way to return data, status and messages from your operations.
+
+    - `IResult` - Common interface for result types.
+    - `ResultBase` - Base class with core properties: `Success` and `Messages`.
+    - `Result` - Use when there's no return value, just success / failure info.
+    - `Result<T>` - Returns data along with the status metadata.
+
+-----
+
 - `EntityStatusManager`
 
     - Simple in-memory holder for entity/storage state like `New`, `Dirty` and `Deleted`.
@@ -24,18 +35,6 @@ Classes to support a business logic layer.
 
     - Compares two lists (a source list of data and a destination list of data). Determines whether a list is dirty. This means that it checks whether items were removed, added or changed. (The changing of items does not mean that the entities themselves are dirty, it means that a list position now points to another object.)
 
------
-
-An elegant way to return data, status and messages from your operations:  
-
-- `IResult`  
-    - Common interface for result types.
-- `ResultBase`
-    - Base class with core properties: `Success` and `Messages`.
-- `Result`
-    - Use when there's no return value, just success / failure info.
-- `Result<T>`  
-    - Returns data along with the status metadata.
 
 Release Notes
 -------------
