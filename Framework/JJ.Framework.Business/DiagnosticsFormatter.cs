@@ -8,35 +8,42 @@ internal static class DiagnosticsFormatter
 {
     public static string DebuggerDisplay(IResult? result)
     {
-        var typeName = GetTypeName(result);
+        var formattedTypeName = FormatTypeName(result);
 
-        if (result == null) return $"{typeName}=<null>";
+        if (result == null)
+        {
+            return $"{formattedTypeName}=<null>";
+        }
 
-        return Stringify(result, typeName + " -");
+        return $"{formattedTypeName} - {StringifyWithoutType(result)}";
     }
 
     public static string Stringify(IResult? result)
     {
-        var typeName = GetTypeName(result);
-        var formattedTypeName = '{' + typeName + '}';
+        var formattedTypeName = FormatTypeName('{', result, '}');
 
-        if (result == null) return $"{formattedTypeName}=<null>";
+        if (result == null)
+        {
+            return $"{formattedTypeName}=<null>";
+        }
 
-        return Stringify(result, formattedTypeName);
+        return $"{formattedTypeName} {StringifyWithoutType(result)}";
     }
 
-    private static string Stringify(IResult result, string formattedTypeName)
+    private static string StringifyWithoutType(IResult result)
     {
+        if (result == null) throw new Exception("Internal error. Result was null.");
+
         string formattedSuccess = FormatSuccess(result.Success);
-        string formattedMessages = FormatMessages(result.Messages);
+        string formattedMessages = FormatMessages(result, "<no messages>");
 
         if (IsNullOrWhiteSpace(formattedMessages))
         {
-            return $"{formattedTypeName} {formattedSuccess}";
+            return $"{formattedSuccess}";
         }
         else
         {
-            return $"{formattedTypeName} {formattedSuccess}: {formattedMessages}";
+            return $"{formattedSuccess}: {formattedMessages}";
         }
     }
 
@@ -53,45 +60,52 @@ internal static class DiagnosticsFormatter
             "Only failed results should have thrown an exception.";
         if (result.Success) throw new Exception(successTrueMessage);
 
-        var noMessagesText = "Result failed without messages.";
-
-        if (result.Messages == null)
-        {
-            return noMessagesText;
-        }
-
-        if (result.Messages.Count == 0)
-        {
-            return noMessagesText;
-        }
-
-        string formattedMessages = FormatMessages(result.Messages);
-
-        if (IsNullOrWhiteSpace(formattedMessages))
-        {
-            return noMessagesText;
-        }
-
-        if (formattedMessages == "<null>")
-        {
-            return noMessagesText;
-        }
-
-        return formattedMessages;
+        return FormatMessages(result, "Result failed without messages.");
     }
     
-    private static string GetTypeName(IResult? result)
+    // Format Elements
+
+    private static string FormatTypeName(char prefix, IResult? result, char suffix) 
+        => prefix + FormatTypeName(result) + suffix;
+
+    private static string FormatTypeName(IResult? result)
     {
         Type type = result?.GetType() ?? typeof(IResult);
         return type.Name;
-        //return $"{{{type.Name}}}";
     }
 
     private static string FormatSuccess(bool success) => success ? "Success" : "Failed";
 
-    private static string FormatMessages(IList<string>? messages)
+    private static string FormatMessages(IResult result, string failedWithoutMessagesText = "")
     {
-        return Join(", ", (messages ?? []).Select(FormatMessage));
+        if (result == null) throw new Exception("Internal error. Result was null.");
+
+        IList<string>? messages = result.Messages;
+        string fallbackText = result.Success ? "" : failedWithoutMessagesText;
+
+        if (messages == null)
+        {
+            return fallbackText;
+        }
+
+        if (messages.Count == 0)
+        {
+            return fallbackText;
+        }
+
+        var formattedMessages = Join(", ", messages.Select(FormatMessage));
+
+        if (IsNullOrWhiteSpace(formattedMessages))
+        {
+            return fallbackText;
+        }
+
+        if (formattedMessages == "<null>")
+        {
+            return fallbackText;
+        }
+
+        return formattedMessages;
     }
 
     private static string FormatMessage(string? message) => message ?? "<null>";

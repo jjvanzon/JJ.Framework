@@ -629,15 +629,13 @@ public class ResultTestsEx
         Throws(result.Assert, expectedMessage);
     }
 
-    // TODO: Test such edge cases for the ToString/Stringify and DebuggerDisplay.
-
     [TestMethod]
     public void Test_Result_ToString_WithNullyMessages() 
     {
         var result = new Result { Success = false };
         var accessor = new ResultBaseAccessor(result);
 
-        const string expectedMessage = "{Result} Failed";
+        const string expectedMessage = "{Result} Failed: <no messages>";
 
         AreEqual(expectedMessage, result.ToString());
 
@@ -645,7 +643,6 @@ public class ResultTestsEx
         AreEqual(expectedMessage, result.ToString());
 
         result.Messages = [ null! ];
-        return; // TODO
         AreEqual(expectedMessage, result.ToString()); 
         
         accessor._messages = null!;
@@ -653,7 +650,29 @@ public class ResultTestsEx
         IsNull(result.Messages);
         AreEqual(expectedMessage, result.ToString());
     }
+
+    [TestMethod]
+    public void Test_Result_DebuggerDisplay_WithNullyMessages() 
+    {
+        var result = new Result { Success = false };
+        var accessor = new ResultBaseAccessor(result);
+
+        const string expectedMessage = "Result - Failed: <no messages>";
+
+        AreEqual(expectedMessage, accessor.DebuggerDisplay);
+
+        result.Messages = [ "" ];
+        AreEqual(expectedMessage, accessor.DebuggerDisplay);
+
+        result.Messages = [ null! ];
+        AreEqual(expectedMessage, accessor.DebuggerDisplay); 
         
+        accessor._messages = null!;
+        IsNull(accessor._messages);
+        IsNull(result.Messages);
+        AreEqual(expectedMessage, accessor.DebuggerDisplay);
+    }
+    
     [TestMethod]
     public void Test_Result_ExceptionMessages_WithNullyResult() 
         => AreEqual("Result=<null>", ExceptionMessage(null));
