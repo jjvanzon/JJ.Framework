@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.257.$(BuildNum)</Version>
+    <Version>0.258.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Description>General‑purpose .NET extensions for strings, collections, tree traversal, embedded resources and exception types.</Description>
     <PackageTags>utility; extensions; helpers; string; collections; linq; tree; traversal; embedded; resources; extension; helper; strings; collection; recursive; recursion</PackageTags>

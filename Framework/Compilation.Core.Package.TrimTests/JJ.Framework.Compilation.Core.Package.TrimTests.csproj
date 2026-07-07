@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>4.9.$(BuildNum)</Version>
+    <Version>5.0.$(BuildNum)</Version>
     <OutputType>Exe</OutputType>
     <!-- TargetFramework is also used for compilations fired off at run-time and those need a stretch of .NET versions for coverage. -->
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>
