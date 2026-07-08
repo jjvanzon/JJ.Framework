@@ -1,10 +1,9 @@
 ﻿// ReSharper disable RedundantArgumentDefaultValue
 
-
-namespace JJ.Framework.Business.Legacy.Tests;
+namespace JJ.Framework.Business.Tests;
 
 [TestClass]
-public class EntityStatusManagerCoreTests
+public class EntityStatusManagerTestsEx
 {
     //[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestMethod]

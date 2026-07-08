@@ -53,8 +53,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityStatusManagerByIDCoreTests.cs" />
-    <Compile Include="EntityStatusManagerCoreTests.cs" />
+    <Compile Include="EntityStatusManagerByIDTestsEx.cs" />
+    <Compile Include="EntityStatusManagerTestsEx.cs" />
     <Compile Include="EntityStatusManagerTests.cs" />
     <Compile Include="Helpers\Category.cs" />
     <Compile Include="Helpers\DiagnosticsFormatterAccessor.cs" />
@@ -67,11 +67,11 @@
     <Compile Include="Helpers\ResultBaseAccessor.cs" />
     <Compile Include="Helpers\Source.cs" />
     <Compile Include="Helpers\ViewModel.cs" />
-    <Compile Include="ListIsDirtyCoreTests.cs" />
+    <Compile Include="ListIsDirtyTestsEx.cs" />
     <Compile Include="OneToManyRelationshipTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultTestsEx.cs" />
-    <Compile Include="SideEffectCoreTests.cs" />
+    <Compile Include="SideEffectTestsEx.cs" />
     <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
