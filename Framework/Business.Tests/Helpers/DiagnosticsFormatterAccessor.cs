@@ -14,7 +14,7 @@ internal static class DiagnosticsFormatterAccessor
     //[return:Dyn(AllMethods)]
     private static Type GetReflectedType()
     {
-        const string typeString = "JJ.Framework.Business.Helpers.DiagnosticsFormatter, " +
+        const string typeString = "JJ.Framework.Business.DiagnosticsFormatter, " +
                                   "JJ.Framework.Business";
        
         var type = Type.GetType(typeString);

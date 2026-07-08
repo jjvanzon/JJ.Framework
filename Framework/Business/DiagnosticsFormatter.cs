@@ -2,7 +2,7 @@
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 // ReSharper disable DuplicatedSequentialIfBodies
 
-namespace JJ.Framework.Business.Helpers;
+namespace JJ.Framework.Business;
 
 internal static class DiagnosticsFormatter
 {
