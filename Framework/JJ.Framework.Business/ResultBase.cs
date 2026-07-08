@@ -14,6 +14,10 @@ public abstract class ResultBase : IResult
     /// <inheritdoc cref="_success" />
     public bool Success { get; set; }
 
+    /// <inheritdoc cref="_successful" />
+    [Obsolete("Use Success instead.")]
+    public bool Successful { get => Success; set => Success = value; } 
+
     /// <inheritdoc cref="docs._messages" />
     private List<string> _messages;
 

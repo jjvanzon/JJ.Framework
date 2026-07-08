@@ -156,3 +156,13 @@ public struct _resulttypes;
 /// <c>result.Success</c> is false. Otherwise, continues running your code.
 /// </remarks>
 public struct _assert;
+
+/// <summary>
+/// Synonym of <see cref="Result" /> for backward compatibilty.
+/// </summary>
+public struct _voidresult;
+
+/// <summary>
+/// Synonym of <see cref="IResult.Success" /> for backward compatibilty.
+/// </summary>
+public struct _successful;

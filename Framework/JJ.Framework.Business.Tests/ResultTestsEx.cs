@@ -17,7 +17,7 @@ public class ResultTestsEx
     {
         IResult result = GenerateNum(1, 10);
         IsTrue(result.Success);
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
         result.Assert();
     }
@@ -28,7 +28,7 @@ public class ResultTestsEx
         Result<int> result = GenerateNum(1, 10);
 
         IsTrue(result.Success);
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
 
         int num = result.Data;
@@ -44,7 +44,7 @@ public class ResultTestsEx
     {
         Result<int> result = GenerateNum(10, 1);
         IsFalse(result.Success);
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(default, result.Data);
         AreEqual(1, result.Messages.Count);
         AreEqual("min > max", result.Messages[0]);
@@ -57,21 +57,21 @@ public class ResultTestsEx
         {
             var result = new Result();
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
             result.Assert();
         }
         {
             var result = new Result(success: true);
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
             result.Assert();
         }
         {
             var result = new Result { Success = true };
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
             result.Assert();
         }
@@ -83,14 +83,14 @@ public class ResultTestsEx
         {
             var result = new Result(success: false);
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
             Throws(result.Assert, "Failed without message");
         }
         {
             var result = new Result { Success = false };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
             Throws(result.Assert, "Failed without message");
         }
@@ -102,7 +102,7 @@ public class ResultTestsEx
         {
             var result = new Result("Just a warning.");
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Just a warning.", result.Messages[0]);
             result.Assert();
@@ -110,7 +110,7 @@ public class ResultTestsEx
         {
             var result = new Result([ "Just a warning." ]);
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Just a warning.", result.Messages[0]);
             result.Assert();
@@ -118,7 +118,7 @@ public class ResultTestsEx
         {
             var result = new Result { Messages = [ "Just a warning." ] };
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Just a warning.", result.Messages[0]);
             result.Assert();
@@ -131,7 +131,7 @@ public class ResultTestsEx
         {
             var result = new Result("Just some warnings.", "You may want to take a look.");
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Just some warnings.", result.Messages[0]);
             AreEqual("You may want to take a look.", result.Messages[1]);
@@ -140,7 +140,7 @@ public class ResultTestsEx
         {
             var result = new Result([ "Just some warnings.", "You may want to take a look." ]);
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Just some warnings.", result.Messages[0]);
             AreEqual("You may want to take a look.", result.Messages[1]);
@@ -149,7 +149,7 @@ public class ResultTestsEx
         {
             var result = new Result { Messages = [ "Just some warnings.", "You may want to take a look." ] };
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Just some warnings.", result.Messages[0]);
             AreEqual("You may want to take a look.", result.Messages[1]);
@@ -163,7 +163,7 @@ public class ResultTestsEx
         {
             var result = new Result(success: false, "Oops");
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             Throws(result.Assert, "Oops");
@@ -171,7 +171,7 @@ public class ResultTestsEx
         {
             var result = new Result(success: false, [ "Oops" ]);
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             Throws(result.Assert, "Oops");
@@ -179,7 +179,7 @@ public class ResultTestsEx
         {
             var result = new Result(success: false, "Oops", "a daisy");
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -188,7 +188,7 @@ public class ResultTestsEx
         {
             var result = new Result(success: false, [ "Oops", "a daisy" ]);
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -197,7 +197,7 @@ public class ResultTestsEx
         {
             var result = new Result([ "Oops", "a daisy" ], success: false);
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -206,7 +206,7 @@ public class ResultTestsEx
         {
             var result = new Result(success: false) { Messages = [ "Oops", "a daisy" ] };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -215,7 +215,7 @@ public class ResultTestsEx
         {
             var result = new Result("Oops") { Success = false };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             Throws(result.Assert, "Oops");
@@ -223,7 +223,7 @@ public class ResultTestsEx
         {
             var result = new Result([ "Oops" ]) { Success = false };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(1, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             Throws(result.Assert, "Oops");
@@ -231,7 +231,7 @@ public class ResultTestsEx
         {
             var result = new Result("Oops", "a daisy") { Success = false };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -240,7 +240,7 @@ public class ResultTestsEx
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -249,7 +249,7 @@ public class ResultTestsEx
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -258,7 +258,7 @@ public class ResultTestsEx
         {
             var result = new Result { Messages = [ "Oops", "a daisy" ], Success = false };
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
@@ -293,12 +293,12 @@ public class ResultTestsEx
     {
         var result = new Result();
 
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
 
         result.Messages = [ "Hi", "How ya doin" ];
         result.Messages.Add("Fine thanks");
-        NotNull(                result.Messages);
+        IsNotNull(                result.Messages);
         AreEqual(3,             result.Messages.Count);
         AreEqual("Hi",          result.Messages[0]);
         AreEqual("How ya doin", result.Messages[1]);
@@ -306,13 +306,13 @@ public class ResultTestsEx
         result.Assert();
 
         result.Messages.Clear();
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
         result.Assert();
 
         List<string> messages = [ "Ok", "I will assign" ];
         result.Messages = messages;
-        NotNull(                  result.Messages);
+        IsNotNull(                  result.Messages);
         AreEqual(2,               result.Messages.Count);
         AreEqual("Ok",            result.Messages[0]);
         AreEqual("I will assign", result.Messages[1]);
@@ -435,12 +435,12 @@ public class ResultTestsEx
     {
         IResult result = GenerateNum(1, 10);
 
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
         result.Assert();
 
         result.Messages = [ "I am", "assigned" ];
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(2, result.Messages.Count);
         AreEqual("I am", result.Messages[0]);
         AreEqual("assigned", result.Messages[1]);
@@ -454,7 +454,7 @@ public class ResultTestsEx
         result.Assert();
 
         result.Messages = [ ];
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
         result.Assert();
     }
@@ -467,7 +467,7 @@ public class ResultTestsEx
         AreEqual(_nlNL, result.Data);
 
         IsTrue(result.Success);
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
         result.Assert();
     }
@@ -480,7 +480,7 @@ public class ResultTestsEx
         IsNull(result.Data);
 
         IsTrue(result.Success);
-        NotNull(result.Messages);
+        IsNotNull(result.Messages);
         AreEqual(0, result.Messages.Count);
         result.Assert();
 
@@ -496,7 +496,7 @@ public class ResultTestsEx
             var result = new Result<string>(success: true);
             IsNull(result.Data);
             IsTrue(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
             result.Assert();
         }
@@ -504,7 +504,7 @@ public class ResultTestsEx
             var result = new Result<string>(success: false);
             IsNull(result.Data);
             IsFalse(result.Success);
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
             Throws(result.Assert, "Failed without message");
         }
@@ -513,7 +513,7 @@ public class ResultTestsEx
 
             IsTrue(result.Success);
 
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("I have", result.Messages[0]);
             AreEqual("no Data", result.Messages[1]);
@@ -527,7 +527,7 @@ public class ResultTestsEx
 
             IsTrue(result.Success);
 
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("I cannot", result.Messages[0]);
             AreEqual("give you data...", result.Messages[1]);
@@ -541,7 +541,7 @@ public class ResultTestsEx
 
             IsFalse(result.Success);
 
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(4, result.Messages.Count);
             AreEqual("Our data", result.Messages[0]);
             AreEqual("is lacking", result.Messages[1]);
@@ -557,7 +557,7 @@ public class ResultTestsEx
 
             IsFalse(result.Success);
 
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(4, result.Messages.Count);
             AreEqual("Success", result.Messages[0]);
             AreEqual("is not a given", result.Messages[1]);
@@ -573,7 +573,7 @@ public class ResultTestsEx
 
             IsFalse(result.Success);
 
-            NotNull(result.Messages);
+            IsNotNull(result.Messages);
             AreEqual(3, result.Messages.Count);
             AreEqual("My final report", result.Messages[0]);
             AreEqual("on our lack of success...", result.Messages[1]);
