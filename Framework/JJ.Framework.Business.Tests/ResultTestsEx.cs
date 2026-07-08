@@ -950,8 +950,7 @@ public class ResultTestsEx
             AreEqual(1, result.Messages.Count);
             AreEqual("Hi", result.Messages[0]);
         }
-
-        // TODO: Constructors.
+        // Constructors
         {
             var result = new VoidResult(true);
             IsTrue(result.Success);
@@ -980,7 +979,128 @@ public class ResultTestsEx
             IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
         }
+        {
+            var result = new VoidResult("Hi");
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(1, result.Messages.Count);
+            AreEqual("Hi", result.Messages[0]);
+        }
+        {
+            var result = new VoidResult([ "Hi" ]);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(1, result.Messages.Count);
+            AreEqual("Hi", result.Messages[0]);
+        }
+        {
+            var result = new VoidResult("Hi.", "How are you?");
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
+        {
+            var result = new VoidResult([ "Hi.", "How are you?" ]);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
+        {
+            var result = new VoidResult(true, "Hi");
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(1, result.Messages.Count);
+            AreEqual("Hi", result.Messages[0]);
+        }
+        {
+            var result = new VoidResult(true, [ "Hi" ]);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(1, result.Messages.Count);
+            AreEqual("Hi", result.Messages[0]);
+        }
+        {
+            var result = new VoidResult(true, "Hi.", "How are you?");
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
+        {
+            var result = new VoidResult(true, [ "Hi.", "How are you?" ]);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
+        {
+            var result = new VoidResult([ "Hi" ], true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(1, result.Messages.Count);
+            AreEqual("Hi", result.Messages[0]);
+        }
+        {
+            var result = new VoidResult([ "Hi.", "How are you?" ], true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
 
+
+        {
+            var result = new VoidResult(success: true, "Hi.", "How are you?");
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
+        {
+            var result = new VoidResult(success: true, [ "Hi.", "How are you?" ]);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
+        {
+            var result = new VoidResult([ "Hi" ], success: true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(1, result.Messages.Count);
+            AreEqual("Hi", result.Messages[0]);
+        }
+        {
+            var result = new VoidResult([ "Hi.", "How are you?" ], success: true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(2, result.Messages.Count);
+            AreEqual("Hi.", result.Messages[0]);
+            AreEqual("How are you?", result.Messages[1]);
+        }
     }
 
     #pragma warning restore CS0618 // Type or member is obsolete
