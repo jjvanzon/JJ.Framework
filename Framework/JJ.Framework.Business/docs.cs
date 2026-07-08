@@ -157,12 +157,14 @@ public struct _resulttypes;
 /// </remarks>
 public struct _assert;
 
-/// <summary>
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>
 /// Synonym of <see cref="Result" /> for backward compatibilty.
-/// </summary>
+/// </remarks>
 public struct _voidresult;
 
-/// <summary>
+/// <inheritdoc cref="_resulttypes"/>
+/// <remarks>
 /// Synonym of <see cref="IResult.Success" /> for backward compatibilty.
-/// </summary>
+/// </remarks>
 public struct _successful;

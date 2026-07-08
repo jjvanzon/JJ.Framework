@@ -600,7 +600,7 @@ public class ResultTestsEx
     }
 
     [TestMethod]
-    public void Test_ResultOfT_Constructors_HaveNoData()
+    public void Test_ResultOfT_Constructors_HaveNoDataArg()
     {
         {
             var result = new Result<string>(success: true);
@@ -794,6 +794,196 @@ public class ResultTestsEx
     [TestMethod]
     public void Test_Result_DebuggerDisplay_WithNullResult() 
         => AreEqual("IResult=<null>", DebuggerDisplay(null));
+
+    #pragma warning disable CS0618 // Type or member is obsolete
+
+    [TestMethod]
+    public void Test_Result_Successful_AliasForSuccess_ForCompatibility()
+    {
+        // Init false
+        {
+            var result = new Result();
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result<int>();
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result(false);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result<int>(false);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result(success: false);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result<int>(success: false);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result { Success = false };
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result<int> { Success = false };
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result { Successful = false };
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result<int> { Successful = false };
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        // Init true
+        {
+            var result = new Result(true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        {
+            var result = new Result<int>(true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        {
+            var result = new Result(success: true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        {
+            var result = new Result<int>(success: true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        {
+            var result = new Result { Success = true };
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        {
+            var result = new Result<int> { Success = true };
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        {
+            var result = new Result { Successful = true };
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        {
+            var result = new Result<int> { Successful = true };
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+        // Prop Setter
+        {
+            var result = new Result();
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+
+            result.Success = true;
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+
+            result.Success = false;
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+        {
+            var result = new Result<int>();
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+
+            result.Success = true;
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+
+            result.Success = false;
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+        }
+    }
+
+    [TestMethod]
+    public void Test_VoidResult_AliasForResult_ForCompatibility()
+    {
+        // Init
+        {
+            var result = new VoidResult();
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+        }
+        // Success prop
+        {
+            var result = new VoidResult();
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            result.Successful = true;
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+        }
+
+        // Message prop
+        {
+            var result = new VoidResult();
+            AreEqual(0, result.Messages.Count);
+            result.Messages.Add("Hi");
+            AreEqual(1, result.Messages.Count);
+            AreEqual("Hi", result.Messages[0]);
+        }
+
+        // TODO: Constructors.
+        {
+            var result = new VoidResult(true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+        }
+        {
+            var result = new VoidResult(false);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+        }
+        {
+            var result = new VoidResult(success: true);
+            IsTrue(result.Success);
+            IsTrue(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+        }
+        {
+            var result = new VoidResult(success: false);
+            IsFalse(result.Success);
+            IsFalse(result.Successful);
+            IsNotNull(result.Messages);
+            AreEqual(0, result.Messages.Count);
+        }
+
+    }
+
+    #pragma warning restore CS0618 // Type or member is obsolete
 
     private Result<int> GenerateNum(int min, int max)
     {
