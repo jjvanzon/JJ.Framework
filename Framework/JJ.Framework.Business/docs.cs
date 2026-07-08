@@ -113,6 +113,7 @@ public struct _resultoft;
 /// <inheritdoc cref="_resulttypes"/>
 /// <remarks>
 /// The <c>Success</c> flag indicating success or failure of the result.
+/// Default value is false.
 /// </remarks>
 public struct _success;
 

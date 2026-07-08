@@ -55,6 +55,12 @@ Release Notes
 - Full, meaningful test coverage, IntelliSense docs.
 - Tighter nullability, diagnostic texts.
 
+#### `2026-07-08` | `0.259`/`5.1` : __Result Type Rework__
+
+- Success = `false` by default (previously true) improving compatibility and security.
+- Add `Succesful` and `VoidResult` aliases for Success and Result for compatibility.
+- `Messages` not separated by commas in diagnostics texts. Punctuation left up to the messages themselves.
+
 
 💬 Feedback 
 ------------

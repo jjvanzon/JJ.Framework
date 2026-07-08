@@ -316,6 +316,14 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
 - `required` keyword .NET 5 / .NET 6 support.
 
+#### `2026-07-08` | `5.1`/`0.259` : __Result Type Rework__
+
+- [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+- Success = `false` by default (previously true) improving compatibility and security.
+- Add `Succesful` and `VoidResult` aliases for Success and Result for compatibility.
+- `Messages` not separated by commas in diagnostics texts. Punctuation left up to the messages themselves.
+
+
 💬 Feedback 
 ------------
 
