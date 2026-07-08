@@ -62,7 +62,8 @@
     <Compile Include="PropertyStatusEnum.cs" />
     <Compile Include="ResultBase.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="ResultCompatibility.cs" />
+    <Compile Include="ResultSuccessful.cs" />
+    <Compile Include="VoidResult.cs" />
     <Compile Include="ResultT.cs" />
     <Compile Include="Using.cs" />
   </ItemGroup>
