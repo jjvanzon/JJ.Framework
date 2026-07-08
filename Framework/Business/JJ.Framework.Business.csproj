@@ -62,7 +62,6 @@
     <Compile Include="PropertyStatusEnum.cs" />
     <Compile Include="ResultBase.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="ResultSuccessful.cs" />
     <Compile Include="VoidResult.cs" />
     <Compile Include="ResultT.cs" />
     <Compile Include="Using.cs" />
@@ -86,9 +85,7 @@
     <None Include="packages.config" />
     <None Include="README.MD" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

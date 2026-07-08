@@ -9,4 +9,8 @@ public interface IResult
     IList<string> Messages { get; set; }
     /// <inheritdoc cref="_assert" />
     void Assert();
+    
+    /// <inheritdoc cref="_successful" />
+    [Obsolete("Use Success instead.")]
+    bool Successful { get; set; }
 }
