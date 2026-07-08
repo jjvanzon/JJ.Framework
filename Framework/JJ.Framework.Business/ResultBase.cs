@@ -32,7 +32,7 @@ public abstract class ResultBase : IResult
     /// <inheritdoc cref="_resultbase" />
     public ResultBase(bool success, params IEnumerable<string> messages)
     {
-        ThrowIfNull(messages);
+        if (messages == null) throw new ArgumentNullException(nameof(messages));
         Success = success;
         _messages = messages.ToList();
     }
@@ -43,7 +43,7 @@ public abstract class ResultBase : IResult
         get => _messages;
         set 
         {
-            ThrowIfNull(value, nameof(Messages));
+            if (value == null) throw new ArgumentNullException(nameof(Messages));
             _messages = value.ToList(); 
         }
     }
