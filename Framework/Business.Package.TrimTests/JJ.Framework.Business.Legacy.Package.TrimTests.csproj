@@ -13,11 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.258.7225" />
-    <PackageReference Include="JJ.Framework.Mathematics.Legacy" Version="0.258.7225" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="4.9.7196" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.0.7225" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="4.9.7196" />
+    <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.258.7235" />
+    <PackageReference Include="JJ.Framework.Mathematics.Legacy" Version="0.258.7235" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.0.7235" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.0.7235" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.0.7235" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

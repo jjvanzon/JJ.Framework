@@ -1064,8 +1064,6 @@ public class ResultTestsEx
             AreEqual("Hi.", result.Messages[0]);
             AreEqual("How are you?", result.Messages[1]);
         }
-
-
         {
             var result = new VoidResult(success: true, "Hi.", "How are you?");
             IsTrue(result.Success);
