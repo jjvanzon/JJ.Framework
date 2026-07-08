@@ -93,7 +93,7 @@ internal static class DiagnosticsFormatter
             return fallbackText;
         }
 
-        var formattedMessages = Join(", ", messages.Select(FormatMessage));
+        var formattedMessages = Join(" ", messages.Select(FormatMessage));
 
         if (IsNullOrWhiteSpace(formattedMessages))
         {

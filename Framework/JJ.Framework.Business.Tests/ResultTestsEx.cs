@@ -1,5 +1,6 @@
 ﻿#pragma warning disable IDE0017 // Simplify object initialization
 
+// ReSharper disable UseObjectOrCollectionInitializer
 // ReSharper disable RedundantExplicitParamsArrayCreation
 // ReSharper disable AppendToCollectionExpression
 // ReSharper disable RedundantExplicitArrayCreation
@@ -135,7 +136,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result([ "Oops", "a daisy" ]);
@@ -144,7 +145,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result { Messages = [ "Oops", "a daisy" ] };
@@ -153,7 +154,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
     }
 
@@ -292,7 +293,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result(success: false, [ "Oops", "a daisy" ]);
@@ -301,7 +302,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result([ "Oops", "a daisy" ], success: false);
@@ -310,7 +311,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result(success: false) { Messages = [ "Oops", "a daisy" ] };
@@ -319,7 +320,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result("Oops") { Success = false };
@@ -344,7 +345,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
@@ -353,7 +354,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result([ "Oops", "a daisy" ]) { Success = false };
@@ -362,7 +363,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
         {
             var result = new Result { Messages = [ "Oops", "a daisy" ], Success = false };
@@ -371,7 +372,7 @@ public class ResultTestsEx
             AreEqual(2, result.Messages.Count);
             AreEqual("Oops", result.Messages[0]);
             AreEqual("a daisy", result.Messages[1]);
-            Throws(result.Assert, "Oops, a daisy");
+            Throws(result.Assert, "Oops a daisy");
         }
     }
 
@@ -394,7 +395,7 @@ public class ResultTestsEx
 
         result.Success = false;
         IsFalse(result.Success);
-        Throws(result.Assert, "Failed without message");
+        Throws(result.Assert, "Failed without messages.");
     }
 
     [TestMethod]
@@ -407,7 +408,7 @@ public class ResultTestsEx
 
         result.Messages = [ "Hi", "How ya doin" ];
         result.Messages.Add("Fine thanks");
-        IsNotNull(                result.Messages);
+        IsNotNull(              result.Messages);
         AreEqual(3,             result.Messages.Count);
         AreEqual("Hi",          result.Messages[0]);
         AreEqual("How ya doin", result.Messages[1]);
@@ -421,7 +422,7 @@ public class ResultTestsEx
 
         List<string> messages = [ "Ok", "I will assign" ];
         result.Messages = messages;
-        IsNotNull(                  result.Messages);
+        IsNotNull(                result.Messages);
         AreEqual(2,               result.Messages.Count);
         AreEqual("Ok",            result.Messages[0]);
         AreEqual("I will assign", result.Messages[1]);
@@ -615,21 +616,21 @@ public class ResultTestsEx
             IsFalse(result.Success);
             IsNotNull(result.Messages);
             AreEqual(0, result.Messages.Count);
-            Throws(result.Assert, "Failed without message");
+            Throws(result.Assert, "Failed without messages.");
         }
         {
-            var result = new Result<string>("I have", "no Data");
+            var result = new Result<string>("I have", "no Data.");
 
             IsFalse(result.Success);
 
             IsNotNull(result.Messages);
             AreEqual(2, result.Messages.Count);
             AreEqual("I have", result.Messages[0]);
-            AreEqual("no Data", result.Messages[1]);
+            AreEqual("no Data.", result.Messages[1]);
 
             IsNull(result.Data);
 
-            Throws(result.Assert, "I have, no data");
+            Throws(result.Assert, "I have no Data.");
         }
         {
             var result = new Result<string>([ "I cannot", "give you data..." ]);
@@ -643,10 +644,10 @@ public class ResultTestsEx
 
             IsNull(result.Data);
 
-            Throws(() => result.Assert(), "I cannot, give you data...");
+            Throws(() => result.Assert(), "I cannot give you data...");
         }
         {
-            var result = new Result<string>([ "Our data", "is lacking", "and so is our", "success" ], success: false);
+            var result = new Result<string>([ "Our data", "is lacking", "and so is our", "success." ], success: false);
 
             IsFalse(result.Success);
 
@@ -655,14 +656,14 @@ public class ResultTestsEx
             AreEqual("Our data", result.Messages[0]);
             AreEqual("is lacking", result.Messages[1]);
             AreEqual("and so is our", result.Messages[2]);
-            AreEqual("success", result.Messages[3]);
+            AreEqual("success.", result.Messages[3]);
 
             IsNull(result.Data);
 
-            Throws(result.Assert, "Our data, is lacking, and so is our, success");
+            Throws(result.Assert, "Our data is lacking and so is our success.");
         }
         {
-            var result = new Result<string>(success: false, "Success", "is not a given", "and neither", "is Data");
+            var result = new Result<string>(success: false, "Success", "is not a given", "and neither", "is Data.");
 
             IsFalse(result.Success);
 
@@ -671,14 +672,14 @@ public class ResultTestsEx
             AreEqual("Success", result.Messages[0]);
             AreEqual("is not a given", result.Messages[1]);
             AreEqual("and neither", result.Messages[2]);
-            AreEqual("is Data", result.Messages[3]);
+            AreEqual("is Data.", result.Messages[3]);
 
             IsNull(result.Data);
         
-            Throws(result.Assert, "Success, is not a given, and neither, is Data");
+            Throws(result.Assert, "Success is not a given and neither is Data.");
         }
         { 
-            var result = new Result<string>(success: false, [ "My final report", "on our lack of success...", "and Data" ]);
+            var result = new Result<string>(success: false, [ "My final report", "on our lack of success...", "and Data." ]);
 
             IsFalse(result.Success);
 
@@ -686,11 +687,11 @@ public class ResultTestsEx
             AreEqual(3, result.Messages.Count);
             AreEqual("My final report", result.Messages[0]);
             AreEqual("on our lack of success...", result.Messages[1]);
-            AreEqual("and Data", result.Messages[2]);
+            AreEqual("and Data.", result.Messages[2]);
 
             IsNull(result.Data);
 
-            Throws(result.Assert, "My final report, on our lack of success..., and Data");
+            Throws(result.Assert, "My final report on our lack of success... and Data.");
         }
     }
     
@@ -701,19 +702,19 @@ public class ResultTestsEx
 
         AreEqual("{Result`1} Success", result.ToString()); // Bit ugly the `1, but ok.
 
-        result.Messages = [ "I am success", "incarnate" ];
-        AreEqual("{Result`1} Success: I am success, incarnate", result.ToString());
+        result.Messages = [ "I am success,", "incarnate." ];
+        AreEqual("{Result`1} Success: I am success, incarnate.", result.ToString());
 
         result.Data = 100;
-        AreEqual("{Result`1} Success: I am success, incarnate", result.ToString());
+        AreEqual("{Result`1} Success: I am success, incarnate.", result.ToString());
 
-        result.Messages.Add("As proof");
+        result.Messages.Add("As proof,");
         result.Messages.Add("I bring data.");
-        AreEqual("{Result`1} Success: I am success, incarnate, As proof, I bring data.", result.ToString());
+        AreEqual("{Result`1} Success: I am success, incarnate. As proof, I bring data.", result.ToString());
 
         result.Success = false;
-        result.Messages = [ "Oh no", "I failed" ];
-        AreEqual("{Result`1} Failed: Oh no, I failed", result.ToString());
+        result.Messages = [ "Oh no!", "I failed." ];
+        AreEqual("{Result`1} Failed: Oh no! I failed.", result.ToString());
     }
 
     [TestMethod]
