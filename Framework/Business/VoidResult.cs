@@ -1,8 +1,16 @@
-﻿namespace JJ.Framework.Business
+﻿namespace JJ.Framework.Business;
+
+/// <inheritdoc cref="_result" />
+public class Result : ResultBase
 {
-    public class VoidResult : ResultBase
-    {
-        public VoidResult() { }
-        public VoidResult(params string[] messages) : base(messages) { }
-    }
+    /// <inheritdoc cref="_result" />
+    public Result() { }
+    /// <inheritdoc cref="_result" />
+    public Result(bool success) : base(success) { }
+    /// <inheritdoc cref="_result" />
+    public Result(params IEnumerable<string> messages) : base(messages) { }
+    /// <inheritdoc cref="_result" />
+    public Result(IEnumerable<string> messages, bool success) : base(messages, success) { }
+    /// <inheritdoc cref="_result" />
+    public Result(bool success, params IEnumerable<string> messages) : base(success, messages) { }
 }

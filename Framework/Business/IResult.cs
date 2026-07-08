@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿namespace JJ.Framework.Business;
 
-namespace JJ.Framework.Business
+/// <inheritdoc cref="_iresult"/>
+public interface IResult
 {
-    [PublicAPI]
-    public interface IResult
-    {
-        bool Successful { get; set; }
-
-        /// <summary> not nullable, auto-instantiated </summary>
-        IList<string> Messages { get; set; }
-    }
+    /// <inheritdoc cref="_success"/>
+    bool Success { get; set; }
+    /// <inheritdoc cref="_messages"/>
+    IList<string> Messages { get; set; }
+    /// <inheritdoc cref="_assert" />
+    void Assert();
 }
