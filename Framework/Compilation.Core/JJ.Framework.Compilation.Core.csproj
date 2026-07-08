@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>5.0.$(BuildNum)-preview</Version>
+    <Version>5.1.$(BuildNum)-preview</Version>
     <!-- Support a whole sweep of .NET versions, to make a statement that run-time compilation supports all of these. -->
     <!-- But NCrunch hates net48 combined with netstandard dependencies. -->
     <!-- And NCrunch also can't distinguish 2 TargetFrameworks tags with conditions on them. -->
