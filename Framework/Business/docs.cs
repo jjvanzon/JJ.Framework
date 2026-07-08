@@ -156,4 +156,4 @@ public struct _voidresult;
 /// <summary>
 /// Synonym of <see cref="IResult.Success" /> for backward compatibilty.
 /// </summary>
-public struct _successful;
+public struct _successful; 
