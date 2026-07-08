@@ -9,7 +9,7 @@ public abstract class ResultBase : IResult
     /// <inheritdoc cref="_tostring" />
     public override string ToString() => Stringify(this);
 
-    private const bool DEFAULT_SUCCESS = true;
+    private const bool DEFAULT_SUCCESS = false;
 
     /// <inheritdoc cref="_success" />
     public bool Success { get; set; }
