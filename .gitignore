@@ -11,6 +11,7 @@ TestResults
 .idea
 *.Backup.tmp
 *.binlog
+*.bat.lnk
 
 # NCrunch
 nCrunchTemp*.*
