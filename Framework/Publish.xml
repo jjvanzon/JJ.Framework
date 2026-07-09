@@ -35,7 +35,7 @@
 
   <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PublishDir>bin\$(Configuration)\$(TargetFramework)\publish\$(RuntimeIdentifier)</PublishDir>
+    <PublishDir>publish\$(Configuration)\$(TargetFramework)</PublishDir>
   </PropertyGroup>
 
   <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(AutoPublish)">

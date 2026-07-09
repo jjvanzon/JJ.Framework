@@ -6,6 +6,9 @@ echo ------------------------------------------------------------------
 echo Calling ClearObj.bat
 call "%~dp0ClearObj.bat"
 echo ------------------------------------------------------------------
+echo Calling ClearPublish.bat
+call "%~dp0ClearPublish.bat"
+echo ------------------------------------------------------------------
 echo Calling ClearNuget.bat
 call "%~dp0ClearNuget.bat"
 echo ------------------------------------------------------------------
