@@ -8,15 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.Configuration.Core" Version="5.1.7246" />
-  </ItemGroup>
-  
-  <ItemGroup Condition="'$(TargetFramework)'!='net461'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <Compile Include="..\Configuration.Core.Tests.Dummy\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Configuration.Core.Tests.Dummy\obj\**" />
     <Compile Remove="..\Configuration.Core.Tests.Dummy\bin\**" />
@@ -24,5 +15,18 @@
     <None Remove="..\Configuration.Core.Tests.Dummy\obj\**\*.config" />
     <None Remove="..\Configuration.Core.Tests.Dummy\bin\**\*.config" />
     <None Remove="..\Configuration.Core.Tests.Dummy\app.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="JJ.Framework.Configuration.Core" Version="5.1.7246" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'!='net461'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>
 </Project>
