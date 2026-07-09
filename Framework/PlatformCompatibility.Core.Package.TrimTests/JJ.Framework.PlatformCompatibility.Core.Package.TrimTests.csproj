@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.0.7235" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7239" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.0.7235" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.258.7235" />
   </ItemGroup>
