@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\StringResources.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\StringResources.Tests\obj\**" />
-    <Compile Remove="..\StringResources.Tests\bin\**" />
+    <Compile Include="..\Validation.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Validation.Legacy.Tests\obj\**" />
+    <Compile Remove="..\Validation.Legacy.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Presentation.Resources\JJ.Framework.StringResources.Legacy.csproj" />
+    <ProjectReference Include="..\Validation.Legacy.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
     <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
@@ -25,6 +26,7 @@
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
     <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
+    <TrimmerRootAssembly Include="JJ.Framework.Validation.Legacy.Tests.Helpers" />
   </ItemGroup>
 
 </Project>

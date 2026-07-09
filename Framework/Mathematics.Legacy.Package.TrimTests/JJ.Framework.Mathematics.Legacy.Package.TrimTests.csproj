@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\StringResources.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\StringResources.Tests\obj\**" />
-    <Compile Remove="..\StringResources.Tests\bin\**" />
-    <Compile Include="..\StringResources.TrimTests\Program.cs" />
+    <Compile Include="..\JJ.Framework.Mathematics.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Mathematics.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Mathematics.Tests\bin\**" />
+    <Compile Include="..\Mathematics.Legacy.TrimTests\Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.259.7246" />
+    <PackageReference Include="JJ.Framework.Mathematics.Legacy" Version="0.259.7246" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7246" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7246" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7246" />

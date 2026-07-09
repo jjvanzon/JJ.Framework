@@ -15,8 +15,8 @@
     <Compile Include="..\JJ.Framework.Reflection.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Reflection.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Reflection.Tests\bin\**" />
-    <Compile Include="..\Reflection.TrimTests\Program.cs" />
-    <Compile Include="..\Reflection.TrimTests\Untrimmer.cs" />
+    <Compile Include="..\Reflection.Legacy.TrimTests\Program.cs" />
+    <Compile Include="..\Reflection.Legacy.TrimTests\Untrimmer.cs" />
   </ItemGroup>
 
   <ItemGroup>

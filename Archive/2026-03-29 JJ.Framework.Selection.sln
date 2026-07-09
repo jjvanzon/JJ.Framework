@@ -156,11 +156,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Legacy.Trim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Core.NCrunchless", "Framework\JJ.Framework.Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj", "{AE7549CA-6111-F3F6-69AB-3A8729E3950E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests", "Framework\JJ.Framework.Validation.Tests\JJ.Framework.Validation.Legacy.Tests.csproj", "{4F424DB0-47D3-929F-21E4-25C99C4D30F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests", "Framework\JJ.Framework.Validation.Legacy.Tests\JJ.Framework.Validation.Legacy.Tests.csproj", "{4F424DB0-47D3-929F-21E4-25C99C4D30F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Trimming.TestApp", "Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj", "{F86F588F-4887-A442-89A1-A1068050A1DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests.Helpers", "Framework\JJ.Framework.Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj", "{766D56F7-0939-4D87-4BCE-FD950548C753}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests.Helpers", "Framework\JJ.Framework.Validation.Legacy.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj", "{766D56F7-0939-4D87-4BCE-FD950548C753}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.NuGet", "Framework\JJ.Framework.PlatformCompatibility.Core.NuGet\JJ.Framework.PlatformCompatibility.Core.NuGet.csproj", "{B863292C-8406-5E54-EC47-981C87EE9790}"
 EndProject

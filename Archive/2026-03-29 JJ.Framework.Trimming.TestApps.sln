@@ -110,7 +110,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Leg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Trimming.TestApp", "Framework\JJ.Framework.Validation.Trimming.TestApp\JJ.Framework.Validation.Legacy.Trimming.TestApp.csproj", "{F86F588F-4887-A442-89A1-A1068050A1DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests.Helpers", "Framework\JJ.Framework.Validation.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj", "{766D56F7-0939-4D87-4BCE-FD950548C753}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Legacy.Tests.Helpers", "Framework\JJ.Framework.Validation.Legacy.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj", "{766D56F7-0939-4D87-4BCE-FD950548C753}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

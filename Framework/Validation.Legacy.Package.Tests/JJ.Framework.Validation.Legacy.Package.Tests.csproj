@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Validation.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\Validation.Tests\obj\**" />
-    <Compile Remove="..\Validation.Tests\bin\**" />
+    <Compile Include="..\Validation.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Validation.Legacy.Tests\obj\**" />
+    <Compile Remove="..\Validation.Legacy.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Validation.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj" />
+    <ProjectReference Include="..\Validation.Legacy.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj" />
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
       

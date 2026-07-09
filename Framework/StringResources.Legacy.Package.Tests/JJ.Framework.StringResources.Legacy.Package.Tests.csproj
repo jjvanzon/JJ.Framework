@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\StringResources.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\StringResources.Tests\obj\**" />
-    <Compile Remove="..\StringResources.Tests\bin\**" />
+    <Compile Include="..\StringResources.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\StringResources.Legacy.Tests\obj\**" />
+    <Compile Remove="..\StringResources.Legacy.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,31 +3,30 @@
     <Version>0.259.$(BuildNum)</Version>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.259.7246" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7246" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7246" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7246" />
+    <Compile Include="..\StringResources.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\StringResources.Legacy.Tests\obj\**" />
+    <Compile Remove="..\StringResources.Legacy.Tests\bin\**" />
+    <Compile Include="..\StringResources.Legacy.TrimTests\Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Common.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.Common.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.Common.Tests\bin\**" />
-    <Compile Include="..\Common.TrimTests\Program.cs" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.259.7246" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7246" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7246" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7246" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 </Project>
 

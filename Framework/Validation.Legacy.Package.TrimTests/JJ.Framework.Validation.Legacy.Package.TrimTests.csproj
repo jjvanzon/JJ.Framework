@@ -6,18 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Business.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.Business.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.Business.Tests\bin\**" />
-    <Compile Include="..\Business.TrimTests\Program.cs" />
+    <Compile Include="..\Validation.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Validation.Legacy.Tests\obj\**" />
+    <Compile Remove="..\Validation.Legacy.Tests\bin\**" />
+    <Compile Include="..\Validation.Legacy.TrimTests\Program.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Business.Legacy" Version="0.259.7246" />
-    <PackageReference Include="JJ.Framework.Mathematics.Legacy" Version="0.259.7246" />
+    <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="5.1.7246" />
+    <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.259.7246" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7246" />
     <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7246" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Validation.Legacy.Package.Tests.Helpers\JJ.Framework.Validation.Legacy.Package.Tests.Helpers.csproj" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7246" />
+    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
@@ -25,9 +30,4 @@
   <ItemGroup>
     <TrimmerRootDescriptor Include="Linker.xml" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
-  </ItemGroup>
 </Project>
-
