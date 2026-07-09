@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Business.Legacy;
+﻿// ReSharper disable PossibleMultipleEnumeration
+namespace JJ.Framework.Business.Legacy;
 
 /// <inheritdoc cref="_resultbase" />
 [DebuggerDisplay("{DebuggerDisplay}")]
@@ -18,9 +19,6 @@ public abstract class ResultBase : IResult
     [Obsolete("Use Success instead.")]
     public bool Successful { get => Success; set => Success = value; } 
 
-    /// <inheritdoc cref="docs._messages" />
-    private List<string> _messages;
-
     /// <inheritdoc cref="_resultbase" />
     public ResultBase() : this(DEFAULT_SUCCESS, [ ]) { }
     /// <inheritdoc cref="_resultbase" />
@@ -32,19 +30,19 @@ public abstract class ResultBase : IResult
     /// <inheritdoc cref="_resultbase" />
     public ResultBase(bool success, params IEnumerable<string> messages)
     {
-        if (messages == null) throw new ArgumentNullException(nameof(messages));
+        ThrowIfNull(messages);
         Success = success;
-        _messages = messages.ToList();
+        Messages = messages.ToList();
     }
 
     /// <inheritdoc cref="docs._messages" />
     public IList<string> Messages
     {
-        get => _messages;
-        set 
+        get;
+        set
         {
-            if (value == null) throw new ArgumentNullException(nameof(Messages));
-            _messages = value.ToList(); 
+            ThrowIfNull(value, nameof(Messages));
+            field = value.ToList();
         }
     }
 
@@ -52,5 +50,12 @@ public abstract class ResultBase : IResult
     public void Assert()
     {
         if (!Success) throw new Exception(ExceptionMessage(this));
+    }
+    
+    /// <summary> Compatibility stub </summary>
+    private void ThrowIfNull(IEnumerable<string>? messages, string? paramName = null)
+    {
+        paramName ??= nameof(messages);
+        if (messages == null) throw new ArgumentNullException(paramName);
     }
 }
