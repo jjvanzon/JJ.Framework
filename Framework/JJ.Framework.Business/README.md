@@ -1,11 +1,11 @@
 ﻿JJ.Framework.Business.Legacy
 ----------------------------
 
+Classes to support a business logic layer.
+
 A historic version released in aid of older apps, that still hold value. Now targets `.NET 10` and `.NET Standard` supporting native compilation and code trimming for wide compatibility, with `100%` meaningful test coverage, doc pop-ups everywhere.
 
 A version from a different point in time is [`JJ.Framework.Business`](https://www.nuget.org/packages/JJ.Framework.Business). That one has additional classes to manage bidirectional relationships between entities, but also excludes the `EntityStatusManager` class. It only officially supports an older version of .NET, even though compatibility with a newer .NET should be fine.
-
-Classes to support a business logic layer.
 
 -----
 
