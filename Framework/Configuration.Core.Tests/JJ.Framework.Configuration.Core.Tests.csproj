@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!--<TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks>-->
-    <!--<TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>-->
-    <!--<TargetFrameworks>net10.0</TargetFrameworks>-->
-    <TargetFrameworks>net10.0;net461</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
+    <TargetFrameworks Condition="!$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks> <!-- TODO: Visual Studio Test Explorer shows errors unless we exclude net462 and net48 here. -->
     <Version>5.1.$(BuildNum)</Version>
   </PropertyGroup>
 
@@ -22,7 +20,7 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   
-  <ItemGroup Condition="'$(TargetFramework)'!='net461'">
+  <ItemGroup Condition="'$(TargetFramework)'!='net461' And '$(TargetFramework)'!='net462' And '$(TargetFramework)'!='net48' ">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>
 

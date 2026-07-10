@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks> <!-- Test-framework-mimicking stubs requires minimal dependency. -->
     <Version>5.1.$(BuildNum)</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
     <NoWarn>$(NoWarn);IDE0130</NoWarn><!--Namespace != folder-->

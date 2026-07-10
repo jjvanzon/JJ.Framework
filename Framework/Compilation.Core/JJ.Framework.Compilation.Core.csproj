@@ -1,10 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>5.1.$(BuildNum)-preview</Version>
-    <!-- Support a whole sweep of .NET versions, to make a statement that run-time compilation supports all of these. -->
-    <!-- And NCrunch also can't distinguish 2 TargetFrameworks tags with conditions on them. -->
-    <!-- But NCrunch hates net48 combined with netstandard dependencies. -->
-    <!--<TargetFrameworks >net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net462;net461;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks> <!-- NCrunch Libs 3 TFMs -->
     <Description>Use C# to call the dotnet.exe CLI at runtime to kick off compilations of .NET projects.</Description>
     <PackageTags>dotnet exe cli thin wrapper process start msbuild utility testing error exit code command line commandline cmd build rebuild msrebuild install package nuget restore result args diagnostics options buildconfiguration buildconf parallel timeout verbosity logging binlog output assert assertion exitcode stdout stderr quiet minimal normal detailed diagnostic defaults</PackageTags>
