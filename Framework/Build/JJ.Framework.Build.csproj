@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>5.1.$(BuildNum)</Version>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks> <!-- 1 TargetFramework to trigger only once. -->
     <Description>Internal infrastructure. Triggers initialization at the start of building JJ.Framework.</Description>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Build</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Build</PackageProjectUrl>

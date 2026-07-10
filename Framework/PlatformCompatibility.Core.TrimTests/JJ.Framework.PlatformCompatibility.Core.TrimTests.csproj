@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Version>5.1.$(BuildNum)</Version>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0</TargetFrameworks> <!-- PlatformCompatibility begs specific target frameworks -->
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0</TargetFrameworks> <!-- PlatformCompatibility begs specific TFMs -->
     <Nullable>enable</Nullable>
   </PropertyGroup>
 

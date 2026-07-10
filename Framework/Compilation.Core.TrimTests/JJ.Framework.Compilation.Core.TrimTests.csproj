@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>5.1.$(BuildNum)</Version>
-    <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks> <!-- NCrunch TrimTest 1 TFM -->
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
