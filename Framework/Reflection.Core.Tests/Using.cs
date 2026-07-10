@@ -23,6 +23,3 @@ global using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 
-#if !NET9_0_OR_GREATER
-global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
-#endif
