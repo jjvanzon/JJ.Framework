@@ -27,7 +27,7 @@ public class TestHelper : IDisposable
         $"""
         <Project Sdk="Microsoft.NET.Sdk">
           <PropertyGroup>
-            <TargetFrameworks>{targetFrameworks}</TargetFrameworks>
+            <TargetFrameworks>{targetFrameworks}</TargetFrameworks> <!-- Runtime compiled dummy project -->
             <Nullable>enable</Nullable>
             <ImplicitUsings>enable</ImplicitUsings>
             <LangVersion>latest</LangVersion>
