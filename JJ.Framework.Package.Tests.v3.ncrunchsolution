@@ -3,7 +3,6 @@
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <AnalyseExecutionTimes>False</AnalyseExecutionTimes>
     <ConsiderInconclusiveTestsAsPassing>True</ConsiderInconclusiveTestsAsPassing>
-    <CopyReferencedAssembliesToWorkspace>True</CopyReferencedAssembliesToWorkspace>
     <CustomBuildProperties>
       <Value>IsNCrunch = True</Value>
       <Value>UseAppHost = True</Value>
