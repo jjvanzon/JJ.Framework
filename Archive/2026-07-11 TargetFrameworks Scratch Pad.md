@@ -48,3 +48,19 @@ JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj:
     <!--<TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks> -->
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
 ```
+
+JJ.Framework.PlatformCompatibility.Core.Tests.csproj:
+
+```xml
+    <!--<TargetFrameworks Condition="!$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>--> <!-- Specific for PlatformCompatibility.-->
+```
+
+JJ.Framework.PlatformCompatibility.Core.Tests.Standard.csproj:
+
+```xml
+    <!--<TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net462;net461</TargetFrameworks>--> <!-- Specific for PlatformCompatibility --> <!-- TODO: net48 gave NCrunch errors. -->
+    
+    <!--<TargetFrameworks Condition="!$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>--> <!-- Specific for PlatformCompatibility -->
+
+    <!--<ProjectReference Include="..\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj" />-->
+```

@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Version>5.1.$(BuildNum)</Version>
-    <!--<TargetFrameworks Condition="!$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks>--> <!-- Specific for PlatformCompatibility.-->
-    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net462;net461</TargetFrameworks> <!-- TODO: net48 gave NCrunch errors. -->
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net462;net461</TargetFrameworks> <!-- NCrunch wide range for PlatformCompatibility --> <!-- TODO: net48 gave NCrunch errors. -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +11,5 @@
   <ItemGroup>
     <ProjectReference Include="..\PlatformCompatibility.Core.TestBase\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
   </ItemGroup>
-
 </Project>
 
