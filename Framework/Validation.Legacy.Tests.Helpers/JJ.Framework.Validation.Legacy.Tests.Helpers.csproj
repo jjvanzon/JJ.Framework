@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks> <!-- NCrunch Libs 3 TFMs -->
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
     <RootNamespace>JJ.Framework.Validation.Legacy.Tests.Helpers</RootNamespace>
     <Version>0.259.$(BuildNum)</Version>
   </PropertyGroup>
+  
   <ItemGroup>
     <Compile Update="Resources\DispayNames.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -17,9 +18,11 @@
       <LastGenOutput>DispayNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj" />
   </ItemGroup>
+  
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 </Project>

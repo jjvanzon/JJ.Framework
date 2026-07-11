@@ -1,0 +1,1 @@
+This helper project exists, because there were some difficulties getting string resources to work as linked file from various test project variants.
