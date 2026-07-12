@@ -58,6 +58,7 @@
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions_Split_Tests_Ex.cs" />
+    <Compile Include="StringExtensions_Split_Tests_Ex_WithQuotation.cs" />
     <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
