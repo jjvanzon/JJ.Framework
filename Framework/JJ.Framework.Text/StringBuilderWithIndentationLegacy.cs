@@ -3,7 +3,7 @@
     public class StringBuilderWithIndentationLegacy
     {
         public StringBuilderWithIndentationLegacy()
-            : this("\t")
+            : this("\t") 
         { }
         
         public StringBuilderWithIndentationLegacy(string tabString)
