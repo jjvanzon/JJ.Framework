@@ -1,4 +1,5 @@
 ﻿#pragma warning disable IDE0044 // Field read-only
+// ReSharper disable FieldCanBeMadeReadOnly.Local
 
 using System;
 using System.Collections.Generic;
