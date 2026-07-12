@@ -43,9 +43,7 @@
   <Project Path="Framework/Common.Core.TrimTests/JJ.Framework.Common.Core.TrimTests.csproj" />
   <Project Path="Framework/Common.Legacy.TrimTests/JJ.Framework.Common.Legacy.TrimTests.csproj" />
   <Project Path="Framework/JJ.Framework.Common.Tests/JJ.Framework.Common.Legacy.Tests.csproj" />
-  <Project Path="Framework/JJ.Framework.Text.Tests/JJ.Framework.Text.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Text/JJ.Framework.Text.Legacy.csproj" />
-  <Project Path="Framework/Text.Core.Tests/JJ.Framework.Text.Core.Tests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
   <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
