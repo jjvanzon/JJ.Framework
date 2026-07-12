@@ -5,9 +5,10 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.259.7246" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7246" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.259.7246" />
+    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.259.7304" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7304" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.259.7304" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7304" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
@@ -20,4 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
+
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 </Project>

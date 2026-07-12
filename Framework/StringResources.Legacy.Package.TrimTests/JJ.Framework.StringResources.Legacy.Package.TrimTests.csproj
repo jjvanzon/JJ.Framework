@@ -17,10 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.259.7246" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7246" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7246" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7246" />
+    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.259.7304" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7304" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7304" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7304" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
