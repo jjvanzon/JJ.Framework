@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.Common.Core.Tests;
+﻿namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
-public class StringExtensionsCoreTests
+public class StringExtensionsTestsEx
 {
     private static readonly string? _null = null;
 
