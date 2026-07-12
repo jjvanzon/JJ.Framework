@@ -1,11 +1,5 @@
 <Project>
   
-  <ItemGroup Condition="$(IsTrimTest)">
-    <Compile Remove="publish\**" />
-    <EmbeddedResource Remove="publish\**" />
-    <None Remove="publish\**" />
-  </ItemGroup>
-  
   <PropertyGroup Condition="$(IsTrimTest)">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>True</SelfContained>
