@@ -11,7 +11,6 @@ RunTests<FlaggingTests>() &&
 RunTests<KeyValuePairHelperCoreTests>() &&
 RunTests<SplitCoreTests>() &&
 RunTests<SplitWithQuotationCoreTests>() &&
-RunTests<StringExtensionsCasingCoreTests>() &&
 RunTests<TrimAllCoreTests>() &&
 RunTests<OverloadByNameTests>();
 WriteLine("Done.");
