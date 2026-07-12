@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Using.cs" />
     <None Include="JJ.Framework.Text.nuspec" />
     <Compile Include="EncodingHelper.cs" />
     <Compile Include="docs.cs" />
