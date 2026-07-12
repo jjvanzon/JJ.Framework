@@ -9,7 +9,6 @@ RunTests<EnvironmentHelperCoreTests>() &&
 RunTests<ExceptionTypesCoreTests>() &&
 RunTests<FlaggingTests>() &&
 RunTests<KeyValuePairHelperCoreTests>() &&
-RunTests<SplitCoreTests>() &&
 RunTests<SplitWithQuotationCoreTests>() &&
 RunTests<TrimAllCoreTests>() &&
 RunTests<OverloadByNameTests>();

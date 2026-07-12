@@ -1,11 +1,10 @@
 ﻿// ReSharper disable InvokeAsExtensionMember
 // ReSharper disable ConvertToConstant.Local
 
-using static System.StringSplitOptions;
-namespace JJ.Framework.Common.Core.Tests;
+namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
-public class SplitCoreTests
+public class StringExtensions_Split_Tests_Ex
 {
     private static readonly string? _null = null;
     
@@ -84,10 +83,10 @@ public class SplitCoreTests
         
         foreach (string[] split in splits)
         {
-            IsNotNull(split);
-            AreEqual(1, split.Length);
-            IsNotNull(split[0]);
-            AreEqual("a, b, c", split[0]);
+            IsNotNull(() => split);
+            AreEqual(1, () => split.Length);
+            IsNotNull(() => split[0]);
+            AreEqual("a, b, c", () => split[0]);
         }
     }
 
@@ -139,12 +138,12 @@ public class SplitCoreTests
         
         foreach (string[] split in splits)
         {
-            IsNotNull(split);
-            AreEqual(2, split.Length);
-            IsNotNull(split[0]);
-            IsNotNull(split[1]);
-            AreEqual("a,b", split[0]);
-            AreEqual("c", split[1]);
+            IsNotNull(() => split);
+            AreEqual(2, () => split.Length);
+            IsNotNull(() => split[0]);
+            IsNotNull(() => split[1]);
+            AreEqual("a,b", () => split[0]);
+            AreEqual("c", () => split[1]);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class StringExtensions_Casing_Tests_Legacy
+public class StringExtensions_Casing_Tests_Ex
 {
     private static readonly string? _null = null;
 
