@@ -3,6 +3,7 @@
 
 namespace JJ.Framework.Common.Legacy.Tests;
 
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
 public class StringExtensions_Split_Tests_Ex
 {

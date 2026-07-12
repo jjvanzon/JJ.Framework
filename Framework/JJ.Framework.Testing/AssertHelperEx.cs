@@ -33,6 +33,7 @@ public static class AssertHelperEx
     public static void Throws(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
         => Throws(() => { statement(); }, exceptionType, expectedTexts);
 
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     public static void Throws(Action statement, Type exceptionType, params string[] expectedTexts)
     {
         if (statement == null) throw new NullException(() => statement);
