@@ -82,12 +82,6 @@ public struct _overloadbyname;
 public struct _textof;
 
 /// <summary>
-/// Replaces accented characters in the string (é, ñ, ü) with their unaccented equivalents (e, n, u).
-/// Intended for normalization before search, sorting or comparison.
-/// </summary>
-public struct _removeaccents;
-
-/// <summary>
 /// Returns if the code is running inside Azure Pipelines,
 /// by chacking if the environment variable <c>"TF_BUILD"</c> equals <c>"True"</c>.
 /// </summary>

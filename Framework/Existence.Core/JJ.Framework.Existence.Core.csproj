@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Core\JJ.Framework.Common.Core.csproj" />
+    <ProjectReference Include="..\Text.Core\JJ.Framework.Text.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
   </ItemGroup>
 

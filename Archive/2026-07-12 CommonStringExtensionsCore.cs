@@ -12,7 +12,8 @@ public static class CommonStringExtensionsCore
     /// <inheritdoc cref="_removeaccents" />
     public static string RemoveAccents(this string? input)
     {
-        if (input == null) return "";
+        if (input == null)
+            return "";
         string formD = input.Normalize(FormD);
         var stripped = formD.Where(x => GetUnicodeCategory(x) != NonSpacingMark);
         return new string(stripped.ToArray()).Normalize(FormC);

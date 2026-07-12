@@ -38,3 +38,9 @@ public struct _endswithpunctuation;
 /// where char and string can be mixed as arguments.
 /// </summary>
 public struct _replace;
+
+/// <summary>
+/// Replaces accented characters in the string (é, ñ, ü) with their unaccented equivalents (e, n, u).
+/// Intended for normalization before search, sorting or comparison.
+/// </summary>
+public struct _removeaccents;
