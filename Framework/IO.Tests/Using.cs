@@ -8,3 +8,4 @@ global using static System.Environment;
 global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 global using static JJ.Framework.IO.StreamHelper;
 global using static JJ.Framework.Testing.AssertHelper;
+global using static JJ.Framework.Testing.AssertHelperEx;

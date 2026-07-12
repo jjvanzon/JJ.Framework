@@ -6,4 +6,5 @@ global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static System.Threading.Thread;
 global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 global using static JJ.Framework.Testing.AssertHelper;
+global using static JJ.Framework.Testing.AssertHelperEx;
 global using static JJ.Framework.ResourceStrings.NoLog;

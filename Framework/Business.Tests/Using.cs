@@ -12,6 +12,7 @@ global using static System.Globalization.CultureInfo;
 global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 global using static JJ.Framework.Reflection.ReflectionHelper;
 global using static JJ.Framework.Testing.AssertHelper;
+global using static JJ.Framework.Testing.AssertHelperEx;
 global using static JJ.Framework.Business.Tests.Helpers.EntityFactory;
 global using static JJ.Framework.Business.Tests.Helpers.DiagnosticsFormatterAccessor;
 

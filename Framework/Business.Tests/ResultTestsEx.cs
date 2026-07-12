@@ -5,6 +5,7 @@
 // ReSharper disable AppendToCollectionExpression
 // ReSharper disable RedundantExplicitArrayCreation
 // ReSharper disable ObjectCreationAsStatement
+// ReSharper disable HeuristicUnreachableCode
 
 namespace JJ.Framework.Business.Tests;
 
