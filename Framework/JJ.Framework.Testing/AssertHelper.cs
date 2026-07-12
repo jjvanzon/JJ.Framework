@@ -271,6 +271,7 @@ namespace JJ.Framework.Testing.Legacy
 
         // Messages
         
+        #pragma warning disable IDE0060 // Unused parameter b
         private static string GetNotEqualFailedMessage<T>(T a, T b, string message)
         {
             return
@@ -279,6 +280,7 @@ namespace JJ.Framework.Testing.Legacy
                     !String.IsNullOrEmpty(message) ? " " : "",
                     message);
         }
+        #pragma warning restore IDE0060
 
         private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message)
         {
