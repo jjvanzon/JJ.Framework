@@ -3,6 +3,28 @@
     public static class StringExtensionsLegacy
     {
         /// <summary>
+        /// Repeat a string a number of times, returning a single string.
+        /// </summary>
+        public static string Repeat(this string stringToRepeat, int repeatCount)
+        {
+            if (stringToRepeat == null) throw new ArgumentNullException(nameof(stringToRepeat));
+            
+            char[] sourceChars  = stringToRepeat.ToCharArray();
+            int    sourceLength = sourceChars.Length;
+            
+            int destLength = sourceLength * repeatCount;
+            var destChars  = new char[destLength];
+            
+            for (var i = 0; i < destLength; i += sourceLength)
+            {
+                Array.Copy(sourceChars, 0, destChars, i, sourceLength);
+            }
+            
+            var destString = new string(destChars);
+            return destString;
+        }
+
+        /// <summary>
         /// Will trim off repetitions of the same value from the given string.
         /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
@@ -59,28 +81,6 @@
         {
             input ??= "";
             return input.Right(input.Length - length);
-        }
-
-        /// <summary>
-        /// Repeat a string a number of times, returning a single string.
-        /// </summary>
-        public static string Repeat(this string stringToRepeat, int repeatCount)
-        {
-            if (stringToRepeat == null) throw new ArgumentNullException(nameof(stringToRepeat));
-            
-            char[] sourceChars  = stringToRepeat.ToCharArray();
-            int    sourceLength = sourceChars.Length;
-            
-            int destLength = sourceLength * repeatCount;
-            var destChars  = new char[destLength];
-            
-            for (var i = 0; i < destLength; i += sourceLength)
-            {
-                Array.Copy(sourceChars, 0, destChars, i, sourceLength);
-            }
-            
-            var destString = new string(destChars);
-            return destString;
         }
         
         /// <summary>
