@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Text.Tests;
 
 [TestClass]
-public class StringExtensions_Casing_Tests
+public class StringExtensions_Casing_Tests_Ex
 {
     private static readonly string? _null = null;
 
