@@ -2,9 +2,9 @@
 bool success = 
 RunTests<StringExtensions_Split_Tests>() &&
 RunTests<StringExtensions_Split_Tests_Ex>() &&
+RunTests<StringExtensions_Split_Tests_Ex_WithQuotation>() &&
 RunTests<StringExtensions_Casing_Tests_Ex>() &&
 RunTests<StringExtensionsTests>() &&
-RunTests<SplitWithQuotationCoreTests>() &&
 RunTests<StringExtensionsTestsEx>();
 WriteLine("Done.");
 if (!success) Exit(1);
