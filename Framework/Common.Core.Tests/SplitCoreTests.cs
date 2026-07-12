@@ -1,4 +1,6 @@
 ﻿// ReSharper disable InvokeAsExtensionMember
+// ReSharper disable ConvertToConstant.Local
+
 using static System.StringSplitOptions;
 namespace JJ.Framework.Common.Core.Tests;
 

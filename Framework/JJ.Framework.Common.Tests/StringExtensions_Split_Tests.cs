@@ -1,3 +1,5 @@
+// ReSharper disable ConvertToConstant.Local
+
 using System;
 // Replaced by global using; TrimTests use JJ.Framework.Testing.Core.MSTestless instead.
 //using Microsoft.VisualStudio.TestTools.UnitTesting;

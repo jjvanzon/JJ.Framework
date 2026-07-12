@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable IDE0044 // Field read-only
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

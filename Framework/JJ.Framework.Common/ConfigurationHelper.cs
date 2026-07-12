@@ -1,6 +1,9 @@
-﻿using System;
+﻿#pragma warning disable IDE0044 // Field read-only
+
+using System;
 using System.Collections.Generic;
 using System.Text;
+
 
 
 namespace JJ.Framework.Common.Legacy 

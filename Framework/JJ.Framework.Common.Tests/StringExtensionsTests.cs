@@ -1,3 +1,5 @@
+// ReSharper disable ConvertToConstant.Local
+
 using System;
 // Replaced by global using; TrimTests use JJ.Framework.Testing.Core.MSTestless instead.
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,7 +21,7 @@ namespace JJ.Framework.Common.Tests
         [TestMethod]
         public void Test_StringExtensions_CutLeftUntil()
         {
-            string input = "abcdefg";
+            const string input = "abcdefg";
             string output = input.CutLeftUntil("de");
             Assert.AreEqual("defg", output);
         }
