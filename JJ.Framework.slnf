@@ -54,6 +54,8 @@
       "Framework\\JJ.Framework.Reflection.Tests\\JJ.Framework.Reflection.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Reflection\\JJ.Framework.Reflection.Legacy.csproj",
       "Framework\\JJ.Framework.Testing\\JJ.Framework.Testing.Legacy.csproj",
+      "Framework\\JJ.Framework.Text.Tests\\JJ.Framework.Text.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.Text\\JJ.Framework.Text.Legacy.csproj",
       "Framework\\JJ.Framework.Validation\\JJ.Framework.Validation.Legacy.csproj",
       "Framework\\JJ.Framework.Xml.Tests\\JJ.Framework.Xml.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.Legacy.csproj",

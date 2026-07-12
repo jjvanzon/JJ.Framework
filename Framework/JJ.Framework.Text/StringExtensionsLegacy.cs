@@ -1,5 +1,4 @@
-﻿
-namespace JJ.Framework.Text.Core
+﻿namespace JJ.Framework.Text.Legacy
 {
     public static class StringExtensionsLegacy
     {
