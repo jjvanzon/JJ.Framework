@@ -33,6 +33,8 @@
             return str.IndexOf(substring, ToStringComparison(ignoreCase)) >= 0;
         }
         
+        // TODO: Distinction between ContainsAny and ContainsAll might be welcome.
+
         public static bool Contains(this string str, string[] words, bool ignoreCase = false)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));

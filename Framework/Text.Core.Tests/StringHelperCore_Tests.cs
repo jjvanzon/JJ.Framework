@@ -1,3 +1,5 @@
+using static System.StringComparison;
+
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
@@ -8,28 +10,38 @@ public class StringHelperCore_Tests
         => AreEqual(3, "Line1\nLine2\nLine3".CountLines());
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_String() 
+    public void Test_StringHelperCore_Contains_String_IgnoreCase() 
         => IsTrue("Hello World".Contains("hello", ignoreCase: true));
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_StringArray() 
+    public void Test_StringHelperCore_Contains_StringCollection() 
         => IsTrue("The quick brown fox".Contains(["cat", "fox", "dog"]));
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_CharArray() 
+    public void Test_StringHelperCore_Contains_CharCollection() 
         => IsTrue("Hello".Contains(['x', 'e', 'z']));
 
     [TestMethod]
-    public void Test_StringHelperCore_ToStringComparison() 
-        => AreEqual(StringComparison.OrdinalIgnoreCase, true.ToStringComparison());
+    public void Test_StringHelperCore_BoolIgnoreCase_True_ToStringComparison()
+    {
+        const bool ignoreCaseTrue = true;
+        AreEqual(OrdinalIgnoreCase, ignoreCaseTrue.ToStringComparison());
+    }
+
+    [TestMethod]
+    public void Test_StringHelperCore_BoolIgnoreCase_False_ToStringComparison()
+    {
+        const bool ignoreCaseTrue = false;
+        AreEqual(Ordinal, ignoreCaseTrue.ToStringComparison());
+    }
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyDuration() 
-        => IsTrue(PrettyDuration(3600).Contains("h"));
+        => IsTrue(PrettyDuration(3600).Contains("h")); // TODO: Check exact value, not just one letter.
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyTimeSpan() 
-        => IsTrue(TimeSpan.FromDays(2.5).PrettyTimeSpan().Contains("d"));
+        => IsTrue(TimeSpan.FromDays(2.5).PrettyTimeSpan().Contains("d")); // TODO: Check exact value, not just one letter.
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyByteCount() 
@@ -38,18 +50,18 @@ public class StringHelperCore_Tests
 
     [TestMethod]
     public void Test_StringHelperCore_WithShortGuids() 
-        => AreEqual("abc1", "abc123def456".WithShortGuids(4));
+        => AreEqual("abc1 - Hello there", "abc123def456 - Hello there".WithShortGuids(4));
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyTime_NoParamReturnsNow()
     {
-        string result = PrettyTime();
-        IsTrue(result.Length == 12); // HH:mm:ss.fff format
+        string result = PrettyTime(); 
+        IsTrue(result.Length == 12); // HH:mm:ss.fff format // TODO: Check a little more than length.
     }
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyTime() 
-        => AreEqual("14:30:45.123", PrettyTime(new DateTime(2023, 5, 15, 14, 30, 45, 123)));
+        => AreEqual("14:30:45.123", PrettyTime(new DateTime(2023, 5, 15, 14, 30, 45, 123))); // TODO: Use DateTime.Parse instead of new DateTime.
 
     [TestMethod]
     public void Test_StringHelperCore_Trim() 
