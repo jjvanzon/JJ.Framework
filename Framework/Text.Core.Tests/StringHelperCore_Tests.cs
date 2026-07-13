@@ -43,29 +43,70 @@ public class StringHelperCore_Tests
         AreEqual("1.00 min",  PrettyDuration(sec: 60));
         AreEqual("30.00 s",   PrettyDuration(sec: 30));
         AreEqual("1.00 s",    PrettyDuration(sec: 1));
+        AreEqual("1.23 s",    PrettyDuration(sec: 1.23));
         AreEqual("500.00 ms", PrettyDuration(sec: 0.5));
+        #if NET5_0_OR_GREATER
+        AreEqual("500.00 μs", PrettyDuration(sec: 0.5 / 1000));
+        AreEqual("0.50 μs",   PrettyDuration(sec: 0.5 / 1000 / 1000));
+        #else
+        // Less precision with .NET Framework
+        AreEqual("1.00 ms",   PrettyDuration(sec: 0.5 / 1000));
+        AreEqual("0.00 μs",   PrettyDuration(sec: 0.5 / 1000 / 1000));  
+        #endif
     }
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyDuration_Nullable()
     {
-        AreEqual("",          PrettyDuration(sec: null));
-        AreEqual("1.00 h",    PrettyDuration(sec: (double?)3600));
+        AreEqual("",          PrettyDuration(sec: (double?)null));
+        AreEqual("1.00 d",    PrettyDuration(sec: (double?)24 * 60 * 60));
+        AreEqual("1.00 h",    PrettyDuration(sec: (double?)60 * 60));
         AreEqual("1.50 min",  PrettyDuration(sec: (double?)90));
         AreEqual("1.00 min",  PrettyDuration(sec: (double?)60));
         AreEqual("30.00 s",   PrettyDuration(sec: (double?)30));
         AreEqual("1.00 s",    PrettyDuration(sec: (double?)1));
+        AreEqual("1.23 s",    PrettyDuration(sec: (double?)1.23));
         AreEqual("500.00 ms", PrettyDuration(sec: (double?)0.5));
+        #if NET5_0_OR_GREATER
+        AreEqual("500.00 μs", PrettyDuration(sec: (double?)0.5 / 1000));
+        AreEqual("0.50 μs",   PrettyDuration(sec: (double?)0.5 / 1000 / 1000));
+        #else
+        // Less precision with .NET Framework
+        AreEqual("1.00 ms",   PrettyDuration(sec: (double?)0.5 / 1000));
+        AreEqual("0.00 μs",   PrettyDuration(sec: (double?)0.5 / 1000 / 1000));  
+        #endif
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyTimeSpan() 
-        => IsTrue(FromDays(2.5).PrettyTimeSpan().Contains("d")); // TODO: Check exact value, not just one letter.
+    public void Test_StringHelperCore_PrettyTimeSpan()
+    {
+        AreEqual("2.50 d",   FromDays        (2.5).PrettyTimeSpan());
+        AreEqual("2.50 h",   FromHours       (2.5).PrettyTimeSpan());
+        AreEqual("2.50 min", FromMinutes     (2.5).PrettyTimeSpan());
+        AreEqual("2.50 s",   FromSeconds     (2.5).PrettyTimeSpan());
+        #if NET5_0_OR_GREATER
+        AreEqual("2.50 ms",  FromMilliseconds(2.5).PrettyTimeSpan());
+        #else
+        // Less precision with .NET Framework
+        AreEqual("3.00 ms",  FromMilliseconds(2.5).PrettyTimeSpan());
+        #endif
+
+        // FromMicroseconds is NET 7 and up.
+        #if NET7_0_OR_GREATER
+        AreEqual("2.50 μs",  FromMicroseconds(2.5).PrettyTimeSpan());
+        #endif
+    }
+
+    // TODO: Explore more cases
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyByteCount() 
-        => AreEqual("1000 MB", PrettyByteCount(1000 * 1024 * 1024));
-
+    public void Test_StringHelperCore_PrettyByteCount()
+    {
+        AreEqual("1000 GB", PrettyByteCount(1000L * 1024 * 1024 * 1024));
+        AreEqual("1000 MB", PrettyByteCount(1000L * 1024 * 1024));
+        AreEqual("1000 kB", PrettyByteCount(1000L * 1024));
+        AreEqual("1000 bytes", PrettyByteCount(1000L));
+    }
 
     [TestMethod]
     public void Test_StringHelperCore_WithShortGuids() 
@@ -84,23 +125,32 @@ public class StringHelperCore_Tests
 
     [TestMethod]
     public void Test_StringHelperCore_Trim() 
-        => AreEqual(" Hello ", "!? Hello !?".Trim("!?"));
+        => AreEqual(" Hello ", "!? Hello !?!?".Trim("!?"));
 
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithPunctuation() 
-        => IsTrue("Hello.".EndsWithPunctuation());
+    public void Test_StringHelperCore_EndsWithPunctuation()
+    {
+        IsTrue ("Hello!".EndsWithPunctuation());
+        IsFalse("Hello" .EndsWithPunctuation());
+    }
 
     [TestMethod]
-    public void Test_StringHelperCore_StartsWithBlankLine() 
-        => IsTrue(StartsWithBlankLine("\nHello"));
+    public void Test_StringHelperCore_StartsWithBlankLine()
+    {
+        IsTrue (StartsWithBlankLine("\nHello"));
+        IsFalse(StartsWithBlankLine("Hello\n"));
+    }
 
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithBlankLine() 
-        => IsTrue(EndsWithBlankLine("Hello\n"));
+    public void Test_StringHelperCore_EndsWithBlankLine()
+    {
+        IsTrue (EndsWithBlankLine("Hello\n"));
+        IsFalse(EndsWithBlankLine("\nHello"));
+    }
 
     [TestMethod]
     public void Test_StringHelperCore_Replace_CharWithString() 
-        => AreEqual("HeLLo", Replace("Hello", 'l', "L"));
+        => AreEqual("HeLaLaLaLao", Replace("Hello", 'l', "LaLa"));
 
     [TestMethod]
     public void Test_StringHelperCore_Replace_StringWithChar() 
