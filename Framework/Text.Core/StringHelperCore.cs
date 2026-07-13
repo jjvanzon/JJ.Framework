@@ -62,7 +62,6 @@
         
         public static string PrettyTimeSpan(this TimeSpan timeSpan)
         {
-            double totalNanoseconds = timeSpan.TotalMilliseconds * 1000;
             
             if (timeSpan.TotalDays >= 1) 
                 return $"{timeSpan.TotalDays:0.00} d";
@@ -79,7 +78,8 @@
             if (timeSpan.TotalMilliseconds >= 1) 
                 return $"{timeSpan.TotalMilliseconds:0.00} ms";
             
-            return $"{totalNanoseconds:0.00} ns";
+            double totalMicroSec = timeSpan.TotalMilliseconds * 1000;
+            return $"{totalMicroSec:0.00} μs";
         }
         
         public static string PrettyByteCount(byte[]? bytes)
