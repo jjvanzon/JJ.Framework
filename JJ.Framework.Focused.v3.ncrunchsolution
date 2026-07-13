@@ -17,9 +17,6 @@
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:net10.0</Value>
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:netstandard2.0</Value>
       <Value>Framework\Collections.Core\JJ.Framework.Collections.Core.csproj:netstandard2.1</Value>
-      <Value>Framework\Text.Core\JJ.Framework.Text.Core.csproj:net10.0</Value>
-      <Value>Framework\Text.Core\JJ.Framework.Text.Core.csproj:netstandard2.0</Value>
-      <Value>Framework\Text.Core\JJ.Framework.Text.Core.csproj:netstandard2.1</Value>
       <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net461\..</Value>
       <Value>Framework\Configuration.Core\JJ.Framework.Configuration.Core.csproj:net10.0\..</Value>
       <Value>Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj:net10.0</Value>
