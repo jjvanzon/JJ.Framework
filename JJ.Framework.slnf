@@ -54,7 +54,6 @@
       "Framework\\JJ.Framework.Reflection.Tests\\JJ.Framework.Reflection.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Reflection\\JJ.Framework.Reflection.Legacy.csproj",
       "Framework\\JJ.Framework.Testing\\JJ.Framework.Testing.Legacy.csproj",
-      "Framework\\JJ.Framework.Text.Tests\\JJ.Framework.Text.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Text\\JJ.Framework.Text.Legacy.csproj",
       "Framework\\JJ.Framework.Validation\\JJ.Framework.Validation.Legacy.csproj",
       "Framework\\JJ.Framework.Xml.Tests\\JJ.Framework.Xml.Legacy.Tests.csproj",
@@ -79,11 +78,11 @@
       "Framework\\Testing.Core.NCrunchless\\JJ.Framework.Testing.Core.NCrunchless.csproj",
       "Framework\\Testing.Core.Tests\\JJ.Framework.Testing.Core.Tests.csproj",
       "Framework\\Testing.Core\\JJ.Framework.Testing.Core.csproj",
+      "Framework\\Text.Core.Tests\\JJ.Framework.Text.Core.Tests.csproj",
       "Framework\\Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\Validation.Legacy.Tests.Helpers\\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj",
       "Framework\\Validation.Legacy.Tests\\JJ.Framework.Validation.Legacy.Tests.csproj",
-      "Framework\\Validation.Legacy.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj",
-      "Utilities\\Scripts\\JJ.Utilities.Scripts.csproj"
+      "Framework\\Validation.Legacy.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj"
     ]
   }
 }
