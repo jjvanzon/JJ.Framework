@@ -6,7 +6,7 @@ public class StringExtensionsCore_Tests
     [TestMethod]
     public void StartsWithBlankLine_WithBlankLineAtStart_ReturnsTrue()
     {
-        string text = "\nHello";
+        const string text = "\nHello";
         bool result = text.StartsWithBlankLine();
         IsTrue(result);
     }
@@ -14,7 +14,7 @@ public class StringExtensionsCore_Tests
     [TestMethod]
     public void EndsWithBlankLine_WithBlankLineAtEnd_ReturnsTrue()
     {
-        string text = "Hello\n";
+        const string text = "Hello\n";
         bool result = text.EndsWithBlankLine();
         IsTrue(result);
     }
@@ -22,7 +22,7 @@ public class StringExtensionsCore_Tests
     [TestMethod]
     public void RemoveAccents_WithAccentedCharacters_ReturnsUnaccentedString()
     {
-        string input = "café";
+        const string input = "café";
         string result = input.RemoveAccents();
         AreEqual("cafe", result);
     }
