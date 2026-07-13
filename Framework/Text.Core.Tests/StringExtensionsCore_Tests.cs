@@ -4,26 +4,14 @@ namespace JJ.Framework.Text.Core.Tests;
 public class StringExtensionsCore_Tests
 {
     [TestMethod]
-    public void Test_StringExtensionsCore_StartsWithBlankLine()
-    {
-        const string text = "\nHello";
-        bool result = text.StartsWithBlankLine();
-        IsTrue(result);
-    }
+    public void Test_StringExtensionsCore_StartsWithBlankLine() 
+        => IsTrue("\nHello".StartsWithBlankLine());
 
     [TestMethod]
-    public void Test_StringExtensionsCore_EndsWithBlankLine()
-    {
-        const string text = "Hello\n";
-        bool result = text.EndsWithBlankLine();
-        IsTrue(result);
-    }
+    public void Test_StringExtensionsCore_EndsWithBlankLine() 
+        => IsTrue("Hello\n".EndsWithBlankLine());
 
     [TestMethod]
-    public void Test_StringExtensionsCore_RemoveAccents()
-    {
-        const string input = "café";
-        string result = input.RemoveAccents();
-        AreEqual("cafe", result);
-    }
+    public void Test_StringExtensionsCore_RemoveAccents() 
+        => AreEqual("cafe", "café".RemoveAccents());
 }

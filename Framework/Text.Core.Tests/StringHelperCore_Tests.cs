@@ -4,78 +4,41 @@ namespace JJ.Framework.Text.Core.Tests;
 public class StringHelperCore_Tests
 {
     [TestMethod]
-    public void Test_StringHelperCore_CountLines()
-    {
-        const string text = "Line1\nLine2\nLine3";
-        int result = text.CountLines();
-        AreEqual(3, result);
-    }
+    public void Test_StringHelperCore_CountLines() 
+        => AreEqual(3, "Line1\nLine2\nLine3".CountLines());
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_String()
-    {
-        const string str = "Hello World";
-        bool result = str.Contains("hello", ignoreCase: true);
-        IsTrue(result);
-    }
+    public void Test_StringHelperCore_Contains_String() 
+        => IsTrue("Hello World".Contains("hello", ignoreCase: true));
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_StringArray()
-    {
-        const string str = "The quick brown fox";
-        string[] words = ["cat", "fox", "dog"];
-        bool result = str.Contains(words);
-        IsTrue(result);
-    }
+    public void Test_StringHelperCore_Contains_StringArray() 
+        => IsTrue("The quick brown fox".Contains(["cat", "fox", "dog"]));
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_CharArray()
-    {
-        const string str = "Hello";
-        char[] chars = ['x', 'e', 'z'];
-        bool result = str.Contains(chars);
-        IsTrue(result);
-    }
+    public void Test_StringHelperCore_Contains_CharArray() 
+        => IsTrue("Hello".Contains(['x', 'e', 'z']));
 
     [TestMethod]
-    public void Test_StringHelperCore_ToStringComparison()
-    {
-        const bool ignoreCase = true;
-        StringComparison result = ignoreCase.ToStringComparison();
-        AreEqual(StringComparison.OrdinalIgnoreCase, result);
-    }
+    public void Test_StringHelperCore_ToStringComparison() 
+        => AreEqual(StringComparison.OrdinalIgnoreCase, true.ToStringComparison());
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyDuration()
-    {
-        const double durationInSeconds = 3600;
-        string result = PrettyDuration(durationInSeconds);
-        IsTrue(result.Contains("h"));
-    }
+    public void Test_StringHelperCore_PrettyDuration() 
+        => IsTrue(PrettyDuration(3600).Contains("h"));
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyTimeSpan()
-    {
-        TimeSpan timeSpan = TimeSpan.FromDays(2.5);
-        string result = timeSpan.PrettyTimeSpan();
-        IsTrue(result.Contains("d"));
-    }
+    public void Test_StringHelperCore_PrettyTimeSpan() 
+        => IsTrue(TimeSpan.FromDays(2.5).PrettyTimeSpan().Contains("d"));
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyByteCount()
-    {
-        const long byteCount = 1000 * 1024 * 1024;
-        AreEqual("1000 MB", PrettyByteCount(byteCount));
-    }
+    public void Test_StringHelperCore_PrettyByteCount() 
+        => AreEqual("1000 MB", PrettyByteCount(1000 * 1024 * 1024));
 
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids()
-    {
-        const string input = "abc123def456";
-        string result = input.WithShortGuids(4);
-        AreEqual("abc1", result);
-    }
+    public void Test_StringHelperCore_WithShortGuids() 
+        => AreEqual("abc1", "abc123def456".WithShortGuids(4));
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyTime_NoParamReturnsNow()
@@ -85,58 +48,30 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyTime()
-    {
-        DateTime dateTime = new(2023, 5, 15, 14, 30, 45, 123);
-        string result = PrettyTime(dateTime);
-        AreEqual("14:30:45.123", result);
-    }
+    public void Test_StringHelperCore_PrettyTime() 
+        => AreEqual("14:30:45.123", PrettyTime(new DateTime(2023, 5, 15, 14, 30, 45, 123)));
 
     [TestMethod]
-    public void Test_StringHelperCore_Trim()
-    {
-        const string text = "!? Hello !?";
-        string result = text.Trim("!?");
-        AreEqual(" Hello ", result);
-    }
+    public void Test_StringHelperCore_Trim() 
+        => AreEqual(" Hello ", "!? Hello !?".Trim("!?"));
 
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithPunctuation()
-    {
-        const string text = "Hello.";
-        bool result = text.EndsWithPunctuation();
-        IsTrue(result);
-    }
+    public void Test_StringHelperCore_EndsWithPunctuation() 
+        => IsTrue("Hello.".EndsWithPunctuation());
 
     [TestMethod]
-    public void Test_StringHelperCore_StartsWithBlankLine()
-    {
-        const string text = "\nHello";
-        bool result = StartsWithBlankLine(text);
-        IsTrue(result);
-    }
+    public void Test_StringHelperCore_StartsWithBlankLine() 
+        => IsTrue(StartsWithBlankLine("\nHello"));
 
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithBlankLine()
-    {
-        const string text = "Hello\n";
-        bool result = EndsWithBlankLine(text);
-        IsTrue(result);
-    }
+    public void Test_StringHelperCore_EndsWithBlankLine() 
+        => IsTrue(EndsWithBlankLine("Hello\n"));
 
     [TestMethod]
-    public void Test_StringHelperCore_Replace_CharWithString()
-    {
-        const string text = "Hello";
-        string result = Replace(text, 'l', "L");
-        AreEqual("HeLLo", result);
-    }
+    public void Test_StringHelperCore_Replace_CharWithString() 
+        => AreEqual("HeLLo", Replace("Hello", 'l', "L"));
 
     [TestMethod]
-    public void Test_StringHelperCore_Replace_StringWithChar()
-    {
-        const string text = "Hello";
-        string result = Replace(text, "ll", '*');
-        AreEqual("He*o", result);
-    }
+    public void Test_StringHelperCore_Replace_StringWithChar() 
+        => AreEqual("He*o", Replace("Hello", "ll", '*'));
 }
