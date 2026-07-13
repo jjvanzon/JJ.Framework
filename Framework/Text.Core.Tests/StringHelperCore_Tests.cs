@@ -1,4 +1,3 @@
-using static System.StringComparison;
 
 namespace JJ.Framework.Text.Core.Tests;
 
@@ -36,12 +35,32 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyDuration() 
-        => IsTrue(PrettyDuration(3600).Contains("h")); // TODO: Check exact value, not just one letter.
+    public void Test_StringHelperCore_PrettyDuration()
+    {
+        AreEqual("1.00 d",    PrettyDuration(sec: 24 * 60 * 60));
+        AreEqual("1.00 h",    PrettyDuration(sec: 60 * 60));
+        AreEqual("1.50 min",  PrettyDuration(sec: 90));
+        AreEqual("1.00 min",  PrettyDuration(sec: 60));
+        AreEqual("30.00 s",   PrettyDuration(sec: 30));
+        AreEqual("1.00 s",    PrettyDuration(sec: 1));
+        AreEqual("500.00 ms", PrettyDuration(sec: 0.5));
+    }
+
+    [TestMethod]
+    public void Test_StringHelperCore_PrettyDuration_Nullable()
+    {
+        AreEqual("",          PrettyDuration(sec: null));
+        AreEqual("1.00 h",    PrettyDuration(sec: (double?)3600));
+        AreEqual("1.50 min",  PrettyDuration(sec: (double?)90));
+        AreEqual("1.00 min",  PrettyDuration(sec: (double?)60));
+        AreEqual("30.00 s",   PrettyDuration(sec: (double?)30));
+        AreEqual("1.00 s",    PrettyDuration(sec: (double?)1));
+        AreEqual("500.00 ms", PrettyDuration(sec: (double?)0.5));
+    }
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyTimeSpan() 
-        => IsTrue(TimeSpan.FromDays(2.5).PrettyTimeSpan().Contains("d")); // TODO: Check exact value, not just one letter.
+        => IsTrue(FromDays(2.5).PrettyTimeSpan().Contains("d")); // TODO: Check exact value, not just one letter.
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyByteCount() 

@@ -44,3 +44,18 @@ public struct _replace;
 /// Intended for normalization before search, sorting or comparison.
 /// </summary>
 public struct _removeaccents;
+        
+/// <summary>
+/// Formats an amount of seconds into a pretty format fore pretty loggings.
+/// Prettiness is disputable. Examples:
+/// <list>
+///   <item>1.00 h</item>
+///   <item>1.50 min</item>
+///   <item>1.00 min</item>
+///   <item>30.00 s</item>
+///   <item>1.00 s</item>
+///   <item>500 ms</item>
+/// </list>
+/// </summary>
+/// <param name="sec">Amount of seconds to format as a "pretty" text. </param>
+public struct _prettyduration;

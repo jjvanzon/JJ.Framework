@@ -49,24 +49,35 @@
         
         public static StringComparison ToStringComparison(this bool ignoreCase)
             => ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
-        
-        public static string PrettyDuration(double? durationInSeconds)
+
+        /// <inheritdoc cref="_prettyduration" />
+        public static string PrettyDuration(double? sec)
         {
-            if (!durationInSeconds.HasValue) return "";
-            return PrettyDuration(durationInSeconds.Value);
+            if (!sec.HasValue) return "";
+            return PrettyDuration(sec.Value);
         }
         
-        public static string PrettyDuration(double durationInSeconds) => PrettyTimeSpan(TimeSpan.FromSeconds(durationInSeconds));
+        /// <inheritdoc cref="_prettyduration" />
+        public static string PrettyDuration(double sec) => PrettyTimeSpan(TimeSpan.FromSeconds(sec));
         
         public static string PrettyTimeSpan(this TimeSpan timeSpan)
         {
             double totalNanoseconds = timeSpan.TotalMilliseconds * 1000;
             
-            if (timeSpan.TotalDays         >= 1) return $"{timeSpan.TotalDays:0.00} d";
-            if (timeSpan.TotalHours        >= 1) return $"{timeSpan.TotalHours:0.00} h";
-            if (timeSpan.TotalMinutes      >= 1) return $"{timeSpan.TotalMinutes:0.00} min";
-            if (timeSpan.TotalSeconds      >= 1) return $"{timeSpan.TotalSeconds:0.00} s";
-            if (timeSpan.TotalMilliseconds >= 1) return $"{timeSpan.TotalMilliseconds:0.00} ms";
+            if (timeSpan.TotalDays >= 1) 
+                return $"{timeSpan.TotalDays:0.00} d";
+
+            if (timeSpan.TotalHours >= 1) 
+                return $"{timeSpan.TotalHours:0.00} h";
+
+            if (timeSpan.TotalMinutes >= 1) 
+                return $"{timeSpan.TotalMinutes:0.00} min";
+
+            if (timeSpan.TotalSeconds >= 1) 
+                return $"{timeSpan.TotalSeconds:0.00} s";
+
+            if (timeSpan.TotalMilliseconds >= 1) 
+                return $"{timeSpan.TotalMilliseconds:0.00} ms";
             
             return $"{totalNanoseconds:0.00} ns";
         }
@@ -83,9 +94,14 @@
             const double MB = kB * 1024;
             const double GB = MB * 1024;
             
-            if (byteCount <= 5 * kB) return $"{byteCount} bytes";
-            if (byteCount <= 5 * MB) return $"{byteCount / kB:0} kB";
-            if (byteCount <= 5 * GB) return $"{byteCount / MB:0} MB";
+            if (byteCount <= 5 * kB) 
+                return $"{byteCount} bytes";
+
+            if (byteCount <= 5 * MB) 
+                return $"{byteCount / kB:0} kB";
+
+            if (byteCount <= 5 * GB)
+                return $"{byteCount / MB:0} MB";
             
             return $"{byteCount / GB:0} GB";
         }
