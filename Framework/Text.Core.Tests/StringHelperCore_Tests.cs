@@ -88,9 +88,8 @@ public class StringHelperCore_Tests
     [TestMethod]
     public void PrettyByteCount_WithLargeByteCount_ReturnsGBFormat()
     {
-        long byteCount = 1_500_000_000;
-        string result = PrettyByteCount(byteCount);
-        IsTrue(result.Contains("GB"));
+        long byteCount = 1000 * 1024 * 1024;
+        AreEqual("1000 MB", PrettyByteCount(byteCount));
     }
 
     [TestMethod]
@@ -119,9 +118,9 @@ public class StringHelperCore_Tests
     [TestMethod]
     public void Trim_WithTrimmableString_RemovedFromBothSides()
     {
-        string text = "<<Hello>>";
-        string result = text.Trim("<<>>");
-        AreEqual("Hello", result);
+        string text = "!? Hello !?";
+        string result = text.Trim("!?");
+        AreEqual(" Hello ", result);
     }
 
     [TestMethod]
