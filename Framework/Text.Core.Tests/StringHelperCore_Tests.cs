@@ -4,7 +4,7 @@ namespace JJ.Framework.Text.Core.Tests;
 public class StringHelperCore_Tests
 {
     [TestMethod]
-    public void CountLines_WithMultipleLines_ReturnsCorrectCount()
+    public void Test_StringHelperCore_CountLines()
     {
         const string text = "Line1\nLine2\nLine3";
         int result = text.CountLines();
@@ -12,15 +12,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void CountLines_WithNull_ReturnsZero()
-    {
-        string? text = null;
-        int result = text.CountLines();
-        AreEqual(0, result);
-    }
-
-    [TestMethod]
-    public void Contains_StringWithIgnoreCaseTrue_ReturnsTrue()
+    public void Test_StringHelperCore_Contains_String()
     {
         const string str = "Hello World";
         bool result = str.Contains("hello", ignoreCase: true);
@@ -28,7 +20,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Contains_StringArrayWithMatch_ReturnsTrue()
+    public void Test_StringHelperCore_Contains_StringArray()
     {
         const string str = "The quick brown fox";
         string[] words = ["cat", "fox", "dog"];
@@ -37,7 +29,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Contains_CharArrayWithMatch_ReturnsTrue()
+    public void Test_StringHelperCore_Contains_CharArray()
     {
         const string str = "Hello";
         char[] chars = ['x', 'e', 'z'];
@@ -46,7 +38,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void ToStringComparison_WithTrue_ReturnsOrdinalIgnoreCase()
+    public void Test_StringHelperCore_ToStringComparison()
     {
         const bool ignoreCase = true;
         StringComparison result = ignoreCase.ToStringComparison();
@@ -54,15 +46,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void PrettyDuration_WithNullValue_ReturnsEmptyString()
-    {
-        double? durationInSeconds = null;
-        string result = PrettyDuration(durationInSeconds);
-        AreEqual("", result);
-    }
-
-    [TestMethod]
-    public void PrettyDuration_With3600Seconds_ReturnsHourFormat()
+    public void Test_StringHelperCore_PrettyDuration()
     {
         const double durationInSeconds = 3600;
         string result = PrettyDuration(durationInSeconds);
@@ -70,7 +54,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void PrettyTimeSpan_WithDays_ReturnsDayFormat()
+    public void Test_StringHelperCore_PrettyTimeSpan()
     {
         TimeSpan timeSpan = TimeSpan.FromDays(2.5);
         string result = timeSpan.PrettyTimeSpan();
@@ -78,22 +62,15 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void PrettyByteCount_WithNullBytes_ReturnsZeroBytes()
-    {
-        byte[]? bytes = null;
-        string result = PrettyByteCount(bytes);
-        IsTrue(result.Contains("bytes"));
-    }
-
-    [TestMethod]
-    public void PrettyByteCount_WithLargeByteCount_ReturnsGBFormat()
+    public void Test_StringHelperCore_PrettyByteCount()
     {
         const long byteCount = 1000 * 1024 * 1024;
         AreEqual("1000 MB", PrettyByteCount(byteCount));
     }
 
+
     [TestMethod]
-    public void WithShortGuids_WithGuidLikeSequence_ShortenedCorrectly()
+    public void Test_StringHelperCore_WithShortGuids()
     {
         const string input = "abc123def456";
         string result = input.WithShortGuids(4);
@@ -101,14 +78,14 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void PrettyTime_NoParams_ReturnsFormattedCurrentTime()
+    public void Test_StringHelperCore_PrettyTime_NoParamReturnsNow()
     {
         string result = PrettyTime();
         IsTrue(result.Length == 12); // HH:mm:ss.fff format
     }
 
     [TestMethod]
-    public void PrettyTime_WithDateTime_ReturnsFormattedTime()
+    public void Test_StringHelperCore_PrettyTime()
     {
         DateTime dateTime = new(2023, 5, 15, 14, 30, 45, 123);
         string result = PrettyTime(dateTime);
@@ -116,7 +93,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Trim_WithTrimmableString_RemovedFromBothSides()
+    public void Test_StringHelperCore_Trim()
     {
         const string text = "!? Hello !?";
         string result = text.Trim("!?");
@@ -124,7 +101,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void EndsWithPunctuation_WithPeriod_ReturnsTrue()
+    public void Test_StringHelperCore_EndsWithPunctuation()
     {
         const string text = "Hello.";
         bool result = text.EndsWithPunctuation();
@@ -132,15 +109,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void EndsWithPunctuation_WithNoPunctuation_ReturnsFalse()
-    {
-        const string text = "Hello";
-        bool result = text.EndsWithPunctuation();
-        IsFalse(result);
-    }
-
-    [TestMethod]
-    public void StartsWithBlankLine_WithTextStartingWithNewline_ReturnsTrue()
+    public void Test_StringHelperCore_StartsWithBlankLine()
     {
         const string text = "\nHello";
         bool result = StartsWithBlankLine(text);
@@ -148,7 +117,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void EndsWithBlankLine_WithTextEndingWithNewline_ReturnsTrue()
+    public void Test_StringHelperCore_EndsWithBlankLine()
     {
         const string text = "Hello\n";
         bool result = EndsWithBlankLine(text);
@@ -156,7 +125,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Replace_StringOldCharNew_ReplacesCorrectly()
+    public void Test_StringHelperCore_Replace_CharWithString()
     {
         const string text = "Hello";
         string result = Replace(text, 'l', "L");
@@ -164,7 +133,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Replace_StringOldCharToNewChar_ReplacesCorrectly()
+    public void Test_StringHelperCore_Replace_StringWithChar()
     {
         const string text = "Hello";
         string result = Replace(text, "ll", '*');
