@@ -92,8 +92,8 @@ namespace JJ.Framework.Text.Core
         
         public static string PrettyByteCount(long byteCount)
         {
-            int sign = Math.Sign(byteCount);
-            long bytesAbs = Math.Abs(byteCount);
+            int sign = Sign(byteCount);
+            long bytesAbs = Abs(byteCount);
 
             const double kBSize = 1024;
             const double MBSize = kBSize * 1024;
@@ -116,8 +116,8 @@ namespace JJ.Framework.Text.Core
             if (length < 1) throw new Exception("length < 1");
             input ??= "";
 
-            // Regular expression to match GUID-like sequences with or without dashes
-            var guidPattern = new Regex(@"\{?\b[a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7}\b\}?", RegexOptions.IgnoreCase);
+            // Match GUID-like sequences with or without dashes, with or without braces.
+            var guidPattern = new Regex(@"(\b|\{)([a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7})(\}|\b)");
             
             // Replace each matched GUID-like sequence with a truncated version
             string output = guidPattern.Replace(input, match =>
@@ -127,7 +127,7 @@ namespace JJ.Framework.Text.Core
                 string guid = ToShortGuid(match.Value, length);
                 
                 // Shorten the GUID to the desired length, ensuring it doesn't exceed the original length
-                return guid.Substring(0, Math.Min(length, guid.Length));
+                return guid.Substring(0, Min(length, guid.Length));
             });
             
             return output;
