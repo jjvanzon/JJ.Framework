@@ -43,3 +43,22 @@ cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa
                 //var boundedLength = Min(length, guid.Length);
                 //return guid.Substring(0, boundedLength);
 ```
+
+```cs
+
+        private static readonly char[] _guidChars = 
+        [
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+            'a', 'b', 'c', 'd', 'e', 'f', 
+            'A', 'B', 'C', 'D', 'E', 'F'
+        ];
+
+            char[] allowedChars = _guidChars;
+
+                // TODO: Range check is even faster chr > '0' && chr < '9' etc.
+
+                if (!allowedChars.Contains(chr))
+                    continue;
+
+
+```

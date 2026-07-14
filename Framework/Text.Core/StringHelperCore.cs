@@ -125,19 +125,11 @@ namespace JJ.Framework.Text.Core
             return output;
         }
 
-        private static readonly char[] _guidChars = 
-        [
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
-            'a', 'b', 'c', 'd', 'e', 'f', 
-            'A', 'B', 'C', 'D', 'E', 'F'
-        ];
-
         public static string ToShortGuid(this string? input, int length)
         {
             if (length < 1) throw new Exception("length < 1");
             input ??= "";
 
-            char[] allowedChars = _guidChars;
             var outChars = new char[length];
 
             int j = 0;
@@ -145,18 +137,20 @@ namespace JJ.Framework.Text.Core
             {
                 char chr = input[i];
 
-                // TODO: Range check is even faster chr > '0' && chr < '9' etc.
-                if (!allowedChars.Contains(chr))
+                bool charAllowed = 
+                    chr >= '0' && chr <= '9' || 
+                    chr >= 'a' && chr <= 'f' ||
+                    chr >= 'A' && chr <= 'F';
+
+                if (!charAllowed)
                     continue;
 
                 outChars[j] = chr;
-
                 j++;
                 if (j >= length) break;
             }
 
             return new string(outChars);
-
         }
 
         public static string ToShortGuid(this Guid? input, int length)
