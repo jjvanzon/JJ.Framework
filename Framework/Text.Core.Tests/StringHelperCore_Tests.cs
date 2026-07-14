@@ -126,12 +126,21 @@ public class StringHelperCore_Tests
         AreEqual("-1 bytes", PrettyByteCount(-1));
         AreEqual("-10 GB",   PrettyByteCount(-10L * 1024 * 1024 * 1024));
     }
-    
+
     // TODO: Explore more cases
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids() 
-        => AreEqual("abc1 - Hello there", "abc123def456 - Hello there".WithShortGuids(4));
+    public void Test_StringHelperCore_WithShortGuids()
+    {
+        AreEqual("61E6FA - Hello there", "61E6FA88-AE55-453F-8973-E3BB27763720 - Hello there".WithShortGuids(6));
+        AreEqual("61E6FA - Hello there", "61E6FA88-AE55-453F-E3BB27763720 - Hello there".WithShortGuids(6));
+        AreEqual("61E6FA - Hello there", "61E6FA88AE55-453F-E3BB27763720 - Hello there".WithShortGuids(6));
+        AreEqual("abc1 - Hello there",   "abc123def456 - Hello there".WithShortGuids(4));
+        AreEqual("{61E6FA} - Hello there", "{61E6FA88-AE55-453F-8973-E3BB27763720} - Hello there".WithShortGuids(6));
+
+        // TODO: Could be a word.
+        //AreEqual("Item added",   "Item added".WithShortGuids(4)); 
+    }
 
     [TestMethod]
     public void Test_StringHelperCore_PrettyTime_NoParamReturnsNow()
