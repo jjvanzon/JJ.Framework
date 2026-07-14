@@ -1,6 +1,3 @@
-
-using JJ.Framework.Existence.Core;
-
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
@@ -342,6 +339,16 @@ public class StringHelperCore_Tests
         IsTrue ("Hello!".EndsWithPunctuation());
         IsTrue ("Hello?".EndsWithPunctuation());
         IsFalse("Hello" .EndsWithPunctuation());
+        IsTrue ("."     .EndsWithPunctuation());
+    }
+    
+    [TestMethod]
+    public void Test_StringHelperCore_EndsWithPunctuation_EmptyIsTrue_BecauseRequiresNoPunctuationConcat()
+    {
+        // Because this is mostly used for concat purposes, 
+        // an empty element is considered the beginning of a line, 
+        // requiring no addition of punctuation.
+        IsTrue("".EndsWithPunctuation()); 
     }
 
     [TestMethod]
@@ -352,10 +359,22 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
+    public void Test_StringHelperCore_StartsWithBlankLine_EmptyIsConsideredABlankLine()
+    {
+        IsTrue(StartsWithBlankLine(""));
+    }
+
+    [TestMethod]
     public void Test_StringHelperCore_EndsWithBlankLine()
     {
         IsTrue (EndsWithBlankLine("Hello\n"));
         IsFalse(EndsWithBlankLine("\nHello"));
+    }
+    
+    [TestMethod]
+    public void Test_StringHelperCore_EndsWithBlankLine_EmptyIsConsideredABlankLine()
+    {
+        IsTrue(EndsWithBlankLine(""));
     }
 
     [TestMethod]

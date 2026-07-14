@@ -162,11 +162,11 @@ namespace JJ.Framework.Text.Core
             return new string(outChars);
         }
 
-        public static string ToShortGuid(this Guid? input, int length)
-        {
-            string str = input?.ToString() ?? "";
-            return ToShortGuid(str, length);
-        }
+        //public static string ToShortGuid(this Guid? input, int length)
+        //{
+        //    string str = input?.ToString() ?? "";
+        //    return ToShortGuid(str, length);
+        //}
 
         private static bool MightBeAWord(string? guid)
         {
@@ -234,7 +234,10 @@ namespace JJ.Framework.Text.Core
         
         public static bool StartsWithBlankLine(string text)
         {
-            if (string.IsNullOrWhiteSpace(text)) return true;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return true;
+            }
             
             for (int i = 0; i < text.Length; i++)
             {
@@ -255,7 +258,10 @@ namespace JJ.Framework.Text.Core
         
         public static bool EndsWithBlankLine(string text)
         {
-            if (string.IsNullOrWhiteSpace(text)) return true;
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return true;
+            }
             
             for (int i = text.Length - 1; i >= 0; i--)
             {
