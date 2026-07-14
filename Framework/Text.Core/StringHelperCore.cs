@@ -1,4 +1,5 @@
 ﻿// ReSharper disable ForCanBeConvertedToForeach
+// ReSharper disable InvokeAsExtensionMemberFromSameClass
 
 namespace JJ.Framework.Text.Core
 {
@@ -120,15 +121,7 @@ namespace JJ.Framework.Text.Core
             var guidPattern = new Regex(@"(\b|\{)([a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7})(\}|\b)");
             
             // Replace each matched GUID-like sequence with a truncated version
-            string output = guidPattern.Replace(input, match =>
-            {
-                // Remove dashes from the matched sequence
-                //string guid = match.Value.Replace("-", "");
-                string guid = ToShortGuid(match.Value, length);
-                
-                // Shorten the GUID to the desired length, ensuring it doesn't exceed the original length
-                return guid.Substring(0, Min(length, guid.Length));
-            });
+            string output = guidPattern.Replace(input, match => ToShortGuid(match.Value, length));
             
             return output;
         }
