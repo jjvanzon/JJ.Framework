@@ -1,16 +1,50 @@
 
+using JJ.Framework.Existence.Core;
+
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
 public class StringHelperCore_Tests
 {
     [TestMethod]
-    public void Test_StringHelperCore_CountLines() 
-        => AreEqual(3, "Line1\nLine2\nLine3".CountLines());
+    public void Test_StringHelperCore_CountLines()
+    {
+        AreEqual(3, "Line1\nLine2\nLine3".CountLines());
+        AreEqual(3, "Line1\r\nLine2\r\nLine3".CountLines());
+    }
+
+    [TestMethod]
+    public void Test_StringHelperCore_CountLines_LastEnterNotCounted()
+    {
+        AreEqual(3, "Line1\nLine2\nLine3\n".CountLines());
+        AreEqual(3, "Line1\nLine2\nLine3\r\n".CountLines());
+    }
+
+    [TestMethod]
+    public void Test_StringHelperCore_CountLines_LastTwoEnters_CountAsOneExtraLine()
+    {
+        AreEqual(4, $"Line1{NewLine}Line2{NewLine}Line3\n\r\n".CountLines());
+    }
 
     [TestMethod]
     public void Test_StringHelperCore_Contains_String_IgnoreCase() 
-        => IsTrue("Hello World".Contains("hello", ignoreCase: true));
+        => IsTrue("Hello World".Contains("WORLD", ignoreCase: true));
+
+    [TestMethod]
+    public void Test_StringHelperCore_Contains_String_IgnoreCaseFalse()
+    {
+        IsFalse("Hello World".Contains("WORLD", ignoreCase: false));
+        IsTrue ("Hello World".Contains("World", ignoreCase: false));
+    }
+
+    [TestMethod]
+    public void Test_StringHelperCore_Contains_String_DefaultIgnoreCaseFalse()
+    {
+        IsFalse("Hello World".Contains("WORLD"));
+        IsTrue ("Hello World".Contains("World"));
+    }
+
+    // TODO: Test ignoreCase for Contains with (string, collection).
 
     [TestMethod]
     public void Test_StringHelperCore_Contains_StringCollection() 
@@ -188,12 +222,15 @@ public class StringHelperCore_Tests
     {
         // Spaces are not separators inside guids. But the different digit strings are shortened individually.
         AreEqual("61E AE5 453 897 E3B - Hello there", "61E6FA88 AE55 453F 8973 E3BB27763720 - Hello there".WithShortGuids(3)); 
-        // TODO: Misplaced dashes
-        //AreEqual("61E - Hello there", "61-E6FA-88AE55453F-8-97-3E3-BB27763720 - Hello there".WithShortGuids(3)); 
+        // Misplaced dashes
+        AreEqual("61E - Hello there", "61-E6FA-88AE55453F-8-97-3E3-BB27763720 - Hello there".WithShortGuids(3)); 
+        // More strange ones
+        AreEqual("-ABCDEF-", "-ABCDEF-".WithShortGuids(3));
+        AreEqual("ABCD-G", "ABCDEF-ABCDEF-ABCDEF-G".WithShortGuids(4));
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_LikelyAWord_NotReplaced()
+    public void Test_StringHelperCore_WithShortGuids_AvoidsReplacingWords()
     {
         // Prime example: added COULD be hex string, but it is likely a word.
         AreEqual("Item added", "Item added".WithShortGuids(1)); 
@@ -267,13 +304,30 @@ public class StringHelperCore_Tests
     [TestMethod]
     public void Test_StringHelperCore_PrettyTime_NoParamReturnsNow()
     {
-        string result = PrettyTime(); 
-        IsTrue(result.Length == 12); // HH:mm:ss.fff format // TODO: Check a little more than length.
+        // HH:mm:ss.fff format 
+        string prettyTime = PrettyTime();
+        char[] digits  = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
+        IsTrue  (prettyTime.Length == 12); 
+        IsTrue  (prettyTime[00].In(digits));
+        IsTrue  (prettyTime[01].In(digits));
+        AreEqual(prettyTime[02], ':');
+        IsTrue  (prettyTime[03].In(digits));
+        IsTrue  (prettyTime[04].In(digits));
+        AreEqual(prettyTime[05], ':');
+        IsTrue  (prettyTime[06].In(digits));
+        IsTrue  (prettyTime[07].In(digits));
+        AreEqual(prettyTime[08], '.');
+        IsTrue  (prettyTime[09].In(digits));
+        IsTrue  (prettyTime[10].In(digits));
+        IsTrue  (prettyTime[11].In(digits));
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyTime() 
-        => AreEqual("14:30:45.123", PrettyTime(new DateTime(2023, 5, 15, 14, 30, 45, 123))); // TODO: Use DateTime.Parse instead of new DateTime.
+    public void Test_StringHelperCore_PrettyTime()
+    {
+        var input = DateTime.Parse("2023-05-15 14:30:45.123");
+        AreEqual("14:30:45.123", PrettyTime(input));
+    }
 
     [TestMethod]
     public void Test_StringHelperCore_Trim() 
@@ -282,7 +336,11 @@ public class StringHelperCore_Tests
     [TestMethod]
     public void Test_StringHelperCore_EndsWithPunctuation()
     {
+        IsTrue ("Hello.".EndsWithPunctuation());
+        IsTrue ("Hello,".EndsWithPunctuation());
+        IsTrue ("Hello;".EndsWithPunctuation());
         IsTrue ("Hello!".EndsWithPunctuation());
+        IsTrue ("Hello?".EndsWithPunctuation());
         IsFalse("Hello" .EndsWithPunctuation());
     }
 

@@ -75,3 +75,9 @@ cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa
             //double consonantCount = guid.Count(x => !hexVowels.Contains(x));
             //double vowelFraction = vowelCount / consonantCount;
 ```
+
+Before replacing with "dashes anywhere":
+
+```
+private static readonly Regex _guidyRegex = new (@"(""?)(\{|\b)([a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7})(\}|\b)(""?)", ExplicitCapture | Compiled);
+```

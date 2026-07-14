@@ -16,6 +16,7 @@ namespace JJ.Framework.Text.Core
             //int count = 1 + str.Count(c => c == '\n');
             
             if (str == null) return 0;
+            if (str.Length == 0) return 0;
             
             int count = 1; // Start with 1 to account for the first line
             for (int i = 0; i < str.Length; i++)
@@ -26,7 +27,7 @@ namespace JJ.Framework.Text.Core
                 }
             }
             
-            if (str.EndsWith(Environment.NewLine))
+            if (str.Last() == '\n')
             {
                 count--;
             }
@@ -117,7 +118,7 @@ namespace JJ.Framework.Text.Core
         }
         
         // Match GUID-like sequences with or without dashes, with or without braces.
-        private static readonly Regex _guidyRegex = new (@"(""?)(\{|\b)([a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7})(\}|\b)(""?)", ExplicitCapture | Compiled);
+        private static readonly Regex _guidyRegex = new (@"""?(\{|\b)[a-fA-F0-9]+([a-fA-F0-9-]{0,46})[a-fA-F0-9]+(\}|\b)""?", ExplicitCapture | Compiled);
 
         public static string WithShortGuids(this string? input, int length)
         {
@@ -126,7 +127,7 @@ namespace JJ.Framework.Text.Core
 
             string output = _guidyRegex.Replace(input, match =>
             {
-                if (MayBeAWord(match.Value)) return match.Value;
+                if (MightBeAWord(match.Value)) return match.Value;
                 return ToShortGuid(match.Value, length);
             });
             
@@ -167,7 +168,7 @@ namespace JJ.Framework.Text.Core
             return ToShortGuid(str, length);
         }
 
-        private static bool MayBeAWord(string? guid)
+        private static bool MightBeAWord(string? guid)
         {
             if (guid == null) return false;
             if (guid.Length == 0) return false;
