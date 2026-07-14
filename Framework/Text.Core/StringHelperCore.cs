@@ -1,5 +1,9 @@
-﻿// ReSharper disable ForCanBeConvertedToForeach
+﻿#pragma warning disable IDE0048
+// 
+// ReSharper disable ForCanBeConvertedToForeach
 // ReSharper disable InvokeAsExtensionMemberFromSameClass
+// ReSharper disable UseRawString
+// ReSharper disable MergeIntoPattern
 
 namespace JJ.Framework.Text.Core
 {
@@ -112,7 +116,7 @@ namespace JJ.Framework.Text.Core
             return $"{sign * bytesAbs / GBSize:0} GB";
         }
         
-            // Match GUID-like sequences with or without dashes, with or without braces.
+        // Match GUID-like sequences with or without dashes, with or without braces.
         private static readonly Regex _guidyRegex = new (@"(""?)(\{|\b)([a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7})(\}|\b)(""?)", ExplicitCapture | Compiled);
 
         public static string WithShortGuids(this string? input, int length)
@@ -120,12 +124,16 @@ namespace JJ.Framework.Text.Core
             if (length < 1) throw new Exception("length < 1");
             input ??= "";
 
-            string output = _guidyRegex.Replace(input, match => ToShortGuid(match.Value, length));
+            string output = _guidyRegex.Replace(input, match =>
+            {
+                if (MayBeAWord(match.Value)) return match.Value;
+                return ToShortGuid(match.Value, length);
+            });
             
             return output;
         }
 
-        public static string ToShortGuid(this string? input, int length)
+        private static string ToShortGuid(this string? input, int length)
         {
             if (length < 1) throw new Exception("length < 1");
             input ??= "";
@@ -157,6 +165,45 @@ namespace JJ.Framework.Text.Core
         {
             string str = input?.ToString() ?? "";
             return ToShortGuid(str, length);
+        }
+
+        private static bool MayBeAWord(string? guid)
+        {
+            if (guid == null) return false;
+            if (guid.Length == 0) return false;
+
+            bool hasDecimals = guid.Any(x => x >= '0' && x <= '9');
+            if (hasDecimals)
+            {
+                return false;
+            }
+
+            char[] hexVowels = [ 'a', 'e', 'A', 'E' ];
+
+            bool hasVowels = guid.Contains(hexVowels);
+            if (!hasVowels)
+            {
+                return false;
+            }
+
+            const int maxHexLetters = 10;
+            bool tooManyHexLetters = guid.Length > maxHexLetters;
+            if (tooManyHexLetters)
+            {
+                return false;
+            }
+
+            double vowelPercentage = 100.0 * guid.Count(hexVowels.Contains) / guid.Length;
+            bool hasEnoughVowels = vowelPercentage > 25;
+            if (!hasEnoughVowels)
+            {
+                return false;
+            }
+
+            // TODO: Has both upper and lower case letters = probably a word?
+
+            // No digit, has vowel, has enough vowels, not a long string of hex = probably a word.
+            return true;
         }
 
         public static string PrettyTime() => PrettyTime(DateTime.Now);

@@ -62,3 +62,16 @@ cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa
 
 
 ```
+
+```
+
+            // TODO: Check char code instead of char[].
+            //char[] decimalDigits = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
+            //if (input.Contains(decimalDigits)) return false;
+           
+            //double percentIsDigit = input.Count(x => x >= '0' && c <= '9') / input.Length;
+            //if (percentIsDigit
+
+            //double consonantCount = guid.Count(x => !hexVowels.Contains(x));
+            //double vowelFraction = vowelCount / consonantCount;
+```

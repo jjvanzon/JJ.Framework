@@ -167,7 +167,7 @@ public class StringHelperCore_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_LengthUnder1Throws()
+    public void Test_StringHelperCore_WithShortGuids_ShortLengthUnder1Throws()
     {
         Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(0), "length < 1");
         Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(-1), "length < 1");
@@ -178,7 +178,6 @@ public class StringHelperCore_Tests
     public void Test_StringHelperCore_WithShortGuids_NullyText()
     {
         string? @null = null;
-
         AreEqual("", "".WithShortGuids(4));
         AreEqual(" ", " ".WithShortGuids(4));
         AreEqual("", @null.WithShortGuids(4));
@@ -189,9 +188,80 @@ public class StringHelperCore_Tests
     {
         // Spaces are not separators inside guids. But the different digit strings are shortened individually.
         AreEqual("61E AE5 453 897 E3B - Hello there", "61E6FA88 AE55 453F 8973 E3BB27763720 - Hello there".WithShortGuids(3)); 
-        // The word "added" might be interepreted as hex value.
-        AreEqual("Item added", "Item added".WithShortGuids(4)); 
         // TODO: Misplaced dashes
+        //AreEqual("61E - Hello there", "61-E6FA-88AE55453F-8-97-3E3-BB27763720 - Hello there".WithShortGuids(3)); 
+    }
+
+    [TestMethod]
+    public void Test_StringHelperCore_WithShortGuids_LikelyAWord_NotReplaced()
+    {
+        // Prime example: added COULD be hex string, but it is likely a word.
+        AreEqual("Item added", "Item added".WithShortGuids(1)); 
+        // 2-Letter Words
+        AreEqual("ab", "ab".WithShortGuids(1));
+        AreEqual("ad", "ad".WithShortGuids(1));
+        AreEqual("be", "be".WithShortGuids(1));
+        AreEqual("fa", "fa".WithShortGuids(1));
+        // 3-Letter Words
+        AreEqual("ace", "ace".WithShortGuids(1));
+        AreEqual("bad", "bad".WithShortGuids(1));
+        AreEqual("bed", "bed".WithShortGuids(1));
+        AreEqual("bee", "bee".WithShortGuids(1));
+        AreEqual("cab", "cab".WithShortGuids(1));
+        AreEqual("cad", "cad".WithShortGuids(1));
+        AreEqual("dab", "dab".WithShortGuids(1));
+        AreEqual("dad", "dad".WithShortGuids(1));
+        AreEqual("fed", "fed".WithShortGuids(1));
+        AreEqual("fee", "fee".WithShortGuids(1));
+        // 4-Letter Words
+        AreEqual("abed", "abed".WithShortGuids(1));
+        AreEqual("aced", "aced".WithShortGuids(1));
+        AreEqual("babe", "babe".WithShortGuids(1));
+        AreEqual("bade", "bade".WithShortGuids(1));
+        AreEqual("bead", "bead".WithShortGuids(1));
+        AreEqual("beef", "beef".WithShortGuids(1));
+        AreEqual("cafe", "cafe".WithShortGuids(1));
+        AreEqual("cede", "cede".WithShortGuids(1));
+        AreEqual("dace", "dace".WithShortGuids(1));
+        AreEqual("dead", "dead".WithShortGuids(1));
+        AreEqual("deaf", "deaf".WithShortGuids(1));
+        AreEqual("deed", "deed".WithShortGuids(1));
+        AreEqual("face", "face".WithShortGuids(1));
+        AreEqual("fade", "fade".WithShortGuids(1));
+        AreEqual("feed", "feed".WithShortGuids(1));
+        // 5-Letter Words
+        AreEqual("added", "added".WithShortGuids(1));
+        AreEqual("ceded", "ceded".WithShortGuids(1));
+        AreEqual("decaf", "decaf".WithShortGuids(1));
+        AreEqual("ebbed", "ebbed".WithShortGuids(1));
+        AreEqual("faced", "faced".WithShortGuids(1));
+        AreEqual("faded", "faded".WithShortGuids(1));
+        // 6-Letter Words
+        AreEqual("accede", "accede".WithShortGuids(1));
+        AreEqual("beaded", "beaded".WithShortGuids(1));
+        AreEqual("bedded", "bedded".WithShortGuids(1));
+        AreEqual("beefed", "beefed".WithShortGuids(1));
+        AreEqual("cabbed", "cabbed".WithShortGuids(1));
+        AreEqual("dabbed", "dabbed".WithShortGuids(1));
+        AreEqual("deeded", "deeded".WithShortGuids(1));
+        AreEqual("deface", "deface".WithShortGuids(1));
+        AreEqual("efface", "efface".WithShortGuids(1));
+        AreEqual("facade", "facade".WithShortGuids(1));
+        // 7-Letter Words
+        AreEqual("defaced", "defaced".WithShortGuids(1));
+        AreEqual("facaded", "facaded".WithShortGuids(1));
+        AreEqual("effaced", "effaced".WithShortGuids(1));
+        // Longer
+        AreEqual("Babbaged", "Babbaged".WithShortGuids(1));
+        AreEqual("Cabbaged", "Cabbaged".WithShortGuids(1));
+        AreEqual("Decafeed", "Decafeed".WithShortGuids(1));
+        // Edge Cases
+        AreEqual("d",        "decaf1"           .WithShortGuids(1)); // Has decimals
+        AreEqual("d",        "dcfc"             .WithShortGuids(1)); // No vowels
+        AreEqual("decaffd",  "decaffd"          .WithShortGuids(1)); // just enough vowels
+        AreEqual("d",        "decaffdd"         .WithShortGuids(1)); // not enough vowels.
+        AreEqual("d",        "decaffed-decaffed".WithShortGuids(1)); // too many letters
+        AreEqual("DECAFFED", "DECAFFED"         .WithShortGuids(1));
     }
 
     [TestMethod]
