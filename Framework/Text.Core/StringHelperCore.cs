@@ -90,20 +90,23 @@
         
         public static string PrettyByteCount(long byteCount)
         {
+            int sign = Math.Sign(byteCount);
+            long abs = Math.Abs(byteCount);
+
             const double kB = 1024;
             const double MB = kB * 1024;
             const double GB = MB * 1024;
             
-            if (byteCount <= 5 * kB) 
-                return $"{byteCount} bytes";
+            if (abs <= 5 * kB) 
+                return $"{sign * abs} bytes";
 
-            if (byteCount <= 5 * MB) 
-                return $"{byteCount / kB:0} kB";
+            if (abs <= 5 * MB) 
+                return $"{sign * abs / kB:0} kB";
 
-            if (byteCount <= 5 * GB)
-                return $"{byteCount / MB:0} MB";
+            if (abs <= 5 * GB)
+                return $"{sign * abs / MB:0} MB";
             
-            return $"{byteCount / GB:0} GB";
+            return $"{sign * abs / GB:0} GB";
         }
         
         public static string WithShortGuids(this string input, int length)
