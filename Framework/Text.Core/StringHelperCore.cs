@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Text.Core
+﻿// ReSharper disable ForCanBeConvertedToForeach
+
+namespace JJ.Framework.Text.Core
 {
     public static class StringHelperCore
     {
@@ -91,34 +93,38 @@
         public static string PrettyByteCount(long byteCount)
         {
             int sign = Math.Sign(byteCount);
-            long abs = Math.Abs(byteCount);
+            long bytesAbs = Math.Abs(byteCount);
 
-            const double kB = 1024;
-            const double MB = kB * 1024;
-            const double GB = MB * 1024;
+            const double kBSize = 1024;
+            const double MBSize = kBSize * 1024;
+            const double GBSize = MBSize * 1024;
             
-            if (abs <= 5 * kB) 
-                return $"{sign * abs} bytes";
+            if (bytesAbs <= 5 * kBSize) 
+                return $"{sign * bytesAbs} bytes";
 
-            if (abs <= 5 * MB) 
-                return $"{sign * abs / kB:0} kB";
+            if (bytesAbs <= 5 * MBSize) 
+                return $"{sign * bytesAbs / kBSize:0} kB";
 
-            if (abs <= 5 * GB)
-                return $"{sign * abs / MB:0} MB";
+            if (bytesAbs <= 5 * GBSize)
+                return $"{sign * bytesAbs / MBSize:0} MB";
             
-            return $"{sign * abs / GB:0} GB";
+            return $"{sign * bytesAbs / GBSize:0} GB";
         }
         
-        public static string WithShortGuids(this string input, int length)
+        public static string WithShortGuids(this string? input, int length)
         {
+            if (length < 1) throw new Exception("length < 1");
+            input ??= "";
+
             // Regular expression to match GUID-like sequences with or without dashes
-            var guidPattern = new Regex(@"\b[a-fA-F0-9]{4,32}\b(-?[a-fA-F0-9]{4,32})*\b", RegexOptions.IgnoreCase);
+            var guidPattern = new Regex(@"\{?\b[a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7}\b\}?", RegexOptions.IgnoreCase);
             
             // Replace each matched GUID-like sequence with a truncated version
             string output = guidPattern.Replace(input, match =>
             {
                 // Remove dashes from the matched sequence
-                string guid = match.Value.Replace("-", "");
+                //string guid = match.Value.Replace("-", "");
+                string guid = ToShortGuid(match.Value, length);
                 
                 // Shorten the GUID to the desired length, ensuring it doesn't exceed the original length
                 return guid.Substring(0, Math.Min(length, guid.Length));
@@ -126,7 +132,47 @@
             
             return output;
         }
-        
+
+        private static readonly char[] _guidChars = 
+        [
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+            'a', 'b', 'c', 'd', 'e', 'f', 
+            'A', 'B', 'C', 'D', 'E', 'F'
+        ];
+
+        public static string ToShortGuid(this string? input, int length)
+        {
+            if (length < 1) throw new Exception("length < 1");
+            input ??= "";
+
+            char[] allowedChars = _guidChars;
+            var outChars = new char[length];
+
+            int j = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                char chr = input[i];
+
+                // TODO: Range check is even faster chr > '0' && chr < '9' etc.
+                if (!allowedChars.Contains(chr))
+                    continue;
+
+                outChars[j] = chr;
+
+                j++;
+                if (j >= length) break;
+            }
+
+            return new string(outChars);
+
+        }
+
+        public static string ToShortGuid(this Guid? input, int length)
+        {
+            string str = input?.ToString() ?? "";
+            return ToShortGuid(str, length);
+        }
+
         public static string PrettyTime() => PrettyTime(DateTime.Now);
         
         public static string PrettyTime(DateTime dateTime) => $"{dateTime:HH:mm:ss.fff}";
