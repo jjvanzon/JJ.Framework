@@ -112,16 +112,15 @@ namespace JJ.Framework.Text.Core
             return $"{sign * bytesAbs / GBSize:0} GB";
         }
         
+            // Match GUID-like sequences with or without dashes, with or without braces.
+        private static readonly Regex _guidyRegex = new (@"(""?)(\{|\b)([a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7})(\}|\b)(""?)", ExplicitCapture | Compiled);
+
         public static string WithShortGuids(this string? input, int length)
         {
             if (length < 1) throw new Exception("length < 1");
             input ??= "";
 
-            // Match GUID-like sequences with or without dashes, with or without braces.
-            var guidPattern = new Regex(@"(\b|\{)([a-fA-F0-9]{4,32}(-?[a-fA-F0-9]{4,32}){0,7})(\}|\b)");
-            
-            // Replace each matched GUID-like sequence with a truncated version
-            string output = guidPattern.Replace(input, match => ToShortGuid(match.Value, length));
+            string output = _guidyRegex.Replace(input, match => ToShortGuid(match.Value, length));
             
             return output;
         }

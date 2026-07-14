@@ -142,20 +142,20 @@ public class StringHelperCore_Tests
     [TestMethod]
     public void Test_StringHelperCore_WithShortGuids_CommonFormats()
     {
-        AreEqual("before - c - after",                      "before - cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa - after"         .WithShortGuids(1));
-        AreEqual("before - 42 - after",                     "before - {426f51a9186b4115af98cca1131b8dd4} - after"           .WithShortGuids(2));
-        AreEqual("before - 07c - after",                    "before - {07c75275-0150-4414-bbca-0081b021a0ea} - after"       .WithShortGuids(3));
-        AreEqual("before - 9390 - after",                   "before - 9390B28866D94C7BA32BFD2B12CA0AA7 - after"             .WithShortGuids(4));
-        AreEqual("before - 155FE - after",                  "before - 155FEB11-A3F4-486A-AE7A-CF2F8961DB10 - after"         .WithShortGuids(5));
-        AreEqual("before - 3F0EC2 - after",                 "before - {3F0EC22422DE4921A7A963C1FD222B33} - after"           .WithShortGuids(6));
-        AreEqual("before - B5F8F33 - after",                "before - {B5F8F331-66B0-47F7-861D-9D849C7776C2} - after"       .WithShortGuids(7));
-        AreEqual("before - cf9ecb39 - after",        ('"' + "before - cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa - after"   + '"').WithShortGuids(8));     
-        AreEqual("before - 426f51a91 - after",       ('"' + "before - {426f51a9186b4115af98cca1131b8dd4} - after"     + '"').WithShortGuids(9));      
-        AreEqual("before - 07c7527501 - after",      ('"' + "before - {07c75275-0150-4414-bbca-0081b021a0ea} - after" + '"').WithShortGuids(10));          
-        AreEqual("before - 9390B28866D - after",     ('"' + "before - 9390B28866D94C7BA32BFD2B12CA0AA7 - after"       + '"').WithShortGuids(11));  
-        AreEqual("before - 155FEB11A3F4 - after",    ('"' + "before - 155FEB11-A3F4-486A-AE7A-CF2F8961DB10 - after"   + '"').WithShortGuids(12));      
-        AreEqual("before - 3F0EC22422DE4 - after",   ('"' + "before - {3F0EC22422DE4921A7A963C1FD222B33} - after"     + '"').WithShortGuids(13));      
-        AreEqual("before - B5F8F33166B047 - after" , ('"' + "before - {B5F8F331-66B0-47F7-861D-9D849C7776C2} - after" + '"').WithShortGuids(14));          
+        AreEqual("before - c - after",               "before - cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa - after"      .WithShortGuids(1));
+        AreEqual("before - 42 - after",              "before - {426f51a9186b4115af98cca1131b8dd4} - after"        .WithShortGuids(2));
+        AreEqual("before - 07c - after",             "before - {07c75275-0150-4414-bbca-0081b021a0ea} - after"    .WithShortGuids(3));
+        AreEqual("before - 9390 - after",            "before - 9390B28866D94C7BA32BFD2B12CA0AA7 - after"          .WithShortGuids(4));
+        AreEqual("before - 155FE - after",           "before - 155FEB11-A3F4-486A-AE7A-CF2F8961DB10 - after"      .WithShortGuids(5));
+        AreEqual("before - 3F0EC2 - after",          "before - {3F0EC22422DE4921A7A963C1FD222B33} - after"        .WithShortGuids(6));
+        AreEqual("before - B5F8F33 - after",         "before - {B5F8F331-66B0-47F7-861D-9D849C7776C2} - after"    .WithShortGuids(7));
+        AreEqual("before - cf9ecb39 - after",       @"before - ""cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa"" - after"  .WithShortGuids(8));     
+        AreEqual("before - 426f51a91 - after",      @"before - ""{426f51a9186b4115af98cca1131b8dd4}"" - after"    .WithShortGuids(9));      
+        AreEqual("before - 07c7527501 - after",     @"before - ""{07c75275-0150-4414-bbca-0081b021a0ea}"" - after".WithShortGuids(10));          
+        AreEqual("before - 9390B28866D - after",    @"before - ""9390B28866D94C7BA32BFD2B12CA0AA7"" - after"      .WithShortGuids(11));  
+        AreEqual("before - 155FEB11A3F4 - after",   @"before - ""155FEB11-A3F4-486A-AE7A-CF2F8961DB10"" - after"  .WithShortGuids(12));      
+        AreEqual("before - 3F0EC22422DE4 - after",  @"before - ""{3F0EC22422DE4921A7A963C1FD222B33}"" - after"    .WithShortGuids(13));      
+        AreEqual("before - B5F8F33166B047 - after", @"before - ""{B5F8F331-66B0-47F7-861D-9D849C7776C2}"" - after".WithShortGuids(14));          
     }
 
     [TestMethod]
