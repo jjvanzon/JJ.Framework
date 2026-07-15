@@ -33,7 +33,7 @@ public static partial class AssertCore
         actualText ??= "";
         expectedText ??= "";
         
-        if (!actualText.Contains(expectedText, ignoreCase: true))
+        if (!actualText.Contains(expectedText, caseMatters: false))
         {
             throw new Exception($"Message does not contain: '{expectedText}'. Full message: '{actualText}'");
         }

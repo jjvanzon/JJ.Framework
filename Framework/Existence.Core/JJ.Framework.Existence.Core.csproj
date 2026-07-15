@@ -8,6 +8,10 @@
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Existence.Core</PackageProjectUrl>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);IDE0130</NoWarn> <!--Folder != Namespace-->
+  </PropertyGroup>
+
   <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
     <IsAotCompatible>True</IsAotCompatible>
   </PropertyGroup>

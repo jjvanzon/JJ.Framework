@@ -1,5 +1,7 @@
-﻿#pragma warning disable IDE0048
-// 
+﻿#pragma warning disable IDE0200 // Convert to Method Group
+#pragma warning disable IDE0048 // Parenthesis for clarity
+#pragma warning disable IDE0056 // Simplify indexer notation (not supported across .NET versions) TODO: add platform shim for System.Index
+
 // ReSharper disable ForCanBeConvertedToForeach
 // ReSharper disable InvokeAsExtensionMemberFromSameClass
 // ReSharper disable UseRawString
@@ -34,26 +36,31 @@ namespace JJ.Framework.Text.Core
             
             return count;
         }
+
+        #pragma warning disable IDE0051 // Unused method
         
-        public static bool Contains(this string str, string substring, bool ignoreCase = false)
+        [Obsolete("Use ContainsExtensions from JJ.Framework.Existence.Core instead.", true)]
+        private static bool Contains(this string str, string substring, bool ignoreCase = false)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             return str.IndexOf(substring, ToStringComparison(ignoreCase)) >= 0;
         }
-        
-        // TODO: Distinction between ContainsAny and ContainsAll might be welcome.
 
-        public static bool Contains(this string str, string[] words, bool ignoreCase = false)
+        [Obsolete("Use ContainsExtensions from JJ.Framework.Existence.Core instead.", true)]
+        private static bool Contains(this string str, string[] words, bool ignoreCase = false)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             return words.Any(x => str.IndexOf(x, ToStringComparison(ignoreCase)) >= 0);
         }
         
-        public static bool Contains(this string str, char[] chars)
+        [Obsolete("Use ContainsExtensions from JJ.Framework.Existence.Core instead.", true)]
+        private static bool Contains(this string str, char[] chars)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             return chars.Any(str.Contains);
         }
+
+        #pragma warning restore IDE0051
         
         public static StringComparison ToStringComparison(this bool ignoreCase)
             => ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
@@ -181,7 +188,7 @@ namespace JJ.Framework.Text.Core
 
             char[] hexVowels = [ 'a', 'e', 'A', 'E' ];
 
-            bool hasVowels = guid.Contains(hexVowels);
+            bool hasVowels = guid.Any(chr => hexVowels.Contains(chr));
             if (!hasVowels)
             {
                 return false;

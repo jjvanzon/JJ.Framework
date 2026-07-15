@@ -12,6 +12,7 @@ RunTests<Coalesce_3Args_ObjectsToText>() &&
 RunTests<Coalesce_Keywords_Tests>() &&
 RunTests<Coalesce_NArg_Objects_Tests>() &&
 RunTests<Contains_Nullable_Tests>() &&
+RunTests<Contains_Substring_Tests>() &&
 RunTests<Contains_Tests>() &&
 RunTests<Existence_Bugs>() &&
 RunTests<Existence_Examples>() &&

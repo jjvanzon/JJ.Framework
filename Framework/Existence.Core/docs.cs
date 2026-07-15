@@ -15,6 +15,7 @@ public struct _coalesce;
 
 /// <summary>
 /// Test whether a collection <c>Contains</c> a given element.
+/// Or whether a text contains another text.
 /// </summary>
 public struct _contains;
 
