@@ -15,10 +15,10 @@
 
   <ItemGroup>
     <PackageReference Include="JJ.Framework.Compilation.Core" Version="5.1.7246-preview" />
-    <PackageReference Include="JJ.Framework.Reflection.Core" Version="5.1.7304" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7304" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7304" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7304" />
+    <PackageReference Include="JJ.Framework.Reflection.Core" Version="5.1.7342" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7342" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7342" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7342" />
   </ItemGroup>
 
   <ItemGroup>

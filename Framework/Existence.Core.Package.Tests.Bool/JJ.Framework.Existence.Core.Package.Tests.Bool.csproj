@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Existence.Core" Version="5.1.7304" />
+    <PackageReference Include="JJ.Framework.Existence.Core" Version="5.1.7342" />
     <PackageReference Include="JJ.Framework.Existence.Core.Tests.Helpers" Version="3.7.4872" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7304" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.259.7304" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7342" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.259.7342" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7304" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7342" />
   </ItemGroup>
 
   <ItemGroup>
