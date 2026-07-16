@@ -35,6 +35,7 @@
     <File Path="NuGet.config" />
     <File Path="README.MD" />
   </Folder>
+  <Project Path="Framework/Existence.Core.Tests.Helpers/JJ.Framework.Existence.Core.Tests.Helpers.csproj" />
   <Project Path="Framework/Existence.Core.Tests/JJ.Framework.Existence.Core.Tests.csproj" />
   <Project Path="Framework/Existence.Core.TrimTests/JJ.Framework.Existence.Core.TrimTests.csproj" />
   <Project Path="Framework/Text.Core.Tests/JJ.Framework.Text.Core.Tests.csproj" />
