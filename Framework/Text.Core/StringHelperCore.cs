@@ -38,6 +38,8 @@ namespace JJ.Framework.Text.Core
         }
 
         #pragma warning disable IDE0051 // Unused method
+        // ReSharper disable UnusedMember.Local
+        // ncrunch: no coverage start
         
         [Obsolete("Use ContainsExtensions from JJ.Framework.Existence.Core instead.", true)]
         private static bool Contains(this string str, string substring, bool ignoreCase = false)
@@ -60,6 +62,8 @@ namespace JJ.Framework.Text.Core
             return chars.Any(str.Contains);
         }
 
+        // ncrunch: no coverage end
+        // ReSharper restore UnusedMember.Local
         #pragma warning restore IDE0051
         
         public static StringComparison ToStringComparison(this bool ignoreCase)
@@ -259,12 +263,12 @@ namespace JJ.Framework.Text.Core
                 bool isNewLine = chr == '\n';
                 if (isNewLine) return true;
             } // ncrunch: no coverage
-                
+            
             // One of the 3 conditions above is true, but the compiler cannot know that.
             // It's a weird piece of code, so go defensive just return 'no' instead of throwing.
             return false; // ncrunch: no coverage
-            }
-            
+        }
+        
         public static bool EndsWithBlankLine(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
@@ -280,9 +284,9 @@ namespace JJ.Framework.Text.Core
                 if (!isWhiteSpace) return false;
                 
                 bool isNewLine = chr == '\n';
-                if (isNewLine) return true;
+                if (isNewLine) return true; 
             } // ncrunch: no coverage
-                
+            
             return false; // ncrunch: no coverage
         }
 

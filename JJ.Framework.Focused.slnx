@@ -11,7 +11,6 @@
     <Project Path="Framework\Collections.Core\JJ.Framework.Collections.Core.csproj" />
     <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
     <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
-    <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
     <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
@@ -36,7 +35,10 @@
     <File Path="NuGet.config" />
     <File Path="README.MD" />
   </Folder>
+  <Project Path="Framework/Existence.Core.Tests/JJ.Framework.Existence.Core.Tests.csproj" />
+  <Project Path="Framework/Existence.Core.TrimTests/JJ.Framework.Existence.Core.TrimTests.csproj" />
   <Project Path="Framework/Text.Core.Tests/JJ.Framework.Text.Core.Tests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
+  <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
   <Project Path="Framework\Text.Core\JJ.Framework.Text.Core.csproj" />
 </Solution>

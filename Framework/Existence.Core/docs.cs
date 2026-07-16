@@ -1,4 +1,6 @@
-﻿// ReSharper disable InconsistentNaming
+﻿#pragma warning disable IDE1006 // Prefix _
+
+// ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
@@ -16,6 +18,8 @@ public struct _coalesce;
 /// <summary>
 /// Test whether a collection <c>Contains</c> a given element.
 /// Or whether a text contains another text.
+/// The <c>Contains</c> methods are a bit arbitrary and not as rich a spread as the <c>In</c> methods,
+/// but we needed a spot to put them in, so here they are.
 /// </summary>
 public struct _contains;
 
