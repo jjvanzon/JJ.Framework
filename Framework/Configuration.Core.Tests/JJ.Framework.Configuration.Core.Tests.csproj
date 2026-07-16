@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
     <TargetFrameworks Condition="!$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks> <!-- TODO: Errors for net462 and net48 in Visual Studio Test Explorer. -->
-    <Version>5.1.$(BuildNum)</Version>
+    <Version>5.1.0</Version>
   </PropertyGroup>
 
  <ItemGroup>
