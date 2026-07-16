@@ -16,10 +16,16 @@ namespace JJ.Framework.Existence.Core.docs;
 public struct _coalesce;
 
 /// <summary>
+/// <para>
 /// Test whether a collection <c>Contains</c> a given element.
 /// Or whether a text contains another text.
 /// The <c>Contains</c> methods are a bit arbitrary and not as rich a spread as the <c>In</c> methods,
 /// but we needed a spot to put them in, so here they are.
+/// </para>
+/// <para>
+/// <b>NOTE</b>: <c>Contains(textA, textB)</c> is case <b>sensitive</b> because it invokes .NET's own,
+/// so falls through the cracks when it comes to Existence.Core's "looser by default" philosophy.
+/// </para>
 /// </summary>
 public struct _contains;
 

@@ -55,7 +55,6 @@ internal static class ContainsUtil
         var stringComparison = GetStringComparison(caseMatters);
         return str.IndexOf(substring, stringComparison) >= 0;
     }
-    
 
     /// <inheritdoc cref="_contains" />
     public static bool Contains(this string? str, string? substring, [Implic(Reason = MagicBool)] CaseMatters caseMatters)
