@@ -133,6 +133,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text.Core.Package.Tests", "Framework\Text.Core.Package.Tests\JJ.Framework.Text.Core.Package.Tests.csproj", "{A4F1C0C3-C2FC-4D0D-C4C6-66A1D7F29C43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text.Core.Package.TrimTests", "Framework\Text.Core.Package.TrimTests\JJ.Framework.Text.Core.Package.TrimTests.csproj", "{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -779,6 +781,18 @@ Global
 		{A4F1C0C3-C2FC-4D0D-C4C6-66A1D7F29C43}.Release|x64.Build.0 = Release|Any CPU
 		{A4F1C0C3-C2FC-4D0D-C4C6-66A1D7F29C43}.Release|x86.ActiveCfg = Release|Any CPU
 		{A4F1C0C3-C2FC-4D0D-C4C6-66A1D7F29C43}.Release|x86.Build.0 = Release|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Debug|x64.Build.0 = Debug|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Debug|x86.Build.0 = Debug|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Release|x64.ActiveCfg = Release|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Release|x64.Build.0 = Release|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Release|x86.ActiveCfg = Release|Any CPU
+		{BCC4BD00-4ABC-F78E-04A2-6C1E2E4CCA19}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
