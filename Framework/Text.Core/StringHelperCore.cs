@@ -246,6 +246,9 @@ namespace JJ.Framework.Text.Core
                 return true;
             }
             
+            // Here it's definitely not just white space or empty anymore,
+            // So there's at least one non-white-space character in there.
+            // the question is whether the new line comes first.
             for (int i = 0; i < text.Length; i++)
             {
                 char chr = text[i];
@@ -255,14 +258,13 @@ namespace JJ.Framework.Text.Core
                 
                 bool isNewLine = chr == '\n';
                 if (isNewLine) return true;
+            } // ncrunch: no coverage
                 
-                bool isLastChar = i == text.Length - 1;
-                if (isLastChar) return false;
+            // One of the 3 conditions above is true, but the compiler cannot know that.
+            // It's a weird piece of code, so go defensive just return 'no' instead of throwing.
+            return false; // ncrunch: no coverage
             }
             
-            return false;
-        }
-        
         public static bool EndsWithBlankLine(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
@@ -279,12 +281,9 @@ namespace JJ.Framework.Text.Core
                 
                 bool isNewLine = chr == '\n';
                 if (isNewLine) return true;
+            } // ncrunch: no coverage
                 
-                bool isFirstChar = i == 0;
-                if (isFirstChar) return false;
-            }
-            
-            return false;
+            return false; // ncrunch: no coverage
         }
 
         /// <inheritdoc cref="_replace" />

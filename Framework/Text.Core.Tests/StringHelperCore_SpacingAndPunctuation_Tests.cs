@@ -34,6 +34,7 @@ public class StringHelperCore_SpacingAndPunctuation_Tests
     public void Test_StringHelperCore_StartsWithBlankLine_EmptyIsConsideredABlankLine()
     {
         IsTrue(StartsWithBlankLine(""));
+        IsTrue(StartsWithBlankLine(" "));
     }
 
     [TestMethod]
@@ -47,6 +48,7 @@ public class StringHelperCore_SpacingAndPunctuation_Tests
     public void Test_StringHelperCore_EndsWithBlankLine_EmptyIsConsideredABlankLine()
     {
         IsTrue(EndsWithBlankLine(""));
+        IsTrue(EndsWithBlankLine(" "));
     }
 
     [TestMethod]
