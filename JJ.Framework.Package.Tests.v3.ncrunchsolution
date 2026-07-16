@@ -9,6 +9,7 @@
     </CustomBuildProperties>
     <EnableRDI>False</EnableRDI>
     <ImpactDetection>CompareIL</ImpactDetection>
+    <InferProjectReferencesUsingAssemblyNames>True</InferProjectReferencesUsingAssemblyNames>
     <MetricsExclusionList>
       <Value>Framework\Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net10.0</Value>
       <Value>Framework\Business.Core.Package.Trimming.TestApp\JJ.Framework.Business.Core.Package.Trimming.TestApp.csproj:net5.0</Value>
