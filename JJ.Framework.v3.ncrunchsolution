@@ -328,6 +328,9 @@
       <Value>Framework\IO.Core.TrimTests\JJ.Framework.IO.Core.TrimTests.csproj</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net462</Value>
       <Value>Framework\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.Legacy.csproj:net48</Value>
+      <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net462</Value>
+      <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net48</Value>
+      <Value>Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj:net48</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>

@@ -79,6 +79,7 @@
       "Framework\\Testing.Core.Tests\\JJ.Framework.Testing.Core.Tests.csproj",
       "Framework\\Testing.Core\\JJ.Framework.Testing.Core.csproj",
       "Framework\\Text.Core.Tests\\JJ.Framework.Text.Core.Tests.csproj",
+      "Framework\\Text.Core.TrimTests\\JJ.Framework.Text.Core.TrimTests.csproj",
       "Framework\\Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\Validation.Legacy.Tests.Helpers\\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj",
       "Framework\\Validation.Legacy.Tests\\JJ.Framework.Validation.Legacy.Tests.csproj",

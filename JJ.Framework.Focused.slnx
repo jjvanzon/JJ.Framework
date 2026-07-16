@@ -39,6 +39,7 @@
   <Project Path="Framework/Existence.Core.Tests/JJ.Framework.Existence.Core.Tests.csproj" />
   <Project Path="Framework/Existence.Core.TrimTests/JJ.Framework.Existence.Core.TrimTests.csproj" />
   <Project Path="Framework/Text.Core.Tests/JJ.Framework.Text.Core.Tests.csproj" />
+  <Project Path="Framework/Text.Core.TrimTests/JJ.Framework.Text.Core.TrimTests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
   <Project Path="Framework\Text.Core\JJ.Framework.Text.Core.csproj" />
