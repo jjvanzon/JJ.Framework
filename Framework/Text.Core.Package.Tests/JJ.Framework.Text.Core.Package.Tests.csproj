@@ -1,23 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks> <!-- NCrunch wide range for Package.Tests -->
     <Version>0.259.$(BuildNum)</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\StringResources.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\StringResources.Legacy.Tests\obj\**" />
-    <Compile Remove="..\StringResources.Legacy.Tests\bin\**" />
+    <Compile Include="..\Text.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Text.Core.Tests\obj\**" />
+    <Compile Remove="..\Text.Core.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.StringResources.Legacy" Version="0.259.7347" />
+    <PackageReference Include="JJ.Framework.Text.Core" Version="5.1.7347" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7347" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7347" />
   </ItemGroup>
-
-  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />

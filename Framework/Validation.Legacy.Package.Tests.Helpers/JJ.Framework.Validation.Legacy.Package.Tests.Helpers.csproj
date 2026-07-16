@@ -10,11 +10,11 @@
     <EmbeddedResource Include="..\Validation.Legacy.Tests.Helpers\**\*.resx" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Validation.Legacy.Tests.Helpers\obj\**" />
     <Compile Remove="..\Validation.Legacy.Tests.Helpers\bin\**" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7342" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7347" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.259.7342" />
+    <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.259.7347" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
