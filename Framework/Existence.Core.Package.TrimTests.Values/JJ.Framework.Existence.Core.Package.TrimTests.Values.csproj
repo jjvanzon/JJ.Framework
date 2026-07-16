@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>5.1.$(BuildNum)</Version>
+    <Version>5.1.0</Version>
     <OutputType>Exe</OutputType>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0</TargetFrameworks> <!-- NCrunch Package TrimTests -->
   </PropertyGroup>
@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7347" />
   </ItemGroup>
 </Project>

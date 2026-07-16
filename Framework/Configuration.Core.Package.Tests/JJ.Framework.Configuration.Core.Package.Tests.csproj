@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks> <!-- NCrunch wide range for Package.Tests. --> <!-- TODO: Errors for net462 and net48 in NCrunch and Visual Studio Test Explorer. -->
-    <Version>5.1.$(BuildNum)</Version>
+    <Version>5.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,10 +33,6 @@
   <!--<ItemGroup Condition="'$(TargetFramework)'!='net461'">-->
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
