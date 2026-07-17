@@ -8,12 +8,14 @@ public static class StringExtensionsCore
     public static string PrettyDuration     (this double?  sec              ) => StringHelperCore.PrettyDuration(sec);
     /// <inheritdoc cref="_prettyduration" />                               
     public static string PrettyDuration     (this double   sec              ) => StringHelperCore.PrettyDuration(sec);
+    public static string PrettyDuration     (this int      sec              ) => StringHelperCore.PrettyDuration(sec);
     public static string PrettyTimeSpan     (this TimeSpan timeSpan         ) => StringHelperCore.PrettyTimeSpan(timeSpan);
     public static string PrettyTime         (this DateTime dateTime         ) => StringHelperCore.PrettyTime(dateTime);
     public static string PrettyByteCount    (this byte[]?  bytes            ) => StringHelperCore.PrettyByteCount(bytes);
+    public static string PrettyByteCount    (this int      byteCount        ) => StringHelperCore.PrettyByteCount(byteCount);
     public static string PrettyByteCount    (this long     byteCount        ) => StringHelperCore.PrettyByteCount(byteCount);
     public static string WithShortGuids     (this string?  input, int length) => StringHelperCore.WithShortGuids(input, length);
-    public static string ToShortGuid        (this Guid?    input, int length) => StringHelperCore.ToShortGuid(input, length);
+  //public static string ToShortGuid        (this Guid?    input, int length) => StringHelperCore.ToShortGuid(input, length);
 
     // Punctuation & Spacing
 

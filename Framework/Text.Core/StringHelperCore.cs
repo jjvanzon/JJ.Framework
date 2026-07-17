@@ -127,11 +127,11 @@ public static class StringHelperCore
         return new string(outChars);
     }
 
-    public static string ToShortGuid(Guid? input, int length)
-    {
-        string str = input?.ToString() ?? "";
-        return ToShortGuid(str, length);
-    }
+    //public static string ToShortGuid(Guid? input, int length)
+    //{
+    //    string str = input?.ToString() ?? "";
+    //    return ToShortGuid(str, length);
+    //}
 
     private static bool MightBeAWord(string? guid)
     {

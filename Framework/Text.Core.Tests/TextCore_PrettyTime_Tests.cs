@@ -1,3 +1,5 @@
+#pragma warning disable IDE0002 // Simplify static calls
+
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
@@ -44,6 +46,21 @@ public class TextCore_PrettyTime_Tests
         AreEqual("1.00 ms",   PrettyDuration(sec: (double?)0.5 / 1000));
         AreEqual("0.00 μs",   PrettyDuration(sec: (double?)0.5 / 1000 / 1000));  
         #endif
+    }
+
+    [TestMethod]
+    public void Test_TextCore_PrettyDuration_StaticWithQualifier()
+    {
+        AreEqual("1.00 d", StringHelperCore.PrettyDuration(sec: 24 * 60 * 60));
+        AreEqual("1.23 s", StringHelperCore.PrettyDuration(sec: (double?)1.23));
+    }
+
+    [TestMethod]
+    public void Test_TextCore_PrettyDuration_ExtensionMethod()
+    {
+        AreEqual("1.00 d",     (24 * 60 * 60).PrettyDuration());
+        AreEqual("500.00 ms",            0.5 .PrettyDuration());
+        AreEqual("1.23 s",    ((double?)1.23).PrettyDuration());
     }
 
     [TestMethod]
