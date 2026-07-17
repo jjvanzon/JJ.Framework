@@ -88,7 +88,6 @@ public class TextCore_SpacingAndPunctuation_Tests
         IsFalse(                                     "\nHello"    .EndsWithBlankLine());
         IsFalse(                                   "\r\nHello"    .EndsWithBlankLine());
     }
-        
     
     [TestMethod]
     public void Test_StringHelperCore_EndsWithBlankLine_EmptyIsConsideredABlankLine()
@@ -154,6 +153,46 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
 
     [TestMethod]
-    public void Test_StringExtensionsCore_RemoveAccents() 
-        => AreEqual("cafe", "café".RemoveAccents());
+    public void Test_StringExtensionsCore_RemoveAccents()
+    {
+        
+        AreEqual("cafe",        StringHelperCore.RemoveAccents("café"                      ));
+        AreEqual("cafe",                         RemoveAccents("café"                      ));
+        AreEqual("cafe",                                       "café"       .RemoveAccents());
+        AreEqual("Cafe",        StringHelperCore.RemoveAccents("Café"                      ));
+        AreEqual("Cafe",                         RemoveAccents("Café"                      ));
+        AreEqual("Cafe",                                       "Café"       .RemoveAccents());
+        AreEqual("CAFE",        StringHelperCore.RemoveAccents("CAFÉ"                      ));
+        AreEqual("CAFE",                         RemoveAccents("CAFÉ"                      ));
+        AreEqual("CAFE",                                       "CAFÉ"       .RemoveAccents());
+        AreEqual(" cafe ",      StringHelperCore.RemoveAccents(" café "                    ));
+        AreEqual(" cafe ",                       RemoveAccents(" café "                    ));
+        AreEqual(" cafe ",                                     " café "     .RemoveAccents());
+        AreEqual("Tete-a-tete", StringHelperCore.RemoveAccents("Tête-à-tête"               ));
+        AreEqual("Tete-a-tete",                  RemoveAccents("Tête-à-tête"               ));
+        AreEqual("Tete-a-tete",                                "Tête-à-tête".RemoveAccents());
+        AreEqual("ωτινι",       StringHelperCore.RemoveAccents("ᾧτινι"                     ));
+        AreEqual("ωτινι",                        RemoveAccents("ᾧτινι"                     ));
+        AreEqual("ωτινι",                                      "ᾧτινι"      .RemoveAccents());
+     }
+
+    [TestMethod]
+    public void Test_StringExtensionsCore_RemoveAccents_Nullies()
+    {
+        AreEqual("",   StringHelperCore.RemoveAccents(Null               ));
+        AreEqual("",   StringHelperCore.RemoveAccents(""                 ));
+        AreEqual(" ",  StringHelperCore.RemoveAccents(" "                ));
+        AreEqual("\t", StringHelperCore.RemoveAccents("\t"               ));
+        AreEqual("\n", StringHelperCore.RemoveAccents("\n"               ));
+        AreEqual("",                    RemoveAccents(Null               ));
+        AreEqual("",                    RemoveAccents(""                 ));
+        AreEqual(" ",                   RemoveAccents(" "                ));
+        AreEqual("\t",                  RemoveAccents("\t"               ));
+        AreEqual("\n",                  RemoveAccents("\n"               ));
+        AreEqual("",                                  Null.RemoveAccents());
+        AreEqual("",                                  ""  .RemoveAccents());
+        AreEqual(" ",                                 " " .RemoveAccents());
+        AreEqual("\t",                                "\t".RemoveAccents());
+        AreEqual("\n",                                "\n".RemoveAccents());
+    }
 }
