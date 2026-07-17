@@ -14,7 +14,25 @@ public class TextCore_Basics_Tests
         AreEqual(" Hello ",                  Trim("!? Hello !?!?",     "!?"));
         AreEqual(" Hello ",                       "!? Hello !?!?".Trim("!?"));
     }
+
+    [TestMethod]
+    public void Test_TextCore_Replace_CharWithString()
+    {
+        AreEqual("HeLaLaLaLao", StringHelperCore.Replace("Hello",        'l', "LaLa"));
+        AreEqual("HeLaLaLaLao",                  Replace("Hello",        'l', "LaLa"));
+        AreEqual("HeLaLaLaLao",                          "Hello".Replace('l', "LaLa"));
+    }
     
+    [TestMethod]
+    public void Test_TextCore_Replace_StringWithChar()
+    {
+        AreEqual("He*o", StringHelperCore.Replace("Hello",        "ll", '*'));
+        AreEqual("He*o",                  Replace("Hello",        "ll", '*'));
+        AreEqual("He*o",                          "Hello".Replace("ll", '*'));
+    }
+
+    // With Nullies
+            
     [TestMethod]
     public void Test_TextCore_Trim_Nullies()
     {
@@ -48,14 +66,6 @@ public class TextCore_Basics_Tests
         AreEqual("  Hi  ", Trim("  Hi  ", ""   ));
         AreEqual("Hi",     Trim("  Hi  ", " "  ));
         AreEqual("Hi",     Trim("  Hi  ", "  " ));
-    }
-
-    [TestMethod]
-    public void Test_TextCore_Replace_CharWithString()
-    {
-        AreEqual("HeLaLaLaLao", StringHelperCore.Replace("Hello",        'l', "LaLa"));
-        AreEqual("HeLaLaLaLao",                  Replace("Hello",        'l', "LaLa"));
-        AreEqual("HeLaLaLaLao",                          "Hello".Replace('l', "LaLa"));
     }
 
     [TestMethod]
@@ -126,15 +136,71 @@ public class TextCore_Basics_Tests
        AreEqual("AAAA", "AA".Replace('A',  "AA" ));
     }
 
-    // TODO: Test nullies
-
     [TestMethod]
-    public void Test_TextCore_Replace_StringWithChar()
+    public void Test_TextCore_Replace_StringWithChar_Nullies()
     {
-        AreEqual("He*o", StringHelperCore.Replace("Hello",        "ll", '*'));
-        AreEqual("He*o",                  Replace("Hello",        "ll", '*'));
-        AreEqual("He*o",                          "Hello".Replace("ll", '*'));
+        AreEqual("",     Null.Replace(Null!, '\0'));
+        AreEqual("",     Null.Replace(Null!, ' ' ));
+        AreEqual("",     Null.Replace(Null!, 'A' ));
+        AreEqual("",     Null.Replace("",    '\0'));
+        AreEqual("",     Null.Replace("",    ' ' ));
+        AreEqual("",     Null.Replace("",    'A' ));
+        AreEqual("",     Null.Replace(" ",   '\0'));
+        AreEqual("",     Null.Replace(" ",   ' ' ));
+        AreEqual("",     Null.Replace(" ",   'A' ));
+        AreEqual("",     Null.Replace("  ",  '\0'));
+        AreEqual("",     Null.Replace("  ",  ' ' ));
+        AreEqual("",     Null.Replace("  ",  'A' ));
+        AreEqual("",     Null.Replace("AA",  '\0'));
+        AreEqual("",     Null.Replace("AA",  ' ' ));
+        AreEqual("",     Null.Replace("AA",  'A' ));
+                         
+        AreEqual("",     ""  .Replace(Null!, '\0'));
+        AreEqual("",     ""  .Replace(Null!, ' ' ));
+        AreEqual("",     ""  .Replace(Null!, 'A' ));
+        AreEqual("",     ""  .Replace("",    '\0'));
+        AreEqual("",     ""  .Replace("",    ' ' ));
+        AreEqual("",     ""  .Replace("",    'A' ));
+        AreEqual("",     ""  .Replace(" ",   '\0'));
+        AreEqual("",     ""  .Replace(" ",   ' ' ));
+        AreEqual("",     ""  .Replace(" ",   'A' ));
+        AreEqual("",     ""  .Replace("  ",  '\0'));
+        AreEqual("",     ""  .Replace("  ",  ' ' ));
+        AreEqual("",     ""  .Replace("  ",  'A' ));
+        AreEqual("",     ""  .Replace("AA",  '\0'));
+        AreEqual("",     ""  .Replace("AA",  ' ' ));
+        AreEqual("",     ""  .Replace("AA",  'A' ));
+                         
+        AreEqual(" ",    " " .Replace(Null!, '\0'));
+        AreEqual(" ",    " " .Replace(Null!, ' ' ));
+        AreEqual(" ",    " " .Replace(Null!, 'A' ));
+        AreEqual(" ",    " " .Replace("",    '\0'));
+        AreEqual(" ",    " " .Replace("",    ' ' ));
+        AreEqual(" ",    " " .Replace("",    'A' ));
+        AreEqual("\0",   " " .Replace(" ",   '\0'));
+        AreEqual(" ",    " " .Replace(" ",   ' ' ));
+        AreEqual("A",    " " .Replace(" ",   'A' ));
+        AreEqual(" ",    " " .Replace("  ",  '\0'));
+        AreEqual(" ",    " " .Replace("  ",  ' ' ));
+        AreEqual(" ",    " " .Replace("  ",  'A' ));
+        AreEqual(" ",    " " .Replace("AA",  '\0'));
+        AreEqual(" ",    " " .Replace("AA",  ' ' ));
+        AreEqual(" ",    " " .Replace("AA",  'A' ));
+                         
+        AreEqual("  ",   "  ".Replace(Null!, '\0'));
+        AreEqual("  ",   "  ".Replace(Null!, ' ' ));
+        AreEqual("  ",   "  ".Replace(Null!, 'A' ));
+        AreEqual("  ",   "  ".Replace("",    '\0'));
+        AreEqual("  ",   "  ".Replace("",    ' ' ));
+        AreEqual("  ",   "  ".Replace("",    'A' ));
+        AreEqual("\0\0", "  ".Replace(" ",   '\0'));
+        AreEqual("  ",   "  ".Replace(" ",   ' ' ));
+        AreEqual("AA",   "  ".Replace(" ",   'A' ));
+        AreEqual("\0",   "  ".Replace("  ",  '\0'));
+        AreEqual(" ",    "  ".Replace("  ",  ' ' ));
+        AreEqual("A",    "  ".Replace("  ",  'A' ));
+        AreEqual("  ",   "  ".Replace("AA",  '\0'));
+        AreEqual("  ",   "  ".Replace("AA",  ' ' ));
+        AreEqual("  ",   "  ".Replace("AA",  'A' ));
     }
-
-    
 }

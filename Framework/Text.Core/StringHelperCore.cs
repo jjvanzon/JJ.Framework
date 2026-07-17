@@ -294,16 +294,19 @@ public static class StringHelperCore
     /// <inheritdoc cref="_replace" />
     public static string Replace(string? text, string oldValue, char newValue)
     {
-        if (text == null) 
+        if (text is null or "")
             return "";
+
+        if (IsNullOrEmpty(oldValue))
+            return text;
 
         return text.Replace(oldValue, newValue.ToString()); 
     }
 
     /// <inheritdoc cref="_replace" />
-    public static string Replace(string? text, char oldValue, string newValue)
+    public static string Replace(string? text, char oldValue, string? newValue)
     {
-        if (text == null) 
+        if (text is null or "") 
             return "";
 
         return text.Replace(oldValue.ToString(), newValue);
