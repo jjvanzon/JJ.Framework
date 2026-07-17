@@ -4,20 +4,6 @@ namespace JJ.Framework.Text.Core.Tests;
 public class StringHelperCore_Basics_Tests
 {
     [TestMethod]
-    public void Test_StringHelperCore_BoolIgnoreCase_True_ToStringComparison()
-    {
-        const bool ignoreCaseTrue = true;
-        AreEqual(OrdinalIgnoreCase, ToStringComparison(ignoreCaseTrue));
-    }
-
-    [TestMethod]
-    public void Test_StringHelperCore_BoolIgnoreCase_False_ToStringComparison()
-    {
-        const bool ignoreCaseTrue = false;
-        AreEqual(Ordinal, ToStringComparison(ignoreCaseTrue));
-    }
-
-    [TestMethod]
     public void Test_StringHelperCore_Trim() 
         => AreEqual(" Hello ", "!? Hello !?!?".Trim("!?"));
 

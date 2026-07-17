@@ -18,12 +18,11 @@ public static class StringExtensionsCore
 
     // Punctuation & Spacing
 
-    // TODO: Accept null in.
     public static int CountLines(this string? str) => StringHelperCore.CountLines(str);
-    public static bool StartsWithBlankLine(this string text) => StringHelperCore.StartsWithBlankLine(text);
-    public static bool EndsWithBlankLine(this string text) => StringHelperCore.EndsWithBlankLine(text);
+    public static bool StartsWithBlankLine(this string? text) => StringHelperCore.StartsWithBlankLine(text);
+    public static bool EndsWithBlankLine(this string? text) => StringHelperCore.EndsWithBlankLine(text);
     /// <inheritdoc cref="_endswithpunctuation" />
-    public static bool EndsWithPunctuation(this string text, bool ignoreWhiteSpace = true) => StringHelperCore.EndsWithPunctuation(text, ignoreWhiteSpace);
+    public static bool EndsWithPunctuation(this string? text, bool ignoreWhiteSpace = true) => StringHelperCore.EndsWithPunctuation(text, ignoreWhiteSpace);
     /// <inheritdoc cref="_removeaccents" />
     public static string RemoveAccents(this string? input) => StringHelperCore.RemoveAccents(input);
 
@@ -31,14 +30,11 @@ public static class StringExtensionsCore
 
     // Basics
     
-    public static string Trim(this string text, string trim) => StringHelperCore.Trim(text, trim);
+    public static string Trim(this string? text, string trim) => StringHelperCore.Trim(text, trim);
 
     /// <inheritdoc cref="_replace" />
-    public static string Replace(this string text, string oldValue, char newValue) => StringHelperCore.Replace(text, oldValue, newValue);
+    public static string Replace(this string? text, string oldValue, char newValue) => StringHelperCore.Replace(text, oldValue, newValue);
 
     /// <inheritdoc cref="_replace" />
-    public static string Replace(this string text, char oldValue, string newValue) => StringHelperCore.Replace(text, oldValue, newValue);
-    
-    // TODO: Remove? Unused?
-    //public static StringComparison ToStringComparison(this bool ignoreCase)
+    public static string Replace(this string? text, char oldValue, string newValue) => StringHelperCore.Replace(text, oldValue, newValue);
 }

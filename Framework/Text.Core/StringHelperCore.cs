@@ -165,8 +165,6 @@ public static class StringHelperCore
         // No digit, has vowel, has enough vowels, not a long string of hex = probably a word.
         return true;
     }
-
-    // TODO: Accept null in.
     
     // Spacing & Punctuation
 
@@ -196,13 +194,13 @@ public static class StringHelperCore
         return count;
     }
         
-    public static bool StartsWithBlankLine(string text)
+    public static bool StartsWithBlankLine(string? text)
     {
-        if (string.IsNullOrWhiteSpace(text))
+        if (text == null || IsNullOrWhiteSpace(text))
         {
             return true;
         }
-            
+        
         // Here it's definitely not just white space or empty anymore,
         // So there's at least one non-white-space character in there.
         // the question is whether the new line comes first.
@@ -222,9 +220,9 @@ public static class StringHelperCore
         return false; // ncrunch: no coverage
     }
         
-    public static bool EndsWithBlankLine(string text)
+    public static bool EndsWithBlankLine(string? text)
     {
-        if (string.IsNullOrWhiteSpace(text))
+        if (text == null || IsNullOrWhiteSpace(text))
         {
             return true;
         }
@@ -244,9 +242,9 @@ public static class StringHelperCore
     }
     
     /// <inheritdoc cref="_endswithpunctuation" />
-    public static bool EndsWithPunctuation(string text, bool ignoreWhiteSpace = true)
+    public static bool EndsWithPunctuation(string? text, bool ignoreWhiteSpace = true)
     {
-        if (string.IsNullOrWhiteSpace(text))
+        if (text == null || IsNullOrWhiteSpace(text))
         {
             // Start of string is good enough for punctuation.
             return true;
@@ -267,33 +265,27 @@ public static class StringHelperCore
         return new string(stripped.ToArray()).Normalize(FormC);
     }
 
-    // TODO: Accept null in, output non-null. Do not throw.
-
     // Basics
     
-    public static string Trim(string text, string trim)
+    public static string Trim(string? text, string trim)
     {
-        if (text == null) throw new ArgumentNullException(nameof(text));
+        if (text == null) return "";
         return text.TrimStart(trim).TrimEnd(trim);
     }
 
     /// <inheritdoc cref="_replace" />
-    public static string Replace(string text, string oldValue, char newValue)
+    public static string Replace(string? text, string oldValue, char newValue)
     {
-        ThrowIfNull(text);
+        if (text == null) return "";
         return text.Replace(oldValue, newValue.ToString()); 
     }
 
     /// <inheritdoc cref="_replace" />
-    public static string Replace(string text, char oldValue, string newValue)
+    public static string Replace(string? text, char oldValue, string newValue)
     {
-        ThrowIfNull(text);
+        if (text == null) return "";
         return text.Replace(oldValue.ToString(), newValue);
     }
-    
-    // TODO: Remove? Unused?
-    public static StringComparison ToStringComparison(bool ignoreCase)
-        => ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
     // TODO: Expand with other overloads that .NET supports. Our overloads mix char and string parameters for old and new values for syntax sugar.
 }
