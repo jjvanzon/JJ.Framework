@@ -1,7 +1,7 @@
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
-public class StringHelperCore_Basics_Tests
+public class TextCore_Basics_Tests
 {
     [TestMethod]
     public void Test_StringHelperCore_Trim() 

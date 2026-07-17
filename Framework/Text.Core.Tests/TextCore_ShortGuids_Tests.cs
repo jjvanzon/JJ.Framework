@@ -1,7 +1,7 @@
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
-public class StringHelperCore_ShortGuids_Tests
+public class TextCore_ShortGuids_Tests
 {
     [TestMethod]
     public void Test_StringHelperCore_WithShortGuids_CommonFormats()

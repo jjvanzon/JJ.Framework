@@ -45,15 +45,15 @@ public static class StringHelperCore
         return $"{totalMicroSec:0.00} μs";
     }
         
+    public static string PrettyTime() => PrettyTime(DateTime.Now);
+        
+    public static string PrettyTime(DateTime dateTime) => $"{dateTime:HH:mm:ss.fff}";
+        
     public static string PrettyByteCount(byte[]? bytes)
     {
         int coalescedLength = bytes?.Length ?? 0;
         return PrettyByteCount(coalescedLength);
     }
-        
-    public static string PrettyTime() => PrettyTime(DateTime.Now);
-        
-    public static string PrettyTime(DateTime dateTime) => $"{dateTime:HH:mm:ss.fff}";
         
     public static string PrettyByteCount(long byteCount)
     {

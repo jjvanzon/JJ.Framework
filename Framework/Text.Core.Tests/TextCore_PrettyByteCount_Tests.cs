@@ -1,7 +1,7 @@
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
-public class StringHelperCore_PrettyByteCount_Tests
+public class TextCore_PrettyByteCount_Tests
 {
     [TestMethod]
     public void Test_StringHelperCore_PrettyByteCount()

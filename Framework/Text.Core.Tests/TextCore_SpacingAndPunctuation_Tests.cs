@@ -1,7 +1,7 @@
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
-public class StringHelperCore_SpacingAndPunctuation_Tests
+public class TextCore_SpacingAndPunctuation_Tests
 {
     [TestMethod]
     public void Test_StringHelperCore_CountLines()

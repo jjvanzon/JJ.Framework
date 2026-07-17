@@ -1,7 +1,7 @@
 namespace JJ.Framework.Text.Core.Tests;
 
 [TestClass]
-public class StringHelperCore_PrettyTime_Tests
+public class TextCore_PrettyTime_Tests
 {
     [TestMethod]
     public void Test_StringHelperCore_PrettyDuration()
