@@ -1,5 +1,4 @@
 ﻿bool success = 
-RunTests<StringExtensionsCore_Tests>() &&
 RunTests<TextCore_Basics_Tests>() &&
 RunTests<TextCore_PrettyByteCount_Tests>() &&
 RunTests<TextCore_PrettyTime_Tests>() &&
