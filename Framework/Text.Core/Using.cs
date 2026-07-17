@@ -7,3 +7,6 @@ global using JJ.Framework.Text.Core.docs;
 global using static System.ArgumentNullException;
 global using static System.Math;
 global using static System.Text.RegularExpressions.RegexOptions;
+global using static System.Globalization.CharUnicodeInfo;
+global using static System.Globalization.UnicodeCategory;
+global using static System.Text.NormalizationForm;

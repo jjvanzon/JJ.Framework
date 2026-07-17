@@ -5,10 +5,12 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn><!--Missing doc lenience-->
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="JJ.Framework.Text.Core.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Text.Core_AnalysisBuild.xml" />
-  </ItemGroup>
+  <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
+    <IsAotCompatible>True</IsAotCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IsNet6) Or $(IsNet7)">
+    <IsTrimmable>True</IsTrimmable>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
