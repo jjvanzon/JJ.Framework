@@ -11,43 +11,7 @@ namespace JJ.Framework.Text.Core;
 
 public static class StringHelperCore
 {
-    /// <inheritdoc cref="_removeaccents" />
-    public static string RemoveAccents(string? input)
-    {
-        if (input == null) return "";
-        string formD = input.Normalize(FormD);
-        var stripped = formD.Where(x => GetUnicodeCategory(x) != NonSpacingMark);
-        return new string(stripped.ToArray()).Normalize(FormC);
-    }
-
-    public static int CountLines(this string? str)
-    {
-        // Less efficient:
-        //int count = str.Trim().Split(NewLine).Length;
-        //int count = 1 + str.Count(c => c == '\n');
-            
-        if (str == null) return 0;
-        if (str.Length == 0) return 0;
-            
-        int count = 1; // Start with 1 to account for the first line
-        for (int i = 0; i < str.Length; i++)
-        {
-            if (str[i] == '\n') // Platform safe for '\n' or "\r\n".
-            {
-                count++;
-            }
-        }
-            
-        if (str.Last() == '\n')
-        {
-            count--;
-        }
-            
-        return count;
-    }
-        
-    public static StringComparison ToStringComparison(this bool ignoreCase)
-        => ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+    // Prettify
 
     /// <inheritdoc cref="_prettyduration" />
     public static string PrettyDuration(double? sec)
@@ -87,6 +51,10 @@ public static class StringHelperCore
         return PrettyByteCount(coalescedLength);
     }
         
+    public static string PrettyTime() => PrettyTime(DateTime.Now);
+        
+    public static string PrettyTime(DateTime dateTime) => $"{dateTime:HH:mm:ss.fff}";
+        
     public static string PrettyByteCount(long byteCount)
     {
         int sign = Sign(byteCount);
@@ -107,7 +75,7 @@ public static class StringHelperCore
             
         return $"{sign * bytesAbs / GBSize:0} GB";
     }
-        
+
     // Match GUID-like sequences with or without dashes, with or without braces.
     private static readonly Regex _guidyRegex = new (@"""?(\{|\b)[a-fA-F0-9]+([a-fA-F0-9-]{0,46})[a-fA-F0-9]+(\}|\b)""?", ExplicitCapture | Compiled);
 
@@ -153,11 +121,11 @@ public static class StringHelperCore
         return new string(outChars);
     }
 
-    //public static string ToShortGuid(this Guid? input, int length)
-    //{
-    //    string str = input?.ToString() ?? "";
-    //    return ToShortGuid(str, length);
-    //}
+    public static string ToShortGuid(this Guid? input, int length)
+    {
+        string str = input?.ToString() ?? "";
+        return ToShortGuid(str, length);
+    }
 
     private static bool MightBeAWord(string? guid)
     {
@@ -197,30 +165,33 @@ public static class StringHelperCore
         // No digit, has vowel, has enough vowels, not a long string of hex = probably a word.
         return true;
     }
+    
+    // Spacing & Punctuation
 
-    public static string PrettyTime() => PrettyTime(DateTime.Now);
-        
-    public static string PrettyTime(DateTime dateTime) => $"{dateTime:HH:mm:ss.fff}";
-        
-    public static string Trim(this string text, string trim)
+    public static int CountLines(this string? str)
     {
-        if (text == null) throw new ArgumentNullException(nameof(text));
-        return text.TrimStart(trim).TrimEnd(trim);
-    }
-
-    /// <inheritdoc cref="_endswithpunctuation" />
-    public static bool EndsWithPunctuation(this string text, bool ignoreWhiteSpace = true)
-    {
-        if (string.IsNullOrWhiteSpace(text))
-        {
-            // Start of string is good enough for punctuation.
-            return true;
-        }
-
-        if (ignoreWhiteSpace) text = text.TrimEnd();
+        // Less efficient:
+        //int count = str.Trim().Split(NewLine).Length;
+        //int count = 1 + str.Count(c => c == '\n');
             
-        // ReSharper disable once PossibleNullReferenceException
-        return char.IsPunctuation(text[text.Length - 1]);
+        if (str == null) return 0;
+        if (str.Length == 0) return 0;
+            
+        int count = 1; // Start with 1 to account for the first line
+        for (int i = 0; i < str.Length; i++)
+        {
+            if (str[i] == '\n') // Platform safe for '\n' or "\r\n".
+            {
+                count++;
+            }
+        }
+            
+        if (str.Last() == '\n')
+        {
+            count--;
+        }
+            
+        return count;
     }
         
     public static bool StartsWithBlankLine(string text)
@@ -269,6 +240,38 @@ public static class StringHelperCore
             
         return false; // ncrunch: no coverage
     }
+    
+    /// <inheritdoc cref="_endswithpunctuation" />
+    public static bool EndsWithPunctuation(this string text, bool ignoreWhiteSpace = true)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            // Start of string is good enough for punctuation.
+            return true;
+        }
+
+        if (ignoreWhiteSpace) text = text.TrimEnd();
+            
+        // ReSharper disable once PossibleNullReferenceException
+        return char.IsPunctuation(text[text.Length - 1]);
+    }
+
+    /// <inheritdoc cref="_removeaccents" />
+    public static string RemoveAccents(string? input)
+    {
+        if (input == null) return "";
+        string formD = input.Normalize(FormD);
+        var stripped = formD.Where(x => GetUnicodeCategory(x) != NonSpacingMark);
+        return new string(stripped.ToArray()).Normalize(FormC);
+    }
+
+    // Basics
+    
+    public static string Trim(this string text, string trim)
+    {
+        if (text == null) throw new ArgumentNullException(nameof(text));
+        return text.TrimStart(trim).TrimEnd(trim);
+    }
 
     /// <inheritdoc cref="_replace" />
     public static string Replace(string text, string oldValue, char newValue)
@@ -283,6 +286,10 @@ public static class StringHelperCore
         ThrowIfNull(text);
         return text.Replace(oldValue.ToString(), newValue);
     }
+        
+    // TODO: Remove? Unused?
+    public static StringComparison ToStringComparison(this bool ignoreCase)
+        => ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
     // TODO: Expand with other overloads that .NET supports. Our overloads mix char and string parameters for old and new values for syntax sugar.
 }
