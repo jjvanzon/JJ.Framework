@@ -50,6 +50,8 @@ public class TextCore_Basics_Tests
         AreEqual("Hi",     Trim("  Hi  ", "  " ));
     }
 
+    // TODO: Test nullies
+
     [TestMethod]
     public void Test_TextCore_Replace_CharWithString()
     {
@@ -59,10 +61,33 @@ public class TextCore_Basics_Tests
     }
 
     [TestMethod]
+    public void Test_TextCore_Replace_CharWithString_Nullies()
+    {
+       AreEqual("",   Replace(null, '\0', null!));
+       AreEqual("",   Replace("",   '\0', null!));
+       AreEqual(" ",  Replace(" ",  '\0', null!));
+       AreEqual("oo", Replace("oo", '\0', null!));
+
+       AreEqual("",   Replace(null, ' ',  null!));
+       AreEqual("",   Replace("",   ' ',  null!));
+       AreEqual("",   Replace(" ",  ' ',  null!));
+       AreEqual("oo", Replace("oo", ' ',  null!));
+
+       AreEqual("",   Replace(null, 'o',  null!));
+       AreEqual("",   Replace("",   'o',  null!));
+       AreEqual(" ",  Replace(" ",  'o',  null!));
+       AreEqual("",   Replace("oo", 'o',  null!));
+
+       AreEqual("", Null.Replace('o', "oo"));
+    }
+
+    [TestMethod]
     public void Test_TextCore_Replace_StringWithChar()
     {
         AreEqual("He*o", StringHelperCore.Replace("Hello",        "ll", '*'));
         AreEqual("He*o",                  Replace("Hello",        "ll", '*'));
         AreEqual("He*o",                          "Hello".Replace("ll", '*'));
     }
+
+    
 }
