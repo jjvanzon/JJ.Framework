@@ -63,22 +63,70 @@ public class TextCore_Basics_Tests
     [TestMethod]
     public void Test_TextCore_Replace_CharWithString_Nullies()
     {
-       AreEqual("",   Replace(null, '\0', null!));
-       AreEqual("",   Replace("",   '\0', null!));
-       AreEqual(" ",  Replace(" ",  '\0', null!));
-       AreEqual("oo", Replace("oo", '\0', null!));
-
-       AreEqual("",   Replace(null, ' ',  null!));
-       AreEqual("",   Replace("",   ' ',  null!));
-       AreEqual("",   Replace(" ",  ' ',  null!));
-       AreEqual("oo", Replace("oo", ' ',  null!));
-
-       AreEqual("",   Replace(null, 'o',  null!));
-       AreEqual("",   Replace("",   'o',  null!));
-       AreEqual(" ",  Replace(" ",  'o',  null!));
-       AreEqual("",   Replace("oo", 'o',  null!));
-
-       AreEqual("", Null.Replace('o', "oo"));
+       AreEqual("",     Null.Replace('\0', Null!));
+       AreEqual("",     ""  .Replace('\0', Null!));
+       AreEqual(" ",    " " .Replace('\0', Null!));
+       AreEqual("AA",   "AA".Replace('\0', Null!));
+       AreEqual("",     Null.Replace(' ',  Null!));
+       AreEqual("",     ""  .Replace(' ',  Null!));
+       AreEqual("",     " " .Replace(' ',  Null!));
+       AreEqual("AA",   "AA".Replace(' ',  Null!));
+       AreEqual("",     Null.Replace('A',  Null!));
+       AreEqual("",     ""  .Replace('A',  Null!));
+       AreEqual(" ",    " " .Replace('A',  Null!));
+       AreEqual("",     "AA".Replace('A',  Null!));
+                        
+       AreEqual("",     Null.Replace('\0', ""   ));
+       AreEqual("",     ""  .Replace('\0', ""   ));
+       AreEqual(" ",    " " .Replace('\0', ""   ));
+       AreEqual("AA",   "AA".Replace('\0', ""   ));
+       AreEqual("",     Null.Replace(' ',  ""   ));
+       AreEqual("",     ""  .Replace(' ',  ""   ));
+       AreEqual("",     " " .Replace(' ',  ""   ));
+       AreEqual("AA",   "AA".Replace(' ',  ""   ));
+       AreEqual("",     Null.Replace('A',  ""   ));
+       AreEqual("",     ""  .Replace('A',  ""   ));
+       AreEqual(" ",    " " .Replace('A',  ""   ));
+       AreEqual("",     "AA".Replace('A',  ""   ));
+                        
+       AreEqual("",     Null.Replace('\0', " "  ));
+       AreEqual("",     ""  .Replace('\0', " "  ));
+       AreEqual(" ",    " " .Replace('\0', " "  ));
+       AreEqual("AA",   "AA".Replace('\0', " "  ));
+       AreEqual("",     Null.Replace(' ',  " "  ));
+       AreEqual("",     ""  .Replace(' ',  " "  ));
+       AreEqual(" ",    " " .Replace(' ',  " "  ));
+       AreEqual("AA",   "AA".Replace(' ',  " "  ));
+       AreEqual("",     Null.Replace('A',  " "  ));
+       AreEqual("",     ""  .Replace('A',  " "  ));
+       AreEqual(" ",    " " .Replace('A',  " "  ));
+       AreEqual("  ",   "AA".Replace('A',  " "  ));
+                        
+       AreEqual("",     Null.Replace('\0', "  " ));
+       AreEqual("",     ""  .Replace('\0', "  " ));
+       AreEqual(" ",    " " .Replace('\0', "  " ));
+       AreEqual("AA",   "AA".Replace('\0', "  " ));
+       AreEqual("",     Null.Replace(' ',  "  " ));
+       AreEqual("",     ""  .Replace(' ',  "  " ));
+       AreEqual("  ",   " " .Replace(' ',  "  " ));
+       AreEqual("AA",   "AA".Replace(' ',  "  " ));
+       AreEqual("",     Null.Replace('A',  "  " ));
+       AreEqual("",     ""  .Replace('A',  "  " ));
+       AreEqual(" ",    " " .Replace('A',  "  " ));
+       AreEqual("    ", "AA".Replace('A',  "  " ));
+                        
+       AreEqual("",     Null.Replace('\0', "AA" ));
+       AreEqual("",     ""  .Replace('\0', "AA" ));
+       AreEqual(" ",    " " .Replace('\0', "AA" ));
+       AreEqual("AA",   "AA".Replace('\0', "AA" ));
+       AreEqual("",     Null.Replace(' ',  "AA" ));
+       AreEqual("",     ""  .Replace(' ',  "AA" ));
+       AreEqual("AA",   " " .Replace(' ',  "AA" ));
+       AreEqual("AA",   "AA".Replace(' ',  "AA" ));
+       AreEqual("",     Null.Replace('A',  "AA" ));
+       AreEqual("",     ""  .Replace('A',  "AA" ));
+       AreEqual(" ",    " " .Replace('A',  "AA" ));
+       AreEqual("AAAA", "AA".Replace('A',  "AA" ));
     }
 
     [TestMethod]
