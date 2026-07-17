@@ -16,7 +16,9 @@ public static class StringHelperCore
     /// <inheritdoc cref="_prettyduration" />
     public static string PrettyDuration(double? sec)
     {
-        if (!sec.HasValue) return "";
+        if (!sec.HasValue) 
+            return "";
+
         return PrettyDuration(sec.Value);
     }
         
@@ -81,7 +83,9 @@ public static class StringHelperCore
 
     public static string WithShortGuids(string? input, int length)
     {
-        if (length < 1) throw new Exception("length < 1");
+        if (length < 1) 
+            throw new Exception("length < 1");
+
         input ??= "";
 
         string output = _guidyRegex.Replace(input, match =>
@@ -95,7 +99,9 @@ public static class StringHelperCore
 
     private static string ToShortGuid(string? input, int length)
     {
-        if (length < 1) throw new Exception("length < 1");
+        if (length < 1) 
+            throw new Exception("length < 1");
+
         input ??= "";
 
         var outChars = new char[length];
@@ -129,8 +135,10 @@ public static class StringHelperCore
 
     private static bool MightBeAWord(string? guid)
     {
-        if (guid == null) return false;
-        if (guid.Length == 0) return false;
+        if (guid == null) 
+            return false;
+        if (guid.Length == 0) 
+            return false;
 
         bool hasDecimals = guid.Any(x => x >= '0' && x <= '9');
         if (hasDecimals)
@@ -174,8 +182,11 @@ public static class StringHelperCore
         //int count = str.Trim().Split(NewLine).Length;
         //int count = 1 + str.Count(c => c == '\n');
             
-        if (text == null) return 0;
-        if (text.Length == 0) return 0;
+        if (text == null) 
+            return 0;
+
+        if (text.Length == 0)
+            return 0;
             
         int count = 1; // Start with 1 to account for the first line
         for (int i = 0; i < text.Length; i++)
@@ -196,11 +207,12 @@ public static class StringHelperCore
         
     public static bool StartsWithBlankLine(string? text)
     {
-        if (text == null || IsNullOrWhiteSpace(text))
-        {
+        if (text == null)
             return true;
-        }
-        
+       
+        if (IsNullOrWhiteSpace(text))
+            return true;
+
         // Here it's definitely not just white space or empty anymore,
         // So there's at least one non-white-space character in there.
         // the question is whether the new line comes first.
@@ -222,11 +234,12 @@ public static class StringHelperCore
         
     public static bool EndsWithBlankLine(string? text)
     {
-        if (text == null || IsNullOrWhiteSpace(text))
-        {
+        if (text == null)
             return true;
-        }
-            
+
+        if (IsNullOrWhiteSpace(text))
+            return true;
+
         for (int i = text.Length - 1; i >= 0; i--)
         {
             char chr = text[i];
@@ -244,11 +257,12 @@ public static class StringHelperCore
     /// <inheritdoc cref="_endswithpunctuation" />
     public static bool EndsWithPunctuation(string? text, bool ignoreWhiteSpace = true)
     {
-        if (text == null || IsNullOrWhiteSpace(text))
-        {
-            // Start of string is good enough for punctuation.
+        // Start of string is good enough for punctuation.
+        if (text == null)
             return true;
-        }
+
+        if (IsNullOrWhiteSpace(text))
+            return true;
 
         if (ignoreWhiteSpace) text = text.TrimEnd();
             
@@ -259,7 +273,9 @@ public static class StringHelperCore
     /// <inheritdoc cref="_removeaccents" />
     public static string RemoveAccents(string? input)
     {
-        if (input == null) return "";
+        if (input == null) 
+            return "";
+
         string formD = input.Normalize(FormD);
         var stripped = formD.Where(x => GetUnicodeCategory(x) != NonSpacingMark);
         return new string(stripped.ToArray()).Normalize(FormC);
@@ -269,21 +285,27 @@ public static class StringHelperCore
     
     public static string Trim(string? text, string trim)
     {
-        if (text == null) return "";
+        if (text == null) 
+            return "";
+
         return text.TrimStart(trim).TrimEnd(trim);
     }
 
     /// <inheritdoc cref="_replace" />
     public static string Replace(string? text, string oldValue, char newValue)
     {
-        if (text == null) return "";
+        if (text == null) 
+            return "";
+
         return text.Replace(oldValue, newValue.ToString()); 
     }
 
     /// <inheritdoc cref="_replace" />
     public static string Replace(string? text, char oldValue, string newValue)
     {
-        if (text == null) return "";
+        if (text == null) 
+            return "";
+
         return text.Replace(oldValue.ToString(), newValue);
     }
 

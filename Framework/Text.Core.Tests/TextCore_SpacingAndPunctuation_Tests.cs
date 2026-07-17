@@ -6,73 +6,49 @@ namespace JJ.Framework.Text.Core.Tests;
 [TestClass]
 public class TextCore_SpacingAndPunctuation_Tests
 {
+    private static readonly string? Null = null;
+
     [TestMethod]
     public void Test_StringHelperCore_CountLines()
     {
-        Func<string?, int>[] synonyms = 
-        [
-            x => x.CountLines(),
-            x => CountLines(x),
-            x => StringHelperCore.CountLines(x)
-        ];
-
-        foreach (var synonym in synonyms)
-        {
-            AreEqual(3, synonym("Line1\nLine2\nLine3"));
-            AreEqual(3, synonym("Line1\r\nLine2\r\nLine3"));
-        }
+        AreEqual(3, StringHelperCore.CountLines("Line1\nLine2\nLine3"                ));
+        AreEqual(3,                  CountLines("Line1\nLine2\nLine3"                ));
+        AreEqual(3,                             "Line1\nLine2\nLine3"    .CountLines());
+        AreEqual(3, StringHelperCore.CountLines("Line1\r\nLine2\r\nLine3"            ));
+        AreEqual(3,                  CountLines("Line1\r\nLine2\r\nLine3"            ));
+        AreEqual(3,                             "Line1\r\nLine2\r\nLine3".CountLines());
     }
 
     [TestMethod]
     public void Test_StringHelperCore_CountLines_LastEnterNotCounted()
     {
-        const int expectedCount = 3;
-
-        string[] texts =
-        [
-            "Line1\nLine2\nLine3\n",
-            "Line1\nLine2\nLine3\r\n"
-        ];
-
-        foreach (string text in texts)
-        {
-            AreEqual(expectedCount, text.CountLines());
-            AreEqual(expectedCount, CountLines(text));
-            AreEqual(expectedCount, StringHelperCore.CountLines(text));
-        }
+        AreEqual(3, StringHelperCore.CountLines("Line1\nLine2\nLine3\n"              ));
+        AreEqual(3,                  CountLines("Line1\nLine2\nLine3\n"              ));
+        AreEqual(3,                             "Line1\nLine2\nLine3\n"  .CountLines());
+        AreEqual(3, StringHelperCore.CountLines("Line1\nLine2\nLine3\r\n"            ));
+        AreEqual(3,                  CountLines("Line1\nLine2\nLine3\r\n"            ));
+        AreEqual(3,                             "Line1\nLine2\nLine3\r\n".CountLines());
     }
 
     [TestMethod]
     public void Test_StringHelperCore_CountLines_LastTwoEnters_CountAsOneExtraLine()
     {
-        const int expectedCount = 4;
-        string text = $"Line1{NewLine}Line2{NewLine}Line3\n\r\n";
-
-        AreEqual(expectedCount, text.CountLines());
-        AreEqual(expectedCount, CountLines(text));
-        AreEqual(expectedCount, StringHelperCore.CountLines(text));
-    }
-
-    [TestMethod]
-    public void Test_StringExtensionsCore_StartsWithBlankLine()
-    {
-        const string text = "\nHello";
-        IsTrue(text.StartsWithBlankLine());
-        IsTrue(StartsWithBlankLine(text));
-        IsTrue(StringHelperCore.StartsWithBlankLine(text));
+        AreEqual(4, StringHelperCore.CountLines($"Line1{NewLine}Line2{NewLine}Line3\n\r\n"            ));
+        AreEqual(4,                  CountLines($"Line1{NewLine}Line2{NewLine}Line3\n\r\n"            ));
+        AreEqual(4,                             $"Line1{NewLine}Line2{NewLine}Line3\n\r\n".CountLines());
     }
 
     [TestMethod]
     public void Test_StringHelperCore_StartsWithBlankLine()
     {
-        IsTrue (StringHelperCore.StartsWithBlankLine(  "\nHello"   ));
-        IsTrue (StringHelperCore.StartsWithBlankLine("\r\nHello"   ));
-        IsFalse(StringHelperCore.StartsWithBlankLine(   "Hello\n"  ));
-        IsFalse(StringHelperCore.StartsWithBlankLine(   "Hello\r\n"));
-        IsTrue (                 StartsWithBlankLine(  "\nHello"   ));
-        IsTrue (                 StartsWithBlankLine("\r\nHello"   ));
-        IsFalse(                 StartsWithBlankLine(   "Hello\n"  ));
-        IsFalse(                 StartsWithBlankLine(   "Hello\r\n"));
+        IsTrue (StringHelperCore.StartsWithBlankLine(  "\nHello"                        ));
+        IsTrue (StringHelperCore.StartsWithBlankLine("\r\nHello"                        ));
+        IsFalse(StringHelperCore.StartsWithBlankLine(   "Hello\n"                       ));
+        IsFalse(StringHelperCore.StartsWithBlankLine(   "Hello\r\n"                     ));
+        IsTrue (                 StartsWithBlankLine(  "\nHello"                        ));
+        IsTrue (                 StartsWithBlankLine("\r\nHello"                        ));
+        IsFalse(                 StartsWithBlankLine(   "Hello\n"                       ));
+        IsFalse(                 StartsWithBlankLine(   "Hello\r\n"                     ));
         IsTrue (                                       "\nHello"   .StartsWithBlankLine());
         IsTrue (                                     "\r\nHello"   .StartsWithBlankLine());
         IsFalse(                                        "Hello\n"  .StartsWithBlankLine());
@@ -82,38 +58,79 @@ public class TextCore_SpacingAndPunctuation_Tests
     [TestMethod]
     public void Test_StringHelperCore_StartsWithBlankLine_EmptyIsConsideredABlankLine()
     {
-        IsTrue(StartsWithBlankLine(""));
-        IsTrue(StartsWithBlankLine(" "));
+        IsTrue(StringHelperCore.StartsWithBlankLine(null                     ));
+        IsTrue(StringHelperCore.StartsWithBlankLine(""                       ));
+        IsTrue(StringHelperCore.StartsWithBlankLine(" "                      ));
+        IsTrue(StringHelperCore.StartsWithBlankLine("\t"                     ));
+        IsTrue(                 StartsWithBlankLine(null                     ));
+        IsTrue(                 StartsWithBlankLine(""                       ));
+        IsTrue(                 StartsWithBlankLine(" "                      ));
+        IsTrue(                 StartsWithBlankLine("\t"                     ));
+        IsTrue(                                     Null.StartsWithBlankLine());
+        IsTrue(                                     ""  .StartsWithBlankLine());
+        IsTrue(                                     " " .StartsWithBlankLine());
+        IsTrue(                                     "\t".StartsWithBlankLine());
     }
-
-    [TestMethod]
-    public void Test_StringExtensionsCore_EndsWithBlankLine() 
-        => IsTrue("Hello\n".EndsWithBlankLine());
 
     [TestMethod]
     public void Test_StringHelperCore_EndsWithBlankLine()
     {
-        IsTrue (EndsWithBlankLine("Hello\n"));
-        IsFalse(EndsWithBlankLine("\nHello"));
+        IsTrue (StringHelperCore.EndsWithBlankLine(    "Hello\n"                     ));
+        IsTrue (StringHelperCore.EndsWithBlankLine(    "Hello\r\n"                   ));
+        IsFalse(StringHelperCore.EndsWithBlankLine(  "\nHello"                       ));
+        IsFalse(StringHelperCore.EndsWithBlankLine("\r\nHello"                       ));
+        IsTrue (                 EndsWithBlankLine(    "Hello\n"                     ));
+        IsTrue (                 EndsWithBlankLine(    "Hello\r\n"                   ));
+        IsFalse(                 EndsWithBlankLine(  "\nHello"                       ));
+        IsFalse(                 EndsWithBlankLine("\r\nHello"                       ));
+        IsTrue (                                       "Hello\n"  .EndsWithBlankLine());
+        IsTrue (                                       "Hello\r\n".EndsWithBlankLine());
+        IsFalse(                                     "\nHello"    .EndsWithBlankLine());
+        IsFalse(                                   "\r\nHello"    .EndsWithBlankLine());
     }
+        
     
     [TestMethod]
     public void Test_StringHelperCore_EndsWithBlankLine_EmptyIsConsideredABlankLine()
     {
-        IsTrue(EndsWithBlankLine(""));
-        IsTrue(EndsWithBlankLine(" "));
+        IsTrue(StringHelperCore.EndsWithBlankLine(null));
+        IsTrue(StringHelperCore.EndsWithBlankLine(""  ));
+        IsTrue(StringHelperCore.EndsWithBlankLine(" " ));
+        IsTrue(StringHelperCore.EndsWithBlankLine("\t"));
+        IsTrue(                 EndsWithBlankLine(null));
+        IsTrue(                 EndsWithBlankLine(""  ));
+        IsTrue(                 EndsWithBlankLine(" " ));
+        IsTrue(                 EndsWithBlankLine("\t"));
+        IsTrue(                                   Null.EndsWithBlankLine());
+        IsTrue(                                   ""  .EndsWithBlankLine());
+        IsTrue(                                   " " .EndsWithBlankLine());
+        IsTrue(                                   "\t".EndsWithBlankLine());
     }
 
     [TestMethod]
     public void Test_StringHelperCore_EndsWithPunctuation()
     {
-        IsTrue ("Hello.".EndsWithPunctuation());
-        IsTrue ("Hello,".EndsWithPunctuation());
-        IsTrue ("Hello;".EndsWithPunctuation());
-        IsTrue ("Hello!".EndsWithPunctuation());
-        IsTrue ("Hello?".EndsWithPunctuation());
-        IsFalse("Hello" .EndsWithPunctuation());
-        IsTrue ("."     .EndsWithPunctuation());
+        IsTrue (StringHelperCore.EndsWithPunctuation("Hello."                     ));
+        IsTrue (StringHelperCore.EndsWithPunctuation("Hello,"                     ));
+        IsTrue (StringHelperCore.EndsWithPunctuation("Hello;"                     ));
+        IsTrue (StringHelperCore.EndsWithPunctuation("Hello!"                     ));
+        IsTrue (StringHelperCore.EndsWithPunctuation("Hello?"                     ));
+        IsFalse(StringHelperCore.EndsWithPunctuation("Hello"                      ));
+        IsTrue (StringHelperCore.EndsWithPunctuation("."                          ));
+        IsTrue (                 EndsWithPunctuation("Hello."                     ));
+        IsTrue (                 EndsWithPunctuation("Hello,"                     ));
+        IsTrue (                 EndsWithPunctuation("Hello;"                     ));
+        IsTrue (                 EndsWithPunctuation("Hello!"                     ));
+        IsTrue (                 EndsWithPunctuation("Hello?"                     ));
+        IsFalse(                 EndsWithPunctuation("Hello"                      ));
+        IsTrue (                 EndsWithPunctuation("."                          ));
+        IsTrue (                                     "Hello.".EndsWithPunctuation());
+        IsTrue (                                     "Hello,".EndsWithPunctuation());
+        IsTrue (                                     "Hello;".EndsWithPunctuation());
+        IsTrue (                                     "Hello!".EndsWithPunctuation());
+        IsTrue (                                     "Hello?".EndsWithPunctuation());
+        IsFalse(                                     "Hello" .EndsWithPunctuation());
+        IsTrue (                                     "."     .EndsWithPunctuation());
     }
     
     [TestMethod]
@@ -122,7 +139,18 @@ public class TextCore_SpacingAndPunctuation_Tests
         // Because this is mostly used for concat purposes, 
         // an empty element is considered the beginning of a line, 
         // requiring no addition of punctuation.
-        IsTrue("".EndsWithPunctuation()); 
+        IsTrue(StringHelperCore.EndsWithPunctuation(null                     )); 
+        IsTrue(StringHelperCore.EndsWithPunctuation(""                       )); 
+        IsTrue(StringHelperCore.EndsWithPunctuation(" "                      )); 
+        IsTrue(StringHelperCore.EndsWithPunctuation("\t"                     )); 
+        IsTrue(                 EndsWithPunctuation(null                     )); 
+        IsTrue(                 EndsWithPunctuation(""                       )); 
+        IsTrue(                 EndsWithPunctuation(" "                      )); 
+        IsTrue(                 EndsWithPunctuation("\t"                     )); 
+        IsTrue(                                     Null.EndsWithPunctuation()); 
+        IsTrue(                                     ""  .EndsWithPunctuation()); 
+        IsTrue(                                     " " .EndsWithPunctuation()); 
+        IsTrue(                                     "\t".EndsWithPunctuation()); 
     }
 
     [TestMethod]
