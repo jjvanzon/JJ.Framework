@@ -4,7 +4,7 @@ namespace JJ.Framework.Text.Core.Tests;
 public class TextCore_PrettyTime_Tests
 {
     [TestMethod]
-    public void Test_StringHelperCore_PrettyDuration()
+    public void Test_TextCore_PrettyDuration()
     {
         AreEqual("1.00 d",    PrettyDuration(sec: 24 * 60 * 60));
         AreEqual("1.00 h",    PrettyDuration(sec: 60 * 60));
@@ -25,7 +25,7 @@ public class TextCore_PrettyTime_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyDuration_Nullable()
+    public void Test_TextCore_PrettyDuration_Nullable()
     {
         AreEqual("",          PrettyDuration(sec: (double?)null));
         AreEqual("1.00 d",    PrettyDuration(sec: (double?)24 * 60 * 60));
@@ -47,7 +47,7 @@ public class TextCore_PrettyTime_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyTimeSpan()
+    public void Test_TextCore_PrettyTimeSpan()
     {
         AreEqual("2.50 d",   FromDays        (2.5).PrettyTimeSpan());
         AreEqual("2.50 h",   FromHours       (2.5).PrettyTimeSpan());
@@ -66,7 +66,7 @@ public class TextCore_PrettyTime_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyTime_NoParamReturnsNow()
+    public void Test_TextCore_PrettyTime_NoParamReturnsNow()
     {
         // HH:mm:ss.fff format 
         string prettyTime = PrettyTime();
@@ -87,7 +87,7 @@ public class TextCore_PrettyTime_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyTime()
+    public void Test_TextCore_PrettyTime()
     {
         var input = DateTime.Parse("2023-05-15 14:30:45.123");
         AreEqual("14:30:45.123", PrettyTime(input));

@@ -33,7 +33,7 @@ public class Contains_Substring_Tests
     // Contains Words/Chars
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_Words_DefaultCaseIgnored()
+    public void Test_Contains_Words_DefaultCaseIgnored()
     {
         IsTrue("The quick brown fox jumped".Contains(["cat", "fox", "dog"]));
         IsTrue("The quick brown fox jumped".Contains(["cat", "FOX", "dog"]));
@@ -41,7 +41,7 @@ public class Contains_Substring_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_Words_CaseMattersFalse()
+    public void Test_Contains_Words_CaseMattersFalse()
     {
         IsTrue("The quick brown fox jumped".Contains(["cat", "fox", "dog"], caseMatters: false));
         IsTrue("The quick brown fox jumped".Contains(["cat", "fox", "dog"],              false));
@@ -52,7 +52,7 @@ public class Contains_Substring_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_Words_CaseMatters()
+    public void Test_Contains_Words_CaseMatters()
     {
         IsFalse("The quick brown FOX jumped".Contains(["cat", "fox", "dog"], caseMatters      ));
         IsFalse("The quick brown FOX jumped".Contains(["cat", "fox", "dog"], caseMatters: true));
@@ -66,7 +66,7 @@ public class Contains_Substring_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_Contains_Chars()
+    public void Test_Contains_Chars()
     {
         IsTrue ("Hello".Contains(['x', 'e', 'z']));
         IsFalse("Hello".Contains(['x', 'y', 'z']));

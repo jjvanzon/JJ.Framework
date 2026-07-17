@@ -8,7 +8,7 @@ public class TextCore_Basics_Tests
     private static readonly string? Null = null;
 
     [TestMethod]
-    public void Test_StringHelperCore_Trim()
+    public void Test_TextCore_Trim()
     {
         AreEqual(" Hello ", StringHelperCore.Trim("!? Hello !?!?",     "!?"));
         AreEqual(" Hello ",                  Trim("!? Hello !?!?",     "!?"));
@@ -16,7 +16,7 @@ public class TextCore_Basics_Tests
     }
     
     [TestMethod]
-    public void Test_StringHelperCore_Trim_Nullies()
+    public void Test_TextCore_Trim_Nullies()
     {
         AreEqual("",       Trim(null,     null!));
         AreEqual("",       Trim(null,     ""   ));
@@ -51,7 +51,7 @@ public class TextCore_Basics_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_Replace_CharWithString()
+    public void Test_TextCore_Replace_CharWithString()
     {
         AreEqual("HeLaLaLaLao", StringHelperCore.Replace("Hello",        'l', "LaLa"));
         AreEqual("HeLaLaLaLao",                  Replace("Hello",        'l', "LaLa"));
@@ -59,7 +59,7 @@ public class TextCore_Basics_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_Replace_StringWithChar()
+    public void Test_TextCore_Replace_StringWithChar()
     {
         AreEqual("He*o", StringHelperCore.Replace("Hello",        "ll", '*'));
         AreEqual("He*o",                  Replace("Hello",        "ll", '*'));

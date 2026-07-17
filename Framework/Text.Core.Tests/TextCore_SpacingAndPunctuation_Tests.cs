@@ -9,7 +9,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     private static readonly string? Null = null;
 
     [TestMethod]
-    public void Test_StringHelperCore_CountLines()
+    public void Test_TextCore_CountLines()
     {
         AreEqual(3, StringHelperCore.CountLines("Line1\nLine2\nLine3"                ));
         AreEqual(3,                  CountLines("Line1\nLine2\nLine3"                ));
@@ -20,7 +20,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_CountLines_LastEnterNotCounted()
+    public void Test_TextCore_CountLines_LastEnterNotCounted()
     {
         AreEqual(3, StringHelperCore.CountLines("Line1\nLine2\nLine3\n"              ));
         AreEqual(3,                  CountLines("Line1\nLine2\nLine3\n"              ));
@@ -31,7 +31,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_CountLines_LastTwoEnters_CountAsOneExtraLine()
+    public void Test_TextCore_CountLines_LastTwoEnters_CountAsOneExtraLine()
     {
         AreEqual(4, StringHelperCore.CountLines($"Line1{NewLine}Line2{NewLine}Line3\n\r\n"            ));
         AreEqual(4,                  CountLines($"Line1{NewLine}Line2{NewLine}Line3\n\r\n"            ));
@@ -39,7 +39,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_StartsWithBlankLine()
+    public void Test_TextCore_StartsWithBlankLine()
     {
         IsTrue (StringHelperCore.StartsWithBlankLine(  "\nHello"                        ));
         IsTrue (StringHelperCore.StartsWithBlankLine("\r\nHello"                        ));
@@ -56,7 +56,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_StartsWithBlankLine_EmptyIsConsideredABlankLine()
+    public void Test_TextCore_StartsWithBlankLine_EmptyIsConsideredABlankLine()
     {
         IsTrue(StringHelperCore.StartsWithBlankLine(null                     ));
         IsTrue(StringHelperCore.StartsWithBlankLine(""                       ));
@@ -73,7 +73,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithBlankLine()
+    public void Test_TextCore_EndsWithBlankLine()
     {
         IsTrue (StringHelperCore.EndsWithBlankLine(    "Hello\n"                     ));
         IsTrue (StringHelperCore.EndsWithBlankLine(    "Hello\r\n"                   ));
@@ -90,7 +90,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
     
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithBlankLine_EmptyIsConsideredABlankLine()
+    public void Test_TextCore_EndsWithBlankLine_EmptyIsConsideredABlankLine()
     {
         IsTrue(StringHelperCore.EndsWithBlankLine(null));
         IsTrue(StringHelperCore.EndsWithBlankLine(""  ));
@@ -107,7 +107,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithPunctuation()
+    public void Test_TextCore_EndsWithPunctuation()
     {
         IsTrue (StringHelperCore.EndsWithPunctuation("Hello."                     ));
         IsTrue (StringHelperCore.EndsWithPunctuation("Hello,"                     ));
@@ -133,7 +133,7 @@ public class TextCore_SpacingAndPunctuation_Tests
     }
     
     [TestMethod]
-    public void Test_StringHelperCore_EndsWithPunctuation_EmptyIsTrue_BecauseRequiresNoPunctuationConcat()
+    public void Test_TextCore_EndsWithPunctuation_EmptyIsTrue_BecauseRequiresNoPunctuationConcat()
     {
         // Because this is mostly used for concat purposes, 
         // an empty element is considered the beginning of a line, 

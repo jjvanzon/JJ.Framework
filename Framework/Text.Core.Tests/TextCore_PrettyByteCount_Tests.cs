@@ -4,7 +4,7 @@ namespace JJ.Framework.Text.Core.Tests;
 public class TextCore_PrettyByteCount_Tests
 {
     [TestMethod]
-    public void Test_StringHelperCore_PrettyByteCount()
+    public void Test_TextCore_PrettyByteCount()
     {
         AreEqual("100 bytes",  PrettyByteCount(   100                         ));
         AreEqual("1000 bytes", PrettyByteCount(  1000                         ));
@@ -26,7 +26,7 @@ public class TextCore_PrettyByteCount_Tests
     }
     
     [TestMethod]
-    public void Test_StringHelperCore_PrettyByteCount_Nullable()
+    public void Test_TextCore_PrettyByteCount_Nullable()
     {
         AreEqual("0 bytes", PrettyByteCount(null)); // Arbitrary. Might have expected "", but ok.
         AreEqual("1000 bytes", PrettyByteCount(  1000                         ));
@@ -36,7 +36,7 @@ public class TextCore_PrettyByteCount_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_PrettyByteCount_EdgeCases()
+    public void Test_TextCore_PrettyByteCount_EdgeCases()
     {
         AreEqual("0 bytes",  PrettyByteCount(0));
         AreEqual("1 bytes",  PrettyByteCount(1));

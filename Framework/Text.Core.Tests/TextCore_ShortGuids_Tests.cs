@@ -4,7 +4,7 @@ namespace JJ.Framework.Text.Core.Tests;
 public class TextCore_ShortGuids_Tests
 {
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_CommonFormats()
+    public void Test_TextCore_WithShortGuids_CommonFormats()
     {
         AreEqual("before - c - after",               "before - cf9ecb39-ad86-4a29-84c4-c0f79b9c59fa - after"      .WithShortGuids(1));
         AreEqual("before - 42 - after",              "before - {426f51a9186b4115af98cca1131b8dd4} - after"        .WithShortGuids(2));
@@ -23,7 +23,7 @@ public class TextCore_ShortGuids_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_ShortenTheShortened()
+    public void Test_TextCore_WithShortGuids_ShortenTheShortened()
     {
         AreEqual("Hi - 61E6FA - Hello", "Hi - 61E6FA88-AE55-453F-E3BB27763720 - Hello".WithShortGuids(6));
         AreEqual("Hi - 61E6FA - Hello", "Hi - 61E6FA88AE55-453F-E3BB27763720 - Hello".WithShortGuids(6));
@@ -31,7 +31,7 @@ public class TextCore_ShortGuids_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_ShortLengthUnder1Throws()
+    public void Test_TextCore_WithShortGuids_ShortLengthUnder1Throws()
     {
         Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(0), "length < 1");
         Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(-1), "length < 1");
@@ -39,7 +39,7 @@ public class TextCore_ShortGuids_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_NullyText()
+    public void Test_TextCore_WithShortGuids_NullyText()
     {
         string? @null = null;
         AreEqual("", "".WithShortGuids(4));
@@ -48,7 +48,7 @@ public class TextCore_ShortGuids_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_EdgeCases()
+    public void Test_TextCore_WithShortGuids_EdgeCases()
     {
         // Spaces are not separators inside guids. But the different digit strings are shortened individually.
         AreEqual("61E AE5 453 897 E3B - Hello there", "61E6FA88 AE55 453F 8973 E3BB27763720 - Hello there".WithShortGuids(3)); 
@@ -60,7 +60,7 @@ public class TextCore_ShortGuids_Tests
     }
 
     [TestMethod]
-    public void Test_StringHelperCore_WithShortGuids_AvoidsReplacingWords()
+    public void Test_TextCore_WithShortGuids_AvoidsReplacingWords()
     {
         // Prime example: added COULD be hex string, but it is likely a word.
         AreEqual("Item added", "Item added".WithShortGuids(1)); 
