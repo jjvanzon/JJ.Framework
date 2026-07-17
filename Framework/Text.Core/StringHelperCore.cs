@@ -23,7 +23,7 @@ public static class StringHelperCore
     /// <inheritdoc cref="_prettyduration" />
     public static string PrettyDuration(double sec) => PrettyTimeSpan(TimeSpan.FromSeconds(sec));
         
-    public static string PrettyTimeSpan(this TimeSpan timeSpan)
+    public static string PrettyTimeSpan(TimeSpan timeSpan)
     {
             
         if (timeSpan.TotalDays >= 1) 
@@ -79,7 +79,7 @@ public static class StringHelperCore
     // Match GUID-like sequences with or without dashes, with or without braces.
     private static readonly Regex _guidyRegex = new (@"""?(\{|\b)[a-fA-F0-9]+([a-fA-F0-9-]{0,46})[a-fA-F0-9]+(\}|\b)""?", ExplicitCapture | Compiled);
 
-    public static string WithShortGuids(this string? input, int length)
+    public static string WithShortGuids(string? input, int length)
     {
         if (length < 1) throw new Exception("length < 1");
         input ??= "";
@@ -93,7 +93,7 @@ public static class StringHelperCore
         return output;
     }
 
-    private static string ToShortGuid(this string? input, int length)
+    private static string ToShortGuid(string? input, int length)
     {
         if (length < 1) throw new Exception("length < 1");
         input ??= "";
@@ -121,7 +121,7 @@ public static class StringHelperCore
         return new string(outChars);
     }
 
-    public static string ToShortGuid(this Guid? input, int length)
+    public static string ToShortGuid(Guid? input, int length)
     {
         string str = input?.ToString() ?? "";
         return ToShortGuid(str, length);
@@ -165,28 +165,30 @@ public static class StringHelperCore
         // No digit, has vowel, has enough vowels, not a long string of hex = probably a word.
         return true;
     }
+
+    // TODO: Accept null in.
     
     // Spacing & Punctuation
 
-    public static int CountLines(this string? str)
+    public static int CountLines(string? text)
     {
         // Less efficient:
         //int count = str.Trim().Split(NewLine).Length;
         //int count = 1 + str.Count(c => c == '\n');
             
-        if (str == null) return 0;
-        if (str.Length == 0) return 0;
+        if (text == null) return 0;
+        if (text.Length == 0) return 0;
             
         int count = 1; // Start with 1 to account for the first line
-        for (int i = 0; i < str.Length; i++)
+        for (int i = 0; i < text.Length; i++)
         {
-            if (str[i] == '\n') // Platform safe for '\n' or "\r\n".
+            if (text[i] == '\n') // Platform safe for '\n' or "\r\n".
             {
                 count++;
             }
         }
             
-        if (str.Last() == '\n')
+        if (text.Last() == '\n')
         {
             count--;
         }
@@ -242,7 +244,7 @@ public static class StringHelperCore
     }
     
     /// <inheritdoc cref="_endswithpunctuation" />
-    public static bool EndsWithPunctuation(this string text, bool ignoreWhiteSpace = true)
+    public static bool EndsWithPunctuation(string text, bool ignoreWhiteSpace = true)
     {
         if (string.IsNullOrWhiteSpace(text))
         {
@@ -265,9 +267,11 @@ public static class StringHelperCore
         return new string(stripped.ToArray()).Normalize(FormC);
     }
 
+    // TODO: Accept null in, output non-null. Do not throw.
+
     // Basics
     
-    public static string Trim(this string text, string trim)
+    public static string Trim(string text, string trim)
     {
         if (text == null) throw new ArgumentNullException(nameof(text));
         return text.TrimStart(trim).TrimEnd(trim);
@@ -286,9 +290,9 @@ public static class StringHelperCore
         ThrowIfNull(text);
         return text.Replace(oldValue.ToString(), newValue);
     }
-        
+    
     // TODO: Remove? Unused?
-    public static StringComparison ToStringComparison(this bool ignoreCase)
+    public static StringComparison ToStringComparison(bool ignoreCase)
         => ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
     // TODO: Expand with other overloads that .NET supports. Our overloads mix char and string parameters for old and new values for syntax sugar.

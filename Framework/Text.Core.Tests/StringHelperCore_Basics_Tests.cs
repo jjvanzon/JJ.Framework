@@ -7,14 +7,14 @@ public class StringHelperCore_Basics_Tests
     public void Test_StringHelperCore_BoolIgnoreCase_True_ToStringComparison()
     {
         const bool ignoreCaseTrue = true;
-        AreEqual(OrdinalIgnoreCase, ignoreCaseTrue.ToStringComparison());
+        AreEqual(OrdinalIgnoreCase, ToStringComparison(ignoreCaseTrue));
     }
 
     [TestMethod]
     public void Test_StringHelperCore_BoolIgnoreCase_False_ToStringComparison()
     {
         const bool ignoreCaseTrue = false;
-        AreEqual(Ordinal, ignoreCaseTrue.ToStringComparison());
+        AreEqual(Ordinal, ToStringComparison(ignoreCaseTrue));
     }
 
     [TestMethod]
