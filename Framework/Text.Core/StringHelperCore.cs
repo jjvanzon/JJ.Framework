@@ -1,4 +1,6 @@
-﻿#pragma warning disable IDE0200 // Convert to Method Group
+﻿using JJ.Framework.Common.Legacy;
+
+#pragma warning disable IDE0200 // Convert to Method Group
 #pragma warning disable IDE0048 // Parenthesis for clarity
 #pragma warning disable IDE0056 // Simplify indexer notation (not supported across .NET versions) TODO: add platform shim for System.Index
 
@@ -292,7 +294,23 @@ public static class StringHelperCore
         if (text == null) 
             return "";
 
-        return text.TrimStart(trim).TrimEnd(trim);
+        // return text.TrimStart(trim).TrimEnd(trim);
+        // Inlined TrimStart and TrimEnd from JJ.Framework.Text.Legacy to prevent dependency:
+        if (IsNullOrEmpty(trim)) return text;
+
+        string temp = text;
+        
+        while (temp.StartsWith(trim))
+        {
+            temp = temp.Substring(trim.Length, temp.Length - trim.Length);
+        }
+            
+        while (temp.EndsWith(trim))
+        {
+            temp = temp.Substring(0, temp.Length - trim.Length);
+        }
+            
+        return temp;
     }
 
     /// <inheritdoc cref="_replace" />
