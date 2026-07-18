@@ -8,6 +8,8 @@ public class TextCore_SpacingAndPunctuation_Tests
 {
     private static readonly string? Null = null;
 
+    // CountLines
+
     [TestMethod]
     public void Test_TextCore_CountLines()
     {
@@ -37,6 +39,22 @@ public class TextCore_SpacingAndPunctuation_Tests
         AreEqual(4,                  CountLines($"Line1{NewLine}Line2{NewLine}Line3\n\r\n"            ));
         AreEqual(4,                             $"Line1{NewLine}Line2{NewLine}Line3\n\r\n".CountLines());
     }
+
+    [TestMethod]
+    public void Test_TextCore_CountLines_OneLine()
+    {
+        AreEqual(1, CountLines(" "));
+        AreEqual(1, CountLines("hi"));
+    }
+
+    [TestMethod]
+    public void Test_TextCore_CountLines_ZeroLines()
+    {
+        AreEqual(0, CountLines(null));
+        AreEqual(0, CountLines(""));
+    }
+
+    // StartsWithBlankLine
 
     [TestMethod]
     public void Test_TextCore_StartsWithBlankLine()
@@ -72,6 +90,8 @@ public class TextCore_SpacingAndPunctuation_Tests
         IsTrue(                                     "\t".StartsWithBlankLine());
     }
 
+    // EndsWithBlankLine
+
     [TestMethod]
     public void Test_TextCore_EndsWithBlankLine()
     {
@@ -105,6 +125,8 @@ public class TextCore_SpacingAndPunctuation_Tests
         IsTrue(                                   " " .EndsWithBlankLine());
         IsTrue(                                   "\t".EndsWithBlankLine());
     }
+
+    // EndsWithPunctuation
 
     [TestMethod]
     public void Test_TextCore_EndsWithPunctuation()
@@ -152,10 +174,11 @@ public class TextCore_SpacingAndPunctuation_Tests
         IsTrue(                                     "\t".EndsWithPunctuation()); 
     }
 
+    // RemoveAccents
+
     [TestMethod]
     public void Test_StringExtensionsCore_RemoveAccents()
     {
-        
         AreEqual("cafe",        StringHelperCore.RemoveAccents("café"                      ));
         AreEqual("cafe",                         RemoveAccents("café"                      ));
         AreEqual("cafe",                                       "café"       .RemoveAccents());

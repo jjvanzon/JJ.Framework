@@ -31,20 +31,20 @@ public class TextCore_ShortGuids_Tests
     }
 
     [TestMethod]
-    public void Test_TextCore_WithShortGuids_ShortLengthUnder1Throws()
-    {
-        Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(0), "length < 1");
-        Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(-1), "length < 1");
-        Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(-100), "length < 1");
-    }
-
-    [TestMethod]
     public void Test_TextCore_WithShortGuids_NullyText()
     {
         string? @null = null;
         AreEqual("", "".WithShortGuids(4));
         AreEqual(" ", " ".WithShortGuids(4));
         AreEqual("", @null.WithShortGuids(4));
+    }
+
+    [TestMethod]
+    public void Test_TextCore_WithShortGuids_ShortLengthUnder1Throws()
+    {
+        Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(0), "length < 1");
+        Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(-1), "length < 1");
+        Throws(() => "61E6FA88-AE55-453F-8973-E3BB27763720".WithShortGuids(-100), "length < 1");
     }
 
     [TestMethod]

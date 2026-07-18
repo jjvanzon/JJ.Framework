@@ -99,8 +99,7 @@ public static class StringHelperCore
 
     private static string ToShortGuid(string? input, int length)
     {
-        if (length < 1) 
-            throw new Exception("length < 1");
+        if (length < 1) throw new Exception("length < 1");
 
         input ??= "";
 
@@ -127,18 +126,10 @@ public static class StringHelperCore
         return new string(outChars);
     }
 
-    //public static string ToShortGuid(Guid? input, int length)
-    //{
-    //    string str = input?.ToString() ?? "";
-    //    return ToShortGuid(str, length);
-    //}
-
     private static bool MightBeAWord(string? guid)
     {
-        if (guid == null) 
-            return false;
-        if (guid.Length == 0) 
-            return false;
+        if (guid == null) return false;
+        if (guid.Length == 0) return false;
 
         bool hasDecimals = guid.Any(x => x >= '0' && x <= '9');
         if (hasDecimals)
