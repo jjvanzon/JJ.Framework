@@ -9,6 +9,7 @@
 
 namespace JJ.Framework.Text.Core;
 
+/// <inheritdoc cref="_stringhelpercore" />
 public static class StringHelperCore
 {
     // Prettify
@@ -233,7 +234,7 @@ public static class StringHelperCore
         return false; // ncrunch: no coverage
     }
         
-    /// <inheritdoc cref="endswithblankline" />
+    /// <inheritdoc cref="_endswithblankline" />
     public static bool EndsWithBlankLine(string? text)
     {
         if (text == null)

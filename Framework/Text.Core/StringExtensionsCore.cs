@@ -2,6 +2,7 @@
 
 namespace JJ.Framework.Text.Core;
 
+/// <inheritdoc cref="_stringextensionscore" />
 public static class StringExtensionsCore
 {
     // Prettify
@@ -31,7 +32,7 @@ public static class StringExtensionsCore
     public static int    CountLines         (this string?  text ) => StringHelperCore.CountLines(text);
     /// <inheritdoc cref="_startswithblankline" />
     public static bool   StartsWithBlankLine(this string?  text ) => StringHelperCore.StartsWithBlankLine(text);
-    /// <inheritdoc cref="endswithblankline" />
+    /// <inheritdoc cref="_endswithblankline" />
     public static bool   EndsWithBlankLine  (this string?  text ) => StringHelperCore.EndsWithBlankLine(text);
     /// <inheritdoc cref="_endswithpunctuation" />
     public static bool   EndsWithPunctuation(this string?  text, bool ignoreWhiteSpace = true) => StringHelperCore.EndsWithPunctuation(text, ignoreWhiteSpace);
