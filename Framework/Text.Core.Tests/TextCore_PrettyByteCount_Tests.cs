@@ -73,15 +73,24 @@ public class TextCore_PrettyByteCount_Tests
         AreEqual("1000 GB",                                    ( 1000L * 1024 * 1024 * 1024    ).PrettyByteCount());
         AreEqual("10000 GB",                                   (10000L * 1024 * 1024 * 1024    ).PrettyByteCount());
     }
+
+    [TestMethod]
+    public void Test_TextCore_PrettyByteCount_FromByteArray()
+    {
+        var bytes = new byte[51 * 1024];
+        AreEqual("51 kB", StringHelperCore.PrettyByteCount(bytes));
+        AreEqual("51 kB", PrettyByteCount(bytes));
+        AreEqual("51 kB", bytes.PrettyByteCount());
+    }
     
     [TestMethod]
-    public void Test_TextCore_PrettyByteCount_Nullable()
+    public void Test_TextCore_PrettyByteCount_NullByteArray()
     {
-        AreEqual("0 bytes",    PrettyByteCount(null)); // Arbitrary. Might have expected "", but ok.
-        AreEqual("1000 bytes", PrettyByteCount(  1000                         ));
-        AreEqual("10 kB",      PrettyByteCount(    10 *               1024    ));
-        AreEqual("100 MB",     PrettyByteCount(   100 *        1024 * 1024    ));
-        AreEqual("12345 GB",   PrettyByteCount(12345L * 1024 * 1024 * 1024    ));
+        // Arbitrary. Might have expected "", but ok.
+        byte[]? @null = null;
+        AreEqual("0 bytes",  StringHelperCore.PrettyByteCount(null)); 
+        AreEqual("0 bytes",  PrettyByteCount(null)); 
+        AreEqual("0 bytes",  @null.PrettyByteCount()); 
     }
 
     [TestMethod]

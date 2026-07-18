@@ -5,6 +5,8 @@ namespace JJ.Framework.Text.Core.Tests;
 [TestClass]
 public class TextCore_PrettyTime_Tests
 {
+    // PrettyDuration
+
     [TestMethod]
     public void Test_TextCore_PrettyDuration()
     {
@@ -63,6 +65,8 @@ public class TextCore_PrettyTime_Tests
         AreEqual("1.23 s",    ((double?)1.23).PrettyDuration());
     }
 
+    // PrettyTimeSpan
+
     [TestMethod]
     public void Test_TextCore_PrettyTimeSpan()
     {
@@ -81,6 +85,15 @@ public class TextCore_PrettyTime_Tests
         AreEqual("2.50 μs",  FromMicroseconds(2.5).PrettyTimeSpan());
         #endif
     }
+
+    [TestMethod]
+    public void Test_TextCore_PrettyTimeSpan_StaticSyntax()
+    {
+        AreEqual("1.33 h", StringHelperCore.PrettyTimeSpan(FromHours(1.33)));
+        AreEqual("3.14 d",                  PrettyTimeSpan(FromDays (3.14)));
+    }
+    
+    // PrettyTime
 
     [TestMethod]
     public void Test_TextCore_PrettyTime_NoParamReturnsNow()
@@ -107,6 +120,8 @@ public class TextCore_PrettyTime_Tests
     public void Test_TextCore_PrettyTime()
     {
         var input = DateTime.Parse("2023-05-15 14:30:45.123");
+        AreEqual("14:30:45.123", StringHelperCore.PrettyTime(input));
         AreEqual("14:30:45.123", PrettyTime(input));
+        AreEqual("14:30:45.123", input.PrettyTime());
     }
 }

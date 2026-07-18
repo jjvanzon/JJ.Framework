@@ -27,8 +27,6 @@ public static class StringExtensionsCore
     /// <inheritdoc cref="_removeaccents" />
     public static string RemoveAccents      (this string?  input) => StringHelperCore.RemoveAccents(input);
 
-    // TODO: Accept null in, output non-null. Do not throw.
-
     // Basics
     
     public static string Trim   (this string? text, string trim) => StringHelperCore.Trim(text, trim);
