@@ -25,6 +25,7 @@ public static class StringHelperCore
     /// <inheritdoc cref="_prettyduration" />
     public static string PrettyDuration(double sec) => PrettyTimeSpan(TimeSpan.FromSeconds(sec));
         
+    /// <inheritdoc cref="_prettytimespan" />
     public static string PrettyTimeSpan(TimeSpan timeSpan)
     {
             
@@ -47,16 +48,20 @@ public static class StringHelperCore
         return $"{totalMicroSec:0.00} μs";
     }
         
+    /// <inheritdoc cref="_prettytime" />
     public static string PrettyTime() => PrettyTime(DateTime.Now);
         
+    /// <inheritdoc cref="_prettytime" />
     public static string PrettyTime(DateTime dateTime) => $"{dateTime:HH:mm:ss.fff}";
         
+    /// <inheritdoc cref="_prettybytecount" />
     public static string PrettyByteCount(byte[]? bytes)
     {
         int coalescedLength = bytes?.Length ?? 0;
         return PrettyByteCount(coalescedLength);
     }
         
+    /// <inheritdoc cref="_prettybytecount" />
     public static string PrettyByteCount(long byteCount)
     {
         int sign = Sign(byteCount);
@@ -81,6 +86,7 @@ public static class StringHelperCore
     // Match GUID-like sequences with or without dashes, with or without braces.
     private static readonly Regex _guidyRegex = new (@"""?(\{|\b)[a-fA-F0-9]+([a-fA-F0-9-]{0,46})[a-fA-F0-9]+(\}|\b)""?", ExplicitCapture | Compiled);
 
+    /// <inheritdoc cref="_withshortguids" />
     public static string WithShortGuids(string? input, int length)
     {
         if (length < 1) 
@@ -97,6 +103,7 @@ public static class StringHelperCore
         return output;
     }
 
+    /// <inheritdoc cref="_withshortguids" />
     private static string ToShortGuid(string? input, int length)
     {
         if (length < 1) throw new Exception("length < 1");
@@ -126,6 +133,7 @@ public static class StringHelperCore
         return new string(outChars);
     }
 
+    /// <inheritdoc cref="_withshortguids" />
     private static bool MightBeAWord(string? guid)
     {
         if (guid == null) return false;
@@ -167,6 +175,7 @@ public static class StringHelperCore
     
     // Spacing & Punctuation
 
+    /// <inheritdoc cref="_countlines" />
     public static int CountLines(string? text)
     {
         // Less efficient:
@@ -196,6 +205,7 @@ public static class StringHelperCore
         return count;
     }
         
+    /// <inheritdoc cref="_startswithblankline" />
     public static bool StartsWithBlankLine(string? text)
     {
         if (text == null)
@@ -223,6 +233,7 @@ public static class StringHelperCore
         return false; // ncrunch: no coverage
     }
         
+    /// <inheritdoc cref="endswithblankline" />
     public static bool EndsWithBlankLine(string? text)
     {
         if (text == null)
@@ -274,6 +285,7 @@ public static class StringHelperCore
 
     // Basics
     
+    /// <inheritdoc cref="_trim" />
     public static string Trim(string? text, string trim)
     {
         if (text == null) 

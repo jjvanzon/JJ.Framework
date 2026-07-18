@@ -1,4 +1,5 @@
-﻿#pragma warning disable CS1574
+﻿#pragma warning disable CS1574 // Parameter name not found
+#pragma warning disable IDE1006 // Naming style
 // ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
@@ -7,6 +8,32 @@
 // These are structs, so their syntax colorings are unobtrusive.
 
 namespace JJ.Framework.Text.Core.docs;
+ 
+/// <summary>
+/// Formats an amount of seconds into a pretty format fore pretty loggings.
+/// Prettiness is disputable. Examples:
+/// <list>
+///   <item>1.00 h</item>
+///   <item>1.50 min</item>
+///   <item>1.00 min</item>
+///   <item>30.00 s</item>
+///   <item>1.00 s</item>
+///   <item>500 ms</item>
+/// </list>
+/// </summary>
+/// <param name="sec">Amount of seconds to format as a "pretty" text. </param>
+public struct _prettyduration;
+
+/// <summary>
+/// Returns the time span as text with units like 
+/// <c>d</c>, <c>h</c>, <c>min</c>, <c>s</c>, <c>ms</c> and <c>μs</c>,
+/// as a single number with 2-decimal precision, like:
+/// <c>2.63 d</c> | <c>2.35 h</c> | <c>1.50 min</c> | 
+/// <c>1.23 s</c> | <c>3.54 ms</c> | <c>573.23 μs</c>
+/// <br/>
+/// Can be used to prettify logging and console output.
+/// </summary>
+public struct _prettytimespan;
 
 /// <summary>
 /// Determines whether the given string ends with a punctuation character,
@@ -44,18 +71,4 @@ public struct _replace;
 /// Intended for normalization before search, sorting or comparison.
 /// </summary>
 public struct _removeaccents;
-        
-/// <summary>
-/// Formats an amount of seconds into a pretty format fore pretty loggings.
-/// Prettiness is disputable. Examples:
-/// <list>
-///   <item>1.00 h</item>
-///   <item>1.50 min</item>
-///   <item>1.00 min</item>
-///   <item>30.00 s</item>
-///   <item>1.00 s</item>
-///   <item>500 ms</item>
-/// </list>
-/// </summary>
-/// <param name="sec">Amount of seconds to format as a "pretty" text. </param>
-public struct _prettyduration;
+       
