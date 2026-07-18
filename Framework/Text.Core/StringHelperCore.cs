@@ -83,7 +83,7 @@ public static class StringHelperCore
         return $"{sign * bytesAbs / GBSize:0} GB";
     }
 
-    // Match GUID-like sequences with or without dashes, with or without braces.
+    /// <inheritdoc cref="_withshortguids" />
     private static readonly Regex _guidyRegex = new (@"""?(\{|\b)[a-fA-F0-9]+([a-fA-F0-9-]{0,46})[a-fA-F0-9]+(\}|\b)""?", ExplicitCapture | Compiled);
 
     /// <inheritdoc cref="_withshortguids" />
