@@ -37,24 +37,25 @@ These are opinionated, but made some logs pretty:
 
 - GUIDs can really clutter your text: `New record {07c75275-0150-4414-bbca-0081b021a0ea}`
 - This method takes a text that may contain GUIDs and shortens then e.g., `"New record 07c752"`
-- It makes it easier to eyeball them, and usually they are exact match. For human readability, this is good.
+- It makes it easier to eyeball them, and usually they are an exact match. For human readability, this is good.
+- You can supply the desired shortened length. In the example above length was `6`.
 
 
 Spacing & Punctuation
 ---------------------
 
-Trying to avoid excessive blank lines or punctuation these were born:
+Trying to avoid excess blank lines or punctuation these were born:
 
 - `StartsWithBlankLine`
 - `EndsWithBlankLine`
 - `EndsWithPunctuation`
-- `CountLines`
 - `RemoveAccents`
+- `CountLines`
 
 Basic Overloads
 ---------------
 
-Overloads that take either `char` or `string`:
+Overloads that take either `char` or `string` for:
 
 - `Trim` 
 - `Replace`

@@ -2,6 +2,10 @@
   <PropertyGroup>
     <Version>5.1.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks> <!-- NCrunch Libs 3 TFMs -->
+    <Description>Text helpers for punctuation and spacing, char-string overloads and log prettification.</Description>
+    <PackageTags>Trim Replace RemoveAccents CountLines StartsWithBlankLine EndsWithBlankLine EndsWithPunctuation WithShortGuids PrettyDuration PrettyTimeSpan PrettyTime PrettyByteCount log prettification logging text string extensions utility char punctuation spacing accents enters</PackageTags>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Text.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Text.Core</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
