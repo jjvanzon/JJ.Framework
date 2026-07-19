@@ -18,6 +18,27 @@ These are opinionated, but made some logs pretty:
 - `PrettyByteCount`
 - `WithShortGuids`
 
+`PrettyDuration` / `PrettyTimeSpan` examples:
+
+- `2.63 d` | `2.35 h` | `1.50 min` | `1.23 s` | `3.54 ms` | `573.23 μs`
+
+
+`PrettyTime` example:
+
+- `14:30:45.123`
+
+
+`PrettyByteCount` examples:
+
+- `100 bytes` | `5119 bytes` | `5 kB` | `5120 kB` | `5 MB` | `5120 MB` | `5 GB` | `10 GB` | `10000 GB`
+
+
+`WithShortGuids`:
+
+- GUIDs can really clutter your text: `New record {07c75275-0150-4414-bbca-0081b021a0ea}`
+- This method takes a text that may contain GUIDs and shortens then e.g., `"New record 07c752"`
+- It makes it easier to eyeball them, and usually they are exact match. For human readability, this is good.
+
 
 Spacing & Punctuation
 ---------------------
