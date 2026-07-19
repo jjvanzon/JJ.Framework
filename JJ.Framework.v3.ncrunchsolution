@@ -160,9 +160,6 @@
       <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Legacy.Tests.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Legacy.Tests.csproj:net461</Value>
       <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Legacy.Tests.csproj:net5.0</Value>
-      <Value>Framework\Text.Core\JJ.Framework.Text.Core.csproj:net10.0</Value>
-      <Value>Framework\Text.Core\JJ.Framework.Text.Core.csproj:netstandard2.0</Value>
-      <Value>Framework\Text.Core\JJ.Framework.Text.Core.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.0\..</Value>
       <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.1\..</Value>
       <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net10.0</Value>
@@ -331,6 +328,20 @@
       <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net462</Value>
       <Value>Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.Legacy.NHibernate.csproj:net48</Value>
       <Value>Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.Legacy.SqlClient.csproj:net48</Value>
+      <Value>Framework\Text.Core.TrimTests\JJ.Framework.Text.Core.TrimTests.csproj</Value>
+      <Value>Framework\JJ.Framework.Text\JJ.Framework.Text.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Text\JJ.Framework.Text.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Text\JJ.Framework.Text.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.Legacy.EntityFramework5.csproj:net7.0</Value>
+      <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net5.0</Value>
+      <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net6.0</Value>
+      <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net7.0</Value>
+      <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net8.0</Value>
+      <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net9.0</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net462</Value>
+      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net48</Value>
+      <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj:net48</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
