@@ -115,3 +115,15 @@ public struct _isncrunch;
 /// </para>
 /// </summary>
 public struct _genericoverload;
+
+/// <summary>
+/// Obsolete. 
+/// Use StringExtensionsCore.RemoveAccents from JJ.Framework.Text.Core instead.
+/// </summary>
+public struct _removeaccentsobsolete;
+
+/// <inheritdoc cref="_removeaccentsobsolete" />
+public struct _removeaccents;
+
+/// <inheritdoc cref="_removeaccentsobsolete" />
+public struct _commonstringextensionscore;
