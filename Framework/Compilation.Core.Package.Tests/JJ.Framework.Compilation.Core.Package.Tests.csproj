@@ -13,9 +13,9 @@
   <ItemGroup>
     <PackageReference Include="JJ.Framework.Compilation.Core" Version="5.1.7246-preview" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7347" />
-    <PackageReference Include="JJ.Framework.Reflection.Core" Version="5.1.7347" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7347" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.Reflection.Core" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7388" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

@@ -13,10 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Text.Core" Version="5.1.7347" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7347" />
-    <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="5.1.7347" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7347" />
+    <PackageReference Include="JJ.Framework.Text.Core" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7388" />
   </ItemGroup>
 
   <ItemGroup>
