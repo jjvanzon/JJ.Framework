@@ -1,4 +1,7 @@
-﻿bool success =
+﻿//WriteLine( $"PID = {ProcessId}. Press a key to continue.");
+//ReadKey(true);
+
+bool success =
 RunTests<CollectionExtensions_Recursive_IEnumerable_Legacy_Tests>() &&
 RunTests<CollectionExtensions_Recursive_IList_Legacy_Tests>() &&
 RunTests<CollectionExtensionsCoreTests>() &&

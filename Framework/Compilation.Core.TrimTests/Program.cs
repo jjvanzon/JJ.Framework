@@ -1,5 +1,5 @@
 ﻿//WriteLine( $"PID = {ProcessId}. Press a key to continue.");
-//ReadKey();
+//ReadKey(true);
 
 bool success =
 RunTests<DotNetArgsFilledInTests>() &&

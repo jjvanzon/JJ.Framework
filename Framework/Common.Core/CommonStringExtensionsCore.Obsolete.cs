@@ -1,6 +1,7 @@
 ﻿#pragma warning disable IDE0051 // Private member never used.
 
 // ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Local
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedParameter.Local

@@ -24,9 +24,9 @@
     <IsAzurePipelines>False</IsAzurePipelines>
     <IsAzurePipelines Condition="'$(TF_BUILD)'=='true'">True</IsAzurePipelines>
     <AutoPublish>False</AutoPublish>
-    <AutoPublish Condition="$(IsTrimTest) And $(IsInnerBuild) And '$(Configuration)'=='Release'">True</AutoPublish>
+    <AutoPublish Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">True</AutoPublish>
     <AutoTrimTest>False</AutoTrimTest>
-    <AutoTrimTest Condition="$(IsTrimTest) And $(IsInnerBuild) And ('$(Configuration)'=='Release' Or $(IsNCrunch))">True</AutoTrimTest>
+    <AutoTrimTest Condition="$(IsTrimTest) And ('$(Configuration)'=='Release' Or $(IsNCrunch))">True</AutoTrimTest>
     <SolutionDirjj>$(SolutionDir)</SolutionDirjj>
     <SolutionDirjj Condition="'$(SolutionDirjj)'==''">$(MSBuildThisFileDirectory)\..\</SolutionDirjj>
   </PropertyGroup>

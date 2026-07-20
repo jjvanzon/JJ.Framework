@@ -1,45 +1,46 @@
 <Project>
   
-  <PropertyGroup Condition="$(IsTrimTest)">
+  <PropertyGroup Condition="$(AutoPublish) And $(IsInnerBuild)">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>True</SelfContained>
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
   
-  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">
+  <PropertyGroup Condition="$(AutoPublish) And ($(IsNet9) Or $(IsNet10))">
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
     <PublishSingleFile>True</PublishSingleFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet8)">
+  <PropertyGroup Condition="$(AutoPublish) And $(IsNet8)">
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
     <!--<PublishSingleFile>True</PublishSingleFile>-->
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet6) Or $(IsNet7))">
+  <PropertyGroup Condition="$(AutoPublish) And ($(IsNet6) Or $(IsNet7))">
     <PublishTrimmed>True</PublishTrimmed>
     <!--<PublishAot>True</PublishAot>-->
     <PublishSingleFile>True</PublishSingleFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet5)">
+  <PropertyGroup Condition="$(AutoPublish) And $(IsNet5)">
     <!--<PublishTrimmed>True</PublishTrimmed>-->
     <!--<PublishAot>True</PublishAot>-->
     <PublishSingleFile>True</PublishSingleFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
+  <PropertyGroup Condition="$(AutoPublish) And '$(Configuration)'=='Release'">
     <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <PropertyGroup Condition="$(AutoPublish) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PublishDir>publish\$(Configuration)\$(TargetFramework)</PublishDir>
+    <!--<PublishDir>publish\$(Configuration)\$(TargetFramework)</PublishDir>-->
+    <PublishDir>$(MSBuildProjectDirectory)\publish\$(Configuration)\$(TargetFramework)</PublishDir>
   </PropertyGroup>
 
-  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(AutoPublish)">
+  <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(AutoPublish) And $(IsInnerBuild)">
     <MSBuild Condition="!$(IsNCrunch)" Targets="Publish" 
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true" />
 
@@ -50,7 +51,7 @@
              Projects="$(MSBuildProjectFile)" Properties="NoBuild=true;RuntimeIdentifier=win-x64;SelfContained=true;PublishTrimmed=true;PublishAot=true;PublishReadyToRun=true" />
   </Target>
   
-  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(AutoPublish) And $(Configuration)=='Release' And '$(PublishDir)'!=''">
+  <Target Name="RemoveSymbolsAndDocs" AfterTargets="Publish" Condition="$(AutoPublish) And $(IsInnerBuild) And '$(PublishDir)'!=''">
     <Message Importance="High" Text="Removing symbols and docs from publish directory..." />
     <Message Importance="High" Text="PublishDir = $(PublishDir)" />
 
@@ -66,7 +67,7 @@
   </Target>
 
   <!-- Diagnostics (Publish) -->
-  <Target Name="JJ_Framework_Vars_Publish" AfterTargets="Build" Condition="$(IsTrimTest) And $(IsInnerBuild)">
+  <Target Name="JJ_Framework_Vars_Publish" AfterTargets="Build" Condition="$(AutoPublish) And $(IsInnerBuild)">
     <Message Text="$(MSBuildProjectName) > SelfContained = $(SelfContained) | PublishTrimmed = $(PublishTrimmed) | PublishAot = $(PublishAot) | PublishSingleFile = $(PublishSingleFile) | PublishReadyToRun = $(PublishReadyToRun)" Importance="High" />
   </Target>
 </Project>
