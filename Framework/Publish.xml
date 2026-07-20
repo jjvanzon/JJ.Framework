@@ -1,10 +1,18 @@
 <Project>
   
-  <PropertyGroup Condition="$(AutoPublish) And $(IsInnerBuild)">
+  <PropertyGroup Condition="$(AutoPublish)">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>True</SelfContained>
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
+  
+  
+  <!--<PropertyGroup Condition="$(AutoPublish) And $(IsInnerBuild)">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>True</SelfContained>
+    <PublishReadyToRun>True</PublishReadyToRun>
+  </PropertyGroup>-->
+  
   
   <PropertyGroup Condition="$(AutoPublish) And ($(IsNet9) Or $(IsNet10))">
     <PublishTrimmed>True</PublishTrimmed>
