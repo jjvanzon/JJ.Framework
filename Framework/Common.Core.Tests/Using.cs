@@ -7,6 +7,7 @@ global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Common.Core.Tests.docs;
 global using JJ.Framework.Common.Core.Tests.Helpers;
 global using JJ.Framework.Reflection.Legacy;
+global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Testing.Legacy;
 global using JJ.Framework.Testing.Core;
 global using JJ.Framework.IO.Legacy;
@@ -19,6 +20,7 @@ global using static System.Environment;
 global using static JJ.Framework.Common.Core.Tests.Helpers.DebuggerDisplayFormatter;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
+
 global using static JJ.Framework.Common.Core.FlagHelper;
 global using static JJ.Framework.Testing.Core.TestRunner;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;

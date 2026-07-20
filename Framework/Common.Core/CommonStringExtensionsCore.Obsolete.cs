@@ -1,12 +1,14 @@
 ﻿#pragma warning disable IDE0051 // Private member never used.
 
+// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedParameter.Local
 
 namespace JJ.Framework.Common.Core;
 
 /// <inheritdoc cref="_commonstringextensionscore" />
-[Obsolete(ObsoleteMessage, true)]
+//[Obsolete(ObsoleteMessage, true)]
 public static class CommonStringExtensionsCore
 {
     private const string ObsoleteMessage 
