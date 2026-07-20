@@ -9,6 +9,7 @@ global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Text.Core;
+global using JJ.Framework.Collections.Core;
 global using JJ.Framework.Exceptions.Core;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core;

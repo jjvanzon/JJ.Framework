@@ -1,8 +1,4 @@
-﻿// ReSharper disable RedundantBoolCompare
-
-using JJ.Framework.Collections.Core;
-
-namespace JJ.Framework.Testing.Core;
+﻿namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertCore
 {
@@ -30,7 +26,7 @@ public static partial class AssertCore
         }
         catch (Exception ex)
         {
-            if (ExceptionIsMatch(ex, exceptionType, expectedTexts))
+            if (ExceptionOrInnerIsMatch(ex, exceptionType, expectedTexts))
             {
                 return ex;
             }
@@ -56,7 +52,7 @@ public static partial class AssertCore
         }
         catch (Exception ex)
         {
-            if (ExceptionIsMatch(ex, expectedTexts))
+            if (ExceptionOrInnerIsMatch(ex, expectedTexts))
             {
                 return ex;
             }
@@ -68,8 +64,8 @@ public static partial class AssertCore
         
     }
 
-    private static bool ExceptionIsMatch(Exception ex, string[] expectedTexts) => ExceptionIsMatch(ex, default, expectedTexts);
-    private static bool ExceptionIsMatch(Exception ex, Type? expectedType, string?[] expectedTexts)
+    private static bool ExceptionOrInnerIsMatch(Exception ex, string[] expectedTexts) => ExceptionOrInnerIsMatch(ex, default, expectedTexts);
+    private static bool ExceptionOrInnerIsMatch(Exception ex, Type? expectedType, string?[] expectedTexts)
     {
         bool anyExpectedTexts = AnyExpectedTexts(expectedTexts);
 
@@ -80,11 +76,11 @@ public static partial class AssertCore
         }
 
         Exception[] exceptions = ex.SelfAndAncestors(x => x.InnerException).ToArray();
-        foreach (Exception exception in exceptions)
+        foreach (Exception exOrInner in exceptions)
         {
             if (expectedType != null)
             {
-                bool typeIsMatch = exception.GetType() == expectedType;
+                bool typeIsMatch = exOrInner.GetType() == expectedType;
                 if (!typeIsMatch)
                 {
                     // No match: continue searching.
@@ -94,7 +90,8 @@ public static partial class AssertCore
 
             if (anyExpectedTexts)
             {
-                bool messageIsMatch = expectedTexts.All(x => exception.Message.Contains(x, caseMatters: false));
+                //bool messageIsMatch = expectedTexts.All(x => x.In(exOrInner.Message)); // In is collection-based, not text-based (for now).
+                bool messageIsMatch = expectedTexts.All(x => exOrInner.Message.Contains(x, caseMatters: false));
                 if (!messageIsMatch)
                 {
                     // No match: continue searching.
