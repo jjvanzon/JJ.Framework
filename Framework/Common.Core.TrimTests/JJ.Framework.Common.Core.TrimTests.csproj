@@ -3,9 +3,9 @@
     <Version>5.1.0</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks> <!-- NCrunch TrimTest 1 TFM -->
     <OutputType>Exe</OutputType>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <AutoPublish>True</AutoPublish>
-    <AutoTrimTest>False</AutoTrimTest>
+    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
+    <!--<AutoPublish>True</AutoPublish>-->
+    <!--<AutoTrimTest>False</AutoTrimTest>-->
   </PropertyGroup>
 
   <ItemGroup>
