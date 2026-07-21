@@ -5,38 +5,38 @@
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
   
-  <PropertyGroup Condition="$(AutoPublish) And ($(IsNet9) Or $(IsNet10))">
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet9) Or $(IsNet10))">
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
     <PublishSingleFile>True</PublishSingleFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(AutoPublish) And $(IsNet8)">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet8)">
     <PublishTrimmed>True</PublishTrimmed>
     <PublishAot>True</PublishAot>
     <!--<PublishSingleFile>True</PublishSingleFile>-->
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(AutoPublish) And ($(IsNet6) Or $(IsNet7))">
+  <PropertyGroup Condition="$(IsTrimTest) And ($(IsNet6) Or $(IsNet7))">
     <PublishTrimmed>True</PublishTrimmed>
     <!--<PublishAot>True</PublishAot>-->
     <PublishSingleFile>True</PublishSingleFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(AutoPublish) And $(IsNet5)">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsNet5)">
     <!--<PublishTrimmed>True</PublishTrimmed>-->
     <!--<PublishAot>True</PublishAot>-->
     <PublishSingleFile>True</PublishSingleFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(AutoPublish) And '$(Configuration)'=='Release'">
+  <PropertyGroup Condition="$(IsTrimTest) And '$(Configuration)'=='Release'">
     <CopyOutputSymbolsToPublishDirectory>False</CopyOutputSymbolsToPublishDirectory>
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(AutoPublish) And $(IsInnerBuild)">
+  <PropertyGroup Condition="$(IsTrimTest) And $(IsInnerBuild)">
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <!--<PublishDir>publish\$(Configuration)\$(TargetFramework)</PublishDir>-->
-    <PublishDir>$(MSBuildProjectDirectory)\publish\$(Configuration)\$(TargetFramework)</PublishDir>
+    <PublishDir>publish\$(Configuration)\$(TargetFramework)</PublishDir>
+    <!--<PublishDir>$(MSBuildProjectDirectory)\publish\$(Configuration)\$(TargetFramework)</PublishDir>-->
   </PropertyGroup>
 
   <Target Name="PublishAfterBuild" AfterTargets="Build" Condition="$(AutoPublish) And $(IsInnerBuild)">
