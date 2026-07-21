@@ -1,22 +1,9 @@
 <Project>
-  <!--<PropertyGroup Condition="'$(OutputType)'=='Exe' And $(IsInnerBuild)">-->
-  <PropertyGroup Condition="$(IsInnerBuild)">
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="$(AutoPublish) And $(IsInnerBuild)">
-    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
-    <SelfContained>True</SelfContained>
-    <PublishReadyToRun>True</PublishReadyToRun>
-  </PropertyGroup>
-  
-  
-  <!--<PropertyGroup Condition="$(AutoPublish) And $(IsInnerBuild)">
+  <PropertyGroup Condition="$(IsTrimTest)">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>True</SelfContained>
     <PublishReadyToRun>True</PublishReadyToRun>
-  </PropertyGroup>-->
-  
+  </PropertyGroup>
   
   <PropertyGroup Condition="$(AutoPublish) And ($(IsNet9) Or $(IsNet10))">
     <PublishTrimmed>True</PublishTrimmed>
