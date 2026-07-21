@@ -5,7 +5,6 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks> <!-- NCrunch TrimTest 1 TFM -->
     <Nullable>enable</Nullable>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
