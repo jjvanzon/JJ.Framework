@@ -1,5 +1,6 @@
 <Project>
-  <PropertyGroup Condition="'$(OutputType)'=='Exe' And $(IsInnerBuild)">
+  <!--<PropertyGroup Condition="'$(OutputType)'=='Exe' And $(IsInnerBuild)">-->
+  <PropertyGroup Condition="$(IsInnerBuild)">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
