@@ -1,7 +1,10 @@
 <Project>
-  
-  <PropertyGroup Condition="$(AutoPublish)">
+  <PropertyGroup Condition="'$(OutputType)'=='Exe'">
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(AutoPublish)">
+    <!--<RuntimeIdentifier>win-x64</RuntimeIdentifier>-->
     <SelfContained>True</SelfContained>
     <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>

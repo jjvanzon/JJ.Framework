@@ -1,8 +1,4 @@
 <Project>
-  <PropertyGroup Condition="'$(OutputType)'=='Exe'">
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-  </PropertyGroup>
-
   <!-- Disabled Warnings -->
   <PropertyGroup>
     <NoWarn>$(NoWarn);NU1605</NoWarn> <!--Detected package downgrade-->
