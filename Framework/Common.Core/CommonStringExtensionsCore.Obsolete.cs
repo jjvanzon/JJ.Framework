@@ -9,7 +9,7 @@
 namespace JJ.Framework.Common.Core;
 
 /// <inheritdoc cref="_commonstringextensionscore" />
-//[Obsolete(ObsoleteMessage, true)]
+[Obsolete(ObsoleteMessage, true)]
 public static class CommonStringExtensionsCore
 {
     private const string ObsoleteMessage 
@@ -17,7 +17,7 @@ public static class CommonStringExtensionsCore
     
     /// <inheritdoc cref="_removeaccentsobsolete" />
     [Obsolete(ObsoleteMessage, true)]
-    private static string RemoveAccents(this string? input) // Obsolete member made private otherwise clash.
+    public static string RemoveAccents(string? input) // Obsolete member no longer extension, just static otherwise clash.
         => throw new NotSupportedException(ObsoleteMessage);
 
     /// <inheritdoc cref="_removeaccentsobsolete" />

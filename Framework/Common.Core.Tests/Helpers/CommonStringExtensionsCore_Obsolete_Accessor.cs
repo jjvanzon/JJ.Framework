@@ -5,8 +5,7 @@
 internal class CommonStringExtensionsCore_Obsolete_Accessor
 {
     private readonly AccessorCore _accessor 
-        //= new("CommonStringExtensionsCore");
-        = new(typeof(CommonStringExtensionsCore));
+        = new("CommonStringExtensionsCore");
 
     public string ObsoleteMessage => (string)_accessor.Get()!;
     public string RemoveAccents(string? input) => (string)_accessor.Call([ input ])!;
