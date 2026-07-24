@@ -10,6 +10,7 @@
     <Compile Remove="..\Common.Core.Tests\obj\**" />
     <Compile Remove="..\Common.Core.Tests\bin\**" />
     <Compile Include="..\Common.Core.TrimTests\Program.cs" />
+    <Compile Include="..\Common.Core.TrimTests\Untrimmer.cs" />
   </ItemGroup>
 
   <ItemGroup>
