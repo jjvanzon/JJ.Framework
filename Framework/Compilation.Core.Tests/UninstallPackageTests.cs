@@ -34,19 +34,15 @@ public class UninstallPackageTests : TestHelper
         => Assert(DotNet.Exe("remove package", ID)));
 
     [TestMethod]
-    public void Test_RemovePackage_AllInCommandTextOnly() 
+    public void Test_RemovePackage_EverythingPutInCommandText() 
         => Assert(DotNet.Exe($"remove package {ID}", Opt()));
 
     [TestMethod]
-    public void Test_RemovePackage_AllInCommandTextOnly_NoOpt() => InTempDir(()
+    public void Test_RemovePackage_EverythingPutInCommandText_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe($"remove package {ID}")));
 
     [TestMethod]
-    public void Test_RemovePackage_AllInArgsOnly_NoOpt() => InTempDir(()
-        => Assert(DotNet.Exe("", $"remove package {ID}")));
-
-    [TestMethod]
-    public void Test_RemovePackage_AllInArgOnly_NoOpt() => InTempDir(()
+    public void Test_RemovePackage_EverythingPutInArgs_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("", $"remove package {ID}")));
 
     [TestMethod]
@@ -58,19 +54,15 @@ public class UninstallPackageTests : TestHelper
         => Assert(DotNet.Exe("package remove", ID)));
 
     [TestMethod]
-    public void Test_PackageRemove_AllInCommandTextOnly() 
+    public void Test_PackageRemove_EverythingPutInCommandText() 
         => Assert(DotNet.Exe($"package remove {ID}", Opt()));
 
     [TestMethod]
-    public void Test_PackageRemove_AllInCommandTextOnly_NoOpt() => InTempDir(()
+    public void Test_PackageRemove_EverythingPutInCommandText_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe($"package remove {ID}")));
 
     [TestMethod]
-    public void Test_PackageRemove_AllInArgsOnly_NoOpt() => InTempDir(()
-        => Assert(DotNet.Exe("", $"package remove {ID}")));
-
-    [TestMethod]
-    public void Test_PackageRemove_AllInArgOnly_NoOpt() => InTempDir(()
+    public void Test_PackageRemove_EverythingPutInArgs_NoOpt() => InTempDir(()
         => Assert(DotNet.Exe("", $"package remove {ID}")));
 
     // File Options
