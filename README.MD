@@ -323,37 +323,39 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - Add `Succesful` and `VoidResult` aliases for Success and Result for compatibility.
 - `Messages` not separated by commas in diagnostics texts. Punctuation left up to the messages themselves.
 
-#### `2026-07-19` | `5.2`/`0.260` : __Text.Core Release__
+#### `2026-07-24` | `5.2`/`0.260` : __Text.Core Release__
 
 *+ Untangling text methods from Common.Core and Common.Legacy. Migrate some to Text.Core, Text.Legacy and Existence.Core.*
 
 - [`JJ.Framework.Text.Core`](https://www.nuget.org/packages/JJ.Framework.Text.Core)
-- Moved string functions there from `Common.Core`.
-- Functions for spacing, punctuation, char/string overloads.
+- Moved string functions there from `Common.Core`
+- Spacing, punctuation and char/string overloads.
 - Prettification for logs and (console) text output.
 - Supports extension and (short) static syntaxes.
-- Full IntelliSense docs, 100% meaningful test coverage
-- Trimming/native compilation supported and a wide .NET version spread.
+- Full IntelliSense docs, 100% meaningful test coverage.
+- Trimming/native compilation supported.
+- A wide .NET version spread.
 - [`JJ.Framework.Text.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Text)
-- Moved `StringBuilderWithIndentationLegacy` and `StringExtensionsLegacy` there from `[ ... ]`
+- Moved `StringBuilderWithIndentationLegacy` and `StringExtensionsLegacy` from `Text.Core`
 - Manually ported back and forth between legacy and main branch.
-- This library is not yut released.
+- Library not yet released.
 - [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
 - String functions from legacy pulls stay here, or future historic pulls will cause trouble.
 - These are basic string cutting, casing and split (with quotation) methods.
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-- Moved `Contains` methods here (from `[ ... ]`).
+- Moved `Contains` methods from `Text.Core`.
 - Using `caseMatters` flags instead of `ignoreCase`.
-- Added tests and IntelliSense.
+- Added IntelliSense and tests.
 - Now dependent on `Text.Core` for `RemoveAccents` function.
-- `DevOps`:
-- Simplified `publish` paths. Added `ClearPublish` script
-- Added `.Legacy` to legacy project folders where no clash with history.
-- Expanded/uniform `.NET version` spread.
-- Explicit `net48` and `net462` support (in tests).
-- Mandatory comment with reason for exceptional .NET versions.
-- Remove usage of `$(BuildNum)` from test projects (helping performance mostly of package tests).
-- Renamed some suffixes from `Legacy` to `Ex` mostly expansions ported back and forth between `main` and `legacy` branch.
+- `DevOps`
+- Simplified `publish` paths. Added `ClearPublish` script.
+- Added `.Legacy` to project folders where no clash with history.
+- Expanded / made uniform `.NET version` spread.
+- Explicit `net48` and `net462` support (by tests).
+- Exlicit comment with reason for exceptional .NET versions.
+- Remove usage of `$(BuildNum)` from test projects.
+- (Helps performance of mostly package tests).
+- Renamed some suffixes from `Legacy` to `Ex`, mostly expansions ported back and forth between `main` and `legacy` branch.
 
 💬 Feedback 
 ------------
