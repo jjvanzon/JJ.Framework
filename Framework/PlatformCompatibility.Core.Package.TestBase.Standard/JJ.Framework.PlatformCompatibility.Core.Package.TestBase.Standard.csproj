@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks> <!-- Specific for PlatformCompatibility -->
-    <Version>5.1.0</Version>
+    <Version>5.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

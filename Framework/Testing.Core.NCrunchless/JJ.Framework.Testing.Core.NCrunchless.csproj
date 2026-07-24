@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks> <!-- Test-framework-mimicking stubs requires minimal dependency. -->
-    <Version>5.1.$(BuildNum)</Version>
+    <Version>5.2.$(BuildNum)</Version>
     <!-- Produce an assembly with the exact name expected by the runtime -->
     <AssemblyName>nCrunch.TestRuntime.DotNetCore</AssemblyName>
     <PackageId>JJ.Framework.Testing.Core.NCrunchless</PackageId>

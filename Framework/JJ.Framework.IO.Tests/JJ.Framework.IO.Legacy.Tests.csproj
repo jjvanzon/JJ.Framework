@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
-    <Version>0.259.0</Version>
+    <Version>0.260.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>5.1.0</Version>
+    <Version>5.2.0</Version>
     <TargetFrameworks>netstandard2.0</TargetFrameworks> <!-- Content proj no TFMs spread required -->
     <Description>Content project with various utility scripts.</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>   
