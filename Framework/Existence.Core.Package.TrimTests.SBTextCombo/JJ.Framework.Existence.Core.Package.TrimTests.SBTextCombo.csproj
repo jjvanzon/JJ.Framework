@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Existence.Core" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.Existence.Core" Version="5.2.7434" />
     <PackageReference Include="JJ.Framework.Existence.Core.Tests.Helpers" Version="3.7.4872" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.1.7388" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.259.7388" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7434" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.260.7434" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.2.7434" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.1.7388" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.2.7434" />
   </ItemGroup>
 </Project>
 
