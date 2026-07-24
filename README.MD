@@ -340,13 +340,15 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 - Manually ported back and forth between legacy and main branch.
 - Library not yet released.
 - [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
-- String functions from legacy pulls stay here, or future historic pulls will cause trouble.
+- `RemoveAccents` obsolete. Moved to `Text.Core`.
+- [`JJ.Framework.Common.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy)
+- No changes; string functions from 2015 legacy pulls stay here, or future historic pulls will cause trouble.
 - These are basic string cutting, casing and split (with quotation) methods.
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
-- Moved `Contains` methods from `Text.Core`.
-- Using `caseMatters` flags instead of `ignoreCase`.
-- Added IntelliSense and tests.
 - Now dependent on `Text.Core` for `RemoveAccents` function.
+- Moved `Contains` methods here from `Text.Core`.
+- Using `caseMatters` flags instead of `ignoreCase`.
+- Adding IntelliSense and tests.
 - `DevOps`
 - Simplified `publish` paths. Added `ClearPublish` script.
 - Added `.Legacy` to project folders where no clash with history.

@@ -87,6 +87,10 @@ Release Notes
 - Placeholder type for adding optional parameters to generic overloads, that would otherwise clash.
 - This type adds docs explaning the technique, and avoids further overload clashes, from chosing a different parameter type.
 
+#### `2026-07-24` | `5.2`/`0.260` : __Obsolete Member__
+
+- `RemoveAccents` obsolete. Moved to [`JJ.Framework.Text.Core`](https://www.nuget.org/packages/JJ.Framework.Text.Core).
+
 
 💬 Feedback
 ============

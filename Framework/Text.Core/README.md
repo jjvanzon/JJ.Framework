@@ -60,6 +60,21 @@ Overloads that take either `char` or `string` for:
 - `Trim` 
 - `Replace`
 
+
+Release Notes
+-------------
+
+#### `2026-07-24` | `5.2`/`0.260` : __Initial__
+
+- Moved string functions here from [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
+- Spacing, punctuation and char/string overloads.
+- Prettification for logs and (console) text output.
+- Supports extension and (short) static syntaxes.
+- Full IntelliSense docs, 100% meaningful test coverage.
+- Trimming/native compilation supported.
+- A wide .NET version spread.
+
+
 💬 Feedback
 ------------
 

@@ -152,6 +152,13 @@ Release Notes
 - Added project properties hardening code trimming and native compile compatibility.
 - During a release of another library: [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
 
+#### `2026-07-24` | `5.2`/`0.260` : __Text.Core Dependency__
+
+- Now dependent on `Text.Core` for `RemoveAccents` function.
+- Moved `Contains` methods here from `Text.Core`.
+- Using `caseMatters` flags instead of `ignoreCase`.
+- Adding IntelliSense and tests.
+
 
 🐨 Mr. Koala
 ------------
