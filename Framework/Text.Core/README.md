@@ -64,7 +64,7 @@ Overloads that take either `char` or `string` for:
 Release Notes
 -------------
 
-#### `2026-07-24` | `5.2`/`0.260` : __Initial__
+#### `2026-07-24` | `5.2` : __Initial__
 
 - Moved string functions here from [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
 - Spacing, punctuation and char/string overloads.
