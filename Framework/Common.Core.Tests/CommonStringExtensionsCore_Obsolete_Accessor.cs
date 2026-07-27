@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Common.Core.Tests.Helpers;
+﻿namespace JJ.Framework.Common.Core.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = GenericMethodAnd + GetTypesAnd + Bases)]
 [Suppress("Trimmer", "IL3050", Justification = GenericMethod)]

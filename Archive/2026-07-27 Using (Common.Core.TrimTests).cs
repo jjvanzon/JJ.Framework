@@ -1,0 +1,10 @@
+﻿//global using System;
+//global using System.Collections.Generic;
+//global using JJ.Framework.Common.Legacy;
+//global using JJ.Framework.Reflection.Legacy;
+//global using Microsoft.VisualStudio.TestTools.UnitTesting;
+//global using JJ.Framework.Common.Core.Tests;
+//global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
+//global using static JJ.Framework.Common.Core.FlagHelper;
+//global using static JJ.Framework.Testing.Legacy.AssertHelper;
+//global using static JJ.Framework.Testing.Core.AssertCore;
