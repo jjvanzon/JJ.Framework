@@ -3,7 +3,7 @@
 // ReSharper disable PropertyCanBeMadeInitOnly.Local
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 
-namespace JJ.Framework.Common.Core.Tests;
+namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
 public class CollectionExtensionsCoreTests

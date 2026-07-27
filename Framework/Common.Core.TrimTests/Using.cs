@@ -15,6 +15,5 @@ global using JJ.Framework.IO.Legacy;
 global using JJ.Framework.Common.Core.Tests;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
 global using static JJ.Framework.Common.Core.FlagHelper;
-global using static JJ.Framework.Common.Core.Tests.Helpers.DebuggerDisplayFormatter;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;

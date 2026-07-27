@@ -4,26 +4,26 @@ using JJ.Framework.Common;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Common.Core.Tests
+namespace JJ.Framework.Common.Legacy.Tests
 {
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]
-    public class CollectionExtensions_Recursive_IEnumerable_Legacy_Tests
+    public class CollectionExtensions_Recursive_IList_Legacy_Tests
     {
         [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
         private class Item
         {
             public string Name { get; set; } = "";
-            public IEnumerable<Item> Children { get; set; } = new List<Item>();
+            public IList<Item> Children { get; set; } = new List<Item>();
 
             // ncrunch: no coverage start
-            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count()}]";
+            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count}]";
             // ncrunch: no coverage end
         }
 
         /*
         [TestMethod]
-        public void Recursive_SelectRecursive_IEnumerable_OnItem()
+        public void Test_CollectionExtensions_Recursive_SelectRecursive_IList_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -38,7 +38,7 @@ namespace JJ.Framework.Common.Core.Tests
         */
 
         [TestMethod]
-        public void Recursive_SelectRecursive_IEnumerable_OnCollection()
+        public void Test_CollectionExtensions_Recursive_SelectRecursive_IList_OnCollection()
         {
             // Setup
             Item item = CreateItem();
@@ -53,7 +53,7 @@ namespace JJ.Framework.Common.Core.Tests
 
         /*
         [TestMethod]
-        public void Recursive_UnionRecursive_IEnumerable_OnItem()
+        public void Test_CollectionExtensions_Recursive_UnionRecursive_IList_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -68,7 +68,7 @@ namespace JJ.Framework.Common.Core.Tests
         */
 
         [TestMethod]
-        public void Recursive_UnionRecursive_IEnumerable_OnCollection()
+        public void Test_CollectionExtensions_Recursive_UnionRecursive_IList_OnCollection()
         {
             // Setup
             Item item = CreateItem();
@@ -118,11 +118,9 @@ namespace JJ.Framework.Common.Core.Tests
         {
             string[] actualItemNames = items.Select(x => x.Name).ToArray();
             Array.Sort(actualItemNames);
-
-            //AssertHelper.AreEqual(expectedItemsNames.Count, () => items.Count);
-            //AssertHelper.IsTrue(() => Enumerable.SequenceEqual(actualItemNames, expectedItemsNames));
-            Assert.AreEqual(expectedItemsNames.Count, items.Count);
-            Assert.IsTrue(Enumerable.SequenceEqual(actualItemNames, expectedItemsNames));
+            
+            AssertHelper.AreEqual(expectedItemsNames.Count, () => items.Count);
+            AssertHelper.IsTrue(() => Enumerable.SequenceEqual(actualItemNames, expectedItemsNames));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿global using System;
 global using System.Collections.Generic;
-global using System.Diagnostics;
 global using System.Linq;
 global using System.Text;
 global using JJ.Framework.Common.Legacy;
@@ -17,7 +16,6 @@ global using static System.Guid;
 global using static System.StringComparison;
 global using static System.Console;
 global using static System.Environment;
-global using static JJ.Framework.Common.Core.Tests.Helpers.DebuggerDisplayFormatter;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 
