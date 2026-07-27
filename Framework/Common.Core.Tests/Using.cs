@@ -3,7 +3,6 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text;
 global using JJ.Framework.Common.Legacy;
-global using JJ.Framework.Common.Core.Tests.docs;
 global using JJ.Framework.Common.Core.Tests.Helpers;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core;

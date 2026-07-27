@@ -31,4 +31,12 @@ public static class Assert
             throw new Exception("Assert.IsTrue failed.");
         }
     }
+
+    public static void IsNotNull(object? obj)
+    {
+        if (obj == null)
+        {
+            throw new Exception("Assert.IsNotNull failed.");
+        }
+    }
 }

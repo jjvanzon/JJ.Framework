@@ -14,3 +14,9 @@ namespace JJ.Framework.Common.Legacy.Tests.docs;
 /// so we're verifying that here.
 /// </summary>
 public struct _harshnullstringtest;
+
+/// <summary>
+/// It may be arbitrary that null input returns an empty collection,
+/// but this is the behavior of the legacy code and can't be changed.
+/// </summary>
+public struct _keyvaluepairnulltest;
