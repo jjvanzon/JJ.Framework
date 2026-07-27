@@ -7,7 +7,6 @@ RunTests<ConfigurationHelperCoreTests>() &&
 RunTests<CultureHelperCoreTests>() &&
 RunTests<EmbeddedResourceHelperLegacyTests>() &&
 RunTests<EnvironmentHelperCoreTests>() &&
-RunTests<ExceptionTypesCoreTests>() &&
 RunTests<FlaggingTests>() &&
 RunTests<OverloadByNameTests>();
 WriteLine("Done.");

@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Common.Core.Tests.Helpers;
+﻿namespace JJ.Framework.Common.Legacy.Tests;
 
 internal enum CustomerType
 {
