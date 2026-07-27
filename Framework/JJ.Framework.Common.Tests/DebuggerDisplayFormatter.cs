@@ -4,7 +4,7 @@
 
 internal class DebuggerDisplayFormatter
 {
-    public static string GetDebuggerDisplay(CollectionExtensionsCoreTests.Item item)
+    public static string GetDebuggerDisplay(CollectionExtensionsTestsEx.Item item)
     {
         return $"({item.Number},{item.Nully})";
     }

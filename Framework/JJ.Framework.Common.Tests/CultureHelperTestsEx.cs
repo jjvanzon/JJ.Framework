@@ -5,7 +5,7 @@ using System.Globalization;
 namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
-public class CultureHelperCoreTests
+public class CultureHelperTestsEx
 {
     [TestMethod]
     public void Test_CultureHelper_SetThreadCulture_Core_Test()

@@ -11,14 +11,14 @@ namespace JJ.Framework.Common.Legacy.Tests
 {
     [TestClass]
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
-    public class EmbeddedResourceHelperLegacyTests
+    public class EmbeddedResourceHelperTestsEx
     {
         private const string EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE = "Text of embedded resource file 1 without sub name space";
         private const string EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE = "Text of embedded resource file 2 without sub name space";
         private const string EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE = "Text of embedded resource file 1 with sub name space";
         private const string EXPECTED_TEXT_OF_FILE_2_WITH_SUB_NAME_SPACE = "Text of embedded resource file 2 with sub name space";
 
-        private static readonly Assembly _currentAssembly = typeof(EmbeddedResourceHelperLegacyTests).Assembly;
+        private static readonly Assembly _currentAssembly = typeof(EmbeddedResourceHelperTestsEx).Assembly;
         private static readonly Assembly _otherAssembly = typeof(DummyClass).Assembly;
         private static readonly string _currentAssemblyName = _currentAssembly.GetName().Name ?? "";
 

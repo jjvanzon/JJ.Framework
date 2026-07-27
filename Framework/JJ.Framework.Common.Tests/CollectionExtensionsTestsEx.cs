@@ -6,7 +6,7 @@
 namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
-public class CollectionExtensionsCoreTests
+public class CollectionExtensionsTestsEx
 {
     // Struct instead of class for sequence equals to work with value comparisons.
     [DebuggerDisplay("{DebuggerDisplay}")]

@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
-public class ExceptionTypesCoreTests
+public class ExceptionTypesTestsEx
 {
     [TestMethod]
     public void Test_InvalidValueException_Message()

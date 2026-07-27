@@ -2,7 +2,7 @@
 namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
-public class TrimAllCoreTests
+public class TrimAllTestsEx
 {
     [TestMethod]
     public void TrimAll_Core_Test()

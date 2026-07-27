@@ -8,7 +8,7 @@ namespace JJ.Framework.Common.Legacy.Tests
 {
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]
-    public class CollectionExtensions_Recursive_IList_Legacy_Tests
+    public class CollectionExtensions_Recursive_IList_Tests_Ex
     {
         [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
         private class Item

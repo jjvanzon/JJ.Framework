@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
-public class KeyValuePairHelperCoreTests
+public class KeyValuePairHelperTestsEx
 {
     [TestMethod]
     public void KeyValuePairHelper_ConvertNamesAndValuesListToDictionary_Core_Test()
