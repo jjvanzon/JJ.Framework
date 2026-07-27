@@ -4,7 +4,6 @@
 bool success =
 RunTests<CommonStringExtensionsCore_Obsolete_Tests>() &&
 RunTests<ConfigurationHelperCoreTests>() &&
-RunTests<CultureHelperCoreTests>() &&
 RunTests<EmbeddedResourceHelperLegacyTests>() &&
 RunTests<EnvironmentHelperCoreTests>() &&
 RunTests<FlaggingTests>() &&

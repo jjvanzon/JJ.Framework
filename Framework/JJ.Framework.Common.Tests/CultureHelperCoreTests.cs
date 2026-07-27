@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Globalization;
 
-namespace JJ.Framework.Common.Core.Tests;
+namespace JJ.Framework.Common.Legacy.Tests;
 
 [TestClass]
 public class CultureHelperCoreTests
