@@ -1,18 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks> <!-- NCrunch wide range for Package.Tests -->
     <Version>5.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common.Core" Version="5.2.7438" />
-    <PackageReference Include="JJ.Framework.Common.Core.Tests.Helpers" Version="3.7.4872" />
-    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.260.7438" />
-    <PackageReference Include="JJ.Framework.IO.Core" Version="5.2.7434" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7434" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.260.7434" />
+    <PackageReference Include="JJ.Framework.Common.Core" Version="5.2.7464" />
+    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.260.7464" />
+    <PackageReference Include="JJ.Framework.IO.Core" Version="5.2.7464" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7464" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.260.7464" />
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.2.7438" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.2.7464" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
@@ -21,12 +20,5 @@
     <Compile Include="..\Common.Core.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\Common.Core.Tests\obj\**" />
     <Compile Remove="..\Common.Core.Tests\bin\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="..\Common.Core.Tests\EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
-    <EmbeddedResource Include="..\Common.Core.Tests\EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
-    <EmbeddedResource Include="..\Common.Core.Tests\TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
-    <EmbeddedResource Include="..\Common.Core.Tests\TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
   </ItemGroup>
 </Project>

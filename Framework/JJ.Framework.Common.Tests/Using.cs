@@ -4,7 +4,7 @@ global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Common.Legacy.Tests.docs;
 global using JJ.Framework.IO;
-global using JJ.Framework.IO.Core;
+//global using JJ.Framework.IO.Core;
 global using JJ.Framework.IO.Legacy;
 global using JJ.Framework.Testing.Legacy;
 global using static System.StringSplitOptions;
