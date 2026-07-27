@@ -10,7 +10,6 @@ global using JJ.Framework.Testing.Legacy;
 global using JJ.Framework.Testing.Core;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Common.Core.Tests.Helpers;
-global using JJ.Framework.IO.Legacy;
 global using JJ.Framework.Common.Core.Tests;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
 global using static JJ.Framework.Common.Core.FlagHelper;

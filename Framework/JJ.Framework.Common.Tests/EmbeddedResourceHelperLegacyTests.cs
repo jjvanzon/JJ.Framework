@@ -1,14 +1,13 @@
 ﻿// Copied from 2021 legacy, with renames to adjust to 2015 code.
 
-using System.IO;
 using System.Reflection;
-using JJ.Framework.IO;
-using JJ.Framework.IO.Core;
+using System.Text;
+using JJ.Framework.Common.Core.Tests.Helpers;
 
 // ReSharper disable InvokeAsExtensionMethod
 // ReSharper disable ConvertToConstant.Local
 
-namespace JJ.Framework.Common.Core.Tests
+namespace JJ.Framework.Common.Legacy.Tests
 {
     [TestClass]
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
@@ -300,49 +299,49 @@ namespace JJ.Framework.Common.Core.Tests
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithoutSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceText(assembly: null, "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceText(assembly: null, "TestResources", "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithoutSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(assembly: null, "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(assembly: null, "TestResources", "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithoutSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceStream(assembly: null, "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceStream(assembly: null, "TestResources", "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithoutSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceName(assembly: null, "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertCore.Throws<ArgumentNullException>(
+            => Throws<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceName(assembly: null, "TestResources", "MyFile.txt"),
                 "Value cannot be null", "Parameter", "assembly");
 

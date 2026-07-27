@@ -3,14 +3,24 @@
     <Version>0.260.0</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
+    <EmbeddedResource Include="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
+    <ProjectReference Include="..\IO.Core\JJ.Framework.IO.Core.csproj" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

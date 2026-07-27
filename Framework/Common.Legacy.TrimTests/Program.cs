@@ -4,6 +4,7 @@ RunTests<CollectionExtensions_Recursive_IEnumerable_Legacy_Tests>() &&
 RunTests<CollectionExtensions_Recursive_IList_Legacy_Tests>() &&
 RunTests<CollectionExtensionsCoreTests>() &&
 RunTests<CultureHelperCoreTests>() &&
+RunTests<EmbeddedResourceHelperLegacyTests>() &&
 RunTests<ExceptionTypesCoreTests>() &&
 RunTests<KeyValuePairHelperCoreTests>() &&
 RunTests<StringExtensions_Casing_Tests_Ex>() &&

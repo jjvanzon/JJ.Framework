@@ -8,13 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="..\JJ.Framework.Common.Tests\EmbeddedResourceFile1_WithoutSubNameSpace.txt" Link="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Tests\EmbeddedResourceFile2_WithoutSubNameSpace.txt" Link="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Tests\TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Tests\TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\JJ.Framework.Common.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Common.Tests\obj\**" />
     <Compile Remove="..\JJ.Framework.Common.Tests\bin\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
+    <ProjectReference Include="..\IO.Core\JJ.Framework.IO.Core.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
     <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />

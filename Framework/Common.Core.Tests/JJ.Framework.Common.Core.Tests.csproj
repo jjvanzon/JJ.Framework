@@ -5,18 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
-    <EmbeddedResource Include="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
-    <EmbeddedResource Include="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
-    <EmbeddedResource Include="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj" />
     <ProjectReference Include="..\Common.Core\JJ.Framework.Common.Core.csproj" />
     <ProjectReference Include="..\IO.Core\JJ.Framework.IO.Core.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
