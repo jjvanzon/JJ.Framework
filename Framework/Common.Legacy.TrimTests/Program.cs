@@ -9,6 +9,8 @@ RunTests<StringExtensions_Split_Tests>() &&
 RunTests<StringExtensions_Split_Tests_Ex>() &&
 RunTests<StringExtensions_Split_Tests_Ex_WithQuotation>() &&
 RunTests<StringExtensionsTests>() &&
-RunTests<StringExtensionsTestsEx>();
+RunTests<StringExtensionsTestsEx>() &&
+RunTests<TrimAllCoreTests>();
+
 WriteLine("Done.");
 if (!success) Exit(1);

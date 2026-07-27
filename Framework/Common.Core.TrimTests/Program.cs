@@ -9,7 +9,6 @@ RunTests<EmbeddedResourceHelperLegacyTests>() &&
 RunTests<EnvironmentHelperCoreTests>() &&
 RunTests<ExceptionTypesCoreTests>() &&
 RunTests<FlaggingTests>() &&
-RunTests<TrimAllCoreTests>() &&
 RunTests<OverloadByNameTests>();
 WriteLine("Done.");
 if (!success) Exit(1);
