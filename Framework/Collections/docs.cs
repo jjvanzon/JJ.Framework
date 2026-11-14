@@ -9,6 +9,9 @@
 
 namespace JJ.Framework.Collections.docs;
 
+/// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;. </summary>
+public struct _addrange;
+
 /// <summary>
 /// Add multiple items to a collection by means of a comma separated argument list, e.g. myCollection.Add(1, 5,
 /// 12);

@@ -53,17 +53,17 @@ namespace JJ.Framework.Collections
                 dest.Add(item);
             }
         }
-
-        /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for IEnumerable&lt;T&gt;. </summary>
-        public static void AddRange<T>(this IList<T> collection, IEnumerable<T> items)
+       
+        /// <inheritdoc cref="_addrange" />
+        public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
             if (items == null) throw new ArgumentNullException(nameof(items));
-
-            foreach (T x in items)
-            {
-                collection.Add(x);
-            }
+            
+             foreach (var x in items)
+             {
+                 collection.Add(x);
+             }
         }
 
         /// <summary>

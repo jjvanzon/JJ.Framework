@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Collections.Core.Tests;
+﻿namespace JJ.Framework.Collections.Tests;
 
 [TestClass]
 public class AddTests
