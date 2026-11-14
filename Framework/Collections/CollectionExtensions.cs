@@ -514,6 +514,17 @@ namespace JJ.Framework.Collections
         /// </summary>
         public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
             => source.Where(x => x.GetType() == type);
+        
+        /// <inheritdoc cref="_onebecomestwo" />
+        public static IList<T> OneBecomesTwo<T>(this IList<T> list)
+        {
+            if (list       == null) throw new ArgumentNullException(nameof(list));
+            if (list.Count == 1) list = new List<T> { list[0], list[0] };
+            return list;
+        }
+        
+        /// <inheritdoc cref="_onebecomestwo" />
+        public static T[] OneBecomesTwo<T>(this T[] list) => OneBecomesTwo((IList<T>)list).ToArray();
 
         /// <summary> Same as Peek(), but instead of crashing when zero items, returns default instead. </summary>
         public static T PeekOrDefault<T>(this Stack<T> stack)
@@ -560,20 +571,22 @@ namespace JJ.Framework.Collections
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
             => collection.Select(selector).Product();
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static double Product(this IEnumerable<double> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
+            
+            var array = collection as double[] ?? collection.ToArray();
+            
+            if (array.Length == 0) return 1;
+            
+            var product = array[0];
 
-            double product = collection.FirstOrDefault();
-
-            foreach (double value in collection.Skip(1))
+            for (int i = 1; i < array.Length; i++)
             {
-                product *= value;
+                product *= array[i];
             }
-
+            
             return product;
         }
 
@@ -590,11 +603,15 @@ namespace JJ.Framework.Collections
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            float product = collection.FirstOrDefault();
+            var array = collection as float[] ?? collection.ToArray();
 
-            foreach (float value in collection.Skip(1))
+            if (array.Length == 0) return 1;
+
+            var product = array[0];
+
+            for (int i = 1; i < array.Length; i++)
             {
-                product *= value;
+                product *= array[i];
             }
 
             return product;
@@ -613,11 +630,15 @@ namespace JJ.Framework.Collections
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            int product = collection.FirstOrDefault();
+            var array = collection as int[] ?? collection.ToArray();
 
-            foreach (int value in collection.Skip(1))
+            if (array.Length == 0) return 1;
+
+            var product = array[0];
+
+            for (int i = 1; i < array.Length; i++)
             {
-                product *= value;
+                product *= array[i];
             }
 
             return product;
@@ -636,11 +657,15 @@ namespace JJ.Framework.Collections
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            long product = collection.FirstOrDefault();
+            var array = collection as long[] ?? collection.ToArray();
 
-            foreach (long value in collection.Skip(1))
+            if (array.Length == 0) return 1;
+
+            var product = array[0];
+
+            for (int i = 1; i < array.Length; i++)
             {
-                product *= value;
+                product *= array[i];
             }
 
             return product;
@@ -659,11 +684,15 @@ namespace JJ.Framework.Collections
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-            decimal product = collection.FirstOrDefault();
+            var array = collection as decimal[] ?? collection.ToArray();
 
-            foreach (decimal value in collection.Skip(1))
+            if (array.Length == 0) return 1;
+
+            var product = array[0];
+
+            for (int i = 1; i < array.Length; i++)
             {
-                product *= value;
+                product *= array[i];
             }
 
             return product;
@@ -982,6 +1011,19 @@ namespace JJ.Framework.Collections
                 case 1: return items[0];
                 default: throw new NotUniqueException<T>();
             }
+        }
+
+        /// <inheritdoc cref="_sumoftimespan" />
+        public static TimeSpan Sum(this IEnumerable<TimeSpan> timeSpans)
+        {
+            if (timeSpans == null) throw new ArgumentNullException(nameof(timeSpans));
+            return timeSpans.Aggregate((x, y) => x + y);
+        }
+        
+        /// <inheritdoc cref="_sumoftimespan" />
+        public static TimeSpan Sum<T>(this IEnumerable<T> source, Func<T, TimeSpan> selector)
+        {
+            return source.Select(selector).Sum();
         }
 
         /// <summary>
