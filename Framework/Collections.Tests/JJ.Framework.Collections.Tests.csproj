@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTests.cs" />
     <Compile Include="BinarySearchInexactTests.cs" />
     <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable_Tests.cs" />

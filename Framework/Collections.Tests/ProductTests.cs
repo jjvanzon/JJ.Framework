@@ -1,5 +1,4 @@
 ﻿// ReSharper disable ExpressionIsAlwaysNull
-
 namespace JJ.Framework.Collections.Tests;
 
 [TestClass]

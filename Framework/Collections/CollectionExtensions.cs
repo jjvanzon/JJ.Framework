@@ -18,19 +18,16 @@ namespace JJ.Framework.Collections
     [PublicAPI]
     public static class CollectionExtensions
     {
-        /// <summary>
-        /// Add multiple items to a collection by means of a comma separated argument list, e.g. myCollection.Add(1, 5,
-        /// 12);
-        /// </summary>
-        public static void Add<T>(this IList<T> collection, params T[] items)
+        /// <inheritdoc cref="_addwithparams" />
+        public static void Add<T>(this ICollection<T> collection, params IEnumerable<T> items)
         {
-            if (collection == null) throw new ArgumentNullException(nameof(collection));
-            if (items == null) throw new ArgumentNullException(nameof(items));
-
-            foreach (T x in items)
-            {
-                collection.Add(x);
-            }
+             if (collection == null) throw new ArgumentNullException(nameof(collection));
+             if (items == null) throw new ArgumentNullException(nameof(items));
+            
+             foreach (var x in items)
+             {
+                 collection.Add(x);
+             }
         }
 
         /// <summary>
