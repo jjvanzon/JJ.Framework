@@ -3,17 +3,6 @@
  public static class CollectionExtensionsCore
  {
      // TODO: Port to legacy from here.
-        
-     public static void Add<T>(this ICollection<T> collection, params T[] items)
-     {
-         ThrowIfNull(collection);
-         ThrowIfNull(items);
-            
-         foreach (var x in items)
-         {
-             collection.Add(x);
-         }
-     }
 
      public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
      {

@@ -8,6 +8,12 @@
 
 namespace JJ.Framework.Collections.Core.docs;
 
+/// <summary>
+/// Add multiple items to a collection by means of a comma separated argument list, e.g. myCollection.Add(1, 5,
+/// 12);
+/// </summary>
+public struct _addwithparams;
+
 /// <summary> 
 /// Allow specifying 1 value as a list, but turn it into two repeating ones,
 /// as a helper for post and fence problems.

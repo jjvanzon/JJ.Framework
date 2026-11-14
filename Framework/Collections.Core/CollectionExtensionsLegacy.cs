@@ -2,6 +2,18 @@
 
 public static class CollectionExtensionsLegacy
 {
+    /// <inheritdoc cref="_addwithparams" />
+    public static void Add<T>(this ICollection<T> collection, params IEnumerable<T> items)
+    {
+         if (collection == null) throw new ArgumentNullException(nameof(collection));
+         if (items == null) throw new ArgumentNullException(nameof(items));
+            
+         foreach (var x in items)
+         {
+             collection.Add(x);
+         }
+    }
+
     /// <summary> Overload of Concat that takes a single item, e.g. myCollection.Concat(myItem); </summary>
     public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, T second) => first.Concat(new[] { second });
         
