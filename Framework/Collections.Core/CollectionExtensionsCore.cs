@@ -4,15 +4,14 @@
  {
      // TODO: Port to legacy from here.
         
-     public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
+     public static void Add<T>(this ICollection<T> collection, params T[] items)
      {
-         if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
-         if (action == null) throw new ArgumentNullException(nameof(action));
-
-         int i = 0;
-         foreach (var x in enumerable)
+         ThrowIfNull(collection);
+         ThrowIfNull(items);
+            
+         foreach (var x in items)
          {
-             action(x, i++);
+             collection.Add(x);
          }
      }
 
@@ -24,6 +23,18 @@
          foreach (var x in items)
          {
              collection.Add(x);
+         }
+     }
+        
+     public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
+     {
+         if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+         if (action == null) throw new ArgumentNullException(nameof(action));
+
+         int i = 0;
+         foreach (var x in enumerable)
+         {
+             action(x, i++);
          }
      }
 
@@ -38,16 +49,4 @@
              dest.Remove(item);
          }
      }
-        
-     public static void Add<T>(this ICollection<T> collection, params T[] items)
-     {
-         ThrowIfNull(collection);
-         ThrowIfNull(items);
-            
-         foreach (var x in items)
-         {
-             collection.Add(x);
-         }
-     }
-
  }
