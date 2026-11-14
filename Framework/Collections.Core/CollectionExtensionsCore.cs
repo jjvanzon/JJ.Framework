@@ -1,41 +1,30 @@
-﻿ namespace JJ.Framework.Collections.Core;
+﻿namespace JJ.Framework.Collections.Core;
 
- public static class CollectionExtensionsCore
- {
-     // TODO: Port to legacy from here.
+public static class CollectionExtensionsCore
+{
+    // TODO: Port to legacy from here.
+       
+    public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
+    {
+        if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+        if (action == null) throw new ArgumentNullException(nameof(action));
 
-     public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
-     {
-         ThrowIfNull(collection);
-         ThrowIfNull(items);
-            
-         foreach (var x in items)
-         {
-             collection.Add(x);
-         }
-     }
-        
-     public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
-     {
-         if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
-         if (action == null) throw new ArgumentNullException(nameof(action));
+        int i = 0;
+        foreach (var x in enumerable)
+        {
+            action(x, i++);
+        }
+    }
 
-         int i = 0;
-         foreach (var x in enumerable)
-         {
-             action(x, i++);
-         }
-     }
+    /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;. </summary>
+    public static void RemoveRange<T>(this ICollection<T> dest, IEnumerable<T> source)
+    {
+        if (dest == null) throw new ArgumentNullException(nameof(dest));
+        if (source == null) throw new ArgumentNullException(nameof(source));
 
-     /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;. </summary>
-     public static void RemoveRange<T>(this ICollection<T> dest, IEnumerable<T> source)
-     {
-         if (dest == null) throw new ArgumentNullException(nameof(dest));
-         if (source == null) throw new ArgumentNullException(nameof(source));
-
-         foreach (T item in source)
-         {
-             dest.Remove(item);
-         }
-     }
- }
+        foreach (T item in source)
+        {
+            dest.Remove(item);
+        }
+    }
+}

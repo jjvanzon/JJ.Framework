@@ -2,11 +2,25 @@
 
 public static class CollectionExtensionsLegacy
 {
+    // TODO: Add method taking array for perf ??
+
     /// <inheritdoc cref="_addwithparams" />
     public static void Add<T>(this ICollection<T> collection, params IEnumerable<T> items)
     {
          if (collection == null) throw new ArgumentNullException(nameof(collection));
          if (items == null) throw new ArgumentNullException(nameof(items));
+            
+         foreach (var x in items)
+         {
+             collection.Add(x);
+         }
+    }
+
+    /// <inheritdoc cref="_addrange" />
+    public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
+    {
+        if (collection == null) throw new ArgumentNullException(nameof(collection));
+        if (items == null) throw new ArgumentNullException(nameof(items));
             
          foreach (var x in items)
          {
