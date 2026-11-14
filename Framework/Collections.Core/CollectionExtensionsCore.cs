@@ -2,19 +2,6 @@
 
  public static class CollectionExtensionsCore
  {
-     /// <inheritdoc cref="_sumoftimespan" />
-     public static TimeSpan Sum(this IEnumerable<TimeSpan> timeSpans)
-     {
-         if (timeSpans == null) throw new ArgumentNullException(nameof(timeSpans));
-         return timeSpans.Aggregate((x, y) => x + y);
-     }
-        
-     /// <inheritdoc cref="_sumoftimespan" />
-     public static TimeSpan Sum<T>(this IEnumerable<T> source, Func<T, TimeSpan> selector)
-     {
-         return source.Select(selector).Sum();
-     }
-
      // TODO: Port to legacy from here.
         
      public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)

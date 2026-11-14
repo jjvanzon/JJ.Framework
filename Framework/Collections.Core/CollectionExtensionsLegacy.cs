@@ -127,7 +127,20 @@ public static class CollectionExtensionsLegacy
 
         return product;
     }
-
+     
+    /// <inheritdoc cref="_sumoftimespan" />
+    
+    public static TimeSpan Sum(this IEnumerable<TimeSpan> timeSpans)
+    {
+        if (timeSpans == null) throw new ArgumentNullException(nameof(timeSpans));
+        return timeSpans.Aggregate((x, y) => x + y);
+    }
+       
+    /// <inheritdoc cref="_sumoftimespan" />
+    public static TimeSpan Sum<T>(this IEnumerable<T> source, Func<T, TimeSpan> selector)
+    {
+        return source.Select(selector).Sum();
+    }
 
     /// <summary>
     /// Distinct that takes a key selector that determines what makes an item unique, e.g. myItems.Distinct(x => x.LastName);
