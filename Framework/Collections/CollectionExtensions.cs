@@ -565,9 +565,7 @@ namespace JJ.Framework.Collections
             return queue.Peek();
         }
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
             => collection.Select(selector).Product();
 
@@ -590,15 +588,11 @@ namespace JJ.Framework.Collections
             return product;
         }
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static float Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, float> selector)
             => collection.Select(selector).Product();
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static float Product(this IEnumerable<float> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -617,15 +611,11 @@ namespace JJ.Framework.Collections
             return product;
         }
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static int Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, int> selector)
             => collection.Select(selector).Product();
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static int Product(this IEnumerable<int> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -644,15 +634,11 @@ namespace JJ.Framework.Collections
             return product;
         }
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static long Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, long> selector)
             => collection.Select(selector).Product();
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static long Product(this IEnumerable<long> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -671,15 +657,11 @@ namespace JJ.Framework.Collections
             return product;
         }
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static decimal Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, decimal> selector)
             => collection.Select(selector).Product();
 
-        /// <summary>
-        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
-        /// </summary>
+        /// <inheritdoc cref="_product" />
         public static decimal Product(this IEnumerable<decimal> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
