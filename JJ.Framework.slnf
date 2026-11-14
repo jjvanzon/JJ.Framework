@@ -4,6 +4,7 @@
     "projects": [
       "Framework\\Build\\JJ.Framework.Build.csproj",
       "Framework\\Business.Legacy.TrimTests\\JJ.Framework.Business.Legacy.TrimTests.csproj",
+      "Framework\\Collections.Core.Tests\\JJ.Framework.Collections.Core.Tests.csproj",
       "Framework\\Collections.Core\\JJ.Framework.Collections.Core.csproj",
       "Framework\\Common.Core.Tests.Helpers\\JJ.Framework.Common.Core.Tests.Helpers.csproj",
       "Framework\\Common.Core.Tests\\JJ.Framework.Common.Core.Tests.csproj",

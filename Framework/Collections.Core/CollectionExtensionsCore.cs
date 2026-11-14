@@ -1,13 +1,15 @@
-﻿namespace JJ.Framework.Collections.Core
+﻿ namespace JJ.Framework.Collections.Core
 {
     public static class CollectionExtensionsCore
     {
+        /// <inheritdoc cref="_sumoftimespan" />
         public static TimeSpan Sum(this IEnumerable<TimeSpan> timeSpans)
         {
             if (timeSpans == null) throw new ArgumentNullException(nameof(timeSpans));
             return timeSpans.Aggregate((x, y) => x + y);
         }
         
+        /// <inheritdoc cref="_sumoftimespan" />
         public static TimeSpan Sum<T>(this IEnumerable<T> source, Func<T, TimeSpan> selector)
         {
             return source.Select(selector).Sum();
@@ -24,6 +26,8 @@
         /// <inheritdoc cref="_onebecomestwo" />
         public static T[] OneBecomesTwo<T>(this T[] list) => OneBecomesTwo((IList<T>)list).ToArray();
         
+        // TODO: Port to legacy from here.
+
         /// <inheritdoc cref="_product" />
         public static double Product(this IEnumerable<double> collection)
         {
@@ -31,13 +35,13 @@
             
             var array = collection as double[] ?? collection.ToArray();
             
-            if (!array.Any()) return 1;
+            if (array.Length == 0) return 1;
             
-            double product = array.FirstOrDefault();
-            
-            foreach (double value in array.Skip(1))
+            double product = array[0];
+
+            for (int i = 1; i < array.Length; i++)
             {
-                product *= value;
+                product *= array[i];
             }
             
             return product;

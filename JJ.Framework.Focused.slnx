@@ -41,6 +41,7 @@
     <File Path="NuGet.config" />
     <File Path="README.MD" />
   </Folder>
+  <Project Path="Framework/Collections.Core.Tests/JJ.Framework.Collections.Core.Tests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\Collections.Core\JJ.Framework.Collections.Core.csproj" />
 </Solution>

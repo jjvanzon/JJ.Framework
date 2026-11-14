@@ -9,13 +9,18 @@
 namespace JJ.Framework.Collections.Core.docs;
 
 /// <summary> 
+/// Allow specifying 1 value as a list, but turn it into two repeating ones,
+/// as a helper for post and fence problems.
+/// </summary> 
+public struct _onebecomestwo;
+
+/// <summary> 
 /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
 /// If the collection is empty, returns 1 (the null-operation for a multiplication).
 /// </summary> 
 public struct _product;
 
-/// <summary> 
-/// Allow specifying 1 value as a list, but turn it into two repeating ones,
-/// as a helper for post and fence problems.
-/// </summary> 
-public struct _onebecomestwo;
+/// <summary>
+/// An overload of the Sum LINQ method that takes TimeSpans.
+/// </summary>
+public struct _sumoftimespan;
