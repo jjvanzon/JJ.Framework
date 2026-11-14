@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Linq;
 using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Collections.Tests
 {

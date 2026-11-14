@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
 // ReSharper disable SuggestVarOrType_Elsewhere
 // ReSharper disable ArrangeTypeMemberModifiers
 // ReSharper disable ArrangeMethodOrOperatorBody
