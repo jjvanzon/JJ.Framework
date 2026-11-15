@@ -32,4 +32,23 @@ public class AddTests
         Throws(() => nullColl!.Add("", ""), "null", "collection");
         Throws(() => notNullColl.Add(nullEnumerable!), "null", "items");
     }
+
+    [TestMethod]
+    public void Test_Add_WithIList_CollectionsCore_DoesNotClash_WithCommonLegacy()
+    {
+        {
+            IList<int> list = [ 1, 2, 3 ];
+            list.Add(3, 4, 5);
+            int[] expected = [ 1, 2, 3, 3, 4, 5 ];
+            int[] actual = list.ToArray();
+            CollectionAssert.AreEqual(expected, actual);
+        }
+        {
+            IList<int> list = [ 1, 2, 3 ];
+            IListExtensions.Add(list, 3, 4, 5);
+            int[] expected = [ 1, 2, 3, 3, 4, 5 ];
+            int[] actual = list.ToArray();
+            CollectionAssert.AreEqual(expected, actual);
+        }
+    }
 }
