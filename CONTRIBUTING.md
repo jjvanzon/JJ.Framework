@@ -87,8 +87,8 @@ Versioning
 - The `.Core`-suffixed projects are released with versions in the range of `1.8.x` or above, signaling the forward continuation.
 
 
-Namespaces
-----------
+Namespaces & Suffixes
+---------------------
 
 Here's our naming scheme to juggle both old and new:
 
@@ -108,13 +108,13 @@ JJ.Framework.Configuration.Core
 - `.Core` (`JJ.Framework.Configuration.Core`):  
   Either brand-new development or code copied from the __latest__ `legacy` code. This way, we don't stifle innovation while we're working with legacy code.
 
-For code elements such as classes and methods, `Legacy` suffixes and suffix-free variants get a bit more intermixed. The context usually explains itself whether it's `Core` or `Legacy` code. The `Legacy` suffix is basically used when old conflicts with new. The `Ex` suffix ("extended") can also be used where otherwise mixing `Core` and `Legacy` suffixes can become a bit intermixed. 
+For code elements such as classes and methods, `Legacy` suffixes and suffix-free variants get a bit more intermixed. The context usually explains itself whether it's `Core` or `Legacy` code. The `Legacy` suffix is basically used when old would conflict with new. The `Ex` suffix ("extended") can also be used when adding new code to legacy projects, and sometimes shared back with the 'legacy' branch.
 
 
 Code Copies
 -----------
 
-`.LEeacy` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Legacy`, we get all the sweet stuff out there that we want.
+`.Legacy` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Legacy`, we get all the sweet stuff out there that we want.
 
 
 The King, the Queen and the Core
