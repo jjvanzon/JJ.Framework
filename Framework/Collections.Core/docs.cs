@@ -55,6 +55,14 @@ public struct _onebecomestwo;
 public struct _product;
 
 /// <summary>
+/// AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;, but it takes items/collections instead of indices. Example:
+/// <code>
+/// list.RemoveRange("Orange", "Peach");
+/// </code>
+/// </summary>
+public struct _removerange;
+
+/// <summary>
 /// An overload of the Sum LINQ method that takes TimeSpans.
 /// </summary>
 public struct _sumoftimespan;

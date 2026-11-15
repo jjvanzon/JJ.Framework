@@ -222,6 +222,18 @@ public static class CollectionExtensionsLegacy
 
         return product;
     }
+    
+    /// <inheritdoc cref="_removerange" />
+    public static void RemoveRange<T>(this ICollection<T> dest, params IEnumerable<T> source)
+    {
+        if (dest == null) throw new ArgumentNullException(nameof(dest));
+        if (source == null) throw new ArgumentNullException(nameof(source));
+
+        foreach (T item in source)
+        {
+            dest.Remove(item);
+        }
+    }
      
     /// <inheritdoc cref="_sumoftimespan" />
     public static TimeSpan Sum(this IEnumerable<TimeSpan> timeSpans)
