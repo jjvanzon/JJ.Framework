@@ -3,8 +3,6 @@ namespace JJ.Framework.Collections.Legacy;
 
 public static class CollectionExtensionsEx
 {
-    // TODO: Add method taking array for perf ??
-
     /// <inheritdoc cref="_addwithparams" />
     public static void Add<T>(this ICollection<T> collection, params IEnumerable<T> items)
     {
