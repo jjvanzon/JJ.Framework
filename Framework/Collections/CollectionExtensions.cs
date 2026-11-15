@@ -715,6 +715,18 @@ namespace JJ.Framework.Collections
             int index = IndexOf(collection, predicate);
             collection.RemoveAt(index);
         }
+            
+        /// <inheritdoc cref="_removerange" />
+        public static void RemoveRange<T>(this ICollection<T> dest, params IEnumerable<T> source)
+        {
+            if (dest == null) throw new ArgumentNullException(nameof(dest));
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
+            foreach (T item in source)
+            {
+                dest.Remove(item);
+            }
+        }
 
         /// <summary>
         /// Repeats a collection a number of times and returns a new collection.
