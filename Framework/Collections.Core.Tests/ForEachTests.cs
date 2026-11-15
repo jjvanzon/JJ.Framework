@@ -1,8 +1,17 @@
 ﻿namespace JJ.Framework.Collections.Core.Tests;
 
+using static Console;
+
 [TestClass]
 public class ForEachTests
 {
+    [TestMethod]
+    public void Test_ForEach_Example()
+    {
+        var myColl = new List<string> { "Apple", "Orange" };
+        myColl.ForEach((x, i) => WriteLine(x + "[" + i + "]"));
+    }
+
     [TestMethod]
     public void Test_ForEach_WithList_UsesDotNetVariant()
     {        

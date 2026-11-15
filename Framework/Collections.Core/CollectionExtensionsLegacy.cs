@@ -73,6 +73,19 @@ public static class CollectionExtensionsLegacy
         return source.Where(x => !predicate(x));
     }
     
+    /// <inheritdoc cref="_foreachwithindex" />       
+    public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
+    {
+        if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+        if (action == null) throw new ArgumentNullException(nameof(action));
+
+        int i = 0;
+        foreach (var x in enumerable)
+        {
+            action(x, i++);
+        }
+    }
+
     /// <summary>
     /// Similar to OfType&lt;T&gt; but now taking a Type.
     /// This misses the advantage of automatically casting items to the desired type.

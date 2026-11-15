@@ -3,18 +3,6 @@
 public static class CollectionExtensionsCore
 {
     // TODO: Port to legacy from here.
-       
-    public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
-    {
-        if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
-        if (action == null) throw new ArgumentNullException(nameof(action));
-
-        int i = 0;
-        foreach (var x in enumerable)
-        {
-            action(x, i++);
-        }
-    }
 
     /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;. </summary>
     public static void RemoveRange<T>(this ICollection<T> dest, IEnumerable<T> source)
