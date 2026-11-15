@@ -18,6 +18,31 @@ public struct _addrange;
 /// </summary>
 public struct _addwithparams;
 
+/// <summary>
+/// <para>
+/// Variant of the <c>.ForEach</c> LINQ method that gives you access to an index number for each element you iterate over.
+/// It also works with more collection types than .NET's original <c>List&lt;T&gt;</c> method.
+/// </para>
+/// 
+/// <para>
+/// Example:
+/// </para>
+/// 
+/// <code>
+/// myColl.ForEach((x, i) =&gt; WriteLine(x + "[" + i + "]"));
+/// </code>
+/// 
+/// <para>
+/// Output:
+/// </para>
+/// 
+/// <code>
+/// Apple[0]
+/// Orange[1]
+/// </code>
+/// </summary>
+public struct _foreachwithindex;
+
 /// <summary> 
 /// Allow specifying 1 value as a list, but turn it into two repeating ones,
 /// as a helper for post and fence problems.

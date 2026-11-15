@@ -21,13 +21,13 @@ namespace JJ.Framework.Collections
         /// <inheritdoc cref="_addwithparams" />
         public static void Add<T>(this ICollection<T> collection, params IEnumerable<T> items)
         {
-             if (collection == null) throw new ArgumentNullException(nameof(collection));
-             if (items == null) throw new ArgumentNullException(nameof(items));
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (items == null) throw new ArgumentNullException(nameof(items));
             
-             foreach (var x in items)
-             {
-                 collection.Add(x);
-             }
+            foreach (var x in items)
+            {
+                collection.Add(x);
+            }
         }
 
         /// <summary>
@@ -367,6 +367,19 @@ namespace JJ.Framework.Collections
             foreach (T x in enumerable)
             {
                 action(x);
+            }
+        }
+
+        /// <inheritdoc cref="_foreachwithindex" />       
+        public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
+        {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
+            int i = 0;
+            foreach (var x in enumerable)
+            {
+                action(x, i++);
             }
         }
 
