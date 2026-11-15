@@ -26,7 +26,7 @@ public class CollectionExtensionsTestsEx
     }
 
     [TestMethod]
-    public void ForEach_Core_Test()
+    public void ForEach_TestEx()
     {
         List<int> list = [ 1, 2, 3 ];
         IEnumerable<int> enumerable = list;
@@ -42,7 +42,7 @@ public class CollectionExtensionsTestsEx
     }
 
     [TestMethod]
-    public void ForEach_Exceptions_Core_Test()
+    public void ForEach_Exceptions_TestEx()
     {
         {
             IEnumerable<int>? enumerable = null;
@@ -55,7 +55,7 @@ public class CollectionExtensionsTestsEx
     }
 
     [TestMethod]
-    public void Except_WithSingleItem_Core_Test()
+    public void Except_WithSingleItem_TestEx()
     {
         int[] input = [ 1, 2, 3 ];
         {
@@ -76,7 +76,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Except_WithDistinctFlag_Core_Test()
+    public void Except_WithDistinctFlag_TestEx()
     {
         int[] input = [ 1, 2, 2, 3 ];
         {
@@ -97,7 +97,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Except_WithSingleItem_NullExceptions_Core_Test()
+    public void Except_WithSingleItem_NullExceptions_TestEx()
     {
         int[]? nullColl = null;
         int item = 1;
@@ -105,7 +105,7 @@ public class CollectionExtensionsTestsEx
     }
 
     [TestMethod]
-    public void Except_WithDistinctFlag_NullExceptions_Core_Test()
+    public void Except_WithDistinctFlag_NullExceptions_TestEx()
     {
         int[]? nullColl = null;
         int[] coll = [ 1, 2, 3 ];
@@ -114,7 +114,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Union_WithSingleItem_Core_Test()
+    public void Union_WithSingleItem_TestEx()
     {
         int[] input = [ 1, 2, 3 ];
         {
@@ -130,7 +130,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Union_WithSingleItem_NullExceptions_Core_Test()
+    public void Union_WithSingleItem_NullExceptions_TestEx()
     {
         int[]? nullColl = null;
         int item = 1;
@@ -139,7 +139,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Distinct_WithMultipleKeyDelegates_Core_Test()
+    public void Distinct_WithMultipleKeyDelegates_TestEx()
     {
         {
             var input    = new[] { (a:1, b:2), (a:1, b:2), (a:3, b:4) };
@@ -156,7 +156,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Distinct_WithMultipleKeyDelegates_NullExceptions_Core_Test()
+    public void Distinct_WithMultipleKeyDelegates_NullExceptions_TestEx()
     {
         Item[] collection = [ new(1,2), new(1,3), new(3,4), new(3,null) ];
         Item[]? nullCollection = null;
@@ -170,7 +170,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Distinct_WithMultipleKeyDelegates_NullKeyValues_Core_Test()
+    public void Distinct_WithMultipleKeyDelegates_NullKeyValues_TestEx()
     {
         // But null key values are fine.
         Item[] input    = [ new(1,null), new(1,2), new(3,4), new(3,null) ];
@@ -180,7 +180,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Distinct_ByAnonymousKey_Core_Test()
+    public void Distinct_ByAnonymousKey_TestEx()
     {
         // Arrange
         var people = new Person[]
@@ -204,7 +204,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void AsEnumerable_Core_Test()
+    public void AsEnumerable_TestEx()
     {
         int input = 1;
         IEnumerable<int> enumerable = input.AsEnumerable();
@@ -214,7 +214,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void AddRange_Core_Test()
+    public void AddRange_TestEx()
     {
         IList<int> list  = [ 1, 2, 3 ];
         IList<int> list2 = [ 3, 4, 5 ];
@@ -225,7 +225,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void AddRange_NullExceptions_Core_Test()
+    public void AddRange_NullExceptions_TestEx()
     {
         IList<int>? nullList = null;
         IList<int> list = [ 1, 2, 3 ];
@@ -234,7 +234,7 @@ public class CollectionExtensionsTestsEx
     }
     
     [TestMethod]
-    public void Add_WithParams_Core_Test()
+    public void Add_WithParams_TestEx()
     {
         IList<int> list = [ 1, 2, 3 ];
         list.Add(3, 4, 5);
@@ -244,7 +244,7 @@ public class CollectionExtensionsTestsEx
     }
 
     [TestMethod]
-    public void Add_WithParams_NullExceptions_Core_Test()
+    public void Add_WithParams_NullExceptions_TestEx()
     {
         IList<int>? nullList = null;
         Throws(() => nullList.Add(1, 2, 3), "collection", "cannot be null");

@@ -4,7 +4,7 @@
 public class KeyValuePairHelperTestsEx
 {
     [TestMethod]
-    public void KeyValuePairHelper_ConvertNamesAndValuesListToDictionary_Core_Test()
+    public void KeyValuePairHelper_ConvertNamesAndValuesListToDictionary_TestEx()
     {
         IDictionary<string, object> dictionary =
             KeyValuePairHelper.ConvertNamesAndValuesListToDictionary("Name1", 5, "Name2", 7, "Name3", 11);
@@ -23,7 +23,7 @@ public class KeyValuePairHelperTestsEx
     }
     
     [TestMethod]
-    public void KeyValuePairHelper_ConvertNamesAndValuesListToKeyValuePairs_Core_Test()
+    public void KeyValuePairHelper_ConvertNamesAndValuesListToKeyValuePairs_TestEx()
     {
         IList<KeyValuePair<string, object>> list =
             KeyValuePairHelper.ConvertNamesAndValuesListToKeyValuePairs("Name1", 5, "Name2", 7, "Name3", 11);
@@ -47,7 +47,7 @@ public class KeyValuePairHelperTestsEx
     
     /// <inheritdoc cref="_keyvaluepairnulltest" />
     [TestMethod]
-    public void KeyValuePairHelper_ConvertNamesAndValuesListToDictionary_NullInput_Core_Test()
+    public void KeyValuePairHelper_ConvertNamesAndValuesListToDictionary_NullInput_TestEx()
     {
         IDictionary<string, object> dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(null);
         IsNotNull(dictionary);
@@ -56,7 +56,7 @@ public class KeyValuePairHelperTestsEx
     
     /// <inheritdoc cref="_keyvaluepairnulltest" />
     [TestMethod]
-    public void KeyValuePairHelper_ConvertNamesAndValuesListToKeyValuePairs_NullInput_Core_Test()
+    public void KeyValuePairHelper_ConvertNamesAndValuesListToKeyValuePairs_NullInput_TestEx()
     {
         IList<KeyValuePair<string, object>> list = KeyValuePairHelper.ConvertNamesAndValuesListToKeyValuePairs(null);
         IsNotNull(list);

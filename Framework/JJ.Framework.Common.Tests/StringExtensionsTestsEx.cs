@@ -9,7 +9,7 @@ public class StringExtensionsTestsEx
     // Left
     
     [TestMethod]
-    public void Left_Core_Test() 
+    public void Left_MainCase() 
         => AreEqual("12", () => "12345".Left(2));
 
     [TestMethod]
@@ -32,7 +32,7 @@ public class StringExtensionsTestsEx
     // Right
     
     [TestMethod]
-    public void Right_Core_Test() 
+    public void Right_MainCase() 
         => AreEqual("45", () => "12345".Right(2));
     
     [TestMethod]
@@ -101,7 +101,7 @@ public class StringExtensionsTestsEx
     // CutLeft Length
     
     [TestMethod]
-    public void CutLeft_Length_Core_Test() 
+    public void CutLeft_Length_MainCase() 
         => AreEqual("345", () => "12345".CutLeft(2));
     
     [TestMethod]
@@ -174,7 +174,7 @@ public class StringExtensionsTestsEx
     // CutRight Length
     
     [TestMethod]
-    public void CutRight_Length_Core_Test() 
+    public void CutRight_Length_MainCase() 
         => AreEqual("123", () => "12345".CutRight(2));
     
     [TestMethod]
@@ -201,7 +201,7 @@ public class StringExtensionsTestsEx
     // FromTill
     
     [TestMethod]
-    public void FromTill_Core_Test() 
+    public void FromTill_MainCase() 
         => AreEqual("34", () => "12345".FromTill(2, 3));
     
     [TestMethod]

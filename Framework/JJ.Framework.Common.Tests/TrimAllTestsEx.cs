@@ -5,7 +5,7 @@ namespace JJ.Framework.Common.Legacy.Tests;
 public class TrimAllTestsEx
 {
     [TestMethod]
-    public void TrimAll_Core_Test()
+    public void TrimAll_TestEx()
     {
         // Arrange
         IEnumerable<string> inputTexts = [ "  test1 \n ", " \r test2", "test3 \t " ];
@@ -21,7 +21,7 @@ public class TrimAllTestsEx
     }
     
     [TestMethod]
-    public void TrimAll_NullException_Core_Test()
+    public void TrimAll_NullException_TestEx()
     {
         IEnumerable<string>? nullCollection = null;
         
