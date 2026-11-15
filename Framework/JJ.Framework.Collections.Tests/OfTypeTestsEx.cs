@@ -6,7 +6,7 @@ public class OfTypeTestsEx
 {
     private abstract class Animal 
     {
-        public string Name { get; set; } 
+        public string Name { get; set; } = "";
     }
 
     private class Dog : Animal
