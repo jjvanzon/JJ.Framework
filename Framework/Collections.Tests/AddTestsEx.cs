@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Collections.Tests;
 
 [TestClass]
-public class AddTests
+public class AddTestsEx
 {
     [TestMethod]
     public void Test_Add_WithParams()

@@ -2,7 +2,7 @@
 namespace JJ.Framework.Collections.Tests;
 
 [TestClass]
-public class ProductTests
+public class ProductTestsEx
 {
     private class TestItem
     {

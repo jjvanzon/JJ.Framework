@@ -2,7 +2,7 @@
 namespace JJ.Framework.Collections.Tests;
 
 [TestClass]
-public class AddRangeTests
+public class AddRangeTestsEx
 {
     [TestMethod]
     public void Test_AddRange_WithParams()
