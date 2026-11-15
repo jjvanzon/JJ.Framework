@@ -28,7 +28,7 @@ global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTyp
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
 global using static JJ.Framework.Common.Core.NameHelper;
-global using static JJ.Framework.Collections.Core.StaticEnumerable;
+global using static JJ.Framework.Collections.Core.StaticEnumerableEx;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.Legacy.ExpressionHelper;
 global using static JJ.Framework.Reflection.Legacy.ReflectionHelper;

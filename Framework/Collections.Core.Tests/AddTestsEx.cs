@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Collections.Core.Tests;
 
 [TestClass]
-public class AddRangeTests
+public class AddTestsEx
 {
     [TestMethod]
-    public void Test_AddRange_WithParams()
+    public void Test_Add_WithParams()
     {
         ICollection<string> coll = [ "Apple", "Orange", "Banana" ];
         AreEqual(3, coll.Count);
@@ -12,7 +12,7 @@ public class AddRangeTests
         AreEqual("Orange", coll.ElementAt(1));
         AreEqual("Banana", coll.ElementAt(2));
     
-        coll.AddRange(["Prune", "Pear"]);
+        coll.Add("Prune", "Pear");
 
         AreEqual(5, coll.Count);
         AreEqual("Apple",  coll.ElementAt(0));
@@ -23,36 +23,29 @@ public class AddRangeTests
     }
 
     [TestMethod]
-    public void Test_AddRange_NullExceptions()
+    public void Test_Add_NullExceptions()
     {
         ICollection<string>? nullColl = null;
         ICollection<string> notNullColl = [ "Apple", "Orange", "Banana" ];
         IEnumerable<string>? nullEnumerable = nullColl;
-        IEnumerable<string> notNullEnumerable = [ "", "" ];
 
-        Throws(() => nullColl!.AddRange(notNullEnumerable), "null", "collection");
-        Throws(() => notNullColl.AddRange(nullEnumerable!), "null", "items");
+        Throws(() => nullColl!.Add("", ""), "null", "collection");
+        Throws(() => notNullColl.Add(nullEnumerable!), "null", "items");
     }
-    
+
     [TestMethod]
-    public void Test_AddRange_WithIList_CollectionsCore_DoesNotClash_WithCommonLegacy()
+    public void Test_Add_WithIList_CollectionsCore_DoesNotClash_WithCommonLegacy()
     {
         {
-            IList<int> list  = [ 1, 2, 3 ];
-            IList<int> list2 = [ 3, 4, 5 ];
-
-            list.AddRange(list2);
-
+            IList<int> list = [ 1, 2, 3 ];
+            list.Add(3, 4, 5);
             int[] expected = [ 1, 2, 3, 3, 4, 5 ];
             int[] actual = list.ToArray();
             CollectionAssert.AreEqual(expected, actual);
         }
         {
-            IList<int> list  = [ 1, 2, 3 ];
-            IList<int> list2 = [ 3, 4, 5 ];
-
-            IListExtensions.AddRange(list, list2);
-
+            IList<int> list = [ 1, 2, 3 ];
+            IListExtensions.Add(list, 3, 4, 5);
             int[] expected = [ 1, 2, 3, 3, 4, 5 ];
             int[] actual = list.ToArray();
             CollectionAssert.AreEqual(expected, actual);

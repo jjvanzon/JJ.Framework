@@ -3,7 +3,7 @@
 using static Console;
 
 [TestClass]
-public class ForEachTests
+public class ForEachTestsEx
 {
     [TestMethod]
     public void Test_ForEach_Example()

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Collections.Core\JJ.Framework.Collections.Core.csproj" />
+    <ProjectReference Include="..\Collections.Core\JJ.Framework.Collections.Legacy.csproj" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

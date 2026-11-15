@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Collections.Core.Tests;
 
 [TestClass]
-public class RemoveRangeTests
+public class RemoveRangeTestsEx
 {
     [TestMethod]
     public void Test_RemoveRange_ListOfT_WithIndexAndCount()

@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Collections.Core;
 
-public static class StaticEnumerable
+public static class StaticEnumerableEx
 {
     /// <inheritdoc cref="Enumerable.Union{T}(IEnumerable{T}, IEnumerable{T})" />
     public static IEnumerable<TSource> Union<TSource>(IEnumerable<TSource> first, IEnumerable<TSource> second) 
