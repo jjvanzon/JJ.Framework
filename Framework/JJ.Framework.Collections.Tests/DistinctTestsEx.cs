@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Collections.Legacy.Tests;
+﻿// ReSharper disable ExpressionIsAlwaysNull
+namespace JJ.Framework.Collections.Legacy.Tests;
 
 [TestClass]
 public class DistinctTestsEx
@@ -9,7 +10,7 @@ public class DistinctTestsEx
         public string LastName { get; set; } = "";
     }
 
-    private static readonly TestItem[] testItems =
+    private static readonly TestItem[] _testItems =
     [
         new() { FirstName = "Bob",   LastName = "Boomer"  },
         new() { FirstName = "Alice", LastName = "Boomer"  },
@@ -22,31 +23,31 @@ public class DistinctTestsEx
     [TestMethod]
     public void Test_Distinct_ByLambda()
     {
-        var byFirstName        = testItems.Distinct(x => x.FirstName).ToArray();
-        var byLastName         = testItems.Distinct(x => x.LastName).ToArray();
-        var byFirstAndLastName = testItems.Distinct(x => new { x.FirstName, x.LastName }).ToArray();
-        var byNothing          = testItems.Distinct(x => x).ToArray();
+        var byFirstName        = _testItems.Distinct(x => x.FirstName).ToArray();
+        var byLastName         = _testItems.Distinct(x => x.LastName).ToArray();
+        var byFirstAndLastName = _testItems.Distinct(x => new { x.FirstName, x.LastName }).ToArray();
+        var byNothing          = _testItems.Distinct(x => x).ToArray();
 
-        IsNotNull(   testItems);
-        AreEqual (6, testItems.Length);
-        IsNotNull(   testItems[0]);
-        AreEqual (   testItems[0].FirstName, "Bob"    );
-        AreEqual (   testItems[0].LastName,  "Boomer" );
-        IsNotNull(   testItems[1]);
-        AreEqual (   testItems[1].FirstName, "Alice"  );
-        AreEqual (   testItems[1].LastName,  "Boomer" );
-        IsNotNull(   testItems[2]);
-        AreEqual (   testItems[2].FirstName, "Bob"    );
-        AreEqual (   testItems[2].LastName,  "Ross"   );
-        IsNotNull(   testItems[3]);
-        AreEqual (   testItems[3].FirstName, "Alice"  );
-        AreEqual (   testItems[3].LastName,  "Bobsson");
-        IsNotNull(   testItems[4]);
-        AreEqual (   testItems[4].FirstName, "Ross"   );
-        AreEqual (   testItems[4].LastName,  "Bobsson");
-        IsNotNull(   testItems[5]);
-        AreEqual (   testItems[5].FirstName, "Bob"    );
-        AreEqual (   testItems[5].LastName,  "Boomer" );
+        IsNotNull(   _testItems);
+        AreEqual (6, _testItems.Length);
+        IsNotNull(   _testItems[0]);
+        AreEqual (   _testItems[0].FirstName, "Bob"    );
+        AreEqual (   _testItems[0].LastName,  "Boomer" );
+        IsNotNull(   _testItems[1]);
+        AreEqual (   _testItems[1].FirstName, "Alice"  );
+        AreEqual (   _testItems[1].LastName,  "Boomer" );
+        IsNotNull(   _testItems[2]);
+        AreEqual (   _testItems[2].FirstName, "Bob"    );
+        AreEqual (   _testItems[2].LastName,  "Ross"   );
+        IsNotNull(   _testItems[3]);
+        AreEqual (   _testItems[3].FirstName, "Alice"  );
+        AreEqual (   _testItems[3].LastName,  "Bobsson");
+        IsNotNull(   _testItems[4]);
+        AreEqual (   _testItems[4].FirstName, "Ross"   );
+        AreEqual (   _testItems[4].LastName,  "Bobsson");
+        IsNotNull(   _testItems[5]);
+        AreEqual (   _testItems[5].FirstName, "Bob"    );
+        AreEqual (   _testItems[5].LastName,  "Boomer" );
 
         IsNotNull(   byFirstName);
         AreEqual (3, byFirstName.Length);
@@ -110,5 +111,15 @@ public class DistinctTestsEx
         IsNotNull(   byNothing[5]);
         AreEqual (   byNothing[5].FirstName, "Bob"    );
         AreEqual (   byNothing[5].LastName,  "Boomer" );
+    }
+
+    [TestMethod]
+    public void Test_Distinct_ByLambda_NullExceptions()
+    {
+        TestItem[]? nullItems = null;
+        Func<TestItem, string>? nullSelector = null;
+
+        Throws(() => nullItems!.Distinct(x => x.FirstName).ToArray(), "enumerable", "null");
+        Throws(() => _testItems.Distinct(nullSelector!).ToArray(), "selector", "null");
     }
 }
