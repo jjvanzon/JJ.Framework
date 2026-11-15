@@ -1,7 +1,7 @@
 ﻿
 namespace JJ.Framework.Collections.Core;
 
-public static class CollectionExtensionsLegacy
+public static class CollectionExtensionsEx
 {
     // TODO: Add method taking array for perf ??
 

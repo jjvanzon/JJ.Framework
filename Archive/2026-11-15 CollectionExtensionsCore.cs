@@ -2,5 +2,5 @@
 
 public static class CollectionExtensionsCore
 {
-    // TODO: Port to legacy from here.
+    // Methods moved to CollectionExtensionsLegacy
 }
