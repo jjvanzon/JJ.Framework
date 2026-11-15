@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Collections.Core\JJ.Framework.Collections.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Collections\JJ.Framework.Collections.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 

@@ -40,8 +40,8 @@
     <File Path="NuGet.config" />
     <File Path="README.MD" />
   </Folder>
-  <Project Path="Framework/Collections.Core.Tests/JJ.Framework.Collections.Legacy.Tests.csproj" />
-  <Project Path="Framework/Collections.Core/JJ.Framework.Collections.Legacy.csproj" />
+  <Project Path="Framework/JJ.Framework.Collections.Tests/JJ.Framework.Collections.Legacy.Tests.csproj" />
+  <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
   <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
 </Solution>

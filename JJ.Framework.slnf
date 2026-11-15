@@ -4,8 +4,6 @@
     "projects": [
       "Framework\\Build\\JJ.Framework.Build.csproj",
       "Framework\\Business.Legacy.TrimTests\\JJ.Framework.Business.Legacy.TrimTests.csproj",
-      "Framework\\Collections.Core.Tests\\JJ.Framework.Collections.Legacy.Tests.csproj",
-      "Framework\\Collections.Core\\JJ.Framework.Collections.Legacy.csproj",
       "Framework\\Common.Core.Tests.Helpers\\JJ.Framework.Common.Core.Tests.Helpers.csproj",
       "Framework\\Common.Core.Tests\\JJ.Framework.Common.Core.Tests.csproj",
       "Framework\\Common.Core.TrimTests\\JJ.Framework.Common.Core.TrimTests.csproj",
@@ -43,6 +41,8 @@
       "Framework\\IO.Legacy.TrimTests\\JJ.Framework.IO.Legacy.TrimTests.csproj",
       "Framework\\JJ.Framework.Business.Tests\\JJ.Framework.Business.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Business\\JJ.Framework.Business.Legacy.csproj",
+      "Framework\\JJ.Framework.Collections.Tests\\JJ.Framework.Collections.Legacy.Tests.csproj",
+      "Framework\\JJ.Framework.Collections\\JJ.Framework.Collections.Legacy.csproj",
       "Framework\\JJ.Framework.Common.Tests\\JJ.Framework.Common.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Common\\JJ.Framework.Common.Legacy.csproj",
       "Framework\\JJ.Framework.IO.Tests\\JJ.Framework.IO.Legacy.Tests.csproj",

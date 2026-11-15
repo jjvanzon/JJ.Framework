@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Collections.Core;
+﻿using JJ.Framework.Collections.Legacy;
 using JJ.Framework.Logging.Core.Mappers;
 using static System.Array;
 using static System.StringSplitOptions;

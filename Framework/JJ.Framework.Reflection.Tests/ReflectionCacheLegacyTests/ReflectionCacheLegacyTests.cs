@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using JJ.Framework.Collections;
-using JJ.Framework.Collections.Core;
+using JJ.Framework.Collections.Legacy;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

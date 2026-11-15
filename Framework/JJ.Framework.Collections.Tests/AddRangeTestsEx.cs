@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Collections.Core.Tests;
+﻿namespace JJ.Framework.Collections.Legacy.Tests;
 
 [TestClass]
 public class AddRangeTestsEx

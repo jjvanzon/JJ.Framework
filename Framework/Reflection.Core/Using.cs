@@ -11,7 +11,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using JetBrains.Annotations;
 global using JJ.Framework.SharedProject.Core;
 global using JJ.Framework.Common.Core;
-global using JJ.Framework.Collections.Core;
+global using JJ.Framework.Collections.Legacy;
 global using JJ.Framework.Exceptions.Core;
 global using JJ.Framework.Existence.Core;
 global using JJ.Framework.Reflection.Legacy;
@@ -28,7 +28,7 @@ global using static System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTyp
 global using static JJ.Framework.SharedProject.Core.DynamicallyAccessedMemberTypesEx;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
 global using static JJ.Framework.Common.Core.NameHelper;
-global using static JJ.Framework.Collections.Core.StaticEnumerableEx;
+global using static JJ.Framework.Collections.Legacy.StaticEnumerableEx;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.Legacy.ExpressionHelper;
 global using static JJ.Framework.Reflection.Legacy.ReflectionHelper;

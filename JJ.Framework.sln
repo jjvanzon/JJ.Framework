@@ -104,7 +104,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48.Tests", "Framework\JJ.Framework.Web.Tests\JJ.Framework.Web.Net48.Tests.csproj", "{9362B86B-0351-4E76-BFFE-A9739B5F0522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Legacy", "Framework\Collections.Core\JJ.Framework.Collections.Legacy.csproj", "{32C2B71C-0192-4F3D-8F8D-990A5B61C307}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Legacy", "Framework\JJ.Framework.Collections\JJ.Framework.Collections.Legacy.csproj", "{32C2B71C-0192-4F3D-8F8D-990A5B61C307}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Core", "Framework\Common.Core\JJ.Framework.Common.Core.csproj", "{2C4C1957-CD37-454E-85A8-786AD726A0CF}"
 EndProject
@@ -304,7 +304,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text.Core.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text.Core.TrimTests", "Framework\Text.Core.TrimTests\JJ.Framework.Text.Core.TrimTests.csproj", "{3702247B-DDE0-55EA-509B-E01F7887B6B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Legacy.Tests", "Framework\Collections.Core.Tests\JJ.Framework.Collections.Legacy.Tests.csproj", "{8A854875-94B7-6848-279C-E651E48E8C15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Legacy.Tests", "Framework\JJ.Framework.Collections.Tests\JJ.Framework.Collections.Legacy.Tests.csproj", "{8A854875-94B7-6848-279C-E651E48E8C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

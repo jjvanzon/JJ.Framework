@@ -1,5 +1,5 @@
 ﻿using System.Threading;
-using JJ.Framework.Collections.Core;
+using JJ.Framework.Collections.Legacy;
 using JJ.Framework.Existence.Core;
 using JJ.Framework.Logging.Core.docs;
 using JJ.Framework.Text.Core;

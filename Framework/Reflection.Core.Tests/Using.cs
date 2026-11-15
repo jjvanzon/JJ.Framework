@@ -12,7 +12,7 @@ global using static System.DayOfWeek;
 global using static System.Globalization.CultureInfo;
 global using static System.Reflection.BindingFlags;
 global using static System.String;
-global using static JJ.Framework.Collections.Core.StaticEnumerableEx;
+global using static JJ.Framework.Collections.Legacy.StaticEnumerableEx;
 global using static JJ.Framework.Common.Core.FlagHelper;
 global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Existence.Core.FilledInHelper;

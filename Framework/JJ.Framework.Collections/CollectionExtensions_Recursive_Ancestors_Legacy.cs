@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Collections.Core
+﻿namespace JJ.Framework.Collections.Legacy
 {
     public static class CollectionExtensions_Recursive_Ancestors_Legacy
     {

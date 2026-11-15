@@ -6,7 +6,7 @@
 
 // These are structs, so their syntax colorings are unobtrusive.
 
-namespace JJ.Framework.Collections.Core.docs;
+namespace JJ.Framework.Collections.Legacy.docs;
 
 /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;. </summary>
 public struct _addrange;

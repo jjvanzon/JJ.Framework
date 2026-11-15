@@ -2,4 +2,4 @@
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text;
-global using JJ.Framework.Collections.Core.docs;
+global using JJ.Framework.Collections.Legacy.docs;

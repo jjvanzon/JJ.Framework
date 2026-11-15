@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Build\JJ.Framework.Build.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Collections\JJ.Framework.Collections.Legacy.csproj" />
     <ProjectReference Include="..\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
     <ProjectReference Include="..\Existence.Core\JJ.Framework.Existence.Core.csproj" />
     <ProjectReference Include="..\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
