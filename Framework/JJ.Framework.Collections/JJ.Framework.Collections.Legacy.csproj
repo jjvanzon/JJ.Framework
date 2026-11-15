@@ -5,6 +5,13 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn> <!--Missing doc lenience-->
   </PropertyGroup>
 
+  <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
+    <IsAotCompatible>True</IsAotCompatible>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(IsNet6) Or $(IsNet7)">
+    <IsTrimmable>True</IsTrimmable>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Text.Core\JJ.Framework.Text.Core.csproj" />
   </ItemGroup>
