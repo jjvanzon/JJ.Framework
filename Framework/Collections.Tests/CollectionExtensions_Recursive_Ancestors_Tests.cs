@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using JJ.Framework.Testing;
 
 namespace JJ.Framework.Collections.Tests
 {
     [TestClass]
-    public class CollectionExtensions_Recursive_Ancestors
+    public class CollectionExtensions_Recursive_Ancestors_Tests
     {
         [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
         private class Item
@@ -13,7 +12,7 @@ namespace JJ.Framework.Collections.Tests
             public string Name { get; set; }
             public Item Parent { get; set; }
 
-            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [HasParent={Parent != null}]";
+            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [HasParent={Parent != null}]"; // ncrunch: no coverage
         }
 
         [TestMethod]

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using JetBrains.Annotations;
-
-namespace JJ.Framework.Collections
+﻿namespace JJ.Framework.Collections
 {
     [PublicAPI]
     public static class CollectionExtensions_Recursive_Ancestors
     {
-        public static IEnumerable<T> SelfAndAncestors<T>(this T sourceItem, Func<T, T> selector)
+        public static IEnumerable<T> SelfAndAncestors<T>(this T sourceItem, Func<T, T?> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));
             if (selector == null) throw new ArgumentNullException(nameof(selector));
@@ -19,7 +15,7 @@ namespace JJ.Framework.Collections
             return destHashSet;
         }
 
-        public static IEnumerable<T> SelectAncestors<T>(this T sourceItem, Func<T, T> selector)
+        public static IEnumerable<T> SelectAncestors<T>(this T sourceItem, Func<T, T?> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));
             if (selector == null) throw new ArgumentNullException(nameof(selector));
@@ -31,7 +27,7 @@ namespace JJ.Framework.Collections
             return destHashSet;
         }
 
-        private static void SelectAncestors<T>(T sourceItem, Func<T, T> selector, HashSet<T> destHashSet)
+        private static void SelectAncestors<T>(T sourceItem, Func<T, T?> selector, HashSet<T> destHashSet)
         {
             T ancestor = sourceItem;
             while (true)

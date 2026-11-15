@@ -59,7 +59,7 @@
     <Compile Include="AddRangeTestsEx.cs" />
     <Compile Include="AddTestsEx.cs" />
     <Compile Include="BinarySearchInexactTests.cs" />
-    <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
+    <Compile Include="CollectionExtensions_Recursive_Ancestors_Tests.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable_Tests.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList_Tests.cs" />
     <Compile Include="ForEachTestsEx.cs" />
