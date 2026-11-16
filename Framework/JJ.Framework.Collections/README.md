@@ -3,9 +3,9 @@ JJ.Framework.Collections.Legacy
 
 Expanding `.NET` with extra extension methods for collections. A set of elements released to support legacy `JJ` projects.
 
-Here's a larger variation: [`JJ.Framework.Collections`](https://www.nuget.org/packages/JJ.Framework.Collections).
+Here's a more extended version: [`JJ.Framework.Collections`](https://www.nuget.org/packages/JJ.Framework.Collections)
 
-The current package is a historic pull for legacy purposes with a few other random things added.
+The current package is a historic pull for legacy purposes with a few other random things added for them.
 
 Overloads added for:
 
@@ -92,3 +92,8 @@ An overload of the `Sum` `LINQ` method that takes `TimeSpans`.
 
 A variant of `.NET's` `Union` method but now supporting short static invocation styles e.g.,  
 `Union(list1, list2)`
+
+💬 Feedback 
+------------
+
+Got feedback or questions? You can reach me [here.](https://jjvanzon.github.io/#-how-to-reach-me)

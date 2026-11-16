@@ -342,6 +342,7 @@
       <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net462</Value>
       <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net48</Value>
       <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj:net48</Value>
+      <Value>Framework\Collections.Legacy.TrimTests\JJ.Framework.Collections.Legacy.TrimTests.csproj</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>

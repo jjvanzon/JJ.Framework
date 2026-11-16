@@ -1,0 +1,300 @@
+﻿📋 JJ.Framework | Release Notes
+================================
+
+#### `2025-03-31` | `1.9` : __Build.csproj__
+
+- Internal tooling
+- Triggers initialization at start of [`JJ.Framework`](https://github.com/jjvanzon/JJ.Framework/tree/main) solution build.
+
+#### `2025-06-14` | `2.5` : __Existence.Core__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- Initial release
+
+#### `2025-06-24` | `2.6` : __Flags__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- `spaceMatters` flags everywhere 
+- `caseMatters` replaced `ignoreCase`  
+- `StringBulder`/`string` more combos possible  
+- `x.In(a, b, c)` extension favored over static `In(x, a, b, c)`  
+
+#### `2025-07-02` | `2.7`/`0.250` : __Legacy Lineage__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+- Separate `Legacy` version lineages 
+- For more stable package updates.
+- Expanded IntelliSense docs.
+
+#### `2025-07-21` | `2.8`/`0.250` : __Trimmable Libs__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+- Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps
+
+#### `2026-01-25` | `2.9` : __zeroMatters__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- Flag when you consider `0` meaningful (not nully)
+
+#### `2026-01-27` | `3.0`/`0.250` : __.NET 10__
+
+- Upgraded with explicit support for `.NET 10`
+
+#### `2026-01-28` | `3.1` : __Less Prios__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- Simplify overload picking removing some `[Prio]` attributes
+- Sacrifices direct use of keywords e.g. `Coalesce(null, "Hallo")`; not a real use case anyway.
+
+#### `2026-01-30` | `3.2`/`0.250` : __Leading Flags - Coalesce__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+- Flags at the beginning of the parameter list, now don't come with a performance penalty.
+
+#### `2026-01-31` | `3.3` : __Leading Flags - Contains__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- More notation options for flags for the `Contains` method
+
+#### `2026-02-01` | `3.4` : __Leading Flags - FilledIn__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- Support flags in front for the `FilledIn` method
+
+#### `2026-02-17` | `3.7` : __Clash of the Booleans__
+
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
+- Improved `Coalesce` resolution and performance for 4+ values and collections.
+- Added overloads for reduced clashes between `bool` flags and value lists.
+- Various non-critical renames for clarity and modularity.
+- [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
+- `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
+
+#### `2026-02-23` | `3.8`/`0.250` __Business.Legacy__ 
+
+- [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+- Release of historic version. Fullly covered with meaningful tests. Features:
+- `EntityStatusManager` and `GetListIsDirty`:
+- Framework-agnostic `New`/`Deleted`/`Dirty` flag container.
+- `ISideEffect` for keeping business logic units separated.
+- Bug fix: Entity status `New` and `Deleted` were accidentally stored as `Dirty`.
+
+#### `2026-02-26` | `3.9`/`0.250` : __IO.Legacy__
+
+- [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
+- Full meaningful test coverage, and member docs.
+- Release of historic version `0.250`.
+- Features:
+- `CsvReader`: simple streaming CSV reader supporting quoted fields and escaped double-quotes (`""`).
+- `StreamHelper`: convenience conversions between `Stream`, `byte[]` and `string`
+- `ReadStruct`/`WriteStruct`: methods for simple reading and writing structs to streams.
+- Bug fix: `CsvReader` preserves a trailing escaped quotes
+- Bug fix: `CsvReader` solved crash over trailing new line
+
+#### `2026-03-13` | `4.0`/`0.250` : __Reflection.Legacy Re-Release__
+
+- __2018__ variant of `ReflectionCacheLegacy` moved from 
+- [`Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Reflection.Core) to 
+- [`Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy) with meaningful test coverage.
+- Trimming/AOT compatiblity.
+- Auto-run trim test 
+- upon build
+- and inside NCrunch.
+
+#### `2026-03-15` | `4.1`/`0.251` : __Validation.Legacy__
+
+- [`JJ.Framework.Validation.Legacy`](https://www.nuget.org/packages/JJ.Framework.Validation.Legacy)
+- Historic version + full meaningful test coverage / IntelliSense docs / code trimming / native AOT support
+- .NET `10`, `9`, `8`, `7`, `6`, `5`, `4.6.1` / .NET Standard `2.0`, `2.1`
+- `FluentValidator` syntax:  
+  `For(() => player.TotalScore, "Total Score").Min(0).Max(100);`
+- `NotNull`, `NotNullOrWhiteSpace`, `In`, `Is`, `IsNot`, `NotZero`, `Above`, `Min`, `Max`, `NotInteger`, `IsEnumValue`
+- `IValidator` / `ValidatorBase` members:  
+  `IsValid` (boo), `ValidationMessages`, `Verify()` (throws)
+- Sub-validators and message prefixes:  
+  `"Address: Street is required."`
+- Localization: English (`en-US`) and Dutch (`nl-NL`)
+
+#### `2026-04-04` | `4.4`/`0.252` : __PlatformCompatibility.Core Initial__ , __Validation.Legacy Docs__
+
+- [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
+- Run new code on older .NETs
+- Shims for argument checks, language features, nullability, trimming/AOT, threading and hash codes
+- Full coverage with meaningful tests and member docs
+- [`JJ.Framework.Validation.Legacy`](https://www.nuget.org/packages/JJ.Framework.Validation.Legacy)
+- More IntelliSense popups
+- Reworked README
+
+#### `2026-04-08` | `4.5`/`0.253` : __Math Legacy__ 
+
+- [`JJ.Framework.Mathematics.Legacy`](https://www.nuget.org/packages/JJ.Framework.Mathematics.Legacy)
+- Integer-based `Pow` and `Log`, `GetRandomItem` and `Randomizer.GetInt32`, number base converter.
+- 100% meaningful test coverage, compatibility with Code Trimming and AOT / native compilation, and a whole spread of .NET versions, and IntelliSense doc everywhere.
+- Fix: `Pow` and `Log` edge-cases
+- Fix: Removed dependency on [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+- [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
+- Removed lambda from delta-based `AreEqual` (trim-friendly)
+- [`JJ.Framework.Testing.Core.MSTestless`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core.MSTestless)
+- Added stubs for data-driven tests.
+- Improved Testing Architecture
+
+#### `2026-04-25` | `4.6`/`0.254` : StringResources Legacy
+
+*+ Integrity Checker + Assert.Throws Syntax*
+
+- [`JJ.Framework.StringResources.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Presentation.Resources)
+- `2015`: Limited set of reusable string resources
+- `2020`: Reusable tester verifying integrity
+- `2026`: Extensions:
+- Placeholder verification
+- Resource and formatter classes
+- Static and instance members
+- Free to chose fallback culture
+- Optional trace logging
+- Customization options
+- Wide .NET version compatibility, Trimming/AOT support
+- IntelliSense docs, 100% meaningful test coverage
+- [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
+- `Throws` methods syntax shorter
+
+#### `2026-06-24` | `4.7`/`0.255` : __Compilation.Core Preview__
+
+*+ Various Fixes*
+
+- [`JJ.Framework.Compilation.Core`](https://www.nuget.org/packages/JJ.Framework.Compilation.Core/)
+- Brand new dotnet.exe CLI wrapper. Run compilations and other dotnet actions programmatically at runtime.
+- Preview release. Works in general. More coverage desired. More features desired.
+- [`JJ.Framework.Configuration.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Configuration.Core)
+- Auto-copy config files from proj to bin as classic System.Configuration did for you.
+- [`JJ.Framework.Configuration.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration)
+- Prevent leaking System.Configuration.ConfigurationManager reference transiently to avoid clashes with older .NET versions.
+- [`JJ.Framework.Testing.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Testing.Core)
+- Show tested argument expression more often, even when a custom message provided, which would formerly override it.
+- Complete test suite against regression.
+- TestRunner parallel by default but respect [DoNotParallelize] attribute. Race conditions mitigated.
+- Throws methods now return Exception in case they need further inspection.
+- [`JJ.Framework.Exceptions.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Exceptions.Core)
+- ThrowIf method for guard statements to assert any condition.
+- Overload added for chainable NotNull assertion method.
+- [`JJ.Framework.Reflection.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Reflection.Core)
+- Fix DynamicallyAccessedMembers annotation for code trimming on AccessorCore's target object auto-instantiation (AllCtors instead of just PublicCtors).
+- Add Assembly-related overloads.
+- [`JJ.Framework.PlatformCompatibility.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/PlatformCompatibility.Core)
+- Fix Lock shim that was accidentally not thread-safe.
+- Add NotNullIfNotNull shim for nullable annotation support.
+- Shim for ProcessSupport.Kill with entireProcessTree arg (does not actually kill entire process tree, but prevents compiler errors).
+- [`JJ.Framework.SharedProject.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/SharedProject.Core)
+- Improve reusable NoTrimReason strings, so they can be combined without redundancies with this syntax:
+- [TrimWarn(PropertyTypeAnd + ObjectGetType)]
+- The And-version includes a space separator and the non-And variant includes the DoWhatInstead.
+- __`DevOps:`__
+- Split Directory.Build.props into separate XML files / made modular.
+- Use .NET versions MSBuild convenience variables.
+- Add AutoPublish var for central conditions and the possibility to override (per project).
+- ClearCache calls new ClearMisc to wipe Azure Pipelines folders.
+- AzurePipelinesClearRetainFlags scripts helping to clean up locked Azure DevOps objects clearing excessive storage use.
+- RunTrimTest.bat now operates on current dir, not bat file dir.
+
+#### `2026-06-29` | `4.8`/`0.256` : __RandomizerLegacy Move__
+
+*+ Related Fixes*
+
+- [`JJ.Framework.Mathematics.Legacy`](https://www.nuget.org/packages/JJ.Framework.Mathematics.Legacy)
+- Moved `RandomizerLegacy` class from `.Core` variant of project to `.Legacy` project.
+- Fully tested and now release as part of the .Legacy lib.
+- Expanded for coherence. And ported back to 2021 legacy branch.
+- (RandomizerLegacy is a 2021 version. Legacy projects contain code from 2015; Core projects code from 2025. Code from 2021 is somewhere in the middle. It made more sense to move those from .Core to .Legacy since the workflow around Legacy code is so much different than Core, that it makes more architectural sense to group them.)
+- [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
+- Fix `Mutex` UnauthorizedAccess in Azure Pipelines.
+- For numbering file names (in highly concurrent situations).
+- Mutex created by other user, wouldn't be accessible to one in a different security context.
+- `MutexSecurity` specifying wider security access, so it can be used machine-wide as intended.
+- [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
+- `OperatingSystemSupport.IsWindows()`: a check for feature toggles (not present on all .NET version)
+- (Used for conditional MutexSecurity instantion.)
+- Added `net462` target framework extra hardening.
+- `NotNullIfNotNull` retroactively added (accidentally not released last time).
+- [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
+- `GenericOverload` / `GenOvl`: 
+- Placeholder type for adding optional parameters to generic overloads, that would otherwise clash.
+- This type adds docs explaning the technique, and avoids further overload clashes, from chosing a different parameter type.
+
+#### `2026-07-02` | `4.9`/`0.257` : __StreamHelperLegacy Move__
+
+- [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
+- Move `StreamHelperLegacy` from `.Core` variant of project to `.Legacy` variant
+- Port their tests from `legacy` branch to `main`
+- Tighten nullability checks.
+- [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
+- Share `NumberedFilePath`/`SafeFileStream` `Tests` back and forth between `legacy` and `main`.
+- `Mutex` `UnauthorizedAccess` fixes for Azure Pipelines after introducing more tests.
+
+#### `2026-07-07` | `5.0`/`0.258` : __Result Type Legacy Move__
+
+- [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+- `Result` types.
+- Moved from `.Core` to the `.Legacy` project.
+- Removed `JJ.Business.IO.Core` project variant.
+- Full, meaningful test coverage, IntelliSense docs.
+- Tighter nullability, diagnostic texts.
+- [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
+- `SafeFileStream` `Mutex`
+- Use `Local` namespace instead of `Global` (for per-user security)
+- Create with `ACL` (Access Control Descriptor) first, then fallback to without.
+- Refactor Mutex creation methods to reuse the same logic.
+- [`JJ.Framework.Logging.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/Logging.Core)
+- `Trace` logging (alongside Console and Debug) for certain debugging scenarios.
+- [`JJ.Framework.PlatformCompatibility.Core`](https://www.nuget.org/packages/JJ.Framework.PlatformCompatibility.Core)
+- `required` keyword .NET 5 / .NET 6 support.
+
+#### `2026-07-08` | `5.1`/`0.259` : __Result Type Rework__
+
+- [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
+- Success = `false` by default (previously true) improving compatibility and security.
+- Add `Succesful` and `VoidResult` aliases for Success and Result for compatibility.
+- `Messages` not separated by commas in diagnostics texts. Punctuation left up to the messages themselves.
+
+#### `2026-07-24` | `5.2`/`0.260` : __Text.Core Release__
+
+*+ Untangling text methods from Common.Core and Common.Legacy. Migrate some to Text.Core, Text.Legacy and Existence.Core.*
+
+- [`JJ.Framework.Text.Core`](https://www.nuget.org/packages/JJ.Framework.Text.Core)
+- Moved string functions there from `Common.Core`
+- Spacing, punctuation and char/string overloads.
+- Prettification for logs and (console) text output.
+- Supports extension and (short) static syntaxes.
+- Full IntelliSense docs, 100% meaningful test coverage.
+- Trimming/native compilation supported.
+- A wide .NET version spread.
+- [`JJ.Framework.Text.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Text)
+- Moved `StringBuilderWithIndentationLegacy` and `StringExtensionsLegacy` from `Text.Core`
+- Manually ported back and forth between legacy and main branch.
+- Library not yet released.
+- [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
+- `RemoveAccents` obsolete. Moved to `Text.Core`.
+- [`JJ.Framework.Common.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy)
+- No changes; string functions from 2015 legacy pulls stay here, or future historic pulls will cause trouble.
+- These are basic string cutting, casing and split (with quotation) methods.
+- [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
+- Now dependent on `Text.Core` for `RemoveAccents` function.
+- Moved `Contains` methods here from `Text.Core`.
+- Using `caseMatters` flags instead of `ignoreCase`.
+- Adding IntelliSense and tests.
+- `DevOps`
+- Simplified `publish` paths. Added `ClearPublish` script.
+- Added `.Legacy` to project folders where no clash with history.
+- Expanded / made uniform `.NET version` spread.
+- Explicit `net48` and `net462` support (by tests).
+- Exlicit comment with reason for exceptional .NET versions.
+- Remove usage of `$(BuildNum)` from test projects.
+- (Helps performance of mostly package tests).
+- Renamed some suffixes from `Legacy` to `Ex`, mostly expansions ported back and forth between `main` and `legacy` branch.
+
+💬 Feedback 
+------------
+
+Got feedback or questions? You can reach me [here.](https://jjvanzon.github.io/#-how-to-reach-me)
