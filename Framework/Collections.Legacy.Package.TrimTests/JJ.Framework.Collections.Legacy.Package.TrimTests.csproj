@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>5.2.0</Version>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0</TargetFrameworks> <!-- NCrunch Package TrimTests -->
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Collections.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Collections.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Collections.Tests\bin\**" />
+    <Compile Include="..\Collections.Legacy.TrimTests\Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.260.7503" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7503" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.2.7503" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+  </ItemGroup>
+
+</Project>
+
