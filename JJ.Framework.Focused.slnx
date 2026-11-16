@@ -39,6 +39,7 @@
     <File Path="JJ.Framework.Focused.slnx.DotSettings" />
     <File Path="NuGet.config" />
     <File Path="README.MD" />
+    <File Path="RELEASE-NOTES.MD" />
   </Folder>
   <Project Path="Framework/Collections.Legacy.TrimTests/JJ.Framework.Collections.Legacy.TrimTests.csproj" />
   <Project Path="Framework/JJ.Framework.Collections.Tests/JJ.Framework.Collections.Legacy.Tests.csproj" />

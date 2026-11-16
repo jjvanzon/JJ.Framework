@@ -294,6 +294,20 @@
 - (Helps performance of mostly package tests).
 - Renamed some suffixes from `Legacy` to `Ex`, mostly expansions ported back and forth between `main` and `legacy` branch.
 
+#### `2026-11-16` | `5.3`/`0.261` : __Collections.Legacy Release__
+
+- Release of legacy collection utils.
+- Overloads for:
+- `Add`, `AddRange`, `Concat`, `Distinct`, `Except`, `ForEach`, `OfType`, `OneBecomesTwo`, `Product`, `RemoveRange`, `SelectAncestors`, `SelfAndAncestors`, `Sum`, `Union`
+- Full test coverage, wide .NET version support, native AOT/trim friendly.
+- Adjusted Core/Legacy split for `JJ.Framework.Collections`.
+- Older legacy collections utils stay in `JJ.Framework.Common.Legacy`  
+- Newer legacy collection utils are in `JJ.Framework.Collections.Legacy`
+- And manually ported back/forth between main/legacy branches.
+- Refined use of `Ex` prefix for `2021` elements piled on top of `2015` elements.
+- Similar Core/Legacy split for `Common.Legacy.Tests`.
+- `JJ.Framework.Collections.Core` variant is now gone.
+
 💬 Feedback 
 ------------
 

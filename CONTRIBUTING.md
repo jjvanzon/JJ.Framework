@@ -122,13 +122,19 @@ The King, the Queen and the Core
 
 <h3>The King</h3>
 
+*Code from 2021*
+
 The `legacy` HEAD, that is, the latest state of the `legacy`, colloqially called __The King__, since it's the *legacy head*... Get it?
 
 <h3>The Ice Queen</h3>
 
+*Code from 2015*
+
 The code pulled from an earlier point in history may be referred to as __The Ice Queen__. She only changes minimally to avoid clashes with future historical pulls, but is essentially rigid and unchanging in her rule.
 
 <h3>The New Core</h3>
+
+*Code from 2026*
 
 The __New Core__ is the revolution. They are they way forward, but can't do without the *King* or *Queen.* The pilars of power have to be respected.
 
