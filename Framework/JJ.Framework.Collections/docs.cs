@@ -18,6 +18,14 @@ public struct _addrange;
 public struct _addwithparams;
 
 /// <summary>
+/// Expanding .NET with extra LINQ methods for collections.
+/// </summary>
+public struct _collectionextensionsex;
+
+/// <inheritdoc cref="_selectancestors" />
+public struct _collectionextensionsrecursiveancestors;
+
+/// <summary>
 /// <para>
 /// Variant of the <c>.ForEach</c> LINQ method that gives you access to an index number for each element you iterate over.
 /// It also works with more collection types than .NET's original <c>List&lt;T&gt;</c> method.
@@ -63,6 +71,41 @@ public struct _product;
 /// </code>
 /// </summary>
 public struct _removerange;
+
+/// <summary>
+/// Offers a single-line generally usable solution for gathering up 
+/// parents and their parents in any tree structure.  
+/// Example:
+/// <code>
+/// var ancestors = child.SelectAncestors(x => x.Parent);
+/// </code>
+/// </summary>
+public struct _selectancestors;
+
+/// <summary>
+/// A single-line solution for getting all parents in a tree structure,
+/// but includes the root item in the output collection too.
+/// Example:
+/// <code>var items = child.SelfAndAncestors(x => x.Parent);</code>
+/// Output in that case contains all the <c>Parents</c> but also the <c>child</c>.
+/// </summary>
+public struct _selfandancestors;
+
+/// <summary>
+/// Provides "short static" notation for methods on enumerables e.g,
+/// <code>
+/// var result = Union(list1, list2);
+/// </code>
+/// This on top of the other syntaxes:
+/// <code>
+/// var result = list1.Union(list2);
+/// var result = Enumerable.Union(list1, list2);
+/// </code>
+/// Short static notation isn't available for extension methods.
+/// This class provides a way to use a static invoke on those extension methods
+/// by introducing separate non-extension overloads.
+/// </summary>
+public struct _staticenumerableex;
 
 /// <summary>
 /// An overload of the Sum LINQ method that takes TimeSpans.

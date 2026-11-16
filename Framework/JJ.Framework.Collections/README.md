@@ -75,11 +75,14 @@ Example: `list.RemoveRange("Orange", "Peach");`
 
 ## SelectAncestors
 
-...
+Offers a single-line generally usable solution for gathering up parents and their parents in any tree structure.  
+Example: `var ancestors = child.SelectAncestors(x => x.Parent);`
 
 ## SelfAndAncestors
 
-...
+Same as `SelectAncestors`, but now includes the item itself in the output collection.  
+Example: `var items = child.SelfAndAncestors(x => x.Parent);`  
+Output in that case contains all the `Parents` but also the `child`.
 
 ## Sum
 

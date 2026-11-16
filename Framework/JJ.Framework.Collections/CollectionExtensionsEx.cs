@@ -2,6 +2,7 @@
 
 namespace JJ.Framework.Collections.Legacy;
 
+/// <inheritdoc cref="_collectionextensionsex" />
 public static class CollectionExtensionsEx
 {
     /// <inheritdoc cref="_addwithparams" />

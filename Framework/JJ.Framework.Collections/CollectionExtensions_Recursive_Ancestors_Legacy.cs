@@ -2,8 +2,10 @@
 
 namespace JJ.Framework.Collections.Legacy
 {
+    /// <inheritdoc cref="_collectionextensionsrecursiveancestors" />
     public static class CollectionExtensions_Recursive_Ancestors_Legacy
     {
+        /// <inheritdoc cref="_selfandancestors" />
         public static IEnumerable<T> SelfAndAncestors<T>(this T sourceItem, Func<T, T?> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));
@@ -16,6 +18,7 @@ namespace JJ.Framework.Collections.Legacy
             return destHashSet;
         }
 
+        /// <inheritdoc cref="_selectancestors" />
         public static IEnumerable<T> SelectAncestors<T>(this T sourceItem, Func<T, T?> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));
@@ -28,6 +31,7 @@ namespace JJ.Framework.Collections.Legacy
             return destHashSet;
         }
 
+        /// <inheritdoc cref="_selectancestors" />
         private static void SelectAncestors<T>(T sourceItem, Func<T, T?> selector, HashSet<T> destHashSet)
         {
             T ancestor = sourceItem;
