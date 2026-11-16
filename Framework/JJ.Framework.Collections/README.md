@@ -1,7 +1,11 @@
 JJ.Framework.Collections.Legacy
 ===============================
 
-Expanding `.NET` with extra extension methods for collection. A set of elements released to support legacy `JJ` projects.
+Expanding `.NET` with extra extension methods for collections. A set of elements released to support legacy `JJ` projects.
+
+Here's a larger variation: [`JJ.Framework.Collections`](https://www.nuget.org/packages/JJ.Framework.Collections).
+
+The current package is a historic pull for legacy purposes with a few other random things added.
 
 Overloads added for:
 
@@ -69,7 +73,6 @@ If the collection is empty, returns `1` (the null-operation for a multiplication
 `RemoveRange` is a member of `List<T>`. Here is an overload that works for any `ICollection<T>`, but it also takes items/collections instead of indices.  
 Example: `list.RemoveRange("Orange", "Peach");`
 
-
 ## SelectAncestors
 
 ...
@@ -80,7 +83,7 @@ Example: `list.RemoveRange("Orange", "Peach");`
 
 ## Sum
 
-An overload of the `Sum` LINQ method that takes `TimeSpans`.
+An overload of the `Sum` `LINQ` method that takes `TimeSpans`.
 
 ## Union
 
