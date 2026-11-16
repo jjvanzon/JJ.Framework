@@ -297,16 +297,16 @@
 #### `2026-11-16` | `5.3`/`0.261` : __Collections.Legacy Release__
 
 - Release of legacy collection utils.
-- Overloads for:
-- `Add`, `AddRange`, `Concat`, `Distinct`, `Except`, `ForEach`, `OfType`, `OneBecomesTwo`, `Product`, `RemoveRange`, `SelectAncestors`, `SelfAndAncestors`, `Sum`, `Union`
+- Overloads for `Add`, `AddRange`, `Concat`, `Distinct`, `Except`, `ForEach`, `OfType`, `OneBecomesTwo`, `Product`, `RemoveRange`, `SelectAncestors`, `SelfAndAncestors`, `Sum`, `Union`
 - Full test coverage, wide .NET version support, native AOT/trim friendly.
-- Adjusted Core/Legacy split for `JJ.Framework.Collections`.
-- Older legacy collections utils stay in `JJ.Framework.Common.Legacy`  
-- Newer legacy collection utils are in `JJ.Framework.Collections.Legacy`
+- Adjusted Core/Legacy split for [`JJ.Framework.Collections`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Collections)
+- Older legacy collections utils stay in [`JJ.Framework.Common.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy)
+- Newer legacy collection utils are in [`JJ.Framework.Collections.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Collections)
+- `JJ.Framework.Collections.Core` variant is now gone.
 - And manually ported back/forth between main/legacy branches.
 - Refined use of `Ex` prefix for `2021` elements piled on top of `2015` elements.
-- Similar Core/Legacy split for `Common.Legacy.Tests`.
-- `JJ.Framework.Collections.Core` variant is now gone.
+- Similar Core/Legacy split for [`Common.Legacy.Tests`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common.Tests).
+
 
 💬 Feedback 
 ------------
