@@ -8,12 +8,12 @@
 
 namespace JJ.Framework.Collections.Legacy.docs;
 
-/// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;. </summary>
+/// <summary> AddRange is a member of List&lt;T&gt;. This is an overload for ICollection&lt;T&gt;. </summary>
 public struct _addrange;
 
 /// <summary>
-/// Add multiple items to a collection by means of a comma separated argument list, e.g. myCollection.Add(1, 5,
-/// 12);
+/// Add multiple items to a collection by means of a comma separated argument list, 
+/// e.g. myCollection.Add(1, 5, 12);
 /// </summary>
 public struct _addwithparams;
 
@@ -43,7 +43,7 @@ public struct _addwithparams;
 public struct _foreachwithindex;
 
 /// <summary> 
-/// Allow specifying 1 value as a list, but turn it into two repeating ones,
+/// Allow specifying 1 value as a list, but turn it into 2 repeating ones,
 /// as a helper for post and fence problems.
 /// </summary> 
 public struct _onebecomestwo;
@@ -55,7 +55,9 @@ public struct _onebecomestwo;
 public struct _product;
 
 /// <summary>
-/// AddRange is a member of List&lt;T&gt;. Here is an overload for ICollection&lt;T&gt;, but it takes items/collections instead of indices. Example:
+/// RemoveRange is a member of List&lt;T&gt;. 
+/// Here is an overload for that works for any ICollection&lt;T&gt;, 
+/// but it also takes items/collections instead of indices. Example:
 /// <code>
 /// list.RemoveRange("Orange", "Peach");
 /// </code>

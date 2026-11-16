@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Collections.Legacy
+﻿// ReSharper disable ConvertToExtensionBlock
+
+namespace JJ.Framework.Collections.Legacy
 {
     public static class CollectionExtensions_Recursive_Ancestors_Legacy
     {

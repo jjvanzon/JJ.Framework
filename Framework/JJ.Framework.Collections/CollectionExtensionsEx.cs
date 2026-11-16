@@ -1,4 +1,5 @@
-﻿
+﻿// ReSharper disable ConvertToExtensionBlock
+
 namespace JJ.Framework.Collections.Legacy;
 
 public static class CollectionExtensionsEx
@@ -39,7 +40,6 @@ public static class CollectionExtensionsEx
     /// <summary>
     /// Distinct that takes a key selector that determines what makes an item unique, e.g. myItems.Distinct(x => x.LastName);
     /// For multi-part as keys, use `myItems.Distinct(x => new { x.FirstName, x.LastName });`
-    /// 
     /// </summary>
     public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
     {
@@ -60,7 +60,7 @@ public static class CollectionExtensionsEx
     }
     
     /// <summary>
-    /// An overload of Except that takes a predicate, e.g. myCollection.Except(x => string.Equals("Blah");
+    /// An overload of Except that takes a predicate, e.g. myCollection.Except(x =&gt; string.Equals("Blah");
     /// (This is the same as a negated Where predicate, but if you are already thinking in terms of Except,
     /// this might express your intent clearer.)
     /// </summary>

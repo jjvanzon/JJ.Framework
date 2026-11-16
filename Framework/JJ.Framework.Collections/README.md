@@ -1,0 +1,88 @@
+JJ.Framework.Collections.Legacy
+===============================
+
+Expanding `.NET` with extra extension methods for collection. A set of elements released to support legacy `JJ` projects.
+
+Overloads added for:
+
+- [Add](#add)
+- [AddRange](#addrange)
+- [Concat](#concat)
+- [Distinct](#distinct)
+- [Except](#except)
+- [ForEach](#foreach)
+- [OfType](#oftype)
+- [OneBecomesTwo](#onebecomestwo)
+- [Product](#product)
+- [RemoveRange](#removerange)
+- [SelectAncestors](#selectancestors)
+- [SelfAndAncestors](#selfandancestors)
+- [Sum](#sum)
+- [Union](#union)
+
+
+## Add
+
+Add multiple items to a collection by means of a comma separated argument list, e.g. `myCollection.Add(1, 5, 12);`
+
+## AddRange
+
+AddRange is a member of `List<T>`. This is an overload for `ICollection<T>`.
+
+## Concat
+
+Overloads that take a single item, e.g. `myCollection.Concat(myItem);`  
+or that starts with a single item and then adds a collection to it e.g. `myItem.Concat(myCollection);`
+
+## Distinct
+
+Overload that takes a key selector that determines what makes an item unique, e.g. `myItems.Distinct(x => x.LastName);`  
+For multi-part as keys, use `myItems.Distinct(x => new { x.FirstName, x.LastName });`
+
+## Except
+
+An overload that takes a predicate, e.g. `myCollection.Except(x => string.Equals("Blah");`
+(This is the same as a negated `Where` predicate, but if you are already thinking in terms of `Except`, this might express your intent clearer.)
+
+## ForEach
+
+Variant of the `ForEach` LINQ method that gives you access to an index number for each element you iterate over.
+It also works with more collection types than .NET's original `List<T>` method. Example:  
+`myColl.ForEach((x, i) => WriteLine(x + "[" + i + "]"));`
+
+
+## OfType
+
+Non-generic variation on `OfType<T>`, but now takes a `Type` as a parameter. I.e. `animals.OfType(typeof(Dog))` as opposed to `animals.OfType<Dog>()`. It won't automatically cast (so the output item type stays `Animal` and does not become `Dog`). Can be useful for certain non-generic scenarios.
+
+## OneBecomesTwo
+
+Allow specifying 1 value as a list, but turn it into 2 repeating ones, as a helper for post and fence problems.
+
+## Product
+
+Works similar to `Sum`, but instead of adding up all the numbers, all the numbers are multiplied.
+If the collection is empty, returns `1` (the null-operation for a multiplication).
+
+## RemoveRange
+
+`RemoveRange` is a member of `List<T>`. Here is an overload that works for any `ICollection<T>`, but it also takes items/collections instead of indices.  
+Example: `list.RemoveRange("Orange", "Peach");`
+
+
+## SelectAncestors
+
+...
+
+## SelfAndAncestors
+
+...
+
+## Sum
+
+An overload of the `Sum` LINQ method that takes `TimeSpans`.
+
+## Union
+
+A variant of `.NET's` `Union` method but now supporting short static invocation styles e.g.,  
+`Union(list1, list2)`
