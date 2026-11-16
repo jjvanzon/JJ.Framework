@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.2.7488" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7488" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.2.7503" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7503" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
