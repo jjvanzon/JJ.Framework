@@ -1,10 +1,10 @@
 ﻿// ncrunch: no coverage start
 
+#pragma warning disable IDE0051 // Member never used
+#pragma warning disable IDE0005 // Redundant using
 // ReSharper disable RedundantUsingDirective
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedMember.Global
-
-#pragma warning disable IDE0051 // Member never used
 
 using System.Diagnostics.CodeAnalysis;
 using JJ.Framework.SharedProject.Core.docs;

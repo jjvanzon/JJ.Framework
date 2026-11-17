@@ -1,4 +1,6 @@
 ﻿// ReSharper disable ExpressionIsAlwaysNull
+// ReSharper disable MemberCanBeProtected.Local
+// ReSharper disable PropertyCanBeMadeInitOnly.Local
 namespace JJ.Framework.Collections.Legacy.Tests;
 
 [TestClass]

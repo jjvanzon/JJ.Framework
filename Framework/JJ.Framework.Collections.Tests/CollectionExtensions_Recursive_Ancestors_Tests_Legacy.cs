@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using JJ.Framework.Testing.Legacy;
+﻿// ReSharper disable PropertyCanBeMadeInitOnly.Local
+using System.Diagnostics;
 
 namespace JJ.Framework.Collections.Legacy.Tests
 {

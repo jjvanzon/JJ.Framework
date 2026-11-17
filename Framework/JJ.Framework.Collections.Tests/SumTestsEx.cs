@@ -1,5 +1,6 @@
 ﻿using static System.TimeSpan;
 // ReSharper disable ExpressionIsAlwaysNull
+// ReSharper disable PropertyCanBeMadeInitOnly.Local
 
 namespace JJ.Framework.Collections.Legacy.Tests;
 

@@ -1,6 +1,7 @@
 ﻿// ncrunch: no coverage start
 
 #pragma warning disable IDE0001 // Redundant qualifier
+#pragma warning disable IDE0005 // Redundant using
 // ReSharper disable RedundantUsingDirective
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseSymbolAlias

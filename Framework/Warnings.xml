@@ -61,5 +61,6 @@
     <NoWarn>$(NoWarn);IDE0044</NoWarn> <!--Field read-only-->
     <NoWarn>$(NoWarn);IDE0002</NoWarn> <!--Redundant static qualifier-->
     <NoWarn>$(NoWarn);IDE0051</NoWarn> <!--Type member never used-->
+    <NoWarn>$(NoWarn);IDE0005</NoWarn> <!--Unused usings-->
   </PropertyGroup>
 </Project>

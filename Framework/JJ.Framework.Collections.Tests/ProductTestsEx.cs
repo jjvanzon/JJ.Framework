@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Collections.Legacy.Tests;
+﻿// ReSharper disable PropertyCanBeMadeInitOnly.Local
+namespace JJ.Framework.Collections.Legacy.Tests;
 
 [TestClass]
 public class ProductTestsEx

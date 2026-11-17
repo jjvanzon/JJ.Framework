@@ -35,7 +35,7 @@ public class RemoveRangeTestsEx
         List<string> notNullList = [ "Apple", "Orange", "Banana", "Peach", "Pear" ];
         List<string>? nullList = null;
 
-        Throws(() => nullList!.RemoveRange("Orange", "Peach"), "dest", "null");;
-        Throws(() => notNullList.RemoveRange(nullList!), "source", "null");;
+        Throws(() => nullList!.RemoveRange("Orange", "Peach"), "dest", "null");
+        Throws(() => notNullList.RemoveRange(nullList!), "source", "null");
     }
 }

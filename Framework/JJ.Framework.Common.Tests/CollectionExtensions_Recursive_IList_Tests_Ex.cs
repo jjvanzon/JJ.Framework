@@ -3,6 +3,9 @@ using System.Linq;
 using JJ.Framework.Common;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable PropertyCanBeMadeInitOnly.Local
+// ReSharper disable InvokeAsExtensionMember
+// ReSharper disable ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
 
 namespace JJ.Framework.Common.Legacy.Tests
 {
@@ -117,7 +120,7 @@ namespace JJ.Framework.Common.Legacy.Tests
         private void AssertItemNames(IList<string> expectedItemsNames, IList<Item> items)
         {
             string[] actualItemNames = items.Select(x => x.Name).ToArray();
-            Array.Sort(actualItemNames);
+            Array.Sort(actualItemNames, StringComparer.Ordinal);
             
             AssertHelper.AreEqual(expectedItemsNames.Count, () => items.Count);
             AssertHelper.IsTrue(() => Enumerable.SequenceEqual(actualItemNames, expectedItemsNames));

@@ -2,7 +2,7 @@
 
 // ncrunch: no coverage start
 
-internal class DebuggerDisplayFormatter
+internal static class DebuggerDisplayFormatter
 {
     public static string GetDebuggerDisplay(CollectionExtensionsTestsEx.Item item)
     {
