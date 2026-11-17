@@ -62,11 +62,16 @@
     <Compile Include="CollectionExtensions_Recursive_Ancestors_Tests.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable_Tests.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList_Tests.cs" />
+    <Compile Include="ConcatTestsEx.cs" />
+    <Compile Include="DistinctTestsEx.cs" />
+    <Compile Include="ExceptTestsEx.cs" />
     <Compile Include="ForEachTestsEx.cs" />
     <Compile Include="KeyValuePairHelperTests.cs" />
+    <Compile Include="OfTypeTestsEx.cs" />
     <Compile Include="ProductTestsEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoveRangeTestsEx.cs" />
+    <Compile Include="SumTestsEx.cs" />
     <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>

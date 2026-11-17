@@ -1,5 +1,5 @@
-﻿// ReSharper disable ExpressionIsAlwaysNull
-namespace JJ.Framework.Collections.Tests;
+﻿// ReSharper disable AppendToCollectionExpression
+namespace JJ.Framework.Collections.Legacy.Tests;
 
 [TestClass]
 public class AddRangeTestsEx
@@ -8,19 +8,10 @@ public class AddRangeTestsEx
     public void Test_AddRange_WithParams()
     {
         ICollection<string> coll = [ "Apple", "Orange", "Banana" ];
-        AreEqual(3, coll.Count);
-        AreEqual("Apple",  coll.ElementAt(0));
-        AreEqual("Orange", coll.ElementAt(1));
-        AreEqual("Banana", coll.ElementAt(2));
     
         coll.AddRange(["Prune", "Pear"]);
 
-        AreEqual(5, coll.Count);
-        AreEqual("Apple",  coll.ElementAt(0));
-        AreEqual("Orange", coll.ElementAt(1));
-        AreEqual("Banana", coll.ElementAt(2));
-        AreEqual("Prune",  coll.ElementAt(3));
-        AreEqual("Pear",   coll.ElementAt(4));
+        IsTrue(coll.SequenceEqual(["Apple", "Orange", "Banana", "Prune", "Pear"]));
     }
 
     [TestMethod]

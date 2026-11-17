@@ -523,8 +523,11 @@ namespace JJ.Framework.Collections
         /// Still this may be useful for certain cases.
         /// </summary>
         public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
-            => source.Where(x => x.GetType() == type);
-        
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            return source.Where(x => x.GetType() == type);
+        }
+
         /// <inheritdoc cref="_onebecomestwo" />
         public static IList<T> OneBecomesTwo<T>(this IList<T> list)
         {
