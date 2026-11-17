@@ -9,19 +9,8 @@ public class ExceptTestsEx
         string[] input = [ "Alice", "Bob", "Ross", "JJ", "The Dude" ];
         string[] output = input.Except([ "Bob", "JJ" ]).ToArray();
 
-        IsNotNull(input);
-        AreEqual(5, input.Length);
-        AreEqual("Alice",    input[0]);
-        AreEqual("Bob",      input[1]);
-        AreEqual("Ross",     input[2]);
-        AreEqual("JJ",       input[3]);
-        AreEqual("The Dude", input[4]);
-
-        IsNotNull(output);
-        AreEqual(3, output.Length);
-        AreEqual("Alice",    output[0]);
-        AreEqual("Ross",     output[1]);
-        AreEqual("The Dude", output[2]);
+        IsTrue(input.SequenceEqual([ "Alice", "Bob", "Ross", "JJ", "The Dude" ]));
+        IsTrue(output.SequenceEqual([ "Alice", "Ross", "The Dude" ]));
     }
 
     [TestMethod]
@@ -30,18 +19,7 @@ public class ExceptTestsEx
         string[] input = [ "Alice", "Bob", "Ross", "JJ", "The Dude" ];
         string[] output = input.Except(x => x.Contains("o")).ToArray();
 
-        IsNotNull(input);
-        AreEqual(5, input.Length);
-        AreEqual("Alice",    input[0]);
-        AreEqual("Bob",      input[1]);
-        AreEqual("Ross",     input[2]);
-        AreEqual("JJ",       input[3]);
-        AreEqual("The Dude", input[4]);
-     
-        IsNotNull(output);
-        AreEqual(3, output.Length);
-        AreEqual("Alice",    output[0]);
-        AreEqual("JJ",       output[1]);
-        AreEqual("The Dude", output[2]);
+        IsTrue(input.SequenceEqual([ "Alice", "Bob", "Ross", "JJ", "The Dude" ]));
+        IsTrue(output.SequenceEqual([ "Alice", "JJ", "The Dude" ]));
     }
 }

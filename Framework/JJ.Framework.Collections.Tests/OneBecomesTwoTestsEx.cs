@@ -8,32 +8,19 @@ public class OneBecomesTwoTestsEx
     public void Test_OneBecomesTwo()
     {
         {
-            int[] oneItem = [1];
+            int[] oneItem = [ 1 ];
             int[] oneBecomesTwo = oneItem.OneBecomesTwo();
-           
-            NotNull(oneBecomesTwo);
-            AreEqual(2, oneBecomesTwo.Length);
-            AreEqual(1, oneBecomesTwo[0]);
-            AreEqual(1, oneBecomesTwo[1]);
+            IsTrue(oneBecomesTwo.SequenceEqual([ 1, 1 ]));
         }
         {
-            int[] twoItems = [1, 2];
+            int[] twoItems = [ 1, 2 ];
             int[] twoStaysTwo = twoItems.OneBecomesTwo();
-
-            NotNull(twoStaysTwo);
-            AreEqual(2, twoStaysTwo.Length);
-            AreEqual(1, twoStaysTwo[0]);
-            AreEqual(2, twoStaysTwo[1]);
+            IsTrue(twoStaysTwo.SequenceEqual([ 1, 2 ]));
         }
         {
             int[] threeItems = [ 1, 2, 3 ];
             int[] threeStaysThree = threeItems.OneBecomesTwo();
-
-            NotNull(threeStaysThree);
-            AreEqual(3, threeStaysThree.Length);
-            AreEqual(1, threeStaysThree[0]);
-            AreEqual(2, threeStaysThree[1]);
-            AreEqual(3, threeStaysThree[2]);
+            IsTrue(threeStaysThree.SequenceEqual([ 1, 2, 3 ]));
         }
     }
 

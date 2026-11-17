@@ -20,9 +20,8 @@ public class ForEachTestsEx
 
         list.ForEach(x => list2.Add(x + " added"));
 
-        AreEqual(2, list2.Count);
-        AreEqual("Apple added", list2[0]);
-        AreEqual("Orange added", list2[1]);
+        IsTrue(list .SequenceEqual([ "Apple", "Orange" ]));
+        IsTrue(list2.SequenceEqual([ "Apple added", "Orange added" ]));
     }
 
     [TestMethod]
@@ -32,23 +31,21 @@ public class ForEachTestsEx
         IList<string> list = new List<string>();
 
         enumerable.ForEach(x => list.Add(x + " added"));
-
-        AreEqual(2, list.Count);
-        AreEqual("Apple added", list[0]);
-        AreEqual("Orange added", list[1]);
+       
+        IsTrue(enumerable.SequenceEqual([ "Apple", "Orange" ]));
+        IsTrue(list.SequenceEqual([ "Apple added", "Orange added" ]));
     }
 
     [TestMethod]
     public void Test_ForEach_WithICollection_UsesJJFrameworkVariant()
     {        
-        ICollection<string> enumerable = new List<string> { "Apple", "Orange" };
+        ICollection<string> collection = new List<string> { "Apple", "Orange" };
         IList<string> list = new List<string>();
 
-        enumerable.ForEach(x => list.Add(x + " added"));
-
-        AreEqual(2, list.Count);
-        AreEqual("Apple added", list[0]);
-        AreEqual("Orange added", list[1]);
+        collection.ForEach(x => list.Add(x + " added"));
+       
+        IsTrue(collection.SequenceEqual([ "Apple", "Orange" ]));
+        IsTrue(list.SequenceEqual([ "Apple added", "Orange added" ]));
     }
 
     [TestMethod]
@@ -59,8 +56,7 @@ public class ForEachTestsEx
 
         enumerable.ForEach((x, i) => list.Add(x + " added" + " @ [" + i + "]" ));
 
-        AreEqual(2, list.Count);
-        AreEqual("Apple added @ [0]", list[0]);
-        AreEqual("Orange added @ [1]", list[1]);
+        IsTrue(enumerable.SequenceEqual([ "Apple", "Orange" ]));
+        IsTrue(list.SequenceEqual([ "Apple added @ [0]", "Orange added @ [1]" ]));
     }
 }
