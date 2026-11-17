@@ -39,8 +39,10 @@ public static class CollectionExtensionsEx
     public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second);
 
     /// <summary>
-    /// Distinct that takes a key selector that determines what makes an item unique, e.g. myItems.Distinct(x => x.LastName);
-    /// For multi-part as keys, use `myItems.Distinct(x => new { x.FirstName, x.LastName });`
+    /// Variant of <c>Distinct</c> that takes a key selector that determines what makes an item unique, for example: <br/>
+    /// <c>myItems.Distinct(x => x.LastName);</c> <br/>
+    /// For multi-part as keys, use: <br/>
+    /// <c>myItems.Distinct(x => new { x.FirstName, x.LastName });</c>
     /// </summary>
     public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
     {
@@ -61,9 +63,10 @@ public static class CollectionExtensionsEx
     }
     
     /// <summary>
-    /// An overload of Except that takes a predicate, e.g. myCollection.Except(x =&gt; string.Equals("Blah");
-    /// (This is the same as a negated Where predicate, but if you are already thinking in terms of Except,
-    /// this might express your intent clearer.)
+    /// Variant of <c>Except</c> taking a predicate, e.g. <br />
+    /// <c>myCollection.Except(x =&gt; string.Equals("Blah");</c> <br />
+    /// (This is the same as a negated <c>Where</c> predicate, but if you are already thinking in terms of <c>Except</c>,
+    /// this might better express your intent.)
     /// </summary>
     public static IEnumerable<T> Except<T>(this IEnumerable<T> source, Predicate<T> predicate)
     {
@@ -87,9 +90,9 @@ public static class CollectionExtensionsEx
     }
 
     /// <summary>
-    /// Similar to OfType&lt;T&gt; but now taking a Type.
-    /// This misses the advantage of automatically casting items to the desired type.
-    /// Still this may be useful for certain cases.
+    /// Non-generic variant of <c>OfType&lt;T&gt;</c> taking a <c>Type</c> parameter.<br/>
+    /// It sacrifices automatical casts of items to the desired type.
+    /// Still this may be useful for certain scenarios.
     /// </summary>
     public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
     {

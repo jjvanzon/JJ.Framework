@@ -22,4 +22,17 @@ public class ExceptTestsEx
         IsTrue(input.SequenceEqual([ "Alice", "Bob", "Ross", "JJ", "The Dude" ]));
         IsTrue(output.SequenceEqual([ "Alice", "JJ", "The Dude" ]));
     }
+
+    [TestMethod]
+    public void Test_Except_NullExceptions()
+    {
+        {
+            Predicate<int>? @null = null;
+            Throws(() => new [] { 1, 2 }.Except(@null!), "predicate", "null");
+        }
+        {
+            int[]? @null = null;
+            Throws(() => @null!.Except(x => x == 0), "source", "null");
+        }
+    }
 }

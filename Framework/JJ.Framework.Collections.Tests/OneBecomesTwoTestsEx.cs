@@ -8,6 +8,11 @@ public class OneBecomesTwoTestsEx
     public void Test_OneBecomesTwo()
     {
         {
+            int[] emptyColl = [ ];
+            int[] oneBecomesTwo = emptyColl.OneBecomesTwo();
+            IsTrue(oneBecomesTwo.SequenceEqual([ ]));
+        }
+        {
             int[] oneItem = [ 1 ];
             int[] oneBecomesTwo = oneItem.OneBecomesTwo();
             IsTrue(oneBecomesTwo.SequenceEqual([ 1, 1 ]));
