@@ -85,3 +85,28 @@ Test_AddRange_WithIList_CollectionsCore_DoesNotClash_WithCommonLegacy:
             int[] expected = [ 1, 2, 3, 3, 4, 5 ];
             int[] actual = list.ToArray();
             CollectionAssert.AreEqual(expected, actual);
+
+Test_Add_WithParams:
+
+        AreEqual(3, coll.Count);
+        AreEqual("Apple",  coll.ElementAt(0));
+        AreEqual("Orange", coll.ElementAt(1));
+        AreEqual("Banana", coll.ElementAt(2));
+
+
+        AreEqual(5, coll.Count);
+        AreEqual("Apple",  coll.ElementAt(0));
+        AreEqual("Orange", coll.ElementAt(1));
+        AreEqual("Banana", coll.ElementAt(2));
+        AreEqual("Prune",  coll.ElementAt(3));
+        AreEqual("Pear",   coll.ElementAt(4));
+
+Test_Add_WithIList_CollectionsCore_DoesNotClash_WithCommonLegacy:
+
+            int[] expected = [ 1, 2, 3, 3, 4, 5 ];
+            int[] actual = list.ToArray();
+            CollectionAssert.AreEqual(expected, actual);
+
+            int[] expected = [ 1, 2, 3, 3, 4, 5 ];
+            int[] actual = list.ToArray();
+            CollectionAssert.AreEqual(expected, actual);
