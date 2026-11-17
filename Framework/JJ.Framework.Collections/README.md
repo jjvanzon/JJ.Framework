@@ -97,7 +97,7 @@ A variant of `.NET's` `Union` method but now supporting short static invocation 
 Release Notes
 -------------
 
-#### `2026-11-16` | `0.261` : __Legacy__
+#### `2026-11-16` | `0.261` : __Legacy Release__
 
 - Release of legacy collection utils.
 - Overloads for `Add`, `AddRange`, `Concat`, `Distinct`, `Except`, `ForEach`, `OfType`, `OneBecomesTwo`, `Product`, `RemoveRange`, `SelectAncestors`, `SelfAndAncestors`, `Sum`, `Union`
@@ -109,6 +109,7 @@ Release Notes
 - And manually ported back/forth between main/legacy branches.
 - Refined use of `Ex` prefix for `2021` elements piled on top of `2015` elements.
 - Similar Core/Legacy split for [`Common.Legacy.Tests`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common.Tests).
+
 💬 Feedback 
 ------------
 
