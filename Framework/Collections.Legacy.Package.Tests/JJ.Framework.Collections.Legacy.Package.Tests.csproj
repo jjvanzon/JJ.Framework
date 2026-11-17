@@ -5,14 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.260.7503" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7503" />
+    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.261.7519" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7519" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\Collections.Legacy.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\Collections.Legacy.Tests\obj\**" />
-    <Compile Remove="..\Collections.Legacy.Tests\bin\**" />
+    <Compile Include="..\JJ.Framework.Collections.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Collections.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Collections.Tests\bin\**" />
   </ItemGroup>
 </Project>

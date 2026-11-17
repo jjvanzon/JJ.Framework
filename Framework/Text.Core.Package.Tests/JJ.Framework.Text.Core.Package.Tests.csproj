@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Text.Core" Version="5.2.7503" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.2.7503" />
+    <PackageReference Include="JJ.Framework.Text.Core" Version="5.3.7519" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7519" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 </Project>
