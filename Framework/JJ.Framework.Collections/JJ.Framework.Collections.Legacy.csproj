@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.260.$(BuildNum)</Version>
+    <Version>0.261.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks> <!-- NCrunch Libs 3 TFMs -->
     <Description>Expanding .NET with extra extension methods for collections. A set of elements released to support legacy JJ projects.</Description>
     <PackageTags>utility extensions helpers collections linq tree traversal helper collection recursive recursion Add AddRange Concat Distinct Except ForEach OfType OneBecomesTwo Product RemoveRange SelectAncestors SelfAndAncestors Sum Union</PackageTags>
