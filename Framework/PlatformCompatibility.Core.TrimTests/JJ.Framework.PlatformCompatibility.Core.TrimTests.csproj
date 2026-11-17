@@ -4,7 +4,14 @@
     <Version>5.3.0</Version>
     <OutputType>Exe</OutputType>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0</TargetFrameworks> <!-- NCrunch wide range for PlatformCompatibility -->
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors><!-- API surface nulls -->
   </PropertyGroup>
 
   <ItemGroup>

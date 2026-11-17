@@ -13,8 +13,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup>
-    <!--<WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>-->
-    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors><!-- API surface nulls -->
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsNet8) Or $(IsNet9) Or $(IsNet10)">
