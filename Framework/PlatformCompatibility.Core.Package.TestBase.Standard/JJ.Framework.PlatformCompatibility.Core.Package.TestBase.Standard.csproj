@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.3.7525" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.3.7526" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7525" />
   </ItemGroup>
 

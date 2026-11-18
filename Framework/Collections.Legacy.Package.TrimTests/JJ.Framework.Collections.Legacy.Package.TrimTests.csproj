@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.261.7525" />
+    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.261.7526" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7525" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.3.7525" />
   </ItemGroup>
