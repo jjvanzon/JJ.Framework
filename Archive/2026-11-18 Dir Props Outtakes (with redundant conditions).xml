@@ -1,0 +1,4 @@
+  
+  <PropertyGroup Condition="$(IsCore) And !$(IsTest) And !$(IsTrimTest)">
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors> <!-- API surface nulls -->
+  </PropertyGroup>

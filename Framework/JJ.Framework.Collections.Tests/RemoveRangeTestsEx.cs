@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Collections.Legacy.Tests;
+﻿// ReSharper disable ExpressionIsAlwaysNull
+namespace JJ.Framework.Collections.Legacy.Tests;
 
 [TestClass]
 public class RemoveRangeTestsEx

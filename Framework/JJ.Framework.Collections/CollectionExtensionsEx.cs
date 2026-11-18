@@ -29,12 +29,12 @@ public static class CollectionExtensionsEx
          }
     }
 
-    /// <summary> Overload of Concat that takes a single item, e.g. myCollection.Concat(myItem); </summary>
+    /// <summary> Overload of <c>Concat</c> that takes a single item, e.g. <c>myCollection.Concat(myItem);</c></summary>
     public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, T second) => first.Concat(new[] { second });
         
     /// <summary>
-    /// Overload of Concat that starts with a single item and then adds a collection to it e.g.
-    /// myItem.Concat(myCollection);
+    /// Overload of <c>Concat</c> that starts with a single item and then adds a collection to it e.g.
+    /// <c>myItem.Concat(myCollection);</c>
     /// </summary>
     public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second);
 
@@ -64,7 +64,7 @@ public static class CollectionExtensionsEx
     
     /// <summary>
     /// Variant of <c>Except</c> taking a predicate, e.g. <br />
-    /// <c>myCollection.Except(x =&gt; string.Equals("Blah");</c> <br />
+    /// <c>myCollection.Except(x =&gt; string.Equals(x, "Blah"));</c> <br />
     /// (This is the same as a negated <c>Where</c> predicate, but if you are already thinking in terms of <c>Except</c>,
     /// this might better express your intent.)
     /// </summary>
@@ -90,9 +90,9 @@ public static class CollectionExtensionsEx
     }
 
     /// <summary>
-    /// Non-generic variant of <c>OfType&lt;T&gt;</c> taking a <c>Type</c> parameter.<br/>
-    /// It sacrifices automatical casts of items to the desired type.
-    /// Still this may be useful for certain scenarios.
+    /// Non-generic variant of <c>OfType&lt;T&gt;</c> taking a <c>Type</c> as a parameter.<br/>
+    /// It sacrifices automatic casts of items to the desired type.
+    /// Still this may be useful for certain non-generic scenarios.
     /// </summary>
     public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
     {

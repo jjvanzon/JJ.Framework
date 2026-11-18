@@ -53,14 +53,14 @@ public struct _foreachwithindex;
 /// <summary> 
 /// Allow specifying 1 value as a list, but turn it into 2 repeating ones,
 /// as a helper for post and fence problems.
-/// Collections of 0, 2 or more elements are left along and returned as is.
-/// Only for collections with exactly 1 item it will return a new collection of 2 items.
+/// Collections of 0, 2 or more elements are left alone and returned as is.
+/// Only for collections with exactly 1 item it will return a new collection of 2 repeated items.
 /// </summary> 
 public struct _onebecomestwo;
 
 /// <summary> 
 /// Works similar to <c>Sum</c>, but instead of adding up all the numbers, all the numbers are multiplied.
-/// If the collection is empty, returns 1 (the null-operation for a multiplication).
+/// If the collection is empty, returns 1 (the null-operation for multiplication).
 /// </summary> 
 public struct _product;
 
@@ -77,6 +77,7 @@ public struct _removerange;
 /// <summary>
 /// Offers a single-line generally usable solution for gathering up 
 /// parents and their parents in any tree structure.  
+/// Safe against circularities.
 /// Example:
 /// <code>
 /// var ancestors = child.SelectAncestors(x => x.Parent);
@@ -87,6 +88,7 @@ public struct _selectancestors;
 /// <summary>
 /// A single-line solution for getting all parents in a tree structure,
 /// but includes the root item in the output collection too.
+/// Gracefully handles circularities.
 /// Example:
 /// <code>var items = child.SelfAndAncestors(x => x.Parent);</code>
 /// Output in that case contains all the <c>Parents</c> but also the <c>child</c>.
@@ -110,6 +112,6 @@ public struct _selfandancestors;
 public struct _staticenumerableex;
 
 /// <summary>
-/// An overload of the Sum LINQ method that takes TimeSpans.
+/// An overload of the <c>Sum</c> LINQ method that takes <c>TimeSpans</c>.
 /// </summary>
 public struct _sumoftimespan;

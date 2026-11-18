@@ -3,6 +3,14 @@
 [TestClass]
 public class ExceptTestsEx
 {
+
+    [TestMethod]
+    public void Test_Except_ByPredicate_Example()
+    {
+        string[] myCollection = [ "Hello", "Blah" ];
+        myCollection.Except(x => string.Equals(x, "Blah"));
+    }
+
     [TestMethod]
     public void Test_Except_ByCollections()
     {

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable AppendToCollectionExpression
+// ReSharper disable ExpressionIsAlwaysNull
 namespace JJ.Framework.Collections.Legacy.Tests;
 
 [TestClass]
