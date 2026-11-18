@@ -90,9 +90,11 @@ public static class CollectionExtensionsEx
     }
 
     /// <summary>
-    /// Non-generic variant of <c>OfType&lt;T&gt;</c> taking a <c>Type</c> as a parameter.<br/>
-    /// It sacrifices automatic casts of items to the desired type.
-    /// Still this may be useful for certain non-generic scenarios.
+    /// Non-generic variation on <c>OfType&lt;T&gt;</c>, 
+    /// but now takes a <c>Type</c> as a parameter. I.e. 
+    /// <c>animals.OfType(typeof(Dog))</c> as opposed to <c>animals.OfType&lt;Dog&gt;()</c>.
+    /// It won't automatically cast (so the output item type stays <c>Animal</c> and does not become <c>Dog</c>).
+    /// Can be useful for certain non-generic scenarios.
     /// </summary>
     public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
     {
