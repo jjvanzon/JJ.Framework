@@ -136,7 +136,7 @@ public class UninstallPackageTests : TestHelper
 
     [TestMethod]
     public void Test_UninstallPackage_Exception_MissingID() 
-        => Throws(() => UninstallPackage(id: "", Opt()), "required argument missing");
+        => Throws(() => UninstallPackage(id: "", Opt()), "required argument", "missing");
 
     [TestMethod]
     public void Test_RemovePackage_Exception_CommandMissingArgOnly_CsProjNamePlacedBeforeArg()

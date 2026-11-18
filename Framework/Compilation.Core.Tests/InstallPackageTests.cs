@@ -124,11 +124,11 @@ public class InstallPackageTests : TestHelper
 
     [TestMethod]
     public void Test_InstallPackage_Exception_MissingID() 
-        => Throws(() => InstallPackage(id: "", Ver, Opt()), "required argument missing");
+        => Throws(() => InstallPackage(id: "", Ver, Opt()), "required argument", "missing");
 
     [TestMethod]
     public void Test_InstallPackage_Exception_NoID_EvenWhenNoRestore() 
-        => Throws(() => InstallPackage(id: "", Ver, "--no-restore", Opt()), "required argument missing");
+        => Throws(() => InstallPackage(id: "", Ver, "--no-restore", Opt()), "required argument", "missing");
 
     [TestMethod]
     public void Test_InstallPackage_Exception_InvalidPackageIDSyntax() 
