@@ -23,6 +23,9 @@ Overloads added for:
 - [SelfAndAncestors](#selfandancestors)
 - [Sum](#sum)
 - [Union](#union)
+- [Release Notes](#release-notes)
+        - [`2026-11-18` | `0.261` : __Legacy Release__](#2026-11-18--0261--legacy-release)
+- [💬 Feedback](#-feedback)
 
 
 ## Add
@@ -99,7 +102,7 @@ A variant of `.NET's` `Union` method but now supporting short static invocation 
 Release Notes
 -------------
 
-#### `2026-11-16` | `0.261` : __Legacy Release__
+#### `2026-11-18` | `0.261` : __Legacy Release__
 
 - Release of legacy collection utils.
 - Overloads for `Add`, `AddRange`, `Concat`, `Distinct`, `Except`, `ForEach`, `OfType`, `OneBecomesTwo`, `Product`, `RemoveRange`, `SelectAncestors`, `SelfAndAncestors`, `Sum`, `Union`
