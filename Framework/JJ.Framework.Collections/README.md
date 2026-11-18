@@ -31,7 +31,7 @@ Add multiple items to a collection by means of a comma separated argument list, 
 
 ## AddRange
 
-AddRange is a member of `List<T>`. This is an overload for `ICollection<T>`.
+AddRange is a member of `List<T>`. This is an overload for `ICollection<T>` so you can use it for more collection types.
 
 ## Concat
 
@@ -41,11 +41,11 @@ or that starts with a single item and then adds a collection to it e.g. `myItem.
 ## Distinct
 
 Overload that takes a key selector that determines what makes an item unique, e.g. `myItems.Distinct(x => x.LastName);`  
-For multi-part as keys, use `myItems.Distinct(x => new { x.FirstName, x.LastName });`
+For multi-part keys, use `myItems.Distinct(x => new { x.FirstName, x.LastName });`
 
 ## Except
 
-An overload that takes a predicate, e.g. `myCollection.Except(x => string.Equals("Blah");`
+An overload that takes a predicate, e.g. `myCollection.Except(x => string.Equals(x, "Blah"));`
 (This is the same as a negated `Where` predicate, but if you are already thinking in terms of `Except`, this might express your intent clearer.)
 
 ## ForEach
@@ -61,7 +61,9 @@ Non-generic variation on `OfType<T>`, but now takes a `Type` as a parameter. I.e
 
 ## OneBecomesTwo
 
-Allow specifying 1 value as a list, but turn it into 2 repeating ones, as a helper for post and fence problems.
+Allow specifying 1 value as a list, but turn it into 2 repeating ones, as a helper for "post and fence problems".  
+Collections of 0, 2 or more elements are left alone and returned as is.
+Only for collections with exactly 1 item it will return a new collection of 2 repeated items.
 
 ## Product
 
@@ -75,12 +77,12 @@ Example: `list.RemoveRange("Orange", "Peach");`
 
 ## SelectAncestors
 
-Offers a single-line generally usable solution for gathering up parents and their parents in any tree structure.  
+Offers a single-line generally usable solution for gathering up parents and their parents in any tree structure. Safe against circularities.  
 Example: `var ancestors = child.SelectAncestors(x => x.Parent);`
 
 ## SelfAndAncestors
 
-Same as `SelectAncestors`, but now includes the item itself in the output collection.  
+Same as `SelectAncestors`, but now includes the item itself in the output collection. Gracefully handles circularities.  
 Example: `var items = child.SelfAndAncestors(x => x.Parent);`  
 Output in that case contains all the `Parents` but also the `child`.
 

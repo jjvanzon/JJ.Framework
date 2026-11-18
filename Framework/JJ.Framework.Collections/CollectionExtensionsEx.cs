@@ -41,7 +41,7 @@ public static class CollectionExtensionsEx
     /// <summary>
     /// Variant of <c>Distinct</c> that takes a key selector that determines what makes an item unique, for example: <br/>
     /// <c>myItems.Distinct(x => x.LastName);</c> <br/>
-    /// For multi-part as keys, use: <br/>
+    /// For multi-part keys, use: <br/>
     /// <c>myItems.Distinct(x => new { x.FirstName, x.LastName });</c>
     /// </summary>
     public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)

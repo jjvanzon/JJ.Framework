@@ -91,7 +91,7 @@ Collection Extensions
 
     * Variation that takes a key selector that determines what makes an item unique, e.g.
     * `myItems.Distinct(x => x.LastName);`
-    * For multi-part as keys, use:
+    * For multi-part keys, use:
     * `myItems.Distinct(x => new { x.FirstName, x.LastName });`
 
 -----

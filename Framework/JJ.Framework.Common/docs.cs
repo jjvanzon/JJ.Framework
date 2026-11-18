@@ -144,7 +144,7 @@ public struct _collectionextensions;
 /// <b>Distinct</b>
 /// <para>Variation that takes a key selector that determines what makes an item unique:</para>
 /// <code>myItems.Distinct(x =&gt; x.LastName);</code>
-/// <para>For multi-part as keys, use:</para>
+/// <para>For multi-part keys, use:</para>
 /// <code>myItems.Distinct(x =&gt; new { x.FirstName, x.LastName });</code>
 /// </summary>
 public struct _distinct;

@@ -8,7 +8,9 @@
 
 namespace JJ.Framework.Collections.Legacy.docs;
 
-/// <summary> <c>AddRange</c> is a member of <c>List&lt;T&gt;</c>. This is an overload for <c>ICollection&lt;T&gt;</c>. </summary>
+/// <summary> <c>AddRange</c> is a member of <c>List&lt;T&gt;</c>. 
+/// This is an overload for <c>ICollection&lt;T&gt;</c>,
+/// so you can use it for more collection types.. </summary>
 public struct _addrange;
 
 /// <summary>
@@ -52,7 +54,7 @@ public struct _foreachwithindex;
 
 /// <summary> 
 /// Allow specifying 1 value as a list, but turn it into 2 repeating ones,
-/// as a helper for post and fence problems.
+/// as a helper for &quot;post and fence&quot;  problems.
 /// Collections of 0, 2 or more elements are left alone and returned as is.
 /// Only for collections with exactly 1 item it will return a new collection of 2 repeated items.
 /// </summary> 
@@ -66,7 +68,7 @@ public struct _product;
 
 /// <summary>
 /// <c>RemoveRange</c> is a member of <c>List&lt;T&gt;</c>. 
-/// Here is an overload for that works for any <c>ICollection&lt;T&gt;</c>, 
+/// Here is an overload that works for any <c>ICollection&lt;T&gt;</c>, 
 /// but it also takes items/collections instead of indices. Example:
 /// <code>
 /// list.RemoveRange("Orange", "Peach");
