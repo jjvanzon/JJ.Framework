@@ -2,6 +2,7 @@
   <Folder Name="/Dependencies/">
     <Project Path="Framework/Compilation.Core/JJ.Framework.Compilation.Core.csproj" />
     <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.IO/JJ.Framework.IO.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Text/JJ.Framework.Text.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Xml/JJ.Framework.Xml.Legacy.csproj" />
     <Project Path="Framework/PlatformCompatibility.Core.SharedProject/JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj" Id="e275ca1f-e6b3-4f2e-bff3-c1c24982f009" />
@@ -34,17 +35,18 @@
   </Folder>
   <Project Path="Framework/Common.Core.Package.Tests/JJ.Framework.Common.Core.Package.Tests.csproj" />
   <Project Path="Framework/Common.Core.Package.TrimTests/JJ.Framework.Common.Core.Package.TrimTests.csproj" />
-  <Project Path="Framework/Common.Core.Tests.Helpers/JJ.Framework.Common.Core.Tests.Helpers.csproj" />
   <Project Path="Framework/Common.Core.Tests/JJ.Framework.Common.Core.Tests.csproj" />
   <Project Path="Framework/Common.Core.TrimTests/JJ.Framework.Common.Core.TrimTests.csproj" />
   <Project Path="Framework/Common.Legacy.Package.Tests/JJ.Framework.Common.Legacy.Package.Tests.csproj" />
   <Project Path="Framework/Common.Legacy.Package.TrimTests/JJ.Framework.Common.Legacy.Package.TrimTests.csproj" />
+  <Project Path="Framework/Common.Legacy.Tests.Helpers/JJ.Framework.Common.Legacy.Tests.Helpers.csproj" />
   <Project Path="Framework/Common.Legacy.TrimTests/JJ.Framework.Common.Legacy.TrimTests.csproj" />
   <Project Path="Framework/Configuration.Core.Tests.Dummy/JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
   <Project Path="Framework/Configuration.Core.Tests/JJ.Framework.Configuration.Core.Tests.csproj" />
   <Project Path="Framework/Configuration.Core/JJ.Framework.Configuration.Core.csproj" />
   <Project Path="Framework/Configuration.Net48.Tests/JJ.Framework.Configuration.Net48.Tests.csproj" Id="dade7e6f-a89e-4c35-a50b-8562f3fca2b1" />
   <Project Path="Framework/Configuration.Net48/JJ.Framework.Configuration.Net48.csproj" Id="37a1cde4-c375-41a2-8268-664edb2d02e4" />
+  <Project Path="Framework/IO.Core/JJ.Framework.IO.Core.csproj" />
   <Project Path="Framework/JJ.Framework.Common.Tests/JJ.Framework.Common.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Configuration.Tests/JJ.Framework.Configuration.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Configuration/JJ.Framework.Configuration.Legacy.csproj" />

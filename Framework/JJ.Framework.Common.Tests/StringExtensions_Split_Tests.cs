@@ -5,7 +5,7 @@ using System;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Common;
 
-namespace JJ.Framework.Common.Tests
+namespace JJ.Framework.Common.Legacy.Tests
 {
     [TestClass]
     public class StringExtensions_Split_Tests

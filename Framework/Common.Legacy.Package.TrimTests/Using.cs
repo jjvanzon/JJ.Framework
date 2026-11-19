@@ -1,5 +1,5 @@
 ﻿global using JJ.Framework.Common.Legacy;
-global using JJ.Framework.Common.Tests;
+global using JJ.Framework.Common.Legacy.Tests;
 global using static System.Console;
 global using static System.Environment;
 global using static JJ.Framework.Testing.Core.TestRunner;
