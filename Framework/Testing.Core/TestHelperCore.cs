@@ -4,7 +4,10 @@
     {
         public static string FormatTestedExpressionMessage(string messageOrExpression) 
             => Has(messageOrExpression) ? $"Tested: '{messageOrExpression}'." : "";
-        
+
+        // TODO: This message build-up could be customized
+        //  independently from Legacy. Does not need to be like legacy.
+        //  Remove Legacy suffix after refactoring.
         
         internal static string GetExpectedActualMessageLegacy<T>(string methodName, T expected, T actual, string message)
             => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{(actual != null ? actual.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";

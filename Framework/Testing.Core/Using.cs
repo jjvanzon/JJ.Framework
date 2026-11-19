@@ -9,7 +9,6 @@ global using JJ.Framework.Collections.Legacy;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Existence.Core;
-global using JJ.Framework.Testing.Legacy;
 global using JJ.Framework.Testing.Core.docs;
 global using static System.Math;
 global using static System.String;

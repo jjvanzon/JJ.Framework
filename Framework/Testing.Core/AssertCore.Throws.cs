@@ -139,15 +139,35 @@ public static partial class AssertCore
     }
 
     // OnOtherThread
-
-    public static void ThrowsExceptionOnOtherThread(Func<object?> statement)
-        => AssertHelper.ThrowsExceptionOnOtherThread(() => statement());
     
     public static void ThrowsOnOtherThread(Func<object?> statement)
-        => AssertCore.ThrowsExceptionOnOtherThread(statement);
-    
+        => ThrowsOnOtherThread(() => { statement(); } );
+
     public static void ThrowsOnOtherThread(Action statement)
-        => AssertHelper.ThrowsExceptionOnOtherThread(statement);
+    {
+        bool exceptionWasThrown = false;
+        Action action = new Action(() =>
+        {
+            try
+            {
+                statement();
+            }
+            catch
+            {
+                exceptionWasThrown = true;
+            }
+        });
+
+        ThreadStart threadStart = new ThreadStart(action);
+        Thread thread = new Thread(threadStart);
+        thread.Start();
+        thread.Join();
+
+        if (!exceptionWasThrown)
+        {
+            throw new Exception("An exception should have been raised.");
+        }
+    }
 
     // ThrowsException as Synonym
     

@@ -105,7 +105,6 @@ public class AssertCore_Throws_Tests
     {
         ThrowsOnOtherThread         (ThrowingAction);
         ThrowsOnOtherThread         (ThrowingFunc);
-        ThrowsExceptionOnOtherThread(ThrowingFunc);
     }
 
     [TestMethod]
@@ -115,7 +114,6 @@ public class AssertCore_Throws_Tests
 
         Throws(() => ThrowsOnOtherThread         (() => { }), expectedMsgPart);
         Throws(() => ThrowsOnOtherThread         (() => ""), expectedMsgPart);
-        Throws(() => ThrowsExceptionOnOtherThread(() => ""), expectedMsgPart);
     }
 
     private void ThrowingAction() => throw new InvalidOperationException("boom");

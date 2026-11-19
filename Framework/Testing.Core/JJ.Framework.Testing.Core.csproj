@@ -13,7 +13,6 @@
     <ProjectReference Include="..\Existence.Core\JJ.Framework.Existence.Core.csproj" />
     <ProjectReference Include="..\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
