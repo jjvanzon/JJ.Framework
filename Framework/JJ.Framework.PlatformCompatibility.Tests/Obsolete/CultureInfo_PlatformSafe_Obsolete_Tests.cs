@@ -9,7 +9,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
     {
         [TestMethod]
         public void Test_PlatformHelper_Obsolete_PlatformHelper_CultureInfo_GetCultureInfo_PlatformSafe_ThrowsException()
-            => AssertHelperLegacy.ThrowsException_OrInnerException<NotSupportedException>(
+            => AssertHelperEx.ThrowsException_OrInnerException<NotSupportedException>(
                 () => PlatformHelper_Accessor.CultureInfo_GetCultureInfo_PlatformSafe(default),
                 "Use GetCultureInfo_PlatformSafe instead.");
     }

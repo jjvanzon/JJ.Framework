@@ -46,6 +46,7 @@
       "Framework\\JJ.Framework.Collections\\JJ.Framework.Collections.Legacy.csproj",
       "Framework\\JJ.Framework.Common.Tests\\JJ.Framework.Common.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.Common\\JJ.Framework.Common.Legacy.csproj",
+      "Framework\\JJ.Framework.Exceptions\\JJ.Framework.Exceptions.Legacy.csproj",
       "Framework\\JJ.Framework.IO.Tests\\JJ.Framework.IO.Legacy.Tests.csproj",
       "Framework\\JJ.Framework.IO\\JJ.Framework.IO.Legacy.csproj",
       "Framework\\JJ.Framework.Mathematics.Tests\\JJ.Framework.Mathematics.Legacy.Tests.csproj",

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 
 
-namespace JJ.Framework.Exceptions.Core
+namespace JJ.Framework.Exceptions.Legacy
 {
-    public static class ExceptionHelperLegacy
+    public static class ExceptionHelperEx
     {
         public static string FormatExceptionWithInnerExceptions(Exception ex, bool includeStackTrace)
         {

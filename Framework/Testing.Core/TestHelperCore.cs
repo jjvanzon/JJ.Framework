@@ -5,6 +5,17 @@
         public static string FormatTestedExpressionMessage(string messageOrExpression) 
             => Has(messageOrExpression) ? $"Tested: '{messageOrExpression}'." : "";
         
+        
+        internal static string GetExpectedActualMessageLegacy<T>(string methodName, T expected, T actual, string message)
+            => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{(actual != null ? actual.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
+        
+        internal static string GetFailureMessageLegacy(string methodName, string message)
+        {
+            string separator = !string.IsNullOrEmpty(message) ? " " : "";
+
+            return $"Assert.{methodName} failed.{separator}{message}";
+        }
+
         // ReSharper disable AssignNullToNotNullAttribute
         [TrimWarn(ObjectGetType)]
         public static bool CurrentTestIsInCategory(string category)

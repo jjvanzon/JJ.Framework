@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Exceptions\JJ.Framework.Exceptions.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   </ItemGroup>
   

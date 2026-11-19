@@ -9,7 +9,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
     {
         [TestMethod]
         public void Test_Encoding_PlatformSafe_Obsolete_GetString_PlatformSafe_ThrowsException()
-            => AssertHelperLegacy.ThrowsException_OrInnerException<NotSupportedException>(
+            => AssertHelperEx.ThrowsException_OrInnerException<NotSupportedException>(
                 () => Encoding_PlatformSafe_Accessor.GetString_PlatformSafe(default, default),
                 "Use PlatformHelper.GetString_PlatformSafe instead.");
     }

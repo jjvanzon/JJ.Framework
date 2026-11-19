@@ -11,7 +11,7 @@ global using JJ.Framework.Testing.Legacy;
 global using static System.Console;
 global using static System.Environment;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
+global using static JJ.Framework.Testing.Legacy.AssertHelperEx;
 global using static JJ.Framework.SharedProject.Core.NoTrimReasons;
-global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Testing.Core.TestRunner;
