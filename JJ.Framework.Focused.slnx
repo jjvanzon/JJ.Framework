@@ -24,7 +24,6 @@
     <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
     <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
-    <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
     <Project Path="Framework\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
     <Project Path="Framework\Text.Core\JJ.Framework.Text.Core.csproj" />
   </Folder>
@@ -46,9 +45,11 @@
     <File Path="README.MD" />
     <File Path="RELEASE-NOTES.MD" />
   </Folder>
+  <Project Path="Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Testing.Tests/JJ.Framework.Testing.Legacy.Tests.csproj" />
   <Project Path="Framework/Testing.Core.Tests/JJ.Framework.Testing.Core.Tests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
+  <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   <Project Path="Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   <Project Path="Framework\Testing.Core\JJ.Framework.Testing.Core.csproj" />
 </Solution>

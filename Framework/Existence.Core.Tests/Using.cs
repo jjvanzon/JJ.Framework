@@ -25,7 +25,6 @@ global using static System.Activator;
 global using static System.Console;
 global using static System.Environment;
 global using static System.Globalization.CultureInfo;
-global using static JJ.Framework.Testing.Legacy.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Reflection.Core.Reflect;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
