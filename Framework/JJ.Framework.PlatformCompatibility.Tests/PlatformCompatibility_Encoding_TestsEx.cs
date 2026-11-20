@@ -1,8 +1,8 @@
 ﻿// ReSharper disable InvokeAsExtensionMember
-namespace JJ.Framework.PlatformCompatibility.Tests;
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests;
 
 [TestClass]
-public sealed class PlatformCompatibility_Encoding_Core_Tests
+public sealed class PlatformCompatibility_Encoding_TestsEx
 {
     [TestMethod]
     public void PlatformCompatibility_Encoding_Core_Test()

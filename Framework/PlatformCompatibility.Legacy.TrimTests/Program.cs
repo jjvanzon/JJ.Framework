@@ -16,13 +16,13 @@ RunTests<MemberTypes_PlatformSafe_Tests>() &&
 RunTests<PropertyInfo_GetValue_PlatformSafe_Tests>() &&
 RunTests<Type_GetInterface_PlatformSafe_Tests>() &&
 RunTests<XDocument_XElement_PlatformSafe_Tests>() &&
-RunTests<PropertyInfo_PlatformSafe_CoreTests>() &&
-RunTests<PlatformCompatibility_CultureInfo_Core_Tests>() &&
-RunTests<PlatformCompatibility_Encoding_Core_Tests>() &&
-RunTests<PlatformCompatibility_MemberType_Core_Tests>() &&
-RunTests<PlatformCompatibility_Stream_Core_Tests>() &&
-RunTests<PlatformCompatibility_String_Core_Tests>() &&
-RunTests<PlatformCompatibility_Tuple_Core_Tests>();
+RunTests<PropertyInfo_PlatformSafe_TestsEx>() &&
+RunTests<PlatformCompatibility_CultureInfo_TestsEx>() &&
+RunTests<PlatformCompatibility_Encoding_TestsEx>() &&
+RunTests<PlatformCompatibility_MemberType_TestsEx>() &&
+RunTests<PlatformCompatibility_Stream_TestsEx>() &&
+RunTests<PlatformCompatibility_String_TestsEx>() &&
+RunTests<PlatformCompatibility_Tuple_TestsEx>();
 
 WriteLine("Done.");
 if (!success) Exit(1);

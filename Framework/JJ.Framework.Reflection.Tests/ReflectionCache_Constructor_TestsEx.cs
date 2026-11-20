@@ -2,7 +2,7 @@
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class ReflectionCache_Constructor_CoreTests
+public class ReflectionCache_Constructor_TestsEx
 {
     [TestMethod]
     public void ReflectionCache_GetConstructor_PublicInstance_TestClass_NotThrows()

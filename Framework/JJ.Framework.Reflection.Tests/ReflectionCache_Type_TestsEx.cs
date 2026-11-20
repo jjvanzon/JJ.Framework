@@ -2,7 +2,7 @@
 
 [Suppress("Trimmer", "IL2026", Justification = GetTypes)]
 [TestClass]
-public class ReflectionCache_Type_CoreTests
+public class ReflectionCache_Type_TestsEx
 {
     // GetTypeByShortName
     
@@ -15,9 +15,9 @@ public class ReflectionCache_Type_CoreTests
 
         Func<Type>[] synonyms =
         [
-            () => reflectionCache       .GetTypeByShortName("ReflectionCache_Type_CoreTests"),
-            () => reflectionCacheLegacy .GetTypeByShortName("ReflectionCache_Type_CoreTests"),
-            () => reflectionCacheLegacy2.GetTypeByShortName("ReflectionCache_Type_CoreTests"),
+            () => reflectionCache       .GetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheLegacy .GetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheLegacy2.GetTypeByShortName("ReflectionCache_Type_TestsEx"),
         ];
 
         foreach (var func in synonyms)
@@ -26,7 +26,7 @@ public class ReflectionCache_Type_CoreTests
             {
                 Type type = func();
                 IsNotNull(() => type);
-                AreEqual(typeof(ReflectionCache_Type_CoreTests), () => type);
+                AreEqual(typeof(ReflectionCache_Type_TestsEx), () => type);
             }
         }
     }
@@ -63,9 +63,9 @@ public class ReflectionCache_Type_CoreTests
 
         Func<Type>[] synonyms =
         [
-            () => reflectionCache       .TryGetTypeByShortName("ReflectionCache_Type_CoreTests"),
-            () => reflectionCacheLegacy .TryGetTypeByShortName("ReflectionCache_Type_CoreTests"),
-            () => reflectionCacheLegacy2.TryGetTypeByShortName("ReflectionCache_Type_CoreTests"),
+            () => reflectionCache       .TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheLegacy .TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheLegacy2.TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
         ];
 
         foreach (var func in synonyms)
@@ -74,7 +74,7 @@ public class ReflectionCache_Type_CoreTests
             {
                 Type type = func();
                 IsNotNull(() => type);
-                AreEqual(typeof(ReflectionCache_Type_CoreTests), () => type);
+                AreEqual(typeof(ReflectionCache_Type_TestsEx), () => type);
             }
         }
     }
@@ -161,9 +161,9 @@ public class ReflectionCache_Type_CoreTests
 
         Func<IList<Type>>[] synonyms =
         [
-            () => reflectionCache       .GetTypesByShortName("ReflectionCache_Type_CoreTests"),
-            () => reflectionCacheLegacy .GetTypesByShortName("ReflectionCache_Type_CoreTests"),
-            () => reflectionCacheLegacy2.GetTypesByShortName("ReflectionCache_Type_CoreTests"),
+            () => reflectionCache       .GetTypesByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheLegacy .GetTypesByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheLegacy2.GetTypesByShortName("ReflectionCache_Type_TestsEx"),
         ];
 
         foreach (var func in synonyms)
@@ -175,7 +175,7 @@ public class ReflectionCache_Type_CoreTests
                 IsNotNull(  () => types);
                 AreEqual(1, () => types.Count);
                 IsNotNull(  () => types[0]);
-                AreEqual(typeof(ReflectionCache_Type_CoreTests), () => types[0]);
+                AreEqual(typeof(ReflectionCache_Type_TestsEx), () => types[0]);
             }
         }
     }

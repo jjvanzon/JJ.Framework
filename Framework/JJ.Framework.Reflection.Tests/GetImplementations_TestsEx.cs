@@ -3,7 +3,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = TypeLoaded)]
 [TestClass]
-public class GetImplementations_CoreTests
+public class GetImplementations_TestsEx
 {
     private interface IInterfaceNone;
     private interface IInterface1;

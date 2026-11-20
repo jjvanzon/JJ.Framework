@@ -15,22 +15,22 @@ RunTests<ExpressionHelperGetValueSimpleTests>() &&
 RunTests<ExpressionHelperGetValuesTests>() &&
 RunTests<ReflectionCacheLegacyExampleTests>() &&
 RunTests<ReflectionCacheLegacyTests>() &&
-RunTests<ExpressionHelper_CoreTests>() &&
-RunTests<GetImplementations_CoreTests>() &&
-RunTests<IsAssignableTo_CoreTests>() &&
-RunTests<IsIndexer_CoreTests>() &&
-RunTests<IsStatic_CoreTests>() &&
-RunTests<ItemType_CoreTests>() &&
-RunTests<NullException_CoreTests>() &&
-RunTests<ReflectionCache_Constructor_CoreTests>() &&
-RunTests<ReflectionCache_Field_CoreTests>() &&
-RunTests<ReflectionCache_Indexer_CoreTests>() &&
-RunTests<ReflectionCache_Indexer_CoreTests_GenericOverload>() &&
-RunTests<ReflectionCache_Method_CoreTests>() &&
-RunTests<ReflectionCache_Method_CoreTests_GenericOverload>() &&
-RunTests<ReflectionCache_Property_CoreTests>() &&
-RunTests<ReflectionCache_Type_CoreTests>() &&
-RunTests<TypeExtensions_CoreTests>();
+RunTests<ExpressionHelper_TestsEx>() &&
+RunTests<GetImplementations_TestsEx>() &&
+RunTests<IsAssignableTo_TestsEx>() &&
+RunTests<IsIndexer_TestsEx>() &&
+RunTests<IsStatic_TestsEx>() &&
+RunTests<ItemType_TestsEx>() &&
+RunTests<NullException_TestsEx>() &&
+RunTests<ReflectionCache_Constructor_TestsEx>() &&
+RunTests<ReflectionCache_Field_TestsEx>() &&
+RunTests<ReflectionCache_Indexer_TestsEx>() &&
+RunTests<ReflectionCache_Indexer_TestsEx_GenericOverload>() &&
+RunTests<ReflectionCache_Method_TestsEx>() &&
+RunTests<ReflectionCache_Method_TestsEx_GenericOverload>() &&
+RunTests<ReflectionCache_Property_TestsEx>() &&
+RunTests<ReflectionCache_Type_TestsEx>() &&
+RunTests<TypeExtensions_TestsEx>();
 
 WriteLine("Done.");
 

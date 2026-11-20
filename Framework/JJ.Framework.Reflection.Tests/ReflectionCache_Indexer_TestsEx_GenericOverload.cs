@@ -2,7 +2,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class ReflectionCache_Indexer_CoreTests_GenericOverload
+public class ReflectionCache_Indexer_TestsEx_GenericOverload
 {
     // ncrunch: no coverage start
     private class HelperClass

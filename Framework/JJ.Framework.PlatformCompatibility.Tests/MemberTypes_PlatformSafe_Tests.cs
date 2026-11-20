@@ -3,11 +3,10 @@ using System.Reflection;
 using JJ.Framework.PlatformCompatibility.Tests.Helpers;
 using JJ.Framework.Testing;
 using JJ.Framework.PlatformCompatibility.Core;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable ConvertToConstant.Local
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests
 {
     [TestClass]
     public class MemberTypes_PlatformSafe_Tests

@@ -1,9 +1,9 @@
 ﻿using System.IO;
 
-namespace JJ.Framework.PlatformCompatibility.Tests;
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests;
 
 [TestClass]
-public class PlatformCompatibility_Stream_Core_Tests
+public class PlatformCompatibility_Stream_TestsEx
 {
     [TestMethod]
     public void PlatformCompatibility_Stream_Copy_Core_Test()

@@ -2,7 +2,7 @@
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class ReflectionCache_Indexer_CoreTests
+public class ReflectionCache_Indexer_TestsEx
 {
     [TestMethod]
     public void ReflectionCache_GetIndexer_Test_1Arg()

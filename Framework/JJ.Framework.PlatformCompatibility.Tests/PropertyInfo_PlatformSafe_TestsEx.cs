@@ -1,9 +1,8 @@
-
-namespace JJ.Framework.PlatformCompatibility.Tests;
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class PropertyInfo_PlatformSafe_CoreTests
+public class PropertyInfo_PlatformSafe_TestsEx
 {
     public int Value { get; set; }
 
@@ -14,7 +13,7 @@ public class PropertyInfo_PlatformSafe_CoreTests
     public void PropertyInfo_GetCustomAttribute_PlatformSupport_ReturnsAttribute()
     {
         // Arrange
-        PropertyInfo prop = typeof(PropertyInfo_PlatformSafe_CoreTests).GetProperty("ValueWithAttr");
+        PropertyInfo prop = typeof(PropertyInfo_PlatformSafe_TestsEx).GetProperty("ValueWithAttr");
         ThrowIfNull(prop);
 
         // Act
@@ -32,7 +31,7 @@ public class PropertyInfo_PlatformSafe_CoreTests
     public void PropertyInfo_SetValue_PlatformSupport_SetsValue()
     {
         // Arrange
-        PropertyInfo prop = typeof(PropertyInfo_PlatformSafe_CoreTests).GetProperty("Value");
+        PropertyInfo prop = typeof(PropertyInfo_PlatformSafe_TestsEx).GetProperty("Value");
         ThrowIfNull(prop);
 
         // Act

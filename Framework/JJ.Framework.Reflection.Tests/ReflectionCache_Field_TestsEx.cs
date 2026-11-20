@@ -3,7 +3,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class ReflectionCache_Field_CoreTests
+public class ReflectionCache_Field_TestsEx
 {
     // Field
 

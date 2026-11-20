@@ -4,7 +4,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class ExpressionHelper_CoreTests
+public class ExpressionHelper_TestsEx
 {
     // ncrunch: no coverage start
     

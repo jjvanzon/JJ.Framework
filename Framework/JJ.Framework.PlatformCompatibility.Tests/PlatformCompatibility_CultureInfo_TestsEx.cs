@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 
-namespace JJ.Framework.PlatformCompatibility.Tests;
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests;
 
 [TestClass]
-public sealed class PlatformCompatibility_CultureInfo_Core_Tests
+public sealed class PlatformCompatibility_CultureInfo_TestsEx
 {
     [TestMethod]
     public void PlatformCompatibility_CultureInfo_Core_Test()

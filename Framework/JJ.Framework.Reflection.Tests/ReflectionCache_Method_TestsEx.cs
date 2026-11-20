@@ -5,7 +5,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class ReflectionCache_Method_CoreTests
+public class ReflectionCache_Method_TestsEx
 {
     // Method
     

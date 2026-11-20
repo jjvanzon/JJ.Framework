@@ -1,8 +1,8 @@
 ﻿// ReSharper disable PossibleMultipleEnumeration
-namespace JJ.Framework.PlatformCompatibility.Tests;
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests;
 
 [TestClass]
-public class PlatformCompatibility_String_Core_Tests
+public class PlatformCompatibility_String_TestsEx
 {
     [TestMethod]
     public void PlatformCompatibility_String_IsNullOrWhiteSpace_Core_Test()

@@ -12,7 +12,7 @@ public class StringExtensions_Split_Tests_Ex
     // Split With Char Sep
     
     [TestMethod]
-    public void Split_CharAndOptions_CoreTest()
+    public void Split_CharAndOptions_MainCase()
     {
         string[] expected = [ "a", "b", "c", "e" ];
         
@@ -40,7 +40,7 @@ public class StringExtensions_Split_Tests_Ex
     // Split with String Sep
     
     [TestMethod]
-    public void Split_StringSepAndOptions_CoreTest()
+    public void Split_StringSepAndOptions_MainCase()
     {
         string[] expected = [ "a", "b", "c", "e" ];
         
@@ -102,7 +102,7 @@ public class StringExtensions_Split_Tests_Ex
     }
     
     [TestMethod]
-    public void Split_ParamsSeps_CoreTest()
+    public void Split_ParamsSeps_MainCase()
     {
         string   input   = "a, b|c, , e";
         string[] expected = [ "a", "b", "c", "", "e" ];

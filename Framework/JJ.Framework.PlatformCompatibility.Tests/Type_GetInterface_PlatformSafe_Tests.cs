@@ -2,9 +2,8 @@
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.PlatformCompatibility.Tests.Helpers;
 using JJ.Framework.Testing;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests
 {
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]

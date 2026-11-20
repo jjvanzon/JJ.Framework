@@ -4,7 +4,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
-public class ReflectionCache_Property_CoreTests
+public class ReflectionCache_Property_TestsEx
 {
     // TODO: Review/refac
 

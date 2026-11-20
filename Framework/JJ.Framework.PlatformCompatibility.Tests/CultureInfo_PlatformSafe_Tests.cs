@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using JJ.Framework.Testing;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable InconsistentNaming
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests
 {
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]

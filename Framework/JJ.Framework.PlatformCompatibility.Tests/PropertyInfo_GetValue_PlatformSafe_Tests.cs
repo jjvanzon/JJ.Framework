@@ -2,7 +2,6 @@
 using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Reflection.Core;
 using JJ.Framework.Testing;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable RedundantCast
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 // ReSharper disable ConvertToConstant.Local
@@ -10,7 +9,7 @@ using JJ.Framework.Testing;
 
 #pragma warning disable IDE0004
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests
 {
     [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]

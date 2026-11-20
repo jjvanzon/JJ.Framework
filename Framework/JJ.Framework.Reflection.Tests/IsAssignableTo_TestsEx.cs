@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [TestClass]
-public class IsAssignableTo_CoreTests
+public class IsAssignableTo_TestsEx
 {
     [Suppress("Trimmer", "IL2026", Justification = TypeLoaded)]
     [TestMethod]

@@ -1,7 +1,7 @@
-﻿namespace JJ.Framework.PlatformCompatibility.Tests;
+﻿namespace JJ.Framework.PlatformCompatibility.Legacy.Tests;
 
 [TestClass]
-public class PlatformCompatibility_Tuple_Core_Tests
+public class PlatformCompatibility_Tuple_TestsEx
 {
     [TestMethod]
     public void PlatformCompatibility_Tuple2_Core_Test()

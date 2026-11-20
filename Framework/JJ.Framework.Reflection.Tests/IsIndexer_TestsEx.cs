@@ -3,7 +3,7 @@
 namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [TestClass]
-public class IsIndexer_CoreTests
+public class IsIndexer_TestsEx
 {
     // ncrunch: no coverage start
     

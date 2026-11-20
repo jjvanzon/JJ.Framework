@@ -3,7 +3,7 @@
 namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [TestClass]
-public class TypeExtensions_CoreTests
+public class TypeExtensions_TestsEx
 {
     [TestMethod]
     public void Test_GetUnderlyingNullableType()

@@ -4,10 +4,10 @@
 using System.Reflection;
 using JetBrains.Annotations;
 
-namespace JJ.Framework.PlatformCompatibility.Tests;
+namespace JJ.Framework.PlatformCompatibility.Legacy.Tests;
 
 [TestClass]
-public sealed class PlatformCompatibility_MemberType_Core_Tests
+public sealed class PlatformCompatibility_MemberType_TestsEx
 {
     // ncrunch: no coverage start
  

@@ -5,7 +5,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [Suppress("Trimmer", "IL2075", Justification = TypeLoaded)]
 [TestClass]
-public class IsStatic_CoreTests
+public class IsStatic_TestsEx
 {
     // ncrunch: no coverage start
     public int _field = 1;

@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Reflection.Legacy.Tests;
 
 [TestClass]
-public class NullException_CoreTests
+public class NullException_TestsEx
 {
     // ncrunch: no coverage start
     

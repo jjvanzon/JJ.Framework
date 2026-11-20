@@ -6,7 +6,7 @@ using static ReflectionHelper;
 
 [Suppress("Trimmer", "IL2067", Justification = TypeLoaded)]
 [TestClass]
-public class ItemType_CoreTests
+public class ItemType_TestsEx
 {
     [TestMethod]
     [Suppress("Trimmer", "IL2026", Justification = ObjectGetType)]
@@ -62,7 +62,7 @@ public class ItemType_CoreTests
             x => x.GetItemType()
         ];
 
-        var collType = typeof(ItemType_CoreTests);
+        var collType = typeof(ItemType_TestsEx);
 
         IList<(PropertyInfo itemProp, Type itemType)> props =
         [
