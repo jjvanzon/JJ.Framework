@@ -14,7 +14,6 @@
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   </ItemGroup>
 
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

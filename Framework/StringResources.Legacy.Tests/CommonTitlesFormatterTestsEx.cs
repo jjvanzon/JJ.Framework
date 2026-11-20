@@ -3,7 +3,7 @@ namespace JJ.Framework.StringResources.Legacy.Tests;
 using static CommonTitlesFormatter;
 
 [TestClass]
-public class CommonTitlesFormatterTests() 
+public class CommonTitlesFormatterTestsEx() 
     : StringResourceTester(
         typeof(CommonTitlesFormatter),
         @default: "",

@@ -6,7 +6,7 @@ namespace JJ.Framework.StringResources.Legacy.Tests;
 using static CommonTitles;
 
 [TestClass]
-public class CommonTitlesTests() 
+public class CommonTitlesTestsEx() 
     : StringResourceTester<CommonTitles>(
         known: ["en-US", "nl-NL"], 
         unknown: "de-DE", 

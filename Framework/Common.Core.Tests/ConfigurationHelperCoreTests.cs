@@ -196,7 +196,7 @@ public class ConfigurationHelperCoreTests
                 ConfigurationHelper.SetSection(inputConfigSection);
 
                 // Act
-                ThrowsException(
+                Throws(
                     () => ConfigurationHelper.SetSection(inputConfigSection),
                     "Configuration section of type 'JJ.Framework.Common.Core.Tests.ConfigurationSectionCore' was already set.");
             }

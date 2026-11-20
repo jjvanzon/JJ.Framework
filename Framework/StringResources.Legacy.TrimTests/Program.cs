@@ -1,8 +1,8 @@
 bool success = 
-RunTests<CommonTitlesFormatterTests>() &&
-RunTests<CommonTitlesTests>() &&
+RunTests<CommonTitlesFormatterTestsEx>() &&
+RunTests<CommonTitlesTestsEx>() &&
 RunTests<MyResourceTests>() &&
-RunTests<StringResourceTesterTests>();
+RunTests<StringResourceTesterTestsEx>();
 
 WriteLine("Done.");
 if (!success) Exit(1);

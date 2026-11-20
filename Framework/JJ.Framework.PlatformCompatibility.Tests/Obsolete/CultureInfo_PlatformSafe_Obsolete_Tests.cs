@@ -1,5 +1,4 @@
 ﻿using System;
-using JJ.Framework.Testing.Core;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
