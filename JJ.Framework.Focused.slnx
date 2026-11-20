@@ -19,10 +19,8 @@
     <Project Path="Framework/SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" Id="1beb8e62-fcb0-4b88-b142-23e720d5bacc" />
     <Project Path="Framework/Testing.Core.MSTestless/JJ.Framework.Testing.Core.MSTestless.csproj" />
     <Project Path="Framework/Testing.Core.NCrunchless/JJ.Framework.Testing.Core.NCrunchless.csproj" />
-    <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
     <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
     <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />
-    <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <Project Path="Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <Project Path="Framework\Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
     <Project Path="Framework\Text.Core\JJ.Framework.Text.Core.csproj" />
@@ -45,11 +43,15 @@
     <File Path="README.MD" />
     <File Path="RELEASE-NOTES.MD" />
   </Folder>
+  <Project Path="Framework/Common.Legacy.Tests.HelpersEx/JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj" />
+  <Project Path="Framework/JJ.Framework.Common.Tests/JJ.Framework.Common.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Testing.Tests/JJ.Framework.Testing.Legacy.Tests.csproj" />
   <Project Path="Framework/Reflection.Legacy.Tests.HelpersEx/JJ.Framework.Reflection.Legacy.Tests.HelpersEx.csproj" />
   <Project Path="Framework/Testing.Core.Tests/JJ.Framework.Testing.Core.Tests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
+  <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
+  <Project Path="Framework\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
   <Project Path="Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />
   <Project Path="Framework\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
   <Project Path="Framework\Testing.Core\JJ.Framework.Testing.Core.csproj" />

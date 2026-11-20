@@ -2,7 +2,7 @@
 
 using System.Reflection;
 using System.Text;
-using JJ.Framework.Common.Legacy.Tests.Helpers;
+using JJ.Framework.Common.Legacy.Tests.HelpersEx;
 
 // ReSharper disable InvokeAsExtensionMethod
 // ReSharper disable ConvertToConstant.Local

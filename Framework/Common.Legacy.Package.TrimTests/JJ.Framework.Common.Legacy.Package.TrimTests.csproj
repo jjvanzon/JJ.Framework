@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common.Legacy.Tests.Helpers\JJ.Framework.Common.Legacy.Tests.Helpers.csproj" />
+    <ProjectReference Include="..\Common.Legacy.Tests.HelpersEx\JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj" />
   </ItemGroup>
 
   <ItemGroup>

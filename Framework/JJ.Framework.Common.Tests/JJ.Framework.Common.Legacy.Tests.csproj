@@ -16,7 +16,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Common.Legacy.Tests.Helpers\JJ.Framework.Common.Legacy.Tests.Helpers.csproj" />
+    <ProjectReference Include="..\Common.Legacy.Tests.HelpersEx\JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />

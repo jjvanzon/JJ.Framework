@@ -139,7 +139,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Legacy.Package.TrimTests", "Framework\Collections.Legacy.Package.TrimTests\JJ.Framework.Collections.Legacy.Package.TrimTests.csproj", "{8ED75EB7-2655-8500-4FBB-B56D7E3D0271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Tests.Helpers", "Framework\Common.Legacy.Tests.Helpers\JJ.Framework.Common.Legacy.Tests.Helpers.csproj", "{65317FFC-F0BF-2CD8-7562-F09C53D1EF50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Legacy.Tests.HelpersEx", "Framework\Common.Legacy.Tests.HelpersEx\JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj", "{65317FFC-F0BF-2CD8-7562-F09C53D1EF50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
