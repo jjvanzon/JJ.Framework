@@ -1,4 +1,4 @@
-﻿using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperLegacy;
+﻿using static JJ.Framework.Reflection.Legacy.Tests.HelpersEx.ParseHelperLegacy;
 
 namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {

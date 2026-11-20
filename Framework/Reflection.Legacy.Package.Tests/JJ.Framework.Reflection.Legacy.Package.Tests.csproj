@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\JJ.Framework.Reflection.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Reflection.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Reflection.Tests\bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="JJ.Framework.Reflection.Legacy" Version="0.261.7535" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7535" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.261.7535" />
@@ -13,13 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Reflection.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\JJ.Framework.Reflection.Tests\obj\**" />
-    <Compile Remove="..\JJ.Framework.Reflection.Tests\bin\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj" />
+    <ProjectReference Include="..\Reflection.Legacy.Tests.HelpersEx\JJ.Framework.Reflection.Legacy.Tests.HelpersEx.csproj" />
   </ItemGroup>
 
   <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />

@@ -267,9 +267,9 @@
       <Value>Framework\Reflection.Core\JJ.Framework.Reflection.Core.csproj:netstandard2.1\..</Value>
       <Value>Framework\Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net461\..</Value>
       <Value>Framework\Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net5.0\..</Value>
-      <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net10.0</Value>
-      <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net461</Value>
-      <Value>Framework\Reflection.Core.Tests.Helpers\JJ.Framework.Reflection.Core.Tests.Helpers.csproj:net5.0</Value>
+      <Value>Framework\Reflection.Legacy.Tests.HelpersEx\JJ.Framework.Reflection.Legacy.Tests.HelpersEx.csproj:net10.0</Value>
+      <Value>Framework\Reflection.Legacy.Tests.HelpersEx\JJ.Framework.Reflection.Legacy.Tests.HelpersEx.csproj:net461</Value>
+      <Value>Framework\Reflection.Legacy.Tests.HelpersEx\JJ.Framework.Reflection.Legacy.Tests.HelpersEx.csproj:net5.0</Value>
       <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:netstandard2.0\..</Value>
       <Value>Framework\Testing.Core\JJ.Framework.Testing.Core.csproj:netstandard2.1\..</Value>
       <Value>Framework\Validation.Legacy.Tests.Helpers\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj:netstandard2.0\..</Value>

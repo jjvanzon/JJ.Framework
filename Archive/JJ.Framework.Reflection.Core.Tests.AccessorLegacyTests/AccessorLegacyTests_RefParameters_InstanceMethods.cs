@@ -1,4 +1,4 @@
-﻿using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperLegacy;
+﻿using static JJ.Framework.Reflection.Legacy.Tests.HelpersEx.ParseHelperLegacy;
 
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
 #pragma warning disable IDE0018 // Inline variable declaration

@@ -16,7 +16,7 @@ global using JJ.Framework.Reflection.Tests.AccessorTests;
 global using JJ.Framework.Reflection.Tests.ExpressionHelperTests;
 global using JJ.Framework.Reflection.Legacy.Tests;
 global using JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests;
-global using JJ.Framework.Reflection.Core.Tests.Helpers;
+global using JJ.Framework.Reflection.Legacy.Tests.HelpersEx;
 global using JJ.Framework.Reflection.Legacy;
 global using JJ.Framework.Reflection.Legacy.Tests.CoreTestHelpers;
 global using static System.String;

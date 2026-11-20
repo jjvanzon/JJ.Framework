@@ -19,7 +19,7 @@ global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.Core.MatchCaseFlag;
 global using static JJ.Framework.Reflection.Core.NullFlag;
 global using static JJ.Framework.Reflection.Core.Reflect;
-global using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
+global using static JJ.Framework.Reflection.Legacy.Tests.HelpersEx.FormatHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Testing.Legacy.AssertHelper;
 

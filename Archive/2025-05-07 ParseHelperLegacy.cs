@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace JJ.Framework.Reflection.Core.Tests.Helpers
+namespace JJ.Framework.Reflection.Legacy.Tests.HelpersEx
 {
     internal static class ParseHelperLegacy
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace JJ.Framework.Reflection.Core.Tests.Helpers;
+namespace JJ.Framework.Reflection.Legacy.Tests.HelpersEx;
 
 public static class FormatHelper
 {
