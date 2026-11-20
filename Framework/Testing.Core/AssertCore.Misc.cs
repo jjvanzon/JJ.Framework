@@ -21,10 +21,10 @@ public static partial class AssertCore
         => Check(value == false, message: expression + " " + message);
     
     public static void Fail() 
-        => throw new Exception(GetFailureMessageLegacy("", ""));
+        => throw new Exception(GetFailureMessage("", ""));
     
     public static void Fail(string message) 
-        => throw new Exception(GetFailureMessageLegacy("", message));
+        => throw new Exception(GetFailureMessage("", message));
             
     // Partial String Comparison
             

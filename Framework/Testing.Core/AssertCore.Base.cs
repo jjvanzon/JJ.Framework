@@ -18,7 +18,7 @@ public static partial class AssertCore
         if (!condition())
         {
             message = FormatTestedExpressionMessage(message);
-            string fullMessage = GetExpectedActualMessageLegacy(methodName, expected, actual, message);
+            string fullMessage = GetExpectedActualMessage(methodName, expected, actual, message);
             throw new Exception(fullMessage);
         }
     }
@@ -29,8 +29,26 @@ public static partial class AssertCore
         if (!condition)
         {
             message = FormatTestedExpressionMessage(message);
-            string fullMessage = GetFailureMessageLegacy(methodName, message);
+            string fullMessage = GetFailureMessage(methodName, message);
             throw new Exception(fullMessage);
         }
+    }
+
+    // Message Formatting
+
+    private static string FormatTestedExpressionMessage(string messageOrExpression) 
+        => Has(messageOrExpression) ? $"Tested: '{messageOrExpression}'." : "";
+
+    // TODO: This message build-up could be customized
+    //  independently from Legacy. Does not need to be like legacy.
+        
+    private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message)
+        => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{(actual != null ? actual.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
+        
+    private static string GetFailureMessage(string methodName, string message)
+    {
+        string separator = Has(message) ? " " : "";
+
+        return $"Assert.{methodName} failed.{separator}{message}";
     }
 }
