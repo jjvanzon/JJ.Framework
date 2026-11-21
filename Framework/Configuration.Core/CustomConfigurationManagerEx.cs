@@ -6,7 +6,7 @@ using System.Reflection;
 namespace JJ.Framework.Configuration.Core
 {
     /// <inheritdoc cref="_trygetsection"/>
-    public static class CustomConfigurationManagerCore
+    public static class CustomConfigurationManagerEx
     {
         /// <inheritdoc cref="_trygetsection"/>
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]

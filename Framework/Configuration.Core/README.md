@@ -55,7 +55,7 @@ JJ.Framework.Configuration.Legacy
 
 This `.Core` variant accompanies a `JJ.Framework.Configuration`[`.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration) variant, that can map config `XML` to `C#` objects much simpler than the standard way offered by .NET `System.Configuration`.
 
-CustomConfigurationManagerCore Class
+CustomConfigurationManagerEx Class
 ------------------------------------
 
 Offers a `TryGetSection` method that complements `GetSection` (from [`JJ.Framework.Configuration.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Configuration)) but now when the configuration section is not found, `null` is returned, instead an exception being thrown.
