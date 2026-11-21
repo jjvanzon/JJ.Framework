@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PlatformCompatibility.Core.TestBase\JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
-    <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
     <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
   </ItemGroup>

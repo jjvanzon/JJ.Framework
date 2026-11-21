@@ -4,7 +4,7 @@ internal static partial class ReflectUtility
 {
     [TrimWarn(GetTypes)]
     public static FieldInfo[] FieldsCore(
-        string shortTypeName, BindingFlags bindingFlags, FieldsDict dict, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, FieldsDict dict, Lock lck, ReflectionCacheEx cache)
     {        
         Type type = Type(shortTypeName, cache);
         return FieldsCore(type, bindingFlags, dict, lck);
@@ -39,7 +39,7 @@ internal static partial class ReflectUtility
     
     [TrimWarn(GetTypes)]
     public static Dictionary<string, FieldInfo> FieldDictCore(
-        string shortTypeName, BindingFlags bindingFlags, FieldsDictDict dict, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, FieldsDictDict dict, Lock lck, ReflectionCacheEx cache)
     {
         Type type = Type(shortTypeName, cache);
         return FieldDictCore(type, bindingFlags, dict, lck);

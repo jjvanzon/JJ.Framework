@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Text.Legacy
 {
-    public static class StringExtensionsLegacy
+    public static class StringExtensionsEx
     {
         /// <summary>
         /// Repeat a string a number of times, returning a single string.

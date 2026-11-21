@@ -4,7 +4,7 @@ internal static partial class ReflectUtility
 {
     [MethodImpl(AggressiveInlining)]
     [TrimWarn(GetTypes)]
-    public static FieldInfo FieldOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, FieldDict dict, Lock lck, ReflectionCacheLegacy cache)
+    public static FieldInfo FieldOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, FieldDict dict, Lock lck, ReflectionCacheEx cache)
     {
         return FieldOrThrow(Type(shortTypeName, cache), name, bindingFlags, dict, lck);
     }
@@ -24,7 +24,7 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [TrimWarn(GetTypes)]
-    public static FieldInfo? FieldOrNull(string shortTypeName, string name, BindingFlags bindingFlags, FieldDict dict, Lock lck, ReflectionCacheLegacy cache)
+    public static FieldInfo? FieldOrNull(string shortTypeName, string name, BindingFlags bindingFlags, FieldDict dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
@@ -64,7 +64,7 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [TrimWarn(GetTypes)]
-    public static FieldInfo? FieldOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, FieldDict dict, Lock lck, ReflectionCacheLegacy cache)
+    public static FieldInfo? FieldOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, FieldDict dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;

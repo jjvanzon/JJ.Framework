@@ -15,7 +15,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy.Tests
         {
             // Arrange
             string expectedText = "Test text";
-            byte[] bytes = StreamHelperLegacy.StringToBytes(expectedText, Encoding.UTF8, includeByteOrderMark: false);
+            byte[] bytes = StreamHelperEx.StringToBytes(expectedText, Encoding.UTF8, includeByteOrderMark: false);
 
             // Act
             string actualText = Encoding.UTF8.GetString_PlatformSafe(bytes);
@@ -29,7 +29,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy.Tests
         {
             // Arrange
             string expectedText = "Test text";
-            byte[] bytes = StreamHelperLegacy.StringToBytes(expectedText, Encoding.UTF8, includeByteOrderMark: false);
+            byte[] bytes = StreamHelperEx.StringToBytes(expectedText, Encoding.UTF8, includeByteOrderMark: false);
 
             // Act
             string actualText = Encoding.UTF8.GetString(bytes);

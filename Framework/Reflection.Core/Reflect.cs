@@ -10,6 +10,6 @@ public static partial class Reflect
         FlattenHierarchy |
         IgnoreCase;
     
-    internal static readonly ReflectionCacheLegacy _cache = new(BindingFlagsAll);
+    internal static readonly ReflectionCacheEx _cache = new(BindingFlagsAll);
 }
     

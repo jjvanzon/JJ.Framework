@@ -33,7 +33,7 @@ public class ReflectionCache_Method_TestsEx_GenericOverload
     
     // ncrunch: no coverage end
 
-    private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
+    private static readonly ReflectionCacheEx _reflectionCacheLegacy = new();
 
     [TestMethod]
     public void Test_ReflectionCache_GetMethod_GenericOverload()

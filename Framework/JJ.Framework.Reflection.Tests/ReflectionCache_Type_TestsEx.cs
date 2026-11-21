@@ -10,8 +10,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_GetTypeByShortName_Test()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<Type>[] synonyms =
         [
@@ -35,8 +35,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_GetTypeByShortName_NotFound_Throws()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [
@@ -58,8 +58,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_TryGetTypeByShortName_Test()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<Type>[] synonyms =
         [
@@ -83,8 +83,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_TryGetTypeByShortName_NotFound_ReturnsNull()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<Type>[] synonyms =
         [
@@ -107,8 +107,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_TryGetTypeByShortName_Multiple_Throws()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [
@@ -130,8 +130,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_GetTypesByShortName_None()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<Type>>[] synonyms =
         [
@@ -156,8 +156,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_GetTypesByShortName_Single()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<Type>>[] synonyms =
         [
@@ -185,8 +185,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_GetTypesByShortName_Multiple()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<Type>>[] synonyms =
         [
@@ -216,8 +216,8 @@ public class ReflectionCache_Type_TestsEx
     public void ReflectionCache_GetTypesByShortName_NullOrWhiteSpace_Throws()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [

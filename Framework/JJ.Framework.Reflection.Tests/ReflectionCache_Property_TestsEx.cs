@@ -13,9 +13,9 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_Test()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         Func<string, PropertyInfo>[] synonyms = 
         [
@@ -49,8 +49,8 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_PublicInstance()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(Public | Instance);
 
         Func<PropertyInfo>[] synonyms =
         [
@@ -73,8 +73,8 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_PublicStatic()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Static);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(Public | Static);
 
         Func<PropertyInfo>[] synonyms =
         [
@@ -100,9 +100,9 @@ public class ReflectionCache_Property_TestsEx
         // Flags that don't match the property visibility should cause not found.
         Action[] actions =
         [
-            () => new ReflectionCacheLegacy(NonPublic | Instance).GetProperty(typeof(TestClass), "TestProperty"),
-            () => new ReflectionCacheLegacy(Public | Instance).GetProperty(typeof(TestClass), "StaticTestProperty"),
-            () => new ReflectionCacheLegacy(NonPublic | Static).GetProperty(typeof(TestClass), "StaticTestProperty")
+            () => new ReflectionCacheEx(NonPublic | Instance).GetProperty(typeof(TestClass), "TestProperty"),
+            () => new ReflectionCacheEx(Public | Instance).GetProperty(typeof(TestClass), "StaticTestProperty"),
+            () => new ReflectionCacheEx(NonPublic | Static).GetProperty(typeof(TestClass), "StaticTestProperty")
         ];
 
         foreach (var action in actions)
@@ -114,9 +114,9 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_NotFound_Exception()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         Action[] synonyms =
         [
@@ -135,9 +135,9 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetProperty_NotFound_ReturnsNull()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         Func<PropertyInfo>[] synonyms =
         [
@@ -163,8 +163,8 @@ public class ReflectionCache_Property_TestsEx
     public void ReflectionCache_GetProperties()
     {
         var reflectionCache        = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<PropertyInfo>>[] synonyms = 
         [
@@ -192,9 +192,9 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperties_DifferentFlags()
     {
-        IList<PropertyInfo> instanceProps = new ReflectionCacheLegacy(Public | Instance).GetProperties(typeof(TestClass));
-        IList<PropertyInfo> staticProps   = new ReflectionCacheLegacy(Public | Static  ).GetProperties(typeof(TestClass));
-        IList<PropertyInfo> allProps      = new ReflectionCacheLegacy(BINDING_FLAGS_ALL ).GetProperties(typeof(TestClass));
+        IList<PropertyInfo> instanceProps = new ReflectionCacheEx(Public | Instance).GetProperties(typeof(TestClass));
+        IList<PropertyInfo> staticProps   = new ReflectionCacheEx(Public | Static  ).GetProperties(typeof(TestClass));
+        IList<PropertyInfo> allProps      = new ReflectionCacheEx(BINDING_FLAGS_ALL ).GetProperties(typeof(TestClass));
 
         AreEqual(2, () => instanceProps.Count);
         AreEqual(1, () => staticProps  .Count);
@@ -213,8 +213,8 @@ public class ReflectionCache_Property_TestsEx
     public void ReflectionCache_GetPropertyDictionary()
     {
         var reflectionCache        = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IDictionary<string, PropertyInfo>>[] synonyms = 
         [
@@ -247,9 +247,9 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetPropertyDictionary_DifferentFlags()
     {
-        var instanceDict = new ReflectionCacheLegacy(Public | Instance).GetPropertyDictionary(typeof(TestClass));
-        var staticDict   = new ReflectionCacheLegacy(Public | Static  ).GetPropertyDictionary(typeof(TestClass));
-        var allDict      = new ReflectionCacheLegacy(BINDING_FLAGS_ALL).GetPropertyDictionary(typeof(TestClass));
+        var instanceDict = new ReflectionCacheEx(Public | Instance).GetPropertyDictionary(typeof(TestClass));
+        var staticDict   = new ReflectionCacheEx(Public | Static  ).GetPropertyDictionary(typeof(TestClass));
+        var allDict      = new ReflectionCacheEx(BINDING_FLAGS_ALL).GetPropertyDictionary(typeof(TestClass));
 
         AreEqual(2, () => instanceDict.Count);
         AreEqual(1, () => staticDict.Count);

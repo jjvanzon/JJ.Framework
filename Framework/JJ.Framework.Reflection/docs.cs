@@ -53,7 +53,7 @@ public struct _getitemtype;
 /// <list type="bullet">
 ///   <item><see cref="ReflectionCache" />: A snapshot from <b>2015</b> (the <i>Ice Queen</i> version)</item>
 ///   <item><see cref="StaticReflectionCache" />: More convenient, slightly slower and different set of features. Also from the <c>2015</c> <i>Ice Queen</i>.</item>
-///   <item><see cref="ReflectionCacheLegacy" />: <b>Newer</b> from <b>2018</b> unlike the name <c>Legacy</c> suggests (<i>King</i> version). Larger feature set, better performance.</item>
+///   <item><see cref="ReflectionCacheEx" />: <b>Newer</b> from <b>2018</b> unlike the name <c>Legacy</c> suggests (<i>King</i> version). Larger feature set, better performance.</item>
 /// </list>
 ///
 /// A full replacement of these functions is coming (<i>Core</i> version), but is not ready yet. <br />
@@ -76,11 +76,11 @@ public struct _reflectioncache;
 public struct _staticreflectioncache;
 
 /// <summary>
-/// This <see cref="ReflectionCacheLegacy" /> variant is a clone from the 2018-state of the <c>legacy</c> branch.<br/>
+/// This <see cref="ReflectionCacheEx" /> variant is a clone from the 2018-state of the <c>legacy</c> branch.<br/>
 /// It has more features than <see cref="ReflectionCache"/> which is from 2015 (the "Ice Queen" version).
 /// </summary>
 /// <inheritdoc cref="_reflectioncacheshared" />
-public struct _reflectioncachelegacy;
+public struct _reflectioncacheex;
 
 /// <summary>
 /// <para>Superseded by .NET's own <c>ThrowIfNull</c>, but still used in several projects.</para>

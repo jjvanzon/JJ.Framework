@@ -7,8 +7,8 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_GetIndexer_Test_1Arg()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<PropertyInfo>[] synonyms =
         [
@@ -33,8 +33,8 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_GetIndexer_Test_2Arg()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
 
         Func<PropertyInfo>[] synonyms =
@@ -60,8 +60,8 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_GetIndexer_NotFound_Throws()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [
@@ -79,8 +79,8 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetIndexer_NotFound_ReturnsNull()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<PropertyInfo>[] synonyms =
         [

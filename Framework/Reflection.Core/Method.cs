@@ -144,7 +144,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo MethodOrThrow(
         string shortTypeName, string name, BindingFlags bindingFlags, 
-        MethodDict0 dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDict0 dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         ThrowIfNull(type, nameof(shortTypeName));
@@ -155,7 +155,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo? MethodOrNull(
         string shortTypeName, string name, BindingFlags bindingFlags,
-        MethodDict0 dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDict0 dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
@@ -166,7 +166,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo MethodOrThrow(
         string typeShortName, string name, BindingFlags bindingFlags, Type?[] argTypes, 
-        MethodDictN dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDictN dict, Lock lck, ReflectionCacheEx cache)
     {
         Type type = Type(typeShortName, cache);
         return MethodOrThrow(type, name, bindingFlags, argTypes, dict, lck);
@@ -176,7 +176,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo? MethodOrNull(
         string shortTypeName, string name, BindingFlags bindingFlags, Type?[] argTypes, 
-        MethodDictN dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDictN dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
@@ -187,7 +187,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo MethodOrThrow(
         string shortTypeName, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
-        MethodDictN dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDictN dict, Lock lck, ReflectionCacheEx cache)
     {
         Type type = Type(shortTypeName, cache);
         return MethodOrThrow(type, name, bindingFlags, argTypes, typeArgs, dict, lck);
@@ -197,7 +197,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo? MethodOrNull(
         string shortTypeName, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
-        MethodDictN dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDictN dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
@@ -210,7 +210,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo? MethodOrSomething(
         string typeShortName, string name, bool nullable, BindingFlags bindingFlags, 
-        MethodDict0 dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDict0 dict, Lock lck, ReflectionCacheEx cache)
         => nullable ?
            MethodOrNull (typeShortName, name, bindingFlags, dict, lck, cache) :
            MethodOrThrow(typeShortName, name, bindingFlags, dict, lck, cache);
@@ -226,7 +226,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo? MethodOrSomething(
         string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, Type?[] argTypes,
-        MethodDictN dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDictN dict, Lock lck, ReflectionCacheEx cache)
         => nullable ? 
            MethodOrNull (shortTypeName, name, bindingFlags, argTypes, dict, lck, cache): 
            MethodOrThrow(shortTypeName, name, bindingFlags, argTypes, dict, lck, cache);
@@ -241,7 +241,7 @@ internal static partial class ReflectUtility
     [TrimWarn(GetTypes)]
     public static MethodInfo? MethodOrSomething(
         string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs,
-        MethodDictN dict, Lock lck, ReflectionCacheLegacy cache)
+        MethodDictN dict, Lock lck, ReflectionCacheEx cache)
         => nullable ?
            MethodOrNull (shortTypeName, name, bindingFlags, argTypes, typeArgs, dict, lck, cache) :
            MethodOrThrow(shortTypeName, name, bindingFlags, argTypes, typeArgs, dict, lck, cache);

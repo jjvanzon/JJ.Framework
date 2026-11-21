@@ -4,7 +4,7 @@ internal static partial class ReflectUtility
 {
     [TrimWarn(GetTypes)]
     public static PropertyInfo[] PropsCore(
-        string shortTypeName, BindingFlags bindingFlags, PropsDict dict, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, PropsDict dict, Lock lck, ReflectionCacheEx cache)
     {        
         Type type = Type(shortTypeName, cache);
         return PropsCore(type, bindingFlags, dict, lck);
@@ -39,7 +39,7 @@ internal static partial class ReflectUtility
     
     [TrimWarn(GetTypes)]
     public static Dictionary<string, PropertyInfo> PropDictCore(
-        string shortTypeName, BindingFlags bindingFlags, PropsDictDict dict, Lock lck, ReflectionCacheLegacy cache)
+        string shortTypeName, BindingFlags bindingFlags, PropsDictDict dict, Lock lck, ReflectionCacheEx cache)
     {
         Type type = Type(shortTypeName, cache);
         return PropDictCore(type, bindingFlags, dict, lck);

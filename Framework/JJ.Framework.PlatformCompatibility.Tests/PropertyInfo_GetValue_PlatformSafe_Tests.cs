@@ -15,7 +15,7 @@ namespace JJ.Framework.PlatformCompatibility.Legacy.Tests
     [TestClass]
     public class PropertyInfo_GetValue_PlatformSafe_Tests
     {
-        private static readonly ReflectionCacheLegacy _reflectionCache = new ReflectionCacheLegacy();
+        private static readonly ReflectionCacheEx _reflectionCache = new ReflectionCacheEx();
 
         [TestMethod]
         public void Test_PropertyInfo_GetValue_PlatformSafe_InstanceProperty()

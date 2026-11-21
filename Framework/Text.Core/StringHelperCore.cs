@@ -1,9 +1,6 @@
-﻿using JJ.Framework.Common.Legacy;
-
-#pragma warning disable IDE0200 // Convert to Method Group
+﻿#pragma warning disable IDE0200 // Convert to Method Group
 #pragma warning disable IDE0048 // Parenthesis for clarity
 #pragma warning disable IDE0056 // Simplify indexer notation (not supported across .NET versions) TODO: add platform shim for System.Index
-
 // ReSharper disable ForCanBeConvertedToForeach
 // ReSharper disable InvokeAsExtensionMemberFromSameClass
 // ReSharper disable UseRawString

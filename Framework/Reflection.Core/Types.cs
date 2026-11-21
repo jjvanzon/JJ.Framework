@@ -16,9 +16,9 @@ internal static partial class ReflectUtility
     }
     
     // TODO: Unfortunate name that clashes with System.Type in case of static using ReflectUtility.
-    [TrimWarn(GetTypes)] private static Type  Type (string shortTypeName                                     , ReflectionCacheLegacy cache) => cache.GetTypeByShortName(shortTypeName);
-    [TrimWarn(GetTypes)] private static Type? Type (string shortTypeName, [UsedImplicitly] NullFlag? nullable, ReflectionCacheLegacy cache) => cache.TryGetTypeByShortName(shortTypeName);
-    [TrimWarn(GetTypes)] private static Type? Type (string shortTypeName, bool                       nullable, ReflectionCacheLegacy cache) => nullable ? cache.TryGetTypeByShortName(shortTypeName) : cache.GetTypeByShortName(shortTypeName);
+    [TrimWarn(GetTypes)] private static Type  Type (string shortTypeName                                     , ReflectionCacheEx cache) => cache.GetTypeByShortName(shortTypeName);
+    [TrimWarn(GetTypes)] private static Type? Type (string shortTypeName, [UsedImplicitly] NullFlag? nullable, ReflectionCacheEx cache) => cache.TryGetTypeByShortName(shortTypeName);
+    [TrimWarn(GetTypes)] private static Type? Type (string shortTypeName, bool                       nullable, ReflectionCacheEx cache) => nullable ? cache.TryGetTypeByShortName(shortTypeName) : cache.GetTypeByShortName(shortTypeName);
     
     [MethodImpl(AggressiveInlining)]
     private static bool AllowsHierarchy(BindingFlags bindingFlags)

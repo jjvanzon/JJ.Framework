@@ -24,10 +24,10 @@ namespace JJ.Framework.Common.Legacy.Tests
 
         
         private static readonly Encoding _encoding = Encoding.UTF8;
-        private static readonly byte[] _expectedBytes_OfFile1_WithoutSubNameSpace = StreamHelperLegacy.StringToBytes(EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
-        private static readonly byte[] _expectedBytes_OfFile2_WithoutSubNameSpace = StreamHelperLegacy.StringToBytes(EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
-        private static readonly byte[] _expectedBytes_OfFile1_WithSubNameSpace = StreamHelperLegacy.StringToBytes(EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
-        private static readonly byte[] _expectedBytes_OfFile2_WithSubNameSpace = StreamHelperLegacy.StringToBytes(EXPECTED_TEXT_OF_FILE_2_WITH_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
+        private static readonly byte[] _expectedBytes_OfFile1_WithoutSubNameSpace = StreamHelperEx.StringToBytes(EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
+        private static readonly byte[] _expectedBytes_OfFile2_WithoutSubNameSpace = StreamHelperEx.StringToBytes(EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
+        private static readonly byte[] _expectedBytes_OfFile1_WithSubNameSpace = StreamHelperEx.StringToBytes(EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
+        private static readonly byte[] _expectedBytes_OfFile2_WithSubNameSpace = StreamHelperEx.StringToBytes(EXPECTED_TEXT_OF_FILE_2_WITH_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
 
         // GetEmbeddedResourceText
 

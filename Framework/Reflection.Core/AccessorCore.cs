@@ -3,7 +3,7 @@ namespace JJ.Framework.Reflection.Core;
 
 public partial class AccessorCore
 {
-    private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
+    private static readonly ReflectionCacheEx _reflectionCacheLegacy = new();
 
     public object? Obj { get; }
     [Dyn(Intf)] private readonly Type _type;

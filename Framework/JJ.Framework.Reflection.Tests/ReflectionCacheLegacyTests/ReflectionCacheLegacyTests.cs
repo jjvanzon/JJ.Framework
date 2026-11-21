@@ -14,7 +14,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
     [TestClass]
     public class ReflectionCacheLegacyTests
     {
-        private static readonly ReflectionCacheLegacy _reflectionCache = new ReflectionCacheLegacy();
+        private static readonly ReflectionCacheEx _reflectionCache = new ReflectionCacheEx();
 
         // NOTE: Executing a member twice to debug caching flow.
 
@@ -202,7 +202,7 @@ namespace JJ.Framework.Reflection.Legacy.Tests.ReflectionCacheLegacyTests
         [TestMethod]
         public void Test_ReflectionCache_GetMethod_WithTypeArguments_MultipleMatches_Throws()
         {
-            var reflectionCache = new ReflectionCacheLegacy();
+            var reflectionCache = new ReflectionCacheEx();
 
             Type type = typeof(AmbiguousHelper);
             string methodName = nameof(AmbiguousHelper.AmbiguousMethod);

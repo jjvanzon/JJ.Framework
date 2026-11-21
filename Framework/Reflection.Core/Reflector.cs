@@ -7,7 +7,7 @@ public partial class Reflector
 {    
     public override string ToString() => Descriptor(this);
 
-    private readonly ReflectionCacheLegacy _cache;
+    private readonly ReflectionCacheEx _cache;
     public BindingFlags BindingFlags { get; }
     public bool MatchCase { get; }
 
@@ -25,6 +25,6 @@ public partial class Reflector
         bindingFlags = matchcase ? bindingFlags.ClearFlag(IgnoreCase) : bindingFlags.SetFlag(IgnoreCase);
         BindingFlags = bindingFlags;
         MatchCase = matchcase;
-        _cache = new ReflectionCacheLegacy(bindingFlags);
+        _cache = new ReflectionCacheEx(bindingFlags);
     }
 }

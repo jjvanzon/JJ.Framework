@@ -1,16 +1,16 @@
 ﻿namespace JJ.Framework.Text.Legacy
 {
-    public class StringBuilderWithIndentationLegacy
+    public class StringBuilderWithIndentationEx
     {
-        public StringBuilderWithIndentationLegacy()
+        public StringBuilderWithIndentationEx()
             : this("\t") 
         { }
         
-        public StringBuilderWithIndentationLegacy(string tabString)
+        public StringBuilderWithIndentationEx(string tabString)
             : this(tabString, Environment.NewLine)
         { }
         
-        public StringBuilderWithIndentationLegacy(string tabString , string enter)
+        public StringBuilderWithIndentationEx(string tabString , string enter)
         {
             _tabString = tabString;
             _enter     = enter;

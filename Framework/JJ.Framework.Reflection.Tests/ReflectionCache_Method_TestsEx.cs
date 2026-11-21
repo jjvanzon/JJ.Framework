@@ -12,9 +12,9 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_GetMethod_Test()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         Func<MethodInfo>[] synonyms =
         [
@@ -41,8 +41,8 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_GetMethod_PublicInstance()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(Public | Instance);
 
         Func<MethodInfo>[] synonyms =
         [
@@ -64,13 +64,13 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_GetMethod_PublicStatic()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy(Public | Static);
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(Public | Static);
+        var reflectionCacheLegacy  = new ReflectionCacheEx(Public | Static);
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(Public | Static);
 
         Func<MethodInfo>[] synonyms =
         [
-            () => new ReflectionCacheLegacy(Public | Static).GetMethod(typeof(TestClass), "StaticTestMethod"),
-            () => new ReflectionCacheLegacy(Public | Static).GetMethod(typeof(TestClass), "StaticTestMethod"),
+            () => new ReflectionCacheEx(Public | Static).GetMethod(typeof(TestClass), "StaticTestMethod"),
+            () => new ReflectionCacheEx(Public | Static).GetMethod(typeof(TestClass), "StaticTestMethod"),
             () => StaticReflectionCache.GetMethod(typeof(TestClass), "StaticTestMethod")
         ];
 
@@ -90,9 +90,9 @@ public class ReflectionCache_Method_TestsEx
     {
         Action[] actions =
         [
-            () => new ReflectionCacheLegacy(Public | Instance).GetMethod(typeof(TestClass), "StaticTestMethod"),
-            () => new ReflectionCacheLegacy(Public | Static).GetMethod(typeof(TestClass), "TestMethod"),
-            () => new ReflectionCacheLegacy(NonPublic | Instance).GetMethod(typeof(TestClass), "TestMethod")
+            () => new ReflectionCacheEx(Public | Instance).GetMethod(typeof(TestClass), "StaticTestMethod"),
+            () => new ReflectionCacheEx(Public | Static).GetMethod(typeof(TestClass), "TestMethod"),
+            () => new ReflectionCacheEx(NonPublic | Instance).GetMethod(typeof(TestClass), "TestMethod")
         ];
 
         foreach (var action in actions)
@@ -104,9 +104,9 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_GetMethod_Test_WithArgTypes()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         // NOTE:It's pretty strict that you must supply parameter types.
         Func<MethodInfo>[] synonyms =
@@ -134,9 +134,9 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_GetMethod_NotFound_Throws()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         Action[] synonyms =
         [
@@ -155,9 +155,9 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetMethod_NotFound_ReturnsNull()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         Func<MethodInfo>[] synonyms =
         [
@@ -182,9 +182,9 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_GetMethods()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(Public | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
 
         Func<IList<MethodInfo>>[] synonyms =
         [
@@ -214,8 +214,8 @@ public class ReflectionCache_Method_TestsEx
     [TestMethod]
     public void ReflectionCache_GetMethods_DifferentFlags()
     {
-        IList<MethodInfo> instanceMethods = new ReflectionCacheLegacy(Public | Instance).GetMethods(typeof(TestClass));
-        IList<MethodInfo> staticMethods   = new ReflectionCacheLegacy(Public | Static  ).GetMethods(typeof(TestClass));
+        IList<MethodInfo> instanceMethods = new ReflectionCacheEx(Public | Instance).GetMethods(typeof(TestClass));
+        IList<MethodInfo> staticMethods   = new ReflectionCacheEx(Public | Static  ).GetMethods(typeof(TestClass));
 
         IsTrue( instanceMethods.Any(x => x.Name == "TestMethod"      ));
         IsTrue( instanceMethods.Any(x => x.Name == "TestMethod2"     ));

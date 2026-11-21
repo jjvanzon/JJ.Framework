@@ -17,7 +17,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
     }
     // ncrunch: no coverage end
 
-    private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
+    private static readonly ReflectionCacheEx _reflectionCacheLegacy = new();
 
     [TestMethod]
     public void Test_ReflectionCache_GetIndexer_GenericOverload()

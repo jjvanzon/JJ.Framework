@@ -47,11 +47,11 @@ public class ReflectionCache_Constructor_TestsEx
     private static Func<ConstructorInfo>[] CreateGetConstructorFuncs([Dyn(AllConstructors)] Type type, BindingFlags flags)
     {
         var reflectionCache = new ReflectionCache(flags);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy(flags);
+        var reflectionCacheLegacy = new ReflectionCacheEx(flags);
 
         if (flags == BINDING_FLAGS_ALL)
         {
-            var reflectionCacheLegacyDefault = new ReflectionCacheLegacy();
+            var reflectionCacheLegacyDefault = new ReflectionCacheEx();
             return
             [
                 () => reflectionCache             .GetConstructor(type),

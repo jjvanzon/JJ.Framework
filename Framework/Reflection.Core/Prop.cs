@@ -4,7 +4,7 @@ internal static partial class ReflectUtility
 {
     [MethodImpl(AggressiveInlining)]
     [TrimWarn(GetTypes)]
-    public static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDict dict, Lock lck, ReflectionCacheLegacy cache)
+    public static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDict dict, Lock lck, ReflectionCacheEx cache)
     {
         return PropOrThrow(Type(shortTypeName, cache), name, bindingFlags, dict, lck);
     }
@@ -24,7 +24,7 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [TrimWarn(GetTypes)]
-    public static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDict dict, Lock lck, ReflectionCacheLegacy cache)
+    public static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDict dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
@@ -64,7 +64,7 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     [TrimWarn(GetTypes)]
-    public static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDict dict, Lock lck, ReflectionCacheLegacy cache)
+    public static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDict dict, Lock lck, ReflectionCacheEx cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;

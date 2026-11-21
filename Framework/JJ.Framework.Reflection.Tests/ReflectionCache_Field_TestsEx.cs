@@ -10,9 +10,9 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_GetField_Test()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<string, FieldInfo>[] synonyms = 
         [
@@ -48,9 +48,9 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetField_Test()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<string, FieldInfo>[] synonyms = 
         [
@@ -84,9 +84,9 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_GetField_NotFound_Exception()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Action[] synonyms =
         [
@@ -105,9 +105,9 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetField_NotFound_ReturnsNull()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheLegacy(NonPublic | Instance);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<FieldInfo>[] synonyms =
         [
@@ -133,8 +133,8 @@ public class ReflectionCache_Field_TestsEx
     public void ReflectionCache_GetFields_AllFlags()
     {
         var reflectionCache  = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy  = new ReflectionCacheLegacy();
-        var reflectionCacheLegacy2 = new ReflectionCacheLegacy(BINDING_FLAGS_ALL);
+        var reflectionCacheLegacy  = new ReflectionCacheEx();
+        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<FieldInfo[]>[] synonyms =
         [
@@ -165,7 +165,7 @@ public class ReflectionCache_Field_TestsEx
     public void ReflectionCache_GetFields_NonPublicInstance()
     {
         var reflectionCache  = new ReflectionCache(NonPublic | Instance);
-        var reflectionCacheLegacy = new ReflectionCacheLegacy(NonPublic | Instance);
+        var reflectionCacheLegacy = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<FieldInfo[]>[] synonyms =
         [
@@ -205,11 +205,11 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_GetFields_DifferentFlags()
     {
-        FieldInfo[] nonPublicInstance = new ReflectionCacheLegacy(NonPublic | Instance).GetFields(typeof(TestClass));
-        FieldInfo[] publicInstance    = new ReflectionCacheLegacy(Public    | Instance).GetFields(typeof(TestClass));
-        FieldInfo[] publicStatic      = new ReflectionCacheLegacy(Public    | Static  ).GetFields(typeof(TestClass));
-        FieldInfo[] nonPublicStatic   = new ReflectionCacheLegacy(NonPublic | Static  ).GetFields(typeof(TestClass));
-        FieldInfo[] all               = new ReflectionCacheLegacy(BINDING_FLAGS_ALL   ).GetFields(typeof(TestClass));
+        FieldInfo[] nonPublicInstance = new ReflectionCacheEx(NonPublic | Instance).GetFields(typeof(TestClass));
+        FieldInfo[] publicInstance    = new ReflectionCacheEx(Public    | Instance).GetFields(typeof(TestClass));
+        FieldInfo[] publicStatic      = new ReflectionCacheEx(Public    | Static  ).GetFields(typeof(TestClass));
+        FieldInfo[] nonPublicStatic   = new ReflectionCacheEx(NonPublic | Static  ).GetFields(typeof(TestClass));
+        FieldInfo[] all               = new ReflectionCacheEx(BINDING_FLAGS_ALL   ).GetFields(typeof(TestClass));
 
         AreEqual(2, () => nonPublicInstance.Length);
         AreEqual(1, () => publicInstance   .Length);
