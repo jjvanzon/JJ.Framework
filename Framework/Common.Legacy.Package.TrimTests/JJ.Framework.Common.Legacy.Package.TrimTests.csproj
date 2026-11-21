@@ -14,11 +14,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.261.7535" />
-    <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.261.7535" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7535" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.3.7535" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.3.7535" />
+    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.261.7556" />
+    <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.261.7556" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.261.7556" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7556" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.3.7556" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.3.7556" />
   </ItemGroup>
 
   <ItemGroup>
