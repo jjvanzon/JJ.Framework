@@ -9,10 +9,13 @@
     <Import_RootNamespace>JJ.Framework.SharedProject.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)docs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DynamicallyAccessedMemberTypesEx.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ImplicitUsageReasons.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NoTrimReasons.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SharedUsing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\docs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\DynamicallyAccessedMemberTypesEx.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\ImplicitUsageReasons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\NoTrimReasons.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shared\SharedUsing.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Shared\" />
   </ItemGroup>
 </Project>
