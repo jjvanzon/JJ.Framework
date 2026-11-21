@@ -4,6 +4,7 @@
 __📔 Contents__
 
 - [📢 Introduction](#-introduction)
+- [🤖 AI Assistance Disclosure](#-ai-assistance-disclosure)
 - [🏋️ Stability](#️-stability)
 - [🏡 In-House](#-in-house)
 - [🏛️ History](#️-history)
@@ -19,6 +20,14 @@ __📔 Contents__
 `JJ.Framework` are extensions of the `.NET Framework`: the nuts, bolts and screws of software development: *reusable components*. Some of which might be expected to be there in `.NET`, but seem to be missing there.
 
 `JJ.Framework` contains reusable code, that was produced along with real-life applications.
+
+
+🤖 AI Assistance Disclosure
+----------------------------
+
+- Nearly 100% human-coded.
+- Larger AI contributions always required major overhaul or even full do-over.
+- AI is used for small ideas, snippets and templating.
 
 
 🏋️ Stability
