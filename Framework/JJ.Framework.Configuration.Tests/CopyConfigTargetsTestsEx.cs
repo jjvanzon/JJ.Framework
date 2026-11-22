@@ -8,18 +8,21 @@ using static JJ.Framework.Compilation.Core.Primitives.DotNetVerbosity;
 using static JJ.Framework.Testing.Core.AssertCore;
 using static JJ.Framework.Common.Legacy.EmbeddedResourceHelper;
 
-/// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
+/// <summary> Integration tests for JJ.Framework.Configuration.Legacy.targets. </summary>
 [TestClass]
 public class CopyConfigTargetsTestsEx : IDisposable
 {
     private const int BuildTimeOutSec = 240;
 
-    private const string _dummyCsprojFileName          = "JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj";
-    private const string _assemblyConfigFileName       = "JJ.Framework.Configuration.Legacy.Tests.Dummy.dll.config";
-    private const string _targetsFileName              = "JJ.Framework.Configuration.Core.targets";
-    private const string _dummyCsFileName              = "DummyTests.cs";
-    private const string _testhostConfigFileName       = "testhost.dll.config";
-    private const string _ncrunchConfigFileName        = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
+    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj";
+    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Legacy.Tests.Dummy.dll.config";
+    private const string _targetsFileName        = "JJ.Framework.Configuration.Legacy.targets";
+    private const string _dummyCsFileName        = "DummyTests.cs";
+    private const string _testhostConfigFileName = "testhost.dll.config";
+    private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
+
+    private const string _tempSubDir     = "JJ.Framework.Configuration.Legacy.TestRuns";
+    private const string _tempProjSubDir = "Configuration.Legacy.Tests.Dummy";
 
     private        readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
     private static readonly string _dummyCsFileContent    = GetResource(_dummyCsFileName);
@@ -47,9 +50,9 @@ public class CopyConfigTargetsTestsEx : IDisposable
 
     public CopyConfigTargetsTestsEx()
     {
-        _tempSolutionDir              = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.TestRuns", Path.GetRandomFileName().Replace(".", ""));
-        _tempProjDir                  = Path.Combine(_tempSolutionDir, "Configuration.Legacy.Tests.Dummy");
-        _targetsDir                   = Path.GetFullPath(Path.Combine(_tempProjDir, "..", "Configuration.Core", "build"));
+        _tempSolutionDir              = Path.Combine(Path.GetTempPath(), _tempSubDir, Path.GetRandomFileName().Replace(".", ""));
+        _tempProjDir                  = Path.Combine(_tempSolutionDir, _tempProjSubDir);
+        _targetsDir                   = Path.GetFullPath(Path.Combine(_tempProjDir, "..", "JJ.Framework.Configuration", "build"));
         _csprojFilePath               = Path.Combine(_tempProjDir, _dummyCsprojFileName);
         _targetsFilePath              = Path.Combine(_targetsDir, _targetsFileName);
         _dummyCsFilePath              = Path.Combine(_tempProjDir, _dummyCsFileName);
@@ -95,6 +98,7 @@ public class CopyConfigTargetsTestsEx : IDisposable
         {
             if (Directory.Exists(_tempSolutionDir))
             {
+                Log("Removing temp filesup");
                 Directory.Delete(_tempSolutionDir, recursive: true);
             }
         }

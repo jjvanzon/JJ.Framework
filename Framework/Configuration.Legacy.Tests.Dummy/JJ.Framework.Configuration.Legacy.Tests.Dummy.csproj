@@ -17,5 +17,5 @@
   </ItemGroup>
 
   <!-- Simulate what NuGet consumers get automatically via the build/convention. -->
-  <Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />
+  <Import Project="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" />
 </Project>

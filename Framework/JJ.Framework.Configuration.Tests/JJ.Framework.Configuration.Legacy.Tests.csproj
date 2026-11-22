@@ -6,7 +6,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Configuration.Core\JJ.Framework.Configuration.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
@@ -28,14 +27,14 @@
                       Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" 
                       Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" 
+    <EmbeddedResource Include="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" 
                       Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj" 
                       Link="TestResources\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <!-- Simulate what NuGet consumers get automatically via the build/ convention. -->
-  <Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />
+  <Import Project="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" />
 
   <!-- Manage Legacy code namespace expectations -->
   <PropertyGroup>

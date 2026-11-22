@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj" />
   </ItemGroup>
-
+  
   <!-- Ship the .targets file inside the NuGet package's build/ folder so it is
        auto-imported by every project that installs JJ.Framework.Configuration.Core. -->
   <ItemGroup>
