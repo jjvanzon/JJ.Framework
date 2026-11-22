@@ -104,17 +104,16 @@ JJ.Framework.Configuration.Core
 - `.Legacy` (`JJ.Framework.Configuration.Legacy`):  
   The code now upgraded to `.NET 10` and `.NET Standard`.
 - `.Net48` (`JJ.Framework.Configuration.Net48`):  
-  The same code, compiled for `.NET Framework 4.8`, so older systems aren't left behind.
+  The same code, compiled as a non-SDK-style project for `.NET Framework 4.8`, so older systems aren't left behind, that have compatibility requirements.
 - `.Core` (`JJ.Framework.Configuration.Core`):  
-  Either brand-new development or code copied from the __latest__ `legacy` code. This way, we don't stifle innovation while we're working with legacy code.
-
-For code elements such as classes and methods, `Legacy` suffixes and suffix-free variants get a bit more intermixed. The context usually explains itself whether it's `Core` or `Legacy` code. The `Legacy` suffix is basically used when old would conflict with new. The `Ex` suffix ("extended") can also be used when adding new code to legacy projects, and sometimes shared back with the 'legacy' branch.
+  Brand-new development or extensions to .Legacy code. This way, we don't stifle innovation while we're working with legacy code.
+- The `Ex` suffix ("extended") can be used for copies from the __latest__ `legacy` code. When adding code to legacy projects, pulled or shared back to the `legacy` head, the `Ex` suffix is employed.
 
 
 Code Copies
 -----------
 
-`.Legacy` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Legacy`, we get all the sweet stuff out there that we want.
+`.Legacy` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Legacy`, we get all the sweet stuff out there that we want. The suffix `Ex` is often added to elements copied or shared back to the legacy head.
 
 
 The King, the Queen and the Core
@@ -155,15 +154,15 @@ Pipelines
 - Pre-release versions are deployed to [`JJs-Pre-Release-Package-Feed`](
 https://dev.azure.com/jjvanzon/JJs-Software/_artifacts/feed/JJs-Pre-Release-Package-Feed)
 - And to [`JJs-Dev-Package-Feed`](https://dev.azure.com/jjvanzon/JJs-Software/_artifacts/feed/JJs-Dev-Package-Feed) for high paced development updates.
-- Add these feeds to your Visual Studio under `Menu > Tools > Options > NuGet Package Manager > Package Sources`
-- Further instructions: click on `Connect to Feed` after following one of the links.
+- These feeds are employed in your dev env automatically by means of the NuGet.config in the repo. Otherwise add these feeds to your Visual Studio under `Menu > Tools > Options > NuGet Package Manager > Package Sources`
+- If further instructions are needed: click on `Connect to Feed` after following one of the links above.
 
 
 Dev Env
 -------
 
 - `Visual Studio Community` (version `2019`, `2022` or `2026`) is needed to develop this project, which can be downloaded for free from `Microsoft`.
-- Several `.NET SDK` versions might be needed to compile, which can also be downloaded from `Microsoft`. Be sure you use the `SDK` or `Development Pack` ones, not the `Targeting Packs` or `Runtime` versions.
+- Several `.NET SDK` versions might be needed to compile, which can also be downloaded from `Microsoft`. Be sure you use the `SDK` or `Development Pack` ones, not the `Targeting Packs` nor `Runtime` versions.
 
 
 SQL Server
@@ -248,9 +247,13 @@ Internet Information Services (IIS)
 Trimmable Libs
 --------------
 
-Newer `.NET` versions support trimming away code that isn't used. This makes the final executable smaller. It comes with a lot of hurdles expecially when using `Reflection`. The trimmer cannot guarantee the `Type` or members are loaded when used via `Reflection`.
+Newer `.NET` versions support trimming away code that isn't used. 
+This makes the final executable smaller.
+It comes with a lot of hurdles expecially when using `Reflection`.
+The trimmer cannot guarantee the `Type` or members are loaded when used via `Reflection`.
 
-Clues how to resolve, are there in the [`NoTrimReasons`](https://github.com/jjvanzon/JJ.Framework/blob/main/Framework/JJ.Framework.SharedProject.Core/NoTrimReasons.cs) code file. Here's an extract at the time writing:
+Clues how to resolve, are there in the [`NoTrimReasons`](https://github.com/jjvanzon/JJ.Framework/blob/main/Framework/JJ.Framework.SharedProject.Core/NoTrimReasons.cs) code file. 
+Here's an extract at the time writing:
 
 <h3>NoTrimReasons</h3>
 
