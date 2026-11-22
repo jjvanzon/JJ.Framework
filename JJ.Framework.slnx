@@ -1,8 +1,6 @@
 <Solution>
   <Configurations>
     <Platform Name="Any CPU" />
-    <Platform Name="x64" />
-    <Platform Name="x86" />
   </Configurations>
   <Folder Name="/Demos/">
     <Project Path="Demos/JJ.Demos.GetNames.Tests/JJ.Demos.GetNames.Tests.csproj" />
