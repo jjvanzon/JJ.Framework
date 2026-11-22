@@ -3,7 +3,7 @@ using System.Reflection;
 //using static JJ.Framework.Reflection.Core.Reflect;
 #pragma warning disable CS0168 // Variable is declared but never used
 
-namespace JJ.Framework.Configuration.Core
+namespace JJ.Framework.Configuration.Legacy
 {
     /// <inheritdoc cref="_trygetsection"/>
     public static class CustomConfigurationManagerEx
