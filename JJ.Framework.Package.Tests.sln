@@ -121,10 +121,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.StringResource
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.StringResources.Legacy.Package.TrimTests", "Framework\StringResources.Legacy.Package.TrimTests\JJ.Framework.StringResources.Legacy.Package.TrimTests.csproj", "{9D9910BC-CBA6-F655-C859-0B3CAD65D484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Core.Package.Tests", "Framework\Configuration.Core.Package.Tests\JJ.Framework.Configuration.Core.Package.Tests.csproj", "{10F385EB-8F6B-5F5E-802E-75D176F2AE36}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Core.Package.Tests.Dummy", "Framework\Configuration.Core.Package.Tests.Dummy\JJ.Framework.Configuration.Core.Package.Tests.Dummy.csproj", "{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Compilation.Core.Package.Tests", "Framework\Compilation.Core.Package.Tests\JJ.Framework.Compilation.Core.Package.Tests.csproj", "{C7EFCF86-CF64-AE8E-23AD-E740612FCACC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Compilation.Core.Package.TrimTests", "Framework\Compilation.Core.Package.TrimTests\JJ.Framework.Compilation.Core.Package.TrimTests.csproj", "{83597693-1125-44D4-86E7-EBFEF8E7CC21}"
@@ -715,30 +711,6 @@ Global
 		{9D9910BC-CBA6-F655-C859-0B3CAD65D484}.Release|x64.Build.0 = Release|Any CPU
 		{9D9910BC-CBA6-F655-C859-0B3CAD65D484}.Release|x86.ActiveCfg = Release|Any CPU
 		{9D9910BC-CBA6-F655-C859-0B3CAD65D484}.Release|x86.Build.0 = Release|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Debug|x64.Build.0 = Debug|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Debug|x86.Build.0 = Debug|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|x64.ActiveCfg = Release|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|x64.Build.0 = Release|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|x86.ActiveCfg = Release|Any CPU
-		{10F385EB-8F6B-5F5E-802E-75D176F2AE36}.Release|x86.Build.0 = Release|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Debug|x64.Build.0 = Debug|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Debug|x86.Build.0 = Debug|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Release|x64.ActiveCfg = Release|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Release|x64.Build.0 = Release|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Release|x86.ActiveCfg = Release|Any CPU
-		{D4C923B2-2558-3FBF-E2DA-BC8A85F63F69}.Release|x86.Build.0 = Release|Any CPU
 		{C7EFCF86-CF64-AE8E-23AD-E740612FCACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7EFCF86-CF64-AE8E-23AD-E740612FCACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7EFCF86-CF64-AE8E-23AD-E740612FCACC}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -843,7 +815,6 @@ Global
 		SolutionGuid = {8B958E8C-E60A-4645-9565-A8B8F94E2F5A}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{10f385eb-8f6b-5f5e-802e-75d176f2ae36}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1409a34d-82f1-560f-4734-9df8ba3dac9b}*SharedItemsImports = 5
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1beb8e62-fcb0-4b88-b142-23e720d5bacc}*SharedItemsImports = 13
 		Framework\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems*{1e6accbd-a3a9-a65d-fab1-45f4d9e24fa4}*SharedItemsImports = 5
