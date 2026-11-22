@@ -1,6 +1,11 @@
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedVariable
+// ReSharper disable ConvertToConstant.Local
+// ReSharper disable LocalVariableHidesMember
+// ReSharper disable RedundantAssignment
+// ReSharper disable InvocationIsCultureSensitive
+
 using System;
 using System.IO;
 using System.Collections;

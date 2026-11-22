@@ -1,0 +1,176 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Demos/">
+    <Project Path="Demos/JJ.Demos.GetNames.Tests/JJ.Demos.GetNames.Tests.csproj" />
+    <Project Path="Demos/JJ.Demos.GetNames/JJ.Demos.GetNames.csproj" />
+    <Project Path="Demos/JJ.Demos.ReflectionCache.Tests/JJ.Demos.ReflectionCache.Tests.csproj" />
+    <Project Path="Demos/JJ.Demos.ReflectionCache/JJ.Demos.ReflectionCache.csproj" />
+    <Project Path="Demos/JJ.Demos.ReturnActions.MvcPostData/JJ.Demos.ReturnActions.MvcPostData.Net48.csproj" Id="44a76522-bd9e-47d9-b424-57b9b0c1c9b8" />
+    <Project Path="Demos/JJ.Demos.ReturnActions.MvcUrlParameter/JJ.Demos.ReturnActions.MvcUrlParameter.Net48.csproj" Id="e9ea697a-8049-4e6b-98da-5eaa69e28a2a" />
+    <Project Path="Demos/JJ.Demos.ReturnActions/JJ.Demos.ReturnActions.Net48.csproj" Id="757f8b06-8527-4daa-a206-e26eb167ca13" />
+  </Folder>
+  <Folder Name="/External Components/">
+    <Project Path="External Components/SgmlReader/Source Code Adapted/sgmlreaderdll.Net48/SgmlReaderDll.Net48.csproj" Id="f9192cf8-4cfe-4281-8a0e-167b09c571cb" />
+    <Project Path="External Components/SgmlReader/Source Code Adapted/sgmlreaderdll/SgmlReaderDll.csproj" />
+  </Folder>
+  <Folder Name="/Framework/">
+    <Project Path="Framework/Build/JJ.Framework.Build.csproj" />
+    <Project Path="Framework/Business.Legacy.TrimTests/JJ.Framework.Business.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/Collections.Legacy.TrimTests/JJ.Framework.Collections.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/Common.Core.Tests/JJ.Framework.Common.Core.Tests.csproj" />
+    <Project Path="Framework/Common.Core.TrimTests/JJ.Framework.Common.Core.TrimTests.csproj" />
+    <Project Path="Framework/Common.Core/JJ.Framework.Common.Core.csproj" />
+    <Project Path="Framework/Common.Legacy.Tests.HelpersEx/JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj" />
+    <Project Path="Framework/Common.Legacy.TrimTests/JJ.Framework.Common.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/Compilation.Core.Tests/JJ.Framework.Compilation.Core.Tests.csproj" />
+    <Project Path="Framework/Compilation.Core.TrimTests/JJ.Framework.Compilation.Core.TrimTests.csproj" />
+    <Project Path="Framework/Compilation.Core/JJ.Framework.Compilation.Core.csproj" />
+    <Project Path="Framework/Configuration.Core.Tests.Dummy/JJ.Framework.Configuration.Core.Tests.Dummy.csproj" />
+    <Project Path="Framework/Configuration.Core.Tests/JJ.Framework.Configuration.Core.Tests.csproj" />
+    <Project Path="Framework/Configuration.Core/JJ.Framework.Configuration.Core.csproj" />
+    <Project Path="Framework/Configuration.Net48.Tests/JJ.Framework.Configuration.Net48.Tests.csproj" Id="dade7e6f-a89e-4c35-a50b-8562f3fca2b1" />
+    <Project Path="Framework/Configuration.Net48/JJ.Framework.Configuration.Net48.csproj" Id="37a1cde4-c375-41a2-8268-664edb2d02e4" />
+    <Project Path="Framework/Exceptions.Core/JJ.Framework.Exceptions.Core.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.Bool/JJ.Framework.Existence.Core.Tests.Bool.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.BoolToText/JJ.Framework.Existence.Core.Tests.BoolToText.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.Collections/JJ.Framework.Existence.Core.Tests.Collections.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.Helpers/JJ.Framework.Existence.Core.Tests.Helpers.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.SBs/JJ.Framework.Existence.Core.Tests.SBs.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.SBTextCombo/JJ.Framework.Existence.Core.Tests.SBTextCombo.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.SBToText/JJ.Framework.Existence.Core.Tests.SBToText.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.Text/JJ.Framework.Existence.Core.Tests.Text.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.Values/JJ.Framework.Existence.Core.Tests.Values.csproj" />
+    <Project Path="Framework/Existence.Core.Tests.ValuesToText/JJ.Framework.Existence.Core.Tests.ValuesToText.csproj" />
+    <Project Path="Framework/Existence.Core.Tests/JJ.Framework.Existence.Core.Tests.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.Bool/JJ.Framework.Existence.Core.TrimTests.Bool.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.BoolToText/JJ.Framework.Existence.Core.TrimTests.BoolToText.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.Collections/JJ.Framework.Existence.Core.TrimTests.Collections.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.SBs/JJ.Framework.Existence.Core.TrimTests.SBs.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.SBTextCombo/JJ.Framework.Existence.Core.TrimTests.SBTextCombo.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.SBToText/JJ.Framework.Existence.Core.TrimTests.SBToText.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.Text/JJ.Framework.Existence.Core.TrimTests.Text.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.Values/JJ.Framework.Existence.Core.TrimTests.Values.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests.ValuesToText/JJ.Framework.Existence.Core.TrimTests.ValuesToText.csproj" />
+    <Project Path="Framework/Existence.Core.TrimTests/JJ.Framework.Existence.Core.TrimTests.csproj" />
+    <Project Path="Framework/Existence.Core/JJ.Framework.Existence.Core.csproj" />
+    <Project Path="Framework/IO.Core.Tests/JJ.Framework.IO.Core.Tests.csproj" />
+    <Project Path="Framework/IO.Core.TrimTests/JJ.Framework.IO.Core.TrimTests.csproj" />
+    <Project Path="Framework/IO.Core/JJ.Framework.IO.Core.csproj" />
+    <Project Path="Framework/IO.Legacy.TrimTests/JJ.Framework.IO.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/JJ.Framework.Business.Tests/JJ.Framework.Business.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Business/JJ.Framework.Business.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Collections.Tests/JJ.Framework.Collections.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Common.Tests/JJ.Framework.Common.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Common/JJ.Framework.Common.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Configuration.Tests/JJ.Framework.Configuration.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Configuration/JJ.Framework.Configuration.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Exceptions/JJ.Framework.Exceptions.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.IO.Tests/JJ.Framework.IO.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.IO/JJ.Framework.IO.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Logging.Diagnostics/JJ.Framework.Logging.Legacy.Diagnostics.csproj" />
+    <Project Path="Framework/JJ.Framework.Logging.Tests/JJ.Framework.Logging.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Logging/JJ.Framework.Logging.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Mathematics.Tests/JJ.Framework.Mathematics.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Mathematics/JJ.Framework.Mathematics.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence.EntityFramework5/JJ.Framework.Persistence.Legacy.EntityFramework5.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence.Memory/JJ.Framework.Persistence.Legacy.Memory.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence.NHibernate/JJ.Framework.Persistence.Legacy.NHibernate.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence.SqlClient/JJ.Framework.Persistence.Legacy.SqlClient.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence.Tests/JJ.Framework.Persistence.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence.Xml.Linq/JJ.Framework.Persistence.Legacy.Xml.Linq.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence.Xml/JJ.Framework.Persistence.Legacy.Xml.csproj" />
+    <Project Path="Framework/JJ.Framework.Persistence/JJ.Framework.Persistence.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.PlatformCompatibility.Tests/JJ.Framework.PlatformCompatibility.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.PlatformCompatibility/JJ.Framework.PlatformCompatibility.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Presentation.JavaScript/JJ.Framework.Presentation.JavaScript.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Presentation.Mvc.Tests/JJ.Framework.Presentation.Mvc.Net48.Tests.csproj" Id="2d46aa63-78c8-4905-bf83-d08a058ccbed" />
+    <Project Path="Framework/JJ.Framework.Presentation.Mvc/JJ.Framework.Presentation.Mvc.Net48.csproj" Id="fed3c829-d92a-4800-9462-a175ccac4c70" />
+    <Project Path="Framework/JJ.Framework.Presentation.Resources/JJ.Framework.StringResources.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Presentation.WinForms/JJ.Framework.Presentation.WinForms.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Presentation/JJ.Framework.Presentation.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Reflection/JJ.Framework.Reflection.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Security/JJ.Framework.Security.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Soap.Tests.Server/JJ.Framework.Soap.Net48.Tests.Server.csproj" Id="d3440f56-dbd9-4b17-84e5-532e1d6ffe24" />
+    <Project Path="Framework/JJ.Framework.Soap.Tests.ServiceInterface/JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj" Id="9f0128b1-b662-474d-9b73-3fd8e9783b40" />
+    <Project Path="Framework/JJ.Framework.Soap.Tests/JJ.Framework.Soap.Net48.Tests.csproj" Id="3b1e7de6-17dd-4140-ad96-21dcf5f0cb25" />
+    <Project Path="Framework/JJ.Framework.Soap/JJ.Framework.Soap.Net48.csproj" Id="2b86213c-a758-4db9-bd37-5e7d2f4d7c4d" />
+    <Project Path="Framework/JJ.Framework.Testing.Tests/JJ.Framework.Testing.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Testing/JJ.Framework.Testing.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Text/JJ.Framework.Text.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Validation/JJ.Framework.Validation.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Web.Tests/JJ.Framework.Web.Net48.Tests.csproj" Id="9362b86b-0351-4e76-bffe-a9739b5f0522" />
+    <Project Path="Framework/JJ.Framework.Web/JJ.Framework.Web.Net48.csproj" Id="164520aa-2db7-4405-9ae5-eb515527a33b" />
+    <Project Path="Framework/JJ.Framework.Xml.Linq.Tests/JJ.Framework.Xml.Linq.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Xml.Linq/JJ.Framework.Xml.Linq.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.Xml.Tests/JJ.Framework.Xml.Legacy.Tests.csproj" />
+    <Project Path="Framework/JJ.Framework.Xml/JJ.Framework.Xml.Legacy.csproj" />
+    <Project Path="Framework/Logging.Core/JJ.Framework.Logging.Core.csproj" />
+    <Project Path="Framework/Mathematics.Legacy.TrimTests/JJ.Framework.Mathematics.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/Persistence.Net48.EntityFramework5/JJ.Framework.Persistence.Net48.EntityFramework5.csproj" Id="09619aa6-8e88-4487-bf2c-942c414d69ae" />
+    <Project Path="Framework/Persistence.Net48.Memory/JJ.Framework.Persistence.Net48.Memory.csproj" Id="9e32dfbd-d6cb-4e80-862a-a2cb87b3c2d8" />
+    <Project Path="Framework/Persistence.Net48.NHibernate/JJ.Framework.Persistence.Net48.NHibernate.csproj" Id="0714682c-e14a-4ceb-8b44-1d755050edf3" />
+    <Project Path="Framework/Persistence.Net48.SqlClient/JJ.Framework.Persistence.Net48.SqlClient.csproj" Id="2351d739-c39f-4eb1-a3e8-69f195b1e1fd" />
+    <Project Path="Framework/Persistence.Net48.Tests/JJ.Framework.Persistence.Net48.Tests.csproj" Id="5cac9957-8419-4c0a-a657-2fc67b8d2557" />
+    <Project Path="Framework/Persistence.Net48/JJ.Framework.Persistence.Net48.csproj" Id="ae52e0ea-08bd-4e7c-9b79-98395653bacb" />
+    <Project Path="Framework/PlatformCompatibility.Core.SharedProject/JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.TestBase.Standard/JJ.Framework.PlatformCompatibility.Core.TestBase.Standard.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.TestBase/JJ.Framework.PlatformCompatibility.Core.TestBase.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.Tests.Standard/JJ.Framework.PlatformCompatibility.Core.Tests.Standard.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.Tests/JJ.Framework.PlatformCompatibility.Core.Tests.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core.TrimTests/JJ.Framework.PlatformCompatibility.Core.TrimTests.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Core/JJ.Framework.PlatformCompatibility.Core.csproj" />
+    <Project Path="Framework/PlatformCompatibility.Legacy.TrimTests/JJ.Framework.PlatformCompatibility.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/Presentation.WinForms.Net48/JJ.Framework.Presentation.WinForms.Net48.csproj" Id="19b190a5-0da0-4803-bc78-ac34637703f8" />
+    <Project Path="Framework/Reflection.Core.Tests/JJ.Framework.Reflection.Core.Tests.csproj" />
+    <Project Path="Framework/Reflection.Core/JJ.Framework.Reflection.Core.csproj" />
+    <Project Path="Framework/Reflection.Legacy.Tests.HelpersEx/JJ.Framework.Reflection.Legacy.Tests.HelpersEx.csproj" />
+    <Project Path="Framework/Reflection.Legacy.TrimTests/JJ.Framework.Reflection.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" />
+    <Project Path="Framework/StringResources.Legacy.Tests/JJ.Framework.StringResources.Legacy.Tests.csproj" />
+    <Project Path="Framework/StringResources.Legacy.TrimTests/JJ.Framework.StringResources.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/Testing.Core.MSTestless/JJ.Framework.Testing.Core.MSTestless.csproj" />
+    <Project Path="Framework/Testing.Core.NCrunchless/JJ.Framework.Testing.Core.NCrunchless.csproj" />
+    <Project Path="Framework/Testing.Core.Tests/JJ.Framework.Testing.Core.Tests.csproj" />
+    <Project Path="Framework/Testing.Core/JJ.Framework.Testing.Core.csproj" />
+    <Project Path="Framework/Text.Core.Tests/JJ.Framework.Text.Core.Tests.csproj" />
+    <Project Path="Framework/Text.Core.TrimTests/JJ.Framework.Text.Core.TrimTests.csproj" />
+    <Project Path="Framework/Text.Core/JJ.Framework.Text.Core.csproj" />
+    <Project Path="Framework/Validation.Legacy.Tests.Helpers/JJ.Framework.Validation.Legacy.Tests.Helpers.csproj" />
+    <Project Path="Framework/Validation.Legacy.Tests/JJ.Framework.Validation.Legacy.Tests.csproj" />
+    <Project Path="Framework/Validation.Legacy.TrimTests/JJ.Framework.Validation.Legacy.TrimTests.csproj" />
+  </Folder>
+  <Folder Name="/OneOff/">
+    <Project Path="OneOff/JJ.OneOff.BeginCollectionItemTest/JJ.OneOff.BeginCollectionItemTest.Net48.csproj" Id="cc7d3740-2460-4806-b6e7-4f3670b06d1b" />
+    <Project Path="OneOff/JJ.OneOff.ExpressionTranslatorPerformanceTests/JJ.OneOff.ExpressionTranslatorPerformanceTests.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".github/copilot-instructions.md" />
+    <File Path=".gitignore" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Build.targets" />
+    <File Path="Framework/BuildNum.xml" />
+    <File Path="Framework/Directory.Build.props" />
+    <File Path="Framework/Publish.xml" />
+    <File Path="Framework/TargetFrameworks.xml" />
+    <File Path="Framework/TrimTest.xml" />
+    <File Path="Framework/Vars.xml" />
+    <File Path="Framework/Warnings.xml" />
+    <File Path="Introduction.txt" />
+    <File Path="JJ.Framework.slnx.DotSettings" />
+    <File Path="JJ.Framework.v3.ncrunchsolution" />
+    <File Path="LICENSE.TXT" />
+    <File Path="NuGet.config" />
+    <File Path="README.MD" />
+    <File Path="RELEASE-NOTES.MD" />
+    <File Path="resources/iis-components.png" />
+  </Folder>
+  <Folder Name="/Utilities/">
+    <Project Path="Utilities/Scripts/JJ.Utilities.Scripts.csproj" />
+  </Folder>
+</Solution>

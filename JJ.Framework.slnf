@@ -1,6 +1,6 @@
 {
   "solution": {
-    "path": "JJ.Framework.sln",
+    "path": "JJ.Framework.slnx",
     "projects": [
       "Framework\\Build\\JJ.Framework.Build.csproj",
       "Framework\\Business.Legacy.TrimTests\\JJ.Framework.Business.Legacy.TrimTests.csproj",
