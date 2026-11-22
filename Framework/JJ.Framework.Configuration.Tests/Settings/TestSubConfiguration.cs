@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Configuration.Tests
+namespace JJ.Framework.Configuration.Legacy.Tests
 {
     public class TestSubConfiguration
     {

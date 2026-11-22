@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Reflection;
 
-namespace JJ.Framework.Configuration.Tests
+namespace JJ.Framework.Configuration.Legacy.Tests
 {
     [TestClass]
     public class CustomConfigurationManagerTests

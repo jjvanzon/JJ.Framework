@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Configuration.Tests
+namespace JJ.Framework.Configuration.Legacy.Tests
 {
     [TestClass]
     public class AppSettingsTest

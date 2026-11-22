@@ -1,4 +1,10 @@
-namespace JJ.Framework.Configuration.Core.Tests;
+namespace JJ.Framework.Configuration.Legacy.Tests;
+
+using JJ.Framework.Compilation.Core;
+using JJ.Framework.Compilation.Core.Primitives;
+using static JJ.Framework.Compilation.Core.Primitives.DotNetVerbosity;
+using static JJ.Framework.Testing.Core.AssertCore;
+using static JJ.Framework.Common.Legacy.EmbeddedResourceHelper;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
 [TestClass]
@@ -6,12 +12,12 @@ public class CopyConfigTargetsTests : IDisposable
 {
     private const int BuildTimeOutSec = 240;
 
-    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj";
-    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Legacy.Tests.Dummy.dll.config";
-    private const string _targetsFileName        = "JJ.Framework.Configuration.Core.targets";
-    private const string _dummyCsFileName        = "DummyTests.cs";
-    private const string _testhostConfigFileName = "testhost.dll.config";
-    private const string _ncrunchConfigFileName  = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
+    private const string _dummyCsprojFileName          = "JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj";
+    private const string _assemblyConfigFileName       = "JJ.Framework.Configuration.Legacy.Tests.Dummy.dll.config";
+    private const string _targetsFileName              = "JJ.Framework.Configuration.Core.targets";
+    private const string _dummyCsFileName              = "DummyTests.cs";
+    private const string _testhostConfigFileName       = "testhost.dll.config";
+    private const string _ncrunchConfigFileName        = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
 
     private        readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
     private static readonly string _dummyCsFileContent    = GetResource(_dummyCsFileName);

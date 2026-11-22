@@ -5,7 +5,6 @@
     <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Exceptions/JJ.Framework.Exceptions.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.IO/JJ.Framework.IO.Legacy.csproj" />
-    <Project Path="Framework/JJ.Framework.Testing.Tests/JJ.Framework.Testing.Legacy.Tests.csproj" />
     <Project Path="Framework/JJ.Framework.Text/JJ.Framework.Text.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Xml/JJ.Framework.Xml.Legacy.csproj" />
     <Project Path="Framework/PlatformCompatibility.Core.SharedProject/JJ.Framework.PlatformCompatibility.Core.SharedProject.shproj" Id="e275ca1f-e6b3-4f2e-bff3-c1c24982f009" />
@@ -13,7 +12,6 @@
     <Project Path="Framework/SharedProject.Core/JJ.Framework.SharedProject.Core.shproj" Id="1beb8e62-fcb0-4b88-b142-23e720d5bacc" />
     <Project Path="Framework/Testing.Core.MSTestless/JJ.Framework.Testing.Core.MSTestless.csproj" />
     <Project Path="Framework/Testing.Core.NCrunchless/JJ.Framework.Testing.Core.NCrunchless.csproj" />
-    <Project Path="Framework/Testing.Core.Tests/JJ.Framework.Testing.Core.Tests.csproj" />
     <Project Path="Framework\Common.Core\JJ.Framework.Common.Core.csproj" />
     <Project Path="Framework\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
     <Project Path="Framework\Existence.Core\JJ.Framework.Existence.Core.csproj" />

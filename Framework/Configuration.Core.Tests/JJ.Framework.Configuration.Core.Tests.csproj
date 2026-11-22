@@ -16,13 +16,8 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
-  <!--
-  <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
-  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
-  -->
-
   <!-- Embed Dummy Project Files used in Tests -->
-  <ItemGroup>
+  <!--<ItemGroup>
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.cs" 
                       Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" 
@@ -31,13 +26,13 @@
                       Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj" 
                       Link="TestResources\%(Filename)%(Extension)" />
-  </ItemGroup>
+  </ItemGroup>-->
   
   <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
-  <ItemGroup Condition="'$(TargetFramework)'!='net461' And '$(TargetFramework)'!='net462' And '$(TargetFramework)'!='net48' ">
+  <!--<ItemGroup Condition="'$(TargetFramework)'!='net461' And '$(TargetFramework)'!='net462' And '$(TargetFramework)'!='net48' ">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <!-- Simulate what NuGet consumers get automatically via the build/ convention. -->
-  <Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />
+  <!--<Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />-->
 </Project>

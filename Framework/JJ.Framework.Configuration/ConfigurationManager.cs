@@ -30,6 +30,8 @@ namespace JJ.Framework.Configuration.Legacy
             return GetSection<T>(sectionName);
         }
 
+        // TODO: Caching by section name makes you unable to use different mapping classes for the same section.
+
         private static object _sectionDictionaryLock = new object();
         private static Dictionary<string, object> _sectionDictionary = new Dictionary<string, object>();
 

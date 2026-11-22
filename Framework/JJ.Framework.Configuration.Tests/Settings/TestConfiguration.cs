@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace JJ.Framework.Configuration.Tests
+namespace JJ.Framework.Configuration.Legacy.Tests
 {
     public class TestConfiguration
     {
