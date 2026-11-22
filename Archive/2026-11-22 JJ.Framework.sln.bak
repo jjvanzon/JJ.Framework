@@ -285,7 +285,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.StringResource
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Core.Tests", "Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj", "{8F96C376-7A2D-56A4-99C0-5DAF22F3C9FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Core.Tests.Dummy", "Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj", "{4AB094CD-9714-A173-3934-13F7284B7509}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Legacy.Tests.Dummy", "Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj", "{4AB094CD-9714-A173-3934-13F7284B7509}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Compilation.Core", "Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj", "{BD071C6C-CA75-B7BE-652C-D9B7BB76DEE4}"
 EndProject

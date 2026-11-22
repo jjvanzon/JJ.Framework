@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks> <!-- Can't reach Directory.Build.props in run-time compilations. -->
     <Version>5.3.0</Version>
@@ -15,6 +15,6 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>
 
-  <!-- Simulate what NuGet consumers get automatically via the build/ convention. -->
+  <!-- Simulate what NuGet consumers get automatically via the build/convention. -->
   <Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />
 </Project>

@@ -297,13 +297,13 @@
       <Value>Framework\Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net5.0</Value>
       <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net10.0</Value>
       <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net461</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net10.0</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net461</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net5.0</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net6.0</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net7.0</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net8.0</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net9.0</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net10.0</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net461</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net5.0</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net6.0</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net7.0</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net8.0</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net9.0</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net10.0</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net461</Value>
       <Value>Framework\Compilation.Core\JJ.Framework.Compilation.Core.csproj:net462</Value>
@@ -339,8 +339,8 @@
       <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net7.0</Value>
       <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net8.0</Value>
       <Value>Framework\Configuration.Core.Tests\JJ.Framework.Configuration.Core.Tests.csproj:net9.0</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net462</Value>
-      <Value>Framework\Configuration.Core.Tests.Dummy\JJ.Framework.Configuration.Core.Tests.Dummy.csproj:net48</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net462</Value>
+      <Value>Framework\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj:net48</Value>
       <Value>Framework\PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj:net48</Value>
       <Value>Framework\Collections.Legacy.TrimTests\JJ.Framework.Collections.Legacy.TrimTests.csproj</Value>
     </MetricsExclusionList>

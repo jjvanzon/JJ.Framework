@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\Configuration.Core.Tests.Dummy\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Remove="..\Configuration.Core.Tests.Dummy\obj\**" />
-    <Compile Remove="..\Configuration.Core.Tests.Dummy\bin\**" />
-    <None Include="..\Configuration.Core.Tests.Dummy\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
-    <None Remove="..\Configuration.Core.Tests.Dummy\obj\**\*.config" />
-    <None Remove="..\Configuration.Core.Tests.Dummy\bin\**\*.config" />
-    <None Remove="..\Configuration.Core.Tests.Dummy\app.config" />
+    <Compile Include="..\Configuration.Legacy.Tests.Dummy\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\Configuration.Legacy.Tests.Dummy\obj\**" />
+    <Compile Remove="..\Configuration.Legacy.Tests.Dummy\bin\**" />
+    <None Include="..\Configuration.Legacy.Tests.Dummy\**\*.config" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Remove="..\Configuration.Legacy.Tests.Dummy\obj\**\*.config" />
+    <None Remove="..\Configuration.Legacy.Tests.Dummy\bin\**\*.config" />
+    <None Remove="..\Configuration.Legacy.Tests.Dummy\app.config" />
   </ItemGroup>
 
   <ItemGroup>
