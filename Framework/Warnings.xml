@@ -52,7 +52,7 @@
   </PropertyGroup>
   
   <!-- Warnings Disabled for Legacy Code -->
-  <PropertyGroup Condition="$(IsLegacy)">
+  <PropertyGroup Condition="$(IsLegacy) Or $(IsNet48)">
     <NoWarn>$(NoWarn);IDE0063</NoWarn> <!--Use simple 'using' statement-->
     <NoWarn>$(NoWarn);IDE0034</NoWarn> <!--Simplify 'default' expression-->
     <NoWarn>$(NoWarn);IDE0057</NoWarn> <!--Use range operator-->
