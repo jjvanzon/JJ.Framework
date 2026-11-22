@@ -11,6 +11,7 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   
+  <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
   <ItemGroup Condition="'$(TargetFramework)'!='net461'">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>

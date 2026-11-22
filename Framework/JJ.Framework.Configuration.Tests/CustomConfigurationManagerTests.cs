@@ -1,4 +1,7 @@
-﻿using System;
+﻿// ReSharper disable ConvertToConstant.Local
+// ReSharper disable UnusedVariable
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Reflection;
 

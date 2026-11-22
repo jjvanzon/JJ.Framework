@@ -1,0 +1,27 @@
+
+  <!--<ItemGroup>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>app.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Release.config">
+      <DependentUpon>app.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>-->
+    
+  <!--
+  <ItemGroup>
+    <None Update="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  -->
+  
+  <!--
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)$(TargetFileName).config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)$(TargetFileName).config&quot;&#xD;&#xA;echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)testhost.dll.config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)testhost.dll.config&quot;&#xD;&#xA;echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config&quot;" />
+  </Target>
+  -->

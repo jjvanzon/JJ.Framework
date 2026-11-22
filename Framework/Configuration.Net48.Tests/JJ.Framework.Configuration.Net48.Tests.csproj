@@ -54,9 +54,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="..\JJ.Framework.Configuration.Tests\*.cs" />
-    <Compile Include="..\JJ.Framework.Configuration.Tests\Settings\*.cs" />
+    <Compile Include="..\JJ.Framework.Configuration.Tests\Settings\*.cs" Link="Settings\%(Filename)%(Extension)" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Remove="..\JJ.Framework.Configuration.Tests\CopyConfigTargetsTests.cs" />
+    <Compile Remove="..\JJ.Framework.Configuration.Tests\CopyConfigTargetsTestsEx.cs" />
     <!--<Compile Remove="..\JJ.Framework.Configuration.Tests\Using.cs" />-->
   </ItemGroup>
   <ItemGroup>

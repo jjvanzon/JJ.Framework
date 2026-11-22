@@ -5,7 +5,7 @@
 
 // These are structs, so their syntax colorings are unobtrusive.
 
-namespace JJ.Framework.Configuration.Core.docs;
+namespace JJ.Framework.Configuration.Legacy.docs;
 
 /// <summary> 
 /// This null-tolerant version is missing in JJ.Framework.Configuration for now.

@@ -1,3 +1,5 @@
+// ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
+
 namespace JJ.Framework.Configuration.Legacy.Tests;
 
 using JJ.Framework.Compilation.Core;
@@ -8,7 +10,7 @@ using static JJ.Framework.Common.Legacy.EmbeddedResourceHelper;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Core.targets. </summary>
 [TestClass]
-public class CopyConfigTargetsTests : IDisposable
+public class CopyConfigTargetsTestsEx : IDisposable
 {
     private const int BuildTimeOutSec = 240;
 
@@ -43,7 +45,7 @@ public class CopyConfigTargetsTests : IDisposable
     private readonly string _destTestHostConfigFilePath;
     private readonly string _destNCrunchConfigFilePath;
 
-    public CopyConfigTargetsTests()
+    public CopyConfigTargetsTestsEx()
     {
         _tempSolutionDir              = Path.Combine(Path.GetTempPath(), "JJ.Framework.Configuration.Core.TestRuns", Path.GetRandomFileName().Replace(".", ""));
         _tempProjDir                  = Path.Combine(_tempSolutionDir, "Configuration.Legacy.Tests.Dummy");
@@ -108,7 +110,7 @@ public class CopyConfigTargetsTests : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    ~CopyConfigTargetsTests() => Cleanup(); // ncrunch: no coverage
+    ~CopyConfigTargetsTestsEx() => Cleanup(); // ncrunch: no coverage
 
     // Tests
 

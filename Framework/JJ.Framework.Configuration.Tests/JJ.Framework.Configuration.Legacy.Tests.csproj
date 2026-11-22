@@ -3,16 +3,12 @@
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
     <TargetFrameworks Condition="!$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks> <!-- TODO: Errors for net462 and net48 in Visual Studio Test Explorer. -->
     <Version>0.261.0</Version>
-    <!-- Legacy code expects this name for configuration section resolution. -->
-    <AssemblyName>JJ.Framework.Configuration.Tests</AssemblyName>
-    <!-- Then this is required for the EmbeddedResources to use that assembly name. -->
-    <RootNamespace>JJ.Framework.Configuration.Tests</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\Configuration.Core\JJ.Framework.Configuration.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
     <ProjectReference Include="..\Compilation.Core\JJ.Framework.Compilation.Core.csproj" />
   </ItemGroup>
@@ -21,7 +17,12 @@
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
-  <!-- Embed Dummy Project Files used in Tests -->
+  <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
+  <ItemGroup Condition="'$(TargetFramework)'!='net461' And '$(TargetFramework)'!='net462' And '$(TargetFramework)'!='net48' ">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
+  </ItemGroup>
+
+  <!-- Embed Dummy Project Files for Tests -->
   <ItemGroup>
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.cs" 
                       Link="TestResources\%(Filename)%(Extension)" />
@@ -33,39 +34,17 @@
                       Link="TestResources\%(Filename)%(Extension)" />
   </ItemGroup>
 
-  <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
-  <ItemGroup Condition="'$(TargetFramework)'!='net461' And '$(TargetFramework)'!='net462' And '$(TargetFramework)'!='net48' ">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-  </ItemGroup>
-
   <!-- Simulate what NuGet consumers get automatically via the build/ convention. -->
   <Import Project="..\Configuration.Core\build\JJ.Framework.Configuration.Core.targets" />
 
-  <!--<ItemGroup>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>app.config</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Web.Release.config">
-      <DependentUpon>app.config</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>-->
-    
-  <!--
-  <ItemGroup>
-    <None Update="app.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  -->
-  
-  <!--
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)$(TargetFileName).config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)$(TargetFileName).config&quot;&#xD;&#xA;echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)testhost.dll.config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)testhost.dll.config&quot;&#xD;&#xA;echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config&quot;" />
-  </Target>
-  -->
+  <!-- Manage Legacy code namespace expectations -->
+  <PropertyGroup>
+    <!-- Legacy code expects this name for configuration section resolution. -->
+    <AssemblyName>JJ.Framework.Configuration.Tests</AssemblyName>
+    <!-- Then this is required for the EmbeddedResources to use that assembly name. -->
+    <RootNamespace>JJ.Framework.Configuration.Tests</RootNamespace>
+     <!-- Then squelch warning Namespace != Folder -->
+    <NoWarn>$(NoWarn);IDE0130</NoWarn>
+  </PropertyGroup>
   
 </Project>
