@@ -3,7 +3,10 @@ JJ.Framework.Configuration.Legacy
 
 Map config `XML` to `C#` objects much simpler than the standard way offered by .NET `System.Configuration`.
 
-See the [2015 version's README](https://www.nuget.org/packages/JJ.Framework.Configuration) for a how-to.
+See the [2018 version's README](https://www.nuget.org/packages/JJ.Framework.Configuration) for a good explainer.
+
+This is a `2015` code freeze of it + some additions to keep some legacy projects running.
+
 
 Config Copying
 --------------
