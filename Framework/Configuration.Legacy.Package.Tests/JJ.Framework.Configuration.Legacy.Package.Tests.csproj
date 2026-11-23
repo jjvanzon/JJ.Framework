@@ -14,6 +14,15 @@
     <NoWarn>$(NoWarn);IDE0130</NoWarn>
   </PropertyGroup>
 
+  <!-- Embed Dummy Project Files for Tests -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Legacy.Package.Tests.Dummy\JJ.Framework.Configuration.Legacy.Package.Tests.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Tests.Dummy.csproj" />
+  </ItemGroup>
+  
+  <!-- TODO: Add linked cs files. -->
+  
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
     <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.261.7588" />
