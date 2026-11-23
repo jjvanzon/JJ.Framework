@@ -30,7 +30,7 @@ namespace JJ.Framework.Xml.Legacy
         /// If the node is not unique, an exception is thrown with a descriptive error message.
         /// Null is returned if the node is not found.
         /// </summary>
-        public static XmlNode TrySelectNode(XmlNode parentNode, string xpath)
+        public static XmlNode? TrySelectNode(XmlNode parentNode, string xpath)
         {
             if (parentNode == null) throw new NullException(() => parentNode);
 
@@ -70,7 +70,7 @@ namespace JJ.Framework.Xml.Legacy
         /// Null is returned if the element is not found.
         /// If the element is not unique, an exception is thrown.
         /// </summary>
-        public static XmlElement TryGetElement(XmlElement parentElement, string childElementName)
+        public static XmlElement? TryGetElement(XmlElement parentElement, string childElementName)
         {
             IList<XmlElement> childElements = GetElements(parentElement, childElementName);
 
@@ -120,7 +120,7 @@ namespace JJ.Framework.Xml.Legacy
         /// Tries to get an attribute with a given name.
         /// Null is returned if the attribute is not found.
         /// </summary>
-        public static XmlAttribute TryGetAttribute(XmlElement element, string attributeName)
+        public static XmlAttribute? TryGetAttribute(XmlElement element, string attributeName)
         {
             XmlAttribute attribute = element.GetAttributeNode(attributeName);
             return attribute;
