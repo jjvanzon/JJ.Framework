@@ -63,6 +63,7 @@
     <Project Path="Framework/JJ.Framework.Configuration.Tests/JJ.Framework.Configuration.Legacy.Tests.csproj" />
     <Project Path="Framework/JJ.Framework.Configuration/JJ.Framework.Configuration.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Exceptions/JJ.Framework.Exceptions.Legacy.csproj" />
+    <Project Path="Framework/JJ.Framework.HtmlToXml/JJ.Framework.HtmlToXml.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.IO.Tests/JJ.Framework.IO.Legacy.Tests.csproj" />
     <Project Path="Framework/JJ.Framework.IO/JJ.Framework.IO.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Logging.Diagnostics/JJ.Framework.Logging.Legacy.Diagnostics.csproj" />

@@ -12,10 +12,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="SgmlReaderOld" Version="1.7.9233" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.Legacy.csproj" />

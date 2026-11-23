@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace JJ.Framework.Xml.Legacy
+namespace JJ.Framework.HtmlToXml.Legacy
 {
     public static class HtmlToXmlConverter
     {

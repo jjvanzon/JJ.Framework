@@ -162,12 +162,6 @@
       <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Legacy.Tests.csproj:net5.0</Value>
       <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.0\..</Value>
       <Value>Framework\JJ.Framework.Validation\JJ.Framework.Validation.Legacy.csproj:netstandard2.1\..</Value>
-      <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj:netstandard2.1</Value>
-      <Value>Framework\JJ.Framework.Xml.Tests\JJ.Framework.Xml.Legacy.Tests.csproj:net10.0</Value>
-      <Value>Framework\JJ.Framework.Xml.Tests\JJ.Framework.Xml.Legacy.Tests.csproj:net461</Value>
-      <Value>Framework\JJ.Framework.Xml.Tests\JJ.Framework.Xml.Legacy.Tests.csproj:net5.0</Value>
       <Value>Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.Legacy.csproj:netstandard2.1</Value>
@@ -353,6 +347,12 @@
       <Value>Framework\JJ.Framework.Exceptions\JJ.Framework.Exceptions.Legacy.csproj:net10.0</Value>
       <Value>Framework\JJ.Framework.Exceptions\JJ.Framework.Exceptions.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Exceptions\JJ.Framework.Exceptions.Legacy.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Xml.Tests\JJ.Framework.Xml.Legacy.Tests.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.Xml.Tests\JJ.Framework.Xml.Legacy.Tests.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Xml.Tests\JJ.Framework.Xml.Legacy.Tests.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.HtmlToXml\JJ.Framework.HtmlToXml.Legacy.csproj:net10.0</Value>
+      <Value>Framework\JJ.Framework.HtmlToXml\JJ.Framework.HtmlToXml.Legacy.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.HtmlToXml\JJ.Framework.HtmlToXml.Legacy.csproj:netstandard2.1</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
