@@ -32,7 +32,7 @@ public class CopyConfigTargetsTestsEx : IDisposable
 
     private        readonly string _csprojContent         = GetResource(_dummyCsprojFileName);
     private static readonly string _dummyCsFileContent    = GetResource(_dummyCsFileName);
-    private static readonly string _targetsFileContent    = GetResource(_targetsFileName);
+    private static readonly string _targetsFileContent    = TryGetResource(_targetsFileName);
     private static readonly string _assemblyConfigContent = GetResource(_assemblyConfigFileName);
     private static readonly string _appConfigContent      = GetResource("app.config");
     private static readonly string _webConfigContent      = GetResource("web.config");
@@ -91,6 +91,18 @@ public class CopyConfigTargetsTestsEx : IDisposable
     }
 
     private void Log(string message) => Trace.WriteLine(message);
+
+    private static string TryGetResource(string fileName)
+    {
+        try
+        {
+            return GetResource(fileName);
+        }
+        catch // TODO: Use a new TryGetEmbeddedResourceText method instead of ignoring exception.
+        { 
+            return "";
+        }
+    }
 
     private static string GetResource(string fileName) 
         => GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", fileName);
@@ -246,12 +258,16 @@ public class CopyConfigTargetsTestsEx : IDisposable
     private void CreateTempDir()       => Directory.CreateDirectory(_tempProjDir);
     private void CreateTargetsDir()    => Directory.CreateDirectory(_targetsDir);
     private void WriteCsproj()         => WriteAllText(_csprojFilePath,               _csprojContent        );
-    private void WriteTargetsFile()    => WriteAllText(_targetsFilePath,              _targetsFileContent   );
     private void WriteDummyCsFile()    => WriteAllText(_dummyCsFilePath,              _dummyCsFileContent   );
     private void WriteAppConfig()      => WriteAllText(_appConfigFilePath,            _appConfigContent     );
     private void WriteWebConfig()      => WriteAllText(_webConfigFilePath,            _webConfigContent     );
     private void WriteAssemblyConfig() => WriteAllText(_sourceAssemblyConfigFilePath, _assemblyConfigContent);
     private void WriteTesthostConfig() => WriteAllText(_sourceTestHostConfigFilePath, _testHostConfigContent);
+
+    private void WriteTargetsFile()
+    {
+        if (!string.IsNullOrWhiteSpace(_targetsFileContent)) WriteAllText(_targetsFilePath, _targetsFileContent);
+    }
 
     /// <summary>
     /// Replacing TargetFramework(s) in the content avoids tooling issues with -p:TargetFrameworks= overrides.

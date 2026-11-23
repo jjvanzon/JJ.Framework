@@ -19,8 +19,6 @@
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Package.Tests.Dummy\JJ.Framework.Configuration.Legacy.Package.Tests.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Tests.Dummy.csproj" />
-    <!-- Targets file included and written to temp test dummy project, but not actually referenced by test dummy project -->
-    <EmbeddedResource Include="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" Link="TestResources\%(Filename)%(Extension)" />
   </ItemGroup>
   
   <ItemGroup>
