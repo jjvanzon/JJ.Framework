@@ -19,19 +19,27 @@
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Package.Tests.Dummy\JJ.Framework.Configuration.Legacy.Package.Tests.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Tests.Dummy.csproj" />
+    <!-- Targets file included and written to temp test dummy project, but not actually referenced by test dummy project -->
+    <EmbeddedResource Include="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" Link="TestResources\%(Filename)%(Extension)" />
   </ItemGroup>
   
-  <!-- TODO: Add linked cs files. -->
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Configuration.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Configuration.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Configuration.Tests\bin\**" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
     <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.261.7588" />
     <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.261.7588" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7588" />
     <PackageReference Include="JJ.Framework.Compilation.Core" Version="5.3.7593-preview" />
   </ItemGroup>
   
   <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
-  <ItemGroup Condition="'$(TargetFramework)'!='net461'">
+  <!--<ItemGroup Condition="'$(TargetFramework)'!='net461'">-->
+  <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>
 </Project>

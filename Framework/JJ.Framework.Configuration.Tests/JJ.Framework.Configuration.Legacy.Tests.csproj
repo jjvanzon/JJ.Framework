@@ -33,14 +33,10 @@
 
   <!-- Embed Dummy Project Files for Tests -->
   <ItemGroup>
-    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.cs" 
-                      Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" 
-                      Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj" 
-                      Link="TestResources\JJ.Framework.Configuration.Tests.Dummy.csproj" />
-    <EmbeddedResource Include="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" 
-                      Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.cs" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj" Link="TestResources\JJ.Framework.Configuration.Tests.Dummy.csproj" />
+    <EmbeddedResource Include="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" Link="TestResources\%(Filename)%(Extension)" />
   </ItemGroup>
 
   <!-- Simulate what NuGet consumers get automatically via the build/ convention. -->
