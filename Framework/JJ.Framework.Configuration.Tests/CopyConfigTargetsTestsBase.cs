@@ -2,15 +2,9 @@
 
 namespace JJ.Framework.Configuration.Legacy.Tests;
 
-using JJ.Framework.Compilation.Core;
-using JJ.Framework.Compilation.Core.Primitives;
-using static JJ.Framework.Compilation.Core.Primitives.DotNetVerbosity;
-using static JJ.Framework.Testing.Core.AssertCore;
-using static JJ.Framework.Common.Legacy.EmbeddedResourceHelper;
-
 /// <summary> Integration tests for JJ.Framework.Configuration.Legacy.targets. </summary>
 [TestClass]
-public class CopyConfigTargetsTestsEx : IDisposable
+public class CopyConfigTargetsTestsBase : IDisposable
 {
     private const int BuildTimeOutSec = 240;
 
@@ -48,7 +42,7 @@ public class CopyConfigTargetsTestsEx : IDisposable
     private readonly string _destTestHostConfigFilePath;
     private readonly string _destNCrunchConfigFilePath;
 
-    public CopyConfigTargetsTestsEx()
+    public CopyConfigTargetsTestsBase()
     {
         _tempSolutionDir              = Path.Combine(Path.GetTempPath(), _tempSubDir, Path.GetRandomFileName().Replace(".", ""));
         _tempProjDir                  = Path.Combine(_tempSolutionDir, _tempProjSubDir);
@@ -114,7 +108,7 @@ public class CopyConfigTargetsTestsEx : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    ~CopyConfigTargetsTestsEx() => Cleanup(); // ncrunch: no coverage
+    ~CopyConfigTargetsTestsBase() => Cleanup(); // ncrunch: no coverage
 
     // Tests
 
