@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks> <!-- NCrunch wide range for Package.Tests. -->
+    <Version>0.261.0</Version>
+  </PropertyGroup>
+  
+  <!-- Manage Legacy code namespace expectations -->
+  <PropertyGroup>
+    <!-- Legacy code expects this name for configuration section resolution. -->
+    <AssemblyName>JJ.Framework.Configuration.Tests</AssemblyName>
+    <!-- Then this is required for the EmbeddedResources to use that assembly name. -->
+    <RootNamespace>JJ.Framework.Configuration.Tests</RootNamespace>
+     <!-- Then squelch warning Namespace != Folder -->
+    <NoWarn>$(NoWarn);IDE0130</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.261.7588" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.261.7588" />
+    <PackageReference Include="JJ.Framework.Compilation.Core" Version="5.3.7593-preview" />
+  </ItemGroup>
+  
+  <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
+  <ItemGroup Condition="'$(TargetFramework)'!='net461'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
+  </ItemGroup>
+</Project>
