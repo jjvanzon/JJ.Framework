@@ -12,10 +12,6 @@
     <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.261.7588" />
   </ItemGroup>
   
-  <ItemGroup>
-    <Compile Include="..\Configuration.Legacy.Tests.Dummy\DummyTests.cs" />
-  </ItemGroup>
-  
   <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
   <ItemGroup Condition="'$(TargetFramework)'!='net461'">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
