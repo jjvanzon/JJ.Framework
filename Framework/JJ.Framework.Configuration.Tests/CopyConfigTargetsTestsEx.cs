@@ -98,7 +98,7 @@ public class CopyConfigTargetsTestsEx : IDisposable
         {
             if (Directory.Exists(_tempSolutionDir))
             {
-                Log("Removing temp filesup");
+                Log("Removing temp files");
                 Directory.Delete(_tempSolutionDir, recursive: true);
             }
         }

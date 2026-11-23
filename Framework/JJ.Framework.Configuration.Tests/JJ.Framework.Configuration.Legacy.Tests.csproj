@@ -27,9 +27,9 @@
                       Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\*.config" 
                       Link="TestResources\%(Filename)%(Extension)" />
-    <EmbeddedResource Include="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" 
-                      Link="TestResources\%(Filename)%(Extension)" />
     <EmbeddedResource Include="..\Configuration.Legacy.Tests.Dummy\JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj" 
+                      Link="TestResources\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\JJ.Framework.Configuration\build\JJ.Framework.Configuration.Legacy.targets" 
                       Link="TestResources\%(Filename)%(Extension)" />
   </ItemGroup>
 
