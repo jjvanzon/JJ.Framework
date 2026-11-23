@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/Dependencies/">
     <Project Path="Framework/Compilation.Core/JJ.Framework.Compilation.Core.csproj" />
+    <Project Path="Framework/Configuration.Net48.Tests/JJ.Framework.Configuration.Net48.Tests.csproj" Id="dade7e6f-a89e-4c35-a50b-8562f3fca2b1" />
+    <Project Path="Framework/Configuration.Net48/JJ.Framework.Configuration.Net48.csproj" Id="37a1cde4-c375-41a2-8268-664edb2d02e4" />
     <Project Path="Framework/IO.Core/JJ.Framework.IO.Core.csproj" />
     <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Exceptions/JJ.Framework.Exceptions.Legacy.csproj" />

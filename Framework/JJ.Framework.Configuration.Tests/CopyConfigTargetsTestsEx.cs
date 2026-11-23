@@ -1,5 +1,11 @@
 // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 
+// Keep these usings file-scoped (can't be used in .Net48 project; code file excluded there.
+using JJ.Framework.Compilation.Core;
+using JJ.Framework.Compilation.Core.Primitives;
+using static JJ.Framework.Testing.Core.AssertCore;
+using static JJ.Framework.Common.Legacy.EmbeddedResourceHelper;
+
 namespace JJ.Framework.Configuration.Legacy.Tests;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Legacy.targets. </summary>
