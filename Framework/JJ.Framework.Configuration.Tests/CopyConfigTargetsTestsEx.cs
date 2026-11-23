@@ -4,12 +4,18 @@ namespace JJ.Framework.Configuration.Legacy.Tests;
 
 /// <summary> Integration tests for JJ.Framework.Configuration.Legacy.targets. </summary>
 [TestClass]
-public class CopyConfigTargetsTestsBase : IDisposable
+public class CopyConfigTargetsTestsEx : IDisposable
 {
     private const int BuildTimeOutSec = 240;
 
-    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Legacy.Tests.Dummy.csproj";
-    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Legacy.Tests.Dummy.dll.config";
+    // Legacy code expects base namespace
+    // JJ.Framework.Configuration.Tests (without ".Legacy" in it)
+    // for config section resolution 
+    // which trickles down to resource names, 
+    // and csproj and dll config file names.
+
+    private const string _dummyCsprojFileName    = "JJ.Framework.Configuration.Tests.Dummy.csproj";
+    private const string _assemblyConfigFileName = "JJ.Framework.Configuration.Tests.Dummy.dll.config";
     private const string _targetsFileName        = "JJ.Framework.Configuration.Legacy.targets";
     private const string _dummyCsFileName        = "DummyTests.cs";
     private const string _testhostConfigFileName = "testhost.dll.config";
@@ -42,7 +48,7 @@ public class CopyConfigTargetsTestsBase : IDisposable
     private readonly string _destTestHostConfigFilePath;
     private readonly string _destNCrunchConfigFilePath;
 
-    public CopyConfigTargetsTestsBase()
+    public CopyConfigTargetsTestsEx()
     {
         _tempSolutionDir              = Path.Combine(Path.GetTempPath(), _tempSubDir, Path.GetRandomFileName().Replace(".", ""));
         _tempProjDir                  = Path.Combine(_tempSolutionDir, _tempProjSubDir);
@@ -108,7 +114,7 @@ public class CopyConfigTargetsTestsBase : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    ~CopyConfigTargetsTestsBase() => Cleanup(); // ncrunch: no coverage
+    ~CopyConfigTargetsTestsEx() => Cleanup(); // ncrunch: no coverage
 
     // Tests
 
