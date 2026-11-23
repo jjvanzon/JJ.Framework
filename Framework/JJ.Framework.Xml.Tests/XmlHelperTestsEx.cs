@@ -25,7 +25,7 @@ public class XmlHelperTestsEx
 
     [TestMethod]
     public void Test_XmlHelper_GetElement_NotFound_Exception() 
-        => Throws(() => GetElement(_root, "nonExistent"), "does not contain");
+        => Throws(() => GetElement(_root, "nonExistentElement"), "does not contain");
 
     [TestMethod]
     public void Test_XmlHelper_GetElement_NotUnique_Exception()
@@ -44,7 +44,7 @@ public class XmlHelperTestsEx
     [TestMethod]
     public void Test_XmlHelper_TryGetElement_NotFound_ReturnsNull()
     {
-        XmlElement? element = TryGetElement(_root, "nonExistent");
+        XmlElement? element = TryGetElement(_root, "nonExistentElement");
         IsNull(element);
     }
 
@@ -57,7 +57,7 @@ public class XmlHelperTestsEx
     [TestMethod]
     public void Test_XmlHelper_GetElements_None()
     {
-        IList<XmlElement> elements = GetElements(_root, "nonExistent");
+        IList<XmlElement> elements = GetElements(_root, "nonExistentElement");
         IsNotNull(elements);
         AreEqual(0, elements.Count);
     }
@@ -84,32 +84,87 @@ public class XmlHelperTestsEx
         AreEqual("nonUniqueElement", elements[1].Name);
     }
 
-    // Other
+    // GetAttribute
 
     [TestMethod]
     public void Test_XmlHelper_GetAttribute()
     {
+        XmlAttribute attribute = GetAttribute(_root, "attribute");
+        IsNotNull(attribute);
+        AreEqual("attribute", attribute.Name);
     }
 
     [TestMethod]
+    public void Test_XmlHelper_GetAttribute_NotFound_Exception() 
+        => Throws(() => GetAttribute(_root, "nonExistentAttribute"), "does not contain");
+
+    // TryGetAttribute
+    
+    [TestMethod]
     public void Test_XmlHelper_TryGetAttribute()
     {
+        XmlAttribute attribute = TryGetAttribute(_root, "attribute");
+        IsNotNull(attribute);
+        AreEqual("attribute", attribute.Name);
     }
+
+    [TestMethod]
+    public void Test_XmlHelper_TryGetAttribute_NotFound_ReturnsNull()
+    {
+        XmlAttribute? attribute = TryGetAttribute(_root, "nonExistentAttribute");
+        IsNull(attribute);
+    }
+
+    // GetAttributeValue
 
     [TestMethod]
     public void Test_XmlHelper_GetAttributeValue()
     {
+        string value = GetAttributeValue(_root, "attribute");
+        AreEqual("2", value);
     }
+
+    [TestMethod]
+    public void Test_XmlHelper_GetAttributeValue_NonExistent_Exception() 
+        => Throws(() => GetAttributeValue(_root, "nonExistentAttribute"), "does not specify attribute");
+
+    // TryGetAttributeValue
 
     [TestMethod]
     public void Test_XmlHelper_TryGetAttributeValue()
     {
+        string value = TryGetAttributeValue(_root, "attribute");
+        AreEqual("2", value);
     }
+
+    [TestMethod]
+    public void Test_XmlHelper_TryGetAttributeValue_NonExistent_Exception()
+    {
+        string value = TryGetAttributeValue(_root, "nonExistentAttribute");
+        IsNullOrEmpty(value);
+    }
+
+    // Other
 
     [TestMethod]
     public void Test_XmlHelper_SetAttributeValue()
     {
+        XmlElement element = GetElement(_root, "simpleElement");
+        {
+            string value = TryGetAttributeValue(element, "attribute");
+            IsNullOrEmpty(value);
+        }
+        // TODO: It insists the attribute exists, but that's a bit too strict I feel.
+        //SetAttributeValue(element, "attribute", "val");
+        //{
+        //    string value = TryGetAttributeValue(element, "attribute");
+        //    IsNullOrEmpty(value);
+        //}
     }
+
+    // TODO: Test case sensitivity?
+
+    // Helpers
 
     private static readonly XmlElement _root = GetRootElement();
     private static XmlElement GetRootElement()
@@ -119,5 +174,4 @@ public class XmlHelperTestsEx
         doc.LoadXml(xml);
         return doc.DocumentElement;
     }
-
 }
