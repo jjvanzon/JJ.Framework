@@ -61,4 +61,9 @@
     <NoWarn>$(NoWarn);IDE0051</NoWarn> <!--Type member never used-->
     <NoWarn>$(NoWarn);IDE0005</NoWarn> <!--Unused usings-->
   </PropertyGroup>
+
+  <!-- Warnings Disabled for Legacy Tests -->
+  <PropertyGroup Condition="($(IsLegacy) Or $(IsNet48)) And ($(IsTest) Or $(IsTrimTest))">
+    <NoWarn>$(NoWarn);IDE0130</NoWarn> <!--Namespace != Folder-->
+  </PropertyGroup>
 </Project>

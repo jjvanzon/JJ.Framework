@@ -37,6 +37,8 @@
     <File Path="README.MD" />
     <File Path="RELEASE-NOTES.MD" />
   </Folder>
+  <Project Path="Framework/JJ.Framework.Persistence.Xml/JJ.Framework.Persistence.Legacy.Xml.csproj" />
+  <Project Path="Framework/JJ.Framework.Persistence/JJ.Framework.Persistence.Legacy.csproj" />
   <Project Path="Framework/JJ.Framework.Xml.Tests/JJ.Framework.Xml.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Xml/JJ.Framework.Xml.Legacy.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />

@@ -104,5 +104,8 @@
       <element />
     </element>
   </recursiveElement>
-
+  
+  <!-- Non-Unique -->
+  <nonUniqueElement />
+  <nonUniqueElement />
 </root>

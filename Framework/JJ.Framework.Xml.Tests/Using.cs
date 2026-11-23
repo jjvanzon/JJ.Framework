@@ -1,3 +1,10 @@
-﻿global using JJ.Framework.Common.Legacy;
+﻿global using System.Xml;
+global using System.Reflection;
+global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Xml.Legacy;
 global using JJ.Framework.Testing.Legacy;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using static System.Reflection.Assembly;
+global using static JJ.Framework.Common.Legacy.EmbeddedResourceHelper;
+global using static JJ.Framework.Testing.Core.AssertCore;
+global using static JJ.Framework.Xml.Legacy.XmlHelper;
