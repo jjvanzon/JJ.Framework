@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;net5.0;net48;net462;net461</TargetFrameworks> <!-- Can't reach Directory.Build.props in run-time compilations. -->
+    <Version>0.261.0</Version>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <LangVersion>latest</LangVersion>
+    <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.261.7588" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\Configuration.Legacy.Tests.Dummy\DummyTests.cs" />
+  </ItemGroup>
+  
+  <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
+  <ItemGroup Condition="'$(TargetFramework)'!='net461'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
+  </ItemGroup>
+</Project>
