@@ -151,6 +151,7 @@ namespace JJ.Framework.Xml.Legacy
             return attributeValue;
         }
 
+        /// <inheritdoc cref="_setattributevalue" />
         public static void SetAttributeValue(XmlElement element, string attributeName, string value)
         {
             // TODO: Optimize performance by using attributes directly rather than through XPath.

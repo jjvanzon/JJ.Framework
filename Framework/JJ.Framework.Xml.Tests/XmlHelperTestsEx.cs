@@ -3,6 +3,10 @@
 [TestClass]
 public class XmlHelperTestsEx
 {
+    // TODO: Test case sensitivity of names?
+
+    // TODO: SelectNode
+
     [TestMethod]
     public void Test_XmlHelper_SelectNode()
     {
@@ -147,27 +151,35 @@ public class XmlHelperTestsEx
     // Other
 
     [TestMethod]
-    public void Test_XmlHelper_SetAttributeValue()
+    public void Test_XmlHelper_SetAttributeValue_AttributeExists()
     {
-        XmlElement element = GetElement(_root, "simpleElement");
+        XmlElement root = CreateRoot();
         {
-            string value = TryGetAttributeValue(element, "attribute");
-            IsNullOrEmpty(value);
+            string value = TryGetAttributeValue(root, "attribute");
+            AreEqual("2", value);
         }
-        // TODO: It insists the attribute exists, but that's a bit too strict I feel.
-        //SetAttributeValue(element, "attribute", "val");
-        //{
-        //    string value = TryGetAttributeValue(element, "attribute");
-        //    IsNullOrEmpty(value);
-        //}
+
+        SetAttributeValue(root, "attribute", "3");
+        {
+            string value = TryGetAttributeValue(root, "attribute");
+            AreEqual("3", value);
+        }
     }
 
-    // TODO: Test case sensitivity?
+    [TestMethod]
+    public void Test_XmlHelper_SetAttributeValue_AttributeDoesNotExist_Throws()
+    {
+        XmlElement root = CreateRoot();
+        XmlElement element = GetElement(root, "simpleElement");
+        string value = TryGetAttributeValue(element, "attribute");
+        IsNullOrEmpty(value);
+        Throws(() => SetAttributeValue(element, "attribute", "val"));
+    }
 
     // Helpers
 
-    private static readonly XmlElement _root = GetRootElement();
-    private static XmlElement GetRootElement()
+    private static readonly XmlElement _root = CreateRoot();
+    private static XmlElement CreateRoot()
     {
         string xml = GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", "ComplicatedExample.xml"); ;
         XmlDocument doc = new();
