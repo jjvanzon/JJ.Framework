@@ -9,7 +9,7 @@ using System.Threading;
 namespace JJ.Framework.Common.Legacy 
 {
     /// <inheritdoc cref="_culturehelper" />
-    public static class CultureHelper
+    public static partial class CultureHelper
     {
         /// <inheritdoc cref="_culturehelper" />
         public static void SetThreadCulture(string cultureName)

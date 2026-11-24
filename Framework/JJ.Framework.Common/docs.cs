@@ -2,6 +2,7 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 // ReSharper disable CheckNamespace
+#pragma warning disable IDE0130
 
 // These are structs, so their syntax colorings are unobtrusive.
 
