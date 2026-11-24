@@ -4,9 +4,6 @@
 [TestClass]
 public class XmlToObjectConverterTestsEx
 {
-    // TODO: Check that it's culture insensitive.
-    // TODO: Check that it's case sensitive.
-
     [TestMethod]
     public void Test_XmlToObjectConverter_WithBytes_ImplicitUTF8()
     {
@@ -213,7 +210,7 @@ public class XmlToObjectConverterTestsEx
     private class WithUnsupportedCollectionType
     {
         [XmlArray]
-        public int UnsupportedCollectionType { get; set; }
+        public int UnsupportedCollectionType { get; set; } // ncrunch: no coverage
     }
 
     [TestMethod]
@@ -229,6 +226,70 @@ public class XmlToObjectConverterTestsEx
         var converter = new XmlToObjectConverter<WithUnsupportedCollectionType>();
             
         Throws(() => converter.Convert(xml), "is an XML element");
+    }
+
+    private class ForCaseSensitivityTest
+    {
+        public int MyElement { get; set; }
+    }
+
+    private class WithExplicitElementName
+    {
+        [XmlElement("MyElement")]
+        public int MyElement { get; set; }
+    }
+
+    [TestMethod]
+    public void Test_XmlToObjectConverter_CaseSensitivity()
+    {
+        // Happy case:
+        // By standard: PascalCase properties, camelCase elements. 
+        {
+            const string xml =
+            """
+            <root>
+              <myElement>8</myElement>
+            </root>
+            """;
+
+            var converter = new XmlToObjectConverter<ForCaseSensitivityTest>();
+
+            ForCaseSensitivityTest obj = converter.Convert(xml);
+
+            AreEqual(8, obj.MyElement);
+        }
+
+        // Exception: PascalCase elements
+        {
+            const string xml =
+            """
+            <root>
+              <MyElement>9</MyElement>
+            </root>
+            """;
+
+            var converter = new XmlToObjectConverter<ForCaseSensitivityTest>();
+
+            Throws(() => converter.Convert(xml), "does not have the required child element");
+        }
+
+        // With Explicit name pascal case elements are accepted
+        {
+            const string xml =
+            """
+            <root>
+              <MyElement>10</MyElement>
+            </root>
+            """;
+
+            var converter = new XmlToObjectConverter<WithExplicitElementName>();
+
+            WithExplicitElementName obj = converter.Convert(xml);
+
+            AreEqual(10, obj.MyElement);
+        }
 
     }
+
+    // TODO: Check that it's culture insensitive (e.g. digit separator is a period character (.).
 }
