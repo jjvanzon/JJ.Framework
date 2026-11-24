@@ -1,9 +1,6 @@
-﻿#pragma warning disable IDE0005 // Redundant namespace (implicit namespaces not always working)
-using System.Threading;
-using System.Globalization;
+﻿namespace JJ.Framework.Common.Legacy.Tests;
 
-namespace JJ.Framework.Common.Legacy.Tests;
-
+[Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
 [TestClass]
 public class CultureHelperTests
 {
@@ -18,12 +15,12 @@ public class CultureHelperTests
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             
             CultureHelper.SetThreadCulture("nl-NL");
-            AreEqual("nl-NL", Thread.CurrentThread.CurrentCulture.Name);
-            AreEqual("nl-NL", Thread.CurrentThread.CurrentUICulture.Name);
+            AreEqual("nl-NL", () => Thread.CurrentThread.CurrentCulture.Name);
+            AreEqual("nl-NL", () => Thread.CurrentThread.CurrentUICulture.Name);
             
             CultureHelper.SetThreadCulture("de-DE");
-            AreEqual("de-DE", Thread.CurrentThread.CurrentCulture.Name);
-            AreEqual("de-DE", Thread.CurrentThread.CurrentUICulture.Name);
+            AreEqual("de-DE", () => Thread.CurrentThread.CurrentCulture.Name);
+            AreEqual("de-DE", () => Thread.CurrentThread.CurrentUICulture.Name);
         }
         finally
         {

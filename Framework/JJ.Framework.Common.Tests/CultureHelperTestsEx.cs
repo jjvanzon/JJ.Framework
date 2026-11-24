@@ -1,11 +1,8 @@
-﻿using System.Globalization;
-using System.Threading;
-using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-// ReSharper disable InconsistentNaming
+﻿// ReSharper disable InconsistentNaming
 
 namespace JJ.Framework.Common.Legacy.Tests
 {
+    [Suppress("Trimmer", "IL2026", Justification = ArrayInit)]
     [TestClass]
     public class CultureHelperTestsEx
     {
