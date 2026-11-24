@@ -5,11 +5,11 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.261.7562" />
-    <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.261.7562" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7562" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.3.7562" />
-    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.261.7562" />
+    <PackageReference Include="JJ.Framework.Common.Legacy" Version="0.261.7624" />
+    <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.261.7624" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7602" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.3.7624" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.261.7602" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
