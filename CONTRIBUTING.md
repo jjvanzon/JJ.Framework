@@ -108,6 +108,7 @@ JJ.Framework.Configuration.Core
 - `.Core` (`JJ.Framework.Configuration.Core`):  
   Brand-new development or extensions to .Legacy code. This way, we don't stifle innovation while we're working with legacy code.
 - The `Ex` suffix ("extended") can be used for copies from the __latest__ `legacy` code. When adding code to legacy projects, pulled or shared back to the `legacy` head, the `Ex` suffix is employed.
+- It is also an option to only add the `Ex` suffix in the code file name, while making the class inside the file a `partial class` instead, extending the original.
 
 
 Code Copies
