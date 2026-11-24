@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Dependencies/">
     <Project Path="Framework/Common.Legacy.Tests.HelpersEx/JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj" />
+    <Project Path="Framework/IO.Core/JJ.Framework.IO.Core.csproj" />
     <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Common.Tests/JJ.Framework.Common.Legacy.Tests.csproj" />
     <Project Path="Framework/JJ.Framework.Exceptions/JJ.Framework.Exceptions.Legacy.csproj" />
