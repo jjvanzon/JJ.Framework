@@ -27,7 +27,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="CultureHelper.cs" />
+    <Compile Include="docs.cs" />
     <Compile Include="DoubleHelper.cs" />
     <Compile Include="Obsolete\EmbeddedResourceHelper.Obsolete.cs" />
     <Compile Include="IClipboardUtilizer.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Obsolete\DoubleHelper.Obsolete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Using.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="JJ.Framework.Common.nuspec" />
