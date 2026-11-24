@@ -1,7 +1,7 @@
 ﻿<root attribute="2"
       Attribute_WithExplicitName="2"
       nullableAttribute_FilledIn="2"
-      NullableAttribute_LeftBlank="" >
+      nullableAttribute_LeftBlank="" >
 
   <!-- Basics -->
 

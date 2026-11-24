@@ -293,8 +293,6 @@ public class XmlToObjectConverterTestsEx
 
     }
 
-    // TODO: Check that it's culture insensitive (e.g. digit separator is a period character (.).
-
     private class ForCultureInsensitivityTest
     {
         [XmlAttribute]

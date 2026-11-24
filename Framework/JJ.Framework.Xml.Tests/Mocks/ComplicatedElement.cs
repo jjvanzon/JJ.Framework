@@ -57,7 +57,9 @@ namespace JJ.Framework.Xml.Tests.Mocks
 
         // Nullable types
 
-        public int? Nullable { get; set; }
+        // ncrunch: no coverage start
+        public int? Nullable { get; set; } // Simply not used by tests.
+        // ncrunch: no coverage end
 
         public bool? NullableBoolean { get; set; }
         public byte? NullableByte { get; set; }
@@ -84,10 +86,10 @@ namespace JJ.Framework.Xml.Tests.Mocks
         public int? NullableAttribute_FilledIn { get; set; }
 
         [XmlAttribute]
-        public int? NullableAttribute_LeftBlank { get; set; }
+        public int? NullableAttribute_LeftBlank { get; set; } = 2; // Default value remains in tact, if nothing filled in in the XML.
 
         [XmlAttribute]
-        public int? NullableAttribute_Omitted { get; set; }
+        public int? NullableAttribute_Omitted { get; set; } // ncrunch: no coverage
 
         // Collections
 

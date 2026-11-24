@@ -37,6 +37,7 @@ namespace JJ.Framework.Xml.Legacy
     /// Reference types are always optional. Value types are optional only if they are nullable.
     /// Collection types are always optional. If only the parent element is present, an empty collection will be assigned.
     /// If the parent element is missing from the XML, the collection will be null.
+    /// If a value is null or omitted in the XML, its default value in the mapping objects is left untouched: the value will not be cleared.
     /// 
     /// Recognized values are the .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
     /// the numeric types, their the signed and unsigned variations and

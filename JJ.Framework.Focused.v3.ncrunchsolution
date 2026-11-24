@@ -180,6 +180,9 @@
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Persistence\JJ.Framework.Persistence.Legacy.csproj:net10.0</Value>
+      <Value>Framework\Common.Legacy.Tests.HelpersEx\JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj:net10.0</Value>
+      <Value>Framework\Common.Legacy.Tests.HelpersEx\JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj:net461</Value>
+      <Value>Framework\Common.Legacy.Tests.HelpersEx\JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj:net5.0</Value>
     </MetricsExclusionList>
     <NCrunchCacheStoragePath>%LocalAppData%\NCrunch</NCrunchCacheStoragePath>
     <PreloadReferencedAssemblies>True</PreloadReferencedAssemblies>
