@@ -15,3 +15,6 @@ namespace JJ.Framework.Xml.Legacy.docs;
 /// And it may incur some performance overhead otherwise.
 /// </summary>
 public struct _setattributevalue;
+
+/// <param name="data">Byte data is assumed to be UTF-8 encoded.</param>
+public struct _convertwithbytes;

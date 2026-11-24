@@ -81,6 +81,7 @@ namespace JJ.Framework.Xml.Legacy
         public XmlToObjectConverter()
         { }
 
+        /// <inheritdoc cref="_convertwithbytes" />
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
         [AotWarn(GenericList)]
         public TDestObject Convert(byte[] data)
@@ -159,7 +160,7 @@ namespace JJ.Framework.Xml.Legacy
                     break;
 
                 default:
-                    throw new InvalidValueException(nodeType);
+                    throw new InvalidValueException(nodeType); // ncrunch: no coverage
             }
         }
 
