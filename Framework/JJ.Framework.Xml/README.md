@@ -2,6 +2,31 @@
 
 Helpers for working with XML.
 
+Legacy version updated to newest .NET versions, made trim-safe, compatible with AOT/native compilation. Fully documented and covered with tests.
+
+__Contents__
+
+- [XmlHelper](#xmlhelper)
+- [XmlToObjectConverter](#xmltoobjectconverter)
+- [Elements](#elements)
+- [Attributes](#attributes)
+- [Collections](#collections)
+- [Composite Types](#composite-types)
+- [Standard Naming](#standard-naming)
+    - [Standard Naming for Collections](#standard-naming-for-collections)
+- [Custom Naming](#custom-naming)
+    - [Custom Naming for Elements](#custom-naming-for-elements)
+    - [Custom Naming for Attributes](#custom-naming-for-attributes)
+    - [Custom Naming for Arrays](#custom-naming-for-arrays)
+- [Nullability](#nullability)
+    - [Nullability for Reference Types](#nullability-for-reference-types)
+    - [Nullability for Value Types](#nullability-for-value-types)
+    - [Nullability for Collections](#nullability-for-collections)
+- [Value Types](#value-types)
+- [Error Messages](#error-messages)
+- [Performance](#performance)
+- [💬 Feedback](#-feedback)
+
 ## XmlHelper
 
 A class that gives access to XML. It does so in a null-safe and multiplicity-safe way. It uses `XmlDocument` as the underlying .NET API.
@@ -26,7 +51,7 @@ Remarks:
 
 Converts an `XmlDocument` or `string` to an object graph. The way to map to classes is easier than the classic ways in .NET. The idea was to make XML mapping intuitive and clean. (Also: At the time on certain platforms standard XML serialization was not available or not be the best option.)
 
-### Elements
+## Elements
 
 By default properties are mapped to XML elements.
 
@@ -38,7 +63,7 @@ XML:
 
 	<myElement>3</myElement>
 
-### Attributes
+## Attributes
 
 To map to XML attributes, mark a property with the `XmlAttribute` attribute.
 
@@ -51,7 +76,7 @@ XML:
 
 	myAttribute="3"
 
-### Collections
+## Collections
 
 If a property is a collection type, a parent XML element is expected, and a child element for each position in the array.
 
@@ -71,7 +96,7 @@ That single collection property maps to both this parent element and the child e
 
 The supported collection types are `Array` types, `List`<`T`>, `IList`<`T`>, `ICollection`<`T`> and `IEnumerable`<`T`>.
 
-### Composite Types
+## Composite Types
 
 You can easily work with composite types.
 
@@ -121,7 +146,7 @@ C#:
         public MyClass(int myConstructorParameter) { }
     }
 
-### Standard Naming
+## Standard Naming
 
 By default the names in the XML are the camel-case version of the property names.
 
@@ -133,7 +158,7 @@ XML:
 
 	<myElement>3</myElement>
 
-#### Standard Naming for Collections
+### Standard Naming for Collections
 
 For XML array items, however, it is not the property name, but the camel case version of collection property's item type.
 
@@ -149,11 +174,11 @@ XML:
 	  <int32>5</int32>
 	</myArray>
 
-### Custom Naming
+## Custom Naming
 
 To diverge from the standard naming , you can specify the node name explicitly by using the following .NET attributes on the properties: `XmlElement`, `XmlAttribute`, `XmlArray` and `XmlArrayItem`.
 
-#### Custom Naming for Elements
+### Custom Naming for Elements
 
 C#:
 
@@ -164,7 +189,7 @@ XML:
 
 	<Elm>3</Elm>
 
-#### Custom Naming for Attributes
+### Custom Naming for Attributes
 
 C#:
 	
@@ -175,7 +200,7 @@ XML:
 
 	Attr="3"
 
-#### Custom Naming for Arrays
+### Custom Naming for Arrays
 
 C#:
 
@@ -191,11 +216,11 @@ XML:
 	  <Item>5</Item>
 	</Arr>
 
-### Nullability
+## Nullability
 
 Effort was made to make nullability as intuitive as possible.
 
-#### Nullability for Reference Types
+### Nullability for Reference Types
 
 Reference types are always optional.
 
@@ -213,7 +238,7 @@ XML:
 	  <!-- No myObject element here, so the MyObject property in C# will be null. -->
 	</myRoot>
 
-#### Nullability for Value Types
+### Nullability for Value Types
 
 Value types are optional, only if they are nullable.
 
@@ -247,7 +272,7 @@ XML:
 	  <myElement>3</myElement>
 	</myRoot>
 	
-#### Nullability for Collections
+### Nullability for Collections
 
 Collection types are always optional.
 
@@ -276,14 +301,19 @@ XML:
 	  <myArray />
 	</myRoot>
 	
-### Value Types
+## Value Types
 
 Recognized values are the .NET primitive types: `Boolean`, `Char`, `Byte`, `IntPtr`, `UIntPtr`, the numeric types, their signed and unsigned variations and `String`, `Guid`, `DateTime`, `TimeSpan` and `Enum` types.
 
-### Error Messages
+## Error Messages
 
 Effort was put into making the exception messages clear and accurate if there are structure mismatches.
 
-### Performance
+## Performance
 
 In short: performance is untested. I know it is a thing that people want to prove they have the fastest serializer. I really just wanted to map XML more easily. Other components I made depend on it.
+
+💬 Feedback
+------------
+
+Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)
