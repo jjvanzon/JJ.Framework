@@ -1,4 +1,5 @@
 ﻿global using System.Reflection;
+global using System.Globalization;
 global using System.Xml;
 global using System.Xml.Serialization;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,9 +9,10 @@ global using JJ.Framework.Xml.Tests.Mocks;
 global using JJ.Framework.Xml.Legacy;
 global using JJ.Framework.Xml.Legacy.Tests.docs;
 global using static System.Text.Encoding;
+global using static System.Globalization.CultureInfo;
 global using static System.Reflection.Assembly;
 global using static JJ.Framework.Common.Legacy.EmbeddedResourceHelper;
+global using static JJ.Framework.Common.Legacy.CultureHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Xml.Legacy.XmlHelper;
 global using static JJ.Framework.IO.Legacy.StreamHelper;
-

@@ -256,6 +256,7 @@ public class XmlToObjectConverterTestsEx
 
             ForCaseSensitivityTest obj = converter.Convert(xml);
 
+            IsNotNull(obj);
             AreEqual(8, obj.MyElement);
         }
 
@@ -286,10 +287,87 @@ public class XmlToObjectConverterTestsEx
 
             WithExplicitElementName obj = converter.Convert(xml);
 
+            IsNotNull(obj);
             AreEqual(10, obj.MyElement);
         }
 
     }
 
     // TODO: Check that it's culture insensitive (e.g. digit separator is a period character (.).
+
+    private class ForCultureInsensitivityTest
+    {
+        [XmlAttribute]
+        public decimal Attribute { get; set; }
+
+        [XmlElement]
+        public float Element { get; set; }
+    }
+
+    private static readonly CultureInfo _nlNL = GetCultureInfo("nl-NL");
+    private static readonly CultureInfo _enUS = GetCultureInfo("en-US");
+    private static readonly CultureInfo[] _cultures = [ _nlNL, _enUS ];
+
+    [TestMethod]
+    public void Test_XmlToObjectConverter_CultureInsensitive()
+    {
+        // Happy case:
+        // decimal separator is period (.)
+        foreach (var culture in _cultures)
+        {
+            CultureInfo originalCulture = GetCurrentCulture();
+            try
+            {
+                SetCurrentCulture(culture);
+                const string xml =
+                """
+                <root attribute="11.2">
+                    <element>12.3</element>
+                </root>
+                """;
+
+                var converter = new XmlToObjectConverter<ForCultureInsensitivityTest>();
+
+                var obj = converter.Convert(xml);
+
+                IsNotNull(obj);
+                AreEqual(11.2m, obj.Attribute);
+                AreEqual(12.3f, obj.Element, delta: 0.00001);
+            }
+            finally
+            {
+                SetCurrentCulture(originalCulture);
+            }
+        }
+
+        // Commas in XML are ignored (not ideal, but it is .NET)
+         foreach (var culture in _cultures)
+        {
+            CultureInfo originalCulture = GetCurrentCulture();
+            try
+            {
+                SetCurrentCulture(culture);
+                const string xml =
+                """
+                <root attribute="11,2">
+                    <element>12.3</element>
+                </root>
+                """;
+
+                var converter = new XmlToObjectConverter<ForCultureInsensitivityTest>();
+
+                //Throws(() => converter.Convert(xml)); // Does not throw
+
+                var obj = converter.Convert(xml);
+
+                IsNotNull(obj);
+                AreEqual(112m, obj.Attribute); // Oops, comma is just ignored.
+                AreEqual(12.3f, obj.Element, delta: 0.00001);
+            }
+            finally
+            {
+                SetCurrentCulture(originalCulture);
+            }
+        }
+   }
 }
