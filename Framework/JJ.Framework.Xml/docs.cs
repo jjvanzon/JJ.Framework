@@ -8,6 +8,9 @@
 
 namespace JJ.Framework.Xml.Legacy.docs;
 
+/// <param name="data">Byte data is assumed to be UTF-8 encoded.</param>
+public struct _convertwithbytes;
+
 /// <summary>
 /// Sets the attribute value for an element by attribute name.
 /// Insists that the attribute already is present,
@@ -16,5 +19,7 @@ namespace JJ.Framework.Xml.Legacy.docs;
 /// </summary>
 public struct _setattributevalue;
 
-/// <param name="data">Byte data is assumed to be UTF-8 encoded.</param>
-public struct _convertwithbytes;
+/// <summary>
+/// A class that gives access to XML. It does so in a null-safe and multiplicity-safe way. It uses <c>XmlDocument</c> as the underlying .NET API.
+/// </summary>
+public struct _xmlhelper;

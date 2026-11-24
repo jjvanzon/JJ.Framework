@@ -7,6 +7,7 @@ using System.Xml;
 
 namespace JJ.Framework.Xml.Legacy
 {
+    /// <inheritdoc cref="_xmlhelper" />
     public static class XmlHelper
     {
         // XPath
