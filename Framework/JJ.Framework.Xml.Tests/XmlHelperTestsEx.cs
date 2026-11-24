@@ -3,19 +3,44 @@
 [TestClass]
 public class XmlHelperTestsEx
 {
-    // TODO: Test case sensitivity of names?
-
-    // TODO: SelectNode
+    // SelectNode
 
     [TestMethod]
     public void Test_XmlHelper_SelectNode()
     {
+        XmlNode elementNode = SelectNode(_root, "/root/simpleElement");
+        IsNotNull(elementNode);
+        AreEqual(typeof(XmlElement), elementNode.GetType());
     }
+
+    [TestMethod]
+    public void Test_XmlHelper_SelectNode_NonExistent_Throws() 
+        => Throws(() => SelectNode(_root, "//nonExistent"), "does not exist");
+
+    [TestMethod]
+    public void Test_XmlHelper_SelectNode_Multiple_Throws() 
+        => Throws(() => SelectNode(_root, "//nonUniqueElement"), "not unique");
+
+    // TrySelectNode
 
     [TestMethod]
     public void Test_XmlHelper_TrySelectNode()
     {
+        XmlNode elementNode = TrySelectNode(_root, "//simpleElement");
+        IsNotNull(elementNode);
+        AreEqual(typeof(XmlElement), elementNode.GetType());
     }
+
+    [TestMethod]
+    public void Test_XmlHelper_SelectNode_NonExistent_ReturnsNull()
+    {
+        XmlNode node = TrySelectNode(_root, "//@nonExistentAttribute");
+        IsNull(node);
+    }
+    
+    [TestMethod]
+    public void Test_XmlHelper_TrySelectNode_Multiple_Throws() 
+        => Throws(() => TrySelectNode(_root, "//nonUniqueElement"), "not unique");
 
     // GetElement
 
@@ -148,7 +173,7 @@ public class XmlHelperTestsEx
         IsNullOrEmpty(value);
     }
 
-    // Other
+    // SetAttributeValue
 
     [TestMethod]
     public void Test_XmlHelper_SetAttributeValue_AttributeExists()
@@ -174,6 +199,17 @@ public class XmlHelperTestsEx
         string value = TryGetAttributeValue(element, "attribute");
         IsNullOrEmpty(value);
         Throws(() => SetAttributeValue(element, "attribute", "val"));
+    }
+
+    // Case Sensitivity
+
+    [TestMethod]
+    public void Test_XmlHelper_IsCaseSensitive()
+    {
+        Throws(() => GetElement(_root, "SIMPLEELEMENT"), "does not contain");
+
+        XmlElement element = GetElement(_root, "simpleElement");
+        IsNotNull(element);
     }
 
     // Helpers
