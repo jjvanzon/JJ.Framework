@@ -455,7 +455,7 @@ namespace JJ.Framework.Xml.Legacy
                 return xmlAttributeAttribute.AttributeName;
             }
 
-            return null;
+            return null; // ncrunch: no coverage
         }
 
         // XML Arrays
@@ -540,7 +540,10 @@ namespace JJ.Framework.Xml.Legacy
                 return;
             }
 
-            throw new Exception(String.Format("Type '{0}' is not supported: it not an Array type or a generic collection type to which List<T> can be assigned.", destCollectionType.Name));
+            // Unreachable. DetermineNodeType already excluded this path.
+            // ncrunch: no coverage start
+            throw new Exception(String.Format("Type '{0}' is not supported: it not an Array type or a generic collection type to which List<T> can be assigned.", destCollectionType.Name)); 
+            // ncrunch: no coverage end
         }
 
         /// <summary>

@@ -12,4 +12,4 @@ namespace JJ.Framework.Xml.Legacy.Tests.docs;
 /// Extends the test suite to get full coverage for XmlObjectConverter,
 /// where the legacy tests may have lacked coverage, mostly for edge cases.
 /// </summary>
-public struct _xmltoobjectconvertertestsex;
+public struct _xmltoobjectconvertertests_ex;
