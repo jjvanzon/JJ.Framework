@@ -2,12 +2,12 @@
   <PropertyGroup>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
     <Version>0.261.0</Version>
-    <!--<RootNameSpace>JJ.Framework.Xml.Legacy.Tests</RootNameSpace>-->
   </PropertyGroup>
   
   <ItemGroup>
-    <!--<EmbeddedResource Include="TestResources\ComplicatedExample.xml" />-->
-    <EmbeddedResource Include="TestResources\ComplicatedExample.xml" LogicalName="JJ.Framework.Xml.Tests.TestResources.ComplicatedExample.xml" />
+    <EmbeddedResource 
+      Include="TestResources\ComplicatedExample.xml" 
+      LogicalName="JJ.Framework.Xml.Legacy.Tests.TestResources.ComplicatedExample.xml" />
   </ItemGroup>
   
   <ItemGroup>
