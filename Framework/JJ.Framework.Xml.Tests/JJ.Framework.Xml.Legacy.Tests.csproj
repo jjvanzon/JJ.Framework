@@ -2,7 +2,14 @@
   <PropertyGroup>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net5.0;net461</TargetFrameworks> <!-- NCrunch Tests 3 TFMs -->
     <Version>0.261.0</Version>
+    <!--<RootNameSpace>JJ.Framework.Xml.Legacy.Tests</RootNameSpace>-->
   </PropertyGroup>
+  
+  <ItemGroup>
+    <!--<EmbeddedResource Include="TestResources\ComplicatedExample.xml" />-->
+    <EmbeddedResource Include="TestResources\ComplicatedExample.xml" LogicalName="JJ.Framework.Xml.Tests.TestResources.ComplicatedExample.xml" />
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
@@ -10,10 +17,11 @@
     <ProjectReference Include="..\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj" />
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestResources\ComplicatedExample.xml" />
-  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
+
+  <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
 </Project>

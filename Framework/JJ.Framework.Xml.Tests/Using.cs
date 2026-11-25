@@ -5,7 +5,9 @@ global using System.Xml.Serialization;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Common.Legacy;
 global using JJ.Framework.Testing.Legacy;
+global using JJ.Framework.Xml.Tests;
 global using JJ.Framework.Xml.Tests.Mocks;
+global using JJ.Framework.Xml.Tests.Helpers;
 global using JJ.Framework.Xml.Legacy;
 global using JJ.Framework.Xml.Legacy.Tests.docs;
 global using static System.Text.Encoding;
@@ -16,3 +18,8 @@ global using static JJ.Framework.Common.Legacy.CultureHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Xml.Legacy.XmlHelper;
 global using static JJ.Framework.IO.Legacy.StreamHelper;
+// ReSharper disable RedundantUsingDirective.Global
+global using JJ.Framework.Xml.Legacy.Tests;
+global using static System.Console;
+global using static System.Environment;
+global using static JJ.Framework.Testing.Core.TestRunner;

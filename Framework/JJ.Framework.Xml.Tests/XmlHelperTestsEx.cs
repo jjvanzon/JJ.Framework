@@ -217,7 +217,7 @@ public class XmlHelperTestsEx
     private static readonly XmlElement _root = CreateRoot();
     private static XmlElement CreateRoot()
     {
-        string xml = GetEmbeddedResourceText(GetExecutingAssembly(), "TestResources", "ComplicatedExample.xml"); ;
+        string xml = TestHelper.GetComplexExampleXml();
         XmlDocument doc = new();
         doc.LoadXml(xml);
         return doc.DocumentElement;

@@ -2,7 +2,7 @@
 
 /// <inheritdoc cref="_xmltoobjectconvertertests_ex" />
 [TestClass]
-public class XmlToObjectConverterTestsEx
+public class XmlToObjectConverterTests_EdgeCasesEx
 {
     [TestMethod]
     public void Test_XmlToObjectConverter_WithBytes_ImplicitUTF8()

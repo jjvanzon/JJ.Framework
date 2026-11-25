@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace JJ.Framework.Xml.Tests.Helpers
 {
-    internal static class TestHelper
+    internal static partial class TestHelper
     {
         public static void Test_XmlToObjectConverter_SimpleElement_WithChildValue<T>(string textValue, T value)
         {

@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Dependencies/">
+    <Project Path="Framework/Common.Core.TrimTests/JJ.Framework.Common.Core.TrimTests.csproj" />
     <Project Path="Framework/Common.Legacy.Tests.HelpersEx/JJ.Framework.Common.Legacy.Tests.HelpersEx.csproj" />
     <Project Path="Framework/IO.Core/JJ.Framework.IO.Core.csproj" />
     <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
@@ -45,5 +46,6 @@
   <Project Path="Framework/JJ.Framework.Persistence/JJ.Framework.Persistence.Legacy.csproj" />
   <Project Path="Framework/JJ.Framework.Xml.Tests/JJ.Framework.Xml.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Xml/JJ.Framework.Xml.Legacy.csproj" />
+  <Project Path="Framework/Xml.Legacy.TrimTests/JJ.Framework.Xml.Legacy.TrimTests.csproj" />
   <Project Path="Framework\Build\JJ.Framework.Build.csproj" />
 </Solution>

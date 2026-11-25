@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>0.261.0</Version>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks> <!-- NCrunch TrimTest 1 TFM -->
+    <!--<RootNameSpace>JJ.Framework.Xml.Legacy.Tests</RootNameSpace>-->
+     <!-- Then squelch warning Namespace != Folder -->
+    <!--<NoWarn>$(NoWarn);IDE0130</NoWarn>-->
+  </PropertyGroup>
+
+  <!--
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>--><!-- API surface nulls --><!--
+  </PropertyGroup>
+  -->
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Xml.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Xml.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Xml.Tests\bin\**" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <EmbeddedResource Include="..\JJ.Framework.Xml.Tests\TestResources\ComplicatedExample.xml" LogicalName="JJ.Framework.Xml.Tests.TestResources.ComplicatedExample.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.Legacy.csproj" />
+    <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <ProjectReference Include="..\Testing.Core.NCrunchless\JJ.Framework.Testing.Core.NCrunchless.csproj" />
+    <ProjectReference Include="..\Testing.Core.MSTestless\JJ.Framework.Testing.Core.MSTestless.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
+  </ItemGroup>
+
+  <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+
+</Project>
