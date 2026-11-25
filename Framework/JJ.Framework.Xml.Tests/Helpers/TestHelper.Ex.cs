@@ -4,6 +4,13 @@ namespace JJ.Framework.Xml.Tests.Helpers;
 
 internal static partial class TestHelper
 {
+    /// <summary>
+    /// EmbeddedResourceHelper cannot be used,
+    /// because it assumes the resource name is prefixed
+    /// with the current assembly name.
+    /// But in the TrimTests it would be prefixed
+    /// with ... something else.
+    /// </summary>
     public static string GetComplexExampleXml()
     {
         Assembly assembly = GetExecutingAssembly();

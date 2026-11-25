@@ -4,10 +4,18 @@
     <Version>0.261.0</Version>
   </PropertyGroup>
   
+  <!--
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>--><!-- API surface nulls --><!--
+  </PropertyGroup>
+  -->
+
   <ItemGroup>
-    <EmbeddedResource 
-      Include="TestResources\ComplicatedExample.xml" 
-      LogicalName="JJ.Framework.Xml.Legacy.Tests.TestResources.ComplicatedExample.xml" />
+    <EmbeddedResource Include="TestResources\ComplicatedExample.xml" />
   </ItemGroup>
   
   <ItemGroup>

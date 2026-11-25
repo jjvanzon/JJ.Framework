@@ -4,9 +4,6 @@
     <Version>0.261.0</Version>
     <OutputType>Exe</OutputType>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0</TargetFrameworks> <!-- NCrunch TrimTest 1 TFM -->
-    <!--<RootNameSpace>JJ.Framework.Xml.Legacy.Tests</RootNameSpace>-->
-     <!-- Then squelch warning Namespace != Folder -->
-    <!--<NoWarn>$(NoWarn);IDE0130</NoWarn>-->
   </PropertyGroup>
 
   <!--
@@ -28,6 +25,7 @@
   <ItemGroup>
     <EmbeddedResource 
       Include="..\JJ.Framework.Xml.Tests\TestResources\ComplicatedExample.xml" 
+      Link="TestResources\ComplicatedExample.xml"
       LogicalName="JJ.Framework.Xml.Legacy.Tests.TestResources.ComplicatedExample.xml" />
   </ItemGroup>
 
