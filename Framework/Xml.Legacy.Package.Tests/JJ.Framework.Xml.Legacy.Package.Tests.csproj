@@ -4,16 +4,6 @@
     <Version>0.261.0</Version>
   </PropertyGroup>
 
-  <!--
-  <PropertyGroup>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <PropertyGroup>
-    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
-    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>--><!-- API surface nulls --><!--
-  </PropertyGroup>
-  -->
-
   <ItemGroup>
     <Compile Include="..\JJ.Framework.Xml.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <Compile Remove="..\JJ.Framework.Xml.Tests\obj\**" />
