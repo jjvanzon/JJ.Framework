@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>0.261.$(BuildNum)</Version>
+    <Version>0.262.$(BuildNum)</Version>
     <TargetFrameworks Condition="$(IsNCrunch)">net10.0;netstandard2.1;netstandard2.0</TargetFrameworks> <!-- NCrunch Libs 3 TFMs -->
     <Description>XmlToObjectConverter converts an XmlDocument or string to an object graph. The way to map XML to classes is easier than the classic ways in .NET. XmlHelper allows you to access XML in a null-safe and multiplicity-safe way. It uses XmlDocument as the underlying .NET API.</Description>
     <PackageTags>xml serialization serializer deserialization helper utility xmldocument null safe nullability multiplicity safe xmltoobjectconverter xmlhelper graph map mapping classes xpath</PackageTags>
