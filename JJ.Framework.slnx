@@ -138,6 +138,7 @@
     <Project Path="Framework/Validation.Legacy.Tests.Helpers/JJ.Framework.Validation.Legacy.Tests.Helpers.csproj" />
     <Project Path="Framework/Validation.Legacy.Tests/JJ.Framework.Validation.Legacy.Tests.csproj" />
     <Project Path="Framework/Validation.Legacy.TrimTests/JJ.Framework.Validation.Legacy.TrimTests.csproj" />
+    <Project Path="Framework/Xml.Legacy.TrimTests/JJ.Framework.Xml.Legacy.TrimTests.csproj" />
   </Folder>
   <Folder Name="/OneOff/">
     <Project Path="OneOff/JJ.OneOff.BeginCollectionItemTest/JJ.OneOff.BeginCollectionItemTest.Net48.csproj" Id="cc7d3740-2460-4806-b6e7-4f3670b06d1b" />

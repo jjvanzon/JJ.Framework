@@ -86,7 +86,8 @@
       "Framework\\Text.Core\\JJ.Framework.Text.Core.csproj",
       "Framework\\Validation.Legacy.Tests.Helpers\\JJ.Framework.Validation.Legacy.Tests.Helpers.csproj",
       "Framework\\Validation.Legacy.Tests\\JJ.Framework.Validation.Legacy.Tests.csproj",
-      "Framework\\Validation.Legacy.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj"
+      "Framework\\Validation.Legacy.TrimTests\\JJ.Framework.Validation.Legacy.TrimTests.csproj",
+      "Framework\\Xml.Legacy.TrimTests\\JJ.Framework.Xml.Legacy.TrimTests.csproj"
     ]
   }
 }
