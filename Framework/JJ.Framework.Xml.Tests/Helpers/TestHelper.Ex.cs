@@ -13,14 +13,19 @@ internal static partial class TestHelper
     /// </summary>
     public static string GetComplexExampleXml()
     {
+
         Assembly assembly = GetExecutingAssembly();
 
-        //string rootNameSpace = assembly.GetName().Name;
+        string rootNameSpace = assembly.GetName().Name;
 
-        const string rootNameSpace = "JJ.Framework.Xml.Legacy.Tests";
+        //const string rootNameSpace = "JJ.Framework.Xml.Legacy.Tests";
         const string fileName = "ComplicatedExample.xml";
         const string subNamespace = "TestResources";
-        const string resourceName = $"{rootNameSpace}.{subNamespace}.{fileName}";
+
+        return GetEmbeddedResourceText(GetExecutingAssembly(), subNamespace, fileName);
+
+
+        string resourceName = $"{rootNameSpace}.{subNamespace}.{fileName}";
 
         Stream stream = assembly.GetManifestResourceStream(resourceName);
 
