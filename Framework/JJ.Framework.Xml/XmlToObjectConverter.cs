@@ -57,9 +57,10 @@ namespace JJ.Framework.Xml.Legacy
         /// <inheritdoc cref="_convertwithbytes" />
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
         [AotWarn(GenericList)]
-        public TDestObject Convert(byte[] data)
+        public TDestObject Convert(byte[] data, Encoding? encoding = null)
         {
-            string text = Encoding.UTF8.GetString(data);
+            encoding ??= Encoding.UTF8;
+            string text = encoding.GetString(data);
             return Convert(text);
         }
 

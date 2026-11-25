@@ -8,7 +8,7 @@
 
 namespace JJ.Framework.Xml.Legacy.docs;
 
-/// <param name="data">Byte data is assumed to be UTF-8 encoded.</param>
+/// <param name="data">Byte data is assumed to be UTF-8 encoded, when no specific encoding is provided..</param>
 public struct _convertwithbytes;
 
 /// <summary>
