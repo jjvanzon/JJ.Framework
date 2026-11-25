@@ -26,7 +26,6 @@
     <EmbeddedResource 
       Include="..\JJ.Framework.Xml.Tests\TestResources\ComplicatedExample.xml" 
       Link="TestResources\ComplicatedExample.xml" />
-      <!--LogicalName="JJ.Framework.Xml.Legacy.Tests.TestResources.ComplicatedExample.xml" />-->
   </ItemGroup>
 
   <ItemGroup>
