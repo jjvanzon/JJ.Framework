@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Text.Core" Version="5.3.7624" />
+    <PackageReference Include="JJ.Framework.Text.Core" Version="5.3.7644" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7602" />
     <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="5.3.7602" />
     <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.3.7602" />

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.261.7624" />
+    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.261.7644" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7602" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>

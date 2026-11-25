@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>0.261.0</Version>
+    <TargetFrameworks Condition="$(IsNCrunch)">net10.0;net9.0;net8.0;net7.0;net6.0</TargetFrameworks> <!-- NCrunch Package TrimTests -->
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <!--
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WarningsAsErrors>$(WarningsAsErrors);Nullable</WarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>--><!-- API surface nulls --><!--
+  </PropertyGroup>
+  -->
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Xml.Tests\**\*.cs" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <Compile Remove="..\JJ.Framework.Xml.Tests\obj\**" />
+    <Compile Remove="..\JJ.Framework.Xml.Tests\bin\**" />
+    <Compile Include="..\Xml.Legacy.TrimTests\Program.cs" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <EmbeddedResource Include="..\JJ.Framework.Xml.Tests\TestResources\ComplicatedExample.xml" Link="TestResources\ComplicatedExample.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Xml.Legacy" Version="0.261.7644" />
+    <PackageReference Include="JJ.Framework.IO.Legacy" Version="0.261.7644" />
+    <PackageReference Include="JJ.Framework.Testing.Legacy" Version="0.261.7602" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.3.7644" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7602" />
+    <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="5.3.7602" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.3.7602" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Linker.xml" />
+    <TrimmerRootAssembly Include="nCrunch.TestRuntime.DotNetCore" />
+  </ItemGroup>
+
+  <Import Project="..\SharedProject.Core\JJ.Framework.SharedProject.Core.projitems" Label="Shared" />
+</Project>
