@@ -256,7 +256,22 @@ Misc Helpers
 
     - Utility to produce keys for use in `Dictionaries` by concatenating values with a `GUID` separator in between.
 
+
+Release Notes
+-------------
+
+#### `2025-07-02` | `0.250`/`2.7` : __Legacy Release__
+
+- Released a legacy version from __2015__.
+- Separate `Legacy` version lineages 
+- For more stable package updates.
+- Expanded IntelliSense docs.
+
+#### `2026-11-26` | `0.262`/`5.4` : __CultureHelpers__
+
+- More `CultureHelper` methods for easily switching current culture or back
+
 💬 Feedback
-============
+===========
 
 Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)

@@ -51,6 +51,7 @@
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
+- [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy)
 - Separate `Legacy` version lineages 
 - For more stable package updates.
 - Expanded IntelliSense docs.
@@ -255,6 +256,7 @@
 
 - [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy)
 - Move `StreamHelperLegacy` from `.Core` variant of project to `.Legacy` variant
+- This added `includeByteOrderMark` option to `StringToStream` and `StringToBytes`.
 - Port their tests from `legacy` branch to `main`
 - Tighten nullability checks.
 - [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core)
@@ -346,9 +348,9 @@
 - Code trimming / native AOT compilation support
 - Minor changes in nullability annotations and overloads
 - [JJ.Framework.IO.Legacy](https://www.nuget.org/packages/JJ.Framework.IO.Legacy/)
-- Added includeByteOrderMark option to StringToStream and StringToBytes.
+- Integrated StreamHelperLegacy into StreamHelper as partial class (StreamHelperLegacy now obsolete)
 - [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy/)
-- Addeed CultureHelper methods for easily switching current culture or back
+- More CultureHelper methods for easily switching current culture or back
 - [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy/)
 - ReflectionCacheLegacy renamed to ReflectionCacheEx
 - __`DevOps:`__

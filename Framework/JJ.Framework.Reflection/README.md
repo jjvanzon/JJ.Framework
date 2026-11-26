@@ -167,7 +167,7 @@ Release Notes
 
 #### `2025-07-02` | `0.250`/`2.7` : __Legacy__
 
-- Released a version from __2015__.
+- Released a legacy version from __2015__.
 
 #### `2026-03-13` | `0.250`/`4.0` : __Re-Release__
 
@@ -176,6 +176,11 @@ Release Notes
 - Auto-run trim test:
 - upon build
 - and inside NCrunch.
+
+#### `2026-11-26` | `0.262`/`5.4` : __Rename__
+
+- `ReflectionCacheLegacy` renamed to `ReflectionCacheEx`
+
 
 💬 Feedback
 ============

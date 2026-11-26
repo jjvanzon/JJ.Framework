@@ -313,6 +313,18 @@ Effort was put into making the exception messages clear and accurate if there ar
 
 In short: performance is untested. I know it is a thing that people want to prove they have the fastest serializer. I really just wanted to map XML more easily. Other components I made depend on it.
 
+Release Notes
+-------------
+
+#### `2026-11-26` | `0.262`/`5.4` : __Xml.Legacy Release__
+
+- Releasing legacy XML to object mapper
+- Full code coverage
+- Docs completion
+- Code trimming / native AOT compilation support
+- Minor changes in nullability annotations and overloads
+
+
 💬 Feedback
 ------------
 

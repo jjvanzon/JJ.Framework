@@ -29,12 +29,16 @@ Release Notes
 #### `2026-07-02` | `0.257`/`4.9` : __StreamHelperLegacy Move__
 
 - Move `StreamHelperLegacy` from `.Core` variant of project to `.Legacy` variant
+- This added `includeByteOrderMark` option to `StringToStream` and `StringToBytes`.
 - Port their tests from `legacy` branch to `main`
 - Tighten nullability checks.
 - Related changes to [`JJ.Framework.IO.Core`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/IO.Core):
 - Share `NumberedFilePath`/`SafeFileStream` `Tests` back and forth between `legacy` and `main`.
 - `Mutex` `UnauthorizedAccess` fixes for Azure Pipelines after introducing more tests.
 
+#### `2026-11-26` | `0.262`/`5.4` : __StreamHelperLegacy Obsolete__
+
+- Integrated `StreamHelperLegacy` into `StreamHelper` as partial class (`StreamHelperLegacy` now obsolete)
 
 💬 Feedback
 ============
