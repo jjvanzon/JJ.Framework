@@ -27,7 +27,7 @@
 - [`2026-07-08` | `5.1`/`0.259` : __Result Type Rework__](#2026-07-08--510259--result-type-rework)
 - [`2026-07-24` | `5.2`/`0.260` : __Text.Core Release__](#2026-07-24--520260--textcore-release)
 - [`2026-11-18` | `5.3`/`0.261` : __Collections.Legacy Release__](#2026-11-18--530261--collectionslegacy-release)
-- [`2026-11-26` | `5.4`/`0.262` : __Xml.Legacy Release__](#2026-11-26--540262--xmllegacy-release)
+- [`2026-11-26` | `5.4`/`0.262` : __Xml.Legacy Release + Renames / Extensions__](#2026-11-26--540262--xmllegacy-release--renames--extensions)
 
 #### `2025-03-31` | `1.9`/`0.250` : __Build.csproj__
 
@@ -337,7 +337,7 @@
 - Refined use of `Ex` prefix for `2021` elements piled on top of `2015` elements.
 - Similar Core/Legacy split for [`Common.Legacy.Tests`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common.Tests).
 
-#### `2026-11-26` | `5.4`/`0.262` : __Xml.Legacy Release__
+#### `2026-11-26` | `5.4`/`0.262` : __Xml.Legacy Release + Renames / Extensions__
 
 *+ Misc legacy ported code*
 

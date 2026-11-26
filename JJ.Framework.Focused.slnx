@@ -46,6 +46,7 @@
   <Project Path="Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Xml.Tests/JJ.Framework.Xml.Legacy.Tests.csproj" />
   <Project Path="Framework/JJ.Framework.Xml/JJ.Framework.Xml.Legacy.csproj" />
+  <Project Path="Framework/Reflection.Legacy.Tests.HelpersEx/JJ.Framework.Reflection.Legacy.Tests.HelpersEx.csproj" />
   <Project Path="Framework/Xml.Legacy.Package.Tests/JJ.Framework.Xml.Legacy.Package.Tests.csproj" />
   <Project Path="Framework/Xml.Legacy.Package.TrimTests/JJ.Framework.Xml.Legacy.Package.TrimTests.csproj" />
   <Project Path="Framework/Xml.Legacy.TrimTests/JJ.Framework.Xml.Legacy.TrimTests.csproj" />
