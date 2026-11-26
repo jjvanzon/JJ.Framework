@@ -1,7 +1,7 @@
 ﻿using JJ.Framework.Logging.Core.docs;
 using JJ.Framework.Logging.Core.Mappers;
 using static JJ.Framework.Existence.Core.FilledInHelper;
-using static JJ.Framework.Configuration.Legacy.CustomConfigurationManagerEx;
+using static JJ.Framework.Configuration.Legacy.CustomConfigurationManager;
 
 namespace JJ.Framework.Logging.Core.Config
 {
