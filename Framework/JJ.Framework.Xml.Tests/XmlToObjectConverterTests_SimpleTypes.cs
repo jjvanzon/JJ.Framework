@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable RedundantTypeArgumentsOfMethod
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Tests.Mocks;
 using JJ.Framework.Testing;

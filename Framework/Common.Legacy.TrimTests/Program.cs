@@ -3,6 +3,7 @@ bool success =
 RunTests<CollectionExtensions_Recursive_IEnumerable_Tests_Ex>() &&
 RunTests<CollectionExtensions_Recursive_IList_Tests_Ex>() &&
 RunTests<CollectionExtensionsTestsEx>() &&
+RunTests<CultureHelperTests>() &&
 RunTests<CultureHelperTestsEx>() &&
 RunTests<EmbeddedResourceHelperTestsEx>() &&
 RunTests<ExceptionTypesTestsEx>() &&
