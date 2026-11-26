@@ -14,9 +14,9 @@
 
   <ItemGroup>
     <PackageReference Include="JJ.Framework.Testing.Core.NCrunchless" Version="5.4.7661" />
-    <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.262.7661" />
+    <PackageReference Include="JJ.Framework.Validation.Legacy" Version="0.262.7664" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="5.4.7661" />
-    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.4.7661" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility.Core" Version="5.4.7664" />
   </ItemGroup>
 
   <ItemGroup>
