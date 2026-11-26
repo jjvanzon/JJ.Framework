@@ -75,7 +75,7 @@ That grip on dependency, was once a good plan for platform compatibility. Some o
 📋 Release Notes
 -----------------
 
-Moved [here](.\RELEASE-NOTES.md)...
+Moved [here](RELEASE-NOTES.md)...
 
 
 💬 Feedback 
