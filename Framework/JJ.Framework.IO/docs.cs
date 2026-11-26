@@ -33,9 +33,6 @@ public struct _csvindexer;
 /// </summary>
 public struct _streamhelper;
 
-/// <inheritdoc cref="_streamhelper" />
-public struct _streamhelperlegacy;
-
 /// <summary>
 /// Convert the entire stream to a byte array.
 /// </summary>

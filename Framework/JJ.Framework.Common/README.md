@@ -242,7 +242,7 @@ Misc Helpers
 
 - `CultureHelper`
 
-    - To set thread culture with a single code line.
+    - To get or set thread culture with a single code line.
 
 -----
 

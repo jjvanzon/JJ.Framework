@@ -1,17 +1,45 @@
 ﻿📋 JJ.Framework | Release Notes
 ================================
 
-#### `2025-03-31` | `1.9` : __Build.csproj__
+- [`2025-03-31` | `1.9`/`0.250` : __Build.csproj__](#2025-03-31--190250--buildcsproj)
+- [`2025-06-14` | `2.5`/`0.250` : __Existence.Core__](#2025-06-14--250250--existencecore)
+- [`2025-06-24` | `2.6`/`0.250` : __Flags__](#2025-06-24--260250--flags)
+- [`2025-07-02` | `2.7`/`0.250` : __Legacy Lineage__](#2025-07-02--270250--legacy-lineage)
+- [`2025-07-21` | `2.8`/`0.250` : __Trimmable Libs__](#2025-07-21--280250--trimmable-libs)
+- [`2026-01-25` | `2.9`/`0.250` : __zeroMatters__](#2026-01-25--290250--zeromatters)
+- [`2026-01-27` | `3.0`/`0.250` : __.NET 10__](#2026-01-27--300250--net-10)
+- [`2026-01-28` | `3.1`/`0.250` : __Less Prios__](#2026-01-28--310250--less-prios)
+- [`2026-01-30` | `3.2`/`0.250` : __Leading Flags - Coalesce__](#2026-01-30--320250--leading-flags---coalesce)
+- [`2026-01-31` | `3.3`/`0.250` : __Leading Flags - Contains__](#2026-01-31--330250--leading-flags---contains)
+- [`2026-02-01` | `3.4`/`0.250` : __Leading Flags - FilledIn__](#2026-02-01--340250--leading-flags---filledin)
+- [`2026-02-17` | `3.7`/`0.250` : __Clash of the Booleans__](#2026-02-17--370250--clash-of-the-booleans)
+- [`2026-02-23` | `3.8`/`0.250` : __Business.Legacy__](#2026-02-23--380250--businesslegacy)
+- [`2026-02-26` | `3.9`/`0.250` : __IO.Legacy__](#2026-02-26--390250--iolegacy)
+- [`2026-03-13` | `4.0`/`0.250` : __Reflection.Legacy Re-Release__](#2026-03-13--400250--reflectionlegacy-re-release)
+- [`2026-03-15` | `4.1`/`0.251` : __Validation.Legacy__](#2026-03-15--410251--validationlegacy)
+- [`2026-04-04` | `4.4`/`0.252` : __PlatformCompatibility.Core Initial__ , __Validation.Legacy Docs__](#2026-04-04--440252--platformcompatibilitycore-initial--validationlegacy-docs)
+- [`2026-04-08` | `4.5`/`0.253` : __Math Legacy__](#2026-04-08--450253--math-legacy)
+- [`2026-04-25` | `4.6`/`0.254` : __StringResources Legacy__](#2026-04-25--460254--stringresources-legacy)
+- [`2026-06-24` | `4.7`/`0.255` : __Compilation.Core Preview__](#2026-06-24--470255--compilationcore-preview)
+- [`2026-06-29` | `4.8`/`0.256` : __RandomizerLegacy Move__](#2026-06-29--480256--randomizerlegacy-move)
+- [`2026-07-02` | `4.9`/`0.257` : __StreamHelperLegacy Move__](#2026-07-02--490257--streamhelperlegacy-move)
+- [`2026-07-07` | `5.0`/`0.258` : __Result Type Legacy Move__](#2026-07-07--500258--result-type-legacy-move)
+- [`2026-07-08` | `5.1`/`0.259` : __Result Type Rework__](#2026-07-08--510259--result-type-rework)
+- [`2026-07-24` | `5.2`/`0.260` : __Text.Core Release__](#2026-07-24--520260--textcore-release)
+- [`2026-11-18` | `5.3`/`0.261` : __Collections.Legacy Release__](#2026-11-18--530261--collectionslegacy-release)
+- [`2026-11-26` | `5.4`/`0.262` : __Xml.Legacy Release__](#2026-11-26--540262--xmllegacy-release)
+
+#### `2025-03-31` | `1.9`/`0.250` : __Build.csproj__
 
 - Internal tooling
 - Triggers initialization at start of [`JJ.Framework`](https://github.com/jjvanzon/JJ.Framework/tree/main) solution build.
 
-#### `2025-06-14` | `2.5` : __Existence.Core__
+#### `2025-06-14` | `2.5`/`0.250` : __Existence.Core__
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - Initial release
 
-#### `2025-06-24` | `2.6` : __Flags__
+#### `2025-06-24` | `2.6`/`0.250` : __Flags__
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - `spaceMatters` flags everywhere 
@@ -33,7 +61,7 @@
 - [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
 - Compatibility with AOT "Ahead-Of-Time" native compilation, code trimming and single-executable, self-contained apps
 
-#### `2026-01-25` | `2.9` : __zeroMatters__
+#### `2026-01-25` | `2.9`/`0.250` : __zeroMatters__
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - Flag when you consider `0` meaningful (not nully)
@@ -42,7 +70,7 @@
 
 - Upgraded with explicit support for `.NET 10`
 
-#### `2026-01-28` | `3.1` : __Less Prios__
+#### `2026-01-28` | `3.1`/`0.250` : __Less Prios__
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - Simplify overload picking removing some `[Prio]` attributes
@@ -54,17 +82,17 @@
 - [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy)
 - Flags at the beginning of the parameter list, now don't come with a performance penalty.
 
-#### `2026-01-31` | `3.3` : __Leading Flags - Contains__
+#### `2026-01-31` | `3.3`/`0.250` : __Leading Flags - Contains__
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - More notation options for flags for the `Contains` method
 
-#### `2026-02-01` | `3.4` : __Leading Flags - FilledIn__
+#### `2026-02-01` | `3.4`/`0.250` : __Leading Flags - FilledIn__
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - Support flags in front for the `FilledIn` method
 
-#### `2026-02-17` | `3.7` : __Clash of the Booleans__
+#### `2026-02-17` | `3.7`/`0.250` : __Clash of the Booleans__
 
 - [`JJ.Framework.Existence.Core`](https://www.nuget.org/packages/JJ.Framework.Existence.Core)
 - Leading flags for `Has`/`Is`/`In`/`IsNully` (supplements trailing flags)
@@ -74,7 +102,7 @@
 - [`JJ.Framework.Common.Core`](https://www.nuget.org/packages/JJ.Framework.Common.Core)
 - `OverloadByName` helper for an optional parameter trick to simulate overloading by name, not normally possible in C#.
 
-#### `2026-02-23` | `3.8`/`0.250` __Business.Legacy__ 
+#### `2026-02-23` | `3.8`/`0.250` : __Business.Legacy__ 
 
 - [`JJ.Framework.Business.Legacy`](https://www.nuget.org/packages/JJ.Framework.Business.Legacy)
 - Release of historic version. Fullly covered with meaningful tests. Features:
@@ -142,7 +170,7 @@
 - Added stubs for data-driven tests.
 - Improved Testing Architecture
 
-#### `2026-04-25` | `4.6`/`0.254` : StringResources Legacy
+#### `2026-04-25` | `4.6`/`0.254` : __StringResources Legacy__
 
 *+ Integrity Checker + Assert.Throws Syntax*
 
@@ -284,7 +312,7 @@
 - Moved `Contains` methods here from `Text.Core`.
 - Using `caseMatters` flags instead of `ignoreCase`.
 - Adding IntelliSense and tests.
-- `DevOps`
+- __`DevOps:`__
 - Simplified `publish` paths. Added `ClearPublish` script.
 - Added `.Legacy` to project folders where no clash with history.
 - Expanded / made uniform `.NET version` spread.
@@ -307,8 +335,21 @@
 - Refined use of `Ex` prefix for `2021` elements piled on top of `2015` elements.
 - Similar Core/Legacy split for [`Common.Legacy.Tests`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common.Tests).
 
+#### `2026-11-26` | `5.4`/`0.262` : __Xml.Legacy Release__
 
-💬 Feedback 
-------------
+*+ Misc legacy ported code*
 
-Got feedback or questions? You can reach me [here.](https://jjvanzon.github.io/#-how-to-reach-me)
+- [JJ.Framework.Xml.Legacy](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Xml)
+- Releasing legacy XML to object mapper
+- Full code coverage
+- Docs completion
+- Code trimming / native AOT compilation support
+- Minor changes in nullability annotations and overloads
+- [JJ.Framework.IO.Legacy](https://www.nuget.org/packages/JJ.Framework.IO.Legacy/)
+- Added includeByteOrderMark option to StringToStream and StringToBytes.
+- [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy/)
+- Addeed CultureHelper methods for easily switching current culture or back
+- [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy/)
+- ReflectionCacheLegacy renamed to ReflectionCacheEx
+- __`DevOps:`__
+- Internal non-released projects also received improved separation of legacy and new code.

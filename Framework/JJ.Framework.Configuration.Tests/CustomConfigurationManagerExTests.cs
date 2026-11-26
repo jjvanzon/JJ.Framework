@@ -10,7 +10,7 @@ public class CustomConfigurationManagerExTests
     [TestMethod]
     public void CustomConfigurationManagerEx_TryGetSection_BySectionName_ReturnsSection()
     {
-        var section = CustomConfigurationManagerEx.TryGetSection<TestConfiguration>(SECTION_NAME);
+        var section = CustomConfigurationManager.TryGetSection<TestConfiguration>(SECTION_NAME);
         IsNotNull( section);
         AreEqual(100, section.IntAttribute);
         AreEqual("stringAttribute_Value", section.StringAttribute);
@@ -19,7 +19,7 @@ public class CustomConfigurationManagerExTests
     [TestMethod]
     public void CustomConfigurationManagerEx_TryGetSection_BySectionName_WhenAbsent_ReturnsNull()
     {
-        var section = CustomConfigurationManagerEx.TryGetSection<TestConfiguration>("nonexistent.section");
+        var section = CustomConfigurationManager.TryGetSection<TestConfiguration>("nonexistent.section");
         IsNull(section);
     }
 }

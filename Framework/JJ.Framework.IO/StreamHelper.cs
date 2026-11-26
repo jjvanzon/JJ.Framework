@@ -9,7 +9,7 @@ using JJ.Framework.Reflection;
 namespace JJ.Framework.IO.Legacy
 {
     /// <inheritdoc cref="_streamhelper" />
-    public static class StreamHelper
+    public static partial class StreamHelper
     {
         /// <inheritdoc cref="_streamtobytes" />
         public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)

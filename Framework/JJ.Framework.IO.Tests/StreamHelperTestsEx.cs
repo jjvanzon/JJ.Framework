@@ -1,7 +1,7 @@
 namespace JJ.Framework.IO.Legacy.Tests;
 
 [TestClass]
-public class StreamHelperLegacyTestsEx
+public class StreamHelperTestsEx
 {
     private static readonly Encoding encoding = Encoding.UTF8;
 

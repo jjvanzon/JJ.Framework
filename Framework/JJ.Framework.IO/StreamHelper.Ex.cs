@@ -2,8 +2,7 @@
 
 namespace JJ.Framework.IO.Legacy;
 
-/// <inheritdoc cref="_streamhelperlegacy" />
-public static class StreamHelperEx
+public static partial class StreamHelper
 {
     /// <inheritdoc cref="_stringtostream" />
     public static Stream StringToStream(string text, Encoding encoding, bool includeByteOrderMark = false)

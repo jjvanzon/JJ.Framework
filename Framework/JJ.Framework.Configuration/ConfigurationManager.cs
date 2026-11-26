@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace JJ.Framework.Configuration.Legacy
 {
-    public static class CustomConfigurationManager
+    public static partial class CustomConfigurationManager
     {
         [TrimWarn(PropertyTypeAnd + ObjectGetType)]
         [AotWarn(GenericList)]
