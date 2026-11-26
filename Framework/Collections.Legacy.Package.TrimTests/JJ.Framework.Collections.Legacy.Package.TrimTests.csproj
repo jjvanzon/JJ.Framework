@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.261.7644" />
-    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.3.7602" />
-    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.3.7602" />
+    <PackageReference Include="JJ.Framework.Collections.Legacy" Version="0.262.7661" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="5.4.7661" />
+    <PackageReference Include="JJ.Framework.Testing.Core.MSTestless" Version="5.4.7661" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.261.7602" />
+    <PackageReference Include="JJ.Framework.Configuration.Legacy" Version="0.262.7661" />
   </ItemGroup>
   
   <!-- Awkwardly Include Microsoft's ConfigurationManager package. -->
