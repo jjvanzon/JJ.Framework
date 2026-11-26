@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Dependencies/">
     <Project Path="Framework/Common.Core.TrimTests/JJ.Framework.Common.Core.TrimTests.csproj" />
+    <Project Path="Framework/Compilation.Core/JJ.Framework.Compilation.Core.csproj" />
     <Project Path="Framework/IO.Core/JJ.Framework.IO.Core.csproj" />
     <Project Path="Framework/JJ.Framework.Collections/JJ.Framework.Collections.Legacy.csproj" />
     <Project Path="Framework/JJ.Framework.Exceptions/JJ.Framework.Exceptions.Legacy.csproj" />
