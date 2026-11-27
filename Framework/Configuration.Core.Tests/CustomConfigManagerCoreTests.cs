@@ -193,6 +193,27 @@ public class CustomConfigManagerCoreTests
         });
     }
 
+    // Set Section From Text
+    
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromText()
+    {
+        LoopInIsolation(() =>
+        { 
+            var config = SetSection<ConfigSection>("myconf", xml:
+                """
+                <config>
+                  <myconf noteLength="3.45" />
+                </config>
+                """);
+
+            AreEqual(3.45, config.NoteLength);
+
+        });
+    }
+
+    // From FilePath
+
     // Helpers
 
     private const int REPEATS = 3; // 2nd time hits cache
