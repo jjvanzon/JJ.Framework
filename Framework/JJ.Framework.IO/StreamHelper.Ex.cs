@@ -27,4 +27,15 @@ public static partial class StreamHelper
         return bytes;
     }
 
+    /// <inheritdoc cref="_streamtostring" />
+    public static string StreamToString(Stream stream) => StreamToString(stream, Encoding.UTF8);
+
+    /// <inheritdoc cref="_stringtostream" />
+    public static Stream StringToStream(string text) => StringToStream(text, Encoding.UTF8);
+
+    /// <inheritdoc cref="_stringtobytes" />
+    public static byte[] StringToBytes(string text) => StringToBytes(text, Encoding.UTF8);
+
+    /// <inheritdoc cref="_bytestostring" />
+    public static string BytesToString(byte[] bytes) => BytesToString(bytes, Encoding.UTF8);
 }
