@@ -3,8 +3,10 @@
 [TestClass]
 public class CustomConfigManagerCoreTests
 {
+    private const int REPEATS = 3; // Subsequent loops hit cache
     private const string SECTION_NAME = "jj.framework.configuration.core.tests";
     private static readonly Assembly _assembly = typeof(ConfigSection).Assembly;
+    private static readonly Lock _noParallel = new();
 
     // GetSection
     
@@ -161,16 +163,16 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         {
             // Get auto-resolved config
-            var config = GetSection<ConfigSection>(SECTION_NAME);
-            NotEqual(100, config.NoteLength);
+            var config = TryGetSection<ConfigSection>("myconfig");
+            IsNull(config);
 
             // Set a custom section
-            SetSection(SECTION_NAME, new ConfigSection { NoteLength = 100 });
-            config = GetSection<ConfigSection>(SECTION_NAME);
+            SetSection("myconfig", new ConfigSection { NoteLength = 100 });
+            config = GetSection<ConfigSection>("myconfig");
             AreEqual(100, config.NoteLength);
 
             // Clear to get auto-resolved section next loop.
-            ClearSection(SECTION_NAME);
+            ClearSection("myconfig");
         });
     }
 
@@ -193,21 +195,61 @@ public class CustomConfigManagerCoreTests
         });
     }
 
-    // Set Section From Text
-    
+    // From Text
+        
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromText()
     {
         LoopInIsolation(() =>
         { 
-            var config = SetSection<ConfigSection>("myconf", xml:
-                """
+            SetSection<ConfigSection>(xml:
+                $"""
                 <config>
-                  <myconf noteLength="3.45" />
+                  <{SECTION_NAME} noteLength="1.23" />
                 </config>
                 """);
 
-            AreEqual(3.45, config.NoteLength);
+            var config = GetSection<ConfigSection>();
+
+            AreEqual(1.23, config.NoteLength);
+
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromText_WithName()
+    {
+        LoopInIsolation(() =>
+        { 
+            SetSection<ConfigSection>("myconfig", xml:
+                """
+                <config>
+                  <myconfig noteLength="2.34" />
+                </config>
+                """);
+
+            var config = GetSection<ConfigSection>("myconfig");
+
+            AreEqual(2.34, config.NoteLength);
+
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromText_WithAssembly()
+    {
+        LoopInIsolation(() =>
+        { 
+            SetSection<ConfigSection>(_assembly, xml:
+                $"""
+                <config>
+                  <{SECTION_NAME} noteLength="2.34" />
+                </config>
+                """);
+
+            var config = GetSection<ConfigSection>(_assembly);
+
+            AreEqual(2.34, config.NoteLength);
 
         });
     }
@@ -215,9 +257,6 @@ public class CustomConfigManagerCoreTests
     // From FilePath
 
     // Helpers
-
-    private const int REPEATS = 3; // 2nd time hits cache
-    private static readonly Lock _noParallel = new();
 
     private void LoopInIsolation(Action action)
     {

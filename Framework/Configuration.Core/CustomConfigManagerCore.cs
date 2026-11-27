@@ -133,127 +133,126 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
-    #region Force Argument Name Use
+    #region Enforce Argument Names
     private const string SPECIFY_XML_OR_FILE_PATH = "Specify argument name xml: or filePath: to disambiguate";
 
     /// <inheritdoc cref="_setsection" />
     [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
-    public static TConfig SetSection<TConfig>(string sectionName, string unspecified) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+    // ReSharper disable once UnusedTypeParameter
+    public static void SetSection<TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
 
     /// <inheritdoc cref="_setsection" />
     [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
-    public static TConfig SetSection<TConfig>(Assembly assembly, string unspecified) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+    // ReSharper disable once UnusedTypeParameter
+    public static void SetSection<TConfig>(Assembly assembly, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
 
     /// <inheritdoc cref="_setsection" />
     [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
-    public static TConfig SetSection<TConfig>(string unspecified) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+    // ReSharper disable once UnusedTypeParameter
+    public static void SetSection<TConfig>(string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
     #endregion
 
     #region From Text or Bytes
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml, NameOvl ovl1 = default)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml, NameOvl ovl1 = default)
         where TConfig : class, new()
     {
         TConfig obj = ParseConfig<TConfig>(sectionName, xml);
         SetSection(sectionName, obj);
-        return obj;
     }
     
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string xml, NameOvl ovl1 = default)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string xml, NameOvl ovl1 = default)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName(assembly), xml: xml);
+        SetSection<TConfig>(GetSectionName(assembly), xml: xml);
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string xml, NameOvl ovl1 = default)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(string xml, NameOvl ovl1 = default)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), xml: xml);
+        SetSection<TConfig>(GetSectionName<TConfig>(), xml: xml);
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
         where TConfig : class, new()
     {
         TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
         SetSection(sectionName, obj);
-        return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, byte[] bytes)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, byte[] bytes)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName(assembly), bytes);
+        SetSection<TConfig>(GetSectionName(assembly), bytes);
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<TConfig>(byte[] bytes)
+    public static void SetSection<TConfig>(byte[] bytes)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), bytes);
+        SetSection<TConfig>(GetSectionName<TConfig>(), bytes);
     }
     #endregion
 
     #region From File Or Stream
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
         where TConfig : class, new()
     {
         TConfig obj = LoadConfig<TConfig>(sectionName, stream);
         SetSection(sectionName, obj);
-        return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Stream stream)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(Stream stream)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), stream);
+        SetSection<TConfig>(GetSectionName<TConfig>(), stream);
     }
     
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, Stream stream)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, Stream stream)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName(assembly), stream);
+        SetSection<TConfig>(GetSectionName(assembly), stream);
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, NameOvl ovl1 = default, NameOvl ovl2 = default)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, NameOvl ovl1 = default, NameOvl ovl2 = default)
         where TConfig : class, new()
     {
         TConfig obj = LoadConfig<TConfig>(sectionName, filePath);
         SetSection(sectionName, obj);
-        return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string filePath, NameOvl ovl1 = default, NameOvl ovl2 = default)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(string filePath, NameOvl ovl1 = default, NameOvl ovl2 = default)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), filePath: filePath);
+        SetSection<TConfig>(GetSectionName<TConfig>(), filePath: filePath);
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string filePath, NameOvl ovl1 = default, NameOvl ovl2 = default)
+    public static void SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string filePath, NameOvl ovl1 = default, NameOvl ovl2 = default)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName(assembly), filePath: filePath);
+        SetSection<TConfig>(GetSectionName(assembly), filePath: filePath);
     }
     #endregion
 
