@@ -1,6 +1,11 @@
 ﻿global using System.Text;
 global using System.Reflection;
 global using System.Globalization;
+global using System.Xml;
 global using JJ.Framework.Exceptions.Core;
+global using JJ.Framework.Xml.Legacy;
 global using JJ.Framework.Configuration.Core.docs;
+global using static System.Environment;
+global using static System.IO.File;
 global using static System.Globalization.CultureInfo;
+global using static JJ.Framework.Existence.Core.FilledInHelper;

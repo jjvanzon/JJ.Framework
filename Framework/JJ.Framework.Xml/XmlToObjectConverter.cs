@@ -47,7 +47,7 @@ namespace JJ.Framework.Xml.Legacy
     /// 
     /// The composite types in the object structure must have parameterless constructors.
     /// </summary>
-    public class XmlToObjectConverter<[Dyn(AllProperties)] TDestObject>
+    public class XmlToObjectConverter<[Dyn(AllProps)] TDestObject>
         where TDestObject: new()
     {
         /// <inheritdoc cref="XmlToObjectConverter{T}" />
