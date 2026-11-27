@@ -6,6 +6,7 @@
 // ReSharper disable UnusedParameter.Global
 
 using static System.Reflection.Assembly;
+using static JJ.Framework.Common.Core.NameHelper;
 
 namespace JJ.Framework.Configuration.Core;
 
@@ -16,7 +17,7 @@ public static class CustomConfigManagerCore
     private const string AotWarning = GenericList;
 
     private static readonly CultureInfo _culture = GetCultureInfo("en-US");
-    private static readonly Dictionary<(Type, string), object?> _cache = new();
+    private static readonly Dictionary<string, object?> _cache = new();
     private static readonly Lock _lock = new();
 
     #region GetSection
@@ -77,17 +78,17 @@ public static class CustomConfigManagerCore
     public static TConfig? TryGetSection<[Dyn(AllProps)]TConfig>(string sectionName) 
         where TConfig : class, new()
     {
-        var key = (typeof(TConfig), sectionName);
+        AssertSectionName(sectionName);
 
         lock (_lock)
         {
-            if (_cache.TryGetValue(key, out object? obj))
+            if (_cache.TryGetValue(sectionName, out object? obj))
             {
                 return (TConfig?)obj;
             }
 
             var config = LoadConfig<TConfig>(sectionName);
-             _cache[key] = config;
+             _cache[sectionName] = config;
 
             return config;
         }
@@ -170,31 +171,22 @@ public static class CustomConfigManagerCore
     /// <inheritdoc cref="_refreshsection" />
     public static void RefreshSection(string sectionName)
     {
-        // TODO: With Type part of key (allowing multiple mappers for the same section),
-        //  You can't offer the same kind of interface as the original ConfigurationManager?
-        throw new NotImplementedException();
-    }
+        AssertSectionName(sectionName);
 
-    /// <inheritdoc cref="_refreshsection" />
-    public static void RefreshSection<TConfig>(Assembly assembly)
-    {
-        string sectionName = ResolveSectionName(assembly);
-        RefreshSection<TConfig>(sectionName);
-    }
-
-    /// <inheritdoc cref="_refreshsection" />
-    public static void RefreshSection<TConfig>(string sectionName)
-    {
         lock (_lock)
         {
-            var key = (typeof(TConfig), sectionName);
-            _cache[key] = null;
+            _cache[sectionName] = null;
         }
     }
-
     #endregion
 
     #region Resolve
+    private static void AssertSectionName(string sectionName)
+    {
+        if (!Has(sectionName)) 
+            throw new Exception($"{nameof(sectionName)} not filled in.");
+    }
+
     private static string ResolveSectionName<TConfig>()
     {
         Assembly assembly = typeof(TConfig).Assembly;
@@ -203,7 +195,12 @@ public static class CustomConfigManagerCore
 
     private static string ResolveSectionName(Assembly assembly)
     {
-        return assembly.NotNull().GetName().Name.NotNull().ToLower(_culture);
+        var name = assembly.NotNull().GetName().Name;
+        if (!Has(name))
+        {
+            throw new Exception("Assembly has no name.");
+        }
+        return name.ToLower(_culture);
     }
 
     private static string ResolveConfigFileName()
