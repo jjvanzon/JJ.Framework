@@ -3,41 +3,202 @@
 [TestClass]
 public class CustomConfigManagerCoreTests
 {
-    private const int REPEATS = 2; // 2nd time hits cache
-    private static readonly Lock _noParallel = new();
+    private const string SECTION_NAME = "jj.framework.configuration.core.tests";
+    private static readonly Assembly _assembly = typeof(ConfigSection).Assembly;
+
+    // GetSection
     
     [TestMethod]
     public void Test_CustomConfigManagerCore_GetSection()
     {
-        Isolated(() =>
+        LoopInIsolation(() =>
         {
-            var config = CustomConfigManagerCore.GetSection<ConfigSection>();
+            var config = GetSection<ConfigSection>();
             AssertSection(config);
         });
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_GetSection_WithSectionName()
+    public void Test_CustomConfigManagerCore_GetSection_ByName()
     {
-        Isolated(() =>
+        LoopInIsolation(() =>
         {
-            var config = CustomConfigManagerCore.GetSection<ConfigSection>("jj.framework.configuration.core.tests");
+            var config = GetSection<ConfigSection>(SECTION_NAME);
             AssertSection(config);
         });
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_GetSection_WithAssembly()
+    public void Test_CustomConfigManagerCore_GetSection_WithAssemblyName()
     {
-        Isolated(() =>
+        LoopInIsolation(() =>
         {
-            Assembly assembly = typeof(ConfigSection).Assembly;
-            var config = CustomConfigManagerCore.GetSection<ConfigSection>(assembly);
+            
+            var config = GetSection<ConfigSection>(_assembly);
+            AssertSection(config);
+        });
+    }
+    
+    // GetSection => NotFound => Exception
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_GetSection_NotFound_ReturnsNull()
+    {
+        LoopInIsolation(() =>
+        {
+            Throws(() => GetSection<object>(), "not found");
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_GetSection_ByName_NotFound_ReturnsNull()
+    {
+        LoopInIsolation(() =>
+        {
+            Throws(() => GetSection<ConfigSection>("oops"), "not found");
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_GetSection_WithAssemblyName_NotFound_ReturnsNull()
+    {
+        LoopInIsolation(() =>
+        {
+            Assembly assembly = typeof(string).Assembly;
+            Throws(() => GetSection<ConfigSection>(assembly), "not found");
+        });
+    }
+
+    // TryGetSection
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_TryGetSection()
+    {
+        LoopInIsolation(() =>
+        {
+            var config = TryGetSection<ConfigSection>();
             AssertSection(config);
         });
     }
 
-    private void Isolated(Action action)
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_TryGetSection_ByName()
+    {
+        LoopInIsolation(() =>
+        {
+            var config = TryGetSection<ConfigSection>(SECTION_NAME);
+            AssertSection(config);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_TryGetSection_WithAssemblyName()
+    {
+        LoopInIsolation(() =>
+        {
+            var config = TryGetSection<ConfigSection>(_assembly);
+            AssertSection(config);
+        });
+    }
+
+    // TryGetSection => NotFound => Null
+    
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_TryGetSection_NotFound_ReturnsNull()
+    {
+        LoopInIsolation(() =>
+        {
+            var config = TryGetSection<object>();
+            IsNull(config);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_TryGetSection_ByName_NotFound_ReturnsNull()
+    {
+        LoopInIsolation(() =>
+        {
+            var config = TryGetSection<ConfigSection>("oops");
+            IsNull(config);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_TryGetSection_WithAssemblyName_NotFound_ReturnsNull()
+    {
+        LoopInIsolation(() =>
+        {
+            Assembly assembly = typeof(string).Assembly;
+            var config = TryGetSection<ConfigSection>(assembly);
+            IsNull(config);
+        });
+    }
+
+    // SetSection / ClearSection
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_ClearSection()
+    {
+        LoopInIsolation(() =>
+        {
+            // Get auto-resolved config
+            var config = GetSection<ConfigSection>();
+            NotEqual(100, config.NoteLength);
+
+            // Set a custom section
+            SetSection(new ConfigSection { NoteLength = 100 });
+            config = GetSection<ConfigSection>();
+            AreEqual(100, config.NoteLength);
+
+            // Clear to get auto-resolved section next loop.
+            ClearSection<ConfigSection>();
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_ClearSection_ByName()
+    {
+        LoopInIsolation(() =>
+        {
+            // Get auto-resolved config
+            var config = GetSection<ConfigSection>(SECTION_NAME);
+            NotEqual(100, config.NoteLength);
+
+            // Set a custom section
+            SetSection(SECTION_NAME, new ConfigSection { NoteLength = 100 });
+            config = GetSection<ConfigSection>(SECTION_NAME);
+            AreEqual(100, config.NoteLength);
+
+            // Clear to get auto-resolved section next loop.
+            ClearSection(SECTION_NAME);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_ClearSection_WithAssemblyName()
+    {
+        LoopInIsolation(() =>
+        {
+            // Get auto-resolved config
+            var config = GetSection<ConfigSection>(_assembly);
+            NotEqual(100, config.NoteLength);
+
+            // Set a custom section
+            SetSection(_assembly, new ConfigSection { NoteLength = 100 });
+            config = GetSection<ConfigSection>(_assembly);
+            AreEqual(100, config.NoteLength);
+
+            // Clear to get auto-resolved section next loop.
+            ClearSection(_assembly);
+        });
+    }
+
+    // Helpers
+
+    private const int REPEATS = 3; // 2nd time hits cache
+    private static readonly Lock _noParallel = new();
+
+    private void LoopInIsolation(Action action)
     {
         lock (_noParallel)
         {
@@ -50,12 +211,12 @@ public class CustomConfigManagerCoreTests
             }
             finally
             {
-                CustomConfigManagerCore.Clear();
+                Clear();
             }
         }
     }
 
-    private void AssertSection(ConfigSection config)
+    private void AssertSection(ConfigSection? config)
     {
         IsNotNull(          config);
                             

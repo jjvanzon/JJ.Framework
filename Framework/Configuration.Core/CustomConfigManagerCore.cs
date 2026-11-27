@@ -18,7 +18,7 @@ public static class CustomConfigManagerCore
     private static readonly Dictionary<string, object> _cache = new();
     private static readonly Lock _lock = new();
 
-    #region GetSection
+    #region Get
     /// <inheritdoc cref="_getsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     public static TConfig GetSection<[Dyn(AllProps)]TConfig>() 
@@ -59,7 +59,7 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
-    #region TryGetSection
+    #region TryGet
     /// <inheritdoc cref="_trygetsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     public static TConfig? TryGetSection<[Dyn(AllProps)]TConfig>() 
@@ -103,7 +103,7 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
-    #region SetSection
+    #region Set
     /// <inheritdoc cref="_setsection" />
     public static void SetSection<TConfig>([NotNull] TConfig obj)
     {
@@ -129,7 +129,7 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
-    #region ParseSection
+    #region Parse
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml)
@@ -183,7 +183,7 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
-    #region LoadSection
+    #region Load
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
@@ -237,7 +237,7 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
-    #region RefreshSection
+    #region Refresh
     /// <inheritdoc cref="_refreshsection" />
     public static void RefreshSection<TConfig>()
     {
@@ -270,9 +270,30 @@ public static class CustomConfigManagerCore
             _cache.Clear();
         }
     }
+
+    public static void ClearSection<TConfig>()
+    {
+        string sectionName = GetSectionName<TConfig>();
+        ClearSection(sectionName);
+    }
+
+    public static void ClearSection(Assembly assembly)
+    {
+        string sectionName = GetSectionName(assembly);
+        ClearSection(sectionName);
+    }
+
+    public static void ClearSection(string sectionName)
+    {
+        lock (_lock)
+        {
+            _cache.Remove(sectionName);
+        }
+    }
+
     #endregion
 
-    #region Load
+    #region Private Load
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
         where TConfig : class, new()
@@ -290,7 +311,7 @@ public static class CustomConfigManagerCore
         {
             return null;
         }
-        return LoadConfig<TConfig>(sectionName, fileName);
+        return TryLoadConfig<TConfig>(sectionName, fileName);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
@@ -303,6 +324,23 @@ public static class CustomConfigManagerCore
             doc.Load(stream);
         }
         return ParseConfig<TConfig>(sectionName, doc);
+    }
+
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath) 
+        where TConfig : class, new()
+    {
+        if (!Exists(filePath))
+        {
+            return null;
+        }
+
+        XmlDocument doc = new();
+        using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            doc.Load(stream);
+        }
+        return TryParseConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
@@ -372,14 +410,31 @@ public static class CustomConfigManagerCore
 
         return ParseConfig<TConfig>(sectionName, doc);
     }
-
+    
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     private static TConfig ParseConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
         where TConfig : class, new()
     {
+        var config = TryParseConfig<TConfig>(sectionName, doc);
+        if (config == null)
+        {
+            throw NewNotFoundException(sectionName);
+        }
+        return config;
+    }
+
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    private static TConfig? TryParseConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
+        where TConfig : class, new()
+    {
         XmlElement docElement = doc.DocumentElement.NotNull();
         XmlElement? sectionElement = XmlHelper.TryGetElement(docElement, sectionName); // TODO: Nested sections. How does that work?
-        sectionElement ??= docElement; // If config section name not found, assume we're mapping the whole XML.
+        //sectionElement ??= docElement; // If config section name not found, assume we're mapping the whole XML.
+
+        if (sectionElement == null) 
+        {
+            return null;
+        }
 
         var converter = new XmlToObjectConverter<TConfig>();
         TConfig config = converter.Convert(sectionElement);

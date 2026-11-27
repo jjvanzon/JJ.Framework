@@ -56,7 +56,7 @@ public struct _getsection;
 /// the assembly name converted to lower case letters.
 /// </param>
 /// <param name="obj">
-/// An explicit config object, whcih omits XML parsing or reading out files altogether.
+/// An explicit config object, which omits XML parsing or reading out files altogether.
 /// </param>
 /// <param name="xml">
 /// The XML content as string data, whose content will be parsed to a config object.
