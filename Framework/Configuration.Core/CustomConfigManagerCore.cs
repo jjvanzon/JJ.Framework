@@ -52,7 +52,14 @@ public static class CustomConfigManagerCore
 
         lock (_lock)
         {
-            TConfig config = LoadConfig<TConfig>(sectionName);
+            string fileName = ResolveConfigFileName();
+            XmlDocument doc = new();
+            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                doc.Load(stream);
+            }
+
+            TConfig config = ParseConfig<TConfig>(sectionName, doc);
             _cache[sectionName] = config;
             return config;
         }
@@ -93,7 +100,22 @@ public static class CustomConfigManagerCore
 
         lock (_lock)
         {
-            var config = TryLoadConfig<TConfig>(sectionName);
+            TConfig? config;
+            string? fileName = TryResolveConfigFileName();
+            if (!Has(fileName))
+            {
+                config = null;
+            }
+            else
+            {
+                XmlDocument doc = new();
+                using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    doc.Load(stream);
+                }
+                config = ParseConfig<TConfig>(sectionName, doc);
+            }
+
             if (config != null) 
             {
                 _cache[sectionName] = config;
@@ -135,8 +157,18 @@ public static class CustomConfigManagerCore
     public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml)
         where TConfig : class, new()
     {
-        TConfig obj = ParseConfig<TConfig>(sectionName, xml);
+        if (!Has(xml))
+        {
+            throw new Exception($"No {nameof(xml)}.");
+        }
+
+        XmlDocument doc = new();
+        doc.Load(xml);
+
+        TConfig obj = ParseConfig<TConfig>(sectionName, doc);
+
         SetSection(sectionName, obj);
+
         return obj;
     }
     
@@ -161,8 +193,20 @@ public static class CustomConfigManagerCore
     public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
         where TConfig : class, new()
     {
-        TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
+        if (!Has(bytes))
+        {
+            throw new Exception($"No {nameof(bytes)}.");
+        }
+
+        Stream stream = BytesToStream(bytes);
+
+        XmlDocument doc = new();
+        doc.Load(stream);
+
+        TConfig obj = ParseConfig<TConfig>(sectionName, doc);
+
         SetSection(sectionName, obj);
+
         return obj;
     }
 
@@ -189,8 +233,13 @@ public static class CustomConfigManagerCore
     public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig<TConfig>(sectionName, stream);
+        XmlDocument doc = new();
+        doc.Load(stream);
+
+        TConfig obj = ParseConfig<TConfig>(sectionName, doc);
+
         SetSection(sectionName, obj);
+
         return obj;
     }
 
@@ -215,8 +264,17 @@ public static class CustomConfigManagerCore
     public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(string sectionName, string filePath)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig<TConfig>(sectionName, filePath);
+        XmlDocument doc = new();
+
+        using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            doc.Load(stream);
+        }
+
+        TConfig obj = ParseConfig<TConfig>(sectionName, doc);
+
         SetSection(sectionName, obj);
+
         return obj;
     }
 
@@ -273,105 +331,6 @@ public static class CustomConfigManagerCore
     #endregion
 
     #region Load
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
-        where TConfig : class, new()
-    {
-        string fileName = ResolveConfigFileName();
-        return LoadConfig<TConfig>(sectionName, fileName);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
-        where TConfig : class, new()
-    {
-        string? fileName = TryResolveConfigFileName();
-        if (!Has(fileName)) 
-        {
-            return null;
-        }
-        return LoadConfig<TConfig>(sectionName, fileName);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath) 
-        where TConfig : class, new()
-    {
-        XmlDocument doc = new();
-        using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-        {
-            doc.Load(stream);
-        }
-        return ParseConfig<TConfig>(sectionName, doc);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
-        where TConfig : class, new()
-    {
-        XmlDocument doc = new();
-        doc.Load(stream);
-
-        return ParseConfig<TConfig>(sectionName, doc);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
-        where TConfig : class, new()
-    {
-        if (!Has(bytes))
-        {
-            throw new Exception($"No {nameof(bytes)}.");
-        }
-
-        Stream stream = BytesToStream(bytes);
-
-        return LoadConfig<TConfig>(sectionName, stream);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
-        where TConfig : class, new()
-    {
-        if (!Has(bytes))
-        {
-            return null;
-        }
-
-        Stream stream = BytesToStream(bytes);
-
-        return LoadConfig<TConfig>(sectionName, stream);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
-        where TConfig : class, new()
-    {
-        if (!Has(xml))
-        {
-            throw new Exception($"No {nameof(xml)}.");
-        }
-
-        XmlDocument doc = new();
-        doc.Load(xml);
-
-        return ParseConfig<TConfig>(sectionName, doc);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
-        where TConfig : class, new()
-    {
-        if (!Has(xml))
-        {
-            return null;
-        }
-
-        XmlDocument doc = new();
-        doc.Load(xml);
-
-        return ParseConfig<TConfig>(sectionName, doc);
-    }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     private static TConfig ParseConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
