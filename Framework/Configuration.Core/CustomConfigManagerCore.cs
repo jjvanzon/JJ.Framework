@@ -136,6 +136,8 @@ public static class CustomConfigManagerCore
     #region Enforce Argument Names
     private const string SPECIFY_XML_OR_FILE_PATH = "Specify argument name xml: or filePath: to disambiguate";
 
+    // ncrunch: no coverage start
+
     /// <inheritdoc cref="_setsection" />
     [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
     // ReSharper disable once UnusedTypeParameter
@@ -150,6 +152,8 @@ public static class CustomConfigManagerCore
     [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
     // ReSharper disable once UnusedTypeParameter
     public static void SetSection<TConfig>(string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+
+    // ncrunch: no coverage end
     #endregion
 
     #region From Text or Bytes

@@ -203,16 +203,15 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         { 
             SetSection<ConfigSection>(xml:
-                $"""
-                <config>
-                  <{SECTION_NAME} noteLength="1.23" />
-                </config>
-                """);
+              $"""
+              <config>
+                <{SECTION_NAME} noteLength="1.23" />
+              </config>
+              """);
 
             var config = GetSection<ConfigSection>();
 
             AreEqual(1.23, config.NoteLength);
-
         });
     }
 
@@ -222,16 +221,15 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         { 
             SetSection<ConfigSection>("myconfig", xml:
-                """
-                <config>
-                  <myconfig noteLength="2.34" />
-                </config>
-                """);
+              """
+              <config>
+                <myconfig noteLength="2.34" />
+              </config>
+              """);
 
             var config = GetSection<ConfigSection>("myconfig");
 
             AreEqual(2.34, config.NoteLength);
-
         });
     }
 
@@ -241,20 +239,141 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         { 
             SetSection<ConfigSection>(_assembly, xml:
-                $"""
-                <config>
-                  <{SECTION_NAME} noteLength="2.34" />
-                </config>
-                """);
+              $"""
+              <config>
+                <{SECTION_NAME} noteLength="3.45" />
+              </config>
+              """);
 
             var config = GetSection<ConfigSection>(_assembly);
 
-            AreEqual(2.34, config.NoteLength);
-
+            AreEqual(3.45, config.NoteLength);
         });
     }
 
-    // From FilePath
+    // From Bytes
+        
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromBytes()
+    {
+        LoopInIsolation(() =>
+        {
+            byte[] bytes = StringToBytes(
+              $"""
+              <config>
+                <{SECTION_NAME} noteLength="4.56" />
+              </config>
+              """);
+
+            SetSection<ConfigSection>(bytes);
+
+            var config = GetSection<ConfigSection>();
+
+            AreEqual(4.56, config.NoteLength);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithName()
+    {
+        LoopInIsolation(() =>
+        {
+            byte[] bytes = StringToBytes(
+              """
+              <config>
+                <myconfig noteLength="5.67" />
+              </config>
+              """);
+
+            SetSection<ConfigSection>("myconfig", bytes);
+
+            var config = GetSection<ConfigSection>("myconfig");
+
+            AreEqual(5.67, config.NoteLength);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithAssembly()
+    {
+        LoopInIsolation(() =>
+        {
+            byte[] bytes = StringToBytes(
+              $"""
+              <config>
+                <{SECTION_NAME} noteLength="6.78" />
+              </config>
+              """);
+
+            SetSection<ConfigSection>(_assembly, bytes);
+
+            var config = GetSection<ConfigSection>(_assembly);
+
+            AreEqual(6.78, config.NoteLength);
+        });
+    }
+
+    // From Stream
+        
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromStream()
+    {
+        LoopInIsolation(() =>
+        {
+            Stream stream = StringToStream(
+              $"""
+              <config>
+                <{SECTION_NAME} noteLength="7.89" />
+              </config>
+              """);
+
+            SetSection<ConfigSection>(stream);
+
+            var config = GetSection<ConfigSection>();
+
+            AreEqual(7.89, config.NoteLength);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromStream_WithName()
+    {
+        LoopInIsolation(() =>
+        {
+            Stream stream = StringToStream(
+              """
+              <config>
+                <myconfig noteLength="8.90" />
+              </config>
+              """);
+
+            SetSection<ConfigSection>("myconfig", stream);
+
+            var config = GetSection<ConfigSection>("myconfig");
+
+            AreEqual(8.90, config.NoteLength);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromStream_WithAssembly()
+    {
+        LoopInIsolation(() =>
+        {
+            Stream stream = StringToStream(
+              $"""
+              <config>
+                <{SECTION_NAME} noteLength="9.01" />
+              </config>
+              """);
+
+            SetSection<ConfigSection>(_assembly, stream);
+
+            var config = GetSection<ConfigSection>(_assembly);
+
+            AreEqual(9.01, config.NoteLength);
+        });
+    }
 
     // Helpers
 
