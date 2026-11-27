@@ -6,5 +6,5 @@ internal class ConfigToolingElement
     [XmlAttribute] public int? SamplingRate { get; set; }
     [XmlAttribute] public bool? ImpersonationMode { get; set; }
 
-    public RootLoggerXml Logging { get; set; } = new();
+    //public RootLoggerXml Logging { get; set; } = new();
 }

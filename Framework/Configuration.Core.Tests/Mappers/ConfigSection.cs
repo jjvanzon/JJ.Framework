@@ -32,7 +32,7 @@ internal class ConfigSection
     
     public ConfigToolingElement AzurePipelines { get; set; } = new();
     public ConfigToolingElement NCrunch { get; set; } = new();
-    public RootLoggerXml Logging { get; set; } = new();
+    //public RootLoggerXml Logging { get; set; } = new();
         
     // Misc
         

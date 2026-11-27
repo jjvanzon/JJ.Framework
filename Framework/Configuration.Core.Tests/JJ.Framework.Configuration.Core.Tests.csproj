@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Configuration.Core\JJ.Framework.Configuration.Core.csproj" />
-    <ProjectReference Include="..\Logging.Core\JJ.Framework.Logging.Core.csproj" />
+    <!--<ProjectReference Include="..\Logging.Core\JJ.Framework.Logging.Core.csproj" />-->
     <ProjectReference Include="..\Testing.Core\JJ.Framework.Testing.Core.csproj" />
   </ItemGroup>
 
