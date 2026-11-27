@@ -7,52 +7,46 @@ public class CustomConfigManagerCoreTests
     private static readonly Lock _noParallel = new();
     
     [TestMethod]
-    public void Test_CustomConfigManagerCore_GetSection_MainCase()
+    public void Test_CustomConfigManagerCore_GetSection()
     {
-        lock (_noParallel)
+        Isolated(() =>
         {
-            try
-            {
-                for (int i = 0; i < REPEATS; i++)
-                {
-                    var config = CustomConfigManagerCore.GetSection<ConfigSection>();
-                    AssertSection(config);
-                }
-            }
-            finally
-            {
-                CustomConfigManagerCore.Clear();
-            }
-        }
+            var config = CustomConfigManagerCore.GetSection<ConfigSection>();
+            AssertSection(config);
+        });
     }
 
     [TestMethod]
     public void Test_CustomConfigManagerCore_GetSection_WithSectionName()
     {
+        Isolated(() =>
+        {
+            var config = CustomConfigManagerCore.GetSection<ConfigSection>("jj.framework.configuration.core.tests");
+            AssertSection(config);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_GetSection_WithAssembly()
+    {
+        Isolated(() =>
+        {
+            Assembly assembly = typeof(ConfigSection).Assembly;
+            var config = CustomConfigManagerCore.GetSection<ConfigSection>(assembly);
+            AssertSection(config);
+        });
+    }
+
+    private void Isolated(Action action)
+    {
         lock (_noParallel)
         {
             try
             {
                 for (int i = 0; i < REPEATS; i++)
                 {
-                    var config = CustomConfigManagerCore.GetSection<ConfigSection>("jj.framework.configuration.core.tests");
-                    AssertSection(config);
+                    action();
                 }
-            }
-            finally
-            {
-                CustomConfigManagerCore.Clear();
-            }
-        }
-    }
-
-    private void RepeatInIsolation(Action action)
-    {
-        lock (_noParallel)
-        {
-            try
-            {
-                action();
             }
             finally
             {
