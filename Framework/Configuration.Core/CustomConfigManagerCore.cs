@@ -1,5 +1,4 @@
 ﻿// ReSharper disable UseSymbolAlias
-// ReSharper disable MethodOverloadWithOptionalParameter
 
 // TODO: Enable these warning again once implementation and tests are complete.
 // ReSharper disable UnusedMember.Global
@@ -53,9 +52,9 @@ public static class CustomConfigManagerCore
 
         lock (_lock)
         {
-            TConfig config = LoadConfig_FromAutoResolvedPath<TConfig>(sectionName);
+            TConfig config = LoadConfig<TConfig>(sectionName);
             _cache[sectionName] = config;
-            return config!;
+            return config;
         }
     }
     #endregion
@@ -94,7 +93,7 @@ public static class CustomConfigManagerCore
 
         lock (_lock)
         {
-            var config = TryLoadConfig_FromAutoResolvedPath<TConfig>(sectionName);
+            var config = TryLoadConfig<TConfig>(sectionName);
             if (config != null) 
             {
                 _cache[sectionName] = config;
@@ -128,109 +127,136 @@ public static class CustomConfigManagerCore
             _cache[sectionName] = obj;
         }
     }
+    #endregion
 
+    #region ParseSection
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml)
+    public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml)
         where TConfig : class, new()
     {
-        TConfig obj = ParseConfig_FromText<TConfig>(sectionName, xml);
+        TConfig obj = ParseConfig<TConfig>(sectionName, xml);
+        SetSection(sectionName, obj);
+        return obj;
+    }
+    
+    /// <inheritdoc cref="_setsection" />
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string xml)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName(assembly);
+        TConfig obj = ParseConfig<TConfig>(sectionName, xml);
         SetSection(sectionName, obj);
         return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
+    public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(string xml)
         where TConfig : class, new()
     {
-        TConfig obj = ParseConfig_FromBytes<TConfig>(sectionName, bytes);
+        string sectionName = GetSectionName<TConfig>();
+        TConfig obj = ParseConfig<TConfig>(sectionName, xml);
         SetSection(sectionName, obj);
         return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
+    public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig_FromStream<TConfig>(sectionName, stream);
+        TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
         SetSection(sectionName, obj);
         return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSectionFromFile<[Dyn(AllProps)]TConfig>(string sectionName, string filePath)
+    public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(Assembly assembly, byte[] bytes)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig_FromFilePath<TConfig>(sectionName, filePath);
+        string sectionName = GetSectionName(assembly);
+        TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
         SetSection(sectionName, obj);
         return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string xml)
+    public static TConfig ParseSection<TConfig>(byte[] bytes)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), xml);
+        string sectionName = GetSectionName<TConfig>();
+        TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
+        SetSection(sectionName, obj);
+        return obj;
+    }
+    #endregion
+
+    #region LoadSection
+    /// <inheritdoc cref="_setsection" />
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
+        where TConfig : class, new()
+    {
+        TConfig obj = LoadConfig<TConfig>(sectionName, stream);
+        SetSection(sectionName, obj);
+        return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<TConfig>(byte[] bytes)
+    public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(Stream stream)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), bytes);
+        string sectionName = GetSectionName<TConfig>();
+        TConfig obj = LoadConfig<TConfig>(sectionName, stream);
+        SetSection(sectionName, obj);
+        return obj;
+    }
+    
+    /// <inheritdoc cref="_setsection" />
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(Assembly assembly, Stream stream)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName(assembly);
+        TConfig obj = LoadConfig<TConfig>(sectionName, stream);
+        SetSection(sectionName, obj);
+        return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Stream stream)
+    public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(string sectionName, string filePath)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), stream);
+        TConfig obj = LoadConfig<TConfig>(sectionName, filePath);
+        SetSection(sectionName, obj);
+        return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSectionFromFile<[Dyn(AllProps)]TConfig>(string filePath)
+    public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(string filePath)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName<TConfig>(), filePath);
+        TConfig obj = ParseConfig<TConfig>(GetSectionName<TConfig>(), filePath);
+        SetSection(GetSectionName<TConfig>(), obj);
+        return obj;
     }
 
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string xml)
+    public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string filePath)
         where TConfig : class, new()
     {
-        return SetSection<TConfig>(GetSectionName(assembly), xml);
-    }
-
-    /// <inheritdoc cref="_setsection" />
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, byte[] bytes)
-        where TConfig : class, new()
-    {
-        return SetSection<TConfig>(GetSectionName(assembly), bytes);
-    }
-
-    /// <inheritdoc cref="_setsection" />
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, Stream stream)
-        where TConfig : class, new()
-    {
-        return SetSection<TConfig>(GetSectionName(assembly), stream);
-    }
-
-    /// <inheritdoc cref="_setsection" />
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    public static TConfig SetSectionFromFile<[Dyn(AllProps)]TConfig>(Assembly assembly, string filePath)
-        where TConfig : class, new()
-    {
-        return SetSection<TConfig>(GetSectionName(assembly), filePath);
+        string sectionName = GetSectionName(assembly);
+        TConfig obj = ParseConfig<TConfig>(sectionName, filePath);
+        SetSection(sectionName, obj);
+        return obj;
     }
     #endregion
 
@@ -271,15 +297,15 @@ public static class CustomConfigManagerCore
 
     #region Load
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig_FromAutoResolvedPath<[Dyn(AllProps)]TConfig>(string sectionName) 
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
         where TConfig : class, new()
     {
         string fileName = ResolveConfigFileName();
-        return LoadConfig_FromFilePath<TConfig>(sectionName, fileName);
+        return LoadConfig<TConfig>(sectionName, fileName);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryLoadConfig_FromAutoResolvedPath<[Dyn(AllProps)]TConfig>(string sectionName) 
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
         where TConfig : class, new()
     {
         string? fileName = TryResolveConfigFileName();
@@ -287,11 +313,11 @@ public static class CustomConfigManagerCore
         {
             return null;
         }
-        return LoadConfig_FromFilePath<TConfig>(sectionName, fileName);
+        return LoadConfig<TConfig>(sectionName, fileName);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig_FromFilePath<[Dyn(AllProps)]TConfig>(string sectionName, string filePath) 
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath) 
         where TConfig : class, new()
     {
         XmlDocument doc = new();
@@ -299,21 +325,21 @@ public static class CustomConfigManagerCore
         {
             doc.Load(stream);
         }
-        return ParseConfig_FromDoc<TConfig>(sectionName, doc);
+        return ParseConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig_FromStream<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream)
         where TConfig : class, new()
     {
         XmlDocument doc = new();
         doc.Load(stream);
 
-        return ParseConfig_FromDoc<TConfig>(sectionName, doc);
+        return ParseConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig_FromBytes<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
+    private static TConfig ParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
         where TConfig : class, new()
     {
         if (!Has(bytes))
@@ -323,11 +349,11 @@ public static class CustomConfigManagerCore
 
         Stream stream = BytesToStream(bytes);
 
-        return LoadConfig_FromStream<TConfig>(sectionName, stream);
+        return LoadConfig<TConfig>(sectionName, stream);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryParseConfig_FromBytes<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
+    private static TConfig? TryParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
         where TConfig : class, new()
     {
         if (!Has(bytes))
@@ -337,11 +363,11 @@ public static class CustomConfigManagerCore
 
         Stream stream = BytesToStream(bytes);
 
-        return LoadConfig_FromStream<TConfig>(sectionName, stream);
+        return LoadConfig<TConfig>(sectionName, stream);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig_FromText<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
+    private static TConfig ParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
         where TConfig : class, new()
     {
         if (!Has(xml))
@@ -352,11 +378,11 @@ public static class CustomConfigManagerCore
         XmlDocument doc = new();
         doc.Load(xml);
 
-        return ParseConfig_FromDoc<TConfig>(sectionName, doc);
+        return ParseConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryParseConfig_FromText<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
+    private static TConfig? TryParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
         where TConfig : class, new()
     {
         if (!Has(xml))
@@ -367,11 +393,11 @@ public static class CustomConfigManagerCore
         XmlDocument doc = new();
         doc.Load(xml);
 
-        return ParseConfig_FromDoc<TConfig>(sectionName, doc);
+        return ParseConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig_FromDoc<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
+    private static TConfig ParseConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
         where TConfig : class, new()
     {
         XmlElement docElement = doc.DocumentElement.NotNull();
