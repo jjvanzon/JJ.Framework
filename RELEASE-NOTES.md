@@ -341,17 +341,17 @@
 
 *+ Misc legacy ported code*
 
-- [JJ.Framework.Xml.Legacy](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Xml)
+- [`JJ.Framework.Xml.Legacy`](https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Xml)
 - Releasing legacy XML to object mapper
 - Full code coverage
 - Docs completion
 - Code trimming / native AOT compilation support
 - Minor changes in nullability annotations and overloads
-- [JJ.Framework.IO.Legacy](https://www.nuget.org/packages/JJ.Framework.IO.Legacy/)
+- [`JJ.Framework.IO.Legacy`](https://www.nuget.org/packages/JJ.Framework.IO.Legacy/)
 - Integrated StreamHelperLegacy into StreamHelper as partial class (StreamHelperLegacy now obsolete)
-- [JJ.Framework.Common.Legacy](https://www.nuget.org/packages/JJ.Framework.Common.Legacy/)
+- [`JJ.Framework.Common.Legacy`](https://www.nuget.org/packages/JJ.Framework.Common.Legacy/)
 - More CultureHelper methods for easily switching current culture or back
-- [JJ.Framework.Reflection.Legacy](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy/)
+- [`JJ.Framework.Reflection.Legacy`](https://www.nuget.org/packages/JJ.Framework.Reflection.Legacy/)
 - ReflectionCacheLegacy renamed to ReflectionCacheEx
 - __`DevOps:`__
 - Internal non-released projects also received improved separation of legacy and new code.
