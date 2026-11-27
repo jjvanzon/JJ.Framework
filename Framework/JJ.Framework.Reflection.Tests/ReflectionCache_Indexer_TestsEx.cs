@@ -7,17 +7,17 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_GetIndexer_Test_1Arg()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
-            () => reflectionCacheLegacy2.GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
-            () => StaticReflectionCache .GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
-            () => reflectionCacheLegacy .TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
-            () => reflectionCacheLegacy2.TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
-            () => StaticReflectionCache .TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
+            () => reflectionCacheEx    .GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
+            () => reflectionCacheEx2   .GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
+            () => StaticReflectionCache.GetIndexer   (typeof(ClassWithIndexers), typeof(int)),
+            () => reflectionCacheEx    .TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
+            () => reflectionCacheEx2   .TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
+            () => StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int)),
         ];
 
         foreach (var func in synonyms)
@@ -33,18 +33,18 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_GetIndexer_Test_2Arg()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
-            () => reflectionCacheLegacy2.GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
-            () => StaticReflectionCache .GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
-            () => reflectionCacheLegacy .TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
-            () => reflectionCacheLegacy2.TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
-            () => StaticReflectionCache .TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => reflectionCacheEx    .GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => reflectionCacheEx2   .GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => StaticReflectionCache.GetIndexer   (typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => reflectionCacheEx    .TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => reflectionCacheEx2   .TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
+            () => StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string)),
         ];
 
         foreach (var func in synonyms)
@@ -60,14 +60,14 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_GetIndexer_NotFound_Throws()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
-            () => reflectionCacheLegacy .GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
-            () => reflectionCacheLegacy2.GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
+            () => StaticReflectionCache.GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
+            () => reflectionCacheEx    .GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
+            () => reflectionCacheEx2   .GetIndexer(typeof(ClassWithoutIndexer), typeof(int)),
         ];
 
         foreach (var action in synonyms)
@@ -79,14 +79,14 @@ public class ReflectionCache_Indexer_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetIndexer_NotFound_ReturnsNull()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
-            () => reflectionCacheLegacy2.TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
-            () => StaticReflectionCache .TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
+            () => reflectionCacheEx    .TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
+            () => reflectionCacheEx2   .TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
+            () => StaticReflectionCache.TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string)),
         ];
 
         foreach (var func in synonyms)
@@ -124,7 +124,4 @@ public class ReflectionCache_Indexer_TestsEx
         AreEqual(typeof(int),    () => parameters[0].ParameterType);
         AreEqual(typeof(string), () => parameters[1].ParameterType);
     }
-    
-    // Constructor Tests
-    
 }

@@ -9,15 +9,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_GetTypeByShortName_Test()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<Type>[] synonyms =
         [
-            () => reflectionCache       .GetTypeByShortName("ReflectionCache_Type_TestsEx"),
-            () => reflectionCacheLegacy .GetTypeByShortName("ReflectionCache_Type_TestsEx"),
-            () => reflectionCacheLegacy2.GetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCache   .GetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheEx .GetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheEx2.GetTypeByShortName("ReflectionCache_Type_TestsEx"),
         ];
 
         foreach (var func in synonyms)
@@ -34,15 +34,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_GetTypeByShortName_NotFound_Throws()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [
-            () => reflectionCache       .GetTypeByShortName(NonExistentName),
-            () => reflectionCacheLegacy .GetTypeByShortName(NonExistentName),
-            () => reflectionCacheLegacy2.GetTypeByShortName(NonExistentName),
+            () => reflectionCache   .GetTypeByShortName(NonExistentName),
+            () => reflectionCacheEx .GetTypeByShortName(NonExistentName),
+            () => reflectionCacheEx2.GetTypeByShortName(NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -57,15 +57,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetTypeByShortName_Test()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<Type>[] synonyms =
         [
-            () => reflectionCache       .TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
-            () => reflectionCacheLegacy .TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
-            () => reflectionCacheLegacy2.TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCache   .TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheEx .TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheEx2.TryGetTypeByShortName("ReflectionCache_Type_TestsEx"),
         ];
 
         foreach (var func in synonyms)
@@ -82,15 +82,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetTypeByShortName_NotFound_ReturnsNull()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<Type>[] synonyms =
         [
-            () => reflectionCache       .TryGetTypeByShortName(NonExistentName),
-            () => reflectionCacheLegacy .TryGetTypeByShortName(NonExistentName),
-            () => reflectionCacheLegacy2.TryGetTypeByShortName(NonExistentName),
+            () => reflectionCache   .TryGetTypeByShortName(NonExistentName),
+            () => reflectionCacheEx .TryGetTypeByShortName(NonExistentName),
+            () => reflectionCacheEx2.TryGetTypeByShortName(NonExistentName),
         ];
 
         foreach (var func in synonyms)
@@ -106,15 +106,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetTypeByShortName_Multiple_Throws()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [
-            () => reflectionCache       .GetTypeByShortName("DuplicateClass_13017ef1"),
-            () => reflectionCacheLegacy .GetTypeByShortName("DuplicateClass_13017ef1"),
-            () => reflectionCacheLegacy2.GetTypeByShortName("DuplicateClass_13017ef1"),
+            () => reflectionCache   .GetTypeByShortName("DuplicateClass_13017ef1"),
+            () => reflectionCacheEx .GetTypeByShortName("DuplicateClass_13017ef1"),
+            () => reflectionCacheEx2.GetTypeByShortName("DuplicateClass_13017ef1"),
         ];
 
         foreach (var action in synonyms)
@@ -129,15 +129,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_GetTypesByShortName_None()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<Type>>[] synonyms =
         [
-            () => reflectionCache       .GetTypesByShortName(NonExistentName),
-            () => reflectionCacheLegacy .GetTypesByShortName(NonExistentName),
-            () => reflectionCacheLegacy2.GetTypesByShortName(NonExistentName),
+            () => reflectionCache   .GetTypesByShortName(NonExistentName),
+            () => reflectionCacheEx .GetTypesByShortName(NonExistentName),
+            () => reflectionCacheEx2.GetTypesByShortName(NonExistentName),
         ];
 
         foreach (var func in synonyms)
@@ -155,15 +155,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_GetTypesByShortName_Single()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache     = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<Type>>[] synonyms =
         [
-            () => reflectionCache       .GetTypesByShortName("ReflectionCache_Type_TestsEx"),
-            () => reflectionCacheLegacy .GetTypesByShortName("ReflectionCache_Type_TestsEx"),
-            () => reflectionCacheLegacy2.GetTypesByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCache   .GetTypesByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheEx .GetTypesByShortName("ReflectionCache_Type_TestsEx"),
+            () => reflectionCacheEx2.GetTypesByShortName("ReflectionCache_Type_TestsEx"),
         ];
 
         foreach (var func in synonyms)
@@ -184,15 +184,15 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_GetTypesByShortName_Multiple()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<Type>>[] synonyms =
         [
-            () => reflectionCache       .GetTypesByShortName("DuplicateClass_13017ef1"),
-            () => reflectionCacheLegacy .GetTypesByShortName("DuplicateClass_13017ef1"),
-            () => reflectionCacheLegacy2.GetTypesByShortName("DuplicateClass_13017ef1"),
+            () => reflectionCache   .GetTypesByShortName("DuplicateClass_13017ef1"),
+            () => reflectionCacheEx .GetTypesByShortName("DuplicateClass_13017ef1"),
+            () => reflectionCacheEx2.GetTypesByShortName("DuplicateClass_13017ef1"),
         ];
 
         foreach (var func in synonyms)
@@ -215,18 +215,18 @@ public class ReflectionCache_Type_TestsEx
     [TestMethod]
     public void ReflectionCache_GetTypesByShortName_NullOrWhiteSpace_Throws()
     {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Action[] synonyms =
         [
-            () => reflectionCache       .GetTypesByShortName(null),
-            () => reflectionCacheLegacy .GetTypesByShortName(null),
-            () => reflectionCacheLegacy2.GetTypesByShortName(null),
-            () => reflectionCache       .GetTypesByShortName("\t\n"),
-            () => reflectionCacheLegacy .GetTypesByShortName("\t\n"),
-            () => reflectionCacheLegacy2.GetTypesByShortName("\t\n"),
+            () => reflectionCache   .GetTypesByShortName(null),
+            () => reflectionCacheEx .GetTypesByShortName(null),
+            () => reflectionCacheEx2.GetTypesByShortName(null),
+            () => reflectionCache   .GetTypesByShortName("\t\n"),
+            () => reflectionCacheEx .GetTypesByShortName("\t\n"),
+            () => reflectionCacheEx2.GetTypesByShortName("\t\n"),
         ];
 
         foreach (var action in synonyms)

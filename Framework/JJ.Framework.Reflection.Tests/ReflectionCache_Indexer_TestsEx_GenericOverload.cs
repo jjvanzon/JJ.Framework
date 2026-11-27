@@ -17,7 +17,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
     }
     // ncrunch: no coverage end
 
-    private static readonly ReflectionCacheEx _reflectionCacheLegacy = new();
+    private static readonly ReflectionCacheEx _reflectionCacheEx = new();
 
     [TestMethod]
     public void Test_ReflectionCache_GetIndexer_GenericOverload()
@@ -26,8 +26,8 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
 
         {
             // single-parameter indexer
-            PropertyInfo indexer1 = _reflectionCacheLegacy.GetIndexer<long>(type);
-            PropertyInfo indexer2 = _reflectionCacheLegacy.GetIndexer<long>(type);
+            PropertyInfo indexer1 = _reflectionCacheEx.GetIndexer<long>(type);
+            PropertyInfo indexer2 = _reflectionCacheEx.GetIndexer<long>(type);
             NotNull(indexer1);
             NotNull(indexer2);
 
@@ -37,7 +37,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
         }
 
         {
-            PropertyInfo indexer = _reflectionCacheLegacy.GetIndexer<long, float>(type);
+            PropertyInfo indexer = _reflectionCacheEx.GetIndexer<long, float>(type);
             NotNull(indexer);
 
             ParameterInfo[] parameters = indexer.GetIndexParameters();
@@ -47,7 +47,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
         }
 
         {
-            PropertyInfo indexer = _reflectionCacheLegacy.GetIndexer<long, float, short>(type);
+            PropertyInfo indexer = _reflectionCacheEx.GetIndexer<long, float, short>(type);
             NotNull(indexer);
 
             ParameterInfo[] parameters = indexer.GetIndexParameters();
@@ -56,7 +56,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
         }
 
         {
-            PropertyInfo indexer = _reflectionCacheLegacy.GetIndexer<long, float, short, byte>(type);
+            PropertyInfo indexer = _reflectionCacheEx.GetIndexer<long, float, short, byte>(type);
             NotNull(indexer);
 
             ParameterInfo[] parameters = indexer.GetIndexParameters();
@@ -65,7 +65,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
         }
 
         {
-            PropertyInfo indexer = _reflectionCacheLegacy.GetIndexer<long, float, short, byte, char>(type);
+            PropertyInfo indexer = _reflectionCacheEx.GetIndexer<long, float, short, byte, char>(type);
             NotNull(indexer);
 
             ParameterInfo[] parameters = indexer.GetIndexParameters();
@@ -74,7 +74,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
         }
 
         {
-            PropertyInfo indexer = _reflectionCacheLegacy.GetIndexer<long, float, short, byte, char, decimal>(type);
+            PropertyInfo indexer = _reflectionCacheEx.GetIndexer<long, float, short, byte, char, decimal>(type);
             NotNull(indexer);
 
             ParameterInfo[] parameters = indexer.GetIndexParameters();
@@ -83,7 +83,7 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
         }
 
         {
-            PropertyInfo indexer = _reflectionCacheLegacy.GetIndexer<long, float, short, byte, char, decimal, bool>(type);
+            PropertyInfo indexer = _reflectionCacheEx.GetIndexer<long, float, short, byte, char, decimal, bool>(type);
             NotNull(indexer);
             
             ParameterInfo[] parameters = indexer.GetIndexParameters();
@@ -97,49 +97,49 @@ public class ReflectionCache_Indexer_TestsEx_GenericOverload
     {
         Type type = typeof(HelperClass);
         {
-            PropertyInfo? indexr = _reflectionCacheLegacy.TryGetIndexer<long>(type);
+            PropertyInfo? indexr = _reflectionCacheEx.TryGetIndexer<long>(type);
             NotNull(indexr);
             ParameterInfo[] parameters = indexr.GetIndexParameters();
             AreEqual(typeof(long), () => parameters[0].ParameterType);
         }
 
         {
-            PropertyInfo? indexer = _reflectionCacheLegacy.TryGetIndexer<long, float>(type);
+            PropertyInfo? indexer = _reflectionCacheEx.TryGetIndexer<long, float>(type);
             NotNull(indexer);
             ParameterInfo[] parameters = indexer.GetIndexParameters();
             AreEqual(typeof(float), () => parameters[1].ParameterType);
         }
 
         {
-            PropertyInfo? indexer = _reflectionCacheLegacy.TryGetIndexer<long, float, short>(type);
+            PropertyInfo? indexer = _reflectionCacheEx.TryGetIndexer<long, float, short>(type);
             NotNull(indexer);
             ParameterInfo[] parameters = indexer.GetIndexParameters();
             AreEqual(typeof(short), () => parameters[2].ParameterType);
         }
 
         {
-            PropertyInfo? indexer = _reflectionCacheLegacy.TryGetIndexer<long, float, short, byte>(type);
+            PropertyInfo? indexer = _reflectionCacheEx.TryGetIndexer<long, float, short, byte>(type);
             NotNull(indexer);
             ParameterInfo[] parameters = indexer.GetIndexParameters();
             AreEqual(typeof(byte), () => parameters[3].ParameterType);
         }
 
         {
-            PropertyInfo? indexer = _reflectionCacheLegacy.TryGetIndexer<long, float, short, byte, char>(type);
+            PropertyInfo? indexer = _reflectionCacheEx.TryGetIndexer<long, float, short, byte, char>(type);
             NotNull(indexer);
             ParameterInfo[] parameters = indexer.GetIndexParameters();
             AreEqual(typeof(char), () => parameters[4].ParameterType);
         }
 
         {
-            PropertyInfo? indexer = _reflectionCacheLegacy.TryGetIndexer<long, float, short, byte, char, decimal>(type);
+            PropertyInfo? indexer = _reflectionCacheEx.TryGetIndexer<long, float, short, byte, char, decimal>(type);
             NotNull(indexer);
             ParameterInfo[] parameters = indexer.GetIndexParameters();
             AreEqual(typeof(decimal), () => parameters[5].ParameterType);
         }
 
         {
-            PropertyInfo? indexer = _reflectionCacheLegacy.TryGetIndexer<long, float, short, byte, char, decimal, bool>(type);
+            PropertyInfo? indexer = _reflectionCacheEx.TryGetIndexer<long, float, short, byte, char, decimal, bool>(type);
             NotNull(indexer);
             ParameterInfo[] parameters = indexer.GetIndexParameters();
             AreEqual(typeof(bool), () => parameters[6].ParameterType);

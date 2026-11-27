@@ -10,20 +10,20 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_GetField_Test()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<string, FieldInfo>[] synonyms = 
         [
-            name => reflectionCacheLegacy .GetField   (typeof(TestClass), name),
-            name => reflectionCacheLegacy2.GetField   (typeof(TestClass), name),
-            name => reflectionCacheLegacy3.GetField   (typeof(TestClass), name),
-            name => StaticReflectionCache .GetField   (typeof(TestClass), name),
-            name => reflectionCacheLegacy .TryGetField(typeof(TestClass), name),
-            name => reflectionCacheLegacy2.TryGetField(typeof(TestClass), name),
-            name => reflectionCacheLegacy3.TryGetField(typeof(TestClass), name),
-            name => StaticReflectionCache .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheEx    .GetField   (typeof(TestClass), name),
+            name => reflectionCacheEx2   .GetField   (typeof(TestClass), name),
+            name => reflectionCacheEx3   .GetField   (typeof(TestClass), name),
+            name => StaticReflectionCache.GetField   (typeof(TestClass), name),
+            name => reflectionCacheEx    .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheEx2   .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheEx3   .TryGetField(typeof(TestClass), name),
+            name => StaticReflectionCache.TryGetField(typeof(TestClass), name),
         ];
 
         foreach (var func in synonyms)
@@ -48,20 +48,20 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetField_Test()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<string, FieldInfo>[] synonyms = 
         [
-            name => reflectionCacheLegacy .TryGetField(typeof(TestClass), name),
-            name => reflectionCacheLegacy2.TryGetField(typeof(TestClass), name),
-            name => reflectionCacheLegacy3.TryGetField(typeof(TestClass), name),
-            name => StaticReflectionCache .TryGetField(typeof(TestClass), name),
-            name => reflectionCacheLegacy .GetField   (typeof(TestClass), name),
-            name => reflectionCacheLegacy2.GetField   (typeof(TestClass), name),
-            name => reflectionCacheLegacy3.GetField   (typeof(TestClass), name),
-            name => StaticReflectionCache .GetField   (typeof(TestClass), name),
+            name => reflectionCacheEx    .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheEx2   .TryGetField(typeof(TestClass), name),
+            name => reflectionCacheEx3   .TryGetField(typeof(TestClass), name),
+            name => StaticReflectionCache.TryGetField(typeof(TestClass), name),
+            name => reflectionCacheEx    .GetField   (typeof(TestClass), name),
+            name => reflectionCacheEx2   .GetField   (typeof(TestClass), name),
+            name => reflectionCacheEx3   .GetField   (typeof(TestClass), name),
+            name => StaticReflectionCache.GetField   (typeof(TestClass), name),
         ];
 
         foreach (var func in synonyms)
@@ -84,16 +84,16 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_GetField_NotFound_Exception()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetField(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy .GetField(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy2.GetField(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy3.GetField(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache.GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx    .GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx2   .GetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx3   .GetField(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var action in synonyms)
@@ -105,16 +105,16 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetField_NotFound_ReturnsNull()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheEx(NonPublic | Instance);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx3 = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<FieldInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetField(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy2.TryGetField(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy3.TryGetField(typeof(TestClass), NonExistentName),
-            () => StaticReflectionCache .TryGetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx    .TryGetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx2   .TryGetField(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx3   .TryGetField(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache.TryGetField(typeof(TestClass), NonExistentName),
         ];
 
         foreach (var func in synonyms)
@@ -133,15 +133,15 @@ public class ReflectionCache_Field_TestsEx
     public void ReflectionCache_GetFields_AllFlags()
     {
         var reflectionCache  = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<FieldInfo[]>[] synonyms =
         [
-            () => reflectionCache       .GetFields(typeof(TestClass)),
-            () => reflectionCacheLegacy .GetFields(typeof(TestClass)),
-            () => reflectionCacheLegacy2.GetFields(typeof(TestClass)),
-            () => StaticReflectionCache .GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
+            () => reflectionCache      .GetFields(typeof(TestClass)),
+            () => reflectionCacheEx    .GetFields(typeof(TestClass)),
+            () => reflectionCacheEx2   .GetFields(typeof(TestClass)),
+            () => StaticReflectionCache.GetFields(typeof(TestClass), BINDING_FLAGS_ALL),
         ];
 
         foreach (var func in synonyms)
@@ -164,13 +164,13 @@ public class ReflectionCache_Field_TestsEx
     [TestMethod]
     public void ReflectionCache_GetFields_NonPublicInstance()
     {
-        var reflectionCache  = new ReflectionCache(NonPublic | Instance);
-        var reflectionCacheLegacy = new ReflectionCacheEx(NonPublic | Instance);
+        var reflectionCache   = new ReflectionCache(NonPublic | Instance);
+        var reflectionCacheEx = new ReflectionCacheEx(NonPublic | Instance);
 
         Func<FieldInfo[]>[] synonyms =
         [
             () => reflectionCache      .GetFields(typeof(TestClass)),
-            () => reflectionCacheLegacy.GetFields(typeof(TestClass)),
+            () => reflectionCacheEx    .GetFields(typeof(TestClass)),
             () => StaticReflectionCache.GetFields(typeof(TestClass), NonPublic | Instance)
         ];
 

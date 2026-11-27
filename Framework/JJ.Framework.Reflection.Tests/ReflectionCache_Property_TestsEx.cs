@@ -13,20 +13,20 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_Test()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx3 = new ReflectionCacheEx(Public | Instance);
 
         Func<string, PropertyInfo>[] synonyms = 
         [
-            name => reflectionCacheLegacy .GetProperty   (typeof(TestClass), name),
-            name => reflectionCacheLegacy2.GetProperty   (typeof(TestClass), name),
-            name => reflectionCacheLegacy3.GetProperty   (typeof(TestClass), name),
-            name => StaticReflectionCache .GetProperty   (typeof(TestClass), name),
-            name => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), name),
-            name => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), name),
-            name => reflectionCacheLegacy3.TryGetProperty(typeof(TestClass), name),
-            name => StaticReflectionCache .TryGetProperty(typeof(TestClass), name),
+            name => reflectionCacheEx    .GetProperty   (typeof(TestClass), name),
+            name => reflectionCacheEx2   .GetProperty   (typeof(TestClass), name),
+            name => reflectionCacheEx3   .GetProperty   (typeof(TestClass), name),
+            name => StaticReflectionCache.GetProperty   (typeof(TestClass), name),
+            name => reflectionCacheEx    .TryGetProperty(typeof(TestClass), name),
+            name => reflectionCacheEx2   .TryGetProperty(typeof(TestClass), name),
+            name => reflectionCacheEx3   .TryGetProperty(typeof(TestClass), name),
+            name => StaticReflectionCache.TryGetProperty(typeof(TestClass), name),
         ];
 
         foreach (var func in synonyms)
@@ -49,14 +49,14 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_PublicInstance()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(Public | Instance);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(Public | Instance);
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), "TestProperty"),
-            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), "TestProperty"),
-            () => StaticReflectionCache .GetProperty(typeof(TestClass), "TestProperty")
+            () => reflectionCacheEx    .GetProperty(typeof(TestClass), "TestProperty"),
+            () => reflectionCacheEx2   .GetProperty(typeof(TestClass), "TestProperty"),
+            () => StaticReflectionCache.GetProperty(typeof(TestClass), "TestProperty")
         ];
 
         foreach (var func in synonyms)
@@ -73,14 +73,14 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_PublicStatic()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(Public | Static);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(Public | Static);
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), "StaticTestProperty"),
-            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), "StaticTestProperty"),
-            () => StaticReflectionCache .GetProperty(typeof(TestClass), "StaticTestProperty")
+            () => reflectionCacheEx    .GetProperty(typeof(TestClass), "StaticTestProperty"),
+            () => reflectionCacheEx2   .GetProperty(typeof(TestClass), "StaticTestProperty"),
+            () => StaticReflectionCache.GetProperty(typeof(TestClass), "StaticTestProperty")
         ];
 
         foreach (var func in synonyms)
@@ -114,16 +114,16 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperty_NotFound_Exception()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCacheEx3 = new ReflectionCacheEx(Public | Instance);
 
         Action[] synonyms =
         [
-            () => StaticReflectionCache .GetProperty(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy .GetProperty(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy2.GetProperty(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy3.GetProperty(typeof(TestClass), NonExistentName)
+            () => StaticReflectionCache.GetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx    .GetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx2   .GetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCacheEx3   .GetProperty(typeof(TestClass), NonExistentName)
         ];
 
         foreach (var action in synonyms)
@@ -135,16 +135,16 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_TryGetProperty_NotFound_ReturnsNull()
     {
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy3 = new ReflectionCacheEx(Public | Instance);
+        var reflectionCache  = new ReflectionCacheEx();
+        var reflectionCache2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache3 = new ReflectionCacheEx(Public | Instance);
 
         Func<PropertyInfo>[] synonyms =
         [
-            () => reflectionCacheLegacy .TryGetProperty(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy2.TryGetProperty(typeof(TestClass), NonExistentName),
-            () => reflectionCacheLegacy3.TryGetProperty(typeof(TestClass), NonExistentName),
-            () => StaticReflectionCache .TryGetProperty(typeof(TestClass), NonExistentName)
+            () => reflectionCache      .TryGetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCache2     .TryGetProperty(typeof(TestClass), NonExistentName),
+            () => reflectionCache3     .TryGetProperty(typeof(TestClass), NonExistentName),
+            () => StaticReflectionCache.TryGetProperty(typeof(TestClass), NonExistentName)
         ];
 
         foreach (var func in synonyms)
@@ -162,16 +162,16 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetProperties()
     {
-        var reflectionCache        = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IList<PropertyInfo>>[] synonyms = 
         [
-            () => reflectionCache       .GetProperties(typeof(TestClass)),
-            () => reflectionCacheLegacy .GetProperties(typeof(TestClass)),
-            () => reflectionCacheLegacy2.GetProperties(typeof(TestClass)),
-            () => StaticReflectionCache .GetProperties(typeof(TestClass), BINDING_FLAGS_ALL),
+            () => reflectionCache      .GetProperties(typeof(TestClass)),
+            () => reflectionCacheEx    .GetProperties(typeof(TestClass)),
+            () => reflectionCacheEx2   .GetProperties(typeof(TestClass)),
+            () => StaticReflectionCache.GetProperties(typeof(TestClass), BINDING_FLAGS_ALL),
         ];
 
         foreach (var func in synonyms)
@@ -212,15 +212,15 @@ public class ReflectionCache_Property_TestsEx
     [TestMethod]
     public void ReflectionCache_GetPropertyDictionary()
     {
-        var reflectionCache        = new ReflectionCache(BINDING_FLAGS_ALL);
-        var reflectionCacheLegacy  = new ReflectionCacheEx();
-        var reflectionCacheLegacy2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
+        var reflectionCache    = new ReflectionCache(BINDING_FLAGS_ALL);
+        var reflectionCacheEx  = new ReflectionCacheEx();
+        var reflectionCacheEx2 = new ReflectionCacheEx(BINDING_FLAGS_ALL);
 
         Func<IDictionary<string, PropertyInfo>>[] synonyms = 
         [
-            () => reflectionCache       .GetPropertyDictionary(typeof(TestClass)),
-            () => reflectionCacheLegacy .GetPropertyDictionary(typeof(TestClass)),
-            () => reflectionCacheLegacy2.GetPropertyDictionary(typeof(TestClass)),
+            () => reflectionCache   .GetPropertyDictionary(typeof(TestClass)),
+            () => reflectionCacheEx .GetPropertyDictionary(typeof(TestClass)),
+            () => reflectionCacheEx2.GetPropertyDictionary(typeof(TestClass)),
         ];
 
         foreach (var func in synonyms)
