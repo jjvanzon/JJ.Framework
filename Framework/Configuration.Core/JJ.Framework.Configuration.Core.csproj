@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj" />
+    <ProjectReference Include="..\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
   </ItemGroup>
   
   <Import Project="..\PlatformCompatibility.Core.SharedProject\JJ.Framework.PlatformCompatibility.Core.SharedProject.projitems" Label="Shared" />

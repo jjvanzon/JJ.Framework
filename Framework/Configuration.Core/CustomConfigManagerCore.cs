@@ -1,8 +1,12 @@
-﻿namespace JJ.Framework.Configuration.Core;
+﻿// ReSharper disable UseSymbolAlias
+
+namespace JJ.Framework.Configuration.Core;
 
 /// <inheritdoc cref="_customconfigmanagercore" />
 public static class CustomConfigManagerCore
 {
+    private static readonly CultureInfo _culture = GetCultureInfo("en-US");
+
     // Cache
 
     private static readonly Dictionary<(Type, string), object> _cache = new();
@@ -11,20 +15,63 @@ public static class CustomConfigManagerCore
     // GetSection
 
     /// <inheritdoc cref="_getsection" />
-    public static TConfig GetSection<TConfig>() => throw new NotImplementedException();
+    public static TConfig GetSection<TConfig>()
+    {
+        var sectionName = ResolveSectionName<TConfig>();
+        return GetSection<TConfig>(sectionName);
+    }
+
     /// <inheritdoc cref="_getsection" />
-    public static TConfig GetSection<TConfig>(Assembly assembly) => throw new NotImplementedException();
+    public static TConfig GetSection<TConfig>(Assembly assembly)
+    {
+        var sectionName = ResolveSectionName(assembly);
+        return GetSection<TConfig>(sectionName);
+    }
+
     /// <inheritdoc cref="_getsection" />
-    public static TConfig GetSection<TConfig>(string sectionName) => throw new NotImplementedException();
+    public static TConfig GetSection<TConfig>(string sectionName)
+    {
+        TConfig? config = TryGetSection<TConfig>(sectionName);
+        if (config == null) 
+        {
+            throw new Exception($"Config section '{sectionName}' not found.");
+        }
+        return config;
+    }
 
     // TryGetSection
 
     /// <inheritdoc cref="_trygetsection" />
-    public static TConfig? TryGetSection<TConfig>() => throw new NotImplementedException();
+    public static TConfig? TryGetSection<TConfig>()
+    {
+        var sectionName = ResolveSectionName<TConfig>();
+        return TryGetSection<TConfig>(sectionName);
+    }
+
     /// <inheritdoc cref="_trygetsection" />
-    public static TConfig? TryGetSection<TConfig>(Assembly assembly) => throw new NotImplementedException();
+    public static TConfig? TryGetSection<TConfig>(Assembly assembly)
+    {
+        var sectionName = ResolveSectionName(assembly);
+        return TryGetSection<TConfig>(sectionName);
+    }
+
     /// <inheritdoc cref="_trygetsection" />
-    public static TConfig? TryGetSection<TConfig>(string sectionName) => throw new NotImplementedException();
+    public static TConfig? TryGetSection<TConfig>(string sectionName)
+    {
+        var key = (typeof(TConfig), sectionName);
+
+        lock (_lock)
+        {
+            if (_cache.TryGetValue(key, out object config))
+            {
+                return (TConfig)config;
+            }
+
+                 
+        }
+
+        throw new NotImplementedException();
+    }
 
     // SetSection
 
@@ -74,6 +121,7 @@ public static class CustomConfigManagerCore
 
     // Resolve
 
-    private static string ResolveSectionName() => throw new NotImplementedException();
+    private static string ResolveSectionName<TConfig>() => ResolveSectionName(typeof(TConfig).Assembly);
+    private static string ResolveSectionName(Assembly assembly) => assembly.NotNull().GetName().Name.NotNull().ToLower(_culture);
     private static string ResolveConfigFile() => throw new NotImplementedException();
 }
