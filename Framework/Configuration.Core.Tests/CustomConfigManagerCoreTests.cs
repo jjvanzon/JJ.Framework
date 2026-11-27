@@ -200,7 +200,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromText()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         { 
             SetSection<ConfigSection>(xml:
               $"""
@@ -218,7 +218,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromText_WithName()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         { 
             SetSection<ConfigSection>("myconfig", xml:
               """
@@ -236,7 +236,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromText_WithAssembly()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         { 
             SetSection<ConfigSection>(_assembly, xml:
               $"""
@@ -256,7 +256,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromBytes()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         {
             byte[] bytes = StringToBytes(
               $"""
@@ -276,7 +276,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithName()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         {
             byte[] bytes = StringToBytes(
               """
@@ -296,7 +296,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithAssembly()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         {
             byte[] bytes = StringToBytes(
               $"""
@@ -318,7 +318,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromStream()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         {
             Stream stream = StringToStream(
               $"""
@@ -338,7 +338,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromStream_WithName()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         {
             Stream stream = StringToStream(
               """
@@ -358,7 +358,7 @@ public class CustomConfigManagerCoreTests
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromStream_WithAssembly()
     {
-        LoopInIsolation(() =>
+        InIsolation(() =>
         {
             Stream stream = StringToStream(
               $"""
@@ -375,6 +375,31 @@ public class CustomConfigManagerCoreTests
         });
     }
 
+    // From File Path
+
+        
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromFilePath()
+    {
+        InIsolation(filePath =>
+        {
+            WriteAllText(
+                filePath,
+                $"""
+                <config>
+                  <{SECTION_NAME} noteLength="0.12" />
+                </config>
+                """);
+
+            SetSection<ConfigSection>(filePath: filePath);
+
+            var config = GetSection<ConfigSection>();
+
+            AreEqual(0.12, config.NoteLength);
+        });
+    }
+
+
     // Helpers
 
     private void LoopInIsolation(Action action)
@@ -390,9 +415,66 @@ public class CustomConfigManagerCoreTests
             }
             finally
             {
-                Clear();
+                ClearSections();
             }
         }
+    }
+
+    private void InIsolation(Action action)
+    {
+        lock (_noParallel)
+        {
+            try
+            {
+                action();
+            }
+            finally
+            {
+                ClearSections();
+            }
+        }
+    }
+
+    private void InIsolation(Action<string> actionWithFilePath)
+    {
+        lock (_noParallel)
+        {
+            string filePath = GetTempFilePath();
+            try
+            {
+                actionWithFilePath(filePath);
+            }
+            finally
+            {
+                ClearSections();
+                try
+                {
+                    if (File.Exists(filePath)) 
+                    {
+                        Delete(filePath);
+                    }
+                }
+                catch
+                { 
+                    // ignore
+                }
+            }
+        }
+    }
+
+    private static string GetTempFilePath()
+    {
+        const string subFolderName = nameof(JJ) + "." + nameof(CustomConfigManagerCoreTests);
+        string folderPath = Combine(GetTempPath(), subFolderName);
+
+        if (!Directory.Exists(folderPath)) 
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        string fileName = GetRandomFileName().Replace(".", "") + ".xml";
+
+        return Combine(folderPath, fileName);
     }
 
     private void AssertSection(ConfigSection? config)

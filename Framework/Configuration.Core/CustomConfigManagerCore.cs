@@ -286,7 +286,7 @@ public static class CustomConfigManagerCore
     #endregion
 
     #region Clear
-    public static void Clear()
+    public static void ClearSections()
     {
         lock (_lock)
         {
