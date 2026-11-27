@@ -91,22 +91,21 @@ public static class CustomConfigManagerCore
             return config;
         }
     }
-
     #endregion
 
     #region SetSection
     /// <inheritdoc cref="_setsection" />
     public static void SetSection<TConfig>(TConfig obj)
     {
-        string sectionName = GetSectionName<TConfig>();
-        SetSection(sectionName, obj);
+        SetSection(GetSectionName<TConfig>(), obj);
     }
+
     /// <inheritdoc cref="_setsection" />
     public static void SetSection<TConfig>(Assembly assembly, TConfig obj)
     {
-        string sectionName = GetSectionName(assembly);
-        SetSection(sectionName, obj);
+        SetSection(GetSectionName(assembly), obj);
     }
+
     /// <inheritdoc cref="_setsection" />
     public static void SetSection<TConfig>(string sectionName, TConfig obj)
     {
@@ -162,8 +161,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string xml)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName<TConfig>();
-        return SetSection<TConfig>(sectionName, xml);
+        return SetSection<TConfig>(GetSectionName<TConfig>(), xml);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -171,8 +169,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<TConfig>(byte[] bytes, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName<TConfig>();
-        return SetSection<TConfig>(sectionName, bytes, encoding);
+        return SetSection<TConfig>(GetSectionName<TConfig>(), bytes, encoding);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -180,8 +177,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Stream stream, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName<TConfig>();
-        return SetSection<TConfig>(sectionName, stream, encoding);
+        return SetSection<TConfig>(GetSectionName<TConfig>(), stream, encoding);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -189,8 +185,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string filePath, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName<TConfig>();
-        return SetSection<TConfig>(sectionName, filePath, encoding);
+        return SetSection<TConfig>(GetSectionName<TConfig>(), filePath, encoding);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -198,8 +193,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string xml)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        return SetSection<TConfig>(sectionName, xml);
+        return SetSection<TConfig>(GetSectionName(assembly), xml);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -207,8 +201,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, byte[] bytes, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        return SetSection<TConfig>(sectionName, bytes, encoding);
+        return SetSection<TConfig>(GetSectionName(assembly), bytes, encoding);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -216,8 +209,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, Stream stream, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        return SetSection<TConfig>(sectionName, stream, encoding);
+        return SetSection<TConfig>(GetSectionName(assembly), stream, encoding);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -225,10 +217,8 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string filePath, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        return SetSection<TConfig>(sectionName, filePath, encoding);
+        return SetSection<TConfig>(GetSectionName(assembly), filePath, encoding);
     }
-
     #endregion
 
     #region RefreshSection
@@ -263,7 +253,7 @@ public static class CustomConfigManagerCore
     private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Encoding? encoding = null) 
         where TConfig : class, new()
     {
-        string fileName = ResolveConfigFileName();
+        string? fileName = TryResolveConfigFileName();
         if (!Has(fileName)) 
         {
              return new TConfig();
@@ -330,7 +320,6 @@ public static class CustomConfigManagerCore
         TConfig config = converter.Convert(sectionElement);
         return config;
     }
-
     #endregion
 
     #region Resolve
@@ -356,7 +345,7 @@ public static class CustomConfigManagerCore
         return name.ToLower(_culture);
     }
 
-    private static string ResolveConfigFileName()
+    private static string? TryResolveConfigFileName()
     {
         if (Exists("app.config"))
         {
@@ -385,6 +374,12 @@ public static class CustomConfigManagerCore
             return "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
         }
 
+        return null;
+    }
+
+    private static void ThrowNotFound()
+    {
+        string? dllConfigFileName = TryGetDllConfigFileName();
         throw new Exception(
             "No config files found with expected file names " +
             $"'app.config', 'web.config'. '{dllConfigFileName}', " +
@@ -403,6 +398,5 @@ public static class CustomConfigManagerCore
 
         return null;
     }
-
     #endregion
 }
