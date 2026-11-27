@@ -15,7 +15,7 @@ public static class CustomConfigManagerCore
     private const string AotWarning = GenericList;
 
     private static readonly CultureInfo _culture = GetCultureInfo("en-US");
-    private static readonly Dictionary<string, object?> _cache = new();
+    private static readonly Dictionary<string, object> _cache = new();
     private static readonly Lock _lock = new();
 
     #region GetSection
@@ -45,8 +45,7 @@ public static class CustomConfigManagerCore
         TConfig? config = TryGetSection<TConfig>(sectionName);
         if (config == null) 
         {
-            // TODO: Add more info where it was looked for.
-            throw new Exception($"Config section '{sectionName}' not found.");
+            throw NewNotFoundException(sectionName);
         }
         return config;
     }
@@ -82,12 +81,17 @@ public static class CustomConfigManagerCore
         {
             if (_cache.TryGetValue(sectionName, out object? obj))
             {
-                return (TConfig?)obj;
+                return (TConfig)obj;
             }
+        }
 
-            var config = LoadConfig<TConfig>(sectionName);
-             _cache[sectionName] = config;
-
+        lock (_lock)
+        {
+            var config = TryLoadConfig<TConfig>(sectionName);
+            if (config != null) 
+            {
+                _cache[sectionName] = config;
+            }
             return config;
         }
     }
@@ -107,9 +111,11 @@ public static class CustomConfigManagerCore
     }
 
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(string sectionName, TConfig obj)
+    public static void SetSection<TConfig>(string sectionName, [NotNull] TConfig obj)
     {
         AssertSectionName(sectionName);
+        ThrowIfNull(obj);
+
         lock (_lock)
         {
             _cache[sectionName] = obj;
@@ -121,7 +127,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig<TConfig>(sectionName, xml);
+        TConfig? obj = TryLoadConfig<TConfig>(sectionName, xml);
         SetSection(sectionName, obj);
         return obj;
     }
@@ -131,7 +137,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig<TConfig>(sectionName, bytes, encoding);
+        TConfig? obj = TryLoadConfig<TConfig>(sectionName, bytes, encoding);
         SetSection(sectionName, obj);
         return obj;
     }
@@ -141,7 +147,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig<TConfig>(sectionName, stream, encoding);
+        TConfig? obj = TryLoadConfig<TConfig>(sectionName, stream, encoding);
         SetSection(sectionName, obj);
         return obj;
     }
@@ -151,7 +157,7 @@ public static class CustomConfigManagerCore
     public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, Encoding? encoding = null)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig<TConfig>(sectionName, filePath, encoding);
+        TConfig? obj = TryLoadConfig<TConfig>(sectionName, filePath, encoding);
         SetSection(sectionName, obj);
         return obj;
     }
@@ -225,15 +231,13 @@ public static class CustomConfigManagerCore
     /// <inheritdoc cref="_refreshsection" />
     public static void RefreshSection<TConfig>()
     {
-        string sectionName = GetSectionName<TConfig>();
-        RefreshSection(sectionName);
+        RefreshSection(GetSectionName<TConfig>());
     }
 
     /// <inheritdoc cref="_refreshsection" />
     public static void RefreshSection(Assembly assembly)
     {
-        string sectionName = GetSectionName(assembly);
-        RefreshSection(sectionName);
+        RefreshSection(GetSectionName(assembly));
     }
 
     /// <inheritdoc cref="_refreshsection" />
@@ -243,26 +247,36 @@ public static class CustomConfigManagerCore
 
         lock (_lock)
         {
-            _cache[sectionName] = null;
+            _cache.Remove(sectionName);
+        }
+    }
+    #endregion
+
+    #region Clear
+    public static void Clear()
+    {
+        lock (_lock)
+        {
+            _cache.Clear();
         }
     }
     #endregion
 
     #region Load
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Encoding? encoding = null) 
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Encoding? encoding = null) 
         where TConfig : class, new()
     {
         string? fileName = TryResolveConfigFileName();
         if (!Has(fileName)) 
         {
-             return new TConfig();
+             return null;
         }
-        return LoadConfig<TConfig>(sectionName, fileName, encoding);
+        return TryLoadConfig<TConfig>(sectionName, fileName, encoding);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string fileName, Encoding? encoding) 
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string fileName, Encoding? encoding) 
         where TConfig : class, new()
     {
         byte[] bytes;
@@ -270,44 +284,44 @@ public static class CustomConfigManagerCore
         {
             bytes = StreamToBytes(stream);
         }
-        return LoadConfig<TConfig>(sectionName, bytes, encoding);
+        return TryLoadConfig<TConfig>(sectionName, bytes, encoding);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream, Encoding? encoding)
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream, Encoding? encoding)
         where TConfig : class, new()
     {
         byte[] bytes = StreamToBytes(stream);
 
-        return LoadConfig<TConfig>(sectionName, bytes, encoding);
+        return TryLoadConfig<TConfig>(sectionName, bytes, encoding);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes, Encoding? encoding)
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes, Encoding? encoding)
         where TConfig : class, new()
     {
         if (!Has(bytes))
         {
-            return new();
+            return null;
         }
 
-        encoding ??= UTF8;
+        string text = BytesToString(bytes, encoding ?? UTF8);
 
-        string text = BytesToString(bytes, encoding);
-        return LoadConfig<TConfig>(sectionName, text);
+        return TryLoadConfig<TConfig>(sectionName, text);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
         where TConfig : class, new()
     {
         if (!Has(xml))
         {
-            return new();
+            return null;
         }
 
         XmlDocument doc = new();
         doc.Load(xml); // TODO: Is Stream faster?
+
         XmlElement docElement = doc.DocumentElement.NotNull();
 
         // TODO: Nested sections. How does that work?
@@ -376,14 +390,13 @@ public static class CustomConfigManagerCore
 
         return null;
     }
-
-    private static void ThrowNotFound()
+    private static Exception NewNotFoundException(string sectionName)
     {
         string? dllConfigFileName = TryGetDllConfigFileName();
-        throw new Exception(
-            "No config files found with expected file names " +
+        return new Exception(
+            $"Config section '{sectionName}' not found in any config with expected file names " +
             $"'app.config', 'web.config'. '{dllConfigFileName}', " +
-            "'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
+            $"'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
             $"in folder: {CurrentDirectory}");
     }
 

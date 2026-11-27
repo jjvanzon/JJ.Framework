@@ -2,6 +2,7 @@
 global using System.Reflection;
 global using System.Globalization;
 global using System.Xml;
+global using System.Diagnostics.CodeAnalysis;
 global using JJ.Framework.Exceptions.Core;
 global using JJ.Framework.Xml.Legacy;
 global using JJ.Framework.Configuration.Core.docs;
