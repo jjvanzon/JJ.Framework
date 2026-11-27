@@ -25,7 +25,7 @@ public static class CustomConfigManagerCore
     public static TConfig GetSection<[Dyn(AllProps)]TConfig>() 
         where TConfig : class, new()
     {
-        var sectionName = ResolveSectionName<TConfig>();
+        string sectionName = ResolveSectionName<TConfig>();
         return GetSection<TConfig>(sectionName);
     }
 
@@ -34,7 +34,7 @@ public static class CustomConfigManagerCore
     public static TConfig GetSection<[Dyn(AllProps)]TConfig>(Assembly assembly) 
         where TConfig : class, new()
     {
-        var sectionName = ResolveSectionName(assembly);
+        string sectionName = ResolveSectionName(assembly);
         return GetSection<TConfig>(sectionName);
     }
 
@@ -46,6 +46,7 @@ public static class CustomConfigManagerCore
         TConfig? config = TryGetSection<TConfig>(sectionName);
         if (config == null) 
         {
+            // TODO: Add more info where it was looked for.
             throw new Exception($"Config section '{sectionName}' not found.");
         }
         return config;
@@ -58,7 +59,7 @@ public static class CustomConfigManagerCore
     public static TConfig? TryGetSection<[Dyn(AllProps)]TConfig>() 
         where TConfig : class, new()
     {
-        var sectionName = ResolveSectionName<TConfig>();
+        string sectionName = ResolveSectionName<TConfig>();
         return TryGetSection<TConfig>(sectionName);
     }
 
@@ -67,7 +68,7 @@ public static class CustomConfigManagerCore
     public static TConfig? TryGetSection<[Dyn(AllProps)]TConfig>(Assembly assembly)
         where TConfig : class, new()
     {
-        var sectionName = ResolveSectionName(assembly);
+        string sectionName = ResolveSectionName(assembly);
         return TryGetSection<TConfig>(sectionName);
     }
 
@@ -153,15 +154,44 @@ public static class CustomConfigManagerCore
 
     #region RefreshSection
     /// <inheritdoc cref="_refreshsection" />
-    public static void RefreshSection<TConfig>() => throw new NotImplementedException();
+    public static void RefreshSection<TConfig>()
+    {
+        string sectionName = ResolveSectionName<TConfig>();
+        RefreshSection(sectionName);
+    }
+
     /// <inheritdoc cref="_refreshsection" />
-    public static void RefreshSection(Assembly assembly) => throw new NotImplementedException();
+    public static void RefreshSection(Assembly assembly)
+    {
+        string sectionName = ResolveSectionName(assembly);
+        RefreshSection(sectionName);
+    }
+
     /// <inheritdoc cref="_refreshsection" />
-    public static void RefreshSection(string  sectionName) => throw new NotImplementedException();
+    public static void RefreshSection(string sectionName)
+    {
+        // TODO: With Type part of key (allowing multiple mappers for the same section),
+        //  You can't offer the same kind of interface as the original ConfigurationManager?
+        throw new NotImplementedException();
+    }
+
     /// <inheritdoc cref="_refreshsection" />
-    public static void RefreshSection<TConfig>(Assembly assembly) => throw new NotImplementedException();
+    public static void RefreshSection<TConfig>(Assembly assembly)
+    {
+        string sectionName = ResolveSectionName(assembly);
+        RefreshSection<TConfig>(sectionName);
+    }
+
     /// <inheritdoc cref="_refreshsection" />
-    public static void RefreshSection<TConfig>(string  sectionName) => throw new NotImplementedException();
+    public static void RefreshSection<TConfig>(string sectionName)
+    {
+        lock (_lock)
+        {
+            var key = (typeof(TConfig), sectionName);
+            _cache[key] = null;
+        }
+    }
+
     #endregion
 
     #region Resolve
@@ -178,7 +208,6 @@ public static class CustomConfigManagerCore
 
     private static string ResolveConfigFileName()
     {
-        // TODO: What if more configs exist and the section is in only one?
         if (Exists("app.config"))
         {
             return "app.config";
