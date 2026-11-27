@@ -75,13 +75,6 @@ public struct _getsection;
 /// This allows you to decide where your file is, instead of relying on assumptions about
 /// standard names and locations.
 /// </param>
-/// <param name="encoding">
-/// UTF8 is assumed by default, but you can provide your own encoding choice with this parameter if needed.
-/// </param>
-/// <param name="hasByteOrderMark">
-/// Indicates whether a UTF8 encoded file to read is assumed to have a byte order mark (a little header).
-/// Assumed false: no byte order mark, but use this parameter if you are expecting anything different.
-/// </param>
 /// <typeparam name="TConfig">
 /// The object type to which the XML content will be mapped.
 /// The properties are set to the content of the XML,
