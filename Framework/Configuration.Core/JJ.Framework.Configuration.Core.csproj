@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.Legacy.csproj" />
     <ProjectReference Include="..\JJ.Framework.Xml\JJ.Framework.Xml.Legacy.csproj" />
     <ProjectReference Include="..\Exceptions.Core\JJ.Framework.Exceptions.Core.csproj" />
     <ProjectReference Include="..\Existence.Core\JJ.Framework.Existence.Core.csproj" />

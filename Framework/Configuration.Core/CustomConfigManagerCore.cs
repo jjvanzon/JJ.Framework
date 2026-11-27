@@ -1,12 +1,10 @@
 ﻿// ReSharper disable UseSymbolAlias
+// ReSharper disable MethodOverloadWithOptionalParameter
 
 // TODO: Enable these warning again once implementation and tests are complete.
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedType.Global
 // ReSharper disable UnusedParameter.Global
-
-using static System.Reflection.Assembly;
-using static JJ.Framework.Common.Core.NameHelper;
 
 namespace JJ.Framework.Configuration.Core;
 
@@ -26,7 +24,7 @@ public static class CustomConfigManagerCore
     public static TConfig GetSection<[Dyn(AllProps)]TConfig>() 
         where TConfig : class, new()
     {
-        string sectionName = ResolveSectionName<TConfig>();
+        string sectionName = GetSectionName<TConfig>();
         return GetSection<TConfig>(sectionName);
     }
 
@@ -35,7 +33,7 @@ public static class CustomConfigManagerCore
     public static TConfig GetSection<[Dyn(AllProps)]TConfig>(Assembly assembly) 
         where TConfig : class, new()
     {
-        string sectionName = ResolveSectionName(assembly);
+        string sectionName = GetSectionName(assembly);
         return GetSection<TConfig>(sectionName);
     }
 
@@ -60,7 +58,7 @@ public static class CustomConfigManagerCore
     public static TConfig? TryGetSection<[Dyn(AllProps)]TConfig>() 
         where TConfig : class, new()
     {
-        string sectionName = ResolveSectionName<TConfig>();
+        string sectionName = GetSectionName<TConfig>();
         return TryGetSection<TConfig>(sectionName);
     }
 
@@ -69,7 +67,7 @@ public static class CustomConfigManagerCore
     public static TConfig? TryGetSection<[Dyn(AllProps)]TConfig>(Assembly assembly)
         where TConfig : class, new()
     {
-        string sectionName = ResolveSectionName(assembly);
+        string sectionName = GetSectionName(assembly);
         return TryGetSection<TConfig>(sectionName);
     }
 
@@ -94,77 +92,157 @@ public static class CustomConfigManagerCore
         }
     }
 
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
-        where TConfig : class, new()
-    {
-        string configFileName = ResolveConfigFileName();
-        if (!Has(configFileName)) 
-             return null;
-
-        string content = ReadAllText(configFileName);
-        if (!Has(content))
-            return null;
-
-        var doc = new XmlDocument();
-        doc.Load(content); // TODO: Is Stream faster?
-        XmlElement docElement = doc.DocumentElement.NotNull();
-        XmlElement? sectionElement = XmlHelper.TryGetElement(docElement, sectionName);
-        // If config section name not found, assume we're mapping the whole XML.
-        sectionElement ??= docElement;
-
-        var converter = new XmlToObjectConverter<TConfig>();
-        TConfig config = converter.Convert(sectionElement);
-        return config;
-    }
-
     #endregion
 
     #region SetSection
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(                      TConfig obj) => throw new NotImplementedException();
+    public static void SetSection<TConfig>(TConfig obj)
+    {
+        string sectionName = GetSectionName<TConfig>();
+        SetSection(sectionName, obj);
+    }
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(Assembly assembly,    TConfig obj) => throw new NotImplementedException();
+    public static void SetSection<TConfig>(Assembly assembly, TConfig obj)
+    {
+        string sectionName = GetSectionName(assembly);
+        SetSection(sectionName, obj);
+    }
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(string   sectionName, TConfig obj) => throw new NotImplementedException();
+    public static void SetSection<TConfig>(string sectionName, TConfig obj)
+    {
+        AssertSectionName(sectionName);
+        lock (_lock)
+        {
+            _cache[sectionName] = obj;
+        }
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(                      string xml                                                               ) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml)
+        where TConfig : class, new()
+    {
+        TConfig obj = LoadConfig<TConfig>(sectionName, xml);
+        SetSection(sectionName, obj);
+        return obj;
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(                      byte[] bytes,    Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        TConfig obj = LoadConfig<TConfig>(sectionName, bytes, encoding);
+        SetSection(sectionName, obj);
+        return obj;
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(                      Stream stream,   Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        TConfig obj = LoadConfig<TConfig>(sectionName, stream, encoding);
+        SetSection(sectionName, obj);
+        return obj;
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(                      string filePath, Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        TConfig obj = LoadConfig<TConfig>(sectionName, filePath, encoding);
+        SetSection(sectionName, obj);
+        return obj;
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(Assembly assembly,    string xml                                                               ) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string xml)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName<TConfig>();
+        return SetSection<TConfig>(sectionName, xml);
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(Assembly assembly,    byte[] bytes,    Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<TConfig>(byte[] bytes, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName<TConfig>();
+        return SetSection<TConfig>(sectionName, bytes, encoding);
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(Assembly assembly,    Stream stream,   Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Stream stream, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName<TConfig>();
+        return SetSection<TConfig>(sectionName, stream, encoding);
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(Assembly assembly,    string filePath, Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(string filePath, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName<TConfig>();
+        return SetSection<TConfig>(sectionName, filePath, encoding);
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(string   sectionName, string xml                                                               ) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string xml)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName(assembly);
+        return SetSection<TConfig>(sectionName, xml);
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(string   sectionName, byte[] bytes,    Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, byte[] bytes, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName(assembly);
+        return SetSection<TConfig>(sectionName, bytes, encoding);
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(string   sectionName, Stream stream,   Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, Stream stream, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName(assembly);
+        return SetSection<TConfig>(sectionName, stream, encoding);
+    }
+
     /// <inheritdoc cref="_setsection" />
-    public static void SetSection<TConfig>(string   sectionName, string filePath, Encoding? encoding = null, bool hasByteOrderMark = false) => throw new NotImplementedException();
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    public static TConfig SetSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string filePath, Encoding? encoding = null)
+        where TConfig : class, new()
+    {
+        string sectionName = GetSectionName(assembly);
+        return SetSection<TConfig>(sectionName, filePath, encoding);
+    }
+
     #endregion
 
     #region RefreshSection
     /// <inheritdoc cref="_refreshsection" />
     public static void RefreshSection<TConfig>()
     {
-        string sectionName = ResolveSectionName<TConfig>();
+        string sectionName = GetSectionName<TConfig>();
         RefreshSection(sectionName);
     }
 
     /// <inheritdoc cref="_refreshsection" />
     public static void RefreshSection(Assembly assembly)
     {
-        string sectionName = ResolveSectionName(assembly);
+        string sectionName = GetSectionName(assembly);
         RefreshSection(sectionName);
     }
 
@@ -180,6 +258,81 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
+    #region Load
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Encoding? encoding = null) 
+        where TConfig : class, new()
+    {
+        string fileName = ResolveConfigFileName();
+        if (!Has(fileName)) 
+        {
+             return new TConfig();
+        }
+        return LoadConfig<TConfig>(sectionName, fileName, encoding);
+    }
+
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string fileName, Encoding? encoding) 
+        where TConfig : class, new()
+    {
+        byte[] bytes;
+        using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            bytes = StreamToBytes(stream);
+        }
+        return LoadConfig<TConfig>(sectionName, bytes, encoding);
+    }
+
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, Stream stream, Encoding? encoding)
+        where TConfig : class, new()
+    {
+        byte[] bytes = StreamToBytes(stream);
+
+        return LoadConfig<TConfig>(sectionName, bytes, encoding);
+    }
+
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes, Encoding? encoding)
+        where TConfig : class, new()
+    {
+        if (!Has(bytes))
+        {
+            return new();
+        }
+
+        encoding ??= UTF8;
+
+        string text = BytesToString(bytes, encoding);
+        return LoadConfig<TConfig>(sectionName, text);
+    }
+
+    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
+        where TConfig : class, new()
+    {
+        if (!Has(xml))
+        {
+            return new();
+        }
+
+        XmlDocument doc = new();
+        doc.Load(xml); // TODO: Is Stream faster?
+        XmlElement docElement = doc.DocumentElement.NotNull();
+
+        // TODO: Nested sections. How does that work?
+        XmlElement? sectionElement = XmlHelper.TryGetElement(docElement, sectionName);
+
+        // If config section name not found, assume we're mapping the whole XML.
+        sectionElement ??= docElement;
+
+        var converter = new XmlToObjectConverter<TConfig>();
+        TConfig config = converter.Convert(sectionElement);
+        return config;
+    }
+
+    #endregion
+
     #region Resolve
     private static void AssertSectionName(string sectionName)
     {
@@ -187,13 +340,13 @@ public static class CustomConfigManagerCore
             throw new Exception($"{nameof(sectionName)} not filled in.");
     }
 
-    private static string ResolveSectionName<TConfig>()
+    private static string GetSectionName<TConfig>()
     {
         Assembly assembly = typeof(TConfig).Assembly;
-        return ResolveSectionName(assembly);
+        return GetSectionName(assembly);
     }
 
-    private static string ResolveSectionName(Assembly assembly)
+    private static string GetSectionName(Assembly assembly)
     {
         var name = assembly.NotNull().GetName().Name;
         if (!Has(name))
