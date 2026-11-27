@@ -3,11 +3,62 @@
 [TestClass]
 public class CustomConfigManagerCoreTests
 {
+    private const int REPEATS = 2; // 2nd time hits cache
+    private static readonly Lock _noParallel = new();
+    
     [TestMethod]
-    public void Test_CustomConfigManagerCore_MainCase()
+    public void Test_CustomConfigManagerCore_GetSection_MainCase()
     {
-        var config = CustomConfigManagerCore.GetSection<ConfigSection>("jj.framework.configuration.core.tests");
-        AssertSection(config);
+        lock (_noParallel)
+        {
+            try
+            {
+                for (int i = 0; i < REPEATS; i++)
+                {
+                    var config = CustomConfigManagerCore.GetSection<ConfigSection>();
+                    AssertSection(config);
+                }
+            }
+            finally
+            {
+                CustomConfigManagerCore.Clear();
+            }
+        }
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_GetSection_WithSectionName()
+    {
+        lock (_noParallel)
+        {
+            try
+            {
+                for (int i = 0; i < REPEATS; i++)
+                {
+                    var config = CustomConfigManagerCore.GetSection<ConfigSection>("jj.framework.configuration.core.tests");
+                    AssertSection(config);
+                }
+            }
+            finally
+            {
+                CustomConfigManagerCore.Clear();
+            }
+        }
+    }
+
+    private void RepeatInIsolation(Action action)
+    {
+        lock (_noParallel)
+        {
+            try
+            {
+                action();
+            }
+            finally
+            {
+                CustomConfigManagerCore.Clear();
+            }
+        }
     }
 
     private void AssertSection(ConfigSection config)
