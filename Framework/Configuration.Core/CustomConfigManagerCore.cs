@@ -145,10 +145,7 @@ public static class CustomConfigManagerCore
     public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string xml)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        TConfig obj = ParseConfig<TConfig>(sectionName, xml);
-        SetSection(sectionName, obj);
-        return obj;
+        return ParseSection<TConfig>(GetSectionName(assembly), xml);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -156,10 +153,7 @@ public static class CustomConfigManagerCore
     public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(string xml)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName<TConfig>();
-        TConfig obj = ParseConfig<TConfig>(sectionName, xml);
-        SetSection(sectionName, obj);
-        return obj;
+        return ParseSection<TConfig>(GetSectionName<TConfig>(), xml);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -177,10 +171,7 @@ public static class CustomConfigManagerCore
     public static TConfig ParseSection<[Dyn(AllProps)]TConfig>(Assembly assembly, byte[] bytes)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
-        SetSection(sectionName, obj);
-        return obj;
+        return ParseSection<TConfig>(GetSectionName(assembly), bytes);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -188,10 +179,7 @@ public static class CustomConfigManagerCore
     public static TConfig ParseSection<TConfig>(byte[] bytes)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName<TConfig>();
-        TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
-        SetSection(sectionName, obj);
-        return obj;
+        return ParseSection<TConfig>(GetSectionName<TConfig>(), bytes);
     }
     #endregion
 
@@ -211,10 +199,7 @@ public static class CustomConfigManagerCore
     public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(Stream stream)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName<TConfig>();
-        TConfig obj = LoadConfig<TConfig>(sectionName, stream);
-        SetSection(sectionName, obj);
-        return obj;
+        return LoadSection<TConfig>(GetSectionName<TConfig>(), stream);
     }
     
     /// <inheritdoc cref="_setsection" />
@@ -222,10 +207,7 @@ public static class CustomConfigManagerCore
     public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(Assembly assembly, Stream stream)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        TConfig obj = LoadConfig<TConfig>(sectionName, stream);
-        SetSection(sectionName, obj);
-        return obj;
+        return LoadSection<TConfig>(GetSectionName(assembly), stream);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -243,9 +225,7 @@ public static class CustomConfigManagerCore
     public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(string filePath)
         where TConfig : class, new()
     {
-        TConfig obj = ParseConfig<TConfig>(GetSectionName<TConfig>(), filePath);
-        SetSection(GetSectionName<TConfig>(), obj);
-        return obj;
+        return LoadSection<TConfig>(GetSectionName<TConfig>(), filePath);
     }
 
     /// <inheritdoc cref="_setsection" />
@@ -253,10 +233,7 @@ public static class CustomConfigManagerCore
     public static TConfig LoadSection<[Dyn(AllProps)]TConfig>(Assembly assembly, string filePath)
         where TConfig : class, new()
     {
-        string sectionName = GetSectionName(assembly);
-        TConfig obj = ParseConfig<TConfig>(sectionName, filePath);
-        SetSection(sectionName, obj);
-        return obj;
+        return LoadSection<TConfig>(GetSectionName(assembly), filePath);
     }
     #endregion
 
