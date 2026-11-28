@@ -14,3 +14,4 @@ global using static System.IO.File;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.IO.Legacy.StreamHelper;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
+global using static JJ.Framework.Configuration.Core.WarningHelper;
