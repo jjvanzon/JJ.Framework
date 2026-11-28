@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Configuration.Core.Tests.Mappers;
 
-internal class ConfigSection
+internal class MyConfig
 {
     // Audio Quality
         

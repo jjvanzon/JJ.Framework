@@ -5,7 +5,7 @@ public class CustomConfigManagerCoreTests
 {
     private const int REPEATS = 3; // Subsequent loops hit cache
     private const string SECTION_NAME = "jj.framework.configuration.core.tests";
-    private static readonly Assembly _assembly = typeof(ConfigSection).Assembly;
+    private static readonly Assembly _assembly = typeof(MyConfig).Assembly;
     private static readonly Lock _noParallel = new();
 
     // GetSection
@@ -15,7 +15,7 @@ public class CustomConfigManagerCoreTests
     {
         LoopInIsolation(() =>
         {
-            var config = GetSection<ConfigSection>();
+            var config = GetSection<MyConfig>();
             AssertSection(config);
         });
     }
@@ -25,7 +25,7 @@ public class CustomConfigManagerCoreTests
     {
         LoopInIsolation(() =>
         {
-            var config = GetSection<ConfigSection>(SECTION_NAME);
+            var config = GetSection<MyConfig>(SECTION_NAME);
             AssertSection(config);
         });
     }
@@ -36,7 +36,7 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         {
             
-            var config = GetSection<ConfigSection>(_assembly);
+            var config = GetSection<MyConfig>(_assembly);
             AssertSection(config);
         });
     }
@@ -57,7 +57,7 @@ public class CustomConfigManagerCoreTests
     {
         LoopInIsolation(() =>
         {
-            Throws(() => GetSection<ConfigSection>("oops"), "not found");
+            Throws(() => GetSection<MyConfig>("oops"), "not found");
         });
     }
 
@@ -67,7 +67,7 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         {
             Assembly assembly = typeof(string).Assembly;
-            Throws(() => GetSection<ConfigSection>(assembly), "not found");
+            Throws(() => GetSection<MyConfig>(assembly), "not found");
         });
     }
 
@@ -78,7 +78,7 @@ public class CustomConfigManagerCoreTests
     {
         LoopInIsolation(() =>
         {
-            var config = TryGetSection<ConfigSection>();
+            var config = TryGetSection<MyConfig>();
             AssertSection(config);
         });
     }
@@ -88,7 +88,7 @@ public class CustomConfigManagerCoreTests
     {
         LoopInIsolation(() =>
         {
-            var config = TryGetSection<ConfigSection>(SECTION_NAME);
+            var config = TryGetSection<MyConfig>(SECTION_NAME);
             AssertSection(config);
         });
     }
@@ -98,7 +98,7 @@ public class CustomConfigManagerCoreTests
     {
         LoopInIsolation(() =>
         {
-            var config = TryGetSection<ConfigSection>(_assembly);
+            var config = TryGetSection<MyConfig>(_assembly);
             AssertSection(config);
         });
     }
@@ -120,7 +120,7 @@ public class CustomConfigManagerCoreTests
     {
         LoopInIsolation(() =>
         {
-            var config = TryGetSection<ConfigSection>("oops");
+            var config = TryGetSection<MyConfig>("oops");
             IsNull(config);
         });
     }
@@ -131,7 +131,7 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         {
             Assembly assembly = typeof(string).Assembly;
-            var config = TryGetSection<ConfigSection>(assembly);
+            var config = TryGetSection<MyConfig>(assembly);
             IsNull(config);
         });
     }
@@ -144,16 +144,16 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         {
             // Get auto-resolved config
-            var config = GetSection<ConfigSection>();
+            var config = GetSection<MyConfig>();
             NotEqual(100, config.NoteLength);
 
             // Set a custom section
-            SetSection(new ConfigSection { NoteLength = 100 });
-            config = GetSection<ConfigSection>();
+            SetSection(new MyConfig { NoteLength = 100 });
+            config = GetSection<MyConfig>();
             AreEqual(100, config.NoteLength);
 
             // Clear to get auto-resolved section next loop.
-            RefreshSection<ConfigSection>();
+            RefreshSection<MyConfig>();
         });
     }
 
@@ -163,16 +163,16 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         {
             // Get auto-resolved config
-            var config = TryGetSection<ConfigSection>("myconfig");
+            var config = TryGetSection<MyConfig>("theconfig");
             IsNull(config);
 
             // Set a custom section
-            SetSection("myconfig", new ConfigSection { NoteLength = 100 });
-            config = GetSection<ConfigSection>("myconfig");
+            SetSection("theconfig", new MyConfig { NoteLength = 100 });
+            config = GetSection<MyConfig>("theconfig");
             AreEqual(100, config.NoteLength);
 
             // Clear to get auto-resolved section next loop.
-            RefreshSection("myconfig");
+            RefreshSection("theconfig");
         });
     }
 
@@ -182,12 +182,12 @@ public class CustomConfigManagerCoreTests
         LoopInIsolation(() =>
         {
             // Get auto-resolved config
-            var config = GetSection<ConfigSection>(_assembly);
+            var config = GetSection<MyConfig>(_assembly);
             NotEqual(100, config.NoteLength);
 
             // Set a custom section
-            SetSection(_assembly, new ConfigSection { NoteLength = 100 });
-            config = GetSection<ConfigSection>(_assembly);
+            SetSection(_assembly, new MyConfig { NoteLength = 100 });
+            config = GetSection<MyConfig>(_assembly);
             AreEqual(100, config.NoteLength);
 
             // Clear to get auto-resolved section next loop.
@@ -202,14 +202,14 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(() =>
         { 
-            SetSection<ConfigSection>(xml:
+            SetSection<MyConfig>(xml:
               $"""
               <config>
                 <{SECTION_NAME} noteLength="1.23" />
               </config>
               """);
 
-            var config = GetSection<ConfigSection>();
+            var config = GetSection<MyConfig>();
 
             AreEqual(1.23, config.NoteLength);
         });
@@ -220,14 +220,14 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(() =>
         { 
-            SetSection<ConfigSection>("myconfig", xml:
+            SetSection<MyConfig>("theconfig", xml:
               """
               <config>
-                <myconfig noteLength="2.34" />
+                <theconfig noteLength="2.34" />
               </config>
               """);
 
-            var config = GetSection<ConfigSection>("myconfig");
+            var config = GetSection<MyConfig>("theconfig");
 
             AreEqual(2.34, config.NoteLength);
         });
@@ -238,14 +238,14 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(() =>
         { 
-            SetSection<ConfigSection>(_assembly, xml:
+            SetSection<MyConfig>(_assembly, xml:
               $"""
               <config>
                 <{SECTION_NAME} noteLength="3.45" />
               </config>
               """);
 
-            var config = GetSection<ConfigSection>(_assembly);
+            var config = GetSection<MyConfig>(_assembly);
 
             AreEqual(3.45, config.NoteLength);
         });
@@ -265,9 +265,9 @@ public class CustomConfigManagerCoreTests
               </config>
               """);
 
-            SetSection<ConfigSection>(bytes);
+            SetSection<MyConfig>(bytes);
 
-            var config = GetSection<ConfigSection>();
+            var config = GetSection<MyConfig>();
 
             AreEqual(4.56, config.NoteLength);
         });
@@ -281,13 +281,13 @@ public class CustomConfigManagerCoreTests
             byte[] bytes = StringToBytes(
               """
               <config>
-                <myconfig noteLength="5.67" />
+                <theconfig noteLength="5.67" />
               </config>
               """);
 
-            SetSection<ConfigSection>("myconfig", bytes);
+            SetSection<MyConfig>("theconfig", bytes);
 
-            var config = GetSection<ConfigSection>("myconfig");
+            var config = GetSection<MyConfig>("theconfig");
 
             AreEqual(5.67, config.NoteLength);
         });
@@ -305,9 +305,9 @@ public class CustomConfigManagerCoreTests
               </config>
               """);
 
-            SetSection<ConfigSection>(_assembly, bytes);
+            SetSection<MyConfig>(_assembly, bytes);
 
-            var config = GetSection<ConfigSection>(_assembly);
+            var config = GetSection<MyConfig>(_assembly);
 
             AreEqual(6.78, config.NoteLength);
         });
@@ -327,9 +327,9 @@ public class CustomConfigManagerCoreTests
               </config>
               """);
 
-            SetSection<ConfigSection>(stream);
+            SetSection<MyConfig>(stream);
 
-            var config = GetSection<ConfigSection>();
+            var config = GetSection<MyConfig>();
 
             AreEqual(7.89, config.NoteLength);
         });
@@ -343,13 +343,13 @@ public class CustomConfigManagerCoreTests
             Stream stream = StringToStream(
               """
               <config>
-                <myconfig noteLength="8.90" />
+                <theconfig noteLength="8.90" />
               </config>
               """);
 
-            SetSection<ConfigSection>("myconfig", stream);
+            SetSection<MyConfig>("theconfig", stream);
 
-            var config = GetSection<ConfigSection>("myconfig");
+            var config = GetSection<MyConfig>("theconfig");
 
             AreEqual(8.90, config.NoteLength);
         });
@@ -367,9 +367,9 @@ public class CustomConfigManagerCoreTests
               </config>
               """);
 
-            SetSection<ConfigSection>(_assembly, stream);
+            SetSection<MyConfig>(_assembly, stream);
 
-            var config = GetSection<ConfigSection>(_assembly);
+            var config = GetSection<MyConfig>(_assembly);
 
             AreEqual(9.01, config.NoteLength);
         });
@@ -390,9 +390,9 @@ public class CustomConfigManagerCoreTests
                 </config>
                 """);
 
-            SetSection<ConfigSection>(filePath: filePath);
+            SetSection<MyConfig>(filePath: filePath);
 
-            var config = GetSection<ConfigSection>();
+            var config = GetSection<MyConfig>();
 
             AreEqual(0.12, config.NoteLength);
         });
@@ -407,13 +407,13 @@ public class CustomConfigManagerCoreTests
                 filePath,
                 """
                 <config>
-                  <myconfig noteLength="9.87" />
+                  <theconfig noteLength="9.87" />
                 </config>
                 """);
 
-            SetSection<ConfigSection>("myconfig", filePath: filePath);
+            SetSection<MyConfig>("theconfig", filePath: filePath);
 
-            var config = GetSection<ConfigSection>("myconfig");
+            var config = GetSection<MyConfig>("theconfig");
 
             AreEqual(9.87, config.NoteLength);
         });
@@ -432,9 +432,9 @@ public class CustomConfigManagerCoreTests
                 </config>
                 """);
 
-            SetSection<ConfigSection>(_assembly, filePath: filePath);
+            SetSection<MyConfig>(_assembly, filePath: filePath);
 
-            var config = GetSection<ConfigSection>(_assembly);
+            var config = GetSection<MyConfig>(_assembly);
 
             AreEqual(8.76, config.NoteLength);
         });
@@ -518,7 +518,7 @@ public class CustomConfigManagerCoreTests
         return Combine(folderPath, fileName);
     }
 
-    private void AssertSection(ConfigSection? config)
+    private void AssertSection(MyConfig? config)
     {
         IsNotNull(          config);
                             
