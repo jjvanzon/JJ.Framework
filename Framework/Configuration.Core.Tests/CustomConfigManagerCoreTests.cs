@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Configuration.Core.Tests;
+﻿using static System.IO.File;
+
+namespace JJ.Framework.Configuration.Core.Tests;
 
 [TestClass]
 public class CustomConfigManagerCoreTests
@@ -382,7 +384,7 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(filePath =>
         {
-            File.WriteAllText(
+            WriteAllText(
                 filePath,
                 $"""
                 <config>
@@ -403,7 +405,7 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(filePath =>
         {
-            File.WriteAllText(
+            WriteAllText(
                 filePath,
                 """
                 <config>
@@ -424,7 +426,7 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(filePath =>
         {
-            File.WriteAllText(
+            WriteAllText(
                 filePath,
                 $"""
                 <config>
@@ -456,6 +458,91 @@ public class CustomConfigManagerCoreTests
         Throws(() => SetSection   <MyConfig>(filePath: ""   ), "no filePath"   );
         Throws(() => SetSection   <MyConfig>(filePath: " "  ), "no filePath"   );
         Throws(() => SetSection   <MyConfig>(filePath: GetTempFilePath()), "file not found");
+    }
+
+    // Config File Locations
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_ConfigFileLocations()
+    {
+        InIsolation(() =>
+        {
+            // Remember current config
+            var orgFilePath = TryGetConfigFileName();
+            NotNullOrWhiteSpace(orgFilePath);
+            IsTrue(File.Exists(orgFilePath));
+            var orgContent = ReadAllText(orgFilePath);
+            NotNullOrWhiteSpace(orgContent);
+
+            try
+            {
+                // No config file
+                {
+                    Delete(orgFilePath);
+                    Delete("app.config");
+                    Delete("web.config");
+                    Delete("web.config");
+                    RefreshSection<MyConfig>();
+                    var config = TryGetSection<MyConfig>();
+                    IsNull(config);
+                    Throws(() => GetSection<MyConfig>(), "no config file found");
+                }
+
+                // app.config
+                {
+                    const string content = $"""
+                      <config>
+                        <{SECTION_NAME} audioLength="3.14" />
+                      </config>
+                      """;
+
+                    WriteAllText("app.config", content);
+                    AreEqual("app.config", GetConfigFileName());
+                    var config = GetSection<MyConfig>();
+                    NotNull(config);
+                    AreEqual(3.14, config.AudioLength);
+
+                    Delete("app.config");
+                    IsNullOrWhiteSpace(TryGetConfigFileName());
+                }
+
+                // web.config
+                {
+                    const string content = $"""
+                      <config>
+                        <{SECTION_NAME} audioLength="3.15" />
+                      </config>
+                      """;
+
+                    WriteAllText("web.config", content);
+                    AreEqual("web.config", GetConfigFileName());
+
+                    // State cached
+                    var config = GetSection<MyConfig>();
+                    AreEqual(3.14, config.AudioLength);
+
+                    // Until RefreshSection
+                    RefreshSection<MyConfig>();
+                    config = GetSection<MyConfig>();
+                    NotNull(config);
+                    AreEqual(3.15, config.AudioLength);
+                }
+            }
+            finally
+            {
+                // Restore original config
+                try
+                {
+                    WriteAllText(orgFilePath, orgContent);
+                }
+                catch
+                {
+                    // Ignore
+                }
+            }
+
+            
+        });
     }
 
     // Helpers
@@ -509,7 +596,7 @@ public class CustomConfigManagerCoreTests
                 {
                     if (File.Exists(filePath)) 
                     {
-                        File.Delete(filePath);
+                        Delete(filePath);
                     }
                 }
                 catch

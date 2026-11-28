@@ -17,6 +17,88 @@ public static class CustomConfigManagerCore
     private static readonly Dictionary<string, object> _cache = new();
     private static readonly Lock _lock = new();
 
+    #region Resolve Config Path
+    /// <inheritdoc cref="_supportedconfigfilenames" />
+    public static IList<string> SupportedConfigFileNames 
+    {
+        get; set => field = value.NotNull(); 
+    } = InitSupportedConfigFileNames();
+
+    private static IList<string> InitSupportedConfigFileNames()
+    {
+        List<string> list = [];
+
+        // {YourProjectName}.dll.config
+        string? dllConfigFileName = TryGetDllConfigFileName();
+        if (Has(dllConfigFileName))
+        {
+            list.Add(dllConfigFileName);
+        }
+
+        list.Add("app.config");
+        list.Add("web.config");
+        list.Add("testhost.dll.config");
+        list.Add("nCrunch.TaskRunner.DotNetCore.20.x64.dll.config");
+
+        return list;
+    }
+
+    /// <inheritdoc cref="_trygetconfigfilename"/>
+    public static string? TryGetConfigFileName()
+    {
+        foreach (string fileName in SupportedConfigFileNames.ToArray())
+        {
+            if (Exists(fileName))
+            {
+                return fileName;
+            }
+        }
+
+        return null;
+    }
+    
+    /// <inheritdoc cref="_getconfigfilename"/>
+    public static string GetConfigFileName()
+    {
+        string? configFileName = TryGetConfigFileName();
+
+        if (Has(configFileName))
+        {
+            return configFileName;
+        }
+
+        string? dllConfigFileName = TryGetDllConfigFileName();
+
+        throw new Exception(
+            $"No config file found with expected file names " +
+            $"'app.config', 'web.config'. '{dllConfigFileName}', " +
+            $"'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
+            $"in folder: {CurrentDirectory}");
+    }
+
+    private static Exception NewNotFoundException(string sectionName)
+    {
+        string? dllConfigFileName = TryGetDllConfigFileName();
+        return new Exception(
+            $"Config section '{sectionName}' not found in any config with expected file names " +
+            $"'app.config', 'web.config'. '{dllConfigFileName}', " +
+            $"'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
+            $"in folder: {CurrentDirectory}");
+    }
+
+    private static string? TryGetDllConfigFileName()
+    {
+        string? entryAssemblyName = GetEntryAssembly()?.GetName().Name;
+
+        if (Has(entryAssemblyName))
+        {
+            return $"{entryAssemblyName}.dll.config";
+        }
+
+        return null;
+    }
+    #endregion
+
     #region Get
     /// <inheritdoc cref="_getsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
@@ -271,7 +353,7 @@ public static class CustomConfigManagerCore
     private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
         where TConfig : class, new()
     {
-        string fileName = ResolveConfigFileName();
+        string fileName = GetConfigFileName();
         return LoadConfig<TConfig>(sectionName, filePath: fileName);
     }
 
@@ -279,7 +361,7 @@ public static class CustomConfigManagerCore
     private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
         where TConfig : class, new()
     {
-        string? fileName = TryResolveConfigFileName();
+        string? fileName = TryGetConfigFileName();
         return TryLoadConfig<TConfig>(sectionName, filePath: fileName);
     }
 
@@ -397,7 +479,7 @@ public static class CustomConfigManagerCore
 
     #endregion
 
-    #region Resolve
+    #region Helpers
     private static void AssertSectionName(string sectionName)
     {
         if (!Has(sectionName)) 
@@ -418,78 +500,6 @@ public static class CustomConfigManagerCore
             throw new Exception("Assembly has no name."); // ncrunch: no coverage
 
         return name.ToLower(_culture);
-    }
-
-    private static string? TryResolveConfigFileName()
-    {
-        if (Exists("app.config"))
-        {
-            return "app.config";
-        }
-
-        if (Exists("web.config"))
-        {
-            return "web.config";
-        }
-
-        // {YourProjectName}.dll.config
-        string? dllConfigFileName = TryGetDllConfigFileName();
-        if (Has(dllConfigFileName) && Exists(dllConfigFileName))
-        {
-            return dllConfigFileName;
-        }
-
-        if (Exists("testhost.dll.config"))
-        {
-            return "testhost.dll.config";
-        }
-
-        if (Exists("nCrunch.TaskRunner.DotNetCore.20.x64.dll.config"))
-        {
-            return "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
-        }
-
-        return null;
-    }
-    
-    private static string ResolveConfigFileName()
-    {
-        string? configFileName = TryResolveConfigFileName();
-
-        if (Has(configFileName))
-        {
-            return configFileName;
-        }
-
-        string? dllConfigFileName = TryGetDllConfigFileName();
-
-        throw new Exception(
-            $"No config file found with expected file names " +
-            $"'app.config', 'web.config'. '{dllConfigFileName}', " +
-            $"'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
-            $"in folder: {CurrentDirectory}");
-    }
-
-    private static Exception NewNotFoundException(string sectionName)
-    {
-        string? dllConfigFileName = TryGetDllConfigFileName();
-        return new Exception(
-            $"Config section '{sectionName}' not found in any config with expected file names " +
-            $"'app.config', 'web.config'. '{dllConfigFileName}', " +
-            $"'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
-            $"in folder: {CurrentDirectory}");
-    }
-
-    private static string? TryGetDllConfigFileName()
-    {
-        string? entryAssemblyName = GetEntryAssembly()?.GetName().Name;
-
-        if (Has(entryAssemblyName))
-        {
-            return $"{entryAssemblyName}.dll.config";
-        }
-
-        return null;
     }
     #endregion
     

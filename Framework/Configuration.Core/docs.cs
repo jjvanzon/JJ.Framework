@@ -21,6 +21,20 @@ public struct _customconfigmanagercore;
 
 /// <summary>
 /// <para>
+/// Returns the config file name (in the <c>CurrentDirectory</c>)
+/// from which <c>GetSection</c> will automatically read
+/// (unless cached or overridden by <c>SetSection</c>.)
+/// </para>
+/// 
+/// <para>
+/// The <c>TryGet</c> variant will return null if no config file was found in the expected locations.<br/>
+/// The <c>Get</c> variant will throw an exception if no file was found.
+/// </para>
+/// </summary>
+public struct _getconfigfilename;
+
+/// <summary>
+/// <para>
 /// Gets an object with the config's data in it.<br/>
 /// Returns what's provided using <c>SetSection</c> (with explicit options).
 /// </para>
@@ -103,6 +117,15 @@ public struct _refreshsection;
 /// <inheritdoc cref="_parameters" />
 public struct _setsection;
 
+/// <summary>
+/// Gets or sets the config file names / paths (related to the CurrentDirectory).
+/// Beware this is global state and can affect the whole configuration system.
+/// </summary>
+public struct _supportedconfigfilenames;
+
 /// <remarks>The <c>TryGetSection</c> variant returns null in case no config section was found.</remarks>
 /// <inheritdoc cref="_getsection" />
 public struct _trygetsection;
+
+/// <inheritdoc cref="_getconfigfilename"/>
+public struct _trygetconfigfilename;
