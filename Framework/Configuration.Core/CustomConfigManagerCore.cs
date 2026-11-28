@@ -18,64 +18,17 @@ public static class CustomConfigManagerCore
 
     #region Resolve Config File
     /// <inheritdoc cref="_supportedconfigfilenames" />
-    public static IList<string> SupportedConfigFileNames { get; set => field = value.NotNull(); } = new[]
-    {
-        TryGetDllConfigFileName(),
-        "app.config",
-        "web.config",
-        "testhost.dll.config",
-        "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config"
-    }.Where(FilledIn).ToList()!;
-    
-    /// <summary> {YourProjectName}.dll.config </summary>
-    private static string? TryGetDllConfigFileName()
-    {
-        // 
-        string? entryAssemblyName = GetEntryAssembly()?.GetName().Name;
-        if (Has(entryAssemblyName))
-        {
-            return $"{entryAssemblyName}.dll.config";
-        }
-        return null;
+    public static IList<string> SupportedConfigFileNames
+    { 
+        get => ConfigFileResolver.SupportedConfigFileNames; 
+        set => ConfigFileResolver.SupportedConfigFileNames = value;
     }
 
     /// <inheritdoc cref="_trygetconfigfilename"/>
-    public static string? TryGetConfigFileName()
-    {
-        foreach (string fileName in SupportedConfigFileNames.ToArray())
-        {
-            if (Exists(fileName))
-                return fileName;
-        }
-
-        return null;
-    }
+    public static string? TryGetConfigFileName() => ConfigFileResolver.TryGetConfigFileName();
     
     /// <inheritdoc cref="_getconfigfilename"/>
-    public static string GetConfigFileName()
-    {
-        string? fileName = TryGetConfigFileName();
-        if (Has(fileName))
-        {
-            return fileName;
-        }
-
-        throw new Exception(
-            $"No config file found with expected file names " +
-            $"{FormatSupportedFileNames()} " +
-            $"in folder: {CurrentDirectory}");
-    }
-
-    private static Exception CreateNotFoundException(string sectionName)
-    {
-        return new Exception(
-            $"Config section '{sectionName}' not found in any config with expected file names " +
-            $"{FormatSupportedFileNames()} " +
-            $"in folder: {CurrentDirectory}");
-    }
-
-    private static string FormatSupportedFileNames() 
-        => Join(", ", SupportedConfigFileNames.ToArray().Select(x => "'" + x + "'" ));
+    public static string GetConfigFileName() => ConfigFileResolver.GetConfigFileName();
     #endregion
 
     #region Get
@@ -430,7 +383,7 @@ public static class CustomConfigManagerCore
         var config = TryLoadConfig<TConfig>(sectionName, doc);
         if (config == null)
         {
-            throw CreateNotFoundException(sectionName);
+            throw ConfigFileResolver.CreateNotFoundException(sectionName);
         }
         return config;
     }
@@ -505,7 +458,7 @@ public static class CustomConfigManagerCore
     private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
 
     [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
-    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+    private static TConfig TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
 
     // ReSharper restore UnusedTypeParameter
     // ReSharper restore UnusedMember.Global
