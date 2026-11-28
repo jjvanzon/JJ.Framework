@@ -435,11 +435,11 @@ public class CustomConfigManagerCoreTests
         }
     }
 
-    private void InIsolation(Action<string> actionWithFilePath)
+    private void InIsolation(Action<string> actionWithFilePath, [Caller] string testName = "")
     {
         lock (_noParallel)
         {
-            string filePath = GetTempFilePath();
+            string filePath = GetTempFilePath(testName);
             try
             {
                 actionWithFilePath(filePath);
@@ -462,10 +462,11 @@ public class CustomConfigManagerCoreTests
         }
     }
 
-    private static string GetTempFilePath()
+    private static string GetTempFilePath(string testName)
     {
-        const string subFolderName = nameof(JJ) + "." + nameof(CustomConfigManagerCoreTests);
-        string folderPath = Combine(GetTempPath(), subFolderName);
+        string subFolderName = typeof(CustomConfigManagerCore).Namespace + ".TestRuns";
+        string subSubFolderName = testName; //nameof(CustomConfigManagerCoreTests);
+        string folderPath = Combine(GetTempPath(), subFolderName, subSubFolderName);
 
         if (!Directory.Exists(folderPath)) 
         {
