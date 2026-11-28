@@ -284,7 +284,7 @@ public static class CustomConfigManagerCore
         {
             return null;
         }
-        return TryLoadConfig<TConfig>(sectionName, fileName);
+        return TryLoadConfig<TConfig>(sectionName, filePath: fileName);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
@@ -300,7 +300,7 @@ public static class CustomConfigManagerCore
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath) 
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, NameOvl ovl1 = default) 
         where TConfig : class, new()
     {
         if (!Exists(filePath))
@@ -508,6 +508,8 @@ public static class CustomConfigManagerCore
     [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
     private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
 
+    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
 
     // ReSharper restore UnusedTypeParameter
     // ReSharper restore UnusedMember.Global
