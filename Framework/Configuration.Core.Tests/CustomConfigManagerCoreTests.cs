@@ -1,6 +1,4 @@
-﻿using static System.IO.File;
-
-namespace JJ.Framework.Configuration.Core.Tests;
+﻿namespace JJ.Framework.Configuration.Core.Tests;
 
 [TestClass]
 public class CustomConfigManagerCoreTests
@@ -481,7 +479,8 @@ public class CustomConfigManagerCoreTests
                     Delete(orgFilePath);
                     Delete("app.config");
                     Delete("web.config");
-                    Delete("web.config");
+                    Delete("testhost.dll.config");
+                    Delete("nCrunch.TaskRunner.DotNetCore.20.x64.dll.config");
                     RefreshSection<MyConfig>();
                     var config = TryGetSection<MyConfig>();
                     IsNull(config);
@@ -491,13 +490,14 @@ public class CustomConfigManagerCoreTests
                 // app.config
                 {
                     // Create File
+                    const string fileName = "app.config";
                     const string content = $"""
                       <config>
                         <{SECTION_NAME} audioLength="3.14" />
                       </config>
                       """;
-                    WriteAllText("app.config", content);
-                    AreEqual("app.config", GetConfigFileName());
+                    WriteAllText(fileName, content);
+                    AreEqual(fileName, GetConfigFileName());
 
                     // Assert
                     var config = GetSection<MyConfig>();
@@ -505,20 +505,21 @@ public class CustomConfigManagerCoreTests
                     AreEqual(3.14, config.AudioLength);
 
                     // Delete file
-                    Delete("app.config");
+                    Delete(fileName);
                     IsNullOrWhiteSpace(TryGetConfigFileName());
                 }
 
                 // web.config
                 {
                     // Create File
+                    const string fileName = "web.config";
                     const string content = $"""
                       <config>
-                        <{SECTION_NAME} audioLength="3.15" />
+                        <{SECTION_NAME} audioLength="4.14" />
                       </config>
                       """;
-                    WriteAllText("web.config", content);
-                    AreEqual("web.config", GetConfigFileName());
+                    WriteAllText(fileName, content);
+                    AreEqual(fileName, GetConfigFileName());
 
                     // State cached
                     var config = GetSection<MyConfig>();
@@ -528,14 +529,86 @@ public class CustomConfigManagerCoreTests
                     RefreshSection<MyConfig>();
                     config = GetSection<MyConfig>();
                     NotNull(config);
-                    AreEqual(3.15, config.AudioLength);
+                    AreEqual(4.14, config.AudioLength);
 
                     // Delete File
-                    Delete("web.config");
+                    Delete(fileName);
                     IsNullOrWhiteSpace(TryGetConfigFileName());
                 }
 
-                // TODO: Other config sources.
+                // testhost.dll.config
+                {
+                    // Create File
+                    const string fileName = "testhost.dll.config";
+                    const string content = $"""
+                      <config>
+                        <{SECTION_NAME} audioLength="5.14" />
+                      </config>
+                      """;
+                    WriteAllText(fileName, content);
+                    AreEqual(fileName, GetConfigFileName());
+
+                    // Assert
+                    RefreshSection<MyConfig>();
+                    var config = GetSection<MyConfig>();
+                    NotNull(config);
+                    AreEqual(5.14, config.AudioLength);
+
+                    // Delete File
+                    Delete(fileName);
+                    IsNullOrWhiteSpace(TryGetConfigFileName());
+                }
+
+                // nCrunch.TaskRunner.DotNetCore.20.x64.dll.config
+                {
+                    // Create File
+                    const string fileName = "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config";
+                    const string content = $"""
+                      <config>
+                        <{SECTION_NAME} audioLength="6.14" />
+                      </config>
+                      """;
+                    WriteAllText(fileName, content);
+                    AreEqual(fileName, GetConfigFileName());
+
+                    // Assert
+                    RefreshSection<MyConfig>();
+                    var config = GetSection<MyConfig>();
+                    NotNull(config);
+                    AreEqual(6.14, config.AudioLength);
+
+                    // Delete File
+                    Delete(fileName);
+                    IsNullOrWhiteSpace(TryGetConfigFileName());
+                }
+
+                // TODO: This case fails. EntryAssembly is null.
+                return;
+
+                // {YourProjectName}.dll.config
+                {
+                    // Create File
+                    string entryAssemblyName = GetEntryAssembly()?.GetName().Name ?? "";
+                    NotNullOrWhiteSpace(entryAssemblyName);
+                    string fileName = GetEntryAssembly()?.GetName().Name + ".dll.config";
+                    const string content = $"""
+                      <config>
+                        <{SECTION_NAME} audioLength="6.14" />
+                      </config>
+                      """;
+                    WriteAllText(fileName, content);
+                    AreEqual(fileName, GetConfigFileName());
+
+                    // Assert
+                    RefreshSection<MyConfig>();
+                    var config = GetSection<MyConfig>();
+                    NotNull(config);
+                    AreEqual(6.14, config.AudioLength);
+
+                    // Delete File
+                    Delete(fileName);
+                    IsNullOrWhiteSpace(TryGetConfigFileName());
+                }
             }
             finally
             {

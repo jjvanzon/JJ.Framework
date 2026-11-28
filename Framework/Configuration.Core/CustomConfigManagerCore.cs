@@ -27,8 +27,10 @@ public static class CustomConfigManagerCore
         "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config"
     }.Where(FilledIn).ToList()!;
     
+    /// <summary> {YourProjectName}.dll.config </summary>
     private static string? TryGetDllConfigFileName()
     {
+        // 
         string? entryAssemblyName = GetEntryAssembly()?.GetName().Name;
         if (Has(entryAssemblyName))
         {

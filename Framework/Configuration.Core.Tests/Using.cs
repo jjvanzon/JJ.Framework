@@ -4,6 +4,8 @@ global using Microsoft.VisualStudio.TestTools.UnitTesting;
 //global using JJ.Framework.Logging.Core.Mappers;
 global using JJ.Framework.Configuration.Core.Tests.Mappers;
 global using static System.IO.Path;
+global using static System.IO.File;
+global using static System.Reflection.Assembly;
 global using static JJ.Framework.IO.Legacy.StreamHelper;
 global using static JJ.Framework.Testing.Core.AssertCore;
 global using static JJ.Framework.Configuration.Core.CustomConfigManagerCore;
