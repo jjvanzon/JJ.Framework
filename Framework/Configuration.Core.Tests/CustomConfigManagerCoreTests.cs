@@ -216,7 +216,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromText_WithName()
+    public void Test_CustomConfigManagerCore_SetSection_FromText_WithSectionName()
     {
         InIsolation(() =>
         { 
@@ -274,7 +274,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithName()
+    public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithSectionName()
     {
         InIsolation(() =>
         {
@@ -336,7 +336,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromStream_WithName()
+    public void Test_CustomConfigManagerCore_SetSection_FromStream_WithSectionName()
     {
         InIsolation(() =>
         {
@@ -377,7 +377,6 @@ public class CustomConfigManagerCoreTests
 
     // From File Path
 
-        
     [TestMethod]
     public void Test_CustomConfigManagerCore_SetSection_FromFilePath()
     {
@@ -399,6 +398,47 @@ public class CustomConfigManagerCoreTests
         });
     }
 
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromFilePath_WithSectionName()
+    {
+        InIsolation(filePath =>
+        {
+            WriteAllText(
+                filePath,
+                """
+                <config>
+                  <myconfig noteLength="9.87" />
+                </config>
+                """);
+
+            SetSection<ConfigSection>("myconfig", filePath: filePath);
+
+            var config = GetSection<ConfigSection>("myconfig");
+
+            AreEqual(9.87, config.NoteLength);
+        });
+    }
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_SetSection_FromFilePath_WithAssembly()
+    {
+        InIsolation(filePath =>
+        {
+            WriteAllText(
+                filePath,
+                $"""
+                <config>
+                  <{SECTION_NAME} noteLength="8.76" />
+                </config>
+                """);
+
+            SetSection<ConfigSection>(_assembly, filePath: filePath);
+
+            var config = GetSection<ConfigSection>(_assembly);
+
+            AreEqual(8.76, config.NoteLength);
+        });
+    }
 
     // Helpers
 
