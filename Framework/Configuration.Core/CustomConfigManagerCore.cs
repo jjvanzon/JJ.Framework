@@ -1,14 +1,9 @@
-﻿// ReSharper disable UseSymbolAlias
-// ReSharper disable MethodOverloadWithOptionalParameter
-
-// TODO: Enable these warning again once implementation and tests are complete.
-// ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedType.Global
+﻿#pragma warning disable IDE0060 // Unused parameter
 // ReSharper disable UnusedParameter.Global
-
+// ReSharper disable UnusedParameter.Local
+// ReSharper disable UseSymbolAlias
+// ReSharper disable MethodOverloadWithOptionalParameter
 using JJ.Framework.Common.Core;
-
-#pragma warning disable IDE0051 // Never used private
 
 namespace JJ.Framework.Configuration.Core;
 
@@ -133,36 +128,13 @@ public static class CustomConfigManagerCore
     }
     #endregion
 
-    #region Enforce Argument Names
-    private const string SPECIFY_XML_OR_FILE_PATH = "Specify argument name xml: or filePath: to disambiguate";
-
-    // ncrunch: no coverage start
-
-    /// <inheritdoc cref="_setsection" />
-    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
-    // ReSharper disable once UnusedTypeParameter
-    public static void SetSection<TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
-
-    /// <inheritdoc cref="_setsection" />
-    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
-    // ReSharper disable once UnusedTypeParameter
-    public static void SetSection<TConfig>(Assembly assembly, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
-
-    /// <inheritdoc cref="_setsection" />
-    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
-    // ReSharper disable once UnusedTypeParameter
-    public static void SetSection<TConfig>(string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
-
-    // ncrunch: no coverage end
-    #endregion
-
     #region From Text or Bytes
     /// <inheritdoc cref="_setsection" />
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     public static void SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string xml, NameOvl ovl1 = default)
         where TConfig : class, new()
     {
-        TConfig obj = ParseConfig<TConfig>(sectionName, xml);
+        TConfig obj = LoadConfig<TConfig>(sectionName, xml: xml);
         SetSection(sectionName, obj);
     }
     
@@ -187,7 +159,7 @@ public static class CustomConfigManagerCore
     public static void SetSection<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
         where TConfig : class, new()
     {
-        TConfig obj = ParseConfig<TConfig>(sectionName, bytes);
+        TConfig obj = LoadConfig<TConfig>(sectionName, bytes);
         SetSection(sectionName, obj);
     }
 
@@ -239,7 +211,7 @@ public static class CustomConfigManagerCore
     public static void SetSection<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, NameOvl ovl1 = default, NameOvl ovl2 = default)
         where TConfig : class, new()
     {
-        TConfig obj = LoadConfig<TConfig>(sectionName, filePath);
+        TConfig obj = LoadConfig<TConfig>(sectionName, filePath: filePath);
         SetSection(sectionName, obj);
     }
 
@@ -283,45 +255,24 @@ public static class CustomConfigManagerCore
             _cache.Remove(sectionName);
         }
     }
-    #endregion
 
-    #region Clear
-    public static void ClearSections()
+    /// <inheritdoc cref="_refreshallsections" />
+    public static void RefreshAllSections()
     {
         lock (_lock)
         {
             _cache.Clear();
         }
     }
-
-    public static void ClearSection<TConfig>()
-    {
-        string sectionName = GetSectionName<TConfig>();
-        ClearSection(sectionName);
-    }
-
-    public static void ClearSection(Assembly assembly)
-    {
-        string sectionName = GetSectionName(assembly);
-        ClearSection(sectionName);
-    }
-
-    public static void ClearSection(string sectionName)
-    {
-        lock (_lock)
-        {
-            _cache.Remove(sectionName);
-        }
-    }
     #endregion
 
-    #region Private Load
+    #region Load
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
     private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName) 
         where TConfig : class, new()
     {
         string fileName = ResolveConfigFileName();
-        return LoadConfig<TConfig>(sectionName, fileName);
+        return LoadConfig<TConfig>(sectionName, filePath: fileName);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
@@ -337,7 +288,7 @@ public static class CustomConfigManagerCore
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath) 
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, NameOvl ovl1 = default) 
         where TConfig : class, new()
     {
         XmlDocument doc = new();
@@ -345,7 +296,7 @@ public static class CustomConfigManagerCore
         {
             doc.Load(stream);
         }
-        return ParseConfig<TConfig>(sectionName, doc);
+        return LoadConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
@@ -362,7 +313,7 @@ public static class CustomConfigManagerCore
         {
             doc.Load(stream);
         }
-        return TryParseConfig<TConfig>(sectionName, doc);
+        return TryLoadConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
@@ -372,11 +323,11 @@ public static class CustomConfigManagerCore
         XmlDocument doc = new();
         doc.Load(stream);
 
-        return ParseConfig<TConfig>(sectionName, doc);
+        return LoadConfig<TConfig>(sectionName, doc);
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
         where TConfig : class, new()
     {
         if (!Has(bytes))
@@ -390,21 +341,7 @@ public static class CustomConfigManagerCore
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, byte[] bytes)
-        where TConfig : class, new()
-    {
-        if (!Has(bytes))
-        {
-            return null;
-        }
-
-        Stream stream = BytesToStream(bytes);
-
-        return LoadConfig<TConfig>(sectionName, stream);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml, NameOvl ovl1 = default, NameOvl ovl2 = default) 
         where TConfig : class, new()
     {
         if (!Has(xml))
@@ -415,29 +352,14 @@ public static class CustomConfigManagerCore
         XmlDocument doc = new();
         doc.LoadXml(xml);
 
-        return ParseConfig<TConfig>(sectionName, doc);
-    }
-
-    [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryParseConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xml) 
-        where TConfig : class, new()
-    {
-        if (!Has(xml))
-        {
-            return null;
-        }
-
-        XmlDocument doc = new();
-        doc.LoadXml(xml);
-
-        return ParseConfig<TConfig>(sectionName, doc);
+        return LoadConfig<TConfig>(sectionName, doc);
     }
     
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig ParseConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
+    private static TConfig LoadConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
         where TConfig : class, new()
     {
-        var config = TryParseConfig<TConfig>(sectionName, doc);
+        var config = TryLoadConfig<TConfig>(sectionName, doc);
         if (config == null)
         {
             throw NewNotFoundException(sectionName);
@@ -446,12 +368,11 @@ public static class CustomConfigManagerCore
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryParseConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)] TConfig>(string sectionName, XmlDocument doc)
         where TConfig : class, new()
     {
         XmlElement docElement = doc.DocumentElement.NotNull();
         XmlElement? sectionElement = XmlHelper.TryGetElement(docElement, sectionName); // TODO: Nested sections. How does that work?
-        //sectionElement ??= docElement; // If config section name not found, assume we're mapping the whole XML.
 
         if (sectionElement == null) 
         {
@@ -559,5 +480,40 @@ public static class CustomConfigManagerCore
 
         return null;
     }
+    #endregion
+    
+    #region Enforce Argument Names
+
+    #pragma warning disable IDE0051
+    // ncrunch: no coverage start
+    // ReSharper disable UnusedTypeParameter
+    // ReSharper disable UnusedMember.Global
+    // ReSharper disable UnusedMember.Local
+    // ReSharper disable UnusedParameter.Global
+
+    private const string SPECIFY_XML_OR_FILE_PATH = "Specify argument name xml: or filePath: to disambiguate";
+
+    /// <inheritdoc cref="_setsection" />
+    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
+    public static void SetSection<TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+
+    /// <inheritdoc cref="_setsection" />
+    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
+    public static void SetSection<TConfig>(Assembly assembly, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+
+    /// <inheritdoc cref="_setsection" />
+    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
+    public static void SetSection<TConfig>(string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+
+    [Obsolete(SPECIFY_XML_OR_FILE_PATH, true)]
+    private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string xmlOrFilePath) => throw new NotSupportedException(SPECIFY_XML_OR_FILE_PATH);
+
+
+    // ReSharper restore UnusedTypeParameter
+    // ReSharper restore UnusedMember.Global
+    // ReSharper restore UnusedMember.Local
+    // ReSharper restore UnusedParameter.Global
+    // ncrunch: no coverage end
+    #pragma warning restore IDE0051
     #endregion
 }

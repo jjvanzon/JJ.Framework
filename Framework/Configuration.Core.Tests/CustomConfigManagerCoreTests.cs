@@ -136,10 +136,10 @@ public class CustomConfigManagerCoreTests
         });
     }
 
-    // SetSection / ClearSection
+    // SetSection / RefreshSection
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_ClearSection()
+    public void Test_CustomConfigManagerCore_SetSection_RefreshSection()
     {
         LoopInIsolation(() =>
         {
@@ -153,12 +153,12 @@ public class CustomConfigManagerCoreTests
             AreEqual(100, config.NoteLength);
 
             // Clear to get auto-resolved section next loop.
-            ClearSection<ConfigSection>();
+            RefreshSection<ConfigSection>();
         });
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_ClearSection_ByName()
+    public void Test_CustomConfigManagerCore_SetSection_RefreshSection_ByName()
     {
         LoopInIsolation(() =>
         {
@@ -172,12 +172,12 @@ public class CustomConfigManagerCoreTests
             AreEqual(100, config.NoteLength);
 
             // Clear to get auto-resolved section next loop.
-            ClearSection("myconfig");
+            RefreshSection("myconfig");
         });
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_ClearSection_WithAssemblyName()
+    public void Test_CustomConfigManagerCore_SetSection_RefreshSection_WithAssemblyName()
     {
         LoopInIsolation(() =>
         {
@@ -191,7 +191,7 @@ public class CustomConfigManagerCoreTests
             AreEqual(100, config.NoteLength);
 
             // Clear to get auto-resolved section next loop.
-            ClearSection(_assembly);
+            RefreshSection(_assembly);
         });
     }
 
@@ -382,7 +382,7 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(filePath =>
         {
-            WriteAllText(
+            File.WriteAllText(
                 filePath,
                 $"""
                 <config>
@@ -403,7 +403,7 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(filePath =>
         {
-            WriteAllText(
+            File.WriteAllText(
                 filePath,
                 """
                 <config>
@@ -424,7 +424,7 @@ public class CustomConfigManagerCoreTests
     {
         InIsolation(filePath =>
         {
-            WriteAllText(
+            File.WriteAllText(
                 filePath,
                 $"""
                 <config>
@@ -455,7 +455,7 @@ public class CustomConfigManagerCoreTests
             }
             finally
             {
-                ClearSections();
+                RefreshAllSections();
             }
         }
     }
@@ -470,7 +470,7 @@ public class CustomConfigManagerCoreTests
             }
             finally
             {
-                ClearSections();
+                RefreshAllSections();
             }
         }
     }
@@ -486,12 +486,12 @@ public class CustomConfigManagerCoreTests
             }
             finally
             {
-                ClearSections();
+                RefreshAllSections();
                 try
                 {
                     if (File.Exists(filePath)) 
                     {
-                        Delete(filePath);
+                        File.Delete(filePath);
                     }
                 }
                 catch

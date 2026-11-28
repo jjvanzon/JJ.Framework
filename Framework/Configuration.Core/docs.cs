@@ -84,6 +84,9 @@ public struct _getsection;
 /// </typeparam>
 public struct _parameters;
 
+/// <inheritdoc cref="_refreshsection" />
+public struct _refreshallsections;
+
 /// <summary>
 /// Drops a cached configuration.
 /// When you call <c>(Try)GetSecton</c> the XML will be re-read from disk.
