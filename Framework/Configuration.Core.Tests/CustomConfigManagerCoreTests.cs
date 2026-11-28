@@ -582,15 +582,18 @@ public class CustomConfigManagerCoreTests
                     IsNullOrWhiteSpace(TryGetConfigFileName());
                 }
 
-                // TODO: This case fails. EntryAssembly is null.
-                return;
-
                 // {YourProjectName}.dll.config
                 {
                     // Create File
-                    string entryAssemblyName = GetEntryAssembly()?.GetName().Name ?? "";
+                    Assembly? entryAssembly = GetEntryAssembly();
+                    if (entryAssembly == null)
+                    {
+                        // EntryAssembly is sometimes null in Test Explorer, Debugger and NCrunch.
+                        return;
+                    }
+                    string? entryAssemblyName = entryAssembly.GetName().NotNull().Name;
                     NotNullOrWhiteSpace(entryAssemblyName);
-                    string fileName = GetEntryAssembly()?.GetName().Name + ".dll.config";
+                    string fileName = entryAssemblyName + ".dll.config";
                     const string content = $"""
                       <config>
                         <{SECTION_NAME} audioLength="6.14" />
@@ -617,13 +620,8 @@ public class CustomConfigManagerCoreTests
                 {
                     WriteAllText(orgFilePath, orgContent);
                 }
-                catch
-                {
-                    // Ignore
-                }
+                catch { /* Ignore */ } // ncrunch: no coverage
             }
-
-            
         });
     }
 
@@ -681,10 +679,7 @@ public class CustomConfigManagerCoreTests
                         Delete(filePath);
                     }
                 }
-                catch
-                { 
-                    // ignore
-                }
+                catch { /* ignore */ } // ncrunch: no coverage
             }
         }
     }
@@ -692,13 +687,10 @@ public class CustomConfigManagerCoreTests
     private static string GetTempFilePath([Caller] string testName = "")
     {
         string subFolderName = typeof(CustomConfigManagerCore).Namespace + ".TestRuns";
-        string subSubFolderName = testName; //nameof(CustomConfigManagerCoreTests);
-        string folderPath = Combine(GetTempPath(), subFolderName, subSubFolderName);
+        string folderPath = Combine(GetTempPath(), subFolderName, testName);
 
         if (!Directory.Exists(folderPath)) 
-        {
-            Directory.CreateDirectory(folderPath);
-        }
+            Directory.CreateDirectory(folderPath); // ncrunch: no coverage
 
         string fileName = GetRandomFileName().Replace(".", "") + ".xml";
 

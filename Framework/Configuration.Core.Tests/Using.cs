@@ -1,6 +1,7 @@
 ﻿global using System.Reflection;
 global using System.Xml.Serialization;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using JJ.Framework.Exceptions.Core;
 //global using JJ.Framework.Logging.Core.Mappers;
 global using JJ.Framework.Configuration.Core.Tests.Mappers;
 global using static System.IO.Path;
