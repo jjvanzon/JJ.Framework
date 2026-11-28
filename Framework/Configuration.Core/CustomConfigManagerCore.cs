@@ -3,7 +3,6 @@
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable UseSymbolAlias
 // ReSharper disable MethodOverloadWithOptionalParameter
-using JJ.Framework.Common.Core;
 
 namespace JJ.Framework.Configuration.Core;
 
@@ -17,30 +16,25 @@ public static class CustomConfigManagerCore
     private static readonly Dictionary<string, object> _cache = new();
     private static readonly Lock _lock = new();
 
-    #region Resolve Config Path
+    #region Resolve Config File
     /// <inheritdoc cref="_supportedconfigfilenames" />
-    public static IList<string> SupportedConfigFileNames 
+    public static IList<string> SupportedConfigFileNames { get; set => field = value.NotNull(); } = new[]
     {
-        get; set => field = value.NotNull(); 
-    } = InitSupportedConfigFileNames();
-
-    private static IList<string> InitSupportedConfigFileNames()
+        TryGetDllConfigFileName(),
+        "app.config",
+        "web.config",
+        "testhost.dll.config",
+        "nCrunch.TaskRunner.DotNetCore.20.x64.dll.config"
+    }.Where(FilledIn).ToList()!;
+    
+    private static string? TryGetDllConfigFileName()
     {
-        List<string> list = [];
-
-        // {YourProjectName}.dll.config
-        string? dllConfigFileName = TryGetDllConfigFileName();
-        if (Has(dllConfigFileName))
+        string? entryAssemblyName = GetEntryAssembly()?.GetName().Name;
+        if (Has(entryAssemblyName))
         {
-            list.Add(dllConfigFileName);
+            return $"{entryAssemblyName}.dll.config";
         }
-
-        list.Add("app.config");
-        list.Add("web.config");
-        list.Add("testhost.dll.config");
-        list.Add("nCrunch.TaskRunner.DotNetCore.20.x64.dll.config");
-
-        return list;
+        return null;
     }
 
     /// <inheritdoc cref="_trygetconfigfilename"/>
@@ -49,9 +43,7 @@ public static class CustomConfigManagerCore
         foreach (string fileName in SupportedConfigFileNames.ToArray())
         {
             if (Exists(fileName))
-            {
                 return fileName;
-            }
         }
 
         return null;
@@ -60,43 +52,28 @@ public static class CustomConfigManagerCore
     /// <inheritdoc cref="_getconfigfilename"/>
     public static string GetConfigFileName()
     {
-        string? configFileName = TryGetConfigFileName();
-
-        if (Has(configFileName))
+        string? fileName = TryGetConfigFileName();
+        if (Has(fileName))
         {
-            return configFileName;
+            return fileName;
         }
-
-        string? dllConfigFileName = TryGetDllConfigFileName();
 
         throw new Exception(
             $"No config file found with expected file names " +
-            $"'app.config', 'web.config'. '{dllConfigFileName}', " +
-            $"'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
+            $"{FormatSupportedFileNames()} " +
             $"in folder: {CurrentDirectory}");
     }
 
-    private static Exception NewNotFoundException(string sectionName)
+    private static Exception CreateNotFoundException(string sectionName)
     {
-        string? dllConfigFileName = TryGetDllConfigFileName();
         return new Exception(
             $"Config section '{sectionName}' not found in any config with expected file names " +
-            $"'app.config', 'web.config'. '{dllConfigFileName}', " +
-            $"'testhost.dll.config' or 'nCrunch.TaskRunner.DotNetCore.20.x64.dll.config' " +
+            $"{FormatSupportedFileNames()} " +
             $"in folder: {CurrentDirectory}");
     }
 
-    private static string? TryGetDllConfigFileName()
-    {
-        string? entryAssemblyName = GetEntryAssembly()?.GetName().Name;
-
-        if (Has(entryAssemblyName))
-        {
-            return $"{entryAssemblyName}.dll.config";
-        }
-
-        return null;
-    }
+    private static string FormatSupportedFileNames() 
+        => Join(", ", SupportedConfigFileNames.ToArray().Select(x => "'" + x + "'" ));
     #endregion
 
     #region Get
@@ -455,7 +432,7 @@ public static class CustomConfigManagerCore
         var config = TryLoadConfig<TConfig>(sectionName, doc);
         if (config == null)
         {
-            throw NewNotFoundException(sectionName);
+            throw CreateNotFoundException(sectionName);
         }
         return config;
     }

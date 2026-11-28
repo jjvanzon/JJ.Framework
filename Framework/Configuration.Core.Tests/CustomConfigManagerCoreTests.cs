@@ -490,30 +490,33 @@ public class CustomConfigManagerCoreTests
 
                 // app.config
                 {
+                    // Create File
                     const string content = $"""
                       <config>
                         <{SECTION_NAME} audioLength="3.14" />
                       </config>
                       """;
-
                     WriteAllText("app.config", content);
                     AreEqual("app.config", GetConfigFileName());
+
+                    // Assert
                     var config = GetSection<MyConfig>();
                     NotNull(config);
                     AreEqual(3.14, config.AudioLength);
 
+                    // Delete file
                     Delete("app.config");
                     IsNullOrWhiteSpace(TryGetConfigFileName());
                 }
 
                 // web.config
                 {
+                    // Create File
                     const string content = $"""
                       <config>
                         <{SECTION_NAME} audioLength="3.15" />
                       </config>
                       """;
-
                     WriteAllText("web.config", content);
                     AreEqual("web.config", GetConfigFileName());
 
@@ -526,7 +529,13 @@ public class CustomConfigManagerCoreTests
                     config = GetSection<MyConfig>();
                     NotNull(config);
                     AreEqual(3.15, config.AudioLength);
+
+                    // Delete File
+                    Delete("web.config");
+                    IsNullOrWhiteSpace(TryGetConfigFileName());
                 }
+
+                // TODO: Other config sources.
             }
             finally
             {
