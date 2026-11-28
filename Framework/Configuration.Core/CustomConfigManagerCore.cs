@@ -371,14 +371,10 @@ public static class CustomConfigManagerCore
         where TConfig : class, new()
     {
         if (!Has(filePath)) 
-        {
             return null;
-        }
 
         if (!Exists(filePath))
-        {
-            return null;
-        }
+            return null; // ncrunch: no coverage
 
         XmlDocument doc = new();
         using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
