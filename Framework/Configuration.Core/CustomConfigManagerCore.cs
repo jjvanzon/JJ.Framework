@@ -280,10 +280,6 @@ public static class CustomConfigManagerCore
         where TConfig : class, new()
     {
         string? fileName = TryResolveConfigFileName();
-        if (!Has(fileName)) 
-        {
-            return null;
-        }
         return TryLoadConfig<TConfig>(sectionName, filePath: fileName);
     }
 
@@ -291,6 +287,16 @@ public static class CustomConfigManagerCore
     private static TConfig LoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, NameOvl ovl1 = default) 
         where TConfig : class, new()
     {
+        if (!Has(filePath))
+        {
+            throw new Exception($"No {nameof(filePath)} provided.");
+        }
+
+        if (!Exists(filePath))
+        {
+            throw new Exception("File not found.");
+        }
+
         XmlDocument doc = new();
         using (var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
         {
@@ -300,9 +306,14 @@ public static class CustomConfigManagerCore
     }
 
     [TrimWarn(TrimWarning), AotWarn(AotWarning)]
-    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string filePath, NameOvl ovl1 = default) 
+    private static TConfig? TryLoadConfig<[Dyn(AllProps)]TConfig>(string sectionName, string? filePath, NameOvl ovl1 = default) 
         where TConfig : class, new()
     {
+        if (!Has(filePath)) 
+        {
+            return null;
+        }
+
         if (!Exists(filePath))
         {
             return null;
@@ -390,7 +401,7 @@ public static class CustomConfigManagerCore
     private static void AssertSectionName(string sectionName)
     {
         if (!Has(sectionName)) 
-            throw new Exception($"{nameof(sectionName)} not filled in.");
+            throw new Exception($"No {nameof(sectionName)}.");
     }
 
     private static string GetSectionName<TConfig>()
@@ -402,10 +413,10 @@ public static class CustomConfigManagerCore
     private static string GetSectionName(Assembly assembly)
     {
         var name = assembly.NotNull().GetName().Name;
+
         if (!Has(name))
-        {
-            throw new Exception("Assembly has no name.");
-        }
+            throw new Exception("Assembly has no name."); // ncrunch: no coverage
+
         return name.ToLower(_culture);
     }
 

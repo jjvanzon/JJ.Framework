@@ -198,7 +198,7 @@ public class CustomConfigManagerCoreTests
     // From Text
         
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromText()
+    public void Test_CustomConfigManagerCore_FromText()
     {
         InIsolation(() =>
         { 
@@ -216,7 +216,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromText_WithSectionName()
+    public void Test_CustomConfigManagerCore_FromText_WithSectionName()
     {
         InIsolation(() =>
         { 
@@ -234,7 +234,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromText_WithAssembly()
+    public void Test_CustomConfigManagerCore_SetSection_WithAssembly()
     {
         InIsolation(() =>
         { 
@@ -254,7 +254,7 @@ public class CustomConfigManagerCoreTests
     // From Bytes
         
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromBytes()
+    public void Test_CustomConfigManagerCore_FromBytes()
     {
         InIsolation(() =>
         {
@@ -274,7 +274,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithSectionName()
+    public void Test_CustomConfigManagerCore_FromBytes_WithSectionName()
     {
         InIsolation(() =>
         {
@@ -294,7 +294,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromBytes_WithAssembly()
+    public void Test_CustomConfigManagerCore_FromBytes_WithAssembly()
     {
         InIsolation(() =>
         {
@@ -316,7 +316,7 @@ public class CustomConfigManagerCoreTests
     // From Stream
         
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromStream()
+    public void Test_CustomConfigManagerCore_FromStream()
     {
         InIsolation(() =>
         {
@@ -336,7 +336,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromStream_WithSectionName()
+    public void Test_CustomConfigManagerCore_FromStream_WithSectionName()
     {
         InIsolation(() =>
         {
@@ -356,7 +356,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromStream_WithAssembly()
+    public void Test_CustomConfigManagerCore_FromStream_WithAssembly()
     {
         InIsolation(() =>
         {
@@ -378,7 +378,7 @@ public class CustomConfigManagerCoreTests
     // From File Path
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromFilePath()
+    public void Test_CustomConfigManagerCore_FromFilePath()
     {
         InIsolation(filePath =>
         {
@@ -399,7 +399,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromFilePath_WithSectionName()
+    public void Test_CustomConfigManagerCore_FromFilePath_WithSectionName()
     {
         InIsolation(filePath =>
         {
@@ -420,7 +420,7 @@ public class CustomConfigManagerCoreTests
     }
 
     [TestMethod]
-    public void Test_CustomConfigManagerCore_SetSection_FromFilePath_WithAssembly()
+    public void Test_CustomConfigManagerCore_FromFilePath_WithAssembly()
     {
         InIsolation(filePath =>
         {
@@ -438,6 +438,24 @@ public class CustomConfigManagerCoreTests
 
             AreEqual(8.76, config.NoteLength);
         });
+    }
+
+    // Empty Cases
+
+    [TestMethod]
+    public void Test_CustomConfigManagerCore_Nullies()
+    {
+        Throws(() => GetSection   <MyConfig>(sectionName: ""), "no sectionName");
+        Throws(() => TryGetSection<MyConfig>(sectionName: ""), "no sectionName");
+        Throws(() => SetSection   <MyConfig>(xml:      null!), "no xml"        );
+        Throws(() => SetSection   <MyConfig>(xml:      ""   ), "no xml"        );
+        Throws(() => SetSection   <MyConfig>(xml:      " "  ), "no xml"        );
+        Throws(() => SetSection   <MyConfig>(bytes:    null!), "no bytes"      );
+        Throws(() => SetSection   <MyConfig>(bytes:    [ ]  ), "no bytes"      );
+        Throws(() => SetSection   <MyConfig>(filePath: null!), "no filePath"   );
+        Throws(() => SetSection   <MyConfig>(filePath: ""   ), "no filePath"   );
+        Throws(() => SetSection   <MyConfig>(filePath: " "  ), "no filePath"   );
+        Throws(() => SetSection   <MyConfig>(filePath: GetTempFilePath()), "file not found");
     }
 
     // Helpers
@@ -502,7 +520,7 @@ public class CustomConfigManagerCoreTests
         }
     }
 
-    private static string GetTempFilePath(string testName)
+    private static string GetTempFilePath([Caller] string testName = "")
     {
         string subFolderName = typeof(CustomConfigManagerCore).Namespace + ".TestRuns";
         string subSubFolderName = testName; //nameof(CustomConfigManagerCoreTests);
